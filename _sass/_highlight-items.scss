@@ -1,0 +1,23 @@
+.column{
+  &.highlight-items{
+    &:nth-child(n+1){
+       background-color: #eee;
+    }
+    &:nth-child(n+2){
+      background-color: #ddd;
+    }
+    &:nth-child(n+3){
+      background-color: #eee;
+    }
+    &:nth-child(n+4){
+      background-color: #ddd;
+    }
+    &:nth-child(n+5){
+      background-color: #eee;
+    }
+
+    > div{
+      padding:$section-padding;
+    }
+  }
+}

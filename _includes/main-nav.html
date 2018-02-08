@@ -1,0 +1,38 @@
+<nav class="navbar is-light">
+    <div class="container is-fluid">
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+            <div class="navbar-start">
+                {% assign links = site.data.navigation %}
+                {% for link in links %}
+                    {% assign class = nil %}
+                    {% if page.url contains link.url %}
+                        {% assign class = 'active' %}
+                    {% endif %}
+                    {% if link.sublinks %}
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link" href="{{ site.baseurl }}{{ link.url }}">
+                                {{ link.title }}
+                            </a>
+                            <div class="navbar-dropdown is-boxed">
+                                {% for sublink in link.sublinks %}
+                                    <a class="navbar-item " href="{{ sublink.url }}">
+                                        {{ sublink.title }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <li class="navbar-item {{ class }}">
+                            <a href="{{ site.baseurl }}{{ link.url }}">{{ link.title }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</nav>
