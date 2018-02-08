@@ -14,7 +14,10 @@
         }
       }
       & + li{
-        margin-top:5px;
+        +mobile{
+          margin-top:5px;
+        }
+
       }
     }
 

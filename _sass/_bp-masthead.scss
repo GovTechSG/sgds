@@ -1,12 +1,11 @@
 .bp-masthead{
-
   padding:0.25rem 0;
-  background-color: #eee;
-  color:rgba(black,0.8);
+  background-color: #F0F0F0;
+  color:#484848;
   a{
-    color:rgba(black,0.8);
+    color:#484848;
     &:hover{
-      color:rgba(black,1);
+      color:darken(#484848,20%);
     }
   }
   &.is-inverted{

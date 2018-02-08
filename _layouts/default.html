@@ -3,9 +3,10 @@
 {% include head.html %}
     <body>
         {% include bp-masthead.html %}
+        {% include bp-agencyhead.html %}
         {% include main-nav.html %}
         {{content}}
-        {% include footer.html %}
+        {% include bp-footer.html %}
     </body>
-    <script type="text/javascript" src="{{ site.baseurl }}/js/main.js"></script>
+    <script type="text/javascript" src="{{"/js/main.js" | prepend: site.baseurl }}"></script>
 </html>

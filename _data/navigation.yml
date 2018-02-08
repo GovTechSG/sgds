@@ -4,11 +4,8 @@
   url: /components.html
   sublinks:
     - title: Masthead
-      url: /masthead.html
-      status: disabled
+      url: /components/masthead
     - title: Footer
-      url: /footer.html
-      status: disabled
-
+      url: /components/footer
 
 

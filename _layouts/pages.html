@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+{% include head.html %}
+<body>
+{% include bp-masthead.html %}
+{% include bp-agencyhead.html %}
+{% include main-nav.html %}
+<section class="section">
+    <div class="container is-fluid">
+        <div class="columns">
+
+            <div class="column is-9">
+                <h3 class="title">{{page.title}}</h3>
+                <p class="subtitle">{{page.subtitle}}</p>
+                {{content}}
+            </div>
+
+            <div class="column is-3 is-hidden-mobile is-hidden-tablet-only">
+                <aside data-blueprint="menu" data-options="single: true;" class="bp-menu">
+                    <p class="bp-menu-label">
+                        General
+                    </p>
+                    <ul class="bp-menu-list">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#">Customers</a>
+                        </li>
+                    </ul>
+                    <p class="bp-menu-label">
+                        Administration
+                    </p>
+                    <ul class="bp-menu-list">
+                        <li>
+                            <a href="#">Team Settings</a>
+                        </li>
+                        <li>
+                            <a class="is-active" href="#">Manage Your Team</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Members</a>
+                                </li>
+                                <li>
+                                    <a href="#">Plugins</a>
+                                </li>
+                                <li>
+                                    <a href="#">Add a member</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Invitations</a>
+                        </li>
+                        <li>
+                            <a href="#">Authentication</a>
+                        </li>
+                    </ul>
+                    <p class="bp-menu-label">
+                        Transactions
+                    </p>
+                    <ul class="bp-menu-list">
+                        <li>
+                            <a class="is-active" href="#">Manage Your Team</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Members</a>
+                                </li>
+                                <li>
+                                    <a href="#">Plugins</a>
+                                </li>
+                                <li>
+                                    <a href="#">Add a member</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Transfers</a>
+                        </li>
+                        <li>
+                            <a href="#">Balance</a>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% include bp-footer.html %}
+</body>
+<script type="text/javascript" src="{{ site.baseurl }}/js/main.js"></script>
+</html>

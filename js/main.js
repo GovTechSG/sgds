@@ -161,11 +161,12 @@ BLUEPRINT.collapseMenu = function(el, status) {
 
 if (!BLUEPRINT.isReady) {
     menuElems = BLUEPRINT.getElements('menu');
+    console.log(menuElems);
     if (menuElems && menuElems.length > 0) {
         for (i = 0, len = menuElems.length; i < len; i++) {
             menu = menuElems[i];
             options = BLUEPRINT.parseOptions(menu);
-            lists = menu.querySelectorAll('.menu-list');
+            lists = menu.querySelectorAll('.bp-menu-list');
             for (j = 0, len1 = lists.length; j < len1; j++) {
                 list = lists[j];
                 subMenu = list.querySelector('ul');
@@ -176,6 +177,7 @@ if (!BLUEPRINT.isReady) {
         }
     }
 }
+
 ;var i, len, modal, modals, options;
 
 BLUEPRINT.toggleModal = function(el, options) {
