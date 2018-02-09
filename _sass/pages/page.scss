@@ -1,13 +1,23 @@
 .page{
   &-icon{
     .column{
+      position:relative;
       transition: all 0.3s;
       border:1px solid #eee;
       &:hover{
         background-color: darken(white,5%);
-        .icon-container{
-
+        a.bd-copy{
+          display:block;
         }
+      }
+      a.bd-copy{
+        position:absolute;
+        display:none;
+        right:5px;
+        top:5px;
+        padding:0.25rem;
+        //background-color: #e3e3e3;
+        @extend .is-size-7;
       }
     }
   }
