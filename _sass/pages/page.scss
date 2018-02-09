@@ -1,0 +1,14 @@
+.page{
+  &-icon{
+    .column{
+      transition: all 0.3s;
+      border:1px solid #eee;
+      &:hover{
+        background-color: darken(white,5%);
+        .icon-container{
+
+        }
+      }
+    }
+  }
+}

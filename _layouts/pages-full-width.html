@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+{% include head.html %}
+<body>
+{% include bp-masthead.html %}
+{% include bp-agencyhead.html %}
+{% include main-nav.html %}
+<section class="section">
+    <div class="container is-fluid">
+        <div class="columns">
+
+            <div class="column">
+                <h3 class="title">{{page.title}}</h3>
+                <p class="subtitle">{{page.subtitle}}</p>
+                {{content}}
+            </div>
+        </div>
+        <div class="columns"></div>
+            <div class="column is-3 is-hidden-mobile is-hidden-tablet-only">
+
+            </div>
+
+        </div>
+    </div>
+</section>
+{% include bp-footer.html %}
+</body>
+<script type="text/javascript" src="{{ site.baseurl }}/js/main.js"></script>
+</html>

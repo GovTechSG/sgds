@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: 'blueprint-icons';
-  src:  url('#{$icomoon-font-path}/blueprint-icons.eot?xj7lny');
-  src:  url('#{$icomoon-font-path}/blueprint-icons.eot?xj7lny#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/blueprint-icons.ttf?xj7lny') format('truetype'),
-    url('#{$icomoon-font-path}/blueprint-icons.woff?xj7lny') format('woff'),
-    url('#{$icomoon-font-path}/blueprint-icons.svg?xj7lny#blueprint-icons') format('svg');
+  src:  url('#{$icomoon-font-path}/blueprint-icons.eot?srq4nr');
+  src:  url('#{$icomoon-font-path}/blueprint-icons.eot?srq4nr#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/blueprint-icons.ttf?srq4nr') format('truetype'),
+    url('#{$icomoon-font-path}/blueprint-icons.woff?srq4nr') format('woff'),
+    url('#{$icomoon-font-path}/blueprint-icons.svg?srq4nr#blueprint-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -26,15 +26,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bp-icon-search {
+.bp-icon-Artboard {
   &:before {
-    content: $bp-icon-search; 
-  }
-}
-.bp-icon-sg-crest {
-  &:before {
-    content: $bp-icon-sg-crest;     
-    color: #db0000;
+    content: $bp-icon-Artboard; 
   }
 }
 .bp-icon-angle-left {
@@ -62,6 +56,11 @@
     content: $bp-icon-arrow-right; 
   }
 }
+.bp-icon-arrow-up {
+  &:before {
+    content: $bp-icon-arrow-up; 
+  }
+}
 .bp-icon-arrow-up-left {
   &:before {
     content: $bp-icon-arrow-up-left; 
@@ -70,16 +69,6 @@
 .bp-icon-arrow-up-right {
   &:before {
     content: $bp-icon-arrow-up-right; 
-  }
-}
-.bp-icon-arrow-up {
-  &:before {
-    content: $bp-icon-arrow-up; 
-  }
-}
-.bp-icon-Artboard {
-  &:before {
-    content: $bp-icon-Artboard; 
   }
 }
 .bp-icon-browser {
@@ -97,14 +86,14 @@
     content: $bp-icon-calculator; 
   }
 }
-.bp-icon-calendar-alt {
-  &:before {
-    content: $bp-icon-calendar-alt; 
-  }
-}
 .bp-icon-calendar {
   &:before {
     content: $bp-icon-calendar; 
+  }
+}
+.bp-icon-calendar-alt {
+  &:before {
+    content: $bp-icon-calendar-alt; 
   }
 }
 .bp-icon-circle-info {
@@ -285,6 +274,17 @@
 .bp-icon-save {
   &:before {
     content: $bp-icon-save; 
+  }
+}
+.bp-icon-search {
+  &:before {
+    content: $bp-icon-search; 
+  }
+}
+.bp-icon-sg-crest {
+  &:before {
+    content: $bp-icon-sg-crest;     
+    color: #db0000;
   }
 }
 .bp-icon-speech {
