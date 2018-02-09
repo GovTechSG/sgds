@@ -41,8 +41,3 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-exclude:
-  - package.json
-  - node_modules
-include:
-  - node_modules/clipboard/dist
