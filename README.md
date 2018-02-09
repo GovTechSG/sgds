@@ -1,3 +1,9 @@
+### Install gem
+
+```sh
+gem install jekyll bundler
+```
+
 ### Install jekyll
 
 ```sh

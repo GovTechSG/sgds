@@ -1,7 +1,7 @@
 - title: Home
   url: /index.html
 - title: Components
-  url: /components.html
+
   sublinks:
     - title: Masthead
       url: /components/masthead
