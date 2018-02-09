@@ -11,7 +11,7 @@
                 {% for link in links %}
                     {% assign class = nil %}
                     {% if page.url contains link.url %}
-                        {% assign class = 'active' %}
+                        {% assign class = 'is-active' %}
                     {% endif %}
                     {% if link.sublinks %}
                         <div class="navbar-item has-dropdown is-hoverable">
@@ -28,7 +28,7 @@
                         </div>
                     {% else %}
                         <li class="navbar-item {{ class }}">
-                            <a href="{{ site.baseurl }}{{ link.url }}">{{ link.title }}</a>
+                            <a href="{{ site.baseurl }}{{ link.url }}" class="{{ class }}">{{ link.title }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
