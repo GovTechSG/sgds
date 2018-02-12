@@ -7,8 +7,10 @@
     <meta property="og:description" content="{{site.description}}">
     <meta property="og:image" content="{{site.baseurl}}/assets/img/logo_blueprint.png">
     <meta property="og:url" content="{{site.baseurl}}">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    {% if page.url contains '/components' %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.34.0/codemirror.css">
+    {% endif %}
     <link rel="stylesheet" href="{{"/css/main.css" | prepend: site.baseurl }}">
     <title>{{ page.title }} {{ site.title }} </title>
 </head>

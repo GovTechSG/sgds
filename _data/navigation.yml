@@ -1,5 +1,5 @@
-- title: Home
-  url: /
+#- title: Home
+#  url: /
 - title: Components
   sublinks:
     - title: Masthead

@@ -34,4 +34,21 @@
       margin-left:10px;
     }
   }
+
+  .is-row-reversed{
+    flex-direction:row-reverse;
+  }
+
+  .is-order-1{
+    order:1;
+    @include mobile(){
+      order: 2;
+    }
+  }
+  .is-order-2{
+    order:2;
+    @include mobile(){
+      order: 1;
+    }
+  }
 }
