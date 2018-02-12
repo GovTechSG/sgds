@@ -40,5 +40,13 @@
 {% include bp-footer.html %}
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+
 <script type="text/javascript" src="{{ site.baseurl }}/js/main.js"></script>
+<script>
+    var el = document.querySelector('.xml'),
+        esc = _.escape(el.innerHTML);
+    // Reasign escaped to node and initialize highlight.js
+    el.innerHTML = esc;
+    hljs.highlightBlock(el);
+</script>
 </html>

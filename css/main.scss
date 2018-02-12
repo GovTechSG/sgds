@@ -10,7 +10,7 @@
 @import "components/all";
 @import "grid/all";
 @import "layout/all";
-
+@import "utilities";
 *{
   font-family: 'Open Sans', sans-serif;
 }
@@ -25,4 +25,3 @@
 @import "bp-agencyhead";
 @import "bp-footer";
 @import "pages/page";
-@import "snippets";
