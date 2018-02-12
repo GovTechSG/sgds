@@ -1,13 +1,10 @@
 - title: Home
-  url: /index.html
+  url: /
 - title: Components
-
   sublinks:
     - title: Masthead
       url: /components/masthead
     - title: Footer
       url: /components/footer
-- title: Icons
-  url: /icons
-
-
+    - title: Icons
+      url: /components/icons

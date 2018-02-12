@@ -1,0 +1,13 @@
+.navbar-start{
+  li{
+    &.navbar-item{
+      &.is-active{
+        background-color: darken(white,30%);
+        a{
+          color:white;
+        }
+      }
+    }
+  }
+}
+

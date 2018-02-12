@@ -1,0 +1,24 @@
+---
+title: Icons
+subtitle: Hover and copy the classname
+layout: pages
+permalink: /components/icons
+---
+
+<div class="content page-icon">
+    <div class="columns is-multiline is-mobile">
+        {% assign sort-icons = site.data.icons | sort:'iconName' %}
+        {% for icon in sort-icons %}
+        <div class="column is-2-desktop is-4-tablet is-4-mobile">
+
+            <div class="icon-container">
+                <span class="is-size-1 bp-icon bp-icon-{{icon.iconName}}"></span>
+            </div>
+            <span> .bp-icon-{{icon.iconName}}</span>
+            <a class="bp-button is-outlined bd-copy is-hidden-touch">
+                Copy
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
