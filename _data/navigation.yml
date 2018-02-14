@@ -14,5 +14,7 @@
       url: /components/cards
     - title: Dropdowns
       url: /components/dropdowns
+    - title: Buttons
+      url: /components/buttons
 - title: Templates
   url: /templates

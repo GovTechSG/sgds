@@ -161,7 +161,6 @@ BLUEPRINT.collapseMenu = function(el, status) {
 
 if (!BLUEPRINT.isReady) {
     menuElems = BLUEPRINT.getElements('menu');
-    console.log(menuElems);
     if (menuElems && menuElems.length > 0) {
         for (i = 0, len = menuElems.length; i < len; i++) {
             menu = menuElems[i];
@@ -185,7 +184,7 @@ BLUEPRINT.toggleModal = function(el, options) {
         throw new Error('Found [BLUEPRINT-MODAL] but there is no target defined!');
     }
     el.addEventListener('click', function(e) {
-        console.log("test")
+
         var backdrop, closeBtn, closeModal, modal;
         e.preventDefault();
         e.stopPropagation();
