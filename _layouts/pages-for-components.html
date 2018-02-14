@@ -9,7 +9,7 @@
     <div class="container is-fluid">
         <div class="columns">
             <div class="column is-2 is-hidden-mobile is-hidden-tablet-only">
-                <aside data-blueprint="menu" data-options="single: true;" class="bp-menu">
+                <aside data-blueprint="menu" data-options="single: true;" class="bp-menu is-dark">
                     {% assign links = site.data.navigation %}
                     {% for link in links %}
                         {% assign class = nil %}
@@ -26,7 +26,6 @@
                                     {% else %}
                                     <a href="{{ site.baseurl }}{{ item.url }}"> {{ item.title }}</a>
                                     {% endif %}
-
                                 </li>
                             </ul>
                             {% endfor %}
@@ -35,8 +34,19 @@
                 </aside>
             </div>
             <div class="column">
-                <h3 class="title">{{page.title}}</h3>
-                <p class="subtitle">{{page.subtitle}}</p>
+                <div class="columns">
+                    <div class="column is-7 is-12-mobile">
+                        <div class="content">
+                            <h3><b>{{page.title}}</b></h3>
+                            <p>{{page.subtitle}}</p>
+                            <div class="bp-tags">
+                                {% for tag in page.tags %}
+                                <span class="bp-tag"><a href="{{site.url}}/components/{{tag}}">{{tag}}</a></span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {{content}}
             </div>
         </div>
@@ -48,6 +58,14 @@
 
 <script type="text/javascript" src="{{ site.baseurl }}/js/main.js"></script>
 <script>
+
+    var clipboard = new Clipboard('.bd-copy'); clipboard.destroy();
+    new Clipboard('.bd-copy', {
+        target: function(trigger) {
+            return trigger.previousSibling.previousSibling;
+        }
+    });
+
     hljs.initHighlightingOnLoad()
     var els = document.querySelectorAll('.xml');
     _.each(els,function(el){
@@ -57,5 +75,6 @@
     })
 
     hljs.initHighlighting();
+
 </script>
 </html>

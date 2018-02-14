@@ -1,5 +1,7 @@
 - title: Home
   url: /
+- title: Grids
+  url: /grids
 - title: Components
   sublinks:
     - title: Masthead
@@ -12,3 +14,5 @@
       url: /components/cards
     - title: Dropdowns
       url: /components/dropdowns
+- title: Templates
+  url: /templates

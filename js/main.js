@@ -347,10 +347,3 @@ document.addEventListener('keydown', function (event) {
 function getAll(selector) {
     return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
 }
-
-var clipboard = new Clipboard('.bd-copy'); clipboard.destroy();
-new Clipboard('.bd-copy', {
-    target: function(trigger) {
-        return trigger.previousSibling.previousSibling;
-    }
-});
