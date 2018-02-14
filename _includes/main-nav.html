@@ -1,4 +1,4 @@
-<nav class="navbar is-light">
+<nav class="navbar is-primary">
     <div class="container is-fluid">
         <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
             <span></span>
@@ -19,10 +19,18 @@
                                 {{ link.title }}
                             </a>
                             <div class="navbar-dropdown is-boxed">
-                                {% for sublink in link.sublinks %}
-                                    <a class="navbar-item " href="{{ sublink.url }}">
-                                        {{ sublink.title }}
-                                    </a>
+                                {% assign sort = link.sublinks | sort:'title' %}
+                                {% for item in sort %}
+                                    {% assign class = nil %}
+                                    {% if page.url contains item.url %}
+                                        <a class="navbar-item is-active" href="{{ item.url }}">
+                                            {{ item.title }}
+                                        </a>
+                                    {% else %}
+                                        <a class="navbar-item" href="{{ item.url }}">
+                                            {{ item.title }}
+                                        </a>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>

@@ -1,5 +1,5 @@
-#- title: Home
-#  url: /
+- title: Home
+  url: /
 - title: Components
   sublinks:
     - title: Masthead
@@ -8,3 +8,7 @@
       url: /components/footer
     - title: Icons
       url: /components/icons
+    - title: Cards
+      url: /components/cards
+    - title: Dropdowns
+      url: /components/dropdowns

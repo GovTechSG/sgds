@@ -17,10 +17,16 @@
                             {% assign class = 'is-active' %}
                         {% endif %}
                         {% if link.title == 'Components' %}
-                            {% for sublink in link.sublinks %}
+                            {% assign sorted = link.sublinks | sort: 'title' %}
+                            {% for item in sorted %}
                             <ul class="bp-menu-list">
                                 <li>
-                                    <a href="{{ site.baseurl }}{{ sublink.url }}"> {{ sublink.title }}</a>
+                                    {% if page.url contains item.url %}
+                                    <a href="{{ site.baseurl }}{{ item.url }}" class="is-active"> {{ item.title }}</a>
+                                    {% else %}
+                                    <a href="{{ site.baseurl }}{{ item.url }}"> {{ item.title }}</a>
+                                    {% endif %}
+
                                 </li>
                             </ul>
                             {% endfor %}
@@ -28,8 +34,7 @@
                     {% endfor %}
                 </aside>
             </div>
-
-            <div class="column is-10">
+            <div class="column">
                 <h3 class="title">{{page.title}}</h3>
                 <p class="subtitle">{{page.subtitle}}</p>
                 {{content}}
@@ -43,10 +48,14 @@
 
 <script type="text/javascript" src="{{ site.baseurl }}/js/main.js"></script>
 <script>
-    var el = document.querySelector('.xml'),
-        esc = _.escape(el.innerHTML);
-    // Reasign escaped to node and initialize highlight.js
-    el.innerHTML = esc;
-    hljs.highlightBlock(el);
+    hljs.initHighlightingOnLoad()
+    var els = document.querySelectorAll('.xml');
+    _.each(els,function(el){
+        var esc = _.escape(el.innerHTML);
+        el.innerHTML = esc;
+        console.log(el)
+    })
+
+    hljs.initHighlighting();
 </script>
 </html>

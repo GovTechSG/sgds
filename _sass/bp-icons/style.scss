@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: 'blueprint-icons';
-  src:  url('#{$icomoon-font-path}/blueprint-icons.eot?srq4nr');
-  src:  url('#{$icomoon-font-path}/blueprint-icons.eot?srq4nr#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/blueprint-icons.ttf?srq4nr') format('truetype'),
-    url('#{$icomoon-font-path}/blueprint-icons.woff?srq4nr') format('woff'),
-    url('#{$icomoon-font-path}/blueprint-icons.svg?srq4nr#blueprint-icons') format('svg');
+  src:  url('#{$icomoon-font-path}/blueprint-icons.eot?hw1vd4');
+  src:  url('#{$icomoon-font-path}/blueprint-icons.eot?hw1vd4#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/blueprint-icons.ttf?hw1vd4') format('truetype'),
+    url('#{$icomoon-font-path}/blueprint-icons.woff?hw1vd4') format('woff'),
+    url('#{$icomoon-font-path}/blueprint-icons.svg?hw1vd4#blueprint-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -26,6 +26,131 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.bp-icon-alert {
+  &:before {
+    content: $bp-icon-alert; 
+  }
+}
+.bp-icon-angle-down {
+  &:before {
+    content: $bp-icon-angle-down; 
+  }
+}
+.bp-icon-angle-up {
+  &:before {
+    content: $bp-icon-angle-up; 
+  }
+}
+.bp-icon-arrow-expand {
+  &:before {
+    content: $bp-icon-arrow-expand; 
+  }
+}
+.bp-icon-attachment {
+  &:before {
+    content: $bp-icon-attachment; 
+  }
+}
+.bp-icon-calculator-o {
+  &:before {
+    content: $bp-icon-calculator-o; 
+  }
+}
+.bp-icon-checked {
+  &:before {
+    content: $bp-icon-checked; 
+  }
+}
+.bp-icon-circle-minus {
+  &:before {
+    content: $bp-icon-circle-minus; 
+  }
+}
+.bp-icon-circle-plus {
+  &:before {
+    content: $bp-icon-circle-plus; 
+  }
+}
+.bp-icon-cloud {
+  &:before {
+    content: $bp-icon-cloud; 
+  }
+}
+.bp-icon-edit {
+  &:before {
+    content: $bp-icon-edit; 
+  }
+}
+.bp-icon-file-alt {
+  &:before {
+    content: $bp-icon-file-alt; 
+  }
+}
+.bp-icon-file {
+  &:before {
+    content: $bp-icon-file; 
+  }
+}
+.bp-icon-link-external {
+  &:before {
+    content: $bp-icon-link-external; 
+  }
+}
+.bp-icon-link {
+  &:before {
+    content: $bp-icon-link; 
+  }
+}
+.bp-icon-lock {
+  &:before {
+    content: $bp-icon-lock; 
+  }
+}
+.bp-icon-map {
+  &:before {
+    content: $bp-icon-map; 
+  }
+}
+.bp-icon-minify {
+  &:before {
+    content: $bp-icon-minify; 
+  }
+}
+.bp-icon-mrt {
+  &:before {
+    content: $bp-icon-mrt; 
+  }
+}
+.bp-icon-print {
+  &:before {
+    content: $bp-icon-print; 
+  }
+}
+.bp-icon-slider-horizontal {
+  &:before {
+    content: $bp-icon-slider-horizontal; 
+  }
+}
+.bp-icon-slider-vertical {
+  &:before {
+    content: $bp-icon-slider-vertical; 
+  }
+}
+.bp-icon-unlock {
+  &:before {
+    content: $bp-icon-unlock; 
+  }
+}
+.bp-icon-zoom-in {
+  &:before {
+    content: $bp-icon-zoom-in; 
+  }
+}
+.bp-icon-zoom-out {
+  &:before {
+    content: $bp-icon-zoom-out; 
+  }
+}
 .bp-icon-Artboard {
   &:before {
     content: $bp-icon-Artboard; 
