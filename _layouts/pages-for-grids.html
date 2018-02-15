@@ -12,24 +12,24 @@
                 <aside data-blueprint="menu" data-options="single: true;" class="bp-menu is-dark">
                     {% assign links = site.data.navigation %}
                     {% for link in links %}
-                        {% assign class = nil %}
-                        {% if page.url contains link.sublink.url %}
-                            {% assign class = 'is-active' %}
-                        {% endif %}
-                        {% if link.title == 'Components' %}
-                            {% assign sorted = link.sublinks | sort: 'title' %}
-                            {% for item in sorted %}
-                            <ul class="bp-menu-list">
-                                <li>
-                                    {% if page.url contains item.url %}
-                                        <a href="{{ site.baseurl }}{{ item.url }}" class="is-active"> {{ item.title }}</a>
-                                    {% else %}
-                                        <a href="{{ site.baseurl }}{{ item.url }}"> {{ item.title }}</a>
-                                    {% endif %}
-                                </li>
-                            </ul>
-                            {% endfor %}
-                        {% endif %}
+                    {% assign class = nil %}
+                    {% if page.url contains link.sublink.url %}
+                    {% assign class = 'is-active' %}
+                    {% endif %}
+                    {% if link.title == 'Grids' %}
+                    {% assign sorted = link.sublinks | sort: 'title' %}
+                    {% for item in sorted %}
+                    <ul class="bp-menu-list">
+                        <li>
+                            {% if page.url contains item.url %}
+                            <a href="{{ site.baseurl }}{{ item.url }}" class="is-active"> {{ item.title }}</a>
+                            {% else %}
+                            <a href="{{ site.baseurl }}{{ item.url }}"> {{ item.title }}</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    {% endfor %}
+                    {% endif %}
                     {% endfor %}
                 </aside>
             </div>
@@ -41,11 +41,11 @@
                             <p>{{page.subtitle}}</p>
                             <div class="bp-tags">
                                 {% for tag in page.tags %}
-                                    {%if tag == 'JS' %}
-                                        <span class="bp-tag">{{tag}}</span>
-                                    {% else %}
-                                        <span class="bp-tag"><a href="{{site.url}}/components/{{tag}}">{{tag}}</a></span>
-                                    {% endif %}
+                                {%if tag == 'JS' %}
+                                <span class="bp-tag">{{tag}}</span>
+                                {% else %}
+                                <span class="bp-tag"><a href="{{site.url}}/components/{{tag}}">{{tag}}</a></span>
+                                {% endif %}
                                 {% endfor %}
                             </div>
                         </div>

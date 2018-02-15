@@ -5,29 +5,24 @@ layout: pages-for-components
 permalink: /components/icons
 ---
 
-<div class="content page-icon">
-    <div class="columns is-multiline is-mobile">
-        {% assign sort-icons = site.data.icons | sort:'iconName' %}
-        {% for icon in sort-icons %}
-        <div class="column is-2-desktop is-4-tablet is-4-mobile">
-
-            <div class="icon-container">
-                <span class="is-size-1 bp-icon bp-icon-{{icon.iconName}}"></span>
-            </div>
-            <span> .bp-icon-{{icon.iconName}}</span>
-            <a class="bp-button is-outlined bd-copy is-hidden-touch">
-                Copy
-            </a>
+<div class="columns is-multiline is-mobile page-icon">
+    {% assign sort-icons = site.data.icons | sort:'iconName' %}
+    {% for icon in sort-icons %}
+    <div class="column is-2-desktop is-4-tablet is-4-mobile">
+        <div class="icon-container">
+            <span class="is-size-1 bp-icon bp-icon-{{icon.iconName}}"></span>
         </div>
-        {% endfor %}
+        <span> .bp-icon-{{icon.iconName}}</span>
+        <a class="bp-button is-outlined bd-copy is-hidden-touch">
+            Copy
+        </a>
     </div>
+    {% endfor %}
 </div>
-
-<div class="columns" style="margin-top:30px;">
+<hr>
+<div class="columns">
     <div class="column">
         <h4><b>{{page.title}} Snippets</b></h4>
+        {% highlight html %}<span class="bp-icon bp-icon-iconName"></span>{% endhighlight %}
     </div>
 </div>
-<pre class="no-padding" style="background-color:transparent;">
-    <code class="xml"><span class="bp-icon bp-icon-iconName"></span></code>
-</pre>

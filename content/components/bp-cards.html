@@ -7,24 +7,27 @@ permalink: /components/cards
 
 <div class="columns">
     <div class="column is-4">
+        <div class="content">
+            <h5 class="title"><b>Default card</b></h5>
+            <!--<p class="subtitle">Buttons with icon in different sizes</p>-->
+        </div>
         {% include components/cards/card-1.html %}
     </div>
     <div class="column">
-        <figure>
-            <pre class="no-padding"><code class="xml"  style="background: transparent">{% include components/cards/card-1.html %}</code></pre>
-        </figure>
+        {% highlight html %}{% include components/cards/card-1.html %}{% endhighlight %}
     </div>
 </div>
-
-
+<hr>
 <div class="columns">
     <div class="column is-4">
+        <div class="content">
+            <h5 class="title"><b>Card with image</b></h5>
+            <!--<p class="subtitle">Buttons with icon in different sizes</p>-->
+        </div>
         {% include components/cards/card-2.html %}
     </div>
     <div class="column">
-        <figure>
-            <pre class="no-padding"><code class="xml"  style="background: transparent">{% include components/cards/card-2.html %}</code></pre>
-        </figure>
+        {% highlight html %}{% include components/cards/card-2.html %}{% endhighlight %}
     </div>
 </div>
 

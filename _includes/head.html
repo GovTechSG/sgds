@@ -1,4 +1,14 @@
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114227807-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-114227807-1');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -8,15 +18,9 @@
     <meta property="og:image" content="{{site.baseurl}}/assets/img/logo_blueprint.png">
     <meta property="og:url" content="{{site.baseurl}}">
     <link rel="shortcut icon" href="{{site.baseurl}}/assets/img/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
     <link rel="stylesheet" href="{{"/css/main.css" | prepend: site.baseurl }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>
-    {% if page.url contains '/components' %}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-
-        <script src="https://highlightjs.org/static/highlight.pack.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
-    {% endif %}
     <title>{{ page.title }} {{ site.title }} </title>
 </head>

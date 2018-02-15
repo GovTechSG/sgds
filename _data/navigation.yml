@@ -2,6 +2,14 @@
   url: /
 - title: Grids
   url: /grids
+  sublinks:
+    - title: Sections
+      url: /grids/sections
+    - title: Columns & column
+      url: /grids/columns-column
+    - title: Container
+      url: /grids/container
+
 - title: Components
   sublinks:
     - title: Masthead
@@ -16,5 +24,9 @@
       url: /components/dropdowns
     - title: Buttons
       url: /components/buttons
+    - title: Tabs
+      url: /components/tabs
 - title: Templates
   url: /templates
+#- title: About
+#  url: /about-blueprint
