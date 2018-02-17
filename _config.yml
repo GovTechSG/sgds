@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: – Blueprint@Govtech
+title: – Blueprint
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   BLUEPRINT is a reusable and upgradable frontend framework that aims to provide tools for the government agencies to comply with the latest policies for websites and digital services easily.
@@ -27,6 +27,8 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-assets
+
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

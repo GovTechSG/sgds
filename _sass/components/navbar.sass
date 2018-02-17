@@ -92,7 +92,7 @@ $navbar-divider-background-color: $border !default
             &.is-active
               background-color: $color
               color: $color-invert
-  & > .container
+  & > .bp-container
     align-items: stretch
     display: flex
     min-height: $navbar-height
@@ -198,7 +198,7 @@ a.navbar-link
   margin: 0.5rem 0
 
 +touch
-  .navbar > .container
+  .navbar > .bp-container
     display: block
   .navbar-brand,
   .navbar-tabs
@@ -343,8 +343,8 @@ a.navbar-link
       right: 0
   .navbar-divider
     display: block
-  .navbar > .container,
-  .container > .navbar
+  .navbar > .bp-container,
+  .bp-container > .navbar
     .navbar-brand
       margin-left: -1rem
     .navbar-menu

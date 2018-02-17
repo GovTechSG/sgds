@@ -1,7 +1,6 @@
 - title: Home
   url: /
 - title: Grids
-  url: /grids
   sublinks:
     - title: Sections
       url: /grids/sections

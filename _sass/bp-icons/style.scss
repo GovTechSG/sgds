@@ -448,3 +448,13 @@
   }
 }
 
+.bp-icon{
+  &.is{
+    &-primary{
+      color:$primary;
+    }
+    &-primary{
+      color:$primary;
+    }
+  }
+}

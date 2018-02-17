@@ -1,6 +1,6 @@
 .bg{
   &-hero{
-    background: url('https://www.ptc.gov.sg/images/default-source/carousel-banners/ptc-banner.jpg') no-repeat;
+    //background: url('https://www.ptc.gov.sg/images/default-source/carousel-banners/ptc-banner.jpg') no-repeat;
     -webkit-background-size: cover;
     background-size: cover;
     height:400px;
@@ -14,7 +14,7 @@
     }
   }
   &-chairman-blog{
-    background: url('https://www.ptc.gov.sg/images/default-source/default-album/x-bg-home-03.png') no-repeat ;
+    //background: url('https://www.ptc.gov.sg/images/default-source/default-album/x-bg-home-03.png') no-repeat ;
     -webkit-background-size: cover;
     background-size: cover;
     background-position: top center;
@@ -35,4 +35,5 @@
   &-black{
     background-color: #000;
   }
+
 }

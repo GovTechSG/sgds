@@ -5,8 +5,8 @@
 {% include bp-masthead.html %}
 {% include bp-agencyhead.html %}
 {% include main-nav.html %}
-<section class="section">
-    <div class="container is-fluid">
+<section class="bp-section">
+    <div class="bp-container is-fluid">
         <div class="columns">
             <div class="column is-2 is-hidden-mobile is-hidden-tablet-only">
                 <aside data-blueprint="menu" data-options="single: true;" class="bp-menu is-dark">
@@ -41,11 +41,12 @@
                             <p>{{page.subtitle}}</p>
                             <div class="bp-tags">
                                 {% for tag in page.tags %}
-                                    {%if tag == 'JS' %}
-                                        <span class="bp-tag">{{tag}}</span>
-                                    {% else %}
-                                        <span class="bp-tag"><a href="{{site.url}}/components/{{tag}}">{{tag}}</a></span>
-                                    {% endif %}
+                                    <span class="bp-tag">{{tag}}</span>
+                                    <!--{%if tag == 'JS' %}-->
+                                        <!--<span class="bp-tag">{{tag}}</span>-->
+                                    <!--{% else %}-->
+                                        <!---->
+                                    <!--{% endif %}-->
                                 {% endfor %}
                             </div>
                         </div>
@@ -53,7 +54,6 @@
                 </div>
                 <hr>
                 {{content}}
-
             </div>
         </div>
     </div>

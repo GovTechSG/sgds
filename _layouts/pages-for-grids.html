@@ -5,8 +5,8 @@
 {% include bp-masthead.html %}
 {% include bp-agencyhead.html %}
 {% include main-nav.html %}
-<section class="section">
-    <div class="container is-fluid">
+<section class="bp-section">
+    <div class="bp-container is-fluid">
         <div class="columns">
             <div class="column is-2 is-hidden-mobile is-hidden-tablet-only">
                 <aside data-blueprint="menu" data-options="single: true;" class="bp-menu is-dark">
@@ -17,7 +17,7 @@
                     {% assign class = 'is-active' %}
                     {% endif %}
                     {% if link.title == 'Grids' %}
-                    {% assign sorted = link.sublinks | sort: 'title' %}
+                    {% assign sorted = link.sublinks %}
                     {% for item in sorted %}
                     <ul class="bp-menu-list">
                         <li>

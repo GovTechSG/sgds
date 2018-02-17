@@ -1,35 +1,61 @@
-<section class="bp-hero is-primary is-bold">
+<section class="bp-hero is-primary is-bold has-text-centered">
     <div class="bp-hero-body">
-        <div class="container">
-            <h1 class="title">
-                BLUEPRINT
-            </h1>
+        <div class="bp-container is-fluid">
+            <div class="columns">
+                <div class="column is-4 is-offset-4">
+                    <div class="content">
+                        <h1 class="title">
+                            <b>Blueprint</b>
+                        </h1>
+                        <h4 class=" subtitle is-spaced">is a reusable and upgradable frontend framework for the government agencies.</h4>
+                        <div class="bp-buttons is-centered">
+                            <span class="bp-button is-primary is-inverted is-outlined is-medium">Get Started</span>
+                            <span class="bp-button is-primary is-inverted is-outlined is-medium">Whats new</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
 </section>
-<section class="section has-text-centered-mobile">
-    <div class="container">
+<section class="bp-section">
+    <div class="bp-container is-fluid">
+
         <div class="columns">
             <div class="column">
                 <div class="content">
-                    <h3 class="title">Setting up</h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <h2 class="title"><b>Setting up</b></h2>
                 </div>
+            </div>
+            <div class="column">
+                <span class="bp-icon bp-icon-download is-size-1 is-primary"></span>
+                <h4>Installation</h4>
+                <p class="is-spaced">Include Blueprint source Sass and JavaScript files via npm.</p>
+                <br>
+                {% highlight console %}$ npm install blueprint-govtech{% endhighlight %}
+            </div>
+            <div class="column">
+                <div class="content">
+                    <span class="bp-icon bp-icon-cloud is-size-1 is-primary"></span>
+                    <h4 class="title">Via CDN</h4>
+                    <p class="subtitle">When you only need to include Blueprint's compiled CSS or JS, you can use BlueprintCDN.</p>
+                </div>
+                <h5>CSS only</h5>
+                <br>
+                <div style="max-width:400px;">{% highlight html %}<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">{% endhighlight %}</div>
+            </div>
+            <div class="column">
+                <div class="content">
+                    <span class="bp-icon bp-icon-file is-size-1 is-primary"></span>
+                    <h4 class="title">Templates</h4>
+                    <p class="subtitle">Starter templates for quick prototypes</p>
+                </div>
+                <a href="" class="bp-button is-outlined is-primary">Browse templates</a>
 
             </div>
-            <div class="column">
-                <div class="content">
-                    <h3 class="title"></h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-            </div>
-            <div class="column">
-                <div class="content">
-                    <h3 class="title"> How to install</h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-            </div>
+
         </div>
     </div>
 </section>
