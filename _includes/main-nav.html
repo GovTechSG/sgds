@@ -19,8 +19,8 @@
                                 {{ link.title }}
                             </a>
                             <div class="navbar-dropdown is-boxed">
-
-                                {% for item in  link.sublinks %}
+                                <!--{% assign sort-items = link.sublinks  | sort:"title" %}-->
+                                {% for item in link.sublinks %}
                                     {% assign class = nil %}
                                     {% if page.url contains item.url %}
                                         <a class="navbar-item is-active" href="{{ item.url }}">

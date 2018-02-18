@@ -7,8 +7,8 @@
 {% include main-nav.html %}
 <section class="bp-section">
     <div class="bp-container is-fluid">
-        <div class="columns">
-            <div class="column is-2 is-hidden-mobile is-hidden-tablet-only">
+        <div class="cols">
+            <div class="col is-2 is-hidden-mobile is-hidden-tablet-only">
                 <aside data-blueprint="menu" data-options="single: true;" class="bp-menu is-dark">
                     {% assign links = site.data.navigation %}
                     {% for link in links %}
@@ -33,9 +33,9 @@
                     {% endfor %}
                 </aside>
             </div>
-            <div class="column">
-                <div class="columns">
-                    <div class="column is-7 is-12-mobile">
+            <div class="col">
+                <div class="cols">
+                    <div class="col is-7 is-12-mobile">
                         <div class="content">
                             <h3><b>{{page.title}}</b></h3>
                             <p>{{page.subtitle}}</p>

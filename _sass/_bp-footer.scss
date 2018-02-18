@@ -23,7 +23,6 @@
       display:inline-block;
       @include mobile(){
         display:block;
-        text-align: center;
       }
 
       a{

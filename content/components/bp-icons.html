@@ -5,10 +5,10 @@ layout: pages-for-components
 permalink: /components/icons
 ---
 
-<div class="columns is-multiline is-mobile page-icon">
+<div class="cols is-multiline is-mobile page-icon">
     {% assign sort-icons = site.data.icons | sort:'iconName' %}
     {% for icon in sort-icons %}
-    <div class="column is-2-desktop is-4-tablet is-4-mobile">
+    <div class="col is-2-desktop is-4-tablet is-4-mobile">
         <div class="icon-container">
             <span class="is-size-1 bp-icon bp-icon-{{icon.iconName}}"></span>
         </div>
@@ -20,8 +20,8 @@ permalink: /components/icons
     {% endfor %}
 </div>
 <hr>
-<div class="columns">
-    <div class="column">
+<div class="cols">
+    <div class="col">
         <h4><b>{{page.title}} Snippets</b></h4>
         {% highlight html %}<span class="bp-icon bp-icon-iconName"></span>{% endhighlight %}
     </div>
