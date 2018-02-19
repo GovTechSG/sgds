@@ -22,7 +22,7 @@
                                 <!--{% assign sort-items = link.sublinks  | sort:"title" %}-->
                                 {% for item in link.sublinks %}
                                     {% assign class = nil %}
-                                    {% if page.url contains item.url %}
+                                    {% if page.url contains item.url  %}
                                         <a class="navbar-item is-active" href="{{ item.url }}">
                                             {{ item.title }}
                                         </a>
@@ -43,7 +43,7 @@
             </div>
             <div class="navbar-end is-hidden-touch">
                 <div class="navbar-item">
-                        <a class="bp-button is-primary" href="https://github.com/jgthms/bulma/archive/0.5.1.zip">
+                        <a class="bp-button is-primary" href="">
                             <span class="icon is-size-3">
                             <i class="bp-icon bp-icon-download"></i>
                             </span>
