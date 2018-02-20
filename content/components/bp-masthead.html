@@ -1,13 +1,14 @@
 ---
 title: Masthead
 subtitle: This is a subtitle
-layout: pages-for-components
+layout: pages
 permalink: /components/masthead
-tags: [Sections,Containers, Grids, Icons]
+tags: [Sections,Columns,Column,Containers,Icons]
+category: Components
 ---
 
 {% include bp-masthead.html %}
-<div class="cols" style="margin-top:30px;">
+<div class="row" style="margin-top:30px;">
     <div class="col">
         <h4><b>{{page.title}} Snippets</b></h4>
         {% highlight html %}{% include bp-masthead.html %}{% endhighlight %}

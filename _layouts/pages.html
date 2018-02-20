@@ -1,3 +1,4 @@
+{% assign category = page.category %}
 <!doctype html>
 <html lang="en">
 {% include head.html %}
@@ -5,9 +6,9 @@
 {% include bp-masthead.html %}
 {% include bp-agencyhead.html %}
 {% include main-nav.html %}
-<section class="bp-section">
+<section class="bp-section is-small">
     <div class="bp-container is-fluid">
-        <div class="cols">
+        <div class="row">
             <div class="col is-2 is-hidden-mobile is-hidden-tablet-only">
                 <aside data-blueprint="menu" data-options="single: true;" class="bp-menu is-dark">
                     {% assign links = site.data.navigation %}
@@ -16,8 +17,9 @@
                         {% if page.url contains link.sublink.url %}
                             {% assign class = 'is-active' %}
                         {% endif %}
-                        {% if link.title == 'Components' %}
-                            {% assign sorted = link.sublinks | sort: 'title' %}
+
+                        {% if link.title == category %}
+                            {% assign sorted = link.sublinks %}
                             {% for item in sorted %}
                             <ul class="bp-menu-list">
                                 <li>
@@ -34,21 +36,23 @@
                 </aside>
             </div>
             <div class="col">
-                <div class="cols">
+                <div class="row">
                     <div class="col is-7 is-12-mobile">
                         <div class="content">
                             <h3><b>{{page.title}}</b></h3>
                             <p>{{page.subtitle}}</p>
-                            <div class="bp-tags">
-                                {% for tag in page.tags %}
-                                    <span class="bp-tag">{{tag}}</span>
-                                    <!--{%if tag == 'JS' %}-->
+                            <!--<div class="bp-tags">-->
+                                <!--{% for tag in page.tags %}-->
+                                    <!--{% case tag %}-->
+                                        <!--{% when 'Sections' or 'Columns' or 'Column' or 'Container' %}-->
+                                        <!--<span class="bp-tag"><a href="{{site.url}}/layouts/{{tag}}">{{tag}}</a></span>-->
+                                        <!--{% when 'JS' %}-->
                                         <!--<span class="bp-tag">{{tag}}</span>-->
-                                    <!--{% else %}-->
-                                        <!---->
-                                    <!--{% endif %}-->
-                                {% endfor %}
-                            </div>
+                                        <!--{% else %}-->
+                                        <!--<span class="bp-tag"><a href="{{site.url}}/components/{{tag}}">{{tag}}</a></span>-->
+                                    <!--{% endcase %}-->
+                                <!--{% endfor %}-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>

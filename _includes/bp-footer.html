@@ -1,24 +1,18 @@
 <footer class="bp-footer">
     <div class="bp-container is-fluid">
-        <div class="cols">
+        <div class="row">
             <div class="col">
-                <h6><b>Blueprint</b></h6>
+                <h5><b>Blueprint</b></h5>
             </div>
         </div>
-        <div class="cols is-top">
+        <div class="row is-top">
             <div class="col">
-                <p><b>Components</b></p>
-                <p><a href="{{site.url}}/components/masthead">Masthead</a></p>
-                <p><a href="{{site.url}}/components/footer">Footer</a></p>
-                <p><a href="{{site.url}}/components/icons">Icons</a></p>
-                <p>More</p>
+                <p><b>Layouts</b></p>{% assign links = site.data.navigation %}{% for link in links %}{% assign class = nil %}{% if page.url contains link.sublink.url %}{% assign class = 'is-active' %}{% endif %} {% if link.title == 'Layouts' %}{% assign sorted = link.sublinks %}{% for item in sorted %}
+                <p><a href="{{ site.baseurl }}{{ item.url }}"> {{ item.title }}</a></p>{% endfor %} {% endif %} {% endfor %}
             </div>
             <div class="col">
-                <p><b>Templates</b></p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
+                <p><b>Components</b></p>{% assign links = site.data.navigation %}{% for link in links %}{% assign class = nil %}{% if page.url contains link.sublink.url %}{% assign class = 'is-active' %}{% endif %} {% if link.title == 'Components' %}{% assign sorted = link.sublinks %}{% for item in sorted %}
+                <p><a href="{{ site.baseurl }}{{ item.url }}"> {{ item.title }}</a></p>{% endfor %} {% endif %} {% endfor %}
             </div>
             <div class="col">
                 <p><b>Title</b></p>
@@ -64,7 +58,7 @@
 </footer>
 <footer class="bp-footer copyright">
     <div class="bp-container is-fluid">
-        <div class="cols divider is-vcentered">
+        <div class="row divider is-vcentered">
             <div class="col">
                 <ul>
                     <li><a href="">Privacy Statement</a></li>

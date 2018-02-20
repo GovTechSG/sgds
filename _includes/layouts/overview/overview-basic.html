@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col">
+        <div class="content">
+            <h5 class="title"><b>Basic Layout</b></h5>
+            <p class="subtitle"> The below example shows the basic usage for Blueprint layout:</p>
+            <ul>
+                <li>
+                    <code>.bp-section</code>
+                    <ul>
+                        <li>
+                            <code>.bp-container</code>
+                            <ul>
+                                <li>
+                                    <code>.row</code>
+                                    <ul>
+                                        <li>
+                                            <code>.col</code>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <section class="bp-section" style="background-color:#eee; border:1px solid greenyellow">
+            <div class="bp-container">
+                <div class="row"  style="border:1px solid red">
+                    <div class="col" style="background-color:#aaa; color:white;">
+                        <h5>col 1</h5>
+                    </div>
+                    <div class="col" style="background-color:#ccc; color:white;">
+                        <h5>col 2</h5>
+                    </div>
+                    <div class="col" style="background-color:#bbb; color:white;">
+                        <h5>col 3</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        {% highlight html %}
+        <section class="bp-section">
+            <div class="bp-container">
+                <div class="row">
+                    <div class="col">
+                        <h5>col 1</h5>
+                    </div>
+                    <div class="col">
+                        <h5>col 2</h5>
+                    </div>
+                    <div class="col">
+                        <h5>col 3</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endhighlight %}
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<section class="bp-section is-small">
+    <div class="bp-container is-fluid">
+        <nav class="bp-breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+            <ul>
+                {% for crumb in breadcrumbs %}
+                <li>
+                <a href="{{ crumb.url }}">{{ crumb.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+
+</section>
+
+

@@ -1,14 +1,17 @@
 - title: Home
   url: /
 - title: Layouts
-  url: /layouts
   sublinks:
+    - title: Overview
+      url: /layouts/overview
     - title: Sections
-      url: /grids/sections
-    - title: Container
-      url: /grids/container
-    - title: Columns & column
-      url: /grids/columns-column
+      url: /layouts/sections
+    - title: Containers
+      url: /layouts/containers
+    - title: Rows
+      url: /layouts/rows
+    - title: Columns
+      url: /layouts/columns
 - title: Components
   sublinks:
     - title: Masthead
