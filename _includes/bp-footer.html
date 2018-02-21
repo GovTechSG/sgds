@@ -7,35 +7,31 @@
         </div>
         <div class="row is-top">
             <div class="col">
-                <p><b>Layouts</b></p>{% assign links = site.data.navigation %}{% for link in links %}{% assign class = nil %}{% if page.url contains link.sublink.url %}{% assign class = 'is-active' %}{% endif %} {% if link.title == 'Layouts' %}{% assign sorted = link.sublinks %}{% for item in sorted %}
-                <p><a href="{{ site.baseurl }}{{ item.url }}"> {{ item.title }}</a></p>{% endfor %} {% endif %} {% endfor %}
+                <p><b>Layouts</b></p>
+                {%- assign links = site.data.navigation -%} {%- for link in links -%}
+                {%- if page.url contains link.sublink.url -%}
+                {%- endif -%}
+                {%- if link.title == 'Layouts' -%}
+                {%- assign sorted = link.sublinks -%}
+                {% for item in sorted %}
+                <p><a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></p>{% endfor %}
+                {%- endif -%}
+                {%- endfor -%}
             </div>
             <div class="col">
-                <p><b>Components</b></p>{% assign links = site.data.navigation %}{% for link in links %}{% assign class = nil %}{% if page.url contains link.sublink.url %}{% assign class = 'is-active' %}{% endif %} {% if link.title == 'Components' %}{% assign sorted = link.sublinks %}{% for item in sorted %}
-                <p><a href="{{ site.baseurl }}{{ item.url }}"> {{ item.title }}</a></p>{% endfor %} {% endif %} {% endfor %}
+                <p><b>Components</b></p>
+                {%- assign links = site.data.navigation -%} {%- for link in links -%}
+                {%- if page.url contains link.sublink.url -%}
+                {%- endif -%}
+                {%- if link.title == 'Components' -%}
+                {%- assign sorted = link.sublinks -%}
+                {% for item in sorted %}
+                <p><a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></p>{% endfor %}
+                {%- endif -%}
+                {%- endfor -%}
             </div>
-            <div class="col">
-                <p><b>Title</b></p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
-            </div>
-            <div class="col">
-                <p><b>Title</b></p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
-            </div>
-            <div class="col">
-                <p><b>Title</b></p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
-                <p>Lorem ipsum.</p>
-            </div>
-            <div class="col">
+
+            <div class="col is-offset-8">
                 <p><b>Connect With Us</b></p>
                <ul>
                    <li class="icons is-inline-block">

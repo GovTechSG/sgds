@@ -1,19 +1,30 @@
 - title: Home
   url: /
 - title: Layouts
-  sublinks:
+  sub-links:
     - title: Overview
       url: /layouts/overview
     - title: Sections
       url: /layouts/sections
     - title: Containers
       url: /layouts/containers
-    - title: Rows
-      url: /layouts/rows
-    - title: Columns
-      url: /layouts/columns
+    - title: Rows & columns
+      path: rows-columns
+      url: /layouts/rows-columns/basic
+      subset-links:
+        - title: Basic
+          url: /layouts/rows-columns/basic
+        - title: Column Sizes
+          url: /layouts/rows-columns/column-sizes
+        - title: Responsiveness
+          url: /layouts/rows-columns/responsiveness
+        - title: Nesting
+          url: /layouts/rows-columns/nesting
+        - title: Options
+          url: /layouts/rows-columns/options
+
 - title: Components
-  sublinks:
+  sub-links:
     - title: Masthead
       url: /components/masthead
     - title: Footer

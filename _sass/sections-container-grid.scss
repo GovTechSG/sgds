@@ -10,3 +10,11 @@ section{
 hr{
   background-color: $primary;
 }
+
+p{
+  &.display{
+    padding:1rem;
+    text-align: center;
+    background-color: greenyellow;
+  }
+}

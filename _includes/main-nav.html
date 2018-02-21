@@ -13,14 +13,14 @@
                     {% if page.url contains link.url %}
                         {% assign class = 'is-active' %}
                     {% endif %}
-                    {% if link.sublinks %}
+                    {% if link.sub-links %}
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link" href="{{ site.baseurl }}{{ link.url }}">
                                 {{ link.title }}
                             </a>
                             <div class="navbar-dropdown is-boxed">
-                                <!--{% assign sort-items = link.sublinks  | sort:"title" %}-->
-                                {% for item in link.sublinks %}
+                                <!--{% assign sort-items = link.sub-links  | sort:"title" %}-->
+                                {% for item in link.sub-links %}
                                     {% assign class = nil %}
                                     {% if page.url contains item.url  %}
                                         <a class="navbar-item is-active" href="{{ item.url }}">
