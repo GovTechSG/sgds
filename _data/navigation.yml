@@ -3,42 +3,42 @@
 - title: Layouts
   sub-links:
     - title: Overview
-      url: /layouts/overview
+      url: /layouts/overview/
     - title: Sections
-      url: /layouts/sections
+      url: /layouts/sections/
     - title: Containers
-      url: /layouts/containers
+      url: /layouts/containers/
     - title: Rows & columns
       path: rows-columns
-      url: /layouts/rows-columns/basic
+      url: /layouts/rows-columns/basic/
       subset-links:
         - title: Basic
-          url: /layouts/rows-columns/basic
+          url: /layouts/rows-columns/basic/
         - title: Column Sizes
-          url: /layouts/rows-columns/column-sizes
+          url: /layouts/rows-columns/column-sizes/
         - title: Responsiveness
-          url: /layouts/rows-columns/responsiveness
+          url: /layouts/rows-columns/responsiveness/
         - title: Nesting
-          url: /layouts/rows-columns/nesting
+          url: /layouts/rows-columns/nesting/
         - title: Options
-          url: /layouts/rows-columns/options
+          url: /layouts/rows-columns/options/
 
 - title: Components
   sub-links:
     - title: Masthead
-      url: /components/masthead
+      url: /components/masthead/
     - title: Footer
-      url: /components/footer
+      url: /components/footer/
     - title: Icons
-      url: /components/icons
+      url: /components/icons/
     - title: Cards
-      url: /components/cards
+      url: /components/cards/
     - title: Dropdowns
-      url: /components/dropdowns
+      url: /components/dropdowns/
     - title: Buttons
-      url: /components/buttons
+      url: /components/buttons/
     - title: Tabs
-      url: /components/tabs
+      url: /components/tabs/
 - title: Templates
   url: /templates
 #- title: About

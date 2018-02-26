@@ -20,7 +20,7 @@
 .bp-example{
   width:100%;
   margin:0.75rem;
-  padding:0.75rem;
+  padding:0.3rem;
   border: 1px solid $warning;
   .bp-section{
     @include example-control(auto, center);
@@ -47,6 +47,11 @@
       @include example-control(2.5rem, center);
       &:before {
         @include example-tag('.bp-container');
+      }
+      &.is-fluid{
+        &:before{
+          content:'.bp-container.is-fluid'
+        }
       }
       .row{
         @include example-control(2rem, center);
