@@ -5,7 +5,7 @@
   left: 0;
   padding: 0.05rem 0.5rem;
   font-size: 0.7rem;
-  background: yellow;
+  background: $warning;
   color:black!important;
 }
 
@@ -26,7 +26,21 @@
     @include example-control(auto, center);
     &:before{
       @include example-tag('.bp-section');
-
+    }
+    &.is-small{
+      &:before{
+        content:'.bp-section.is-small'!important
+      }
+    }
+    &.is-medium{
+      &:before{
+        content:'.bp-section.is-medium'!important
+      }
+    }
+    &.is-large{
+      &:before{
+        content:'.bp-section.is-large'!important
+      }
     }
     .bp-container{
       width:inherit;

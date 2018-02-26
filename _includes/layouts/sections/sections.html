@@ -1,0 +1,89 @@
+<div class="content">
+   <p> Use sections as direct children of <code>body</code>.</p>
+
+</div>
+{% highlight html %}
+<body>
+   <!--first section-->
+   <section class="bp-section">
+      <div class="bp-container">
+         <h1 class="title">Section 1 </h1>
+         <h2 class="subtitle">
+            Simple container
+         </h2>
+      </div>
+   </section>
+   <!--2nd section-->
+   <section class="bp-section">
+      <div class="bp-container">
+         <h1 class="title">Section 2</h1>
+         <h2 class="subtitle">
+            Simple container
+         </h2>
+      </div>
+   </section>
+</body>
+{% endhighlight %}
+<hr>
+
+
+<div class="row">
+   <div class="col"><div class="content">
+      <h4 class="title">Sections sizes</h4>
+      <p>You can change the overall padding sizes by appending <code>.is-small</code>, <code>.is-medium</code>,  <code>.is-large</code> classes</p>
+
+   </div></div>
+   <div class="col">
+      <div class="bp-example">
+         <section class="bp-section is-small">
+            <div class="bp-container">
+               <div class="bp-notification">
+                  <p>Im a <b>small</b> section</p>
+               </div>
+            </div>
+         </section>
+         <hr>
+         <section class="bp-section is-medium">
+            <div class="bp-container">
+               <div class="bp-notification">
+                  <p>Im a <b>medium</b> section</p>
+               </div>
+            </div>
+         </section>
+         <hr>
+         <section class="bp-section is-large">
+            <div class="bp-container">
+               <div class="bp-notification">
+                  <p>Im a <b>large</b> section</p>
+               </div>
+            </div>
+         </section>
+      </div>
+   </div>
+</div>
+
+<div class="bp-example">
+   <section class="bp-section is-small">
+      <div class="bp-container">
+         <div class="bp-notification">
+            <p>Im a <b>small</b> section</p>
+         </div>
+      </div>
+   </section>
+   <hr>
+   <section class="bp-section is-medium">
+      <div class="bp-container">
+         <div class="bp-notification">
+            <p>Im a <b>medium</b> section</p>
+         </div>
+      </div>
+   </section>
+   <hr>
+   <section class="bp-section is-large">
+      <div class="bp-container">
+         <div class="bp-notification">
+            <p>Im a <b>large</b> section</p>
+         </div>
+      </div>
+   </section>
+</div>
