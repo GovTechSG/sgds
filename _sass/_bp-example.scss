@@ -1,0 +1,66 @@
+@mixin example-tag($content){
+  content: $content;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.05rem 0.5rem;
+  font-size: 0.7rem;
+  background: yellow;
+  color:black!important;
+}
+
+@mixin example-control($padding,$text-align){
+  border:1px dotted $info;
+  padding:$padding;
+  background-color: rgba($info, 0.2);
+  position:relative;
+  text-align:$text-align !important;
+}
+
+.bp-example{
+  width:100%;
+  margin:0.75rem;
+  padding:0.75rem;
+  border: 1px solid $warning;
+  .bp-section{
+    @include example-control(auto, center);
+    &:before{
+      @include example-tag('.bp-section');
+
+    }
+    .bp-container{
+      width:inherit;
+      @include example-control(2.5rem, center);
+      &:before {
+        @include example-tag('.bp-container');
+      }
+      .row{
+        @include example-control(2rem, center);
+        &:before {
+          @include example-tag('.row');
+        }
+      }
+      .col {
+        @include example-control(0.5rem, left);
+        background-color: rgba(white,0.8);
+        color: black;
+        text-align: center;
+        &:before {
+          @include example-tag('.col');
+        }
+      }
+    }
+  }
+
+  //example util
+  &.no-styling{
+    div,section{
+      background-color: white!important;
+      border:0!important;
+      padding:inherit!important;
+      &:before{
+        display:none;
+      }
+    }
+  }
+}

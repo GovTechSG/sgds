@@ -12,7 +12,7 @@
                 {%- if page.url contains link.sublink.url -%}
                 {%- endif -%}
                 {%- if link.title == 'Layouts' -%}
-                {%- assign sorted = link.sublinks -%}
+                {%- assign sorted = link.sub-links -%}
                 {% for item in sorted %}
                 <p><a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></p>{% endfor %}
                 {%- endif -%}
@@ -24,14 +24,14 @@
                 {%- if page.url contains link.sublink.url -%}
                 {%- endif -%}
                 {%- if link.title == 'Components' -%}
-                {%- assign sorted = link.sublinks -%}
+                {%- assign sorted = link.sub-links -%}
                 {% for item in sorted %}
                 <p><a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></p>{% endfor %}
                 {%- endif -%}
                 {%- endfor -%}
             </div>
 
-            <div class="col is-offset-8">
+            <div class="col is-offset-5">
                 <p><b>Connect With Us</b></p>
                <ul>
                    <li class="icons is-inline-block">
