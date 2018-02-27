@@ -1,3 +1,7 @@
+---
+
+---
+
 @charset "utf-8";
 
 @import "utilities/all";
@@ -12,6 +16,7 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 @import "bp-icons/all";
+@import "bp-example";
 @import 'bp-navbar';
 @import "bp-typography";
 @import "bp-tabs";
