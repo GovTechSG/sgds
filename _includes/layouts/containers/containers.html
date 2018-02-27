@@ -1,0 +1,79 @@
+<div class="content">
+   <p>The <code>.bp-container</code> class can be used in any context, but mostly as a <b>direct child</b> of either:
+      <br>
+      <code>.navbar</code><br>
+      <code>.bp-hero</code><br>
+      <code>.bp-section</code><br>
+      <code>.bp-footer</code>
+   </p>
+
+</div>
+<hr>
+<div class="row">
+   <div class="col">
+      <div class="content">
+         <h5 class="title"><b>Default Container</b></h5>
+      </div>
+   </div>
+</div>
+<div class="row">
+   <div class="col">
+      <div class="bp-example">
+         <section class="bp-section is-small">
+            <div class="bp-container bg-light">
+               <div class="bp-notification is-primary">
+                  Default Container
+               </div>
+            </div>
+         </section>
+      </div>
+   </div>
+</div>
+<div class="row">
+   <div class="col">
+{%- highlight html -%}
+<section class="bp-section is-small">
+   <div class="bp-container bg-light">
+      <div class="bp-notification is-primary">
+         Default Container
+      </div>
+   </div>
+</section>
+{%- endhighlight -%}
+   </div>
+</div>
+<hr>
+<div class="row">
+   <div class="col">
+      <div class="content">
+         <h5 class="title"><b>Fluid Container</b></h5>
+         <p class="subtitle">If you don't want to have a maximum width but want to keep the 32px margin on the left and right sides, add the <code>is-fluid</code> modifier:</p>
+      </div>
+   </div>
+</div>
+<div class="row">
+   <div class="col">
+      <div class="bp-example">
+         <section class="bp-section is-small">
+            <div class="bp-container is-fluid bg-light">
+               <div class="bp-notification is-primary">
+                  Default Container
+               </div>
+            </div>
+         </section>
+      </div>
+   </div>
+</div>
+<div class="row">
+   <div class="col">
+{%- highlight html -%}
+<section class="bp-section is-small">
+   <div class="bp-container is-fluid bg-light">
+      <div class="bp-notification is-primary">
+         Fluid Container
+      </div>
+   </div>
+</section>
+{%- endhighlight -%}
+   </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="content">
+   <p> Use sections as direct children of <code>body</code>.</p>
+
+</div>
+{% highlight html %}
+<body>
+   <!--first section-->
+   <section class="bp-section">
+      <div class="bp-container">
+         <h1 class="title">Section 1 </h1>
+         <h2 class="subtitle">
+            Simple container
+         </h2>
+      </div>
+   </section>
+   <!--2nd section-->
+   <section class="bp-section">
+      <div class="bp-container">
+         <h1 class="title">Section 2</h1>
+         <h2 class="subtitle">
+            Simple container
+         </h2>
+      </div>
+   </section>
+</body>
+{% endhighlight %}
+<hr>
+
+
+<div class="row">
+   <div class="col is-4">
+      <div class="content">
+         <h5 class="title"><b>Section sizes</b></h5>
+         <p>You can change the overall padding sizes by adding these class name<br><code>.is-small</code><br><code>.is-medium</code><br><code>.is-large</code> </p>
+      </div>
+   </div>
+   <div class="col">
+      <div class="bp-example">
+         <section class="bp-section">
+            <div class="bp-container">
+               <div class="bp-notification">
+                  <h4>Im a <b>default</b> section</h4>
+               </div>
+            </div>
+         </section>
+         <hr>
+         <section class="bp-section is-small">
+            <div class="bp-container">
+               <div class="bp-notification">
+                  <h4>Im a <b>small</b> section</h4>
+               </div>
+            </div>
+         </section>
+         <hr>
+         <section class="bp-section is-medium">
+            <div class="bp-container">
+               <div class="bp-notification">
+                  <h4>Im a <b>medium</b> section</h4>
+               </div>
+            </div>
+         </section>
+         <hr>
+         <section class="bp-section is-large">
+            <div class="bp-container">
+               <div class="bp-notification">
+                  <h4>Im a <b>large</b> section</h4>
+               </div>
+            </div>
+         </section>
+      </div>
+   </div>
+</div>

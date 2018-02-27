@@ -7,39 +7,38 @@
         </div>
         <div id="navbarExampleTransparentExample" class="navbar-menu">
             <div class="navbar-start">
-                {% assign links = site.data.navigation %}
-                {% for link in links %}
-                    {% assign class = nil %}
-                    {% if page.url contains link.url %}
-                        {% assign class = 'is-active' %}
-                    {% endif %}
-                    {% if link.sub-links %}
+                {%- assign links = site.data.navigation -%}
+                {%- for link in links -%}
+                    {%- assign class = nil -%}
+                    {%- if page.url contains link.url -%}
+                        {%- assign class = 'is-active' -%}
+                    {%- endif -%}
+                    {%- if link.sub-links -%}
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link" href="{{ site.baseurl }}{{ link.url }}">
                                 {{ link.title }}
                             </a>
                             <div class="navbar-dropdown is-boxed">
-                                <!--{% assign sort-items = link.sub-links  | sort:"title" %}-->
-                                {% for item in link.sub-links %}
-                                    {% assign class = nil %}
-                                    {% if page.url contains item.url  %}
+                                {%- for item in link.sub-links -%}
+                                    {%- assign class = nil -%}
+                                    {%- if page.url contains item.url  -%}
                                         <a class="navbar-item is-active" href="{{ item.url }}">
                                             {{ item.title }}
                                         </a>
-                                    {% else %}
+                                    {%- else -%}
                                         <a class="navbar-item" href="{{ item.url }}">
                                             {{ item.title }}
                                         </a>
-                                    {% endif %}
-                                {% endfor %}
+                                    {%- endif -%}
+                                {%- endfor -%}
                             </div>
                         </div>
-                    {% else %}
+                    {%- else -%}
                         <li class="navbar-item {{ class }}">
                             <a href="{{ site.baseurl }}{{ link.url }}" class="{{ class }}">{{ link.title }}</a>
                         </li>
-                    {% endif %}
-                {% endfor %}
+                    {%- endif -%}
+                {%- endfor -%}
             </div>
             <div class="navbar-end is-hidden-touch">
                 <div class="navbar-item">
@@ -49,7 +48,6 @@
                             </span>
                             <span>Download Blueprint</span>
                         </a>
-                    <!--<a href="" class="bp-button is-primary">Download Blueprint</a>-->
                 </div>
             </div>
         </div>

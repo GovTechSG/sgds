@@ -5,7 +5,7 @@
   left: 0;
   padding: 0.05rem 0.5rem;
   font-size: 0.7rem;
-  background: yellow;
+  background: $warning;
   color:black!important;
 }
 
@@ -14,44 +14,75 @@
   padding:$padding;
   background-color: rgba($info, 0.2);
   position:relative;
-  text-align:$text-align !important;
+  text-align:$text-align;
 }
 
 .bp-example{
   width:100%;
   margin:0.75rem;
-  padding:0.75rem;
+  @include mobile(){
+    margin:0;
+  }
+  padding:0.3rem;
   border: 1px solid $warning;
-  .bp-section{
+  .bp-section {
     @include example-control(auto, center);
-    &:before{
+    &:before {
       @include example-tag('.bp-section');
-
     }
-    .bp-container{
-      width:inherit;
-      @include example-control(2.5rem, center);
+    &.is-small {
       &:before {
-        @include example-tag('.bp-container');
+        content: '.bp-section.is-small' !important
       }
-      .row{
-        @include example-control(2rem, center);
-        &:before {
-          @include example-tag('.row');
-        }
+    }
+    &.is-medium {
+      &:before {
+        content: '.bp-section.is-medium' !important
       }
-      .col {
-        @include example-control(0.5rem, left);
-        background-color: rgba(white,0.8);
-        color: black;
-        text-align: center;
-        &:before {
-          @include example-tag('.col');
+    }
+    &.is-large {
+      &:before {
+        content: '.bp-section.is-large' !important
+      }
+    }
+  }
+  .bp-container{
+    width:inherit;
+    @include example-control(2.5rem, center);
+    &:before {
+      @include example-tag('.bp-container');
+    }
+    &.is-fluid{
+      &:before{
+        content:'.bp-container.is-fluid'
+      }
+    }
+  }
+  .row{
+    @include example-control(1.5rem, center);
+    &:before {
+      @include example-tag('.row');
+    }
+    &.has-text-centered{
+      text-align:center;
+    }
+  }
+  .col {
+    @include example-control(0.5rem, left);
+    background-color: rgba(white,0.8);
+    color: black;
+    text-align: center;
+    &:before {
+      @include example-tag('.col');
+    }
+    @for $i from 2 through 12 {
+      &.is-#{$i}{
+        &:before{
+          @include example-tag('.col' + '.is-' + '#{$i}');
         }
       }
     }
   }
-
   //example util
   &.no-styling{
     div,section{

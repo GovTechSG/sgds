@@ -1,78 +1,172 @@
 ---
 title: Column Sizes
-subtitle: A simple way to build responsive columns
+subtitle: Define the size of each column individually
 layout: pages
-permalink: /layouts/rows-columns/column-sizes
+permalink: /layouts/rows-columns/column-sizes/
 tags:
 category: Layouts
 ---
 <div class="row">
     <div class="col">
         <div class="content">
-            <h4 class="title">
-                <b>Default row example</b>
+            <h5 class="title">
+                12 Column Grid
+            </h5>
+            <p class="subtitle">
+                As the grid can be divided into 12 columns, there are size classes for each division:<br>
 
-            </h4>
-            <p class="subtitle">Building a columns layout is very simple:</p>
-            <ol>
-                <li>Add a <code>row</code> container</p></li>
-                <li>Add as many <code>col</code> elements as you want</p></li>
-            </ol>
-
-            <p>Each column will have an <b>equal width</b>, no matter the number of rows.</p>
+            </p>
+            <p class="subtitle"><code>.is-2</code> to <code>.is-12</code></p>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col">
-        <p class="display">Col 1</p>
-    </div>
-    <div class="col">
-        <p class="display">Col 2</p>
-    </div>
-    <div class="col">
-        <p class="display">Col 3</p>
-    </div>
-    <div class="col">
-        <p class="display">Col 4</p>
-    </div>
-</div>
+<div class="bp-example">
+    <div class="bp-container">
+        <div class="row has-text-centered">
+            <div class="col is-2">
+                <p>.is-2</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col is-3">
+                <p>.is-3</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col is-4">
+                <p>.is-4</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col is-5">
+                <p>is-5</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col is-6">
+                <p>.is-6</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
+            <div class="col">
+                <p>1</p>
+            </div>
 
-<div class="row">
-    <div class="col">
-{%- highlight html -%}
-<div class="row">
-    <div class="col">
-        <p>Col 1</p>
-    </div>
-    <div class="col">
-        <p>Col 2</p>
-    </div>
-    <div class="col">
-        <p>Col 3</p>
-    </div>
-    <div class="col">
-        <p>Col 4</p>
-    </div>
-</div>
-{%- endhighlight -%}
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col">
-        <div class="content">
-            <h4 class="title">
-                <b>Default row example</b>
-
-            </h4>
-            <p class="subtitle">Building a columns layout is very simple:</p>
-            <ol>
-                <li>Add a <code>row</code> container</p></li>
-                <li>Add as many <code>col</code> elements as you want</p></li>
-            </ol>
-
-            <p>Each column will have an <b>equal width</b>, no matter the number of rows.</p>
         </div>
     </div>
 </div>

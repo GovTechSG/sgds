@@ -13,7 +13,7 @@
 @import "utilities";
 @import "syntax";
 *{
-  font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 @import "bp-icons/all";
 @import "bp-example";
@@ -23,9 +23,3 @@
 @import "bp-masthead";
 @import "bp-agencyhead";
 @import "bp-footer";
-
-
-@import 'not-bp/sections-container-grid';
-@import 'not-bp/background';
-@import "not-bp/pages/page";
-@import "not-bp/code-style";
