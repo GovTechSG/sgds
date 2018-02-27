@@ -1,6 +1,5 @@
-<div class="row">
-    <div class="bp-example no-styling">
-
+<div class="row" onclick="toggleStyling('2rowLayout')">
+    <div id="2rowLayout" class="bp-example">
         <section class="bp-section">
             <div class="bp-container">
                 <!--first row-->
@@ -83,23 +82,23 @@
         </div>
     </div>
     <div class="col">
-{% highlight html %}
-<section class="bp-section">
-    <div class="bp-container">
-        <!--first row-->
-        <div class="row">
-            <div class="col">
-                <h5>col 1</h5>
+        {% highlight html %}
+        <section class="bp-section">
+            <div class="bp-container">
+                <!--first row-->
+                <div class="row">
+                    <div class="col">
+                        <h5>col 1</h5>
+                    </div>
+                </div>
+                <!--second row-->
+                <div class="row">
+                    <div class="col">
+                        <h5>col 1</h5>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!--second row-->
-        <div class="row">
-            <div class="col">
-                <h5>col 1</h5>
-            </div>
-        </div>
-    </div>
-</section>{% endhighlight %}
+        </section>{% endhighlight %}
     </div>
 </div>
 
