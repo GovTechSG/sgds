@@ -20,6 +20,7 @@
 .bp-example{
   width:100%;
   margin:0.75rem;
+  cursor:pointer;
   @include mobile(){
     margin:0;
   }
@@ -66,6 +67,9 @@
     &.has-text-centered{
       text-align:center;
     }
+    .col{
+      @include example-control(2rem, center);
+    }
   }
   .col {
     @include example-control(0.5rem, left);
@@ -81,17 +85,36 @@
           @include example-tag('.col' + '.is-' + '#{$i}');
         }
       }
+      &.is-6.is-offset-#{$i}{
+        &:before{
+          @include example-tag('.col' + '.is-6' + '.is-offset-' + '#{$i}');
+        }
+      }
+      &.is-5.is-offset-#{$i}{
+        &:before{
+          @include example-tag('.col' + '.is-5' + '.is-offset-' + '#{$i}');
+        }
+      }
+      &.is-3.is-offset-#{$i}{
+        &:before{
+          @include example-tag('.col' + '.is-3' + '.is-offset-' + '#{$i}');
+        }
+      }
     }
   }
   //example util
   &.no-styling{
+
     div,section{
       background-color: white!important;
       border:0!important;
-      padding:inherit!important;
+
       &:before{
         display:none;
       }
+    }
+    section{
+      padding:3rem 1.5rem!important;
     }
   }
 }

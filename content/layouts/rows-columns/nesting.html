@@ -1,0 +1,85 @@
+---
+title: Nesting Columns
+subtitle: A simple way to build responsive columns
+layout: pages
+permalink: /layouts/rows-columns/nesting/
+tags:
+category: Layouts
+---
+<div class="row">
+    <div class="col">
+        <div class="content">
+            <p class="subtitle">You can <b>nest</b> columns to have more flexibility in your design. You only need to follow this structure::</p>
+            <ul>
+                <li>
+                    <code>row</code> : top-level columns container
+                    <ul>
+                        <li>
+                            <code>col</code>
+                            <ul>
+                                <li>
+                                    <code>row</code>: nested columns
+                                    <ul>
+                                        <li>
+                                            <code>col</code> and so on…
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="bp-example">
+        <div class="bp-container">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">Row 1 Column 1</div>
+                        <div class="col">Row 1 Column 2</div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col">Row 2 Column 1</div>
+                        <div class="col">Row 2 Column 2</div>
+                        <div class="col">Row 2 Column 3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col">
+{%- highlight html -%}
+        div class="bp-container">
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">Row 1 Column 1</div>
+                    <div class="col">Row 1 Column 2</div>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">Row 2 Column 1</div>
+                    <div class="col">Row 2 Column 2</div>
+                    <div class="col">Row 2 Column 3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{%- endhighlight -%}
+    </div>
+</div>
+
+
