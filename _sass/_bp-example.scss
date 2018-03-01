@@ -67,13 +67,10 @@
     &.has-text-centered{
       text-align:center;
     }
-    .col{
-      @include example-control(2rem, center);
-    }
   }
   .col {
-    @include example-control(0.5rem, left);
-    background-color: rgba(white,0.8);
+    @include example-control(0rem, left);
+    //background-color: rgba(white,0.8);
     color: black;
     text-align: center;
     &:before {
@@ -100,6 +97,9 @@
           @include example-tag('.col' + '.is-3' + '.is-offset-' + '#{$i}');
         }
       }
+    }
+    &.is-nested{
+      padding:2rem;
     }
   }
   //example util
