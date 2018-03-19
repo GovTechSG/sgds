@@ -1,0 +1,58 @@
+---
+title: Rows & Columns
+subtitle: Columns are the vertical companion to the sections on your page. Any number of modules can be placed into any column you add to your layout.
+layout: pages
+permalink: /structural/rows-columns/basic/
+tags:
+category: Structural
+---
+
+<div class="row">
+    <div class="bp-example">
+        <div class="bp-container">
+            <div class="row">
+                <div class="col">
+                    <p>Col 1</p>
+                </div>
+                <div class="col">
+                    <p>Col 2</p>
+                </div>
+                <div class="col">
+                    <p>Col 3</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col is-4">
+        <div class="content">
+            <h5><b>Usage Method</b></h5>
+            <p>Building a columns layout is very simple:</p>
+            <ol>
+                <li>Add a <code>row</code> container</li>
+                <li>Add as many <code>col</code> elements as you want</li>
+            </ol>
+            <p>Each column will have an <b>equal width</b>, regardless the number of rows.</p>
+        </div>
+    </div>
+    <div class="col">
+{%- highlight html -%}
+<div class="bp-container">
+    <div class="row">
+        <div class="col">
+            <p>Col 1</p>
+        </div>
+        <div class="col">
+            <p>Col 2</p>
+        </div>
+        <div class="col">
+            <p>Col 3</p>
+        </div>
+    </div>
+</div>
+{%- endhighlight -%}
+    </div>
+</div>
+
+

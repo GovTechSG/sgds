@@ -1,72 +1,16 @@
-<footer class="bp-footer">
+<footer class="bp-footer copyright background-darkgrey">
     <div class="bp-container is-fluid">
         <div class="row">
             <div class="col">
-                <h5><b>Blueprint</b></h5>
-            </div>
-        </div>
-        <div class="row is-top">
-            <div class="col">
-                <p><b>Layouts</b></p>
-                {%- assign links = site.data.navigation -%} {%- for link in links -%}
-                {%- if page.url contains link.sublink.url -%}
-                {%- endif -%}
-                {%- if link.title == 'Layouts' -%}
-                {%- assign sorted = link.sub-links -%}
-                {% for item in sorted %}
-                <p><a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></p>{% endfor %}
-                {%- endif -%}
-                {%- endfor -%}
-            </div>
-            <div class="col">
-                <p><b>Components</b></p>
-                {%- assign links = site.data.navigation -%} {%- for link in links -%}
-                {%- if page.url contains link.sublink.url -%}
-                {%- endif -%}
-                {%- if link.title == 'Components' -%}
-                {%- assign sorted = link.sub-links -%}
-                {% for item in sorted %}
-                <p><a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></p>{% endfor %}
-                {%- endif -%}
-                {%- endfor -%}
-            </div>
-
-            <div class="col is-offset-5">
-                <p><b>Connect With Us</b></p>
-               <ul>
-                   <li class="icons is-inline-block">
-                       <span class="bp-icon bp-icon-facebook is-size-3"></span>
-                   </li>
-                   <li class="icons is-inline-block">
-                       <span class="bp-icon bp-icon-instagram is-size-3"></span>
-                   </li>
-                   <li class="icons is-inline-block">
-                       <span class="bp-icon bp-icon-twitter is-size-3"></span>
-                   </li>
-                   <li class="icons is-inline-block">
-                       <span class="bp-icon bp-icon-youtube is-size-3"></span>
-                   </li>
-               </ul>
-            </div>
-        </div>
-
-    </div>
-</footer>
-<footer class="bp-footer copyright">
-    <div class="bp-container is-fluid">
-        <div class="row divider is-vcentered">
-            <div class="col">
                 <ul>
-                    <li><a href="">Privacy Statement</a></li>
-                    <li><a href="">Term of Use</a></li>
-                    <li><a href="">Rate This Service</a</li>
-                    <li><a href="">Contact</a></li>
+                    <li><a href="">Privacy</a></li>
+                    <li><a href="">Terms of Use</a></li>
+                    <li><a href="">Contact Us</a></li>
                 </ul>
             </div>
             <div class="col has-text-right-desktop has-text-left-mobile">
-                © 2018 Singapore Government. All Rights Reserved. Last Updated {{site.last_updated}}
+                <p>© 2018 Singapore Government. Last Updated {{site.last_updated}}</p>
             </div>
-
         </div>
     </div>
 </footer>

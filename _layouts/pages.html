@@ -5,7 +5,6 @@
 <body>
 {% include bp-masthead.html %}
 {% include bp-agencyhead.html %}
-{% include main-nav.html %}
 <section class="bp-section is-small">
     <div class="bp-container is-fluid">
         <div class="row">
@@ -52,22 +51,10 @@
             </div>
             <div class="col">
                 <div class="row">
-                    <div class="col is-7 is-12-mobile">
+                    <div class="col">
                         <div class="content">
-                            <h3><b>{{page.title}}</b></h3>
+                            <h2>{{page.title}}</h2>
                             <p>{{page.subtitle}}</p>
-                            <!--<div class="bp-tags">-->
-                                <!--{% for tag in page.tags %}-->
-                                    <!--{% case tag %}-->
-                                        <!--{% when 'Sections' or 'Columns' or 'Column' or 'Container' %}-->
-                                        <!--<span class="bp-tag"><a href="{{site.url}}/layouts/{{tag}}">{{tag}}</a></span>-->
-                                        <!--{% when 'JS' %}-->
-                                        <!--<span class="bp-tag">{{tag}}</span>-->
-                                        <!--{% else %}-->
-                                        <!--<span class="bp-tag"><a href="{{site.url}}/components/{{tag}}">{{tag}}</a></span>-->
-                                    <!--{% endcase %}-->
-                                <!--{% endfor %}-->
-                            <!--</div>-->
                         </div>
                     </div>
                 </div>
@@ -80,6 +67,5 @@
 {% include bp-footer.html %}
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
-
 <script type="text/javascript" src="{{ site.baseurl }}/js/main.js"></script>
 </html>

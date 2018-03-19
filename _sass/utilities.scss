@@ -1,3 +1,116 @@
+// Font Modifiers ----------------------------------------------------
+
+.content h2, .content h3{
+  color: #0487bf;
+}
+
+.content h5{
+  color: #999;
+}
+
+.intro-template {
+  background: #242424;
+  border-radius: 5px;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 15px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  line-height: 20px;
+  padding: 15px 25px;
+  position: relative;
+}
+
+.is-size-11{
+  font-size: 11px !important;
+}
+
+// Spacings ----------------------------------------------------
+
 .no-padding{
   padding:0;
+}
+
+.no-bullets{
+  list-style-type: none !important;
+}
+
+.less-padding{
+  padding:10px 0 10px 0;
+}
+
+.highlight{
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #fff !important;
+}
+
+// Image Sizings ----------------------------------------------------
+
+nav{
+  img{
+    width: auto !important;
+  }
+}
+
+
+
+// Background Colors ----------------------------------------------------
+
+.background-lightblue{
+  background-color: #00aadc;
+
+  h2, h5, p, .bp-icon{
+    color: #fff;
+  }
+}
+
+.background-midblue{
+  background-color: #0087be;
+
+  p{
+    color: #fff;
+  }
+}
+
+.background-darkblue{
+  background-color: #2f4452;
+
+  h2,p{
+    color: #fff;
+  }
+
+  h5{
+    color: #999;
+  }
+}
+
+.background-lightgrey{
+  background-color: #f3f6f8;
+}
+
+.background-darkgrey{
+  background-color: #111 !important;
+
+  p, a{
+    color: #fff !important;
+  }
+
+  a:hover{
+    color: #00aadc !important;
+  }
+}
+
+.background-hero{
+  background-color: #091022;
+  background-image: url("/assets/img/bg_hero.jpg");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+
+  h1,p{
+    color: #fff;
+  }
 }

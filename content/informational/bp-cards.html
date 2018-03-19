@@ -1,0 +1,34 @@
+---
+title: Cards
+subtitle: A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
+layout: pages
+permalink: /informational/cards/
+category: Informational
+---
+
+<div class="row">
+    <div class="col is-4">
+        {% include informational/cards/card-1.html %}
+    </div>
+    <div class="col">
+        <div class="content">
+            <h5><b>Default card</b></h5>
+            <p>This is the default look of a card with only description texts and footer buttons.</p>
+        </div>
+        {% highlight html %}{% include informational/cards/card-1.html %}{% endhighlight %}
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col is-4">
+        {% include informational/cards/card-2.html %}
+    </div>
+    <div class="col">
+        <div class="content">
+            <h5><b>Card with image</b></h5>
+            <p>This is when card is used with an image of any size.</p>
+        </div>
+        {% highlight html %}{% include informational/cards/card-2.html %}{% endhighlight %}
+    </div>
+</div>
+

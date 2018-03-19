@@ -1,0 +1,32 @@
+---
+title: Layouts
+subtitle: This category focus on sections, rows and columns. Sections allow you to create dynamic, structured layouts with ease. Using columns, you can creatively arrange any of our modules to create beautiful pages.
+layout: pages
+permalink: /structural/layouts/
+tags: [Columns,Column,Container]
+category: Structural
+---
+
+{% include structural/layouts/layouts-basic.html %}
+<hr>
+{% include structural/layouts/layouts-2-sections.html %}
+<hr>
+{% include structural/layouts/layouts-2-rows.html %}
+<script>
+    function toggleStyling(option) {
+        switch(option){
+            case 'basicLayout':
+                var element = document.getElementById("basicLayout");
+                element.classList.toggle("no-styling");
+                break;
+            case '2sectionLayout':
+                var element = document.getElementById("2sectionLayout");
+                element.classList.toggle("no-styling");
+                break;
+            case '2rowLayout':
+                var element = document.getElementById("2rowLayout");
+                element.classList.toggle("no-styling");
+                break;
+        }
+    }
+</script>

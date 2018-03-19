@@ -1,45 +1,44 @@
-- title: Home
-  url: /
-- title: Layouts
-  sub-links:
-    - title: Overview
-      url: /layouts/overview/
-    - title: Sections
-      url: /layouts/sections/
-    - title: Containers
-      url: /layouts/containers/
-    - title: Rows & columns
-      path: rows-columns
-      url: /layouts/rows-columns/basic/
-      subset-links:
-        - title: Basic
-          url: /layouts/rows-columns/basic/
-        - title: Column Sizes
-          url: /layouts/rows-columns/column-sizes/
-        - title: Responsiveness
-          url: /layouts/rows-columns/responsiveness/
-        - title: Nesting
-          url: /layouts/rows-columns/nesting/
-        - title: Options
-          url: /layouts/rows-columns/options/
+#- title: Home
+#  url: /
 
-- title: Components
+- title: Standard
   sub-links:
     - title: Masthead
-      url: /components/masthead/
+      url: /standard/masthead/
     - title: Footer
-      url: /components/footer/
+      url: /standard/footer/
     - title: Icons
-      url: /components/icons/
-    - title: Cards
-      url: /components/cards/
-    - title: Dropdowns
-      url: /components/dropdowns/
+      url: /standard/icons/
+
+- title: Structural
+  sub-links:
+    - title: Layouts
+      url: /structural/layouts/
+    - title: Sections
+      url: /structural/sections/
+    - title: Containers
+      url: /structural/containers/
+    - title: Rows & Columns
+      path: rows-columns
+      url: /structural/rows-columns/basic/
+      subset-links:
+        - title: Basics
+          url: /structural/rows-columns/basic/
+        - title: Column Sizes
+          url: /structural/rows-columns/column-sizes/
+        - title: Nesting
+          url: /structural/rows-columns/nesting/
+
+- title: Informational
+  sub-links:
     - title: Buttons
-      url: /components/buttons/
+      url: /informational/buttons/
+    - title: Cards
+      url: /informational/cards/
+    - title: Dropdowns
+      url: /informational/dropdowns/
     - title: Tabs
-      url: /components/tabs/
-- title: Templates
-  url: /templates
+      url: /informational/tabs/
+
 #- title: About
 #  url: /about-blueprint
