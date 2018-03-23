@@ -1,53 +1,58 @@
-<nav class="navbar">
+<nav id="navbar" class="navbar is-transparent">
     <div class="bp-container is-fluid">
-        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                {% asset logo_blueprint.png @magick:1x alt='Blueprint' %}
+            </a>
+            <div id="navbarBurger" class="navbar-burger burger" data-target="navMenuIndex">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div id="navMenuIndex" class="navbar-menu">
             <div class="navbar-start">
                 {%- assign links = site.data.navigation -%}
                 {%- for link in links -%}
-                    {%- assign class = nil -%}
-                    {%- if page.url contains link.url -%}
-                        {%- assign class = 'is-active' -%}
-                    {%- endif -%}
-                    {%- if link.sub-links -%}
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link" href="{{ site.baseurl }}{{ link.url }}">
-                                {{ link.title }}
-                            </a>
-                            <div class="navbar-dropdown is-boxed">
-                                {%- for item in link.sub-links -%}
-                                    {%- assign class = nil -%}
-                                    {%- if page.url contains item.url  -%}
-                                        <a class="navbar-item is-active" href="{{ item.url }}">
-                                            {{ item.title }}
-                                        </a>
-                                    {%- else -%}
-                                        <a class="navbar-item" href="{{ item.url }}">
-                                            {{ item.title }}
-                                        </a>
-                                    {%- endif -%}
-                                {%- endfor -%}
-                            </div>
-                        </div>
-                    {%- else -%}
-                        <li class="navbar-item {{ class }}">
-                            <a href="{{ site.baseurl }}{{ link.url }}" class="{{ class }}">{{ link.title }}</a>
-                        </li>
-                    {%- endif -%}
+                {%- assign class = nil -%}
+                {%- if page.url contains link.url -%}
+                {%- assign class = 'is-active' -%}
+                {%- endif -%}
+                {%- if link.sub-links -%}
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="{{ site.baseurl }}{{ link.url }}">
+                        {{ link.title }}
+                    </a>
+                    <div class="navbar-dropdown is-boxed">
+                        {%- for item in link.sub-links -%}
+                        {%- assign class = nil -%}
+                        {%- if page.url contains item.url  -%}
+                        <a class="navbar-item is-active" href="{{ item.url }}">
+                            {{ item.title }}
+                        </a>
+                        {%- else -%}
+                        <a class="navbar-item" href="{{ item.url }}">
+                            {{ item.title }}
+                        </a>
+                        {%- endif -%}
+                        {%- endfor -%}
+                    </div>
+                </div>
+                {%- else -%}
+                <li class="navbar-item {{ class }}">
+                    <a href="{{ site.baseurl }}{{ link.url }}" class="{{ class }}">{{ link.title }}</a>
+                </li>
+                {%- endif -%}
                 {%- endfor -%}
             </div>
             <div class="navbar-end is-hidden-touch">
                 <div class="navbar-item">
-                        <a class="bp-button is-info" href="">
-                            <span class="icon is-size-3">
+                    <a class="bp-button is-info" href="">
+                            <span class="icon">
                             <i class="bp-icon bp-icon-download"></i>
                             </span>
-                            <span>Download Blueprint</span>
-                        </a>
+                        <span>Download BLUEPRINT</span>
+                    </a>
                 </div>
             </div>
         </div>
