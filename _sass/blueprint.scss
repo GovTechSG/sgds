@@ -1,13 +1,6 @@
 @import "../node_modules/blueprint-govtech/_sass/main.scss";
 
-@import "bp-example";
-@import 'bp-navbar';
-@import "bp-typography";
-@import "bp-tabs";
-@import "bp-masthead";
-@import "bp-agencyhead";
-@import "bp-footer";
-
+@import 'not-bp/bp-example';
 @import "not-bp/utilities";
 @import 'not-bp/sections-container-grid';
 @import 'not-bp/background';
