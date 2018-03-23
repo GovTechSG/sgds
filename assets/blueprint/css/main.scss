@@ -3,29 +3,4 @@
 ---
 
 @charset "utf-8";
-
-@import "utilities/all";
-@import "base/all";
-@import "elements/all";
-@import "components/all";
-@import "grid/all";
-@import "layout/all";
-@import "utilities";
-@import "syntax";
-*{
-  font-family: 'Source Sans Pro', sans-serif;
-}
-@import "bp-icons/all";
-@import "bp-example";
-@import 'bp-navbar';
-@import "bp-typography";
-@import "bp-tabs";
-@import "bp-masthead";
-@import "bp-agencyhead";
-@import "bp-footer";
-
-
-@import 'not-bp/sections-container-grid';
-@import 'not-bp/background';
-@import "not-bp/pages/page";
-@import "not-bp/code-style";
+@import "blueprint";
