@@ -3,5 +3,3 @@ _site
 .jekyll-metadata
 .idea
 .jekyll-cache
-node_modules/*
-!node_modules/blueprint_govtech
