@@ -1,0 +1,117 @@
+.bg{
+  &-primary{
+    background-color: $primary !important;
+  }
+  &-secondary {
+    background-color: $secondary;
+  }
+  &-white {
+    background-color: white;
+  }
+  &-1{
+    //background-color: $primary;
+    background: url('https://c.stocksy.com/a/YY3500/z0/1205314.jpg') no-repeat left 50%;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+  &-2{
+    //background-color: $info;
+    background: url('https://c.stocksy.com/a/FY3500/z0/1205295.jpg') no-repeat left 50%;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+  &-3{
+    //background-color: $warning;
+    background: url('https://c.stocksy.com/a/L1o500/z0/1383923.jpg') no-repeat left 50%;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+  &-4{
+    //background-color: $danger;
+    background: url('https://c.stocksy.com/a/Z22000/z0/7847.jpg') no-repeat left 50%;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+  &-light{
+    background-color: $grey-lighter;
+  }
+  &-white{
+    background-color: white;
+  }
+  &-hero{
+    background: url('../img/home/hero-banner.png') no-repeat top left;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+  &-newssection{
+    background-color: #F0F4F6;
+  }
+  &-gradient{
+    background: #b41e8e;
+    background: -moz-linear-gradient(45deg, #b41e8e 0%, #5c3f9e 50%, #0061af 100%);
+    background: -webkit-linear-gradient(45deg, #b41e8e 0%,#5c3f9e 50%,#0061af 100%);
+    background: linear-gradient(45deg, #b41e8e 0%,#5c3f9e 50%,#0061af 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b41e8e', endColorstr='#0061af',GradientType=1 );
+  }
+  &-singpass{
+    background: #be2e7d; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #be2e7d 0%, #d64e54 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #be2e7d 0%,#d64e54 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #be2e7d 0%,#d64e54 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#be2e7d', endColorstr='#d64e54',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  }
+  &-beeline{
+    background: #009d62; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #009d62 0%, #0094d3 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #009d62 0%,#0094d3 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #009d62 0%,#0094d3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#009d62', endColorstr='#0094d3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  }
+  &-parkingsg{
+    background: #0164b6; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #0164b6 0%, #04a4e3 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #0164b6 0%,#04a4e3 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #0164b6 0%,#04a4e3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0164b6', endColorstr='#04a4e3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  }
+  &-media-releases{
+    background-color: $media-releases;
+    cursor:pointer;
+    &:hover{
+      background-color: darken($media-releases,10%);
+    }
+  }
+
+  &-events{
+    background-color: $events;
+    cursor:pointer;
+    &:hover{
+      background-color: darken($events,10%);
+    }
+  }
+
+  &-corporate-publications{
+    background-color: $corporate-publications;
+    cursor:pointer;
+    &:hover{
+      background-color: darken($corporate-publications,10%);
+    }
+  }
+
+  &-speeches{
+    background-color: $speeches;
+    cursor:pointer;
+    &:hover{
+      background-color: darken($speeches,10%);
+    }
+  }
+
+  &-facts-figures{
+    background-color: $facts-figures;
+    cursor:pointer;
+    &:hover{
+      background-color: darken($facts-figures,10%);
+    }
+  }
+}

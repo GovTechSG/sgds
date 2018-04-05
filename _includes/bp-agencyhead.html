@@ -1,3 +1,109 @@
-<header class="bp-agencyhead">
-    {% include main-nav.html %}
-</header>
+<div class="masthead-container" id="navbar">
+    {% include bp-masthead.html %}
+
+    <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="/assets/img/logo_blueprint.png" alt="" width="198" height="61">
+            </a>
+            <div class="navbar-burger burger" data-target="navbarMain">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div id="navbarMain" class="navbar-menu">
+            <div class="navbar-start" style="margin:0;">
+                {%- assign links = site.data.navigation -%}
+
+                {%- for lvl1item in links -%}
+                {%- assign class = nil -%}
+
+                {%- if page.url contains lvl1item.url -%}
+                    {%- assign class = 'active' -%}
+                {%- endif -%}
+
+                {%- if lvl1item.lvl2 -%}
+                <div class="navbar-item has-dropdown is-hoverable is-mega">
+                    <a class="navbar-link" href="{{ site.baseurl }}{{ lvl1item.url }}">
+                        {{ lvl1item.title }}
+                    </a>
+
+                    <div class="navbar-dropdown " data-style="width: 18rem;">
+                        <div class="container is-fluid">
+                            <div class="row">
+
+                                {%- for lvl2item in lvl1item.lvl2 -%}
+
+                                <div class="col">
+
+                                    <h5 class="title is-6 is-mega-menu-title">
+                                        {{ lvl2item.title }}
+                                    </h5>
+
+                                    {%- for lvl3item in lvl2item.lvl3 -%}
+
+                                    <div class="navbar-content">
+                                        <a href="{{ site.baseurl }}{{ lvl3item.url }}">{{ lvl3item.title }}</a>
+                                    </div>
+                                    {%- endfor -%}
+
+                                </div>
+                                {%- endfor -%}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%- else -%}
+                <li class="navbar-item">
+                    <a href="{{ site.baseurl }}{{ lvl1item.url }}">
+                        {{ lvl1item.title }}
+                    </a>
+                    <div class="selector {{class}} is-hidden-touch"></div>
+                </li>
+                {%- endif -%}
+
+                {%- endfor -%}
+
+            </div>
+            <div class="navbar-end is-hidden-touch">
+                <div class="navbar-item">
+                    <a class="bp-button is-large">Download Blueprint</a>
+                </div>
+                <div class="navbar-item">
+                    {% if page.layout != 'search' %}
+                    <a class="bp-button is-text is-large" style="text-decoration: none" id="search-activate">
+                        <span class="bp-icon bp-icon-search is-size-4"></span>
+                    </a>
+                    {% else %}
+                    <a class="bp-button is-text is-large" style="text-decoration: none; pointer-events: none;" id="search-activate" disabled></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bp-container is-fluid hide is-hidden-touch search-bar" id="search-bar">
+        <div class="row margin--top--sm margin--bottom--sm is-gapless">
+
+            <div class="col">
+                <form action="/search/" method="get">
+                    <div class="field has-addons">
+                        <div class="control has-icons-left is-expanded">
+                            <input class="input is-fullwidth is-medium" id="search-box" type="text" placeholder="What are you looking for?" name="query">
+                            <span class="is-large is-left">
+                          <i class="bp-icon bp-icon-search is-size-4"></i>
+                        </span>
+
+                        </div>
+                        <div class="control">
+                            <button type="submit" class="bp-button is-primary is-medium">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+.bp-container.post-content {
+	p {
+		margin-bottom: 2em;
+		line-height: 1.7em !important;
+		font-size: 1.2em !important;
+	}
+
+	a {
+		text-decoration: underline;
+	}
+
+	a[href$=".pdf"]:before {
+		content: url(http://blueprint.sg.test.s3-website-ap-southeast-1.amazonaws.com/assets/img/post/pdf-icon.svg);
+	}
+
+
+	code {
+		// Font
+		font-size: 0.6em !important;
+		color: #959595;
+		font: inherit;
+
+		background-color: inherit;
+		margin-top: 0.5em !important;
+		padding-left: inherit;
+	}
+}
+
+blockquote {
+	// Border styling
+	border-style: solid;
+	border-color: white;
+	border-left-color: #3256c1;
+	border-width: 0;
+	border-left-width: 2px;
+	padding-left: 2em;
+
+	p {
+		// Font
+		font-size: 1.4em !important;
+		color: $secondary;
+		font: inherit;
+		line-height: 1.7em !important;
+	}
+}

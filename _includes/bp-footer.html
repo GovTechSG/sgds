@@ -1,16 +1,52 @@
-<footer class="bp-footer copyright background-darkgrey">
+<footer class="bp-footer is-inverted">
     <div class="bp-container is-fluid">
         <div class="row">
+            <div class="col header padding--top--lg padding--bottom--lg">
+                <h5 class="sub-header has-text-white">{{site.title}}</h5>
+            </div>
+        </div>
+        <div class="row is-top">
+            {%- assign links = site.data.footer -%}
+            {%- for link in links -%}
+            {% if link.title == 'Technews' %}
+            <div class="col">
+                <p class="sub-header has-text-white">{{link.title}}</p>
+                {%- for sublink in link.sub-links -%}
+                {% if sublink.title == 'Feedback' %}
+                <p id="feedbackForm"><a class="has-text-white">{{sublink.title}}</a></p>
+                {% include feedback-modal.html %}
+                {% else %}
+                <p><a href="" class="has-text-white">{{sublink.title}}</a></p>
+                {% endif %}
+                {%- endfor -%}
+            </div>
+            {% else %}
+            <div class="col">
+                <p class="sub-header has-text-white">{{link.title}}</p>
+                {%- for sublink in link.sub-links -%}
+                <p><a href="">{{sublink.title}}</a></p>
+                {%- endfor -%}
+            </div>
+            {% endif %}
+            {%- endfor -%}
+        </div>
+    </div>
+</footer>
+<footer class="bp-footer is-inverted">
+    <div class="bp-container is-fluid">
+        <div class="row divider is-vcentered">
             <div class="col">
                 <ul>
                     <li><a href="">Privacy</a></li>
                     <li><a href="">Terms of Use</a></li>
-                    <li><a href="">Contact Us</a></li>
+                    <li><a href="">Rate this Service</a</li>
+                    <li><a href="">Sitemap</a></li>
                 </ul>
             </div>
             <div class="col has-text-right-desktop has-text-left-mobile">
-                <p>© 2018 Singapore Government. Last Updated {{site.last_updated}}</p>
+                <small> © 2018 Singapore Government. All Rights Reserved. Last Updated {{site.last_updated}}</small>
             </div>
+
         </div>
     </div>
 </footer>

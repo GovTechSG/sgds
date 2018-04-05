@@ -1,44 +1,38 @@
-#- title: Home
-#  url: /
+- title: ABOUT
+  url: /about
 
-- title: Standard
-  sub-links:
-    - title: Masthead
-      url: /standard/masthead/
-    - title: Footer
-      url: /standard/footer/
-    - title: Icons
-      url: /standard/icons/
+- title: COMPONENTS
+  lvl2:
+    - title: Standard
+      lvl3:
+        - title: Masthead
+          url: /components/standard/masthead/
+        - title: Footer
+          url: /components/standard/footer/
+        - title: Icons
+          url: /components/standard/icon/
 
-- title: Structural
-  sub-links:
-    - title: Layouts
-      url: /structural/layouts/
-    - title: Sections
-      url: /structural/sections/
-    - title: Containers
-      url: /structural/containers/
-    - title: Rows & Columns
-      path: rows-columns
-      url: /structural/rows-columns/basic/
-      subset-links:
-        - title: Basics
-          url: /structural/rows-columns/basic/
-        - title: Column Sizes
-          url: /structural/rows-columns/column-sizes/
-        - title: Nesting
-          url: /structural/rows-columns/nesting/
+    - title: Structural
+      lvl3:
+        - title: Section
+          url: /components/structural/section/
+        - title: Layout
+          url: /components/structural/layout/
+        - title: Container
+          url: /components/structural/container/
+        - title: Row and Column
+          url: /components/structural/row-col/
 
-- title: Informational
-  sub-links:
-    - title: Buttons
-      url: /informational/buttons/
-    - title: Cards
-      url: /informational/cards/
-    - title: Dropdowns
-      url: /informational/dropdowns/
-    - title: Tabs
-      url: /informational/tabs/
+    - title: Informational
+      lvl3:
+        - title: Button
+          url: /components/informational/button/
+        - title: Card
+          url: /components/informational/card/
+        - title: Dropdown
+          url: /components/informational/dropdown/
+        - title: Tab
+          url: /components/informational/tab/
 
-#- title: About
-#  url: /about-blueprint
+- title: TEMPLATES
+  url: /templates

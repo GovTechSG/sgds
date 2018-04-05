@@ -1,0 +1,17 @@
+.bp-breadcrumb{
+  a{
+    color:white;
+    .contact &{
+      color: $grey-light;
+    }
+  }
+
+  li{
+    & + li:before{
+      color : white;
+      .contact &{
+        color: $grey-light;
+      }
+    }
+  }
+}

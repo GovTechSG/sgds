@@ -1,0 +1,18 @@
+.bp-section{
+  &.is-full{
+    padding:0;
+  }
+}
+
+.bp-container{
+  &.is-full{
+    margin:0;
+
+  }
+}
+
+.col{
+  &.has-carousel{
+    min-width: 0;
+  }
+}

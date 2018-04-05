@@ -1,0 +1,10 @@
+h1{
+  &.title{
+    &.is-large{
+      font-size:5rem !important;
+      @include touch(){
+        font-size:3rem!important;
+      }
+    }
+  }
+}

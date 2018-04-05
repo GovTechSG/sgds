@@ -1,0 +1,27 @@
+.bp{
+  &-sec-button{
+    font-size:18px;
+    display:block;
+    text-transform: uppercase;
+    &.is-small{
+      font-size:0.875rem;
+    }
+
+    &.is-active{
+      text-decoration: underline;
+    }
+    span{
+      text-decoration: underline;
+      margin-right:0.5rem;
+      &.not-active{
+        text-decoration: none;
+      }
+      &.bp-icon{
+        text-decoration: none;
+      }
+    }
+    &:hover{
+      color:darken($primary,10%);
+    }
+  }
+}

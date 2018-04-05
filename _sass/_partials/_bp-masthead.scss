@@ -1,0 +1,7 @@
+.bp-masthead{
+  .is-size-12px{
+    @include touch(){
+      font-size:12px;
+    }
+  }
+}

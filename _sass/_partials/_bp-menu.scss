@@ -1,0 +1,19 @@
+.bp-menu{
+  &.is-gt{
+    ul{
+      li{
+        a{
+          background-color: transparent;
+          color:#323232;
+          font-size:17px;
+          padding:1rem 0;
+          border-bottom:2px solid $grey;
+          &.is-active{
+            color:$primary;
+            border-color: $primary;
+          }
+        }
+      }
+    }
+  }
+}

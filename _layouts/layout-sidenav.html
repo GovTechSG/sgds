@@ -1,0 +1,90 @@
+---
+layout: layout-default
+---
+
+<section class="bp-section is-small bg-secondary">
+    <div class="bp-container is-fluid">
+        {% include bp-breadcrumb.html %}
+    </div>
+    <div class="bp-container is-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="has-text-white">{{page.title}}</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bp-section">
+    <div class="bp-container is-fluid">
+        <div class="row">
+            <div class="col is-2 is-position-relative has-side-nav">
+                <div class="sidenav">
+                    <aside class="bp-menu is-gt sidebar__inner">
+                        <ul class="bp-menu-list">
+
+                            {%- assign links = site.data.navigation -%}
+                            {%- for lvl1item in links -%}
+
+                            {%- for lvl2item in lvl1item.lvl2 -%}
+
+                            <li>
+                                <h5>{{ lvl2item.title }}</h5>
+                                {%- for lvl3item in lvl2item.lvl3 -%}
+                                {%- if page.url contains lvl3item.url -%}
+                                {%- assign class = 'is-active' -%}
+                                {%- endif -%}
+                                <a href="{{ site.baseurl }}{{ lvl3item.url }}" class="{{ class }}">
+                                    {{ lvl3item.title }}
+                                </a>
+                                {%- endfor -%}
+                            </li>
+                            {%- endfor -%}
+                            {%- endfor -%}
+
+                            <!--
+                            <li>
+                                <a href="/who-we-are/role/" class="is-active">Our Role</a>
+                            </li>
+                            <li>
+                                <a href="/who-we-are/story-awards/">Our Story & Awards</a>
+                            </li>
+                            <li>
+                                <a href="/who-we-are/team/">Our Team</a>
+                            </li>
+                            -->
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+            <div class="col is-10">
+                <div class="bp-container is-fluid">
+                    <div class="row">
+                        <div class="col">
+                            {{content}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bp-section is-full">
+    <div class="bp-container is-fluid is-full">
+        <div class="row is-mobile" >
+            <div class="col nav-prev-next">
+                <div class=" has-text-left">
+                    <p><span class="bp-icon bp-icon-arrow-left"></span>  PREVIOUS</p>
+                    <p class="has-text-weight-bold is-hidden-mobile">Page Name</p>
+                </div>
+            </div>
+            <div class="col nav-prev-next">
+                <div class=" has-text-right">
+                    <p>NEXT  <span class="bp-icon bp-icon-arrow-right"></span></p>
+                    <p class="has-text-weight-bold is-hidden-mobile">Page Name</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

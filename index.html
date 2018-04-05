@@ -1,0 +1,106 @@
+---
+layout: layout-default
+---
+
+<section class="bp-hero is-bold bg-hero">
+    <div class="bp-hero-body">
+        <div class="bp-container is-fluid">
+            <div class="row is-vcentered">
+                <div class="col is-8 is-offset-2 has-text-centered">
+                    <h1 class="title padding--bottom--lg margin--none ">
+                        <b>blueprint</b>
+                    </h1>
+                    <h5 class="is-hidden-mobile padding--bottom--lg has-text-white">
+                        is a frontend framework designed for Singapore Government websites
+                    </h5>
+                    <a class="bp-button is-primary is-large">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="key-highlights" class="bp-section is-full">
+    <div class="bp-container is-fluid  is-full">
+        <div class="row is-gapless has-text-centered">
+            <div class="col">
+                <h5 class="has-text-weight-bold">GETTING STARTED</h5>
+                <p>Blueprint has a few easy ways to quickly get started, each one appealing to a different skill level and use case.</p>
+            </div>
+            <div class="col">
+                <h5 class="has-text-weight-bold">UI COMPONENTS</h5>
+                <p>UI Components are designed to unify for simplicity and consistency across government services with simple codes.</p>
+            </div>
+            <div class="col">
+                <h5 class="has-text-weight-bold">LAYOUT TEMPLATES</h5>
+                <p>Layout Templates are built with UI Components. Each template is flexible and can customise them for own needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bp-section">
+    <div class="bp-container is-fluid">
+        <div class="row">
+            <div class="col is-half is-offset-one-quarter has-text-centered">
+                <h2 class="has-text-primary padding--bottom is-size-3-mobile"><b>Easy installation</b></h2>
+                <h5 class="has-text-secondary">Blueprint is designed to meet your needs for easy and trouble-free installation.</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col is-6 has-text-centered">
+                <h2 class="bp-icon bp-icon-download"></h2>
+                <h5><b>Install with npm</b></h5>
+                <p class="is-spaced">You can install Blueprint using npm. No source files required.</p>
+                <br>
+                {% highlight console %}$ npm install blueprint-govtech{% endhighlight %}
+            </div>
+            <div class="col is-6 has-text-centered">
+                <h2 class="bp-icon bp-icon-cloud"></h2>
+                <h5><b>Use CDN Links</b></h5>
+                <p class="is-spaced">You can use our compiled CSS, JS and fonts by using this link.</p>
+                <br>
+                {% highlight html %}<link rel="stylesheet" href="https://cdnlink.com/blueprint/v1.0.0/blueprint.css">{% endhighlight %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bp-section bg-newssection">
+    <div class="bp-container is-fluid">
+        <div class="row">
+            <div class="col is-half is-offset-one-quarter has-text-centered">
+                <h2 class="has-text-primary padding--bottom is-size-3-mobile"><b>Try it yourself</b></h2>
+                <h5>Start with this basic HTML template and modify to suit your own needs.</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col is-6 has-text-centered">
+                {% asset sample_layout.png @magick:1x alt='Sample' %}
+            </div>
+            <div class="col is-6">
+                {% highlight html %}
+                <!--Paste the snippet here-->
+                {% endhighlight %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bp-section">
+    <div class="bp-container is-fluid">
+        <div class="row">
+            <div class="col is-6 is-offset-3 has-text-centered">
+                <h2 class=" has-text-primary padding--bottom is-size-3-mobile">
+                    <b>Our services</b>
+                </h2>
+                <h5 class="padding--bottom">
+                    We will ensure your BLUEPRINT implementation is in compliance with the official web policy guidance from Digital Services Standards.
+                </h5>
+                <a href="" class="bp-sec-button margin--top">
+                    <span>EMAIL US FOR CONSULTATION</span><i class="bp-icon bp-icon-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
