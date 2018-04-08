@@ -32,7 +32,6 @@
     font-size:15px !important;
     font-weight: bold;
     margin: 0 1.5rem;
-    padding:0;
 
     a{
       color:$grey-dark;
@@ -65,13 +64,22 @@
   }
 }
 
+.navbar-content {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
 .navbar-item.is-mega {
   position: static;
 
   .is-mega-menu-title {
     margin-bottom: 0;
-    padding: .375rem 1rem;
+    padding: .375rem 2.5rem;
+    color: $secondary;
+    background-color:#f3f3f3;
+    border-bottom:2px solid #ddd;
   }
+
 }
 
 html.has-navbar-fixed-top-desktop{
