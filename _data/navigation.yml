@@ -3,7 +3,7 @@
 
 - title: COMPONENTS
   lvl2:
-    - title: Standard
+    - title: STANDARD
       lvl3:
         - title: Masthead
           url: /components/standard/masthead/
@@ -12,18 +12,18 @@
         - title: Icons
           url: /components/standard/icon/
 
-    - title: Structural
+    - title: STRUCTURAL
       lvl3:
-        - title: Section
-          url: /components/structural/section/
         - title: Layout
           url: /components/structural/layout/
+        - title: Section
+          url: /components/structural/section/
         - title: Container
           url: /components/structural/container/
         - title: Row and Column
           url: /components/structural/row-col/
 
-    - title: Informational
+    - title: INFORMATIONAL
       lvl3:
         - title: Button
           url: /components/informational/button/

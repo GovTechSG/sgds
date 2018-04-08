@@ -1,303 +1,223 @@
 ---
 title: Row and Column
 subtitle: Subtitle
-layout: layout-default
+layout: layout-sidenav
 permalink: /components/structural/row-col/
 category: Components/Structural
 ---
 
-<div class="row">
-    <div class="bp-example">
-        <section class="bp-section">
-            <div class="bp-container">
-                <div class="row">
-                    <div class="col">
-                        <p>col 1</p>
-                    </div>
-                    <div class="col">
-                        <p>col 2</p>
-                    </div>
-                    <div class="col">
-                        <p>col 3</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-</div>
-<div class="row">
-    <div class="col is-4">
-        <div class="content">
-            <h5><b>Usage Method</b></h5>
-            <p>Building a columns layout is very simple:</p>
-            <ol>
-                <li>Add a <code>row</code> container</li>
-                <li>Add as many <code>col</code> elements as you want</li>
-            </ol>
-            <p>Each column will have an <b>equal width</b>, regardless the number of rows.</p>
-        </div>
-    </div>
-    <div class="col">
-        {%- highlight html -%}
-        <div class="bp-container">
-            <div class="row">
-                <div class="col">
-                    <p>Col 1</p>
-                </div>
-                <div class="col">
-                    <p>Col 2</p>
-                </div>
-                <div class="col">
-                    <p>Col 3</p>
-                </div>
-            </div>
-        </div>
-        {%- endhighlight -%}
-    </div>
-</div>
-
-<hr>
-
-<div class="row">
-    <div class="bp-example">
-        <div class="bp-container">
-            <div class="row has-text-centered">
-                <div class="col is-2">
-                    <p>.is-2</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col is-3">
-                    <p>.is-3</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col is-6">
-                    <p>.is-6</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-                <div class="col">
-                    <p>1</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col is-4">
-        <div class="content">
-            <h5><b>12 Columns Grid</b></h5>
-            <p>As the grid can be divided into 12 columns, there are size classes for each division:<br></p>
-            <p class="subtitle"><code>.is-2</code> to <code>.is-12</code></p>
-        </div>
-    </div>
-    <div class="col">
-        {% highlight html %}
+<section class="bp-section">
+    <div class="bp-container is-fluid">
         <div class="row">
-            <div class="col is-2">
-                <p>2-grid column</p>
-            </div>
-            <div class="col is-2">
-                <p>2-grid column</p>
-            </div>
-            <div class="col is-2">
-                <p>2-grid column</p>
-            </div>
-            <div class="col is-6">
-                <p>6-grid column</p>
-            </div>
-        </div>
-        {% endhighlight %}
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="bp-example">
-        <div class="bp-container">
-            <div class="row">
-                <div class="col is-6 is-offset-3">6-grid col with 3-grid offset.</div>
-            </div>
-            <div class="row">
-                <div class="col is-3 is-offset-9">3-grid col with 9-grid offset.</div>
-            </div>
-            <div class="row">
-                <div class="col is-5 is-offset-2">5-grid col with 2-grid offset.</div>
-            </div>
-            <div class="row">
-                <div class="col is-2 is-offset-1">2-grid col with 1-grid offset.</div>
-                <div class="col is-5 is-offset-2">5-grid col with 2-grid offset.</div>
-                <div class="col is-offset-1">Auto col with 1-grid offset</div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col is-4">
-        <div class="content">
-            <h5><b>Offset Columns</b></h5>
-            <p>Use empty column to create empty horizontal space from the left using <code>.is-offset-x</code></p>
-        </div>
-    </div>
-    <div class="col">
-        {% highlight html %}
-        <!--Row 1-->
-        <div class="row">
-            <div class="col is-6 is-offset-3">6-grid col with 3-grid offset.</div>
-        </div>
-        <!--Row 2-->
-        <div class="row">
-            <div class="col is-3 is-offset-9">3-grid col with 9-grid offset.</div>
-        </div>
-        <!--Row 3-->
-        <div class="row">
-            <div class="col is-5 is-offset-2">5-grid col with 2-grid offset.</div>
-        </div>
-        <!--Row 4-->
-        <div class="row">
-            <div class="col is-2 is-offset-1">2-grid col with 1-grid offset.</div>
-            <div class="col is-5 is-offset-2">5-grid col with 2-grid offset.</div>
-            <div class="col is-offset-1">Auto col with 1-grid offset</div>
-        </div>
-        {% endhighlight %}
-    </div>
-</div>
-
-<hr>
-
-<div class="row">
-    <div class="bp-example">
-        <div class="bp-container">
-            <div class="row">
-                <div class="col is-nested">
-                    <div class="row">
-                        <div class="col">Row 1 Col 1</div>
-                        <div class="col">Row 1 Col 2</div>
+            <div class="col">
+                <div class="content">
+                    <h5><b>Description</b></h5>
+                    <p>Columns are the vertical companion to the sections on your page. Any number of modules can be placed into any column you add to your layout.</p>
+                    <p>Building a columns layout is simple:</p>
+                    <ul>
+                        <li>Add a <code>row</code> container</li>
+                        <li>Add as many <code>col</code> elements as you want</li>
+                    </ul>
+                </div>
+                <div class="bp-example">
+                    <section class="bp-section">
+                        <div class="bp-container">
+                            <div class="row">
+                                <div class="col">
+                                    <p>col 1</p>
+                                </div>
+                                <div class="col">
+                                    <p>col 2</p>
+                                </div>
+                                <div class="col">
+                                    <p>col 3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="content">
+                    <p>As the grid can be divided into 12 columns, there are size classes for each division.</p>
+                    <p><code>.is-2</code> to <code>.is-12</code></p>
+                </div>
+                <div class="bp-example">
+                    <div class="bp-container">
+                        <div class="row has-text-centered">
+                            <div class="col is-2">
+                                <p>.is-2</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col is-3">
+                                <p>.is-3</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col is-6">
+                                <p>.is-6</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                            <div class="col">
+                                <p>1</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col is-nested">
-                    <div class="row">
-                        <div class="col">Row 2 Col 1</div>
-                        <div class="col">Row 2 Col 2</div>
-                        <div class="col">Row 2 Col 3</div>
+                <div class="content">
+                    <p>Use empty column to create empty horizontal space from the left using <code>.is-offset-x</code></p>
+                </div>
+                <div class="bp-example">
+                    <div class="bp-container">
+                        <div class="row">
+                            <div class="col is-6 is-offset-3">6-grid col with 3-grid offset.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col is-3 is-offset-9">3-grid col with 9-grid offset.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col is-5 is-offset-2">5-grid col with 2-grid offset.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col is-2 is-offset-1">2-grid col with 1-grid offset.</div>
+                            <div class="col is-5 is-offset-2">5-grid col with 2-grid offset.</div>
+                            <div class="col is-offset-1">Auto col with 1-grid offset</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col is-4">
-        <div class="content">
-            <h5><b>Usage Method</b></h5>
-            <p>You can <b>nest</b> columns to have more flexibility in your design. You only need to follow this structure.</p>
-            <code>row</code> : top-level col container
-            <ul class="no-bullets">
-                <li>
-                    <code>col</code>
+                <div class="content">
+                    <p>You can <b>nest</b> columns to have more flexibility in your design. You only need to follow this structure.</p>
+                    <code>row</code> : top-level col container
                     <ul class="no-bullets">
                         <li>
-                            <code>row</code>: nested col
+                            <code>col</code>
                             <ul class="no-bullets">
                                 <li>
-                                    <code>col</code> and so on…
+                                    <code>row</code>: nested col
+                                    <ul class="no-bullets">
+                                        <li>
+                                            <code>col</code> and so on…
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
                     </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="col">
-        {%- highlight html -%}
-        <div class="bp-container">
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <div class="col">Row 1 Col 1</div>
-                        <div class="col">Row 1 Col 2</div>
-                    </div>
                 </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col">Row 2 Col 1</div>
-                        <div class="col">Row 2 Col 2</div>
-                        <div class="col">Row 2 Col 3</div>
+                <div class="bp-example">
+                    <div class="bp-container">
+                        <div class="row">
+                            <div class="col is-nested">
+                                <div class="row">
+                                    <div class="col">Row 1 Col 1</div>
+                                    <div class="col">Row 1 Col 2</div>
+                                </div>
+                            </div>
+                            <div class="col is-nested">
+                                <div class="row">
+                                    <div class="col">Row 2 Col 1</div>
+                                    <div class="col">Row 2 Col 2</div>
+                                    <div class="col">Row 2 Col 3</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        {%- endhighlight -%}
+        <hr>
+        <div class="row">
+            <div class="col">
+                <div class="content">
+                    <h5><b>How to Use</b></h5>
+                    <p>Simply copy and paste this code snippet to any part of your project.</p>
+                </div>
+{%- highlight html -%}
+<div class="bp-container">
+    <div class="row">
+        <div class="col">
+            <p>Col 1</p>
+        </div>
+        <div class="col">
+            <p>Col 2</p>
+        </div>
+        <div class="col">
+            <p>Col 3</p>
+        </div>
     </div>
 </div>
+{%- endhighlight -%}
+            </div>
+        </div>
+    </div>
+</section>

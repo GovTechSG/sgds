@@ -105,7 +105,7 @@ html.has-navbar-fixed-top-desktop{
 }
 
 .nav-prev-next{
-  background-color: $primary;
+  background-color: $secondary;
   color:white;
   padding:1.5rem 4rem;
   @include mobile(){
@@ -113,7 +113,7 @@ html.has-navbar-fixed-top-desktop{
     padding-right:2rem;
   }
   &:hover{
-    background-color: darken($primary,10%);
+    background-color: darken($secondary,10%);
   }
 
   p:first-child{

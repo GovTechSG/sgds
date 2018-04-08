@@ -1,75 +1,64 @@
 ---
 title: Container
 subtitle: Subtitle
-layout: layout-default
+layout: layout-sidenav
 permalink: /components/structural/container/
 category: Components/Structural
 ---
 
-<div class="row">
-    <div class="bp-example">
-        <section class="bp-section is-small">
-            <div class="bp-container bg-light">
-                <div class="bp-notification is-primary">
-                    Default Container
+<section class="bp-section">
+    <div class="bp-container is-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="content">
+                    <h5><b>Description</b></h5>
+                    <p>Container allows you to center your content horizontally on any screen size.</p>
+                    <p>The <code>.bp-container</code> class can be used in any context, but mostly as a direct child of either:</p>
+                    <ul>
+                        <li>.navbar</li>
+                        <li>.bp-hero</li>
+                        <li>.bp-section</li>
+                        <li>.bp-footer</li>
+                    </ul>
+                </div>
+                <div class="bp-example">
+                    <section class="bp-section is-small">
+                        <div class="bp-container bg-light">
+                            <div class="bp-notification is-primary">
+                                Default Container
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="content">
+                    <p>If you do not want a maximum width but keep the 32px margin on both sides, add the <code>is-fluid</code> modifier.</p>
+                </div>
+                <div class="bp-example">
+                    <section class="bp-section is-small">
+                        <div class="bp-container is-fluid bg-light">
+                            <div class="bp-notification is-primary">
+                                Fluid Container
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
-        </section>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <div class="content">
+                    <h5><b>How to Use</b></h5>
+                    <p>Simply copy and paste this code snippet to any part of your project.</p>
+                </div>
+{%- highlight html -%}
+<section class="bp-section is-small">
+    <div class="bp-container bg-light">
+        Default Container
     </div>
-</div>
-<div class="row">
-    <div class="col is-4">
-        <div class="content">
-            <h5><b>Default Container</b></h5>
-            <p>The <code>.bp-container</code> class can be used in any context, but mostly as a <b>direct child</b> of either:
-                <br>
-                <code>.navbar</code><br>
-                <code>.bp-hero</code><br>
-                <code>.bp-section</code><br>
-                <code>.bp-footer</code>
-            </p>
+</section>
+{%- endhighlight -%}
+            </div>
         </div>
     </div>
-    <div class="col">
-        {%- highlight html -%}
-        <section class="bp-section is-small">
-            <div class="bp-container bg-light">
-                <div class="bp-notification is-primary">
-                    Default Container
-                </div>
-            </div>
-        </section>
-        {%- endhighlight -%}
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="bp-example">
-        <section class="bp-section is-small">
-            <div class="bp-container is-fluid bg-light">
-                <div class="bp-notification is-primary">
-                    Fluid Container
-                </div>
-            </div>
-        </section>
-    </div>
-</div>
-<div class="row">
-    <div class="col is-4">
-        <div class="content">
-            <h5><b>Fluid Container</b></h5>
-            <p class="subtitle">If you do not want a maximum width but keep the 32px margin on both sides, add the <code>is-fluid</code> modifier.</p>
-        </div>
-    </div>
-    <div class="col">
-        {%- highlight html -%}
-        <section class="bp-section is-small">
-            <div class="bp-container is-fluid bg-light">
-                <div class="bp-notification is-primary">
-                    Fluid Container
-                </div>
-            </div>
-        </section>
-        {%- endhighlight -%}
-    </div>
-</div>
+</section>

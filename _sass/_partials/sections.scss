@@ -16,3 +16,25 @@
     min-width: 0;
   }
 }
+
+.page-icon .col {
+  position: relative;
+  transition: all 0.3s;
+  border: 1px solid #eee;
+}
+
+.page-icon .col:hover {
+  background-color: #f2f2f2;
+}
+
+.page-icon .col:hover a.bd-copy {
+  display: block;
+}
+
+.page-icon .col a.bd-copy {
+  position: absolute;
+  display: none;
+  right: 5px;
+  top: 5px;
+  padding: 0.25rem;
+}

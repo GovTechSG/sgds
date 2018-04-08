@@ -1,116 +1,82 @@
 ---
 title: Button
 subtitle: Subtitle
-layout: layout-default
+layout: layout-sidenav
 permalink: /components/informational/button/
 category: Components/Informational
 ---
 
-<div class="row">
-    <div class="col is-4">
-        <a class="bp-button is-small is-primary">Small</a>
-        <br><br>
-        <a class="bp-button is-info">Normal</a>
-        <br><br>
-        <a class="bp-button is-medium is-danger">Medium</a>
-        <br><br>
-        <a class="bp-button is-large is-black">Large</a>
-    </div>
-    <div class="col">
-        <div class="content">
-            <h5><b>Default Buttons</b></h5>
+<section class="bp-section">
+    <div class="bp-container is-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="content">
+                    <h5><b>Description</b></h5>
+                    <p>The button is an essential element of any design. It's meant to look and behave as an interactive element of your page.</p>
+                    <a class="bp-button is-small is-primary">small</a>
+                    <a class="bp-button is-info">default</a>
+                    <a class="bp-button is-medium is-danger">medium</a>
+                    <a class="bp-button is-large is-black">large</a>
+                </div>
+                <hr>
+                <div class="content">
+                    <p>Use outlined buttons by applying the <code>.is-outlined</code> modifier.</p>
+                    <a class="bp-button is-small is-outlined is-primary">small</a>
+                    <a class="bp-button is-outlined is-primary">default</a>
+                    <a class="bp-button is-medium is-outlined is-primary">medium</a>
+                    <a class="bp-button is-large is-outlined is-primary">large</a>
+                </div>
+                <hr>
+                <div class="content">
+                    <p>Use rounded buttons by applying the <code>.is-rounded</code> modifier.</p>
+                    <a class="bp-button is-small is-primary is-rounded">Small</a>
+                    <a class="bp-button is-info is-rounded">Normal</a>
+                    <a class="bp-button is-medium is-danger is-rounded">Medium</a>
+                    <a class="bp-button is-large is-black is-rounded">Large</a>
+                </div>
+                <hr>
+                <div class="content">
+                    <p>Use disabled buttons by applying the <code>disabled</code> modifier.</p>
+                    <a class="bp-button is-small is-primary" disabled>Small</a>
+                    <a class="bp-button is-info" disabled>Normal</a>
+                    <a class="bp-button is-medium is-danger" disabled>Medium</a>
+                    <a class="bp-button is-large is-black" disabled>Large</a>
+                </div>
+                <hr>
+                <div class="content">
+                    <p>You can insert icons from our library on any part of a button.</p>
+                    <a class="bp-button">
+                        <span>Look right</span>
+                        <span class="icon"><i class="bp-icon bp-icon-angle-right"></i></span>
+                    </a>
+                    <a class="bp-button">
+                        <span class="icon"><i class="bp-icon bp-icon-twitter"></i></span>
+                        <span>Twitter</span>
+                    </a>
+                    <a class="bp-button">
+                        <span class="icon"><i class="bp-icon bp-icon-facebook"></i></span>
+                        <span>Facebook</span>
+                    </a>
+                    <a class="bp-button">
+                        <span class="icon"><i class="bp-icon bp-icon-download"></i></span>
+                    </a>
+                </div>
+            </div>
         </div>
-        </figure>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col is-4">
-        <a class="bp-button is-small is-outlined is-primary">Small</a>
-        <br><br>
-        <a class="bp-button is-outlined is-primary">Normal</a>
-        <br><br>
-        <a class="bp-button is-medium is-outlined is-primary">Medium</a>
-        <br><br>
-        <a class="bp-button is-large is-outlined is-primary">Large</a>
-    </div>
-    <div class="col">
-        <div class="content">
-            <h5><b>Outline Buttons</b></h5>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <div class="content">
+                    <h5><b>How to Use</b></h5>
+                    <p>Simply copy and paste this code snippet to any part of your project.</p>
+                </div>
+{%- highlight html -%}
+<a class="bp-button">
+    <span>Look right</span>
+    <span class="icon"><i class="bp-icon bp-icon-angle-right"></i></span>
+</a>
+{%- endhighlight -%}
+            </div>
         </div>
     </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col is-4">
-        <a class="bp-button">
-            <span>Look right</span>
-            <span class="icon">
-        <i class="bp-icon bp-icon-angle-right"></i>
-    </span>
-        </a>
-        <br><br>
-        <a class="bp-button">
-    <span class="icon">
-        <i class="bp-icon bp-icon-twitter"></i>
-    </span>
-            <span>Twitter</span>
-        </a>
-        <br><br>
-        <a class="bp-button">
-    <span class="icon">
-        <i class="bp-icon bp-icon-facebook"></i>
-    </span>
-            <span>Facebook</span>
-        </a>
-        <br><br>
-        <a class="bp-button">
-    <span class="icon">
-        <i class="bp-icon bp-icon-download"></i>
-    </span>
-        </a>
-    </div>
-    <div class="col">
-        <div class="content">
-            <h5><b>Buttons with icon</b></h5>
-        </div>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col is-4">
-        <a class="bp-button is-small is-primary is-rounded">Small</a>
-        <br><br>
-        <a class="bp-button is-info is-rounded">Normal</a>
-        <br><br>
-        <a class="bp-button is-medium is-danger is-rounded">Medium</a>
-        <br><br>
-        <a class="bp-button is-large is-black is-rounded">Large</a>
-    </div>
-    <div class="col">
-        <div class="content">
-            <h5><b>Rounded buttons</b></h5>
-        </div>
-        </figure>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col is-4">
-        <a class="bp-button is-small is-primary" disabled>Small</a>
-        <br><br>
-        <a class="bp-button is-info" disabled>Normal</a>
-        <br><br>
-        <a class="bp-button is-medium is-danger" disabled>Medium</a>
-        <br><br>
-        <a class="bp-button is-large is-black" disabled>Large</a>
-    </div>
-    <div class="col">
-        <div class="content">
-            <h5><b>Disabled buttons</b></h5>
-        </div>
-        </figure>
-    </div>
-</div>
-
-
+</section>

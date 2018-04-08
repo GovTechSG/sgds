@@ -1,67 +1,87 @@
 ---
 title: Card
 subtitle: Subtitle
-layout: layout-default
+layout: layout-sidenav
 permalink: /components/informational/card/
 category: Components/Informational
 ---
 
-<div class="row">
-    <div class="col is-4">
-        <div class="bp-card">
-            <div class="bp-card-content">
-                <p class="title">
-                    Lorem Ipsum
-                </p>
-                <p class="subtitle">
-                    John Cena
-                </p>
-            </div>
-            <footer class="bp-card-footer">
-                <p class="bp-card-footer-item">
-            <span>
-                <a href="">Twitter</a>
-            </span>
-                </p>
-                <p class="bp-card-footer-item">
-            <span>
-                <a href="">Twitter</a>
-            </span>
-                </p>
-            </footer>
-        </div>
-    </div>
-    <div class="col">
-        <div class="content">
-            <h5><b>Default card</b></h5>
-            <p>This is the default look of a card with only description texts and footer buttons.</p>
-        </div>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col is-4">
-        <div class="bp-card">
-            <div class="bp-card-image">
-                <div class="image is-4by3">
-                    <img src="https://placehold.it/1280x960" alt="Placeholder image">
-                </div>
-            </div>
-            <div class="bp-card-content">
-
+<section class="bp-section">
+    <div class="bp-container is-fluid">
+        <div class="row">
+            <div class="col">
                 <div class="content">
-                    <h4 class="title">Lorem Ipsum</h4>
-                    <p class="subtitle">Lorem ipsum dolor sit amet.</p>
-                    <p>Phasellus nec iaculis mauris.</p>
+                    <h5><b>Description</b></h5>
+                    <p>A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.</p>
+                    <p>Here is the default look of a card with only description texts and footer buttons.</p>
+                </div>
+                <div class="bp-card">
+                    <div class="bp-card-content">
+                        <p class="title">
+                            Lorem Ipsum
+                        </p>
+                        <p class="subtitle">
+                            John Cena
+                        </p>
+                    </div>
+                    <footer class="bp-card-footer">
+                        <p class="bp-card-footer-item">
+                            <span><a href="">Details</a></span>
+                        </p>
+                        <p class="bp-card-footer-item">
+                            <span><a href="">Share</a></span>
+                        </p>
+                    </footer>
+                </div>
+                <hr>
+                <div class="content">
+                    <p>Here is when card is used with an image of any size.</p>
+                </div>
+                <div class="bp-card">
+                    <div class="bp-card-image">
+                        <div class="image is-4by3">
+                            <img src="https://placehold.it/1280x960" alt="Placeholder image">
+                        </div>
+                    </div>
+                    <div class="bp-card-content">
+
+                        <div class="content">
+                            <h4 class="title">Lorem Ipsum</h4>
+                            <p class="subtitle">Lorem ipsum dolor sit amet.</p>
+                            <p>Phasellus nec iaculis mauris.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <div class="content">
+                    <h5><b>How to Use</b></h5>
+                    <p>Simply copy and paste this code snippet to any part of your project.</p>
+                </div>
+{%- highlight html -%}
+<div class="bp-card">
+    <div class="bp-card-content">
+        <p class="title">
+            Lorem Ipsum
+        </p>
+        <p class="subtitle">
+            John Cena
+        </p>
     </div>
-    <div class="col">
-        <div class="content">
-            <h5><b>Card with image</b></h5>
-            <p>This is when card is used with an image of any size.</p>
+    <footer class="bp-card-footer">
+        <p class="bp-card-footer-item">
+            <span><a href="">Details</a></span>
+        </p>
+        <p class="bp-card-footer-item">
+            <span><a href="">Share</a></span>
+        </p>
+    </footer>
+</div>
+{%- endhighlight -%}
+            </div>
         </div>
     </div>
-</div>
-
+</section>
