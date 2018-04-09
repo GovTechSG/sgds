@@ -3,10 +3,13 @@
 @import "../node_modules/blueprint-govtech/_sass/utilities/initial-variables";
 @import "../node_modules/blueprint-govtech/_sass/utilities/functions";
 
-$primary:#f8b195;
+$primary:#363a65;
 
-$secondary:#564861;
+$secondary:#6b4370;
 $secondary-invert: findColorInvert($secondary);
+
+$accent1:#324ea0;
+$accent2:#c2d4cf;
 
 $media-releases: #009B56;
 $media-releases-invert: findColorInvert($media-releases);

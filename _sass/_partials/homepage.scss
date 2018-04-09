@@ -1,6 +1,6 @@
 #key-highlights{
-  background-color: $secondary;
-  color: white;
+  background-color: $accent1;
+  color: $accent2;
   @include desktop(){
     max-height:183px;
   }
@@ -10,14 +10,14 @@
     cursor:pointer;
     transition:all 0.5s;
     &:hover{
-      color:darken(white,10%);
-      background-color: darken($secondary,10%);
+      color:white;
+      background-color: darken($accent1,50%);
     }
     & + .col{
-      border-left:1px solid darken($secondary,10%);
+      border-left:1px solid darken($accent1,50%);
       @include mobile(){
         border-left:0;
-        border-top:1px solid darken($secondary,10%);
+        border-top:1px solid darken($accent1,50%);
       }
 
     }

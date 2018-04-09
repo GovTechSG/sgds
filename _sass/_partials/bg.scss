@@ -5,6 +5,13 @@
   &-secondary {
     background-color: $secondary;
   }
+  &-accent1 {
+    h2{
+      color: $accent2;
+    }
+    color: white;
+    background-color: $accent1;
+  }
   &-white {
     background-color: white;
   }
@@ -39,7 +46,7 @@
     background-color: white;
   }
   &-hero{
-    background: url('../img/home/hero-banner.png') no-repeat top left;
+    background: url('../img/home/hero-banner.png') no-repeat center center;
     -webkit-background-size: cover;
     background-size: cover;
   }
