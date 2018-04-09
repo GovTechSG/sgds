@@ -27,22 +27,24 @@
                         {{ lvl1item.title }}
                     </a>
                     <div class="navbar-dropdown " data-style="width: 18rem;">
-                        <div class="container is-fluid">
-                            <div class="row">
-                                {%- for lvl2item in lvl1item.lvl2 -%}
-                                <div class="col">
-                                    <small class="title is-6 is-mega-menu-title">
-                                        <b>{{ lvl2item.title }}</b>
-                                    </small>
-                                    {%- for lvl3item in lvl2item.lvl3 -%}
-                                    <div class="navbar-content">
-                                        <a class="navbar-item" href="{{ site.baseurl }}{{ lvl3item.url }}">{{ lvl3item.title }}</a>
+                        <section class="bp-section is-small">
+                            <div class="container is-fluid">
+                                <div class="row">
+                                    {%- for lvl2item in lvl1item.lvl2 -%}
+                                    <div class="col">
+                                        <small class="title is-6 is-mega-menu-title">
+                                            <b>{{ lvl2item.title }}</b>
+                                        </small>
+                                        {%- for lvl3item in lvl2item.lvl3 -%}
+                                        <div class="navbar-content">
+                                            <a class="navbar-item" href="{{ site.baseurl }}{{ lvl3item.url }}">{{ lvl3item.title }}</a>
+                                        </div>
+                                        {%- endfor -%}
                                     </div>
                                     {%- endfor -%}
                                 </div>
-                                {%- endfor -%}
                             </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
                 {%- else -%}
