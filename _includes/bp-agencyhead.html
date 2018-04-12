@@ -32,12 +32,14 @@
                                 <div class="row">
                                     {%- for lvl2item in lvl1item.lvl2 -%}
                                     <div class="col">
-                                        <small class="title is-6 is-mega-menu-title">
+                                        <small class="title is-6 is-mega-menu-title" style="margin-bottom:10px;">
                                             <b>{{ lvl2item.title }}</b>
                                         </small>
                                         {%- for lvl3item in lvl2item.lvl3 -%}
                                         <div class="navbar-content">
-                                            <a class="navbar-item" href="{{ site.baseurl }}{{ lvl3item.url }}">{{ lvl3item.title }}</a>
+                                            <a class="navbar-item" href="{{ site.baseurl }}{{ lvl3item.url }}">
+                                                <h6>{{ lvl3item.title }}</h6>
+                                            </a>
                                         </div>
                                         {%- endfor -%}
                                     </div>
@@ -48,16 +50,16 @@
                     </div>
                 </div>
                 {%- else -%}
-                <a class="navbar-item" href="{{ site.baseurl }}{{ lvl1item.url }}">
-                    {{ lvl1item.title }}
+                <li class="navbar-item">
+                    <a href="{{ site.baseurl }}{{ lvl1item.url }}">{{ lvl1item.title }}</a>
                     <div class="selector {{class}} is-hidden-touch"></div>
-                </a>
+                </li>
                 {%- endif -%}
                 {%- endfor -%}
             </div>
             <div class="navbar-end is-hidden-touch">
                 <div class="navbar-item">
-                    <a class="bp-button is-rounded">DOWNLOAD BLUEPRINT</a>
+                    <a class="bp-button is-rounded">DOWNLOAD BLUEPRINT v1.0</a>
                 </div>
                 <div class="navbar-item">
                     {% if page.layout != 'search' %}

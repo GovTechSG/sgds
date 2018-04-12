@@ -24,14 +24,13 @@
         }
 
       }
-
-
     }
   }
   .navbar-item{
     font-size:15px !important;
     font-weight: bold;
     margin: 0 1.5rem;
+    padding: 0;
 
     a{
       color:$grey-dark;
@@ -74,7 +73,7 @@
 
   .is-mega-menu-title {
     margin-bottom: 0;
-    padding: .375rem 2.5rem;
+    padding: .375rem 1.5rem;
     color: $secondary;
     background-color:#f3f3f3;
   }

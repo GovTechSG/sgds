@@ -1,7 +1,4 @@
-- title: ABOUT
-  url: /about
-
-- title: COMPONENTS
+- title: UI COMPONENTS
   lvl2:
     - title: STANDARD
       lvl3:
@@ -34,5 +31,5 @@
         - title: Tab
           url: /components/informational/tab/
 
-- title: TEMPLATES
-  url: /templates
+- title: ABOUT BLUEPRINT
+  url: /about
