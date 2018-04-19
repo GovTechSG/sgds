@@ -4,80 +4,44 @@
 @import "../node_modules/blueprint-govtech/_sass/utilities/functions";
 
 $primary:#363a65;
+$primary-invert: findColorInvert($primary);
 
 $secondary:#6b4370;
 $secondary-invert: findColorInvert($secondary);
 
 $accent1:#324ea0;
+$accent1-invert:findColorInvert($accent1);
 $accent2:#c2d4cf;
+$accent2-invert:findColorInvert($accent2);
 
-$media-releases: #009B56;
-$media-releases-invert: findColorInvert($media-releases);
-
-$events: #E67337;
-$events-invert:findColorInvert($events);
-
-$corporate-publications: #009B56;
-$corporate-publications-invert: findColorInvert($corporate-publications);
-
-$speeches: #B04E98;
-$speeches-invert: findColorInvert($speeches);
-
-$facts-figures: #009B56;
-$facts-figures-invert: findColorInvert($facts-figures);
 
 $navbar-height:100px;
 
 @import "../node_modules/blueprint-govtech/_sass/utilities/derived-variables";
 
 $addColors: (
+        "primary":($primary, $primary-invert),
         "secondary":($secondary, $secondary-invert),
-        "media-releases":($media-releases, $media-releases-invert),
-        "events":($events, $events-invert),
-        "corporate-publications":($corporate-publications, $corporate-publications-invert),
-        "speeches":($speeches, $speeches-invert),
-        "facts-figures":($facts-figures, $facts-figures-invert)
+        "accent1":($accent1, $accent1-invert),
+        "accent2":($accent2, $accent2-invert)
 );
 $colors: map-merge($colors, $addColors);
 
 @import "../node_modules/blueprint-govtech/_sass/main.scss";
 
-@font-face {
-  font-family: 'cerebrissans-book';
-  src:  url('../blueprint/fonts/cerebrisans-book.eot?x7mal1');
-  src:  url('../blueprint/fonts/cerebrisans-book.eot?x7mal1#iefix') format('embedded-opentype'),
-  url('../blueprint/fonts/cerebrisans-book.ttf?x7mal1') format('truetype'),
-  url('../blueprint/fonts/cerebrisans-book.woff?x7mal1') format('woff'),
-  url('../blueprint/fonts/cerebrisans-book.svg?x7mal1#blueprint-icons') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 *{
-  //font-family: 'Muli', sans-serif;
-  //font-family: 'IBM Plex Sans', sans-serif;
+
   font-family: 'Roboto', sans-serif;
 }
 
 @import 'utilities';
-@import '_partials/bp-typography';
-
-@import '_partials/hero';
-@import '_partials/bp-button';
 @import '_partials/bp-breadcrumb';
-@import '_partials/bp-example';
+//@import '_partials/bp-example';
 @import '_partials/bp-secondary-button';
 @import '_partials/bp-sidenav';
-@import '_partials/bp-footer';
 @import '_partials/bp-navbar';
 @import '_partials/bp-masthead';
-@import '_partials/bp-menu';
 @import "_partials/bg";
 @import '_partials/sections';
 @import '_partials/homepage';
-@import '_partials/news-item';
-@import '_partials/text-color';
-@import '_partials/post-content';
 @import '_partials/search-content';
-@import '_partials/pagination';
-@import '_partials/feedback-modal';
-@import '_partials/contact-page';

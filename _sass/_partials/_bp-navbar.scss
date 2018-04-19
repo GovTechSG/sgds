@@ -22,7 +22,6 @@
             border-bottom:2px solid $primary;
           }
         }
-
       }
     }
   }
@@ -63,10 +62,6 @@
   }
 }
 
-.navbar-content {
-  flex-grow: 1;
-  flex-shrink: 1;
-}
 
 .navbar-item.is-mega {
   position: static;
@@ -75,7 +70,6 @@
     margin-bottom: 0;
     padding: .375rem 1.5rem;
     color: $secondary;
-    background-color:#f3f3f3;
   }
 
 }
