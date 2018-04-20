@@ -6,123 +6,119 @@ permalink: /components/structural/layout/
 category: Components/Structural
 ---
 
-<section class="bp-section">
-    <div class="bp-container is-fluid">
-        <div class="row">
-            <div class="col">
-                <div class="content">
-                    <h5><b>Description</b></h5>
-                    <p>Structural category focus on sections, rows and columns. Sections allow you to create dynamic, structured layouts with ease. Using columns, you can creatively arrange any of our modules to create beautiful pages.</p>
-                    <p>Here shows the basic layout structure.</p>
+<div class="row">
+    <div class="col">
+        <div class="content">
+            <h5><b>Description</b></h5>
+            <p>Structural category focus on sections, rows and columns. Sections allow you to create dynamic, structured layouts with ease. Using columns, you can creatively arrange any of our modules to create beautiful pages.</p>
+            <p>Here shows the basic layout structure.</p>
+        </div>
+        <div id="basicLayout" class="bp-example">
+            <section class="bp-section">
+                <div class="bp-container">
+                    <div class="row">
+                        <div class="col">
+                            <p>col 1</p>
+                        </div>
+                        <div class="col">
+                            <p>col 2</p>
+                        </div>
+                        <div class="col">
+                            <p>col 3</p>
+                        </div>
+                    </div>
                 </div>
-                <div id="basicLayout" class="bp-example">
-                    <section class="bp-section">
-                        <div class="bp-container">
-                            <div class="row">
-                                <div class="col">
-                                    <p>col 1</p>
-                                </div>
-                                <div class="col">
-                                    <p>col 2</p>
-                                </div>
-                                <div class="col">
-                                    <p>col 3</p>
-                                </div>
+            </section>
+            <br>
+            <a class="bp-button is-fullwidth" onclick="toggleStyling('basicLayout')">Toggle View</a>
+        </div>
+        <div class="content">
+            <p>Here shows the usage of sections. You may add a <code>hr</code> in between sections as a divider.</p>
+        </div>
+        <div id="2sectionLayout" class="bp-example">
+            <section class="bp-section">
+                <div class="bp-container">
+                    <!--first row-->
+                    <div class="row">
+                        <div class="col">
+                            <h5>Section 1</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Col 1</p>
+                        </div>
+                        <div class="col">
+                            <p>Col 2</p>
+                        </div>
+                        <div class="col">
+                            <p>Col 3</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr>
+            <section class="bp-section">
+                <div class="bp-container">
+                    <!--first row-->
+                    <div class="row">
+                        <div class="col">
+                            <h5>Section 2</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Col 1</p>
+                        </div>
+                        <div class="col">
+                            <p>Col 2</p>
+                        </div>
+                        <div class="col">
+                            <p>Col 3</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <br>
+            <a class="bp-button is-fullwidth" onclick="toggleStyling('2sectionLayout')">Toggle View</a>
+        </div>
+        <div class="content">
+            <p>Here shows the usage of rows within a section.</p>
+        </div>
+        <div id="2rowLayout" class="bp-example">
+            <section class="bp-section">
+                <div class="bp-container">
+                    <!--first row-->
+                    <div class="row">
+                        <div class="col">
+                            <h5>Welcome to BLUEPRINT</h5>
+                        </div>
+                    </div>
+                    <!--second row-->
+                    <div class="row">
+                        <div class="col">
+                            <div class="content">
+                                <h5>Subtitle</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             </div>
                         </div>
-                    </section>
-                    <br>
-                    <a class="bp-button is-fullwidth" onclick="toggleStyling('basicLayout')">Toggle View</a>
-                </div>
-                <div class="content">
-                    <p>Here shows the usage of sections. You may add a <code>hr</code> in between sections as a divider.</p>
-                </div>
-                <div id="2sectionLayout" class="bp-example">
-                    <section class="bp-section">
-                        <div class="bp-container">
-                            <!--first row-->
-                            <div class="row">
-                                <div class="col">
-                                    <h5>Section 1</h5>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <p>Col 1</p>
-                                </div>
-                                <div class="col">
-                                    <p>Col 2</p>
-                                </div>
-                                <div class="col">
-                                    <p>Col 3</p>
-                                </div>
+                        <div class="col">
+                            <div class="content">
+                                <h5>Subtitle</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             </div>
                         </div>
-                    </section>
-                    <hr>
-                    <section class="bp-section">
-                        <div class="bp-container">
-                            <!--first row-->
-                            <div class="row">
-                                <div class="col">
-                                    <h5>Section 2</h5>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <p>Col 1</p>
-                                </div>
-                                <div class="col">
-                                    <p>Col 2</p>
-                                </div>
-                                <div class="col">
-                                    <p>Col 3</p>
-                                </div>
+                        <div class="col">
+                            <div class="content">
+                                <h5>Subtitle</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             </div>
                         </div>
-                    </section>
-                    <br>
-                    <a class="bp-button is-fullwidth" onclick="toggleStyling('2sectionLayout')">Toggle View</a>
+                    </div>
                 </div>
-                <div class="content">
-                    <p>Here shows the usage of rows within a section.</p>
-                </div>
-                <div id="2rowLayout" class="bp-example">
-                    <section class="bp-section">
-                        <div class="bp-container">
-                            <!--first row-->
-                            <div class="row">
-                                <div class="col">
-                                    <h5>Welcome to BLUEPRINT</h5>
-                                </div>
-                            </div>
-                            <!--second row-->
-                            <div class="row">
-                                <div class="col">
-                                    <div class="content">
-                                        <h5>Subtitle</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="content">
-                                        <h5>Subtitle</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="content">
-                                        <h5>Subtitle</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <br>
-                    <a class="bp-button is-fullwidth" onclick="toggleStyling('2rowLayout')">Toggle View</a>
-                </div>
-            </div>
+            </section>
+            <br>
+            <a class="bp-button is-fullwidth" onclick="toggleStyling('2rowLayout')">Toggle View</a>
         </div>
     </div>
-</section>
+</div>

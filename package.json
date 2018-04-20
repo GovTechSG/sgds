@@ -13,6 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "blueprint-govtech": "~1.0.10-alpha"
+    "blueprint-govtech": "~1.1.0"
   }
 }

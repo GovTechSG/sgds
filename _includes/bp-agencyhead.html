@@ -27,32 +27,28 @@
                         {{ lvl1item.title }}
                     </a>
                     <div class="navbar-dropdown " data-style="width: 18rem;">
-                        <section class="bp-section is-small">
-                            <div class="container is-fluid">
-                                <div class="row">
-                                    {%- for lvl2item in lvl1item.lvl2 -%}
-                                    <div class="col">
-                                        <div class="title is-6 is-mega-menu-title bg-lighter-grey" style="margin-bottom:10px;">
-                                            <small><b>{{ lvl2item.title }}</b></small>
-                                        </div>
-                                        {%- for lvl3item in lvl2item.lvl3 -%}
-                                        <div class="navbar-content">
-                                            <a class="navbar-item has-text-weight-light" href="{{ site.baseurl }}{{ lvl3item.url }}">
-                                                <p>{{ lvl3item.title }}</p>
-                                            </a>
-                                        </div>
-                                        {%- endfor -%}
+                        <div class="bp-container is-fluid">
+                            <div class="row padding">
+                                {%- for lvl2item in lvl1item.lvl2 -%}
+                                <div class="col">
+                                    <div class="title is-6 is-mega-menu-title bg-lighter-grey">
+                                        <small><b>{{ lvl2item.title }}</b></small>
                                     </div>
+                                    {%- for lvl3item in lvl2item.lvl3 -%}
+                                    <a class="navbar-item has-text-weight-light" href="{{ site.baseurl }}{{ lvl3item.url }}">
+                                        <p>{{ lvl3item.title }}</p>
+                                    </a>
                                     {%- endfor -%}
                                 </div>
+                                {%- endfor -%}
                             </div>
-                        </section>
+                        </div>
                     </div>
                 </div>
                 {%- else -%}
                 <li class="navbar-item">
-                    <a href="{{ site.baseurl }}{{ lvl1item.url }}">{{ lvl1item.title }}</a>
-                    <div class="selector {{class}} is-hidden-touch"></div>
+                    <a href="{{ site.baseurl }}{{ lvl1item.url }} ">{{ lvl1item.title }}</a>
+
                 </li>
                 {%- endif -%}
                 {%- endfor -%}

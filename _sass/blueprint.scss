@@ -35,12 +35,8 @@ $colors: map-merge($colors, $addColors);
 }
 
 @import 'utilities';
-@import '_partials/bp-breadcrumb';
-//@import '_partials/bp-example';
-@import '_partials/bp-secondary-button';
-@import '_partials/bp-sidenav';
-@import '_partials/bp-navbar';
-@import '_partials/bp-masthead';
+
+@import '_partials/bp-example';
 @import "_partials/bg";
 @import '_partials/sections';
 @import '_partials/homepage';

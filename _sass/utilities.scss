@@ -1,6 +1,9 @@
 @for $i from 1 through 10 {
   .is-vh-#{$i}0{
     height: #{$i * 10}vh;
+    @include mobile(){
+      height:auto;
+    }
   }
 }
 
