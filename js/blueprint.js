@@ -312,25 +312,6 @@ if ($navbarBurgers.length > 0) {
     });
 }
 
-// // Searchbar Activate
-// var $searchActivate = document.getElementById('search-activate');
-// var $searchDeactivate = document.getElementById('search-deactivate');
-// var $searchBar = document.getElementById('search-bar');
-// BLUEPRINT.hide($searchDeactivate);
-// BLUEPRINT.hide($searchBar);
-// BLUEPRINT.show($searchActivate);
-//
-// $searchActivate.addEventListener('click', function (event){
-//     BLUEPRINT.toggle($searchDeactivate);
-//     BLUEPRINT.toggle($searchBar);
-//     BLUEPRINT.toggle($searchActivate);
-// });
-//
-// $searchDeactivate.addEventListener('click', function (event){
-//     BLUEPRINT.toggle($searchDeactivate);
-//     BLUEPRINT.toggle($searchBar);
-//     BLUEPRINT.toggle($searchActivate);
-// });
 
 // Dropdowns
 var $dropdowns = getAll('.bp-dropdown:not(.is-hoverable)');
@@ -367,17 +348,3 @@ function getAll(selector) {
     return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
 }
 
-$(document).ready(function(){
-    var masthead_container = $('.masthead-container');
-    var searchToggle = $('#search-activate');
-    var searchIcon = $('#search-activate span');
-    var searchBar = $('.search-bar');
-    var searchBar_input = $('.search-bar input');
-    searchToggle.on('click',function(e){
-        e.preventDefault();
-        searchIcon.toggleClass('bp-icon-search').toggleClass('bp-icon-cross');;
-        searchBar.toggleClass('hide');
-        searchBar_input.focus().val('');
-        masthead_container.toggleClass('is-opened');
-    });
-});

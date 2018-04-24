@@ -21,7 +21,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://portal.blueprint.gov.sg" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
-last_updated: 17 Feb 2018
+last_updated: 15 April 2018
 
 # Build settings
 markdown: kramdown
