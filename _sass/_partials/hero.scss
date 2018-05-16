@@ -11,14 +11,18 @@
       font-size:2.5rem!important;
     }
   }
+
   &-body{
     @include desktop(){
-      height:calc(100vh - 150px - 110px);
+      height:calc(50vh);
+      /*
       min-height:400px;
       .row{
         height: calc(100vh - 150px - 110px - 50px - 50px);
         min-height:360px;
       }
+      */
     }
   }
+
 }
