@@ -221,3 +221,9 @@ $base-margin-padding: 1rem;
     width:100%;
   }
 }
+
+.post-content{
+  h3, h4, li, dd{
+    margin: 20px 0;
+  }
+}
