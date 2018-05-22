@@ -1,12 +1,12 @@
 @for $i from 1 through 10 {
   .is-vh-#{$i}0{
     height: #{$i * 10}vh;
+    @include mobile(){
+      height:auto;
+    }
   }
 }
 
-.no-margin{
-  margin:0!important;
-}
 
 $base-margin-padding: 1rem;
 
@@ -219,5 +219,11 @@ $base-margin-padding: 1rem;
   .touch &{
     position:relative!important;
     width:100%;
+  }
+}
+
+.post-content{
+  h3, h4, li, dd{
+    margin: 20px 0;
   }
 }

@@ -1,6 +1,6 @@
 <nav class="bp-breadcrumb" aria-label="breadcrumbs">
     <ul>
-        <li><a href="{{ site.baseurl }}/">{{ "Home" | upcase }}</a></li>
+        <li><a href="{{ site.baseurl }}/" class="has-text-white">{{ "Home" | upcase }}</a></li>
         {% capture page_url_without_index_html %}{{ page.url | remove: "/index.html" }}{% endcapture %}
         {% assign splitted_url_parts = page_url_without_index_html | split: '/' %}
         {% capture forLoopMaxInt %}{{ splitted_url_parts.size | minus:1 }}{% endcapture %}
@@ -14,7 +14,7 @@
 
         {% for breadcrumb_page in site.pages %}
         {% if current_breadcrumb_url == breadcrumb_page.url or current_breadcrumb_md_url == breadcrumb_page.url  %}
-            <li><a href="{{ site.baseurl }}{{breadcrumb_page_url}}">{{breadcrumb_page.breadcrumb | upcase}}</a></li>
+            <li><a href="{{ site.baseurl }}{{breadcrumb_page_url}}" class="has-text-white">{{breadcrumb_page.breadcrumb | upcase}}</a></li>
         {% endif %}
         {% endfor %}
         {% endfor %}
