@@ -2,5 +2,5 @@
     "id": "{{ index }}",
     "url": "{{ post.permalink | absolute_url }}{{ post.file_url | absolute_url }}",
     "title": "{{ post.title }}",
-    "content": "{{ post.content | markdownify | strip_html | strip_newlines | remove:'\"' }}"
+    "content": "{{ post.content | markdownify | strip_html | strip_newlines | escape_once | strip_html }}"
 }
