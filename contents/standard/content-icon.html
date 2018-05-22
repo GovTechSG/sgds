@@ -6,39 +6,35 @@ permalink: /components/standard/icon/
 category: Components/Standard
 ---
 
-<section class="bp-section">
-    <div class="bp-container is-fluid">
-        <div class="row">
-            <div class="col">
-                <div class="content">
-                    <h5><b>Description</b></h5>
-                    <p>This set of vector icons and social logos are created in font format for Singapore Government websites.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row is-multiline is-mobile page-icon">
-            {% assign sort-icons = site.data.icons | sort:'iconName' %}
-            {% for icon in sort-icons %}
-            <div class="col is-2-desktop is-4-tablet is-4-mobile">
-                <div class="icon-container">
-                    <span class="bp-icon bp-icon-{{icon.iconName}} is-size-3 "></span>
-                </div>
-                <small>.bp-icon-{{icon.iconName}}</small>
-                <a class="bp-button is-outlined bd-copy is-hidden-touch">
-                    <small>copy</small>
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col">
-                <div class="content">
-                    <h5><b>How to Use</b></h5>
-                    <p>Simply copy and paste this code snippet anywhere to your project.</p>
-                </div>
-                {% highlight html %}<span class="bp-icon bp-icon-iconName"></span>{% endhighlight %}
-            </div>
+<div class="row">
+    <div class="col">
+        <div class="content">
+            <h5><b>Description</b></h5>
+            <p>This set of vector icons and social logos are created in font format for Singapore Government websites.</p>
         </div>
     </div>
-</section>
+</div>
+<div class="row is-multiline is-mobile page-icon">
+    {% assign sort-icons = site.data.icons | sort:'iconName' %}
+    {% for icon in sort-icons %}
+    <div class="col is-2-desktop is-4-tablet is-4-mobile">
+        <div class="icon-container">
+            <span class="bp-icon bp-icon-{{icon.iconName}} is-size-3 "></span>
+        </div>
+        <small>.bp-icon-{{icon.iconName}}</small>
+        <a class="bp-button is-outlined bd-copy is-hidden-touch">
+            <small>copy</small>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+<hr>
+<div class="row">
+    <div class="col">
+        <div class="content">
+            <h5><b>How to Use</b></h5>
+            <p>Simply copy and paste this code snippet anywhere to your project.</p>
+        </div>
+        {% highlight html %}<span class="bp-icon bp-icon-iconName"></span>{% endhighlight %}
+    </div>
+</div>

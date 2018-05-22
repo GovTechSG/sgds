@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Blueprint - Design System for Singapore Government Services
+title: BLUEPRINT - Singapore Government Design System
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   BLUEPRINT is a reusable and upgradable frontend framework that aims to provide tools for the government agencies to comply with the latest policies for websites and digital services easily.
@@ -21,7 +21,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://portal.blueprint.gov.sg" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
-last_updated: 17 Feb 2018
+last_updated: 15 April 2018
 
 # Build settings
 markdown: kramdown

@@ -16,3 +16,18 @@ window.onscroll = function() {
   }
   prevScrollpos = currentScrollPos;
 }
+
+$(document).ready(function(){
+    var masthead_container = $('.masthead-container');
+    var searchToggle = $('#search-activate');
+    var searchIcon = $('#search-activate span');
+    var searchBar = $('.search-bar');
+    var searchBar_input = $('.search-bar input');
+    searchToggle.on('click',function(e){
+        e.preventDefault();
+        searchIcon.toggleClass('bp-icon-search').toggleClass('bp-icon-cross');;
+        searchBar.toggleClass('hide');
+        searchBar_input.focus().val('');
+        masthead_container.toggleClass('is-opened');
+    });
+});
