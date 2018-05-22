@@ -1,0 +1,33 @@
+---
+
+---
+{% assign index = 0 %} {% assign tempindex = 0 %}posts_json=[
+    {%- for post in site.application-guidelines -%}
+    	{%- assign tempindex = forloop.index0 -%}
+    	{%- assign index = tempindex -%}
+    	{%- include post.json -%},
+    {%- endfor -%}
+
+
+    {%- for post in site.posts -%}
+
+		{%- capture index -%} 
+			{{ tempindex | plus: forloop.index}}
+		{%- endcapture -%}
+
+    	{%- include post.json -%},
+    {%- endfor -%}
+    {%- assign tempindex = index -%}
+
+
+
+    {%- for post in site.html_pages -%}
+
+		{%- capture index -%} 
+			{{ tempindex | plus: forloop.index}}
+		{%- endcapture -%}
+
+    	{%- include post.json -%}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+
+]
