@@ -1,4 +1,4 @@
-(function() {
+var runSearch = function(json_data, posts_data) {
 
   // Bolds the keywords in the preview string
   function highlightKeywords(content, previewStartPosition, matchMetadata) {
@@ -7,7 +7,13 @@
 
     // Create an object containing search hit position and length of search hit in the document (for content within preview)
     for (keyword in matchMetadata) {
-      var positionArray = matchMetadata[keyword]['content']['position'];
+      var positionArray;
+
+      if (!matchMetadata[keyword]['content']) {
+        return;
+      }
+
+      positionArray = matchMetadata[keyword]['content']['position'];
 
       for (var positionIndex = 0; positionIndex < positionArray.length; positionIndex++) {
         var hitPosition = positionArray[positionIndex][0];
@@ -57,12 +63,15 @@
 
     // Iterate over each keyword in the search query
     for (keyword in matchMetadata) {
-      var positionArray = matchMetadata[keyword]['content']['position'];
 
-      // Find the earliest first position across all keywords
-      for (var positionIndex = 0; positionIndex < positionArray.length; positionIndex++) {
-        if (firstPosition == -1 || (firstPosition > positionArray[positionIndex][0])) {
-          firstPosition = positionArray[positionIndex][0];
+      if (matchMetadata[keyword]['content'] !== undefined) {
+        var positionArray = matchMetadata[keyword]['content']['position'];
+        
+        // Find the earliest first position across all keywords
+        for (var positionIndex = 0; positionIndex < positionArray.length; positionIndex++) {
+          if (firstPosition == -1 || (firstPosition > positionArray[positionIndex][0])) {
+            firstPosition = positionArray[positionIndex][0];
+          }
         }
       }
     }
@@ -73,12 +82,15 @@
   // Return the preview content for each search result - returns the snippet that has the first hit in the document (up to 300 chars)
   function returnResultsList(results) {
     var searchPara = '';
-    var post_data = JSON.parse(data); // Obtain JSON var of all the posts in the site
+    var post_data = posts_data; // Obtain JSON var of all the posts in the site
+
 
     // Iterate over the results
     for (var i = 0; i < results.length; i++) {
       var key = parseInt(results[i]['ref']);
-      var resultObject = post_data[key].value;
+      var resultObject = post_data[key];
+
+
       var matchMetadata = results[i]['matchData']['metadata'];
       var keywordSet = new Set();
 
@@ -90,7 +102,7 @@
         var resultTitle = resultObject['title'].substring(0, indexOfLastWord);
         resultTitle += ' ...';
       }
-      searchPara += '<a class="search-content" href="' + resultObject['permalink']  + '.html">' + ' ' + resultTitle + '</a>';
+      searchPara += '<a class="search-content" href="' + resultObject['url']  + '">' + ' ' + resultTitle + '</a>';
       
       // Find the position of the earliest keyword in the document
       var firstPosition = returnFirstKeywordPosition(matchMetadata);
@@ -100,9 +112,13 @@
 
       // Process the preview to embolden keywords
       var processedPreview = highlightKeywords(resultObject['content'], previewStartPosition, matchMetadata);
-      var postDate = new Date(resultObject['datestring']).toDateString().substring(4);
-      searchPara += '<p class="search-content permalink"> ...' + resultObject['permalink'] + '</p><br>';
-      searchPara += '<p class="search-content" > '+ postDate + ' ...' + processedPreview + '...</p><br>';
+      // var postDate = new Date(resultObject['datestring']).toDateString().substring(4);
+      searchPara += '<p class="search-content permalink">' + resultObject['url'] + '</p><br>';
+      // searchPara += '<p class="search-content" > '+ postDate + ' ...' + processedPreview + '...</p><br>';
+      
+      if (processedPreview) {
+        searchPara += '<p class="search-content" > ' + ' ...' + processedPreview + '...</p><br>';
+      }
     }
 
     return searchPara;
@@ -148,4 +164,4 @@
 
     window.onload = displaySearchResults(results, searchTerm);
   }
-})();
+};
