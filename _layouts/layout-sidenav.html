@@ -32,7 +32,7 @@ layout: layout-default
                                 {%- assign class = 'is-active' -%}
                                 {%- endif -%}
                                 <a href="{{ site.baseurl }}{{ lvl3item.url }}" class="{{ class }}">
-                                    <p>{{ lvl3item.title }}</p>
+                                    {{ lvl3item.title }}
                                 </a>
                                 {%- endfor -%}
                             </li>

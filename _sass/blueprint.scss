@@ -1,7 +1,5 @@
-@import '_owl.carousel/owl.carousel';
-@import '_owl.carousel/owl.theme.default';
-@import "../node_modules/blueprint-govtech/_sass/utilities/initial-variables";
-@import "../node_modules/blueprint-govtech/_sass/utilities/functions";
+@import "blueprint-govtech/_sass/utilities/initial-variables";
+@import "blueprint-govtech/_sass/utilities/functions";
 
 $primary:#363a65;
 $primary-invert: findColorInvert($primary);
@@ -17,7 +15,7 @@ $accent2-invert:findColorInvert($accent2);
 
 $navbar-height:100px;
 
-@import "../node_modules/blueprint-govtech/_sass/utilities/derived-variables";
+@import "blueprint-govtech/_sass/utilities/derived-variables";
 
 $addColors: (
         "primary":($primary, $primary-invert),
@@ -27,7 +25,7 @@ $addColors: (
 );
 $colors: map-merge($colors, $addColors);
 
-@import "../node_modules/blueprint-govtech/_sass/main.scss";
+@import "blueprint-govtech/_sass/main.scss";
 
 *{
 
