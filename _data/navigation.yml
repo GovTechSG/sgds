@@ -1,6 +1,9 @@
-- title: COMPONENTS
+- title: Onboarding
+  url: /onboarding/overview
+
+- title: Components
   lvl2:
-    - title: STANDARD
+    - title: Standard
       lvl3:
         - title: Masthead
           url: /components/standard/masthead/
@@ -9,7 +12,7 @@
         - title: Icons
           url: /components/standard/icon/
 
-    - title: STRUCTURAL
+    - title: Structural
       lvl3:
         - title: Layout
           url: /components/structural/layout/
@@ -20,7 +23,7 @@
         - title: Row and Column
           url: /components/structural/row-col/
 
-    - title: INFORMATIONAL
+    - title: Informational
       lvl3:
         - title: Button
           url: /components/informational/button/
@@ -31,8 +34,24 @@
         - title: Tab
           url: /components/informational/tab/
 
-- title: TEMPLATES
-  url: /templates
+- title: Templates
+  lvl2:
+    - title: Information
+      lvl3:
+        - title: WordPress
+          url: /
+        - title: Jekyll
+          url: /
 
-- title: ABOUT
-  url: /about
+    - title: News
+      lvl3:
+        - title: WordPress
+          url: /
+
+    - title: Processes
+      lvl3:
+        - title: WordPress
+          url: /
+
+- title: Community
+  url: /community
