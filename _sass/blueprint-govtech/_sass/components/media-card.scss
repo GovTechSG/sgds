@@ -1,0 +1,16 @@
+.media-card {
+	&-plain {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		& small {
+			display: block;
+		}
+
+		& .description {
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+}
