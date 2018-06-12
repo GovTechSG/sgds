@@ -1,57 +1,140 @@
 - title: Onboarding
-  url: /onboarding/overview
+  lvl2:
+    - title: Get Started
+      url: /onboarding/get-started/
+      tag: get-started
+      lvl3:
+        - title: Overview
+          url: /onboarding/get-started/overview/
+          tag: get-started
+        - title: For Developers
+          url: /onboarding/get-started/for-developers/
+          tag: get-started
+        - title: For Designers
+          url: /onboarding/get-started/for-designers/
+          tag: get-started
+        - title: For Content Managers
+          url: /onboarding/get-started/for-content-managers/
+          tag: get-started
+
+    - title: Guidelines
+      url: /onboarding/guidelines/
+      tag: guidelines
+      lvl3:
+        - title: Digital Service Standard
+          url: /onboarding/guidelines/content-digital-service-standard/
+          tag: guidelines
+        - title: Usability Checklist
+          url: /onboarding/guidelines/content-usability-checklist/
+          tag: guidelines
+
+    - title: Extensions
+      url: /onboarding/extensions/
+      tag: extensions
+      lvl3:
+        - title: Sentimeter
+          url: /onboarding/extensions/sentimeter/
+          tag: extensions
 
 - title: Components
   lvl2:
     - title: Standard
+      url: /components/standard/
+      tag: standard
       lvl3:
         - title: Masthead
           url: /components/standard/masthead/
+          tag: standard
         - title: Footer
           url: /components/standard/footer/
+          tag: standard
         - title: Icons
           url: /components/standard/icon/
+          tag: standard
 
     - title: Structural
+      url: /components/structural/
+      tag: structural
       lvl3:
         - title: Layout
           url: /components/structural/layout/
+          tag: structural
         - title: Section
           url: /components/structural/section/
+          tag: structural
         - title: Container
           url: /components/structural/container/
+          tag: structural
         - title: Row and Column
           url: /components/structural/row-col/
+          tag: structural
 
     - title: Informational
+      url: /components/informational/
+      tag: informational
       lvl3:
         - title: Button
           url: /components/informational/button/
+          tag: informational
         - title: Card
           url: /components/informational/card/
+          tag: informational
         - title: Dropdown
           url: /components/informational/dropdown/
+          tag: informational
         - title: Tab
           url: /components/informational/tab/
+          tag: informational
 
 - title: Templates
   lvl2:
     - title: Information
+      url: /templates/information/
+      tag: information
       lvl3:
         - title: WordPress
-          url: /
+          url: /templates/information/wordpress/
+          tag: information
         - title: Jekyll
-          url: /
+          url: /templates/information/jekyll/
+          tag: information
 
     - title: News
+      url: /templates/news/
+      tag: news
       lvl3:
         - title: WordPress
-          url: /
+          url: /templates/news/wordpress/
+          tag: news
 
     - title: Processes
+      url: /templates/processes/
+      tag: processes
       lvl3:
         - title: WordPress
-          url: /
+          url: /templates/processes/wordpress/
+          tag: processes
 
-- title: Community
-  url: /community
+- title: Support
+  lvl2:
+    - title: Community
+      url: /support/community/
+      tag: community
+      lvl3:
+        - title: Discussion
+          url: /support/community/discussion/
+          tag: community
+        - title: Patch Notes
+          url: /support/community/patch-notes/
+          tag: community
+
+    - title: Suggestion
+      url: /support/community/
+      tag: suggestion
+      lvl3:
+        - title: Propose a Component
+          url: /support/community/propose-component/
+          tag: suggestion
+        - title: Propose a Template
+          url: /support/community/propose-template/
+          tag: suggestion
