@@ -33,17 +33,17 @@ layout: layout-default
 <section id="key-highlights" class="bp-section is-paddingless">
     <div class="bp-container is-fluid  is-marginless">
         <div class="row is-gapless has-text-centered">
-            <div class="col" onclick="location.href='/components/standard/masthead/';">
-                <h4 class="has-text-white" style="padding-bottom:10px"><b>UI Components</b></h4>
-                <p>Provides a base style which can be replicated to ensure simplicity and consistency across government services</p>
+            <div class="col" onclick="location.href='/onboarding/get-started/overview';">
+                <h4 class="has-text-white" style="padding-bottom:10px"><b>Onboarding</b></h4>
+                <p>We provide supports to ensure Blueprint implementations will be successful into projects</p>
+            </div>
+            <div class="col" onclick="location.href='/components/standard/masthead';">
+                <h4 class="has-text-white" style="padding-bottom:10px"><b>Components</b></h4>
+                <p>Base style which can be replicated to ensure consistency across government services</p>
             </div>
             <div class="col" onclick="location.href='/templates';">
-                <h4 class="has-text-white" style="padding-bottom:10px"><b>Layout Templates</b></h4>
-                <p>Templates are built with UI Components. Each template is flexible and can be customised</p>
-            </div>
-            <div class="col" onclick="location.href='/about';">
-                <h4 class="has-text-white" style="padding-bottom:10px"><b>Our Services</b></h4>
-                <p>We will provide the necessary support to ensure a successful implementation of the design system</p>
+                <h4 class="has-text-white" style="padding-bottom:10px"><b>Templates</b></h4>
+                <p>Built with UI Components where each template is flexible and can be customised easily</p>
             </div>
         </div>
     </div>
@@ -51,54 +51,221 @@ layout: layout-default
 
 <section class="bp-section">
     <div class="bp-container is-fluid">
-        <div class="row">
-            <div class="col is-6 is-offset-3 has-text-centered">
-                <h2 class="has-text-primary padding--bottom is-size-3-mobile"><b>Take the First Step</b></h2>
-                <h5 class="has-text-accent1">With improved and optimised user flow, experience and design, BLUEPRINT is the scalable and reliable design system for the Singapore Government services.</h5>
+        <div class="row padding--bottom--lg">
+            <div class="col is-10 is-offset-1">
+                <h2 class="has-text-centered has-text-primary is-size-3-mobile"><b>Design System</b></h2>
+                <h5 class="has-text-centered has-text-accent1">Built for designers, by designers</h5>
             </div>
         </div>
-        <div class="row">
-            <div class="col is-6 is-offset-3 has-text-centered">
-                <h2 class="bp-icon bp-icon-download" style="margin:20px auto"></h2>
-                <h5 class="has-text-centered has-text-accent1"><b>Install with npm</b></h5>
-                <p class="is-spaced">You can install Blueprint using npm. No source files required.</p>
-                <br>
-                {% highlight console %}$ npm install blueprint-govtech{% endhighlight %}
-                <!--<div class="row">-->
-                    <!--<div class="col is-6 has-text-centered">-->
-                        <!---->
-                    <!--</div>-->
-                    <!--&lt;!&ndash;<div class="col is-6 has-text-centered">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<h2 class="bp-icon bp-icon-cloud" style="margin:20px auto"></h2>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<h5 class="has-text-centered has-text-accent1"><b>Use CDN Links</b></h5>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<p class="is-spaced">You can use our compiled CSS, JS and fonts by using this link.</p>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<br>&ndash;&gt;-->
-                        <!--&lt;!&ndash;{% highlight html %}<link rel="stylesheet" href="https://cdnlink.com/blueprint/v1.0.0/blueprint.css">{% endhighlight %}&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--</div>-->
+        <div class="row padding--bottom--lg">
+            <div class="col is-10 is-offset-1">
+                <div class="row">
+                    <div class="col is-4">
+                        <div class="row">
+                            <div class="col is-2">
+                                <img src="/assets/img/img_scalability.png" alt="">
+                            </div>
+                            <div class="col is-10">
+                                <h5 class="has-text-accent1 padding--bottom"><b>Provides Better Scalability</b></h5>
+                                <p>Adaptable to suit the changing needs of your users, as you can build your own site with the UI Components provided.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col is-4">
+                        <div class="row">
+                            <div class="col is-2">
+                                <img src="/assets/img/img_scalability.png" alt="">
+                            </div>
+                            <div class="col is-10">
+                                <h5 class="has-text-accent1 padding--bottom"><b>Lower Overall Costs</b></h5>
+                                <p>A standard design system keeps your design and code overhead low.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col is-4">
+                        <div class="row">
+                            <div class="col is-2">
+                                <img src="/assets/img/img_userexperience.png" alt="">
+                            </div>
+                            <div class="col is-10">
+                                <h5 class="has-text-accent1 padding--bottom"><b>Improves User Experience</b></h5>
+                                <p>Allows you to focus on developing a better user experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col is-4">
+                        <div class="row">
+                            <div class="col is-2">
+                                <img src="/assets/img/img_prototype.png" alt="">
+                            </div>
+                            <div class="col is-10">
+                                <h5 class="has-text-accent1 padding--bottom"><b>Faster Prototyping</b></h5>
+                                <p>Working within an exisiting design system allows you to put pieces together a lot faster when creating prototypes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col is-4">
+                        <div class="row">
+                            <div class="col is-2">
+                                <img src="/assets/img/img_debt.png" alt="">
+                            </div>
+                            <div class="col is-10">
+                                <h5 class="has-text-accent1 padding--bottom"><b>Easy Maintenance</b></h5>
+                                <p>Provides a common and easy to maintain architecture which eliminates inconsistent and non-reusable styles.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col is-4">
+                        <div class="row">
+                            <div class="col is-2">
+                                <img src="/assets/img/img_accessibility.png" alt="">
+                            </div>
+                            <div class="col is-10">
+                                <h5 class="has-text-accent1 padding--bottom-sm"><b>Provides Built-in Accessibility</b></h5>
+                                <p>Our UI Components are in compliance with the Digital Services Standards.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="bp-section bg-newssection">
+<section class="bp-section bg-lighter-grey">
     <div class="bp-container is-fluid">
-        <div class="row">
-            <div class="col is-8 is-offset-2">
-                <h2 class="has-text-centered has-text-primary padding--bottom is-size-3-mobile">Our Services</h2>
-                <h5 class="has-text-centered has-text-accent1 padding--bottom">
-                    Blueprint provides support in assessing and customising your current system
+        <div class="row padding--bottom--lg">
+            <div class="col is-10 is-offset-1">
+                <h2 class="has-text-centered has-text-primary is-size-3-mobile"><b>How It Works</b></h2>
+                <h5 class="has-text-centered has-text-accent1">
+                    Responsive, modular and standards-compliant
                 </h5>
-                <div class="row is-vcentered" style="margin:40px 0" >
-                    <div class="col is-6 has-text-centered">
-                        <img src="/assets/img/img_services.png" alt="" width="100%" height="auto">
+            </div>
+        </div>
+        <div class="row padding--bottom--lg">
+            <div class="col is-10 is-offset-1 has-text-centered">
+                <img src="/assets/img/img_responsive.png" alt="" class="padding--bottom--lg">
+                <p>Blueprint allows you to quickly manage layouts, alignments and sizing of grid columns, navigation, components and more with a full suite of responsive utilities while complying to the Digital Service Standards.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bp-section">
+    <div class="bp-container is-fluid">
+        <div class="row padding--bottom--lg">
+            <div class="col is-10 is-offset-1">
+                <h2 class="has-text-centered has-text-primary is-size-3-mobile"><b>Take the First Step</b></h2>
+                <h5 class="has-text-centered has-text-accent1">Work with the technologies you already love</h5>
+            </div>
+        </div>
+        <div class="row padding--bottom--lg">
+            <div class="col is-10 is-offset-1">
+                <div class="row">
+                    <div class="col is-6">
+                        <div class="row padding--bottom--lg">
+                            <div class="col is-2 has-text-centered">
+                                <h2 class="bp-icon bp-icon-download"></h2>
+                            </div>
+                            <div class="col is-10">
+                                <h5 class="has-text-accent1 padding--bottom"><b>Install with npm</b></h5>
+                                <p>You can install Blueprint using npm by running this command.</p>
+                                <br>
+                                {% highlight console %}$ npm install blueprint-govtech{% endhighlight %}
+                            </div>
+                        </div>
                     </div>
                     <div class="col is-6">
-                        <p>Our team will ensure your Design System implementation is in compliance with the official Digital Services Standards.</p><br>
-                        <p>From skill sets to design and code quality, we identify the skill gaps and provide the support required for a successful implementation of BLUEPRINT.</p><br>
-                        <a class="bp-button is-rounded is-medium is-fullwidth" href="https://form.sg/forms/govtech/5b02943839e23a001a1be70f" target="_blank">Email us</a>
+                        <div class="row">
+                            <div class="col is-2 has-text-centered">
+                                <h2 class="bp-icon bp-icon-cloud"></h2>
+                            </div>
+                            <div class="col is-10">
+                                <h5 class="has-text-accent1 padding--bottom"><b>Install Manually</b></h5>
+                                <p>You can use our compiled CSS, JS and fonts by using this link.</p>
+                                <br>
+                                {% highlight html %}<link rel="stylesheet" href="insert link">{% endhighlight %}
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col is-6">
+                        <div class="row">
+                            <div class="col is-2 has-text-centered">
+                                <h2 class="bp-icon bp-icon-download"></h2>
+                            </div>
+                            <div class="col is-10">
+                                <h5 class="has-text-accent1 padding--bottom"><b>Generate Static Site</b></h5>
+                                <p>A generator that helps you to publish static websites easily.</p>
+                                <br>
+                                <a href="" class="bp-sec-button">
+                                    <div>
+                                        <span>See how it works</span>
+                                        <i class="bp-icon bp-icon-arrow-right" aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col is-6">
+                        <div class="row">
+                            <div class="col is-2 has-text-centered">
+                                <h2 class="bp-icon bp-icon-cloud"></h2>
+                            </div>
+                            <div class="col is-10">
+                                <h5 class="has-text-accent1 padding--bottom"><b>Apply CMS Theme</b></h5>
+                                <p>Customized CMS themes to apply for government websites.</p>
+                                <br>
+                                <a href="" class="bp-sec-button">
+                                    <div>
+                                        <span>View all themes</span>
+                                        <i class="bp-icon bp-icon-arrow-right" aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bp-section bg-lighter-grey">
+    <div class="bp-container is-fluid">
+        <div class="row padding--bottom--lg">
+            <div class="col is-10 is-offset-1">
+                <h2 class="has-text-centered has-text-primary is-size-3-mobile"><b>Built with Blueprint</b></h2>
+                <h5 class="has-text-centered has-text-accent1">
+                    Government websites that support our design system
+                </h5>
+            </div>
+        </div>
+        <div class="row padding--bottom--lg">
+            <div class="col is-10 is-offset-1 has-text-centered">
+                <img src="/assets/img/img_logos.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bp-section bg-primary">
+    <div class="bp-container is-fluid">
+        <div class="row padding--bottom--lg">
+            <div class="col is-10 is-offset-1">
+                <h2 class="has-text-centered is-size-3-mobile has-text-white"><b>Our Community</b></h2>
+                <h5 class="has-text-centered has-text-accent2">
+                    Be part of the change
+                </h5>
+            </div>
+        </div>
+        <div class="row padding--bottom--lg">
+            <div class="col is-10 is-offset-1 has-text-centered">
+                <p class="padding--bottom--lg has-text-white">Blueprint aims to transform all agency's products and services and we need help from designers like you. The team will maintain regular updates and transparent so Blueprint will be a living, continually evolving set of tools.</p>
+                <a class="bp-button is-rounded is-medium" href="/about">Join us on our journey</a>
             </div>
         </div>
     </div>

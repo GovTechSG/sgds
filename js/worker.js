@@ -5,7 +5,7 @@ onmessage = function(event) {
 
 	var index = lunr(function () {
 	  this.ref('id');
-	  this.field('url');
+	  //this.field('url');
 	  this.field('title');
 	  this.field('content');
 	  this.metadataWhitelist = ['position'];
