@@ -69,22 +69,22 @@
           url: /components/structural/row-col/
           tag: structural
 
-    - title: Informational
-      url: /components/informational/
-      tag: informational
+    - title: Interactive
+      url: /components/interactive/
+      tag: interactive
       lvl3:
         - title: Button
-          url: /components/informational/button/
-          tag: informational
+          url: /components/interactive/button/
+          tag: interactive
         - title: Card
-          url: /components/informational/card/
-          tag: informational
+          url: /components/interactive/card/
+          tag: interactive
         - title: Dropdown
-          url: /components/informational/dropdown/
-          tag: informational
+          url: /components/interactive/dropdown/
+          tag: interactive
         - title: Tab
-          url: /components/informational/tab/
-          tag: informational
+          url: /components/interactive/tab/
+          tag: interactive
 
 - title: Templates
   lvl2:
