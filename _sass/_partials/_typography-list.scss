@@ -1,0 +1,8 @@
+ol,ul{
+  margin-left:$size-7;
+  li{
+    & + li{
+      margin-top:$size-7;
+    }
+  }
+}
