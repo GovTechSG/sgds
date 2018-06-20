@@ -46,7 +46,7 @@ html.has-navbar-fixed-top-desktop{
     padding:0;
   }
   &-start{
-    margin:0 auto;
+    //margin:0 auto;
     @include touch(){
       margin:0 auto 1rem;
     }
@@ -108,16 +108,8 @@ html.has-navbar-fixed-top-desktop{
   }
 
   .navbar-item{
-    font-size: 17px !important;
-    //letter-spacing: 0.2px !important;
-    font-weight: 600;
-    margin: 0 1.5;
-    padding:0;
-    //text-transform: uppercase;
-
-
     .sub-link {
-      font-size: 18px !important;
+      font-size: $size-7;
       letter-spacing: 0;
       margin: 15px;
       margin-left: 30px;
@@ -210,8 +202,8 @@ html.has-navbar-fixed-top-desktop{
   }
 
   &-item{
-    font-size:1rem;
-    font-weight: bold;
+    font-size:$size-7;
+    //font-weight: bold;
     margin: 0 1.5rem;
     padding: 0;
 

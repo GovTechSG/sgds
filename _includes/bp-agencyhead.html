@@ -19,7 +19,7 @@
                 {%- for lvl1item in links -%}
                 {%- assign class = nil -%}
                 {%- if page.url contains lvl1item.url -%}
-                    {%- assign class = 'active' -%}
+                {%- assign class = 'active' -%}
                 {%- endif -%}
                 {%- if lvl1item.lvl2 -%}
                 <div class="navbar-item has-dropdown is-hoverable is-mega">
@@ -35,7 +35,8 @@
                                         <small><b>{{ lvl2item.title }}</b></small>
                                     </div>
                                     {%- for lvl3item in lvl2item.lvl3 -%}
-                                    <a class="navbar-item has-text-weight-light" href="{{ site.baseurl }}{{ lvl3item.url }}">
+                                    <a class="navbar-item has-text-weight-light"
+                                       href="{{ site.baseurl }}{{ lvl3item.url }}">
                                         <p>{{ lvl3item.title }}</p>
                                     </a>
                                     {%- endfor -%}
@@ -60,10 +61,11 @@
                 <div class="navbar-item">
                     {% if page.layout != 'search' %}
                     <a class="bp-button is-text is-large" style="text-decoration: none" id="search-activate">
-                        <span class="bp-icon bp-icon-search is-size-4"></span>
+                        <span class="bp-icon bp-icon-search"></span>
                     </a>
                     {% else %}
-                    <a class="bp-button is-text is-large" style="text-decoration: none; pointer-events: none;" id="search-activate" disabled></a>
+                    <a class="bp-button is-text is-large" style="text-decoration: none; pointer-events: none;"
+                       id="search-activate" disabled></a>
                     {% endif %}
                 </div>
             </div>
@@ -77,10 +79,11 @@
                 <form action="/search/" method="get">
                     <div class="field has-addons">
                         <div class="control has-icons-left is-expanded">
-                            <input class="input is-fullwidth is-medium" id="search-box" type="text" placeholder="What are you looking for?" name="query">
+                            <input class="input is-fullwidth is-medium" id="search-box" type="text"
+                                   placeholder="What are you looking for?" name="query">
                             <span class="is-large is-left">
-                          <i class="bp-icon bp-icon-search is-size-4"></i>
-                        </span>
+                                <i class="bp-icon bp-icon-search"></i>
+                            </span>
 
                         </div>
                         <div class="control">
