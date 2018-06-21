@@ -1,8 +1,9 @@
-ol,ul{
-  margin-left:$size-7;
-  li{
-    & + li{
-      margin-top:$size-7;
+.content{
+  figure.highlight{
+    text-align:left;
+    margin:1rem 0;
+    code{
+      font-size:$size-7;
     }
   }
 }
