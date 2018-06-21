@@ -73,6 +73,9 @@
       url: /components/interactive/
       tag: interactive
       lvl3:
+        - title: Accordion
+          url: /components/interactive/accordion/
+          tag: interactive
         - title: Button
           url: /components/interactive/button/
           tag: interactive
