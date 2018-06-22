@@ -18,25 +18,22 @@
 .bp-accordion{
   &-set{
     & + .bp-accordion-set{
-      margin-top:5px;
+      margin-top:1px;
     }
   }
   &-header{
-    background-color: $table-grey;
+    background-color: $primary;
     display:flex;
     align-items: center;
     justify-content: space-between;
     padding:1rem;
-    color:$primary;
+    color:white;
     &:hover {
-      background-color: darken($table-grey, 10%);
-      color: currentColor;
-    }
-    i{
-
+      background-color: darken($primary, 10%);
+      color:white;
     }
     &.active{
-      background-color: darken($table-grey,10%);
+      background-color: darken($primary,10%);
     }
   }
   &-body{
