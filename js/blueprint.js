@@ -112,8 +112,6 @@ if (typeof BLUEPRINT !== "object") {
         return hash;
     };
 
-
-
 })();
 ;var i, j, len, len1, list, lists, menu, menuElems, options, subMenu;
 
@@ -348,3 +346,47 @@ function getAll(selector) {
     return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
 }
 
+$(document).ready(function(){
+
+    //Search bar toggle
+    var masthead_container = $('.masthead-container');
+    var searchToggle = $('#search-activate');
+    var searchIcon = $('#search-activate span');
+    var searchBar = $('.search-bar');
+    var searchBar_input = $('.search-bar input');
+    searchToggle.on('click',function(e){
+        e.preventDefault();
+        searchIcon.toggleClass('bp-icon-search').toggleClass('bp-icon-cross');;
+        searchBar.toggleClass('hide');
+        searchBar_input.focus().val('');
+        masthead_container.toggleClass('is-opened');
+    });
+
+    //Accordion
+
+    $(".bp-accordion-set > a").on("click", function () {
+        if ($(this).hasClass("active")) {
+            $(this).removeClass("active");
+            $(this)
+                .siblings(".bp-accordion-body")
+                .slideUp(300);
+            $(".bp-accordion-set > a i")
+                .removeClass("bp-icon-angle-up")
+                .addClass("bp-icon-angle-down");
+        } else {
+            $(".bp-accordion-set > a i")
+                .removeClass("bp-icon-angle-up")
+                .addClass("bp-icon-angle-down");
+            $(this)
+                .find("i")
+                .removeClass("bp-icon-angle-down")
+                .addClass("bp-icon-angle-up");
+            $(".bp-accordion-set > a").removeClass("active");
+            $(this).addClass("active");
+            $(".bp-accordion-body").slideUp(300);
+            $(this)
+                .siblings(".bp-accordion-body")
+                .slideDown(300);
+        }
+    });
+});
