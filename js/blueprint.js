@@ -258,9 +258,11 @@ if (!BLUEPRINT.isReady) {
 ;var i, j, len, len1, tab, tabs, target, targets;
 
 BLUEPRINT.toggleTab = function(el) {
+
     var i, l, len, links;
     links = el.target.parentNode.parentNode;
     links = links.querySelectorAll('li');
+    console.log(links)
     for (i = 0, len = links.length; i < len; i++) {
         l = links[i];
         BLUEPRINT.removeClass(l, 'is-active');
@@ -276,8 +278,10 @@ if (!BLUEPRINT.isReady) {
         for (i = 0, len = tabs.length; i < len; i++) {
             tab = tabs[i];
             targets = tab.querySelectorAll('[data-tab]');
+
             for (j = 0, len1 = targets.length; j < len1; j++) {
                 target = targets[j];
+
                 tab = document.querySelector(target.getAttribute('data-tab'));
                 if (BLUEPRINT.hasClass(target.parentNode, 'is-active') === false) {
                     BLUEPRINT.hide(tab);
