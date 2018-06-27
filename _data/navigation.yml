@@ -32,6 +32,9 @@
       url: /onboarding/extensions/
       tag: extensions
       lvl3:
+        - title: Content Website Platform
+          url: /onboarding/extensions/cwp/
+          tag: extensions
         - title: Sentimeter
           url: /onboarding/extensions/sentimeter/
           tag: extensions
@@ -85,6 +88,9 @@
         - title: Tab
           url: /components/interactive/tab/
           tag: interactive
+        - title: Accordion
+          url: /components/interactive/accordion/
+          tag: interactive
 
 - title: Templates
   lvl2:
@@ -92,28 +98,12 @@
       url: /templates/information/
       tag: information
       lvl3:
-        - title: WordPress
-          url: /templates/information/wordpress/
-          tag: information
         - title: Jekyll
           url: /templates/information/jekyll/
           tag: information
-
-    - title: News
-      url: /templates/news/
-      tag: news
-      lvl3:
         - title: WordPress
-          url: /templates/news/wordpress/
-          tag: news
-
-    - title: Processes
-      url: /templates/processes/
-      tag: processes
-      lvl3:
-        - title: WordPress
-          url: /templates/processes/wordpress/
-          tag: processes
+          url: /templates/information/wordpress/
+          tag: information
 
 - title: Support
   lvl2:

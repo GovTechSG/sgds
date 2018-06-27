@@ -5,19 +5,16 @@ layout: layout-sidenav
 permalink: /components/structural/section/
 category: Components/Structural
 ---
+
+<div class="row padding--top padding--bottom">
+    <div class="col">
+        <h5 class="has-text-accent1 ">Section is the main building block for all layouts. It can be used as direct children of <code>body</code>.</h5>
+    </div>
+</div>
 <div class="row">
     <div class="col">
-        <div class="content">
-            <h5><b>Description</b></h5>
-            <p>Section is the main building block for all layouts. It can be used as direct children of <code>body</code>.</p>
-            <p>You can change the overall padding sizes by adding these class name to your section:</p>
-            <ul>
-                <li>is-small</li>
-                <li>is-medium</li>
-                <li>is-large</li>
-            </ul>
-        </div>
-        <div class="bp-example">
+        <h5 class="padding--bottom"><b>Live Demo - Small Section</b></h5>
+        <div class="bp-example" style="margin:0">
             <section class="bp-section is-small">
                 <div class="bp-container">
                     <div class="bp-notification">
@@ -25,7 +22,9 @@ category: Components/Structural
                     </div>
                 </div>
             </section>
-            <hr>
+        </div>
+        <h5 class="padding--top padding--bottom"><b>Live Demo - Medium Section</b></h5>
+        <div class="bp-example" style="margin:0">
             <section class="bp-section is-medium">
                 <div class="bp-container">
                     <div class="bp-notification">
@@ -33,7 +32,9 @@ category: Components/Structural
                     </div>
                 </div>
             </section>
-            <hr>
+        </div>
+        <h5 class="padding--top padding--bottom"><b>Live Demo - Large Section</b></h5>
+        <div class="bp-example" style="margin:0">
             <section class="bp-section is-large">
                 <div class="bp-container">
                     <div class="bp-notification">
@@ -47,18 +48,23 @@ category: Components/Structural
 <hr>
 <div class="row">
     <div class="col">
+        <h5 class="padding--bottom"><b>How to Use</b></h5>
+        <p>You can change the overall padding sizes by adding these class name to your section:</p>
         <div class="content">
-            <h5><b>How to Use</b></h5>
-            <p>Simply copy and paste this code snippet to any part of your project.</p>
+            <ul>
+                <li>is-small</li>
+                <li>is-medium</li>
+                <li>is-large</li>
+            </ul>
         </div>
 {% highlight html %}
 <body>
-<section class="bp-section">
-<div class="bp-container">
-    <h1>Section 1</h1>
-    <p>Simple container</p>
-</div>
-</section>
+    <section class="bp-section is-small">
+        <div class="bp-container">
+            <h1>Section 1</h1>
+            <p>Simple container</p>
+        </div>
+    </section>
 </body>
 {% endhighlight %}
     </div>
