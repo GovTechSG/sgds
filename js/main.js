@@ -111,6 +111,10 @@ if (typeof BLUEPRINT !== "object") {
         }
         return hash;
     };
+
+
+
+
 })();
 ;var i, j, len, len1, list, lists, menu, menuElems, options, subMenu;
 
@@ -346,3 +350,11 @@ document.addEventListener('keydown', function (event) {
 function getAll(selector) {
     return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
 }
+
+
+//Accordion
+
+$(document).ready(function () {
+    console.log("hey accordion")
+
+});

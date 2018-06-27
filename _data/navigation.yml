@@ -76,6 +76,9 @@
       url: /components/interactive/
       tag: interactive
       lvl3:
+        - title: Accordion
+          url: /components/interactive/accordion/
+          tag: interactive
         - title: Button
           url: /components/interactive/button/
           tag: interactive
@@ -127,4 +130,7 @@
           tag: suggestion
         - title: Propose a Template
           url: /support/community/propose-template/
+          tag: suggestion
+        - title: Propose an Icon
+          url: /support/community/propose-icon/
           tag: suggestion

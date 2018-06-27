@@ -4,6 +4,7 @@ subtitle: Subtitle
 layout: layout-sidenav
 permalink: /components/interactive/tab/
 category: Components/Interactive
+breadcrumb: Components
 ---
 
 <div class="row">
@@ -12,13 +13,55 @@ category: Components/Interactive
             <h5><b>Description</b></h5>
             <p>Simple responsive horizontal navigation tabs, with different styles.</p>
         </div>
-        <div class="bp-tabs">
+        <div class="bp-tabs" data-blueprint="tabs">
             <ul>
-                <li class="is-active"><a>Articles</a></li>
-                <li><a>Videos</a></li>
-                <li><a>Documents</a></li>
+                <li class="is-active"><a data-tab="#tab1">Articles</a></li>
+                <li><a data-tab="#tab2">Videos</a></li>
+                <li><a data-tab="#tab3">Documents</a></li>
             </ul>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <section class="bp-section is-small" id="tab1">
+            <div class="row">
+                <div class="col">
+                    <img src="https://placehold.it/1000x400" alt="">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+                <div class="col">
+                    <img src="https://placehold.it/1000x400" alt="">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+                <div class="col">
+                    <img src="https://placehold.it/1000x400" alt="">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+            </div>
+
+        </section>
+        <section class="bp-section is-small" id="tab2">
+            <div class="row">
+                <div class="col">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+                <div class="col">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+                <div class="col">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+
+            </div>
+        </section>
+        <section class="bp-section is-small" id="tab3">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci aliquam animi commodi debitis
+                eligendi labore mollitia nulla odio ut. At dolor fugit id, laborum nobis ratione rerum? Aliquid
+                aspernatur debitis deleniti eligendi fugit, harum hic illo minus neque officia omnis perferendis quae
+                quidem ratione sed sunt unde, voluptas voluptate?</p>
+        </section>
     </div>
 </div>
 <hr>
@@ -26,15 +69,65 @@ category: Components/Interactive
     <div class="col">
         <div class="content">
             <h5><b>How to Use</b></h5>
-            <p>Simply copy and paste this code snippet to any part of your project.</p>
+            <p>Include the tab element using this code snippets</p>
         </div>
 {%- highlight html -%}
-<div class="bp-tabs">
-<ul>
-<li class="is-active"><a>Articles</a></li>
-<li><a>Videos</a></li>
-<li><a>Documents</a></li>
-</ul>
+<div class="bp-tabs" data-blueprint="tabs">
+    <ul>
+        <li class="is-active"><a data-tab="#tab1">Articles</a></li>
+        <li><a data-tab="#tab2">Videos</a></li>
+        <li><a data-tab="#tab3">Documents</a></li>
+    </ul>
+</div>
+{%- endhighlight -%}
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="content">
+            <p>Structure your contents inside any container</p>
+        </div>
+{%- highlight html -%}
+<div class="row">
+    <div class="col">
+        <section class="bp-section is-small" id="tab1">
+            <div class="row">
+                <div class="col">
+                    <img src="https://placehold.it/1000x400" alt="">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+                <div class="col">
+                    <img src="https://placehold.it/1000x400" alt="">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+                <div class="col">
+                    <img src="https://placehold.it/1000x400" alt="">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+            </div>
+
+        </section>
+        <section class="bp-section is-small" id="tab2">
+            <div class="row">
+                <div class="col">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+                <div class="col">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+                <div class="col">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
+                </div>
+
+            </div>
+        </section>
+        <section class="bp-section is-small" id="tab3">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci aliquam animi commodi debitis
+                eligendi labore mollitia nulla odio ut. At dolor fugit id, laborum nobis ratione rerum? Aliquid
+                aspernatur debitis deleniti eligendi fugit, harum hic illo minus neque officia omnis perferendis quae
+                quidem ratione sed sunt unde, voluptas voluptate?</p>
+        </section>
+    </div>
 </div>
 {%- endhighlight -%}
     </div>
