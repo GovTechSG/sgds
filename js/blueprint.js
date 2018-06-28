@@ -375,16 +375,16 @@ $(document).ready(function(){
                 .siblings(".bp-accordion-body")
                 .slideUp(300);
             $(".bp-accordion-set > a i")
-                .removeClass("bp-icon-angle-up")
-                .addClass("bp-icon-angle-down");
+                .removeClass("bp-icon-chevron-up")
+                .addClass("bp-icon-chevron-down");
         } else {
             $(".bp-accordion-set > a i")
-                .removeClass("bp-icon-angle-up")
-                .addClass("bp-icon-angle-down");
+                .removeClass("bp-icon-chevron-up")
+                .addClass("bp-icon-chevron-down");
             $(this)
                 .find("i")
-                .removeClass("bp-icon-angle-down")
-                .addClass("bp-icon-angle-up");
+                .removeClass("bp-icon-chevron-down")
+                .addClass("bp-icon-chevron-up");
             $(".bp-accordion-set > a").removeClass("active");
             $(this).addClass("active");
             $(".bp-accordion-body").slideUp(300);

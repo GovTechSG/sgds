@@ -5940,7 +5940,7 @@ a.navbar-link.is-active {
 @font-face {
   font-family: 'blueprint-icons';
   src: url("../fonts/blueprint-icons.eot?x7mal1");
-  src: url("../fonts/blueprint-icons.eot?x7mal1#iefix") format("embedded-opentype"), url("../fonts/blueprint-icons.ttf?x7mal1") format("truetype"), url("../fonts/blueprint-icons.woff?x7mal1") format("woff"), url("../fonts/blueprint-icons.svg?x7mal1#blueprint-icons") format("svg");
+  src: url("../fonts/blueprint-icons.eot?x7mal1#iefix") format("embedded-opentype"), url("../../../assets/fonts/blueprint-icons.ttf?x7mal1") format("truetype"), url("../../../assets/fonts/blueprint-icons.woff?x7mal1") format("woff"), url("../../../assets/fonts/blueprint-icons.svg?x7mal1#blueprint-icons") format("svg");
   font-weight: normal;
   font-style: normal; }
 .bp-icon {
