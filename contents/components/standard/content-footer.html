@@ -6,30 +6,23 @@ permalink: /components/standard/footer/
 category: Components/Standard
 ---
 
-
-    <div class="row">
-        <div class="col">
-            <div class="content">
-                <h5><b>Description</b></h5>
-                <p>All Singapore Government websites shall adopt the following footer design, containing the following policy statements at the footer of all web pages.</p>
-                <p>The default website footer shall includes:</p>
-                <ul>
-                    <li>Agency Name</li>
-                    <li>Agency Details - Contact, Feedback, FAQ and social icons</li>
-                    <li>Website Details - Privacy, Terms of User, Rate this Service and Sitemap</li>
-                    <li>Copyright Statement in the format of "@copy; [4-digit current year], [Government of Singapore]”</li>
-                </ul>
-            </div>
-            {% include bp-footer.html %}
-        </div>
+<div class="row padding--top padding--bottom">
+    <div class="col">
+        <h5 class="has-text-accent1">All .gov.sg digital services shall adopt the Footer Panel for every page in the digital services.</h5>
     </div>
-    <hr>
-    <div class="row">
-        <div class="col">
-            <div class="content">
-                <h5><b>How to Use</b></h5>
-                <p>Simply copy and paste this code snippet to the footer of your project.</p>
-            </div>
-            {% highlight html %}{% include bp-footer.html %}{% endhighlight %}
-        </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h5 class="padding--bottom"><b>Live Demo</b></h5>
+        {% include bp-footer.html %}
     </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col">
+        <h5 class="padding--bottom"><b>How to Use</b></h5>
+        <p>Simply copy and paste this code snippet to the footer of your project.</p>
+        <br>
+        {% highlight html %}{% include bp-footer.html %}{% endhighlight %}
+    </div>
+</div>
