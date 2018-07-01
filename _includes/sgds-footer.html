@@ -1,0 +1,56 @@
+<footer class="sgds-footer is-inverted">
+    <div class="sgds-container is-fluid">
+        <div class="row">
+            <div class="col header">
+                <h6 class="sub-header has-text-white">{{site.title}}</h6>
+            </div>
+        </div>
+        <div class="row is-top">
+            {%- assign links = site.data.footer -%}
+            {%- for link in links -%}
+            {% if link.title == 'Technews' %}
+            <div class="col">
+                <p class="sub-header has-text-white">{{link.title}}</p>
+                {%- for sublink in link.sub-links -%}
+                {% if sublink.title == 'Feedback' %}
+                <p id="feedbackForm"><a class="has-text-white">{{sublink.title}}</a></p>
+                {% include feedback-modal.html %}
+                {% else %}
+                <p><a href="" class="has-text-white">{{sublink.title}}</a></p>
+                {% endif %}
+                {%- endfor -%}
+            </div>
+            {% else %}
+            <div class="col">
+                <p class="sub-header has-text-white">{{link.title}}</p>
+                {%- for sublink in link.sub-links -%}
+                <p><a href="">{{sublink.title}}</a></p>
+                {%- endfor -%}
+            </div>
+            {% endif %}
+            {%- endfor -%}
+        </div>
+    </div>
+</footer>
+<footer class="sgds-footer is-inverted">
+    <div class="sgds-container is-fluid">
+        <div class="row is-vcentered is-borderless">
+            <div class="col has-text-right-desktop has-text-left-mobile">
+                <ul style="margin:0">
+                    <li><a href="https://form.sg/forms/govtech/5b02943839e23a001a1be70f" target="_blank">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row divider">
+            <div class="col">
+                <ul style="margin:0">
+                    <li><a href="/privacy">Privacy Statement</a></li>
+                    <li><a href="/terms-of-use">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div class="col has-text-right-desktop has-text-left-mobile">
+                <p>© 2018 Government of Singapore. Last Updated {{site.last_updated}}</p>
+            </div>
+        </div>
+    </div>
+</footer>

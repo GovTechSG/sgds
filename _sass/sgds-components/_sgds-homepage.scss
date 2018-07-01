@@ -1,0 +1,139 @@
+#key-highlights{
+  background-color: $primary;
+  color:white;
+  .row{
+  }
+  .col{
+    padding:1.2rem 2rem!important;
+    cursor:pointer;
+    transition:all 0.5s;
+
+    border-left:1px solid darken($primary,10%);
+    @include mobile(){
+      border-left:0;
+      border-top:1px solid darken($primary,10%);
+    }
+    &:hover{
+      color:darken(white,10%);
+      background-color: darken($primary,10%);
+    }
+    p {
+      font-size: 17px !important;
+      line-height: 22px !important;
+
+      &:nth-child(1){
+        margin-bottom:5px;
+      }
+    }
+  }
+  .col:first-child {
+    border-left: 0;
+  }
+  .key-highlight-title {
+    letter-spacing: 0.2px !important;
+  }
+}
+
+.eyebrow {
+  font-size: 17px !important;
+  letter-spacing: 1.5px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.career-container{
+  .career-carousel{
+    .profile-content{
+      position: absolute;
+      width:70%;
+      right: 0;
+      bottom:0;
+      background-color: #F5A623;
+      padding: 1rem;
+      color:white;
+    }
+  }
+
+  .bg-gradient{
+    background: #b41e8e;
+    background: -moz-linear-gradient(45deg, #b41e8e 0%, #5c3f9e 50%, #0061af 100%);
+    background: -webkit-linear-gradient(45deg, #b41e8e 0%,#5c3f9e 50%,#0061af 100%);
+    background: linear-gradient(45deg, #b41e8e 0%,#5c3f9e 50%,#0061af 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b41e8e', endColorstr='#0061af',GradientType=1 );
+  }
+  .career-item{
+    @include mobile(){
+      padding:3rem 2rem!important;
+    }
+  }
+}
+
+.programme-container{
+  .offset-top{
+    margin-top:-104px;
+    @include touch(){
+      margin-top:-37px;
+    }
+  }
+  .row.offset-margin{
+    @include touch(){
+      margin-bottom: 0;
+    }
+  }
+  .item{
+    @include touch(){
+      padding-bottom:2rem!important;
+    }
+  }
+}
+
+.owl-dot{
+  &.active{
+    span{
+      background:white!important;
+    }
+  }
+  span{
+    background: rgba(white,0.3)!important;
+  }
+}
+
+.owl-dots{
+  position:absolute;
+  width:100%;
+  bottom:10px;
+  .news-carousel &{
+    position:relative;
+    bottom:0;
+  }
+}
+
+.carousel-nav-container{
+  position:absolute;
+  bottom:0;
+  right: 0;
+  z-index: 100;
+  .carousel-nav{
+    width: 68px;
+    text-align: center;
+    float:left;
+    padding: 1rem;
+    background-color: rgba(black,0.5);
+    color:rgba(white,0.8);
+    cursor: pointer;
+    font-size: 1.5rem;
+    &:hover{
+      color:rgba(white,1);
+      background-color: rgba(black,0.8);
+    }
+    &.right{
+      margin-left:-1px;
+    }
+  }
+  &.programme-nav{
+    margin-left: -23px;
+    position:relative;
+    left:0;
+    top:0;
+  }
+}

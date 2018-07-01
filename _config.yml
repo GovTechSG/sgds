@@ -16,16 +16,15 @@
 title: Singapore Government Design System
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  BLUEPRINT is a reusable and upgradable frontend framework that aims to provide tools for the government agencies to comply with the latest policies for websites and digital services easily.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://portal.blueprint.gov.sg" # the base hostname & protocol for your site, e.g. http://example.com
+  SGDS is a reusable and upgradable frontend framework that aims to provide tools for the government agencies to comply with the latest policies for websites and digital services easily.
+baseurl: "" # the s.sgdsath of your site, e.g. /blog
+url: "https://portal.sgds.gov.sg" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 last_updated: 5 June 2018
 
 # Build settings
 markdown: kramdown
-theme: minima
 plugins:
   - jekyll-assets
 

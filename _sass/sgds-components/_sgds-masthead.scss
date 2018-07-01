@@ -1,0 +1,16 @@
+.sgds-masthead{
+  padding:0.1rem 0 0.2rem 0;
+  background-color: $grey-lighter;
+  color:$grey-dark;
+
+  a{
+    color:$grey-dark;
+    font-size:12px;
+    &:hover{
+      color:black;
+    }
+  }
+  & .is-text {
+    padding-left: 2px;
+  }
+}

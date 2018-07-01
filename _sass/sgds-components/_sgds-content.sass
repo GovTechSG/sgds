@@ -1,0 +1,184 @@
+$content-heading-color: $secondary !default
+$content-heading-weight: $weight-normal !default
+$content-heading-line-height: 1.125 !default
+
+$content-blockquote-background-color: $white !default
+$content-blockquote-border-left: 2px solid $secondary !default
+$content-blockquote-padding: 0 0 0 2rem !default
+
+$content-pre-padding: 1.25em 1.5em !default
+
+$content-table-cell-border: 1px solid $grey-light !default
+$content-table-cell-border-width: 0 0 1px !default
+$content-table-cell-padding: 0.5em 0.75em !default
+$content-table-cell-heading-color: $text-strong !default
+$content-table-row-hover-background-color: $background !default
+$content-table-head-cell-border-width: 0 0 2px !default
+$content-table-head-cell-color: $text-strong !default
+$content-table-foot-cell-border-width: 2px 0 0 !default
+$content-table-foot-cell-color: $text-strong !default
+
+.content
+  +block
+  // Inline
+  li + li
+    margin-top: 0.25em
+  // Block
+  a
+    color: $link
+    text-decoration: underline
+    margin-bottom: 2rem
+    &:hover
+      color: $link-hover
+  p,
+  li
+    margin-top: 2rem
+    margin-bottom: 2rem
+    line-height: 2.2rem
+  p:last-child
+    margin-bottom: 0rem
+  p,
+  dl,
+  ol,
+  ul,
+  blockquote,
+  pre,
+  table
+    &:not(:last-child)
+      margin-bottom: 1em
+  code
+    color: $grey
+    font-size: 0.8rem
+    margin-top: 0.5rem
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    color: $content-heading-color
+    margin-top: 3.75rem
+    margin-bottom: 0.75rem
+  strong
+    color: $grey-dark
+  h1:first-child, 
+  h2:first-child, 
+  h3:first-child, 
+  h4:first-child, 
+  h5:first-child
+    margin-top: 0rem
+  blockquote
+    background-color: $content-blockquote-background-color
+    border-left: $content-blockquote-border-left
+    padding: $content-blockquote-padding
+    & > p
+      color: $secondary
+      font-size: 1.2rem
+      line-height: 2.2rem
+      margin-bottom: 0rem
+    & > ul
+      padding-top: 0rem
+      color: $secondary
+  ol
+    list-style: decimal outside
+    font-size: 1.2rem
+    margin-left: 1.25rem
+    margin-top: 1em
+    line-height: 2.2rem
+  ul
+    list-style: disc outside
+    margin-left: 2rem
+    margin-top: 0.5rem
+    ul
+      list-style-type: circle
+      margin-top: 0.5em
+      ul
+        list-style-type: square
+  ol > li,
+  ul > li
+    margin-top: 0.5rem
+    margin-bottom: 0.5rem
+  ul > li:last-child
+      margin-bottom: 2rem
+  li > ul
+    margin-top: 2rem
+
+  dd
+    margin-left: 2em
+  figure
+    margin-left: 2em
+    margin-right: 2em
+    text-align: center
+    &:not(:first-child)
+      margin-top: 2em
+    &:not(:last-child)
+      margin-bottom: 2em
+    img
+      display: inline-block
+    figcaption
+      font-style: italic
+  pre
+    +overflow-touch
+    overflow-x: auto
+    padding: $content-pre-padding
+    white-space: pre
+    word-wrap: normal
+  sup,
+  sub
+    font-size: 75%
+  table
+    width: 100%
+    td,
+    th
+      border: $content-table-cell-border
+      border-width: $content-table-cell-border-width
+      padding: $content-table-cell-padding
+      vertical-align: top
+    th
+      color: $content-table-cell-heading-color
+      text-align: left
+    tr
+      &:hover
+        background-color: $white
+    td
+      &:hover
+        background-color: $white
+    thead
+      td,
+      th
+        border-width: $content-table-head-cell-border-width
+        color: $content-table-head-cell-color
+    tfoot
+      td,
+      th
+        border-width: $content-table-foot-cell-border-width
+        color: $content-table-foot-cell-color
+    tbody
+      td
+        font-size: 1.25rem
+        padding: 1.5625rem
+        padding-bottom: 2rem
+      td:first-child
+        width: 20%
+        background-color: $table-grey
+        border-bottom-color: white
+      tr
+        &:last-child
+          td,
+          th
+            border-bottom-width: 0
+  // Sizes
+  &.is-small
+    font-size: $size-small
+  &.is-medium
+    font-size: $size-medium
+  &.is-large
+    font-size: $size-large
+
+  .person-info
+    p
+      line-height: 1.5rem
+    small
+      line-height: 1.7rem
+    a
+      line-height: 2.3rem

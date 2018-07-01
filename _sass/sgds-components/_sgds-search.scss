@@ -1,0 +1,55 @@
+.search-content {
+	line-height: 1.5em;
+	a {
+		text-decoration: underline;
+	}
+
+	.permalink {
+		color: $grey;
+	}
+
+	p:last-child {
+		margin-bottom: 0.8rem;
+	}
+}
+
+.sgds-section.sgds-section-pagetitle.search-section {
+	padding-top: 60px;
+	padding-bottom: 60px;
+
+	nav.sgds-breadcrumb {
+		margin-bottom: -5px;
+	}
+	#search-title {
+		padding-top: 6px;
+		padding-bottom: 6px;
+	}
+	#search-container {
+		padding-top: 24px;
+		padding-bottom: 24px;
+	}
+}
+
+
+.search-bar.sgds-icon.sgds-icon-search {
+    top: 15px;
+    left: 15px;
+    display: block;
+    visibility: initial;
+
+    .is-hidden-desktop & {
+    	top: 10px;
+    	left: 5px;
+    }
+}
+
+.sgds{
+  &-button{
+    &.search-button {
+      padding: 7px 24px !important;    
+      font-size: 17px !important;
+      letter-spacing: 0.8px;
+      font-weight: 600;
+    }
+  }
+}

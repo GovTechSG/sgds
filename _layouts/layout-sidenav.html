@@ -2,51 +2,85 @@
 layout: layout-default
 ---
 
-<section class="bp-section is-small bg-secondary">
-    <div class="bp-container is-fluid">
-        {% include bp-breadcrumb.html %}
+<section class="sgds-section is-small sgds-section-pagetitle">
+    <div class="sgds-container ">
+        {% include sgds-breadcrumb.html %}
     </div>
-    <div class="bp-container is-fluid">
+    <div class="sgds-container ">
         <div class="row">
             <div class="col">
-                <h3 class="has-text-white">{{page.title}}</h3>
+                <h1 class="has-text-white"><b>{{page.title}}</b></h1>
             </div>
         </div>
     </div>
 </section>
-
-<section class="bp-section">
-    <div class="bp-container is-fluid">
-        <div class="row">
-            <div class="col is-2 is-position-relative has-side-nav">
-                <aside class="bp-menu">
-                    <ul class="bp-menu-list" style="margin: 0">
-                        {%- assign links = site.data.navigation -%}
-                        {%- for lvl1item in links -%}
-                            {%- for lvl2item in lvl1item.lvl2 -%}
-                                {%- if page.url contains lvl2item.url -%}
-                                    {%- assign currentTag = lvl2item.tag -%}
-                                {%- endif -%}
-                                {%- for lvl3item in lvl2item.lvl3 -%}
-                                    {%- if lvl3item.tag == currentTag -%}
-                                        <li style="margin: 0">
-                                            {%- assign class = nil -%}
-                                            {%- if page.url contains lvl3item.url -%}
-                                                {%- assign class = 'is-active' -%}
-                                            {%- endif -%}
-                                            <a href="{{ site.baseurl }}{{ lvl3item.url }}" class="{{ class }}">
-                                                {{ lvl3item.title }}
-                                            </a>
-                                        </li>
-                                    {%- endif -%}
-                                {%- endfor -%}
-                            {%- endfor -%}
-                        {%- endfor -%}
-                    </ul>
-                </aside>
+<section class="sgds-section">
+    <div class="sgds-container padding--top--lg padding--bottom--xl">
+        <div class="row is-hidden-desktop">
+            <div class="col">
+                <div class="sgds-dropdown">
+                    <div class="sgds-dropdown-trigger">
+                        <a class="sgds-button is-large" aria-haspopup="true" aria-controls="dropdown-menu">
+                            <span>{{page.title}}</span>
+                            <span class="icon is-small">
+                                <i class="sgds-icon sgds-icon-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="sgds-dropdown-menu has-text-left" id="dropdown-menu" role="menu">
+                        <div class="sgds-dropdown-content">
+                            <a href="#" class="sgds-dropdown-item">
+                                {% for application-guideline in site.application-guidelines %}
+                                {% if page.url == application-guideline.permalink %}
+                                <a class="sgds-dropdown-item" href="{{ site.baseurl }}{{application-guideline.permalink}}"><b>{{application-guideline.title}}</b></a>
+                                {% else %}
+                                <a class="sgds-dropdown-item" href="{{ site.baseurl }}{{application-guideline.permalink}}">{{application-guideline.title}}</a>
+                                {% endif %}
+                                {% endfor %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col is-9 is-offset-1">
-                {{content}}
+        </div>
+        <div class="row">
+            <div class="col is-2 is-position-relative has-side-nav is-hidden-touch">
+                <div class="sidenav">
+                    <aside class="sgds-menu">
+                        <ul class="sgds-menu-list" style="margin: 0">
+                            {%- assign links = site.data.navigation -%}
+                            {%- for lvl1item in links -%}
+                            {%- for lvl2item in lvl1item.lvl2 -%}
+                            {%- if page.url contains lvl2item.url -%}
+                            {%- assign currentTag = lvl2item.tag -%}
+                            {%- endif -%}
+                            {%- for lvl3item in lvl2item.lvl3 -%}
+                            {%- if lvl3item.tag == currentTag -%}
+                            <li style="margin: 0">
+                                {%- assign class = nil -%}
+                                {%- if page.url contains lvl3item.url -%}
+                                {%- assign class = 'is-active' -%}
+                                {%- endif -%}
+                                <a href="{{ site.baseurl }}{{ lvl3item.url }}" class="{{ class }}">
+                                    {{ lvl3item.title }}
+                                </a>
+                            </li>
+                            {%- endif -%}
+                            {%- endfor -%}
+                            {%- endfor -%}
+                            {%- endfor -%}
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+            <div class="col is-8 is-offset-1-desktop is-12-mobile">
+                <div class="row">
+                    <div class="col">
+                        <div class="content">
+                            {{content}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

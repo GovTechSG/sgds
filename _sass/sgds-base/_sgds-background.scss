@@ -1,0 +1,19 @@
+// Background
+
+.bg{
+  &-light{
+    background-color: $grey-lighter;
+  }
+  &-white{
+    background-color: white;
+  }
+  &-prev-next{
+    background-color: $secondary;
+  }
+}
+
+.bg-hero {
+  background: $hero-image no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}

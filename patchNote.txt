@@ -1,0 +1,16 @@
+sgds version
+
+v 1.1.3
+- adding a space before hex color for $secondary variable. (utilities/derived-variables.sass)
+
+v 1.1.4
+- Include common.js file into package
+
+v 1.1.5
+- Font size changes. 
+  (utilities/derived-variables.sass)
+  (utilities/initial-variables.sass)
+  (_sgds-typography.sass)
+- Remove position: absolute to notification element
+  (elements/notification.sass)
+  

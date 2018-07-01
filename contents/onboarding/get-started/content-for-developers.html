@@ -8,7 +8,7 @@ breadcrumb: Onboarding
 
 <div class="row padding--top padding--bottom--lg">
     <div class="col">
-        <h5 class="has-text-accent1">There are different ways to use Blueprint within your project. Which one you choose
+        <h5 class="has-text-accent1">There are different ways to use sgds within your project. Which one you choose
             depends on the needs of your project and how you are most comfortable working.</h5>
     </div>
 </div>
@@ -16,14 +16,13 @@ breadcrumb: Onboarding
     <div class="col">
         <div class="row">
             <div class="col is-6">
-
                 <h5 class="has-text-accent1 padding--bottom"><b>Install with npm</b></h5>
                 <p>You are familiar with using npm and package management</p>
                 <br>
-                <a href="#npm" class="bp-sec-button">
+                <a href="#npm" class="sgds-sec-button">
                     <div>
                         <span>Learn more</span>
-                        <i class="bp-icon bp-icon-arrow-right" aria-hidden="true"></i>
+                        <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
                     </div>
                 </a>
             </div>
@@ -31,10 +30,10 @@ breadcrumb: Onboarding
                 <h5 class="has-text-accent1 padding--bottom"><b>Install Manually</b></h5>
                 <p>You are not familiar with npm and package management</p>
                 <br>
-                <a href="#manual" class="bp-sec-button">
+                <a href="#manual" class="sgds-sec-button">
                     <div>
                         <span>Learn more</span>
-                        <i class="bp-icon bp-icon-arrow-right" aria-hidden="true"></i>
+                        <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
                     </div>
                 </a>
             </div>
@@ -44,16 +43,12 @@ breadcrumb: Onboarding
 
 <hr>
 
-<div class="row padding--top--lg padding--bottom--lg" id="npm">
+<div class="row padding--top--lg" id="npm">
     <div class="col">
-<<<<<<< HEAD
-        <h3 class="padding--bottom is-size-5-touch">Install with npm</h3>
-        <h5 class="has-text-accent1">npm is a package manager for Node based projects. Blueprint maintains a blueprint-govtech package for you to utilize the compiled files on your project</h5>
-=======
-        <h2 class="padding--bottom is-size-3-mobile"><b>Install with npm</b></h2>
-        <h5 class="has-text-accent1">npm is a package manager for Node based projects. Blueprint maintains a
-            blueprint-govtech package for you to utilize the compiled files on your project</h5>
->>>>>>> 6d65234fa26878854fda8ae83e36e142c44aad38
+        <h3 class="is-size-5-touch">Install with npm</h3>
+        <h5 class="has-text-accent1">
+            npm is a package manager for Node based projects. sgds maintains a sgds-govtech package for you to utilize the compiled files on your project.
+        </h5>
     </div>
 </div>
 <div class="row padding--bottom--lg">
@@ -65,11 +60,11 @@ breadcrumb: Onboarding
                     -v</code><br>
                     This should print the npm version number that look something like this <code>3.10.10</code>
                 </li>
-                <li>To install the blueprint-govtech package, navigate to your site folder using your terminal<br>and
-                    run this command <code>npm install blueprint-govtech --save</code></li>
+                <li>To install the sgds-govtech package, navigate to your site folder using your terminal<br>and
+                    run this command <code>npm install sgds-govtech --save</code></li>
                 <li class="has-text-left">
-                    This will generate <code>node_mouldes/blueprint-govtech</code> in your site folder<br>
-{%- highlight html -%} site/node_modules/blueprint-govtech/
+                    This will generate <code>node_mouldes/sgds-govtech</code> in your site folder<br>
+{%- highlight html -%} site/node_modules/sgds-govtech/
 ├── _sass/
 ├── css/
 ├── fonts/
@@ -78,13 +73,13 @@ breadcrumb: Onboarding
                 </li>
                 <li>
                     The main SASS(scss) source file is located here
-                    <code>site/node_modules/blueprint-govetech/main.scss</code>
+                    <code>site/node_modules/sgds-govetech/main.scss</code>
                 </li>
                 <li class="has-text-left">
                     Import the <code>main.scss</code> file into your own sass folder.<br>
                     Below is an example of how you might setup your main Sass file:<br>
 {%- highlight sass -%}
-@import site/node_modules/blueprint-govtech/main
+@import site/node_modules/sgds-govtech/main
 //your own css code..
 {%- endhighlight -%}
                 </li>
@@ -100,42 +95,15 @@ breadcrumb: Onboarding
 
 <div class="row padding--top--lg padding--bottom--lg" id="manual">
     <div class="col">
-<<<<<<< HEAD
-        <h3 class="padding--bottom is-size-5-touch">Install Manually</h3>
-        <h5 class="has-text-accent1">We provide both minified CSS and the JavaScript files that you can use in a production environment or reduce the file size of your downloaded assets</h5>
-=======
-        <h2 class="padding--bottom is-size-3-mobile"><b>Install Manually</b></h2>
-        <h5 class="has-text-accent1">We provide both minified CSS and the JavaScript files that you can use in a
-            production environment or reduce the file size of your downloaded assets</h5>
->>>>>>> 6d65234fa26878854fda8ae83e36e142c44aad38
-    </div>
-</div>
-<div class="row padding--bottom--lg">
-    <div class="col">
-<<<<<<< HEAD
-        <ol>
-            <li>Download Blueprint package <a href="/assets/downloads/blueprint-govtech-v1.1.zip" target="_blank">here</a></li>
-            <li>The zip package contains the <code>blueprint-govtech.css</code> & <code>blueprint-govtech.js</code> files</li>
-            <li>Extract and copy the files and folders into a relevant place in your project’s code base</li>
-            <li>Reference the CSS and JavaScript files in each HTML page or templates in your project</li>
-            <li>For css, place the <code>link</code> tag between the html <code>head</code> tag
-
-{%- highlight html -%}
-<link rel="stylesheet" href="sitePath/css/blueprint-govtech.css">
-{%- endhighlight -%}
-            </li>
-            <li>For js, place the <code>script</code> tag between the html <code>head</code> tag
-                {%- highlight html -%}
-                <script src="sitePath/js/blueprint-govtech.js"></script>
-                {%- endhighlight -%}
-            </li>
-        </ol>
-=======
         <div class="content">
+            <h3 class="is-size-5-touch">Install Manually</h3>
+            <h5 class="has-text-accent1">
+                We provide both minified CSS and the JavaScript files that you can use in a production environment or reduce the file size of your downloaded assets
+            </h5>
             <ol>
-                <li>Download Blueprint package <a href="/assets/downloads/blueprint-govtech-v1.1.zip" target="_blank">here</a>
+                <li>Download sgds package <a href="/assets/downloads/sgds-govtech-v1.1.zip" target="_blank">here</a>
                 </li>
-                <li>The zip package contains the <code>blueprint-govtech.css</code> & <code>blueprint-govtech.js</code>
+                <li>The zip package contains the <code>sgds-govtech.css</code> & <code>sgds-govtech.js</code>
                     files
                 </li>
                 <li>Extract and copy the files and folders into a relevant place in your project’s code base</li>
@@ -143,16 +111,15 @@ breadcrumb: Onboarding
                 <li>For css, place the <code>link</code> tag between the html <code>head</code> tag
 
                     {%- highlight html -%}
-                    <link rel="stylesheet" href="sitePath/css/blueprint-govtech.css">
+                    <link rel="stylesheet" href="sitePath/css/sgds-govtech.css">
                     {%- endhighlight -%}
                 </li>
                 <li>For js, place the <code>script</code> tag between the html <code>head</code> tag
                     {%- highlight html -%}
-                    <script src="sitePath/js/blueprint-govtech.js"></script>
+                    <script src="sitePath/js/sgds-govtech.js"></script>
                     {%- endhighlight -%}
                 </li>
             </ol>
         </div>
->>>>>>> 6d65234fa26878854fda8ae83e36e142c44aad38
     </div>
 </div>

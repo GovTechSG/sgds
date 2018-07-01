@@ -1,0 +1,453 @@
+@import "sgds-variables";
+
+@font-face {
+  font-family: 'sgds-icons';
+  src:
+    url('#{$icomoon-font-path}/sgds-icons.ttf?3ml17x') format('truetype'),
+    url('#{$icomoon-font-path}/sgds-icons.woff?3ml17x') format('woff'),
+    url('#{$icomoon-font-path}/sgds-icons.svg?3ml17x#sgds-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.sgds-icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'sgds-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@function unicode($str) {
+  @return unquote("\"") + $str + unquote("\"");
+}
+
+.sgds-icon-alert {
+  &:before {
+    content: unicode($sgds-icon-alert);
+  }
+}
+.sgds-icon-angle-down {
+  &:before {
+    content: unicode($sgds-icon-angle-down);
+  }
+}
+.sgds-icon-angle-left {
+  &:before {
+    content: unicode($sgds-icon-angle-left);
+  }
+}
+.sgds-icon-angle-right {
+  &:before {
+    content: unicode($sgds-icon-angle-right);
+  }
+}
+.sgds-icon-angle-up {
+  &:before {
+    content: unicode($sgds-icon-angle-up);
+  }
+}
+.sgds-icon-arrow-down {
+  &:before {
+    content: unicode($sgds-icon-arrow-down);
+  }
+}
+.sgds-icon-arrow-expand {
+  &:before {
+    content: unicode($sgds-icon-arrow-expand);
+  }
+}
+.sgds-icon-arrow-left {
+  &:before {
+    content: unicode($sgds-icon-arrow-left);
+  }
+}
+.sgds-icon-arrow-right {
+  &:before {
+    content: unicode($sgds-icon-arrow-right);
+  }
+}
+.sgds-icon-arrow-up {
+  &:before {
+    content: unicode($sgds-icon-arrow-up);
+  }
+}
+.sgds-icon-arrow-up-left {
+  &:before {
+    content: unicode($sgds-icon-arrow-up-left);
+  }
+}
+.sgds-icon-arrow-up-right {
+  &:before {
+    content: unicode($sgds-icon-arrow-up-right);
+  }
+}
+.sgds-icon-attachment {
+  &:before {
+    content: unicode($sgds-icon-attachment);
+  }
+}
+.sgds-icon-browser {
+  &:before {
+    content: unicode($sgds-icon-browser);
+  }
+}
+.sgds-icon-bus {
+  &:before {
+    content: unicode($sgds-icon-bus);
+  }
+}
+.sgds-icon-calculator {
+  &:before {
+    content: unicode($sgds-icon-calculator);
+  }
+}
+.sgds-icon-calculator-o {
+  &:before {
+    content: unicode($sgds-icon-calculator-o);
+  }
+}
+.sgds-icon-calendar {
+  &:before {
+    content: unicode($sgds-icon-calendar);
+  }
+}
+.sgds-icon-calendar-alt {
+  &:before {
+    content: unicode($sgds-icon-calendar-alt);
+  }
+}
+.sgds-icon-checked {
+  &:before {
+    content: unicode($sgds-icon-checked);
+  }
+}
+.sgds-icon-circle-info {
+  &:before {
+    content: unicode($sgds-icon-circle-info);
+  }
+}
+.sgds-icon-circle-minus {
+  &:before {
+    content: unicode($sgds-icon-circle-minus);
+  }
+}
+.sgds-icon-circle-plus {
+  &:before {
+    content: unicode($sgds-icon-circle-plus);
+  }
+}
+.sgds-icon-circle-question {
+  &:before {
+    content: unicode($sgds-icon-circle-question);
+  }
+}
+.sgds-icon-circle-warning {
+  &:before {
+    content: unicode($sgds-icon-circle-warning);
+  }
+}
+.sgds-icon-clock {
+  &:before {
+    content: unicode($sgds-icon-clock);
+  }
+}
+.sgds-icon-cloud {
+  &:before {
+    content: unicode($sgds-icon-cloud);
+  }
+}
+.sgds-icon-cog {
+  &:before {
+    content: unicode($sgds-icon-cog);
+  }
+}
+.sgds-icon-cross {
+  &:before {
+    content: unicode($sgds-icon-cross);
+  }
+}
+.sgds-icon-cube {
+  &:before {
+    content: unicode($sgds-icon-cube);
+  }
+}
+.sgds-icon-cubes {
+  &:before {
+    content: unicode($sgds-icon-cubes);
+  }
+}
+.sgds-icon-database {
+  &:before {
+    content: unicode($sgds-icon-database);
+  }
+}
+.sgds-icon-delay {
+  &:before {
+    content: unicode($sgds-icon-delay);
+  }
+}
+.sgds-icon-docker {
+  &:before {
+    content: unicode($sgds-icon-docker);
+  }
+}
+.sgds-icon-download {
+  &:before {
+    content: unicode($sgds-icon-download);
+  }
+}
+.sgds-icon-edit {
+  &:before {
+    content: unicode($sgds-icon-edit);
+  }
+}
+.sgds-icon-facebook {
+  &:before {
+    content: unicode($sgds-icon-facebook);
+  }
+}
+.sgds-icon-file {
+  &:before {
+    content: unicode($sgds-icon-file);
+  }
+}
+.sgds-icon-file-alt {
+  &:before {
+    content: unicode($sgds-icon-file-alt);
+  }
+}
+.sgds-icon-folder {
+  &:before {
+    content: unicode($sgds-icon-folder);
+  }
+}
+.sgds-icon-hamburger {
+  &:before {
+    content: unicode($sgds-icon-hamburger);
+  }
+}
+.sgds-icon-hdd {
+  &:before {
+    content: unicode($sgds-icon-hdd);
+  }
+}
+.sgds-icon-home {
+  &:before {
+    content: unicode($sgds-icon-home);
+  }
+}
+.sgds-icon-image {
+  &:before {
+    content: unicode($sgds-icon-image);
+  }
+}
+.sgds-icon-info {
+  &:before {
+    content: unicode($sgds-icon-info);
+  }
+}
+.sgds-icon-instagram {
+  &:before {
+    content: unicode($sgds-icon-instagram);
+  }
+}
+.sgds-icon-link {
+  &:before {
+    content: unicode($sgds-icon-link);
+  }
+}
+.sgds-icon-link-external {
+  &:before {
+    content: unicode($sgds-icon-link-external);
+  }
+}
+.sgds-icon-linkedin {
+  &:before {
+    content: unicode($sgds-icon-linkedin);
+  }
+}
+.sgds-icon-list {
+  &:before {
+    content: unicode($sgds-icon-list);
+  }
+}
+.sgds-icon-loading {
+  &:before {
+    content: unicode($sgds-icon-loading);
+  }
+}
+.sgds-icon-location {
+  &:before {
+    content: unicode($sgds-icon-location);
+  }
+}
+.sgds-icon-lock {
+  &:before {
+    content: unicode($sgds-icon-lock);
+  }
+}
+.sgds-icon-mail {
+  &:before {
+    content: unicode($sgds-icon-mail);
+  }
+}
+.sgds-icon-map {
+  &:before {
+    content: unicode($sgds-icon-map);
+  }
+}
+.sgds-icon-minify {
+  &:before {
+    content: unicode($sgds-icon-minify);
+  }
+}
+.sgds-icon-mrt {
+  &:before {
+    content: unicode($sgds-icon-mrt);
+  }
+}
+.sgds-icon-pages {
+  &:before {
+    content: unicode($sgds-icon-pages);
+  }
+}
+.sgds-icon-pin {
+  &:before {
+    content: unicode($sgds-icon-pin);
+  }
+}
+.sgds-icon-plus {
+  &:before {
+    content: unicode($sgds-icon-plus);
+  }
+}
+.sgds-icon-print {
+  &:before {
+    content: unicode($sgds-icon-print);
+  }
+}
+.sgds-icon-question {
+  &:before {
+    content: unicode($sgds-icon-question);
+  }
+}
+.sgds-icon-radar {
+  &:before {
+    content: unicode($sgds-icon-radar);
+  }
+}
+.sgds-icon-refresh {
+  &:before {
+    content: unicode($sgds-icon-refresh);
+  }
+}
+.sgds-icon-save {
+  &:before {
+    content: unicode($sgds-icon-save);
+  }
+}
+.sgds-icon-search {
+  &:before {
+    content: unicode($sgds-icon-search);
+  }
+}
+.sgds-icon-sg-crest {
+  &:before {
+    content: unicode($sgds-icon-sg-crest);
+    color: #db0000;
+  }
+}
+.sgds-icon-slider-horizontal {
+  &:before {
+    content: unicode($sgds-icon-slider-horizontal);
+  }
+}
+.sgds-icon-slider-vertical {
+  &:before {
+    content: unicode($sgds-icon-slider-vertical);
+  }
+}
+.sgds-icon-speech {
+  &:before {
+    content: unicode($sgds-icon-speech);
+  }
+}
+.sgds-icon-taxi {
+  &:before {
+    content: unicode($sgds-icon-taxi);
+  }
+}
+.sgds-icon-text-center {
+  &:before {
+    content: unicode($sgds-icon-text-center);
+  }
+}
+.sgds-icon-text-justify {
+  &:before {
+    content: unicode($sgds-icon-text-justify);
+  }
+}
+.sgds-icon-text-left {
+  &:before {
+    content: unicode($sgds-icon-text-left);
+  }
+}
+.sgds-icon-text-right {
+  &:before {
+    content: unicode($sgds-icon-text-right);
+  }
+}
+.sgds-icon-triangle-warning {
+  &:before {
+    content: unicode($sgds-icon-triangle-warning);
+  }
+}
+.sgds-icon-twitter {
+  &:before {
+    content: unicode($sgds-icon-twitter);
+  }
+}
+.sgds-icon-unlock {
+  &:before {
+    content: unicode($sgds-icon-unlock);
+  }
+}
+.sgds-icon-upload {
+  &:before {
+    content: unicode($sgds-icon-upload);
+  }
+}
+.sgds-icon-user {
+  &:before {
+    content: unicode($sgds-icon-user);
+  }
+}
+.sgds-icon-warning {
+  &:before {
+    content: unicode($sgds-icon-warning);
+  }
+}
+.sgds-icon-youtube {
+  &:before {
+    content: unicode($sgds-icon-youtube);
+  }
+}
+.sgds-icon-zoom-in {
+  &:before {
+    content: unicode($sgds-icon-zoom-in);
+  }
+}
+.sgds-icon-zoom-out {
+  &:before {
+    content: unicode($sgds-icon-zoom-out);
+  }
+}
+

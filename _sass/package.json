@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "sgds-govtech@1.0.10-alpha",
+        "scope": null,
+        "escapedName": "sgds-govtech",
+        "name": "sgds-govtech",
+        "rawSpec": "1.0.10-alpha",
+        "spec": "1.0.10-alpha",
+        "type": "version"
+      },
+      "/Users/LT/Sites/sgds-jekyll"
+    ]
+  ],
+  "_from": "sgds-govtech@^1.0.10-alpha",
+  "_id": "sgds-govtech@1.1.0",
+  "_inBundle": false,
+  "_inCache": true,
+  "_integrity": "sha1-WrhWaW2Z+pqq5JFzuU+8bB5yWac=",
+  "_location": "/sgds-govtech",
+  "_nodeVersion": "8.9.4",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/sgds-govtech_1.0.10-alpha_1522898209314_0.46483951471180407"
+  },
+  "_npmUser": {
+    "name": "sgds.govtech",
+    "email": "sgds.govtech@gmail.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "sgds-govtech@^1.0.10-alpha",
+    "name": "sgds-govtech",
+    "escapedName": "sgds-govtech",
+    "rawSpec": "^1.0.10-alpha",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.10-alpha"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/sgds-govtech/-/sgds-govtech-1.1.0.tgz",
+  "_shasum": "5ab856696d99fa9aaae49173b94fbc6c1e7259a7",
+  "_shrinkwrap": null,
+  "_spec": "sgds-govtech@^1.0.10-alpha",
+  "_where": "/Users/prestonlim/Documents/DSD/sgds-hlb",
+  "author": "",
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "sgds is a reusable and upgradable frontend framework that aims to provide tools for the government agencies to comply with the latest policies for websites and digital services easily.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "5ee6086d33347cef67cf638b94a7b5493cc9de8d",
+    "tarball": "https://registry.npmjs.org/sgds-govtech/-/sgds-govtech-1.0.10-alpha.tgz",
+    "fileCount": 67,
+    "unpackedSize": 492723
+  },
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "sgds.govtech",
+      "email": "sgds.govtech@gmail.com"
+    }
+  ],
+  "name": "sgds-govtech",
+  "optionalDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.1.0"
+}
