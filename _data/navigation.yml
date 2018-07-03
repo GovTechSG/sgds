@@ -91,9 +91,6 @@
         - title: Tab
           url: /components/interactive/tab/
           tag: interactive
-        - title: Accordion
-          url: /components/interactive/accordion/
-          tag: interactive
 
 - title: Templates
   lvl2:

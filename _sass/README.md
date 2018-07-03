@@ -5,3 +5,5 @@ sgds is a reusable and upgradable frontend framework that aims to provide tools 
 ```console
 npm i sgds-govtech
 ```
+
+## Patch Notes
