@@ -1,6 +1,5 @@
 <div class="masthead-container" id="navbar">
     {% include sgds-masthead.html %}
-
     <nav class="navbar is-transparent">
         <div class="sgds-container">
             <div class="navbar-brand">
@@ -23,7 +22,7 @@
                     {%- endif -%}
                     {%- if lvl1item.lvl2 -%}
                     <div class="navbar-item has-dropdown is-hoverable is-mega">
-                        <a class="navbar-link" href="{{ site.baseurl }}{{ lvl1item.url }}">
+                        <a class="navbar-link is-uppercase" href="{{ site.baseurl }}{{ lvl1item.url }}">
                             {{ lvl1item.title }}
                         </a>
                         <div class="navbar-dropdown " data-style="width: 18rem;">
@@ -55,9 +54,11 @@
                     {%- endfor -%}
                 </div>
                 <div class="navbar-end is-hidden-touch">
+                    <!--
                     <div class="navbar-item">
                         <a class="sgds-button is-rounded" href="/assets/downloads/sgds-govtech-v1.1.zip">Download sgds (Beta)</a>
                     </div>
+                    -->
                     <div class="navbar-item">
                         {% if page.layout != 'search' %}
                         <a class="sgds-button is-text is-large" style="text-decoration: none" id="search-activate">
@@ -72,25 +73,11 @@
             </div>
         </div>
     </nav>
-
-    <div class="sgds-container is-fluid hide is-hidden-touch search-bar" id="search-bar">
+    <div class="sgds-container hide is-hidden-touch search-bar" id="search-bar">
         <div class="row margin--top--sm margin--bottom--sm is-gapless">
-
             <div class="col">
-                <form action="/search/" method="get">
-                    <div class="field has-addons">
-                        <div class="control has-icons-left is-expanded">
-                            <input class="input is-fullwidth is-medium" id="search-box" type="text"
-                                   placeholder="What are you looking for?" name="query">
-                            <span class="is-large is-left">
-                                <i class="sgds-icon sgds-icon-search"></i>
-                            </span>
-
-                        </div>
-                        <div class="control">
-                            <button type="submit" class="sgds-button is-primary is-medium">Search</button>
-                        </div>
-                    </div>
+                <form action="{{ site.baseurl }}/search/" method="get">
+                    {% include sgds-search-box.html %}
                 </form>
             </div>
         </div>

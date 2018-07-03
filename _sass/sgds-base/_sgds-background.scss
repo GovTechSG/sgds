@@ -7,6 +7,9 @@
   &-white{
     background-color: white;
   }
+  &-black{
+    background-color: black;
+  }
   &-prev-next{
     background-color: $secondary;
   }
@@ -16,4 +19,12 @@
   background: $hero-image no-repeat center center;
   -webkit-background-size: cover;
   background-size: cover;
+}
+
+.bg-primary {
+  background-color: $primary !important;
+}
+
+.bg-secondary {
+  background-color: $secondary !important;
 }
