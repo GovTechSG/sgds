@@ -1,55 +1,45 @@
-<footer class="sgds-footer is-inverted">
-    <div class="sgds-container is-fluid">
+<footer class="sgds-footer top-section">
+    <div class="sgds-container ">
         <div class="row">
-            <div class="col header">
-                <h6 class="sub-header has-text-white">{{site.title}}</h6>
+            <div class="col footer-col header padding--top--lg padding--bottom--lg">
+                <h5 class="sub-header has-text-white"><b>{{site.title}}</b></h5>
             </div>
         </div>
-        <div class="row is-top">
-            {%- assign links = site.data.footer -%}
-            {%- for link in links -%}
-            {% if link.title == 'Technews' %}
-            <div class="col">
-                <p class="sub-header has-text-white">{{link.title}}</p>
-                {%- for sublink in link.sub-links -%}
-                {% if sublink.title == 'Feedback' %}
-                <p id="feedbackForm"><a class="has-text-white">{{sublink.title}}</a></p>
-                {% include feedback-modal.html %}
-                {% else %}
-                <p><a href="" class="has-text-white">{{sublink.title}}</a></p>
-                {% endif %}
-                {%- endfor -%}
+        <div class="row">
+            <div class="col footer-col padding--top--sm padding--bottom--sm is-right-desktop-only">
+                <ul>
+                    <li class="is-inline-block-desktop-only">
+                        <p><a href="{{site.baseurl}}/contact-us/">Contact Us</a></p>
+                    </li>
+                    <li class="is-inline-block-desktop-only">
+                        <p><a href="" target="_blank">Feedback</a></p>
+                    </li>
+                    <li class="is-inline-block-desktop-only">
+                        <p><a href="" target="_blank">FAQ</a></p>
+                    </li>
+                </ul>
             </div>
-            {% else %}
-            <div class="col">
-                <p class="sub-header has-text-white">{{link.title}}</p>
-                {%- for sublink in link.sub-links -%}
-                <p><a href="">{{sublink.title}}</a></p>
-                {%- endfor -%}
-            </div>
-            {% endif %}
-            {%- endfor -%}
         </div>
     </div>
 </footer>
-<footer class="sgds-footer is-inverted">
-    <div class="sgds-container is-fluid">
-        <div class="row is-vcentered is-borderless">
-            <div class="col has-text-right-desktop has-text-left-mobile">
-                <ul style="margin:0">
-                    <li><a href="https://form.sg/forms/govtech/5b02943839e23a001a1be70f" target="_blank">Contact</a></li>
-                </ul>
+<footer class="sgds-footer bottom-section">
+    <div class="sgds-container ">
+        <div class="row is-vcentered">
+            <div class="col footer-col padding--top--none padding--bottom--none">
+                <div class="col footer-col divider padding--top--none padding--bottom--none"></div>
             </div>
         </div>
-        <div class="row divider">
-            <div class="col">
-                <ul style="margin:0">
-                    <li><a href="/privacy">Privacy Statement</a></li>
-                    <li><a href="/terms-of-use">Terms of Use</a></li>
+        <div class="row is-vcentered padding--top--sm">
+            <div class="col footer-col">
+                <ul>
+                    <li><a href="{{site.baseurl}}/privacy/">Privacy Statement</a></li>
+                    <li><a href="{{site.baseurl}}/terms-of-use/">Terms of Use</a></li>
                 </ul>
             </div>
-            <div class="col has-text-right-desktop has-text-left-mobile">
-                <p>© 2018 Government of Singapore. Last Updated {{site.last_updated}}</p>
+            <div class="col footer-col has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                <p class="is-hidden-touch"> © 2018 Singapore Government. Last Updated {{site.last_updated}}</p>
+                <p class="is-hidden-desktop">© 2018 Singapore Government</p>
+                <p class="is-hidden-desktop last-updated">Last Updated {{site.last_updated}}</b>
             </div>
         </div>
     </div>
