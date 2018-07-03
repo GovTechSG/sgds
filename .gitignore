@@ -3,3 +3,5 @@ _site
 .jekyll-cache
 .jekyll-metadata
 .idea
+node_modules
+sgds-govtech
