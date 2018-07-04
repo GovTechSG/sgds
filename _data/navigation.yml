@@ -71,8 +71,8 @@
         - title: Container
           url: /components/structural/container/
           tag: structural
-        - title: Row and Column
-          url: /components/structural/row-col/
+        - title: Grid
+          url: /components/structural/grid/
           tag: structural
 
     - title: Interactive

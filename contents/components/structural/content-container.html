@@ -4,22 +4,14 @@ subtitle: Subtitle
 layout: layout-sidenav
 permalink: /components/structural/container/
 category: Components/Structural
+breadcrumb: Components
 ---
 
-<div class="row">
+<div class="row padding--top padding--bottom">
     <div class="col">
-        <div class="content">
-            <h5><b>Description</b></h5>
-            <p>Container allows you to center your content horizontally on any screen size.</p>
-            <p>The <code>.sgds-container</code> class can be used in any context, but mostly as a direct child of either:</p>
-            <ul>
-                <li>.navbar</li>
-                <li>.sgds-hero</li>
-                <li>.sgds-section</li>
-                <li>.sgds-footer</li>
-            </ul>
-        </div>
-        <div class="sgds-example">
+        <h5 class="has-text-secondary padding--bottom--lg ">A container is an element designed to contain page elements to a reasonable maximum width based on the size of a user's screen. This is useful to couple with other UI elements like grid or menu to restrict their width to a reasonable size for display.</h5>
+        <h5 class="margin--bottom--lg"><b>Default Container</b></h5>
+        <div class="sgds-example is-marginless">
             <section class="sgds-section is-small">
                 <div class="sgds-container bg-light">
                     <div class="sgds-notification is-primary is-position-relative">
@@ -28,10 +20,9 @@ category: Components/Structural
                 </div>
             </section>
         </div>
-        <div class="content">
-            <p>If you do not want a maximum width but keep the 32px margin on both sides, add the <code>is-fluid</code> modifier.</p>
-        </div>
-        <div class="sgds-example">
+        <h5 class="margin--bottom--lg"><b>Fluid Container</b></h5>
+        <p>If you do not want a maximum width but keep the 32px margin on both sides, add the <code>is-fluid</code> modifier.</p>
+        <div class="sgds-example is-marginless">
             <section class="sgds-section is-small">
                 <div class="sgds-container is-fluid bg-light">
                     <div class="sgds-notification is-primary is-position-relative">
@@ -42,19 +33,41 @@ category: Components/Structural
         </div>
     </div>
 </div>
+
 <hr>
-<div class="row">
+
+<div class="row padding--top--lg padding--bottom--lg">
     <div class="col">
-        <div class="content">
-            <h5><b>How to Use</b></h5>
-            <p>Simply copy and paste this code snippet to any part of your project.</p>
-        </div>
+        <h2>Usage</h2>
+        <p>The <code>.sgds-container</code> class can be used in any context, but mostly as a direct child of either:</p>
+        <ul>
+            <li>.navbar</li>
+            <li>.sgds-hero</li>
+            <li>.sgds-section</li>
+            <li>.sgds-footer</li>
+        </ul>
 {%- highlight html -%}
 <section class="sgds-section is-small">
-<div class="sgds-container bg-light">
-Default Container
-</div>
+    <div class="sgds-container bg-light">
+        Default Container
+    </div>
 </section>
 {%- endhighlight -%}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg">
+    <div class="col">
+        <h2 class="padding--bottom--lg">Feedback</h2>
+        <a href="" class="sgds-sec-button">
+            <span>Report an issue</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="" class="sgds-sec-button">
+            <span>Email the team</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
     </div>
 </div>

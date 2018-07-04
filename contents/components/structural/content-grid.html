@@ -1,0 +1,224 @@
+---
+title: Grid
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /components/structural/grid/
+category: Components/Structural
+breadcrumb: Components
+---
+
+<div class="row padding--top padding--bottom">
+    <div class="col">
+        <h5 class="has-text-secondary padding--bottom--lg ">Grids divide horizontal space into indivisible units called "columns". All columns in a grid must specify their width as proportion of the total available row width. All grid systems choose an arbitrary column count to allow per row and Isomer uses 12 columns.</h5>
+        <h5 class="margin--bottom--lg"><b>Basic Grid Layout</b></h5>
+        <div class="sgds-example is-marginless">
+            <section class="sgds-section">
+                <div class="sgds-container">
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="is-marginless">col 1</h6>
+                        </div>
+                        <div class="col">
+                            <h6 class="is-marginless">col 2</h6>
+                        </div>
+                        <div class="col">
+                            <h6 class="is-marginless">col 3</h6>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <h5 class="margin--bottom--lg"><b>Different Sized Grid Layout</b></h5>
+        <p>Grid can be divided into 12 columns with size classes for each part from <code>.is-2</code> to <code>.is-12</code>.</p>
+        <div class="sgds-example is-marginless">
+            <div class="sgds-container">
+                <div class="row has-text-centered">
+                    <div class="col is-2">
+                        <h6 class="is-marginless">.is-2</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col is-3">
+                        <h6 class="is-marginless">.is-3</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col is-6">
+                        <h6 class="is-marginless">.is-6</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="is-marginless">1</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h5 class="margin--bottom--lg"><b>Offset Grid Layout</b></h5>
+        <p>Use empty column to create empty horizontal space from the left using <code>.is-offset-x</code>.</p>
+        <div class="sgds-example is-marginless">
+            <div class="sgds-container">
+                <div class="row">
+                    <div class="col is-6 is-offset-3">
+                        <h6 class="is-marginless">.is-6.is-offset-3</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col is-3 is-offset-9">
+                        <h6 class="is-marginless">.is-3.is-offset-9</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col is-5 is-offset-2">
+                        <h6 class="is-marginless">.is-5.is-offset-2</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h5 class="margin--bottom--lg"><b>Nested Grid Layout</b></h5>
+        <p>You can <b>nest</b> columns to have more flexibility in your design.</p>
+        <div class="sgds-example is-marginless">
+            <div class="sgds-container">
+                <div class="row">
+                    <div class="col is-nested">
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="is-marginless">row 1 col 1</h6>
+                            </div>
+                            <div class="col">
+                                <h6 class="is-marginless">row 1 col 2</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col is-nested">
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="is-marginless">row 2 col 1</h6>
+                            </div>
+                            <div class="col">
+                                <h6 class="is-marginless">row 2 col 2</h6>
+                            </div>
+                            <div class="col">
+                                <h6 class="is-marginless">row 2 col 3</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg">
+    <div class="col">
+        <h2>Usage</h2>
+        <p>Building a grid layout is simple:</p>
+        <ul>
+            <li>Add a <code>row</code> element within a container</li>
+            <li>Add as many <code>col</code> elements as you want</li>
+        </ul>
+{%- highlight html -%}
+<div class="sgds-container">
+    <div class="row">
+        <div class="col">
+            <p>col 1</p>
+        </div>
+        <div class="col">
+            <p>col 2</p>
+        </div>
+        <div class="col">
+            <p>col 3</p>
+        </div>
+    </div>
+</div>
+{%- endhighlight -%}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg">
+    <div class="col">
+        <h2 class="padding--bottom--lg">Feedback</h2>
+        <a href="" class="sgds-sec-button">
+            <span>Report an issue</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="" class="sgds-sec-button">
+            <span>Email the team</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>

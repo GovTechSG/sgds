@@ -4,68 +4,59 @@ subtitle: Subtitle
 layout: layout-sidenav
 permalink: /components/structural/section/
 category: Components/Structural
+breadcrumb: Components
 ---
 
 <div class="row padding--top padding--bottom">
     <div class="col">
-        <h5 class="has-text-accent1 ">Section is the main building block for all layouts. It can be used as direct children of <code>body</code>.</h5>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <h5 class="padding--bottom"><b>Live Demo - Small Section</b></h5>
-        <div class="sgds-example" style="margin:0">
-            <section class="sgds-section is-small">
+        <h5 class="has-text-secondary padding--bottom--lg ">Section is the main building block for all layouts. It can be used as direct children of <code>body</code>.</h5>
+        <div class="sgds-example is-marginless">
+            <section class="sgds-section">
                 <div class="sgds-container">
                     <div class="sgds-notification is-position-relative">
-                        <p>Small section</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <h5 class="padding--top padding--bottom"><b>Live Demo - Medium Section</b></h5>
-        <div class="sgds-example" style="margin:0">
-            <section class="sgds-section is-medium">
-                <div class="sgds-container">
-                    <div class="sgds-notification is-position-relative">
-                        <p>Medium section</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <h5 class="padding--top padding--bottom"><b>Live Demo - Large Section</b></h5>
-        <div class="sgds-example" style="margin:0">
-            <section class="sgds-section is-large">
-                <div class="sgds-container">
-                    <div class="sgds-notification is-position-relative">
-                        <p>Large Section</p>
+                        <h6 class="is-marginless">section</h6>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 </div>
+
 <hr>
-<div class="row">
+
+<div class="row padding--top--lg padding--bottom--lg">
     <div class="col">
-        <h5 class="padding--bottom"><b>How to Use</b></h5>
+        <h2>Usage</h2>
         <p>You can change the overall padding sizes by adding these class name to your section:</p>
-        <div class="content">
-            <ul>
-                <li>is-small</li>
-                <li>is-medium</li>
-                <li>is-large</li>
-            </ul>
-        </div>
+        <ul>
+            <li>is-small</li>
+            <li>is-medium</li>
+            <li>is-large</li>
+        </ul>
 {% highlight html %}
 <body>
-    <section class="sgds-section is-small">
+    <section class="sgds-section">
         <div class="sgds-container">
-            <h1>Section 1</h1>
-            <p>Simple container</p>
+            <h1>Section</h1>
         </div>
     </section>
 </body>
 {% endhighlight %}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg">
+    <div class="col">
+        <h2 class="padding--bottom--lg">Feedback</h2>
+        <a href="" class="sgds-sec-button">
+            <span>Report an issue</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="" class="sgds-sec-button">
+            <span>Email the team</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
     </div>
 </div>
