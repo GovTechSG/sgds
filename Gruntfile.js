@@ -1,9 +1,12 @@
 module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
+
+    var path = 'sgds-govtech';
+
     grunt.initConfig({
         clean: {
             build: {
-                src: ['sgds-govtech/**']
+                src: [ path + '/**']
             }
         },
         copy: {
@@ -11,19 +14,19 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: '_sass',
                 src: '**',
-                dest: 'sgds-govtech/sass'
+                dest: path + '/sass'
             },
             fonts: {
                 expand: true,
                 cwd: 'assets/fonts',
                 src: '**',
-                dest: 'sgds-govtech/fonts'
+                dest: path + '/fonts'
             },
             js: {
                 expand: true,
                 cwd: 'assets/js',
                 src: 'sgds.js',
-                dest: 'sgds-govtech/js'
+                dest: path + '/js'
             }
         }
     });

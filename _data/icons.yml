@@ -1,115 +1,134 @@
-- iconName: add-photo
-- iconName: browser
-- iconName: calculator
-- iconName: camera
-- iconName: clock
-- iconName: cloud-download
-- iconName: cloud-success
-- iconName: cloud-upload
-- iconName: database
-- iconName: download
-- iconName: file-add
-- iconName: file-alt
-- iconName: file
-- iconName: hdd
-- iconName: image
-- iconName: link
-- iconName: lock
-- iconName: mail
-- iconName: print
-- iconName: radar
-- iconName: save
-- iconName: share
-- iconName: unlock
-- iconName: upload
-- iconName: volume-mute
-- iconName: volume
-- iconName: docker
-- iconName: facebook-alt
-- iconName: facebook
-- iconName: google
-- iconName: instagram
-- iconName: linkedin-alt
-- iconName: linkedin
-- iconName: person-add
-- iconName: person-cancel
-- iconName: person-remove
-- iconName: person
-- iconName: rss
-- iconName: thumbs-down
-- iconName: thumbs-up
-- iconName: twitter
-- iconName: youtube
-- iconName: add-place
-- iconName: boat
-- iconName: bus
-- iconName: car
-- iconName: layers
-- iconName: map
-- iconName: my-location
-- iconName: place
-- iconName: taxi
-- iconName: traffic
-- iconName: train
-- iconName: arrow-down
-- iconName: arrow-left
-- iconName: arrow-right
-- iconName: arrow-top-left
-- iconName: arrow-top-right
-- iconName: arrow-up
-- iconName: check
-- iconName: chevron-down
-- iconName: chevron-left
-- iconName: chevron-right
-- iconName: chevron-up
-- iconName: cog
-- iconName: cross
-- iconName: ellipsis
-- iconName: home
-- iconName: menu
-- iconName: minus
-- iconName: notification
-- iconName: plus
-- iconName: sg-crest
-- iconName: text-center
-- iconName: text-justify
-- iconName: text-left
-- iconName: text-right
-- iconName: add-comment
-- iconName: ban
-- iconName: bookmark
-- iconName: calendar
-- iconName: chat
-- iconName: circle-info
-- iconName: circle-minus
-- iconName: circle-plus
-- iconName: circle-question
-- iconName: circle-warning
-- iconName: compress-alt
-- iconName: compress
-- iconName: edit
-- iconName: expand-alt
-- iconName: expand
-- iconName: external
-- iconName: feedback
-- iconName: filter
-- iconName: info
-- iconName: list
-- iconName: pin
-- iconName: question
-- iconName: refresh
-- iconName: rsvp-no
-- iconName: rsvp-yes
-- iconName: search
-- iconName: slider-horizontal
-- iconName: slider-vertical
-- iconName: star
-- iconName: sync
-- iconName: toggle-minus
-- iconName: toggle-off
-- iconName: toggle-on
-- iconName: toggle-plus
-- iconName: triangle-warning
-- iconName: warning
-- iconName: zoom-in
-- iconName: zoom-out
+- category: Fundamentals
+  icons:
+  - iconName: home
+  - iconName: menu
+  - iconName: notification
+  - iconName: ellipsis
+  - iconName: image
+  - iconName: cog
+  - iconName: plus
+  - iconName: minus
+  - iconName: cross
+  - iconName: check
+  - iconName: chevron-down
+  - iconName: chevron-up
+  - iconName: chevron-left
+  - iconName: chevron-right
+  - iconName: arrow-top-left
+  - iconName: arrow-top-right
+  - iconName: arrow-down
+
+- category: Maps and Transportation
+  icons:
+  - iconName: map
+  - iconName: place
+  - iconName: add-place
+  - iconName: my-location
+  - iconName: traffic
+  - iconName: bus
+  - iconName: train
+  - iconName: boat
+  - iconName: car
+  - iconName: taxi
+  - iconName: layers
+
+- category: Utilities
+  icons:
+  - iconName: download
+  - iconName: upload
+  - iconName: share
+  - iconName: link
+  - iconName: print
+  - iconName: mail
+  - iconName: save
+#  - iconName: folder
+#  - iconName: create-folder
+#  - iconName: attachment
+  - iconName: camera
+  - iconName: add-photo
+  - iconName: lock
+  - iconName: unlock
+  - iconName: volume
+  - iconName: volume-mute
+  - iconName: file
+  - iconName: file-alt
+  - iconName: file-add
+#  - iconName: file-copy
+#  - iconName: file-pdf
+#  - iconName: cloud
+  - iconName: cloud-download
+  - iconName: cloud-upload
+#  - iconName: contact
+#  - iconName: telephone
+#  - iconName: delay
+  - iconName: clock
+  - iconName: radar
+  - iconName: database
+  - iconName: hdd
+  - iconName: calculator
+  - iconName: browser
+  - iconName: cloud-success
+
+- category: Action
+  icons:
+  - iconName: list
+  - iconName: warning
+  - iconName: question
+  - iconName: info
+  - iconName: circle-warning
+  - iconName: circle-question
+  - iconName: circle-info
+  - iconName: triangle-warning
+  - iconName: bookmark
+  - iconName: ban
+  - iconName: search
+  - iconName: zoom-in
+  - iconName: compress
+  - iconName: expand
+  - iconName: filter
+  - iconName: sync
+  - iconName: refresh
+  - iconName: star
+  - iconName: feedback
+  - iconName: add-comment
+  - iconName: chat
+  - iconName: external
+  - iconName: edit
+  - iconName: zoom-out
+  - iconName: expand-alt
+  - iconName: compress-alt
+  - iconName: pin
+  - iconName: calendar
+  - iconName: rsvp-yes
+  - iconName: rsvp-no
+  - iconName: toggle-on
+  - iconName: toggle-off
+  - iconName: toggle-plus
+  - iconName: toggle-minus
+  - iconName: slider-horizontal
+  - iconName: slider-vertical
+
+- category: Editor
+  icons:
+  - iconName: text-justify
+  - iconName: text-left
+  - iconName: text-right
+  - iconName: text-center
+
+- category: Social
+  icons:
+  - iconName: thumbs-up
+  - iconName: thumbs-down
+  - iconName: person
+  - iconName: person-add
+  - iconName: person-remove
+  - iconName: person-cancel
+  - iconName: rss
+  - iconName: facebook
+  - iconName: facebook-alt
+  - iconName: google
+  - iconName: linkedin
+  - iconName: linkedin-alt
+  - iconName: youtube
+  - iconName: instagram
+  - iconName: docker

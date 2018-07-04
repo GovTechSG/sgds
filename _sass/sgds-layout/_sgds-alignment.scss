@@ -209,7 +209,7 @@ $base-margin-padding: 1rem;
 }
 
 .is-position-relative{
-  position: relative;
+  position: relative!important;
 }
 
 .is-offset-sideNav{
@@ -217,7 +217,7 @@ $base-margin-padding: 1rem;
   width:22%;
   top:40px;
   .touch &{
-    position:relative!important;
+    @extend .is-position-relative;
     width:100%;
   }
 }
