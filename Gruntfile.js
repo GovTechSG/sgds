@@ -9,6 +9,17 @@ module.exports = function(grunt) {
                 src: [ path + '/**']
             }
         },
+        cssmin: {
+            target: {
+                files: [{
+                    expand: true,
+                    cwd: '_site/assets/css',
+                    src: ['*.css', '!*.min.css'],
+                    dest: 'sgds-govtech/css',
+                    ext: '.css'
+                }]
+            }
+        },
         copy: {
             sass: {
                 expand: true,
@@ -30,6 +41,6 @@ module.exports = function(grunt) {
             }
         }
     });
-    grunt.registerTask('sgds', ['clean:build','copy:sass', 'copy:fonts','copy:js']);
+    grunt.registerTask('sgds', ['clean:build','cssmin','copy:sass', 'copy:fonts','copy:js']);
     grunt.registerTask('sgds-clean', ['clean:build']);
 };
