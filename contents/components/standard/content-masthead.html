@@ -4,25 +4,49 @@ subtitle: Subtitle
 layout: layout-sidenav
 permalink: /components/standard/masthead/
 category: Components/Standard
+breadcrumb: Components
 ---
 
-<div class="row padding--top padding--bottom">
+<div class="row padding--top padding--bottom--lg">
     <div class="col">
-        <h5 class="has-text-accent1">All .gov.sg digital services shall adopt the Official Government Banner for every page in the digital services.</h5>
+        <h5 class="has-text-secondary padding--bottom--lg">All '.gov.sg' digital services shall adopt the Official Government Banner for every page in it.</h5>
+        <section class="sgds-section sgds-masthead">
+            <div class="sgds-container is-fluid">
+                <div class="row is-multiline is-vcentered">
+                    <div class="col is-9-desktop is-12-touch has-text-centered-touch">
+                        <a href="http://www.gov.sg" alt="Singapore Government" target="_blank">
+                            <span class="sgds-icon sgds-icon-sg-crest"></span>
+                            <span class="is-text">A Singapore Government Agency Website</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
-<div class="row">
-    <div class="col">
-        <h5 class="padding--bottom"><b>Live Demo</b></h5>
-        {% include sgds-masthead.html %}
-    </div>
-</div>
+
 <hr>
-<div class="row">
+
+<div class="row padding--top--lg padding--bottom--lg">
     <div class="col">
-        <h5 class="padding--bottom"><b>How to Use</b></h5>
-        <p>Simply copy and paste this code snippet to the header of your project.</p>
-        <br>
+        <h2>Usage</h2>
+        <p>Copy and paste this code snippet to the header of your project.</p>
         {% highlight html %}{% include sgds-masthead.html %}{% endhighlight %}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg">
+    <div class="col">
+        <h2 class="padding--bottom--lg">Feedback</h2>
+        <a href="" class="sgds-sec-button">
+            <span>Report an issue</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="" class="sgds-sec-button">
+            <span>Email the team</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
     </div>
 </div>

@@ -32,6 +32,9 @@
       url: /onboarding/extensions/
       tag: extensions
       lvl3:
+        - title: Isomer Pages
+          url: /onboarding/extensions/isomer-pages/
+          tag: extensions
         - title: Content Website Platform
           url: /onboarding/extensions/cwp/
           tag: extensions
@@ -51,8 +54,8 @@
         - title: Footer
           url: /components/standard/footer/
           tag: standard
-        - title: Icons
-          url: /components/standard/icon/
+        - title: Iconography
+          url: /components/standard/iconography/
           tag: standard
 
     - title: Structural

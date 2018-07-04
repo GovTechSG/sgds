@@ -1,0 +1,56 @@
+---
+title: Iconography
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /components/standard/iconography/
+category: Components/Standard
+breadcrumb: Components
+---
+
+<div class="row padding--top padding--bottom">
+    <div class="col">
+        <h5 class="has-text-secondary padding--bottom--lg">Iconography uses images and symbols to represent an object visually. They communicate a message and should be distinct and informative. Icons should be used sparingly throughout the product to provide clarity and reduce cognitive load on users.</h5>
+        <!-- todo sort icons in alpabetically order-->
+        {% assign icon-category = site.data.icons %}
+        {% for cat in icon-category %}
+        <h5 class="margin--bottom--lg"><b>{{cat.category}} Icons</b></h5>
+        <div class="row is-multiline is-mobile">
+            {% for icon in cat.icons %}
+            <div class="col is-2-desktop is-4-tablet is-4-mobile is-boxed">
+                <div class="icon-container">
+                    <span class="sgds-icon sgds-icon-{{icon.iconName}} is-size-1"></span>
+                </div>
+                <small>.sgds-icon-{{icon.iconName}}</small>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg">
+    <div class="col">
+        <h2>Usage</h2>
+        <p>Replace <code>sgds-icon-iconName</code> with the one you wish to use from above.</p>
+        {% highlight html %}<span class="sgds-icon sgds-icon-iconName"></span>{% endhighlight %}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg">
+    <div class="col">
+        <h2 class="padding--bottom--lg">Feedback</h2>
+        <a href="" class="sgds-sec-button">
+            <span>Report an issue</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="" class="sgds-sec-button">
+            <span>Email the team</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+

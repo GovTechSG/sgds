@@ -4,25 +4,83 @@ subtitle: Subtitle
 layout: layout-sidenav
 permalink: /components/standard/footer/
 category: Components/Standard
+breadcrumb: Components
 ---
 
-<div class="row padding--top padding--bottom">
+<div class="row padding--top padding--bottom--lg">
     <div class="col">
-        <h5 class="has-text-accent1">All .gov.sg digital services shall adopt the Footer Panel for every page in the digital services.</h5>
+        <h5 class="has-text-secondary padding--bottom--lg">All '.gov.sg' digital services shall adopt the Official Footer Panel for every page in it.</h5>
+        <footer class="sgds-footer top-section">
+            <div class="sgds-container is-fluid">
+                <div class="row">
+                    <div class="col footer-col header padding--top--lg padding--bottom--lg">
+                        <h5 class="sub-header has-text-white"><b>{{site.title}}</b></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col footer-col padding--top--sm padding--bottom--sm is-right-desktop-only">
+                        <ul>
+                            <li class="is-inline-block-desktop-only">
+                                <p><a href="{{site.baseurl}}/contact-us/">Contact Us</a></p>
+                            </li>
+                            <li class="is-inline-block-desktop-only">
+                                <p><a href="" target="_blank">Feedback</a></p>
+                            </li>
+                            <li class="is-inline-block-desktop-only">
+                                <p><a href="" target="_blank">FAQ</a></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <footer class="sgds-footer bottom-section">
+            <div class="sgds-container is-fluid">
+                <div class="row is-vcentered">
+                    <div class="col footer-col padding--top--none padding--bottom--none">
+                        <div class="col footer-col divider padding--top--none padding--bottom--none"></div>
+                    </div>
+                </div>
+                <div class="row is-vcentered padding--top--sm">
+                    <div class="col footer-col">
+                        <ul>
+                            <li><a href="{{site.baseurl}}/privacy/">Privacy Statement</a></li>
+                            <li><a href="{{site.baseurl}}/terms-of-use/">Terms of Use</a></li>
+                        </ul>
+                    </div>
+                    <div class="col footer-col has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                        <p class="is-hidden-touch"> © 2018 Singapore Government. Last Updated {{site.last_updated}}</p>
+                        <p class="is-hidden-desktop">© 2018 Singapore Government</p>
+                        <p class="is-hidden-desktop last-updated">Last Updated {{site.last_updated}}</b>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </div>
-<div class="row">
-    <div class="col">
-        <h5 class="padding--bottom"><b>Live Demo</b></h5>
-        {% include sgds-footer.html %}
-    </div>
-</div>
+
 <hr>
-<div class="row">
+
+<div class="row padding--top--lg padding--bottom--lg">
     <div class="col">
-        <h5 class="padding--bottom"><b>How to Use</b></h5>
-        <p>Simply copy and paste this code snippet to the footer of your project.</p>
-        <br>
+        <h2>Usage</h2>
+        <p>Copy and paste this code snippet to the footer of your project.</p>
         {% highlight html %}{% include sgds-footer.html %}{% endhighlight %}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg">
+    <div class="col">
+        <h2 class="padding--bottom--lg">Feedback</h2>
+        <a href="" class="sgds-sec-button">
+            <span>Report an issue</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="" class="sgds-sec-button">
+            <span>Email the team</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
     </div>
 </div>
