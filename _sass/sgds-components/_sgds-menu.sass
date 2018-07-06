@@ -4,7 +4,7 @@ $menu-item-hover-color: $secondary !default
 $menu-item-hover-background-color: $background !default
 $menu-item-active-color: $secondary !default
 $menu-item-active-background-color: $secondary !default
-$menu-list-border-left: 1px dotted $border !default
+$menu-list-border-left: 1px solid $border !default
 $menu-label-color: $text-light !default
 
 .sgds
@@ -25,20 +25,20 @@ $menu-label-color: $text-light !default
       color: $menu-item-color
       display: block
       padding: 1rem 0
-      border-bottom: 1px solid $grey
+      //border-bottom: 1px solid $grey
       &:hover
         color: $menu-item-hover-color
-        border-bottom: 1px solid $menu-item-active-color
+        //border-bottom: 1px solid $menu-item-active-color
       // Modifiers
       &.is-active
         color: $menu-item-active-color
         font-weight: 600
         border-color: $menu-item-active-color
-        border-bottom: 2px solid $menu-item-active-color
+        //border-bottom: 2px solid $menu-item-active-color
     li
       ul
         border-left: $menu-list-border-left
-        margin: 0.75em
+        //margin: 0.75em
         padding-left: 0.75em
 
   &-menu-label

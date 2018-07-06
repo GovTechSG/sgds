@@ -1,4 +1,5 @@
 - title: Onboarding
+  url: /onboarding/
   lvl2:
     - title: Get Started
       url: /onboarding/get-started/
@@ -43,6 +44,7 @@
           tag: extensions
 
 - title: Components
+  url: /components/
   lvl2:
     - title: Standard
       url: /components/standard/
@@ -93,6 +95,7 @@
           tag: interactive
 
 - title: Templates
+  url: /templates/
   lvl2:
     - title: Information
       url: /templates/information/
