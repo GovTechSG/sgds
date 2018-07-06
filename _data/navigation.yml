@@ -37,36 +37,40 @@
     - title: Standard
       url: /components/standard/
       lvl3:
-        - title: Masthead
-          url: /components/standard/masthead/
-        - title: Footer
-          url: /components/standard/footer/
         - title: Iconography
           url: /components/standard/iconography/
+        - title: Footer
+          url: /components/standard/footer/
+        - title: Masthead
+          url: /components/standard/masthead/
 
-    - title: Structural
-      url: /components/structural/
+    - title: Structure
+      url: /components/structure/
       lvl3:
-        - title: Section
-          url: /components/structural/section/
         - title: Container
-          url: /components/structural/container/
+          url: /components/structure/container/
         - title: Grid
-          url: /components/structural/grid/
+          url: /components/structure/grid/
+        - title: Section
+          url: /components/structure/section/
 
-    - title: Interactive
-      url: /components/interactive/
+    - title: Navigation
+      url: /components/navigation/
+      lvl3:
+        - title: Tab
+          url: /components/navigation/tab/
+
+    - title: Action
+      url: /components/action/
       lvl3:
         - title: Accordion
-          url: /components/interactive/accordion/
+          url: /components/action/accordion/
         - title: Button
-          url: /components/interactive/button/
+          url: /components/action/button/
         - title: Card
-          url: /components/interactive/card/
+          url: /components/action/card/
         - title: Dropdown Menu
-          url: /components/interactive/dropdown/
-        - title: Tab
-          url: /components/interactive/tab/
+          url: /components/action/dropdown/
 
 - title: Templates
   url: /templates/
