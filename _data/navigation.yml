@@ -3,110 +3,81 @@
   lvl2:
     - title: Get Started
       url: /onboarding/get-started/
-      tag: get-started
       lvl3:
         - title: Overview
           url: /onboarding/get-started/overview/
-          tag: get-started
         - title: For Developers
           url: /onboarding/get-started/for-developers/
-          tag: get-started
         - title: For Designers
           url: /onboarding/get-started/for-designers/
-          tag: get-started
         - title: For Content Managers
           url: /onboarding/get-started/for-content-managers/
-          tag: get-started
 
     - title: Guidelines
       url: /onboarding/guidelines/
-      tag: guidelines
       lvl3:
         - title: Digital Service Standard
           url: /onboarding/guidelines/content-digital-service-standard/
-          tag: guidelines
         - title: Usability Checklist
           url: /onboarding/guidelines/content-usability-checklist/
-          tag: guidelines
 
     - title: Extensions
       url: /onboarding/extensions/
-      tag: extensions
       lvl3:
         - title: Isomer Pages
           url: /onboarding/extensions/isomer-pages/
-          tag: extensions
         - title: Content Website Platform
           url: /onboarding/extensions/cwp/
-          tag: extensions
         - title: Sentimeter
           url: /onboarding/extensions/sentimeter/
-          tag: extensions
 
 - title: Components
   url: /components/
   lvl2:
     - title: Standard
       url: /components/standard/
-      tag: standard
       lvl3:
         - title: Masthead
           url: /components/standard/masthead/
-          tag: standard
         - title: Footer
           url: /components/standard/footer/
-          tag: standard
         - title: Iconography
           url: /components/standard/iconography/
-          tag: standard
 
     - title: Structural
       url: /components/structural/
-      tag: structural
       lvl3:
         - title: Section
           url: /components/structural/section/
-          tag: structural
         - title: Container
           url: /components/structural/container/
-          tag: structural
         - title: Grid
           url: /components/structural/grid/
-          tag: structural
 
     - title: Interactive
       url: /components/interactive/
-      tag: interactive
       lvl3:
         - title: Accordion
           url: /components/interactive/accordion/
-          tag: interactive
         - title: Button
           url: /components/interactive/button/
-          tag: interactive
         - title: Card
           url: /components/interactive/card/
-          tag: interactive
         - title: Dropdown Menu
           url: /components/interactive/dropdown/
-          tag: interactive
         - title: Tab
           url: /components/interactive/tab/
-          tag: interactive
 
 - title: Templates
   url: /templates/
   lvl2:
     - title: Information
       url: /templates/information/
-      tag: information
       lvl3:
         - title: Jekyll
           url: /templates/information/jekyll/
-          tag: information
         - title: WordPress
           url: /templates/information/wordpress/
-          tag: information
 
 - title: Community
   url: https://isomer-govtech.zendesk.com/
