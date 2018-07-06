@@ -39,7 +39,12 @@ $menu-label-color: $text-light !default
       ul
         border-left: $menu-list-border-left
         //margin: 0.75em
-        padding-left: 0.75em
+        li
+          a
+            padding-left: 0.75em
+            border-left: 5px solid #fff
+            &.is-active
+              border-left: 5px solid $menu-item-active-color
 
   &-menu-label
     color: $menu-label-color
