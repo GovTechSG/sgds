@@ -7,10 +7,9 @@ category: Components/Structural
 breadcrumb: Components
 ---
 
-<div class="row padding--top padding--bottom">
+<div class="row padding--top padding--bottom--lg">
     <div class="col">
-        <h5 class="has-text-secondary padding--bottom--lg ">Grids divide horizontal space into indivisible units called "columns". All columns in a grid must specify their width as proportion of the total available row width. All grid systems choose an arbitrary column count to allow per row and Isomer uses 12 columns.</h5>
-        <h5 class="margin--bottom--lg"><b>Basic Grid Layout</b></h5>
+        <h4 class="has-text-weight-normal has-text-secondary padding--bottom--lg"><b>Grid</b> divide horizontal space into indivisible units called "columns". All columns in a grid must specify their width as proportion of the total available row width. All grid systems choose an arbitrary column count to allow per row and Isomer uses 12 columns</h4>
         <div class="sgds-example is-marginless">
             <section class="sgds-section">
                 <div class="sgds-container">
@@ -28,8 +27,7 @@ breadcrumb: Components
                 </div>
             </section>
         </div>
-        <h5 class="margin--bottom--lg"><b>Different Sized Grid Layout</b></h5>
-        <p>Grid can be divided into 12 columns with size classes for each part from <code>.is-2</code> to <code>.is-12</code>.</p>
+        <p class="margin--top">Grid can be divided into 12 columns with size classes for each part from <code>.is-2</code> to <code>.is-12</code>.</p>
         <div class="sgds-example is-marginless">
             <div class="sgds-container">
                 <div class="row has-text-centered">
@@ -124,8 +122,7 @@ breadcrumb: Components
                 </div>
             </div>
         </div>
-        <h5 class="margin--bottom--lg"><b>Offset Grid Layout</b></h5>
-        <p>Use empty column to create empty horizontal space from the left using <code>.is-offset-x</code>.</p>
+        <p class="margin--top">Use empty column to create empty horizontal space from the left using <code>.is-offset-x</code>.</p>
         <div class="sgds-example is-marginless">
             <div class="sgds-container">
                 <div class="row">
@@ -145,8 +142,7 @@ breadcrumb: Components
                 </div>
             </div>
         </div>
-        <h5 class="margin--bottom--lg"><b>Nested Grid Layout</b></h5>
-        <p>You can <b>nest</b> columns to have more flexibility in your design.</p>
+        <p class="margin--top">You can <b>nest</b> columns to have more flexibility in your design.</p>
         <div class="sgds-example is-marginless">
             <div class="sgds-container">
                 <div class="row">
@@ -181,9 +177,9 @@ breadcrumb: Components
 
 <hr>
 
-<div class="row padding--top--lg padding--bottom--lg">
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
     <div class="col">
-        <h2>Usage</h2>
+        <h3 class="has-text-weight-semibold margin--bottom">Usage</h3>
         <p>Building a grid layout is simple:</p>
         <ul>
             <li>Add a <code>row</code> element within a container</li>
@@ -209,15 +205,41 @@ breadcrumb: Components
 
 <hr>
 
-<div class="row padding--top--lg">
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
     <div class="col">
-        <h2 class="padding--bottom--lg">Feedback</h2>
+        <h3 class="has-text-weight-semibold margin--bottom">Style</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Property</th>
+                <th>Values</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>.row</td>
+                <td>margin: -0.75rem<br>padding: 1.5rem<br>display: flex</td>
+            </tr>
+            <tr>
+                <td>.col</td>
+                <td>flex-basis: 0<br>flex-grow: 1<br>flex-shrink: 1<br>padding: 0rem<br>display: block</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Feedback</h3>
         <a href="" class="sgds-sec-button">
-            <span>Report an issue</span>
+            <span>Community discussion</span>
             <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
         </a>
         <a href="" class="sgds-sec-button">
-            <span>Email the team</span>
+            <span>Report an issue</span>
             <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
         </a>
     </div>

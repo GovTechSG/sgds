@@ -30,11 +30,9 @@
                                 <div class="row padding">
                                     {%- for lvl2item in lvl1item.lvl2 -%}
                                     <div class="col">
-                                        <div class="title is-6 is-mega-menu-title bg-lighter-grey">
-                                            <small><b>{{ lvl2item.title }}</b></small>
-                                        </div>
+                                        <small class="has-text-primary is-mega-menu-title is-uppercase has-text-weight-bold">{{ lvl2item.title }}</small>
                                         {%- for lvl3item in lvl2item.lvl3 -%}
-                                        <a class="navbar-item has-text-weight-light"
+                                        <a class="navbar-item has-text-weight-normal"
                                            href="{{ site.baseurl }}{{ lvl3item.url }}">
                                             <p>{{ lvl3item.title }}</p>
                                         </a>
@@ -46,7 +44,7 @@
                         </div>
                     </div>
                     {%- else -%}
-                    <li class="navbar-item">
+                    <li class="navbar-item is-uppercase">
                         <a href="{{ site.baseurl }}{{ lvl1item.url }} ">{{ lvl1item.title }}</a>
 
                     </li>
@@ -61,12 +59,11 @@
                     -->
                     <div class="navbar-item">
                         {% if page.layout != 'search' %}
-                        <a class="sgds-button is-text is-large" style="text-decoration: none" id="search-activate">
+                        <a class="sgds-button is-text is-large" id="search-activate">
                             <span class="sgds-icon sgds-icon-search"></span>
                         </a>
                         {% else %}
-                        <a class="sgds-button is-text is-large" style="text-decoration: none; pointer-events: none;"
-                           id="search-activate" disabled></a>
+                        <a class="sgds-button is-text is-large" id="search-activate" disabled></a>
                         {% endif %}
                     </div>
                 </div>

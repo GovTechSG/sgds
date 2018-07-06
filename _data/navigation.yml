@@ -62,9 +62,6 @@
       url: /components/structural/
       tag: structural
       lvl3:
-        - title: Layout
-          url: /components/structural/layout/
-          tag: structural
         - title: Section
           url: /components/structural/section/
           tag: structural
@@ -88,7 +85,7 @@
         - title: Card
           url: /components/interactive/card/
           tag: interactive
-        - title: Dropdown
+        - title: Dropdown Menu
           url: /components/interactive/dropdown/
           tag: interactive
         - title: Tab
@@ -108,29 +105,5 @@
           url: /templates/information/wordpress/
           tag: information
 
-- title: Support
-  lvl2:
-    - title: Community
-      url: /support/community/
-      tag: community
-      lvl3:
-        - title: Discussion
-          url: /support/community/discussion/
-          tag: community
-        - title: Patch Notes
-          url: /support/community/patch-notes/
-          tag: community
-
-    - title: Suggestion
-      url: /support/community/
-      tag: suggestion
-      lvl3:
-        - title: Propose a Component
-          url: /support/community/propose-component/
-          tag: suggestion
-        - title: Propose a Template
-          url: /support/community/propose-template/
-          tag: suggestion
-        - title: Propose an Icon
-          url: /support/community/propose-icon/
-          tag: suggestion
+- title: Community
+  url: https://isomer-govtech.zendesk.com/

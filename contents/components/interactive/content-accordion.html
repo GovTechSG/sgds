@@ -6,168 +6,112 @@ permalink: /components/interactive/accordion/
 category: Components/Interactive
 breadcrumb: Components
 ---
-<div class="row">
-    <div class="col">
-        <div class="content">
-            <h5><b>Description</b></h5>
-            <p>Accordion is a great way to show lenghty content in categories.</p>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <!--<div class="col is-large sgds-accordion-header padding has-icons-right field has-addons is-marginless">-->
-        <!--<div class="col is-expanded is-fullwidth is-paddingless">-->
-        <!--<h4 class="has-text-grey-dark is-marginless"><b>descsdcsdc-->
-        <!--</b></h4>-->
-        <!--</div>-->
-        <!--<span class="sgds-icon sgds-icon-chevron-down is-size-5 sgds-accordion-button"></span>-->
-        <!--</div>-->
-        <!--&lt;!&ndash; Accordion body &ndash;&gt;-->
-        <!--<div id="accordion-body-0" class="col padding sgds-accordion-body">-->
-        <!--yest-->
-        <!--<br />-->
-        <!--</div>-->
-        <!--<div class="col is-large sgds-accordion-header padding has-icons-right field has-addons is-marginless">-->
-        <!--<div class="col is-expanded is-fullwidth is-paddingless">-->
-        <!--<h4 class="has-text-grey-dark is-marginless"><b>descsdcsdc-->
-        <!--</b></h4>-->
-        <!--</div>-->
-        <!--<span class="sgds-icon sgds-icon-chevron-down is-size-5 sgds-accordion-button"></span>-->
-        <!--</div>-->
-        <!--&lt;!&ndash; Accordion body &ndash;&gt;-->
-        <!--<div id="accordion-body-1" class="col padding sgds-accordion-body">-->
-        <!--yest-->
-        <!--<br />-->
-        <!--</div>-->
 
+<div class="row padding--top padding--bottom--lg">
+    <div class="col">
+        <h4 class="has-text-weight-normal has-text-secondary padding--bottom--lg"><b>Accordion</b> is a graphical control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "stretched" to reveal the content associated with that item</h4>
         <div class="sgds-accordion-container">
             <div class="sgds-accordion-set">
-                <a class="sgds-accordion-header active">
-                    Hey
-                    <i class="sgds-icon sgds-icon-chevron-up"></i>
+                <a class="sgds-accordion-header">
+                    <h5 class="is-marginless">accordion bar 1</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
                 </a>
-                <div class="sgds-accordion-body is-open">
-                    <div class="row">
-                        <div class="col">
-                            <img src="https://placehold.it/1000x300" alt="">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna.</p>
-                        </div>
-                        <div class="col">
-                            <img src="https://placehold.it/1000x300" alt="">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna.</p>
-                        </div>
-                        <div class="col">
-                            <img src="https://placehold.it/1000x300" alt="">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna.</p>
-                        </div>
-                    </div>
-
+                <div class="sgds-accordion-body">
+                    <p>content 1</p>
                 </div>
             </div>
             <div class="sgds-accordion-set">
                 <a class="sgds-accordion-header">
-                    Phasellus
-                    <i class="sgds-icon sgds-icon-chevron-down"></i>
+                    <h5 class="is-marginless">accordion bar 2</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
                 </a>
                 <div class="sgds-accordion-body">
-                    <p> Aliquam cursus vitae nulla non rhoncus. Nunc condimentum erat nec dictum tempus. Suspendisse
-                        aliquam erat hendrerit vehicula vestibulum.</p>
-                </div>
-            </div>
-            <div class="sgds-accordion-set">
-                <a class="sgds-accordion-header">
-                    Praesent
-                    <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>Pellentesque aliquam ligula libero, vitae imperdiet diam porta vitae. sed do eiusmod tempor
-                        incididunt ut labore et dolore magna.</p>
-                </div>
-            </div>
-            <div class="sgds-accordion-set">
-                <a class="sgds-accordion-header">
-                    Curabitur
-                    <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p> Donec tincidunt consectetur orci at dignissim. Proin auctor aliquam justo, vitae luctus odio
-                        pretium scelerisque. </p>
+                    <p>content 2</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<hr>
-<div class="row">
-    <div class="col">
-        <div class="content">
-            <h5><b>How to Use</b></h5>
-            <p>Simply copy and paste this code snippet to any part of your project.</p>
 
-        </div>
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Usage</h3>
+        <p>Use this code snippet to any part of your project.</p>
 {%- highlight html -%}
 <div class="sgds-accordion-container">
     <div class="sgds-accordion-set">
-        <a class="sgds-accordion-header active">
-            Hey
-            <i class="sgds-icon sgds-icon-chevron-down"></i>
+        <a class="sgds-accordion-header">
+            <h5 class="is-marginless">Title 1</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
         </a>
-        <div class="sgds-accordion-body is-open">
-            <div class="row">
-                <div class="col">
-                    <img src="https://placehold.it/1000x300" alt="">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                        ut labore et dolore magna.</p>
-                </div>
-                <div class="col">
-                    <img src="https://placehold.it/1000x300" alt="">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                        ut labore et dolore magna.</p>
-                </div>
-                <div class="col">
-                    <img src="https://placehold.it/1000x300" alt="">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                        ut labore et dolore magna.</p>
-                </div>
-            </div>
-
+        <div class="sgds-accordion-body">
+            your content
         </div>
     </div>
     <div class="sgds-accordion-set">
         <a class="sgds-accordion-header">
-            Phasellus
-            <i class="sgds-icon sgds-icon-chevron-down"></i>
+            <h5 class="is-marginless">Title 2</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
         </a>
         <div class="sgds-accordion-body">
-            <p> Aliquam cursus vitae nulla non rhoncus. Nunc condimentum erat nec dictum tempus. Suspendisse
-                aliquam erat hendrerit vehicula vestibulum.</p>
-        </div>
-    </div>
-    <div class="sgds-accordion-set">
-        <a class="sgds-accordion-header">
-            Praesent
-            <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-            <p>Pellentesque aliquam ligula libero, vitae imperdiet diam porta vitae. sed do eiusmod tempor
-                incididunt ut labore et dolore magna.</p>
-        </div>
-    </div>
-    <div class="sgds-accordion-set">
-        <a class="sgds-accordion-header">
-            Curabitur
-            <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-            <p> Donec tincidunt consectetur orci at dignissim. Proin auctor aliquam justo, vitae luctus odio
-                pretium scelerisque. </p>
+            your content
         </div>
     </div>
 </div>
 {%- endhighlight -%}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Guidelines</h3>
+        <p>Accordion should:</p>
+        <ul>
+            <li class="margin--bottom">Use only when there is enough content to condense</li>
+            <li class="margin--bottom">Avoid nested accordions as it increases the cognitive load for users</li>
+            <li class="margin--bottom">Have multiple accordions open at the same time</li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Style</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Property</th>
+                <th>Values</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>sgds-accordion-header</td>
+                <td>display: flex<br>justify-content: space-between<br>padding: 1rem</td>
+            </tr>
+            <tr>
+                <td>sgds-accordion-body</td>
+                <td>padding: 1rem<br>display: none</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Feedback</h3>
+        <a href="" class="sgds-sec-button">
+            <span>Community discussion</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="" class="sgds-sec-button">
+            <span>Report an issue</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
     </div>
 </div>

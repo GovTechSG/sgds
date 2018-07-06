@@ -7,129 +7,104 @@ category: Components/Interactive
 breadcrumb: Components
 ---
 
-<div class="row">
+<div class="row padding--top padding--bottom--lg">
     <div class="col">
-        <div class="content">
-            <h5><b>Description</b></h5>
-            <p>Simple responsive horizontal navigation tabs, with different styles.</p>
-        </div>
+        <h4 class="has-text-weight-normal has-text-secondary padding--bottom--lg"><b>Tab</b> is a navigation element used in web design that allow users to easily access different areas of a site or different parts of an individual page. They're sort of like tabbed dividers in a filing cabinet – by clicking a tab, users can easily locate a page containing related content</h4>
         <div class="sgds-tabs" data-sgds="tabs">
-            <ul>
-                <li class="is-active"><a data-tab="#tab1">Articles</a></li>
-                <li><a data-tab="#tab2">Videos</a></li>
-                <li><a data-tab="#tab3">Documents</a></li>
+            <ul class="is-marginless">
+                <li class="is-active"><a data-tab="#tab1">Tab 1</a></li>
+                <li><a data-tab="#tab2">Tab 2</a></li>
+                <li><a data-tab="#tab3">Tab 3</a></li>
             </ul>
         </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <section class="sgds-section is-small" id="tab1">
-            <div class="row">
-                <div class="col">
-                    <img src="https://placehold.it/1000x400" alt="">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
-                <div class="col">
-                    <img src="https://placehold.it/1000x400" alt="">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
-                <div class="col">
-                    <img src="https://placehold.it/1000x400" alt="">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
+        <div class="row" id="tab1">
+            <div class="col">
+                <p>Tab content 1</p>
             </div>
-
-        </section>
-        <section class="sgds-section is-small" id="tab2">
-            <div class="row">
-                <div class="col">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
-                <div class="col">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
-                <div class="col">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
-
+        </div>
+        <div class="row" id="tab2">
+            <div class="col">
+                <p>Tab content 2</p>
             </div>
-        </section>
-        <section class="sgds-section is-small" id="tab3">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci aliquam animi commodi debitis
-                eligendi labore mollitia nulla odio ut. At dolor fugit id, laborum nobis ratione rerum? Aliquid
-                aspernatur debitis deleniti eligendi fugit, harum hic illo minus neque officia omnis perferendis quae
-                quidem ratione sed sunt unde, voluptas voluptate?</p>
-        </section>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col">
-        <div class="content">
-            <h5><b>How to Use</b></h5>
-            <p>Include the tab element using this code snippets</p>
+        </div>
+        <div class="row" id="tab3">
+            <div class="col">
+                <p>Tab content 3</p>
+            </div>
         </div>
 {%- highlight html -%}
 <div class="sgds-tabs" data-sgds="tabs">
-    <ul>
-        <li class="is-active"><a data-tab="#tab1">Articles</a></li>
-        <li><a data-tab="#tab2">Videos</a></li>
-        <li><a data-tab="#tab3">Documents</a></li>
+    <ul class="is-marginless">
+        <li class="is-active"><a data-tab="#tab1">Tab 1</a></li>
+        <li><a data-tab="#tab2">Tab 2</a></li>
+        <li><a data-tab="#tab3">Tab 3</a></li>
+    </ul>
+</div>
+{%- endhighlight -%}
+        <p class="margin--top">You can have border by using the <code>is-boxed</code> modifier.</p>
+        <div class="sgds-tabs is-boxed">
+            <ul class="is-marginless">
+                <li class="is-active"><a><p>Tab 1</p></a></li>
+                <li><a><p>Tab 2</p></a></li>
+                <li><a><p>Tab 3</p></a></li>
+            </ul>
+        </div>
+{%- highlight html -%}
+<div class="sgds-tabs is-boxed">
+    <ul class="is-marginless">
+        <li class="is-active"><a><p>Tab 1</p></a></li>
+        <li><a><p>Tab 2</p></a></li>
+        <li><a><p>Tab 3</p></a></li>
+    </ul>
+</div>
+{%- endhighlight -%}
+        <p class="margin--top">You can have toggle buttons by using the <code>is-toggle</code> modifier.</p>
+        <div class="sgds-tabs is-toggle is-fullwidth">
+            <ul class="is-marginless">
+                <li class="is-active"><a><span>Tab 1</span></a></li>
+                <li><a><span>Tab 2</span></a></li>
+                <li><a><span>Tab 3</span></a></li>
+            </ul>
+        </div>
+{%- highlight html -%}
+<div class="sgds-tabs is-toggle is-fullwidth">
+    <ul class="is-marginless">
+        <li class="is-active"><a><span>Tab 1</span></a></li>
+        <li><a><span>Tab 2</span></a></li>
+        <li><a><span>Tab 3</span></a></li>
     </ul>
 </div>
 {%- endhighlight -%}
     </div>
 </div>
-<div class="row">
-    <div class="col">
-        <div class="content">
-            <p>Structure your contents inside any container</p>
-        </div>
-{%- highlight html -%}
-<div class="row">
-    <div class="col">
-        <section class="sgds-section is-small" id="tab1">
-            <div class="row">
-                <div class="col">
-                    <img src="https://placehold.it/1000x400" alt="">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
-                <div class="col">
-                    <img src="https://placehold.it/1000x400" alt="">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
-                <div class="col">
-                    <img src="https://placehold.it/1000x400" alt="">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
-            </div>
 
-        </section>
-        <section class="sgds-section is-small" id="tab2">
-            <div class="row">
-                <div class="col">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
-                <div class="col">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
-                <div class="col">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, officiis.</p>
-                </div>
+<hr>
 
-            </div>
-        </section>
-        <section class="sgds-section is-small" id="tab3">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci aliquam animi commodi debitis
-                eligendi labore mollitia nulla odio ut. At dolor fugit id, laborum nobis ratione rerum? Aliquid
-                aspernatur debitis deleniti eligendi fugit, harum hic illo minus neque officia omnis perferendis quae
-                quidem ratione sed sunt unde, voluptas voluptate?</p>
-        </section>
-    </div>
-</div>
-{%- endhighlight -%}
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Guidelines</h3>
+        <p>Tab should:</p>
+        <ul>
+            <li class="margin--bottom">Be clearly labeled to help differentiate the sections beneath them</li>
+            <li class="margin--bottom">Have short labels, try to keep to single word</li>
+            <li class="margin--bottom">Have only one active at a time</li>
+            <li class="margin--bottom">Not be used for primary navigation</li>
+        </ul>
     </div>
 </div>
 
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Feedback</h3>
+        <a href="" class="sgds-sec-button">
+            <span>Community discussion</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="" class="sgds-sec-button">
+            <span>Report an issue</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
