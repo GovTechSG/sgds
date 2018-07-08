@@ -3,88 +3,68 @@ title: For Developers
 layout: layout-sidenav
 permalink: /onboarding/get-started/for-developers/
 category: Onboarding/GetStarted
-breadcrumb: Onboarding
+breadcrumb: Get Started
 ---
 
 <div class="row padding--top padding--bottom--lg">
     <div class="col">
-        <h5 class="has-text-secondary padding--bottom--lg">There are different ways to use SGDS within your project. Which one you choose depends on the needs of your project and how you are most comfortable working.</h5>
-        <a href="#npm" class="sgds-sec-button">
-            <span>Install with node package</span>
-            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
-        </a>
-        <a href="#manual" class="sgds-sec-button">
-            <span>Install manually</span>
-            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
-        </a>
+        <h4 class="has-text-secondary padding--bottom--lg"><b>Isomer</b> provides developers a collection of reusable HTML and CSS to build websites. Adopting the library enables developers to use consistent markup, styles, and behavior in prototype and production work</h4>
     </div>
 </div>
 
 <hr>
 
-<div class="row padding--top--lg padding--bottom--lg" id="npm">
+<div class="row padding--top--lg padding--bottom--lg has-text-left" id="npm">
     <div class="col">
-        <h2>Install with node package</h2>
-        <h5 class="has-text-secondary margin--top--lg padding--bottom--lg">npm is a package manager for Node based projects. SGDS maintains a package for you to utilize the compiled files on your project.</h5>
-        <ol>
-            <li>Install Node.js <a href="https://nodejs.org/en/download/" target="_blank">here</a>.</li>
-            <li>To see if npm is installed, open your preferred command line tool and type in <code>npm
-                -v</code><br>
-                This should print the npm version number that look something like this <code>3.10.10</code>.
-            </li>
-            <li>To install the sgds-govtech package, navigate to your site folder using your terminal<br>and
-                run this command <code>npm install sgds-govtech --save</code>.</li>
-            <li class="padding--bottom--lg">
-                This will generate <code>node_mouldes/sgds-govtech</code> in your site folder.<br>
-                {%- highlight html -%} site/node_modules/sgds-govtech/
+        <h3 class="has-text-weight-semibold margin--bottom">Install using npm</h3>
+        <p>npm is a package manager for Node based projects. SGDS maintains a package for you to utilize the compiled files on your project.</p>
+        <ul>
+            <li class="margin--bottom">Install Node.js <a href="https://nodejs.org/en/download/" target="_blank">here</a></li>
+            <li class="margin--bottom">To see if npm is installed, open your preferred command line tool and type in <code>npm -v</code>. This should print the npm version number that look something like this <code>3.10.10</code></li>
+            <li class="margin--bottom">To install the sgds-govtech package, navigate to your site folder using your terminal<br>and run this command <code>npm install sgds-govtech --save</code></li>
+            <li class="margin--bottom">This will generate <code>node_mouldes/sgds-govtech</code> in your site folder
+{%- highlight html -%}
+site/node_modules/sgds-govtech/
 ├── _sass/
 ├── css/
 ├── fonts/
 ├── js/
 {%- endhighlight -%}
             </li>
-            <li>
-                The main SASS(scss) source file is located here
-                <code>site/node_modules/sgds-govetech/main.scss</code>.
-            </li>
-            <li class="padding--bottom--lg">
-                Import the <code>main.scss</code> file into your own sass folder.<br>
-                Below is an example of how you might setup your main Sass file:<br>
-                {%- highlight sass -%}
-                @import site/node_modules/sgds-govtech/main
+            <li class="margin--bottom">The main SASS(scss) source file is located here <code>site/node_modules/sgds-govetech/main.scss</code></li>
+            <li class="margin--bottom">Import the <code>main.scss</code> file into your own sass folder. Below is an example of how you might setup your main Sass file:
+{%- highlight sass -%}
+@import site/node_modules/sgds-govtech/main
 //your own css code..
-                {%- endhighlight -%}
+{%- endhighlight -%}
             </li>
-            <li>You can find more information <a href="https://sass-lang.com/install">here</a> on how to compile
-                SASS into CSS.
-            </li>
-        </ol>
+            <li class="margin--bottom">You can find more information <a href="https://sass-lang.com/install">here</a> on how to compile SASS into CSS</li>
+        </ul>
     </div>
 </div>
 
 <hr>
 
-<div class="row padding--top--lg" id="manual">
+<div class="row padding--top--lg padding--bottom--lg has-text-left" id="manual">
     <div class="col">
-        <h2>Install manually</h2>
-        <h5 class="has-text-secondary margin--top--lg padding--bottom--lg">We provide both minified CSS and the JavaScript files that you can use in a production environment or reduce the file size of your downloaded assets.</h5>
-        <ol>
-            <li>Download SGDS package <a href="/assets/downloads/sgds-govtech-v1.1.zip" target="_blank">here</a>.</li>
-            <li>The zip package contains the <code>sgds-govtech.css</code> & <code>sgds-govtech.js</code>files.</li>
-            <li>Extract and copy the files and folders into a relevant place in your project’s code base.</li>
-            <li>Reference the CSS and JavaScript files in each HTML page or templates in your project.</li>
-            <li class="padding--bottom--lg">
-                For css, place the <code>link</code> tag between the html <code>head</code> tag.
-                {%- highlight html -%}
+        <h3 class="has-text-weight-semibold margin--bottom">Install manually</h3>
+        <p>We provide both minified CSS and the JavaScript files that you can use in a production environment or reduce the file size of your downloaded assets.</p>
+        <ul>
+            <li class="margin--bottom">Download SGDS package <a href="/assets/downloads/sgds-govtech-v1.1.zip" target="_blank">here</a></li>
+            <li class="margin--bottom">The zip package contains the <code>sgds-govtech.css</code> & <code>sgds-govtech.js</code>files</li>
+            <li class="margin--bottom">Extract and copy the files and folders into a relevant place in your project’s code base</li>
+            <li class="margin--bottom">Reference the CSS and JavaScript files in each HTML page or templates in your project</li>
+            <li class="margin--bottom">The main SASS(scss) source file is located here <code>site/node_modules/sgds-govetech/main.scss</code></li>
+            <li class="margin--bottom">For css, place the <code>link</code> tag between the html <code>head</code> tag
+{%- highlight html -%}
 <link rel="stylesheet" href="sitePath/css/sgds-govtech.css">
-                {%- endhighlight -%}
+{%- endhighlight -%}
             </li>
-            <li class="padding--bottom--lg">
-                For js, place the <code>script</code> tag between the html <code>head</code> tag.
-                {%- highlight html -%}
+            <li class="margin--bottom">For js, place the <code>script</code> tag between the html <code>head</code> tag
+{%- highlight html -%}
 <script src="sitePath/js/sgds-govtech.js"></script>
-                {%- endhighlight -%}
+{%- endhighlight -%}
             </li>
-        </ol>
+        </ul>
     </div>
 </div>

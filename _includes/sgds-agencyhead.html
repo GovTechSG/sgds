@@ -22,19 +22,21 @@
                     {%- endif -%}
                     {%- if lvl1item.lvl2 -%}
                     <div class="navbar-item has-dropdown is-hoverable is-mega">
-                        <a class="navbar-link is-uppercase" href="{{ site.baseurl }}{{ lvl1item.url }}">
+                        <a class="navbar-link is-uppercase" href="">
                             {{ lvl1item.title }}
                         </a>
-                        <div class="navbar-dropdown " data-style="width: 18rem;">
+                        <div class="navbar-dropdown">
                             <div class="sgds-container is-fluid">
-                                <div class="row padding">
+                                <div class="row">
                                     {%- for lvl2item in lvl1item.lvl2 -%}
                                     <div class="col">
-                                        <small class="has-text-primary is-mega-menu-title is-uppercase has-text-weight-bold">{{ lvl2item.title }}</small>
+                                        <a class="navbar-item has-text-primary is-uppercase padding--sm" href="{{ site.baseurl }}{{ lvl2item.url }}">
+                                            <h6>{{ lvl2item.title }}</h6>
+                                        </a>
                                         {%- for lvl3item in lvl2item.lvl3 -%}
-                                        <a class="navbar-item has-text-weight-normal"
+                                        <a class="navbar-item padding--sm"
                                            href="{{ site.baseurl }}{{ lvl3item.url }}">
-                                            <p>{{ lvl3item.title }}</p>
+                                            <h6>{{ lvl3item.title }}</h6>
                                         </a>
                                         {%- endfor -%}
                                     </div>
@@ -44,9 +46,8 @@
                         </div>
                     </div>
                     {%- else -%}
-                    <li class="navbar-item is-uppercase">
+                    <li class="navbar-item is-uppercase margin--left--lg">
                         <a href="{{ site.baseurl }}{{ lvl1item.url }} ">{{ lvl1item.title }}</a>
-
                     </li>
                     {%- endif -%}
                     {%- endfor -%}

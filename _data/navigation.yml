@@ -4,8 +4,8 @@
     - title: Get Started
       url: /onboarding/get-started/
       lvl3:
-        - title: Overview
-          url: /onboarding/get-started/overview/
+        - title: About Isomer
+          url: /onboarding/get-started/about-isomer/
         - title: For Developers
           url: /onboarding/get-started/for-developers/
         - title: For Designers
@@ -16,10 +16,10 @@
     - title: Guidelines
       url: /onboarding/guidelines/
       lvl3:
-        - title: Digital Service Standard
-          url: /onboarding/guidelines/content-digital-service-standard/
-        - title: Usability Checklist
-          url: /onboarding/guidelines/content-usability-checklist/
+        - title: Digital Service Standards
+          url: /onboarding/guidelines/digital-service-standards/
+        - title: Usability Checklists
+          url: /onboarding/guidelines/usability-checklists/
 
     - title: Extensions
       url: /onboarding/extensions/
@@ -37,12 +37,12 @@
     - title: Standard
       url: /components/standard/
       lvl3:
-        - title: Iconography
-          url: /components/standard/iconography/
-        - title: Footer
-          url: /components/standard/footer/
         - title: Masthead
           url: /components/standard/masthead/
+        - title: Footer
+          url: /components/standard/footer/
+        - title: Iconography
+          url: /components/standard/iconography/
 
     - title: Structure
       url: /components/structure/

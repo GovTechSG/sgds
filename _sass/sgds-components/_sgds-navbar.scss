@@ -67,7 +67,7 @@ html.has-navbar-fixed-top-desktop{
       }
 
       & + .has-dropdown {
-        margin: 0 0.5rem;
+        //margin: 0 0.5rem;
       }
     }
   }
@@ -111,7 +111,7 @@ html.has-navbar-fixed-top-desktop{
     font-size: 17px !important;
     //letter-spacing: 0.2px !important;
     font-weight: 600;
-    margin: 0 1.5;
+    margin: 0 1rem;
     padding:0;
     //text-transform: uppercase;
 
@@ -212,7 +212,7 @@ html.has-navbar-fixed-top-desktop{
   &-item{
     font-size:1rem;
     font-weight: bold;
-    margin: 0 1.5rem;
+    margin: 0 1rem;
     padding: 0;
 
     a{
