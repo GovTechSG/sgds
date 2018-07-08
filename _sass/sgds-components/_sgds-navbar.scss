@@ -45,6 +45,9 @@ html.has-navbar-fixed-top-desktop{
   @include touch(){
     padding:0;
   }
+  hr{
+    background-color: #ddd;
+  }
   &-start{
     margin:0 auto;
     @include touch(){
@@ -53,7 +56,7 @@ html.has-navbar-fixed-top-desktop{
     .navbar-item{
         & + .navbar-item{
           @include touch(){
-            margin-top:1.2rem;
+            //margin-top:1.2rem;
           }
 
         }
@@ -136,7 +139,7 @@ html.has-navbar-fixed-top-desktop{
 
     a{
       //color:$grey-dark;
-      color: $black;
+      color:$secondary;
     }
 
     span {
@@ -196,7 +199,7 @@ html.has-navbar-fixed-top-desktop{
     .navbar-item{
       & + .navbar-item{
         @include touch(){
-          margin-top:1.2rem;
+          //margin-top:1.2rem;
         }
       }
       a{
@@ -261,6 +264,6 @@ html.has-navbar-fixed-top-desktop{
   .is-mega-menu-title {
     margin-bottom: 0;
     padding: .375rem 1.5rem;
-    color: $secondary;
+    //color: $secondary;
   }
 }

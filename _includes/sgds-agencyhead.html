@@ -3,7 +3,7 @@
     <nav class="navbar is-transparent">
         <div class="sgds-container">
             <div class="navbar-brand">
-                <a class="navbar-item margin--left" href="/">
+                <a class="navbar-item padding--left padding--right" href="/">
                     <img src="/assets/img/logo_sgds.png" alt="" width="198" height="61">
                 </a>
                 <div class="navbar-burger burger" data-target="navbarMain">
@@ -16,6 +16,7 @@
                 <div class="navbar-start">
                     {%- assign links = site.data.navigation -%}
                     {%- for lvl1item in links -%}
+                    <hr class="margin">
                     {%- assign class = nil -%}
                     {%- if page.url contains lvl1item.url -%}
                     {%- assign class = 'active' -%}
