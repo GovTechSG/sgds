@@ -73,25 +73,25 @@
           url: /components/action/dropdown/
 
 - title: Templates
-  url: /
+  url: /templates/
   lvl2:
     - title: Identity Website
-      url: /
+      url: /templates/
       lvl3:
         - title: Pattern 1
-          url: /
+          url: /templates/
 
     - title: Services Website
-      url: /
+      url: /templates/
       lvl3:
         - title: Pattern 1
-          url: /
+          url: /templates/
 
     - title: Events Website
-      url: /
+      url: /templates/
       lvl3:
         - title: Pattern 1
-          url: /
+          url: /templates/
 
 - title: Community
   url: https://isomer-govtech.zendesk.com/
