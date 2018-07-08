@@ -3,7 +3,7 @@
     <nav class="navbar is-transparent">
         <div class="sgds-container">
             <div class="navbar-brand">
-                <a class="navbar-item" href="/">
+                <a class="navbar-item margin--left" href="/">
                     <img src="/assets/img/logo_sgds.png" alt="" width="198" height="61">
                 </a>
                 <div class="navbar-burger burger" data-target="navbarMain">
@@ -27,7 +27,7 @@
                         </a>
                         <div class="navbar-dropdown">
                             <div class="sgds-container is-fluid">
-                                <div class="row">
+                                <div class="row padding--sm">
                                     {%- for lvl2item in lvl1item.lvl2 -%}
                                     <div class="col">
                                         <a class="navbar-item has-text-primary is-uppercase padding--sm" href="{{ site.baseurl }}{{ lvl2item.url }}">
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     {%- else -%}
-                    <li class="navbar-item is-uppercase margin--left--lg">
+                    <li class="navbar-item is-uppercase margin--left">
                         <a href="{{ site.baseurl }}{{ lvl1item.url }} ">{{ lvl1item.title }}</a>
                     </li>
                     {%- endif -%}
