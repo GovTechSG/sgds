@@ -31,6 +31,30 @@
         - title: Sentimeter
           url: /onboarding/extensions/sentimeter/
 
+- title: Content
+  url: /content/
+  lvl2:
+    - title: Voice and Tone
+      url: /voice-and-tone/
+      lvl3:
+        - title: Voice Guidelines
+          url: /voice-guidelines/
+
+    - title: Naming
+      url: /naming/
+      lvl3:
+        - title: General
+          url: /general/
+
+    - title: Grammer and Mechanics
+      url: /grammer-and-mechanics/
+      lvl3:
+        - title: Capitalization
+          url: /capitalization/
+        - title: Headings
+          url: /headings/
+
+
 - title: Components
   url: /components/
   lvl2:

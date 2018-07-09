@@ -2,8 +2,16 @@
   //padding: 0.1rem 0 0.3rem 0;
   background-color: $grey-lighter;
   color:$grey-dark;
-  height: 40px;
-
+  .row{
+    margin: 0;
+    height: 30px;
+  }
+  .col{
+    padding: 0;
+  }
+  .sgds-icon{
+    padding-top: 5px;
+  }
   a{
     color:$grey-dark;
     font-size:14px;

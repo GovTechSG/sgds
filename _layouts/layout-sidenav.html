@@ -17,35 +17,6 @@ layout: layout-default
 
 <section class="sgds-section">
     <div class="sgds-container">
-        <div class="row is-hidden-desktop">
-            <div class="col">
-                <div class="sgds-dropdown">
-                    <div class="sgds-dropdown-trigger">
-                        <a class="sgds-button is-large" aria-haspopup="true" aria-controls="dropdown-menu">
-                            <span>{{page.title}}</span>
-                            <span class="icon is-small">
-                                <i class="sgds-icon sgds-icon-angle-down" aria-hidden="true"></i>
-                            </span>
-                        </a>
-                    </div>
-                    <div class="sgds-dropdown-menu has-text-left" id="dropdown-menu" role="menu">
-                        <div class="sgds-dropdown-content">
-                            <a href="#" class="sgds-dropdown-item">
-                                {% for application-guideline in site.application-guidelines %}
-                                {% if page.url == application-guideline.permalink %}
-                                <a class="sgds-dropdown-item"
-                                   href="{{ site.baseurl }}{{application-guideline.permalink}}"><b>{{application-guideline.title}}</b></a>
-                                {% else %}
-                                <a class="sgds-dropdown-item"
-                                   href="{{ site.baseurl }}{{application-guideline.permalink}}">{{application-guideline.title}}</a>
-                                {% endif %}
-                                {% endfor %}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col is-2 has-side-nav is-hidden-touch">
                 <div class="sidenav">
