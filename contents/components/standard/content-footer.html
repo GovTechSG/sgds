@@ -4,12 +4,12 @@ subtitle: Subtitle
 layout: layout-sidenav
 permalink: /components/standard/footer/
 category: Components/Standard
-breadcrumb: Components
+breadcrumb: Standard
 ---
 
 <div class="row padding--top padding--bottom--lg">
     <div class="col">
-        <h5 class="has-text-secondary padding--bottom--lg">All '.gov.sg' digital services shall adopt the Official Footer Panel for every page in it.</h5>
+        <h4 class="has-text-weight-normal has-text-secondary padding--bottom--lg"><b>Footer</b> is a standard component that all '.gov.sg' websites must adopt for every page in them</h4>
         <footer class="sgds-footer top-section">
             <div class="sgds-container is-fluid">
                 <div class="row">
@@ -19,7 +19,7 @@ breadcrumb: Components
                 </div>
                 <div class="row">
                     <div class="col footer-col padding--top--sm padding--bottom--sm is-right-desktop-only">
-                        <ul>
+                        <ul class="is-marginless">
                             <li class="is-inline-block-desktop-only">
                                 <p><a href="{{site.baseurl}}/contact-us/">Contact Us</a></p>
                             </li>
@@ -43,15 +43,13 @@ breadcrumb: Components
                 </div>
                 <div class="row is-vcentered padding--top--sm">
                     <div class="col footer-col">
-                        <ul>
+                        <ul class="is-marginless">
                             <li><a href="{{site.baseurl}}/privacy/">Privacy Statement</a></li>
                             <li><a href="{{site.baseurl}}/terms-of-use/">Terms of Use</a></li>
                         </ul>
                     </div>
                     <div class="col footer-col has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                        <p class="is-hidden-touch"> © 2018 Singapore Government. Last Updated {{site.last_updated}}</p>
-                        <p class="is-hidden-desktop">© 2018 Singapore Government</p>
-                        <p class="is-hidden-desktop last-updated">Last Updated {{site.last_updated}}</b>
+                        <p>&copy; 2018 Government of Singapore</p>
                     </div>
                 </div>
             </div>
@@ -61,25 +59,78 @@ breadcrumb: Components
 
 <hr>
 
-<div class="row padding--top--lg padding--bottom--lg">
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
     <div class="col">
-        <h2>Usage</h2>
-        <p>Copy and paste this code snippet to the footer of your project.</p>
+        <h3 class="has-text-weight-semibold margin--bottom">Usage</h3>
+        <p>Use this code snippet to the footer of your project.</p>
         {% highlight html %}{% include sgds-footer.html %}{% endhighlight %}
     </div>
 </div>
 
 <hr>
 
-<div class="row padding--top--lg">
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
     <div class="col">
-        <h2 class="padding--bottom--lg">Feedback</h2>
+        <h3 class="has-text-weight-semibold margin--bottom">Guidelines</h3>
+        <p>Footer should:</p>
+        <ul>
+            <li class="margin--bottom">Be positioned at the bottom of every page in the digital service</li>
+            <li class="margin--bottom">Contain the 'Privacy Statement' and 'Terms of Use' on the left hand corner of the Footer Panel</li>
+            <li class="margin--bottom">Contain the 'Rate this Service' if there is a customer satisfaction poll</li>
+            <li class="margin--bottom">Contain the Copyright Statement in the format '&copy; [current year in YYYY] Government of Singapore' on the bottom right hand side of the Footer Panel</li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Style</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Property</th>
+                <th>Values</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Header font size</td>
+                <td>1.375rem</td>
+            </tr>
+            <tr>
+                <td>Header font color</td>
+                <td>#ffffff</td>
+            </tr>
+            <tr>
+                <td>Body font size</td>
+                <td>16px</td>
+            </tr>
+            <tr>
+                <td>Body font color</td>
+                <td>#b7b7b7</td>
+            </tr>
+            <tr>
+                <td>Background color</td>
+                <td>#323232</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Feedback</h3>
         <a href="" class="sgds-sec-button">
-            <span>Report an issue</span>
+            <span>Community discussion</span>
             <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
         </a>
         <a href="" class="sgds-sec-button">
-            <span>Email the team</span>
+            <span>Report an issue</span>
             <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
         </a>
     </div>

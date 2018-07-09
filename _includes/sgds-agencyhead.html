@@ -3,7 +3,7 @@
     <nav class="navbar is-transparent">
         <div class="sgds-container">
             <div class="navbar-brand">
-                <a class="navbar-item" href="/">
+                <a class="navbar-item padding--left padding--right" href="/">
                     <img src="/assets/img/logo_sgds.png" alt="" width="198" height="61">
                 </a>
                 <div class="navbar-burger burger" data-target="navbarMain">
@@ -16,27 +16,28 @@
                 <div class="navbar-start">
                     {%- assign links = site.data.navigation -%}
                     {%- for lvl1item in links -%}
+                    <hr class="margin">
                     {%- assign class = nil -%}
                     {%- if page.url contains lvl1item.url -%}
                     {%- assign class = 'active' -%}
                     {%- endif -%}
                     {%- if lvl1item.lvl2 -%}
                     <div class="navbar-item has-dropdown is-hoverable is-mega">
-                        <a class="navbar-link is-uppercase" href="{{ site.baseurl }}{{ lvl1item.url }}">
+                        <a class="navbar-link is-uppercase" href="">
                             {{ lvl1item.title }}
                         </a>
-                        <div class="navbar-dropdown " data-style="width: 18rem;">
+                        <div class="navbar-dropdown">
                             <div class="sgds-container is-fluid">
-                                <div class="row padding">
+                                <div class="row padding--sm">
                                     {%- for lvl2item in lvl1item.lvl2 -%}
                                     <div class="col">
-                                        <div class="title is-6 is-mega-menu-title bg-lighter-grey">
-                                            <small><b>{{ lvl2item.title }}</b></small>
-                                        </div>
+                                        <a class="navbar-item has-text-primary is-uppercase padding--sm" href="{{ site.baseurl }}{{ lvl2item.url }}">
+                                            <h6>{{ lvl2item.title }}</h6>
+                                        </a>
                                         {%- for lvl3item in lvl2item.lvl3 -%}
-                                        <a class="navbar-item has-text-weight-light"
+                                        <a class="navbar-item padding--sm"
                                            href="{{ site.baseurl }}{{ lvl3item.url }}">
-                                            <p>{{ lvl3item.title }}</p>
+                                            <h6>{{ lvl3item.title }}</h6>
                                         </a>
                                         {%- endfor -%}
                                     </div>
@@ -46,9 +47,8 @@
                         </div>
                     </div>
                     {%- else -%}
-                    <li class="navbar-item">
+                    <li class="navbar-item is-uppercase margin--left">
                         <a href="{{ site.baseurl }}{{ lvl1item.url }} ">{{ lvl1item.title }}</a>
-
                     </li>
                     {%- endif -%}
                     {%- endfor -%}
@@ -61,12 +61,11 @@
                     -->
                     <div class="navbar-item">
                         {% if page.layout != 'search' %}
-                        <a class="sgds-button is-text is-large" style="text-decoration: none" id="search-activate">
+                        <a class="sgds-button is-text is-large" id="search-activate">
                             <span class="sgds-icon sgds-icon-search"></span>
                         </a>
                         {% else %}
-                        <a class="sgds-button is-text is-large" style="text-decoration: none; pointer-events: none;"
-                           id="search-activate" disabled></a>
+                        <a class="sgds-button is-text is-large" id="search-activate" disabled></a>
                         {% endif %}
                     </div>
                 </div>

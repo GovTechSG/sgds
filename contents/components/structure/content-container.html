@@ -1,0 +1,97 @@
+---
+title: Container
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /components/structure/container/
+category: Components/Structure
+breadcrumb: Structure
+---
+
+<div class="row padding--top padding--bottom--lg">
+    <div class="col">
+        <h4 class="has-text-weight-normal has-text-secondary padding--bottom--lg"><b>Container</b> is an element designed to contain page elements to a reasonable maximum width based on the size of a user's screen. This is useful to couple with other UI elements like grid or menu to restrict their width to a reasonable size for display</h4>
+        <div class="sgds-example is-marginless">
+            <section class="sgds-section is-small">
+                <div class="sgds-container bg-light">
+                    <div class="sgds-notification is-primary is-position-relative">
+                        default container
+                    </div>
+                </div>
+            </section>
+        </div>
+        <p class="margin--top">If you do not want a maximum width but keep the 32px margin on both sides, add <code>is-fluid</code>.</p>
+        <div class="sgds-example is-marginless">
+            <section class="sgds-section is-small">
+                <div class="sgds-container is-fluid bg-light">
+                    <div class="sgds-notification is-primary is-position-relative">
+                        fluid container
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Usage</h3>
+        <p>The <code>.sgds-container</code> class can be used in any context, but mostly as a direct child of either:</p>
+        <ul>
+            <li>.navbar</li>
+            <li>.sgds-hero</li>
+            <li>.sgds-section</li>
+            <li>.sgds-footer</li>
+        </ul>
+{%- highlight html -%}
+<section class="sgds-section">
+    <div class="sgds-container">
+        default container
+    </div>
+</section>
+{%- endhighlight -%}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Style</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Property</th>
+                <th>Values</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>sgds-container</td>
+                <td>padding: 2.5rem</td>
+            </tr>
+            <tr>
+                <td>.is-fluid</td>
+                <td>margin-left: 32px<br>margin-right: 32px</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Feedback</h3>
+        <a href="" class="sgds-sec-button">
+            <span>Community discussion</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="" class="sgds-sec-button">
+            <span>Report an issue</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>

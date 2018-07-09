@@ -1,0 +1,176 @@
+---
+title: Dropdown Menu
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /components/action/dropdown/
+category: Components/Action
+breadcrumb: Action
+---
+
+<div class="row padding--top padding--bottom--lg">
+    <div class="col">
+        <h4 class="has-text-weight-normal has-text-secondary padding--bottom--lg"><b>Dropdown Menu</b> is a list of items that appear whenever a button is clicked or hovered. This is a graphical approach presented to users from which they can choose a value from the list presented</h4>
+        <div class="sgds-dropdown">
+            <div class="sgds-dropdown-trigger">
+                <button class="sgds-button" aria-haspopup="true" aria-controls="sgds-dropdown-menu">
+                    <span>Click me</span>
+                    <span class="icon is-small">
+                        <span class="sgds-icon sgds-icon-chevron-down"></span>
+                    </span>
+                </button>
+            </div>
+            <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
+                <div class="sgds-dropdown-content">
+                    <a href="#" class="sgds-dropdown-item">
+                        Dropdown item
+                    </a>
+                    <a class="sgds-dropdown-item">
+                        Other dropdown item
+                    </a>
+                    <a href="#" class="sgds-dropdown-item is-active">
+                        Active dropdown item
+                    </a>
+                    <a href="#" class="sgds-dropdown-item">
+                        Other dropdown item
+                    </a>
+                    <hr class="sgds-dropdown-divider">
+                    <a href="#" class="sgds-dropdown-item">
+                        With a divider
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="sgds-dropdown is-hoverable">
+            <div class="sgds-dropdown-trigger">
+                <button class="sgds-button" aria-haspopup="true" aria-controls="sgds-dropdown-menu">
+                    <span>Hover me</span>
+                    <span class="icon">
+                        <span class="sgds-icon sgds-icon-chevron-down"></span>
+                    </span>
+                </button>
+            </div>
+            <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
+                <div class="sgds-dropdown-content">
+                    <a href="#" class="sgds-dropdown-item">
+                        Dropdown item
+                    </a>
+                    <a class="sgds-dropdown-item">
+                        Other dropdown item
+                    </a>
+                    <a href="#" class="sgds-dropdown-item is-active">
+                        Active dropdown item
+                    </a>
+                    <a href="#" class="sgds-dropdown-item">
+                        Other dropdown item
+                    </a>
+                    <hr class="sgds-dropdown-divider">
+                    <a href="#" class="sgds-dropdown-item">
+                        With a divider
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Usage</h3>
+        <p>Use this code snippet to any part of your project.</p>
+{%- highlight html -%}
+<div class="sgds-dropdown">
+    <div class="sgds-dropdown-trigger">
+        <button class="sgds-button" aria-haspopup="true" aria-controls="sgds-dropdown-menu">
+            <span>Click me</span>
+            <span class="icon is-small">
+        <span class="sgds-icon sgds-icon-chevron-down"></span>
+    </span>
+        </button>
+    </div>
+    <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
+        <div class="sgds-dropdown-content">
+            <a href="#" class="sgds-dropdown-item">Dropdown item</a>
+            <a class="sgds-dropdown-item">Other dropdown item</a>
+            <a href="#" class="sgds-dropdown-item is-active">Active dropdown item</a>
+            <a href="#" class="sgds-dropdown-item">Other dropdown item</a>
+            <hr class="sgds-dropdown-divider">
+            <a href="#" class="sgds-dropdown-item">With a divider</a>
+        </div>
+    </div>
+</div>
+{%- endhighlight -%}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Guidelines</h3>
+        <p>Dropdown menu should:</p>
+        <ul>
+            <li class="margin--bottom">Use for secondary or less important information and actions since they are hidden until user exposes them by clicking on it</li>
+            <li class="margin--bottom">Contain actions that are related to each other</li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Style</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Selector</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>sgds-dropdown</td>
+                <td>the main container</td>
+            </tr>
+            <tr>
+                <td>sgds-dropdown-trigger</td>
+                <td>the container for a button</td>
+            </tr>
+            <tr>
+                <td>sgds-dropdown-menu</td>
+                <td>the toggable menu hidden by default</td>
+            </tr>
+            <tr>
+                <td>sgds-dropdown-content</td>
+                <td>the dropdown box, with a white background and a shadow</td>
+            </tr>
+            <tr>
+                <td>sgds-dropdown-item</td>
+                <td>each single item of the dropdown</td>
+            </tr>
+            <tr>
+                <td>sgds-dropdown-divider</td>
+                <td>a horizontal line to separate dropdown items</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Feedback</h3>
+        <a href="" class="sgds-sec-button">
+            <span>Community discussion</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="" class="sgds-sec-button">
+            <span>Report an issue</span>
+            <i class="sgds-icon sgds-icon-arrow-right" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
