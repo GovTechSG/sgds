@@ -41,9 +41,9 @@
   - iconName: print
   - iconName: mail
   - iconName: save
-#  - iconName: folder
-#  - iconName: create-folder
-#  - iconName: attachment
+  - iconName: folder
+  - iconName: create-folder
+  - iconName: attachment
   - iconName: camera
   - iconName: add-photo
   - iconName: lock
@@ -53,14 +53,14 @@
   - iconName: file
   - iconName: file-alt
   - iconName: file-add
-#  - iconName: file-copy
-#  - iconName: file-pdf
-#  - iconName: cloud
+  - iconName: file-copy
+  - iconName: file-pdf
+  - iconName: cloud
   - iconName: cloud-download
   - iconName: cloud-upload
-#  - iconName: contact
-#  - iconName: telephone
-#  - iconName: delay
+  - iconName: contact
+  - iconName: telephone
+  - iconName: delay
   - iconName: clock
   - iconName: radar
   - iconName: database

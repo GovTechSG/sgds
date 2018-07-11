@@ -3,9 +3,9 @@
 @font-face {
   font-family: 'sgds-icons';
   src:
-    url('#{$sgds-font-path}/sgds-icons.ttf?3ml17x') format('truetype'),
-    url('#{$sgds-font-path}/sgds-icons.woff?3ml17x') format('woff'),
-    url('#{$sgds-font-path}/sgds-icons.svg?3ml17x#sgds-icons') format('svg');
+    url('#{$sgds-font-path}/sgds-icons.ttf?742wbr') format('truetype'),
+    url('#{$sgds-font-path}/sgds-icons.woff?742wbr') format('woff'),
+    url('#{$sgds-font-path}/sgds-icons.svg?742wbr#sgds-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -29,6 +29,56 @@
   @return unquote("\"") + $str + unquote("\"");
 }
 
+.sgds-icon-add-image {
+  &:before {
+    content: $sgds-icon-add-image;
+  }
+}
+.sgds-icon-attachment {
+  &:before {
+    content: $sgds-icon-attachment;
+  }
+}
+.sgds-icon-cloud {
+  &:before {
+    content: $sgds-icon-cloud;
+  }
+}
+.sgds-icon-contact {
+  &:before {
+    content: $sgds-icon-contact;
+  }
+}
+.sgds-icon-create-folder {
+  &:before {
+    content: $sgds-icon-create-folder;
+  }
+}
+.sgds-icon-delay {
+  &:before {
+    content: $sgds-icon-delay;
+  }
+}
+.sgds-icon-file-copy {
+  &:before {
+    content: $sgds-icon-file-copy;
+  }
+}
+.sgds-icon-file-pdf {
+  &:before {
+    content: $sgds-icon-file-pdf;
+  }
+}
+.sgds-icon-folder {
+  &:before {
+    content: $sgds-icon-folder;
+  }
+}
+.sgds-icon-telephone {
+  &:before {
+    content: $sgds-icon-telephone;
+  }
+}
 .sgds-icon-add-photo {
   &:before {
     content: $sgds-icon-add-photo;
@@ -605,5 +655,3 @@
     content: $sgds-icon-zoom-out;
   }
 }
-
-
