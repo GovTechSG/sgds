@@ -31,28 +31,28 @@
         - title: Sentimeter
           url: /onboarding/extensions/sentimeter/
 
-- title: Content
-  url: /content/
-  lvl2:
-    - title: Voice and Tone
-      url: /voice-and-tone/
-      lvl3:
-        - title: Voice Guidelines
-          url: /voice-guidelines/
-
-    - title: Naming
-      url: /naming/
-      lvl3:
-        - title: General
-          url: /general/
-
-    - title: Grammer and Mechanics
-      url: /grammer-and-mechanics/
-      lvl3:
-        - title: Capitalization
-          url: /capitalization/
-        - title: Headings
-          url: /headings/
+#- title: Content
+#  url: /content/
+#  lvl2:
+#    - title: Voice and Tone
+#      url: /voice-and-tone/
+#      lvl3:
+#        - title: Voice Guidelines
+#          url: /voice-guidelines/
+#
+#    - title: Naming
+#      url: /naming/
+#      lvl3:
+#        - title: General
+#          url: /general/
+#
+#    - title: Grammer and Mechanics
+#      url: /grammer-and-mechanics/
+#      lvl3:
+#        - title: Capitalization
+#          url: /capitalization/
+#        - title: Headings
+#          url: /headings/
 
 
 - title: Components
@@ -97,25 +97,7 @@
           url: /components/action/dropdown/
 
 - title: Templates
-  url: /templates/
-  lvl2:
-    - title: Identity Website
-      url: /templates/
-      lvl3:
-        - title: Pattern 1
-          url: /templates/
-
-    - title: Services Website
-      url: /templates/
-      lvl3:
-        - title: Pattern 1
-          url: /templates/
-
-    - title: Events Website
-      url: /templates/
-      lvl3:
-        - title: Pattern 1
-          url: /templates/
+  url: /general/coming-soon/
 
 - title: Community
-  url: https://isomer-govtech.zendesk.com/
+  url: /general/coming-soon/
