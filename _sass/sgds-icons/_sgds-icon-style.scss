@@ -28,7 +28,16 @@
 @function unicode($str) {
   @return unquote("\"") + $str + unquote("\"");
 }
-
+.sgds-icon-bookmark-alt {
+  &:before {
+    content: $sgds-icon-bookmark-alt;
+  }
+}
+.sgds-icon-star-alt {
+  &:before {
+    content: $sgds-icon-star-alt;
+  }
+}
 .sgds-icon-guides {
   &:before {
     content: $sgds-icon-guides;

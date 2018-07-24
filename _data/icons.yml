@@ -80,6 +80,7 @@
   - iconName: circle-info
   - iconName: triangle-warning
   - iconName: bookmark
+  - iconName: bookmark-alt
   - iconName: ban
   - iconName: search
   - iconName: zoom-in
@@ -89,6 +90,7 @@
   - iconName: sync
   - iconName: refresh
   - iconName: star
+  - iconName: star-alt
   - iconName: feedback
   - iconName: add-comment
   - iconName: chat
