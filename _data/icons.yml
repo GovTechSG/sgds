@@ -132,3 +132,40 @@
   - iconName: youtube
   - iconName: instagram
   - iconName: docker
+
+- category: Atomic Design
+  icons:
+  - iconName: atom
+  - iconName: molecule
+  - iconName: organism
+  - iconName: template
+  - iconName: page
+
+- category: Components
+  icons:
+  - iconName: masthead
+  - iconName: footer
+  - iconName: icons
+  - iconName: dropdown
+  - iconName: button
+  - iconName: container
+  - iconName: grid
+  - iconName: section
+  - iconName: tab
+  - iconName: card
+  - iconName: accordion
+  - iconName: checklist
+
+- category: Tools
+  icons:
+  - iconName: guides
+  - iconName: sentimeter
+
+
+- category: CMS
+  icons:
+  - iconName: wordpress
+  - iconName: swiit
+  - iconName: sitecore
+  - iconName: sharepoint
+  - iconName: sitefinity

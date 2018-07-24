@@ -29,6 +29,126 @@
   @return unquote("\"") + $str + unquote("\"");
 }
 
+.sgds-icon-guides {
+  &:before {
+    content: $sgds-icon-guides;
+  }
+}
+.sgds-icon-sentimeter {
+  &:before {
+    content: $sgds-icon-sentimeter;
+  }
+}
+.sgds-icon-sharepoint {
+  &:before {
+    content: $sgds-icon-sharepoint;
+  }
+}
+.sgds-icon-sitecore {
+  &:before {
+    content: $sgds-icon-sitecore;
+  }
+}
+.sgds-icon-sitefinity {
+  &:before {
+    content: $sgds-icon-sitefinity;
+  }
+}
+.sgds-icon-swiit {
+  &:before {
+    content: $sgds-icon-swiit;
+  }
+}
+.sgds-icon-wordpress {
+  &:before {
+    content: $sgds-icon-wordpress;
+  }
+}
+.sgds-icon-accordion {
+  &:before {
+    content: $sgds-icon-accordion;
+  }
+}
+.sgds-icon-button {
+  &:before {
+    content: $sgds-icon-button;
+  }
+}
+.sgds-icon-card {
+  &:before {
+    content: $sgds-icon-card;
+  }
+}
+.sgds-icon-checklist {
+  &:before {
+    content: $sgds-icon-checklist;
+  }
+}
+.sgds-icon-container {
+  &:before {
+    content: $sgds-icon-container;
+  }
+}
+.sgds-icon-dropdown {
+  &:before {
+    content: $sgds-icon-dropdown;
+  }
+}
+.sgds-icon-footer {
+  &:before {
+    content: $sgds-icon-footer;
+  }
+}
+.sgds-icon-grid {
+  &:before {
+    content: $sgds-icon-grid;
+  }
+}
+.sgds-icon-icons {
+  &:before {
+    content: $sgds-icon-icons;
+  }
+}
+.sgds-icon-masthead {
+  &:before {
+    content: $sgds-icon-masthead;
+  }
+}
+.sgds-icon-section {
+  &:before {
+    content: $sgds-icon-section;
+  }
+}
+.sgds-icon-tab {
+  &:before {
+    content: $sgds-icon-tab;
+  }
+}
+.sgds-icon-atom {
+  &:before {
+    content: $sgds-icon-atom;
+  }
+}
+.sgds-icon-molecule {
+  &:before {
+    content: $sgds-icon-molecule;
+  }
+}
+.sgds-icon-organism {
+  &:before {
+    content: $sgds-icon-organism;
+  }
+}
+.sgds-icon-page {
+  &:before {
+    content: $sgds-icon-page;
+  }
+}
+.sgds-icon-template {
+  &:before {
+    content: $sgds-icon-template;
+  }
+}
 .sgds-icon-add-image {
   &:before {
     content: $sgds-icon-add-image;
