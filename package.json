@@ -1,6 +1,6 @@
 {
   "name": "sgds-jekyll",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "```sh gem install jekyll bundler ```",
   "main": "index.js",
   "scripts": {
