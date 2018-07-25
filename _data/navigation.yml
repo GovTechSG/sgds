@@ -30,6 +30,8 @@
           url: /onboarding/extensions/cwp/
         - title: Sentimeter
           url: /onboarding/extensions/sentimeter/
+        - title: FormSG
+          url: /onboarding/extensions/formsg/
 
 #- title: Content
 #  url: /content/

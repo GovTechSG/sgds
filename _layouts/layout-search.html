@@ -3,27 +3,19 @@ layout: layout-default
 ---
 
 <section class="sgds-section is-small bg-secondary">
-	<div class="sgds-container is-fluid">
+	<div class="sgds-container">
 		{% include sgds-breadcrumb.html %}
 	</div>
-	<div class="sgds-container is-fluid">
-		<div class="row">
-			<div class="col is-8 is-offset-2"">
-				<h1 class="has-text-white">Search</h1>
-			</div>
-		</div>
-	</div>
-	<div class="sgds-container is-fluid">
+	<div class="sgds-container">
 		<form action="/search/" method="get">
-			<div class="row">
-
-                <div class="col is-8 is-offset-2">
+			<div class="row padding--bottom--lg">
+                <div class="col is-9">
 					<div class="field has-addons">
 						<div class="control is-expanded">
-							<input class="input  is-medium" type="text" placeholder="What are you looking for?" name="query">
+							<input class="input is-large" type="text" placeholder="What are you looking for?" name="query">
 						</div>
 						<div class="control">
-							<button  type="submit" class="sgds-button is-accent1  is-medium">
+							<button  type="submit" class="sgds-button padding--sm padding--left--lg padding--right--lg">
 								Search
 							</button>
 						</div>
@@ -33,15 +25,12 @@ layout: layout-default
 		</form>
 	</div>
 </section>
-
 <section class="sgds-section">
-    <div class="sgds-container is-fluid search-content">
+    <div class="sgds-container search-content">
         <div class="row">
-            <div class="col is-8 is-offset-2">
-                <div class="content">
-                	<h4 class="search-results-count" id="search-results-count"></h5><br>
-					<h5 class="search-results" id="search-results"></h3>
-                </div>
+            <div class="col is-9">
+				<h4 class="search-results-count" id="search-results-count"></h4><br>
+				<p class="search-results" id="search-results"></p>
             </div>
         </div>
     </div>
