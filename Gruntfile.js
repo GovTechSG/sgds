@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         clean: {
             build: {
-                src: [ path + '/**']
+                src: [path + '/{css,fonts,js,sass}']
             }
         },
         cssmin: {

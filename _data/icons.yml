@@ -118,6 +118,7 @@
   - iconName: privacy-alt
   - iconName: privacy
   - iconName: pencil
+  - iconName: stop
 
 - category: Editor
   icons:
