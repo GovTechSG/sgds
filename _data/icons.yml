@@ -68,6 +68,7 @@
   - iconName: calculator
   - iconName: browser
   - iconName: cloud-success
+  - iconName: signal
 
 - category: Action
   icons:
@@ -109,6 +110,14 @@
   - iconName: toggle-minus
   - iconName: slider-horizontal
   - iconName: slider-vertical
+  - iconName: play
+  - iconName: play-alt
+  - iconName: pause
+  - iconName: pause-alt
+  - iconName: delete
+  - iconName: privacy-alt
+  - iconName: privacy
+  - iconName: pencil
 
 - category: Editor
   icons:
@@ -152,6 +161,7 @@
   - iconName: button
   - iconName: container
   - iconName: grid
+  - iconName: grid-alt
   - iconName: section
   - iconName: tab
   - iconName: card

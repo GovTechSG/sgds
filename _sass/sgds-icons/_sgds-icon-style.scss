@@ -28,6 +28,66 @@
 @function unicode($str) {
   @return unquote("\"") + $str + unquote("\"");
 }
+.sgds-icon-delete {
+  &:before {
+    content: $sgds-icon-delete;
+  }
+}
+.sgds-icon-grid-alt {
+  &:before {
+    content: $sgds-icon-grid-alt;
+  }
+}
+.sgds-icon-pause-alt {
+  &:before {
+    content: $sgds-icon-pause-alt;
+  }
+}
+.sgds-icon-pause {
+  &:before {
+    content: $sgds-icon-pause;
+  }
+}
+.sgds-icon-pencil {
+  &:before {
+    content: $sgds-icon-pencil;
+  }
+}
+.sgds-icon-play-alt {
+  &:before {
+    content: $sgds-icon-play-alt;
+  }
+}
+.sgds-icon-play {
+  &:before {
+    content: $sgds-icon-play;
+  }
+}
+.sgds-icon-privacy-alt {
+  &:before {
+    content: $sgds-icon-privacy-alt;
+  }
+}
+.sgds-icon-privacy {
+  &:before {
+    content: $sgds-icon-privacy;
+  }
+}
+.sgds-icon-signal {
+  &:before {
+    content: $sgds-icon-signal;
+  }
+}
+.sgds-icon-stop {
+  &:before {
+    content: $sgds-icon-stop;
+  }
+}
+.sgds-icon-telephone {
+  &:before {
+    content: $sgds-icon-telephone;
+  }
+}
 .sgds-icon-bookmark-alt {
   &:before {
     content: $sgds-icon-bookmark-alt;
@@ -201,11 +261,6 @@
 .sgds-icon-folder {
   &:before {
     content: $sgds-icon-folder;
-  }
-}
-.sgds-icon-telephone {
-  &:before {
-    content: $sgds-icon-telephone;
   }
 }
 .sgds-icon-add-photo {
