@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             sass: {
                 expand: true,
                 cwd: '_sass',
-                src: '**',
+                src: ['**', '!custom.scss'],
                 dest: path + '/sass'
             },
             fonts: {

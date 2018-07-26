@@ -199,19 +199,6 @@ $base-margin-padding: 1rem;
   }
 }
 
-.hide{
-  display:none;
-  visibility: hidden;
-}
-.show{
-  display:block;
-  visibility: visible;
-}
-
-.is-position-relative{
-  position: relative!important;
-}
-
 .is-offset-sideNav{
   position: fixed;
   width:22%;

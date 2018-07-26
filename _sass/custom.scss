@@ -1,0 +1,9 @@
+.clipboard-btn{
+  transition: all 0.2s;
+
+  &:hover{
+    background-color: rgba($primary,0.95);
+    cursor:pointer;
+    color:white;
+  }
+}
