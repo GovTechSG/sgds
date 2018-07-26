@@ -1,5 +1,0 @@
-<IfModule mod_rewrite.c>
-RewriteEngine on
-RewriteCond %{HTTP_HOST} ^www\.designsystem\.gov.sg [NC]
-RewriteRule ^(.*)$ http://designsystem.gov.sg/$1 [L,R=301]
-</IfModule>
