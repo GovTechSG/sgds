@@ -7,3 +7,11 @@
     color:white;
   }
 }
+
+.clipboard-feedback{
+  position:fixed;
+  top:0;
+  width:100vw;
+  padding:30px;
+  background-color: $primary;
+}
