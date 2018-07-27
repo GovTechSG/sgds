@@ -6,12 +6,14 @@
       lvl3:
         - title: About Isomer
           url: /onboarding/get-started/about-isomer/
+        - title: Build a Website
+          url: /onboarding/get-started/build-website/
+        - title: For Product Managers
+          url: /onboarding/get-started/for-product-managers/
         - title: For Developers
           url: /onboarding/get-started/for-developers/
         - title: For Designers
           url: /onboarding/get-started/for-designers/
-        - title: For Content Managers
-          url: /onboarding/get-started/for-content-managers/
 
     - title: Guidelines
       url: /onboarding/guidelines/
