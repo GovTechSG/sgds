@@ -4,8 +4,6 @@
     - title: Get Started
       url: /onboarding/get-started/
       lvl3:
-        - title: About Isomer
-          url: /onboarding/get-started/about-isomer/
         - title: Build a Website
           url: /onboarding/get-started/build-website/
         - title: For Product Managers
