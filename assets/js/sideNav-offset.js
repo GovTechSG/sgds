@@ -5,5 +5,4 @@ $(document).ready(function(){
         containerSelector: '.has-side-nav',
         innerWrapperSelector: '.sidebar__inner'
     });
-    console.log($('.sidenav'))
 });

@@ -8,7 +8,7 @@
 }
 
 h1{
-  font-size: 3.375rem; // 54px
+  font-size: $size-1; // 54px
   line-height: 3.75rem;
   letter-spacing: -1.5px;
 
@@ -17,7 +17,7 @@ h1{
   }
 }
 h2{
-  font-size: 2.75rem; // 44px
+  font-size: $size-2; // 44px
   line-height: 3.75rem;
 
   @include touch() {
@@ -25,7 +25,7 @@ h2{
   }
 }
 h3{
-  font-size: 2rem; // 32px
+  font-size: $size-3; // 32px
   line-height: 2.8125rem;
 
   @include touch() {
@@ -33,7 +33,7 @@ h3{
   }
 }
 h4{
-  font-size: 1.625rem; // 26px
+  font-size: $size-4; // 26px
   line-height: 2.2rem;
 
   @include touch() {
@@ -41,7 +41,7 @@ h4{
   }
 }
 h5{
-  font-size: 1.375rem; // 22px
+  font-size: $size-5; // 22px
   line-height: 1.875rem;
 
   @include touch() {
@@ -49,7 +49,7 @@ h5{
   }
 }
 h6{
-  font-size: 1rem; // 16px
+  font-size: $size-6; // 16px
   line-height: 1.25rem;
 
   @include touch() {
@@ -58,11 +58,11 @@ h6{
 }
 
 p,li{
-  font-size: 1.25rem; // 20px
+  font-size: $size-7; // 20px
   line-height: 2rem;
 
   @include touch() {
-    font-size: 1.25rem!important;
+    font-size: $size-7!important;
   }
 }
 
@@ -72,5 +72,5 @@ small{
 }
 
 b, strong{
-  font-weight: 600;
+  font-weight: $weight-semibold;
 }
