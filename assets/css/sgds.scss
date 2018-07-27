@@ -3,11 +3,15 @@
 ---
 
 //DO NOT CHANGE THE IMPORT SEQUENCE
-
 @import "sgds-customise/all";
+//
+// Overwrite sgds variables variables here
+// Example:
+// $primary: #ffffff;
+// $secondary: #ffffff;
+//
+
 @import "sgds-base/all";
 @import "sgds-layout/all";
 @import "sgds-components/all";
 @import "sgds-icons/all";
-
-@import "custom";

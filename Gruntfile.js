@@ -6,7 +6,10 @@ module.exports = function(grunt) {
     grunt.initConfig({
         clean: {
             build: {
-                src: [path + '/{css,fonts,js,sass}']
+                src: ['sgds-govtech/{css,fonts,js}', 'sgds-govtech/sass/**/*','!sgds-govtech/sass/sgds.scss']
+            },
+            zip:{
+                src:['sgds-govtech.zip']
             }
         },
         cssmin: {
@@ -38,9 +41,26 @@ module.exports = function(grunt) {
                 cwd: 'assets/js',
                 src: 'sgds.js',
                 dest: path + '/js'
+            },
+            zip:{
+                expand:true,
+                cwd:'',
+                src:'sgds-govtech.zip',
+                dest: 'assets/downloads/'
+            }
+        },
+        compress: {
+            main: {
+                options: {
+                    archive: 'sgds-govtech.zip'
+                },
+                expand: true,
+                cwd: 'sgds-govtech',
+                src: ['js/*', 'css/*'],
+                dest: 'sgds'
             }
         }
     });
-    grunt.registerTask('sgds', ['clean:build','cssmin','copy:sass', 'copy:fonts','copy:js']);
+    grunt.registerTask('sgds', ['clean:build','cssmin','copy:sass', 'copy:fonts','copy:js','compress:main','copy:zip','clean:zip']);
     grunt.registerTask('sgds-clean', ['clean:build']);
 };
