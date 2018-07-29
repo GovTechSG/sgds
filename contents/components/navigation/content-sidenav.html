@@ -1,0 +1,132 @@
+---
+title: Main Nav
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /components/navigation/mainnav/
+category: Components/Navigation
+breadcrumb: Navigation
+---
+
+<div class="row padding--top padding--bottom--lg">
+    <div class="col">
+        <h4 class="has-text-weight-normal has-text-secondary padding--bottom--lg"><b>Main Nav</b> is the top level of a website's navigation, because it appears on every page. It provides a link to the main homepage of a website from subsections</h4>
+        <nav class="navbar is-transparent">
+            <div class="sgds-container is-fluid">
+                <div class="navbar-brand">
+                    <a class="navbar-item padding--left padding--right" href="">
+                        YOUR LOGO
+                    </a>
+                    <div class="navbar-burger burger" data-target="">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div id="navbarMain" class="navbar-menu">
+                    <div class="navbar-start">
+                        <div class="navbar-item has-dropdown is-hoverable is-mega">
+                            <a class="navbar-link is-uppercase" href="">
+                                Mega menu
+                            </a>
+                            <div class="navbar-dropdown">
+                                <div class="sgds-container is-fluid">
+                                    <div class="row padding--sm">
+                                        <div class="col">
+                                            <a class="navbar-item has-text-primary is-uppercase padding--sm bg-light" href="">
+                                                <h6 class="has-text-weight-semibold is-uppercase">Category 1</h6>
+                                            </a>
+                                            <a class="navbar-item padding--sm" href="">
+                                                <h6>Link</h6>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="navbar-item has-text-primary is-uppercase padding--sm bg-light" href="">
+                                                <h6 class="has-text-weight-semibold is-uppercase">Category 2</h6>
+                                            </a>
+                                            <a class="navbar-item padding--sm" href="">
+                                                <h6>Link</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <li class="navbar-item is-uppercase margin--left">
+                            <a href="">Link</a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </nav>
+{%- highlight html -%}
+<nav class="navbar is-transparent">
+    <div class="sgds-container is-fluid">
+        <div class="navbar-brand">
+            <a class="navbar-item padding--left padding--right" href="">
+                <!-- insert your logo here -->
+            </a>
+            <div class="navbar-burger burger" data-target="">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div id="navbarMain" class="navbar-menu">
+            <div class="navbar-start">
+                <div class="navbar-item has-dropdown is-hoverable is-mega">
+                    <a class="navbar-link is-uppercase" href="">
+                        Mega menu
+                    </a>
+                    <div class="navbar-dropdown">
+                        <div class="sgds-container is-fluid">
+                            <div class="row padding--sm">
+                                <div class="col">
+                                    <a class="navbar-item has-text-primary is-uppercase padding--sm bg-light" href="">
+                                        <h6 class="has-text-weight-semibold is-uppercase">Category 1</h6>
+                                    </a>
+                                    <a class="navbar-item padding--sm" href="">
+                                        <h6>Link</h6>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="navbar-item has-text-primary is-uppercase padding--sm bg-light" href="">
+                                        <h6 class="has-text-weight-semibold is-uppercase">Category 2</h6>
+                                    </a>
+                                    <a class="navbar-item padding--sm" href="">
+                                        <h6>Link</h6>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <li class="navbar-item is-uppercase margin--left">
+                    <a href="">Link</a>
+                </li>
+            </div>
+        </div>
+    </div>
+</nav>
+{%- endhighlight -%}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Guidelines</h3>
+        <p>Main Nav should:</p>
+        <ul>
+            <li class="margin--bottom">Have logo link to homepage</li>
+            <li class="margin--bottom">Divide links into groups of navigation options</li>
+            <li class="margin--bottom">Apply navigation choices structured through layout, typography and icons</li>
+            <li class="margin--bottom">Have everything visible at once without scrolling</li>
+            <li class="margin--bottom">Have menu options revealed on hover, click or tap</li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+{%- include sgds-feedback.html -%}

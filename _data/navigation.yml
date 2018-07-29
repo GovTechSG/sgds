@@ -56,7 +56,6 @@
 #        - title: Headings
 #          url: /headings/
 
-
 - title: Components
   url: /components/
   lvl2:
@@ -69,6 +68,8 @@
           url: /components/standard/footer/
         - title: Iconography
           url: /components/standard/iconography/
+        - title: Typography
+          url: /components/standard/typography/
 
     - title: Structure
       url: /components/structure/
@@ -79,12 +80,28 @@
           url: /components/structure/grid/
         - title: Section
           url: /components/structure/section/
+        - title: Table
+          url: /components/structure/table/
 
     - title: Navigation
       url: /components/navigation/
       lvl3:
+#        - title: Main Nav
+#          url: /components/navigation/mainnav/
+#        - title: Side Nav
+#          url: /components/navigation/sidenav/
         - title: Tab
           url: /components/navigation/tab/
+        - title: Breadcrumb
+          url: /components/navigation/breadcrumb/
+
+    - title: Content
+      url: /components/content/
+      lvl3:
+        - title: Hero
+          url: /components/content/hero/
+        - title: Callout
+          url: /components/content/callout/
 
     - title: Action
       url: /components/action/

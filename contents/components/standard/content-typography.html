@@ -1,0 +1,146 @@
+---
+title: Typography
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /components/standard/typography/
+category: Components/Standard
+breadcrumb: Standard
+---
+
+<div class="row padding--top padding--bottom--lg">
+    <div class="col">
+        <h4 class="has-text-weight-normal has-text-secondary padding--bottom--lg"><b>Typography</b> is used to create clear hierarchies and purposeful alignments that guide users through the website</h4>
+        <p>Isomer uses Source Sans Pro as the main typeface, which is an open source font provided by Google <a href="https://fonts.google.com/specimen/Source+Sans+Pro" target="_blank">here</a>.</p>
+        <table class="table margin--top--lg">
+            <thead>
+            <tr>
+                <th>rem</th>
+                <th>Actual size</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>5.25</td>
+                <td><span class="has-text-secondary display padding--sm">display</span></td>
+            </tr>
+            <tr>
+                <td>3.375</td>
+                <td><h1 class="has-text-secondary padding--sm">h1</h1></td>
+            </tr>
+            <tr>
+                <td>2.75</td>
+                <td><h2 class="has-text-secondary padding--sm">h2</h2></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><h3 class="has-text-secondary padding--sm">h3</h3></td>
+            </tr>
+            <tr>
+                <td>1.625</td>
+                <td><h4 class="has-text-secondary padding--sm">h4</h4></td>
+            </tr>
+            <tr>
+                <td>1.375</td>
+                <td><h5 class="has-text-secondary padding--sm">h5</h5></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><h6 class="has-text-secondary padding--sm">h6</h6></td>
+            </tr>
+            <tr>
+                <td>0.9375</td>
+                <td><small class="has-text-secondary padding--sm">small</small></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Usage</h3>
+        <p>You can apply the <code>display</code> class to any text you like to have it prominent. For the rest of the headings, replace <code>h1</code> tag with the size you wish to use from above accordingly.</p>
+{% highlight html %}
+<span class="display">display</span>
+<h1>h1</h1>
+<h2>h2</h2>
+<h3>h3</h3>
+<h4>h4</h4>
+<h5>h5</h5>
+<h6>h6</h6>
+<small>small</small>
+{% endhighlight %}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Style</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Modifier</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>has-text-primary</td>
+                <td>Use when you want to apply primary color to your text</td>
+            </tr>
+            <tr>
+                <td>has-text-secondary</td>
+                <td>Use when you want to apply secondary color to your text</td>
+            </tr>
+            <tr>
+                <td>has-text-weight-light</td>
+                <td>Use when you want to transform text weight to light</td>
+            </tr>
+            <tr>
+                <td>has-text-weight-semibold</td>
+                <td>Use when you want to transform text weight to semi-bold</td>
+            </tr>
+            <tr>
+                <td>has-text-weight-bold</td>
+                <td>Use when you want to transform text weight to bold</td>
+            </tr>
+            <tr>
+                <td>is-lowercase</td>
+                <td>Use when you want to transform all characters to lowercase</td>
+            </tr>
+            <tr>
+                <td>is-uppercase</td>
+                <td>Use when you want to transform all characters to uppercase</td>
+            </tr>
+            <tr>
+                <td>is-italic</td>
+                <td>Use when you want to transform all characters to italic</td>
+            </tr>
+            <tr>
+                <td>has-text-centered</td>
+                <td>Use when you want to make the text centered</td>
+            </tr>
+            <tr>
+                <td>has-text-justified</td>
+                <td>Use when you want to make the text justified</td>
+            </tr>
+            <tr>
+                <td>has-text-left</td>
+                <td>Use when you want to make the text aligned to the left</td>
+            </tr>
+            <tr>
+                <td>has-text-right</td>
+                <td>Use when you want to make the text aligned to the right</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+{%- include sgds-feedback.html -%}

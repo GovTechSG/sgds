@@ -31,8 +31,8 @@
                                 <div class="row padding--sm">
                                     {%- for lvl2item in lvl1item.lvl2 -%}
                                     <div class="col">
-                                        <a class="navbar-item has-text-primary is-uppercase padding--sm" href="{{ site.baseurl }}{{ lvl2item.url }}">
-                                            <h6>{{ lvl2item.title }}</h6>
+                                        <a class="navbar-item has-text-primary is-uppercase padding--sm bg-light" href="{{ site.baseurl }}{{ lvl2item.url }}">
+                                            <h6 class="has-text-weight-semibold">{{ lvl2item.title }}</h6>
                                         </a>
                                         {%- for lvl3item in lvl2item.lvl3 -%}
                                         <a class="navbar-item padding--sm"
