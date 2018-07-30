@@ -28,6 +28,41 @@
 @function unicode($str) {
   @return unquote("\"") + $str + unquote("\"");
 }
+.sgds-icon-breadcrump {
+  &:before {
+    content: $sgds-icon-breadcrump;
+  }
+}
+.sgds-icon-callout {
+  &:before {
+    content: $sgds-icon-callout;
+  }
+}
+.sgds-icon-hero {
+  &:before {
+    content: $sgds-icon-hero;
+  }
+}
+.sgds-icon-mainnav {
+  &:before {
+    content: $sgds-icon-mainnav;
+  }
+}
+.sgds-icon-sidenav {
+  &:before {
+    content: $sgds-icon-sidenav;
+  }
+}
+.sgds-icon-table {
+  &:before {
+    content: $sgds-icon-table;
+  }
+}
+.sgds-icon-typography {
+  &:before {
+    content: $sgds-icon-typography;
+  }
+}
 .sgds-icon-delete {
   &:before {
     content: $sgds-icon-delete;

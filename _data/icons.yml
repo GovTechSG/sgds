@@ -168,6 +168,13 @@
   - iconName: card
   - iconName: accordion
   - iconName: checklist
+  - iconName: typography
+  - iconName: hero
+  - iconName: callout
+  - iconName: breadcrump
+  - iconName: table
+  - iconName: mainnav
+  - iconName: sidenav
 
 - category: Tools
   icons:
