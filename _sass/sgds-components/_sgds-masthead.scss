@@ -1,30 +1,18 @@
 .sgds-masthead{
-  //padding: 0.1rem 0 0.3rem 0;
   background-color: $grey-lighter;
-  color:$grey-dark;
-  .row{
-    margin: 0;
-    height: 30px;
-  }
-  .col{
-    padding: 0;
-  }
-  .sgds-icon{
-    padding-top: 5px;
-  }
-  a{
-    color:$grey-dark;
-    font-size:14px;
-    &:hover{
-      color:black;
-    }
+  padding: 2px 0;
 
-    .sgds-icon-sg-crest{
-      color:red;
-      font-size:14px;
-    }
-    .content &{
-      text-decoration: none;
-    }
+  .is-text{
+    position: relative;
+    top: -2px;
+    font-size: 14px;
+  }
+
+  a{
+    color: $grey-dark;
+  }
+
+  a:hover{
+    color: $primary;
   }
 }

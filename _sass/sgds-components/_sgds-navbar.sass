@@ -3,7 +3,7 @@ $navbar-height: 6.25rem !default
 $navbar-fixed-z: 30 !default
 
 $navbar-item-color: $grey-dark !default
-$navbar-item-hover-color: $link !default
+$navbar-item-hover-color: $primary !default
 $navbar-item-hover-background-color: $background !default
 $navbar-item-active-color: $black !default
 $navbar-item-active-background-color: transparent !default
@@ -27,7 +27,7 @@ $navbar-dropdown-z: 20 !default
 $navbar-dropdown-boxed-radius: $radius-large !default
 $navbar-dropdown-boxed-shadow: 0 8px 8px rgba($black, 0.1), 0 0 0 1px rgba($black, 0.1) !default
 
-$navbar-dropdown-item-hover-color: $black !default
+$navbar-dropdown-item-hover-color: $primary !default
 $navbar-dropdown-item-hover-background-color: $background !default
 $navbar-dropdown-item-active-color: $link !default
 $navbar-dropdown-item-active-background-color: $background !default
@@ -140,7 +140,7 @@ html.has-navbar-fixed-bottom
   color: $navbar-item-color
   display: block
   line-height: 1.5
-  padding: 0.5rem 1rem
+  padding: 0.5rem 0.5rem
   position: relative
 
 a.navbar-item,
@@ -155,6 +155,12 @@ a.navbar-link
   flex-shrink: 0
   img
     max-height: $navbar-item-img-max-height
+  &.is-mega
+    position: static
+  //  .has-dropdown::after
+  //    +arrow($navbar-dropdown-arrow)
+  //    margin-top: -0.375em
+  //    top: 50%
   &.has-dropdown
     padding: 0
   &.is-expanded
@@ -180,7 +186,8 @@ a.navbar-link
   flex-shrink: 1
 
 .navbar-link
-  padding-right: 2.5em
+  h6
+    font-weight: $weight-semibold
 
 .navbar-dropdown
   font-size: 0.875rem
@@ -197,6 +204,12 @@ a.navbar-link
   height: 1px
   margin: 0.5rem 0
 
+.is-title
+  color: $secondary
+  font-weight: bold
+  text-transform: uppercase
+  border-bottom: 2px solid $grey-lighter
+
 +touch
   .navbar > .sgds-container
     display: block
@@ -211,6 +224,10 @@ a.navbar-link
     padding: 0.5rem 0
     &.is-active
       display: block
+  .navbar-item
+    &.is-mega
+      .has-dropdown::after
+        right: 1.125em
   // Fixed navbar
   .navbar
     &.is-fixed-bottom-touch,
@@ -234,6 +251,16 @@ a.navbar-link
     padding-bottom: $navbar-height
 
 +desktop
+  html
+    padding-top: 128px
+  .masthead-container
+    background-color: white
+    position: fixed
+    top: 0
+    width: 100%
+    z-index: 900
+    transition: top 0.5s
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
   .navbar,
   .navbar-menu,
   .navbar-start,
@@ -270,6 +297,9 @@ a.navbar-link
   .navbar-item
     &.has-dropdown
       align-items: stretch
+    &.is-mega
+      .has-dropdown::after
+        right: 0
     &.has-dropdown-up
       .navbar-link::after
         transform: rotate(135deg) translate(0.25em, -0.25em)
@@ -288,15 +318,11 @@ a.navbar-link
           opacity: 1
           pointer-events: auto
           transform: translateY(0)
-  .navbar-link
-    &::after
-      +arrow($navbar-dropdown-arrow)
-      margin-top: -0.375em
-      right: 1.125em
-      top: 50%
   .navbar-menu
     flex-grow: 1
-    flex-shrink: 0
+    flex-shrink: initial
+    flex-wrap: wrap
+    //flex-shrink: 0
   .navbar-start
     justify-content: flex-start
     margin-right: auto
@@ -346,9 +372,11 @@ a.navbar-link
   .navbar > .sgds-container,
   .sgds-container > .navbar
     .navbar-brand
-      margin-left: -1rem
+      //margin-left: -1rem
+      margin-left: -0.5rem
     .navbar-menu
-      margin-right: -1rem
+      //margin-right: -1rem
+      margin-right: -0.5rem
   // Fixed navbar
   .navbar
     &.is-fixed-bottom-desktop,
