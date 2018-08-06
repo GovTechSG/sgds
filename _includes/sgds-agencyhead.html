@@ -3,8 +3,8 @@
     <nav class="navbar is-transparent">
         <div class="sgds-container">
             <div class="navbar-brand">
-                <a class="navbar-item padding--left padding--right" href="/">
-                    <img src="/assets/img/logo_sgds.png" alt="" width="198" height="61">
+                <a class="navbar-item" href="/">
+                    <img src="/assets/img/logo_sgds.png" alt="">
                 </a>
                 <div class="navbar-burger burger" data-target="navbarMain">
                     <span></span>
@@ -13,63 +13,66 @@
                 </div>
             </div>
             <div id="navbarMain" class="navbar-menu">
-                <div class="navbar-start">
-                    {%- assign links = site.data.navigation -%}
-                    {%- for lvl1item in links -%}
-                    <hr class="margin">
-                    {%- assign class = nil -%}
-                    {%- if page.url contains lvl1item.url -%}
-                    {%- assign class = 'active' -%}
-                    {%- endif -%}
-                    {%- if lvl1item.lvl2 -%}
-                    <div class="navbar-item has-dropdown is-hoverable is-mega">
-                        <a class="navbar-link is-uppercase" href="">
-                            {{ lvl1item.title }}
-                        </a>
-                        <div class="navbar-dropdown">
-                            <div class="sgds-container is-fluid">
-                                <div class="row padding--sm">
-                                    {%- for lvl2item in lvl1item.lvl2 -%}
-                                    <div class="col">
-                                        <a class="navbar-item has-text-primary is-uppercase padding--sm bg-light" href="{{ site.baseurl }}{{ lvl2item.url }}">
-                                            <h6 class="has-text-weight-semibold">{{ lvl2item.title }}</h6>
-                                        </a>
-                                        {%- for lvl3item in lvl2item.lvl3 -%}
-                                        <a class="navbar-item padding--sm"
-                                           href="{{ site.baseurl }}{{ lvl3item.url }}">
-                                            <h6>{{ lvl3item.title }}</h6>
-                                        </a>
-                                        {%- endfor -%}
-                                    </div>
+                {%- assign links = site.data.navigation -%}
+                {%- for lvl1item in links -%}
+                <hr class="is-hidden-desktop">
+                {%- assign class = nil -%}
+                {%- if page.url contains lvl1item.url -%}
+                {%- assign class = 'active' -%}
+                {%- endif -%}
+                {%- if lvl1item.lvl2 -%}
+                <div class="navbar-item is-hoverable is-mega">
+                    <a class="navbar-link has-dropdown is-uppercase" href="">
+                        <h6>{{ lvl1item.title }} <span class="sgds-icon sgds-icon-chevron-down"></span></h6>
+                    </a>
+                    <div class="navbar-dropdown padding--bottom">
+                        <div class="sgds-container is-fluid">
+                            <div class="row">
+                                {%- for lvl2item in lvl1item.lvl2 -%}
+                                <div class="col">
+                                    <a class="navbar-item is-title"
+                                       href="{{ site.baseurl }}{{ lvl2item.url }}">
+                                        <b>{{ lvl2item.title }}</b>
+                                    </a>
+                                    {%- for lvl3item in lvl2item.lvl3 -%}
+                                    <a class="navbar-item"
+                                       href="{{ site.baseurl }}{{ lvl3item.url }}">
+                                        <h6>{{ lvl3item.title }}</h6>
+                                    </a>
                                     {%- endfor -%}
                                 </div>
+                                {%- endfor -%}
                             </div>
                         </div>
                     </div>
-                    {%- else -%}
-                    <li class="navbar-item is-uppercase margin--left">
-                        <a href="{{ site.baseurl }}{{ lvl1item.url }} ">{{ lvl1item.title }}</a>
-                    </li>
-                    {%- endif -%}
-                    {%- endfor -%}
                 </div>
-                <div class="navbar-end is-hidden-touch">
-                    <div class="navbar-item">
-                        {% if page.layout != 'search' %}
-                        <a class="sgds-button is-text is-large" id="search-activate">
-                            <span class="sgds-icon sgds-icon-search"></span>
-                        </a>
-                        {% else %}
-                        <a class="sgds-button is-text is-large" id="search-activate" disabled></a>
-                        {% endif %}
-                    </div>
+                {%- else -%}
+                <div class="navbar-item">
+                    <a class="navbar-link is-uppercase"
+                       href="{{ site.baseurl }}{{ lvl1item.url }} ">
+                        <h6>{{ lvl1item.title }}</h6>
+                    </a>
+                </div>
+                {%- endif -%}
+                {%- endfor -%}
+            </div>
+            <div class="navbar-end is-hidden-touch">
+                <div class="navbar-item">
+                    {% if page.layout != 'search' %}
+                    <a class="sgds-button is-text is-large" id="search-activate">
+                        <span class="sgds-icon sgds-icon-search"></span>
+                    </a>
+                    {% else %}
+                    <a class="sgds-button is-text is-large" id="search-activate" disabled></a>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </nav>
     <div class="sgds-container hide is-hidden-touch search-bar" id="search-bar">
-        <div class="row margin--top--sm margin--bottom--sm is-gapless">
+        <div class="row">
             <div class="col">
+                <hr class="margin--bottom--sm">
                 <form action="{{ site.baseurl }}/search/" method="get">
                     {% include sgds-search-box.html %}
                 </form>
