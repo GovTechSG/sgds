@@ -28,9 +28,9 @@
 @function unicode($str) {
   @return unquote("\"") + $str + unquote("\"");
 }
-.sgds-icon-breadcrump {
+.sgds-icon-breadcrumb {
   &:before {
-    content: $sgds-icon-breadcrump;
+    content: $sgds-icon-breadcrumb;
   }
 }
 .sgds-icon-callout {
