@@ -1,0 +1,90 @@
+---
+title: Tab
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /docs/tab/
+category: General
+breadcrumb: General
+---
+
+<div class="row">
+    <div class="col">
+        <h4 class="has-text-secondary">Tab is a navigation element used in web design that allow users to easily access different areas of a site or different parts of an individual page. They're sort of like tabbed dividers in a filing cabinet – by clicking a tab, users can easily locate a page containing related content</h4>
+        <div class="sgds-tabs" data-sgds="tabs">
+            <ul>
+                <li class="is-active"><a data-tab="#tab1">Tab 1</a></li>
+                <li><a data-tab="#tab2">Tab 2</a></li>
+                <li><a data-tab="#tab3">Tab 3</a></li>
+            </ul>
+        </div>
+        <div class="row" id="tab1">
+            <div class="col">
+                <p>Tab content 1</p>
+            </div>
+        </div>
+        <div class="row" id="tab2">
+            <div class="col">
+                <p>Tab content 2</p>
+            </div>
+        </div>
+        <div class="row" id="tab3">
+            <div class="col">
+                <p>Tab content 3</p>
+            </div>
+        </div>
+{%- highlight html -%}
+<div class="sgds-tabs" data-sgds="tabs">
+    <ul>
+        <li class="is-active"><a data-tab="#tab1">Tab 1</a></li>
+        <li><a data-tab="#tab2">Tab 2</a></li>
+        <li><a data-tab="#tab3">Tab 3</a></li>
+    </ul>
+</div>
+{%- endhighlight -%}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col">
+        <h3 class="has-text-weight-semibold">Guidelines</h3>
+        <p>Tab should:</p>
+        <ul>
+            <li>Be clearly labeled to help differentiate the sections beneath them</li>
+            <li>Have short labels, try to keep to single word</li>
+            <li>Have only one active at a time</li>
+            <li>Not be used for primary navigation</li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col">
+        <h3 class="has-text-weight-semibold">Style</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Modifier</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>is-boxed</td>
+                <td>Use when you want a border</td>
+            </tr>
+            <tr>
+                <td>is-toggle</td>
+                <td>Use when you want to have toggle buttons</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+{%- include sgds-feedback.html -%}

@@ -1,0 +1,51 @@
+---
+title: Breadcrumb
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /docs/breadcrumb/
+category: General
+breadcrumb: General
+---
+
+<div class="row">
+    <div class="col">
+        <h4 class="has-text-secondary">Breadcrumb is a navigation aid that display a user's location on a website as a row of links, usually around the top of the page</h4>
+        <nav class="sgds-breadcrumb bg-secondary" aria-label="breadcrumbs">
+            <ul class="is-marginless margin--left">
+                <li><a href=""><small>HOME</small></a></li>
+                <li><a href=""><small>LINK 1</small></a></li>
+                <li><a href=""><small>LINK 2</small></a></li>
+            </ul>
+        </nav>
+{%- highlight html -%}
+<nav class="sgds-breadcrumb bg-secondary" aria-label="breadcrumbs">
+    <ul>
+        <li><a href=""><small>HOME</small></a></li>
+        <li><a href=""><small>LINK 1</small></a></li>
+        <li><a href=""><small>LINK 2</small></a></li>
+    </ul>
+</nav>
+{%- endhighlight -%}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col">
+        <h3 class="has-text-weight-semibold">Guidelines</h3>
+        <p>Breadcrumb should:</p>
+        <ul>
+            <li>Not replace primary navigation with breadcrumb</li>
+            <li>Not be used if all the pages are on the same level</li>
+            <li>Use to show hierarchy and not history</li>
+            <li>Be located in the top half of your web page</li>
+            <li>Progress from the highest level to the lowest</li>
+            <li>Always start with the homepage and end with the current page</li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+{%- include sgds-feedback.html -%}
