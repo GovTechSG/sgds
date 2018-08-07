@@ -1,0 +1,89 @@
+---
+title: Container
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /docs/container/
+category: General
+breadcrumb: General
+---
+
+<div class="row padding--top padding--bottom--lg">
+    <div class="col">
+        <h4 class="has-text-weight-normal has-text-secondary padding--bottom--lg"><b>Container</b> is an element designed to contain page elements to a reasonable maximum width based on the size of a user's screen. This is useful to couple with other UI elements like grid or menu to restrict their width to a reasonable size for display</h4>
+        <div class="sgds-example is-marginless">
+            <section class="sgds-section is-small">
+                <div class="sgds-container bg-light">
+                    <div class="sgds-notification is-primary is-position-relative">
+                        default container
+                    </div>
+                </div>
+            </section>
+        </div>
+        <p class="margin--top">If you do not want a maximum width but keep the 32px margin on both sides, add <code>is-fluid</code>.</p>
+        <div class="sgds-example is-marginless">
+            <section class="sgds-section is-small">
+                <div class="sgds-container is-fluid bg-light">
+                    <div class="sgds-notification is-primary is-position-relative">
+                        fluid container
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Usage</h3>
+        <p>The <code>.sgds-container</code> class can be used in any context, but mostly as a direct child of either:</p>
+        <ul>
+            <li>.navbar</li>
+            <li>.sgds-hero</li>
+            <li>.sgds-section</li>
+            <li>.sgds-footer</li>
+        </ul>
+{%- highlight html -%}
+<section class="sgds-section">
+    <div class="sgds-container">
+        default container
+    </div>
+</section>
+{%- endhighlight -%}
+    </div>
+</div>
+
+<hr>
+
+<div class="row padding--top--lg padding--bottom--lg has-text-left">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Style</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Modifier</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>is-fluid</td>
+                <td>Add when you don't want to have a max width but want to keep the 32px margin on both sides</td>
+            </tr>
+            <tr>
+                <td>is-widescreen</td>
+                <td>Add when you want to have the container fullwidth until widescreen breakpoint at 1152px</td>
+            </tr>
+            <tr>
+                <td>is-fullhd</td>
+                <td>Add when you want to have the container fullwidth until fullhd breakpoint at 1344px</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+{%- include sgds-feedback.html -%}

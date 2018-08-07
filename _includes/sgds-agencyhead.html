@@ -20,6 +20,13 @@
                 {%- if page.url contains lvl1item.url -%}
                 {%- assign class = 'active' -%}
                 {%- endif -%}
+                <div class="navbar-item">
+                    <a class="navbar-link is-uppercase"
+                       href="{{ site.baseurl }}{{ lvl1item.url }} ">
+                        <h6>{{ lvl1item.title }}</h6>
+                    </a>
+                </div>
+                <!--
                 {%- if lvl1item.lvl2 -%}
                 <div class="navbar-item is-hoverable is-mega">
                     <a class="navbar-link has-dropdown is-uppercase" href="">
@@ -54,9 +61,14 @@
                     </a>
                 </div>
                 {%- endif -%}
+                -->
+
                 {%- endfor -%}
             </div>
             <div class="navbar-end is-hidden-touch">
+                <div class="navbar-item">
+                    <a class="sgds-button is-rounded" href="/">Get Started</a>
+                </div>
                 <div class="navbar-item">
                     {% if page.layout != 'search' %}
                     <a class="sgds-button is-text is-large" id="search-activate">

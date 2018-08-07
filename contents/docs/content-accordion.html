@@ -1,0 +1,79 @@
+---
+title: Accordion
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /docs/accordion/
+category: General
+breadcrumb: General
+---
+
+<div class="row">
+    <div class="col">
+        <h4 class="has-text-secondary">Accordion is a graphical control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "stretched" to reveal the content associated with that item</h4>
+        <div class="sgds-accordion-container">
+            <div class="sgds-accordion-set">
+                <a class="sgds-accordion-header">
+                    <h5>accordion bar 1</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                </a>
+                <div class="sgds-accordion-body">
+                    <p>content 1</p>
+                </div>
+            </div>
+            <div class="sgds-accordion-set">
+                <a class="sgds-accordion-header">
+                    <h5>accordion bar 2</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                </a>
+                <div class="sgds-accordion-body">
+                    <p>content 2</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col">
+        <h3 class="has-text-weight-semibold">Usage</h3>
+        <p>Use this code snippet to any part of your project.</p>
+{%- highlight html -%}
+<div class="sgds-accordion-container">
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h5>Title 1</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            your content
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h5>Title 2</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            your content
+        </div>
+    </div>
+</div>
+{%- endhighlight -%}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col">
+        <h3 class="has-text-weight-semibold">Guidelines</h3>
+        <p>Accordion should:</p>
+        <ul>
+            <li>Use only when there is enough content to condense</li>
+            <li>Avoid nested accordions as it increases the cognitive load for users</li>
+            <li>Have multiple accordions open at the same time</li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+{%- include sgds-feedback.html -%}

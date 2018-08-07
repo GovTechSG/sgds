@@ -1,0 +1,62 @@
+---
+title: Iconography
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /docs/iconography/
+category: Standard
+breadcrumb: Standard
+---
+
+<div class="row">
+    <div class="col">
+        <h4 class="has-text-secondary">Iconography uses images and symbols to represent an object visually. They communicate a message and should be distinct and informative</h4>
+        {% assign icon-category = site.data.icons %}
+        {% for cat in icon-category %}
+        <div class="row">
+            <div class="col">
+                <h5 class="has-text-primary">{{cat.category}} Icons</h5>
+            </div>
+        </div>
+        <div class="row is-multiline is-mobile">
+            {% assign icons = cat.icons | sort: 'iconName' %}
+            {% for icon in icons %}
+            <div class="col is-2-desktop is-4-tablet is-4-mobile is-boxed is-position-relative is-overflow-hidden clipboard-btn" data-clipboard-text=".sgds-icon-{{icon.iconName}}">
+                <div class="icon-container">
+                    <span class="sgds-icon sgds-icon-{{icon.iconName}} is-size-1"></span>
+                </div>
+                <small>.sgds-icon-{{icon.iconName}}</small>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col">
+        <h3 class="has-text-weight-semibold">Usage</h3>
+        <p>Replace <code>sgds-icon-iconName</code> with the one you wish to use from above.</p>
+        {% highlight html %}<span class="sgds-icon sgds-icon-iconName"></span>{% endhighlight %}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col">
+        <h3 class="has-text-weight-semibold">Guidelines</h3>
+        <p>Iconography should:</p>
+        <ul>
+            <li>Be used sparingly throughout the product to provide clarity and reduce cognitive
+                load on users
+            </li>
+            <li>Be accessible as people with limited vision may not be able to see them</li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+{%- include sgds-feedback.html -%}

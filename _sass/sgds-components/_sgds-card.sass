@@ -12,7 +12,8 @@ $card-footer-border-top: 1px solid $border !default
     background-color: $card-background-color
     box-shadow: $card-shadow
     color: $card-color
-    max-width: 100%
+    //max-width: 100%
+    width: 100%
     position: relative
 
   &-card-header
@@ -59,6 +60,12 @@ $card-footer-border-top: 1px solid $border !default
     padding: 0.75rem
     &:not(:last-child)
       border-right: $card-footer-border-top
+
+  &-card-button
+    &:hover
+      cursor: pointer
+      color: $primary
+      box-shadow: 0 2px 3px rgba($primary, 0.1), 0 0 0 1px rgba($primary, 0.1)
 
   // Combinations
 
