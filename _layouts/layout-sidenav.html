@@ -27,8 +27,12 @@ layout: layout-default
                             {%- for lvl2item in lvl1item.lvl2 -%}
                             {%- if page.url contains lvl1item.url -%}
                             <li>
+                                {%- assign class = nil -%}
+                                {%- if page.url contains lvl2item.url -%}
+                                {%- assign class = 'is-active' -%}
+                                {%- endif -%}
                                 <a href="{{ site.baseurl }}{{ lvl2item.url }}"
-                                   class="is-uppercase has-text-weight-semibold">
+                                   class="is-uppercase has-text-weight-semibold {{class}}">
                                     {{ lvl2item.title }}
                                 </a>
                                 <ul>
