@@ -1,195 +1,85 @@
-- title: Product
-  url: /product/
+- title: About
+  url: /about/
 
 - title: Learn
   url: /learn/
   lvl2:
-   - title: Developer
-     url: /learn/developer/
-     lvl3:
-      - title: Understand our key principles
-        url: /learn/generic/key-principles/
-      - title: Installing and using Isomer
-        url: /learn/developer/install-isomer/
-      - title: Masthead and footer
-        url: /learn/developer/masthead-footer/
-      - title: Understanding the grid system
-        url: /learn/developer/grid-system/
-      - title: Icons, images and avatars
-        url: /learn/developer/icons-images/
-      - title: Working with data
-        url: /learn/developer/working-data/
-   - title: Designer
-     url: /learn/designer/
-     lvl3:
-       - title: Understand our key principles
-         url: /learn/generic/key-principles/
-       - title: Installing and using Isomer
-         url: /learn/developer/install-isomer/
-   - title: Writer
-     url: /learn/writer/
+     - title: Development
+       url: /learn/development/
+       lvl3:
+          - title: Understand Our Key Principles
+            url: /learn/development/key-principles/
+          - title: Standard UI Components
+            url: /learn/development/standard-components/
+          - title: Accessibility for Coding
+            url: /learn/development/accessibility-coding/
+          - title: Installing and Using Isomer
+            url: /learn/development/install-isomer/
+     - title: Design
+       url: /learn/design/
+       lvl3:
+          - title: Understand Our Key Principles
+            url: /learn/design/key-principles/
+          - title: Standard UI Components
+            url: /learn/design/standard-components/
+          - title: Using the Sketch UI Kit
+            url: /learn/design/sketch-kit/
+          - title: Accessibility for Design
+            url: /learn/design/accessibility-design/
+          - title: Branding your Website
+            url: /learn/design/branding-website/
+     - title: Writing
+       url: /learn/writing/
+       lvl3:
+          - title: Understand Our Key Principles
+            url: /learn/writing/key-principles/
+          - title: Accessibility for Content
+            url: /learn/writing/accessibility-content/
 
 - title: Docs
   url: /docs/
   lvl2:
-   - title: Masthead
-     url: /docs/masthead/
-   - title: Footer
-     url: /docs/footer/
-   - title: Iconography
-     url: /docs/iconography/
-   - title: Typography
-     url: /docs/typography/
-   - title: Container
-     url: /docs/container/
-   - title: Grid
-     url: /docs/grid/
-   - title: Section
-     url: /docs/section/
-   - title: Table
-     url: /docs/table/
-   - title: Tab
-     url: /docs/tab/
-   - title: Breadcrumb
-     url: /docs/breadcrumb/
-   - title: Hero
-     url: /docs/hero/
-   - title: Callout
-     url: /docs/callout/
-   - title: Accordion
-     url: /docs/accordion/
-   - title: Button
-     url: /docs/button/
-   - title: Card
-     url: /docs/card/
-   - title: Dropdown
-     url: /docs/dropdown/
+   - title: Standard Components
+     url: /docs/
+     lvl3:
+       - title: Masthead
+         url: /docs/masthead/
+       - title: Footer
+         url: /docs/footer/
+       - title: Iconography
+         url: /docs/iconography/
+       - title: Typography
+         url: /docs/typography/
+   - title: General Components
+     url: /docs/
+     lvl3:
+       - title: Container
+         url: /docs/container/
+       - title: Grid
+         url: /docs/grid/
+       - title: Section
+         url: /docs/section/
+       - title: Table
+         url: /docs/table/
+       - title: Tab
+         url: /docs/tab/
+       - title: Breadcrumb
+         url: /docs/breadcrumb/
+       - title: Hero
+         url: /docs/hero/
+       - title: Callout
+         url: /docs/callout/
+       - title: Accordion
+         url: /docs/accordion/
+       - title: Button
+         url: /docs/button/
+       - title: Card
+         url: /docs/card/
+       - title: Dropdown
+         url: /docs/dropdown/
 
 - title: Showcase
   url: /showcase/
 
-- title: Help
-  url: /
-
-#- title: Onboarding
-#  url: /onboarding/
-#  lvl2:
-#    - title: Get Started
-#      url: /onboarding/get-started/
-#      lvl3:
-#        - title: Build a Website
-#          url: /onboarding/get-started/build-website/
-#        - title: For Product Managers
-#          url: /onboarding/get-started/for-product-managers/
-#        - title: For Developers
-#          url: /onboarding/get-started/for-developers/
-#        - title: For Designers
-#          url: /onboarding/get-started/for-designers/
-#
-#    - title: Guidelines
-#      url: /onboarding/guidelines/
-#      lvl3:
-#        - title: Digital Service Standards
-#          url: /onboarding/guidelines/digital-service-standards/
-#        - title: Usability Checklists
-#          url: /onboarding/guidelines/usability-checklists/
-#
-#    - title: Extensions
-#      url: /onboarding/extensions/
-#      lvl3:
-#        - title: Isomer Pages
-#          url: /onboarding/extensions/isomer-pages/
-#        - title: Content Website Platform
-#          url: /onboarding/extensions/cwp/
-#        - title: Sentimeter
-#          url: /onboarding/extensions/sentimeter/
-#        - title: FormSG
-#          url: /onboarding/extensions/formsg/
-
-#- title: Content
-#  url: /content/
-#  lvl2:
-#    - title: Voice and Tone
-#      url: /voice-and-tone/
-#      lvl3:
-#        - title: Voice Guidelines
-#          url: /voice-guidelines/
-#
-#    - title: Naming
-#      url: /naming/
-#      lvl3:
-#        - title: General
-#          url: /general/
-#
-#    - title: Grammer and Mechanics
-#      url: /grammer-and-mechanics/
-#      lvl3:
-#        - title: Capitalization
-#          url: /capitalization/
-#        - title: Headings
-#          url: /headings/
-
-#- title: Components
-#  url: /components/
-#  lvl2:
-#    - title: Standard
-#      url: /components/standard/
-#      lvl3:
-#        - title: Masthead
-#          url: /components/standard/masthead/
-#        - title: Footer
-#          url: /components/standard/footer/
-#        - title: Iconography
-#          url: /components/standard/iconography/
-#        - title: Typography
-#          url: /components/standard/typography/
-#
-#    - title: Structure
-#      url: /components/structure/
-#      lvl3:
-#        - title: Container
-#          url: /components/structure/container/
-#        - title: Grid
-#          url: /components/structure/grid/
-#        - title: Section
-#          url: /components/structure/section/
-#        - title: Table
-#          url: /components/structure/table/
-#
-#    - title: Navigation
-#      url: /components/navigation/
-#      lvl3:
-#        - title: Main Nav
-#          url: /components/navigation/mainnav/
-#        - title: Side Nav
-#          url: /components/navigation/sidenav/
-#        - title: Tab
-#          url: /components/navigation/tab/
-#        - title: Breadcrumb
-#          url: /components/navigation/breadcrumb/
-#
-#    - title: Content
-#      url: /components/content/
-#      lvl3:
-#        - title: Hero
-#          url: /components/content/hero/
-#        - title: Callout
-#          url: /components/content/callout/
-#
-#    - title: Action
-#      url: /components/action/
-#      lvl3:
-#        - title: Accordion
-#          url: /components/action/accordion/
-#        - title: Button
-#          url: /components/action/button/
-#        - title: Card
-#          url: /components/action/card/
-#        - title: Dropdown Menu
-#          url: /components/action/dropdown/
-#
-#- title: Templates
-#  url: /general/coming-soon/
-#
-#- title: Community
-#  url: /general/coming-soon/
+- title: Discuss
+  url: /general/coming-soon/
