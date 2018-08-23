@@ -1,0 +1,11 @@
+{
+  "name": "sgds-govtech",
+  "version": "1.0.4",
+  "description": "Isomer unites Singapore Government digital services around a common visual language and user experienc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Govtech Singapore",
+  "license": "MIT"
+}
