@@ -5,20 +5,14 @@ layout: layout-default
 <section class="sgds-section is-small sgds-section-pagetitle">
     <div class="sgds-container">
         {% include sgds-breadcrumb.html %}
-    </div>
-    <div class="sgds-container">
-        <div class="row">
-            <div class="col">
-                <h2 class="has-text-white">{{page.title}}</h2>
-            </div>
-        </div>
+        <h2 class="has-text-white ">{{page.title}}</h2>
     </div>
 </section>
 
 <section class="sgds-section">
     <div class="sgds-container">
         <div class="row">
-            <div class="col is-2 is-hidden-touch has-side-nav ">
+            <div class="col is-3 is-hidden-touch has-side-nav ">
                 <div class="sidenav">
                     <aside class="sgds-menu sidebar__inner">
                         <ul class="sgds-menu-list">
@@ -45,7 +39,7 @@ layout: layout-default
                                         {%- endif -%}
                                         <a href="{{ site.baseurl }}{{ lvl3item.url }}"
                                            class="{{ class }} padding--sm">
-                                            {{ lvl3item.title }}
+                                            <small>{{ lvl3item.title }}</small>
                                         </a>
                                     </li>
                                     {%- endfor -%}
@@ -59,10 +53,10 @@ layout: layout-default
                     </aside>
                 </div>
             </div>
-            <div class="col is-8 is-offset-1-desktop is-12-touch">
+            <div class="col is-9 is-12-touch">
                 <div class="row">
                     <div class="col">
-                        <div class="content">
+                        <div class="content margin--top">
                             {{content}}
                         </div>
                     </div>

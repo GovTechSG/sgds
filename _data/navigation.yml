@@ -7,31 +7,31 @@
      - title: Development
        url: /learn/development/
        lvl3:
-          - title: Understand Our Key Principles
+          - title: Know Our Key Principles
             url: /learn/development/key-principles/
-          - title: Standard UI Components
-            url: /learn/development/standard-components/
-          - title: Accessibility for Coding
-            url: /learn/development/accessibility-coding/
           - title: Installing and Using Isomer
             url: /learn/development/install-isomer/
+          - title: Accessibility for Coding
+            url: /learn/development/accessibility-coding/
+          - title: Color Contrast Checker
+            url: https://marijohannessen.github.io/color-contrast-checker/
+
      - title: Design
        url: /learn/design/
        lvl3:
-          - title: Understand Our Key Principles
+          - title: Know Our Key Principles
             url: /learn/design/key-principles/
-          - title: Standard UI Components
-            url: /learn/design/standard-components/
           - title: Using the Sketch UI Kit
             url: /learn/design/sketch-kit/
           - title: Accessibility for Design
             url: /learn/design/accessibility-design/
-          - title: Branding your Website
-            url: /learn/design/branding-website/
+          - title: Color Contrast Checker
+            url: https://marijohannessen.github.io/color-contrast-checker/
+
      - title: Writing
        url: /learn/writing/
        lvl3:
-          - title: Understand Our Key Principles
+          - title: Know Our Key Principles
             url: /learn/writing/key-principles/
           - title: Accessibility for Content
             url: /learn/writing/accessibility-content/
