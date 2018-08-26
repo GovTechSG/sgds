@@ -14,7 +14,7 @@
           - title: Accessibility for Coding
             url: /learn/development/accessibility-coding/
           - title: Color Contrast Checker
-            url: https://marijohannessen.github.io/color-contrast-checker/
+            url: /learn/development/color-contrast/
 
      - title: Design
        url: /learn/design/
@@ -26,7 +26,7 @@
           - title: Accessibility for Design
             url: /learn/design/accessibility-design/
           - title: Color Contrast Checker
-            url: https://marijohannessen.github.io/color-contrast-checker/
+            url: /learn/design/color-contrast/
 
      - title: Writing
        url: /learn/writing/
