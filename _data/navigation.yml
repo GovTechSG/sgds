@@ -46,10 +46,6 @@
          url: /docs/masthead/
        - title: Footer
          url: /docs/footer/
-       - title: Iconography
-         url: /docs/iconography/
-       - title: Typography
-         url: /docs/typography/
    - title: General Components
      url: /docs/
      lvl3:
@@ -77,6 +73,10 @@
          url: /docs/card/
        - title: Dropdown
          url: /docs/dropdown/
+       - title: Iconography
+         url: /docs/iconography/
+       - title: Typography
+         url: /docs/typography/
 
 - title: Showcase
   url: /showcase/
