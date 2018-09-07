@@ -13,6 +13,12 @@ breadcrumb: Standard
     </div>
 </div>
 
+<div class="row">
+    <div class="col">
+        <p>For footer that do not need to have quick links, copy the code snippet below.</p>
+    </div>
+</div>
+
 <footer class="sgds-footer top-section">
     <div class="sgds-container is-fluid">
         <div class="row">
@@ -47,13 +53,8 @@ breadcrumb: Standard
     </div>
 </footer>
 
-<hr class="margin--bottom--lg margin--top--lg">
-
-<div class="row">
+<div class="row margin--top--sm">
     <div class="col">
-        <h3 class="has-text-weight-semibold margin--bottom">Usage</h3>
-        <p>Use this code snippet to the footer of your project.</p>
-
 {% highlight html %}
 <footer class="sgds-footer top-section">
     <div class="sgds-container is-fluid">
@@ -62,6 +63,122 @@ breadcrumb: Standard
                 <h5 class="sub-header has-text-white">
                     <b>{{site.title}}</b>
                 </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col footer-col is-right-desktop-only">
+                <ul>
+                    <li class="is-inline-block-desktop-only">
+                        <p><a href="/">Contact Us</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<footer class="sgds-footer bottom-section">
+    <div class="sgds-container is-fluid">
+        <div class="row is-vcentered divider">
+            <div class="col footer-col">
+                <ul>
+                    <li><a href="/">Privacy Statement</a></li>
+                    <li><a href="/">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div class="col footer-col has-text-right-desktop has-text-left-mobile">
+                <p class="is-hidden-touch">
+                    © 2018 Government of Singapore. Last Updated {{site.last_updated}}
+                </p>
+                <p class="is-hidden-desktop">
+                    © 2018 Government of Singapore
+                </p>
+                <p class="is-hidden-desktop last-updated">
+                    Last Updated {{site.last_updated}}
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endhighlight %}
+    </div>
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<div class="row">
+    <div class="col">
+        <p>For footer that has quick links, you can have up to six columns for categories.</p>
+    </div>
+</div>
+
+<footer class="sgds-footer top-section">
+    <div class="sgds-container is-fluid">
+        <div class="row">
+            <div class="col footer-col header">
+                <h5 class="sub-header has-text-white"><b>{{site.title}}</b></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col footer-col is-3">
+                <p class="sub-header"><b>Category 1</b></p>
+                <p><a href="">Link</a></p>
+                <p><a href="">Link</a></p>
+            </div>
+            <div class="col footer-col is-3">
+                <p class="sub-header"><b>Category 2</b></p>
+                <p><a href="">Link</a></p>
+                <p><a href="">Link</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col footer-col is-right-desktop-only">
+                <ul class="is-marginless">
+                    <li class="is-inline-block-desktop-only">
+                        <p><a href="">Contact Us</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<footer class="sgds-footer bottom-section">
+    <div class="sgds-container is-fluid">
+        <div class="row is-vcentered divider">
+            <div class="col footer-col">
+                <ul class="is-marginless">
+                    <li><a href="">Privacy Statement</a></li>
+                    <li><a href="">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div class="col footer-col has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                <p> © 2018 Government of Singapore</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="row margin--top--sm">
+    <div class="col">
+{% highlight html %}
+<footer class="sgds-footer top-section">
+    <div class="sgds-container is-fluid">
+        <div class="row">
+            <div class="col footer-col header">
+                <h5 class="sub-header has-text-white">
+                    <b>{{site.title}}</b>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col footer-col is-3">
+                <p class="sub-header"><b>Category 1</b></p>
+                <p><a href="">Link</a></p>
+                <p><a href="">Link</a></p>
+            </div>
+            <div class="col footer-col is-3">
+                <p class="sub-header"><b>Category 2</b></p>
+                <p><a href="">Link</a></p>
+                <p><a href="">Link</a></p>
             </div>
         </div>
         <div class="row">
