@@ -350,6 +350,10 @@ function getAll(selector) {
     return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
 }
 
+function showCode(item) {
+    document.getElementById("panel"+item).style.display = "block";
+}
+
 $(document).ready(function(){
 
     //Search bar toggle

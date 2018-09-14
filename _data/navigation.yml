@@ -48,6 +48,8 @@
          url: /docs/masthead/
        - title: Footer
          url: /docs/footer/
+       - title: Main Nav
+         url: /docs/main-nav/
    - title: General Components
      url: /docs/
      lvl3:
