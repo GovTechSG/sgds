@@ -13,56 +13,28 @@
                 </div>
             </div>
             <div id="navbarMain" class="navbar-menu">
-                {%- assign links = site.data.navigation -%}
-                {%- for lvl1item in links -%}
-                <hr class="is-hidden-desktop">
-                {%- assign class = nil -%}
-                {%- if page.url contains lvl1item.url -%}
-                {%- assign class = 'active' -%}
-                {%- endif -%}
-                <div class="navbar-item">
-                    <a class="navbar-link is-uppercase"
-                       href="{{ site.baseurl }}{{ lvl1item.url }} ">
-                        <h6>{{ lvl1item.title }}</h6>
-                    </a>
-                </div>
-                <!--
-                {%- if lvl1item.lvl2 -%}
-                <div class="navbar-item is-hoverable is-mega">
-                    <a class="navbar-link has-dropdown is-uppercase" href="">
-                        <h6>{{ lvl1item.title }} <span class="sgds-icon sgds-icon-chevron-down"></span></h6>
-                    </a>
-                    <div class="navbar-dropdown padding--bottom">
-                        <div class="sgds-container is-fluid">
-                            <div class="row">
-                                {%- for lvl2item in lvl1item.lvl2 -%}
-                                <div class="col">
-                                    <a class="navbar-item is-title"
-                                       href="{{ site.baseurl }}{{ lvl2item.url }}">
-                                        <b>{{ lvl2item.title }}</b>
-                                    </a>
-                                    {%- for lvl3item in lvl2item.lvl3 -%}
-                                    <a class="navbar-item"
-                                       href="{{ site.baseurl }}{{ lvl3item.url }}">
-                                        <h6>{{ lvl3item.title }}</h6>
-                                    </a>
-                                    {%- endfor -%}
-                                </div>
-                                {%- endfor -%}
+                <div class="navbar-item is-hidden-desktop">
+                    <form action="{{ site.baseurl }}/search/" method="get">
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input is-fullwidth" id="search-box" type="text" placeholder="What are you looking for?" name="query">
                             </div>
                         </div>
-                    </div>
+                    </form>
+                    <hr class="is-marginless margin--top--sm">
                 </div>
-                {%- else -%}
-                <div class="navbar-item">
-                    <a class="navbar-link is-uppercase"
+                {%- assign links = site.data.navigation -%}
+                {%- for lvl1item in links -%}
+                <div class="navbar-item is-stretched">
+                    {%- assign class = nil -%}
+                    {%- if page.url contains lvl1item.url -%}
+                    {%- assign class = 'is-active' -%}
+                    {%- endif -%}
+                    <a class="navbar-link is-uppercase {{class}}"
                        href="{{ site.baseurl }}{{ lvl1item.url }} ">
                         <h6>{{ lvl1item.title }}</h6>
                     </a>
                 </div>
-                {%- endif -%}
-                -->
-
                 {%- endfor -%}
             </div>
             <div class="navbar-end is-hidden-touch">
