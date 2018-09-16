@@ -1,0 +1,201 @@
+---
+title: Side Nav
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /docs/side-nav/
+category: General
+breadcrumb: General
+---
+
+<div class="row">
+    <div class="col">
+        <h5 class="has-text-secondary has-text-weight-semibold">Side nav is a standard component that all '.gov.sg' websites must adopt for every inner page that has second or more levels of navigation items</h5>
+    </div>
+</div>
+
+<!-- Side Nav 1 -->
+
+<div class="row">
+    <div class="col">
+        <p>Basic side nav to support level 2 navigation, please ensure you have included <code>jquery.sticky-sidebar.js</code> for it to work.</p>
+    </div>
+</div>
+
+<aside class="sgds-menu sidebar__inner">
+    <ul class="sgds-menu-list is-marginless" style="list-style-type: none">
+        <li class="is-marginless">
+            <ul class="is-marginless" style="list-style-type: none">
+                <li class="is-marginless">
+                    <a href="" class="is-active padding--sm">
+                        <small>Level 2a</small>
+                    </a>
+                </li>
+                <li class="is-marginless">
+                    <a href="" class="padding--sm">
+                        <small>Level 2b</small>
+                    </a>
+                </li>
+                <li class="is-marginless">
+                    <a href="" class="padding--sm">
+                        <small>Level 2c</small>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</aside>
+
+<div class="sgds-accordion-container margin--top--lg">
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h6>Show code snippet</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+{%- highlight html -%}
+<div class="sidenav">
+    <aside class="sgds-menu sidebar__inner">
+        <ul class="sgds-menu-list">
+            <li>
+                <ul>
+                    <li>
+                        <a href="" class="is-active padding--sm">
+                            <small>Level 2a</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="padding--sm">
+                            <small>Level 2b</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="padding--sm">
+                            <small>Level 2c</small>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+</div>
+{%- endhighlight -%}
+        </div>
+    </div>
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<!-- Side Nav 2 -->
+
+<div class="row">
+    <div class="col">
+        <p>Advanced side nav to support level 3 navigation, please ensure you have included <code>jquery.sticky-sidebar.js</code> for it to work.</p>
+    </div>
+</div>
+
+<aside class="sgds-menu sidebar__inner">
+    <ul class="sgds-menu-list is-marginless" style="list-style-type: none">
+        <li class="is-marginless">
+            <a href="" class="is-uppercase has-text-weight-semibold is-active">
+                Level 2a
+            </a>
+            <ul  class="is-marginless" style="list-style-type: none">
+                <li class="is-marginless">
+                    <a href="" class="is-active padding--sm">
+                        <small>Level 3a</small>
+                    </a>
+                </li>
+                <li class="is-marginless">
+                    <a href="" class="padding--sm">
+                        <small>Level 3b</small>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="is-marginless">
+            <a href="" class="is-uppercase has-text-weight-semibold is-active">
+                Level 2b
+            </a>
+            <ul  class="is-marginless" style="list-style-type: none">
+                <li class="is-marginless">
+                    <a href="" class="padding--sm">
+                        <small>Level 3a</small>
+                    </a>
+                </li>
+                <li class="is-marginless">
+                    <a href="" class="padding--sm">
+                        <small>Level 3b</small>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</aside>
+
+<div class="sgds-accordion-container margin--top--lg">
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h6>Show code snippet</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+{%- highlight html -%}
+<div class="sidenav">
+    <aside class="sgds-menu sidebar__inner">
+        <ul class="sgds-menu-list">
+            <li>
+                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
+                    Level 2a
+                </a>
+                <ul>
+                    <li>
+                        <a href="" class="is-active padding--sm">
+                            <small>Level 3a</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="padding--sm">
+                            <small>Level 3b</small>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
+                    Level 2b
+                </a>
+                <ul>
+                    <li>
+                        <a href="" class="is-active padding--sm">
+                            <small>Level 3a</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="padding--sm">
+                            <small>Level 3b</small>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+</div>
+{%- endhighlight -%}
+        </div>
+    </div>
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<div class="row">
+    <div class="col">
+        <h3 class="has-text-weight-semibold margin--bottom">Guidelines</h3>
+        <p>Side nav should:</p>
+        <ul>
+            <li>Be positioned on the left of every inner page in a digital service</li>
+            <li>Be hidden when used on mobile devices</li>
+        </ul>
+    </div>
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+{%- include sgds-feedback.html -%}

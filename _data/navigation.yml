@@ -50,6 +50,8 @@
          url: /docs/footer/
        - title: Main Nav
          url: /docs/main-nav/
+       - title: Side Nav
+         url: /docs/side-nav/
    - title: General Components
      url: /docs/
      lvl3:

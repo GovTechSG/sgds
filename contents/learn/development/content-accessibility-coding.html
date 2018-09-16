@@ -68,7 +68,7 @@ permalink: /learn/development/accessibility-coding/
         <div class="sgds-accordion-container">
             <div class="sgds-accordion-set">
                 <a class="sgds-accordion-header">
-                    <h5>Associate Label With Every Form Control</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                    <h6>Associate Label With Every Form Control</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
                 </a>
                 <div class="sgds-accordion-body">
                     <p>Use a for attribute on the <code>label</code> element linked to the id attribute of the form element, or using WAI-ARIA attributes. In specific situations, it may be acceptable to hide <code>label</code> elements visually, but in most cases labels are needed to help all readers understand the required input.</p>
@@ -80,7 +80,7 @@ permalink: /learn/development/accessibility-coding/
             </div>
             <div class="sgds-accordion-set">
                 <a class="sgds-accordion-header">
-                    <h5>Include Alternative Text For Images</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                    <h6>Include Alternative Text For Images</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
                 </a>
                 <div class="sgds-accordion-body">
                     <p>Ensure that alternative text for images is added to all informational and functional images. Use empty alternative text, alt="" for decorative images, or include them in the CSS instead. Text alternatives are usually provided by those responsible for written content.</p>
@@ -88,7 +88,7 @@ permalink: /learn/development/accessibility-coding/
             </div>
             <div class="sgds-accordion-set">
                 <a class="sgds-accordion-header">
-                    <h5>Identify Page Language & Language Changes</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                    <h6>Identify Page Language & Language Changes</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
                 </a>
                 <div class="sgds-accordion-body">
                     <p>Indicate the primary language of every page by using the lang attribute in the html tag, for example <code>html lang="en"</code>. Use the lang attribute on specific elements when the language of the element differs from the rest of the page.</p>
@@ -96,7 +96,7 @@ permalink: /learn/development/accessibility-coding/
             </div>
             <div class="sgds-accordion-set">
                 <a class="sgds-accordion-header">
-                    <h5>Use Mark-Up To Convey Meaning & Structure</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                    <h6>Use Mark-Up To Convey Meaning & Structure</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
                 </a>
                 <div class="sgds-accordion-body">
                     <p>Use appropriate mark-up for headings, lists, tables, etc. HTML5 provides additional elements, such as <code>nav</code> and <code>aside</code>, to better structure your content.</p>
@@ -136,7 +136,7 @@ permalink: /learn/development/accessibility-coding/
             </div>
             <div class="sgds-accordion-set">
                 <a class="sgds-accordion-header">
-                    <h5>Help Users Avoid & Correct Mistakes</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                    <h6>Help Users Avoid & Correct Mistakes</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
                 </a>
                 <div class="sgds-accordion-body">
                     <p>Provide clear instructions, error messages, and notifications to help users complete forms on your site. When an error occurs:</p>
@@ -158,7 +158,7 @@ permalink: /learn/development/accessibility-coding/
             </div>
             <div class="sgds-accordion-set">
                 <a class="sgds-accordion-header">
-                    <h5>Reflect The Reading Order In The Code Order</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                    <h6>Reflect The Reading Order In The Code Order</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
                 </a>
                 <div class="sgds-accordion-body">
                     <p>Ensure that the order of elements in the code matches the logical order of the information presented. One way to check this is to remove CSS styling and review that the order of the content makes sense.</p>
@@ -166,7 +166,7 @@ permalink: /learn/development/accessibility-coding/
             </div>
             <div class="sgds-accordion-set">
                 <a class="sgds-accordion-header">
-                    <h5>Write Code That Adapts To The User’s Technology</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                    <h6>Write Code That Adapts To The User’s Technology</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
                 </a>
                 <div class="sgds-accordion-body">
                     <p>Use responsive design to adapt the display to different zoom states and viewport sizes, such as on mobile devices and tablets. When font size is increased by at least 200%, avoid horizontal scrolling and prevent any clipping of content. Use progressive enhancement to help ensure that core functionality and content is available regardless of technology being used.</p>
@@ -196,7 +196,7 @@ permalink: /learn/development/accessibility-coding/
             </div>
             <div class="sgds-accordion-set">
                 <a class="sgds-accordion-header">
-                    <h5>Provide Meaning For Non-Standard Interactive Elements</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                    <h6>Provide Meaning For Non-Standard Interactive Elements</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
                 </a>
                 <div class="sgds-accordion-body">
                     <p>Use WAI-ARIA to provide information on function and state for custom widgets, such as accordions and custom-made buttons. For example, role="navigation" and aria-expanded="true". Additional code is required to implement the behavior of such widgets, such as expanding and collapsing content or how the widget responds to keyboard events.</p>
@@ -226,7 +226,7 @@ permalink: /learn/development/accessibility-coding/
             </div>
             <div class="sgds-accordion-set">
                 <a class="sgds-accordion-header">
-                    <h5>Ensure That All Interactive Elements Are Keyboard Accessible</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                    <h6>Ensure That All Interactive Elements Are Keyboard Accessible</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
                 </a>
                 <div class="sgds-accordion-body">
                     <p>Think about keyboard access, especially when developing interactive elements, such as menus, mouseover information, collapsable accordions, or media players. Use tabindex="0" to add an element that does not normally receive focus, such as <code>div</code> or <code>span</code>, into the navigation order when it is being used for interaction. Use scripting to capture and respond to keyboard events.</p>
@@ -247,7 +247,7 @@ buttonEg.addEventListener('click', function(e) {
             </div>
             <div class="sgds-accordion-set">
                 <a class="sgds-accordion-header">
-                    <h5>Avoid CAPTCHA Where Possible</h5> <i class="sgds-icon sgds-icon-chevron-up"></i>
+                    <h6>Avoid CAPTCHA Where Possible</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
                 </a>
                 <div class="sgds-accordion-body">
                     <p>CAPTCHAs create problems for many people. There are other means of verifying that user input was generated by a human that are easier to use, such as automatic detection or interface interactions. If CAPTCHA really needs to be included, ensure that it is simple to understand and includes alternatives for users with disabilities, such as:</p>
