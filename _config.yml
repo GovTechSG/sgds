@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Isomer Design System
-email: your-email@example.com
+email: johnson_koh@tech.gov.sg
 description: >- # this means to ignore newlines until "baseurl:"
   Isomer Design System unites Singapore Government digital services around a common visual language and user experience
 baseurl: "" # the s.sgdsath of your site, e.g. /blog
@@ -27,6 +27,7 @@ last_updated: 5 June 2018
 markdown: kramdown
 plugins:
   - jekyll-assets
+  - jekyll-seo-tag
 
 breadcrumbs:
   root:

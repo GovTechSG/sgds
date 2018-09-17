@@ -3,7 +3,7 @@ $navbar-height: 6.25rem !default
 $navbar-fixed-z: 30 !default
 
 $navbar-item-color: $grey-dark !default
-$navbar-item-hover-color: $primary !default
+$navbar-item-hover-color: $secondary !default
 $navbar-item-hover-background-color: $background !default
 $navbar-item-active-color: $black !default
 $navbar-item-active-background-color: transparent !default
@@ -149,6 +149,9 @@ a.navbar-link
   &.is-active
     background-color: $navbar-item-hover-background-color
     color: $navbar-item-hover-color
+  &.is-active
+    color: $secondary !important
+    border-bottom: 2px solid $secondary
 
 .navbar-item
   flex-grow: 0
