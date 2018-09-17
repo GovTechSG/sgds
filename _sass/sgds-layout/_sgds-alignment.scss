@@ -198,3 +198,13 @@ $base-margin-padding: 1rem;
     }
   }
 }
+
+.is-offset-sideNav{
+  position: fixed;
+  width:22%;
+  top:40px;
+  .touch &{
+    @extend .is-position-relative;
+    width:100%;
+  }
+}

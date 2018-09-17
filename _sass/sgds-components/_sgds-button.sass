@@ -1,9 +1,13 @@
 $button-color: $grey-darker !default
 $button-background-color: $white !default
 $button-border-color: $grey-lighter !default
+$button-border-width: 1px !default
 
 $button-hover-color: $link-hover !default
 $button-hover-border-color: $link-hover-border !default
+
+$button-padding-vertical: calc(0.375em - #{$button-border-width}) !default
+$button-padding-horizontal: 0.75em !default
 
 $button-focus-color: $link-focus !default
 $button-focus-border-color: $link-focus-border !default
@@ -36,47 +40,38 @@ $button-static-border-color: $grey-lighter !default
   font-size: $size-large
 
 .sgds-button
-  -webkit-border-radius: 0
-  -moz-border-radius: 0
-  border-radius: 0
-  box-sizing: content-box
   +control
   +unselectable
   background-color: $button-background-color
   border-color: $button-border-color
+  border-width: $button-border-width
   color: $button-color
   cursor: pointer
   justify-content: center
-  padding-left: 0.75em
-  padding-right: 0.75em
+  padding-bottom: $button-padding-vertical
+  padding-left: $button-padding-horizontal
+  padding-right: $button-padding-horizontal
+  padding-top: $button-padding-vertical
   text-align: center
   white-space: nowrap
   strong
     color: inherit
-  .icon
+  .sgds-icon
     &,
     &.is-small,
     &.is-medium,
     &.is-large
-      height: 1.5em
-      width: 1.5em
+      height: 1em
+      width: 2em
     &:first-child:not(:last-child)
-      margin-left: calc(-0.375em - 1px)
+      margin-left: calc(-0.375em - #{$button-border-width})
       margin-right: 0.1875em
     &:last-child:not(:first-child)
       margin-left: 0.1875em
-      margin-right: calc(-0.375em - 1px)
+      margin-right: calc(-0.375em - #{$button-border-width})
     &:first-child:last-child
-      margin-left: calc(-0.375em - 1px)
-      margin-right: calc(-0.375em - 1px)
-
-
-  .content &
-      text-decoration: none
-      text-transform:  uppercase
-      font-weight: 600
-      color: $secondary
-
+      margin-left: calc(-0.375em - #{$button-border-width})
+      margin-right: calc(-0.375em - #{$button-border-width})
   // States
   &:hover,
   &.is-hovered
@@ -97,15 +92,13 @@ $button-static-border-color: $grey-lighter !default
     background-color: transparent
     border-color: transparent
     color: $button-text-color
-    text-decoration: none
+    text-decoration: underline
     &:hover,
     &.is-hovered,
     &:focus,
     &.is-focused
       background-color: $button-text-hover-background-color
       color: $button-text-hover-color
-      span
-        color: $button-text-hover-color
     &:active,
     &.is-active
       background-color: darken($button-text-hover-background-color, 5%)
@@ -131,7 +124,7 @@ $button-static-border-color: $grey-lighter !default
         border-color: transparent
         color: $color-invert
         &:not(:active)
-          box-shadow: none
+          box-shadow: $button-focus-box-shadow-size rgba($color, 0.25)
       &:active,
       &.is-active
         background-color: darken($color, 5%)
@@ -152,7 +145,7 @@ $button-static-border-color: $grey-lighter !default
           box-shadow: none
           color: $color
       &.is-loading
-        &:after
+        &::after
           border-color: transparent transparent $color-invert $color-invert !important
       &.is-outlined
         background-color: transparent
@@ -164,7 +157,7 @@ $button-static-border-color: $grey-lighter !default
           border-color: $color
           color: $color-invert
         &.is-loading
-          &:after
+          &::after
             border-color: transparent transparent $color $color !important
         &[disabled]
           background-color: transparent
@@ -203,7 +196,7 @@ $button-static-border-color: $grey-lighter !default
   &.is-loading
     color: transparent !important
     pointer-events: none
-    &:after
+    &::after
       +loader
       +center(1em)
       position: absolute !important
@@ -253,6 +246,8 @@ $button-static-border-color: $grey-lighter !default
         z-index: 3
         &:hover
           z-index: 4
+      &.is-expanded
+        flex-grow: 1
   &.is-centered
     justify-content: center
   &.is-right
