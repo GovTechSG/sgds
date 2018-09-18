@@ -61,9 +61,6 @@ p,li{
   font-size: $size-6;
   line-height: 2rem;
 
-  @include touch() {
-    font-size: $size-7!important;
-  }
 }
 
 small{
