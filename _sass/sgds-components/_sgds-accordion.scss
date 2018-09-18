@@ -5,8 +5,7 @@
     }
   }
   &-header{
-    //background-color: $table-grey;
-    border: 1px solid darken($table-grey, 10%);
+    background-color: $table-grey;
     display:flex;
     align-items: center;
     justify-content: space-between;
@@ -17,13 +16,11 @@
       margin-bottom:0;
     }
     &:hover {
-      border: 1px solid darken($table-grey, 10%);
-      background-color: $table-grey;
+      background-color: darken($table-grey, 10%);
       color: currentColor;
     }
     &.active{
-      border: 1px solid darken($table-grey, 10%);
-      background-color: $table-grey;
+      background-color: darken($table-grey,10%);
     }
   }
   &-body{

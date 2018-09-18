@@ -58,7 +58,7 @@ h6{
 }
 
 p,li{
-  font-size: $size-7; // 20px
+  font-size: $size-6;
   line-height: 2rem;
 
   @include touch() {
@@ -67,7 +67,7 @@ p,li{
 }
 
 small{
-  font-size: 0.9375rem!important; // 15px
+  font-size: 0.9375rem!important; //15px
   letter-spacing: 0.2px;
 }
 

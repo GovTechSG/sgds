@@ -1,6 +1,6 @@
 {
   "name": "sgds-govtech",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Isomer unites Singapore Government digital services around a common visual language and user experienc",
   "main": "index.js",
   "scripts": {

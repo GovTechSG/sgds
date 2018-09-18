@@ -1,15 +1,19 @@
 $input-color: $grey-darker !default
 $input-background-color: $white !default
-$input-border-color: transparent !default
-$input-shadow: none !default
+$input-border-color: $grey-lighter !default
+$input-shadow: inset 0 1px 2px rgba($black, 0.1) !default
+
+$input-background-color: $white !default
+$input-border-color: $grey-lighter !default
+$input-shadow: inset 0 1px 2px rgba($black, 0.1) !default
 
 $input-hover-color: $grey-darker !default
-$input-hover-border-color: transparent !default
+$input-hover-border-color: $grey-light !default
 
 $input-focus-color: $grey-darker !default
-$input-focus-border-color: transparent !default
-$input-focus-box-shadow-size: none !default
-$input-focus-box-shadow-color: transparent !default
+$input-focus-border-color: $link !default
+$input-focus-box-shadow-size: 0 0 0 0.125em !default
+$input-focus-box-shadow-color: rgba($link, 0.25) !default
 
 $input-disabled-color: $text-light !default
 $input-disabled-background-color: $background !default
@@ -20,7 +24,7 @@ $input-arrow: $link !default
 $input-icon-color: $grey-lighter !default
 $input-icon-active-color: $grey !default
 
-$input-radius: 0px !default
+$input-radius: $radius !default
 
 $file-border-color: $border !default
 $file-radius: $radius !default
@@ -63,6 +67,10 @@ $help-size: $size-small !default
     color: $input-disabled-color
     +placeholder
       color: rgba($input-disabled-color, 0.3)
+  &.is-borderless
+    border-color: transparent
+  &.is-shadowless
+    box-shadow: 0
 
 .input,
 .textarea
@@ -81,7 +89,7 @@ $help-size: $size-small !default
       &.is-focused,
       &:active,
       &.is-active
-        box-shadow: none
+        box-shadow: $input-focus-box-shadow-size rgba($color, 0.25)
   // Sizes
   &.is-small
     +control-small
@@ -119,7 +127,7 @@ $help-size: $size-small !default
     max-height: 600px
     min-height: 120px
   &[rows]
-    height: unset
+    height: initial
   // Modifiers
   &.has-fixed-size
     resize: none
@@ -149,11 +157,10 @@ $help-size: $size-small !default
   vertical-align: top
   &:not(.is-multiple)
     height: 2.25em
+  &:not(.is-multiple):not(.is-loading)
     &::after
       +arrow($input-arrow)
-      margin-top: -0.375em
       right: 1.125em
-      top: 50%
       z-index: 4
   &.is-rounded
     select
@@ -173,24 +180,30 @@ $help-size: $size-small !default
     &:not([multiple])
       padding-right: 2.5em
     &[multiple]
-      height: unset
+      height: auto
       padding: 0
       option
         padding: 0.5em 1em
   // States
-  &:hover
+  &:not(.is-multiple):not(.is-loading):hover
     &::after
       border-color: $input-hover-color
   // Colors
   @each $name, $pair in $colors
     $color: nth($pair, 1)
-    &.is-#{$name} select
-      border-color: $color
-      &:focus,
-      &.is-focused,
-      &:active,
-      &.is-active
-        box-shadow: $input-focus-box-shadow-size rgba($color, 0.25)
+    &.is-#{$name}
+      &:not(:hover)::after
+        border-color: $color
+      select
+        border-color: $color
+        &:hover,
+        &.is-hovered
+          border-color: darken($color, 5%)
+        &:focus,
+        &.is-focused,
+        &:active,
+        &.is-active
+          box-shadow: $input-focus-box-shadow-size rgba($color, 0.25)
   // Sizes
   &.is-small
     +control-small
@@ -208,7 +221,7 @@ $help-size: $size-small !default
       width: 100%
   &.is-loading
     &::after
-      +loader
+      @extend %loader
       margin-top: 0
       position: absolute
       right: 0.625em
@@ -222,7 +235,7 @@ $help-size: $size-small !default
       font-size: $size-large
 
 .file
-  +unselectable
+  @extend %unselectable
   align-items: stretch
   display: flex
   justify-content: flex-start
@@ -425,35 +438,36 @@ $help-size: $size-small !default
       &:not(:last-child)
         margin-right: -1px
       &:not(:first-child):not(:last-child)
-        .sgds-button,
+        .button,
         .input,
         .select select
           border-radius: 0
       &:first-child
-        .sgds-button,
+        .button,
         .input,
         .select select
           border-bottom-right-radius: 0
           border-top-right-radius: 0
       &:last-child
-        .sgds-button,
+        .button,
         .input,
         .select select
           border-bottom-left-radius: 0
           border-top-left-radius: 0
-      .sgds-button,
+      .button,
       .input,
       .select select
-        &:hover,
-        &.is-hovered
-          z-index: 2
-        &:focus,
-        &.is-focused,
-        &:active,
-        &.is-active
-          z-index: 3
-          &:hover
-            z-index: 4
+        &:not([disabled])
+          &:hover,
+          &.is-hovered
+            z-index: 2
+          &:focus,
+          &.is-focused,
+          &:active,
+          &.is-active
+            z-index: 3
+            &:hover
+              z-index: 4
       &.is-expanded
         flex-grow: 1
     &.has-addons-centered
@@ -535,13 +549,14 @@ $help-size: $size-small !default
         margin-right: 0.75rem
 
 .control
+  clear: both //fixes the icon floating out of the input when help text is floated right
   font-size: $size-normal
   position: relative
   text-align: left
   // Modifiers
   // DEPRECATED
   &.has-icon
-    .sgds-icon
+    .icon
       color: $input-icon-color
       height: 2.25em
       pointer-events: none
@@ -551,24 +566,24 @@ $help-size: $size-small !default
       z-index: 4
     .input
       &:focus
-        & + .sgds-icon
+        & + .icon
           color: $input-icon-active-color
       &.is-small
-        & + .sgds-icon
+        & + .icon
           font-size: $size-small
       &.is-medium
-        & + .sgds-icon
+        & + .icon
           font-size: $size-medium
       &.is-large
-        & + .sgds-icon
+        & + .icon
           font-size: $size-large
     &:not(.has-icon-right)
-      .sgds-icon
+      .icon
         left: 0
       .input
         padding-left: 2.25em
     &.has-icon-right
-      .sgds-icon
+      .icon
         right: 0
       .input
         padding-right: 2.25em
@@ -585,7 +600,7 @@ $help-size: $size-small !default
         font-size: $size-medium
       &.is-large ~ .icon
         font-size: $size-large
-    .sgds-icon
+    .icon
       color: $input-icon-color
       height: 2.25em
       pointer-events: none
@@ -597,17 +612,17 @@ $help-size: $size-small !default
     .input,
     .select select
       padding-left: 2.25em
-    .sgds-icon.is-left
+    .icon.is-left
       left: 0
   &.has-icons-right
     .input,
     .select select
       padding-right: 2.25em
-    .sgds-icon.is-right
+    .icon.is-right
       right: 0
   &.is-loading
     &::after
-      +loader
+      @extend %loader
       position: absolute !important
       right: 0.625em
       top: 0.625em

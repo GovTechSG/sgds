@@ -151,6 +151,9 @@
   position: relative
   width: 1em
 
+%loader
+  +loader
+
 =overflow-touch
   -webkit-overflow-scrolling: touch
 
@@ -173,6 +176,25 @@
   -moz-user-select: none
   -ms-user-select: none
   user-select: none
+
+%unselectable
+  +unselectable
+
+=arrow ($color: transparent)
+  border: 3px solid $color
+  border-radius: 2px
+  border-right: 0
+  border-top: 0
+  content: " "
+  display: block
+  height: 0.625em
+  margin-top: -0.4375em
+  pointer-events: none
+  position: absolute
+  top: 50%
+  transform: rotate(-45deg)
+  transform-origin: center
+  width: 0.625em
 
 // Responsiveness
 
