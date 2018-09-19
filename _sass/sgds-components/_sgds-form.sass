@@ -21,10 +21,10 @@ $input-disabled-border-color: $background !default
 
 $input-arrow: $link !default
 
-$input-icon-color: $grey-lighter !default
+$input-icon-color: $grey-light !default
 $input-icon-active-color: $grey !default
 
-$input-radius: $radius !default
+$input-radius: $radius-large !default
 
 $file-border-color: $border !default
 $file-radius: $radius !default
@@ -106,6 +106,7 @@ $help-size: $size-small !default
     width: auto
 
 .input
+  border-radius: $input-radius
   &.is-rounded
     border-radius: $radius-rounded
     padding-left: 1em

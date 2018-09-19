@@ -7,10 +7,11 @@ $notification-padding: 0.9375rem !default
   background-color: $notification-background-color
   border-radius: $notification-radius
   padding: $notification-padding
-  position: absolute
+
   width: 100%
   z-index: 2
-  opacity: 0.8
+  &.is-pos-abs
+    position: absolute
   a:not(.button)
     color: currentColor
     text-decoration: underline
