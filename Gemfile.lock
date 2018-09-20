@@ -49,6 +49,8 @@ GEM
       sprockets (>= 3.3, < 4.1.beta)
     jekyll-feed (0.9.3)
       jekyll (~> 3.3)
+    jekyll-redirect-from (0.14.0)
+      jekyll (~> 3.3)
     jekyll-sanity (1.2.0)
       jekyll (~> 3.1)
     jekyll-sass-converter (1.5.2)
@@ -104,8 +106,9 @@ DEPENDENCIES
   jekyll (~> 3.7.2)
   jekyll-assets
   jekyll-feed (~> 0.6)
+  jekyll-redirect-from
   minima (~> 2.0)
   tzinfo-data
 
 BUNDLED WITH
-   1.16.1
+   1.16.4
