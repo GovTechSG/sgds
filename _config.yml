@@ -22,7 +22,7 @@ url: "https://designsystem.gov.sg" # the base hostname & protocol for your site,
 twitter_username: jekyllrb
 github_username:  jekyll
 last_updated: 5 June 2018
-
+host: localhost
 # Build settings
 markdown: kramdown
 plugins:
