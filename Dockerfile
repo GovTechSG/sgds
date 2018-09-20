@@ -15,8 +15,6 @@ COPY . /usr/src/app
 
 RUN bundle install
 
-ENV HOST https://designsystem.isomer.gov.sg
-
 EXPOSE 4000
 
 CMD [ "bundle", "exec", "jekyll", "serve", "--force_polling", "-H", "0.0.0.0", "-P", "4000" ]
