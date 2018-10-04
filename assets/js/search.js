@@ -151,7 +151,7 @@ var runSearch = function(json_data, posts_data) {
       }
     }
   }
-
+  // TODO: Sanitise search query
   var searchTerm = getQueryVariable('query');
 
   if (searchTerm) {
