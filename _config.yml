@@ -27,7 +27,6 @@ markdown: kramdown
 plugins:
   - jekyll-assets
   - jekyll-seo-tag
-  - jekyll-redirect-from
 
 breadcrumbs:
   root:

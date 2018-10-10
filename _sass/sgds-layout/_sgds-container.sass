@@ -1,3 +1,5 @@
+$container-border-color: $grey-light !default
+
 .sgds
   &-container
     margin: 0 auto
@@ -26,3 +28,6 @@
     +from($fullhd)
       max-width: $fullhd - (2 * $gap)
       width: $fullhd - (2 * $gap)
+
+    &.is-boxed
+      border: 1px solid $container-border-color
