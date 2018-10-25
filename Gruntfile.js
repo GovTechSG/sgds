@@ -62,7 +62,7 @@ module.exports = function(grunt) {
                 },
                 expand: true,
                 cwd: 'sgds-govtech',
-                src: ['js/*', 'css/*'],
+                src: ['js/*', 'css/*', 'fonts/*'],
                 dest: 'sgds'
             }
         }
