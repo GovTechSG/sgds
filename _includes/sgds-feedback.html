@@ -1,7 +1,19 @@
-<div class="row">
+<div class="row {%if page.url contains 'faq' %}padding--top--lg padding--bottom--lg{% endif %}">
     <div class="col">
-        <h3 class="has-text-weight-semibold margin--bottom">Feedback</h3>
-        <p>Having troubles with the guide? Please give us more details and we'll get back to you soon.</p>
-        <a class="sgds-button is-rounded is-medium is-secondary margin--top--lg" href="https://form.sg/forms/govtech/5b02943839e23a001a1be70f" target="_blank">Tell us more</a>
+        <h3 class="has-text-weight-semibold margin--bottom">
+            {%if page.url contains 'faq' %}
+                How can I start creating a website?
+            {% else %}
+                Feedback
+            {% endif %}
+        </h3>
+        <p>
+            {%if page.url contains 'faq' %}
+                Please drop us a message to discuss on your requirements and we'll guide you for the next steps.
+            {% else %}
+                Having troubles with the guide? Please give us more details and we'll get back to you soon.
+            {% endif %}
+        </p>
+        <a class="sgds-button is-rounded is-medium is-secondary margin--top--lg" href="{{site.feedback_form}}" target="_blank">Tell us more</a>
     </div>
 </div>
