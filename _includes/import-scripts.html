@@ -11,11 +11,11 @@
 <!-- End Google Analytics -->
 
 {% if page.url contains 'who-we-are' %}
-<script src="/assets/js/sideNav-offset.js"></script>
+    <script src="/assets/js/sideNav-offset.js"></script>
 {% endif %}
-
-{% if page.url == "/components/standard/iconography/" %}
-<script src="/assets/js/clipboard.js"></script>
+{% if page.url contains "/docs/" %}
+    <script src="{{site.baseurl}}/assets/js/clipboard.min.js"></script>
+    <script src="/assets/js/clipboard.js"></script>
 {% endif %}
 <script src="/assets/js/jquery.sticky-sidebar.js"></script>
 <script src="/assets/js/sideNav-offset.js"></script>

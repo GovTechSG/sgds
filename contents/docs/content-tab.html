@@ -41,7 +41,11 @@ breadcrumb: General
 <div class="row">
     <div class="col">
         <h3 class="has-text-weight-semibold margin--bottom">Usage</h3>
-        <p>Copy this snippet for the tabs.</p>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+        <p></p>
 {%- highlight html -%}
 <div class="sgds-tabs" data-sgds="tabs">
     <ul>
@@ -51,7 +55,8 @@ breadcrumb: General
     </ul>
 </div>
 {%- endhighlight -%}
-        <p>Copy this snippet for the content.</p>
+        <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet for the tabs</button>
+
 {%- highlight html -%}
 <div class="row" id="tab1">
     <div class="col">
@@ -69,6 +74,7 @@ breadcrumb: General
     </div>
 </div>
 {%- endhighlight -%}
+        <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy snippet for the tab content</button>
     </div>
 </div>
 
