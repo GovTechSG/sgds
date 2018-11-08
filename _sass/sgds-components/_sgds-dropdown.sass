@@ -33,11 +33,19 @@ $dropdown-divider-background-color: $border !default
         padding-top: unset
         top: auto
 
+    &.is-fullwidth
+      display: block
+      width: 100%
+      .sgds-button
+        width: 100%
+        justify-content: space-between
+      .sgds-dropdown-menu
+        width: 100%
+
   &-dropdown-menu
     display: none
     left: 0
     min-width: 12rem
-    padding-top: $dropdown-content-offset
     position: absolute
     top: 100%
     z-index: $dropdown-content-z
@@ -73,3 +81,6 @@ $dropdown-divider-background-color: $border !default
     display: block
     height: 1px
     margin: 0.5rem 0
+
+
+
