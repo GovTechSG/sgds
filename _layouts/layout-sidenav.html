@@ -20,15 +20,18 @@ layout: layout-default
             </button>
         </div>
         <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
-            <div class="sgds-dropdown-content">
+            <div class="sgds-dropdown-content padding">
                 <div class="row is-multiline is-mobile">
                 {%- assign links = site.data.navigation -%}
                 {%- for link in links -%}
                     {%- if link.title == 'Docs' -%}
                         {%- for title in link.lvl2 -%}
                             {%- for title2 in title.lvl3 -%}
-                                <div class="col is-4-mobile">
-                                    <a href="{{title2.url}}" class="sgds-dropdown-item has-text-centered">{{title2.title}}</a>
+                                <div class="col is-4-mobile has-text-centered">
+
+                                        <a href="{{title2.url}}" class="sgds-dropdown-item">
+                                            <span class="sgds-icon {{title2.icon}} is-size-4"></span><br>{{title2.title}}
+                                        </a>
                                 </div>
                             {%- endfor -%}
                         {%- endfor -%}

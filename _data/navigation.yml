@@ -45,43 +45,61 @@
      url: /docs/
      lvl3:
        - title: Masthead
+         icon: sgds-icon-masthead
          url: /docs/masthead/
        - title: Footer
+         icon: sgds-icon-footer
          url: /docs/footer/
        - title: Main Nav
+         icon: sgds-icon-mainnav
          url: /docs/main-nav/
        - title: Side Nav
+         icon: sgds-icon-sidenav
          url: /docs/side-nav/
    - title: General Components
      url: /docs/
      lvl3:
        - title: Container
+         icon: sgds-icon-container
          url: /docs/container/
        - title: Grid
+         icon: sgds-icon-grid
          url: /docs/grid/
        - title: Section
+         icon: sgds-icon-section
          url: /docs/section/
        - title: Table
+         icon: sgds-icon-table
          url: /docs/table/
        - title: Tab
+         icon: sgds-icon-tab
          url: /docs/tab/
        - title: Breadcrumb
+         icon: sgds-icon-breadcrumb
          url: /docs/breadcrumb/
        - title: Hero
+         icon: sgds-icon-hero
          url: /docs/hero/
        - title: Callout
+         icon: sgds-icon-callout
          url: /docs/callout/
        - title: Accordion
+         icon: sgds-icon-accordion
          url: /docs/accordion/
        - title: Button
+         icon: sgds-icon-button
          url: /docs/button/
        - title: Card
+         icon: sgds-icon-card
          url: /docs/card/
        - title: Dropdown
+         icon: sgds-icon-dropdown
          url: /docs/dropdown/
        - title: Iconography
+         icon: sgds-icon-icons
          url: /docs/iconography/
        - title: Typography
+         icon: sgds-icon-typography
          url: /docs/typography/
 
 - title: FAQs
