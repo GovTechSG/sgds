@@ -13,10 +13,10 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Isomer Design System
+title: Design System
 email: johnson_koh@tech.gov.sg
 description: >- # this means to ignore newlines until "baseurl:"
-  Isomer Design System unites Singapore Government digital services around a common visual language and user experience
+  Design System unites Singapore Government digital services around a common visual language and user experience
 baseurl: "" # the s.sgdsath of your site, e.g. /blog
 url: "https://designsystem.gov.sg" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
