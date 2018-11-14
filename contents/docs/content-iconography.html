@@ -17,17 +17,20 @@ breadcrumb: Standard
 {% for cat in icon-category %}
 <div class="row">
     <div class="col">
-        <h5 class="has-text-primary">{{cat.category}} Icons</h5>
+        <h5 class="has-text-weight-bold has-text-secondary margin--top--lg">{{cat.category}} Icons</h5>
     </div>
 </div>
 <div class="row is-multiline is-mobile">
     {% assign icons = cat.icons | sort: 'iconName' %}
     {% for icon in icons %}
-    <div class="col is-2-desktop is-4-tablet is-4-mobile is-boxed is-position-relative is-overflow-hidden clipboard-btn" data-clipboard-text=".sgds-icon-{{icon.iconName}}">
-        <div class="icon-container">
-            <span class="sgds-icon sgds-icon-{{icon.iconName}} is-size-1"></span>
-        </div>
-        <small>.sgds-icon-{{icon.iconName}}</small>
+    <div class="col is-2-desktop is-4-tablet is-4-mobile is-boxed is-flex ">
+        <a class="has-text-dark icon-clipboard-btn sgds-tooltip" data-clipboard-text=".sgds-icon-{{icon.iconName}}" data-tooltip="Click to Copy">
+            <div class="icon-container">
+                <span class="sgds-icon sgds-icon-{{icon.iconName}} is-size-1"></span>
+            </div>
+            <small>.sgds-icon-{{icon.iconName}}</small>
+        </a>
+
     </div>
     {% endfor %}
 </div>
