@@ -22,6 +22,8 @@
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-htmlmin": "^3.0.0",
+    "grunt-strip-code": "^1.0.6",
     "load-grunt-tasks": "^4.0.0"
   }
 }

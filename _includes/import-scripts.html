@@ -1,3 +1,5 @@
+{% if page.url contains '/templates/quickstart/' %}
+{% else %}
 <!-- Google Analytics -->
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -9,19 +11,23 @@
     ga('send', 'pageview');
 </script>
 <!-- End Google Analytics -->
+{% endif %}
+
 
 {% if page.url contains 'who-we-are' %}
     <script src="/assets/js/sideNav-offset.js"></script>
 {% endif %}
+
 {% if page.url contains "/docs/" %}
     <script src="{{site.baseurl}}/assets/js/clipboard.min.js"></script>
     <script src="/assets/js/clipboard.js"></script>
 {% endif %}
+
 <script src="/assets/js/jquery.sticky-sidebar.js"></script>
 <script src="/assets/js/sideNav-offset.js"></script>
 <script src="/assets/js/sgds.js"></script>
-<script src="/posts.json"></script>
-<script src="/assets/js/lunr.min.js"></script>
-<script src="/assets/js/search.js"></script>
+<!--<script src="/posts.json"></script>-->
+<!--<script src="/assets/js/lunr.min.js"></script>-->
+<!--<script src="/assets/js/search.js"></script>-->
 <!--<script src="/assets/js/worker.js"></script>-->
-<script src="/assets/js/build-index.js"></script>
+<!--<script src="/assets/js/build-index.js"></script>-->
