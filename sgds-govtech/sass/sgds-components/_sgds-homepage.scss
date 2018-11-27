@@ -1,0 +1,22 @@
+#key-highlights{
+  background-color: $primary;
+  color:white;
+  .col{
+    padding:1.2rem 2rem !important;
+    cursor:pointer;
+    transition:all 0.5s;
+
+    border-left:1px solid darken($primary,10%);
+    @include mobile(){
+      border-left:0;
+      border-top:1px solid darken($primary,10%);
+    }
+    &:hover{
+      color:darken(white,10%);
+      background-color: darken($primary,10%);
+    }
+  }
+  .col:first-child {
+    border-left: 0;
+  }
+}

@@ -1,0 +1,63 @@
+.sgds{
+  &-sec-button{
+    display: block;
+    text-transform:  uppercase;
+    color:  $secondary;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 27px;
+    letter-spacing: 1.5px;
+    margin: 15px 0;
+    &.is-small {
+      font-size: 0.875rem;
+    }
+
+    &.is-large{
+      font-size: 1.2rem;
+    }
+
+    &.is-active{
+      text-decoration: underline;
+    }
+
+    span{
+      margin-right:0.8rem;
+      border-bottom:2px solid $secondary;
+    }
+
+    &:hover {
+      span {
+        border-color: darken($secondary, 10%);
+      }
+    }
+
+    & i {
+      font-size: 1rem;
+    }
+
+    @each $name, $pair in $colors{
+      $color: nth($pair,1);
+      $color-invert: nth($pair,2);
+      &.is-#{$name}{
+        color: $color;
+        span{
+          border-color:$color;
+        }
+        &:hover{
+          color:darken($color,10%);
+          span{
+            border-color:darken($color,10%);
+          }
+        }
+      }
+    }
+
+    .sgds-icon{
+      text-decoration: none;
+    }
+    .content &{
+      text-decoration: none;
+      color: $secondary;
+    }
+  }
+}

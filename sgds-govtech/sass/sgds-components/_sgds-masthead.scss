@@ -1,0 +1,18 @@
+.sgds-masthead{
+  background-color: $grey-lighter;
+  padding: 2px 0;
+
+  .is-text{
+    position: relative;
+    top: -2px;
+    font-size: 14px;
+  }
+
+  a{
+    color: $grey-dark;
+  }
+
+  a:hover{
+    color: $primary;
+  }
+}

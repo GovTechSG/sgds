@@ -4,7 +4,7 @@
   "description": "```sh gem install jekyll bundler ```",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "snyk test"
   },
   "repository": {
     "type": "git",
@@ -14,15 +14,15 @@
   "license": "ISC",
   "dependencies": {
     "clipboard": "^2.0.1",
-    "grunt-changed": "^2.0.1",
-    "grunt-contrib-compress": "^1.4.0"
+    "grunt-changed": "^2.0.1"
   },
   "devDependencies": {
     "grunt": "^1.0.3",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-zip": "^0.18.1",
     "load-grunt-tasks": "^4.0.0",
-    "sgds-govtech": "^1.0.17"
+    "snyk": "^1.110.2"
   }
 }

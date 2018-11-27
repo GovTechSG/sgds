@@ -1,0 +1,120 @@
+@mixin example-tag($content){
+  content: $content;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.05rem 0.5rem;
+  font-size: 0.7rem;
+  background: $warning;
+  color:black!important;
+}
+
+@mixin example-control($padding,$text-align){
+  border:1px dotted $info;
+  padding:$padding;
+  background-color: rgba($info, 0.2);
+  position:relative;
+  text-align:$text-align;
+}
+
+.sgds-example{
+  width:100%;
+  margin:0.75rem;
+  cursor:pointer;
+  @include mobile(){
+    margin:0;
+  }
+  padding:0.3rem;
+  border: 1px solid $warning;
+  .sgds-section {
+    @include example-control(auto, center);
+    &:before {
+      @include example-tag('.sgds-section');
+    }
+    &.is-small {
+      &:before {
+        content: '.sgds-section.is-small' !important
+      }
+    }
+    &.is-medium {
+      &:before {
+        content: '.sgds-section.is-medium' !important
+      }
+    }
+    &.is-large {
+      &:before {
+        content: '.sgds-section.is-large' !important
+      }
+    }
+  }
+  .sgds-container{
+    width:inherit;
+    @include example-control(2.5rem, center);
+    &:before {
+      @include example-tag('.sgds-container');
+    }
+    &.is-fluid{
+      &:before{
+        content:'.sgds-container.is-fluid'
+      }
+    }
+  }
+  .row{
+    @include example-control(1.5rem, center);
+    &:before {
+      @include example-tag('.row');
+    }
+    &.has-text-centered{
+      text-align:center;
+    }
+  }
+  .col {
+    @include example-control(0rem, left);
+    //background-color: rgba(white,0.8);
+    color: black;
+    text-align: center;
+    &:before {
+      @include example-tag('.col');
+    }
+    @for $i from 2 through 12 {
+      &.is-#{$i}{
+        &:before{
+          @include example-tag('.col' + '.is-' + '#{$i}');
+        }
+      }
+      &.is-6.is-offset-#{$i}{
+        &:before{
+          @include example-tag('.col' + '.is-6' + '.is-offset-' + '#{$i}');
+        }
+      }
+      &.is-5.is-offset-#{$i}{
+        &:before{
+          @include example-tag('.col' + '.is-5' + '.is-offset-' + '#{$i}');
+        }
+      }
+      &.is-3.is-offset-#{$i}{
+        &:before{
+          @include example-tag('.col' + '.is-3' + '.is-offset-' + '#{$i}');
+        }
+      }
+    }
+    &.is-nested{
+      padding:2rem;
+    }
+  }
+  //example util
+  &.no-styling{
+
+    div,section{
+      background-color: white!important;
+      border:0!important;
+
+      &:before{
+        display:none;
+      }
+    }
+    section{
+      padding:3rem 1.5rem!important;
+    }
+  }
+}

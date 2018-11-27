@@ -1,0 +1,27 @@
+// Background
+
+.bg{
+  &-light{
+    background-color: $grey-lighter;
+  }
+  &-white{
+    background-color: white;
+  }
+  &-black{
+    background-color: black;
+  }
+}
+
+.bg-hero {
+  background: $hero-image no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.bg-primary {
+  background-color: $primary !important;
+}
+
+.bg-secondary {
+  background-color: $secondary !important;
+}

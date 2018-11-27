@@ -1,0 +1,48 @@
+$notification-background-color: $background !default
+$notification-radius: 0 !default
+$notification-padding: 0.9375rem !default
+
+.sgds-notification
+  +block
+  background-color: $notification-background-color
+  border-radius: $notification-radius
+  padding: $notification-padding
+
+  width: 100%
+  z-index: 2
+  &.is-pos-abs
+    position: absolute
+  a:not(.sgds-button)
+    color: currentColor
+    text-decoration: underline
+  strong
+    color: currentColor
+  code,
+  pre
+    background: $white
+  pre code
+    background: transparent
+  & > .delete
+    position: absolute
+    right: 0.5rem
+    top: 1rem
+    font-size: 1.5rem
+    background-color: transparent
+    color: white
+    border: 0
+  .title,
+  .subtitle,
+  .content
+    color: currentColor
+  // Colors
+  @each $name, $pair in $colors
+    $color: nth($pair, 1)
+    $color-invert: nth($pair, 2)
+    &.is-#{$name}
+      background-color: $color
+      color: $color-invert
+
+  &-flex
+    &.field
+      justify-content: space-between
+      align-items: center
