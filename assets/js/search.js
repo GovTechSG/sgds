@@ -130,7 +130,7 @@ var runSearch = function(json_data, posts_data) {
     var searchResultsCount = document.getElementById('search-results-count');
     // document.getElementById('search-bar').setAttribute("value", searchTerm);
     document.getElementsByName('query')[1].setAttribute("value", searchTerm);
-    searchResultsCount.innerHTML = results.length + " results for '" + searchTerm + "'";
+    searchResultsCount.innerHTML = results.length + " results for '" + searchTerm.replace(/[^\w\s]/gi, '') + "'";
     if (results.length) { // If there are results
       searchResults.innerHTML = returnResultsList(results);
     } else {
@@ -152,7 +152,8 @@ var runSearch = function(json_data, posts_data) {
     }
   }
   // TODO: Sanitise search query
-  var searchTerm = getQueryVariable('query');
+  var searchTerm = (getQueryVariable('query')).replace(/[^\w\s]/gi, '');
+  
 
   if (searchTerm) {
 
