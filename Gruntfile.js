@@ -27,7 +27,7 @@ module.exports = function(grunt) {
             css: {
                 expand: true,
                 cwd: '_site/assets/css',
-                src: '**',
+                src: 'sgds.css',
                 dest: path + '/css'
             },
             js: {
@@ -37,21 +37,25 @@ module.exports = function(grunt) {
                 dest: path + '/js'
             },
             zip:{
-                expand:true,
+                expand: true,
                 cwd: '',
                 src:'sgds-govtech.zip',
                 dest: 'assets/downloads/'
             }
         },
-        zip: {
-            'copy-to-downloads': {
-                cwd: path + "/",
-                src: [path + '/**/*'],
-                dest: 'assets/downloads/sgds-govtech.zip'
+        compress: {
+            main: {
+                options: {
+                    archive: 'sgds-govtech.zip'
+                },
+                expand: true,
+                cwd: 'sgds-govtech',
+                src: ['js/*', 'css/*', 'fonts/*'],
+                dest: 'sgds'
             }
         }
     });
     // grunt.registerTask('sgds', ['clean:build','cssmin','copy:sass', 'copy:fonts','copy:js','compress:main','copy:zip','clean:zip']);
     // grunt.registerTask('sgds-clean', ['clean:build']);
-    grunt.registerTask('copy-download', ['copy:css','zip']);
+    grunt.registerTask('sgds', ['copy:css','compress','copy:zip','clean:zip']);
 };

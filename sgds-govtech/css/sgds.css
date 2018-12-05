@@ -3184,23 +3184,26 @@ b, strong {
     line-height: 25px !important; }
     .sgds-footer p + p {
       margin-top: 15px; }
-  .sgds-footer ul li {
-    display: inline-block; }
-    @media screen and (max-width: 768px) {
-      .sgds-footer ul li {
-        display: block; } }
-    .sgds-footer ul li.icons {
-      margin-right: 10px; }
-    .sgds-footer ul li a {
-      color: #b7b7b7; }
-      .sgds-footer ul li a:hover {
-        color: white; }
-    .sgds-footer ul li + li:not(.icons) {
-      margin-left: 15px; }
+  .sgds-footer ul {
+    margin: 0; }
+    .sgds-footer ul li {
+      display: inline-block;
+      margin-top: 0; }
       @media screen and (max-width: 768px) {
-        .sgds-footer ul li + li:not(.icons) {
-          margin-left: 0;
-          margin-top: 15px; } }
+        .sgds-footer ul li {
+          display: block; } }
+      .sgds-footer ul li.icons {
+        margin-right: 10px; }
+      .sgds-footer ul li a {
+        color: #b7b7b7; }
+        .sgds-footer ul li a:hover {
+          color: white; }
+      .sgds-footer ul li + li:not(.icons) {
+        margin-left: 15px; }
+        @media screen and (max-width: 768px) {
+          .sgds-footer ul li + li:not(.icons) {
+            margin-left: 0;
+            margin-top: 15px; } }
   .sgds-footer.sgds-footer-links li + li {
     margin-left: 10px; }
   .sgds-footer .is-right-desktop-only {
@@ -3212,11 +3215,6 @@ b, strong {
 
 .sgds-footer.top-section {
   padding-bottom: 16px; }
-
-.sgds-footer.bottom-section {
-  padding-bottom: 24px; }
-  .sgds-footer.bottom-section a, .sgds-footer.bottom-section p {
-    font-size: 16px !important; }
 
 .is-hidden-desktop.last-updated {
   margin-top: 2px !important; }
@@ -5833,8 +5831,12 @@ html.has-navbar-fixed-bottom {
   color: #484848;
   display: block;
   line-height: 1.5;
-  padding: 0.5rem 0.5rem;
+  padding: 0rem 0.5rem;
   position: relative; }
+  @media screen and (max-width: 768px) {
+    .navbar-item,
+    .navbar-link {
+      padding-bottom: 0.5rem; } }
 
 a.navbar-item:hover, a.navbar-item.is-active,
 a.navbar-link:hover,

@@ -1,24 +1,25 @@
-<footer class="sgds-footer top-section">
-    <div class="sgds-container ">
+{% unless page.url contains '/testing/footer/' %}
+<footer class="sgds-footer">
+    <div class="sgds-container">
         <div class="row">
-            <div class="col footer-col header">
+            <div class="col header">
                 <h5 class="sub-header has-text-white"><b>{{site.title}}</b></h5>
             </div>
         </div>
         <div class="row">
-            <div class="col footer-col is-3">
+            <div class="col is-3">
                 <p><b>Support</b></p>
                 <p><a href="/general/coming-soon/">Discussion Forum</a></p>
                 <!--<p><a href="https://form.gov.sg/forms/govtech/5bc440ac507956000fdbae91" target="_blank">Schedule a Consultation <i class="sgds-icon sgds-icon-external"></i></a></p>-->
             </div>
-            <div class="col footer-col is-3">
+            <div class="col is-3">
                 <p class="sub-header"><b>Info</b></p>
                 <p><a href="/general/coming-soon/">Convince Your Agency</a></p>
                 <p><a href="https://blog.gds-gov.tech/tagged/user-experience" target="_blank">GDS Blog <i class="sgds-icon sgds-icon-external"></i></a></p>
             </div>
         </div>
         <div class="row">
-            <div class="col footer-col is-right-desktop-only">
+            <div class="col is-right-desktop-only">
                 <ul>
                     <li class="is-inline-block-desktop-only">
                         <!--Tools questionaire-->
@@ -34,22 +35,20 @@
                 </ul>
             </div>
         </div>
-    </div>
-</footer>
-<footer class="sgds-footer bottom-section">
-    <div class="sgds-container">
         <div class="row is-vcentered divider">
-            <div class="col footer-col">
+            <div class="col">
                 <ul>
                     <li><a href="{{site.baseurl}}/general/privacy">Privacy Statement</a></li>
                     <li><a href="{{site.baseurl}}/general/terms">Terms of Use</a></li>
                 </ul>
             </div>
-            <div class="col footer-col has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+            <div class="col has-text-right-desktop has-text-right-tablet has-text-left-mobile">
                 <p class="is-hidden-touch"> © 2018 Government of Singapore. Last Updated {{site.last_updated}}</p>
                 <p class="is-hidden-desktop">© 2018 Government of Singapore</p>
                 <p class="is-hidden-desktop last-updated">Last Updated {{site.last_updated}}</p>
             </div>
         </div>
+
     </div>
 </footer>
+{% endunless %}
