@@ -8,173 +8,92 @@ breadcrumb: Docs
 
 <section class="sgds-section">
     <div class="sgds-container">
+
         <div class="row has-text-centered">
             <div class="col is-10 is-offset-1">
-                <h1 class="has-text-primary">Documentation</h1>
+                <h1 class="has-text-primary">{{page.title}}</h1>
             </div>
+
         </div>
-        <div class="row">
+        <!--<div class="row">-->
+            <!--<div class="col is-10 is-offset-1">-->
+                <!--<div class="sgds-tabs is-centered is-boxed" data-sgds="tabs">-->
+                    <!--<ul>-->
+                        <!--<li class="is-active"><a data-tab="#components">Components</a></li>-->
+                        <!--<li><a data-tab="#templates">Templates</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--Tab 1-->
+        <div class="row" id="components">
             <div class="col is-10 is-offset-1">
                 <div class="row has-text-centered">
                     <div class="col">
-                        <p class="has-text-danger has-text-weight-bold">These standard components are MANDATORY for all 'gov.sg' websites to adopt for every page.</p>
+                        <h5 class="margin--top margin--bottom">These standard components are <b class="has-text-danger">MANDATORY</b> for all 'gov.sg' websites to adopt for every page.</h5>
                     </div>
                 </div>
                 <div class="row is-multiline is-mobile">
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/masthead/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-masthead is-size-1"></span>
-                                <p class="has-text-weight-semibold">Masthead</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/footer/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-footer is-size-1"></span>
-                                <p class="has-text-weight-semibold">Footer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/main-nav/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-mainnav is-size-1"></span>
-                                <p class="has-text-weight-semibold">Main Nav</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/side-nav/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-sidenav is-size-1"></span>
-                                <p class="has-text-weight-semibold">Side Nav</p>
-                            </div>
-                        </div>
-                    </div>
+                    {% for navigations in site.data.navigation %}
+                        {% if navigations.title == 'Docs' %}
+                            {% for components in navigations.lvl2 %}
+                                {% if components.title == 'Standard Components' %}
+                                    {% for component in components.lvl3 %}
+                                    <div class="col is-3-desktop is-6-touch is-6-mobile">
+                                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/{{component.title | downcase | replace: ' ', '-'}}/';">
+                                            <div class="sgds-card-content has-text-centered">
+                                                <span class="sgds-icon
+                                                {% if component.title == 'Iconography' %}sgds-icon-icons
+                                                {% else %}sgds-icon-{{component.title | downcase | replace: ' ', ''}}
+                                                {% endif %}
+                                                is-size-1"></span>
+                                                <p class="has-text-weight-semibold">{{component.title}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 <hr class="margin--bottom--lg margin--top--lg">
                 <div class="row has-text-centered">
                     <div class="col">
-                        <p>These general components provide you with plug-and-play codes to use for your projects.</p>
+                        <h5 class="margin--top margin--bottom">These general components provide you with plug-and-play codes to use for your projects.</h5>
                     </div>
                 </div>
                 <div class="row is-multiline is-mobile">
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/container/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-container is-size-1"></span>
-                                <p class="has-text-weight-semibold">Container</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/grid/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-grid is-size-1"></span>
-                                <p class="has-text-weight-semibold">Grid</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/section/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-section is-size-1"></span>
-                                <p class="has-text-weight-semibold">Section</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/table/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-table is-size-1"></span>
-                                <p class="has-text-weight-semibold">Table</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/tab/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-tab is-size-1"></span>
-                                <p class="has-text-weight-semibold">Tab</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/breadcrumb/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-breadcrumb is-size-1"></span>
-                                <p class="has-text-weight-semibold">Breadcrumb</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/hero/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-hero is-size-1"></span>
-                                <p class="has-text-weight-semibold">Hero</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/callout/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-callout is-size-1"></span>
-                                <p class="has-text-weight-semibold">Callout</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/accordion/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-accordion is-size-1"></span>
-                                <p class="has-text-weight-semibold">Accordion</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/button/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-button is-size-1"></span>
-                                <p class="has-text-weight-semibold">Button</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/card/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-card is-size-1"></span>
-                                <p class="has-text-weight-semibold">Card</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/dropdown/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-dropdown is-size-1"></span>
-                                <p class="has-text-weight-semibold">Dropdown</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/iconography/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-icons is-size-1"></span>
-                                <p class="has-text-weight-semibold">Iconography</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/typography/';">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon sgds-icon-typography is-size-1"></span>
-                                <p class="has-text-weight-semibold">Typography</p>
-                            </div>
-                        </div>
-                    </div>
+                    {% for navigations in site.data.navigation %}
+                        {% if navigations.title == 'Docs' %}
+                            {% for components in navigations.lvl2 %}
+                                {% if components.title == 'General Components' %}
+                                    {% for component in components.lvl3 %}
+                                        <div class="col is-3-desktop is-6-touch is-6-mobile">
+                                            <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/{{component.title | downcase | replace: ' ', '-'}}/';">
+                                                <div class="sgds-card-content has-text-centered">
+                                                    <span class="sgds-icon
+                                                    {% if component.title == 'Iconography' %}sgds-icon-icons
+                                                    {% else %}sgds-icon-{{component.title | downcase | replace: ' ', ''}}
+                                                    {% endif %}
+                                                    is-size-1"></span>
+                                                    <p class="has-text-weight-semibold">{{component.title}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
+        <!--&lt;!&ndash;Tab 2&ndash;&gt;-->
+        <!--<div id="templates" class="row has-text-centered">-->
+            <!--<div class="col is-10 is-offset-1">-->
+                <!--<h2>Hello</h2>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </section>

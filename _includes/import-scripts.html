@@ -15,7 +15,7 @@
 
 
 {% if page.url contains 'who-we-are' %}
-    <script src="/assets/js/sideNav-offset.js"></script>
+    <!--<script src="/assets/js/sideNav-offset.js"></script>-->
 {% endif %}
 
 {% if page.url contains "/docs/" %}
@@ -24,8 +24,9 @@
 {% endif %}
 
 <script src="/assets/js/jquery.sticky-sidebar.js"></script>
-<script src="/assets/js/sideNav-offset.js"></script>
-<script src="/assets/js/sgds.js"></script>
+<!--<script src="/assets/js/sideNav-offset.js"></script>-->
+<!--<script src="{{'/node_modules/sgds-govtech/js/sgds.js' | prepend: site.baseurl}}"></script>-->
+<script src="/sgds-govtech/js/sgds.js"></script>
 <!--<script src="/posts.json"></script>-->
 <!--<script src="/assets/js/lunr.min.js"></script>-->
 <!--<script src="/assets/js/search.js"></script>-->

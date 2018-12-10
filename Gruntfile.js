@@ -51,28 +51,11 @@ module.exports = function(grunt) {
             }
         },
         copy: {
-            main:{
-                expand: true,
-                cwd: '_site',
-                src: ['','','']
 
-            },
-            sass: {
-                expand: true,
-                cwd: '_sass',
-                src: ['**', '!custom.scss'],
-                dest: path + '/sass'
-            },
-            fonts: {
-                expand: true,
-                cwd: 'assets/fonts',
-                src: '**',
-                dest: path + '/fonts'
-            },
             css: {
                 expand: true,
-                cwd: 'assets/css',
-                src: '**',
+                cwd: '_site/assets/css',
+                src: 'sgds.css',
                 dest: path + '/css'
             },
             js: {
@@ -82,8 +65,8 @@ module.exports = function(grunt) {
                 dest: path + '/js'
             },
             zip:{
-                expand:true,
-                cwd:'',
+                expand: true,
+                cwd: '',
                 src:'sgds-govtech.zip',
                 dest: 'assets/downloads/'
             }
@@ -100,7 +83,9 @@ module.exports = function(grunt) {
             }
         }
     });
-    grunt.registerTask('sgds', ['clean:build','cssmin','copy:sass', 'copy:fonts','copy:js','compress:main','copy:zip','clean:zip']);
-    grunt.registerTask('sgds-clean', ['clean:build']);
-    grunt.registerTask('strip_n_clean', ['strip_code','htmlmin'])
+
+    // grunt.registerTask('sgds', ['clean:build','cssmin','copy:sass', 'copy:fonts','copy:js','compress:main','copy:zip','clean:zip']);
+    // grunt.registerTask('sgds-clean', ['clean:build']);
+    grunt.registerTask('sgds', ['copy:css','compress','copy:zip','clean:zip']);
+
 };

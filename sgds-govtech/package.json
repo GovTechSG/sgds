@@ -1,11 +1,42 @@
 {
-  "name": "sgds-govtech",
-  "version": "1.0.15",
-  "description": "Isomer unites Singapore Government digital services around a common visual language and user experienc",
+  "_from": "sgds-govtech@1.0.19",
+  "_id": "sgds-govtech@1.0.19",
+  "_inBundle": false,
+  "_integrity": "sha512-ktvBUp4FbPeo7bgb7jDTgr/baADt4Y1x/oCIOz2NGCDeIS7Ln+M8kKvMRMKZ7Qv4HdpEy4BpW9YFjkaOzrLmow==",
+  "_location": "/sgds-govtech",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "sgds-govtech@1.0.19",
+    "name": "sgds-govtech",
+    "escapedName": "sgds-govtech",
+    "rawSpec": "1.0.19",
+    "saveSpec": null,
+    "fetchSpec": "1.0.19"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/sgds-govtech/-/sgds-govtech-1.0.19.tgz",
+  "_shasum": "4c5901a7d3f914fd4e1a34c1b15dbf7c38032df9",
+  "_spec": "sgds-govtech@1.0.19",
+  "_where": "/Users/LT/Sites/Blueprint/blueprint-jekyll",
+  "author": {
+    "name": "Govtech Singapore"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
+  "peerDependencies": {
+    "jquery": "~3.0.0"
+  },
+  "license": "MIT",
   "main": "index.js",
+  "name": "sgds-govtech",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Govtech Singapore",
-  "license": "MIT"
+  "version": "1.0.22"
 }

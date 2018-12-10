@@ -1,22 +1,5 @@
 ---
 
 ---
-
 //DO NOT CHANGE THE IMPORT SEQUENCE
-@import "sgds-customise/all";
-//
-// Overwrite sgds variables variables here
-// Example:
-// $primary: #ffffff;
-// $secondary: #ffffff;
-  $hero-image: url(../img/bg_splash.png) $secondary;
-//
-
-@import "sgds-base/all";
-@import "sgds-layout/all";
-@import "sgds-components/all";
-@import "sgds-icons/all";
-
-#panel1 {
-  display: none;
-}
+@import "sass/sgds";

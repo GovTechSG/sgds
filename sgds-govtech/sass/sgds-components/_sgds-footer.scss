@@ -1,4 +1,5 @@
 .sgds-footer{
+
   padding:2rem;
   background-color: $grey-darker;
   .title{
@@ -27,8 +28,10 @@
     }
   }
   ul{
+    margin: 0;
     li{
       display:inline-block;
+      margin-top: 0;
       @include mobile(){
         display:block;
       }
@@ -69,12 +72,6 @@
 
 .sgds-footer.top-section {
   padding-bottom: 16px;
-}
-.sgds-footer.bottom-section {
-  padding-bottom: 24px;
-  a,p {
-    font-size: 16px !important;
-  }
 }
 
 .is-hidden-desktop.last-updated {
