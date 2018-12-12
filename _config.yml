@@ -42,6 +42,9 @@ sass:
   load_paths:
   - sgds-govtech
 
+includes:
+  - contents/docs
+
 exclude:
   - sgds-govtech/sass
   - sgds-govtech/package.json

@@ -1,0 +1,37 @@
+---
+layout: layout-default
+---
+
+<section class="sgds-section is-small bg-secondary">
+	<div class="sgds-container">
+		{% include sgds-breadcrumb.html %}
+	</div>
+	<div class="sgds-container">
+		<form action="/search/" method="get">
+			<div class="row padding--bottom--lg">
+                <div class="col is-9">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" placeholder="Search within this service" name="query">
+						</div>
+						<div class="control">
+							<button type="submit" class="sgds-button padding--left--lg padding--right--lg">
+								Search
+							</button>
+						</div>
+					</div>
+                </div>
+			</div>
+		</form>
+	</div>
+</section>
+<section class="sgds-section">
+    <div class="sgds-container search-content">
+        <div class="row">
+            <div class="col is-9">
+				<h4 class="search-results-count" id="search-results-count"></h4><br>
+				<p class="search-results" id="search-results"></p>
+            </div>
+        </div>
+    </div>
+</section>

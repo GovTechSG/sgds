@@ -57,5 +57,5 @@ module.exports = function(grunt) {
     });
     // grunt.registerTask('sgds', ['clean:build','cssmin','copy:sass', 'copy:fonts','copy:js','compress:main','copy:zip','clean:zip']);
     // grunt.registerTask('sgds-clean', ['clean:build']);
-    grunt.registerTask('sgds', ['copy:css','compress','copy:zip','clean:zip']);
+    grunt.registerTask('sgds', ['cssmin','compress','copy:zip','clean:zip']);
 };

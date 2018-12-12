@@ -1,3 +1,44 @@
+{% if page.url contains '/demo/' %}
+<div class="masthead-container" id="navbar">
+    {% include sgds-masthead.html %}
+<nav class="navbar is-transparent">
+    <div class="sgds-container">
+        <div class="navbar-brand">
+            <a class="navbar-item">
+                <img src="/assets/img/logo_sgds.png" alt="">
+            </a>
+            <div class="navbar-burger burger" data-target="mainnav-1">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div id="mainnav-1" class="navbar-menu">
+            <div class="navbar-item is-stretched">
+                <a class="navbar-link is-uppercase is-active">
+                    <h6>Who we are</h6>
+                </a>
+            </div>
+            <div class="navbar-item is-stretched">
+                <a class="navbar-link is-uppercase">
+                    <h6>Link 2</h6>
+                </a>
+            </div>
+            <div class="navbar-item is-stretched">
+                <a class="navbar-link is-uppercase">
+                    <h6>Link 3</h6>
+                </a>
+            </div>
+            <div class="navbar-item is-stretched">
+                <a class="navbar-link is-uppercase">
+                    <h6>Link 4</h6>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+</div>
+{% else %}
 <div class="masthead-container" id="navbar">
     {% include sgds-masthead.html %}
     <nav class="navbar is-transparent">
@@ -15,14 +56,15 @@
             <div id="navbarMain" class="navbar-menu">
 
                 <div class="navbar-item is-hidden-desktop">
-                    <!--<form action="{{ site.baseurl }}/search/" method="get">-->
-                    <!--<div class="field has-addons">-->
-                    <!--<div class="control is-expanded">-->
-                    <!--<input class="input is-fullwidth" id="search-box" type="text" placeholder="What are you looking for?" name="query">-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</form>-->
-                    <!--<hr class="is-marginless margin&#45;&#45;top&#45;&#45;sm">-->
+                    <form action="{{ site.baseurl }}/search/" method="get">
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input is-fullwidth" id="search-box" type="text"
+                                       placeholder="What are you looking for?" name="query">
+                            </div>
+                        </div>
+                    </form>
+                    <hr class="is-marginless margin--top--sm">
                 </div>
                 {%- assign links = site.data.navigation -%}
                 {%- for lvl1item in links -%}
@@ -45,26 +87,27 @@
                         <h6>Download</h6>
                     </a>
                 </div>
-                <!--<div class="navbar-item">-->
-                <!--{% if page.layout != 'search' %}-->
-                <!--<button class="sgds-button is-white is-large" id="search-activate">-->
-                <!--<span class="sgds-icon sgds-icon-search"></span>-->
-                <!--</button>-->
-                <!--{% else %}-->
-                <!--<button class="sgds-button is-white is-large" id="search-activate" disabled></button>-->
-                <!--{% endif %}-->
-                <!--</div>-->
+                <div class="navbar-item">
+                    {% if page.layout != 'search' %}
+                    <button class="sgds-button is-white is-large" id="search-activate">
+                        <span class="sgds-icon sgds-icon-search"></span>
+                    </button>
+                    {% else %}
+                    <button class="sgds-button is-white is-large" id="search-activate" disabled></button>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </nav>
-    <!--<div class="sgds-container hide is-hidden-touch search-bar" id="search-bar">-->
-    <!--<div class="row">-->
-    <!--<div class="col">-->
-    <!--<hr class="margin&#45;&#45;bottom&#45;&#45;sm">-->
-    <!--<form action="{{ site.baseurl }}/search/" method="get">-->
-    <!--{% include sgds-search-box.html %}-->
-    <!--</form>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
+    <div class="sgds-container hide is-hidden-touch search-bar" id="search-bar">
+        <div class="row">
+            <div class="col">
+                <hr class="margin--bottom--sm">
+                <form action="{{ site.baseurl }}/search/" method="get">
+                    {% include sgds-search-box.html %}
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+{% endif %}
