@@ -90,10 +90,8 @@ layout: layout-default
                 </div>
             </div>
             <div class="col is-9 is-12-touch">
-
                 <div class="row">
                     <div class="col">
-
                         <div class="content margin--top--sm">
                             {{content}}
                         </div>
@@ -135,6 +133,9 @@ layout: layout-default
                                         <a href="{{ site.baseurl }}{{ lvl3item.url }}"
                                            class="{{ class }} padding--sm">
                                             <small>{{ lvl3item.title }}</small>
+                                            {% if lvl3item.status %}
+                                             <span class="sgds-tag is-light is-rounded margin--left">{{lvl3item.status}}</span>
+                                            {% endif %}
                                         </a>
                                     </li>
                                     {%- endfor -%}
@@ -149,7 +150,21 @@ layout: layout-default
                 </div>
             </div>
             <div class="col is-9 is-12-touch">
-
+                {% if page.update-notification %}
+                <div class="row">
+                    <div class="col">
+                        <div class="sgds-notification is-toast-primary">
+                            <div class="detail">
+                                <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
+                                <div class="content">
+                                    <b>Updates</b>
+                                    <p>{{page.updated-date}} – {{page.update-notification}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
                 <div class="row">
                     <div class="col">
 

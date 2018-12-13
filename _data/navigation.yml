@@ -50,6 +50,7 @@
        - title: Footer
          icon: sgds-icon-footer
          url: /docs/footer/
+         status: Update
        - title: Main Nav
          icon: sgds-icon-mainnav
          url: /docs/main-nav/

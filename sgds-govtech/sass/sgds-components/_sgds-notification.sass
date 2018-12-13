@@ -1,13 +1,12 @@
 $notification-background-color: $background !default
 $notification-radius: 0 !default
-$notification-padding: 0.9375rem !default
+$notification-padding: 1rem !default
 
 .sgds-notification
   +block
   background-color: $notification-background-color
   border-radius: $notification-radius
   padding: $notification-padding
-
   width: 100%
   z-index: 2
   &.is-pos-abs
@@ -41,6 +40,19 @@ $notification-padding: 0.9375rem !default
     &.is-#{$name}
       background-color: $color
       color: $color-invert
+    &.is-toast-#{$name}
+      background-color: transparent
+      border: 1px solid $color
+      border-left: 5px solid $color
+      .sgds-icon
+        color: $color
+
+  .detail
+    display: flex
+    align-items: center
+    .sgds-icon
+      margin-left: 1rem
+      margin-right: 2rem
 
   &-flex
     &.field
