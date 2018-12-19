@@ -34,10 +34,13 @@ breadcrumbs:
   root:
     hide: false  # show breadcrumbs on root/home page
     image: false # Show image or title text
+
 assets:
   sources:
     - fonts
+  digest: true
 
+source_maps: false
 sass:
   load_paths:
   - sgds-govtech

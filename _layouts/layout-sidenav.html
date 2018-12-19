@@ -1,7 +1,7 @@
 ---
 layout: layout-default
 ---
-<section class="sgds-section is-small has-background-secondary">
+<section class="sgds-section is-small has-background-primary">
     <div class="sgds-container">
         {% include sgds-breadcrumb.html %}
         <h2 class="has-text-white ">{{page.title}}</h2>
@@ -47,7 +47,7 @@ layout: layout-default
 <section class="sgds-section is-small">
     <div class="sgds-container">
         <div class="row">
-            <div class="col is-3 is-hidden-touch has-side-nav ">
+            <div class="col is-3 is-hidden-touch has-side-nav">
                 <div class="sidenav">
                     <aside class="sgds-menu sidebar__inner">
                         <ul class="sgds-menu-list">
@@ -157,8 +157,8 @@ layout: layout-default
                             <div class="detail">
                                 <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
                                 <div class="content">
-                                    <b>Updates</b>
-                                    <p>{{page.updated-date}} – {{page.update-notification}}</p>
+                                    <b>Last updates - {{page.updated-date}}</b><br>
+                                    <p>{{page.update-notification}}</p>
                                 </div>
                             </div>
                         </div>
