@@ -1,8 +1,8 @@
-$modal-z: 40 !default
+$modal-z: 9999 !default
 
 $modal-background-background-color: rgba($black, 0.86) !default
 
-$modal-content-width: 640px !default
+$modal-content-width: 720px !default
 $modal-content-margin-mobile: 20px !default
 $modal-content-spacing-mobile: 160px !default
 $modal-content-spacing-tablet: 40px !default
@@ -51,12 +51,11 @@ $modal-card-body-padding: 20px !default
     max-height: calc(100vh - #{$modal-content-spacing-mobile})
     overflow: auto
     position: relative
-    width: 100%
     // Responsiveness
-    +tablet
-      margin: 0 auto
-      max-height: calc(100vh - #{$modal-content-spacing-tablet})
-      width: $modal-content-width
+    //+tablet
+    //  margin: 0 auto
+    //  max-height: calc(100vh - #{$modal-content-spacing-tablet})
+    //  width: $modal-content-width
 
   &-modal-close
     +delete

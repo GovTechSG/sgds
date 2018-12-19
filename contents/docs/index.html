@@ -11,89 +11,23 @@ breadcrumb: Docs
 
         <div class="row has-text-centered">
             <div class="col is-10 is-offset-1">
-                <h1 class="has-text-primary">{{page.title}}</h1>
+                <h1 class="has-text-secondary">{{page.title}}</h1>
             </div>
 
         </div>
-        <!--<div class="row">-->
-            <!--<div class="col is-10 is-offset-1">-->
-                <!--<div class="sgds-tabs is-centered is-boxed" data-sgds="tabs">-->
-                    <!--<ul>-->
-                        <!--<li class="is-active"><a data-tab="#components">Components</a></li>-->
-                        <!--<li><a data-tab="#templates">Templates</a></li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--Tab 1-->
-        <div class="row" id="components">
+        <div class="row">
             <div class="col is-10 is-offset-1">
-                <div class="row has-text-centered">
-                    <div class="col">
-                        <h5 class="margin--top margin--bottom">These standard components are <b class="has-text-danger">MANDATORY</b> for all 'gov.sg' websites to adopt for every page.</h5>
-                    </div>
-                </div>
-                <div class="row is-multiline is-mobile">
-                    {% for navigations in site.data.navigation %}
-                        {% if navigations.title == 'Docs' %}
-                            {% for components in navigations.lvl2 %}
-                                {% if components.title == 'Standard Components' %}
-                                    {% for component in components.lvl3 %}
-                                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                                        <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/{{component.title | downcase | replace: ' ', '-'}}/';">
-                                            <div class="sgds-card-content has-text-centered">
-                                                <span class="sgds-icon
-                                                {% if component.title == 'Iconography' %}sgds-icon-icons
-                                                {% else %}sgds-icon-{{component.title | downcase | replace: ' ', ''}}
-                                                {% endif %}
-                                                is-size-1"></span>
-                                                <p class="has-text-weight-semibold">{{component.title}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <hr class="margin--bottom--lg margin--top--lg">
-                <div class="row has-text-centered">
-                    <div class="col">
-                        <h5 class="margin--top margin--bottom">These general components provide you with plug-and-play codes to use for your projects.</h5>
-                    </div>
-                </div>
-                <div class="row is-multiline is-mobile">
-                    {% for navigations in site.data.navigation %}
-                        {% if navigations.title == 'Docs' %}
-                            {% for components in navigations.lvl2 %}
-                                {% if components.title == 'General Components' %}
-                                    {% for component in components.lvl3 %}
-                                        <div class="col is-3-desktop is-6-touch is-6-mobile">
-                                            <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/{{component.title | downcase | replace: ' ', '-'}}/';">
-                                                <div class="sgds-card-content has-text-centered">
-                                                    <span class="sgds-icon
-                                                    {% if component.title == 'Iconography' %}sgds-icon-icons
-                                                    {% else %}sgds-icon-{{component.title | downcase | replace: ' ', ''}}
-                                                    {% endif %}
-                                                    is-size-1"></span>
-                                                    <p class="has-text-weight-semibold">{{component.title}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% endfor %}
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
+                <div class="sgds-tabs is-centered is-boxed" data-sgds="tabs">
+                    <ul>
+                        <li class="is-active"><a data-tab="#components">Components</a></li>
+                        <li><a data-tab="#templates">Templates</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <!--&lt;!&ndash;Tab 2&ndash;&gt;-->
-        <!--<div id="templates" class="row has-text-centered">-->
-            <!--<div class="col is-10 is-offset-1">-->
-                <!--<h2>Hello</h2>-->
-            <!--</div>-->
-        <!--</div>-->
+        <!--Tab 1-->
+        {% include_relative content-components.html %}
+        <!--Tab 2-->
+        {% include_relative content-templates.html %}
     </div>
 </section>

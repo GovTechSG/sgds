@@ -3,7 +3,7 @@ title: Home
 layout: layout-default
 ---
 
-<section class="sgds-hero bg-hero">
+<section class="sgds-hero has-background-primary">
     <div class="sgds-hero-body sgds-container is-fluid" style="background:url('assets/img/bg_splash.png') center center; background-size:cover;">
         <div class="row is-vcentered">
             <div class="col is-8 is-offset-2 has-text-centered has-text-white">
@@ -34,12 +34,12 @@ layout: layout-default
     </div>
 </section>
 
-<section class="sgds-section bg-light">
+<section class="sgds-section has-background-light">
     <div class="sgds-container">
         <div class="content">
             <div class="row has-text-centered">
                 <div class="col is-10 is-offset-1">
-                    <h2 class="has-text-weight-normal has-text-primary">Working with Design System</h2>
+                    <h2 class="has-text-weight-normal has-text-secondary">Working with Design System</h2>
                 </div>
             </div>
             <div class="row">
@@ -49,7 +49,8 @@ layout: layout-default
                             <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/learn/development/';">
                                 <div class="sgds-card-image">
                                     <figure class="sgds-image is-16by9">
-                                        <img src="/assets/img/img_development.png" alt="Development Guides">
+                                        <!--<img src="/assets/img/img_development.png" alt="Development Guides">-->
+                                        {% asset img_development.png alt="Development Guides" %}
                                     </figure>
                                 </div>
                                 <div class="sgds-card-content">
@@ -62,7 +63,7 @@ layout: layout-default
                             <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/learn/design/';">
                                 <div class="sgds-card-image">
                                     <figure class="sgds-image is-16by9">
-                                        <img src="/assets/img/img_design.png" alt="Design Guides">
+                                        {% asset img_design.png alt="Design Guides" %}
                                     </figure>
                                 </div>
                                 <div class="sgds-card-content">
@@ -75,7 +76,7 @@ layout: layout-default
                             <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/learn/writing/';">
                                 <div class="sgds-card-image">
                                     <figure class="sgds-image is-16by9">
-                                        <img src="/assets/img/img_writing.png" alt="Writing Guides">
+                                        {% asset img_writing.png alt="Writing Guides" %}
                                     </figure>
                                 </div>
                                 <div class="sgds-card-content">
@@ -96,41 +97,41 @@ layout: layout-default
         <div class="content">
             <div class="row has-text-centered">
                 <div class="col is-10 is-offset-1">
-                    <h2 class="has-text-weight-normal has-text-primary">Values of a Design System</h2>
+                    <h2 class="has-text-weight-normal has-text-secondary">Values of a Design System</h2>
                 </div>
             </div>
             <div class="row has-text-centered">
                 <div class="col is-10 is-offset-1">
                     <div class="row">
                         <div class="col is-4">
-                            <span class="has-text-primary sgds-icon sgds-icon-expand-alt is-size-1"></span>
+                            <span class="has-text-secondary sgds-icon sgds-icon-expand-alt is-size-1"></span>
                             <h5 class="margin--top"><b>Provides Better Scalability</b></h5>
                             <h6 class="is-small has-text-weight-normal">Adaptable to suit the changing needs of our users with the UI Components.</h6>
                         </div>
                         <div class="col is-4">
-                            <span class="has-text-primary sgds-icon sgds-icon-layers is-size-1"></span>
+                            <span class="has-text-secondary sgds-icon sgds-icon-layers is-size-1"></span>
                             <h5 class="margin--top"><b>Lower Overall Costs</b></h5>
                             <h6 class="is-small has-text-weight-normal">A design system keeps your design and code overhead low.</h6>
                         </div>
                         <div class="col is-4">
-                            <span class="has-text-primary sgds-icon sgds-icon-thumbs-up is-size-1"></span>
+                            <span class="has-text-secondary sgds-icon sgds-icon-thumbs-up is-size-1"></span>
                             <h5 class="margin--top"><b>Improves User Experience</b></h5>
                             <h6 class="is-small has-text-weight-normal">Allows you to focus on developing a better user experience.</h6>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col is-4">
-                            <span class="has-text-primary sgds-icon sgds-icon-sync is-size-1"></span>
+                            <span class="has-text-secondary sgds-icon sgds-icon-sync is-size-1"></span>
                             <h5 class="margin--top"><b>Faster Prototyping</b></h5>
                             <h6 class="is-small has-text-weight-normal">Working within an existing design system allows you to prototype faster.</h6>
                         </div>
                         <div class="col is-4">
-                            <span class="has-text-primary sgds-icon sgds-icon-cog is-size-1"></span>
+                            <span class="has-text-secondary sgds-icon sgds-icon-cog is-size-1"></span>
                             <h5 class="margin--top"><b>Easy Maintenance</b></h5>
                             <h6 class="is-small has-text-weight-normal">Provides an easy-to-maintain architecture with no redundancy.</h6>
                         </div>
                         <div class="col is-4">
-                            <span class="has-text-primary sgds-icon sgds-icon-person is-size-1"></span>
+                            <span class="has-text-secondary sgds-icon sgds-icon-person is-size-1"></span>
                             <h5 class="margin--top"><b>Built-in Accessibility</b></h5>
                             <h6 class="is-small has-text-weight-normal">Our UI Components are in compliance with Digital Services Standards.</h6>
                         </div>
@@ -141,7 +142,7 @@ layout: layout-default
     </div>
 </section>
 
-<section class="sgds-section bg-secondary">
+<section class="sgds-section has-background-primary">
     <div class="sgds-container">
         <div class="content">
             <div class="row has-text-centered">

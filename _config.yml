@@ -21,7 +21,7 @@ baseurl: "" # the s.sgdsath of your site, e.g. /blog
 url: "https://designsystem.gov.sg" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
-last_updated: 26 Oct 2018
+last_updated: 19 Dec 2018
 contact_us: 'https://form.gov.sg/forms/govtech/5bc440ac507956000fdbae91'
 feedback_form: 'https://form.gov.sg/#!/forms/govtech/5bd12c6668dbe7000fff9ace'
 # Build settings
@@ -34,13 +34,19 @@ breadcrumbs:
   root:
     hide: false  # show breadcrumbs on root/home page
     image: false # Show image or title text
+
 assets:
   sources:
     - fonts
+  digest: true
 
+source_maps: false
 sass:
   load_paths:
   - sgds-govtech
+
+includes:
+  - contents/docs
 
 exclude:
   - sgds-govtech/sass

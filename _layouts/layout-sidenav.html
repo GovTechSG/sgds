@@ -1,7 +1,7 @@
 ---
 layout: layout-default
 ---
-<section class="sgds-section is-small has-background-secondary">
+<section class="sgds-section is-small has-background-primary">
     <div class="sgds-container">
         {% include sgds-breadcrumb.html %}
         <h2 class="has-text-white ">{{page.title}}</h2>
@@ -9,7 +9,6 @@ layout: layout-default
 </section>
 {% if page.url contains "/docs/" %}
 <section class="sgds-section is-paddingless is-hidden-desktop">
-
     <div class="sgds-dropdown is-fullwidth">
         <div class="sgds-dropdown-trigger">
             <button class="sgds-button is-outlined is-large" aria-haspopup="true" aria-controls="sgds-dropdown-menu">
@@ -22,29 +21,87 @@ layout: layout-default
         <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
             <div class="sgds-dropdown-content padding">
                 <div class="row is-multiline is-mobile">
-                {%- assign links = site.data.navigation -%}
-                {%- for link in links -%}
+                    {%- assign links = site.data.navigation -%}
+                    {%- for link in links -%}
                     {%- if link.title == 'Docs' -%}
-                        {%- for title in link.lvl2 -%}
-                            {%- for title2 in title.lvl3 -%}
-                                <div class="col is-4-mobile has-text-centered">
+                    {%- for title in link.lvl2 -%}
+                    {%- for title2 in title.lvl3 -%}
+                    <div class="col is-4-mobile has-text-centered">
 
-                                        <a href="{{title2.url}}" class="sgds-dropdown-item">
-                                            <span class="sgds-icon {{title2.icon}} is-size-4"></span><br>{{title2.title}}
-                                        </a>
-                                </div>
-                            {%- endfor -%}
-                        {%- endfor -%}
+                        <a href="{{title2.url}}" class="sgds-dropdown-item">
+                            <span class="sgds-icon {{title2.icon}} is-size-4"></span><br>{{title2.title}}
+                        </a>
+                    </div>
+                    {%- endfor -%}
+                    {%- endfor -%}
                     {%- endif -%}
-                {%- endfor -%}
+                    {%- endfor -%}
                 </div>
             </div>
         </div>
     </div>
-
-
 </section>
+
 {% endif %}
+{% if page.url contains "/demo/" %}
+<section class="sgds-section is-small">
+    <div class="sgds-container">
+        <div class="row">
+            <div class="col is-3 is-hidden-touch has-side-nav">
+                <div class="sidenav">
+                    <aside class="sgds-menu sidebar__inner">
+                        <ul class="sgds-menu-list">
+                            <li>
+                                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
+                                    Level 2a
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="" class="is-active padding--sm">
+                                            <small>Level 3a</small>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="padding--sm">
+                                            <small>Level 3b</small>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
+                                    Level 2b
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="" class="is-active padding--sm">
+                                            <small>Level 3a</small>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="padding--sm">
+                                            <small>Level 3b</small>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+            <div class="col is-9 is-12-touch">
+                <div class="row">
+                    <div class="col">
+                        <div class="content margin--top--sm">
+                            {{content}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
 <section class="sgds-section is-small">
     <div class="sgds-container">
         <div class="row">
@@ -76,6 +133,9 @@ layout: layout-default
                                         <a href="{{ site.baseurl }}{{ lvl3item.url }}"
                                            class="{{ class }} padding--sm">
                                             <small>{{ lvl3item.title }}</small>
+                                            {% if lvl3item.status %}
+                                             <span class="sgds-tag is-light is-rounded margin--left">{{lvl3item.status}}</span>
+                                            {% endif %}
                                         </a>
                                     </li>
                                     {%- endfor -%}
@@ -90,7 +150,21 @@ layout: layout-default
                 </div>
             </div>
             <div class="col is-9 is-12-touch">
-
+                {% if page.update-notification %}
+                <div class="row">
+                    <div class="col">
+                        <div class="sgds-notification is-toast-primary">
+                            <div class="detail">
+                                <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
+                                <div class="content">
+                                    <b>Last updates - {{page.updated-date}}</b><br>
+                                    <p>{{page.update-notification}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
                 <div class="row">
                     <div class="col">
 
@@ -103,3 +177,4 @@ layout: layout-default
         </div>
     </div>
 </section>
+{% endif %}

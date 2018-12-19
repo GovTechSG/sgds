@@ -1,4 +1,49 @@
-{% unless page.url contains '/testing/footer/' %}
+{% if page.url contains '/demo/' %}
+<footer class="sgds-footer top-section">
+    <div class="sgds-container">
+        <div class="row">
+            <div class="col header">
+                <h5 class="sub-header has-text-white"><b>Design System</b></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col is-3">
+                <p class="sub-header"><b>Category 1</b></p>
+                <p><a href="">Link</a></p>
+                <p><a href="">Link</a></p>
+            </div>
+            <div class="col is-3">
+                <p class="sub-header"><b>Category 2</b></p>
+                <p><a href="">Link</a></p>
+                <p><a href="">Link</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col is-right-desktop-only">
+                <ul>
+                    <li class="is-inline-block-desktop-only">
+                        <p><a href="">Contact</a></p>
+                    </li>
+                    <li class="is-inline-block-desktop-only">
+                        <p><a href="">Tell us more</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row is-vcentered divider">
+            <div class="col">
+                <ul>
+                    <li><a href="">Privacy Statement</a></li>
+                    <li><a href="">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div class="col has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                <p> © 2018 Government of Singapore</p>
+            </div>
+        </div>
+    </div>
+</footer>
+{% else %}
 <footer class="sgds-footer">
     <div class="sgds-container">
         <div class="row">
@@ -51,4 +96,5 @@
 
     </div>
 </footer>
-{% endunless %}
+
+{% endif %}

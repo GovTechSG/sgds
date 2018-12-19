@@ -399,4 +399,12 @@ $(document).ready(function(){
                 .slideDown(300);
         }
     });
+
+    //Sticky sidebar
+    var sidebar = new StickySidebar('.has-side-nav', {
+        topSpacing: 20,
+        bottomSpacing: 20,
+        containerSelector: '.sidenav',
+        innerWrapperSelector: '.sidebar__inner'
+    });
 });

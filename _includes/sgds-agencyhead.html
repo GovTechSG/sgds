@@ -1,3 +1,44 @@
+{% if page.url contains '/demo/' %}
+<div class="masthead-container" id="navbar">
+    {% include sgds-masthead.html %}
+<nav class="navbar is-transparent">
+    <div class="sgds-container">
+        <div class="navbar-brand">
+            <a class="navbar-item">
+                <img src="/assets/img/logo_sgds.png" alt="">
+            </a>
+            <div class="navbar-burger burger" data-target="mainnav-1">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div id="mainnav-1" class="navbar-menu">
+            <div class="navbar-item is-stretched">
+                <a class="navbar-link is-uppercase is-active">
+                    Who we are
+                </a>
+            </div>
+            <div class="navbar-item is-stretched">
+                <a class="navbar-link is-uppercase">
+                    Link 2
+                </a>
+            </div>
+            <div class="navbar-item is-stretched">
+                <a class="navbar-link is-uppercase">
+                    Link 3
+                </a>
+            </div>
+            <div class="navbar-item is-stretched">
+                <a class="navbar-link is-uppercase">
+                    Link 4
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+</div>
+{% else %}
 <div class="masthead-container" id="navbar">
     {% include sgds-masthead.html %}
     <nav class="navbar is-transparent">
@@ -14,57 +55,59 @@
             </div>
             <div id="navbarMain" class="navbar-menu">
 
-                <div class="navbar-item is-hidden-desktop">
+                <!--<div class="navbar-item is-hidden-desktop">-->
                     <!--<form action="{{ site.baseurl }}/search/" method="get">-->
-                    <!--<div class="field has-addons">-->
-                    <!--<div class="control is-expanded">-->
-                    <!--<input class="input is-fullwidth" id="search-box" type="text" placeholder="What are you looking for?" name="query">-->
-                    <!--</div>-->
-                    <!--</div>-->
+                        <!--<div class="field has-addons">-->
+                            <!--<div class="control is-expanded">-->
+                                <!--<input class="input is-fullwidth" id="search-box" type="text"-->
+                                       <!--placeholder="What are you looking for?" name="query">-->
+                            <!--</div>-->
+                        <!--</div>-->
                     <!--</form>-->
                     <!--<hr class="is-marginless margin&#45;&#45;top&#45;&#45;sm">-->
-                </div>
+                <!--</div>-->
                 {%- assign links = site.data.navigation -%}
                 {%- for lvl1item in links -%}
-                <div class="navbar-item is-stretched">
+
                     {%- assign class = nil -%}
                     {%- if page.url contains lvl1item.url -%}
                     {%- assign class = 'is-active' -%}
                     {%- endif -%}
-                    <a class="navbar-link is-uppercase {{class}}"
+                    <a class="navbar-item is-uppercase {{class}}"
                        href="{{ site.baseurl }}{{ lvl1item.url }} ">
-                        <h6>{{ lvl1item.title }}</h6>
+                        {{ lvl1item.title }}
                     </a>
-                </div>
+
                 {%- endfor -%}
             </div>
             <div class="navbar-end is-hidden-touch">
                 <div class="navbar-item">
-                    <a class="navbar-link is-uppercase sgds-button is-rounded is-large"
+                    <a class="navbar-link is-uppercase sgds-button is-rounded"
                        href="/learn/development/install-isomer/">
-                        <h6>Download</h6>
+                        Download
                     </a>
                 </div>
                 <!--<div class="navbar-item">-->
-                <!--{% if page.layout != 'search' %}-->
-                <!--<button class="sgds-button is-white is-large" id="search-activate">-->
-                <!--<span class="sgds-icon sgds-icon-search"></span>-->
-                <!--</button>-->
-                <!--{% else %}-->
-                <!--<button class="sgds-button is-white is-large" id="search-activate" disabled></button>-->
-                <!--{% endif %}-->
+                    <!--{% if page.layout != 'search' %}-->
+                    <!--<button class="sgds-button is-white is-large" id="search-activate">-->
+                        <!--<span class="sgds-icon sgds-icon-search"></span>-->
+                    <!--</button>-->
+                    <!--{% else %}-->
+                    <!--<button class="sgds-button is-white is-large" id="search-activate" disabled></button>-->
+                    <!--{% endif %}-->
                 <!--</div>-->
             </div>
         </div>
     </nav>
     <!--<div class="sgds-container hide is-hidden-touch search-bar" id="search-bar">-->
-    <!--<div class="row">-->
-    <!--<div class="col">-->
-    <!--<hr class="margin&#45;&#45;bottom&#45;&#45;sm">-->
-    <!--<form action="{{ site.baseurl }}/search/" method="get">-->
-    <!--{% include sgds-search-box.html %}-->
-    <!--</form>-->
-    <!--</div>-->
-    <!--</div>-->
+        <!--<div class="row">-->
+            <!--<div class="col">-->
+                <!--<hr class="margin&#45;&#45;bottom&#45;&#45;sm">-->
+                <!--<form action="{{ site.baseurl }}/search/" method="get">-->
+                    <!--{% include sgds-search-box.html %}-->
+                <!--</form>-->
+            <!--</div>-->
+        <!--</div>-->
     <!--</div>-->
 </div>
+{% endif %}
