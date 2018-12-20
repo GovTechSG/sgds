@@ -401,10 +401,10 @@ $(document).ready(function(){
     });
 
     //Sticky sidebar
-    var sidebar = new StickySidebar('.has-side-nav', {
-        topSpacing: 20,
-        bottomSpacing: 20,
-        containerSelector: '.sidenav',
+    $('.sidenav').stickySidebar({
+        topSpacing: 170,
+        bottomSpacing: 0,
+        containerSelector: '.has-side-nav',
         innerWrapperSelector: '.sidebar__inner'
     });
 });
