@@ -39,7 +39,7 @@
 </nav>
 </div>
 {% else %}
-<div class="masthead-container" id="navbar">
+<div class="masthead-container is-fixed" id="navbar">
     {% include sgds-masthead.html %}
     <nav class="navbar is-transparent">
         <div class="sgds-container">
@@ -54,18 +54,6 @@
                 </div>
             </div>
             <div id="navbarMain" class="navbar-menu">
-
-                <!--<div class="navbar-item is-hidden-desktop">-->
-                    <!--<form action="{{ site.baseurl }}/search/" method="get">-->
-                        <!--<div class="field has-addons">-->
-                            <!--<div class="control is-expanded">-->
-                                <!--<input class="input is-fullwidth" id="search-box" type="text"-->
-                                       <!--placeholder="What are you looking for?" name="query">-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</form>-->
-                    <!--<hr class="is-marginless margin&#45;&#45;top&#45;&#45;sm">-->
-                <!--</div>-->
                 {%- assign links = site.data.navigation -%}
                 {%- for lvl1item in links -%}
 
