@@ -1,7 +1,9 @@
+$masthead-height: 1.875rem;
+
 .sgds-masthead{
   background-color: $grey-lighter;
   padding: 2px 0;
-
+  min-height: $masthead-height;
   .is-text{
     position: relative;
     top: -2px;
