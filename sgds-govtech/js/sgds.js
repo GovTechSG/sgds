@@ -402,7 +402,7 @@ $(document).ready(function(){
 
     //Sticky sidebar
     $('.sidenav').stickySidebar({
-        topSpacing: 40,
+        topSpacing: 140,
         bottomSpacing: 40,
         containerSelector: '.has-side-nav',
         innerWrapperSelector: '.sidebar__inner'
