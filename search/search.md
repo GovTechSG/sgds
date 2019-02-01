@@ -1,6 +1,6 @@
 ---
 layout: layout-search
 title: Search
-#permalink: /search/
+permalink: /search/
 breadcrumb: Search
 ---
