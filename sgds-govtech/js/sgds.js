@@ -402,8 +402,8 @@ $(document).ready(function(){
 
     //Sticky sidebar
     $('.sidenav').stickySidebar({
-        topSpacing: 140,
-        bottomSpacing: 40 ,
+        topSpacing: $('.sidenav').data("topspacing"),
+        bottomSpacing: $('.sidenav').data("bottomspacing") ,
         containerSelector: '.has-side-nav',
         innerWrapperSelector: '.sidebar__inner'
     });
