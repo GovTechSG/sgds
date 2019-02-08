@@ -5,17 +5,18 @@ layout: layout-default
 <section class="sgds-section is-small has-background-primary">
 	<div class="sgds-container">
 		{% include sgds-breadcrumb.html %}
+		<h2 class="has-text-white ">{{page.title}}</h2>
 	</div>
 	<div class="sgds-container">
 		<form action="/search/" method="get">
 			<div class="row padding--bottom--lg padding--top--lg">
-                <div class="col is-10 is-offset-1">
+                <div class="col">
 					<div class="field has-addons">
 						<div class="control is-expanded">
 							<input class="input" type="text" placeholder="Search within this service" name="query">
 						</div>
 						<div class="control">
-							<button type="submit" class="sgds-button padding--left--lg padding--right--lg">
+							<button class="sgds-button">
 								Search
 							</button>
 						</div>
@@ -28,7 +29,7 @@ layout: layout-default
 <section class="sgds-section">
     <div class="sgds-container search-content">
         <div class="row">
-            <div class="col is-9">
+            <div class="col is-10 is-offset-1">
 				<h4 class="search-results-count" id="search-results-count"></h4><br>
 				<p class="search-results" id="search-results"></p>
             </div>
