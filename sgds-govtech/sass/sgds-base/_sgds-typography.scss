@@ -41,7 +41,7 @@ h4{
   }
 }
 h5{
-  font-size: $size-5; // 22px
+  font-size: $size-5; // 22px`
   line-height: 1.875rem;
 
   @include touch() {
@@ -66,3 +66,4 @@ small{
 b, strong{
   font-weight: $weight-semibold;
 }
+
