@@ -3,9 +3,9 @@
 @font-face {
   font-family: 'sgds-icons';
   src:
-    url('#{$sgds-font-path}/sgds-icons.ttf?742wbr') format('truetype'),
-    url('#{$sgds-font-path}/sgds-icons.woff?742wbr') format('woff'),
-    url('#{$sgds-font-path}/sgds-icons.svg?742wbr#sgds-icons') format('svg');
+    url('#{$sgds-font-path}/sgds-icons.ttf') format('truetype'),
+    url('#{$sgds-font-path}/sgds-icons.woff') format('woff'),
+    url('#{$sgds-font-path}/sgds-icons.svg?#sgds-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }

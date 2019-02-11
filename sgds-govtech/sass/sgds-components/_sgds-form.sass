@@ -24,7 +24,7 @@ $input-arrow: $link !default
 $input-icon-color: $grey-light !default
 $input-icon-active-color: $grey !default
 
-$input-radius: $radius-large !default
+$input-radius: $radius !default
 
 $file-border-color: $border !default
 $file-radius: $radius !default
@@ -439,23 +439,23 @@ $help-size: $size-small !default
       &:not(:last-child)
         margin-right: -1px
       &:not(:first-child):not(:last-child)
-        .button,
+        .sgds-button,
         .input,
         .select select
           border-radius: 0
       &:first-child
-        .button,
+        .sgds-button,
         .input,
         .select select
           border-bottom-right-radius: 0
           border-top-right-radius: 0
       &:last-child
-        .button,
+        .sgds-button,
         .input,
         .select select
           border-bottom-left-radius: 0
           border-top-left-radius: 0
-      .button,
+      .sgds-button,
       .input,
       .select select
         &:not([disabled])
