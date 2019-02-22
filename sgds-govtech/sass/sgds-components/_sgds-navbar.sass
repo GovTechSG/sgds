@@ -27,8 +27,9 @@ $navbar-tab-active-border-bottom-width: 3px !default
 $navbar-dropdown-background-color: $white !default
 $navbar-dropdown-border-top: 2px solid $border !default
 $navbar-dropdown-offset: -4px !default
-$navbar-dropdown-arrow: $link !default
-$navbar-dropdown-radius: $radius-large !default
+$navbar-dropdown-arrow: $primary !default
+$navbar-dropdown-icon : "\e93c" !default
+$navbar-dropdown-radius: 0 !default
 $navbar-dropdown-z: 20 !default
 
 $navbar-dropdown-boxed-radius: $radius-large !default
@@ -156,7 +157,6 @@ body
 .navbar-item,
 .navbar-link
   color: $navbar-item-color
-  font-weight: $weight-semibold
   display: block
   line-height: 1.5
   padding: 0.5rem 0.75rem
@@ -211,7 +211,7 @@ a.navbar-item,
   flex-shrink: 1
 
 .navbar-dropdown
-  font-size: 0.875rem
+  font-size: $size-7
   padding-bottom: 0.5rem
   padding-top: 0.5rem
   .navbar-item
@@ -319,6 +319,10 @@ a.navbar-item,
     display: flex
     &.has-dropdown
       align-items: stretch
+      > a.navbar-link
+        padding: 0.5rem 2rem 0.5rem 0.5rem
+        &::after
+          +navbar-arrow($navbar-dropdown-arrow, $navbar-dropdown-icon)
     &.is-mega
       .has-dropdown::after
         right: 0
@@ -357,7 +361,7 @@ a.navbar-item,
     border-top: $navbar-dropdown-border-top
     box-shadow: 0 8px 8px rgba($black, 0.1)
     display: none
-    font-size: 0.875rem
+    font-size: $size-7
     left: 0
     min-width: 100%
     position: absolute
