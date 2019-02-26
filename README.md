@@ -1,10 +1,10 @@
 ### Patch Notes
 v1.1.0
 
-#####Font Size update
+#### Font Size update
 - https://codepen.io/rav3tey/pen/jKwgrJ
 
-#####Navbar
+#### Navbar
 - Dropdown arrow replace by `sgds-icon`
 - Remove `.sgds-icon` class in code snippets
 - Add option to configure sgds-icons `$navbar-dropdown-icon` to first level dropdown
