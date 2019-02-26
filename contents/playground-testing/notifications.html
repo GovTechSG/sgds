@@ -55,6 +55,27 @@ permalink: /testing/notification/
         <hr class="margin--top--lg margin--bottom--lg">
         <div class="row">
             <div class="col">
+                <h4 class="margin--bottom">Default Notification with close button</h4>
+                <div class="sgds-notification is-danger">
+                    <b>Update</b>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque, debitis earum esse eveniet
+                        magnam magni nihil optio sit voluptatum.</p>
+                    <span class="delete" id="cancel-notification"></span>
+                </div>
+                {%- highlight html -%}
+
+                <div class="sgds-notification is-danger">
+                    <b>Update</b>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque, debitis earum esse eveniet
+                        magnam magni nihil optio sit voluptatum.</p>
+                </div>
+                {%- endhighlight -%}
+            </div>
+        </div>
+
+        <hr class="margin--top--lg margin--bottom--lg">
+        <div class="row">
+            <div class="col">
                 <h4 class="margin--bottom">Default Toast Notification</h4>
                 <div class="sgds-notification is-toast-danger">
                     <b>Update</b>
