@@ -22,18 +22,17 @@ $notification-padding: 1rem !default
     background: $white
   pre code
     background: transparent
-  & > .delete
-    position: absolute
-    right: 0.5rem
-    top: 1rem
-    font-size: 1.5rem
-    background-color: transparent
-    color: white
-    border: 0
   .title,
   .subtitle,
   .content
     color: currentColor
+
+  &.is-toast
+    background-color: transparent
+    border: 1px solid darken($notification-background-color,10%)
+    border-left: 5px solid darken($notification-background-color,10%)
+    .sgds-icon
+      color: darken($notification-background-color,10%)
   // Colors
   @each $name, $pair in $colors
     $color: nth($pair, 1)
@@ -48,13 +47,18 @@ $notification-padding: 1rem !default
       .sgds-icon
         color: $color
 
-  .detail
+  &-detail
     display: flex
     align-items: center
+    position: relative
+    padding-right: 2rem
     .sgds-icon
       margin-left: 1rem
       margin-right: 2rem
-
+    .delete
+      position: absolute
+      top: 0
+      right: 0
   &-flex
     &.field
       justify-content: space-between
