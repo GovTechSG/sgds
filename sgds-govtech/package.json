@@ -28,7 +28,7 @@
   },
   "bundleDependencies": false,
   "deprecated": false,
-  "description": "Isomer unites Singapore Government digital services around a common visual language and user experienc",
+  "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
   "peerDependencies": {
     "jquery": "~3.0.0"
   },

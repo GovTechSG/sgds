@@ -21,8 +21,8 @@
        lvl3:
           - title: Know Our Key Principles
             url: /learn/design/key-principles/
-          - title: Using the Sketch UI Kit
-            url: /learn/design/sketch-kit/
+          #- title: Using the Sketch UI Kit
+          #  url: /learn/design/sketch-kit/
           - title: Accessibility for Design
             url: /learn/design/accessibility-design/
           - title: Color Contrast Checker

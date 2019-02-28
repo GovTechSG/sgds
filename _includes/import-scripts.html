@@ -1,3 +1,5 @@
+{% if page.url contains '/templates/quickstart/' %}
+{% else %}
 <!-- Google Analytics -->
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -9,6 +11,8 @@
     ga('send', 'pageview');
 </script>
 <!-- End Google Analytics -->
+{% endif %}
+
 
 {% if page.url contains '/demo/' %}
 
@@ -19,6 +23,7 @@
     <script src="/assets/js/clipboard.min.js"></script>
     <script src="/assets/js/clipboard.js"></script>
 {% endif %}
+
 <script src="/assets/js/jquery.sticky-sidebar.js"></script>
 <!--<script src="/assets/js/sideNav-offset.js"></script>-->
 <!--<script src="{{'/node_modules/sgds-govtech/js/sgds.js' | prepend: site.baseurl}}"></script>-->
