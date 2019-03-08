@@ -24,6 +24,7 @@ github_username:  jekyll
 last_updated: 19 Dec 2018
 contact_us: 'https://form.gov.sg/forms/govtech/5bc440ac507956000fdbae91'
 feedback_form: 'https://form.gov.sg/#!/forms/govtech/5bd12c6668dbe7000fff9ace'
+search_placeholder: 'What are you looking for?'
 # Build settings
 markdown: kramdown
 plugins:
