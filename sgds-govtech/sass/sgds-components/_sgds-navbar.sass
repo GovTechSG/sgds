@@ -125,7 +125,7 @@ $navbar-breakpoint: $desktop !default
 html,
 body
   &.has-navbar-fixed-top
-    padding-top: $navbar-height + $masthead-height
+    padding-top: calc(#{$navbar-height} + #{$masthead-height})
   &.has-navbar-fixed-bottom
     padding-bottom: $navbar-height
 
@@ -417,13 +417,13 @@ a.navbar-item,
   html,
   body
     &.has-navbar-fixed-top-desktop
-      padding-top: $navbar-height + $masthead-height
+      padding-top: calc(#{$navbar-height} + #{$masthead-height})
     &.has-navbar-fixed-bottom-desktop
       padding-bottom: $navbar-height
     &.has-spaced-navbar-fixed-top
-      padding-top: $navbar-height + ($navbar-padding-vertical * 2)
+      padding-top: calc(#{$navbar-height} + (#{$navbar-padding-vertical} * 2))
     &.has-spaced-navbar-fixed-bottom
-      padding-bottom: $navbar-height + ($navbar-padding-vertical * 2)
+      padding-bottom: calc(#{$navbar-height} + (#{$navbar-padding-vertical} * 2))
   // Hover/Active states
   a.navbar-item,
   .navbar-link
