@@ -23,7 +23,35 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        strip_code: {
+            options: {
+                blocks: [
+                    {
+                        start_block: "<!-- Begin Jekyll SEO tag v2.5.0 -->",
+                        end_block: "<!-- End Jekyll SEO tag -->"
+                    }
+                ]
+            },
+            your_target: {
+                src: '_site/templates/quickstart/index.html'
+            }
+        },
+        htmlmin: {                                     // Task
+            dist: {                                      // Target
+                options: {                                 // Target options
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    preserveLineBreaks: true,
+                    preventAttributesEscaping: true
+
+                },
+                files: {                                   // Dictionary of files
+                    '_site/templates/quickstart/index.html': '_site/templates/quickstart/index.html'
+                }
+            }
+        },
         copy: {
+
             css: {
                 expand: true,
                 cwd: '_site/assets/css',
@@ -55,7 +83,9 @@ module.exports = function(grunt) {
             }
         }
     });
+
     // grunt.registerTask('sgds', ['clean:build','cssmin','copy:sass', 'copy:fonts','copy:js','compress:main','copy:zip','clean:zip']);
     // grunt.registerTask('sgds-clean', ['clean:build']);
     grunt.registerTask('sgds', ['cssmin','compress','copy:zip','clean:zip']);
+
 };
