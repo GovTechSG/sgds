@@ -1,66 +1,44 @@
-.display{
-  font-size: 5.25rem; // 84px
-  letter-spacing: -1.5px;
-  line-height: 4.75rem;
-  @include touch() {
-    font-size: 4rem;
-  }
-}
-
 h1{
-  font-size: $size-1; // 54px
-  line-height: 3.75rem;
-  letter-spacing: -1.5px;
-
-  @include touch() {
-    font-size: 3rem;
+  font-size: $size-1;
+  line-height: calc(#{$size-1} + #{$lineheight-offset});
+  &.display{
+    font-size: $size-0;
+    line-height: calc(#{$size-0} + #{$lineheight-offset});
   }
 }
 h2{
-  font-size: $size-2; // 44px
-  line-height: 3.75rem;
+  font-size: $size-2;
+  line-height: calc(#{$size-2} + #{$lineheight-offset});
 
-  @include touch() {
-    font-size: 2rem;
-  }
 }
 h3{
-  font-size: $size-3; // 32px
-  line-height: 2.8125rem;
+  font-size: $size-3;
+  line-height: calc(#{$size-3} + #{$lineheight-offset});
 
-  @include touch() {
-    font-size: 1.75rem;
-  }
 }
 h4{
-  font-size: $size-4; // 26px
-  line-height: 2.2rem;
+  font-size: $size-4;
+  line-height: calc(#{$size-4} + #{$lineheight-offset});
 
-  @include touch() {
-    font-size: 1.5rem;
-  }
 }
 h5{
-  font-size: $size-5; // 22px`
-  line-height: 1.875rem;
+  font-size: $size-5;
+  line-height: calc(#{$size-5} + #{$lineheight-offset});
 
-  @include touch() {
-    font-size: 1.375rem;
-  }
 }
 h6{
-  font-size: $size-6; // 16px
-  line-height: 1.25rem;
-
-  @include touch() {
-    font-size: 1rem;
-  }
+  font-size: $size-6;
+  line-height: calc(#{$size-6} + #{$lineheight-offset});
 }
 
+p{
+  font-size: $size-7;
+  line-height: calc(#{$size-7} + #{$lineheight-offset});
+}
 
 small{
-  font-size: 0.9375rem!important; //15px
-  letter-spacing: 0.2px;
+  font-size: $size-8 !important;
+  line-height: $size-7;
 }
 
 b, strong{

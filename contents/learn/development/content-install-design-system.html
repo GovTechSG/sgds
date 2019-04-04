@@ -6,7 +6,7 @@ permalink: /learn/development/install-design-system/
 
 <div class="row">
     <div class="col">
-        <h5 class="has-text-primary has-text-weight-semibold">The Design System provides developers a collection of reusable HTML and CSS to build websites. Adopting the library enables developers to use consistent markup, styles, and behavior in prototype and production work</h5>
+        <h6 class="has-text-primary has-text-weight-semibold">The Design System provides developers a collection of reusable HTML and CSS to build websites. Adopting the library enables developers to use consistent markup, styles, and behavior in prototype and production work</h6>
     </div>
 </div>
 
@@ -14,7 +14,7 @@ permalink: /learn/development/install-design-system/
 
 <div class="row">
     <div class="col">
-        <h3 class="has-text-weight-semibold margin--bottom">Install using npm</h3>
+        <h5 class="has-text-weight-semibold margin--bottom">Install using npm</h5>
         <p>npm is a package manager for Node based projects. Design System maintains a package for you to utilize the compiled files on your project.</p>
         <ul>
             <li class="margin--bottom">Install Node.js <a href="https://nodejs.org/en/download/" target="_blank">here</a></li>
@@ -45,7 +45,7 @@ permalink: /learn/development/install-design-system/
 
 <div class="row">
     <div class="col">
-        <h3 class="has-text-weight-semibold margin--bottom">Install manually</h3>
+        <h5 class="has-text-weight-semibold margin--bottom">Install manually</h5>
         <p>We provide both minified CSS and the JavaScript files that you can use in a production environment or reduce the file size of your downloaded assets.</p>
         <p><a class="sgds-button is-rounded margin--bottom margin--top is-primary" href="/assets/downloads/sgds-govtech.zip" target="_blank">Download Design System package</a></p>
         <ul>
@@ -75,53 +75,19 @@ permalink: /learn/development/install-design-system/
 
 <div class="row">
     <div class="col">
-        <h3 id="sitefinity" class="has-text-weight-semibold margin--bottom">Install the Sitefinity Theme</h3>
-        <div class="sgds-notification">
-            <div class="detail">
-                <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
-                <div class="content">
-                    <p>The <b>Sitefinity DesignSystem resource package</b> is in the pilot phase, your valuable <a href="{{site.feedback_form}}" target="_blank">feedback</a> will help us in improving it.</p>
-                </div>
-            </div>
+        <h3 class="has-text-weight-semibold margin--bottom">Content Management Systems</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deserunt eos est fugiat impedit iste quae totam? Adipisci beatae corporis harum illo, numquam perspiciatis provident quibusdam recusandae, reiciendis, sapiente sequi.</p>
+        <div class="sgds-tabs is-boxed" data-sgds="tabs">
+            <ul class="is-marginless">
+                <li class="is-active"><a data-tab="#sitefinity">Sitefinity</a></li>
+                <li><a data-tab="#wordpress">Wordpress</a></li>
+            </ul>
         </div>
-        <p><a class="sgds-button is-rounded margin--bottom margin--top is-primary" href="/assets/downloads/sgds-sitefinity-theme.zip" target="_blank"><i class="sgds-icon sgds-icon-sitefinity"></i>&nbsp;Download Sitefinity package</a></p>
-        <p>All you have to do is copy the Sitefinity <b>DesignSystem</b> resource package folder and paste into your <code>ProjectName / ResourcePackage</code> folder and rebuild the project.</p>
-        <p>The Sitefinity <b>DesignSystem</b> resource package consist of:</p>
-        <ol>
-            <li class="margin--bottom"><b>SGDS Stylesheet</b><br><code>/DesignSystem/assets/dist/css/sgds.css</code></li>
-            <li class="margin--bottom"><b>SGDS Javascript</b><br><code>/DesignSystem/assets/dist/js/sgds.js</code></li>
-            <li class="margin--bottom"><b>SGDS Icon Library</b><br><code>/DesignSystem/assets/dist/fonts/</code></li>
-            <li class="margin--bottom">
-                <b>SGDS Grid System Template</b><br><code>/DesignSystem/GridSystem/Templates</code>
-                <ul>
-                    <li class="has-text-weight-bold">
-                        Section template<br>
-                        <code>sgds-section.html</code>
-                    </li>
-                    <li class="has-text-weight-bold">
-                        Container template<br>
-                        <code>sgds-container.html</code>
-                    </li>
-                    <li class="has-text-weight-bold">
-                        Grid Columns<br>
-                        <code>sgds-grid-x.html</code>
-                    </li>
-                </ul>
-            </li>
-            <li class="margin--bottom">
-                <b>Master layout with the <span class="has-text-danger">DSS compliant Mandatory components</span></b><br>
-                <code>/DesignSystem/MVC/Views/Layouts</code>
-                <ul>
-                    <li>Gov.sg masthead</li>
-                    <li>Navigation bar widget<br>
-                        <code>/DesignSystem/MVC/Views/Navigation/NavigationView.sgds.cshtml</code>
-                    </li>
-                    <li>Footer</li>
-                </ul>
-            </li>
-        </ol>
     </div>
 </div>
+
+{% include_relative content-install-cms-sitefinity.html %}
+{% include_relative content-install-cms-wordpress.html %}
 
 <hr class="margin--bottom--lg margin--top--lg">
 

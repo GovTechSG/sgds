@@ -4,7 +4,7 @@ layout: layout-default
 <section class="sgds-section is-small has-background-primary">
     <div class="sgds-container">
         {% include sgds-breadcrumb.html %}
-        <h2 class="has-text-white ">{{page.title}}</h2>
+        <h3 class="has-text-white has-text-weight-semibold">{{page.title}}</h3>
     </div>
 </section>
 
@@ -93,12 +93,12 @@ layout: layout-default
                                 <ul>
                                     <li>
                                         <a href="" class="is-active padding--sm">
-                                            <small>Level 3a</small>
+                                            Level 3a
                                         </a>
                                     </li>
                                     <li>
                                         <a href="" class="padding--sm">
-                                            <small>Level 3b</small>
+                                            Level 3b
                                         </a>
                                     </li>
                                 </ul>
@@ -110,12 +110,12 @@ layout: layout-default
                                 <ul>
                                     <li>
                                         <a href="" class="is-active padding--sm">
-                                            <small>Level 3a</small>
+                                            Level 3a
                                         </a>
                                     </li>
                                     <li>
                                         <a href="" class="padding--sm">
-                                            <small>Level 3b</small>
+                                            Level 3b
                                         </a>
                                     </li>
                                 </ul>
@@ -154,7 +154,7 @@ layout: layout-default
                                 {%- assign class = 'is-active' -%}
                                 {%- endif -%}
                                 <a href="{{ site.baseurl }}{{ lvl2item.url }}"
-                                   class="is-uppercase has-text-weight-semibold {{class}}">
+                                   class="is-uppercase {{class}}">
                                     {{ lvl2item.title }}
                                 </a>
                                 <ul>
@@ -167,7 +167,7 @@ layout: layout-default
                                         {%- endif -%}
                                         <a href="{{ site.baseurl }}{{ lvl3item.url }}"
                                            class="{{ class }} padding--sm">
-                                            <small>{{ lvl3item.title }}</small>
+                                            {{ lvl3item.title }}
                                             {% if lvl3item.status %}
                                              <span class="sgds-tag is-light is-rounded margin--left">{{lvl3item.status}}</span>
                                             {% endif %}

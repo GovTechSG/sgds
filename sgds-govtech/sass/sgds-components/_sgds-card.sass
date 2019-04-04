@@ -12,9 +12,26 @@ $card-footer-border-top: 1px solid $border !default
     background-color: $card-background-color
     box-shadow: $card-shadow
     color: $card-color
-    //max-width: 100%
     width: 100%
     position: relative
+    .is-media-card &
+      &:hover
+        background-color: darken($card-background-color, 10%)
+      .sgds-card-content
+        display: flex
+        min-height: 21rem
+        flex-direction: column
+        justify-content: space-between
+
+      @each $name, $pair in $colors
+        $color: nth($pair, 1)
+        $color-invert: nth($pair, 2)
+        &.is-#{$name}
+          color: white
+          background-color: $color
+          border-color: transparent
+          &:hover
+            background-color: darken($color, 10%)
 
   &-card-header
     align-items: stretch
@@ -68,7 +85,8 @@ $card-footer-border-top: 1px solid $border !default
       box-shadow: 0 2px 3px rgba($primary, 0.1), 0 0 0 1px rgba($primary, 0.1)
 
   // Combinations
-
   &-card
     .media:not(:last-child)
       margin-bottom: 0.75rem
+
+

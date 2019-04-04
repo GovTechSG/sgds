@@ -108,3 +108,31 @@ $table-striped-row-even-hover-background-color: $white-ter !default
       tr:not(.is-selected)
         &:nth-child(even)
           background-color: $table-striped-row-even-background-color
+
+// Isomer's Table
+table
+  &.table-h
+    tbody
+      tr
+        &:nth-of-type(odd)
+          background-color: $table-grey
+        td
+          border-bottom: 1px solid $grey-lighter
+          padding: $size-7
+          vertical-align: top
+
+  &.table-v
+    tbody
+      tr
+        &:first-child
+          td
+            border-top: 1px solid $grey-lighter
+      td
+        border-bottom: 1px solid $grey-lighter
+        padding: $size-7
+        vertical-align: top
+        &:first-child
+          background-color: $table-grey
+          border-bottom-color: #fff
+          font-weight: $weight-bold
+          width: 20%

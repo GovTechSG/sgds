@@ -22,10 +22,10 @@ $menu-label-color: $text-light !default
   &-menu-list
     line-height: 1.25
     a
-      font-size: 1.0625rem
       color: $menu-item-color
       display: block
       padding: 1rem 0
+      font-weight: $weight-semibold
       //border-bottom: 1px solid $grey
       &:hover
         color: $menu-item-hover-color
@@ -33,7 +33,7 @@ $menu-label-color: $text-light !default
       // Modifiers
       &.is-active
         color: $menu-item-active-color
-        font-weight: 600
+        font-weight: $weight-bold
         border-color: $menu-item-active-color
         //border-bottom: 2px solid $menu-item-active-color
     li
@@ -43,13 +43,15 @@ $menu-label-color: $text-light !default
         li
           a
             padding-left: 0.75em
-            //border-left: 2px solid #fff
+            min-height: $size-4
+            font-weight: $weight-normal
             &.is-active
               border-left: 2px solid $menu-item-active-color
+              font-weight: $weight-normal
 
   &-menu-label
     color: $menu-label-color
-    font-size: 0.75em
+    font-size: $size-normal
     letter-spacing: 0.1em
     text-transform: uppercase
     &:not(:first-child)

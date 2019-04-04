@@ -32,7 +32,10 @@ $dropdown-divider-background-color: $border !default
         padding-bottom: $dropdown-content-offset
         padding-top: unset
         top: auto
-
+    &.is-menu-centered
+      .sgds-dropdown-menu
+        top: 50%
+        transform: translateY(-50%)
     &.is-fullwidth
       display: block
       width: 100%
@@ -60,10 +63,13 @@ $dropdown-divider-background-color: $border !default
   &-dropdown-item
     color: $dropdown-item-color
     display: block
-    font-size: 0.875rem
+    font-size: $size-7
     line-height: 1.5
-    padding: 0.375rem 1rem
+    padding: 0.5rem 1rem
     position: relative
+    .sgds-hero &
+      font-size: $size-6
+      text-align: left
     &.is-active
       background-color: $dropdown-item-active-background-color
       color: $dropdown-item-active-color

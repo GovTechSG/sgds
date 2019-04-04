@@ -9,11 +9,12 @@ $masthead-height: 1.875rem;
     top: -2px;
     font-size: 14px;
   }
-
   a{
     color: $grey-dark;
+    .sgds-icon{
+      font-size: $size-6;
+    }
   }
-
   a:hover{
     color: $primary;
   }
