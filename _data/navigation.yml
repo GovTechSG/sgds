@@ -110,3 +110,18 @@
 
 - title: Testing
   url: /testing/
+  lvl2:
+    - title: Isomer's Secondary Button
+      url: /testing/sec-button/
+    - title: Isomer's Tables
+      url: /testing/table/
+    - title: Isomer's Media Card
+      url: /testing/card/
+    - title: Isomer's Hero
+      url: /testing/hero/
+    - title: Full Width Dropdown
+      url: /testing/full-width-dropdown/
+    - title: Notifications
+      url: /testing/notification/
+    - title: Forms
+      url: /testing/forms/

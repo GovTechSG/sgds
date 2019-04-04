@@ -5,7 +5,6 @@
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-
     &.is-small{
       @include button-small();
     }
@@ -37,6 +36,21 @@
       }
     }
 
+    &.is-not-underlined{
+      &::after{
+        content: none;
+      }
+      span{
+        margin:0;
+        border:0;
+      }
+      &.is-active{
+        span{
+          border-bottom:2px solid $primary;
+        }
+      }
+    }
+
     @each $name, $pair in $colors{
       $color: nth($pair,1);
       $color-invert: nth($pair,2);
@@ -51,6 +65,13 @@
           &:hover{
             color: darken($color,10%);
             border-color: darken($color,10%);
+          }
+        }
+        .content &{
+          &.is-active{
+            span{
+              border-bottom:2px solid $color;
+            }
           }
         }
       }
