@@ -1,5 +1,5 @@
 onmessage = function(event) {
-	self.importScripts('lunr.min.js');
+	self.importScripts('lunr.js');
 	
 	var documents = event.data;
 

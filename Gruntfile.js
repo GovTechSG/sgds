@@ -61,7 +61,7 @@ module.exports = function(grunt) {
             js: {
                 expand: true,
                 cwd: 'assets/js',
-                src: 'sgds.js',
+                src: ['sgds.js','sgds-sidenav.js'],
                 dest: path + '/js'
             },
             zip:{

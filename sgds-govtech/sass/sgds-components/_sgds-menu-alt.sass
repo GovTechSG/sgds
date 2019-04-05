@@ -1,0 +1,78 @@
+$menu-item-color: $grey-darker !default
+$menu-item-radius: $radius-small !default
+$menu-item-hover-color: $primary !default
+$menu-item-hover-background-color: $background !default
+$menu-item-active-color: $primary !default
+$menu-item-active-background-color: $primary !default
+$menu-list-border-left: 1px solid $border !default
+$menu-label-color: $text-light !default
+
+.sgds-menu-alt
+  font-size: 1rem
+  &.is-small
+    font-size: 0.75rem
+  &.is-medium
+    font-size: 1.25rem
+  &.is-large
+    font-size: 1.5rem
+
+.sgds-menu-alt-list
+  line-height: 1.25
+  margin: 0
+  .content &
+    list-style: none
+  a
+    color: $menu-item-color
+    display: block
+    padding: 1rem 0
+    border-bottom: 1px solid $grey
+    &:hover
+      color: $menu-item-active-color
+      border-bottom: 1px solid $menu-item-active-color
+    &.is-active
+      color: $menu-item-active-color
+      font-weight: 600
+      border-color: $menu-item-active-color
+      border-bottom: 2px solid $menu-item-active-color
+    &.second-level-nav-header
+      i.sgds-icon
+        line-height: 1.25
+      border-bottom: 1px solid white !important
+      &.is-active, &:hover, &.is-active:hover
+        border-bottom: 1px solid white !important
+  li
+    margin: 0
+    ul
+      border-left: 1px dotted $menu-item-active-color
+      margin: 1em
+      padding-left: 1em
+    &.second-level-nav-header
+      &.is-active + div.second-level-nav-div
+        display: block
+        visibility: visible
+        &.is-hidden
+          display: none
+          visibility: hidden
+      &:active + div.second-level-nav-div,
+      &:hover + div.second-level-nav-div
+        display: block
+        visibility: visible
+      &:active + div.second-level-nav-div.is-hidden,
+      &:hover + div.second-level-nav-div.is-hidden
+        display: none
+        visibility: hidden
+    a.second-level-nav-item
+      border: 0!important
+      padding-left: 1.5rem
+    &:not(:first-child) a
+      border-top: 1px solid #767676
+
+.sgds-menu-alt-label
+  color: #767676
+  font-size: 0.75em
+  letter-spacing: 0.1em
+  text-transform: uppercase
+  &:not(:first-child)
+    margin-top: 1em
+  &:not(:last-child)
+    margin-bottom: 1em
