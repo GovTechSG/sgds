@@ -5,7 +5,13 @@ permalink: /testing/table/
 ---
 
         <div class="row">
-            <div class="col"><h5 class="has-text-weight-bold margin--bottom">Horizontal Table</h5></div>
+            <div class="col">
+                <h5 class="has-text-weight-bold margin--bottom">Horizontal Header Table</h5>
+                <p class="has-text-weight-bold margin--bottom">
+                    Add class name <code>table-h</code> for horizontal tables
+                </p>
+            </div>
+
         </div>
         <div class="row">
             <div class="col">
@@ -37,6 +43,7 @@ permalink: /testing/table/
             <div class="col">
                 <div class="content">
 {%- highlight html -%}
+<!--Add class name table-h for horizontal tables-->
 <table class="table-h">
     <tbody>
         <tr>
@@ -66,7 +73,10 @@ permalink: /testing/table/
         <hr class="margin--top--lg margin--bottom--lg">
         <div class="row">
             <div class="col">
-                <h5 class="has-text-weight-bold margin--bottom">Vertical Table</h5>
+                <h5 class="has-text-weight-bold margin--bottom">Vertical Header Table</h5>
+                <p class="has-text-weight-bold margin--bottom">
+                    Add class name <code>table-v</code> for vertical tables
+                </p>
             </div>
         </div>
         <div class="row">
@@ -97,7 +107,8 @@ permalink: /testing/table/
             <div class="col">
                 <div class="content">
 {%- highlight html -%}
-<table class="table-h">
+<!--Add class name table-v for horizontal tables-->
+<table class="table-v">
     <tr>
         <td>Lorem ipsum dolor.</td>
         <td>Lorem ipsum dolor.</td>
