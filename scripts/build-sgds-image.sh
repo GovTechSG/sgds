@@ -10,9 +10,6 @@ fi
 
 docker build --no-cache --tag $IMAGE_NAME .
 
-# Ensure that the directory exists.
-mkdir images
-
 # Save image out to tar.gz for scp
 docker save $IMAGE_NAME | gzip > $IMAGE_FILE_NAME
 
