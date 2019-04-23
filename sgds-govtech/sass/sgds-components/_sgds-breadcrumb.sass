@@ -1,32 +1,23 @@
-$breadcrumb-item-color: $white !default
-$breadcrumb-item-inverted-color: $grey !default
-$breadcrumb-item-hover-color: $grey-light !default
-$breadcrumb-item-inverted-hover-color: $grey-dark !default
+$breadcrumb-item-color: $link !default
+$breadcrumb-item-hover-color: $link-hover !default
 $breadcrumb-item-active-color: $text-strong !default
-$breadcrumb-item-font-size: 0.9375rem // 15px
+$breadcrumb-item-padding-vertical: 0 !default
+$breadcrumb-item-padding-horizontal: 0.75em !default
+$breadcrumb-item-separator-color: $grey-light !default
 
 .sgds-breadcrumb
   +block
   +unselectable
-  align-items: stretch
-  display: flex
-  font-size: $breadcrumb-item-font-size
-  overflow: hidden
-  overflow-x: auto
+  font-size: $size-normal
   white-space: nowrap
-  margin-bottom: 0.625rem
   a
     align-items: center
     color: $breadcrumb-item-color
     display: flex
     justify-content: center
-    padding: 0.5em 0.75em
+    padding: $breadcrumb-item-padding-vertical $breadcrumb-item-padding-horizontal
     &:hover
       color: $breadcrumb-item-hover-color
-      .is-inverted &
-        color: $breadcrumb-item-inverted-hover-color
-    .is-inverted &
-      color: $breadcrumb-item-inverted-color
   li
     align-items: center
     display: flex
@@ -38,16 +29,13 @@ $breadcrumb-item-font-size: 0.9375rem // 15px
         cursor: default
         pointer-events: none
     & + li::before
-      font-size: $breadcrumb-item-font-size
-      color: $breadcrumb-item-color
+      color: $breadcrumb-item-separator-color
       content: "\0002f"
-      .is-inverted &
-        color: $breadcrumb-item-inverted-color
-  ul, ol
-    align-items: center
+  ul,
+  ol
+    align-items: flex-start
     display: flex
-    flex-grow: 1
-    flex-shrink: 0
+    flex-wrap: wrap
     justify-content: flex-start
   .icon
     &:first-child
@@ -56,10 +44,12 @@ $breadcrumb-item-font-size: 0.9375rem // 15px
       margin-left: 0.5em
   // Alignment
   &.is-centered
-    ol, ul
+    ol,
+    ul
       justify-content: center
   &.is-right
-    ol, ul
+    ol,
+    ul
       justify-content: flex-end
   // Sizes
   &.is-small
@@ -70,18 +60,14 @@ $breadcrumb-item-font-size: 0.9375rem // 15px
     font-size: $size-large
   // Styles
   &.has-arrow-separator
-    font-size: $breadcrumb-item-font-size
     li + li::before
       content: "\02192"
   &.has-bullet-separator
-    font-size: $breadcrumb-item-font-size
     li + li::before
       content: "\02022"
   &.has-dot-separator
-    font-size: $breadcrumb-item-font-size
     li + li::before
       content: "\000b7"
   &.has-succeeds-separator
-    font-size: $breadcrumb-item-font-size
     li + li::before
       content: "\0227B"

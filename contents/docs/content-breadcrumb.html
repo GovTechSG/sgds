@@ -12,10 +12,11 @@ breadcrumb: General
         <h6 class="has-text-primary has-text-weight-semibold">Breadcrumb is a navigation aid that display a user's location on a website as a row of links, usually around the top of the page</h6>
     </div>
 </div>
-
+<hr class="margin--bottom--lg margin--top--lg">
 <div class="row">
     <div class="col">
-        <nav class="sgds-breadcrumb has-background-secondary" aria-label="breadcrumbs">
+        <h5 class="has-text-weight-semibold margin--bottom">Default Breadcrumb</h5>
+        <nav class="sgds-breadcrumb" aria-label="breadcrumbs">
             <ul class="is-marginless margin--left">
                 <li><a href="">HOME</a></li>
                 <li><a href="">LINK 1</a></li>
@@ -24,26 +25,53 @@ breadcrumb: General
         </nav>
     </div>
 </div>
-
-<hr class="margin--bottom--lg margin--top--lg">
-
 <div class="row">
     <div class="col">
         <h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
-{%- highlight html -%}
-<nav class="sgds-breadcrumb has-background-secondary" aria-label="breadcrumbs">
+        {%- highlight html -%}
+<nav class="sgds-breadcrumb" aria-label="breadcrumbs">
     <ul>
         <li><a href="">HOME</a></li>
         <li><a href="">LINK 1</a></li>
         <li><a href="">LINK 2</a></li>
     </ul>
 </nav>
-{%- endhighlight -%}
+        {%- endhighlight -%}
+        <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
+    </div>
+</div>
+<hr class="margin--bottom--lg margin--top--lg">
+<div class="row">
+    <div class="col">
+        <h5 class="has-text-weight-semibold margin--bottom">Breadcrumb with Background Color</h5>
+        <nav class="sgds-breadcrumb has-background-dark padding--bottom" aria-label="breadcrumbs">
+            <ul>
+                <li><a class="has-text-white" href="">HOME</a></li>
+                <li><a class="has-text-white" href="">LINK 1</a></li>
+                <li><a class="has-text-white" href="">LINK 2</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
+        {%- highlight html -%}
+<nav class="sgds-breadcrumb has-background-dark" aria-label="breadcrumbs">
+    <ul>
+        <li><a class="has-text-white" href="">HOME</a></li>
+        <li><a class="has-text-white" href="">LINK 1</a></li>
+        <li><a class="has-text-white" href="">LINK 2</a></li>
+    </ul>
+</nav>
+        {%- endhighlight -%}
         <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
     </div>
 </div>
 
+
 <hr class="margin--bottom--lg margin--top--lg">
+
 
 <div class="row">
     <div class="col">

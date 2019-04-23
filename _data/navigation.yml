@@ -61,15 +61,15 @@
    - title: General Components
      url: /docs/
      lvl3:
+       - title: Section
+         icon: sgds-icon-section
+         url: /docs/section/
        - title: Container
          icon: sgds-icon-container
          url: /docs/container/
        - title: Grid
          icon: sgds-icon-grid
          url: /docs/grid/
-       - title: Section
-         icon: sgds-icon-section
-         url: /docs/section/
        - title: Table
          icon: sgds-icon-table
          url: /docs/table/
