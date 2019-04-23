@@ -22,7 +22,7 @@ url: "https://designsystem.gov.sg" # the base hostname & protocol for your site,
 sgds-version: 1.1.0-alpha.4
 twitter_username: jekyllrb
 github_username:  jekyll
-last_updated: 19 Dec 2018
+last_updated: 23 April 2019
 contact_us: 'https://form.gov.sg/forms/govtech/5bc440ac507956000fdbae91'
 feedback_form: 'https://form.gov.sg/#!/forms/govtech/5bd12c6668dbe7000fff9ace'
 search_placeholder: 'What are you looking for?'
@@ -38,11 +38,11 @@ breadcrumbs:
     image: false # Show image or title text
 
 assets:
+  source_maps: true
   sources:
     - fonts
   digest: true
 
-source_maps: false
 sass:
   load_paths:
   - sgds-govtech
