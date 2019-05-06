@@ -47,14 +47,13 @@
        - title: Masthead
          icon: sgds-icon-masthead
          url: /docs/masthead/
+         status: Update
        - title: Footer
          icon: sgds-icon-footer
          url: /docs/footer/
-         status: Update
        - title: Main Nav
          icon: sgds-icon-mainnav
          url: /docs/main-nav/
-         status: Update
        - title: Side Nav
          icon: sgds-icon-sidenav
          url: /docs/side-nav/
@@ -82,7 +81,6 @@
        - title: Hero
          icon: sgds-icon-hero
          url: /docs/hero/
-         status: Update
        - title: Callout
          icon: sgds-icon-callout
          url: /docs/callout/

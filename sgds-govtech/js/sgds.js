@@ -401,11 +401,21 @@ $(document).ready(function(){
     });
 
     //Sticky sidebar
-    $('.sidenav').stickySidebar({
-        topSpacing: $('.sidenav').data("topspacing"),
-        bottomSpacing: $('.sidenav').data("bottomspacing") ,
+    var sidenav = $('body').find('.sidenav');
+    sidenav.stickySidebar({
+        topSpacing: sidenav.data("topspacing"),
+        bottomSpacing: sidenav.data("bottomspacing") ,
         containerSelector: '.has-side-nav',
         innerWrapperSelector: '.sidebar__inner'
+    });
+
+
+    var language_selector = $('body').find('.language_selector');
+    language_selector.click(function(){
+        $('.language_selector--dropdown').toggle();
+    });
+    $('.language_selector--dropdown li').click(function(){
+        $('.dropdown').toggle();
     });
 });
 
