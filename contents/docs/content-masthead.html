@@ -5,6 +5,8 @@ layout: layout-sidenav
 permalink: /docs/masthead/
 category: Standard
 breadcrumb: Standard
+updated-date: 6 May 2019
+update-notification: • Added language selector example
 ---
 
 <div class="row">
@@ -16,7 +18,7 @@ breadcrumb: Standard
 <div class="sgds-masthead">
     <div class="sgds-container is-fluid">
         <div class="row">
-            <div class="col has-text-centered-touch">
+            <div class="col">
                 <a href="http://www.gov.sg" alt="Singapore Government" target="_blank">
                     <span class="sgds-icon sgds-icon-sg-crest is-size-4"></span>
                     <span class="is-text">A Singapore Government Agency Website</span>
@@ -46,6 +48,74 @@ breadcrumb: Standard
     </div>
 </div>
 {% endhighlight %}
+            <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.language-html'>Copy Masthead Snippet</button>
+        </div>
+    </div>
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<div class="row">
+    <div class="col">
+        <p>
+            If you require a language selector, it can be added at the extreme right of the masthead component.
+        </p>
+    </div>
+</div>
+<div class="sgds-masthead">
+    <div class="sgds-container is-fluid">
+        <div class="row is-mobile">
+            <div class="col is-9">
+                <a href="http://www.gov.sg" alt="Singapore Government" target="_blank">
+                    <span class="sgds-icon sgds-icon-sg-crest is-size-4"></span>
+                    <span class="is-text">A Singapore Government Agency Website</span>
+                </a>
+            </div>
+            <div class="col is-flex has-text-right language_selector">
+                English
+            </div>
+        </div>
+
+    </div>
+    <div class="language_selector--dropdown">
+        <ul>
+            <li>中文</li>
+            <li>Bahasa Melayu</li>
+            <li>தமிழ்</li>
+        </ul>
+    </div>
+</div>
+
+<div class="sgds-accordion-container margin--top--lg">
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h6>Show code snippet</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            {% highlight html %}
+<div class="sgds-masthead">
+    <div class="sgds-container">
+        <div class="row is-mobile">
+            <div class="col is-9">
+                <a href="http://www.gov.sg" alt="Singapore Government" target="_blank">
+                    <span class="sgds-icon sgds-icon-sg-crest is-size-4"></span>
+                    <span class="is-text">A Singapore Government Agency Website</span>
+                </a>
+            </div>
+            <div class="col is-flex has-text-right language_selector">
+                English
+            </div>
+        </div>
+    </div>
+    <div class="language_selector--dropdown">
+        <ul>
+            <li>中文</li>
+            <li>Bahasa Melayu</li>
+            <li>தமிழ்</li>
+        </ul>
+    </div>
+</div>
+            {% endhighlight %}
             <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.language-html'>Copy Masthead Snippet</button>
         </div>
     </div>

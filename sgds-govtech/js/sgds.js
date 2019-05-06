@@ -407,4 +407,13 @@ $(document).ready(function(){
         containerSelector: '.has-side-nav',
         innerWrapperSelector: '.sidebar__inner'
     });
+
+
+    var language_selector = $('body').find('.language_selector');
+    language_selector.click(function(){
+        $('.language_selector--dropdown').toggle();
+    });
+    $('.language_selector--dropdown li').click(function(){
+        $('.dropdown').toggle();
+    });
 });

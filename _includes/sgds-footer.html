@@ -38,7 +38,7 @@
                 </ul>
             </div>
             <div class="col has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                <p> © 2018 Government of Singapore</p>
+                <p> © {{ site.time | date: "%Y" }} Government of Singapore</p>
             </div>
         </div>
     </div>
@@ -88,9 +88,9 @@
                 </ul>
             </div>
             <div class="col has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                <p class="is-hidden-touch"> © 2018 Government of Singapore. Last Updated {{site.last_updated}}</p>
-                <p class="is-hidden-desktop">© 2018 Government of Singapore</p>
-                <p class="is-hidden-desktop last-updated">Last Updated {{site.last_updated}}</p>
+                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
+                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
+                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
             </div>
         </div>
 

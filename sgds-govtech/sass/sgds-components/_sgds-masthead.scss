@@ -1,13 +1,18 @@
 $masthead-height: 1.875rem;
 
 .sgds-masthead{
+  position: relative;
   background-color: $grey-lighter;
   padding: 2px 0;
-  min-height: $masthead-height;
+  height: $masthead-height;
+  max-height: $masthead-height;
+  font-size: 14px;
+  @include touch(){
+    padding: 2px 12px;
+  }
   .is-text{
     position: relative;
     top: -2px;
-    font-size: 14px;
   }
 
   a{
@@ -16,5 +21,41 @@ $masthead-height: 1.875rem;
 
   a:hover{
     color: $primary;
+  }
+}
+
+.language_selector{
+  cursor: pointer;
+  align-items: center;
+  justify-content: flex-end;
+  &:after{
+    font-family: "sgds-icons";
+    content: "\e93c";
+    margin-left:5px;
+  }
+}
+
+.language_selector--dropdown{
+  display: none;
+  position: absolute;
+  padding:1rem;
+  background-color: #f0f0f4;
+  top: $masthead-height;
+  right: 30px;
+  @include touch(){
+    right: 0;
+  }
+  ul{
+    margin: 0;
+  }
+  li{
+    cursor: pointer;
+    text-align: right;
+    padding: 0.5rem;
+    list-style: none;
+    margin: 0;
+    &:hover{
+      text-decoration: underline;
+    }
   }
 }
