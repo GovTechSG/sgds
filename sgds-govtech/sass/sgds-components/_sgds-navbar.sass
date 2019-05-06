@@ -211,6 +211,12 @@ a.navbar-item,
   flex-grow: 1
   flex-shrink: 1
 
+.navbar-link:not(.is-arrowless)
+  padding-right: 2.5em
+  &::after
+    +navbar-arrow($navbar-dropdown-arrow, $navbar-dropdown-icon)
+    border-color: $navbar-dropdown-arrow
+
 .navbar-dropdown
   font-size: $size-7
   padding-bottom: 0.5rem
@@ -239,12 +245,13 @@ a.navbar-item,
       display: none
   .navbar-menu
     background-color: $navbar-background-color
-    box-shadow: 0 8px 16px rgba($black, 0.1)
-    padding: 0.5rem 0 0
+    box-shadow: 0 4px 8px rgba($black, 0.1)
+    //padding: 0.5rem 0 0
     &.is-active
       display: block
   .navbar-item
     font-weight: $weight-semibold
+    padding: 0.75rem 1rem
     &.is-mega
       .has-dropdown::after
         right: 1.125em
@@ -323,8 +330,6 @@ a.navbar-item,
       align-items: stretch
       > a.navbar-link
         padding: 0.5rem 2rem 0.5rem 0.5rem
-        &::after
-          +navbar-arrow($navbar-dropdown-arrow, $navbar-dropdown-icon)
     &.is-mega
       .has-dropdown::after
         right: 0
@@ -361,16 +366,16 @@ a.navbar-item,
     border-bottom-left-radius: $navbar-dropdown-radius
     border-bottom-right-radius: $navbar-dropdown-radius
     border-top: $navbar-dropdown-border-top
-    box-shadow: 0 8px 8px rgba($black, 0.1)
+    box-shadow: 0 4px 4px rgba($black, 0.1)
     display: none
-    font-size: $size-7
     left: 0
     min-width: 100%
+    padding: 1rem 0.5rem
     position: absolute
     top: 100%
     z-index: $navbar-dropdown-z
     .navbar-item
-      padding: 0.375rem 1rem
+      padding: 0.5rem 1rem
       white-space: nowrap
     a.navbar-item
       padding-right: 3rem

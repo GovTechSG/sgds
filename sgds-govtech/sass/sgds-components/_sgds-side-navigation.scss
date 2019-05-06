@@ -1,4 +1,12 @@
-$leftpanel-width: 250px;
+$leftpanel-width: 250px !default;
+$sidebar-menu-bg: $primary;
+$sidebar-menu-color: lighten($sidebar-menu-bg, 60%);
+$sidebar-menu-hover-color: #fff;
+$sidebar-menu-hover-bg: darken($sidebar-menu-bg, 2%);
+$sidebar-menu-hover-border-color: #3c8dbc;
+$sidebar-menu-submenu-bg: lighten($sidebar-menu-bg, 5%);
+$sidebar-submenu-color: lighten($sidebar-menu-submenu-bg, 40%);
+$sidebar-submenu-hover-color: #fff;
 
 leftpanel {
   display: block;
@@ -11,19 +19,10 @@ leftpanel {
 
 rightpanel {
   display: block;
-  width: calc(100vw - $leftpanel-width);
+  width: calc(100vw - #{$leftpanel-width});
   height: 100vh;
   overflow-y: auto;
 }
-
-$sidebar-menu-bg: $primary;
-$sidebar-menu-color: lighten($sidebar-menu-bg, 60%);
-$sidebar-menu-hover-color: #fff;
-$sidebar-menu-hover-bg: darken($sidebar-menu-bg, 2%);
-$sidebar-menu-hover-border-color: #3c8dbc;
-$sidebar-menu-submenu-bg: lighten($sidebar-menu-bg, 5%);
-$sidebar-submenu-color: lighten($sidebar-menu-submenu-bg, 40%);
-$sidebar-submenu-hover-color: #fff;
 
 .sgds {
   &-side-navigation {

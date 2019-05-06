@@ -7,6 +7,7 @@
     letter-spacing: 1.5px;
     text-transform: uppercase;
     line-height: 1;
+
     &.is-small{
       @include button-small();
     }
