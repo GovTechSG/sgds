@@ -400,22 +400,26 @@ $(document).ready(function(){
         }
     });
 
-    //Sticky sidebar
-    var sidenav = $('body').find('.sidenav');
-    sidenav.stickySidebar({
-        topSpacing: sidenav.data("topspacing"),
-        bottomSpacing: sidenav.data("bottomspacing") ,
-        containerSelector: '.has-side-nav',
-        innerWrapperSelector: '.sidebar__inner'
-    });
+    //Sticky sidebar - fixed
+    if($('.sidenav').length){
+        var sidenav = $('.sidenav');
+        sidenav.stickySidebar({
+            topSpacing: sidenav.data("topspacing"),
+            bottomSpacing: sidenav.data("bottomspacing"),
+            containerSelector: '.has-side-nav',
+            innerWrapperSelector: '.sidebar__inner'
+        });
+    }
 
-
-    var language_selector = $('body').find('.language_selector');
-    language_selector.click(function(){
-        $('.language_selector--dropdown').toggle();
-    });
-    $('.language_selector--dropdown li').click(function(){
-        $('.dropdown').toggle();
-    });
+    //Language Selector
+    if($('.language_selector').length){
+        var language_selector = $('.language_selector');
+        language_selector.click(function(){
+            $('.language_selector--dropdown').toggle();
+        });
+        $('.language_selector--dropdown li').click(function(){
+            $('.dropdown').toggle();
+        });
+    }
 });
 
