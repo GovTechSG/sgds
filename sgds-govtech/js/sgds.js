@@ -261,14 +261,13 @@ if (!sgds.isReady) {
 
 sgds.toggleTab = function(el) {
 
-    var i, l, len, links;
-    links = el.target.parentNode.parentNode;
-    links = links.querySelectorAll('li');
-    console.log(links)
+    var i, l, len, uls, links;
+    uls = el.target.parentNode.parentNode;
+    links = uls.querySelectorAll('li');
     for (i = 0, len = links.length; i < len; i++) {
         l = links[i];
         sgds.removeClass(l, 'is-active');
-        sgds.hide(document.querySelector(l.firstChild.getAttribute('data-tab')));
+        sgds.hide(document.querySelector(l.firstElementChild.getAttribute('data-tab')));
     }
     sgds.addClass(el.target.parentNode, 'is-active');
     sgds.show(document.querySelector(el.target.getAttribute('data-tab')));
@@ -289,6 +288,7 @@ if (!sgds.isReady) {
                     sgds.hide(tab);
                 }
                 sgds.click(target, sgds.toggleTab);
+
             }
         }
     }

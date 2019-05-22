@@ -15,9 +15,18 @@ breadcrumb: General
 
 <div class="sgds-tabs" data-sgds="tabs">
     <ul class="no-margin">
-        <li class="is-active"><a data-tab="#tab1">Tab 1</a></li>
-        <li><a data-tab="#tab2">Tab 2</a></li>
-        <li><a data-tab="#tab3">Tab 3</a></li>
+        <li class="is-active">
+            <a data-tab="#tab1">
+                <i class="sgds-icon sgds-icon-arrow-left padding--right--sm"></i>
+                Tab 1
+            </a>
+        </li>
+        <li>
+            <a data-tab="#tab2"><i class="sgds-icon sgds-icon-arrow-left padding--right--sm"></i>Tab 2</a>
+        </li>
+        <li>
+            <a data-tab="#tab3"><i class="sgds-icon sgds-icon-arrow-left padding--right--sm"></i>Tab 3</a>
+        </li>
     </ul>
 </div>
 <div class="row" id="tab1">
@@ -41,34 +50,30 @@ breadcrumb: General
 <div class="row">
     <div class="col">
         <h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
-        <div class="row">
-            <div class="col"></div>
-            <div class="col"></div>
-        </div>
-        <p></p>
+
 {%- highlight html -%}
 <div class="sgds-tabs" data-sgds="tabs">
     <ul>
-        <li class="is-active"><a data-tab="#tab1">Tab 1</a></li>
-        <li><a data-tab="#tab2">Tab 2</a></li>
-        <li><a data-tab="#tab3">Tab 3</a></li>
+        <li class="is-active"><a data-tab="#tabX">Tab 1</a></li>
+        <li><a data-tab="#tabY">Tab 2</a></li>
+        <li><a data-tab="#tabZ">Tab 3</a></li>
     </ul>
 </div>
 {%- endhighlight -%}
         <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet for the tabs</button>
 
 {%- highlight html -%}
-<div class="row" id="tab1">
+<div class="row" id="tabX">
     <div class="col">
         <p>Tab content 1</p>
     </div>
 </div>
-<div class="row" id="tab2">
+<div class="row" id="tabY">
     <div class="col">
         <p>Tab content 2</p>
     </div>
 </div>
-<div class="row" id="tab3">
+<div class="row" id="tabZ">
     <div class="col">
         <p>Tab content 3</p>
     </div>

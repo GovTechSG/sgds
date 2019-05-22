@@ -81,6 +81,7 @@
        - title: Hero
          icon: sgds-icon-hero
          url: /docs/hero/
+         status: New
        - title: Callout
          icon: sgds-icon-callout
          url: /docs/callout/
@@ -102,6 +103,14 @@
        - title: Typography
          icon: sgds-icon-typography
          url: /docs/typography/
+       - title: Form
+         icon: sgds-icon-typography
+         url: /docs/form/
+         status: New
+       - title: Notification
+         icon: sgds-icon-typography
+         url: /docs/notification/
+         status: New
 
 - title: FAQs
   url: /general/faq/
