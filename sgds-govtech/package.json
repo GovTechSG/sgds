@@ -30,7 +30,7 @@
   "deprecated": false,
   "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
   "peerDependencies": {
-    "jquery": "~3.0.0"
+    "jquery": "^3.4.0"
   },
   "license": "MIT",
   "main": "index.js",
