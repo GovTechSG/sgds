@@ -2,7 +2,12 @@
 title: Home
 layout: layout-default
 ---
-
+<style>
+    .has-background-gradient{
+        background: rgb(96,55,179);
+        background: linear-gradient(30deg, rgba(96,55,179,1) 0%, rgba(70,117,211,1) 100%);
+    }
+</style>
 <section class="sgds-hero has-background-primary">
     <div class="sgds-hero-body sgds-container is-fluid" style="background:url('assets/img/bg_splash.png') center center; background-size:cover;">
         <div class="row is-vcentered">
@@ -18,7 +23,7 @@ layout: layout-default
     </div>
 </section>
 
-<section class="sgds-section is-paddingless" id="key-highlights">
+<section class="sgds-section is-paddingless has-background-secondary" id="key-highlights">
     <div class="sgds-container">
         <div class="row is-gapless has-text-centered has-text-white">
             <div class="col" onclick="location.href='/learn/';">
@@ -143,7 +148,7 @@ layout: layout-default
     </div>
 </section>
 
-<section class="sgds-section has-background-primary">
+<section class="sgds-section has-background-gradient">
     <div class="sgds-container">
         <div class="content has-text-white">
             <div class="row has-text-centered">

@@ -1,7 +1,13 @@
 ---
 layout: layout-default
 ---
-<section class="sgds-section is-small has-background-primary">
+<style>
+    .has-background-gradient{
+        background: rgb(96,55,179);
+        background: linear-gradient(30deg, rgba(96,55,179,1) 0%, rgba(70,117,211,1) 100%);
+    }
+</style>
+<section class="sgds-section is-small has-background-gradient">
     <div class="sgds-container">
         {% include sgds-breadcrumb.html %}
         <h3 class="has-text-white has-text-weight-semibold">{{page.title}}</h3>
