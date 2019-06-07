@@ -14,11 +14,16 @@
             <div class="col is-3-desktop is-6-touch is-6-mobile">
                 <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/{{component.title | downcase | replace: ' ', '-'}}/';">
                     <div class="sgds-card-content has-text-centered">
-                                                <span class="sgds-icon
-                                                {% if component.title == 'Iconography' %}sgds-icon-icons
-                                                {% else %}sgds-icon-{{component.title | downcase | replace: ' ', ''}}
-                                                {% endif %}
-                                                is-size-3"></span>
+                        <span class="sgds-icon
+                        {% case component.title %}
+                          {% when 'Iconography' %}
+                             sgds-icon-icons
+                          {% when 'Form' %}
+                            sgds-icon-checklist
+                          {% else %}
+                             sgds-icon-{{component.title | downcase | replace: ' ', ''}}
+                        {% endcase %}
+                        is-size-3"></span>
                         <p class="has-text-weight-semibold">{{component.title}}</p>
                     </div>
                 </div>
@@ -44,11 +49,16 @@
             <div class="col is-3-desktop is-6-touch is-6-mobile">
                 <div class="sgds-card sgds-card-button" href="#" onclick="location.href='/docs/{{component.title | downcase | replace: ' ', '-'}}/';">
                     <div class="sgds-card-content has-text-centered">
-                                                    <span class="sgds-icon
-                                                    {% if component.title == 'Iconography' %}sgds-icon-icons
-                                                    {% else %}sgds-icon-{{component.title | downcase | replace: ' ', ''}}
-                                                    {% endif %}
-                                                    is-size-3"></span>
+                        <span class="sgds-icon
+                        {% case component.title %}
+                          {% when 'Iconography' %}
+                             sgds-icon-icons
+                          {% when 'Form' %}
+                            sgds-icon-checklist
+                          {% else %}
+                             sgds-icon-{{component.title | downcase | replace: ' ', ''}}
+                        {% endcase %}
+                        is-size-3"></span>
                         <p class="has-text-weight-semibold">{{component.title}}</p>
                     </div>
                 </div>

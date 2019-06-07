@@ -4,39 +4,39 @@
 - title: Learn
   url: /learn/
   lvl2:
-     - title: Development
-       url: /learn/development/
-       lvl3:
-          - title: Know Our Key Principles
-            url: /learn/development/key-principles/
-          - title: Installing the Design System
-            url: /learn/development/install-design-system/
-          - title: Accessibility for Coding
-            url: /learn/development/accessibility-coding/
-          - title: Color Contrast Checker
-            url: /learn/development/color-contrast/
+   - title: Development
+     url: /learn/development/
+     lvl3:
+      - title: Know Our Key Principles
+        url: /learn/development/key-principles/
+      - title: Installing the Design System
+        url: /learn/development/install-design-system/
+      - title: Accessibility for Coding
+        url: /learn/development/accessibility-coding/
+      - title: Color Contrast Checker
+        url: /learn/development/color-contrast/
 
-     - title: Design
-       url: /learn/design/
-       lvl3:
-          - title: Know Our Key Principles
-            url: /learn/design/key-principles/
-          #- title: Using the Sketch UI Kit
-          #  url: /learn/design/sketch-kit/
-          - title: Accessibility for Design
-            url: /learn/design/accessibility-design/
-          - title: Color Contrast Checker
-            url: /learn/design/color-contrast/
-          - title: Image Optimisation
-            url: /learn/design/image-optimisation/
+   - title: Design
+     url: /learn/design/
+     lvl3:
+      - title: Know Our Key Principles
+        url: /learn/design/key-principles/
+      #- title: Using the Sketch UI Kit
+      #  url: /learn/design/sketch-kit/
+      - title: Accessibility for Design
+        url: /learn/design/accessibility-design/
+      - title: Color Contrast Checker
+        url: /learn/design/color-contrast/
+      - title: Image Optimisation
+        url: /learn/design/image-optimisation/
 
-     - title: Writing
-       url: /learn/writing/
-       lvl3:
-          - title: Know Our Key Principles
-            url: /learn/writing/key-principles/
-          - title: Accessibility for Content
-            url: /learn/writing/accessibility-content/
+   - title: Writing
+     url: /learn/writing/
+     lvl3:
+      - title: Know Our Key Principles
+        url: /learn/writing/key-principles/
+      - title: Accessibility for Content
+        url: /learn/writing/accessibility-content/
 
 - title: Docs
   url: /docs/
@@ -104,7 +104,7 @@
          icon: sgds-icon-typography
          url: /docs/typography/
        - title: Form
-         icon: sgds-icon-typography
+         icon: sgds-icon-checklist
          url: /docs/form/
          status: New
        - title: Notification
@@ -115,22 +115,22 @@
 - title: FAQs
   url: /general/faq/
 
-- title: Testing
-  url: /testing/
-  lvl2:
-    - title: Isomer's Secondary Button
-      url: /testing/
-    - title: Isomer's Tables
-      url: /testing/table/
-    - title: Isomer's Media Card
-      url: /testing/card/
-    - title: Isomer's Hero
-      url: /testing/hero/
-    - title: Isomer's Side Nav
-      url: /testing/sidenav/
-    - title: Full Width Dropdown
-      url: /testing/full-width-dropdown/
-    - title: Notifications
-      url: /testing/notification/
-    - title: Forms
-      url: /testing/forms/
+#- title: Testing
+#  url: /testing/
+#  lvl2:
+#    - title: Isomer's Secondary Button
+#      url: /testing/
+#    - title: Isomer's Tables
+#      url: /testing/table/
+#    - title: Isomer's Media Card
+#      url: /testing/card/
+#    - title: Isomer's Hero
+#      url: /testing/hero/
+#    - title: Isomer's Side Nav
+#      url: /testing/sidenav/
+#    - title: Full Width Dropdown
+#      url: /testing/full-width-dropdown/
+#    - title: Notifications
+#      url: /testing/notification/
+#    - title: Forms
+#      url: /testing/forms/

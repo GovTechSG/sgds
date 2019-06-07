@@ -4,54 +4,79 @@ $menu-item-hover-color: $primary !default
 $menu-item-hover-background-color: $background !default
 $menu-item-active-color: $primary !default
 $menu-item-active-background-color: $primary !default
-$menu-list-border-left: 1px solid $border !default
 $menu-label-color: $text-light !default
 
-.sgds
-  &-menu
-    font-size: $size-normal
-    padding-bottom: 30px
-    // Sizes
-    &.is-small
-      font-size: $size-small
-    &.is-medium
-      font-size: $size-medium
-    &.is-large
-      font-size: $size-large
+.sidebar
+  will-change: min-height
 
-  &-menu-list
-    line-height: 1.25
-    a
-      color: $menu-item-color
-      display: block
-      padding: 1rem 0
-      font-weight: $weight-semibold
-      //border-bottom: 1px solid $grey
-      &:hover
-        color: $menu-item-hover-color
-        //border-bottom: 1px solid $menu-item-active-color
-      // Modifiers
-      &.is-active
-        color: $menu-item-active-color
-        font-weight: $weight-bold
-        border-color: $menu-item-active-color
-        //border-bottom: 2px solid $menu-item-active-color
-    li
-      ul
-        border-left: $menu-list-border-left
-        //margin: 0.75em
-        li
-          a
-            padding-left: 0.75em
-            min-height: $size-4
-            font-weight: $weight-normal
-            &.is-active
-              border-left: 2px solid $menu-item-active-color
-              font-weight: $weight-normal
+.sidebar__inner
+  transform: translate(0, 0) /* For browsers don't support translate3d. */
+  transform: translate3d(0, 0, 0)
+  will-change: position, transform
 
-  &-menu-label
-    color: $menu-label-color
-    font-size: $size-normal
+.sgds-menu
+  font-size: $size-normal
+  &.is-small
+    font-size: $size-small
+  &.is-medium
+    font-size: $size-medium
+  &.is-large
+    font-size: $size-large
+
+.sgds-menu-list
+  line-height: 1.25
+  margin: 0
+  .content &
+    list-style: none
+  a
+    color: $menu-item-color
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 1rem 0
+    border-bottom: 1px solid $grey
+    &:hover
+      color: $menu-item-active-color
+      border-bottom: 1px solid $menu-item-active-color
+    &.is-active
+      color: $menu-item-active-color
+      font-weight: 600
+      border-color: $menu-item-active-color
+      border-bottom: 2px solid $menu-item-active-color
+    &.second-level-nav-header
+      border-bottom: 1px solid white !important
+      &.is-active, &:hover, &.is-active:hover
+        border-bottom: 1px solid white !important
+  li
+    margin: 0
+    ul
+      border-left: 1px dotted $menu-item-active-color
+      margin: 1em
+      padding-left: 1em
+    &.second-level-nav-header
+      &.is-active + div.second-level-nav-div
+        display: block
+        visibility: visible
+        &.is-hidden
+          display: none
+          visibility: hidden
+      &:active + div.second-level-nav-div,
+      &:hover + div.second-level-nav-div
+        display: block
+        visibility: visible
+      &:active + div.second-level-nav-div.is-hidden,
+      &:hover + div.second-level-nav-div.is-hidden
+        display: none
+        visibility: hidden
+    a.second-level-nav-item
+      border: 0!important
+      padding-left: 1.5rem
+    &:not(:first-child) a
+      border-top: 1px solid #767676
+
+  &-label
+    color: #767676
+    font-size: 0.75em
     letter-spacing: 0.1em
     text-transform: uppercase
     &:not(:first-child)

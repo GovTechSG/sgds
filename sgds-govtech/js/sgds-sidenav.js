@@ -10,6 +10,7 @@ function initSecondLevelNavInteraction() {
                 // Get the icon of the second-level-nav-header
                 var secondLevelNavIcon = secondLevelNavHeaderArray[closureIndex].getElementsByTagName("I")[0];
                 var secondLevelDiv = document.getElementsByClassName("second-level-nav-div")[closureIndex];
+
                 if (secondLevelDiv.classList.contains("is-hidden")) {
                     secondLevelNavIcon.classList.remove("sgds-icon-chevron-down");
                     secondLevelNavIcon.classList.add("sgds-icon-chevron-up");

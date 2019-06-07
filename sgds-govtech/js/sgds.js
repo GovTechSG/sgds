@@ -373,32 +373,33 @@ $(document).ready(function(){
     });
 
     //Accordion
-
-    $(".sgds-accordion-set > a").on("click", function () {
-        if ($(this).hasClass("active")) {
-            $(this).removeClass("active");
-            $(this)
-                .siblings(".sgds-accordion-body")
-                .slideUp(300);
-            $(".sgds-accordion-set > a i")
-                .removeClass("sgds-icon-chevron-up")
-                .addClass("sgds-icon-chevron-down");
-        } else {
-            $(".sgds-accordion-set > a i")
-                .removeClass("sgds-icon-chevron-up")
-                .addClass("sgds-icon-chevron-down");
-            $(this)
-                .find("i")
-                .removeClass("sgds-icon-chevron-down")
-                .addClass("sgds-icon-chevron-up");
-            $(".sgds-accordion-set > a").removeClass("active");
-            $(this).addClass("active");
-            $(".sgds-accordion-body").slideUp(300);
-            $(this)
-                .siblings(".sgds-accordion-body")
-                .slideDown(300);
-        }
-    });
+    if($(".sgds-accordion-set > a").length) {
+        $(".sgds-accordion-set > a").on("click", function () {
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+                $(this)
+                    .siblings(".sgds-accordion-body")
+                    .slideUp(300);
+                $(".sgds-accordion-set > a i")
+                    .removeClass("sgds-icon-chevron-up")
+                    .addClass("sgds-icon-chevron-down");
+            } else {
+                $(".sgds-accordion-set > a i")
+                    .removeClass("sgds-icon-chevron-up")
+                    .addClass("sgds-icon-chevron-down");
+                $(this)
+                    .find("i")
+                    .removeClass("sgds-icon-chevron-down")
+                    .addClass("sgds-icon-chevron-up");
+                $(".sgds-accordion-set > a").removeClass("active");
+                $(this).addClass("active");
+                $(".sgds-accordion-body").slideUp(300);
+                $(this)
+                    .siblings(".sgds-accordion-body")
+                    .slideDown(300);
+            }
+        });
+    }
 
     //Sticky sidebar - fixed
     if($('.sidenav').length){
@@ -407,7 +408,8 @@ $(document).ready(function(){
             topSpacing: sidenav.data("topspacing"),
             bottomSpacing: sidenav.data("bottomspacing"),
             containerSelector: '.has-side-nav',
-            innerWrapperSelector: '.sidebar__inner'
+            innerWrapperSelector: '.sidebar__inner',
+            resizeSensor: true
         });
     }
 

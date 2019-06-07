@@ -19,33 +19,22 @@ breadcrumb: General
 
 <div class="row">
     <div class="col">
-        <p>Basic side nav to support level 2 navigation, please ensure you have included <code>jquery.sticky-sidebar.js</code> for it to work.</p>
+        <p>Basic side navigation to support level 2 navigation.</p>
+<!--        <p>Basic side nav to support level 2 navigation, please ensure you have included <code>jquery.sticky-sidebar.js</code> for it to work.</p>-->
+    </div>
+</div>
+<div class="row">
+    <div class="col is-3">
+        <aside class="sgds-menu">
+            <ul class="sgds-menu-list">
+                <li><a class="is-active" href="">Level 2A</a></li>
+                <li><a href="">Level 2B</a></li>
+                <li><a href="">Level 2C</a></li>
+            </ul>
+        </aside>
     </div>
 </div>
 
-<aside class="sgds-menu sidebar__inner">
-    <ul class="sgds-menu-list is-marginless" style="list-style-type: none">
-        <li class="is-marginless">
-            <ul class="is-marginless" style="list-style-type: none">
-                <li class="is-marginless">
-                    <a href="" class="is-active padding--sm">
-                        Level 2a
-                    </a>
-                </li>
-                <li class="is-marginless">
-                    <a href="" class="padding--sm">
-                        Level 2b
-                    </a>
-                </li>
-                <li class="is-marginless">
-                    <a href="" class="padding--sm">
-                        Level 2c
-                    </a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</aside>
 
 <div class="sgds-accordion-container margin--top--lg">
     <div class="sgds-accordion-set">
@@ -54,31 +43,13 @@ breadcrumb: General
         </a>
         <div class="sgds-accordion-body">
 {%- highlight html -%}
-<div class="sidenav">
-    <aside class="sgds-menu sidebar__inner">
-        <ul class="sgds-menu-list">
-            <li>
-                <ul>
-                    <li>
-                        <a href="" class="is-active padding--sm">
-                            Level 2a
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" class="padding--sm">
-                            Level 2b
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" class="padding--sm">
-                            Level 2c
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </aside>
-</div>
+<aside class="sgds-menu">
+    <ul class="sgds-menu-list">
+        <li><a class="is-active" href="">Level 2A</a></li>
+        <li><a href="">Level 2B</a></li>
+        <li><a href="">Level 2C</a></li>
+    </ul>
+</aside>
 {%- endhighlight -%}
             <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy Snippet</button>
         </div>
@@ -91,48 +62,50 @@ breadcrumb: General
 
 <div class="row">
     <div class="col">
-        <p>Advanced side nav to support level 3 navigation, please ensure you have included <code>jquery.sticky-sidebar.js</code> for it to work.</p>
+<!--        <p>Advanced side nav to support level 3 navigation, please ensure you have included <code>jquery.sticky-sidebar.js</code> for it to work.</p>-->
+        <p>Dropdown side navigation to support level 3 navigation</p>
     </div>
 </div>
+<div class="row">
+    <div class="col is-3">
+        <aside class="sgds-menu">
+            <ul class="sgds-menu-list">
+                <li class="second-level-nav-header"><a class="second-level-nav-header">Level 2A<i
+                        class="sgds-icon sgds-icon-chevron-down"
+                        aria-hidden="true"></i></a>
+                </li>
+                <div class="second-level-nav-div is-hidden">
+                    <li><a class="second-level-nav-item padding--top--none"
+                           href="">Level 3</a></li>
+                    <!-- If this page is selected -->
+                    <li><a class="second-level-nav-item padding--top--none"
+                           href="">Level 3
+                        a file</a></li>
+                    <!-- If this page is selected -->
+                    <li><a class="second-level-nav-item padding--top--none"
+                           href="">Level 3
+                        a file</a></li>
+                </div>
+                <li class="second-level-nav-header"><a class="second-level-nav-header">Level 2B<i
+                        class="sgds-icon sgds-icon-chevron-down"
+                        aria-hidden="true"></i></a>
+                </li>
+                <div class="second-level-nav-div is-hidden">
+                    <li><a class="second-level-nav-item padding--top--none" href="">Level 3</a>
+                    </li>
+                    <!-- If this page is selected -->
+                    <li><a class="second-level-nav-item padding--top--none"
+                           href="">Level 3
+                        favicon</a></li>
+                    <!-- If this page is selected -->
+                    <li><a class="second-level-nav-item padding--top--none" href="">Level 3
+                        logo</a></li>
+                </div>
 
-<aside class="sgds-menu sidebar__inner">
-    <ul class="sgds-menu-list is-marginless" style="list-style-type: none">
-        <li class="is-marginless">
-            <a href="" class="is-uppercase has-text-weight-semibold is-active">
-                Level 2a
-            </a>
-            <ul  class="is-marginless" style="list-style-type: none">
-                <li class="is-marginless">
-                    <a href="" class="is-active padding--sm">
-                        Level 3a
-                    </a>
-                </li>
-                <li class="is-marginless">
-                    <a href="" class="padding--sm">
-                        Level 3b
-                    </a>
-                </li>
             </ul>
-        </li>
-        <li class="is-marginless">
-            <a href="" class="is-uppercase has-text-weight-semibold is-active">
-                Level 2b
-            </a>
-            <ul  class="is-marginless" style="list-style-type: none">
-                <li class="is-marginless">
-                    <a href="" class="padding--sm">
-                        Level 3a
-                    </a>
-                </li>
-                <li class="is-marginless">
-                    <a href="" class="padding--sm">
-                        Level 3b
-                    </a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</aside>
+        </aside>
+    </div>
+</div>
 
 <div class="sgds-accordion-container margin--top--lg">
     <div class="sgds-accordion-set">
@@ -141,46 +114,37 @@ breadcrumb: General
         </a>
         <div class="sgds-accordion-body">
 {%- highlight html -%}
-<div class="sidenav">
-    <aside class="sgds-menu sidebar__inner">
-        <ul class="sgds-menu-list">
-            <li>
-                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
-                    Level 2a
-                </a>
-                <ul>
-                    <li>
-                        <a href="" class="is-active padding--sm">
-                            Level 3a
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" class="padding--sm">
-                            Level 3b
-                        </a>
-                    </li>
-                </ul>
+<aside class="sgds-menu">
+    <ul class="sgds-menu-list">
+        <li class="second-level-nav-header"><a class="second-level-nav-header is-active">Level 2A<i
+                class="sgds-icon sgds-icon-chevron-down"
+                aria-hidden="true"></i></a>
+        </li>
+        <div class="second-level-nav-div is-hidden">
+            <li><a class="second-level-nav-item padding--top--none"
+                   href="">Level 3</a></li>
+            <!-- If this page is selected -->
+            <li><a class="second-level-nav-item padding--top--none"
+                   href="">Level 3</a></li>
+            <!-- If this page is selected -->
+            <li><a class="second-level-nav-item padding--top--none"
+                   href="">Level 3</a></li>
+        </div>
+        <li class="second-level-nav-header"><a class="second-level-nav-header">Level 2B<i
+                class="sgds-icon sgds-icon-chevron-down"
+                aria-hidden="true"></i></a>
+        </li>
+        <div class="second-level-nav-div is-hidden">
+            <li><a class="second-level-nav-item padding--top--none" href="">Level 3</a>
             </li>
-            <li>
-                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
-                    Level 2b
-                </a>
-                <ul>
-                    <li>
-                        <a href="" class="is-active padding--sm">
-                            Level 3a
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" class="padding--sm">
-                            Level 3b
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </aside>
-</div>
+            <!-- If this page is selected -->
+            <li><a class="second-level-nav-item padding--top--none" href="">Level 3</a></li>
+            <!-- If this page is selected -->
+            <li><a class="second-level-nav-item padding--top--none" href="">Level 3</a></li>
+        </div>
+
+    </ul>
+</aside>
 {%- endhighlight -%}
             <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy Snippet</button>
         </div>

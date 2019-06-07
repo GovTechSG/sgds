@@ -87,6 +87,54 @@ breadcrumb: General
     </div>
 </div>
 
+<p class="margin--top--lg">You can use the secondary button for reducing visual prominence. It should not be used as a <b class="has-text-info">Call-to-Action</b> button</p>
+
+<a href="" class="sgds-sec-button">
+    <span>
+        Default Size
+    </span>
+</a><br>
+<a href="" class="sgds-sec-button is-small">
+    <span>
+         .is-small
+    </span>
+</a><br>
+<a href="" class="sgds-sec-button is-medium">
+    <span>
+         .is-medium
+    </span>
+</a><br>
+<a href="" class="sgds-sec-button is-large is-info">
+    <span>
+        is-large.is-info
+    </span>
+</a>
+
+{%- highlight html -%}
+<a href="" class="sgds-sec-button">
+    <span>
+        Default Size
+    </span>
+</a><br>
+<a href="" class="sgds-sec-button is-small">
+    <span>
+         .is-small
+    </span>
+</a><br>
+<a href="" class="sgds-sec-button is-medium">
+    <span>
+         .is-medium
+    </span>
+</a><br>
+<a href="" class="sgds-sec-button is-large is-info">
+    <span>
+        is-large.is-info
+    </span>
+</a>
+{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight3'>Copy snippet</button>
+
+
 <hr class="margin--bottom--lg margin--top--lg">
 
 <div class="row">
@@ -115,6 +163,10 @@ breadcrumb: General
             </thead>
             <tbody>
             <tr>
+                <td>is-fullwidth</td>
+                <td>Button with width that span the full width of a parent</td>
+            </tr>
+            <tr>
                 <td>is-outlined</td>
                 <td>Display button in border only</td>
             </tr>
@@ -123,8 +175,12 @@ breadcrumb: General
                 <td>Display button with rounded edges</td>
             </tr>
             <tr>
+                <td>is-static</td>
+                <td>Display as a non-interactive button. </td>
+            </tr>
+            <tr>
                 <td>disabled</td>
-                <td>Use when button is disabled</td>
+                <td>Use as an attribute for disable state</td>
             </tr>
             </tbody>
         </table>
@@ -133,4 +189,7 @@ breadcrumb: General
 
 <hr class="margin--bottom--lg margin--top--lg">
 
+
+
+<hr class="margin--bottom--lg margin--top--lg">
 {%- include sgds-feedback.html -%}
