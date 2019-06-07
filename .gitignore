@@ -6,3 +6,4 @@ _site
 node_modules
 .images/
 *.tar.gz
+sgds-govtech/dist

@@ -1,22 +1,35 @@
 {
-  "name": "sgds-jekyll",
-  "version": "1.0.2",
-  "description": "```sh gem install jekyll bundler ```",
-  "main": "index.js",
+  "name": "sgds-govtech",
+  "version": "1.1.1",
+  "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
+  "main": "sgds-govtech/dist/sgds.js",
+  "files": [
+    "sgds-govtech/dist"
+  ],
   "scripts": {
-    "test": "snyk test"
+    "test": "snyk test",
+    "start": "bundle exec jekyll serve",
+    "buildsgds": "NODE_ENV=production webpack --mode='production'",
+    "devserver": "webpack --watch | bundle exec jekyll serve"
   },
   "repository": {
     "type": "git",
     "url": "https://tey_liang_tai@www.ida-gds.com/stash/scm.sgds/sgds-jekyll.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Tey Liang Tai",
+  "license": "MIT",
   "dependencies": {
     "clipboard": "^2.0.4",
-    "grunt-changed": "^2.0.1"
+    "grunt-changed": "^2.0.1",
+    "jquery": "^3.4.1",
+    "sticky-sidebar": "^3.3.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^2.1.1",
+    "file-loader": "^4.0.0",
     "grunt": "^1.0.3",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-compress": "^1.4.3",
@@ -24,6 +37,12 @@
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-zip": "^0.18.1",
     "load-grunt-tasks": "^4.0.0",
-    "snyk": "^1.126.0"
+    "mini-css-extract-plugin": "^0.7.0",
+    "node-sass": "^4.12.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass-loader": "^7.1.0",
+    "snyk": "^1.126.0",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.2"
   }
 }

@@ -1,4 +1,6 @@
-//sgds-govtech js
+import StickySidebar from "sticky-sidebar";
+import "./sgds-sidenav";
+import "../sass/sgds.scss";
 
 var sgds;
 
@@ -115,7 +117,7 @@ if (typeof sgds !== "object") {
     };
 
 })();
-;var i, j, len, len1, list, lists, menu, menuElems, options, subMenu;
+var i, j, len, len1, list, lists, menu, menuElems, options, subMenu;
 
 sgds.toggleMenu = function(el, options) {
     sgds.collapseMenu(el, 'hide');
@@ -178,9 +180,8 @@ if (!sgds.isReady) {
             }
         }
     }
-}
-
-;var i, len, modal, modals, options;
+};
+var i, len, modal, modals, options;
 
 sgds.toggleModal = function(el, options) {
     if (!options.target) {
@@ -219,8 +220,8 @@ if (!sgds.isReady) {
             sgds.toggleModal(modal, options);
         }
     }
-}
-;var i, len, notification, notifications, options;
+};
+var i, len, notification, notifications, options;
 
 sgds.notification = function(el, status, options) {
     var deleteBtn, deleteNotification;
@@ -256,8 +257,8 @@ if (!sgds.isReady) {
             sgds.notification(notification, 'hide', options);
         }
     }
-}
-;var i, j, len, len1, tab, tabs, target, targets;
+};
+var i, j, len, len1, tab, tabs, target, targets;
 
 sgds.toggleTab = function(el) {
 
@@ -301,8 +302,8 @@ var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navb
 if ($navbarBurgers.length > 0) {
 
     // Add a click event on each of them
-    $navbarBurgers.forEach(function ($el) {
-        $el.addEventListener('click', function () {
+    $navbarBurgers.forEach(function($el) {
+        $el.addEventListener('click', function() {
 
             // Get the target from the "data-target" attribute
             var target = $el.dataset.target;
@@ -321,26 +322,26 @@ if ($navbarBurgers.length > 0) {
 var $dropdowns = getAll('.sgds-dropdown:not(.is-hoverable)');
 
 if ($dropdowns.length > 0) {
-    $dropdowns.forEach(function ($el) {
-        $el.addEventListener('click', function (event) {
+    $dropdowns.forEach(function($el) {
+        $el.addEventListener('click', function(event) {
             event.stopPropagation();
             $el.classList.toggle('is-active');
         });
     });
 
-    document.addEventListener('click', function (event) {
+    document.addEventListener('click', function(event) {
         closeDropdowns();
     });
 }
 
 function closeDropdowns() {
-    $dropdowns.forEach(function ($el) {
+    $dropdowns.forEach(function($el) {
         $el.classList.remove('is-active');
     });
 }
 
 // Close dropdowns if ESC pressed
-document.addEventListener('keydown', function (event) {
+document.addEventListener('keydown', function(event) {
     var e = event || window.event;
     if (e.keyCode === 27) {
         closeDropdowns();
@@ -353,10 +354,10 @@ function getAll(selector) {
 }
 
 function showCode(item) {
-    document.getElementById("panel"+item).style.display = "block";
+    document.getElementById("panel" + item).style.display = "block";
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
 
     //Search bar toggle
     var masthead_container = $('.masthead-container');
@@ -364,7 +365,7 @@ $(document).ready(function(){
     var searchIcon = $('#search-activate span');
     var searchBar = $('.search-bar');
     var searchBar_input = $('.search-bar input');
-    searchToggle.on('click',function(e){
+    searchToggle.on('click', function(e) {
         e.preventDefault();
         searchIcon.toggleClass('sgds-icon-search').toggleClass('sgds-icon-cross');;
         searchBar.toggleClass('hide');
@@ -373,8 +374,8 @@ $(document).ready(function(){
     });
 
     //Accordion
-    if($(".sgds-accordion-set > a").length) {
-        $(".sgds-accordion-set > a").on("click", function () {
+    if ($(".sgds-accordion-set > a").length) {
+        $(".sgds-accordion-set > a").on("click", function() {
             if ($(this).hasClass("active")) {
                 $(this).removeClass("active");
                 $(this)
@@ -402,26 +403,24 @@ $(document).ready(function(){
     }
 
     //Sticky sidebar - fixed
-    if($('.sidenav').length){
-        var sidenav = $('.sidenav');
-        sidenav.stickySidebar({
-            topSpacing: sidenav.data("topspacing"),
-            bottomSpacing: sidenav.data("bottomspacing"),
+    if ($('.sidenav').length) {
+        const sidenav = $('.sidenav');
+        new StickySidebar('.sidenav', {
             containerSelector: '.has-side-nav',
             innerWrapperSelector: '.sidebar__inner',
-            resizeSensor: true
+            topSpacing: sidenav.data("topspacing"),
+            bottomSpacing: sidenav.data("bottomspacing")
         });
     }
 
     //Language Selector
-    if($('.language_selector').length){
+    if ($('.language_selector').length) {
         var language_selector = $('.language_selector');
-        language_selector.click(function(){
+        language_selector.click(function() {
             $('.language_selector--dropdown').toggle();
         });
-        $('.language_selector--dropdown li').click(function(){
+        $('.language_selector--dropdown li').click(function() {
             $('.dropdown').toggle();
         });
     }
 });
-
