@@ -17,39 +17,43 @@ breadcrumb: General
     <ul class="no-margin">
         <li class="is-active">
             <a data-tab="#tab1">
-                <i class="sgds-icon sgds-icon-arrow-left padding--right--sm"></i>
+                <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
                 Tab 1
             </a>
         </li>
         <li>
-            <a data-tab="#tab2"><i class="sgds-icon sgds-icon-arrow-left padding--right--sm"></i>Tab 2</a>
+            <a data-tab="#tab2"><i class="sgds-icon sgds-icon-boat padding--right--sm"></i>Tab 2</a>
         </li>
         <li>
-            <a data-tab="#tab3"><i class="sgds-icon sgds-icon-arrow-left padding--right--sm"></i>Tab 3</a>
+            <a data-tab="#tab3"><i class="sgds-icon sgds-icon-map padding--right--sm"></i>Tab 3</a>
         </li>
     </ul>
 </div>
 <div class="row" id="tab1">
     <div class="col">
-        <p>Tab content 1</p>
+        <div class="row">
+            <div class="col"><h5>Tab 1 Content</h5></div>
+            <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores eos fugiat in incidunt mollitia quam qui totam vel veritatis vero.</div>
+            <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores eos fugiat in incidunt mollitia quam qui totam vel veritatis vero.</div>
+        </div>
     </div>
 </div>
 <div class="row" id="tab2">
     <div class="col">
-        <p>Tab content 2</p>
+        <h5>Tab 2 Content</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti deserunt enim illo impedit libero, temporibus veritatis. Deserunt, fugit quasi! Voluptates!</p>
     </div>
 </div>
 <div class="row" id="tab3">
     <div class="col">
-        <p>Tab content 3</p>
+        <h5>Tab 3 Content</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid aspernatur beatae, dolores ea eum illo quasi reprehenderit sequi vero?</p>
     </div>
 </div>
-
 <hr class="margin--bottom--lg margin--top--lg">
-
 <div class="row">
     <div class="col">
-        <h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
+    <h6 class="has-text-weight-semibold">Code Snippets for Tabs</h6>
 
 {%- highlight html -%}
 <div class="sgds-tabs" data-sgds="tabs">
@@ -61,7 +65,8 @@ breadcrumb: General
 </div>
 {%- endhighlight -%}
         <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet for the tabs</button>
-
+        <hr class="margin--bottom--lg margin--top--lg">
+        <h6 class="has-text-weight-semibold">Code Snippets for Tab Content</h6>
 {%- highlight html -%}
 <div class="row" id="tabX">
     <div class="col">
@@ -118,6 +123,14 @@ breadcrumb: General
             <tr>
                 <td>is-toggle</td>
                 <td>Use when you want to have toggle buttons</td>
+            </tr>
+            <tr>
+                <td>is-centered</td>
+                <td>Use when you want position your toggle buttons at the center</td>
+            </tr>
+            <tr>
+                <td>is-small<br>is-medium</br>is-large</td>
+                <td>Use when you want change the size of your tabs</td>
             </tr>
             </tbody>
         </table>
