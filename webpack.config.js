@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 let config = {
+    mode: process.env.NODE_ENV === "production" ? "production" : "development",
     entry: {
         sgds: "./sgds-govtech/js/sgds.js"
     },
@@ -11,8 +12,7 @@ let config = {
         path: path.resolve(__dirname, "sgds-govtech/dist")
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.m?js$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
@@ -34,16 +34,14 @@ let config = {
             {
                 // fonts -> file loader to dist/fonts
                 test: /sgds-icons\.(svg|ttf|woff)$/,
-                use: [
-                    {
-                        loader: "file-loader",
-                        options: {
-                            name: "[name].[ext]",
-                            outputPath: "fonts",
-                            publicPath: "fonts"
-                        }
+                use: [{
+                    loader: "file-loader",
+                    options: {
+                        name: "[name].[ext]",
+                        outputPath: "fonts",
+                        publicPath: "fonts"
                     }
-                ]
+                }]
             },
 
         ]
@@ -64,6 +62,7 @@ let config = {
 if (process.env.NODE_ENV === 'production') {
     config.plugins.push(
         new OptimizeCssAssetsPlugin()
-    )
+    );
+    config.devtool = "source-map";
 }
 module.exports = config;
