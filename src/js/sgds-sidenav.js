@@ -1,6 +1,4 @@
-initSecondLevelNavInteraction();
-
-function initSecondLevelNavInteraction() {
+export function initSecondLevelNavInteraction() {
     var secondLevelNavHeaderArray = document.querySelectorAll("li.second-level-nav-header");
     for (var index = 0; index < secondLevelNavHeaderArray.length; index++) {
 

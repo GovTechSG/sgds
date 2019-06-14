@@ -1,3 +1,11 @@
+# Singapore Government Design System
+`sgds` is a reusable and upgradable frontend framework that aims to provide tools for Singapore government agencies to easily comply with the latest policies for websites and digital services.
+
+## Installation
+```sh
+$ npm i sgds-govtech
+```
+
 ## Patch Notes
 v1.1.0
 

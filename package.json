@@ -5,7 +5,9 @@
   "license": "MIT",
   "author": "Tey Liang Tai",
   "files": [
-    "sgds-govtech"
+    "css",
+    "fonts",
+    "js"
   ],
   "main": "sgds-govtech/dist/sgds.js",
   "scripts": {

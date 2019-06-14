@@ -1,32 +1,38 @@
 const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 let config = {
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
     entry: {
-        sgds: "./sgds-govtech/js/sgds.js"
+        "js/sgds": "./src/sgds.js"
     },
     output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, "sgds-govtech/dist")
+        filename: "[name].js",
+        path: path.resolve(__dirname)
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.m?js$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
-                    loader: 'babel-loader',
+                    loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env']
+                        presets: ["@babel/preset-env"]
                     }
                 }
             },
             {
                 // sass -> css -> extract to dist/css
-                test: /\.scss$/,
+                test: /\.s(a|c)ss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: "/"
+                        }
+                    },
                     "css-loader", // translates CSS into CommonJS
                     "sass-loader" // compiles Sass to CSS, using Node Sass by default
                 ]
@@ -34,35 +40,32 @@ let config = {
             {
                 // fonts -> file loader to dist/fonts
                 test: /sgds-icons\.(svg|ttf|woff)$/,
-                use: [{
-                    loader: "file-loader",
-                    options: {
-                        name: "[name].[ext]",
-                        outputPath: "fonts",
-                        publicPath: "fonts"
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "[name].[ext]",
+                            outputPath: "fonts"
+                        }
                     }
-                }]
-            },
-
+                ]
+            }
         ]
     },
     plugins: [
         new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
+            $: "jquery",
+            jQuery: "jquery"
         }),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: "[name].css",
-            chunkFilename: "[id].css"
+            filename: "css/sgds.css"
         })
     ]
-}
-if (process.env.NODE_ENV === 'production') {
-    config.plugins.push(
-        new OptimizeCssAssetsPlugin()
-    );
+};
+if (process.env.NODE_ENV === "production") {
+    config.plugins.push(new OptimizeCssAssetsPlugin());
     config.devtool = "source-map";
 }
 module.exports = config;

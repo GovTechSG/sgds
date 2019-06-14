@@ -48,12 +48,15 @@ sass:
   - sgds-govtech
 
 includes:
-  - contents/docs
+  # - contents/docs
 
 exclude:
-  - sgds-govtech/css
-  - sgds-govtech/fonts
-  - sgds-govtech/js
-  - sgds-govtech/sass
-  - sgds-govtech/package.json
   - node_modules
+  - scripts
+  - src
+  - Dockerfile
+  - Gemfile*
+  - package*.json
+  - README.md
+  - webpack.config.js
+  - Gruntfile.js
