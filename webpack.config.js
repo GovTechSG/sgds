@@ -53,10 +53,6 @@ let config = {
         ]
     },
     plugins: [
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
-        }),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional

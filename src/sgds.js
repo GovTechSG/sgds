@@ -1,6 +1,7 @@
-import "./sass/sgds.scss";
+import $ from "jquery";
 import StickySidebar from "sticky-sidebar";
 import { initSecondLevelNavInteraction } from "./js/sgds-sidenav";
+import "./sass/sgds.scss";
 
 initSecondLevelNavInteraction();
 
