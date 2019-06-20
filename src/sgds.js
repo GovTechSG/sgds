@@ -360,6 +360,44 @@ function showCode(item) {
     document.getElementById("panel" + item).style.display = "block";
 }
 
+function addAccordionClickListener(el) {
+    let anchor = $(el);
+    anchor.on("click", function() {
+        if ($(this).hasClass("active")) {
+            $(this).removeClass("active");
+            $(this)
+                .siblings(".sgds-accordion-body")
+                .slideUp(300);
+            $(this)
+                .children("i")
+                .removeClass("sgds-icon-chevron-up")
+                .addClass("sgds-icon-chevron-down");
+        } else {
+            let otherAnchorsInSet = $(this)
+                .parent()
+                .siblings(".sgds-accordion-set")
+                .children("a");
+            if (otherAnchorsInSet) {
+                otherAnchorsInSet
+                    .children("i")
+                    .removeClass("sgds-icon-chevron-up")
+                    .addClass("sgds-icon-chevron-down");
+                otherAnchorsInSet.removeClass("active");
+                otherAnchorsInSet.siblings(".sgds-accordion-body").slideUp(300);
+            }
+
+            $(this).addClass("active");
+            $(this)
+                .children("i")
+                .removeClass("sgds-icon-chevron-down")
+                .addClass("sgds-icon-chevron-up");
+            $(this)
+                .siblings(".sgds-accordion-body")
+                .slideDown(300);
+        }
+    });
+}
+
 $(document).ready(function() {
     //Search bar toggle
     var masthead_container = $(".masthead-container");
@@ -379,30 +417,9 @@ $(document).ready(function() {
 
     //Accordion
     if ($(".sgds-accordion-set > a").length) {
-        $(".sgds-accordion-set > a").on("click", function() {
-            if ($(this).hasClass("active")) {
-                $(this).removeClass("active");
-                $(this)
-                    .siblings(".sgds-accordion-body")
-                    .slideUp(300);
-                $(".sgds-accordion-set > a i")
-                    .removeClass("sgds-icon-chevron-up")
-                    .addClass("sgds-icon-chevron-down");
-            } else {
-                $(".sgds-accordion-set > a i")
-                    .removeClass("sgds-icon-chevron-up")
-                    .addClass("sgds-icon-chevron-down");
-                $(this)
-                    .find("i")
-                    .removeClass("sgds-icon-chevron-down")
-                    .addClass("sgds-icon-chevron-up");
-                $(".sgds-accordion-set > a").removeClass("active");
-                $(this).addClass("active");
-                $(".sgds-accordion-body").slideUp(300);
-                $(this)
-                    .siblings(".sgds-accordion-body")
-                    .slideDown(300);
-            }
+        let anchors = $(".sgds-accordion-set > a").get();
+        anchors.forEach(anchor => {
+            addAccordionClickListener(anchor);
         });
     }
 
@@ -428,3 +445,7 @@ $(document).ready(function() {
         });
     }
 });
+
+export default {
+    addAccordionClickListener
+};
