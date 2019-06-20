@@ -13,7 +13,7 @@
   "scripts": {
     "build": "npm run packagedownloads && npm run buildsgds && jekyll build",
     "buildsgds": "NODE_ENV=production webpack --mode=production",
-    "devserver": "webpack --watch | bundle exec jekyll serve",
+    "devserver": "webpack --watch & bundle exec jekyll serve",
     "packagedownloads": "./scripts/packagedownloads.sh",
     "prepublishOnly": "npm run buildsgds",
     "start": "bundle exec jekyll serve",
