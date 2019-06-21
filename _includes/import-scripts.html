@@ -22,6 +22,14 @@
     <script src="/assets/js/clipboard.min.js"></script>
     <script src="/assets/js/clipboard.js"></script>
 {% endif %}
+
+{% if jekyll.environment == "production" %}
+<script src="https://assets.dcube.cloud/scripts/wogaa.js"></script>
+{% else %}
+<script src="https://assets.dcube.cloud/scripts/wogaa.js"></script>
+{% endif %}
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/css-element-queries/1.2.0/ResizeSensor.min.js"></script>
 <script src="/js/sgds.js"></script>
 <script src="/posts.json"></script>
