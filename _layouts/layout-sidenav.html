@@ -152,31 +152,29 @@ layout: layout-default
                         <ul class="sgds-menu-list">
                             {%- assign links = site.data.navigation -%}
                             {%- for lvl1item in links -%}
-                                {%- for lvl2item in lvl1item.lvl2 -%}
-                                    {%- if page.url contains lvl1item.url -%}
-
-
-                                    <li class="second-level-nav-header">
-                                        <a class="second-level-nav-header has-text-weight-bold {{class}}">
-                                            {{ lvl2item.title }}
-                                            <i class="sgds-icon is-pulled-right sgds-icon-chevron-down" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-
-                                    <div class="second-level-nav-div {{class}}">
-                                        {%- for lvl3item in lvl2item.lvl3 -%}
-                                            {%- assign class = nil -%}
-                                            {%- if page.url contains lvl3item.url -%}
-                                            {%- assign class = 'is-active' -%}
-                                            {%- endif -%}
-                                            <li>
-                                                <a class="second-level-nav-item padding--top--none {{class}}"
-                                                   href="{{ site.baseurl }}{{ lvl3item.url }}">{{ lvl3item.title }}</a>
-                                            </li>
-                                        {%- endfor -%}
-                                    </div>
-                                    {%- endif -%}
-                                {%- endfor -%}
+                                {%- if page.url contains lvl1item.url -%}
+                                    {%- for lvl2item in lvl1item.lvl2 -%}
+                                        <li class="second-level-nav-header">
+                                            <a class="second-level-nav-header has-text-weight-bold {{class}}">
+                                                {{ lvl2item.title }}
+                                                <i class="sgds-icon is-pulled-right sgds-icon-chevron-down" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        {%- if lvl2item.lvl3 -%}
+                                            {%- assign lvl3items = lvl2item.lvl3 | sort: 'title' -%}
+                                            {%- for lvl3item in lvl3items -%}
+                                                {%- assign class = nil -%}
+                                                {%- if page.url contains lvl3item.url -%}
+                                                    {%- assign class = 'is-active' -%}
+                                                {%- endif -%}
+                                                <li>
+                                                    <a class="second-level-nav-item padding--top--none {{class}}"
+                                                    href="{{ site.baseurl }}{{ lvl3item.url }}">{{ lvl3item.title }}</a>
+                                                </li>
+                                            {%- endfor -%}
+                                        {%- endif -%}
+                                    {%- endfor -%}
+                                {%- endif -%}
                             {%- endfor -%}
                         </ul>
                     </aside>

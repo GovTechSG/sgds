@@ -1,4 +1,4 @@
-import $ from "jquery";
+import { jQuery as $ } from "./js/lib";
 import StickySidebar from "sticky-sidebar";
 import { initSecondLevelNavInteraction } from "./js/sgds-sidenav";
 import "./sass/sgds.scss";
