@@ -414,8 +414,8 @@ $(document).ready(function() {
     });
 
     //Accordion
-    if ($(".sgds-accordion > .sgds-accordion-set > a").length) {
-        let anchors = $(".sgds-accordion > .sgds-accordion-set > a").get();
+    if ($(".sgds-accordion-set > a").length) {
+        let anchors = $(".sgds-accordion-set > a").get();
         anchors.forEach(anchor => {
             addAccordionClickListener(anchor);
         });
@@ -440,7 +440,7 @@ $(document).ready(function() {
             $(".language_selector--dropdown").toggle();
         });
         $(".language_selector--dropdown li").click(function() {
-            $(".dropdown").toggle();
+            $(".language_selector--dropdown").toggle();
         });
     }
 });
