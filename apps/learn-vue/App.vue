@@ -1,6 +1,9 @@
 <template>
     <div id="learn-vue">
-        <button @click="showExample = !showExample">Show/hide</button>
+        <button
+            @click="showExample = !showExample"
+            class="sgds-button is-primary"
+        >Show/hide Vue component</button>
         <template v-if="showExample">
             <div class="sgds-accordion">
                 <div class="sgds-accordion-set">
