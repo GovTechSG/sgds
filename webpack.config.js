@@ -2,10 +2,13 @@ const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const { VueLoaderPlugin } = require("vue-loader");
 let config = {
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
     entry: {
-        "js/sgds": "./src/sgds.js"
+        "js/sgds": "./sgds/sgds.js",
+        "assets/learn-development/learn-vue": "./apps/learn-vue/index.js",
+        "assets/learn-development/learn-react": "./apps/learn-react/index.js"
     },
     output: {
         filename: "[name].js",
@@ -25,7 +28,7 @@ let config = {
             },
             {
                 // sass -> css -> extract to dist/css
-                test: /\.s(a|c)ss$/,
+                test: /sgds\.s(a|c)ss$/,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
@@ -49,15 +52,18 @@ let config = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.vue$/,
+                use: "vue-loader"
             }
         ]
     },
     plugins: [
         new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: "css/sgds.css"
-        })
+            moduleFilename: ({name}) => `${name.replace("js", "css")}.css`
+        }),
+        new VueLoaderPlugin()
     ]
 };
 if (process.env.NODE_ENV === "production") {

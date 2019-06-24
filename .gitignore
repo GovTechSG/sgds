@@ -13,3 +13,5 @@ node_modules
 /fonts
 /js
 /assets/downloads
+# For Vue/React apps under learning development section
+/assets/learn-development

@@ -3,8 +3,6 @@ import StickySidebar from "sticky-sidebar";
 import { initSecondLevelNavInteraction } from "./js/sgds-sidenav";
 import "./sass/sgds.scss";
 
-initSecondLevelNavInteraction();
-
 var sgds;
 
 if (typeof sgds !== "object") {
@@ -112,15 +110,15 @@ if (typeof sgds !== "object") {
             }
         });
     }
-    return (hashCode = function(str) {
-        var hash, i, j, len, s;
-        hash = 0;
-        for (i = j = 0, len = str.length; j < len; i = ++j) {
-            s = str[i];
-            hash = ~~((hash << 5) - hash + str.charCodeAt(i));
-        }
-        return hash;
-    });
+    // return (hashCode = function(str) {
+    //     var hash, i, j, len, s;
+    //     hash = 0;
+    //     for (i = j = 0, len = str.length; j < len; i = ++j) {
+    //         s = str[i];
+    //         hash = ~~((hash << 5) - hash + str.charCodeAt(i));
+    //     }
+    //     return hash;
+    // });
 })();
 var i, j, len, len1, list, lists, menu, menuElems, options, subMenu;
 
@@ -416,8 +414,8 @@ $(document).ready(function() {
     });
 
     //Accordion
-    if ($(".sgds-accordion-set > a").length) {
-        let anchors = $(".sgds-accordion-set > a").get();
+    if ($(".sgds-accordion > .sgds-accordion-set > a").length) {
+        let anchors = $(".sgds-accordion > .sgds-accordion-set > a").get();
         anchors.forEach(anchor => {
             addAccordionClickListener(anchor);
         });
@@ -432,6 +430,7 @@ $(document).ready(function() {
             topSpacing: sidenav.data("topspacing"),
             bottomSpacing: sidenav.data("bottomspacing")
         });
+        initSecondLevelNavInteraction();
     }
 
     //Language Selector
