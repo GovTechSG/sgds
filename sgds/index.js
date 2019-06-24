@@ -1,60 +1,13 @@
-import { jQuery as $ } from "./js/lib";
 import StickySidebar from "sticky-sidebar";
-import { initSecondLevelNavInteraction } from "./js/sgds-sidenav";
+import { jQuery as $ } from "./js/lib";
 import sgds from "./js/sgds";
+import { initSecondLevelNavInteraction } from "./js/sgds-sidenav";
 import "./sass/sgds.scss";
-
-var i, j, len, len1, list, lists, menu, menuElems, options, subMenu;
-
-sgds.toggleMenu = function(el, options) {
-    sgds.collapseMenu(el, "hide");
-    sgds.click(el, function(e) {
-        var active, actives, i, len;
-        e.preventDefault();
-        e.stopPropagation();
-        if (options.single) {
-            actives = menu.querySelectorAll(".is-active");
-            for (i = 0, len = actives.length; i < len; i++) {
-                active = actives[i];
-                if (active !== e.target) {
-                    sgds.removeClass(active, "is-active");
-                    if (active.nextElementSibling.nodeName === "UL") {
-                        sgds.hide(active.nextElementSibling);
-                    }
-                }
-            }
-        }
-        sgds.collapseMenu(e.target, "toggle");
-    });
-};
-
-sgds.collapseMenu = function(el, status) {
-    var smenu;
-    smenu = el.nextElementSibling;
-    if (status === "show") {
-        sgds.show(smenu);
-        if (sgds.isVisible(smenu)) {
-            return sgds.addClass(el, "is-active");
-        }
-    } else if (status === "hide") {
-        sgds.hide(smenu);
-        if (!sgds.isVisible(smenu)) {
-            return sgds.removeClass(el, "is-active");
-        }
-    } else if (status === "toggle") {
-        sgds.toggle(smenu);
-        if (sgds.isVisible(smenu)) {
-            return sgds.addClass(el, "is-active");
-        } else {
-            return sgds.removeClass(el, "is-active");
-        }
-    }
-};
 
 if (!sgds.isReady) {
     menuElems = sgds.getElements("menu");
     if (menuElems && menuElems.length > 0) {
-        for (i = 0, len = menuElems.length; i < len; i++) {
+        for (let i = 0, len = menuElems.length; i < len; i++) {
             menu = menuElems[i];
             options = sgds.parseOptions(menu);
             lists = menu.querySelectorAll(".sgds-menu-list");
@@ -68,118 +21,28 @@ if (!sgds.isReady) {
         }
     }
 }
-var i, len, modal, modals, options;
-
-sgds.toggleModal = function(el, options) {
-    if (!options.target) {
-        throw new Error("Found [sgds-MODAL] but there is no target defined!");
-    }
-    el.addEventListener("click", function(e) {
-        var backdrop, closeBtn, closeModal, modal;
-        e.preventDefault();
-        e.stopPropagation();
-        modal = document.getElementById(options.target);
-        backdrop = modal.querySelector(".sgds-modal-background");
-        closeBtn = modal.querySelector(".sgds-modal-close");
-        closeModal = function() {
-            if (sgds.hasClass(modal, "is-active")) {
-                sgds.removeClass(modal, "is-active");
-                return sgds.unclick(this, closeModal);
-            }
-        };
-        if (options.closeByBackdrop === void 0 || options.closeByBackdrop) {
-            sgds.click(backdrop, closeModal);
-        }
-        if (options.closeByButton === void 0 || options.closeByButton) {
-            sgds.click(closeBtn, closeModal);
-        }
-        sgds.addClass(modal, "is-active");
-    });
-};
 
 if (!sgds.isReady) {
     modals = sgds.getElements("sgds-modal");
     if (modals && modals.length > 0) {
-        for (i = 0, len = modals.length; i < len; i++) {
+        for (let i = 0, len = modals.length; i < len; i++) {
             modal = modals[i];
             options = sgds.parseOptions(modal);
             sgds.toggleModal(modal, options);
         }
     }
 }
-var i, len, notification, notifications, options;
-
-sgds.notification = function(el, status, options) {
-    var deleteBtn, deleteNotification;
-    if (options.deletable === void 0 || options.deletable !== false) {
-        deleteBtn = el.querySelector(".delete");
-        deleteNotification = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            el.parentNode.removeChild(el);
-        };
-    }
-    if (status === "show") {
-        sgds.removeClass(el, "is-hidden");
-        sgds.click(deleteBtn, deleteNotification);
-    } else if (status === "hide") {
-        sgds.addClass(el, "is-hidden");
-    } else if (status === "toggle") {
-        if (sgds.isVisible(el)) {
-            sgds.notification(el, "hide", options);
-        } else {
-            sgds.notification(el, "show", options);
-        }
-        return;
-    }
-};
 
 if (!sgds.isReady) {
     notifications = sgds.getElements("notification");
     if (notifications && notifications.length > 0) {
-        for (i = 0, len = notifications.length; i < len; i++) {
+        for (let i = 0, len = notifications.length; i < len; i++) {
             notification = notifications[i];
             options = sgds.parseOptions(notification);
             sgds.notification(notification, "hide", options);
         }
     }
 }
-var i, j, len, len1, tab, tabs, target, targets;
-
-sgds.toggleTab = function(el) {
-    var i, l, len, uls, links;
-    uls = el.target.parentNode.parentNode;
-    links = uls.querySelectorAll("li");
-    for (i = 0, len = links.length; i < len; i++) {
-        l = links[i];
-        sgds.removeClass(l, "is-active");
-        sgds.hide(
-            document.querySelector(l.firstElementChild.getAttribute("data-tab"))
-        );
-    }
-    sgds.addClass(el.target.parentNode, "is-active");
-    sgds.show(document.querySelector(el.target.getAttribute("data-tab")));
-};
-
-// if (!sgds.isReady) {
-//     tabs = sgds.getElements("tabs");
-//     if (tabs && tabs.length > 0) {
-//         for (i = 0, len = tabs.length; i < len; i++) {
-//             tab = tabs[i];
-//             targets = tab.querySelectorAll("[data-tab]");
-
-//             for (j = 0, len1 = targets.length; j < len1; j++) {
-//                 target = targets[j];
-
-//                 tab = document.querySelector(target.getAttribute("data-tab"));
-//                 if (sgds.hasClass(target.parentNode, "is-active") === false) {
-//                     sgds.hide(tab);
-//                 }
-//                 sgds.click(target, sgds.toggleTab);
-//             }
-//         }
-//     }
-// }
 
 function addAccordionClickListener(el) {
     let anchor = $(el);
