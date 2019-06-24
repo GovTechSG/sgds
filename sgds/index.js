@@ -1,125 +1,9 @@
 import { jQuery as $ } from "./js/lib";
 import StickySidebar from "sticky-sidebar";
 import { initSecondLevelNavInteraction } from "./js/sgds-sidenav";
+import sgds from "./js/sgds";
 import "./sass/sgds.scss";
 
-var sgds;
-
-if (typeof sgds !== "object") {
-    sgds = {};
-}
-
-(function() {
-    var hashCode;
-    sgds.hide = function(el) {
-        var display;
-        display = sgds.isVisible(el);
-        if (display) {
-            el.style.display = "none";
-        }
-    };
-    sgds.show = function(el) {
-        var display;
-        display = sgds.isVisible(el);
-        if (!display) {
-            el.style.display = "block";
-        }
-    };
-    sgds.toggle = function(el) {
-        var display;
-        display = sgds.isVisible(el);
-        if (!display) {
-            el.style.display = "block";
-        } else {
-            el.style.display = "none";
-        }
-    };
-    sgds.getElements = function(name) {
-        return document.querySelectorAll('[data-sgds="' + name + '"]');
-    };
-    sgds.isVisible = function(el) {
-        var display;
-        if (window.getComputedStyle) {
-            display = getComputedStyle(el, null).display;
-        } else {
-            display = el.currentStyle.display;
-        }
-        return display !== "none";
-    };
-    sgds.hasClass = function(el, className) {
-        if (el.classList) {
-            return el.classList.contains(className);
-        } else {
-            return new RegExp("\\b" + className + "\\b").test(el.className);
-        }
-    };
-    sgds.addClass = function(el, className) {
-        if (el.classList) {
-            return el.classList.add(className);
-        } else if (!sgds.hasClass(el, className)) {
-            return (el.className += " " + className);
-        }
-    };
-    sgds.removeClass = function(el, className) {
-        if (el.classList) {
-            return el.classList.remove(className);
-        } else {
-            return (el.className = el.className.replace(
-                new RegExp("\\b" + className + "\\b", "g"),
-                ""
-            ));
-        }
-    };
-    sgds.parseOptions = function(el) {
-        var j, len, option, options, opts;
-        opts = {};
-        options = el.getAttribute("data-options");
-        options = (options || "").replace(/\s/g, "").split(";");
-        for (j = 0, len = options.length; j < len; j++) {
-            option = options[j];
-            if (option) {
-                option = option.split(":");
-                opts[option[0]] = option[1];
-            }
-        }
-        return opts;
-    };
-    sgds.click = function(el, handler) {
-        if (!el.eventListener) {
-            el.eventListener = true;
-            return el.addEventListener("click", handler);
-        }
-    };
-    sgds.unclick = function(el, handler) {
-        if (el.eventListener) {
-            el.eventListener = false;
-            return el.removeEventListener("click", handler);
-        }
-    };
-    if (document.readyState !== "loading") {
-        sgds.isReady = true;
-        return;
-    } else if (document.addEventListener) {
-        document.addEventListener("DOMContentLoaded", function() {
-            sgds.isReady = true;
-        });
-    } else {
-        document.attachEvent("onreadystatechange", function() {
-            if (document.readyState === "complete") {
-                sgds.isReady = true;
-            }
-        });
-    }
-    // return (hashCode = function(str) {
-    //     var hash, i, j, len, s;
-    //     hash = 0;
-    //     for (i = j = 0, len = str.length; j < len; i = ++j) {
-    //         s = str[i];
-    //         hash = ~~((hash << 5) - hash + str.charCodeAt(i));
-    //     }
-    //     return hash;
-    // });
-})();
 var i, j, len, len1, list, lists, menu, menuElems, options, subMenu;
 
 sgds.toggleMenu = function(el, options) {
@@ -277,86 +161,25 @@ sgds.toggleTab = function(el) {
     sgds.show(document.querySelector(el.target.getAttribute("data-tab")));
 };
 
-if (!sgds.isReady) {
-    tabs = sgds.getElements("tabs");
-    if (tabs && tabs.length > 0) {
-        for (i = 0, len = tabs.length; i < len; i++) {
-            tab = tabs[i];
-            targets = tab.querySelectorAll("[data-tab]");
+// if (!sgds.isReady) {
+//     tabs = sgds.getElements("tabs");
+//     if (tabs && tabs.length > 0) {
+//         for (i = 0, len = tabs.length; i < len; i++) {
+//             tab = tabs[i];
+//             targets = tab.querySelectorAll("[data-tab]");
 
-            for (j = 0, len1 = targets.length; j < len1; j++) {
-                target = targets[j];
+//             for (j = 0, len1 = targets.length; j < len1; j++) {
+//                 target = targets[j];
 
-                tab = document.querySelector(target.getAttribute("data-tab"));
-                if (sgds.hasClass(target.parentNode, "is-active") === false) {
-                    sgds.hide(tab);
-                }
-                sgds.click(target, sgds.toggleTab);
-            }
-        }
-    }
-}
-
-// Get all "navbar-burger" elements
-var $navbarBurgers = Array.prototype.slice.call(
-    document.querySelectorAll(".navbar-burger"),
-    0
-);
-
-// Check if there are any navbar burgers
-if ($navbarBurgers.length > 0) {
-    // Add a click event on each of them
-    $navbarBurgers.forEach(function($el) {
-        $el.addEventListener("click", function() {
-            // Get the target from the "data-target" attribute
-            var target = $el.dataset.target;
-            var $target = document.getElementById(target);
-
-            // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-            $el.classList.toggle("is-active");
-            $target.classList.toggle("is-active");
-        });
-    });
-}
-
-// Dropdowns
-var $dropdowns = getAll(".sgds-dropdown:not(.is-hoverable)");
-
-if ($dropdowns.length > 0) {
-    $dropdowns.forEach(function($el) {
-        $el.addEventListener("click", function(event) {
-            event.stopPropagation();
-            $el.classList.toggle("is-active");
-        });
-    });
-
-    document.addEventListener("click", function(event) {
-        closeDropdowns();
-    });
-}
-
-function closeDropdowns() {
-    $dropdowns.forEach(function($el) {
-        $el.classList.remove("is-active");
-    });
-}
-
-// Close dropdowns if ESC pressed
-document.addEventListener("keydown", function(event) {
-    var e = event || window.event;
-    if (e.keyCode === 27) {
-        closeDropdowns();
-    }
-});
-
-// Functions
-function getAll(selector) {
-    return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
-}
-
-function showCode(item) {
-    document.getElementById("panel" + item).style.display = "block";
-}
+//                 tab = document.querySelector(target.getAttribute("data-tab"));
+//                 if (sgds.hasClass(target.parentNode, "is-active") === false) {
+//                     sgds.hide(tab);
+//                 }
+//                 sgds.click(target, sgds.toggleTab);
+//             }
+//         }
+//     }
+// }
 
 function addAccordionClickListener(el) {
     let anchor = $(el);
@@ -396,13 +219,13 @@ function addAccordionClickListener(el) {
     });
 }
 
-$(document).ready(function() {
-    //Search bar toggle
-    var masthead_container = $(".masthead-container");
-    var searchToggle = $("#search-activate");
-    var searchIcon = $("#search-activate span");
-    var searchBar = $(".search-bar");
-    var searchBar_input = $(".search-bar input");
+document.addEventListener("DOMContentLoaded", () => {
+    // Search bar toggle
+    const masthead_container = $(".masthead-container");
+    const searchIcon = $("#search-activate span");
+    const searchBar = $(".search-bar");
+    const searchBar_input = $(".search-bar input");
+    const searchToggle = $("#search-activate");
     searchToggle.on("click", function(e) {
         e.preventDefault();
         searchIcon
@@ -413,7 +236,7 @@ $(document).ready(function() {
         masthead_container.toggleClass("is-opened");
     });
 
-    //Accordion
+    // Accordion
     if ($(".sgds-accordion-set > a").length) {
         let anchors = $(".sgds-accordion-set > a").get();
         anchors.forEach(anchor => {
@@ -421,7 +244,98 @@ $(document).ready(function() {
         });
     }
 
-    //Sticky sidebar - fixed
+    // Tabs
+    const tabs = sgds.getElements("tabs");
+    if (tabs && tabs.length > 0) {
+        for (let i = 0; i < tabs.length; i++) {
+            let tabElement = tabs[i];
+            let tabAnchors = tabElement.querySelectorAll("a[data-tab]");
+
+            for (let j = 0; j < tabAnchors.length; j++) {
+                let tabAnchor = tabAnchors[j];
+                let tabTarget = document.querySelector(tabAnchor.dataset.tab);
+                if (!sgds.hasClass(tabAnchor.parentNode, "is-active")) {
+                    sgds.hide(tabTarget);
+                }
+                // Attach toggle listeners
+                tabAnchor.addEventListener("click", event => {
+                    if (
+                        tabAnchor.parentElement.classList.contains("is-active")
+                    ) {
+                        return;
+                    }
+
+                    tabAnchor.parentElement.classList.add("is-active");
+                    let tabTargetToShow = document.querySelector(
+                        tabAnchor.dataset.tab
+                    );
+                    sgds.show(tabTargetToShow);
+
+                    let parentListItemSiblings = sgds.getSiblings(
+                        tabAnchor.parentElement
+                    );
+                    if (parentListItemSiblings.length > 0) {
+                        parentListItemSiblings.forEach(listItem => {
+                            listItem.classList.remove("is-active");
+                            let itemTabAnchor = listItem.querySelector(
+                                "a[data-tab]"
+                            );
+                            let itemTabTarget = document.querySelector(
+                                itemTabAnchor.dataset.tab
+                            );
+                            sgds.hide(itemTabTarget);
+                        });
+                    }
+                });
+            }
+        }
+    }
+
+    // Navbar burger menus
+    const navbarBurgers = document.querySelectorAll(".navbar-burger");
+    if (navbarBurgers.length > 0) {
+        navbarBurgers.forEach(function($el) {
+            $el.addEventListener("click", function() {
+                const targetMenuId = $el.dataset.target;
+                const targetMenu = document.getElementById(targetMenuId);
+
+                // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+                $el.classList.toggle("is-active");
+                targetMenu.classList.toggle("is-active");
+            });
+        });
+    }
+
+    // Dropdowns
+    const dropdowns = document.querySelectorAll(
+        ".sgds-dropdown:not(.is-hoverable)"
+    );
+    if (dropdowns.length > 0) {
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener("click", event => {
+                event.stopPropagation(); // Stop close listeners
+                dropdown.classList.toggle("is-active");
+            });
+        });
+
+        document.addEventListener("click", () => {
+            dropdowns.forEach(function($el) {
+                $el.classList.remove("is-active");
+            });
+        });
+
+        // Close dropdowns if ESC pressed
+        document.addEventListener("keydown", event => {
+            const e = event || window.event;
+            if (e.keyCode === 27) {
+                dropdowns.forEach(function($el) {
+                    $el.classList.remove("is-active");
+                });
+            }
+        });
+    }
+
+    // Sticky sidebar - fixed
     if ($(".sidenav").length) {
         const sidenav = $(".sidenav");
         new StickySidebar(".sidenav", {
@@ -433,7 +347,7 @@ $(document).ready(function() {
         initSecondLevelNavInteraction();
     }
 
-    //Language Selector
+    // Language Selector
     if ($(".language_selector").length) {
         var language_selector = $(".language_selector");
         language_selector.click(function() {
