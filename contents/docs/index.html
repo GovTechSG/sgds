@@ -8,12 +8,10 @@ breadcrumb: Docs
 
 <section class="sgds-section">
     <div class="sgds-container">
-
         <div class="row has-text-centered">
             <div class="col is-10 is-offset-1">
                 <h3 class="has-text-secondary">{{page.title}}</h3>
             </div>
-
         </div>
         <div class="row">
             <div class="col is-10 is-offset-1">
@@ -21,6 +19,7 @@ breadcrumb: Docs
                     <ul>
                         <li class="is-active"><a data-tab="#components">Components</a></li>
                         <li><a data-tab="#templates">Templates</a></li>
+                        <li><a data-tab="#themes">Themes</a></li>
                     </ul>
                 </div>
             </div>
@@ -29,5 +28,7 @@ breadcrumb: Docs
         {% include_relative content-components.html %}
         <!--Tab 2-->
         {% include_relative content-templates.html %}
+        <!--Tab 3-->
+        {% include_relative content-themes.html %}
     </div>
 </section>
