@@ -15,7 +15,7 @@ $menu-label-color: $text-light !default
   will-change: position, transform
 
 .sgds-menu
-  font-size: $size-normal
+  font-size: $size-menu
   &.is-small
     font-size: $size-small
   &.is-medium
@@ -35,6 +35,10 @@ $menu-label-color: $text-light !default
     align-items: center
     padding: 1rem 0
     border-bottom: 1px solid $grey
+
+    .sgds-icon
+      font-size: $size-menu-icon
+
     &:hover
       color: $menu-item-active-color
       border-bottom: 1px solid $menu-item-active-color
