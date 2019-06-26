@@ -11,7 +11,7 @@
   ],
   "main": "sgds-govtech/dist/sgds.js",
   "scripts": {
-    "build": "npm run packagedownloads && npm run buildsgds && jekyll build",
+    "build": "npm run packagedownloads && npm run buildsgds && bundle exec jekyll build",
     "buildsgds": "NODE_ENV=production webpack --mode=production",
     "devserver": "webpack --watch & bundle exec jekyll serve",
     "packagedownloads": "./scripts/packagedownloads.sh",
