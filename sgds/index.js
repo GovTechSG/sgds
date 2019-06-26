@@ -5,36 +5,7 @@ import { initSecondLevelNavInteraction } from "./js/sgds-sidenav";
 import "./sass/sgds.scss";
 
 if (!sgds.isReady) {
-    menuElems = sgds.getElements("menu");
-    if (menuElems && menuElems.length > 0) {
-        for (let i = 0, len = menuElems.length; i < len; i++) {
-            menu = menuElems[i];
-            options = sgds.parseOptions(menu);
-            lists = menu.querySelectorAll(".sgds-menu-list");
-            for (j = 0, len1 = lists.length; j < len1; j++) {
-                list = lists[j];
-                subMenu = list.querySelector("ul");
-                if (subMenu) {
-                    sgds.toggleMenu(subMenu.previousElementSibling, options);
-                }
-            }
-        }
-    }
-}
-
-if (!sgds.isReady) {
-    modals = sgds.getElements("sgds-modal");
-    if (modals && modals.length > 0) {
-        for (let i = 0, len = modals.length; i < len; i++) {
-            modal = modals[i];
-            options = sgds.parseOptions(modal);
-            sgds.toggleModal(modal, options);
-        }
-    }
-}
-
-if (!sgds.isReady) {
-    notifications = sgds.getElements("notification");
+    let notifications = sgds.getElements("notification");
     if (notifications && notifications.length > 0) {
         for (let i = 0, len = notifications.length; i < len; i++) {
             notification = notifications[i];

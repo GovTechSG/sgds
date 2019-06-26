@@ -125,29 +125,6 @@ sgds.notification = function(el, status, options) {
     }
 };
 
-sgds.collapseMenu = function(el, status) {
-    let smenu;
-    smenu = el.nextElementSibling;
-    if (status === "show") {
-        sgds.show(smenu);
-        if (sgds.isVisible(smenu)) {
-            return sgds.addClass(el, "is-active");
-        }
-    } else if (status === "hide") {
-        sgds.hide(smenu);
-        if (!sgds.isVisible(smenu)) {
-            return sgds.removeClass(el, "is-active");
-        }
-    } else if (status === "toggle") {
-        sgds.toggle(smenu);
-        if (sgds.isVisible(smenu)) {
-            return sgds.addClass(el, "is-active");
-        } else {
-            return sgds.removeClass(el, "is-active");
-        }
-    }
-};
-
 sgds.toggleModal = function(el, options) {
     if (!options.target) {
         throw new Error("Found [sgds-MODAL] but there is no target defined!");

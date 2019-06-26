@@ -154,7 +154,7 @@ layout: layout-default
                             {%- for lvl1item in links -%}
                                 {%- if page.url contains lvl1item.url -%}
                                     {%- for lvl2item in lvl1item.lvl2 -%}
-                                        <li>
+                                        <li class="second-level-nav">
                                             <a class="second-level-nav-header has-text-weight-bold">
                                                 {{ lvl2item.title }}
                                                 {%- if lvl2item.lvl3 -%}
