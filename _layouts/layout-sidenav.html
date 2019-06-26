@@ -158,12 +158,12 @@ layout: layout-default
                                             <a class="second-level-nav-header has-text-weight-bold">
                                                 {{ lvl2item.title }}
                                                 {%- if lvl2item.lvl3 -%}
-                                                    <i class="sgds-icon is-pulled-right sgds-icon-chevron-up" aria-hidden="true"></i>
+                                                    <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
                                                 {%- endif -%}
                                             </a>
                                         </li>
                                         {%- if lvl2item.lvl3 -%}
-                                            <ul class="third-level-nav">
+                                            <div class="second-level-nav-div">
                                                 {%- assign lvl3items = lvl2item.lvl3 | sort: 'title' -%}
                                                 {%- for lvl3item in lvl3items -%}
                                                     {%- assign class = nil -%}
@@ -175,7 +175,7 @@ layout: layout-default
                                                         href="{{ site.baseurl }}{{ lvl3item.url }}">{{ lvl3item.title }}</a>
                                                     </li>
                                                 {%- endfor -%}
-                                            </ul>
+                                                </div>
                                         {%- endif -%}
                                     {%- endfor -%}
                                 {%- endif -%}
