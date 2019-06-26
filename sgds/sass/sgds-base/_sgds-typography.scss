@@ -1,9 +1,10 @@
 h1{
   font-size: $size-1;
   line-height: $size-1-lh;
+  letter-spacing: -1.5px;
   &.display{
     font-size: $size-0;
-    line-height: $size-1-lh;
+    line-height: $size-0-lh;
   }
 }
 h2{
@@ -31,7 +32,7 @@ h6{
   line-height: $size-6-lh;
 }
 
-p{
+p,li{
   font-size: $size-7;
   line-height: $size-7-lh;
 }

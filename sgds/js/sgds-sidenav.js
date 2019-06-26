@@ -1,6 +1,6 @@
 export function initSecondLevelNavInteraction() {
     let secondLevelNavHeaderArray = document.querySelectorAll(
-        "ul.sgds-menu-list > li"
+        "li.second-level-nav"
     );
     for (let index = 0; index < secondLevelNavHeaderArray.length; index++) {
         // Check if next element is third-level-nav
@@ -22,49 +22,49 @@ export function initSecondLevelNavInteraction() {
         }
     }
 
-    // var secondLevelNavHeaderMobileArray = document.querySelectorAll(
-    //     "a.second-level-nav-header-mobile"
-    // );
+    var secondLevelNavHeaderMobileArray = document.querySelectorAll(
+        "a.second-level-nav-header-mobile"
+    );
 
-    // for (
-    //     var index = 0;
-    //     index < secondLevelNavHeaderMobileArray.length;
-    //     index++
-    // ) {
-    //     function secondLevelNavMobileClosure() {
-    //         var closureIndex = index;
-    //         function toggleSecondLevelNavMobileDiv() {
-    //             // Get the icon of the second-level-nav-header
-    //             var secondLevelNavMobileIcon = secondLevelNavHeaderMobileArray[
-    //                 closureIndex
-    //             ].getElementsByTagName("I")[0];
-    //             var secondLevelMobileDiv = document.getElementsByClassName(
-    //                 "second-level-nav-div-mobile"
-    //             )[closureIndex];
-    //             if (secondLevelMobileDiv.classList.contains("is-hidden")) {
-    //                 secondLevelNavMobileIcon.classList.remove(
-    //                     "sgds-icon-chevron-down"
-    //                 );
-    //                 secondLevelNavMobileIcon.classList.add(
-    //                     "sgds-icon-chevron-up"
-    //                 );
-    //                 secondLevelMobileDiv.classList.remove("is-hidden");
-    //             } else {
-    //                 secondLevelMobileDiv.classList.add("is-hidden");
-    //                 secondLevelNavMobileIcon.classList.remove(
-    //                     "sgds-icon-chevron-up"
-    //                 );
-    //                 secondLevelNavMobileIcon.classList.add(
-    //                     "sgds-icon-chevron-down"
-    //                 );
-    //             }
-    //         }
-    //         return toggleSecondLevelNavMobileDiv;
-    //     }
+    for (
+        var index = 0;
+        index < secondLevelNavHeaderMobileArray.length;
+        index++
+    ) {
+        function secondLevelNavMobileClosure() {
+            var closureIndex = index;
+            function toggleSecondLevelNavMobileDiv() {
+                // Get the icon of the second-level-nav-header
+                var secondLevelNavMobileIcon = secondLevelNavHeaderMobileArray[
+                    closureIndex
+                ].getElementsByTagName("I")[0];
+                var secondLevelMobileDiv = document.getElementsByClassName(
+                    "second-level-nav-div-mobile"
+                )[closureIndex];
+                if (secondLevelMobileDiv.classList.contains("is-hidden")) {
+                    secondLevelNavMobileIcon.classList.remove(
+                        "sgds-icon-chevron-down"
+                    );
+                    secondLevelNavMobileIcon.classList.add(
+                        "sgds-icon-chevron-up"
+                    );
+                    secondLevelMobileDiv.classList.remove("is-hidden");
+                } else {
+                    secondLevelMobileDiv.classList.add("is-hidden");
+                    secondLevelNavMobileIcon.classList.remove(
+                        "sgds-icon-chevron-up"
+                    );
+                    secondLevelNavMobileIcon.classList.add(
+                        "sgds-icon-chevron-down"
+                    );
+                }
+            }
+            return toggleSecondLevelNavMobileDiv;
+        }
 
-    //     secondLevelNavHeaderMobileArray[index].addEventListener(
-    //         "click",
-    //         secondLevelNavMobileClosure()
-    //     );
-    // }
+        secondLevelNavHeaderMobileArray[index].addEventListener(
+            "click",
+            secondLevelNavMobileClosure()
+        );
+    }
 }
