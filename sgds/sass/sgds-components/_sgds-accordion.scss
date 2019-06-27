@@ -9,8 +9,9 @@
     align-items: center;
     justify-content: space-between;
     padding:1rem;
-    color:$primary;
+    color:$link;
     background-color: $table-grey;
+    font-size: $size-normal;
     .content &{
       text-decoration: none;
       margin-bottom:0;

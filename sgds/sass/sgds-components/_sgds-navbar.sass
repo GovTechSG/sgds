@@ -201,7 +201,7 @@ a.navbar-item,
       border-bottom-style: $navbar-tab-active-border-bottom-style
       border-bottom-width: $navbar-tab-active-border-bottom-width
       color: $primary
-      padding-bottom: calc(0.5rem - #{$navbar-tab-active-border-bottom-width})
+      padding-bottom: calc(0.5rem - 1px)
 
 
 .navbar-content
@@ -319,6 +319,8 @@ a.navbar-item,
         box-shadow: 0 -8px 8px rgba($black, 0.1)
         top: auto
     &.is-active,
+    &.is-hoverable:focus,
+    &.is-hoverable:focus-within,
     &.is-hoverable:hover
       .navbar-dropdown
         display: block
