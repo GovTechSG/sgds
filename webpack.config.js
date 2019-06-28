@@ -1,5 +1,4 @@
 const path = require("path");
-const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
@@ -22,7 +21,11 @@ let config = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env"]
+                        presets: ["@babel/preset-env", "@babel/preset-react"],
+                        plugins: [
+                            "@babel/plugin-proposal-class-properties",
+                            "@babel/plugin-proposal-object-rest-spread"
+                        ]
                     }
                 }
             },
@@ -61,7 +64,7 @@ let config = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            moduleFilename: ({name}) => `${name.replace("js", "css")}.css`
+            moduleFilename: ({ name }) => `${name.replace("js", "css")}.css`
         }),
         new VueLoaderPlugin()
     ]
