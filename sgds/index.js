@@ -4,17 +4,6 @@ import sgds from "./js/sgds";
 import { initSecondLevelNavInteraction } from "./js/sgds-sidenav";
 import "./sass/sgds.scss";
 
-if (!sgds.isReady) {
-    let notifications = sgds.getElements("notification");
-    if (notifications && notifications.length > 0) {
-        for (let i = 0, len = notifications.length; i < len; i++) {
-            notification = notifications[i];
-            options = sgds.parseOptions(notification);
-            sgds.notification(notification, "hide", options);
-        }
-    }
-}
-
 function addAccordionClickListener(el) {
     let anchor = $(el);
     anchor.on("click", function() {
@@ -190,6 +179,16 @@ document.addEventListener("DOMContentLoaded", () => {
         $(".language_selector--dropdown li").click(function() {
             $(".language_selector--dropdown").toggle();
         });
+    }
+
+    // Notifications
+    let notifications = sgds.getElements("notification");
+    if (notifications && notifications.length > 0) {
+        for (let i = 0, len = notifications.length; i < len; i++) {
+            notification = notifications[i];
+            options = sgds.parseOptions(notification);
+            sgds.notification(notification, "hide", options);
+        }
     }
 });
 
