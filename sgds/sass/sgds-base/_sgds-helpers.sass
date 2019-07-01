@@ -270,3 +270,13 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex'
 
 .is-overflow-hidden
   overflow: hidden
+
+
+// Flex Helper
+// To be use in display:flex container
+
+$justifys: 'flex-start' 'flex-end' 'center' 'space-between' 'space-around' 'initial' 'inherit'
+
+@each $justify in $justifys
+  .is-j-content-#{$justify}
+    justify-content: #{$justify} !important
