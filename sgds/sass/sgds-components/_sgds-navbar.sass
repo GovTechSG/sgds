@@ -13,7 +13,7 @@ $navbar-item-hover-background-color: $white-bis !default
 $navbar-item-active-color: $primary !default
 $navbar-item-active-background-color: transparent !default
 $navbar-item-img-max-height: 2.5rem !default
-$navbar-item-active-border-bottom: 3px !default
+$navbar-item-active-border-bottom: 5px !default
 
 $navbar-burger-color: $navbar-item-color !default
 
@@ -23,7 +23,7 @@ $navbar-tab-active-color: $primary !default
 $navbar-tab-active-background-color: transparent !default
 $navbar-tab-active-border-bottom-color: $primary !default
 $navbar-tab-active-border-bottom-style: solid !default
-$navbar-tab-active-border-bottom-width: 3px !default
+$navbar-tab-active-border-bottom-width: 5px !default
 
 $navbar-dropdown-background-color: $white !default
 $navbar-dropdown-border-top: 2px solid $border !default
@@ -410,8 +410,8 @@ a.navbar-item,
   .navbar-link
     &.is-active
       color: $navbar-item-active-color
-      border-bottom: $navbar-item-active-border-bottom solid $primary
-      margin-top: $navbar-item-active-border-bottom
+      border-bottom: $navbar-tab-active-border-bottom-width solid $primary
+      margin-top: $navbar-tab-active-border-bottom-width
       font-weight: $weight-semibold
     &.is-active:not(:hover)
       background-color: $navbar-item-active-background-color
