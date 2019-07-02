@@ -116,7 +116,7 @@
          icon: sgds-icon-checklist
          url: /docs/form/
        - title: Notification
-         icon: sgds-icon-typography
+         icon: sgds-icon-notification
          url: /docs/notification/
          label: js
 

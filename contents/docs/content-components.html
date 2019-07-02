@@ -29,7 +29,8 @@
             </div>
         </div>
         <div class="row is-multiline is-mobile">
-            {% assign generalComponents = docsNav[0].lvl2 | where:"title","Layouts" %}
+            {% assign generalComponents = docsNav[0].lvl2 | where:"title","Layouts"%}
+
             {% for component in generalComponents[0].lvl3 %}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
                 <a href="{{ component.url }}">
@@ -53,7 +54,8 @@
         </div>
         <div class="row is-multiline is-mobile">
             {% assign generalComponents = docsNav[0].lvl2 | where:"title","General Components" %}
-            {% for component in generalComponents[0].lvl3 %}
+            {% assign generalComponentsLvl3 = generalComponents[0].lvl3 | sort:"title"%}
+            {% for component in generalComponentsLvl3 %}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
                 <a href="{{ component.url }}">
                     <div class="sgds-card sgds-card-button">
