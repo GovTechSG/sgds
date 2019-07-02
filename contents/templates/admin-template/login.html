@@ -2,6 +2,7 @@
 title: Home
 permalink: /admin-template/
 layout: admin-template/layouts-login
+breadcrumb: General
 ---
 
 <section class="sgds-hero is-white is-fullheight has-background-primary">
@@ -46,7 +47,7 @@ layout: admin-template/layouts-login
                         </div>
                         <div class="field">
                             <p class="control">
-                                <a href="overview/index.html" class="sgds-button is-success is-fullwidth is-medium" >Login</a>
+                                <a href="{{site.baseurl}}/admin-template/overview/" class="sgds-button is-success is-fullwidth is-medium" >Login</a>
                             </p>
                         </div>
                     </form>
@@ -56,7 +57,7 @@ layout: admin-template/layouts-login
                         <div class="field">
                             <p class="control has-text-centered">
                                 Don't have an account?
-                                <a href="register/index.html" class="has-text-link">
+                                <a href="{{site.baseurl}}/admin-template/register/" class="has-text-link">
                                     Sign up here
                                 </a>
                             </p>

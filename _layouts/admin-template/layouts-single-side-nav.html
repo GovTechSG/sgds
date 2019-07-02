@@ -39,38 +39,7 @@
                 <div class="sgds-container is-fluid">
                     <div class="row">
                         <div class="col">
-                            <nav class="sgds-breadcrumb padding--top" aria-label="breadcrumbs">
-                                <ul>
-                                    <li><a href="{{base}}/index.html">
-                                        {{ "Home" | upcase }}
-                                    </a></li>
-                                    {%- capture page_url_without_index_html -%}{{ page.url | remove: "/index.html" }}{%-
-                                    endcapture -%}
-                                    {% assign splitted_url_parts = page_url_without_index_html | split: '/' %}
-                                    {% capture forLoopMaxInt %}{{ splitted_url_parts.size | minus:1 }}{% endcapture %}
-
-                                    {% for i in (1..forLoopMaxInt) %}
-
-                                    {% capture current_breadcrumb_url %}{{next_prepender}}/{{ splitted_url_parts[i]
-                                    }}/index.html{% endcapture %}
-                                    {% capture current_breadcrumb_md_url %}{{next_prepender}}/{{ splitted_url_parts[i] }}/{%
-                                    endcapture %}
-                                    {% capture next_prepender %}{{next_prepender}}/{{ splitted_url_parts[i] }}{% endcapture %}
-
-                                    {% for breadcrumb_page in site.pages %}
-
-                                    {% if current_breadcrumb_url == breadcrumb_page.permalink or current_breadcrumb_md_url ==
-                                    breadcrumb_page.permalink %}
-                                    <li><a href="{{base}}{{breadcrumb_page.permalink}}index.html">
-                                        {{page.title | upcase}}
-                                    </a></li>
-                                    {% endif %}
-
-                                    {% endfor %}
-
-                                    {% endfor %}
-                                </ul>
-                            </nav>
+                            {% include sgds-breadcrumb.html %}
                         </div>
                     </div>
                 </div>
