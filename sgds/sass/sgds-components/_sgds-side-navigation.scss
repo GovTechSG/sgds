@@ -19,7 +19,6 @@ leftpanel {
 
 rightpanel {
   display: block;
-  width: calc(100vw - #{$leftpanel-width});
   height: 100vh;
   overflow-y: auto;
 }

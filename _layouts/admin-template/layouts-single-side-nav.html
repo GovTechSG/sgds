@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include admin-template/head.html %}
+<body>
+    {% include admin-template/masthead.html %}
+    <section class="bp-section is-paddingless">
+        {% include admin-template/sidebar.html %}
+        {% include admin-template/base.html %}
+        <rightpanel class="rightpanel {% if page.title == 'FAQs' %}has-background-white{% else %}has-background-light{% endif %}">
+            <section class="sgds-section is-xsmall has-background-dark">
+                <div class="sgds-container is-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <div class="field has-addons has-addons-centered">
+                                <p class="control is-expanded">
+                                    <input class="input" type="text" placeholder="Quick Search">
+                                </p>
+                                <p class="control">
+                                    <span class="select">
+                                        <select>
+                                            <option>Projects</option>
+                                            <option>Agencies</option>
+                                            <option>Users</option>
+                                            <option>Clusters</option>
+                                        </select>
+                                    </span>
+                                </p>
+                                <p class="control">
+                                    <a class="sgds-button">
+                                        Search
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="sgds-section is-xsmall">
+                <div class="sgds-container is-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <nav class="sgds-breadcrumb padding--top" aria-label="breadcrumbs">
+                                <ul>
+                                    <li><a href="{{base}}/index.html">
+                                        {{ "Home" | upcase }}
+                                    </a></li>
+                                    {%- capture page_url_without_index_html -%}{{ page.url | remove: "/index.html" }}{%-
+                                    endcapture -%}
+                                    {% assign splitted_url_parts = page_url_without_index_html | split: '/' %}
+                                    {% capture forLoopMaxInt %}{{ splitted_url_parts.size | minus:1 }}{% endcapture %}
+
+                                    {% for i in (1..forLoopMaxInt) %}
+
+                                    {% capture current_breadcrumb_url %}{{next_prepender}}/{{ splitted_url_parts[i]
+                                    }}/index.html{% endcapture %}
+                                    {% capture current_breadcrumb_md_url %}{{next_prepender}}/{{ splitted_url_parts[i] }}/{%
+                                    endcapture %}
+                                    {% capture next_prepender %}{{next_prepender}}/{{ splitted_url_parts[i] }}{% endcapture %}
+
+                                    {% for breadcrumb_page in site.pages %}
+
+                                    {% if current_breadcrumb_url == breadcrumb_page.permalink or current_breadcrumb_md_url ==
+                                    breadcrumb_page.permalink %}
+                                    <li><a href="{{base}}{{breadcrumb_page.permalink}}index.html">
+                                        {{page.title | upcase}}
+                                    </a></li>
+                                    {% endif %}
+
+                                    {% endfor %}
+
+                                    {% endfor %}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sgds-section is-xsmall">
+                <div class="sgds-container is-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="has-text-weight-bold">{{page.title}}</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="sgds-section is-small">
+                {{content}}
+            </section>
+        </rightpanel>
+    </section>
+
+    {% include admin-template/script.html %}
+
+</body>
+</html>

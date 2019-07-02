@@ -1,0 +1,8 @@
+html{
+    height: 100vh;
+    overflow: hidden;
+}
+rightpanel{
+    height: calc(100vh - 84px - 30px);
+    overflow-x: hidden;
+}
