@@ -8,7 +8,7 @@ export function initSecondLevelNavInteraction() {
         let nextEl = navHeader.nextElementSibling;
         if (nextEl && nextEl.classList.contains("second-level-nav-div")) {
             navHeader.addEventListener("click", event => {
-                let navIcon = navHeader.querySelector("i.sgds-icon");
+                let navIcon = navHeader.querySelector("i");
                 if (nextEl.classList.contains("is-hidden")) {
                     nextEl.classList.remove("is-hidden");
                     if (navIcon) {
