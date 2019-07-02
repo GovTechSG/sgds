@@ -2,7 +2,7 @@
     <div class="col is-10 is-offset-1">
         <div class="row has-text-centered">
             <div class="col">
-                <h4 class="margin--top margin--bottom">These standard components are <b class="has-text-danger">MANDATORY</b> for all 'gov.sg' websites to adopt for every page.</h4>
+                <h4 class="margin--top margin--bottom"><b class="has-text-danger">Mandatory</b> components for all gov.sg websites.</h4>
             </div>
         </div>
         {% assign docsNav = site.data.navigation | where:"title","Docs" %}
@@ -13,16 +13,7 @@
                     <a href="{{ component.url }}">
                         <div class="sgds-card sgds-card-button">
                             <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon
-                                {% case component.title %}
-                                {% when 'Iconography' %}
-                                    sgds-icon-icons
-                                {% when 'Form' %}
-                                    sgds-icon-checklist
-                                {% else %}
-                                    sgds-icon-{{component.title | downcase | replace: ' ', ''}}
-                                {% endcase %}
-                                is-size-3"></span>
+                                <span class="sgds-icon {{ component.icon }} is-size-3"></span>
                                 <p class="has-text-weight-semibold">{{component.title}}</p>
                             </div>
                         </div>
@@ -34,26 +25,18 @@
         <hr class="margin--bottom--lg margin--top--lg">
         <div class="row has-text-centered">
             <div class="col">
-                <h4 class="margin--top margin--bottom">Design and layout the structure of your projects.</h4>
+                <h4 class="margin--top margin--bottom">Site layout and structure</h4>
             </div>
         </div>
         <div class="row is-multiline is-mobile">
-            {% assign generalComponents = docsNav[0].lvl2 | where:"title","Layouts" %}
+            {% assign generalComponents = docsNav[0].lvl2 | where:"title","Layouts"%}
+
             {% for component in generalComponents[0].lvl3 %}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
                 <a href="{{ component.url }}">
                     <div class="sgds-card sgds-card-button">
                         <div class="sgds-card-content has-text-centered">
-                            <span class="sgds-icon
-                            {% case component.title %}
-                                {% when 'Iconography' %}
-                                    sgds-icon-icons
-                                {% when 'Form' %}
-                                sgds-icon-checklist
-                                {% else %}
-                                    sgds-icon-{{component.title | downcase | replace: ' ', ''}}
-                            {% endcase %}
-                            is-size-3"></span>
+                            <span class="sgds-icon {{ component.icon }} is-size-3"></span>
                             <p class="has-text-weight-semibold">{{component.title}}</p>
                         </div>
                     </div>
@@ -66,26 +49,18 @@
         <hr class="margin--bottom--lg margin--top--lg">
         <div class="row has-text-centered">
             <div class="col">
-                <h4 class="margin--top margin--bottom">These general components provide you with plug-and-play codes to use for your projects.</h4>
+                <h4 class="margin--top margin--bottom">Plug-and-play components</h4>
             </div>
         </div>
         <div class="row is-multiline is-mobile">
             {% assign generalComponents = docsNav[0].lvl2 | where:"title","General Components" %}
-            {% for component in generalComponents[0].lvl3 %}
+            {% assign generalComponentsLvl3 = generalComponents[0].lvl3 | sort:"title"%}
+            {% for component in generalComponentsLvl3 %}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
                 <a href="{{ component.url }}">
                     <div class="sgds-card sgds-card-button">
                         <div class="sgds-card-content has-text-centered">
-                            <span class="sgds-icon
-                            {% case component.title %}
-                                {% when 'Iconography' %}
-                                    sgds-icon-icons
-                                {% when 'Form' %}
-                                sgds-icon-checklist
-                                {% else %}
-                                    sgds-icon-{{component.title | downcase | replace: ' ', ''}}
-                            {% endcase %}
-                            is-size-3"></span>
+                            <span class="sgds-icon {{ component.icon }} is-size-3"></span>
                             <p class="has-text-weight-semibold">{{component.title}}</p>
                         </div>
                     </div>
