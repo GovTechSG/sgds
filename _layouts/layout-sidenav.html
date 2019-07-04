@@ -145,15 +145,16 @@ layout: layout-default
                 <div class="sidenav" data-topspacing="140" data-bottomspacing="40">
                     <aside class="sgds-menu sidebar__inner">
                         <div class="control">
-                            <input id="search-component" class="input" type="text" placeholder="Search Component">
+                            <input id="search-field" class="input is-rounded" type="text" placeholder="Search Component">
                         </div>
+                        <hr class="margin--top margin--bottom--sm">
                         <ul class="sgds-menu-list">
                             {%- assign links = site.data.navigation -%}
                             {%- for lvl1item in links -%}
                                 {%- if page.url contains lvl1item.url -%}
                                     {%- for lvl2item in lvl1item.lvl2 -%}
                                         <li class="second-level-nav">
-                                            <a class="second-level-nav-header has-text-weight-bold">
+                                            <a class=" second-level-nav-header has-text-weight-bold">
                                                 {{ lvl2item.title}}
                                                 {%- if lvl2item.lvl3 -%}
                                                     <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
@@ -161,14 +162,15 @@ layout: layout-default
                                             </a>
                                         </li>
                                         {%- if lvl2item.lvl3 -%}
-                                            <div class="second-level-nav-div">
+                                            <div class="second-level-nav-div"  id="component-list{{forloop.index}}">
+                                                <div class="list">
                                                 {%- for lvl3item in lvl2item.lvl3 -%}
                                                     {%- assign class = nil -%}
                                                     {%- if page.url contains lvl3item.url -%}
                                                         {%- assign class = 'is-active' -%}
                                                     {%- endif -%}
                                                     <li>
-                                                        <a class="second-level-nav-item padding--top--none {{class}} is-j-content-start is-j-content-flex-start"
+                                                        <a class="component-name second-level-nav-item padding--top--none {{class}} is-j-content-start is-j-content-flex-start"
                                                         href="{{ site.baseurl }}{{ lvl3item.url }}">
                                                             {{ lvl3item.title }}
                                                             {%- if lvl3item.label == 'js' -%}
@@ -177,6 +179,7 @@ layout: layout-default
                                                         </a>
                                                     </li>
                                                 {%- endfor -%}
+                                                    </div>
                                                 </div>
                                         {%- endif -%}
                                     {%- endfor -%}
