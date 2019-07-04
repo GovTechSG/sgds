@@ -8,7 +8,7 @@ function addAccordionClickListener(el) {
     let anchor = $(el);
     anchor.on("click", function() {
         if ($(this).hasClass("active")) {
-            $(this).removeClass("active");
+            $(this).removeClass("active").attr('aria-expanded', false);
             $(this)
                 .siblings(".sgds-accordion-body")
                 .slideUp(300);
@@ -30,7 +30,7 @@ function addAccordionClickListener(el) {
                 otherAnchorsInSet.siblings(".sgds-accordion-body").slideUp(300);
             }
 
-            $(this).addClass("active");
+            $(this).addClass("active").attr('aria-expanded', true);
             $(this)
                 .children("i")
                 .removeClass("sgds-icon-chevron-down")

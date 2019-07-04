@@ -1,7 +1,7 @@
 {% if page.url contains '/demo/' %}
 <div class="masthead-container" id="navbar">
     {% include sgds-masthead.html %}
-<nav class="navbar">
+<nav class="navbar" role="navigation">
     <div class="sgds-container">
         <div class="navbar-brand">
             <a class="navbar-item">
@@ -41,7 +41,7 @@
 {% else %}
 <div class="masthead-container is-fixed has-background-white" id="navbar" style="z-index:50;">
     {% include sgds-masthead.html %}
-    <nav class="navbar">
+    <nav class="navbar" role="navigation">
         <div class="sgds-container">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
