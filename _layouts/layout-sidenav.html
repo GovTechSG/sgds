@@ -144,6 +144,9 @@ layout: layout-default
             <div class="col is-3 is-hidden-touch sidenav-container">
                 <div class="sidenav" data-topspacing="140" data-bottomspacing="40">
                     <aside class="sgds-menu sidebar__inner">
+                        <div class="control">
+                            <input id="search-component" class="input" type="text" placeholder="Search Component">
+                        </div>
                         <ul class="sgds-menu-list">
                             {%- assign links = site.data.navigation -%}
                             {%- for lvl1item in links -%}
