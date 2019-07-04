@@ -158,15 +158,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Sticky sidebar - fixed
-    if ($(".sidenav").length) {
-        const sidenav = $(".sidenav");
-        new StickySidebar(".sidenav", {
-            containerSelector: ".has-side-nav",
-            innerWrapperSelector: ".sidebar__inner",
-            topSpacing: sidenav.data("topspacing"),
-            bottomSpacing: sidenav.data("bottomspacing")
-        });
+    // Needs hierarchy: .sidenav > .sgds-menu > .sgds-menu-list
+    let sideNavContainer = document.querySelector(".sidenav-container");
+    if (sideNavContainer) {
+        let sideNavMain = sideNavContainer.querySelector(".sidenav");
+        if (sideNavMain) {
+            let sideNavMenuList = sideNavMain.querySelector(
+                ".sidebar__inner.sgds-menu"
+            );
+            if (sideNavMenuList) {
+                new StickySidebar(".sidenav", {
+                    containerSelector: ".sidenav-container",
+                    innerWrapperSelector: ".sidebar__inner",
+                    topSpacing: Number.parseInt(sideNavMain.dataset.topspacing),
+                    bottomSpacing: Number.parseInt(
+                        sideNavMain.dataset.bottomspacing
+                    )
+                });
+            }
+        }
+    }
+
+    if (document.querySelector("li.second-level-nav")) {
         initSecondLevelNavInteraction();
     }
 
