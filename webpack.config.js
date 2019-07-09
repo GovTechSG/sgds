@@ -5,9 +5,7 @@ const { VueLoaderPlugin } = require("vue-loader");
 let config = {
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
     entry: {
-        "js/sgds": "./sgds/index.js",
-        "assets/learn-development/learn-vue": "./apps/learn-vue/index.js",
-        "assets/learn-development/learn-react": "./apps/learn-react/index.js"
+        "js/sgds": "./sgds/index.js"
     },
     output: {
         filename: "[name].js",
