@@ -1,55 +1,51 @@
 {
-  "name": "sgds-govtech",
-  "version": "1.1.1",
-  "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
-  "license": "MIT",
-  "author": "Tey Liang Tai",
-  "files": [
-    "css",
-    "fonts",
-    "js"
-  ],
-  "main": "sgds-govtech/dist/sgds.js",
-  "scripts": {
-    "build": "npm run packagedownloads && npm run buildsgds && bundle exec jekyll build",
-    "buildsgds": "NODE_ENV=production webpack --mode=production",
-    "devserver": "webpack --watch & bundle exec jekyll serve",
-    "packagedownloads": "./scripts/packagedownloads.sh",
-    "prepublishOnly": "npm run buildsgds",
-    "start": "bundle exec jekyll serve",
-    "test": "snyk test"
-  },
-  "dependencies": {
-    "sticky-sidebar": "^3.3.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.6",
-    "clipboard": "^2.0.4",
-    "css-loader": "^2.1.1",
-    "file-loader": "^4.0.0",
-    "grunt": "^1.0.3",
-    "grunt-changed": "^2.0.1",
-    "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-compress": "^1.4.3",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-cssmin": "^3.0.0",
-    "grunt-zip": "^0.18.1",
-    "load-grunt-tasks": "^4.0.0",
-    "mini-css-extract-plugin": "^0.7.0",
-    "node-sass": "^4.12.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "sass-loader": "^7.1.0",
-    "snyk": "^1.126.0",
-    "vue": "^2.6.10",
-    "vue-loader": "^15.7.0",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.35.0",
-    "webpack-cli": "^3.3.5"
-  }
+    "name": "sgds-govtech",
+    "version": "1.1.1",
+    "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
+    "license": "MIT",
+    "author": "Tey Liang Tai",
+    "files": [
+        "css",
+        "fonts",
+        "js"
+    ],
+    "main": "sgds-govtech/dist/sgds.js",
+    "scripts": {
+        "build": "npm run packagedownloads && npm run buildsgds && bundle exec jekyll build",
+        "buildsgds": "NODE_ENV=production webpack --mode=production",
+        "devserver": "webpack --watch & bundle exec jekyll serve",
+        "packagedownloads": "./scripts/packagedownloads.sh",
+        "prepublishOnly": "npm run buildsgds",
+        "start": "bundle exec jekyll serve",
+        "test": "snyk test"
+    },
+    "dependencies": {
+        "sticky-sidebar": "^3.3.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.4.5",
+        "@babel/plugin-proposal-class-properties": "^7.4.4",
+        "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+        "@babel/preset-env": "^7.4.5",
+        "@babel/preset-react": "^7.0.0",
+        "axios": "^0.19.0",
+        "babel-loader": "^8.0.6",
+        "cheerio": "^1.0.0-rc.3",
+        "clipboard": "^2.0.4",
+        "css-loader": "^2.1.1",
+        "file-loader": "^4.0.0",
+        "jquery": "^3.4.1",
+        "mini-css-extract-plugin": "^0.7.0",
+        "node-sass": "^4.12.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.1",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "sass-loader": "^7.1.0",
+        "snyk": "^1.185.5",
+        "vue": "^2.6.10",
+        "vue-loader": "^15.7.0",
+        "vue-template-compiler": "^2.6.10",
+        "webpack": "^4.33.0",
+        "webpack-cli": "^3.3.3"
+    }
 }

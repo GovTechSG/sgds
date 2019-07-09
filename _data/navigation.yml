@@ -59,7 +59,7 @@
        - title: Side Nav
          icon: sgds-icon-sidenav
          url: /docs/side-nav/
-   - title: General Components
+   - title: Layouts
      url: /docs/
      lvl3:
        - title: Section
@@ -71,18 +71,23 @@
        - title: Grid
          icon: sgds-icon-grid
          url: /docs/grid/
+   - title: General Components
+     url: /docs/
+     lvl3:
        - title: Table
          icon: sgds-icon-table
          url: /docs/table/
        - title: Tab
          icon: sgds-icon-tab
          url: /docs/tab/
+         label: js
        - title: Breadcrumb
          icon: sgds-icon-breadcrumb
          url: /docs/breadcrumb/
        - title: Hero
          icon: sgds-icon-hero
          url: /docs/hero/
+         label: js
          status: New
        - title: Callout
          icon: sgds-icon-callout
@@ -90,6 +95,7 @@
        - title: Accordion
          icon: sgds-icon-accordion
          url: /docs/accordion/
+         label: js
        - title: Button
          icon: sgds-icon-button
          url: /docs/button/
@@ -99,6 +105,7 @@
        - title: Dropdown
          icon: sgds-icon-dropdown
          url: /docs/dropdown/
+         label: js
        - title: Iconography
          icon: sgds-icon-icons
          url: /docs/iconography/
@@ -108,11 +115,10 @@
        - title: Form
          icon: sgds-icon-checklist
          url: /docs/form/
-         status: New
        - title: Notification
-         icon: sgds-icon-typography
+         icon: sgds-icon-notification
          url: /docs/notification/
-         status: New
+         label: js
 
 - title: FAQs
   url: /general/faq/

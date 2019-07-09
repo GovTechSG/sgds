@@ -9,13 +9,13 @@ breadcrumb: General
 
 <div class="row">
     <div class="col">
-        <h6 class="has-text-primary has-text-weight-semibold">Accordion is a graphical control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "stretched" to reveal the content associated with that item</h6>
+        <h4 class="has-text-primary has-text-weight-semibold">Accordion is a graphical control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "stretched" to reveal the content associated with that item</h4>
     </div>
 </div>
 
 <div class="sgds-accordion">
     <div class="sgds-accordion-set">
-        <a class="sgds-accordion-header">
+        <a class="sgds-accordion-header" role="button" aria-expanded="false">
             accordion bar 1 <i class="sgds-icon sgds-icon-chevron-down"></i>
         </a>
         <div class="sgds-accordion-body">
@@ -23,7 +23,7 @@ breadcrumb: General
         </div>
     </div>
     <div class="sgds-accordion-set">
-        <a class="sgds-accordion-header active">
+        <a class="sgds-accordion-header active" role="button" aria-expanded="true">
             accordion bar 2 <i class="sgds-icon sgds-icon-chevron-up"></i>
         </a>
         <div class="sgds-accordion-body is-open">
@@ -31,8 +31,8 @@ breadcrumb: General
         </div>
     </div>
     <div class="sgds-accordion-set">
-        <a class="sgds-accordion-header">
-           accordion bar 3 <i class="sgds-icon sgds-icon-chevron-down"></i>
+        <a class="sgds-accordion-header" role="button" aria-expanded="false">
+            accordion bar 3 <i class="sgds-icon sgds-icon-chevron-down"></i>
         </a>
         <div class="sgds-accordion-body">
             <p>your content 3</p>
@@ -49,7 +49,7 @@ breadcrumb: General
 {%- highlight html -%}
 <div class="sgds-accordion">
     <div class="sgds-accordion-set">
-        <a class="sgds-accordion-header">
+        <a class="sgds-accordion-header" role="button" aria-expanded="false">
             accordion bar 1 <i class="sgds-icon sgds-icon-chevron-down"></i>
         </a>
         <div class="sgds-accordion-body">
@@ -57,7 +57,7 @@ breadcrumb: General
         </div>
     </div>
     <div class="sgds-accordion-set">
-        <a class="sgds-accordion-header active">
+        <a class="sgds-accordion-header active" role="button" aria-expanded="true">
             accordion bar 2 <i class="sgds-icon sgds-icon-chevron-up"></i>
         </a>
         <div class="sgds-accordion-body is-open">
@@ -65,7 +65,7 @@ breadcrumb: General
         </div>
     </div>
     <div class="sgds-accordion-set">
-        <a class="sgds-accordion-header">
+        <a class="sgds-accordion-header" role="button" aria-expanded="false">
             accordion bar 3 <i class="sgds-icon sgds-icon-chevron-down"></i>
         </a>
         <div class="sgds-accordion-body">

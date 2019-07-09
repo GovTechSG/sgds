@@ -13,17 +13,17 @@ $navbar-item-hover-background-color: $white-bis !default
 $navbar-item-active-color: $primary !default
 $navbar-item-active-background-color: transparent !default
 $navbar-item-img-max-height: 2.5rem !default
-$navbar-item-active-border-bottom: 3px !default
+$navbar-item-active-border-bottom: 5px !default
 
 $navbar-burger-color: $navbar-item-color !default
 
 $navbar-tab-hover-background-color: transparent !default
-$navbar-tab-hover-border-bottom-color: $link !default
-$navbar-tab-active-color: $link !default
+$navbar-tab-hover-border-bottom-color: $primary !default
+$navbar-tab-active-color: $primary !default
 $navbar-tab-active-background-color: transparent !default
-$navbar-tab-active-border-bottom-color: $link !default
+$navbar-tab-active-border-bottom-color: $primary !default
 $navbar-tab-active-border-bottom-style: solid !default
-$navbar-tab-active-border-bottom-width: 3px !default
+$navbar-tab-active-border-bottom-width: 5px !default
 
 $navbar-dropdown-background-color: $white !default
 $navbar-dropdown-border-top: 2px solid $border !default
@@ -112,22 +112,15 @@ $navbar-breakpoint: $desktop !default
     width: 100%
   &.has-shadow
     box-shadow: $navbar-box-shadow-size $navbar-box-shadow-color
-  &.is-fixed-bottom,
+
   &.is-fixed-top
     +navbar-fixed
-  &.is-fixed-bottom
-    bottom: 0
-    &.has-shadow
-      box-shadow: $navbar-bottom-box-shadow-size $navbar-box-shadow-color
-  &.is-fixed-top
     top: 0
 
 html,
 body
   &.has-navbar-fixed-top
     padding-top: calc(#{$navbar-height} + #{$masthead-height})
-  &.has-navbar-fixed-bottom
-    padding-bottom: $navbar-height
 
 .navbar-brand,
 .navbar-tabs
@@ -197,15 +190,19 @@ a.navbar-item,
     min-height: $navbar-height
     padding-bottom: calc(0.5rem - 1px)
     &:hover
-      background-color: $navbar-tab-hover-background-color
-      border-bottom-color: $navbar-tab-hover-border-bottom-color
-    &.is-active
-      background-color: $navbar-tab-active-background-color
+      background-color: transparent
       border-bottom-color: $navbar-tab-active-border-bottom-color
       border-bottom-style: $navbar-tab-active-border-bottom-style
       border-bottom-width: $navbar-tab-active-border-bottom-width
-      color: $navbar-tab-active-color
       padding-bottom: calc(0.5rem - #{$navbar-tab-active-border-bottom-width})
+    &.is-active
+      background-color: transparent
+      border-bottom-color: $navbar-tab-active-border-bottom-color
+      border-bottom-style: $navbar-tab-active-border-bottom-style
+      border-bottom-width: $navbar-tab-active-border-bottom-width
+      color: $primary
+      padding-bottom: calc(0.5rem - 1px)
+
 
 .navbar-content
   flex-grow: 1
@@ -296,28 +293,6 @@ a.navbar-item,
       a.navbar-item,
       .navbar-link
         border-radius: $radius
-    &.is-transparent
-      a.navbar-item,
-      .navbar-link
-        &:hover,
-        &.is-active
-          background-color: transparent !important
-        &.is-active
-          border-bottom: 5px solid $primary
-      .navbar-item.has-dropdown
-        &.is-active,
-        &.is-hoverable:hover
-          .navbar-link
-            background-color: transparent !important
-      .navbar-dropdown
-        a.navbar-item
-          &:hover
-            background-color: $navbar-dropdown-item-hover-background-color
-            color: $navbar-dropdown-item-hover-color
-          &.is-active
-            background-color: $navbar-dropdown-item-active-background-color
-            color: $navbar-dropdown-item-active-color
-            border: 0
   .navbar-burger
     display: none
   .navbar-item,
@@ -344,6 +319,8 @@ a.navbar-item,
         box-shadow: 0 -8px 8px rgba($black, 0.1)
         top: auto
     &.is-active,
+    &.is-hoverable:focus,
+    &.is-hoverable:focus-within,
     &.is-hoverable:hover
       .navbar-dropdown
         display: block
@@ -382,9 +359,11 @@ a.navbar-item,
       &:hover
         background-color: $navbar-dropdown-item-hover-background-color
         color: $navbar-dropdown-item-hover-color
+        border: 0
       &.is-active
         background-color: $navbar-dropdown-item-active-background-color
         color: $navbar-dropdown-item-active-color
+        border: 0
     .navbar.is-spaced &,
     &.is-boxed
       border-radius: $navbar-dropdown-boxed-radius
@@ -423,19 +402,16 @@ a.navbar-item,
   body
     &.has-navbar-fixed-top-desktop
       padding-top: calc(#{$navbar-height} + #{$masthead-height})
-    &.has-navbar-fixed-bottom-desktop
-      padding-bottom: $navbar-height
     &.has-spaced-navbar-fixed-top
       padding-top: calc(#{$navbar-height} + (#{$navbar-padding-vertical} * 2))
-    &.has-spaced-navbar-fixed-bottom
-      padding-bottom: calc(#{$navbar-height} + (#{$navbar-padding-vertical} * 2))
+
   // Hover/Active states
   a.navbar-item,
   .navbar-link
     &.is-active
       color: $navbar-item-active-color
-      border-bottom: $navbar-item-active-border-bottom solid $primary
-      margin-top: $navbar-item-active-border-bottom
+      border-bottom: $navbar-tab-active-border-bottom-width solid $primary
+      margin-top: $navbar-tab-active-border-bottom-width
       font-weight: $weight-semibold
     &.is-active:not(:hover)
       background-color: $navbar-item-active-background-color

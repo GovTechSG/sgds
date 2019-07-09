@@ -10,10 +10,9 @@ layout: layout-default
 <section class="sgds-section is-small has-background-gradient">
     <div class="sgds-container">
         {% include sgds-breadcrumb.html %}
-        <h3 class="has-text-white has-text-weight-semibold">{{page.title}}</h3>
+        <h1 class="has-text-white has-text-weight-semibold">{{page.title}}</h1>
     </div>
 </section>
-
 {% if page.url contains "/docs/" %}
 <section class="sgds-section is-paddingless is-hidden-desktop">
     <div class="sgds-dropdown is-fullwidth">
@@ -28,20 +27,16 @@ layout: layout-default
         <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
             <div class="sgds-dropdown-content padding">
                 <div class="row is-multiline is-mobile">
-                    {%- assign links = site.data.navigation -%}
-                    {%- for link in links -%}
-                        {%- if link.title == 'Docs' -%}
-                            {%- for title in link.lvl2 -%}
-                                {%- for title2 in title.lvl3 -%}
-                                <div class="col is-4-mobile has-text-centered">
-                                    <a href="{{title2.url}}" class="sgds-dropdown-item">
-                                        <span class="sgds-icon {{title2.icon}} is-size-4"></span><br>{{title2.title}}
-                                    </a>
-                                </div>
-                                {%- endfor -%}
-                            {%- endfor -%}
-                        {%- endif -%}
-                    {%- endfor -%}
+                    {% assign docsNav = site.data.navigation | where: "title", "Docs" %}
+                    {% for category in docsNav[0].lvl2 %}
+                        {% for component in category.lvl3 %}
+                        <div class="col is-4-mobile has-text-centered">
+                            <a href="{{component.url}}" class="sgds-dropdown-item">
+                                <span class="sgds-icon {{component.icon}} is-size-4"></span><br>{{component.title}}
+                            </a>
+                        </div>
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -62,22 +57,22 @@ layout: layout-default
         </div>
         <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
             <div class="sgds-dropdown-content padding">
-                    {%- assign links = site.data.navigation -%}
-                    {%- for link in links -%}
-                        {%- if link.title == 'Learn' -%}
-                            {%- for title in link.lvl2 -%}
-                                {% if page.url contains title.url %}
-                                    {%- for title2 in title.lvl3 -%}
-                                        {%- assign class = nil -%}
-                                        {%- if page.url contains title2.url -%}
-                                        {%- assign class = 'is-hidden' -%}
-                                        {%- endif -%}
-                                        <a href="{{title2.url}}" class="sgds-dropdown-item {{class}} is-size-6">{{title2.title}}</a>
-                                    {%- endfor -%}
-                                {% endif %}
-                            {%- endfor -%}
-                        {%- endif -%}
-                    {%- endfor -%}
+                {%- assign links = site.data.navigation -%}
+                {%- for link in links -%}
+                    {%- if link.title == 'Learn' -%}
+                        {%- for title in link.lvl2 -%}
+                            {% if page.url contains title.url %}
+                                {%- for title2 in title.lvl3 -%}
+                                    {%- assign class = nil -%}
+                                    {%- if page.url contains title2.url -%}
+                                    {%- assign class = 'is-hidden' -%}
+                                    {%- endif -%}
+                                    <a href="{{title2.url}}" class="sgds-dropdown-item {{class}} is-size-6">{{title2.title}}</a>
+                                {%- endfor -%}
+                            {% endif %}
+                        {%- endfor -%}
+                    {%- endif -%}
+                {%- endfor -%}
             </div>
         </div>
     </div>
@@ -146,36 +141,46 @@ layout: layout-default
 <section class="sgds-section is-small">
     <div class="sgds-container">
         <div class="row">
-            <div class="col is-3 is-hidden-touch has-side-nav ">
+            <div class="col is-3 is-hidden-touch sidenav-container">
                 <div class="sidenav" data-topspacing="140" data-bottomspacing="40">
                     <aside class="sgds-menu sidebar__inner">
+                        <div class="control">
+                            <input id="search-field" class="input is-rounded" type="text" placeholder="Search Component">
+                        </div>
+                        <hr class="margin--top margin--bottom--sm">
                         <ul class="sgds-menu-list">
                             {%- assign links = site.data.navigation -%}
                             {%- for lvl1item in links -%}
                                 {%- if page.url contains lvl1item.url -%}
                                     {%- for lvl2item in lvl1item.lvl2 -%}
                                         <li class="second-level-nav">
-                                            <a class="second-level-nav-header has-text-weight-bold">
-                                                {{ lvl2item.title }}
+                                            <a class=" second-level-nav-header has-text-weight-bold">
+                                                {{ lvl2item.title}}
                                                 {%- if lvl2item.lvl3 -%}
-                                                    <i class="sgds-icon is-pulled-right sgds-icon-chevron-up" aria-hidden="true"></i>
+                                                    <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
                                                 {%- endif -%}
                                             </a>
                                         </li>
                                         {%- if lvl2item.lvl3 -%}
-                                            <ul class="third-level-nav">
-                                                {%- assign lvl3items = lvl2item.lvl3 | sort: 'title' -%}
-                                                {%- for lvl3item in lvl3items -%}
+                                            <div class="second-level-nav-div"  id="component-list{{forloop.index}}">
+                                                <div class="list">
+                                                {%- for lvl3item in lvl2item.lvl3 -%}
                                                     {%- assign class = nil -%}
                                                     {%- if page.url contains lvl3item.url -%}
                                                         {%- assign class = 'is-active' -%}
                                                     {%- endif -%}
                                                     <li>
-                                                        <a class="second-level-nav-item padding--top--none {{class}}"
-                                                        href="{{ site.baseurl }}{{ lvl3item.url }}">{{ lvl3item.title }}</a>
+                                                        <a class="component-name second-level-nav-item padding--top--none {{class}} is-j-content-start is-j-content-flex-start"
+                                                        href="{{ site.baseurl }}{{ lvl3item.url }}">
+                                                            {{ lvl3item.title }}
+                                                            {%- if lvl3item.label == 'js' -%}
+                                                            <span class="sgds-tag is-rounded margin--left--sm">JS</span>
+                                                            {%- endif -%}
+                                                        </a>
                                                     </li>
                                                 {%- endfor -%}
-                                            </ul>
+                                                    </div>
+                                                </div>
                                         {%- endif -%}
                                     {%- endfor -%}
                                 {%- endif -%}
@@ -184,7 +189,7 @@ layout: layout-default
                     </aside>
                 </div>
             </div>
-            <div class="col is-9 is-12-touch">
+            <div class="col is-9 is-12-touch padding--left--lg">
                 {% if page.update-notification %}
                 <div class="row">
                     <div class="col">
@@ -202,7 +207,6 @@ layout: layout-default
                 {% endif %}
                 <div class="row">
                     <div class="col">
-
                         <div class="content margin--top--sm">
                             {{content}}
                         </div>

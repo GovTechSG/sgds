@@ -1,0 +1,42 @@
+html{
+    height: 100vh;
+    overflow: hidden;
+    background-color: #282a36;
+}
+
+.leftpanel {
+    display: block;
+    width: 250px;
+    height: 100vh;
+    min-width: 300px;
+    background-color: #44475a;
+    padding: 16px 20px;
+    float: left;
+    overflow-x: hidden;
+}
+
+.rightpanel {
+    display: block;
+    overflow-y: auto;
+    height: calc(100vh - 84px - 30px);
+    overflow-x: hidden;
+}
+
+.sgds-menu-label {
+    color: white;
+}
+.sgds-menu a{
+    color: white;
+    opacity: 0.85;
+}
+.sgds-menu-list a,
+.sgds-menu-list a.second-level-nav-header,
+.sgds-menu-list a.second-level-nav-header:hover
+{
+    border: 0!important;
+}
+
+.sgds-menu a:hover{
+    color: white;
+    opacity: 1;
+}

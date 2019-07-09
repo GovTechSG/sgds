@@ -1,14 +1,11 @@
 const path = require("path");
-const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 let config = {
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
     entry: {
-        "js/sgds": "./sgds/index.js",
-        "assets/learn-development/learn-vue": "./apps/learn-vue/index.js",
-        "assets/learn-development/learn-react": "./apps/learn-react/index.js"
+        "js/sgds": "./sgds/index.js"
     },
     output: {
         filename: "[name].js",
@@ -22,7 +19,11 @@ let config = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env"]
+                        presets: ["@babel/preset-env", "@babel/preset-react"],
+                        plugins: [
+                            "@babel/plugin-proposal-class-properties",
+                            "@babel/plugin-proposal-object-rest-spread"
+                        ]
                     }
                 }
             },
@@ -61,7 +62,7 @@ let config = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            moduleFilename: ({name}) => `${name.replace("js", "css")}.css`
+            moduleFilename: ({ name }) => `${name.replace("js", "css")}.css`
         }),
         new VueLoaderPlugin()
     ]

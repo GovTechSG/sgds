@@ -6,17 +6,21 @@ export function initSecondLevelNavInteraction() {
         // Check if next element is third-level-nav
         let navHeader = secondLevelNavHeaderArray[index];
         let nextEl = navHeader.nextElementSibling;
-        if (nextEl && nextEl.classList.contains("third-level-nav")) {
+        if (nextEl && nextEl.classList.contains("second-level-nav-div")) {
             navHeader.addEventListener("click", event => {
-                let navIcon = navHeader.querySelector("i.sgds-icon");
+                let navIcon = navHeader.querySelector("i");
                 if (nextEl.classList.contains("is-hidden")) {
                     nextEl.classList.remove("is-hidden");
-                    navIcon.classList.remove("sgds-icon-chevron-down");
-                    navIcon.classList.add("sgds-icon-chevron-up");
+                    if (navIcon) {
+                        navIcon.classList.remove("sgds-icon-chevron-down");
+                        navIcon.classList.add("sgds-icon-chevron-up");
+                    }
                 } else {
                     nextEl.classList.add("is-hidden");
-                    navIcon.classList.remove("sgds-icon-chevron-up");
-                    navIcon.classList.add("sgds-icon-chevron-down");
+                    if (navIcon) {
+                        navIcon.classList.remove("sgds-icon-chevron-up");
+                        navIcon.classList.add("sgds-icon-chevron-down");
+                    }
                 }
             });
         }

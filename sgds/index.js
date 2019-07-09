@@ -4,22 +4,11 @@ import sgds from "./js/sgds";
 import { initSecondLevelNavInteraction } from "./js/sgds-sidenav";
 import "./sass/sgds.scss";
 
-if (!sgds.isReady) {
-    let notifications = sgds.getElements("notification");
-    if (notifications && notifications.length > 0) {
-        for (let i = 0, len = notifications.length; i < len; i++) {
-            notification = notifications[i];
-            options = sgds.parseOptions(notification);
-            sgds.notification(notification, "hide", options);
-        }
-    }
-}
-
 function addAccordionClickListener(el) {
     let anchor = $(el);
     anchor.on("click", function() {
         if ($(this).hasClass("active")) {
-            $(this).removeClass("active");
+            $(this).removeClass("active").attr('aria-expanded', false);
             $(this)
                 .siblings(".sgds-accordion-body")
                 .slideUp(300);
@@ -41,7 +30,7 @@ function addAccordionClickListener(el) {
                 otherAnchorsInSet.siblings(".sgds-accordion-body").slideUp(300);
             }
 
-            $(this).addClass("active");
+            $(this).addClass("active").attr('aria-expanded', true);
             $(this)
                 .children("i")
                 .removeClass("sgds-icon-chevron-down")
@@ -169,15 +158,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Sticky sidebar - fixed
-    if ($(".sidenav").length) {
-        const sidenav = $(".sidenav");
-        new StickySidebar(".sidenav", {
-            containerSelector: ".has-side-nav",
-            innerWrapperSelector: ".sidebar__inner",
-            topSpacing: sidenav.data("topspacing"),
-            bottomSpacing: sidenav.data("bottomspacing")
-        });
+    // Needs hierarchy: .sidenav > .sgds-menu > .sgds-menu-list
+    let sideNavContainer = document.querySelector(".sidenav-container");
+    if (sideNavContainer) {
+        let sideNavMain = sideNavContainer.querySelector(".sidenav");
+        if (sideNavMain) {
+            let sideNavMenuList = sideNavMain.querySelector(
+                ".sidebar__inner.sgds-menu"
+            );
+            if (sideNavMenuList) {
+                new StickySidebar(".sidenav", {
+                    containerSelector: ".sidenav-container",
+                    innerWrapperSelector: ".sidebar__inner",
+                    topSpacing: Number.parseInt(sideNavMain.dataset.topspacing),
+                    bottomSpacing: Number.parseInt(
+                        sideNavMain.dataset.bottomspacing
+                    )
+                });
+            }
+        }
+    }
+
+    if (document.querySelector("li.second-level-nav")) {
         initSecondLevelNavInteraction();
     }
 
@@ -190,6 +192,16 @@ document.addEventListener("DOMContentLoaded", () => {
         $(".language_selector--dropdown li").click(function() {
             $(".language_selector--dropdown").toggle();
         });
+    }
+
+    // Notifications
+    let notifications = sgds.getElements("notification");
+    if (notifications && notifications.length > 0) {
+        for (let i = 0, len = notifications.length; i < len; i++) {
+            notification = notifications[i];
+            options = sgds.parseOptions(notification);
+            sgds.notification(notification, "hide", options);
+        }
     }
 });
 

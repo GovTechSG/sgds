@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include admin-template/head.html %}
+<body>
+    {% include admin-template/masthead.html %}
+    <section class="bp-section is-paddingless">
+        {% include admin-template/sidebar.html %}
+        {% include admin-template/base.html %}
+        <div class="rightpanel">
+            <section class="sgds-section is-xsmall has-background-black">
+                <div class="sgds-container is-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <div class="field has-addons has-addons-centered">
+                                <p class="control is-expanded">
+                                    <input class="input" type="text" placeholder="Quick Search">
+                                </p>
+                                <p class="control">
+                                    <span class="select">
+                                        <select>
+                                            <option>Projects</option>
+                                            <option>Agencies</option>
+                                            <option>Users</option>
+                                            <option>Clusters</option>
+                                        </select>
+                                    </span>
+                                </p>
+                                <p class="control">
+                                    <a class="sgds-button">
+                                        Search
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="sgds-section is-xsmall">
+                <div class="sgds-container is-fluid">
+                    <div class="row">
+                        <div class="col">
+                            {% include sgds-breadcrumb.html %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sgds-section is-xsmall">
+                <div class="sgds-container is-fluid">
+                    <div class="row">
+                        <div class="col has-text-white">
+                            <h3 class="has-text-weight-bold">{{page.title}}</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="sgds-section is-small">
+                {{content}}
+            </section>
+        </div>
+    </section>
+
+    {% include admin-template/script.html %}
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+version: 0.1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - gem install bundler -v 2.0.2
+        - bundle install
+        - npm install
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: _site
+    files:
+      - '**/*'
+  cache:
+    paths: []
