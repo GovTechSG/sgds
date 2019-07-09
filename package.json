@@ -9,7 +9,7 @@
         "fonts",
         "js"
     ],
-    "main": "sgds-govtech/dist/sgds.js",
+    "main": "js/sgds.js",
     "scripts": {
         "build": "npm run packagedownloads && npm run buildsgds && bundle exec jekyll build",
         "buildsgds": "NODE_ENV=production webpack --mode=production",
