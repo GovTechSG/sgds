@@ -42,7 +42,7 @@ function addAccordionClickListener(el) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+$(document).ready(() => {
     // Search bar toggle
     const masthead_container = $(".masthead-container");
     const searchIcon = $("#search-activate span");
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Needs hierarchy: .sidenav > .sgds-menu > .sgds-menu-list
+    // Needs hierarchy: .sidenav-container > .sidenav > .sidebar__inner.sgds-menu
     let sideNavContainer = document.querySelector(".sidenav-container");
     if (sideNavContainer) {
         let sideNavMain = sideNavContainer.querySelector(".sidenav");
