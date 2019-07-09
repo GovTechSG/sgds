@@ -2,9 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/sgds-govtech.svg)](https://www.npmjs.com/package/sgds-govtech)
 
-[SGDS](https://www.designsystem.gov.sg) is a frontend framework that aims to provide a beautiful common visual language and user experience for visitors of Singapore Government websites.
-
-SGDS provides designers and developers with customisable components to help them easily implement the Singapore Government's [Digital Service Standards](https://www.tech.gov.sg/digital-service-standards/), 
+[SGDS](https://www.designsystem.gov.sg) is a frontend framework that aims to provide a beautiful common visual language and user experience for visitors of Singapore Government websites. It provides designers and developers with customisable components to help them easily implement the Singapore Government's [Digital Service Standards](https://www.tech.gov.sg/digital-service-standards/).
 
 ## Installation
 
