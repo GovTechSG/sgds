@@ -8,7 +8,7 @@ frontend:
         - npm install
     build:
       commands:
-        - npm run build
+        - npm run build:site
   artifacts:
     baseDirectory: _site
     files:
