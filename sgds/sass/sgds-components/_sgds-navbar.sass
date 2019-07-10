@@ -189,12 +189,17 @@ a.navbar-item,
     border-bottom: 1px solid transparent
     min-height: $navbar-height
     padding-bottom: calc(0.5rem - 1px)
+    +touch
+      min-height: 0
+
     &:hover
       background-color: transparent
       border-bottom-color: $navbar-tab-active-border-bottom-color
       border-bottom-style: $navbar-tab-active-border-bottom-style
       border-bottom-width: $navbar-tab-active-border-bottom-width
       padding-bottom: calc(0.5rem - #{$navbar-tab-active-border-bottom-width})
+      +touch
+        border-bottom-color: transparent
     &.is-active
       background-color: transparent
       border-bottom-color: $navbar-tab-active-border-bottom-color

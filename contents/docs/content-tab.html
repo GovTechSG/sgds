@@ -14,22 +14,26 @@ breadcrumb: General
 </div>
 
 <div class="sgds-tabs" data-sgds="tabs">
-    <ul class="no-margin">
+    <ul class="no-margin" role="tablist">
         <li class="is-active">
-            <a data-tab="#tab1">
+            <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
                 <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
                 Tab 1
             </a>
         </li>
         <li>
-            <a data-tab="#tab2"><i class="sgds-icon sgds-icon-boat padding--right--sm"></i>Tab 2</a>
+            <a data-tab="#tab2" role="tab" aria-selected="false" aria-controls="tab2">
+                <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>Tab 2
+            </a>
         </li>
         <li>
-            <a data-tab="#tab3"><i class="sgds-icon sgds-icon-map padding--right--sm"></i>Tab 3</a>
+            <a data-tab="#tab3" role="tab" aria-selected="false" aria-controls="tab3">
+                <i class="sgds-icon sgds-icon-map padding--right--sm"></i>Tab 3
+            </a>
         </li>
     </ul>
 </div>
-<div class="row" id="tab1">
+<div class="row" id="tab1" role="tabpanel" aria-labelledby="tab1">
     <div class="col">
         <div class="row">
             <div class="col"><h5>Tab 1 Content</h5></div>
@@ -38,13 +42,13 @@ breadcrumb: General
         </div>
     </div>
 </div>
-<div class="row" id="tab2">
+<div class="row" id="tab2" role="tabpanel" aria-labelledby="tab2">
     <div class="col">
         <h5>Tab 2 Content</h5>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti deserunt enim illo impedit libero, temporibus veritatis. Deserunt, fugit quasi! Voluptates!</p>
     </div>
 </div>
-<div class="row" id="tab3">
+<div class="row" id="tab3" role="tabpanel" aria-labelledby="tab3">
     <div class="col">
         <h5>Tab 3 Content</h5>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid aspernatur beatae, dolores ea eum illo quasi reprehenderit sequi vero?</p>
@@ -57,10 +61,23 @@ breadcrumb: General
 
 {%- highlight html -%}
 <div class="sgds-tabs" data-sgds="tabs">
-    <ul>
-        <li class="is-active"><a data-tab="#tabX">Tab 1</a></li>
-        <li><a data-tab="#tabY">Tab 2</a></li>
-        <li><a data-tab="#tabZ">Tab 3</a></li>
+    <ul class="no-margin" role="tablist">
+        <li class="is-active">
+            <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
+                <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
+                Tab 1
+            </a>
+        </li>
+        <li>
+            <a data-tab="#tab2" role="tab" aria-selected="false" aria-controls="tab2">
+                <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>Tab 2
+            </a>
+        </li>
+        <li>
+            <a data-tab="#tab3" role="tab" aria-selected="false" aria-controls="tab3">
+                <i class="sgds-icon sgds-icon-map padding--right--sm"></i>Tab 3
+            </a>
+        </li>
     </ul>
 </div>
 {%- endhighlight -%}
