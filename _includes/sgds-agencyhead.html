@@ -67,13 +67,14 @@
                     </a>
 
                 {%- endfor -%}
-                <a class="navbar-item" href="https://github.com/govtechsg/sgds">
-                    <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" style="height: 24px">
-                </a>
+
             </div>
             <div class="navbar-end is-hidden-touch">
                 <div class="navbar-item">
-                    <a class="sgds-button is-primary is-rounded"
+                    <a class="navbar-item margin--right" href="https://github.com/govtechsg/sgds">
+                        <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" style="height: 24px">
+                    </a>
+                    <a class="sgds-button is-primary is-rounded is-small"
                        href="/learn/development/install-design-system/">
                         Download v{{site.sgds-version}}
                     </a>
@@ -84,6 +85,7 @@
                         <span class="sgds-icon sgds-icon-search"></span>
                     </button>
                     {% else %}
+
                     <button class="sgds-button is-white is-large" id="search-activate" disabled></button>
                     {% endif %}
                 </div>
