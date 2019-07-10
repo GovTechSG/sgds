@@ -51,6 +51,8 @@ includes:
   # - contents/docs
 
 exclude:
+  - .idea
+  - .vscode
   - node_modules
   - scripts
   - src

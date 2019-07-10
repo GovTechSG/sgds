@@ -35,8 +35,15 @@ let config = {
                             publicPath: "/"
                         }
                     },
-                    "css-loader", // translates CSS into CommonJS
-                    "sass-loader" // compiles Sass to CSS, using Node Sass by default
+                    {
+                        loader: "css-loader",
+                        options: {
+                            url: false
+                        }
+                    },
+                    {
+                        loader: 'sass-loader'
+                    }
                 ]
             },
             {
