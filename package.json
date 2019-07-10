@@ -16,7 +16,7 @@
     "main": "js/sgds.js",
     "scripts": {
         "build:lib": "NODE_ENV=production webpack --mode=production",
-        "build:site": "npm run packagedownloads && npm run buildsgds && bundle exec jekyll build",
+        "build:site": "npm run packagedownloads && npm run build:lib && bundle exec jekyll build",
         "devserver": "webpack --watch & bundle exec jekyll serve",
         "packagedownloads": "./scripts/packagedownloads.sh",
         "prepublishOnly": "npm run build:lib",
