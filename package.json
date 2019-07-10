@@ -2,6 +2,10 @@
     "name": "sgds-govtech",
     "version": "1.2.0",
     "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/govtechsg/sgds.git"
+    },
     "license": "MIT",
     "author": "Tey Liang Tai",
     "files": [
