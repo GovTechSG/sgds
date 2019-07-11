@@ -11,7 +11,9 @@ function addAccordionClickListener(el) {
     let anchor = $(el);
     anchor.on("click", function() {
         if ($(this).hasClass("active")) {
-            $(this).removeClass("active").attr('aria-expanded', false);
+            $(this)
+                .removeClass("active")
+                .attr("aria-expanded", false);
             $(this)
                 .siblings(".sgds-accordion-body")
                 .slideUp(300);
@@ -33,7 +35,9 @@ function addAccordionClickListener(el) {
                 otherAnchorsInSet.siblings(".sgds-accordion-body").slideUp(300);
             }
 
-            $(this).addClass("active").attr('aria-expanded', true);
+            $(this)
+                .addClass("active")
+                .attr("aria-expanded", true);
             $(this)
                 .children("i")
                 .removeClass("sgds-icon-chevron-down")
@@ -54,19 +58,68 @@ $(document).ready(() => {
     const searchToggle = $("#search-activate");
     searchToggle.on("click", function(e) {
         e.preventDefault();
-        searchIcon
-            .toggleClass("sgds-icon-search")
-            .toggleClass("sgds-icon-cross");
+        searchIcon.toggleClass("sgds-icon-search").toggleClass("sgds-icon-cross");
         searchBar.toggleClass("hide");
         searchBar_input.focus().val("");
         masthead_container.toggleClass("is-opened");
     });
 
     // Accordion
-    if ($(".sgds-accordion-set > a").length) {
-        let anchors = $(".sgds-accordion-set > a").get();
-        anchors.forEach(anchor => {
-            addAccordionClickListener(anchor);
+    // if ($(".sgds-accordion-set > a").length) {
+    //     let anchors = $(".sgds-accordion-set > a").get();
+    //     anchors.forEach(anchor => {
+    //         addAccordionClickListener(anchor);
+    //     });
+    // }
+    if ($(".sgds-accordion").length) {
+        let accordionHeaders = $(".sgds-accordion > .sgds-accordion-header");
+        for (let header of accordionHeaders) {
+            $(header).click(event => {
+                let clickedHeader = $(event.target);
+                if (clickedHeader.hasClass("active")) {
+                    clickedHeader.removeClass("active").attr("aria-expanded", false);
+                }
+            });
+        }
+        accordionHeaders.forEach(accordionHeader => {
+            accordionHeader.on("click", () => {
+                if (accordionHeader.hasClass("active")) {
+                    $(this)
+                        .removeClass("active")
+                        .attr("aria-expanded", false);
+                    $(this)
+                        .siblings(".sgds-accordion-body")
+                        .slideUp(300);
+                    $(this)
+                        .children("i")
+                        .removeClass("sgds-icon-chevron-up")
+                        .addClass("sgds-icon-chevron-down");
+                } else {
+                    let otherAnchorsInSet = $(this)
+                        .parent()
+                        .siblings(".sgds-accordion-set")
+                        .children("a");
+                    if (otherAnchorsInSet) {
+                        otherAnchorsInSet
+                            .children("i")
+                            .removeClass("sgds-icon-chevron-up")
+                            .addClass("sgds-icon-chevron-down");
+                        otherAnchorsInSet.removeClass("active");
+                        otherAnchorsInSet.siblings(".sgds-accordion-body").slideUp(300);
+                    }
+
+                    $(this)
+                        .addClass("active")
+                        .attr("aria-expanded", true);
+                    $(this)
+                        .children("i")
+                        .removeClass("sgds-icon-chevron-down")
+                        .addClass("sgds-icon-chevron-up");
+                    $(this)
+                        .siblings(".sgds-accordion-body")
+                        .slideDown(300);
+                }
+            });
         });
     }
 
@@ -85,30 +138,20 @@ $(document).ready(() => {
                 }
                 // Attach toggle listeners
                 tabAnchor.addEventListener("click", event => {
-                    if (
-                        tabAnchor.parentElement.classList.contains("is-active")
-                    ) {
+                    if (tabAnchor.parentElement.classList.contains("is-active")) {
                         return;
                     }
 
                     tabAnchor.parentElement.classList.add("is-active");
-                    let tabTargetToShow = document.querySelector(
-                        tabAnchor.dataset.tab
-                    );
+                    let tabTargetToShow = document.querySelector(tabAnchor.dataset.tab);
                     sgds.show(tabTargetToShow);
 
-                    let parentListItemSiblings = sgds.getSiblings(
-                        tabAnchor.parentElement
-                    );
+                    let parentListItemSiblings = sgds.getSiblings(tabAnchor.parentElement);
                     if (parentListItemSiblings.length > 0) {
                         parentListItemSiblings.forEach(listItem => {
                             listItem.classList.remove("is-active");
-                            let itemTabAnchor = listItem.querySelector(
-                                "a[data-tab]"
-                            );
-                            let itemTabTarget = document.querySelector(
-                                itemTabAnchor.dataset.tab
-                            );
+                            let itemTabAnchor = listItem.querySelector("a[data-tab]");
+                            let itemTabTarget = document.querySelector(itemTabAnchor.dataset.tab);
                             sgds.hide(itemTabTarget);
                         });
                     }
@@ -133,9 +176,7 @@ $(document).ready(() => {
     }
 
     // Dropdowns
-    const dropdowns = document.querySelectorAll(
-        ".sgds-dropdown:not(.is-hoverable)"
-    );
+    const dropdowns = document.querySelectorAll(".sgds-dropdown:not(.is-hoverable)");
     if (dropdowns.length > 0) {
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener("click", event => {
@@ -166,17 +207,13 @@ $(document).ready(() => {
     if (sideNavContainer) {
         let sideNavMain = sideNavContainer.querySelector(".sidenav");
         if (sideNavMain) {
-            let sideNavMenuList = sideNavMain.querySelector(
-                ".sidebar__inner.sgds-menu"
-            );
+            let sideNavMenuList = sideNavMain.querySelector(".sidebar__inner.sgds-menu");
             if (sideNavMenuList) {
                 new StickySidebar(".sidenav", {
                     containerSelector: ".sidenav-container",
                     innerWrapperSelector: ".sidebar__inner",
                     topSpacing: Number.parseInt(sideNavMain.dataset.topspacing),
-                    bottomSpacing: Number.parseInt(
-                        sideNavMain.dataset.bottomspacing
-                    )
+                    bottomSpacing: Number.parseInt(sideNavMain.dataset.bottomspacing)
                 });
             }
         }
