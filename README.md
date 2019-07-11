@@ -13,10 +13,6 @@
 ```html
 <head>
     ...
-<!-- Latest version -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sgds-govtech/css/sgds.css">
-
-<!-- Or specific version -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.1.0/css/sgds.css">
     ...
 </head>
