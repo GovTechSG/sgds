@@ -3,6 +3,9 @@ import { jQuery as $ } from "./js/lib";
 import sgds from "./js/sgds";
 import { initSecondLevelNavInteraction } from "./js/sgds-sidenav";
 import "./sass/sgds.scss";
+import "./fonts/sgds-icons.svg";
+import "./fonts/sgds-icons.ttf";
+import "./fonts/sgds-icons.woff";
 
 function addAccordionClickListener(el) {
     let anchor = $(el);
