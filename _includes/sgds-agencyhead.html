@@ -54,8 +54,12 @@
                 </div>
             </div>
             <div id="navbarMain" class="navbar-menu">
-                {%- assign links = site.data.navigation -%}
-                {%- for lvl1item in links -%}
+                <div class="navbar-start">
+                    <form action="{{ site.baseurl }}/search/" method="get" class="is-hidden-desktop">
+                        {% include sgds-search-box.html %}
+                    </form>
+                    {%- assign links = site.data.navigation -%}
+                    {%- for lvl1item in links -%}
 
                     {%- assign class = nil -%}
                     {%- if page.url contains lvl1item.url -%}
@@ -66,30 +70,46 @@
                         {{ lvl1item.title }}
                     </a>
 
-                {%- endfor -%}
+                    {%- endfor -%}
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons is-hidden-desktop">
+                            <a class="sgds-button is-text is-rounded is-small padding--none margin--right" href="https://github.com/govtechsg/sgds">
+                                <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub">
+                            </a>
+                            <a class="sgds-button is-primary is-rounded is-small"
+                               href="/learn/development/install-design-system/">
+                                Download v{{site.sgds-version}}
+                            </a>
+                        </div>
+
+                        <a class="navbar-item margin--right is-hidden-touch" href="https://github.com/govtechsg/sgds">
+                            <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" style="height: 24px">
+                        </a>
+                        <a class="sgds-button is-primary is-rounded is-small is-hidden-touch"
+                           href="/learn/development/install-design-system/">
+                            Download v{{site.sgds-version}}
+                        </a>
+
+
+
+                        {% if page.layout != 'search' %}
+                        <button class="sgds-button is-white is-large is-hidden-touch" id="search-activate">
+                            <span class="sgds-icon sgds-icon-search"></span>
+                        </button>
+                        {% else %}
+
+                        <button class="sgds-button is-white is-large is-hidden-touch" id="search-activate" disabled></button>
+                        {% endif %}
+
+                    </div>
+                </div>
+
 
             </div>
-            <div class="navbar-end is-hidden-touch">
-                <div class="navbar-item">
-                    <a class="navbar-item margin--right" href="https://github.com/govtechsg/sgds">
-                        <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" style="height: 24px">
-                    </a>
-                    <a class="sgds-button is-primary is-rounded is-small"
-                       href="/learn/development/install-design-system/">
-                        Download v{{site.sgds-version}}
-                    </a>
-                </div>
-                <div class="navbar-item">
-                    {% if page.layout != 'search' %}
-                    <button class="sgds-button is-white is-large" id="search-activate">
-                        <span class="sgds-icon sgds-icon-search"></span>
-                    </button>
-                    {% else %}
 
-                    <button class="sgds-button is-white is-large" id="search-activate" disabled></button>
-                    {% endif %}
-                </div>
-            </div>
         </div>
     </nav>
     <div class="sgds-container hide is-hidden-touch search-bar" id="search-bar">
