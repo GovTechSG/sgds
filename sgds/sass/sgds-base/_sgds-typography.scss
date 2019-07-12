@@ -47,14 +47,14 @@ h5{
 h6{
   font-size: $size-6;
   line-height: $size-6-lh;
-  @include touch(){
-    font-size: $size-6-mobile;
-  }
 }
 
-p,li{
+p,li,center{
   font-size: $size-7;
   line-height: $size-7-lh;
+  .content &{
+    line-height: $size-7-lh-content;
+  }
 }
 
 small{
