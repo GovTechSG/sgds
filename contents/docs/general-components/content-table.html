@@ -1,0 +1,215 @@
+---
+title: Table
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /docs/table/
+category: General
+breadcrumb: General
+---
+
+
+<h4 class="has-text-primary">Table present raw data sets and lend meaning to the data, while maintaining that the data is readable, scannable and easily comparable</h4>
+<hr class="margin--bottom--lg margin--top--lg">
+
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Header Field A</th>
+                <th>Header Field B</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Data 1A</td>
+                <td>Data 1B</td>
+            </tr>
+            <tr>
+                <td>Data 2A</td>
+                <td>Data 2B</td>
+            </tr>
+            <tr>
+                <td>Data 3A</td>
+                <td>Data 3B</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+        <p>You only need to attach a single <code>table</code> CSS class within the table tag.</p>
+{%- highlight html -%}
+<table class="table">
+    <thead>
+    <tr>
+        <th>Header Field A</th>
+        <th>Header Field B</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Data 1A</td>
+        <td>Data 1B</td>
+    </tr>
+    <tr>
+        <td>Data 2A</td>
+        <td>Data 2B</td>
+    </tr>
+    <tr>
+        <td>Data 3A</td>
+        <td>Data 3B</td>
+    </tr>
+    </tbody>
+</table>
+{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy Snippet</button>
+
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+
+<h5 class="has-text-weight-semibold margin--bottom">Horizontal Table</h5>
+<p>You can use this table without the emphasis of a table header. Just add a class<code>.table-h</code></p>
+<!--Add class name table-h for horizontal tables-->
+<table class="table table-h">
+    <tbody>
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+    </tbody>
+</table>
+
+{%- highlight html -%}
+<!--Add class name table-h for horizontal tables-->
+<table class="table table-h">
+    <tbody>
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+    </tbody>
+</table>
+{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy Snippet</button>
+
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+
+<h5 class="has-text-weight-semibold margin--bottom">Vertical Header Table</h5>
+<p>You can use this table with left header header. Just add a class<code>.table-v</code></p>
+<!--Add class name table-v for horizontal tables-->
+<table class="table table-v">
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+</table>
+
+{%- highlight html -%}
+<!--Add class name table-v for horizontal tables-->
+<table class="table table-v">
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+    <tr>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+        <td>Lorem ipsum dolor.</td>
+    </tr>
+</table>
+{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>Copy Snippet</button>
+
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+
+<h5 class="has-text-weight-semibold margin--bottom">Style</h5>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Modifier</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>is-bordered</td>
+        <td>Use when you want to add borders to all the cells</td>
+    </tr>
+    <tr>
+        <td>is-striped</td>
+        <td>Use when you want to add stripes to all the cells</td>
+    </tr>
+    <tr>
+        <td>is-narrow</td>
+        <td>Use when you want to make the cells narrower</td>
+    </tr>
+    <tr>
+        <td>is-hoverable</td>
+        <td>Use when you want to add hover effect on each row</td>
+    </tr>
+    <tr>
+        <td>is-fullwidth</td>
+        <td>Use when you want to have a fullwidth table</td>
+    </tr>
+    </tbody>
+</table>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+{%- include sgds-feedback.html -%}

@@ -1,0 +1,53 @@
+---
+title: Iconography
+subtitle: Subtitle
+layout: layout-sidenav
+permalink: /docs/iconography/
+category: Standard
+breadcrumb: Standard
+---
+
+<h4 class="has-text-primary">Iconography uses images and symbols to represent an object visually. They communicate a message and should be distinct and informative</h4>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+{% assign icon-category = site.data.icons %}
+{% for cat in icon-category %}
+
+<h5 class="has-text-weight-semibold has-text-primary margin--bottom--lg margin--top--lg">{{cat.category}} Icons</h5>
+
+<div class="row is-multiline is-mobile padding--left padding--right">
+{% assign icons = cat.icons | sort: 'iconName' %}
+{% for icon in icons %}
+<div class="col is-2-desktop is-4-tablet is-4-mobile is-boxed is-flex ">
+    <a class="has-text-dark icon-clipboard-btn sgds-tooltip" data-clipboard-text=".sgds-icon-{{icon.iconName}}" data-tooltip="Click to Copy">
+        <div class="icon-container">
+            <span class="sgds-icon sgds-icon-{{icon.iconName}} is-size-4"></span>
+        </div>
+        <small>.sgds-icon-{{icon.iconName}}</small>
+    </a>
+</div>
+{% endfor %}
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg">
+{% endfor %}
+
+<h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
+<p>Replace <code>sgds-icon-iconName</code> with the one you wish to use from above.</p>
+{% highlight html %}<span class="sgds-icon sgds-icon-iconName"></span>{% endhighlight %}
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
+<p>Iconography should:</p>
+<ul>
+    <li>Be used sparingly throughout the product to provide clarity and reduce cognitive
+        load on users
+    </li>
+    <li>Be accessible as people with limited vision may not be able to see them</li>
+</ul>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+{%- include sgds-feedback.html -%}
