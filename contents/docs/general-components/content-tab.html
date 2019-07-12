@@ -8,11 +8,9 @@ breadcrumb: General
 ---
 
 
-<h4 class="has-text-primary">Tab is a navigation element used in web design that allow users to easily access different areas of a site or different parts of an individual page. They're sort of like tabbed dividers in a filing cabinet – by clicking a tab, users can easily locate a page containing related content</h4>
+<h4 class="has-text-primary">Tabs are navigation elements that let users easily access different areas of a site or different parts of an individual page. Think tabbed dividers in a filing cabinet – by clicking a tab, users can easily locate a page containing related content</h4>
 
-<hr class="margin--bottom--lg margin--top--lg">
-
-<div class="sgds-tabs" data-sgds="tabs">
+<div class="sgds-tabs">
     <ul class="no-margin" role="tablist">
         <li class="is-active">
             <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
@@ -22,12 +20,14 @@ breadcrumb: General
         </li>
         <li>
             <a data-tab="#tab2" role="tab" aria-selected="false" aria-controls="tab2">
-                <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>Tab 2
+                <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
+                Tab 2
             </a>
         </li>
         <li>
             <a data-tab="#tab3" role="tab" aria-selected="false" aria-controls="tab3">
-                <i class="sgds-icon sgds-icon-map padding--right--sm"></i>Tab 3
+                <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
+                Tab 3
             </a>
         </li>
     </ul>
@@ -53,12 +53,12 @@ breadcrumb: General
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid aspernatur beatae, dolores ea eum illo quasi reprehenderit sequi vero?</p>
     </div>
 </div>
+
 <hr class="margin--bottom--lg margin--top--lg">
 
-    <h6 class="has-text-weight-semibold">Code Snippets for Tabs</h6>
-
+<h6 class="has-text-weight-semibold">Code Snippets for Tabs</h6>
 {%- highlight html -%}
-<div class="sgds-tabs" data-sgds="tabs">
+<div class="sgds-tabs">
     <ul class="no-margin" role="tablist">
         <li class="is-active">
             <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
@@ -79,37 +79,36 @@ breadcrumb: General
     </ul>
 </div>
 {%- endhighlight -%}
-        <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet for the tabs</button>
-        <hr class="margin--bottom--lg margin--top--lg">
-        <h6 class="has-text-weight-semibold">Code Snippets for Tab Content</h6>
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet for the tabs</button>
+<hr class="margin--bottom--lg margin--top--lg">
+<h6 class="has-text-weight-semibold">Code Snippets for Tab Content</h6>
 {%- highlight html -%}
-<div class="row" id="tabX">
+<div class="row" id="tab1">
     <div class="col">
         <p>Tab content 1</p>
     </div>
 </div>
-<div class="row" id="tabY">
+<div class="row" id="tab2">
     <div class="col">
         <p>Tab content 2</p>
     </div>
 </div>
-<div class="row" id="tabZ">
+<div class="row" id="tab3">
     <div class="col">
         <p>Tab content 3</p>
     </div>
 </div>
 {%- endhighlight -%}
-        <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy snippet for the tab content</button>
-
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy snippet for the tab content</button>
 
 <hr class="margin--bottom--lg margin--top--lg">
 
 <h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
 <p>Tab should:</p>
 <ul>
-    <li>Be clearly labeled to help differentiate the sections beneath them</li>
-    <li>Have short labels, try to keep to single word</li>
-    <li>Have only one active at a time</li>
+    <li>Be clearly labeled to differentiate the sections beneath them</li>
+    <li>Have short labels, kept to single words if possible</li>
+    <li>Have only one being active at a time</li>
     <li>Not be used for primary navigation</li>
 </ul>
 
@@ -138,11 +137,10 @@ breadcrumb: General
     </tr>
     <tr>
         <td>is-small<br>is-medium</br>is-large</td>
-        <td>Use when you want change the size of your tabs</td>
+        <td>Use when you want to change the size of your tabs</td>
     </tr>
     </tbody>
 </table>
-
 
 <hr class="margin--bottom--lg margin--top--lg">
 

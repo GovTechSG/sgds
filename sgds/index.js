@@ -71,7 +71,7 @@ $(document).ready(() => {
     }
 
     // Tabs
-    const tabs = sgds.getElements("tabs");
+    const tabs = $(".sgds-tabs");
     if (tabs && tabs.length > 0) {
         for (let i = 0; i < tabs.length; i++) {
             let tabElement = tabs[i];
