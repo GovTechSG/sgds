@@ -7,18 +7,23 @@ category: General
 breadcrumb: General
 ---
 
+<h4 class="has-text-primary">
+    The main nav is a standard navigation component that must be present in all
+    pages of '.gov.sg' websites.
+</h4>
 
-<h4 class="has-text-primary">The main nav is a standard navigation component that must be present in all pages of '.gov.sg' websites.</h4>
+<hr class="margin--bottom--lg margin--top--lg" />
 
-<hr class="margin--bottom--lg margin--top--lg">
-
-<p>Basic main nav that does not need to have a search function. Applicable for single page websites only.</p>
+<p>
+    Basic main nav that does not need to have a search function. Applicable for
+    single page websites only.
+</p>
 
 <nav class="navbar" role="navigation">
     <div class="sgds-container">
         <div class="navbar-brand">
             <a class="navbar-item">
-                <img src="/assets/img/logo_sgds.png" alt="">
+                <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
             <div class="navbar-burger burger" data-target="mainnav-1">
                 <span></span>
@@ -54,9 +59,12 @@ breadcrumb: General
     <div class="sgds-container">
         <div class="navbar-brand">
             <a class="navbar-item">
-                <img src="/assets/img/logo_sgds.png" alt="">
+                <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-1">
+            <div
+                class="navbar-burger burger"
+                data-target="mainnav-1"
+            >
                 <span></span>
                 <span></span>
                 <span></span>
@@ -79,81 +87,30 @@ breadcrumb: General
     </div>
 </nav>
 {%- endhighlight -%}
-            <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy Snippet</button>
+            <button
+                class="sgds-button clipboard-btn is-primary is-outlined"
+                data-clipboard-target=".highlight0"
+            >
+                Copy Snippet
+            </button>
         </div>
     </div>
 </div>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <!-- Main Nav 2 -->
 
-<p>Main nav that has a dropdown for secondary selection. Suitable for medium-sized websites.</p>
+<p>
+    Main nav that has a dropdown for secondary selection. Suitable for
+    medium-sized websites.
+</p>
 
 <nav class="navbar" role="navigation">
     <div class="sgds-container">
         <div class="navbar-brand">
             <a class="navbar-item">
-                <img src="/assets/img/logo_sgds.png" alt="">
-            </a>
-            <div class="navbar-burger burger" data-target="mainnav-2">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div id="mainnav-2" class="navbar-menu">
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link is-uppercase is-active">
-                    Who we are
-                </a>
-                <div class="navbar-dropdown">
-                    <a class="navbar-item is-active">
-                        Sub Link 1
-                    </a>
-                    <a class="navbar-item">
-                       Sub Link 2
-                    </a>
-                    <a class="navbar-item">
-                       Sub Link 3
-                    </a>
-                </div>
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link is-uppercase">
-                    Link 2
-                </a>
-                <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        External Link 1 <i class="sgds-icon sgds-icon-external"></i>
-                    </a>
-                    <a class="navbar-item">
-                        External Link 2 <i class="sgds-icon sgds-icon-external"></i>
-                    </a>
-                    <a class="navbar-item">
-                        External Link 3 <i class="sgds-icon sgds-icon-external"></i>
-                    </a>
-                </div>
-            </div>
-            <a class="navbar-item is-uppercase is-tab">
-               External Link 3
-            </a>
-        </div>
-    </div>
-</nav>
-
-<div class="sgds-accordion-container margin--top--lg">
-    <div class="sgds-accordion-set">
-        <a class="sgds-accordion-header">
-            Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-{%- highlight html -%}
-<nav class="navbar" role="navigation">
-    <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
-                <img src="/assets/img/logo_sgds.png" alt="">
+                <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
             <div class="navbar-burger burger" data-target="mainnav-2">
                 <span></span>
@@ -184,13 +141,81 @@ breadcrumb: General
                 </a>
                 <div class="navbar-dropdown">
                     <a class="navbar-item">
-                        External Link 1 <i class="sgds-icon sgds-icon-external"></i>
+                        External Link 1
+                        <i class="sgds-icon sgds-icon-external"></i>
                     </a>
                     <a class="navbar-item">
-                        External Link 2 <i class="sgds-icon sgds-icon-external"></i>
+                        External Link 2
+                        <i class="sgds-icon sgds-icon-external"></i>
                     </a>
                     <a class="navbar-item">
-                        External Link 3 <i class="sgds-icon sgds-icon-external"></i>
+                        External Link 3
+                        <i class="sgds-icon sgds-icon-external"></i>
+                    </a>
+                </div>
+            </div>
+            <a class="navbar-item is-uppercase is-tab">
+                External Link 3
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="sgds-accordion-container margin--top--lg">
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+{%- highlight html -%}
+<nav class="navbar" role="navigation">
+    <div class="sgds-container">
+        <div class="navbar-brand">
+            <a class="navbar-item">
+                <img src="/assets/img/logo_sgds.png" alt="" />
+            </a>
+            <div
+                class="navbar-burger burger"
+                data-target="mainnav-2"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div id="mainnav-2" class="navbar-menu">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link is-uppercase is-active">
+                    Who we are
+                </a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item is-active">
+                        Sub Link 1
+                    </a>
+                    <a class="navbar-item">
+                        Sub Link 2
+                    </a>
+                    <a class="navbar-item">
+                        Sub Link 3
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link is-uppercase">
+                    Link 2
+                </a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item">
+                        External Link 1
+                        <i class="sgds-icon sgds-icon-external"></i>
+                    </a>
+                    <a class="navbar-item">
+                        External Link 2
+                        <i class="sgds-icon sgds-icon-external"></i>
+                    </a>
+                    <a class="navbar-item">
+                        External Link 3
+                        <i class="sgds-icon sgds-icon-external"></i>
                     </a>
                 </div>
             </div>
@@ -201,22 +226,30 @@ breadcrumb: General
     </div>
 </nav>
 {%- endhighlight -%}
-            <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy Snippet</button>
+            <button
+                class="sgds-button clipboard-btn is-primary is-outlined"
+                data-clipboard-target=".highlight1"
+            >
+                Copy Snippet
+            </button>
         </div>
     </div>
 </div>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <!-- Main Nav 3 -->
 
-<p>Main nav with a mega menu for secondary selection. Suitable for large-sized websites.</p>
+<p>
+    Main nav with a mega menu for secondary selection. Suitable for large-sized
+    websites.
+</p>
 
 <nav class="navbar" role="navigation">
     <div class="sgds-container">
         <div class="navbar-brand">
             <a class="navbar-item">
-                <img src="/assets/img/logo_sgds.png" alt="">
+                <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
             <div class="navbar-burger burger" data-target="mainnav-3">
                 <span></span>
@@ -233,7 +266,9 @@ breadcrumb: General
                     <div class="sgds-container is-fluid">
                         <div class="row">
                             <div class="col is-3">
-                                <p class="navbar-item is-uppercase"><b>Sub Menu 1a</b></p>
+                                <p class="navbar-item is-uppercase">
+                                    <b>Sub Menu 1a</b>
+                                </p>
                                 <a class="navbar-item">
                                     Sub Link 1
                                 </a>
@@ -245,7 +280,9 @@ breadcrumb: General
                                 </a>
                             </div>
                             <div class="col is-3">
-                                <p class="navbar-item is-uppercase"><b>Sub Menu 1b</b></p>
+                                <p class="navbar-item is-uppercase">
+                                    <b>Sub Menu 1b</b>
+                                </p>
                                 <a class="navbar-item">
                                     Sub Link 1
                                 </a>
@@ -259,8 +296,10 @@ breadcrumb: General
                             <div class="col is-6">
                                 <div class="navbar-item is-wrapped">
                                     <p>
-                                        <b>Sub Menu 1 Info</b><br>
-                                        You can put short paragraph of information here to describe about this section.
+                                        <b>Sub Menu 1 Info</b><br />
+                                        You can put short paragraph of
+                                        information here to describe about this
+                                        section.
                                     </p>
                                 </div>
                             </div>
@@ -276,7 +315,9 @@ breadcrumb: General
                     <div class="sgds-container is-fluid">
                         <div class="row is-multiline">
                             <div class="col is-3">
-                                <p class="navbar-item is-uppercase"><b>Sub Menu 2a</b></p>
+                                <p class="navbar-item is-uppercase">
+                                    <b>Sub Menu 2a</b>
+                                </p>
                                 <a class="navbar-item">
                                     Sub Link 1
                                 </a>
@@ -288,7 +329,9 @@ breadcrumb: General
                                 </a>
                             </div>
                             <div class="col is-3">
-                                <p class="navbar-item is-uppercase"><b>Sub Menu 2b</b></p>
+                                <p class="navbar-item is-uppercase">
+                                    <b>Sub Menu 2b</b>
+                                </p>
                                 <a class="navbar-item">
                                     Sub Link 1
                                 </a>
@@ -302,8 +345,10 @@ breadcrumb: General
                             <div class="col">
                                 <div class="navbar-item is-wrapped">
                                     <p>
-                                        <b>Sub Menu 2 Info</b><br>
-                                        You can put short paragraph of information here to describe about this section.
+                                        <b>Sub Menu 2 Info</b><br />
+                                        You can put short paragraph of
+                                        information here to describe about this
+                                        section.
                                     </p>
                                 </div>
                             </div>
@@ -326,16 +371,21 @@ breadcrumb: General
     <div class="sgds-container">
         <div class="navbar-brand">
             <a class="navbar-item">
-                <img src="/assets/img/logo_sgds.png" alt="">
+                <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-3">
+            <div
+                class="navbar-burger burger"
+                data-target="mainnav-3"
+            >
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
         <div id="mainnav-3" class="navbar-menu">
-            <div class="navbar-item has-dropdown is-hoverable is-mega">
+            <div
+                class="navbar-item has-dropdown is-hoverable is-mega"
+            >
                 <a class="navbar-link is-uppercase is-active">
                     Who we are
                 </a>
@@ -343,7 +393,9 @@ breadcrumb: General
                     <div class="sgds-container is-fluid">
                         <div class="row">
                             <div class="col is-3">
-                                <p class="navbar-item is-uppercase"><b>Sub Menu 1a</b></p>
+                                <p class="navbar-item is-uppercase">
+                                    <b>Sub Menu 1a</b>
+                                </p>
                                 <a class="navbar-item">
                                     Sub Link 1
                                 </a>
@@ -355,7 +407,9 @@ breadcrumb: General
                                 </a>
                             </div>
                             <div class="col is-3">
-                                <p class="navbar-item is-uppercase"><b>Sub Menu 1b</b></p>
+                                <p class="navbar-item is-uppercase">
+                                    <b>Sub Menu 1b</b>
+                                </p>
                                 <a class="navbar-item">
                                     Sub Link 1
                                 </a>
@@ -369,8 +423,10 @@ breadcrumb: General
                             <div class="col is-6">
                                 <div class="navbar-item is-wrapped">
                                     <p>
-                                        <b>Sub Menu 1 Info</b><br>
-                                        You can put short paragraph of information here to describe about this section.
+                                        <b>Sub Menu 1 Info</b><br />
+                                        You can put short paragraph
+                                        of information here to
+                                        describe about this section.
                                     </p>
                                 </div>
                             </div>
@@ -378,7 +434,9 @@ breadcrumb: General
                     </div>
                 </div>
             </div>
-            <div class="navbar-item has-dropdown is-hoverable is-mega">
+            <div
+                class="navbar-item has-dropdown is-hoverable is-mega"
+            >
                 <a class="navbar-link is-uppercase">
                     Mega Menu
                 </a>
@@ -386,7 +444,9 @@ breadcrumb: General
                     <div class="sgds-container is-fluid">
                         <div class="row is-multiline">
                             <div class="col is-3">
-                                <p class="navbar-item is-uppercase"><b>Sub Menu 2a</b></p>
+                                <p class="navbar-item is-uppercase">
+                                    <b>Sub Menu 2a</b>
+                                </p>
                                 <a class="navbar-item">
                                     Sub Link 1
                                 </a>
@@ -398,7 +458,9 @@ breadcrumb: General
                                 </a>
                             </div>
                             <div class="col is-3">
-                                <p class="navbar-item is-uppercase"><b>Sub Menu 2b</b></p>
+                                <p class="navbar-item is-uppercase">
+                                    <b>Sub Menu 2b</b>
+                                </p>
                                 <a class="navbar-item">
                                     Sub Link 1
                                 </a>
@@ -412,8 +474,10 @@ breadcrumb: General
                             <div class="col">
                                 <div class="navbar-item is-wrapped">
                                     <p>
-                                        <b>Sub Menu 2 Info</b><br>
-                                        You can put short paragraph of information here to describe about this section.
+                                        <b>Sub Menu 2 Info</b><br />
+                                        You can put short paragraph
+                                        of information here to
+                                        describe about this section.
                                     </p>
                                 </div>
                             </div>
@@ -425,22 +489,27 @@ breadcrumb: General
     </div>
 </nav>
 {%- endhighlight -%}
-            <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>Copy Snippet</button>
+            <button
+                class="sgds-button clipboard-btn is-primary is-outlined"
+                data-clipboard-target=".highlight2"
+            >
+                Copy Snippet
+            </button>
         </div>
     </div>
 </div>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <!-- Main Nav 4 -->
 
-<p>To include, please ensure you have included <code>sgds.js</code> for it to work.</p>
+<p>To add search bars to your main mav, please import <code>sgds.js</code>.</p>
 
 <nav class="navbar" role="navigation">
     <div class="sgds-container">
         <div class="navbar-brand">
             <a class="navbar-item">
-                <img src="/assets/img/logo_sgds.png" alt="">
+                <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
             <div class="navbar-burger burger" data-target="mainnav-4">
                 <span></span>
@@ -450,27 +519,31 @@ breadcrumb: General
         </div>
         <div id="mainnav-4" class="navbar-menu">
             <div class="navbar-item is-hidden-desktop">
-                <form action="" method="get">
+                <form>
                     <div class="field has-addons">
                         <div class="control is-expanded">
-                            <input 
-                                class="input is-fullwidth" 
-                                id="search-box" 
-                                type="text" 
-                                placeholder="{{site.search_placeholder}}" 
-                                name="query">
+                            <input
+                                class="input is-fullwidth"
+                                id="nav-4-search-mobile"
+                                type="text"
+                                placeholder="{{ site.search_placeholder }}"
+                                name="nav-4-search-mobile"
+                            />
                         </div>
                     </div>
                 </form>
-                <hr class="is-marginless margin--top--sm">
+                <hr class="is-marginless margin--top--sm" />
             </div>
-                <a class="navbar-item is-uppercase is-tab">
-                    Who we are
-                </a>
+            <a class="navbar-item is-uppercase is-tab">
+                Who we are
+            </a>
         </div>
         <div class="navbar-end is-hidden-touch">
             <div class="navbar-item">
-                <button class="sgds-button is-white is-large">
+                <button
+                    class="sgds-button is-white is-large search-toggle"
+                    data-target="searchbar-1"
+                >
                     <span class="sgds-icon sgds-icon-search"></span>
                 </button>
             </div>
@@ -478,20 +551,39 @@ breadcrumb: General
     </div>
 </nav>
 
-<div class="sgds-container is-fluid is-hidden-touch is-marginless">
+<div
+    class="sgds-container is-fluid is-hidden-touch is-marginless hide"
+    id="searchbar-1"
+>
     <div class="row">
         <div class="col">
-            <hr class="margin--bottom--sm">
+            <hr class="margin--bottom--sm" />
             <form>
                 <div class="field has-addons padding--sm">
-                    <div class="control has-icons-left is-expanded padding--bottom--sm">
-                        <input class="input is-fullwidth is-borderless is-shadowless" id="search-box" type="text" placeholder="{{site.search_placeholder}}" name="query" autocomplete="off">
+                    <div
+                        class="control has-icons-left is-expanded padding--bottom--sm"
+                    >
+                        <input
+                            class="input is-fullwidth is-borderless is-shadowless"
+                            id="nav-4-search"
+                            type="text"
+                            placeholder="{{ site.search_placeholder }}"
+                            name="nav-4-search"
+                            autocomplete="off"
+                        />
                         <span class="icon is-left">
-                          <i class="sgds-icon sgds-icon-search is-size-7 search-bar"></i>
+                            <i
+                                class="search-bar-icon sgds-icon sgds-icon-search is-size-7"
+                            ></i>
                         </span>
                     </div>
                     <div class="control">
-                        <button type="submit" class="sgds-button is-primary has-text-white padding--left padding--right">SEARCH</button>
+                        <button
+                            type="submit"
+                            class="sgds-button is-primary has-text-white padding--left padding--right"
+                        >
+                            SEARCH
+                        </button>
                     </div>
                 </div>
             </form>
@@ -510,7 +602,7 @@ breadcrumb: General
     <div class="sgds-container">
         <div class="navbar-brand">
             <a class="navbar-item">
-                <img src="/assets/img/logo_sgds.png" alt="">
+                <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
             <div class="navbar-burger burger" data-target="mainnav-4">
                 <span></span>
@@ -520,27 +612,31 @@ breadcrumb: General
         </div>
         <div id="mainnav-4" class="navbar-menu">
             <div class="navbar-item is-hidden-desktop">
-                <form action="" method="get">
+                <form>
                     <div class="field has-addons">
                         <div class="control is-expanded">
-                            <input 
-                                class="input is-fullwidth" 
-                                id="search-box" 
-                                type="text" 
-                                placeholder="{{site.search_placeholder}}" 
-                                name="query">
+                            <input
+                                class="input is-fullwidth"
+                                id="nav-4-search-mobile"
+                                type="text"
+                                placeholder="{{ site.search_placeholder }}"
+                                name="nav-4-search-mobile"
+                            />
                         </div>
                     </div>
                 </form>
-                <hr class="is-marginless margin--top--sm">
+                <hr class="is-marginless margin--top--sm" />
             </div>
-                <a class="navbar-item is-uppercase is-tab">
-                    Who we are
-                </a>
+            <a class="navbar-item is-uppercase is-tab">
+                Who we are
+            </a>
         </div>
         <div class="navbar-end is-hidden-touch">
             <div class="navbar-item">
-                <button class="sgds-button is-white is-large">
+                <button
+                    class="sgds-button is-white is-large search-toggle"
+                    data-target="searchbar-1"
+                >
                     <span class="sgds-icon sgds-icon-search"></span>
                 </button>
             </div>
@@ -548,20 +644,39 @@ breadcrumb: General
     </div>
 </nav>
 
-<div class="sgds-container is-fluid is-hidden-touch is-marginless">
+<div
+    class="sgds-container is-fluid is-hidden-touch is-marginless hide"
+    id="searchbar-1"
+>
     <div class="row">
         <div class="col">
-            <hr class="margin--bottom--sm">
+            <hr class="margin--bottom--sm" />
             <form>
                 <div class="field has-addons padding--sm">
-                    <div class="control has-icons-left is-expanded padding--bottom--sm">
-                        <input class="input is-fullwidth is-borderless is-shadowless" id="search-box" type="text" placeholder="{{site.search_placeholder}}" name="query" autocomplete="off">
+                    <div
+                        class="control has-icons-left is-expanded padding--bottom--sm"
+                    >
+                        <input
+                            class="input is-fullwidth is-borderless is-shadowless"
+                            id="nav-4-search"
+                            type="text"
+                            placeholder="{{ site.search_placeholder }}"
+                            name="nav-4-search"
+                            autocomplete="off"
+                        />
                         <span class="icon is-left">
-                          <i class="sgds-icon sgds-icon-search is-size-7 search-bar"></i>
+                            <i
+                                class="search-bar-icon sgds-icon sgds-icon-search is-size-7"
+                            ></i>
                         </span>
                     </div>
                     <div class="control">
-                        <button type="submit" class="sgds-button is-primary has-text-white padding--left padding--right">SEARCH</button>
+                        <button
+                            type="submit"
+                            class="sgds-button is-primary has-text-white padding--left padding--right"
+                        >
+                            SEARCH
+                        </button>
                     </div>
                 </div>
             </form>
@@ -569,12 +684,17 @@ breadcrumb: General
     </div>
 </div>
 {%- endhighlight -%}
-            <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight3'>Copy Snippet</button>
+            <button
+                class="sgds-button clipboard-btn is-primary is-outlined"
+                data-clipboard-target=".highlight3"
+            >
+                Copy Snippet
+            </button>
         </div>
     </div>
 </div>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
 <p>Main navs should:</p>
@@ -585,6 +705,6 @@ breadcrumb: General
     <li>Have the search function accessible on the right side</li>
 </ul>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 {%- include sgds-feedback.html -%}

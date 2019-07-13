@@ -9,20 +9,25 @@ import "./fonts/sgds-icons.woff";
 
 $(document).ready(() => {
     // Search bar toggle
-    const masthead_container = $(".masthead-container");
-    const searchIcon = $("#search-activate span");
-    const searchBar = $(".search-bar");
-    const searchBar_input = $(".search-bar input");
-    const searchToggle = $("#search-activate");
-    searchToggle.on("click", function(e) {
-        e.preventDefault();
-        searchIcon
-            .toggleClass("sgds-icon-search")
-            .toggleClass("sgds-icon-cross");
-        searchBar.toggleClass("hide");
-        searchBar_input.focus().val("");
-        masthead_container.toggleClass("is-opened");
-    });
+    const searchToggles = $(".search-toggle");
+    for (let i = 0; i < searchToggles.length; i++) {
+        let searchToggle = searchToggles[i];
+        let searchToggleTargetId = searchToggle.dataset.target;
+        let searchToggleTarget = $(`#${searchToggleTargetId}`);
+
+        let searchIcon = $(searchToggle).children("span");
+        let searchBarInput = $(searchToggleTarget).find("input");
+
+        $(searchToggle).click(() => {
+            $(searchIcon)
+                .toggleClass("sgds-icon-search")
+                .toggleClass("sgds-icon-cross");
+            $(searchToggleTarget).toggleClass("hide");
+            $(searchBarInput)
+                .focus()
+                .val("");
+        });
+    }
 
     // Accordion
     if ($(".sgds-accordion-set > a").length) {
@@ -30,7 +35,9 @@ $(document).ready(() => {
         anchors.forEach(anchor => {
             $(anchor).on("click", function() {
                 if ($(this).hasClass("active")) {
-                    $(this).removeClass("active").attr('aria-expanded', false);
+                    $(this)
+                        .removeClass("active")
+                        .attr("aria-expanded", false);
                     $(this)
                         .siblings(".sgds-accordion-body")
                         .slideUp(300);
@@ -49,10 +56,14 @@ $(document).ready(() => {
                             .removeClass("sgds-icon-chevron-up")
                             .addClass("sgds-icon-chevron-down");
                         otherAnchorsInSet.removeClass("active");
-                        otherAnchorsInSet.siblings(".sgds-accordion-body").slideUp(300);
+                        otherAnchorsInSet
+                            .siblings(".sgds-accordion-body")
+                            .slideUp(300);
                     }
-        
-                    $(this).addClass("active").attr('aria-expanded', true);
+
+                    $(this)
+                        .addClass("active")
+                        .attr("aria-expanded", true);
                     $(this)
                         .children("i")
                         .removeClass("sgds-icon-chevron-down")
