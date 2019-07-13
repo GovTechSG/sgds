@@ -23,9 +23,6 @@
         "start": "bundle exec jekyll serve",
         "test": "snyk test"
     },
-    "dependencies": {
-        "sticky-sidebar": "^3.3.1"
-    },
     "devDependencies": {
         "@babel/core": "^7.5.4",
         "@babel/plugin-proposal-object-rest-spread": "^7.5.4",
@@ -38,6 +35,7 @@
         "optimize-css-assets-webpack-plugin": "^5.0.1",
         "sass-loader": "^7.1.0",
         "snyk": "^1.185.5",
+        "sticky-sidebar": "^3.3.1",
         "webpack": "^4.33.0",
         "webpack-cli": "^3.3.3"
     }
