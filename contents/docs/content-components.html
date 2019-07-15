@@ -5,20 +5,19 @@
                 <h4 class="margin--top margin--bottom"><b class="has-text-danger">Mandatory</b> components for all gov.sg websites.</h4>
             </div>
         </div>
-        {% assign docsNav = site.data.navigation | where:"title","Docs" %}
         <div class="row is-multiline is-mobile">
-            {% assign standardComponents = docsNav[0].lvl2 | where:"title","Standard Components" %}
-            {% for component in standardComponents[0].lvl3 %}
-                <div class="col is-3-desktop is-6-touch is-6-mobile">
-                    <a href="{{ component.url }}">
-                        <div class="sgds-card sgds-card-button">
-                            <div class="sgds-card-content has-text-centered">
-                                <span class="sgds-icon {{ component.icon }} is-size-3"></span>
-                                <p class="has-text-weight-semibold">{{component.title}}</p>
-                            </div>
+            {% assign documentation = site.documentation | where:"category" , "Standard" %}
+            {% for component in documentation %}
+            <div class="col is-3-desktop is-6-touch is-6-mobile">
+                <a href="{{ component.url }}">
+                    <div class="sgds-card sgds-card-button">
+                        <div class="sgds-card-content has-text-centered">
+                            <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
+                            <p class="has-text-weight-semibold">{{component.title}}</p>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
+            </div>
             {% endfor %}
         </div>
 
@@ -29,14 +28,13 @@
             </div>
         </div>
         <div class="row is-multiline is-mobile">
-            {% assign generalComponents = docsNav[0].lvl2 | where:"title","Layouts"%}
-
-            {% for component in generalComponents[0].lvl3 %}
+            {% assign documentation = site.documentation | where:"category" , "layouts" %}
+            {% for component in documentation %}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
                 <a href="{{ component.url }}">
                     <div class="sgds-card sgds-card-button">
                         <div class="sgds-card-content has-text-centered">
-                            <span class="sgds-icon {{ component.icon }} is-size-3"></span>
+                            <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
                             <p class="has-text-weight-semibold">{{component.title}}</p>
                         </div>
                     </div>
@@ -53,14 +51,13 @@
             </div>
         </div>
         <div class="row is-multiline is-mobile">
-            {% assign generalComponents = docsNav[0].lvl2 | where:"title","General Components" %}
-            {% assign generalComponentsLvl3 = generalComponents[0].lvl3 | sort:"title"%}
-            {% for component in generalComponentsLvl3 %}
+            {% assign documentation = site.documentation | where:"category" , "General" %}
+            {% for component in documentation %}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
                 <a href="{{ component.url }}">
                     <div class="sgds-card sgds-card-button">
                         <div class="sgds-card-content has-text-centered">
-                            <span class="sgds-icon {{ component.icon }} is-size-3"></span>
+                            <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
                             <p class="has-text-weight-semibold">{{component.title}}</p>
                         </div>
                     </div>

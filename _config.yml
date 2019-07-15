@@ -50,6 +50,18 @@ sass:
 includes:
   # - contents/docs
 
+collections_dir: components
+collections:
+  standard:
+    permalink: /docs/:collection/:path/
+    output: true
+  layouts:
+    permalink: /docs/:collection/:path/
+    output: true
+  general:
+    permalink: /docs/:collection/:path/
+    output: true
+
 exclude:
   - .idea
   - .vscode
