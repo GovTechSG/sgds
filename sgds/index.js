@@ -7,83 +7,62 @@ import "./fonts/sgds-icons.svg";
 import "./fonts/sgds-icons.ttf";
 import "./fonts/sgds-icons.woff";
 
-function addAccordionClickListener(el) {
-    let anchor = $(el);
-    anchor.on("click", function() {
-        if ($(this).hasClass("active")) {
-            $(this)
-                .removeClass("active")
-                .attr("aria-expanded", false);
-            $(this)
-                .siblings(".sgds-accordion-body")
-                .slideUp(300);
-            $(this)
-                .children("i")
-                .removeClass("sgds-icon-chevron-up")
-                .addClass("sgds-icon-chevron-down");
-        } else {
-            let otherAnchorsInSet = $(this)
-                .parent()
-                .siblings(".sgds-accordion-set")
-                .children("a");
-            if (otherAnchorsInSet) {
-                otherAnchorsInSet
-                    .children("i")
-                    .removeClass("sgds-icon-chevron-up")
-                    .addClass("sgds-icon-chevron-down");
-                otherAnchorsInSet.removeClass("active");
-                otherAnchorsInSet.siblings(".sgds-accordion-body").slideUp(300);
-            }
-
-            $(this)
-                .addClass("active")
-                .attr("aria-expanded", true);
-            $(this)
-                .children("i")
-                .removeClass("sgds-icon-chevron-down")
-                .addClass("sgds-icon-chevron-up");
-            $(this)
-                .siblings(".sgds-accordion-body")
-                .slideDown(300);
-        }
-    });
-}
-
 $(document).ready(() => {
     // Search bar toggle
-    const masthead_container = $(".masthead-container");
-    const searchIcon = $("#search-activate span");
-    const searchBar = $(".search-bar");
-    const searchBar_input = $(".search-bar input");
-    const searchToggle = $("#search-activate");
-    searchToggle.on("click", function(e) {
-        e.preventDefault();
-        searchIcon.toggleClass("sgds-icon-search").toggleClass("sgds-icon-cross");
-        searchBar.toggleClass("hide");
-        searchBar_input.focus().val("");
-        masthead_container.toggleClass("is-opened");
-    });
+    const searchToggles = $(".search-toggle");
+    for (let i = 0; i < searchToggles.length; i++) {
+        let searchToggle = searchToggles[i];
+        let searchToggleTargetId = searchToggle.dataset.target;
+        let searchToggleTarget = $(`#${searchToggleTargetId}`);
 
-    // Accordion
-    // if ($(".sgds-accordion-set > a").length) {
-    //     let anchors = $(".sgds-accordion-set > a").get();
-    //     anchors.forEach(anchor => {
-    //         addAccordionClickListener(anchor);
-    //     });
-    // }
-    if ($(".sgds-accordion").length) {
-        let accordionHeaders = $(".sgds-accordion > .sgds-accordion-header");
-        for (let header of accordionHeaders) {
-            $(header).click(event => {
-                let clickedHeader = $(event.target);
-                if (clickedHeader.hasClass("active")) {
-                    clickedHeader.removeClass("active").attr("aria-expanded", false);
+        let searchIcon = $(searchToggle).children("span");
+        let searchBarInput = $(searchToggleTarget).find("input");
+
+        $(searchToggle).click(() => {
+            $(searchIcon)
+                .toggleClass("sgds-icon-search")
+                .toggleClass("sgds-icon-cross");
+            $(searchToggleTarget).toggleClass("hide");
+            $(searchBarInput)
+                .focus()
+                .val("");
+        });
+    }
+
+    // Accordions, non-set
+    const accordions = $(".sgds-accordion");
+    if (accordions) {
+        for (let accordion of accordions) {
+            let accordionHeader = $(accordion).children(".sgds-accordion-header");
+            let accordionBody = $(accordion).children(".sgds-accordion-body");
+            $(accordionHeader).click(event => {
+                let header = $(event.target);
+                if ($(header).hasClass("active")) {
+                    $(header)
+                        .removeClass("active")
+                        .attr("aria-expanded", false)
+                        .children("i")
+                        .removeClass("sgds-icon-chevron-up")
+                        .addClass("sgds-icon-chevron-down");
+                    $(accordionBody).slideUp(300);
+                } else {
+                    $(header)
+                        .addClass("active")
+                        .attr("aria-expanded", true)
+                        .children("i")
+                        .removeClass("sgds-icon-chevron-down")
+                        .addClass("sgds-icon-chevron-up");
+                    $(accordionBody).slideDown(300);
                 }
             });
         }
-        accordionHeaders.forEach(accordionHeader => {
-            accordionHeader.on("click", () => {
-                if (accordionHeader.hasClass("active")) {
+    }
+
+    if ($(".sgds-accordion-set > a").length) {
+        let anchors = $(".sgds-accordion-set > a").get();
+        anchors.forEach(anchor => {
+            $(anchor).on("click", function() {
+                if ($(this).hasClass("active")) {
                     $(this)
                         .removeClass("active")
                         .attr("aria-expanded", false);
@@ -124,7 +103,7 @@ $(document).ready(() => {
     }
 
     // Tabs
-    const tabs = sgds.getElements("tabs");
+    const tabs = $(".sgds-tabs");
     if (tabs && tabs.length > 0) {
         for (let i = 0; i < tabs.length; i++) {
             let tabElement = tabs[i];
@@ -163,13 +142,13 @@ $(document).ready(() => {
     // Navbar burger menus
     const navbarBurgers = document.querySelectorAll(".navbar-burger");
     if (navbarBurgers.length > 0) {
-        navbarBurgers.forEach(function($el) {
-            $el.addEventListener("click", function() {
-                const targetMenuId = $el.dataset.target;
+        navbarBurgers.forEach(function(burger) {
+            burger.addEventListener("click", function() {
+                const targetMenuId = burger.dataset.target;
                 const targetMenu = document.getElementById(targetMenuId);
 
                 // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-                $el.classList.toggle("is-active");
+                burger.classList.toggle("is-active");
                 targetMenu.classList.toggle("is-active");
             });
         });
@@ -244,7 +223,3 @@ $(document).ready(() => {
         }
     }
 });
-
-export default {
-    addAccordionClickListener
-};

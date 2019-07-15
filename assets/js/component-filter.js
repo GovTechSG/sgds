@@ -1,10 +1,8 @@
 (function() {
-
     if(document.getElementById("search-field")){
         var options = {
             valueNames: ['component-name']
         };
-        console.log('yes')
         const componentList = new List('component-list1', options);
         const componentList1 = new List('component-list2', options);
         const componentList2 = new List('component-list3', options);

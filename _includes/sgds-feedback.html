@@ -1,17 +1,16 @@
-
-        <h5 class="has-text-weight-semibold margin--bottom">
-            {%if page.url contains 'faq' %}
-                How can I start creating a website?
-            {% else %}
-                Feedback
-            {% endif %}
-        </h5>
-        <p>
-            {%if page.url contains 'faq' %}
-                Please drop us a message to discuss on your requirements and we'll guide you for the next steps.
-            {% else %}
-                Having troubles with the guide? Please give us more details and we'll get back to you soon.
-            {% endif %}
-        </p>
-        <a class="sgds-button is-rounded is-medium is-primary" href="{{site.feedback_form}}" target="_blank">Tell us more</a>
+<h5 class="has-text-weight-semibold margin--bottom">
+    {%if page.url contains 'faq' %}
+        How can I start creating a website?
+    {% else %}
+        Feedback
+    {% endif %}
+</h5>
+<p>
+    {%if page.url contains 'faq' %}
+        Please drop us a message to discuss on your requirements and we'll guide you for the next steps.
+    {% else %}
+        Having troubles with the guide? Please give us more details and we'll get back to you soon.
+    {% endif %}
+</p>
+<a class="sgds-button is-rounded is-medium is-primary" href="{{site.feedback_form}}" target="_blank">Tell us more</a>
 

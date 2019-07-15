@@ -3,92 +3,98 @@ title: Installing the Design System
 layout: layout-sidenav
 permalink: /learn/development/install-design-system/
 ---
-<div class="row">
-    <div class="col">
-        {%- include page-notification.html -%}
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <h4 class="has-text-primary has-text-weight-semibold">The Design System provides developers a collection of reusable HTML and CSS to build websites. Adopting the library enables developers to use consistent markup, styles, and behavior in prototype and production work</h4>
-    </div>
-</div>
+
+{%- include page-notification.html -%}
+
+
+<h4 class="has-text-primary">The Design System provides developers a collection of reusable HTML and CSS to build
+    websites. Adopting the library enables developers to use consistent markup, styles, and behavior in prototype and
+    production work</h4>
 
 <hr class="margin--bottom--lg margin--top--lg">
 
-<div class="row">
-    <div class="col">
-        <h5 class="has-text-weight-semibold margin--bottom">Install using npm</h5>
-        <p>npm is a package manager for Node based projects. Design System maintains a package for you to utilize the compiled files on your project.</p>
-        <ul>
-            <li class="margin--bottom">Install Node.js <a href="https://nodejs.org/en/download/" target="_blank">here</a></li>
-            <li class="margin--bottom">To see if npm is installed, open your preferred command line tool and type in <code>npm -v</code>. This should print the npm version number that look something like this <code>3.10.10</code></li>
-            <li class="margin--bottom">To install the sgds-govtech package, navigate to your site folder using your terminal and run this command <code>npm install sgds-govtech --save</code></li>
-            <li class="margin--bottom">This will generate <code>node_modules/sgds-govtech</code> in your site folder
-    {%- highlight html -%}
-    site/node_modules/sgds-govtech/
-    ├── sass/
-    ├── css/
-    ├── fonts/
-    ├── js/
-    {%- endhighlight -%}
-            </li>
-            <li class="margin--bottom">The SASS(scss) source file is located here <code>site/node_modules/sgds-govtech/sass/sgds.scss</code></li>
-            <li class="margin--bottom">Import the <code>sgds.scss</code> file into your own sass folder. Below is an example of how you might setup your main Sass file:
-    {%- highlight sass -%}
-    @import site/node_modules/sgds-govtech/sass/sgds
-    //your own css code..
-    {%- endhighlight -%}
-            </li>
-            <li>You can find more information <a href="https://sass-lang.com/install" target="_blank">here</a> on how to compile SASS into CSS</li>
-        </ul>
-    </div>
-</div>
+
+<h5 class="has-text-weight-semibold margin--bottom">Install using npm</h5>
+<p>npm is a package manager for Node based projects. Design System maintains a package for you to utilize the compiled
+    files on your project.</p>
+<ul>
+    <li class="margin--bottom">Install Node.js <a href="https://nodejs.org/en/download/" target="_blank">here</a></li>
+    <li class="margin--bottom">To see if npm is installed, open your preferred command line tool and type in <code>npm
+        -v</code>. This should print the npm version number that look something like this <code>3.10.10</code></li>
+    <li class="margin--bottom">To install the sgds-govtech package, navigate to your site folder using your terminal and
+        run this command <code>npm install sgds-govtech --save</code></li>
+    <li class="margin--bottom">This will generate <code>node_modules/sgds-govtech</code> in your site folder
+        {%- highlight html -%}
+        site/node_modules/sgds-govtech/
+        ├── sass/
+        ├── css/
+        ├── fonts/
+        ├── js/
+        {%- endhighlight -%}
+    </li>
+    <li class="margin--bottom">The SASS(scss) source file is located here <code>site/node_modules/sgds-govtech/sass/sgds.scss</code>
+    </li>
+    <li class="margin--bottom">Import the <code>sgds.scss</code> file into your own sass folder. Below is an example of
+        how you might setup your main Sass file:
+        {%- highlight sass -%}
+        @import site/node_modules/sgds-govtech/sass/sgds
+        //your own css code..
+        {%- endhighlight -%}
+    </li>
+    <li>You can find more information <a href="https://sass-lang.com/install" target="_blank">here</a> on how to compile
+        SASS into CSS
+    </li>
+</ul>
+
 
 <hr class="margin--bottom--lg margin--top--lg">
 
-<div class="row">
-    <div class="col">
-        <h5 class="has-text-weight-semibold margin--bottom">Install manually</h5>
-        <p>We provide both minified CSS and the JavaScript files that you can use in a production environment or reduce the file size of your downloaded assets.</p>
-        <p><a class="sgds-button is-rounded margin--bottom margin--top is-primary" href="/assets/downloads/sgds-govtech.zip" target="_blank">Download Design System package</a></p>
-        <ul>
-            <li class="margin--bottom">The zip package contains the following files<br>
-                <code>css/sgds.css</code><br>
-                <code>js/sgds.js</code><br>
-                <code>fonts/sgds-icons.svg</code> <code>fonts/sgds-icons.wott</code> <code>fonts/sgds-icons.ttf</code>
-            </li>
-            <li class="margin--bottom">Extract and copy the files and folders into a relevant place in your project’s code base</li>
-            <li class="margin--bottom">Reference the CSS and JavaScript files in each HTML page or templates in your project</li>
-            <li class="margin--bottom">The sgds SASS(scss) source file is located here <code>site/node_modules/sgds-govetech/sgds.scss</code></li>
-            <li class="margin--bottom">For css, place the <code>link</code> tag between the html <code>head</code> tag
-{%- highlight html -%}
-<link rel="stylesheet" href="sitePath/css/sgds.css">
-{%- endhighlight -%}
-            </li>
-            <li class="margin--bottom">For js, place the <code>script</code> tag between the html <code>head</code> tag
-{%- highlight html -%}
-<script src="sitePath/js/sgds.js"></script>
-{%- endhighlight -%}
-            </li>
-        </ul>
-    </div>
-</div>
+
+<h5 class="has-text-weight-semibold margin--bottom">Install manually</h5>
+<p>We provide both minified CSS and the JavaScript files that you can use in a production environment or reduce the file
+    size of your downloaded assets.</p>
+<p><a class="sgds-button is-rounded margin--bottom margin--top is-primary" href="/assets/downloads/sgds-govtech.zip"
+      target="_blank">Download Design System package</a></p>
+<ul>
+    <li class="margin--bottom">The zip package contains the following files<br>
+        <code>css/sgds.css</code><br>
+        <code>js/sgds.js</code><br>
+        <code>fonts/sgds-icons.svg</code> <code>fonts/sgds-icons.wott</code> <code>fonts/sgds-icons.ttf</code>
+    </li>
+    <li class="margin--bottom">Extract and copy the files and folders into a relevant place in your project’s code
+        base
+    </li>
+    <li class="margin--bottom">Reference the CSS and JavaScript files in each HTML page or templates in your project
+    </li>
+    <li class="margin--bottom">The sgds SASS(scss) source file is located here <code>site/node_modules/sgds-govetech/sgds.scss</code>
+    </li>
+    <li class="margin--bottom">For css, place the <code>link</code> tag between the html <code>head</code> tag
+        {%- highlight html -%}
+        <link rel="stylesheet" href="sitePath/css/sgds.css">
+        {%- endhighlight -%}
+    </li>
+    <li class="margin--bottom">For js, place the <code>script</code> tag between the html <code>head</code> tag
+        {%- highlight html -%}
+        <script src="sitePath/js/sgds.js"></script>
+        {%- endhighlight -%}
+    </li>
+</ul>
+
 
 <hr class="margin--bottom--lg margin--top--lg">
 
-<div class="row">
-    <div class="col">
-        <h3 class="has-text-weight-semibold margin--bottom">Content Management Systems</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deserunt eos est fugiat impedit iste quae totam? Adipisci beatae corporis harum illo, numquam perspiciatis provident quibusdam recusandae, reiciendis, sapiente sequi.</p>
-        <div class="sgds-tabs is-boxed" data-sgds="tabs">
-            <ul class="is-marginless">
-                <li class="is-active"><a data-tab="#sitefinity">Sitefinity</a></li>
-                <li><a data-tab="#wordpress">Wordpress</a></li>
-            </ul>
-        </div>
-    </div>
+
+<h3 class="has-text-weight-semibold margin--bottom">Content Management Systems</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deserunt eos est fugiat impedit iste quae totam?
+    Adipisci beatae corporis harum illo, numquam perspiciatis provident quibusdam recusandae, reiciendis, sapiente
+    sequi.</p>
+<div class="sgds-tabs is-boxed" data-sgds="tabs">
+    <ul class="is-marginless">
+        <li class="is-active"><a data-tab="#sitefinity">Sitefinity</a></li>
+        <li><a data-tab="#wordpress">Wordpress</a></li>
+    </ul>
 </div>
+
 
 {% include_relative content-install-cms-sitefinity.html %}
 {% include_relative content-install-cms-wordpress.html %}

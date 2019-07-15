@@ -56,6 +56,7 @@
        - title: Main Nav
          icon: sgds-icon-mainnav
          url: /docs/main-nav/
+         label: js
        - title: Side Nav
          icon: sgds-icon-sidenav
          url: /docs/side-nav/
