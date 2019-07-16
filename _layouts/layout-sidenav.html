@@ -31,16 +31,14 @@ layout: layout-default
                         <h5 class="margin--top margin--bottom"><b class="has-text-danger">Mandatory</b> components for all gov.sg websites.</h5>
                     </div>
                 </div>
-                {% assign docsNav = site.data.navigation | where:"title","Docs" %}
                 <div class="row is-multiline is-mobile">
-                    {% assign documentation = site.documentation | where:"category" , "Standard" %}
-                    {% for component in documentation %}
+                    {% for component in site.standard %}
                     <div class="col is-3-desktop is-6-touch is-6-mobile">
                         <a href="{{ component.url }}">
                             <div class="sgds-card sgds-card-button">
-                                <div class="sgds-card-content has-text-centered is-flex">
-                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-6"></span>
-                                    <small class="margin--left--sm has-text-weight-semibold">{{component.title}}</small>
+                                <div class="sgds-card-content has-text-centered">
+                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
+                                    <p class="has-text-weight-semibold">{{component.title}}</p>
                                 </div>
                             </div>
                         </a>
@@ -55,14 +53,13 @@ layout: layout-default
                     </div>
                 </div>
                 <div class="row is-multiline is-mobile">
-                    {% assign documentation = site.documentation | where:"category" , "layouts" %}
-                    {% for component in documentation %}
+                    {% for component in site.layouts %}
                     <div class="col is-3-desktop is-6-touch is-6-mobile">
                         <a href="{{ component.url }}">
                             <div class="sgds-card sgds-card-button">
-                                <div class="sgds-card-content has-text-centered is-flex">
-                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-6"></span>
-                                    <small class="margin--left--sm has-text-weight-semibold">{{component.title}}</small>
+                                <div class="sgds-card-content has-text-centered">
+                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
+                                    <p class="has-text-weight-semibold">{{component.title}}</p>
                                 </div>
                             </div>
                         </a>
@@ -78,14 +75,13 @@ layout: layout-default
                     </div>
                 </div>
                 <div class="row is-multiline is-mobile">
-                    {% assign documentation = site.documentation | where:"category" , "General" %}
-                    {% for component in documentation %}
+                    {% for component in site.general %}
                     <div class="col is-3-desktop is-6-touch is-6-mobile">
                         <a href="{{ component.url }}">
                             <div class="sgds-card sgds-card-button">
-                                <div class="sgds-card-content has-text-centered is-flex">
-                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-6"></span>
-                                    <small class="margin--left--sm has-text-weight-semibold">{{component.title}}</small>
+                                <div class="sgds-card-content has-text-centered">
+                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
+                                    <p class="has-text-weight-semibold">{{component.title}}</p>
                                 </div>
                             </div>
                         </a>
@@ -199,8 +195,7 @@ layout: layout-default
                 <div class="sidenav" data-topspacing="140" data-bottomspacing="40">
                     <aside class="sgds-menu sidebar__inner">
                         <div class="control">
-                            <input id="search-field" class="input is-rounded" type="text" placeholder="Search Component">
-
+                            <input id="search-field" class="input is-rounded is-small" type="text" placeholder="Search Component">
                         </div>
                         <hr class="margin--top margin--bottom--sm">
                         <ul class="sgds-menu-list">
@@ -213,14 +208,14 @@ layout: layout-default
                                             <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
                                         </a>
                                     </li>
-                                    <div class="second-level-nav-div" id="component-list{{index}}">
-                                    {% for page in site[name] %}
-                                        <li><a class="second-level-nav-item" href="{{page.url}}">{{page.title}}</a></li>
-
-                                    {% endfor %}
+                                    <div class="second-level-nav-div" id="{{collection.label}}-component">
+                                        <div class="list">
+                                        {% for page in site[name] %}
+                                            <li><a class="component-name second-level-nav-item" href="{{page.url}}">{{page.title}}</a></li>
+                                        {% endfor %}
+                                        </div>
                                     </div>
                                 {% endif %}
-
                             {% endfor %}
                         </ul>
                     </aside>

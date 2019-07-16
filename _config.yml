@@ -53,13 +53,13 @@ includes:
 collections_dir: components
 collections:
   standard:
-    permalink: /docs/:collection/:path/
+    permalink: /docs/:path/
     output: true
   layouts:
-    permalink: /docs/:collection/:path/
+    permalink: /docs/:path/
     output: true
   general:
-    permalink: /docs/:collection/:path/
+    permalink: /docs/:path/
     output: true
 
 exclude:

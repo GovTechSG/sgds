@@ -6,8 +6,7 @@
             </div>
         </div>
         <div class="row is-multiline is-mobile">
-            {% assign documentation = site.documentation | where:"category" , "Standard" %}
-            {% for component in documentation %}
+            {% for component in site.standard %}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
                 <a href="{{ component.url }}">
                     <div class="sgds-card sgds-card-button">
@@ -20,7 +19,6 @@
             </div>
             {% endfor %}
         </div>
-
         <hr class="margin--bottom--lg margin--top--lg">
         <div class="row has-text-centered">
             <div class="col">
@@ -28,8 +26,7 @@
             </div>
         </div>
         <div class="row is-multiline is-mobile">
-            {% assign documentation = site.documentation | where:"category" , "layouts" %}
-            {% for component in documentation %}
+            {% for component in site.layouts %}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
                 <a href="{{ component.url }}">
                     <div class="sgds-card sgds-card-button">
@@ -51,8 +48,7 @@
             </div>
         </div>
         <div class="row is-multiline is-mobile">
-            {% assign documentation = site.documentation | where:"category" , "General" %}
-            {% for component in documentation %}
+            {% for component in site.general %}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
                 <a href="{{ component.url }}">
                     <div class="sgds-card sgds-card-button">
