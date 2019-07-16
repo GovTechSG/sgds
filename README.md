@@ -13,7 +13,10 @@
 ```html
 <head>
     ...
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.2.1/css/sgds.css">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.2.2/css/sgds.css"
+    />
     ...
 </head>
 ```
@@ -25,13 +28,14 @@
 ```html
 <body>
     ...
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.2.1/js/sgds.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.2.2/js/sgds.js"></script>
     ...
 </body>
 ```
 
 ### NPM
+
 ```sh
 $ npm i sgds-govtech
 ```
@@ -43,41 +47,62 @@ import "sgds-govtech/css/sgds.css";
 import "sgds-govtech/js/sgds"; // Do not use with other web frameworks*
 ```
 
-*Usage with frameworks such as React, Vue or Angular is discouraged. Framework-specific implementations are in early development and can be found at [sgds-react](https://github.com/govtechsg/sgds-react) and [sgds-govtech-vue](https://github.com/govtechsg/sgds-govtech-vue). 
-
-Pull requests welcome!
+\*Usage with frameworks such as React, Vue or Angular is discouraged since they manipulate the DOM in their own environments. Framework-specific implementations are in early development and can be found at [sgds-react](https://github.com/govtechsg/sgds-react) and [sgds-govtech-vue](https://github.com/govtechsg/sgds-govtech-vue).
 
 ## Usage
 
 See [docs](https://www.designsystem.gov.sg).
 
+## Development
+
+### Requirements
+
+-   Ruby, Bundler, then Jekyll
+-   Nodejs, NPM
+
+To spin up a live-reloading Jekyll + Webpack development server at localhost:4000:
+
+```bash
+$ npm install
+$ npm run devserver
+```
+
+Pull requests welcome!
+
 ## Patch Notes
+
 v1.1.0
 
-*Released since 07 June 2019*
+_Released since 07 June 2019_
 
-- Side Navigation
-    * `Deprecated` Side navigation with left border
-    * `New` Added Collaspable Side Navigation
+-   Side Navigation
 
--  Table
-   * `New` Added Horizontal table
-   * `New` Added Vertical header table
+    -   `Deprecated` Side navigation with left border
+    -   `New` Added Collaspable Side Navigation
 
--  Hero
-    * `New` Added Hero with Dropdown Button
-    * `New` Added Hero with Hoverable Dropdown Button
-    * `New` Added Hero with Search Bar
+-   Table
 
--  Button
-    * `New` Added Secondary buttons
+    -   `New` Added Horizontal table
+    -   `New` Added Vertical header table
 
--  Form
-    * `New` Added example of a feedback form
+-   Hero
 
--  Notification
-    * `New` Added Default notification (with and without icon)
-    * `New` Added Default Toast notification (with and without icon)
+    -   `New` Added Hero with Dropdown Button
+    -   `New` Added Hero with Hoverable Dropdown Button
+    -   `New` Added Hero with Search Bar
 
--  Tab
-    * `New` Added modifiers `is-centered`, `is-small`, `is-medium` , `is-large`
+-   Button
+
+    -   `New` Added Secondary buttons
+
+-   Form
+
+    -   `New` Added example of a feedback form
+
+-   Notification
+
+    -   `New` Added Default notification (with and without icon)
+    -   `New` Added Default Toast notification (with and without icon)
+
+-   Tab
+    -   `New` Added modifiers `is-centered`, `is-small`, `is-medium` , `is-large`
