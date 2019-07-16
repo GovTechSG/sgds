@@ -54,6 +54,7 @@ exclude:
   - .idea
   - .vscode
   - node_modules
+  - build
   - scripts
   - src
   - Dockerfile
