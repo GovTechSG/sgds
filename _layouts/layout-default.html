@@ -6,7 +6,9 @@
     </head>
     <body class="has-navbar-fixed-top">
         {%- include sgds-agencyhead.html -%}
-        {{content}}
+        <div class="content-page">
+            {{content}}
+        </div>
         {%- include sgds-footer.html -%}
         {%- include import-scripts.html -%}
     </body>

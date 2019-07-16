@@ -4,141 +4,169 @@ layout: layout-sidenav
 permalink: /learn/writing/accessibility-content/
 ---
 
-<div class="row">
-    <div class="col">
-        <h4 class="has-text-primary has-text-weight-semibold">As we build products and services for Singaporeans, no one should be left behind. Whether it means building public kiosks for those who don't have internet access, ensuring everyone can read the content or just saying things in a way that people understand</h4>
-    </div>
-</div>
+
+<h4 class="has-text-primary">As we build products and services for Singaporeans, no one should
+    be left behind. Whether it means building public kiosks for those who don't have internet access, ensuring everyone
+    can read the content or just saying things in a way that people understand</h4>
 
 <hr class="margin--bottom--lg margin--top--lg">
 
-<div class="row">
+
+<h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
+<p>The Web Content Accessibility Guidelines (WCAG), developed by the Worldwide Web Consortium (W3C), provide an
+    international set of guidelines which form the basis of most web accessibility laws in the world.</p>
+<div class="sgds-tabs is-boxed" data-sgds="tabs">
+    <ul class="is-marginless">
+        <li class="is-active"><a data-tab="#tab1">Perceivable</a></li>
+        <li><a data-tab="#tab2">Operable</a></li>
+        <li><a data-tab="#tab3">Understandable</a></li>
+        <li><a data-tab="#tab4">Robust</a></li>
+    </ul>
+</div>
+<div class="row" id="tab1">
     <div class="col">
-        <h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
-        <p>The Web Content Accessibility Guidelines (WCAG), developed by the Worldwide Web Consortium (W3C), provide an international set of guidelines which form the basis of most web accessibility laws in the world.</p>
-        <div class="sgds-tabs is-boxed" data-sgds="tabs">
-            <ul class="is-marginless">
-                <li class="is-active"><a data-tab="#tab1">Perceivable</a></li>
-                <li><a data-tab="#tab2">Operable</a></li>
-                <li><a data-tab="#tab3">Understandable</a></li>
-                <li><a data-tab="#tab4">Robust</a></li>
+        <p>Available to the senses (vision and hearing primarily) either through the browser or through assistive
+            technologies.</p>
+        <p><b>Text alternatives:</b> Provide text alternatives for any non-text content so that it can be changed into
+            other forms people need, such as large print, braille, speech, symbols or simpler language</p>
+        <p><b>Time-based media:</b> Provide alternatives for time-based media</p>
+        <p><b>Adaptable:</b> Create content that can be presented in different ways</p>
+        <p><b>Distinguishable:</b> Make it easier for users to see and hear content including separating foreground from
+            background</p>
+    </div>
+</div>
+<div class="row" id="tab2">
+    <div class="col">
+        <p>Users can interact with all controls and interactive elements using either the mouse, keyboard, or an
+            assistive device.</p>
+        <p><b>Keyboard accessible:</b> Make all functionality available from a keyboard</p>
+        <p><b>Enough time:</b> Provide users enough time to read and use content, no timing, interruptions can be
+            postponed or suppressed by the user except interruptions involving an emergency, when an authenticated
+            session expires, the user can continue the activity without loss of data after re-authenticating</p>
+        <p><b>Seizures:</b> Do not design content in a way that is known to cause seizures, nothing that flashes more
+            than three times in any one second period</p>
+        <p><b>Navigable:</b> Provide ways to help users navigate, find content, and determine where they are, bypass
+            blocks, page titles, focus order, link purpose from text alone, breadcrumbs</p>
+    </div>
+</div>
+<div class="row" id="tab3">
+    <div class="col">
+        <p>Content is clear and limits confusion and ambiguity.</p>
+        <p><b>Readable:</b> Make text content readable and understandable, identifying specific definitions of words or
+            phrases used in an unusual or restricted way, including idioms and jargon, abbreviations, difficult
+            pronunciations</p>
+        <p><b>Predictable:</b> Make Web pages appear and operate in predictable ways, consistent navigation, consistent
+            identification</p>
+        <p><b>Input assistance:</b> Help users avoid and correct mistakes, error prevention – reversible, checked,
+            confirmed</p>
+    </div>
+</div>
+<div class="row" id="tab4">
+    <div class="col">
+        <p>A wide range of technologies can access the content.</p>
+        <p><b>Compatible:</b> Maximize compatibility with current and future user agents, including assistive
+            technologies. Elements have complete start and end tags, no duplicate attributes, IDs are unique. For all UI
+            components, the name and role can be programmatically determined</p>
+    </div>
+</div>
+
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+
+<h5 class="has-text-weight-semibold margin--bottom">Implementing Content Design</h5>
+<p>Most accessibility principles can be implemented very easily and will not impact the overall "look and feel" of a web
+    site.</p>
+<div class="sgds-accordion-container">
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h6>Provide informative, unique page titles</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>For each web page, provide a short title that describes the page content and distinguishes it from other
+                pages. The page title is often the same as the main heading of the page.</p>
+            <p>Put the unique and most relevant information first; for example, put the name of the page before the name
+                of the organization. For pages that are part of a multi-step process, include the current step in the
+                page title.</p>
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h6>Use headings to convey meaning & structure</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>Use short headings to group related paragraphs and clearly describe the sections. Good headings provide
+                an outline of the content.</p>
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h6>Make link text meaningful</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>Write link text so that it describes the content of the link target. Avoid using ambiguous link text,
+                such as 'click here' or 'read more'. Indicate relevant information about the link target, such as
+                document type and size, for example, 'Proposal Documents (RTF, 20MB)'.</p>
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h6>Write meaningful text alternatives for images</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>For every image, write alternative text that provides the information or function of the image. For
+                purely decorative images, there is no need to write alternative text.</p>
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h6>Create transcripts & captions for multimedia</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>For audio-only content, such a podcast, provide a transcript. For audio and visual content, such as
+                training videos, also provide captions. Include in the transcripts and captions the spoken information
+                and sounds that are important for understanding the content, for example, 'door creaks'. For video
+                transcripts, also include a description of the important visual content, for example 'Athan leaves the
+                room'.</p>
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h6>Provide easily identifiable feedback</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>Provide feedback for interactions, such as confirming form submission, alerting the user when something
+                goes wrong, or notifying the user of changes on the page. Instructions should be easy to identify.
+                Important feedback that requires user action should be presented in a prominent style.</p>
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h6>Provide clear instructions</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>Ensure that instructions, guidance, and error messages are clear, easy to understand, and avoid
+                unnecessarily technical language. Describe input requirements, such as date formats. Instructions
+                communicate what information the user should provide. Error indicates what the problem is and, possibly,
+                how to fix it.</p>
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header">
+            <h6>Keep content clear & concise</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>Use simple language and formatting, as appropriate for the context.</p>
+            <ul>
+                <li>Write in short, clear sentences and paragraphs</li>
+                <li>Avoid using unnecessarily complex words and phrases. Consider providing a glossary for terms readers
+                    may not know
+                </li>
+                <li>Expand acronyms on first use. For example, Web Content Accessibility Guidelines (WCAG)</li>
+                <li>Consider providing a glossary for terms readers may not know</li>
+                <li>Use list formatting as appropriate</li>
+                <li>Consider using images, illustrations, video, audio, and symbols to help clarify meaning</li>
             </ul>
-        </div>
-        <div class="row" id="tab1">
-            <div class="col">
-                <p>Available to the senses (vision and hearing primarily) either through the browser or through assistive technologies.</p>
-                <p><b>Text alternatives:</b> Provide text alternatives for any non-text content so that it can be changed into other forms people need, such as large print, braille, speech, symbols or simpler language</p>
-                <p><b>Time-based media:</b> Provide alternatives for time-based media</p>
-                <p><b>Adaptable:</b> Create content that can be presented in different ways</p>
-                <p><b>Distinguishable:</b> Make it easier for users to see and hear content including separating foreground from background</p>
-            </div>
-        </div>
-        <div class="row" id="tab2">
-            <div class="col">
-                <p>Users can interact with all controls and interactive elements using either the mouse, keyboard, or an assistive device.</p>
-                <p><b>Keyboard accessible:</b> Make all functionality available from a keyboard</p>
-                <p><b>Enough time:</b> Provide users enough time to read and use content, no timing, interruptions can be postponed or suppressed by the user except interruptions involving an emergency, when an authenticated session expires, the user can continue the activity without loss of data after re-authenticating</p>
-                <p><b>Seizures:</b> Do not design content in a way that is known to cause seizures, nothing that flashes more than three times in any one second period</p>
-                <p><b>Navigable:</b> Provide ways to help users navigate, find content, and determine where they are, bypass blocks, page titles, focus order, link purpose from text alone, breadcrumbs</p>
-            </div>
-        </div>
-        <div class="row" id="tab3">
-            <div class="col">
-                <p>Content is clear and limits confusion and ambiguity.</p>
-                <p><b>Readable:</b> Make text content readable and understandable, identifying specific definitions of words or phrases used in an unusual or restricted way, including idioms and jargon, abbreviations, difficult pronunciations</p>
-                <p><b>Predictable:</b> Make Web pages appear and operate in predictable ways, consistent navigation, consistent identification</p>
-                <p><b>Input assistance:</b> Help users avoid and correct mistakes, error prevention – reversible, checked, confirmed</p>
-            </div>
-        </div>
-        <div class="row" id="tab4">
-            <div class="col">
-                <p>A wide range of technologies can access the content.</p>
-                <p><b>Compatible:</b> Maximize compatibility with current and future user agents, including assistive technologies. Elements have complete start and end tags, no duplicate attributes, IDs are unique. For all UI components, the name and role can be programmatically determined</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<hr class="margin--bottom--lg margin--top--lg">
-
-<div class="row">
-    <div class="col">
-        <h5 class="has-text-weight-semibold margin--bottom">Implementing Content Design</h5>
-        <p>Most accessibility principles can be implemented very easily and will not impact the overall "look and feel" of a web site.</p>
-        <div class="sgds-accordion-container">
-            <div class="sgds-accordion-set">
-                <a class="sgds-accordion-header">
-                    <h6>Provide informative, unique page titles</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>For each web page, provide a short title that describes the page content and distinguishes it from other pages. The page title is often the same as the main heading of the page.</p>
-                    <p>Put the unique and most relevant information first; for example, put the name of the page before the name of the organization. For pages that are part of a multi-step process, include the current step in the page title.</p>
-                </div>
-            </div>
-            <div class="sgds-accordion-set">
-                <a class="sgds-accordion-header">
-                    <h6>Use headings to convey meaning & structure</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>Use short headings to group related paragraphs and clearly describe the sections. Good headings provide an outline of the content.</p>
-                </div>
-            </div>
-            <div class="sgds-accordion-set">
-                <a class="sgds-accordion-header">
-                    <h6>Make link text meaningful</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>Write link text so that it describes the content of the link target. Avoid using ambiguous link text, such as 'click here' or 'read more'. Indicate relevant information about the link target, such as document type and size, for example, 'Proposal Documents (RTF, 20MB)'.</p>
-                </div>
-            </div>
-            <div class="sgds-accordion-set">
-                <a class="sgds-accordion-header">
-                    <h6>Write meaningful text alternatives for images</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>For every image, write alternative text that provides the information or function of the image. For purely decorative images, there is no need to write alternative text.</p>
-                </div>
-            </div>
-            <div class="sgds-accordion-set">
-                <a class="sgds-accordion-header">
-                    <h6>Create transcripts & captions for multimedia</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>For audio-only content, such a podcast, provide a transcript. For audio and visual content, such as training videos, also provide captions. Include in the transcripts and captions the spoken information and sounds that are important for understanding the content, for example, 'door creaks'. For video transcripts, also include a description of the important visual content, for example 'Athan leaves the room'.</p>
-                </div>
-            </div>
-            <div class="sgds-accordion-set">
-                <a class="sgds-accordion-header">
-                    <h6>Provide easily identifiable feedback</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>Provide feedback for interactions, such as confirming form submission, alerting the user when something goes wrong, or notifying the user of changes on the page. Instructions should be easy to identify. Important feedback that requires user action should be presented in a prominent style.</p>
-                </div>
-            </div>
-            <div class="sgds-accordion-set">
-                <a class="sgds-accordion-header">
-                    <h6>Provide clear instructions</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>Ensure that instructions, guidance, and error messages are clear, easy to understand, and avoid unnecessarily technical language. Describe input requirements, such as date formats. Instructions communicate what information the user should provide. Error indicates what the problem is and, possibly, how to fix it.</p>
-                </div>
-            </div>
-            <div class="sgds-accordion-set">
-                <a class="sgds-accordion-header">
-                    <h6>Keep content clear & concise</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>Use simple language and formatting, as appropriate for the context.</p>
-                    <ul>
-                        <li>Write in short, clear sentences and paragraphs</li>
-                        <li>Avoid using unnecessarily complex words and phrases. Consider providing a glossary for terms readers may not know</li>
-                        <li>Expand acronyms on first use. For example, Web Content Accessibility Guidelines (WCAG)</li>
-                        <li>Consider providing a glossary for terms readers may not know</li>
-                        <li>Use list formatting as appropriate</li>
-                        <li>Consider using images, illustrations, video, audio, and symbols to help clarify meaning</li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 </div>

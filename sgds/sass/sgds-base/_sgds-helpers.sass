@@ -275,8 +275,14 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex'
 // Flex Helper
 // To be use in display:flex container
 
-$justifys: 'flex-start' 'flex-end' 'center' 'space-between' 'space-around' 'initial' 'inherit'
+$justifys: ("fs" : flex-start, "fe": flex-end, "c": center, "sb": space-between, "sa": space-around, "initial": initial, "inherit": inherit)
 
-@each $justify in $justifys
-  .is-j-content-#{$justify}
-    justify-content: #{$justify} !important
+@each $name, $prop in $justifys
+  .is-flex-justify-#{$name}
+    justify-content: #{$prop} !important
+
+$alignitems: ("fs" : flex-start, "fe": flex-end, "c": center, "s": stretch, "b": baseline)
+
+@each $name, $prop in $alignitems
+  .is-flex-alignitems-#{$name}
+    align-items: #{$prop} !important

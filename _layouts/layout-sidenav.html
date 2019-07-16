@@ -31,15 +31,13 @@ layout: layout-default
                         <h5 class="margin--top margin--bottom"><b class="has-text-danger">Mandatory</b> components for all gov.sg websites.</h5>
                     </div>
                 </div>
-                {% assign docsNav = site.data.navigation | where:"title","Docs" %}
                 <div class="row is-multiline is-mobile">
-                    {% assign standardComponents = docsNav[0].lvl2 | where:"title","Standard Components" %}
-                    {% for component in standardComponents[0].lvl3 %}
+                    {% for component in site.standard %}
                     <div class="col is-3-desktop is-6-touch is-6-mobile">
                         <a href="{{ component.url }}">
                             <div class="sgds-card sgds-card-button">
                                 <div class="sgds-card-content has-text-centered">
-                                    <span class="sgds-icon {{ component.icon }} is-size-6"></span>
+                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
                                     <p class="has-text-weight-semibold">{{component.title}}</p>
                                 </div>
                             </div>
@@ -55,14 +53,12 @@ layout: layout-default
                     </div>
                 </div>
                 <div class="row is-multiline is-mobile">
-                    {% assign generalComponents = docsNav[0].lvl2 | where:"title","Layouts"%}
-
-                    {% for component in generalComponents[0].lvl3 %}
+                    {% for component in site.layouts %}
                     <div class="col is-3-desktop is-6-touch is-6-mobile">
                         <a href="{{ component.url }}">
                             <div class="sgds-card sgds-card-button">
                                 <div class="sgds-card-content has-text-centered">
-                                    <span class="sgds-icon {{ component.icon }} is-size-6"></span>
+                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
                                     <p class="has-text-weight-semibold">{{component.title}}</p>
                                 </div>
                             </div>
@@ -79,14 +75,12 @@ layout: layout-default
                     </div>
                 </div>
                 <div class="row is-multiline is-mobile">
-                    {% assign generalComponents = docsNav[0].lvl2 | where:"title","General Components" %}
-                    {% assign generalComponentsLvl3 = generalComponents[0].lvl3 | sort:"title"%}
-                    {% for component in generalComponentsLvl3 %}
+                    {% for component in site.general %}
                     <div class="col is-3-desktop is-6-touch is-6-mobile">
                         <a href="{{ component.url }}">
                             <div class="sgds-card sgds-card-button">
                                 <div class="sgds-card-content has-text-centered">
-                                    <span class="sgds-icon {{ component.icon }} is-size-6"></span>
+                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
                                     <p class="has-text-weight-semibold">{{component.title}}</p>
                                 </div>
                             </div>
@@ -197,55 +191,42 @@ layout: layout-default
 <section class="sgds-section is-small">
     <div class="sgds-container">
         <div class="row">
-            <div class="col is-3 is-hidden-touch sidenav-container">
+            <div class="col is-2 is-hidden-touch sidenav-container">
                 <div class="sidenav" data-topspacing="140" data-bottomspacing="40">
                     <aside class="sgds-menu sidebar__inner">
                         <div class="control">
-                            <input id="search-field" class="input is-rounded" type="text" placeholder="Search Component">
+                            <input id="search-field" class="input is-rounded is-small" type="text" placeholder="Search Component">
                         </div>
                         <hr class="margin--top margin--bottom--sm">
                         <ul class="sgds-menu-list">
-                            {%- assign links = site.data.navigation -%}
-                            {%- for lvl1item in links -%}
-                                {%- if page.url contains lvl1item.url -%}
-                                    {%- for lvl2item in lvl1item.lvl2 -%}
-                                        <li class="second-level-nav">
-                                            <a class=" second-level-nav-header has-text-weight-bold">
-                                                {{ lvl2item.title}}
-                                                {%- if lvl2item.lvl3 -%}
-                                                    <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
-                                                {%- endif -%}
-                                            </a>
-                                        </li>
-                                        {%- if lvl2item.lvl3 -%}
-                                            <div class="second-level-nav-div"  id="component-list{{forloop.index}}">
-                                                <div class="list">
-                                                {%- for lvl3item in lvl2item.lvl3 -%}
-                                                    {%- assign class = nil -%}
-                                                    {%- if page.url contains lvl3item.url -%}
-                                                        {%- assign class = 'is-active' -%}
-                                                    {%- endif -%}
-                                                    <li>
-                                                        <a class="component-name second-level-nav-item padding--top--none {{class}} is-j-content-start is-j-content-flex-start"
-                                                        href="{{ site.baseurl }}{{ lvl3item.url }}">
-                                                            {{ lvl3item.title }}
-                                                            {%- if lvl3item.label == 'js' -%}
-                                                            <span class="sgds-tag is-rounded margin--left--sm">JS</span>
-                                                            {%- endif -%}
-                                                        </a>
-                                                    </li>
-                                                {%- endfor -%}
-                                                    </div>
-                                                </div>
-                                        {%- endif -%}
-                                    {%- endfor -%}
-                                {%- endif -%}
-                            {%- endfor -%}
+                            {% for collection in site.collections reversed %}
+                                {% if collection.label !='posts' %}
+                                    {% assign name = collection.label %}
+                                    <li class="second-level-nav">
+                                        <a class="second-level-nav-header has-text-primary">
+                                            {{name | capitalize }}
+                                            <i class="sgds-icon sgds-icon-chevron-up has-text-weight" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <div class="second-level-nav-div" id="{{collection.label}}-component">
+                                        <div class="list">
+
+                                        {% for item in site[name] %}
+                                            {% assign class = nil %}
+                                            {% if page.url contains item.url %}
+                                                {% assign class = 'is-active has-text-weight-normal' %}
+                                            {% endif %}
+                                            <li><a class="component-name second-level-nav-item {{class}}" href="{{item.url}}">{{item.title}}</a></li>
+                                        {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </ul>
                     </aside>
                 </div>
             </div>
-            <div class="col is-9 is-12-touch padding--left--lg">
+            <div class="col is-9 is-offset-1 is-12-touch">
                 {% if page.update-notification %}
                 <div class="row">
                     <div class="col">
@@ -261,13 +242,11 @@ layout: layout-default
                     </div>
                 </div>
                 {% endif %}
-                <div class="row">
-                    <div class="col">
-                        <div class="content margin--top--sm">
-                            {{content}}
-                        </div>
-                    </div>
+
+                <div class="content margin--top--sm">
+                    {{content}}
                 </div>
+
             </div>
         </div>
     </div>

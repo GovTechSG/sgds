@@ -93,26 +93,20 @@
                             Download v{{site.sgds-version}}
                         </a>
 
-
-
                         {% if page.layout != 'search' %}
-                        <button class="sgds-button is-white is-large is-hidden-touch" id="search-activate">
+                        <button class="sgds-button is-white is-large is-hidden-touch search-toggle" data-target="searchbar-main">
                             <span class="sgds-icon sgds-icon-search"></span>
                         </button>
                         {% else %}
 
-                        <button class="sgds-button is-white is-large is-hidden-touch" id="search-activate" disabled></button>
+                        <button class="sgds-button is-white is-large is-hidden-touch" disabled></button>
                         {% endif %}
-
                     </div>
                 </div>
-
-
             </div>
-
         </div>
     </nav>
-    <div class="sgds-container hide is-hidden-touch search-bar" id="search-bar">
+    <div class="sgds-container is-hidden-touch hide" id="searchbar-main">
         <div class="row">
             <div class="col">
                 <hr class="margin--bottom--sm">
