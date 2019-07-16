@@ -205,13 +205,18 @@ layout: layout-default
                                     <li class="second-level-nav">
                                         <a class="second-level-nav-header has-text-primary">
                                             {{name | capitalize }}
-                                            <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
+                                            <i class="sgds-icon sgds-icon-chevron-up has-text-weight" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <div class="second-level-nav-div" id="{{collection.label}}-component">
                                         <div class="list">
-                                        {% for page in site[name] %}
-                                            <li><a class="component-name second-level-nav-item" href="{{page.url}}">{{page.title}}</a></li>
+
+                                        {% for item in site[name] %}
+                                            {% assign class = nil %}
+                                            {% if page.url contains item.url %}
+                                                {% assign class = 'is-active has-text-weight-normal' %}
+                                            {% endif %}
+                                            <li><a class="component-name second-level-nav-item {{class}}" href="{{item.url}}">{{item.title}}</a></li>
                                         {% endfor %}
                                         </div>
                                     </div>
