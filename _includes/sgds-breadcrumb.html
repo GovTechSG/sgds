@@ -1,3 +1,4 @@
+<!-- https://github.com/comsysto/jekyll-breadcrumb-for-github-pages -->
 <nav class="sgds-breadcrumb padding--top--sm" aria-label="breadcrumbs">
     <ul>
         {% assign class = nil %}
@@ -7,6 +8,7 @@
         {% assign class = 'has-text-white' %}
         {% endif %}
         <li><a class="{{class}}" href="{{ site.baseurl }}/">{{ "Home" | upcase }}</a></li>
+
         {%- capture page_url_without_index_html -%}{{ page.url | remove: "/index.html" }}{%- endcapture -%}
         {% assign splitted_url_parts = page_url_without_index_html | split: '/' %}
         {% capture forLoopMaxInt %}{{ splitted_url_parts.size | minus:1 }}{% endcapture %}
@@ -17,13 +19,11 @@
         {% capture current_breadcrumb_md_url %}{{next_prepender}}/{{ splitted_url_parts[i] }}/{% endcapture %}
         {% capture next_prepender %}{{next_prepender}}/{{ splitted_url_parts[i] }}{% endcapture %}
 
-        {% for breadcrumb_page in site.pages %}
-
-        {% if current_breadcrumb_url == breadcrumb_page.permalink or current_breadcrumb_md_url == breadcrumb_page.permalink %}
-        <li><a class="{{class}}" href="{{ site.baseurl }}{{breadcrumb_page.permalink}}">{{breadcrumb_page.breadcrumb | upcase}}</a></li>
-        {% endif %}
-
-        {% endfor %}
+        <li>
+            <a class="{{ class }}" href="{{site.baseurl}}{{current_breadcrumb_md_url}}">
+                {{ current_breadcrumb_md_url | split: '/' | last | replace: '-', ' ' |upcase }}
+            </a>
+        </li>
 
         {% endfor %}
     </ul>

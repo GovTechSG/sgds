@@ -15,8 +15,6 @@
         url: /learn/development/accessibility-coding/
       - title: Color Contrast Checker
         url: /learn/development/color-contrast/
-      - title: Working with frontend frameworks
-        url: /learn/development/frameworks/
 
    - title: Design
      url: /learn/design/
@@ -43,9 +41,8 @@
 - title: Docs
   url: /docs/
 
-- title: FAQs
-  url: /general/faq/
-
+- title: FAQ
+  url: /faq/
 
 #- title: Testing
 #  url: /testing/

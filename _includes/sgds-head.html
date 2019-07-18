@@ -4,15 +4,10 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 {% if page.url contains '/templates/quickstart/' %}
-<link rel="stylesheet" href="{{site.baseurl}}/sgds-govtech/dist/sgds.css">
+<link rel="stylesheet" href="/css/sgds.css">
 <title>Site Title</title>
 {% else %}
-<meta property="og:title" content="{{site.title}}">
-<meta property="og:description" content="{{site.description}}">
-<meta property="og:image" content="{{site.baseurl}}/assets/img/logo_sgds.png">
-<meta property="og:url" content="{{site.baseurl}}">
-<link rel="shortcut icon" href="{{site.baseurl}}/assets/img/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="{{site.baseurl}}/css/sgds.css">
-<link rel="stylesheet" href="{{site.baseurl}}/assets/custom-css/flex-footer-bottom.css">
-<title>Design System - {{ page.title }}</title>
+<link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/css/sgds.css">
+<link rel="stylesheet" href="/assets/custom-css/flex-footer-bottom.css">
 {% endif %}
