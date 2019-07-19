@@ -5,7 +5,7 @@
     color:white;
   }
   .divider{
-    border-top:1px solid $grey-dark;
+    border-top:1px solid rgba(white,0.4);
   }
   a {
     color: $footer-grey;
@@ -24,6 +24,11 @@
     line-height: 25px !important;
     & + p{
       margin-top:15px;
+    }
+  }
+  .footer-bottom{
+    p{
+      font-size: $size-menu;
     }
   }
   ul{
