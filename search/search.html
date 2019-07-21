@@ -36,18 +36,10 @@ breadcrumb: Search
 </section>
 <section class="sgds-section">
     <div class="sgds-container search-content">
-
         <div class="row is-multiline">
-            <!-- Todo: allow simple searching through page text -->
-            {% for page in site.pages %}
-            <div class="col is-10 is-offset-1">
-                <p>Page url: {{ page.url }}</p>
-                <p>Page content: {{ page.content  | strip_html }}</p>
-                <!-- <h4 class="search-results-count" id="search-results-count"></h4>
-                <br />
-                <p class="search-results" id="search-results"></p> -->
-            </div>
-            {% endfor %}
+            <!-- <h4 class="search-results-count" id="search-results-count"></h4>
+            <br />
+            <p class="search-results" id="search-results"></p> -->
         </div>
     </div>
 </section>
