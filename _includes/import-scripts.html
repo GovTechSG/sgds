@@ -1,12 +1,11 @@
-{% if page.url contains '/templates/quickstart/' %}
-{% else %}
-<!-- Google Analytics -->
-
-<!-- End Google Analytics -->
-{% endif %}
-
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/css-element-queries@1.2.0/src/ResizeSensor.js"></script>
+<script src="/js/sgds.js"></script>
+<!-- <script src="/assets/js/search.js"></script> -->
+<!-- <script src="/assets/js/worker.js"></script> -->
+<!-- <script src="/assets/js/build-index.js"></script> -->
+
 {% if page.url contains "/docs/" %}
 <script src="https://cdn.jsdelivr.net/npm/list.js@1.5.0/dist/list.min.js"></script>
 <script src="/assets/js/modal.js"></script>
@@ -31,11 +30,3 @@
 {% else %}
 <script src="https://assets.dcube.cloud/scripts/wogaa.js"></script>
 {% endif %}
-
-<script src="https://cdn.jsdelivr.net/npm/css-element-queries@1.2.0/src/ResizeSensor.js"></script>
-<script src="/js/sgds.js"></script>
-<!-- <script src="/posts.json"></script> -->
-<script src="/assets/js/lunr.js"></script>
-<!-- <script src="/assets/js/search.js"></script> -->
-<!-- <script src="/assets/js/worker.js"></script> -->
-<!-- <script src="/assets/js/build-index.js"></script> -->
