@@ -19,6 +19,7 @@
   p{
     color: $footer-grey;
     line-height: 25px !important;
+    font-size: $size-menu;
     & + p{
       margin-top:15px;
     }
@@ -74,6 +75,11 @@
       align-items: center;
       @media screen and (max-width: $tablet) {
         display: block;
+      }
+      .col{
+        &:last-child{
+          padding-top: 0;
+        }
       }
     }
     background-color: darken($grey-darker,10%);
