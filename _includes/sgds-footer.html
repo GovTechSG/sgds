@@ -68,9 +68,6 @@
             <div class="col is-right-desktop-only">
                 <ul>
                     <li class="is-inline-block-desktop-only">
-                        <p><a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a></p>
-                    </li>
-                    <li class="is-inline-block-desktop-only">
                         <!--Tools questionaire-->
                         <p><a href="{{site.contact_us}}" target="_blank">Contact</a></p>
                     </li>
@@ -84,21 +81,26 @@
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom row is-vcentered divider">
-            <div class="col">
+    </div>
+</footer>
+<footer class="sgds-footer bottom-section">
+    <div class="sgds-container">
+        <div class="row is-multiline">
+            <div class="col is-12">
                 <ul>
-                    <li><a href="{{site.baseurl}}/privacy/">Privacy</a></li>
-                    <li><a href="{{site.baseurl}}/terms/">Terms of Use</a></li>
+                    <li>
+                       <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
+                    </li>
+                    <li><a href="">Privacy</a></li>
+                    <li><a href="">Terms of Use</a></li>
                 </ul>
             </div>
-            <div class="col has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+            <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
                 <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
                 <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
                 <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
             </div>
         </div>
-
     </div>
 </footer>
-
 {% endif %}

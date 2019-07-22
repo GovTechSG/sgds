@@ -4,9 +4,6 @@
   .footer-link-title{
     color:white;
   }
-  .divider{
-    border-top:1px solid rgba(white,0.4);
-  }
   a {
     color: $footer-grey;
     font-size: 17px;
@@ -26,11 +23,7 @@
       margin-top:15px;
     }
   }
-  .footer-bottom{
-    p{
-      font-size: $size-menu;
-    }
-  }
+  
   ul{
     margin: 0;
     li{
@@ -72,10 +65,23 @@
       text-align: left;
     }
   }
-}
 
-.sgds-footer.top-section {
-  padding-bottom: 16px;
+  &.bottom-section{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    .row{
+      display: flex; 
+      align-items: center;
+      @media screen and (max-width: $tablet) {
+        display: block;
+      }
+    }
+    background-color: darken($grey-darker,10%);
+    p{
+      font-size: $size-menu;
+      margin-bottom: 0;
+    }
+  }
 }
 
 .is-hidden-desktop.last-updated {
