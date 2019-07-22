@@ -57,3 +57,4 @@ exclude:
   - webpack.config.js
   - Gruntfile.js
   - amplify.yml
+  - apps/src
