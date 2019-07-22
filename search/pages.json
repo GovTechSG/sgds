@@ -12,9 +12,9 @@
                 "url": "{{ page.url | xml_escape }}"
             }{%- unless forloop.last -%},{%- endunless -%}
             {%- endunless -%}
-            {}{%- unless forloop.last -%},{%- endunless -%}
+            {%- if forloop.last -%}{}{%- endif -%}
         {%- else -%}
-            {}{%- unless forloop.last -%},{%- endunless -%}
+            {%- if forloop.last -%}{}{%- endif -%}
         {%- endif -%}
         {%- endfor -%}
     ]
