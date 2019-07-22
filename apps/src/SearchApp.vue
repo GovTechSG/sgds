@@ -1,10 +1,19 @@
 <template>
     <section class="sgds-section">
-        <h2>{{ searchQuery ? `Search results for: "${searchQuery}"`: `Search for anything here!`}}</h2>
-        <div class="sgds-container search-content">
+        <div :style="{display: 'flex', justifyContent: 'center'}">
+            <div class="lds-ellipsis" v-if="searching">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <div class="sgds-container search-content" v-if="!searching">
+            <h2>{{ searchQuery ? `Search results for: "${searchQuery}"`: `Search for anything here!`}}</h2>
             <div class="row is-multiline">
                 <div
-                    class="col is-10 is-offset-1"
+                    class="col is-12"
                     v-for="(result, index) of searchResults"
                     :key="`${index}:${result.ref}`"
                 >
@@ -35,7 +44,8 @@ export default {
         return {
             searchQuery: "",
             pages: [],
-            lunrSearchResults: []
+            lunrSearchResults: [],
+            searching: false
         };
     },
     computed: {
@@ -55,26 +65,31 @@ export default {
         let u = new URL(window.location.href);
         this.searchQuery = u.searchParams.get("query");
         if (!this.searchQuery) return;
-
-        axios.get("/search/pages.json").then(response => {
-            let pagesRaw = response.data.pages;
-            let pagesNonEmpty = pagesRaw.filter(
-                page => Object.keys(page).length !== 0
-            );
-            this.pages = pagesNonEmpty;
-            // Build lunr index
-            const lunrIndex = lunr(function() {
-                this.ref("url");
-                this.field("content");
-                this.field("category");
-                this.field("title");
-                this.metadataWhitelist = ["position"];
-                pagesNonEmpty.forEach(function(page) {
-                    this.add(page);
-                }, this);
+        this.searching = true;
+        axios
+            .get("/search/pages.json")
+            .then(response => {
+                let pagesRaw = response.data.pages;
+                let pagesNonEmpty = pagesRaw.filter(
+                    page => Object.keys(page).length !== 0
+                );
+                this.pages = pagesNonEmpty;
+                // Build lunr index
+                const lunrIndex = lunr(function() {
+                    this.ref("url");
+                    this.field("content");
+                    this.field("category");
+                    this.field("title");
+                    this.metadataWhitelist = ["position"];
+                    pagesNonEmpty.forEach(function(page) {
+                        this.add(page);
+                    }, this);
+                });
+                this.lunrSearchResults = lunrIndex.search(this.searchQuery);
+            })
+            .finally(() => {
+                this.searching = false;
             });
-            this.lunrSearchResults = lunrIndex.search(this.searchQuery);
-        });
     }
 };
 </script>
