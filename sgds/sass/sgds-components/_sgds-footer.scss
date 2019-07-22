@@ -24,7 +24,6 @@
       margin-top:15px;
     }
   }
-  
   ul{
     margin: 0;
     li{
@@ -77,6 +76,7 @@
         display: block;
       }
       .col{
+        padding-top: 0.5rem;
         &:last-child{
           padding-top: 0;
         }

@@ -323,6 +323,22 @@ breadcrumb: Standard
                 </ul>
             </div>
         </div>
+        <div class="row is-multiline divider">
+            <div class="col is-12">
+                <ul>
+                    <li>
+                       <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
+                    </li>
+                    <li><a href="">Privacy</a></li>
+                    <li><a href="">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
+                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
+                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+            </div>
+        </div>
     </div>
 </footer>
 <footer class="sgds-footer bottom-section">
@@ -357,7 +373,7 @@ breadcrumb: Standard
 <p>Footer should:</p>
 <ul>
     <li class="margin--bottom">Be positioned at the bottom of every page in the digital service</li>
-    <li class="margin--bottom">Contain the '<a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>' with the link on the lower left hand corner of the Footer Panel</li>
+    <li class="margin--bottom">Contain the '<a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>' link on the lower bottom left hand corner of the Footer Panel</li>
     <li class="margin--bottom">Contain the 'Privacy' and 'Terms of Use' on the bottom left hand corner of the Footer Panel</li>
     <li class="margin--bottom">Contain the 'Feedback' if there is a feedback form</li>
     <li class="margin--bottom">Contain the 'Rate this Service' if there is a customer satisfaction poll</li>
