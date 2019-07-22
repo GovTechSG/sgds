@@ -1,0 +1,45 @@
+---
+layout: layout-default
+title: Search
+permalink: /search/
+breadcrumb: Search
+---
+
+<section class="sgds-section is-small has-background-primary">
+    <div class="sgds-container">
+        {% include sgds-breadcrumb.html %}
+        <h2 class="has-text-white ">{{ page.title }}</h2>
+    </div>
+    <div class="sgds-container">
+        <form action="/search/" method="get">
+            <div class="row padding--bottom--lg padding--top--lg">
+                <div class="col">
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input
+                                class="input"
+                                type="text"
+                                placeholder="{{ site.search_placeholder }}"
+                                name="query"
+                            />
+                        </div>
+                        <div class="control">
+                            <button class="sgds-button">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<section class="sgds-section">
+    <div class="sgds-container search-content">
+        <div class="row is-multiline">
+            <!-- <h4 class="search-results-count" id="search-results-count"></h4>
+            <br />
+            <p class="search-results" id="search-results"></p> -->
+        </div>
+    </div>
+</section>

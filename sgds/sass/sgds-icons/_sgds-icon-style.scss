@@ -26,851 +26,851 @@
 }
 
 @function unicode($str) {
-  @return unquote("\"") + $str + unquote("\"");
+  @return unquote("\"#{ $str }\"");
 }
 .sgds-icon-breadcrumb {
   &:before {
-    content: $sgds-icon-breadcrumb;
+    content: unicode($sgds-icon-breadcrumb);
   }
 }
 .sgds-icon-callout {
   &:before {
-    content: $sgds-icon-callout;
+    content: unicode($sgds-icon-callout);
   }
 }
 .sgds-icon-hero {
   &:before {
-    content: $sgds-icon-hero;
+    content: unicode($sgds-icon-hero);
   }
 }
 .sgds-icon-mainnav {
   &:before {
-    content: $sgds-icon-mainnav;
+    content: unicode($sgds-icon-mainnav);
   }
 }
 .sgds-icon-sidenav {
   &:before {
-    content: $sgds-icon-sidenav;
+    content: unicode($sgds-icon-sidenav);
   }
 }
 .sgds-icon-table {
   &:before {
-    content: $sgds-icon-table;
+    content: unicode($sgds-icon-table);
   }
 }
 .sgds-icon-typography {
   &:before {
-    content: $sgds-icon-typography;
+    content: unicode($sgds-icon-typography);
   }
 }
 .sgds-icon-delete {
   &:before {
-    content: $sgds-icon-delete;
+    content: unicode($sgds-icon-delete);
   }
 }
 .sgds-icon-grid-alt {
   &:before {
-    content: $sgds-icon-grid-alt;
+    content: unicode($sgds-icon-grid-alt);
   }
 }
 .sgds-icon-pause-alt {
   &:before {
-    content: $sgds-icon-pause-alt;
+    content: unicode($sgds-icon-pause-alt);
   }
 }
 .sgds-icon-pause {
   &:before {
-    content: $sgds-icon-pause;
+    content: unicode($sgds-icon-pause);
   }
 }
 .sgds-icon-pencil {
   &:before {
-    content: $sgds-icon-pencil;
+    content: unicode($sgds-icon-pencil);
   }
 }
 .sgds-icon-play-alt {
   &:before {
-    content: $sgds-icon-play-alt;
+    content: unicode($sgds-icon-play-alt);
   }
 }
 .sgds-icon-play {
   &:before {
-    content: $sgds-icon-play;
+    content: unicode($sgds-icon-play);
   }
 }
 .sgds-icon-privacy-alt {
   &:before {
-    content: $sgds-icon-privacy-alt;
+    content: unicode($sgds-icon-privacy-alt);
   }
 }
 .sgds-icon-privacy {
   &:before {
-    content: $sgds-icon-privacy;
+    content: unicode($sgds-icon-privacy);
   }
 }
 .sgds-icon-signal {
   &:before {
-    content: $sgds-icon-signal;
+    content: unicode($sgds-icon-signal);
   }
 }
 .sgds-icon-stop {
   &:before {
-    content: $sgds-icon-stop;
+    content: unicode($sgds-icon-stop);
   }
 }
 .sgds-icon-telephone {
   &:before {
-    content: $sgds-icon-telephone;
+    content: unicode($sgds-icon-telephone);
   }
 }
 .sgds-icon-bookmark-alt {
   &:before {
-    content: $sgds-icon-bookmark-alt;
+    content: unicode($sgds-icon-bookmark-alt);
   }
 }
 .sgds-icon-star-alt {
   &:before {
-    content: $sgds-icon-star-alt;
+    content: unicode($sgds-icon-star-alt);
   }
 }
 .sgds-icon-guides {
   &:before {
-    content: $sgds-icon-guides;
+    content: unicode($sgds-icon-guides);
   }
 }
 .sgds-icon-sentimeter {
   &:before {
-    content: $sgds-icon-sentimeter;
+    content: unicode($sgds-icon-sentimeter);
   }
 }
 .sgds-icon-sharepoint {
   &:before {
-    content: $sgds-icon-sharepoint;
+    content: unicode($sgds-icon-sharepoint);
   }
 }
 .sgds-icon-sitecore {
   &:before {
-    content: $sgds-icon-sitecore;
+    content: unicode($sgds-icon-sitecore);
   }
 }
 .sgds-icon-sitefinity {
   &:before {
-    content: $sgds-icon-sitefinity;
+    content: unicode($sgds-icon-sitefinity);
   }
 }
 .sgds-icon-swiit {
   &:before {
-    content: $sgds-icon-swiit;
+    content: unicode($sgds-icon-swiit);
   }
 }
 .sgds-icon-wordpress {
   &:before {
-    content: $sgds-icon-wordpress;
+    content: unicode($sgds-icon-wordpress);
   }
 }
 .sgds-icon-accordion {
   &:before {
-    content: $sgds-icon-accordion;
+    content: unicode($sgds-icon-accordion);
   }
 }
 .sgds-icon-button {
   &:before {
-    content: $sgds-icon-button;
+    content: unicode($sgds-icon-button);
   }
 }
 .sgds-icon-card {
   &:before {
-    content: $sgds-icon-card;
+    content: unicode($sgds-icon-card);
   }
 }
 .sgds-icon-checklist {
   &:before {
-    content: $sgds-icon-checklist;
+    content: unicode($sgds-icon-checklist);
   }
 }
 .sgds-icon-container {
   &:before {
-    content: $sgds-icon-container;
+    content: unicode($sgds-icon-container);
   }
 }
 .sgds-icon-dropdown {
   &:before {
-    content: $sgds-icon-dropdown;
+    content: unicode($sgds-icon-dropdown);
   }
 }
 .sgds-icon-footer {
   &:before {
-    content: $sgds-icon-footer;
+    content: unicode($sgds-icon-footer);
   }
 }
 .sgds-icon-grid {
   &:before {
-    content: $sgds-icon-grid;
+    content: unicode($sgds-icon-grid);
   }
 }
 .sgds-icon-icons {
   &:before {
-    content: $sgds-icon-icons;
+    content: unicode($sgds-icon-icons);
   }
 }
 .sgds-icon-masthead {
   &:before {
-    content: $sgds-icon-masthead;
+    content: unicode($sgds-icon-masthead);
   }
 }
 .sgds-icon-section {
   &:before {
-    content: $sgds-icon-section;
+    content: unicode($sgds-icon-section);
   }
 }
 .sgds-icon-tab {
   &:before {
-    content: $sgds-icon-tab;
+    content: unicode($sgds-icon-tab);
   }
 }
 .sgds-icon-atom {
   &:before {
-    content: $sgds-icon-atom;
+    content: unicode($sgds-icon-atom);
   }
 }
 .sgds-icon-molecule {
   &:before {
-    content: $sgds-icon-molecule;
+    content: unicode($sgds-icon-molecule);
   }
 }
 .sgds-icon-organism {
   &:before {
-    content: $sgds-icon-organism;
+    content: unicode($sgds-icon-organism);
   }
 }
 .sgds-icon-page {
   &:before {
-    content: $sgds-icon-page;
+    content: unicode($sgds-icon-page);
   }
 }
 .sgds-icon-template {
   &:before {
-    content: $sgds-icon-template;
+    content: unicode($sgds-icon-template);
   }
 }
 .sgds-icon-add-image {
   &:before {
-    content: $sgds-icon-add-image;
+    content: unicode($sgds-icon-add-image);
   }
 }
 .sgds-icon-attachment {
   &:before {
-    content: $sgds-icon-attachment;
+    content: unicode($sgds-icon-attachment);
   }
 }
 .sgds-icon-cloud {
   &:before {
-    content: $sgds-icon-cloud;
+    content: unicode($sgds-icon-cloud);
   }
 }
 .sgds-icon-contact {
   &:before {
-    content: $sgds-icon-contact;
+    content: unicode($sgds-icon-contact);
   }
 }
 .sgds-icon-create-folder {
   &:before {
-    content: $sgds-icon-create-folder;
+    content: unicode($sgds-icon-create-folder);
   }
 }
 .sgds-icon-delay {
   &:before {
-    content: $sgds-icon-delay;
+    content: unicode($sgds-icon-delay);
   }
 }
 .sgds-icon-file-copy {
   &:before {
-    content: $sgds-icon-file-copy;
+    content: unicode($sgds-icon-file-copy);
   }
 }
 .sgds-icon-file-pdf {
   &:before {
-    content: $sgds-icon-file-pdf;
+    content: unicode($sgds-icon-file-pdf);
   }
 }
 .sgds-icon-folder {
   &:before {
-    content: $sgds-icon-folder;
+    content: unicode($sgds-icon-folder);
   }
 }
 .sgds-icon-add-photo {
   &:before {
-    content: $sgds-icon-add-photo;
+    content: unicode($sgds-icon-add-photo);
   }
 }
 .sgds-icon-browser {
   &:before {
-    content: $sgds-icon-browser;
+    content: unicode($sgds-icon-browser);
   }
 }
 .sgds-icon-calculator {
   &:before {
-    content: $sgds-icon-calculator;
+    content: unicode($sgds-icon-calculator);
   }
 }
 .sgds-icon-camera {
   &:before {
-    content: $sgds-icon-camera;
+    content: unicode($sgds-icon-camera);
   }
 }
 .sgds-icon-clock {
   &:before {
-    content: $sgds-icon-clock;
+    content: unicode($sgds-icon-clock);
   }
 }
 .sgds-icon-cloud-download {
   &:before {
-    content: $sgds-icon-cloud-download;
+    content: unicode($sgds-icon-cloud-download);
   }
 }
 .sgds-icon-cloud-success {
   &:before {
-    content: $sgds-icon-cloud-success;
+    content: unicode($sgds-icon-cloud-success);
   }
 }
 .sgds-icon-cloud-upload {
   &:before {
-    content: $sgds-icon-cloud-upload;
+    content: unicode($sgds-icon-cloud-upload);
   }
 }
 .sgds-icon-database {
   &:before {
-    content: $sgds-icon-database;
+    content: unicode($sgds-icon-database);
   }
 }
 .sgds-icon-download {
   &:before {
-    content: $sgds-icon-download;
+    content: unicode($sgds-icon-download);
   }
 }
 .sgds-icon-file-add {
   &:before {
-    content: $sgds-icon-file-add;
+    content: unicode($sgds-icon-file-add);
   }
 }
 .sgds-icon-file-alt {
   &:before {
-    content: $sgds-icon-file-alt;
+    content: unicode($sgds-icon-file-alt);
   }
 }
 .sgds-icon-file {
   &:before {
-    content: $sgds-icon-file;
+    content: unicode($sgds-icon-file);
   }
 }
 .sgds-icon-hdd {
   &:before {
-    content: $sgds-icon-hdd;
+    content: unicode($sgds-icon-hdd);
   }
 }
 .sgds-icon-image {
   &:before {
-    content: $sgds-icon-image;
+    content: unicode($sgds-icon-image);
   }
 }
 .sgds-icon-link {
   &:before {
-    content: $sgds-icon-link;
+    content: unicode($sgds-icon-link);
   }
 }
 .sgds-icon-lock {
   &:before {
-    content: $sgds-icon-lock;
+    content: unicode($sgds-icon-lock);
   }
 }
 .sgds-icon-mail {
   &:before {
-    content: $sgds-icon-mail;
+    content: unicode($sgds-icon-mail);
   }
 }
 .sgds-icon-print {
   &:before {
-    content: $sgds-icon-print;
+    content: unicode($sgds-icon-print);
   }
 }
 .sgds-icon-radar {
   &:before {
-    content: $sgds-icon-radar;
+    content: unicode($sgds-icon-radar);
   }
 }
 .sgds-icon-save {
   &:before {
-    content: $sgds-icon-save;
+    content: unicode($sgds-icon-save);
   }
 }
 .sgds-icon-share {
   &:before {
-    content: $sgds-icon-share;
+    content: unicode($sgds-icon-share);
   }
 }
 .sgds-icon-unlock {
   &:before {
-    content: $sgds-icon-unlock;
+    content: unicode($sgds-icon-unlock);
   }
 }
 .sgds-icon-upload {
   &:before {
-    content: $sgds-icon-upload;
+    content: unicode($sgds-icon-upload);
   }
 }
 .sgds-icon-volume-mute {
   &:before {
-    content: $sgds-icon-volume-mute;
+    content: unicode($sgds-icon-volume-mute);
   }
 }
 .sgds-icon-volume {
   &:before {
-    content: $sgds-icon-volume;
+    content: unicode($sgds-icon-volume);
   }
 }
 .sgds-icon-docker {
   &:before {
-    content: $sgds-icon-docker;
+    content: unicode($sgds-icon-docker);
   }
 }
 .sgds-icon-facebook-alt {
   &:before {
-    content: $sgds-icon-facebook-alt;
+    content: unicode($sgds-icon-facebook-alt);
   }
 }
 .sgds-icon-facebook {
   &:before {
-    content: $sgds-icon-facebook;
+    content: unicode($sgds-icon-facebook);
   }
 }
 .sgds-icon-google {
   &:before {
-    content: $sgds-icon-google;
+    content: unicode($sgds-icon-google);
   }
 }
 .sgds-icon-instagram {
   &:before {
-    content: $sgds-icon-instagram;
+    content: unicode($sgds-icon-instagram);
   }
 }
 .sgds-icon-linkedin-alt {
   &:before {
-    content: $sgds-icon-linkedin-alt;
+    content: unicode($sgds-icon-linkedin-alt);
   }
 }
 .sgds-icon-linkedin {
   &:before {
-    content: $sgds-icon-linkedin;
+    content: unicode($sgds-icon-linkedin);
   }
 }
 .sgds-icon-person-add {
   &:before {
-    content: $sgds-icon-person-add;
+    content: unicode($sgds-icon-person-add);
   }
 }
 .sgds-icon-person-cancel {
   &:before {
-    content: $sgds-icon-person-cancel;
+    content: unicode($sgds-icon-person-cancel);
   }
 }
 .sgds-icon-person-remove {
   &:before {
-    content: $sgds-icon-person-remove;
+    content: unicode($sgds-icon-person-remove);
   }
 }
 .sgds-icon-person {
   &:before {
-    content: $sgds-icon-person;
+    content: unicode($sgds-icon-person);
   }
 }
 .sgds-icon-rss {
   &:before {
-    content: $sgds-icon-rss;
+    content: unicode($sgds-icon-rss);
   }
 }
 .sgds-icon-thumbs-down {
   &:before {
-    content: $sgds-icon-thumbs-down;
+    content: unicode($sgds-icon-thumbs-down);
   }
 }
 .sgds-icon-thumbs-up {
   &:before {
-    content: $sgds-icon-thumbs-up;
+    content: unicode($sgds-icon-thumbs-up);
   }
 }
 .sgds-icon-twitter {
   &:before {
-    content: $sgds-icon-twitter;
+    content: unicode($sgds-icon-twitter);
   }
 }
 .sgds-icon-youtube {
   &:before {
-    content: $sgds-icon-youtube;
+    content: unicode($sgds-icon-youtube);
   }
 }
 .sgds-icon-add-place {
   &:before {
-    content: $sgds-icon-add-place;
+    content: unicode($sgds-icon-add-place);
   }
 }
 .sgds-icon-boat {
   &:before {
-    content: $sgds-icon-boat;
+    content: unicode($sgds-icon-boat);
   }
 }
 .sgds-icon-bus {
   &:before {
-    content: $sgds-icon-bus;
+    content: unicode($sgds-icon-bus);
   }
 }
 .sgds-icon-car {
   &:before {
-    content: $sgds-icon-car;
+    content: unicode($sgds-icon-car);
   }
 }
 .sgds-icon-layers {
   &:before {
-    content: $sgds-icon-layers;
+    content: unicode($sgds-icon-layers);
   }
 }
 .sgds-icon-map {
   &:before {
-    content: $sgds-icon-map;
+    content: unicode($sgds-icon-map);
   }
 }
 .sgds-icon-my-location {
   &:before {
-    content: $sgds-icon-my-location;
+    content: unicode($sgds-icon-my-location);
   }
 }
 .sgds-icon-place {
   &:before {
-    content: $sgds-icon-place;
+    content: unicode($sgds-icon-place);
   }
 }
 .sgds-icon-taxi {
   &:before {
-    content: $sgds-icon-taxi;
+    content: unicode($sgds-icon-taxi);
   }
 }
 .sgds-icon-traffic {
   &:before {
-    content: $sgds-icon-traffic;
+    content: unicode($sgds-icon-traffic);
   }
 }
 .sgds-icon-train {
   &:before {
-    content: $sgds-icon-train;
+    content: unicode($sgds-icon-train);
   }
 }
 .sgds-icon-arrow-down {
   &:before {
-    content: $sgds-icon-arrow-down;
+    content: unicode($sgds-icon-arrow-down);
   }
 }
 .sgds-icon-arrow-left {
   &:before {
-    content: $sgds-icon-arrow-left;
+    content: unicode($sgds-icon-arrow-left);
   }
 }
 .sgds-icon-arrow-right {
   &:before {
-    content: $sgds-icon-arrow-right;
+    content: unicode($sgds-icon-arrow-right);
   }
 }
 .sgds-icon-arrow-top-left {
   &:before {
-    content: $sgds-icon-arrow-top-left;
+    content: unicode($sgds-icon-arrow-top-left);
   }
 }
 .sgds-icon-arrow-top-right {
   &:before {
-    content: $sgds-icon-arrow-top-right;
+    content: unicode($sgds-icon-arrow-top-right);
   }
 }
 .sgds-icon-arrow-up {
   &:before {
-    content: $sgds-icon-arrow-up;
+    content: unicode($sgds-icon-arrow-up);
   }
 }
 .sgds-icon-check {
   &:before {
-    content: $sgds-icon-check;
+    content: unicode($sgds-icon-check);
   }
 }
 .sgds-icon-chevron-down {
   &:before {
-    content: $sgds-icon-chevron-down;
+    content: unicode($sgds-icon-chevron-down);
   }
 }
 .sgds-icon-chevron-left {
   &:before {
-    content: $sgds-icon-chevron-left;
+    content: unicode($sgds-icon-chevron-left);
   }
 }
 .sgds-icon-chevron-right {
   &:before {
-    content: $sgds-icon-chevron-right;
+    content: unicode($sgds-icon-chevron-right);
   }
 }
 .sgds-icon-chevron-up {
   &:before {
-    content: $sgds-icon-chevron-up;
+    content: unicode($sgds-icon-chevron-up);
   }
 }
 .sgds-icon-cog {
   &:before {
-    content: $sgds-icon-cog;
+    content: unicode($sgds-icon-cog);
   }
 }
 .sgds-icon-cross {
   &:before {
-    content: $sgds-icon-cross;
+    content: unicode($sgds-icon-cross);
   }
 }
 .sgds-icon-ellipsis {
   &:before {
-    content: $sgds-icon-ellipsis;
+    content: unicode($sgds-icon-ellipsis);
   }
 }
 .sgds-icon-home {
   &:before {
-    content: $sgds-icon-home;
+    content: unicode($sgds-icon-home);
   }
 }
 .sgds-icon-menu {
   &:before {
-    content: $sgds-icon-menu;
+    content: unicode($sgds-icon-menu);
   }
 }
 .sgds-icon-minus {
   &:before {
-    content: $sgds-icon-minus;
+    content: unicode($sgds-icon-minus);
   }
 }
 .sgds-icon-notification {
   &:before {
-    content: $sgds-icon-notification;
+    content: unicode($sgds-icon-notification);
   }
 }
 .sgds-icon-plus {
   &:before {
-    content: $sgds-icon-plus;
+    content: unicode($sgds-icon-plus);
   }
 }
 .sgds-icon-sg-crest {
   &:before {
-    content: $sgds-icon-sg-crest;
+    content: unicode($sgds-icon-sg-crest);
     color: #db0000;
   }
 }
 .sgds-icon-text-center {
   &:before {
-    content: $sgds-icon-text-center;
+    content: unicode($sgds-icon-text-center);
   }
 }
 .sgds-icon-text-justify {
   &:before {
-    content: $sgds-icon-text-justify;
+    content: unicode($sgds-icon-text-justify);
   }
 }
 .sgds-icon-text-left {
   &:before {
-    content: $sgds-icon-text-left;
+    content: unicode($sgds-icon-text-left);
   }
 }
 .sgds-icon-text-right {
   &:before {
-    content: $sgds-icon-text-right;
+    content: unicode($sgds-icon-text-right);
   }
 }
 .sgds-icon-add-comment {
   &:before {
-    content: $sgds-icon-add-comment;
+    content: unicode($sgds-icon-add-comment);
   }
 }
 .sgds-icon-ban {
   &:before {
-    content: $sgds-icon-ban;
+    content: unicode($sgds-icon-ban);
   }
 }
 .sgds-icon-bookmark {
   &:before {
-    content: $sgds-icon-bookmark;
+    content: unicode($sgds-icon-bookmark);
   }
 }
 .sgds-icon-calendar {
   &:before {
-    content: $sgds-icon-calendar;
+    content: unicode($sgds-icon-calendar);
   }
 }
 .sgds-icon-chat {
   &:before {
-    content: $sgds-icon-chat;
+    content: unicode($sgds-icon-chat);
   }
 }
 .sgds-icon-circle-info {
   &:before {
-    content: $sgds-icon-circle-info;
+    content: unicode($sgds-icon-circle-info);
   }
 }
 .sgds-icon-circle-minus {
   &:before {
-    content: $sgds-icon-circle-minus;
+    content: unicode($sgds-icon-circle-minus);
   }
 }
 .sgds-icon-circle-plus {
   &:before {
-    content: $sgds-icon-circle-plus;
+    content: unicode($sgds-icon-circle-plus);
   }
 }
 .sgds-icon-circle-question {
   &:before {
-    content: $sgds-icon-circle-question;
+    content: unicode($sgds-icon-circle-question);
   }
 }
 .sgds-icon-circle-warning {
   &:before {
-    content: $sgds-icon-circle-warning;
+    content: unicode($sgds-icon-circle-warning);
   }
 }
 .sgds-icon-compress-alt {
   &:before {
-    content: $sgds-icon-compress-alt;
+    content: unicode($sgds-icon-compress-alt);
   }
 }
 .sgds-icon-compress {
   &:before {
-    content: $sgds-icon-compress;
+    content: unicode($sgds-icon-compress);
   }
 }
 .sgds-icon-edit {
   &:before {
-    content: $sgds-icon-edit;
+    content: unicode($sgds-icon-edit);
   }
 }
 .sgds-icon-expand-alt {
   &:before {
-    content: $sgds-icon-expand-alt;
+    content: unicode($sgds-icon-expand-alt);
   }
 }
 .sgds-icon-expand {
   &:before {
-    content: $sgds-icon-expand;
+    content: unicode($sgds-icon-expand);
   }
 }
 .sgds-icon-external {
   &:before {
-    content: $sgds-icon-external;
+    content: unicode($sgds-icon-external);
   }
 }
 .sgds-icon-feedback {
   &:before {
-    content: $sgds-icon-feedback;
+    content: unicode($sgds-icon-feedback);
   }
 }
 .sgds-icon-filter {
   &:before {
-    content: $sgds-icon-filter;
+    content: unicode($sgds-icon-filter);
   }
 }
 .sgds-icon-info {
   &:before {
-    content: $sgds-icon-info;
+    content: unicode($sgds-icon-info);
   }
 }
 .sgds-icon-list {
   &:before {
-    content: $sgds-icon-list;
+    content: unicode($sgds-icon-list);
   }
 }
 .sgds-icon-pin {
   &:before {
-    content: $sgds-icon-pin;
+    content: unicode($sgds-icon-pin);
   }
 }
 .sgds-icon-question {
   &:before {
-    content: $sgds-icon-question;
+    content: unicode($sgds-icon-question);
   }
 }
 .sgds-icon-refresh {
   &:before {
-    content: $sgds-icon-refresh;
+    content: unicode($sgds-icon-refresh);
   }
 }
 .sgds-icon-rsvp-no {
   &:before {
-    content: $sgds-icon-rsvp-no;
+    content: unicode($sgds-icon-rsvp-no);
   }
 }
 .sgds-icon-rsvp-yes {
   &:before {
-    content: $sgds-icon-rsvp-yes;
+    content: unicode($sgds-icon-rsvp-yes);
   }
 }
 .sgds-icon-search {
   &:before {
-    content: $sgds-icon-search;
+    content: unicode($sgds-icon-search);
   }
 }
 .sgds-icon-slider-horizontal {
   &:before {
-    content: $sgds-icon-slider-horizontal;
+    content: unicode($sgds-icon-slider-horizontal);
   }
 }
 .sgds-icon-slider-vertical {
   &:before {
-    content: $sgds-icon-slider-vertical;
+    content: unicode($sgds-icon-slider-vertical);
   }
 }
 .sgds-icon-star {
   &:before {
-    content: $sgds-icon-star;
+    content: unicode($sgds-icon-star);
   }
 }
 .sgds-icon-sync {
   &:before {
-    content: $sgds-icon-sync;
+    content: unicode($sgds-icon-sync);
   }
 }
 .sgds-icon-toggle-minus {
   &:before {
-    content: $sgds-icon-toggle-minus;
+    content: unicode($sgds-icon-toggle-minus);
   }
 }
 .sgds-icon-toggle-off {
   &:before {
-    content: $sgds-icon-toggle-off;
+    content: unicode($sgds-icon-toggle-off);
   }
 }
 .sgds-icon-toggle-on {
   &:before {
-    content: $sgds-icon-toggle-on;
+    content: unicode($sgds-icon-toggle-on);
   }
 }
 .sgds-icon-toggle-plus {
   &:before {
-    content: $sgds-icon-toggle-plus;
+    content: unicode($sgds-icon-toggle-plus);
   }
 }
 .sgds-icon-triangle-warning {
   &:before {
-    content: $sgds-icon-triangle-warning;
+    content: unicode($sgds-icon-triangle-warning);
   }
 }
 .sgds-icon-warning {
   &:before {
-    content: $sgds-icon-warning;
+    content: unicode($sgds-icon-warning);
   }
 }
 .sgds-icon-zoom-in {
   &:before {
-    content: $sgds-icon-zoom-in;
+    content: unicode($sgds-icon-zoom-in);
   }
 }
 .sgds-icon-zoom-out {
   &:before {
-    content: $sgds-icon-zoom-out;
+    content: unicode($sgds-icon-zoom-out);
   }
 }
