@@ -4,19 +4,19 @@
 {
     "pages": [
         {%- for page in site.pages -%}
-        {%- if page.name contains '.html' %} 
-            {%- unless page.url contains '/admin-template' or page.url contains '/testing' or page.url contains '/search' -%}
-            {
-                "title": "{{ page.title }}",
-                "category": "{{ page.category }}",
-                "content": {{ page.content | strip_html | strip_newlines | strip | jsonify }},
-                "url": "{{ page.url }}"
-            }{%- unless forloop.last -%},{%- endunless -%}
-            {%- endunless -%}
-            {%- if forloop.last -%}{}{%- endif -%}
-        {%- else -%}
-            {%- if forloop.last -%}{}{%- endif -%}
-        {%- endif -%}
+            {%- if page.name contains '.html' %} 
+                {%- unless page.url contains '/admin-template' or page.url contains '/testing' or page.url contains '/search' -%}
+                {
+                    "title": "{{ page.title }}",
+                    "category": "{{ page.category }}",
+                    "content": {{ page.content | strip_html | strip_newlines | strip | jsonify }},
+                    "url": "{{ page.url }}"
+                },
+                {%- endunless -%}
+                {%- if forloop.last -%}{}{%- endif -%}
+            {%- else -%}
+                {%- if forloop.last -%}{}{%- endif -%}
+            {%- endif -%}
         {%- endfor -%}
 
         {%- if site.documents.size > 0 -%},{%- endif -%}
