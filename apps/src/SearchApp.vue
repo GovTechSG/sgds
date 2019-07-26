@@ -22,9 +22,7 @@
                             <p class="title">
                                 <a :href="result.url">{{ result.title }}</a>
                             </p>
-                            <p
-                                style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap"
-                            >{{ result.content }}</p>
+                            <p v-html="result.displayedContent"></p>
                         </div>
                     </div>
                 </div>
@@ -48,15 +46,50 @@ export default {
             searching: false
         };
     },
+    methods: {
+        getSearchContentDisplay(searchResult) {
+            let contentLength = 500; // characters
+            let matchKey = Object.keys(searchResult.matchData.metadata)[0];
+
+            if (searchResult.matchData.metadata[matchKey].content) {
+                // Start 32 characters left of first match
+                // Unless first match index < 32
+                let matchPositions =
+                    searchResult.matchData.metadata[matchKey].content.position;
+                let firstMatchIndex = matchPositions[0][0];
+
+                let truncatedContent = firstMatchIndex > 32 ? "..." : "";
+                truncatedContent += searchResult.content.substring(
+                    firstMatchIndex - 32,
+                    firstMatchIndex + contentLength
+                );
+                if (
+                    firstMatchIndex + contentLength <
+                    searchResult.content.length
+                ) {
+                    truncatedContent += "...";
+                }
+                return this.highlightContentMatches(truncatedContent);
+            }
+            return "";
+        },
+        highlightContentMatches(content) {
+            return content.replace(new RegExp(`${this.searchQuery}`, "gi"), `<strong>${this.searchQuery}</strong>`)
+        }
+    },
     computed: {
         searchResults() {
             return this.lunrSearchResults.map(lunrResult => {
                 let associatedPage = this.pages.find(
                     page => page.url === lunrResult.ref
                 );
-                return {
+                let searchResult = {
                     ...associatedPage,
                     ...lunrResult
+                };
+                return {
+                    ...searchResult,
+                    displayedContent: this.getSearchContentDisplay(searchResult)
                 };
             });
         }
@@ -70,9 +103,14 @@ export default {
             .get("/search/pages.json")
             .then(response => {
                 let pagesRaw = response.data.pages;
-                let pagesNonEmpty = pagesRaw.filter(
-                    page => Object.keys(page).length !== 0
-                );
+                let pagesNonEmpty = pagesRaw
+                    .filter(page => Object.keys(page).length !== 0)
+                    .map(page => {
+                        return {
+                            ...page,
+                            content: page.content.replace(/\s+/g, " ")
+                        };
+                    });
                 this.pages = pagesNonEmpty;
                 // Build lunr index
                 const lunrIndex = lunr(function() {
