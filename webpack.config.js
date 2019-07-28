@@ -7,7 +7,7 @@ let config = {
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
     entry: {
         "js/sgds": "./sgds/index.js",
-        "apps/build/vue-search-app": "./apps/src/vue-search-app.js"
+        "apps/build/vue-search-app": "./apps/src/search/vue-search-app.js"
     },
     output: {
         filename: "[name].js",
