@@ -5,10 +5,11 @@ frontend:
       commands:
         - gem install bundler -v 2.0.2
         - bundle install
-        - npm install
+        - npm ci
     build:
       commands:
-        - npm run build:site
+        - if [ "${AWS_BRANCH}" = "master" ]; then npm run build:dev; fi
+        - if [ "${AWS_BRANCH}" = "dev" ]; then npm run build:prod; fi
   artifacts:
     baseDirectory: _site
     files:

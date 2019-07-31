@@ -17,7 +17,7 @@ $card-max-height: 21rem !default
     position: relative
     .is-media-card &
       &:hover
-        background-color: darken($card-background-color, 10%)
+        background-color: darken($card-background-color, 2.5%)
       .sgds-card-content
         display: flex
         height: $card-max-height
@@ -25,20 +25,24 @@ $card-max-height: 21rem !default
         flex-direction: column
         justify-content: space-between
 
-
-      @each $name, $pair in $colors
-        $color: nth($pair, 1)
-        $color-invert: nth($pair, 2)
-        &.is-#{$name}
-          color: white
-          background-color: $color
-          border-color: transparent
-          &:hover
-            background-color: darken($color, 10%)
       footer
         display: flex
         justify-content: space-between
         align-items: center
+  
+    @each $name, $pair in $colors
+      $color: nth($pair, 1)
+      $color-invert: nth($pair, 2)
+      &.is-#{$name}
+        color: $color-invert
+        background-color: $color
+        border-color: transparent
+        &:hover
+          background-color: darken($color, 2.5%)
+        
+        .sgds-card-footer,
+        .sgds-card-footer-item
+          border-color: lighten($color, 20%)
 
   &-card-header
     align-items: stretch
@@ -47,7 +51,7 @@ $card-max-height: 21rem !default
 
   &-card-header-title
     align-items: center
-    color: $card-header-color
+    // color: $card-header-color
     display: flex
     flex-grow: 1
     font-weight: $card-header-weight
