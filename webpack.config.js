@@ -2,6 +2,8 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const ImageminPlugin = require('imagemin-webpack-plugin').default
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 let config = {
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
@@ -63,14 +65,23 @@ let config = {
             {
                 test: /\.vue$/,
                 loader: "vue-loader"
-            }
+            },
         ]
     },
     plugins: [
         new MiniCssExtractPlugin({
             moduleFilename: ({ name }) => `${name.replace("js", "css")}.css`
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new CopyWebpackPlugin([{
+          from: 'assets/img',
+          to: 'assets/img'
+        }]),
+        new ImageminPlugin({
+          pngquant: {
+            quality: '95-100'
+          }
+        })
     ]
 };
 if (process.env.NODE_ENV === "production") {
