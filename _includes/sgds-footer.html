@@ -3,7 +3,7 @@
     <div class="sgds-container">
         <div class="row">
             <div class="col header">
-                <h5 class="sub-header has-text-white"><b>Design System</b></h5>
+                <h5 class="has-text-white"><b>Design System</b></h5>
             </div>
         </div>
         <div class="row">
@@ -30,7 +30,7 @@
                 </ul>
             </div>
         </div>
-        <div class="row is-vcentered divider">
+        <div class="footer-bottom row is-vcentered divider">
             <div class="col">
                 <ul>
                     <li><a href="">Privacy Statement</a></li>
@@ -43,25 +43,45 @@
         </div>
     </div>
 </footer>
+<footer class="sgds-footer bottom-section">
+    <div class="sgds-container">
+        <div class="row is-multiline">
+            <div class="col is-12">
+                <ul>
+                    <li>
+                       <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
+                    </li>
+                    <li><a href="">Privacy</a></li>
+                    <li><a href="">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
+                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
+                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+            </div>
+        </div>
+    </div>
+</footer>
 {% else %}
 <footer class="sgds-footer">
     <div class="sgds-container">
         <div class="row">
             <div class="col header">
-                <h5 class="footer-link-title"><b>{{site.title}}</b></h5>
+                <h5 class="has-text-white"><b>{{site.title}}</b></h5>
             </div>
         </div>
         <div class="row">
             <div class="col is-3">
-                <p class="footer-link-title"><b>User Guides</b></p>
-                <p><a href="/general/coming-soon/">Install Design System</a></p>
-                <p><a href="/general/coming-soon/">Suggest a Component</a></p>
-                <p><a href="/general/coming-soon/">Submit a Theme</a></p>
+                <p class="has-text-white"><b>User Guides</b></p>
+                <p><a href="/learn/development/install-design-system/">Install Design System</a></p>
+                <p><a href="https://github.com/GovTechSG/sgds/issues">Suggest a Component</a></p>
+                <p><a href="/coming-soon/">Submit a Theme</a></p>
             </div>
             <div class="col is-3">
-                <p class="footer-link-title"><b>Other Sites</b></p>
-                <p><a href="/general/coming-soon/">Developer Portal</a></p>
-                <p><a href="/general/coming-soon/">Isomer</a></p>
+                <p class="has-text-white"><b>Other Sites</b></p>
+                <p><a href="/coming-soon/">Developer Portal</a></p>
+                <p><a href="https://www.isomer.gov.sg/">Isomer</a></p>
             </div>
         </div>
         <div class="row">
@@ -76,26 +96,32 @@
                         <p><a href="{{site.feedback_form}}" target="_blank">Feedback</a></p>
                     </li>
                     <li class="is-inline-block-desktop-only">
-                        <p><a href="/general/faq/">FAQs</a></p>
+                        <p><a href="/faq/">FAQs</a></p>
                     </li>
                 </ul>
-            </div>
-        </div>
-        <div class="row is-vcentered divider">
-            <div class="col">
-                <ul>
-                    <li><a href="{{site.baseurl}}/general/privacy">Privacy</a></li>
-                    <li><a href="{{site.baseurl}}/general/terms">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="col has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
-                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
-                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
             </div>
         </div>
 
     </div>
 </footer>
-
+<footer class="sgds-footer bottom-section">
+    <div class="sgds-container">
+        <div class="row is-multiline">
+            <div class="col is-12">
+                <ul>
+                    <li>
+                       <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
+                    </li>
+                    <li><a href="/privacy/">Privacy</a></li>
+                    <li><a href="/terms/">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
+                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
+                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+            </div>
+        </div>
+    </div>
+</footer>
 {% endif %}

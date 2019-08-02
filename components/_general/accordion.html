@@ -1,0 +1,112 @@
+---
+title: Accordion
+name: accordion
+layout: layout-sidenav
+category: General
+breadcrumb: General
+icon: accordion
+---
+
+
+<h4 class="has-text-primary">Accordion is a graphical control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "stretched" to reveal the content associated with that item</h4>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<div class="row">
+    <div class="col">
+        <div class="sgds-accordion">
+            <a href="#!" class="sgds-accordion-header active" role="button" aria-expanded="false">
+                I have content below me <i class="sgds-icon sgds-icon-chevron-up"></i>
+            </a>
+            <div class="sgds-accordion-body is-open">
+                <p>This is my accordion content</p>
+            </div>
+        </div>
+
+        <div class="sgds-accordion">
+            <a href="#!" class="sgds-accordion-header" role="button" aria-expanded="false">
+                I have content below me <i class="sgds-icon sgds-icon-chevron-down"></i>
+            </a>
+            <div class="sgds-accordion-body">
+                <p>This is my accordion content</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sgds-accordion">
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header" role="button" aria-expanded="false">
+            accordion bar 1 <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>your content 1</p>
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header active" role="button" aria-expanded="true">
+            accordion bar 2 <i class="sgds-icon sgds-icon-chevron-up"></i>
+        </a>
+        <div class="sgds-accordion-body is-open">
+            <p>You can add  <code>is-open</code> class to <code>sgds-accordion-body</code> to show the content on page load</p>
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header" role="button" aria-expanded="false">
+            accordion bar 3 <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>your content 3</p>
+        </div>
+    </div>
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
+<p>Use this code snippet to any part of your project, please ensure you have included <code>sgds.js</code> for it to work.</p>
+{%- highlight html -%}
+<div class="sgds-accordion">
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header" role="button" aria-expanded="false">
+            accordion bar 1 <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>your content 1</p>
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header active" role="button" aria-expanded="true">
+            accordion bar 2 <i class="sgds-icon sgds-icon-chevron-up"></i>
+        </a>
+        <div class="sgds-accordion-body is-open">
+            <p>You can add  <code>is-open</code> class to <code>sgds-accordion-body</code> to show the content on page load</p>
+        </div>
+    </div>
+    <div class="sgds-accordion-set">
+        <a class="sgds-accordion-header" role="button" aria-expanded="false">
+            accordion bar 3 <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>your content 3</p>
+        </div>
+    </div>
+</div>
+{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
+
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
+<p>Accordion should:</p>
+<ul>
+    <li>Use only when there is enough content to condense</li>
+    <li>Avoid nested accordions as it increases the cognitive load for users</li>
+    <li>Have multiple accordions open at the same time</li>
+</ul>
+
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+{%- include sgds-feedback.html -%}

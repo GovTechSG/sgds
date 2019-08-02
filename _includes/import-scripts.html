@@ -1,12 +1,20 @@
-{% if page.url contains '/templates/quickstart/' %}
-{% else %}
-<!-- Google Analytics -->
-
-<!-- End Google Analytics -->
-{% endif %}
-
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/css-element-queries@1.2.0/src/ResizeSensor.js"></script>
+<script src="/js/sgds.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144934503-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144934503-1');
+</script>
+<!-- <script src="/assets/js/search.js"></script> -->
+<!-- <script src="/assets/js/worker.js"></script> -->
+<!-- <script src="/assets/js/build-index.js"></script> -->
+
 {% if page.url contains "/docs/" %}
 <script src="https://cdn.jsdelivr.net/npm/list.js@1.5.0/dist/list.min.js"></script>
 <script src="/assets/js/modal.js"></script>
@@ -14,28 +22,3 @@
 <script src="/assets/js/clipboard.js"></script>
 <script src="/assets/js/component-filter.js"></script>
 {% endif %}
-
-{% if jekyll.environment == "production" %}
-<script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-114227807-1', 'auto');
-    ga('send', 'pageview');
-</script>
-<script src="https://assets.wogaa.sg/scripts/wogaa.js"></script>
-{% else %}
-<script src="https://assets.dcube.cloud/scripts/wogaa.js"></script>
-{% endif %}
-
-<script src="https://cdn.jsdelivr.net/npm/css-element-queries@1.2.0/src/ResizeSensor.js"></script>
-<script src="/js/sgds.js"></script>
-<script src="/posts.json"></script>
-<script src="/assets/js/lunr.js"></script>
-<!-- <script src="/assets/js/search.js"></script> -->
-<!-- <script src="/assets/js/worker.js"></script> -->
-<!-- <script src="/assets/js/build-index.js"></script> -->

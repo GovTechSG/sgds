@@ -1,6 +1,6 @@
 {
     "name": "sgds-govtech",
-    "version": "1.2.1",
+    "version": "1.2.3",
     "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
     "repository": {
         "type": "git",
@@ -16,9 +16,10 @@
     "main": "js/sgds.js",
     "scripts": {
         "build:lib": "rm -rf ./js ./css ./fonts && NODE_ENV=production webpack --mode=production",
-        "build:site": "npm run packagedownloads && npm run build:lib && bundle exec jekyll build",
+        "build:dev": "npm run packagedownloads && npm run build:lib && bundle exec jekyll build",
+        "build:prod": "npm run packagedownloads && npm run build:lib && JEKYLL_ENV=production bundle exec jekyll build",
         "devserver": "webpack --watch & bundle exec jekyll serve",
-        "packagedownloads": "./scripts/packagedownloads.sh",
+        "packagedownloads": "./build/packagedownloads.sh",
         "prepublishOnly": "npm run build:lib",
         "start": "bundle exec jekyll serve",
         "test": "snyk test"
@@ -26,17 +27,26 @@
     "devDependencies": {
         "@babel/core": "^7.5.4",
         "@babel/plugin-proposal-object-rest-spread": "^7.5.4",
-        "@babel/preset-env": "^7.4.5",
+        "@babel/preset-env": "^7.5.4",
+        "axios": "^0.19.0",
         "babel-loader": "^8.0.6",
-        "css-loader": "^2.1.1",
+        "copy-webpack-plugin": "^5.0.4",
+        "css-loader": "^3.0.0",
         "file-loader": "^4.0.0",
+        "lunr": "^2.3.6",
         "mini-css-extract-plugin": "^0.7.0",
         "node-sass": "^4.12.0",
-        "optimize-css-assets-webpack-plugin": "^5.0.1",
+        "optimize-css-assets-webpack-plugin": "^5.0.3",
         "sass-loader": "^7.1.0",
-        "snyk": "^1.185.5",
+        "snyk": "^1.195.1",
         "sticky-sidebar": "^3.3.1",
-        "webpack": "^4.33.0",
-        "webpack-cli": "^3.3.3"
+        "vue": "^2.6.10",
+        "vue-loader": "^15.7.1",
+        "vue-template-compiler": "^2.6.10",
+        "webpack": "^4.35.3",
+        "webpack-cli": "^3.3.6"
+    },
+    "dependencies": {
+        "imagemin-webpack-plugin": "^2.4.2"
     }
 }

@@ -3,9 +3,9 @@
         var options = {
             valueNames: ['component-name']
         };
-        const componentList = new List('component-list1', options);
-        const componentList1 = new List('component-list2', options);
-        const componentList2 = new List('component-list3', options);
+        const componentList = new List('standard-component', options);
+        const componentList1 = new List('layouts-component', options);
+        const componentList2 = new List('general-component', options);
 
         const eventTarget = document.getElementById('search-field');
 
