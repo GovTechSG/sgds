@@ -217,7 +217,14 @@ layout: layout-default
                                             {% if page.url contains item.url %}
                                                 {% assign class = 'is-active has-text-weight-normal' %}
                                             {% endif %}
-                                            <li><a class="component-name second-level-nav-item {{class}}" href="{{item.url}}">{{item.title}}</a></li>
+                                            <li>
+                                                <a class="component-name second-level-nav-item {{class}}" href="{{item.url}}">
+                                                    {{item.title}}
+                                                    {%- if item.js -%}
+                                                        <span class="sgds-tag is-rounded margin--left--sm">JS</span>
+                                                    {%- endif -%}
+                                                </a>
+                                            </li>
                                         {% endfor %}
                                         </ul>
                                     </div>
