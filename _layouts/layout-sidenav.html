@@ -206,13 +206,12 @@ layout: layout-default
                                     {% assign name = collection.label %}
                                     <li class="second-level-nav">
                                         <a class="second-level-nav-header has-text-primary">
-                                            {{name | capitalize }}
+                                            {{ name | capitalize }}
                                             <i class="sgds-icon sgds-icon-chevron-up has-text-weight" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <div class="second-level-nav-div" id="{{collection.label}}-component">
-                                        <div class="list">
-
+                                        <ul class="list">
                                         {% for item in site[name] %}
                                             {% assign class = nil %}
                                             {% if page.url contains item.url %}
@@ -220,7 +219,7 @@ layout: layout-default
                                             {% endif %}
                                             <li><a class="component-name second-level-nav-item {{class}}" href="{{item.url}}">{{item.title}}</a></li>
                                         {% endfor %}
-                                        </div>
+                                        </ul>
                                     </div>
                                 {% endif %}
                             {% endfor %}

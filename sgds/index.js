@@ -30,7 +30,7 @@ $(document).ready(() => {
     }
 
     // Accordions, non-set
-    const accordions = $(".sgds-accordion");
+    const accordions = $(".sgds-accordion").not(".sgds-accordion-set > .sgds-accordion");
     if (accordions) {
         for (let accordion of accordions) {
             let accordionHeader = $(accordion).children(".sgds-accordion-header");
@@ -58,10 +58,10 @@ $(document).ready(() => {
         }
     }
 
-    if ($(".sgds-accordion-set > a").length) {
-        let anchors = $(".sgds-accordion-set > a").get();
-        anchors.forEach(anchor => {
-            $(anchor).on("click", function() {
+    if ($(".sgds-accordion-set > .sgds-accordion").length) {
+        let headers = $(".sgds-accordion-set .sgds-accordion-header").get();
+        headers.forEach(header => {
+            $(header).on("click", function() {
                 if ($(this).hasClass("active")) {
                     $(this)
                         .removeClass("active")
@@ -74,17 +74,20 @@ $(document).ready(() => {
                         .removeClass("sgds-icon-chevron-up")
                         .addClass("sgds-icon-chevron-down");
                 } else {
-                    let otherAnchorsInSet = $(this)
+                    let otherHeadersInSet = $(this)
                         .parent()
-                        .siblings(".sgds-accordion-set")
-                        .children("a");
-                    if (otherAnchorsInSet) {
-                        otherAnchorsInSet
+                        .siblings(".sgds-accordion")
+                        .children(".sgds-accordion-header");
+                    if (otherHeadersInSet) {
+                        otherHeadersInSet
                             .children("i")
                             .removeClass("sgds-icon-chevron-up")
                             .addClass("sgds-icon-chevron-down");
-                        otherAnchorsInSet.removeClass("active");
-                        otherAnchorsInSet.siblings(".sgds-accordion-body").slideUp(300);
+                        otherHeadersInSet.removeClass("active");
+                        otherHeadersInSet
+                            .siblings(".sgds-accordion-body")
+                            .slideUp(300)
+                            .removeClass("is-open");
                     }
 
                     $(this)
@@ -96,7 +99,8 @@ $(document).ready(() => {
                         .addClass("sgds-icon-chevron-up");
                     $(this)
                         .siblings(".sgds-accordion-body")
-                        .slideDown(300);
+                        .slideDown(300)
+                        .addClass("is-open");
                 }
             });
         });
