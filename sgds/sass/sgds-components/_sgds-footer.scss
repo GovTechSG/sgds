@@ -8,7 +8,7 @@
     color: $footer-grey;
     font-size: 17px;
     padding-right: 12px;
-    line-height: 20px !important;
+    line-height: 20px;
     &:hover {
       color: white;
     }
@@ -18,7 +18,7 @@
   }
   p{
     color: $footer-grey;
-    line-height: 25px !important;
+    line-height: 25px;
     font-size: $size-menu;
     & + p{
       margin-top:15px;
@@ -91,5 +91,5 @@
 }
 
 .is-hidden-desktop.last-updated {
-  margin-top: 2px !important;
+  margin-top: 2px;
 }
