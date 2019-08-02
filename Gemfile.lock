@@ -108,6 +108,7 @@ DEPENDENCIES
   ffi
   jekyll (~> 3.8.5)
   jekyll-assets
+  jekyll-seo-tag
   jekyll-sitemap
   jekyll-toc
   minima (~> 2.0)
