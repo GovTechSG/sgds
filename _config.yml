@@ -44,12 +44,10 @@ collections:
     output: true
 
 exclude:
-  - .idea
-  - .vscode
+  - apps/src
   - node_modules
   - build
   - scripts
-  - src
   - Dockerfile
   - Gemfile*
   - package*.json
@@ -57,4 +55,3 @@ exclude:
   - webpack.config.js
   - Gruntfile.js
   - amplify.yml
-  - apps/src

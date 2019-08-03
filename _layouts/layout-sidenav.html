@@ -13,6 +13,7 @@ layout: layout-default
         <h1 class="has-text-white has-text-weight-semibold">{{page.title}}</h1>
     </div>
 </section>
+{% comment %} Nav bar for mobile {% endcomment %}
 {% if page.url contains "/docs/" %}
 <section class="sgds-section is-paddingless is-hidden-desktop">
     <div class="sgds-dropdown is-fullwidth">
@@ -24,7 +25,7 @@ layout: layout-default
                 </span>
             </button>
         </div>
-        <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
+        <div class="sgds-dropdown-menu docs-nav-dropdown" id="sgds-dropdown-menu" role="menu">
             <div class="sgds-dropdown-content padding">
                 <div class="row has-text-centered">
                     <div class="col">
@@ -187,6 +188,7 @@ layout: layout-default
         </div>
     </div>
 </section>
+
 {% else %}
 <section class="sgds-section is-small">
     <div class="sgds-container">
@@ -274,7 +276,7 @@ layout: layout-default
                     </aside>
                 </div>
             </div>
-            <div class="col is-9 is-offset-1 is-12-touch">
+            <div class="col is-9 is-12-touch">
                 {% if page.update-notification %}
                 <div class="row">
                     <div class="col">
