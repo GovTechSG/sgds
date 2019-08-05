@@ -1,0 +1,42 @@
+$section-padding: 3rem 1.5rem !default;
+$section-padding-xsmall: 1rem 1.5rem !default;
+$section-padding-small: 1.5rem 1.5rem !default;
+$section-padding-medium: 9rem 1.5rem !default;
+$section-padding-large: 18rem 1.5rem !default;
+
+.sgds {
+  &-section {
+    padding: $section-padding;
+
+    // Responsiveness
+    @include desktop {
+      // Sizes
+      &.is-small {
+        padding: $section-padding-small;
+      }
+
+      &.is-xsmall {
+        padding: $section-padding-xsmall;
+      }
+
+      &.is-medium {
+        padding: $section-padding-medium;
+      }
+
+      &.is-large {
+        padding: $section-padding-large;
+      }
+
+      &.is-full {
+        padding: 0;
+      }
+    }
+
+
+    @include mobile {
+      &.is-small {
+        padding: $section-padding-small;
+      }
+    }
+  }
+}

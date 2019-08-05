@@ -3,15 +3,14 @@ _site
 .jekyll-cache
 .jekyll-metadata
 .idea
+.vscode
 .images/
 *.tar.gz
 
 node_modules
 
-.vscode
 /css
 /fonts
 /js
-/assets/downloads
 /scripts
 /apps/build

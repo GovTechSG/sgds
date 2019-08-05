@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Design System
+title: Singapore Government Design System
 email: johnson_koh@tech.gov.sg
 description: >- # this means to ignore newlines until "baseurl:"
   Design System unites Singapore Government digital services around a common visual language and user experience
@@ -44,12 +44,10 @@ collections:
     output: true
 
 exclude:
-  - .idea
-  - .vscode
+  - apps/src
   - node_modules
   - build
   - scripts
-  - src
   - Dockerfile
   - Gemfile*
   - package*.json
@@ -57,4 +55,3 @@ exclude:
   - webpack.config.js
   - Gruntfile.js
   - amplify.yml
-  - apps/src
