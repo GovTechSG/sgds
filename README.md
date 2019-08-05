@@ -23,7 +23,7 @@
 
 #### JavaScript
 
-[Certain components](https://designsystem.gov.sg/docs/) of SGDS makes use of JavaScript, with jQuery as an external dependency. If you only need the visual parts of SGDS, you do not need to import this.
+[Certain components](#javascript-components) of SGDS makes use of `sgds.js`, with jQuery as an external dependency. If you only need the visual parts of SGDS, or if you are [using frontend frameworks like React](#frontend-frameworks), you do not need to import this.
 
 ```html
 <body>
@@ -33,6 +33,18 @@
     ...
 </body>
 ```
+
+##### JavaScript components
+
+- Mandatory
+    - Main Nav
+    - Side Nav
+- General
+    - Accordions
+    - Dropdowns
+    - Tabs
+
+For more information, please refer to the [documentation](https://www.designsystem.gov.sg/docs).
 
 ### NPM
 
@@ -47,7 +59,9 @@ import "sgds-govtech/css/sgds.css";
 import "sgds-govtech/js/sgds"; // Do not use with other web frameworks*
 ```
 
-\*Usage with frameworks such as React, Vue or Angular is discouraged since they manipulate the DOM in their own environments. Framework-specific implementations are in early development and can be found at [sgds-react](https://github.com/govtechsg/sgds-react) and [sgds-govtech-vue](https://github.com/govtechsg/sgds-govtech-vue).
+##### Frontend frameworks
+
+Usage with frameworks such as React, Vue or Angular is discouraged since they manipulate the DOM in their own environments. Framework-specific implementations are in early development and can be found at [sgds-govtech-react](https://github.com/govtechsg/sgds-govtech-react) and [sgds-govtech-vue](https://github.com/govtechsg/sgds-govtech-vue).
 
 ## Usage
 

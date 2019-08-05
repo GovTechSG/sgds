@@ -1,0 +1,318 @@
+$tooltip-background-color: $grey-dark !default;
+$tooltip-background-opacity: 0.9 !default;
+$tooltip-max-width: 24rem !default;
+
+@mixin top($important: null) {
+  &::before {
+    top: auto $important;
+    bottom: 100% $important;
+    left: 50% $important;
+    right: auto $important;
+  }
+
+  &:focus,
+  &:hover,
+  &.is-tooltip-active {
+    &:not(.is-loading) {
+      &::after {
+        top: 0 $important;
+        bottom: auto $important;
+        left: 50% $important;
+        right: auto $important;
+        border-color: rgba($tooltip-background-color, 0.9) transparent transparent transparent $important;
+      }
+    }
+
+    &::before {
+      transform: translate(-50%, -0.5rem) $important;
+    }
+  }
+}
+
+@mixin right($important: null) {
+  &::before {
+    top: auto $important;
+    bottom: 50% $important;
+    left: 100% $important;
+    right: auto $important;
+    transform: translate(-1rem, 50%) $important;
+  }
+
+  &:focus,
+  &:hover,
+  &.is-tooltip-active {
+    &:not(.is-loading) {
+      &::after {
+        top: 50% $important;
+        left: 100% $important;
+        right: auto $important;
+        border-color: transparent rgba($tooltip-background-color, 0.9) transparent transparent $important;
+      }
+    }
+
+    &::before {
+      transform: translate(0.5rem, 50%) $important;
+    }
+  }
+}
+
+@mixin bottom($important: null) {
+  &::before {
+    top: 100% $important;
+    bottom: auto $important;
+    left: 50% $important;
+    right: auto $important;
+    transform: translate(-50%, -1rem) $important;
+  }
+
+  &:focus,
+  &:hover,
+  &.is-tooltip-active {
+    &:not(.is-loading) {
+      &::after {
+        top: 100% $important;
+        bottom: auto $important;
+        left: 50% $important;
+        right: auto $important;
+        border-color: transparent transparent rgba($tooltip-background-color, 0.9) transparent $important;
+      }
+    }
+
+    &::before {
+      transform: translate(-50%, 0.5rem) $important;
+    }
+  }
+}
+
+@mixin left($important: null) {
+  &::before {
+    top: auto $important;
+    bottom: 50% $important;
+    left: auto $important;
+    right: 100% $important;
+    transform: translate(1rem, 50%) $important;
+  }
+
+  &:focus,
+  &:hover,
+  &.is-tooltip-active {
+    &:not(.is-loading) {
+      &::after {
+        top: 50% $important;
+        bottom: auto $important;
+        left: auto $important;
+        right: calc(100% - .5rem) $important;
+        border-color: transparent transparent transparent rgba($tooltip-background-color, 0.9) $important;
+      }
+    }
+
+    &::before {
+      transform: translate(-0.5rem, 50%) $important;
+    }
+  }
+}
+
+@mixin direction($direction) {
+  @if $direction == "top" {
+    @include top(!important);
+  }
+  @else if $direction == "right" {
+    @include right(!important);
+  }
+  @else if $direction == "bottom" {
+    @include bottom(!important);
+  }
+  @else if $direction == "left" {
+    @include left(!important);
+  }
+}
+
+.sgds-tooltip {
+  position: relative;
+
+  &:hover,
+  &.is-tooltip-active {
+    &:not(.is-loading) {
+      &::after {
+        z-index: 99999;
+        position: absolute;
+        display: inline-block;
+        pointer-events: none;
+      }
+    }
+
+    &::before {
+      z-index: 99999;
+      position: absolute;
+      display: inline-block;
+      pointer-events: none;
+    }
+
+    &:not(.is-loading) {
+      &::after {
+        content: "";
+        border-style: solid;
+        border-width: 0.5rem;
+      }
+    }
+
+    &::before {
+      opacity: 0;
+      content: attr(data-tooltip);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: $size-7;
+      padding: 0.4rem 0.8rem;
+      background: rgba($tooltip-background-color, $tooltip-background-opacity);
+      border-radius: $radius;
+      color: $white;
+      max-width: $tooltip-max-width;
+    }
+  }
+
+  &:focus,
+  &:hover,
+  &.is-tooltip-active {
+    &:not(.is-loading) {
+      &::after {
+        opacity: 1;
+        margin-left: -0.5rem;
+        margin-top: -0.5rem;
+      }
+    }
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  @include top;
+
+  &.is-tooltip-right {
+    @include right;
+  }
+
+  &.is-tooltip-bottom {
+    @include bottom;
+  }
+
+  &.is-tooltip-left {
+    @include left;
+  }
+
+  &.is-tooltip-multiline {
+    &::before {
+      min-width: $tooltip-max-width;
+      text-overflow: clip;
+      white-space: normal;
+      word-break: keep-all;
+    }
+  }
+
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+
+    &.is-tooltip-#{$name} {
+      &:not(.is-loading) {
+        &::after {
+          border-color: rgba($color, $tooltip-background-opacity) transparent transparent transparent;
+        }
+      }
+
+      &.is-tooltip-right {
+        &:not(.is-loading) {
+          &::after {
+            border-color: transparent rgba($color, $tooltip-background-opacity) transparent transparent;
+          }
+        }
+      }
+
+      &.is-tooltip-bottom {
+        &:not(.is-loading) {
+          &::after {
+            border-color: transparent transparent rgba($color, $tooltip-background-opacity) transparent;
+          }
+        }
+      }
+
+      &.is-tooltip-left {
+        &:not(.is-loading) {
+          &::after {
+            border-color: transparent transparent transparent rgba($color, $tooltip-background-opacity);
+          }
+        }
+      }
+
+      &::before {
+        background: rgba($color, $tooltip-background-opacity);
+        color: $color-invert;
+      }
+    }
+  }
+}
+
+@each $direction in top, right, bottom, left {
+  @include mobile {
+    .is-tooltip-#{$direction}-mobile {
+      @include direction(#{$direction});
+    }
+  }
+
+
+  @include tablet {
+    .is-tooltip-#{$direction}-tablet {
+      @include direction(#{$direction});
+    }
+  }
+
+
+  @include tablet-only {
+    .is-tooltip-#{$direction}-tablet-only {
+      @include direction(#{$direction});
+    }
+  }
+
+
+  @include touch {
+    .is-tooltip-#{$direction}-touch {
+      @include direction(#{$direction});
+    }
+  }
+
+
+  @include desktop {
+    .is-tooltip-#{$direction}-desktop {
+      @include direction(#{$direction});
+    }
+  }
+
+
+  @include desktop-only {
+    .is-tooltip-#{$direction}-desktop-only {
+      @include direction(#{$direction});
+    }
+  }
+
+
+  @include widescreen {
+    .is-tooltip-#{$direction}-widescreen {
+      @include direction(#{$direction});
+    }
+  }
+
+
+  @include widescreen-only {
+    .is-tooltip-#{$direction}-widescreen-only {
+      @include direction(#{$direction});
+    }
+  }
+
+
+  @include fullhd {
+    .is-tooltip-#{$direction}-fullhd {
+      @include direction(#{$direction});
+    }
+  }
+}
