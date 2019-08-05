@@ -85,16 +85,22 @@
                             </a>
                         </div>
 
-                        <a class="navbar-item margin--right is-hidden-touch" href="https://github.com/govtechsg/sgds">
+                        <a class="navbar-item margin--right is-hidden-touch" href="https://github.com/govtechsg/sgds" onclick="ga('send', 'event', 'DS-Github', 'click');">
                             <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" style="height: 24px">
                         </a>
                         <a class="sgds-button is-primary is-rounded is-small is-hidden-touch"
+<<<<<<< Updated upstream
                            href="/learn/development/install-design-system/">
                             Download v{{site.sgds-version}}
+=======
+                           href="/learn/development/install-design-system/"
+                           onclick="ga('send', 'event', 'DS-Install', 'click');">
+                           Install Design System
+>>>>>>> Stashed changes
                         </a>
 
                         {% if page.layout != 'search' %}
-                        <button class="sgds-button is-white is-large is-hidden-touch search-toggle" data-target="searchbar-main">
+                        <button class="sgds-button is-white is-large is-hidden-touch search-toggle" data-target="searchbar-main" onclick="ga('send', 'event', 'DS-SearchSGDS', 'click');">
                             <span class="sgds-icon sgds-icon-search"></span>
                         </button>
                         {% else %}
