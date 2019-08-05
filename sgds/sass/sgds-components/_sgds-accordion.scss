@@ -1,8 +1,6 @@
 .sgds-accordion{
-  &-set{
-    & + .sgds-accordion-set{
-      margin-top:5px;
-    }
+  & + &{
+    margin-top:5px;
   }
   &-header{
     display:flex;
