@@ -17,6 +17,7 @@ search_placeholder: 'What are you looking for?'
 plugins:
   - jekyll-assets
   - jekyll-seo-tag
+  - jekyll-redirect-from
 
 collections_dir: components
 collections:
