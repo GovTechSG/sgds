@@ -75,12 +75,11 @@ let config = {
         new VueLoaderPlugin(),
         new CopyWebpackPlugin([
             {
-                from: "assets/img",
+                from: "assets/img/uncompressed",
                 to: "assets/img"
             }
         ]),
         new ImageminPlugin({
-            disable: process.env.NODE_ENV !== "production",
             pngquant: {
                 quality: "95-100"
             }
