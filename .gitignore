@@ -14,3 +14,6 @@ node_modules
 /js
 /scripts
 /apps/build
+# Dont commit compressed images
+/assets/img/*.png
+/assets/img/demo

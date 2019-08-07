@@ -49,6 +49,8 @@ GEM
       sprockets (>= 3.3, < 4.1.beta)
     jekyll-feed (0.12.1)
       jekyll (>= 3.7, < 5.0)
+    jekyll-redirect-from (0.15.0)
+      jekyll (>= 3.3, < 5.0)
     jekyll-sanity (1.2.0)
       jekyll (~> 3.1)
     jekyll-sass-converter (1.5.2)
@@ -108,6 +110,7 @@ DEPENDENCIES
   ffi
   jekyll (~> 3.8.5)
   jekyll-assets
+  jekyll-redirect-from
   jekyll-seo-tag
   jekyll-sitemap
   jekyll-toc
