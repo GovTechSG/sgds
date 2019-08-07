@@ -8,16 +8,16 @@
         <div class="row is-multiline is-mobile">
             {%- for component in site.standard -%}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
-                <a href="{{ component.url }}">
+                <a href="{{ component.url }}" class="component-card is-flex">
                     <div class="sgds-card sgds-card-button">
                         <div class="sgds-card-content has-text-centered">
                             <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
-                            <p class="has-text-weight-semibold">
+                            <small class="has-text-weight-semibold is-block">
                                 {{component.title}}
                                 {%- if component.js -%}
                                     <span class="sgds-tag is-rounded margin--left--sm">JS</span>
                                 {%- endif -%}
-                            </p>
+                            </small>
                         </div>
                     </div>
                 </a>
@@ -33,16 +33,16 @@
         <div class="row is-multiline is-mobile">
             {%- for component in site.layouts -%}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
-                <a href="{{ component.url }}">
+                <a href="{{ component.url }}" class="component-card is-flex">
                     <div class="sgds-card sgds-card-button">
                         <div class="sgds-card-content has-text-centered">
                             <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
-                            <p class="has-text-weight-semibold">
+                            <small class="has-text-weight-semibold is-block">
                                 {{component.title}}
                                 {%- if component.js -%}
                                     <span class="sgds-tag is-rounded margin--left--sm">JS</span>
                                 {%- endif -%}
-                            </p>
+                            </small>
                         </div>
                     </div>
                 </a>
@@ -59,16 +59,16 @@
         <div class="row is-multiline is-mobile">
             {%- for component in site.general -%}
             <div class="col is-3-desktop is-6-touch is-6-mobile">
-                <a href="{{ component.url }}">
+                <a href="{{ component.url }}" class="component-card is-flex">
                     <div class="sgds-card sgds-card-button">
                         <div class="sgds-card-content has-text-centered">
                             <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
-                            <p class="has-text-weight-semibold">
+                            <small class="has-text-weight-semibold is-block">
                                 {{component.title}}
                                 {%- if component.js -%}
                                     <span class="sgds-tag is-rounded margin--left--sm">JS</span>
                                 {%- endif -%}
-                            </p>
+                            </small>
                         </div>
                     </div>
                 </a>
