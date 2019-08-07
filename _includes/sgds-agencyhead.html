@@ -76,25 +76,24 @@
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons is-hidden-desktop">
-                            <a class="sgds-button is-text is-rounded is-small padding--none margin--right" href="https://github.com/govtechsg/sgds">
-                                <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub">
+                            <a id="github-link" class="sgds-button is-text is-rounded is-small padding--none margin--right" href="https://github.com/govtechsg/sgds">
+                                <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
                             </a>
-                            <a class="sgds-button is-primary is-rounded is-small"
-                               href="/learn/development/install-design-system/">
+                            <a id="install-link" class="sgds-button is-primary is-rounded is-small"
+                               href="/learn/development/install-design-system/"
+                            >
                                 Install Design System
                             </a>
                         </div>
-
-                        <a class="navbar-item margin--right is-hidden-touch" href="https://github.com/govtechsg/sgds">
-                            <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" style="height: 24px">
+                        <a id="github-link" class="sgds-button is-text is-rounded is-small padding--none margin--right is-hidden-touch" href="https://github.com/govtechsg/sgds">
+                            <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
                         </a>
-                        <a class="sgds-button is-primary is-rounded is-small is-hidden-touch"
+                        <a id="install-link" class="sgds-button is-primary is-rounded is-small is-hidden-touch"
                            href="/learn/development/install-design-system/">
-                           Install Design System
+                            Install Design System
                         </a>
-
                         {% if page.layout != 'search' %}
-                        <button class="sgds-button is-white is-large is-hidden-touch search-toggle" data-target="searchbar-main">
+                        <button id="main-search" class="sgds-button is-white is-large is-hidden-touch search-toggle" data-target="searchbar-main">
                             <span class="sgds-icon sgds-icon-search"></span>
                         </button>
                         {% else %}
