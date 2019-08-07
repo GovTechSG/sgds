@@ -4,6 +4,7 @@ layout: layout-default
 permalink: /docs/
 category: Docs
 breadcrumb: Docs
+redirect_to: /docs/components
 ---
 
 <section class="sgds-section">
@@ -13,21 +14,5 @@ breadcrumb: Docs
                 <h3 class="has-text-secondary">{{page.title}}</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col is-10 is-offset-1">
-                <div class="sgds-tabs is-centered is-boxed" data-sgds="tabs">
-                    <ul>
-                        <li class="is-active"><a data-tab="#components">Components</a></li>
-                        <li><a data-tab="#templates">Templates</a></li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--Tab 1-->
-        {% include_relative content-components.html %}
-        <!--Tab 2-->
-        {% include_relative content-templates.html %}
-
     </div>
 </section>

@@ -37,6 +37,7 @@
 <script>
 import axios from "axios";
 import lunr from "lunr";
+import lib from "../lib";
 export default {
     data() {
         return {
@@ -74,7 +75,10 @@ export default {
             return "";
         },
         highlightContentMatches(content) {
-            return content.replace(new RegExp(`${this.searchQuery}`, "gi"), `<strong>${this.searchQuery}</strong>`)
+            return content.replace(
+                new RegExp(`${lib.escapeRegExp(this.searchQuery)}`, "gi"),
+                `<strong>${this.searchQuery}</strong>`
+            );
         }
     },
     computed: {
@@ -123,7 +127,15 @@ export default {
                         this.add(page);
                     }, this);
                 });
-                this.lunrSearchResults = lunrIndex.search(this.searchQuery);
+                if (
+                    this.searchQuery &&
+                    this.searchQuery.length > 0 &&
+                    this.searchQuery.trim() !== ""
+                ) {
+                    this.lunrSearchResults = lunrIndex.search(this.searchQuery);
+                } else {
+                    this.searchQuery = "";
+                }
             })
             .finally(() => {
                 this.searching = false;
