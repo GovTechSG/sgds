@@ -62,24 +62,24 @@
 {% endif %}
 <!-- This is to track what people are copying from our documentation-->
 <script>
-        // Declare function to get selected text from document
-        function getSelectionText() {
-            var text = '';
-            if (window.getSelection) {
-            text = window.getSelection().toString();
-            } else if (document.selection && document.selection.type != 'Control') {
-            text = document.selection.createRange().text;
-            }
-            return text;
+    // Declare function to get selected text from document
+    function getSelectionText() {
+        var text = '';
+        if (window.getSelection) {
+        text = window.getSelection().toString();
+        } else if (document.selection && document.selection.type != 'Control') {
+        text = document.selection.createRange().text;
         }
-            
-        // Declare function on copy event
-        document.addEventListener('copy', function(e){
-            console.log(getSelectionText())
-            dataLayer.push({
-            'event': 'textCopied',
-            'clipboardText': getSelectionText(),
-            'clipboardLength': getSelectionText().length
-            });
+        return text;
+    }
+        
+    // Declare function on copy event
+    document.addEventListener('copy', function(e){
+        console.log(getSelectionText())
+        dataLayer.push({
+        'event': 'textCopied',
+        'clipboardText': getSelectionText(),
+        'clipboardLength': getSelectionText().length
         });
-    </script>
+    });
+</script>
