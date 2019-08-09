@@ -75,7 +75,7 @@ let config = {
         new VueLoaderPlugin(),
         new CopyWebpackPlugin([
             {
-                from: "assets/img/uncompressed",
+                from: "assets/uncompressed_images",
                 to: "assets/img"
             }
         ]),
