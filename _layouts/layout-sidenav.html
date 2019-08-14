@@ -214,7 +214,11 @@ layout: layout-default
                                     </li>
                                     <div class="second-level-nav-div" id="{{collection.label}}-component">
                                         <ul class="list">
-                                        {% for item in site[name] %}
+                                            {% assign items = site[name] %}
+                                            {% if collection.label == 'standard' %}
+                                               {% assign items = site[name] | sort:'order' %}
+                                               {% endif %}
+                                               {% for item in items %}                                        
                                             {% assign class = nil %}
                                             {% if page.url contains item.url %}
                                                 {% assign class = 'is-active has-text-weight-normal' %}
