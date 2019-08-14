@@ -37,9 +37,9 @@ $(document).ready(() => {
             let accordionBody = $(accordion).children(".sgds-accordion-body");
             $(accordionHeader).click(event => {
                 let header = $(event.target);
-                if ($(header).hasClass("active")) {
+                if ($(header).hasClass("is-active")) {
                     $(header)
-                        .removeClass("active")
+                        .removeClass("is-active")
                         .attr("aria-expanded", false)
                         .children("i")
                         .removeClass("sgds-icon-chevron-up")
@@ -47,7 +47,7 @@ $(document).ready(() => {
                     $(accordionBody).slideUp(300);
                 } else {
                     $(header)
-                        .addClass("active")
+                        .addClass("is-active")
                         .attr("aria-expanded", true)
                         .children("i")
                         .removeClass("sgds-icon-chevron-down")
@@ -62,9 +62,9 @@ $(document).ready(() => {
         let headers = $(".sgds-accordion-set .sgds-accordion-header").get();
         headers.forEach(header => {
             $(header).on("click", function() {
-                if ($(this).hasClass("active")) {
+                if ($(this).hasClass("is-active")) {
                     $(this)
-                        .removeClass("active")
+                        .removeClass("is-active")
                         .attr("aria-expanded", false);
                     $(this)
                         .siblings(".sgds-accordion-body")
@@ -83,7 +83,7 @@ $(document).ready(() => {
                             .children("i")
                             .removeClass("sgds-icon-chevron-up")
                             .addClass("sgds-icon-chevron-down");
-                        otherHeadersInSet.removeClass("active");
+                        otherHeadersInSet.removeClass("is-active");
                         otherHeadersInSet
                             .siblings(".sgds-accordion-body")
                             .slideUp(300)
@@ -91,7 +91,7 @@ $(document).ready(() => {
                     }
 
                     $(this)
-                        .addClass("active")
+                        .addClass("is-active")
                         .attr("aria-expanded", true);
                     $(this)
                         .children("i")
