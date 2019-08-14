@@ -49,6 +49,7 @@ $masthead-height: 1.875rem;
   position: absolute;
   padding:1rem;
   background-color: #f0f0f4;
+  z-index:99;
   top: $masthead-height;
   right: 30px;
   @include touch(){

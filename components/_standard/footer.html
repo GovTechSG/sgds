@@ -13,49 +13,51 @@ order: 4
 
 <hr class="margin--bottom--lg margin--top--lg">
 
-<p>Basic footer that do not need quick links.</p>
+<p>Example of a basic implementation of SGDS Footer</p>
+<footer class='sgds-footer'>
+    <div class="sgds-footer top-section">
+        <div class="sgds-container is-fluid">
+            <div class="row">
+                <div class="col">
+                    <h5 class="has-text-white"><b>{{site.title}}</b></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col is-right-desktop-only">
+                    <ul>
+                        <li class="is-inline-block-desktop-only">
+                            <p><a href="" target="_blank">Contact</a></p>
+                        </li>
+                        <li class="is-inline-block-desktop-only">
+                            <p><a href="" target="_blank">Feedback</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sgds-footer bottom-section">
+        <div class="sgds-container is-fluid">
+            <div class="row is-multiline">
+                <div class="col is-12">
+                    <ul>
+                        <li>
+                            <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
+                        </li>
+                        <li><a href="">Privacy</a></li>
+                        <li><a href="">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                    <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
+                    <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
+                    <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
-<footer class="sgds-footer top-section">
-    <div class="sgds-container is-fluid">
-        <div class="row">
-            <div class="col">
-                <h5 class="has-text-white"><b>{{site.title}}</b></h5>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col is-right-desktop-only">
-                <ul>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Contact</a></p>
-                    </li>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Feedback</a></p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-<footer class="sgds-footer bottom-section">
-    <div class="sgds-container is-fluid">
-        <div class="row is-multiline">
-            <div class="col is-12">
-                <ul>
-                    <li>
-                       <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
-                    </li>
-                    <li><a href="">Privacy</a></li>
-                    <li><a href="">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
-                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
-                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
-            </div>
-        </div>
-    </div>
-</footer>
 
 <div class="sgds-accordion-container margin--top--lg">
     <div class="sgds-accordion">
@@ -64,43 +66,45 @@ order: 4
         </a>
         <div class="sgds-accordion-body">
 {% highlight html %}
-<footer class="sgds-footer top-section">
-    <div class="sgds-container is-fluid">
-        <div class="row">
-            <div class="col">
-                <h5 class="has-text-white"><b>{{site.title}}</b></h5>
+<footer class='sgds-footer'>
+    <div class="sgds-footer top-section">
+        <div class="sgds-container is-fluid">
+            <div class="row">
+                <div class="col">
+                    <h5 class="has-text-white"><b>{{site.title}}</b></h5>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col is-right-desktop-only">
-                <ul>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Contact</a></p>
-                    </li>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Feedback</a></p>
-                    </li>
-                </ul>
+            <div class="row">
+                <div class="col is-right-desktop-only">
+                    <ul>
+                        <li class="is-inline-block-desktop-only">
+                            <p><a href="" target="_blank">Contact</a></p>
+                        </li>
+                        <li class="is-inline-block-desktop-only">
+                            <p><a href="" target="_blank">Feedback</a></p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</footer>
-<footer class="sgds-footer bottom-section">
-    <div class="sgds-container is-fluid">
-        <div class="row is-multiline">
-            <div class="col is-12">
-                <ul>
-                    <li>
-                       <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
-                    </li>
-                    <li><a href="">Privacy</a></li>
-                    <li><a href="">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
-                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
-                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+    <div class="sgds-footer bottom-section">
+        <div class="sgds-container is-fluid">
+            <div class="row is-multiline">
+                <div class="col is-12">
+                    <ul>
+                        <li>
+                            <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
+                        </li>
+                        <li><a href="">Privacy</a></li>
+                        <li><a href="">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                    <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
+                    <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
+                    <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+                </div>
             </div>
         </div>
     </div>
@@ -115,62 +119,61 @@ order: 4
 
 
 <p>For footer that has quick links, you can have up to six columns for categories.</p>
-
-
-<footer class="sgds-footer top-section">
-    <div class="sgds-container is-fluid">
-        <div class="row">
-            <div class="col">
-                <h5 class="has-text-white"><b>{{site.title}}</b></h5>
+<footer class='sgds-footer'>
+        <div class="sgds-footer top-section">
+            <div class="sgds-container is-fluid">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="has-text-white"><b>{{site.title}}</b></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col is-3">
+                        <p class="has-text-white"><b>Category 1</b></p>
+                        <p><a href="">Link</a></p>
+                        <p><a href="">Link</a></p>
+                    </div>
+                    <div class="col is-3">
+                        <p class="has-text-white"><b>Category 2</b></p>
+                        <p><a href="">Link</a></p>
+                        <p><a href="">Link</a></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col is-right-desktop-only">
+                        <ul>
+                            <li class="is-inline-block-desktop-only">
+                                <p><a href="" target="_blank">Contact</a></p>
+                            </li>
+                            <li class="is-inline-block-desktop-only">
+                                <p><a href="" target="_blank">Feedback</a></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col is-3">
-                <p class="has-text-white"><b>Category 1</b></p>
-                <p><a href="">Link</a></p>
-                <p><a href="">Link</a></p>
-            </div>
-            <div class="col is-3">
-                <p class="has-text-white"><b>Category 2</b></p>
-                <p><a href="">Link</a></p>
-                <p><a href="">Link</a></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col is-right-desktop-only">
-                <ul>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Contact</a></p>
-                    </li>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Feedback</a></p>
-                    </li>
-                    
-                </ul>
+        <div class="sgds-footer bottom-section">
+            <div class="sgds-container is-fluid">
+                <div class="row is-multiline">
+                    <div class="col is-12">
+                        <ul>
+                            <li>
+                                <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
+                            </li>
+                            <li><a href="">Privacy</a></li>
+                            <li><a href="">Terms of Use</a></li>
+                        </ul>
+                    </div>
+                    <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                        <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
+                        <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
+                        <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
-<footer class="sgds-footer bottom-section">
-    <div class="sgds-container is-fluid">
-        <div class="row is-multiline">
-            <div class="col is-12">
-                <ul>
-                    <li>
-                       <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
-                    </li>
-                    <li><a href="">Privacy</a></li>
-                    <li><a href="">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
-                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
-                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 
 <div class="sgds-accordion-container margin--top--lg">
     <div class="sgds-accordion">
@@ -179,59 +182,61 @@ order: 4
         </a>
         <div class="sgds-accordion-body">
 {% highlight html %}
-<footer class="sgds-footer top-section">
-    <div class="sgds-container is-fluid">
-        <div class="row">
-            <div class="col">
-                <h5 class="has-text-white"><b>{{site.title}}</b></h5>
+    <footer class='sgds-footer'>
+        <div class="sgds-footer top-section">
+            <div class="sgds-container is-fluid">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="has-text-white"><b>{{site.title}}</b></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col is-3">
+                        <p class="has-text-white"><b>Category 1</b></p>
+                        <p><a href="">Link</a></p>
+                        <p><a href="">Link</a></p>
+                    </div>
+                    <div class="col is-3">
+                        <p class="has-text-white"><b>Category 2</b></p>
+                        <p><a href="">Link</a></p>
+                        <p><a href="">Link</a></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col is-right-desktop-only">
+                        <ul>
+                            <li class="is-inline-block-desktop-only">
+                                <p><a href="" target="_blank">Contact</a></p>
+                            </li>
+                            <li class="is-inline-block-desktop-only">
+                                <p><a href="" target="_blank">Feedback</a></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col is-3">
-                <p class="has-text-white"><b>Category 1</b></p>
-                <p><a href="">Link</a></p>
-                <p><a href="">Link</a></p>
-            </div>
-            <div class="col is-3">
-                <p class="has-text-white"><b>Category 2</b></p>
-                <p><a href="">Link</a></p>
-                <p><a href="">Link</a></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col is-right-desktop-only">
-                <ul>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Contact</a></p>
-                    </li>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Feedback</a></p>
-                    </li>
-                </ul>
+        <div class="sgds-footer bottom-section">
+            <div class="sgds-container is-fluid">
+                <div class="row is-multiline">
+                    <div class="col is-12">
+                        <ul>
+                            <li>
+                                <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
+                            </li>
+                            <li><a href="">Privacy</a></li>
+                            <li><a href="">Terms of Use</a></li>
+                        </ul>
+                    </div>
+                    <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                        <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
+                        <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
+                        <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
-<footer class="sgds-footer bottom-section">
-    <div class="sgds-container is-fluid">
-        <div class="row is-multiline">
-            <div class="col is-12">
-                <ul>
-                    <li>
-                       <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
-                    </li>
-                    <li><a href="">Privacy</a></li>
-                    <li><a href="">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
-                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
-                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 {% endhighlight %}
             <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy Snippet</button>
         </div>
@@ -242,55 +247,54 @@ order: 4
 
 
 <p>For footer that needs a short product info, you can park it in the first column.</p>
-
-
-<footer class="sgds-footer top-section">
-    <div class="sgds-container is-fluid">
-        <div class="row">
-            <div class="col">
-                <h5 class="has-text-white"><b>{{site.title}}</b></h5>
+<footer class='sgds-footer'>
+    <div class="sgds-footer top-section">
+        <div class="sgds-container is-fluid">
+            <div class="row">
+                <div class="col">
+                    <h5 class="has-text-white"><b>{{site.title}}</b></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col is-4">
+                    <p>Unites Singapore Government Digital Services around a common UI language and user experience</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col is-right-desktop-only">
+                    <ul>
+                        <li class="is-inline-block-desktop-only">
+                            <p><a href="" target="_blank">Contact</a></p>
+                        </li>
+                        <li class="is-inline-block-desktop-only">
+                            <p><a href="" target="_blank">Feedback</a></p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col is-4">
-                <p>Unites Singapore Government Digital Services around a common UI language and user experience</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col is-right-desktop-only">
-                <ul>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Contact</a></p>
-                    </li>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Feedback</a></p>
-                    </li>
-                </ul>
+    </div>
+    <div class="sgds-footer bottom-section">
+        <div class="sgds-container is-fluid">
+            <div class="row is-multiline">
+                <div class="col is-12">
+                    <ul>
+                        <li>
+                            <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
+                        </li>
+                        <li><a href="">Privacy</a></li>
+                        <li><a href="">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                    <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
+                    <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
+                    <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+                </div>
             </div>
         </div>
     </div>
 </footer>
-<footer class="sgds-footer bottom-section">
-    <div class="sgds-container is-fluid">
-        <div class="row is-multiline">
-            <div class="col is-12">
-                <ul>
-                    <li>
-                       <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
-                    </li>
-                    <li><a href="">Privacy</a></li>
-                    <li><a href="">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
-                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
-                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
-            </div>
-        </div>
-    </div>
-</footer>
-
 
 <div class="sgds-accordion-container margin--top--lg">
     <div class="sgds-accordion">
@@ -299,64 +303,50 @@ order: 4
         </a>
         <div class="sgds-accordion-body">
 {% highlight html %}
-<footer class="sgds-footer top-section">
-    <div class="sgds-container is-fluid">
-        <div class="row">
-            <div class="col">
-                <h5 class="has-text-white"><b>{{site.title}}</b></h5>
+<footer class='sgds-footer'>
+    <div class="sgds-footer top-section">
+        <div class="sgds-container is-fluid">
+            <div class="row">
+                <div class="col">
+                    <h5 class="has-text-white"><b>{{site.title}}</b></h5>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col is-4">
-                <p>Unites Singapore Government Digital Services around a common UI language and user experience</p>
+            <div class="row">
+                <div class="col is-4">
+                    <p>Unites Singapore Government Digital Services around a common UI language and user experience</p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col is-right-desktop-only">
-                <ul>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Contact</a></p>
-                    </li>
-                    <li class="is-inline-block-desktop-only">
-                        <p><a href="" target="_blank">Feedback</a></p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row is-multiline divider">
-            <div class="col is-12">
-                <ul>
-                    <li>
-                       <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
-                    </li>
-                    <li><a href="">Privacy</a></li>
-                    <li><a href="">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
-                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
-                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+            <div class="row">
+                <div class="col is-right-desktop-only">
+                    <ul>
+                        <li class="is-inline-block-desktop-only">
+                            <p><a href="" target="_blank">Contact</a></p>
+                        </li>
+                        <li class="is-inline-block-desktop-only">
+                            <p><a href="" target="_blank">Feedback</a></p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</footer>
-<footer class="sgds-footer bottom-section">
-    <div class="sgds-container is-fluid">
-        <div class="row is-multiline">
-            <div class="col is-12">
-                <ul>
-                    <li>
-                       <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
-                    </li>
-                    <li><a href="">Privacy</a></li>
-                    <li><a href="">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
-                <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
-                <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+    <div class="sgds-footer bottom-section">
+        <div class="sgds-container is-fluid">
+            <div class="row is-multiline">
+                <div class="col is-12">
+                    <ul>
+                        <li>
+                            <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
+                        </li>
+                        <li><a href="">Privacy</a></li>
+                        <li><a href="">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                    <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
+                    <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
+                    <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
+                </div>
             </div>
         </div>
     </div>
