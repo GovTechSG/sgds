@@ -20,9 +20,9 @@ gem "minima", "~> 2.0"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "ffi"
-  gem "jekyll-assets"
+  gem "jekyll-assets", ">= 3.0.12"
   gem 'jekyll-sitemap'
-  gem 'jekyll-toc'
+  gem 'jekyll-toc', '>= 0.12.1'
   gem "jekyll-seo-tag"
   gem 'jekyll-redirect-from'
 end
