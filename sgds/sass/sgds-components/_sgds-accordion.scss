@@ -1,10 +1,17 @@
-// *** Changes to Accordion ***
-// 1. Change background to white
-//  1a. Change hover to darken-white
-//  1b. Added border with $grey-light (same border color with default table)
-// 2. added border $grey-light (same border color with default table) to accordion-body
-// 3. Added color helper
-// 4. Added is-borderless helper
+$accordion-padding-vertical: calc(0.375em - #{$button-border-width}) !default;
+$accordion-padding-horizontal: 0.75em !default;
+
+@mixin accordion-small {
+  font-size: $size-small;
+}
+
+@mixin accordion-medium {
+  font-size: $size-medium;
+}
+
+@mixin accordion-large {
+  font-size: $size-large;
+}
 
 .sgds-accordion {
   & + & {
@@ -14,8 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
-    color: $link;
+    padding: $accordion-padding-vertical $accordion-padding-horizontal;
     background-color: $white;
     font-size: $size-normal;
     border: 1px solid $grey-light;
@@ -36,9 +42,7 @@
     display: none;
     border: 1px solid $grey-light;
     border-top: 0;
-    &.is-open {
-      display: block;
-    }
+    
   }
 
   @each $name, $pair in $colors {
@@ -57,17 +61,44 @@
         }
 
         &.is-active{
-          background-color: darken($color, 5%);
+          background-color: darken($color, 2.5%);
           color: $color-invert;
         }
       }
     }
   }
 
+  // Helper Class
+
   &.is-borderless{
     .sgds-accordion-header,
     .sgds-accordion-body{
       border: 0;
+    }
+  }
+
+  // Sizes
+  &.is-small {
+    .sgds-accordion-header{
+      @include accordion-small;
+    }
+    
+  }
+
+  &.is-medium {
+    .sgds-accordion-header{
+      @include accordion-medium;
+    }
+  }
+
+  &.is-large {
+    .sgds-accordion-header{
+      @include accordion-large;
+    }
+  }
+  &.is-open {
+    .sgds-accordion-body{
+      display: block;
     }
   }
 }

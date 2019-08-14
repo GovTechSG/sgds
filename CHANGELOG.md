@@ -9,10 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Accordion
 #### Added
 - border with $grey-light (same border color with default table)
-- border $grey-light (same border color with default table) to sgds-accordion-body
-- is-*color*` helper to sgds-accordion.
-- `is-*borderless*` helper to sgds-accordion.
+- border $grey-light (same border color with default table) to `sgds-accordion-body`
+- `is-*color*` helper to `sgds-accordion`.
+- `is-*borderless*` helper to `sgds-accordion`.
+- `is-*small* , is-*medium* , is-*large*` helper to `sgds-accordion`.
 #### Changed
 - background color to white
 - background color to white
-- hover color to darken-white
+- hover color to darken white
+- padding top/bottom (same padding with default size `sgds-button`)

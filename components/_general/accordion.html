@@ -19,11 +19,11 @@ js: true
 
 <div class="row">
     <div class="col">
-        <div class="sgds-accordion">
+        <div class="sgds-accordion is-open">
             <a href="#!" class="sgds-accordion-header is-active" role="button" aria-expanded="true">
                 I have content below me <i class="sgds-icon sgds-icon-chevron-up"></i>
             </a>
-            <div class="sgds-accordion-body is-open">
+            <div class="sgds-accordion-body">
                 <p>This is my accordion content</p>
             </div>
         </div>
@@ -41,11 +41,11 @@ js: true
 
 <h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
 {%- highlight html -%}
-<div class="sgds-accordion">
+<div class="sgds-accordion is-open">
     <a href="#!" class="sgds-accordion-header is-active" role="button" aria-expanded="true">
         I have content below me <i class="sgds-icon sgds-icon-chevron-up"></i>
     </a>
-    <div class="sgds-accordion-body is-open">
+    <div class="sgds-accordion-body">
         <p>This is my accordion content</p>
     </div>
 </div>
@@ -76,12 +76,12 @@ js: true
                     <p>your content 1</p>
                 </div>
             </div>
-            <div class="sgds-accordion">
+            <div class="sgds-accordion is-open">
                 <a class="sgds-accordion-header is-active" role="button" aria-expanded="true">
                     accordion bar 2 <i class="sgds-icon sgds-icon-chevron-up"></i>
                 </a>
-                <div class="sgds-accordion-body is-open">
-                    <p>You can add the <code>is-open</code> class to <code>sgds-accordion-body</code> to show the content on page load</p>
+                <div class="sgds-accordion-body">
+                    <p>You can add the <code>is-open</code> class to <code>sgds-accordion</code> to show the content on page load</p>
                 </div>
             </div>
             <div class="sgds-accordion">
@@ -107,12 +107,12 @@ js: true
             <p>your content 1</p>
         </div>
     </div>
-    <div class="sgds-accordion">
+    <div class="sgds-accordion is-open">
         <a class="sgds-accordion-header is-active" role="button" aria-expanded="true">
             accordion bar 2 <i class="sgds-icon sgds-icon-chevron-up"></i>
         </a>
-        <div class="sgds-accordion-body is-open">
-            <p>You can add the <code>is-open</code> class to <code>sgds-accordion-body</code> to show the content on page load</p>
+        <div class="sgds-accordion-body">
+            <p>You can add the <code>is-open</code> class to <code>sgds-accordion</code> to show the content on page load</p>
         </div>
     </div>
     <div class="sgds-accordion">
@@ -149,19 +149,25 @@ js: true
     </thead>
     <tbody>
         <tr>
-            <td><code>is-*colorState*</code></td>
+            <td><code>sgds-accordion is-*colorState*</code></td>
             <td>
-                <p>Add class name to <code>sgds-accordion</code>.<br>Replace <code>colorState</code> with contextual text color classes (<span class="has-text-danger">is-danger</span>, <span class="has-text-warning">is-warning</span>, <span class="has-text-success">is-success</span> etc.) for various background color.</p>
+                <p>Replace <code>*colorState*</code> with contextual text color classes (<span class="has-text-danger">is-danger</span>, <span class="has-text-warning">is-warning</span>, <span class="has-text-success">is-success</span> etc.) for various background color.</p>
             </td>
         </tr>
         <tr>
-            <td><code>is-borderless</code></td>
-            <td>Add class name to <code>sgds-accordion</code>.<br>Remove border around the accordion.</td>
+            <td><code>sgds-accordion is-borderless</code></td>
+            <td>Remove border around the accordion.</td>
         </tr>
         <tr>
-            <td><code>is-open</code></td>
+            <td><code>sgds-accordion is-open</code></td>
             <td>
-                <p>Add class name to <code>sgds-accordion-body</code>.<br>To expand the accordion on page load.</p>
+                <p>To expand the accordion on page load.</p>
+            </td>
+        </tr>
+        <tr>
+            <td><code>sgds-accordion is-*size*</code></td>
+            <td>
+                <p>Replace <code>*size*</code> with <code>is-small</code>, <code>is-medium</code> & <code>is-large</code> for various text sizes.</p>
             </td>
         </tr>
     </tbody>
