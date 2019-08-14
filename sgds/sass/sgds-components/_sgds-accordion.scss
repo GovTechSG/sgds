@@ -1,6 +1,14 @@
+// *** Changes to Accordion ***
+// 1. Change background to white
+//  1a. Change hover to darken-white
+//  1b. Added border with $grey-light (same border color with default table)
+// 2. added border $grey-light (same border color with default table) to accordion-body
+// 3. Added color helper
+// 4. Added is-borderless helper
+
 .sgds-accordion {
   & + & {
-    margin-top: 5px;
+    margin-top: 0.5rem;
   }
   &-header {
     display: flex;
@@ -8,25 +16,58 @@
     justify-content: space-between;
     padding: 1rem;
     color: $link;
-    background-color: $table-grey;
+    background-color: $white;
     font-size: $size-normal;
+    border: 1px solid $grey-light;
+
     .content & {
       text-decoration: none;
       margin-bottom: 0;
     }
     &:hover {
-      background-color: darken($table-grey, 10%);
-      color: currentColor;
+      background-color: darken($white, 2.5%);
     }
     &.is-active {
-      background-color: darken($table-grey, 10%);
+      background-color: darken($white, 5%);
     }
   }
   &-body {
     padding: 1rem;
     display: none;
+    border: 1px solid $grey-light;
+    border-top: 0;
     &.is-open {
       display: block;
+    }
+  }
+
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+
+    &.is-#{$name} {
+      .sgds-accordion-header{
+        background-color: $color;
+        color: $color-invert;
+        border: 1px solid $color;
+
+        &:hover{
+          background-color: darken($color, 2.5%);
+          color: $color-invert;
+        }
+
+        &.is-active{
+          background-color: darken($color, 5%);
+          color: $color-invert;
+        }
+      }
+    }
+  }
+
+  &.is-borderless{
+    .sgds-accordion-header,
+    .sgds-accordion-body{
+      border: 0;
     }
   }
 }
