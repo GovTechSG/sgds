@@ -95,7 +95,7 @@ layout: layout-default
 </section>
 {% endif %}
 
-{% if page.url contains "/learn/" %}
+{% if page.url contains "/guides/" %}
 <section class="sgds-section is-paddingless is-hidden-desktop">
     <div class="sgds-dropdown is-fullwidth">
         <div class="sgds-dropdown-trigger">
@@ -233,7 +233,7 @@ layout: layout-default
                                 {% endif %}
                             {% endfor %}
                         </ul>
-                        {% elsif page.url contains '/learn/' %}
+                        {% elsif page.url contains '/guides/' %}
                         <ul class="sgds-menu-list">
                             {%- assign links = site.data.navigation -%}
                             {%- for lvl1item in links -%}
