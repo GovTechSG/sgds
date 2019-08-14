@@ -400,6 +400,15 @@ a.navbar-item,
         overflow: auto;
       }
     }
+
+    .field {
+      border-top: 1px solid rgba(black, 0.1);
+      border-bottom: 1px solid rgba(black, 0.1);
+  
+      .control {
+        padding-bottom: 0 !important;
+      }
+    }
   }
 
   html,
@@ -413,14 +422,7 @@ a.navbar-item,
     }
   }
 
-  .field {
-    border-top: 1px solid rgba(black, 0.1);
-    border-bottom: 1px solid rgba(black, 0.1);
-
-    .control {
-      padding-bottom: 0 !important;
-    }
-  }
+  
 }
 
 
