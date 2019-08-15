@@ -27,10 +27,16 @@ a[target="_blank"]:after {
     content: "";
 }
 
+/* Docs */
+.component-card{
+    height: 100%;
+}
+
 /* Docs mobile nav needs higher z-index */
 .docs-nav-dropdown {
     z-index: 31;
 }
+
 
 /* Loading spinner */
 /* <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> */
