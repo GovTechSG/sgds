@@ -18,7 +18,7 @@
      url: /guides/design/
      lvl3:
       #- title: Using the Sketch UI Kit
-      #  url: /learn/design/sketch-kit/
+      #  url: /guides/design/sketch-kit/
       - title: Accessibility for Design
         url: /guides/design/accessibility-design/
       - title: Color Contrast Checker
