@@ -644,6 +644,159 @@ js: true
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
+<!-- Main Nav 5 -->
+
+<p>Add <code>.has-item-max-width</code> to  <code>.navbar-start</code>class to fix item width with longer text.</p>
+
+<nav class="navbar" role="navigation">
+    <div class="sgds-container">
+        <div class="navbar-brand">
+            <a class="navbar-item">
+                <img src="/assets/img/logo_sgds.png" alt="" />
+            </a>
+            <div class="navbar-burger burger" data-target="mainnav-5">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div id="mainnav-5" class="navbar-menu">
+            <div class="navbar-start has-item-max-width">
+                <div class="navbar-item is-hidden-desktop">
+                    <form>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input is-fullwidth" id="nav-4-search-mobile" type="text"
+                                    placeholder="{{ site.search_placeholder }}" name="nav-4-search-mobile" />
+                            </div>
+                        </div>
+                    </form>
+                    <hr class="is-marginless margin--top--sm" />
+                </div>
+                <a class="navbar-item is-uppercase is-tab">
+                    Lorem ipsum dolor sit
+                </a>
+            </div>
+        </div>
+        <div class="navbar-end is-hidden-touch">
+            <div class="navbar-item">
+                <button class="sgds-button is-white is-large search-toggle" data-target="searchbar-1">
+                    <span class="sgds-icon sgds-icon-search"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="sgds-container is-fluid is-hidden-touch is-marginless hide" id="searchbar-1">
+    <div class="row">
+        <div class="col">
+            <hr class="margin--bottom--sm" />
+            <form>
+                <div class="field has-addons padding--sm">
+                    <div class="control has-icons-left is-expanded padding--bottom--sm">
+                        <input class="input is-fullwidth is-borderless is-shadowless" id="nav-4-search" type="text"
+                            placeholder="{{ site.search_placeholder }}" name="nav-4-search" autocomplete="off" />
+                        <span class="icon is-left">
+                            <i class="search-bar-icon sgds-icon sgds-icon-search is-size-7"></i>
+                        </span>
+                    </div>
+                    <div class="control">
+                        <button type="submit"
+                            class="sgds-button is-primary has-text-white padding--left padding--right">
+                            SEARCH
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="sgds-accordion-container margin--top--lg">
+    <div class="sgds-accordion">
+        <a class="sgds-accordion-header">
+            Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            {%- highlight html -%}
+            <nav class="navbar" role="navigation">
+                <div class="sgds-container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item">
+                            <img src="/assets/img/logo_sgds.png" alt="" />
+                        </a>
+                        <div class="navbar-burger burger" data-target="mainnav-4">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div id="mainnav-5" class="navbar-menu">
+                        <!-- Add .has-item-max-width to .navbar-start class to fix nav item width with longer text. -->
+                        <div class="navbar-start has-item-max-width">
+                            <div class="navbar-item is-hidden-desktop">
+                                <form>
+                                    <div class="field has-addons">
+                                        <div class="control is-expanded">
+                                            <input class="input is-fullwidth" id="nav-4-search-mobile" type="text"
+                                                placeholder="{{ site.search_placeholder }}"
+                                                name="nav-4-search-mobile" />
+                                        </div>
+                                    </div>
+                                </form>
+                                <hr class="is-marginless margin--top--sm" />
+                            </div>
+                            <a class="navbar-item is-uppercase is-tab">
+                                    Lorem ipsum dolor sit
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navbar-end is-hidden-touch">
+                        <div class="navbar-item">
+                            <button class="sgds-button is-white is-large search-toggle" data-target="searchbar-1">
+                                <span class="sgds-icon sgds-icon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="sgds-container is-fluid is-hidden-touch is-marginless hide" id="searchbar-1">
+                <div class="row">
+                    <div class="col">
+                        <hr class="margin--bottom--sm" />
+                        <form>
+                            <div class="field has-addons padding--sm">
+                                <div class="control has-icons-left is-expanded padding--bottom--sm">
+                                    <input class="input is-fullwidth is-borderless is-shadowless" id="nav-4-search"
+                                        type="text" placeholder="{{ site.search_placeholder }}" name="nav-4-search"
+                                        autocomplete="off" />
+                                    <span class="icon is-left">
+                                        <i class="search-bar-icon sgds-icon sgds-icon-search is-size-7"></i>
+                                    </span>
+                                </div>
+                                <div class="control">
+                                    <button type="submit"
+                                        class="sgds-button is-primary has-text-white padding--left padding--right">
+                                        SEARCH
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {%- endhighlight -%}
+            <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight3">
+                Copy Snippet
+            </button>
+        </div>
+    </div>
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
 <h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
 <p>Main navs should:</p>
 <ul>
