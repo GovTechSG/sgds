@@ -27,7 +27,13 @@ $pagination-shadow-inset: inset 0 1px 2px rgba($black, 0.2);
   &-pagination {
     font-size: $size-normal;
     margin: $pagination-margin;
-
+    ul.sgds-pagination-list{
+      margin-left: 0.25rem;
+      margin-right: 0.25rem;
+    }
+    li.sgds-pagination-link{
+        margin-top: 0.25rem;
+    }
     // Sizes
     &.is-small {
       font-size: $size-small;
@@ -115,7 +121,7 @@ $pagination-shadow-inset: inset 0 1px 2px rgba($black, 0.2);
     padding-right: 0.75em;
     white-space: nowrap;
   }
-
+  
   &-pagination-link {
     &.is-current {
       background-color: $pagination-current-background-color;
