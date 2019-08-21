@@ -520,6 +520,7 @@ a.navbar-item,
   .navbar-start {
     justify-content: flex-start;
     margin-right: auto;
+
   }
 
   .navbar-end {
@@ -671,5 +672,24 @@ a.navbar-item,
     position: fixed;
     top: 0;
     width: 100%;
+  }
+}
+
+// navbar-item helper, wrapper navbar-start
+@include desktop{
+  .navbar-start{
+    &.has-item-max-width{
+      .navbar-item{
+        max-width: 140px;
+      }
+    }
+  }
+}
+
+@include touch{
+  .navbar-start{
+    .navbar-item{
+      max-width: none;
+    }
   }
 }
