@@ -1,9 +1,12 @@
 language: node_js
 node_js:
   - "node"
-install: 
+branches:
+  only:
+    - dev
+install:
   - npm ci
-script: 
+script:
   - npm run build:lib
 deploy:
   provider: pages
