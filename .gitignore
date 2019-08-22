@@ -9,9 +9,9 @@ _site
 
 node_modules
 
-/css
-/fonts
-/js
+# /css
+# /fonts
+# /js
 /scripts
 /apps/build
 # Dont commit compressed images
