@@ -162,9 +162,19 @@ $(document).ready(() => {
     const dropdowns = document.querySelectorAll(".sgds-dropdown:not(.is-hoverable)");
     if (dropdowns.length > 0) {
         dropdowns.forEach(dropdown => {
-            dropdown.addEventListener("click", event => {
+            let dropdownTrigger = dropdown.querySelector(".sgds-dropdown-trigger");
+            dropdownTrigger.addEventListener("click", event => {
                 event.stopPropagation(); // Stop close listeners
                 dropdown.classList.toggle("is-active");
+                let dropdownIcon = dropdownTrigger.querySelector(".sgds-icon");
+
+                if (dropdown.classList.contains("is-active")) {
+                    dropdownIcon.classList.remove("sgds-icon-chevron-down");
+                    dropdownIcon.classList.add("sgds-icon-chevron-up");
+                } else {
+                    dropdownIcon.classList.remove("sgds-icon-chevron-up");
+                    dropdownIcon.classList.add("sgds-icon-chevron-down");
+                }
             });
         });
 
