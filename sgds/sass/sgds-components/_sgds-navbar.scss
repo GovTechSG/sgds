@@ -690,6 +690,14 @@ a.navbar-item,
       }
     }
   }
+
+  .navbar-item {
+    &.is-hoverable:hover {
+        .navbar-dropdown {
+            display: block;
+        }
+    }
+  }
 }
 
 @include touch{
