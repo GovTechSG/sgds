@@ -179,11 +179,13 @@ $(document).ready(() => {
         });
 
         document.addEventListener("click", () => {
-            dropdowns.forEach(function(dropdown) {
+            dropdowns.forEach(dropdown => {
                 dropdown.classList.remove("is-active");
-                let dropdownIcon = dropdown.querySelector(".sgds-dropdown-button .sgds-icon");
-                dropdownIcon.classList.remove("sgds-icon-chevron-up");
-                dropdownIcon.classList.add("sgds-icon-chevron-down");
+                let dropdownIcon = dropdown.querySelector(".sgds-button .sgds-icon");
+                if (dropdownIcon) {
+                    dropdownIcon.classList.remove("sgds-icon-chevron-up");
+                    dropdownIcon.classList.add("sgds-icon-chevron-down");
+                }
             });
         });
 
@@ -191,11 +193,13 @@ $(document).ready(() => {
         document.addEventListener("keydown", event => {
             const e = event || window.event;
             if (e.keyCode === 27) {
-                dropdowns.forEach(function(dropdown) {
+                dropdowns.forEach(dropdown => {
                     dropdown.classList.remove("is-active");
-                    let dropdownIcon = dropdown.querySelector(".sgds-dropdown-button .sgds-icon");
-                    dropdownIcon.classList.remove("sgds-icon-chevron-up");
-                    dropdownIcon.classList.add("sgds-icon-chevron-down");
+                    let dropdownIcon = dropdown.querySelector(".sgds-button .sgds-icon");
+                    if (dropdownIcon) {
+                        dropdownIcon.classList.remove("sgds-icon-chevron-up");
+                        dropdownIcon.classList.add("sgds-icon-chevron-down");
+                    }
                 });
             }
         });
