@@ -22,7 +22,7 @@ module.exports = env => {
             rules: [
                 {
                     test: /\.m?js$/,
-                    exclude: /(node_modules|bower_components)/,
+                    exclude: /node_modules\/(?!(sticky-sidebar))/,
                     use: {
                         loader: "babel-loader",
                         options: {
@@ -93,7 +93,7 @@ module.exports = env => {
                         to: "assets/img"
                     }
                 ]),
-                // ImageminWebpackPlugin must be placed after CopyWebpackPlugin 
+                // ImageminWebpackPlugin must be placed after CopyWebpackPlugin
                 // (or any other plugins that deal with images) in plugins array.
                 new ImageminPlugin({
                     pngquant: {

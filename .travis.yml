@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "node"
+branches:
+  only:
+    - dev
+install:
+  - npm ci
+script:
+  - npm run build:lib
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  on:
+    branch: dev
