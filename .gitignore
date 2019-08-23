@@ -15,8 +15,6 @@ node_modules
 /assets/img
 
 # /css, /fonts and /js are distribution files
-# they are committed for travis to build from the dev branch
-# they are deployed at the gh-pages branch
-# /css
-# /fonts
-# /js
+/css
+/fonts
+/js
