@@ -179,8 +179,11 @@ $(document).ready(() => {
         });
 
         document.addEventListener("click", () => {
-            dropdowns.forEach(function($el) {
-                $el.classList.remove("is-active");
+            dropdowns.forEach(function(dropdown) {
+                dropdown.classList.remove("is-active");
+                let dropdownIcon = dropdown.querySelector(".sgds-dropdown-button .sgds-icon");
+                dropdownIcon.classList.remove("sgds-icon-chevron-up");
+                dropdownIcon.classList.add("sgds-icon-chevron-down");
             });
         });
 
@@ -188,8 +191,11 @@ $(document).ready(() => {
         document.addEventListener("keydown", event => {
             const e = event || window.event;
             if (e.keyCode === 27) {
-                dropdowns.forEach(function($el) {
-                    $el.classList.remove("is-active");
+                dropdowns.forEach(function(dropdown) {
+                    dropdown.classList.remove("is-active");
+                    let dropdownIcon = dropdown.querySelector(".sgds-dropdown-button .sgds-icon");
+                    dropdownIcon.classList.remove("sgds-icon-chevron-up");
+                    dropdownIcon.classList.add("sgds-icon-chevron-down");
                 });
             }
         });
