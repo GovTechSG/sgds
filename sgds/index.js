@@ -19,11 +19,11 @@ $(document).ready(() => {
         let searchBarInput = $(searchToggleTarget).find("input");
 
         $(searchToggle).click(() => {
-            $(searchIcon)
+            searchIcon
                 .toggleClass("sgds-icon-search")
                 .toggleClass("sgds-icon-cross");
-            $(searchToggleTarget).toggleClass("hide");
-            $(searchBarInput)
+            searchToggleTarget.toggleClass("hide");
+            searchBarInput
                 .focus()
                 .val("");
         });
