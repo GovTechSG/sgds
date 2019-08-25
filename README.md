@@ -83,6 +83,19 @@ $ npm run devserver
 
 Pull requests welcome!
 
+### Development Build  [![Build Status](https://travis-ci.org/GovTechSG/sgds.svg?branch=dev)](https://travis-ci.org/GovTechSG/sgds)
+
+Test out the latest development build from jsdelivr:
+
+```html
+<!-- CSS in <head> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/govtechsg/sgds@gh-pages/css/sgds.css"/>
+
+<!-- JS in <body> -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/govtechsg/sgds@gh-pages/js/sgds.js"></script>
+```
+
 ## Patch Notes
 
 v1.1.0
