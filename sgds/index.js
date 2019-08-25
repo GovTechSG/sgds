@@ -10,8 +10,7 @@ import "./fonts/sgds-icons.woff";
 $(document).ready(() => {
     // Search bar toggle
     const searchToggles = $(".search-toggle");
-    for (let i = 0; i < searchToggles.length; i++) {
-        let searchToggle = searchToggles[i];
+    for (let searchToggle of searchToggles) {
         let searchToggleTargetId = searchToggle.dataset.target;
         let searchToggleTarget = $(`#${searchToggleTargetId}`);
 

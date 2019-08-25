@@ -15,6 +15,6 @@ node_modules
 /assets/img
 
 # /css, /fonts and /js are distribution files
-# /css
-# /fonts
-# /js
+/css
+/fonts
+/js
