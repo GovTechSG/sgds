@@ -89,11 +89,11 @@ Test out the latest development build from jsdelivr:
 
 ```html
 <!-- CSS in <head> -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/govtechsg/sgds@gh-pages/css/sgds.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/govtechsg/sgds@dev_preview/css/sgds.css"/>
 
 <!-- JS in <body> -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/govtechsg/sgds@gh-pages/js/sgds.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/govtechsg/sgds@dev_preview/js/sgds.js"></script>
 ```
 
 ## Patch Notes
