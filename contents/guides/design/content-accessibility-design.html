@@ -1,13 +1,14 @@
 ---
-title: Accessibility for Content
+title: Accessibility for Design
 layout: layout-sidenav
-permalink: /learn/writing/accessibility-content/
+permalink: /guides/design/accessibility-design/
 ---
 
 
 <h4 class="has-text-primary">As we build products and services for Singaporeans, no one should
     be left behind. Whether it means building public kiosks for those who don't have internet access, ensuring everyone
     can read the content or just saying things in a way that people understand</h4>
+
 
 <hr class="margin--bottom--lg margin--top--lg">
 
@@ -74,60 +75,67 @@ permalink: /learn/writing/accessibility-content/
 <hr class="margin--bottom--lg margin--top--lg">
 
 
-<h5 class="has-text-weight-semibold margin--bottom">Implementing Content Design</h5>
+<h5 class="has-text-weight-semibold margin--bottom">Implementing UI Design</h5>
 <p>Most accessibility principles can be implemented very easily and will not impact the overall "look and feel" of a web
     site.</p>
 <div class="sgds-accordion-container">
     <div class="sgds-accordion">
         <a class="sgds-accordion-header">
-            <h6>Provide informative, unique page titles</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+            <h6>Provide sufficient contrast between foreground and background</h6> <i
+                class="sgds-icon sgds-icon-chevron-down"></i>
         </a>
         <div class="sgds-accordion-body">
-            <p>For each web page, provide a short title that describes the page content and distinguishes it from other
-                pages. The page title is often the same as the main heading of the page.</p>
-            <p>Put the unique and most relevant information first; for example, put the name of the page before the name
-                of the organization. For pages that are part of a multi-step process, include the current step in the
-                page title.</p>
+            <p>Foreground text needs to have sufficient contrast with background colors. This includes text on images,
+                background gradients, buttons, and other elements.</p>
+            <p>This does not apply for logos, or incidental text, such as text that happens to be in a photograph.
+                Minimum contrast ratio (level AA) should be 4.5:1 and enhanced contrast ratio (level AAA) should be at
+                least 7:1.</p>
         </div>
     </div>
     <div class="sgds-accordion">
         <a class="sgds-accordion-header">
-            <h6>Use headings to convey meaning & structure</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+            <h6>Do not use color alone to convey information</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
         </a>
         <div class="sgds-accordion-body">
-            <p>Use short headings to group related paragraphs and clearly describe the sections. Good headings provide
-                an outline of the content.</p>
+            <p>While color can be useful to convey information, color should not be the only way information is
+                conveyed.</p>
+            <p>When using color to differentiate elements, also provide additional identification that does not rely on
+                color perception. For example, use an asterisk in addition to color to indicate required form fields,
+                and use labels to distinguish areas on graphs.</p>
         </div>
     </div>
     <div class="sgds-accordion">
         <a class="sgds-accordion-header">
-            <h6>Make link text meaningful</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+            <h6>Ensure that interactive elements are easy to identify</h6> <i
+                class="sgds-icon sgds-icon-chevron-down"></i>
         </a>
         <div class="sgds-accordion-body">
-            <p>Write link text so that it describes the content of the link target. Avoid using ambiguous link text,
-                such as 'click here' or 'read more'. Indicate relevant information about the link target, such as
-                document type and size, for example, 'Proposal Documents (RTF, 20MB)'.</p>
+            <p>Provide distinct styles for interactive elements, such as links and buttons, to make them easy to
+                identify. For example, change the appearance of links on mouse hover, keyboard focus, and touch-screen
+                activation. Ensure that styles and naming for interactive elements are used consistently throughout the
+                website.</p>
         </div>
     </div>
     <div class="sgds-accordion">
         <a class="sgds-accordion-header">
-            <h6>Write meaningful text alternatives for images</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+            <h6>Provide clear and consistent navigation options</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
         </a>
         <div class="sgds-accordion-body">
-            <p>For every image, write alternative text that provides the information or function of the image. For
-                purely decorative images, there is no need to write alternative text.</p>
+            <p>Ensure that navigation across pages within a website has consistent naming, styling, and positioning.
+                Provide more than one method of website navigation, such as a site search or a site map. Help users
+                understand where they are in a website or page by providing orientation cues, such as breadcrumbs and
+                clear headings.</p>
         </div>
     </div>
     <div class="sgds-accordion">
         <a class="sgds-accordion-header">
-            <h6>Create transcripts & captions for multimedia</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+            <h6>Ensure that form elements include clearly associated labels</h6> <i
+                class="sgds-icon sgds-icon-chevron-down"></i>
         </a>
         <div class="sgds-accordion-body">
-            <p>For audio-only content, such a podcast, provide a transcript. For audio and visual content, such as
-                training videos, also provide captions. Include in the transcripts and captions the spoken information
-                and sounds that are important for understanding the content, for example, 'door creaks'. For video
-                transcripts, also include a description of the important visual content, for example 'Athan leaves the
-                room'.</p>
+            <p>Ensure that all fields have a descriptive label adjacent to the field. For left-to-right languages,
+                labels are usually positioned to the left or above the field, except for checkboxes and radio buttons
+                where they are usually to the right. Avoid having too much space between labels and fields.</p>
         </div>
     </div>
     <div class="sgds-accordion">
@@ -142,34 +150,56 @@ permalink: /learn/writing/accessibility-content/
     </div>
     <div class="sgds-accordion">
         <a class="sgds-accordion-header">
-            <h6>Provide clear instructions</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+            <h6>Use headings and spacing to group related content</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
         </a>
         <div class="sgds-accordion-body">
-            <p>Ensure that instructions, guidance, and error messages are clear, easy to understand, and avoid
-                unnecessarily technical language. Describe input requirements, such as date formats. Instructions
-                communicate what information the user should provide. Error indicates what the problem is and, possibly,
-                how to fix it.</p>
+            <p>Use whitespace and proximity to make relationships between content more apparent. Style headings to group
+                content, reduce clutter, and make it easier to scan and understand.</p>
         </div>
     </div>
     <div class="sgds-accordion">
         <a class="sgds-accordion-header">
-            <h6>Keep content clear & concise</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+            <h6>Create designs for different viewport sizes</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
         </a>
         <div class="sgds-accordion-body">
-            <p>Use simple language and formatting, as appropriate for the context.</p>
+            <p>Consider how page information is presented in different sized viewports, such as mobile phones or zoomed
+                browser windows. Position and presentation of main elements, such as header and navigation can be
+                changed to make best use of the space. Ensure that text size and line width are set to maximize
+                readability and legibility.</p>
+            <p>Display in a wide window with small text uses multiple columns for primary content, visible navigation
+                options, and visible secondary information.</p>
+            <p>Display in a narrow window, such as a mobile phone, or with large text uses single column for primary
+                content, navigation options are revealed using an icon, and secondary information is also revealed via
+                icon.</p>
+        </div>
+    </div>
+    <div class="sgds-accordion">
+        <a class="sgds-accordion-header">
+            <h6>Include image and media alternatives in your design</h6> <i
+                class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>Provide a place in your design for alternatives for images and media. For example, you might need:</p>
             <ul>
-                <li>Write in short, clear sentences and paragraphs</li>
-                <li>Avoid using unnecessarily complex words and phrases. Consider providing a glossary for terms readers
-                    may not know
-                </li>
-                <li>Expand acronyms on first use. For example, Web Content Accessibility Guidelines (WCAG)</li>
-                <li>Consider providing a glossary for terms readers may not know</li>
-                <li>Use list formatting as appropriate</li>
-                <li>Consider using images, illustrations, video, audio, and symbols to help clarify meaning</li>
+                <li>Visible links to transcripts of audio</li>
+                <li>Visible links to audio described versions of videos</li>
+                <li>Text along with icons and graphical buttons</li>
+                <li>Captions and descriptions for tables or complex graphs</li>
             </ul>
         </div>
     </div>
+    <div class="sgds-accordion">
+        <a class="sgds-accordion-header">
+            <h6>Provide controls for content that starts automatically</h6> <i
+                class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>Provide visible controls to allow users to stop any animations or auto-playing sound. This applies to
+                carousels, image sliders, background sound, and videos.</p>
+        </div>
+    </div>
 </div>
+
 
 <hr class="margin--bottom--lg margin--top--lg">
 

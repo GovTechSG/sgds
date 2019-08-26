@@ -35,15 +35,14 @@ breadcrumb: Docs
                     </div>
                 </div>
                 <div class="row is-multiline is-mobile">
-                    {%- for component in site.standard -%}
+                    {% assign components = site.standard | sort: 'order'%} 
+                    {%- for component in components -%}
                     <div class="col is-3-desktop is-6-touch is-6-mobile">
                         <a href="{{ component.url }}" class="is-flex component-card">
                             <div class="sgds-card sgds-card-button">
                                 <div class="sgds-card-content has-text-centered">
                                     <span
-                                        class="sgds-icon sgds-icon-{{
-                                            component.icon | downcase
-                                        }} is-size-3"
+                                        class="sgds-icon sgds-icon-{{ component.icon | downcase }} is-size-3"
                                     ></span>
                                     <small
                                         class="has-text-weight-semibold is-block margin--top--sm"
@@ -123,6 +122,11 @@ breadcrumb: Docs
                     {%- endfor -%}
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row has-text-centered margin--top">
+        <div class="col">
+            <p>Visit <a href="/guides"> GUIDES </a>for more tips.</p>
         </div>
     </div>
 </section>
