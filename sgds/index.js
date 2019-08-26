@@ -10,8 +10,7 @@ import "./fonts/sgds-icons.woff";
 $(document).ready(() => {
     // Search bar toggle
     const searchToggles = $(".search-toggle");
-    for (let i = 0; i < searchToggles.length; i++) {
-        let searchToggle = searchToggles[i];
+    for (let searchToggle of searchToggles) {
         let searchToggleTargetId = searchToggle.dataset.target;
         let searchToggleTarget = $(`#${searchToggleTargetId}`);
 
@@ -19,11 +18,11 @@ $(document).ready(() => {
         let searchBarInput = $(searchToggleTarget).find("input");
 
         $(searchToggle).click(() => {
-            $(searchIcon)
+            searchIcon
                 .toggleClass("sgds-icon-search")
                 .toggleClass("sgds-icon-cross");
-            $(searchToggleTarget).toggleClass("hide");
-            $(searchBarInput)
+            searchToggleTarget.toggleClass("hide");
+            searchBarInput
                 .focus()
                 .val("");
         });

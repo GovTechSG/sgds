@@ -10,6 +10,7 @@ script:
   - npm run build:lib
 deploy:
   provider: pages
+  target_branch: dev_preview
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   keep_history: true

@@ -15,7 +15,7 @@
     ...
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.0/css/sgds.css"
+        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.1/css/sgds.css"
     />
     ...
 </head>
@@ -29,7 +29,7 @@
 <body>
     ...
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.0/js/sgds.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.1/js/sgds.js"></script>
     ...
 </body>
 ```
@@ -71,17 +71,33 @@ See [docs](https://www.designsystem.gov.sg).
 
 ### Requirements
 
--   Ruby, Bundler, then Jekyll
--   Nodejs, NPM
+-   Ruby & Bundler. Install Jekyll and dependencies through `bundle install`
+-   Nodejs & NPM. Install webpack and dependencies through `npm install`
 
-To spin up a live-reloading Jekyll + Webpack development server at localhost:4000:
+To spin up a live-reloading Jekyll + Webpack development server it is recommended that you use **two separate terminal sessions** so that you can kill any of them easily:
 
 ```bash
-$ npm install
-$ npm run devserver
+# Terminal 1
+$ npm run dev:static
 ```
 
-Pull requests welcome!
+``` bash
+# Terminal 2
+$ npm run dev:jekyll # Access from localhost:4000
+```
+
+### Development Build  [![Build Status](https://travis-ci.org/GovTechSG/sgds.svg?branch=dev)](https://travis-ci.org/GovTechSG/sgds)
+
+Test out the latest development build from jsdelivr:
+
+```html
+<!-- CSS in <head> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/govtechsg/sgds@dev_preview/css/sgds.css"/>
+
+<!-- JS in <body> -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/govtechsg/sgds@dev_preview/js/sgds.js"></script>
+```
 
 ## Patch Notes
 
