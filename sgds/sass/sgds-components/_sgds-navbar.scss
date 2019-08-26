@@ -78,6 +78,7 @@ $navbar-breakpoint: $desktop !default;
 
         & > a.navbar-item,
         .navbar-link {
+          &:focus,
           &:hover,
           &.is-active {
             background-color: $navbar-item-hover-background-color;
@@ -106,6 +107,7 @@ $navbar-breakpoint: $desktop !default;
 
           & > a.navbar-item,
           .navbar-link {
+            &:focus,
             &:hover,
             &.is-active {
               background-color: $navbar-item-hover-background-color;
@@ -120,6 +122,7 @@ $navbar-breakpoint: $desktop !default;
           }
         }
 
+        .navbar-item.has-dropdown:focus .navbar-link,
         .navbar-item.has-dropdown:hover .navbar-link,
         .navbar-item.has-dropdown.is-active .navbar-link {
           background-color: $navbar-item-hover-background-color;
@@ -174,6 +177,7 @@ body {
 
 .navbar-brand {
   a.navbar-item {
+    &:focus,
     &:hover {
       background-color: $navbar-item-hover-background-color;
     }
@@ -219,7 +223,8 @@ body {
 a.navbar-item,
 .navbar-link {
   cursor: pointer;
-
+  &:focus,
+  &:focus-within,
   &:hover,
   &.is-active {
     background-color: $navbar-item-hover-background-color;
@@ -266,7 +271,7 @@ a.navbar-item,
       min-height: 0;
     }
 
-
+    &:focus,
     &:hover {
       background-color: $navbar-item-hover-background-color;
       border-bottom-color: $navbar-tab-active-border-bottom-color;
@@ -520,6 +525,7 @@ a.navbar-item,
   .navbar-start {
     justify-content: flex-start;
     margin-right: auto;
+
   }
 
   .navbar-end {
@@ -548,7 +554,7 @@ a.navbar-item,
 
     a.navbar-item {
       padding-right: 3rem;
-
+      &:focus,
       &:hover {
         background-color: $navbar-item-hover-background-color;
         color: $navbar-dropdown-item-hover-color;
@@ -638,12 +644,13 @@ a.navbar-item,
       font-weight: $weight-semibold;
     }
 
-    &.is-active:not(:hover) {
+    &.is-active:not(:focus):not(:hover) {
       background-color: $navbar-item-active-background-color;
     }
   }
 
   .navbar-item.has-dropdown {
+    &:focus,
     &:hover,
     &.is-active {
       .navbar-link {
@@ -671,5 +678,32 @@ a.navbar-item,
     position: fixed;
     top: 0;
     width: 100%;
+  }
+}
+
+// navbar-item helper, wrapper navbar-start
+@include desktop{
+  .navbar-start{
+    &.has-item-max-width{
+      .navbar-item{
+        max-width: 140px;
+      }
+    }
+  }
+
+  .navbar-item {
+    &.is-hoverable:hover {
+        .navbar-dropdown {
+            display: block;
+        }
+    }
+  }
+}
+
+@include touch{
+  .navbar-start{
+    .navbar-item{
+      max-width: none;
+    }
   }
 }

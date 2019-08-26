@@ -1,0 +1,142 @@
+---
+title: Pagination
+subtitle: Subtitle
+layout: layout-docs
+category: General
+breadcrumb: General
+icon: table
+---
+
+<h4 class="has-text-primary">
+    Pagination helps to break down long lists into multiple sections that are indexed by a
+    pagination component.
+</h4>
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<nav class="sgds-pagination" role="navigation" aria-label="pagination">
+    <a class="sgds-pagination-previous">Previous</a>
+    <ul class="sgds-pagination-list">
+        <li class="sgds-pagination-link is-current">1</li>
+        <li class="sgds-pagination-link">2</li>
+        <li class="sgds-pagination-link">3</li>
+    </ul>
+    <a class="sgds-pagination-next">Next</a>
+</nav>
+{%- highlight html -%}
+<!-- is-current highlights the currently selected page -->
+<nav class="sgds-pagination" role="navigation" aria-label="pagination">
+    <a class="sgds-pagination-previous">Previous</a>
+    <ul class="sgds-pagination-list">
+        <li class="sgds-pagination-link is-current">1</li>
+        <li class="sgds-pagination-link">2</li>
+        <li class="sgds-pagination-link">3</li>
+    </ul>
+    <a class="sgds-pagination-next">Next page</a>
+</nav>
+{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy Snippet
+</button>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="has-text-weight-semibold margin--bottom">Rounded Pagination buttons</h5>
+<p>You can use <code>.is-rounded</code> to make all pagination buttons rounded.</p>
+<!--Add class name table-h for horizontal tables-->
+<nav class="sgds-pagination is-rounded" role="navigation" aria-label="pagination">
+    <a class="sgds-pagination-previous">Previous</a>
+    <ul class="sgds-pagination-list">
+        <li class="sgds-pagination-link is-current">1</li>
+        <li class="sgds-pagination-link">2</li>
+        <li class="sgds-pagination-link">3</li>
+    </ul>
+    <a class="sgds-pagination-next">Next</a>
+</nav>
+
+{%- highlight html -%}
+<nav class="sgds-pagination is-rounded" role="navigation" aria-label="pagination">
+    <a class="sgds-pagination-previous">Previous</a>
+    <ul class="sgds-pagination-list">
+        <li class="sgds-pagination-link is-current">1</li>
+        <li class="sgds-pagination-link">2</li>
+        <li class="sgds-pagination-link">3</li>
+    </ul>
+    <a class="sgds-pagination-next">Next</a>
+</nav>
+
+{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight1"
+>
+    Copy Snippet
+</button>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="has-text-weight-semibold margin--bottom">Customisable buttons</h5>
+<p>
+    You can nest icons instead of text in the previous and next buttons by nesting child elements
+    within the <code>a</code> tags.
+</p>
+
+<nav class="sgds-pagination" role="navigation" aria-label="pagination">
+    <a class="sgds-pagination-previous"
+        ><span class="sgds-icon sgds-icon-arrow-left is-size-5"></span
+    ></a>
+    <ul class="sgds-pagination-list">
+        <li class="sgds-pagination-link">1</li>
+        <li class="sgds-pagination-link is-current">2</li>
+        <li class="sgds-pagination-link">3</li>
+    </ul>
+    <a class="sgds-pagination-next"
+        ><span class="sgds-icon sgds-icon-arrow-right is-size-5"></span
+    ></a>
+</nav>
+
+{%- highlight html -%}
+<nav class="sgds-pagination" role="navigation" aria-label="pagination">
+    <a class="sgds-pagination-previous"
+        ><span class="sgds-icon sgds-icon-arrow-left is-size-5"></span
+    ></a>
+    <ul class="sgds-pagination-list">
+        <li class="sgds-pagination-link">1</li>
+        <li class="sgds-pagination-link is-current">2</li>
+        <li class="sgds-pagination-link">3</li>
+    </ul>
+    <a class="sgds-pagination-next"
+        ><span class="sgds-icon sgds-icon-arrow-right is-size-5"></span
+    ></a>
+</nav>
+{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight2"
+>
+    Copy Snippet
+</button>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="has-text-weight-semibold margin--bottom">Style</h5>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Modifier</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>is-rounded</td>
+            <td>Rounds the buttons of the pagination links</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+{%- include sgds-feedback.html -%}
