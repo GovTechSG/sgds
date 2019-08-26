@@ -62,7 +62,7 @@
                     {%- for lvl1item in links -%}
 
                     {%- assign class = nil -%}
-                    {%- if page.url contains lvl1item.url -%}
+                    {%- if page.url contains lvl1item.url or page.url contains lvl1item.url2 -%}
                     {%- assign class = 'is-active' -%}
                     {%- endif -%}
                     <a class="navbar-item is-uppercase {{class}} has-text-weight-semibold is-tab"

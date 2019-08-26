@@ -26,3 +26,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - background color to white
 - hover color to darken white
 - padding top/bottom (same padding with default size `sgds-button`)
+
+
+## [1.1.0] - 07-06-2019
+
+-   Side Navigation
+
+    -   `Deprecated` Side navigation with left border
+    -   `New` Added Collaspable Side Navigation
+-   Table
+
+    -   `New` Added Horizontal table
+    -   `New` Added Vertical header table
+-   Hero
+
+    -   `New` Added Hero with Dropdown Button
+    -   `New` Added Hero with Hoverable Dropdown Button
+    -   `New` Added Hero with Search Bar
+-   Button
+
+    -   `New` Added Secondary buttons
+-   Form
+
+    -   `New` Added example of a feedback form
+-   Notification
+
+    -   `New` Added Default notification (with and without icon)
+    -   `New` Added Default Toast notification (with and without icon)
+-   Tab
+    -   `New` Added modifiers `is-centered`, `is-small`, `is-medium` , `is-large`

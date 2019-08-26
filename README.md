@@ -101,38 +101,4 @@ Test out the latest development build from jsdelivr:
 
 ## Patch Notes
 
-v1.1.0
-
-_Released since 07 June 2019_
-
--   Side Navigation
-
-    -   `Deprecated` Side navigation with left border
-    -   `New` Added Collaspable Side Navigation
-
--   Table
-
-    -   `New` Added Horizontal table
-    -   `New` Added Vertical header table
-
--   Hero
-
-    -   `New` Added Hero with Dropdown Button
-    -   `New` Added Hero with Hoverable Dropdown Button
-    -   `New` Added Hero with Search Bar
-
--   Button
-
-    -   `New` Added Secondary buttons
-
--   Form
-
-    -   `New` Added example of a feedback form
-
--   Notification
-
-    -   `New` Added Default notification (with and without icon)
-    -   `New` Added Default Toast notification (with and without icon)
-
--   Tab
-    -   `New` Added modifiers `is-centered`, `is-small`, `is-medium` , `is-large`
+See [Changelog](https://github.com/GovTechSG/sgds/blob/master/CHANGELOG.md)
