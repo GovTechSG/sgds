@@ -32,7 +32,9 @@ breadcrumb: Docs
                         </div>
                     </div>
                     <div class="row is-multiline is-mobile">
-                        {%- for component in site.standard -%}
+                        {% assign components = site.standard | sort: 'order'%}
+                        {%- for component in components -%}
+
                         <div class="col is-3-desktop is-6-touch is-6-mobile">
                             <a href="{{ component.url }}" class="is-flex component-card">
                                 <div class="sgds-card sgds-card-button">
@@ -43,6 +45,8 @@ breadcrumb: Docs
                                             {%- if component.js -%}
                                                 <span class="sgds-tag is-rounded margin--left--sm">JS</span>
                                             {%- endif -%}
+                                    
+                                        
                                         </small>
                                     </div>
                                 </div>
@@ -104,5 +108,11 @@ breadcrumb: Docs
                 </div>
         </div>
     </div>
+    <div class="row has-text-centered margin--top">
+        <div class="col">
+            <p>Visit <a href="/guides"> GUIDES </a>for more tips.</p>
+        </div>
+    </div>
+
 </section>
 
