@@ -8,8 +8,11 @@ icon: tab
 js: true
 ---
 
-
-<h4 class="has-text-primary">Tabs are navigation elements that let users easily access different areas of a site or different parts of an individual page. Think tabbed dividers in a filing cabinet – by clicking a tab, users can easily locate a page containing related content</h4>
+<h4 class="has-text-primary">
+    Tabs are navigation elements that let users easily access different areas of a site or different
+    parts of an individual page. Think tabbed dividers in a filing cabinet – by clicking a tab,
+    users can easily locate a page containing related content
+</h4>
 <div class="sgds-tabs">
     <ul class="no-margin" role="tablist">
         <li class="is-active">
@@ -36,25 +39,37 @@ js: true
     <div class="col">
         <div class="row">
             <div class="col"><h5>Tab 1 Content</h5></div>
-            <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores eos fugiat in incidunt mollitia quam qui totam vel veritatis vero.</div>
-            <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores eos fugiat in incidunt mollitia quam qui totam vel veritatis vero.</div>
+            <div class="col">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores eos fugiat in
+                incidunt mollitia quam qui totam vel veritatis vero.
+            </div>
+            <div class="col">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores eos fugiat in
+                incidunt mollitia quam qui totam vel veritatis vero.
+            </div>
         </div>
     </div>
 </div>
 <div class="row" id="tab2" role="tabpanel" aria-labelledby="tab2">
     <div class="col">
         <h5>Tab 2 Content</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti deserunt enim illo impedit libero, temporibus veritatis. Deserunt, fugit quasi! Voluptates!</p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti deserunt enim illo
+            impedit libero, temporibus veritatis. Deserunt, fugit quasi! Voluptates!
+        </p>
     </div>
 </div>
 <div class="row" id="tab3" role="tabpanel" aria-labelledby="tab3">
     <div class="col">
         <h5>Tab 3 Content</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid aspernatur beatae, dolores ea eum illo quasi reprehenderit sequi vero?</p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid aspernatur
+            beatae, dolores ea eum illo quasi reprehenderit sequi vero?
+        </p>
     </div>
 </div>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <h6 class="has-text-weight-semibold">Code Snippets for Tabs</h6>
 {%- highlight html -%}
@@ -79,8 +94,13 @@ js: true
     </ul>
 </div>
 {%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet for the tabs</button>
-<hr class="margin--bottom--lg margin--top--lg">
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet for the tabs
+</button>
+<hr class="margin--bottom--lg margin--top--lg" />
 <h6 class="has-text-weight-semibold">Code Snippets for Tab Content</h6>
 {%- highlight html -%}
 <div class="row" id="tab1">
@@ -99,9 +119,14 @@ js: true
     </div>
 </div>
 {%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy snippet for the tab content</button>
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight1"
+>
+    Copy snippet for the tab content
+</button>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
 <p>Tab should:</p>
@@ -112,192 +137,119 @@ js: true
     <li>Not be used for primary navigation</li>
 </ul>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <h5 class="has-text-weight-semibold margin--bottom">Styles</h5>
 <table class="table">
     <thead>
-    <tr>
-        <th>Modifier</th>
-        <th>Description</th>
-    </tr>
+        <tr>
+            <th>Modifier</th>
+            <th>Description</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>is-boxed</td>
-        <td>Use when you want a border</td>
-    </tr>
-    <tr>
-        <td>is-toggle</td>
-        <td>Use when you want to have toggle buttons</td>
-    </tr>
-    <tr>
-        <td>is-centered</td>
-        <td>Use when you want position your toggle buttons at the center</td>
-    </tr>
-    <tr>
-        <td>is-small<br>is-medium</br>is-large</td>
-        <td>Use when you want to change the size of your tabs</td>
-    </tr>
+        <tr>
+            <td>is-boxed</td>
+            <td>Use when you want a border</td>
+        </tr>
+        <tr>
+            <td>is-toggle</td>
+            <td>Use when you want to have toggle buttons</td>
+        </tr>
+        <tr>
+            <td>is-centered</td>
+            <td>Use when you want position your toggle buttons at the center</td>
+        </tr>
+        <tr>
+            <td>is-small<br />is-medium<br />is-large</td>
+            <td>Use when you want to change the size of your tabs</td>
+        </tr>
     </tbody>
 </table>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 <h5 class="has-text-weight-semibold margin--bottom">Examples</h5>
 <ul>
-    <li> is-boxed </li>
+    <li>is-boxed</li>
     {%- highlight html -%}
-    <div class="sgds-tabs is-boxed">
+    <div class="sgds-tabs is-boxed">...</div>
     {%- endhighlight -%}
     <div class="sgds-tabs is-boxed">
         <ul class="no-margin" role="tablist">
             <li class="is-active">
-                <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
+                <a data-tab="#t1" role="tab" aria-selected="true" aria-controls="t1">
                     <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
                     Tab 1
                 </a>
             </li>
             <li>
-                <a data-tab="#tab2" role="tab" aria-selected="false" aria-controls="tab2">
+                <a data-tab="#t2" role="tab" aria-selected="false" aria-controls="t2">
                     <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
                     Tab 2
                 </a>
             </li>
             <li>
-                <a data-tab="#tab3" role="tab" aria-selected="false" aria-controls="tab3">
+                <a data-tab="#t3" role="tab" aria-selected="false" aria-controls="t3">
                     <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
                     Tab 3
                 </a>
             </li>
         </ul>
     </div>
-    <hr class="margin--bottom--lg margin--top--lg">
-    <li> is-toggle </li>
+    <hr class="margin--bottom--lg margin--top--lg" />
+    <li>is-toggle</li>
     {%- highlight html -%}
-    <div class="sgds-tabs is-toggle">
+    <div class="sgds-tabs is-toggle">...</div>
     {%- endhighlight -%}
     <div class="sgds-tabs is-toggle">
         <ul class="no-margin" role="tablist">
             <li class="is-active">
-                <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
+                <a data-tab="#t4" role="tab" aria-selected="true" aria-controls="t4">
                     <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
                     Tab 1
                 </a>
             </li>
             <li>
-                <a data-tab="#tab2" role="tab" aria-selected="false" aria-controls="tab2">
+                <a data-tab="#t5" role="tab" aria-selected="false" aria-controls="t5">
                     <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
                     Tab 2
                 </a>
             </li>
             <li>
-                <a data-tab="#tab3" role="tab" aria-selected="false" aria-controls="tab3">
+                <a data-tab="#t6" role="tab" aria-selected="false" aria-controls="t6">
                     <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
                     Tab 3
                 </a>
             </li>
         </ul>
     </div>
-    <hr class="margin--bottom--lg margin--top--lg">
-    <li> is-centered </li>
+    <hr class="margin--bottom--lg margin--top--lg" />
+    <li>is-centered</li>
     {%- highlight html -%}
-    <div class="sgds-tabs is-centered">
+    <div class="sgds-tabs is-centered">...</div>
     {%- endhighlight -%}
     <div class="sgds-tabs is-centered">
         <ul class="no-margin" role="tablist">
             <li class="is-active">
-                <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
+                <a data-tab="#t7" role="tab" aria-selected="true" aria-controls="t7">
                     <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
                     Tab 1
                 </a>
             </li>
             <li>
-                <a data-tab="#tab2" role="tab" aria-selected="false" aria-controls="tab2">
+                <a data-tab="#t8" role="tab" aria-selected="false" aria-controls="t8">
                     <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
                     Tab 2
                 </a>
             </li>
             <li>
-                <a data-tab="#tab3" role="tab" aria-selected="false" aria-controls="tab3">
+                <a data-tab="#t9" role="tab" aria-selected="false" aria-controls="t9">
                     <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
                     Tab 3
                 </a>
             </li>
         </ul>
     </div>
-    <hr class="margin--bottom--lg margin--top--lg">
-    <!-- <li> is-[small/medium/large] </li>
-    {%- highlight html -%}
-    <div class="sgds-tabs is-[small/medium/large]">
-    {%- endhighlight -%}
-    <div class="sgds-tabs is-small">
-        <ul class="no-margin" role="tablist">
-            <li class="is-active">
-                <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
-                    <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
-                    Tab 1
-                </a>
-            </li>
-            <li>
-                <a data-tab="#tab2" role="tab" aria-selected="false" aria-controls="tab2">
-                    <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
-                    Tab 2
-                </a>
-            </li>
-            <li>
-                <a data-tab="#tab3" role="tab" aria-selected="false" aria-controls="tab3">
-                    <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
-                    Tab 3
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="sgds-tabs is-medium">
-        <ul class="no-margin" role="tablist">
-            <li class="is-active">
-                <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
-                    <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
-                    Tab 1
-                </a>
-            </li>
-            <li>
-                <a data-tab="#tab2" role="tab" aria-selected="false" aria-controls="tab2">
-                    <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
-                    Tab 2
-                </a>
-            </li>
-            <li>
-                <a data-tab="#tab3" role="tab" aria-selected="false" aria-controls="tab3">
-                    <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
-                    Tab 3
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="sgds-tabs is-large">
-        <ul class="no-margin" role="tablist">
-            <li class="is-active">
-                <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
-                    <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
-                    Tab 1
-                </a>
-            </li>
-            <li>
-                <a data-tab="#tab2" role="tab" aria-selected="false" aria-controls="tab2">
-                    <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
-                    Tab 2
-                </a>
-            </li>
-            <li>
-                <a data-tab="#tab3" role="tab" aria-selected="false" aria-controls="tab3">
-                    <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
-                    Tab 3
-                </a>
-            </li>
-        </ul>
-    </div>
-    <hr class="margin--bottom--lg margin--top--lg"> -->
 </ul>
-    
 
 {%- include sgds-feedback.html -%}

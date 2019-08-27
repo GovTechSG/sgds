@@ -1,6 +1,5 @@
 import StickySidebar from "sticky-sidebar";
 import { jQuery as $ } from "./js/lib";
-import sgds from "./js/sgds";
 import { initSecondLevelNavInteraction } from "./js/sgds-sidenav";
 import "./sass/sgds.scss";
 import "./fonts/sgds-icons.svg";
@@ -10,7 +9,8 @@ import "./fonts/sgds-icons.woff";
 $(document).ready(() => {
     // Search bar toggle
     const searchToggles = $(".search-toggle");
-    for (let searchToggle of searchToggles) {
+    for (let i = 0; i < searchToggles.length; i++) {
+        let searchToggle = searchToggles[i];
         let searchToggleTargetId = searchToggle.dataset.target;
         let searchToggleTarget = $(`#${searchToggleTargetId}`);
 
@@ -18,20 +18,17 @@ $(document).ready(() => {
         let searchBarInput = $(searchToggleTarget).find("input");
 
         $(searchToggle).click(() => {
-            searchIcon
-                .toggleClass("sgds-icon-search")
-                .toggleClass("sgds-icon-cross");
+            searchIcon.toggleClass("sgds-icon-search").toggleClass("sgds-icon-cross");
             searchToggleTarget.toggleClass("hide");
-            searchBarInput
-                .focus()
-                .val("");
+            searchBarInput.focus().val("");
         });
     }
 
     // Accordions, non-set
     const accordions = $(".sgds-accordion").not(".sgds-accordion-set > .sgds-accordion");
     if (accordions) {
-        for (let accordion of accordions) {
+        for (let i = 0; i < accordions.length; i++) {
+            let accordion = accordions[i];
             let accordionHeader = $(accordion).children(".sgds-accordion-header");
             let accordionBody = $(accordion).children(".sgds-accordion-body");
             $(accordionHeader).click(event => {
@@ -57,23 +54,21 @@ $(document).ready(() => {
         }
     }
 
-    if ($(".sgds-accordion-set > .sgds-accordion").length) {
-        let headers = $(".sgds-accordion-set .sgds-accordion-header").get();
-        headers.forEach(header => {
-            $(header).on("click", function() {
-                if ($(this).hasClass("is-active")) {
-                    $(this)
-                        .removeClass("is-active")
-                        .attr("aria-expanded", false);
-                    $(this)
-                        .siblings(".sgds-accordion-body")
-                        .slideUp(300);
-                    $(this)
+    const accordionSetAccordions = $(".sgds-accordion-set > .sgds-accordion");
+    if (accordionSetAccordions.length) {
+        let headers = $(".sgds-accordion-set .sgds-accordion-header");
+        for (let i = 0; i < headers.length; i++) {
+            let header = headers.eq(i);
+            header.click(function() {
+                if (header.hasClass("is-active")) {
+                    header.removeClass("is-active").attr("aria-expanded", false);
+                    header.siblings(".sgds-accordion-body").slideUp(300);
+                    header
                         .children("i")
                         .removeClass("sgds-icon-chevron-up")
                         .addClass("sgds-icon-chevron-down");
                 } else {
-                    let otherHeadersInSet = $(this)
+                    let otherHeadersInSet = header
                         .parent()
                         .siblings(".sgds-accordion")
                         .children(".sgds-accordion-header");
@@ -88,68 +83,63 @@ $(document).ready(() => {
                             .slideUp(300)
                             .removeClass("is-open");
                     }
-
-                    $(this)
-                        .addClass("is-active")
-                        .attr("aria-expanded", true);
-                    $(this)
+                    header.addClass("is-active").attr("aria-expanded", true);
+                    header
                         .children("i")
                         .removeClass("sgds-icon-chevron-down")
                         .addClass("sgds-icon-chevron-up");
-                    $(this)
+                    header
                         .siblings(".sgds-accordion-body")
                         .slideDown(300)
                         .addClass("is-open");
                 }
             });
-        });
+        }
     }
 
     // Tabs
     const tabs = $(".sgds-tabs");
     if (tabs && tabs.length > 0) {
         for (let i = 0; i < tabs.length; i++) {
-            let tabElement = tabs[i];
-            let tabAnchors = tabElement.querySelectorAll("a[data-tab]");
-
-            for (let j = 0; j < tabAnchors.length; j++) {
-                let tabAnchor = tabAnchors[j];
+            let tabElement = tabs.eq(i);
+            let tabAnchors = tabElement.find("a[data-tab]");
+            tabAnchors.each(function(index, tabAnchor) {
+                let ta = $(tabAnchor);
+                let parentLi = ta.parent();
                 let tabTarget = document.querySelector(tabAnchor.dataset.tab);
-                if (!sgds.hasClass(tabAnchor.parentNode, "is-active")) {
-                    sgds.hide(tabTarget);
+                // On init, hide all other non-active tabs
+                if (!parentLi.hasClass("is-active")) {
+                    $(tabTarget).hide();
                 }
-                // Attach toggle listeners
-                tabAnchor.addEventListener("click", event => {
-                    if (tabAnchor.parentElement.classList.contains("is-active")) {
+                // On click, show tab target and hide others
+                ta.click(() => {
+                    if (parentLi.hasClass("is-active")) {
                         return;
                     }
-
-                    tabAnchor.parentElement.classList.add("is-active");
-                    let tabTargetToShow = document.querySelector(tabAnchor.dataset.tab);
-                    sgds.show(tabTargetToShow);
-
-                    let parentListItemSiblings = sgds.getSiblings(tabAnchor.parentElement);
-                    if (parentListItemSiblings.length > 0) {
-                        parentListItemSiblings.forEach(listItem => {
-                            listItem.classList.remove("is-active");
-                            let itemTabAnchor = listItem.querySelector("a[data-tab]");
-                            let itemTabTarget = document.querySelector(itemTabAnchor.dataset.tab);
-                            sgds.hide(itemTabTarget);
+                    parentLi.addClass("is-active");
+                    $(tabTarget).show();
+                    let parentLiSiblings = parentLi.siblings();
+                    if (parentLiSiblings.length > 0) {
+                        parentLiSiblings.each(function(index, liElement) {
+                            let $le = $(liElement);
+                            $le.removeClass("is-active");
+                            let siblingTabAnchor = $le.find("a[data-tab]");
+                            let siblingTabTarget = $(siblingTabAnchor.attr("data-tab"));
+                            siblingTabTarget.hide();
                         });
                     }
                 });
-            }
+            });
         }
     }
 
     // Navbar burger menus
-    const navbarBurgers = document.querySelectorAll(".navbar-burger");
+    const navbarBurgers = $(".navbar-burger");
     if (navbarBurgers.length > 0) {
-        navbarBurgers.forEach(function(burger) {
-            burger.addEventListener("click", function() {
+        navbarBurgers.each(function(index, burger) {
+            $(burger).click(function() {
                 const targetMenuId = burger.dataset.target;
                 const targetMenu = document.getElementById(targetMenuId);
-
                 // Toggle the class on both the "navbar-burger" and the "navbar-menu"
                 burger.classList.toggle("is-active");
                 targetMenu.classList.toggle("is-active");
@@ -158,9 +148,9 @@ $(document).ready(() => {
     }
 
     // Dropdowns
-    const dropdowns = document.querySelectorAll(".sgds-dropdown:not(.is-hoverable)");
+    const dropdowns = $(".sgds-dropdown:not(.is-hoverable)");
     if (dropdowns.length > 0) {
-        dropdowns.forEach(dropdown => {
+        dropdowns.each((i, dropdown) => {
             let dropdownTrigger = dropdown.querySelector(".sgds-dropdown-trigger");
             dropdownTrigger.addEventListener("click", event => {
                 event.stopPropagation(); // Stop close listeners
@@ -177,9 +167,11 @@ $(document).ready(() => {
             });
         });
 
-        document.addEventListener("click", () => {
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove("is-active");
+        document.addEventListener("click", event => {
+            dropdowns.each((i, dropdown) => {
+                if (!dropdown.contains(event.target)) {
+                    dropdown.classList.remove("is-active");
+                }
                 let dropdownIcon = dropdown.querySelector(".sgds-button .sgds-icon");
                 if (dropdownIcon) {
                     dropdownIcon.classList.remove("sgds-icon-chevron-up");
@@ -192,7 +184,7 @@ $(document).ready(() => {
         document.addEventListener("keydown", event => {
             const e = event || window.event;
             if (e.keyCode === 27) {
-                dropdowns.forEach(dropdown => {
+                dropdowns.each((i, dropdown) => {
                     dropdown.classList.remove("is-active");
                     let dropdownIcon = dropdown.querySelector(".sgds-button .sgds-icon");
                     if (dropdownIcon) {
@@ -214,8 +206,8 @@ $(document).ready(() => {
                 new StickySidebar(".sidenav", {
                     containerSelector: ".sidenav-container",
                     innerWrapperSelector: ".sidebar__inner",
-                    topSpacing: Number.parseInt(sideNavMain.dataset.topspacing),
-                    bottomSpacing: Number.parseInt(sideNavMain.dataset.bottomspacing)
+                    topSpacing: parseInt(sideNavMain.dataset.topspacing),
+                    bottomSpacing: parseInt(sideNavMain.dataset.bottomspacing)
                 });
             }
         }
@@ -226,23 +218,18 @@ $(document).ready(() => {
     }
 
     // Language Selector
-    if ($(".language_selector").length) {
-        var language_selector = $(".language_selector");
-        language_selector.click(function() {
-            $(".language_selector--dropdown").toggle();
+    let languageSelectors = $(".language_selector");
+    if (languageSelectors.length) {
+        languageSelectors.each((i, languageSelector) => {
+            let langSelectorTarget = $("#" + languageSelector.dataset.target);
+            $(languageSelector).click(() => {
+                langSelectorTarget.toggle();
+            });
+            document.addEventListener("click", event => {
+                if (!languageSelector.contains(event.target)) {
+                    langSelectorTarget.hide();
+                }
+            });
         });
-        $(".language_selector--dropdown li").click(function() {
-            $(".language_selector--dropdown").toggle();
-        });
-    }
-
-    // Notifications
-    let notifications = sgds.getElements("notification");
-    if (notifications && notifications.length > 0) {
-        for (let i = 0, len = notifications.length; i < len; i++) {
-            notification = notifications[i];
-            options = sgds.parseOptions(notification);
-            sgds.notification(notification, "hide", options);
-        }
     }
 });

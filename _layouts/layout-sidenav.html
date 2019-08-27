@@ -95,7 +95,7 @@ layout: layout-default
 </section>
 {% endif %}
 
-{% if page.url contains "/learn/" %}
+{% if page.url contains "/guides/" %}
 <section class="sgds-section is-paddingless is-hidden-desktop">
     <div class="sgds-dropdown is-fullwidth">
         <div class="sgds-dropdown-trigger">
@@ -214,7 +214,11 @@ layout: layout-default
                                     </li>
                                     <div class="second-level-nav-div" id="{{collection.label}}-component">
                                         <ul class="list">
-                                        {% for item in site[name] %}
+                                            {% assign items = site[name] %}
+                                            {% if collection.label == 'standard' %}
+                                               {% assign items = site[name] | sort:'order' %}
+                                               {% endif %}
+                                               {% for item in items %}                                        
                                             {% assign class = nil %}
                                             {% if page.url contains item.url %}
                                                 {% assign class = 'is-active has-text-weight-normal' %}
@@ -233,7 +237,7 @@ layout: layout-default
                                 {% endif %}
                             {% endfor %}
                         </ul>
-                        {% elsif page.url contains '/learn/' %}
+                        {% elsif page.url contains '/guides/' %}
                         <ul class="sgds-menu-list">
                             {%- assign links = site.data.navigation -%}
                             {%- for lvl1item in links -%}
