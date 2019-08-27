@@ -37,6 +37,10 @@ a[target="_blank"]:after {
     z-index: 31;
 }
 
+.card-section .col a{
+    width: 100%;
+}
+
 
 /* Loading spinner */
 /* <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> */

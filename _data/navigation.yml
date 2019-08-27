@@ -1,42 +1,36 @@
 - title: About
   url: /about/
 
-- title: Learn
-  url: /learn/
+- title: Guides
+  url: /guides/
   lvl2:
-   - title: Development
-     url: /learn/development/
+   - title: Developers
+     url: /guides/developers/
      lvl3:
-      - title: Know Our Key Principles
-        url: /learn/development/key-principles/
       - title: Installing the Design System
-        url: /learn/development/install-design-system/
+        url: /guides/developers/install-design-system/
       - title: Accessibility for Coding
-        url: /learn/development/accessibility-coding/
+        url: /guides/developers/accessibility-coding/
       - title: Color Contrast Checker
-        url: /learn/development/color-contrast/
+        url: /guides/developers/color-contrast/
 
-   - title: Design
-     url: /learn/design/
+   - title: Designers
+     url: /guides/designers/
      lvl3:
-      - title: Know Our Key Principles
-        url: /learn/design/key-principles/
       #- title: Using the Sketch UI Kit
-      #  url: /learn/design/sketch-kit/
+      #  url: /guides/designers/sketch-kit/
       - title: Accessibility for Design
-        url: /learn/design/accessibility-design/
+        url: /guides/designers/accessibility-design/
       - title: Color Contrast Checker
-        url: /learn/design/color-contrast/
+        url: /guides/designers/color-contrast/
       - title: Image Optimisation
-        url: /learn/design/image-optimisation/
+        url: /guides/designers/image-optimisation/
 
-   - title: Writing
-     url: /learn/writing/
+   - title: Writers
+     url: /guides/writers/
      lvl3:
-      - title: Know Our Key Principles
-        url: /learn/writing/key-principles/
       - title: Accessibility for Content
-        url: /learn/writing/accessibility-content/
+        url: /guides/writers/accessibility-content/
 
 - title: Docs
   url: /docs/components
