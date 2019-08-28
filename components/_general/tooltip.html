@@ -1,0 +1,138 @@
+---
+title: Tooltip
+subtitle: Subtitle
+layout: layout-docs
+category: General
+breadcrumb: General
+icon: circle-question
+---
+
+<h4 class="has-text-primary">
+    A tooltip is a brief, informative message that appears when a user interacts with an element in a graphical user interface (GUI). 
+</h4>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="has-text-weight-semibold margin--bottom--lg">
+    Tooltip with different position using <code>sgds-tooltip is-tooltip-*position*</code> class
+</h5>
+<div class="row">
+    <div class="col is-3">
+        <button href="!#" type="button" class="sgds-button is-primary sgds-tooltip" data-tooltip="Default">
+            Default tooltip
+        </button>
+    </div>
+    <div class="col is-3">
+        <button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-right"
+            data-tooltip="is-tooltip-right">
+            Right tooltip
+        </button>
+    </div>
+    <div class="col is-3">
+        <button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-bottom"
+            data-tooltip="is-tooltip-bottom">
+            Bottom tooltip
+        </button>
+    </div>
+    <div class="col is-3">
+        <button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-left"
+            data-tooltip="is-tooltip-left">
+            Left tooltip
+        </button>
+    </div>
+</div>
+
+{%- highlight html -%}
+<button href="!#" type="button" class="sgds-button is-primary sgds-tooltip" data-tooltip="This is a tooltip">
+    Top
+</button>
+<button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-right"
+    data-tooltip="This is a tooltip">
+    Right
+</button>
+<button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-bottom"
+    data-tooltip="This is a tooltip">
+    Bottom
+</button>
+<button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-left"
+    data-tooltip="This is a tooltip">
+    Left
+</button>
+{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight0">
+    Copy snippet
+</button>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="has-text-weight-semibold margin--bottom--lg">
+    Tooltip with state colors using <code>sgds-tooltip is-tooltip-*stateColor*</code> class
+</h5>
+<div class="row">
+    <div class="col">
+        <div class="sgds-buttons">
+            <button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-primary"
+                data-tooltip="This is a tooltip">
+                Primary
+            </button>
+            <button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-secondary"
+                data-tooltip="This is a tooltip">
+                secondary
+            </button>
+            <button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-success"
+                data-tooltip="This is a tooltip">
+                success
+            </button>
+            <button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-warning"
+                data-tooltip="This is a tooltip">
+                warning
+            </button>
+            <button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-info"
+                data-tooltip="This is a tooltip">
+                info
+            </button>
+            <button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-danger"
+                data-tooltip="This is a tooltip">
+                danger
+            </button>
+        </div>
+    </div>
+</div>
+
+{%- highlight html -%}
+<button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-primary"
+    data-tooltip="This is a tooltip">
+    Primary
+</button>
+
+<button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-secondary"
+    data-tooltip="This is a tooltip">
+    secondary
+</button>
+
+<button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-success"
+    data-tooltip="This is a tooltip">
+    success
+</button>
+
+<button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-warning"
+    data-tooltip="This is a tooltip">
+    warning
+</button>
+
+<button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-info"
+    data-tooltip="This is a tooltip">
+    info
+</button>
+
+<button href="!#" type="button" class="sgds-button is-primary sgds-tooltip is-tooltip-danger"
+    data-tooltip="This is a tooltip">
+    danger
+</button>
+{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight1">
+    Copy snippet
+</button>
+<hr class="margin--bottom--lg margin--top--lg" />
+
+{%- include sgds-feedback.html -%}

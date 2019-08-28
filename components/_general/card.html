@@ -14,8 +14,9 @@ icon: card
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
+<h5 class="has-text-weight-semibold margin--bottom--lg">Card with buttons</h5>
 <div class="row">
-    <div class="col is-6">
+    <div class="col is-4">
         <div class="sgds-card">
             <div class="sgds-card-content">
                 <p class="title">Card 1</p>
@@ -58,8 +59,9 @@ icon: card
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
+<h5 class="has-text-weight-semibold margin--bottom--lg">Card with header image</h5>
 <div class="row">
-    <div class="col is-6">
+    <div class="col is-4">
         <div class="sgds-card sgds-card-button">
             <div class="sgds-card-image">
                 <figure class="sgds-image is-16by9">
@@ -81,7 +83,10 @@ icon: card
 <div class="sgds-card sgds-card-button">
     <div class="sgds-card-image">
         <figure class="sgds-image is-16by9">
-            <img alt="Development Guides" src="https://via.placeholder.com/160x90?text=Image" />
+            <img
+                alt="Development Guides"
+                src="https://via.placeholder.com/160x90?text=Image"
+            />
         </figure>
     </div>
     <div class="sgds-card-content">
@@ -99,41 +104,45 @@ icon: card
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
+<h5 class="has-text-weight-semibold margin--bottom--lg">Media Card</h5>
 <div class="row">
-    <div class="col is-6">
-        <div class="sgds-card sgds-card-button">
-            <div class="sgds-card-image">
-                <figure class="sgds-image is-16by9">
-                    <img
-                        alt="Development Guides"
-                        src="https://via.placeholder.com/160x90?text=Image"
-                    />
-                </figure>
+    <div class="col is-4">
+        <a href="" class="is-media-card">
+            <div class="sgds-card">
+                <div class="sgds-card-content">
+                    <header>
+                        <div class="padding--bottom">Lorem ipsum</div>
+                        <div><h5 class="has-text-weight-bold">Lorem ipsum dolor sit amet.</h5></div>
+                    </header>
+                    <footer>
+                        <span>19 oct 2018</span>
+                        <span class="sgds-icon sgds-icon-download is-size-6"></span>
+                    </footer>
+                </div>
             </div>
-            <div class="sgds-card-content">
-                <h6 class="padding--bottom has-text-weight-semibold">Title</h6>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, temporibus.</p>
-            </div>
-        </div>
+        </a>
     </div>
 </div>
 
 {%- highlight html -%}
-<div class="sgds-card sgds-card-button">
-    <div class="sgds-card-image">
-        <figure class="sgds-image is-16by9">
-            <img alt="Development Guides" src="https://via.placeholder.com/160x90?text=Image" />
-        </figure>
+<a href="" class="is-media-card">
+    <div class="sgds-card">
+        <div class="sgds-card-content">
+            <header>
+                <div class="padding--bottom">test</div>
+                <div><h5 class="has-text-weight-bold">Title</h5></div>
+            </header>
+            <footer>
+                <span>19 oct 2018</span>
+                <span class="sgds-icon sgds-icon-download is-size-6"></span>
+            </footer>
+        </div>
     </div>
-    <div class="sgds-card-content">
-        <h6 class="padding--bottom has-text-weight-semibold">Title</h6>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, temporibus.</p>
-    </div>
-</div>
+</a>
 {%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight1"
+    data-clipboard-target=".highlight2"
 >
     Copy snippet
 </button>
@@ -150,6 +159,26 @@ icon: card
         card
     </li>
 </ul>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="has-text-weight-semibold margin--bottom">Style</h5>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Modifier</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>is-*colorState*</td>
+            <td>
+                    <p>Replace <code>colorState</code> with contextual text color classes (<span class="has-text-danger">is-danger</span>, <span class="has-text-warning">is-warning</span>, <span class="has-text-success">is-success</span> etc.) for various background color.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
