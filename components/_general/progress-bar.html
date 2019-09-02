@@ -8,11 +8,11 @@ icon: table
 ---
 
 <h4 class="has-text-primary">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti doloribus quo. Nihil rerum cumque praesentium vero itaque animi nisi.
+    A progress bar is a form of wait animation that inform users of the current working state and reduces uncertainty. 
 </h4>
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h5 class="has-text-weight-semibold margin--bottom--lg">Default Progres Bar</h5>
+<h5 class="has-text-weight-semibold margin--bottom--lg">Default progress bar.</h5>
 <progress class="sgds-progress" value="15" max="100">15%</progress>
 
 {%- highlight html -%}
@@ -22,7 +22,7 @@ icon: table
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h5 class="has-text-weight-semibold margin--bottom--lg">Assign colours to your Progres Bar using the <code>sgds-progress is-*stateColor*</code> class.</h5> 
+<h5 class="has-text-weight-semibold margin--bottom--lg">Assign colours to your progress bar using the <code>sgds-progress is-*stateColor*</code> class.</h5> 
 <progress class="sgds-progress is-primary" value="15" max="100">15%</progress>
 <progress class="sgds-progress is-secondary" value="30" max="100">15%</progress>
 <progress class="sgds-progress is-success" value="45" max="100">15%</progress>
@@ -39,3 +39,24 @@ icon: table
 <progress class="sgds-progress is-danger" value="100" max="100">15%</progress>
 {%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy snippet</button>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
+    <ul>
+        <li>Always give some type of immediate feedback, such an animated visual change. Without any visual change from the system, most users will assume the action was not registered and they will try again.
+</li>
+
+	<li>Don't use static progress indicators, such as an unmoving image or text. If the system hangs or becomes stuck, the user has no way of knowing if they need to restart the action. 
+</li>
+
+	<li>Avoid using don't-click-again warnings as users rarely read excess word count (until it's too late). The way to avoid extra clicks is to show the user that the first click has been accepted and is being worked on.
+</li>
+
+    </ul>
+
+    <small>Source: <a href="https://www.nngroup.com/articles/progress-indicators/" target="_blank">NNG Group</a></small>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+{%- include sgds-feedback.html -%}
