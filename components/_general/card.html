@@ -14,13 +14,90 @@ icon: card
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h5 class="has-text-weight-semibold margin--bottom--lg">Card with buttons</h5>
+<h5 class="has-text-weight-semibold margin--bottom--lg">Card with mix content</h5>
 <div class="row">
     <div class="col is-4">
         <div class="sgds-card">
+            <!-- <div class="sgds-card-header">
+                <p class="sgds-card-header-title">Lorem ipsum</p>
+            </div> -->
+            <div class="sgds-card-image">
+                <figure class="sgds-image is-16by9">
+                    <img
+                        alt="Development Guides"
+                        src="https://via.placeholder.com/160x90/868e96/ffffff?text=Image"
+                    />
+                </figure>
+            </div>
             <div class="sgds-card-content">
-                <p class="title">Card 1</p>
-                <p class="subtitle">SG Design System</p>
+                <h4>Lorem ipsum</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, nulla.</p>
+                <button type="button" href="!#" class="sgds-button">Go</button>
+            </div>
+            <!-- <div class="sgds-card-footer">
+                <div class="sgds-card-footer-item">
+                    <span><a href="">View</a></span>
+                </div>
+                <div class="sgds-card-footer-item">
+                    <span><a href="">Share</a></span>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+{%- highlight html -%}
+<div class="sgds-card">
+    <div class="sgds-card-image">
+        <figure class="sgds-image is-16by9">
+            <img
+                alt="Development Guides"
+                src="https://via.placeholder.com/160x90/868e96/ffffff?text=Image"
+            />
+        </figure>
+    </div>
+    <div class="sgds-card-content">
+        <h4>Lorem ipsum</h5>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, nulla.</p>
+        <button type="button" href="!#" class="sgds-button">Go</button>
+    </div>
+</div>
+{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h6 class="has-text-weight-semibold margin--bottom--lg">Card with header or footer</h5>
+
+<div class="row">
+    <div class="col is-4">
+        <div class="sgds-card">
+            <div class="sgds-card-header">
+                <p class="sgds-card-header-title">Lorem ipsum</p>
+            </div>
+            <div class="sgds-card-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, nulla.</p>
+            </div>
+            <div class="sgds-card-footer">
+                <div class="sgds-card-footer-item">
+                    <span><a href="">View</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col is-4">
+        <div class="sgds-card">
+            <div class="sgds-card-header">
+                <p class="sgds-card-header-title">Lorem ipsum</p>
+            </div>
+            <div class="sgds-card-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, nulla.</p>
             </div>
             <div class="sgds-card-footer">
                 <div class="sgds-card-footer-item">
@@ -36,9 +113,11 @@ icon: card
 
 {%- highlight html -%}
 <div class="sgds-card">
+    <div class="sgds-card-header">
+        <p class="sgds-card-header-title">Lorem ipsum</p>
+    </div>
     <div class="sgds-card-content">
-        <p class="title">Card title</p>
-        <p class="subtitle">SG Design System</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, nulla.</p>
     </div>
     <div class="sgds-card-footer">
         <div class="sgds-card-footer-item">
@@ -59,7 +138,7 @@ icon: card
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h5 class="has-text-weight-semibold margin--bottom--lg">Card with header image</h5>
+<h5 class="has-text-weight-semibold margin--bottom--lg">Make the whole card hoverable by using the <code>sgds-card sgds-card-button</code> class</h5>
 <div class="row">
     <div class="col is-4">
         <div class="sgds-card sgds-card-button">
@@ -67,13 +146,13 @@ icon: card
                 <figure class="sgds-image is-16by9">
                     <img
                         alt="Development Guides"
-                        src="https://via.placeholder.com/160x90?text=Image"
+                        src="https://via.placeholder.com/160x90/868e96/ffffff?text=Image"
                     />
                 </figure>
             </div>
             <div class="sgds-card-content">
-                <h6 class="padding--bottom has-text-weight-semibold">Title</h6>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, temporibus.</p>
+                <h4>Lorem ipsum</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, nulla.</p>
             </div>
         </div>
     </div>
