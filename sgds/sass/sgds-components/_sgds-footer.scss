@@ -69,8 +69,7 @@
   }
 
   >.bottom-section{
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 1rem 2rem;
     background-color: darken($grey-darker,10%);
     .row{
       display: flex; 
