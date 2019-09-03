@@ -7,7 +7,7 @@
         {% else %}
         {% assign class = 'has-text-white' %}
         {% endif %}
-        <li><a class="{{class}}" href="{{ site.baseurl }}/">{{ "Home" | upcase }}</a></li>
+        <li><a class="{{class}}" href="/">{{ "Home" | upcase }}</a></li>
 
         {%- capture page_url_without_index_html -%}{{ page.url | remove: "/index.html" }}{%- endcapture -%}
         {% assign splitted_url_parts = page_url_without_index_html | split: '/' %}
@@ -20,7 +20,7 @@
         {% capture next_prepender %}{{next_prepender}}/{{ splitted_url_parts[i] }}{% endcapture %}
 
         <li>
-            <a class="{{ class }}" href="{{site.baseurl}}{{current_breadcrumb_md_url}}">
+            <a class="{{ class }}" href="{{current_breadcrumb_md_url}}">
                 {{ current_breadcrumb_md_url | split: '/' | last | replace: '-', ' ' |upcase }}
             </a>
         </li>

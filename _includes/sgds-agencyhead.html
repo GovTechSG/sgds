@@ -55,7 +55,7 @@
             </div>
             <div id="navbarMain" class="navbar-menu">
                 <div class="navbar-start">
-                    <form action="{{ site.baseurl }}/search/" method="get" class="is-hidden-desktop">
+                    <form action="/search/" method="get" class="is-hidden-desktop">
                         {% include sgds-search-box.html %}
                     </form>
                     {%- assign links = site.data.navigation -%}
@@ -66,7 +66,7 @@
                     {%- assign class = 'is-active' -%}
                     {%- endif -%}
                     <a class="navbar-item is-uppercase {{class}} has-text-weight-semibold is-tab"
-                       href="{{ site.baseurl }}{{ lvl1item.url }} ">
+                       href="{{ lvl1item.url }} ">
                         {{ lvl1item.title }}
                     </a>
 
@@ -109,7 +109,7 @@
         <div class="row">
             <div class="col">
                 <hr class="margin--bottom--sm">
-                <form action="{{ site.baseurl }}/search/" method="get">
+                <form action="/search/" method="get">
                     {% include sgds-search-box.html %}
                 </form>
             </div>
