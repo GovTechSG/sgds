@@ -1,11 +1,8 @@
-$masthead-height: 1.875rem;
-
 .sgds-masthead{
   position: relative;
   background-color: $grey-lighter;
   padding: 2px 0;
-  height: $masthead-height;
-  max-height: $masthead-height;
+
   font-size: 14px;
   @include touch(){
     padding: 2px 12px;
@@ -51,10 +48,8 @@ $masthead-height: 1.875rem;
   background-color: #f0f0f4;
   z-index:99;
   top: $masthead-height;
-  right: 30px;
-  @include touch(){
-    right: 0;
-  }
+  right: 0rem;
+
   ul{
     margin: 0;
   }
