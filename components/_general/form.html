@@ -7,42 +7,54 @@ breadcrumb: General
 icon: checklist
 ---
 
-
 <h4 class="has-text-primary">
-    Form elements are a key aspect of HTML that allows communication between web browser & server.
+    Form elements are a key aspect of HTML that allows communication between web
+    browser & server.
 </h4>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <p>A quick example of how a common feedback form will look like</p>
 
 <div class="field">
-    <label class="label">Name</label>
+    <label class="label" for="name">Name</label>
     <div class="control">
-        <input class="input" type="text" placeholder="Text input">
+        <input class="input" type="text" placeholder="Text input" id="name" />
     </div>
 </div>
 
 <div class="field">
-    <label class="label">Username</label>
+    <label class="label" for="username">Username</label>
     <div class="control">
-        <input class="input is-success" type="text" placeholder="Text input" value="Username">
+        <input
+            class="input is-success"
+            type="text"
+            placeholder="Text input"
+            value="Username"
+            id="username"
+        />
     </div>
     <p class="help is-success">This username is available</p>
 </div>
 
 <div class="field">
-    <label class="label">Email</label>
+    <label class="label" for="email">Email</label>
     <div class="control">
-        <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+        <input
+            class="input is-danger"
+            type="email"
+            placeholder="Email input"
+            value="hello@example.com"
+            id="email"
+        />
     </div>
     <p class="help is-danger">This email is invalid</p>
 </div>
 
 <div class="field">
-    <label class="label">Subject</label>
+    <label class="label" for="select-example">Subject</label>
     <div class="control">
-        <div class="select">
+        <div class="select" id="select-example">
             <select>
                 <option>Select dropdown</option>
                 <option>With options</option>
@@ -52,16 +64,16 @@ icon: checklist
 </div>
 
 <div class="field">
-    <label class="label">Message</label>
+    <label class="label" for="message">Message</label>
     <div class="control">
-        <textarea class="textarea" placeholder="Textarea"></textarea>
+        <textarea class="textarea" placeholder="Textarea" id="message"></textarea>
     </div>
 </div>
 
 <div class="field">
     <div class="control">
         <label class="checkbox">
-            <input type="checkbox">
+            <input type="checkbox" />
             I agree to the <a href="#">terms and conditions</a>
         </label>
     </div>
@@ -70,11 +82,11 @@ icon: checklist
 <div class="field">
     <div class="control">
         <label class="radio">
-            <input type="radio" name="question">
+            <input type="radio" name="question" />
             Yes
         </label>
         <label class="radio">
-            <input type="radio" name="question">
+            <input type="radio" name="question" />
             No
         </label>
     </div>
@@ -91,7 +103,7 @@ icon: checklist
 
 <div class="field has-addons">
     <div class="control">
-        <input class="input" type="text" placeholder="Find a repository">
+        <input class="input" type="text" placeholder="Find a repository" />
     </div>
     <div class="control">
         <a class="sgds-button is-info">
@@ -100,38 +112,50 @@ icon: checklist
     </div>
 </div>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
 
 {%- highlight html -%}
 <div class="field">
-    <label class="label">Name</label>
+    <label class="label" for="name">Name</label>
     <div class="control">
-        <input class="input" type="text" placeholder="Text input">
+        <input class="input" type="text" placeholder="Text input" id="name" />
     </div>
 </div>
 
 <div class="field">
-    <label class="label">Username</label>
+    <label class="label" for="username">Username</label>
     <div class="control">
-        <input class="input is-success" type="text" placeholder="Text input" value="Username">
+        <input
+            class="input is-success"
+            type="text"
+            placeholder="Text input"
+            value="Username"
+            id="username"
+        />
     </div>
     <p class="help is-success">This username is available</p>
 </div>
 
 <div class="field">
-    <label class="label">Email</label>
+    <label class="label" for="email">Email</label>
     <div class="control">
-        <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+        <input
+            class="input is-danger"
+            type="email"
+            placeholder="Email input"
+            value="hello@example.com"
+            id="email"
+        />
     </div>
     <p class="help is-danger">This email is invalid</p>
 </div>
 
 <div class="field">
-    <label class="label">Subject</label>
+    <label class="label" for="select-example">Subject</label>
     <div class="control">
-        <div class="select">
+        <div class="select" id="select-example">
             <select>
                 <option>Select dropdown</option>
                 <option>With options</option>
@@ -141,16 +165,16 @@ icon: checklist
 </div>
 
 <div class="field">
-    <label class="label">Message</label>
+    <label class="label" for="message">Message</label>
     <div class="control">
-        <textarea class="textarea" placeholder="Textarea"></textarea>
+        <textarea class="textarea" placeholder="Textarea" id="message"></textarea>
     </div>
 </div>
 
 <div class="field">
     <div class="control">
         <label class="checkbox">
-            <input type="checkbox">
+            <input type="checkbox" />
             I agree to the <a href="#">terms and conditions</a>
         </label>
     </div>
@@ -159,11 +183,11 @@ icon: checklist
 <div class="field">
     <div class="control">
         <label class="radio">
-            <input type="radio" name="question">
+            <input type="radio" name="question" />
             Yes
         </label>
         <label class="radio">
-            <input type="radio" name="question">
+            <input type="radio" name="question" />
             No
         </label>
     </div>
@@ -180,7 +204,7 @@ icon: checklist
 
 <div class="field has-addons">
     <div class="control">
-        <input class="input" type="text" placeholder="Find a repository">
+        <input class="input" type="text" placeholder="Find a repository" />
     </div>
     <div class="control">
         <a class="sgds-button is-info">
@@ -189,19 +213,26 @@ icon: checklist
     </div>
 </div>
 {%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
-<p>Form should:</p>
+<p>Forms should:</p>
 <ul>
-    <li>Include characters outside the standard Roman alphabet.</li>
-    <li>Only show error validation messages after a user has interacted with a particular field.</li>
-    <li>Be labeled properly for each field </li>
+    <li>Include characters outside of the standard Roman alphabet.</li>
+    <li>
+        Only show error validation messages after a user has interacted with a
+        particular field.
+    </li>
+    <li>Contain clear and concise labels.</li>
 </ul>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 {%- include sgds-feedback.html -%}
-
