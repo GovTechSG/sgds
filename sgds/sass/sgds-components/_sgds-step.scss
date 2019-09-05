@@ -1,0 +1,154 @@
+$steps-maker-default-color: $grey-light !default;
+$steps-marker-default-border: .25rem solid #fff !default;
+$steps-default-color: $grey-lighter !default;
+$steps-completed-color: $primary !default;
+$steps-active-color: $primary !default;
+$steps-divider-height: .25rem !default;
+
+@mixin steps-size($size){
+    font-size: $size;
+    min-height: $size * 2;
+    .sgds-step-item{
+        &:not(:first-child)::before{
+            height: $steps-divider-height;
+            width: 100%;
+            bottom: 0;
+            left: -50%;
+            top: #{$size};
+        }
+        .sgds-step-marker{
+            height: $size * 2;
+            width: $size * 2;
+            position: absolute;
+            left: calc(50% - #{$size});
+            .icon *{
+                font-size: $size;
+            }
+        }
+        .sgds-step-details{
+            margin-top: $size * 2;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
+    }
+}
+
+.sgds-steps{
+    @include block;
+    display: flex;
+    flex-wrap: wrap;
+    .sgds-step-item{
+        margin-top: 0;
+        position: relative;
+        flex-grow: 1;
+        flex-basis: 0;
+        &:not(:first-child){
+            flex-basis: 1em;
+            flex-grow: 1;
+            flex-shrink: 1;
+            &::before{
+                content: " ";
+                position: absolute;
+            }
+        }
+        &::before{
+            background: linear-gradient(to left, $steps-default-color 50%, $steps-active-color 50%);
+            background-size: 200% 100%;
+            background-position: right bottom;
+            .step-marker{
+                color: $white;
+            }
+        }
+        &.is-active{
+            &::before{
+                background-position: left bottom;
+            }
+            .sgds-step-marker{
+                background-color: $white;
+                border-color: $steps-active-color;
+                color: $steps-active-color;
+            }
+        }
+        &.is-completed{
+            &::before{
+                background-position: left bottom;
+            }
+            .sgds-step-marker{
+                color: $white;
+                background-color: $steps-completed-color;
+                border-color: $steps-completed-color;
+            }
+        }
+        .sgds-step-marker{
+            align-items: center;
+            display: flex;
+            border-radius: 50%;
+            font-weight: $weight-bold;
+            justify-content: center;
+            background: $steps-maker-default-color;
+            color: $white;
+            border: $steps-marker-default-border;
+            z-index: 1;
+        }
+        .sgds-step-details{
+            text-align: center;
+        }
+
+        // Override marker color per step
+        @each $name, $pair in $colors{
+            $color: nth($pair, 1);
+            $color-invert: nth($pair, 2);
+            &.is-#{$name}{
+                &::before{
+                    background: linear-gradient(to left, $steps-default-color 50%, $color 50%);
+                    background-size: 200% 100%;
+                    background-position: right bottom;
+                }
+                &.is-active{
+                    &::before{
+                        background-position: left bottom;
+                    }
+                    .sgds-step-marker{
+                        background-color: $color;
+                        border-color: $color;
+                        color: $white;
+                    }
+                }
+                &.is-completed{
+                    &::before{
+                        background-position: left bottom;
+                    }
+                    .sgds-step-marker{
+                        color: $color-invert;
+                        background-color: $color;
+                        border-color: $color;
+                    }
+                }
+            }
+        }
+    }
+
+    .sgds-steps-content{
+        align-items: stretch;
+        flex-basis: 100%;
+        margin: 2rem 0;
+        .step-content{
+            display: none;
+            &.is-active{
+                display: block;
+            }
+        }
+    }
+    @include steps-size($size-normal);
+    &.is-small{
+        @include steps-size($size-small);
+    }
+    
+    &.is-medium{
+        @include steps-size($size-medium);
+    }
+    
+    &.is-large{
+        @include steps-size($size-large);
+    }
+}

@@ -1,8 +1,10 @@
+$masthead-height: 1.875rem;
 .sgds-masthead{
   position: relative;
   background-color: $grey-lighter;
   padding: 2px 0;
-
+  height: $masthead-height;
+  max-height: $masthead-height;
   font-size: 14px;
   @include touch(){
     padding: 2px 12px;
@@ -44,10 +46,10 @@
 .language_selector--dropdown{
   display: none;
   position: absolute;
+  top: $masthead-height;
   padding:1rem;
   background-color: #f0f0f4;
   z-index:99;
-  top: $masthead-height;
   right: 0rem;
 
   ul{
