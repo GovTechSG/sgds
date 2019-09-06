@@ -41,6 +41,16 @@ a[target="_blank"]:after {
     width: 100%;
 }
 
+/* Sidenav performance: https://abouolia.github.io/sticky-sidebar/ */
+.sidenav {
+    will-change: min-height;
+}
+
+.sidebar__inner{
+    transform: translate(0, 0); /* For browsers don't support translate3d. */
+    transform: translate3d(0, 0, 0);
+    will-change: position, transform;
+}
 
 /* Loading spinner */
 /* <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> */
