@@ -1,67 +1,67 @@
 $masthead-height: 1.875rem;
-.sgds-masthead{
+.sgds-masthead {
   position: relative;
   background-color: $grey-lighter;
   padding: 2px 0;
   height: $masthead-height;
   max-height: $masthead-height;
   font-size: 14px;
-  @include touch(){
+  @include touch() {
     padding: 2px 12px;
     height: auto;
     max-height: initial;
   }
-  .is-text{
+  .is-text {
     position: relative;
     margin-left: 0.25rem;
     @include touch() {
-      line-height:1.2rem;
+      line-height: 1.2rem;
     }
   }
 
-  .sgds-icon{
+  .sgds-icon {
     font-size: $size-6;
   }
-  a{
+  a {
     color: $grey-dark;
-    display:flex;
+    display: flex;
     align-items: center;
   }
-  a:hover{
+  a:hover {
     color: $primary;
   }
 }
 
-.language_selector{
+.language_selector {
   cursor: pointer;
   align-items: center;
   justify-content: flex-end;
-  &:after{
+  &:after {
     font-family: "sgds-icons";
     content: "\e93c";
-    margin-left:5px;
+    margin-left: 5px;
   }
 }
 
-.language_selector--dropdown{
+.language_selector--dropdown {
   display: none;
   position: absolute;
-  top: $masthead-height;
-  padding:1rem;
+  padding: 1rem;
   background-color: #f0f0f4;
-  z-index:99;
+  z-index: 99;
+  top: $masthead-height;
   right: 0rem;
 
-  ul{
+  ul {
     margin: 0;
   }
-  li{
+  li {
     cursor: pointer;
     text-align: right;
     padding: 0.5rem;
     list-style: none;
     margin: 0;
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
