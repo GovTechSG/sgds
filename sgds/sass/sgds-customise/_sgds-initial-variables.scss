@@ -9,31 +9,32 @@ $black-ter: hsl(0, 0%, 14%) !default;
 $grey-darker: #323232 !default;
 $grey-dark: #484848 !default;
 $grey: #767676 !default;
-$grey-light: #D6D6D6 !default;
+$grey-light: #d6d6d6 !default;
 $grey-lighter: #f0f0f0 !default;
 $footer-grey: #b7b7b7;
-$table-grey: #F0F4F6;
+$table-grey: #f0f4f6;
 
 $white-trans: rgba(255, 255, 255, 0.7) !default;
 $white-ter: hsl(0, 0%, 96%) !default;
 $white-bis: hsl(0, 0%, 98%) !default;
 $white: hsl(0, 0%, 100%) !default;
 
-$orange: #D0021B !default;
-$yellow: #F5A623 !default;
+$orange: #d0021b !default;
+$yellow: #f5a623 !default;
 $green: #1ca161 !default;
 
 //$turquoise:    hsl(171, 100%, 41%) !default
-$cyan: #4372D6 !default;
+$cyan: #4372d6 !default;
 $blue: $cyan !default;
 $blue-light: lighten($cyan, 5%) !default;
 
 //$blue-dark:    #2b5fce
 $purple: hsl(271, 100%, 71%) !default;
-$red: #D0021B !default;
+$red: #d0021b !default;
 
 // Typography
-$family-sans-serif: "Lato", BlinkMacSystemFont, -apple-system, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
+$family-sans-serif: "Lato", BlinkMacSystemFont, -apple-system, "Segoe UI",
+  "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
 $family-monospace: monospace !default;
 $render-mode: optimizeLegibility !default;
 
