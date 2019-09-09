@@ -41,3 +41,6 @@ exclude:
   - webpack.config.js
   - Gruntfile.js
   - amplify.yml
+
+sass:
+  sass_dir: assets/custom-css
