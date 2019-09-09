@@ -12,19 +12,23 @@ js: true
 <h4 class="has-text-primary">The Masthead is a standard component that has to be present in all pages of '.gov.sg' websites.</h4>
 
 <hr class="margin--bottom--lg margin--top--lg">
-
-<div class="sgds-masthead">
-    <div class="sgds-container is-fluid">
-        <div class="row">
-            <div class="col">
-                <a href="https://www.gov.sg" target="_blank">
-                    <span class="sgds-icon sgds-icon-sg-crest"></span>
-                    <span class="is-text">A Singapore Government Agency Website</span>
-                </a>
+<div class="sgds-example-others">
+    <div class="sgds-masthead">
+        <div class="sgds-container">
+            <div class="row">
+                <div class="col">
+                    <a href="https://www.gov.sg" target="_blank">
+                        <span class="sgds-icon sgds-icon-sg-crest"></span>
+                        <span class="is-text">A Singapore Government Agency Website</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+    
+
+
 
 <div class="sgds-accordion-container margin--top--lg">
     <div class="sgds-accordion">
@@ -58,28 +62,31 @@ js: true
 </p>
 
 <p>To include the language selector, please import <code>sgds.js</code>.</p>
-<div class="sgds-masthead">
-    <div class="sgds-container is-fluid">
-        <div class="row is-mobile">
-            <div class="col is-9">
-                <a href="https://www.gov.sg" target="_blank">
-                    <span class="sgds-icon sgds-icon-sg-crest"></span>
-                    <span class="is-text">A Singapore Government Agency Website</span>
-                </a>
+<div class="sgds-example-others">
+    <div class="sgds-masthead">
+        <div class="sgds-container">
+            <div class="row is-mobile">
+                <div class="col is-9">
+                    <a href="https://www.gov.sg" target="_blank">
+                        <span class="sgds-icon sgds-icon-sg-crest"></span>
+                        <span class="is-text">A Singapore Government Agency Website</span>
+                    </a>
+                </div>
+                <div class="col is-3 is-flex language_selector" data-target="lang-selector">
+                    English
+                </div>
             </div>
-            <div class="col is-3 is-flex language_selector" data-target="lang-selector">
-                English
+            <div class="language_selector--dropdown" id="lang-selector">
+                <ul>
+                    <li>中文</li>
+                    <li>Bahasa Melayu</li>
+                    <li>தமிழ்</li>
+                </ul>
             </div>
-        </div>
-        <div class="language_selector--dropdown" id="lang-selector">
-            <ul>
-                <li>中文</li>
-                <li>Bahasa Melayu</li>
-                <li>தமிழ்</li>
-            </ul>
         </div>
     </div>
 </div>
+
 
 <div class="sgds-accordion-container margin--top--lg">
     <div class="sgds-accordion">
@@ -89,7 +96,7 @@ js: true
         <div class="sgds-accordion-body">
 {% highlight html %}
 <div class="sgds-masthead">
-    <div class="sgds-container is-fluid">
+    <div class="sgds-container">
         <div class="row is-mobile">
             <div class="col is-9">
                 <a href="https://www.gov.sg" target="_blank">

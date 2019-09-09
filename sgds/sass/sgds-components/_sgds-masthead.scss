@@ -8,7 +8,6 @@ $masthead-height: 1.875rem;
   font-size: 14px;
   @include touch() {
     padding: 2px 12px;
-    height: auto;
     max-height: initial;
   }
   .is-text {
