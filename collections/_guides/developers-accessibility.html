@@ -1,0 +1,302 @@
+---
+title: Accessibility in Code
+layout: layout-sidenav
+category: developers
+---
+
+<h4 class="has-text-primary">As we build products and services for Singaporeans, no one should
+  be left behind. Whether it means building public kiosks for those who don't have internet access, ensuring everyone
+  can read the content or just saying things in a way that people understand</h4>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
+<p>The Web Content Accessibility Guidelines (WCAG), developed by the Worldwide Web Consortium (W3C), provide an
+  international set of guidelines which form the basis of most web accessibility laws in the world.</p>
+<div class="sgds-tabs is-boxed" data-sgds="tabs">
+  <ul class="is-marginless">
+      <li class="is-active"><a data-tab="#tab1">Perceivable</a></li>
+      <li><a data-tab="#tab2">Operable</a></li>
+      <li><a data-tab="#tab3">Understandable</a></li>
+      <li><a data-tab="#tab4">Robust</a></li>
+  </ul>
+</div>
+<div class="row" id="tab1">
+  <div class="col">
+      <p>Available to the senses (vision and hearing primarily) either through the browser or through assistive
+          technologies.</p>
+      <p><b>Text alternatives:</b> Provide text alternatives for any non-text content so that it can be changed into
+          other forms people need, such as large print, braille, speech, symbols or simpler language</p>
+      <p><b>Time-based media:</b> Provide alternatives for time-based media</p>
+      <p><b>Adaptable:</b> Create content that can be presented in different ways</p>
+      <p><b>Distinguishable:</b> Make it easier for users to see and hear content including separating foreground from
+          background</p>
+  </div>
+</div>
+<div class="row" id="tab2">
+  <div class="col">
+      <p>Users can interact with all controls and interactive elements using either the mouse, keyboard, or an
+          assistive device.</p>
+      <p><b>Keyboard accessible:</b> Make all functionality available from a keyboard</p>
+      <p><b>Enough time:</b> Provide users enough time to read and use content, no timing, interruptions can be
+          postponed or suppressed by the user except interruptions involving an emergency, when an authenticated
+          session expires, the user can continue the activity without loss of data after re-authenticating</p>
+      <p><b>Seizures:</b> Do not design content in a way that is known to cause seizures, nothing that flashes more
+          than three times in any one second period</p>
+      <p><b>Navigable:</b> Provide ways to help users navigate, find content, and determine where they are, bypass
+          blocks, page titles, focus order, link purpose from text alone, breadcrumbs</p>
+  </div>
+</div>
+<div class="row" id="tab3">
+  <div class="col">
+      <p>Content is clear and limits confusion and ambiguity.</p>
+      <p><b>Readable:</b> Make text content readable and understandable, identifying specific definitions of words or
+          phrases used in an unusual or restricted way, including idioms and jargon, abbreviations, difficult
+          pronunciations</p>
+      <p><b>Predictable:</b> Make Web pages appear and operate in predictable ways, consistent navigation, consistent
+          identification</p>
+      <p><b>Input assistance:</b> Help users avoid and correct mistakes, error prevention – reversible, checked,
+          confirmed</p>
+  </div>
+</div>
+<div class="row" id="tab4">
+  <div class="col">
+      <p>A wide range of technologies can access the content.</p>
+      <p><b>Compatible:</b> Maximize compatibility with current and future user agents, including assistive
+          technologies. Elements have complete start and end tags, no duplicate attributes, IDs are unique. For all UI
+          components, the name and role can be programmatically determined</p>
+  </div>
+</div>
+
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+
+<h5 class="has-text-weight-semibold margin--bottom">Implementing Code Design</h5>
+<p>Most accessibility principles can be implemented very easily and will not impact the overall "look and feel" of a web
+  site.</p>
+<div class="sgds-accordion-container">
+  <div class="sgds-accordion">
+      <a class="sgds-accordion-header">
+          <h6>Associate Label With Every Form Control</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+      </a>
+      <div class="sgds-accordion-body">
+          <p>Use a for attribute on the <code>label</code> element linked to the id attribute of the form element, or
+              using WAI-ARIA attributes. In specific situations, it may be acceptable to hide <code>label</code>
+              elements visually, but in most cases labels are needed to help all readers understand the required
+              input.</p>
+{%- highlight html -%}
+<label for="username">Username</label>
+<input id="username" type="text" name="username">
+{%- endhighlight -%}
+      </div>
+  </div>
+  <div class="sgds-accordion">
+      <a class="sgds-accordion-header">
+          <h6>Include Alternative Text For Images</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+      </a>
+      <div class="sgds-accordion-body">
+          <p>Ensure that alternative text for images is added to all informational and functional images. Use empty
+              alternative text, alt="" for decorative images, or include them in the CSS instead. Text alternatives
+              are usually provided by those responsible for written content.</p>
+      </div>
+  </div>
+  <div class="sgds-accordion">
+      <a class="sgds-accordion-header">
+          <h6>Identify Page Language & Language Changes</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+      </a>
+      <div class="sgds-accordion-body">
+          <p>Indicate the primary language of every page by using the lang attribute in the html tag, for example
+              <code>html lang="en"</code>. Use the lang attribute on specific elements when the language of the
+              element differs from the rest of the page.</p>
+      </div>
+  </div>
+  <div class="sgds-accordion">
+      <a class="sgds-accordion-header">
+          <h6>Use Mark-Up To Convey Meaning & Structure</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+      </a>
+      <div class="sgds-accordion-body">
+          <p>Use appropriate mark-up for headings, lists, tables, etc. HTML5 provides additional elements, such as
+              <code>nav</code> and <code>aside</code>, to better structure your content.</p>
+{%- highlight html -%}
+<section>
+  <article>
+      <h2>Superbear saves the day</h2>
+      <time datetime="2015-08-07">7 Aug 2015</time>
+      <p>The city's favorite bear</p>
+      <aside>
+          <h3>Related Articles</h3>
+          <ul>
+              <li>
+                  <a href="#">Bear receives key to city</a>
+              </li>
+          </ul>
+      </aside>
+  </article>
+</section>
+{%- endhighlight -%}
+          <p>WAI-ARIA roles can provide additional meaning, for example, using role="search" to identify search
+              functionality.</p>
+{%- highlight html -%}
+<form action="#" method="post">
+  <div role="search">
+      <label for="search">Search for</label>
+      <input type="search"
+             id="search"
+             aria-describedby="search-help">
+      <div id="search-help">
+          Search records by customer id or name
+      </div>
+      <button type="submit">Go</button>
+  </div>
+</form>
+{%- endhighlight -%}
+      </div>
+  </div>
+  <div class="sgds-accordion">
+      <a class="sgds-accordion-header">
+          <h6>Help Users Avoid & Correct Mistakes</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+      </a>
+      <div class="sgds-accordion-body">
+          <p>Provide clear instructions, error messages, and notifications to help users complete forms on your site.
+              When an error occurs:</p>
+          <ul>
+              <li>Help users find where the problem is</li>
+              <li>Provide specific, understandable explanations</li>
+              <li>Suggest corrections</li>
+          </ul>
+          <p>Be as forgiving of format as possible when processing user input. For example, accept phone numbers that
+              include spaces and delete the spaces as needed.</p>
+{%- highlight html -%}
+<label for="phone">Phone</label>
+<input id="phone"
+     name="phone"
+     type="tel" pattern="^(\(?0[1-9]{1}\)?)?[0-9 -]*$"
+     aria-describedby="phone-desc">
+<p id="phone-desc">For example, (02) 1234 1234</p>
+{%- endhighlight -%}
+      </div>
+  </div>
+  <div class="sgds-accordion">
+      <a class="sgds-accordion-header">
+          <h6>Reflect The Reading Order In The Code Order</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+      </a>
+      <div class="sgds-accordion-body">
+          <p>Ensure that the order of elements in the code matches the logical order of the information presented. One
+              way to check this is to remove CSS styling and review that the order of the content makes sense.</p>
+      </div>
+  </div>
+  <div class="sgds-accordion">
+      <a class="sgds-accordion-header">
+          <h6>Write Code That Adapts To The User’s Technology</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+      </a>
+      <div class="sgds-accordion-body">
+          <p>Use responsive design to adapt the display to different zoom states and viewport sizes, such as on mobile
+              devices and tablets. When font size is increased by at least 200%, avoid horizontal scrolling and
+              prevent any clipping of content. Use progressive enhancement to help ensure that core functionality and
+              content is available regardless of technology being used.</p>
+{%- highlight html -%}
+/*On narrow viewports, make the navigation full width*/
+@media screen and (min-width: 25em) {
+  #nav {
+      float: none;
+      width: auto;
+  }
+  #main {
+      margin-left: 0;
+  }
+}
+/*On wider viewports, put the navigation on the left*/
+@media screen and (min-width: 43em) {
+  #nav {
+      float: left;
+      width: 24%;
+  }
+  #main {
+      margin-left: 27%;
+  }
+}
+{%- endhighlight -%}
+      </div>
+  </div>
+  <div class="sgds-accordion">
+      <a class="sgds-accordion-header">
+          <h6>Provide Meaning For Non-Standard Interactive Elements</h6> <i
+              class="sgds-icon sgds-icon-chevron-down"></i>
+      </a>
+      <div class="sgds-accordion-body">
+          <p>Use WAI-ARIA to provide information on function and state for custom widgets, such as accordions and
+              custom-made buttons. For example, role="navigation" and aria-expanded="true". Additional code is
+              required to implement the behavior of such widgets, such as expanding and collapsing content or how the
+              widget responds to keyboard events.</p>
+{%- highlight html -%}
+<nav aria-label="Main Navigation" role="navigation">
+  <ul>
+      <li><a href="...">Home</a></li>
+      <li><a href="...">Shop</a></li>
+      <li class="has-submenu">
+          <a aria-expanded="false"
+             aria-haspopup="true"
+             href="...">SpaceBears</a>
+          <ul>
+              <li>
+                  <a href="...">
+                      SpaceBear 6
+                  </a>
+              </li>
+          </ul>
+      </li>
+      <li><a href="...">MarsCars</a></li>
+      <li><a href="...">Contact</a></li>
+  </ul>
+</nav>
+{%- endhighlight -%}
+      </div>
+  </div>
+  <div class="sgds-accordion">
+      <a class="sgds-accordion-header">
+          <h6>Ensure That All Interactive Elements Are Keyboard Accessible</h6> <i
+              class="sgds-icon sgds-icon-chevron-down"></i>
+      </a>
+      <div class="sgds-accordion-body">
+          <p>Think about keyboard access, especially when developing interactive elements, such as menus, mouseover
+              information, collapsable accordions, or media players. Use tabindex="0" to add an element that does not
+              normally receive focus, such as <code>div</code> or <code>span</code>, into the navigation order when it
+              is being used for interaction. Use scripting to capture and respond to keyboard events.</p>
+{%- highlight html -%}
+var buttonEg = document.getElementById('eg-button');
+buttonEg.addEventListener('keydown', function(e) {
+  // Toggle the menu when RETURN is pressed
+  if(e.keyCode && e.keyCode == 13) {
+      toggleMenu(document.getElementById('eg-button-menu'));
+  }
+});
+buttonEg.addEventListener('click', function(e) {
+  // Toggle the menu on mouse click
+  toggleMenu(document.getElementById('eg-button-menu'));
+});
+{%- endhighlight -%}
+      </div>
+  </div>
+  <div class="sgds-accordion">
+      <a class="sgds-accordion-header">
+          <h6>Avoid CAPTCHA Where Possible</h6> <i class="sgds-icon sgds-icon-chevron-down"></i>
+      </a>
+      <div class="sgds-accordion-body">
+          <p>CAPTCHAs create problems for many people. There are other means of verifying that user input was
+              generated by a human that are easier to use, such as automatic detection or interface interactions. If
+              CAPTCHA really needs to be included, ensure that it is simple to understand and includes alternatives
+              for users with disabilities, such as:</p>
+          <ul>
+              <li>Providing more than two ways to solve the CAPTCHAs</li>
+              <li>Providing access to a human representative who can bypass CAPTCHA</li>
+              <li>Not requiring CAPTCHAs for authorized users</li>
+          </ul>
+      </div>
+  </div>
+</div>
+
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+{%- include sgds-feedback.html -%}
