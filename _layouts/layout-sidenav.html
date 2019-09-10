@@ -152,7 +152,7 @@ layout: layout-default
                         {% endif %}
                         <li><a href="/docs/getting-started" class="{{ gettingStartedClass }}">Getting started</a></li>
                         {% for collection in site.collections reversed %}
-                            {% if collection.label !='posts' %}
+                            {% if collection.label !='posts' and collection.label != 'guides' %}
                                 {% assign name = collection.label %}
                                 <li class="second-level-nav">
                                     <a class="second-level-nav-header has-text-primary">
@@ -230,7 +230,7 @@ layout: layout-default
                     {% endif %}
                 </div>
             </div>
-            <div class="col is-9 is-12-touch is-offset-1-desktop">
+            <div class="col is-8 is-12-touch is-offset-1-desktop">
                 {% if page.update-notification %}
                 <div class="row">
                     <div class="col">
