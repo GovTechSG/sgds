@@ -1,12 +1,10 @@
 # For Jekyll SEO
 title: Singapore Government Design System
-description: >- # this means to ignore newlines until "baseurl:"
+description: >-
   Design System unites Singapore Government digital services around a common visual language 
   and user experience
 url: "https://www.designsystem.gov.sg"
 logo: /assets/img/logo_sgds.png
-
-baseurl: ""
 
 sgds-version: 1.3.2
 report_vulnerability: 'https://tech.gov.sg/report_vulnerability'
@@ -43,3 +41,6 @@ exclude:
   - webpack.config.js
   - Gruntfile.js
   - amplify.yml
+
+sass:
+  sass_dir: assets/custom-css

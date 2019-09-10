@@ -33,28 +33,7 @@
         url: /guides/writers/accessibility-content/
 
 - title: Docs
-  url: /docs/components
-  url2: /docs/templates
+  url: /docs/
 
 - title: FAQ
   url: /faq/
-
-#- title: Testing
-#  url: /testing/
-#  lvl2:
-#    - title: Isomer's Secondary Button
-#      url: /testing/
-#    - title: Isomer's Tables
-#      url: /testing/table/
-#    - title: Isomer's Media Card
-#      url: /testing/card/
-#    - title: Isomer's Hero
-#      url: /testing/hero/
-#    - title: Isomer's Side Nav
-#      url: /testing/sidenav/
-#    - title: Full Width Dropdown
-#      url: /testing/full-width-dropdown/
-#    - title: Notifications
-#      url: /testing/notification/
-#    - title: Forms
-#      url: /testing/forms/

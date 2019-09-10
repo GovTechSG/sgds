@@ -6,6 +6,9 @@
   
   pre{
     max-height:300px;
+    .content &{
+      padding:0;
+    }
   }
   
   .c { color: #999988; font-style: italic } /* Comment */
