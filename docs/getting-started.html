@@ -9,20 +9,21 @@ layout: layout-sidenav
     </div>
 </div>
 
-<h4 class="has-text-primary">
-    The Design System provides developers with a collection of reusable HTML,
-    CSS and optionally JavaScript components to build websites. Adopting the
-    library enables developers to use consistent markup, styles, and behavior in
-    prototype and production work.
-</h4>
+<hr class="margin--bottom--lg" />
 
 <div class="row is-multiline">
     <div class="col is-12">
-        <h4>Standard components for all gov.sg web services</h4>
+        <h4 class="has-text-primary">Standard components for all gov.sg web services</h4>
+        <p>
+            As defined in the
+            <a href="https://www.tech.gov.sg/digital-service-standards/"
+                >Digital Service Standards</a
+            >
+        </p>
     </div>
     {% assign components = site.standard | sort: 'order' %} {%- for component in
     components -%}
-    <div class="col is-3-desktop is-6-touch">
+    <div class="col is-3-desktop is-12-mobile">
         <a href="{{ component.url }}" class="is-flex component-card">
             <div class="sgds-card sgds-card-button">
                 <div class="sgds-card-content has-text-centered">
@@ -50,7 +51,8 @@ layout: layout-sidenav
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h5 class="has-text-weight-semibold margin--bottom">
+<h4 class="has-text-primary">Installing SGDS</h4>
+<h5 class="margin--bottom">
     Install in browsers using CDN
 </h5>
 <h6>CSS</h6>
