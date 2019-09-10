@@ -3,9 +3,119 @@
 
 @charset 'UTF-8';
 
-@import 'custom.css';
-
 @import "../../sgds/sass/sgds-customise/all";
 @import "../../sgds/sass/sgds-base/all";
-@import 'sgds-example';
-@import 'sgds-syntax';
+@import "sgds-example";
+@import "sgds-syntax";
+
+/* Keep footer at bottom of viewport if page isn't high enough */
+html,
+body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.content-page {
+  flex: 1 0 auto;
+}
+.sgds-footer {
+  flex-shrink: 0;
+}
+
+/* External links */
+a[target="_blank"]:after {
+  display: inline-block;
+  font-family: sgds-icons;
+  content: "\e95c";
+  padding-left: 0.25rem;
+  font-weight: 400;
+}
+
+.sgds-masthead a:after {
+  content: "";
+}
+
+/* Docs */
+.component-card {
+  height: 100%;
+}
+
+/* Docs mobile nav needs higher z-index */
+.docs-nav-dropdown {
+  z-index: 31;
+}
+
+.card-section .col a {
+  width: 100%;
+}
+
+/* Sidenav performance: https://abouolia.github.io/sticky-sidebar/ */
+.sidenav {
+  will-change: min-height;
+}
+
+.sidebar__inner {
+  transform: translate(0, 0); /* For browsers don't support translate3d. */
+  transform: translate3d(0, 0, 0);
+  will-change: position, transform;
+}
+
+/* Loading spinner */
+/* <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> */
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 27px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #6037b3;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
+}
