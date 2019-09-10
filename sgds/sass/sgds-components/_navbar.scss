@@ -1,53 +1,3 @@
-$navbar-background-color: $white !default;
-$navbar-box-shadow-size: 0 2px 0 0 !default;
-$navbar-box-shadow-color: $background !default;
-$navbar-height: 5.25rem !default;
-$navbar-padding-vertical: 1rem !default;
-$navbar-padding-horizontal: 2rem !default;
-$navbar-z: 30 !default;
-$navbar-fixed-z: 30 !default;
-
-$navbar-item-color: $grey-dark !default;
-$navbar-item-hover-color: $primary !default;
-$navbar-item-hover-background-color: transparent !default;
-$navbar-item-active-color: $primary !default;
-$navbar-item-active-background-color: transparent !default;
-$navbar-item-img-max-height: 2.5rem !default;
-$navbar-item-active-border-bottom: 5px !default;
-
-$navbar-burger-color: $navbar-item-color !default;
-
-$navbar-tab-hover-background-color: transparent !default;
-$navbar-tab-hover-border-bottom-color: $primary !default;
-$navbar-tab-active-color: $primary !default;
-$navbar-tab-active-background-color: transparent !default;
-$navbar-tab-active-border-bottom-color: $primary !default;
-$navbar-tab-active-border-bottom-style: solid !default;
-$navbar-tab-active-border-bottom-width: 5px !default;
-
-$navbar-dropdown-background-color: $white !default;
-$navbar-dropdown-border-top: 2px solid $border !default;
-$navbar-dropdown-offset: -4px !default;
-$navbar-dropdown-arrow: $primary !default;
-$navbar-dropdown-icon: "" !default;
-$navbar-dropdown-radius: 0 !default;
-$navbar-dropdown-z: 20 !default;
-
-$navbar-dropdown-boxed-radius: $radius-large !default;
-$navbar-dropdown-boxed-shadow: 0 8px 8px rgba($black, 0.1), 0 0 0 1px rgba($black, 0.1) !default;
-
-$navbar-dropdown-item-hover-color: $primary !default;
-$navbar-dropdown-item-hover-background-color: $background !default;
-$navbar-dropdown-item-active-color: $primary !default;
-$navbar-dropdown-item-active-background-color: $background !default;
-
-$navbar-divider-background-color: $background !default;
-$navbar-divider-height: 2px !default;
-
-$navbar-bottom-box-shadow-size: 0 -2px 0 0 !default;
-
-$navbar-breakpoint: $desktop !default;
-
 @mixin navbar-fixed {
   left: 0;
   position: fixed;
@@ -55,7 +5,7 @@ $navbar-breakpoint: $desktop !default;
   z-index: $navbar-fixed-z;
 }
 
-.sgds-navbar {
+.navbar {
   background-color: $navbar-background-color;
   min-height: $navbar-height;
   position: relative;
@@ -70,14 +20,14 @@ $navbar-breakpoint: $desktop !default;
       background-color: $color;
       color: $color-invert;
 
-      .sgds-navbar-brand {
-        & > .sgds-navbar-item,
-        .sgds-navbar-link {
+      .navbar-brand {
+        & > .navbar-item,
+        .navbar-link {
           color: $color-invert;
         }
 
-        & > a.sgds-navbar-item,
-        .sgds-navbar-link {
+        & > a.navbar-item,
+        .navbar-link {
           &:focus,
           &:hover,
           &.is-active {
@@ -86,27 +36,27 @@ $navbar-breakpoint: $desktop !default;
           }
         }
 
-        .sgds-navbar-link {
+        .navbar-link {
           &::after {
             border-color: $color-invert;
           }
         }
       }
 
-      .sgds-navbar-burger {
+      .navbar-burger {
         color: $color-invert;
       }
 
       @include desktop {
-        .sgds-navbar-start,
-        .sgds-navbar-end {
-          & > .sgds-navbar-item,
-          .sgds-navbar-link {
+        .navbar-start,
+        .navbar-end {
+          & > .navbar-item,
+          .navbar-link {
             color: $color-invert;
           }
 
-          & > a.sgds-navbar-item,
-          .sgds-navbar-link {
+          & > a.navbar-item,
+          .navbar-link {
             &:focus,
             &:hover,
             &.is-active {
@@ -115,22 +65,22 @@ $navbar-breakpoint: $desktop !default;
             }
           }
 
-          .sgds-navbar-link {
+          .navbar-link {
             &::after {
               border-color: $color-invert;
             }
           }
         }
 
-        .sgds-navbar-item.has-dropdown:focus .sgds-navbar-link,
-        .sgds-navbar-item.has-dropdown:hover .sgds-navbar-link,
-        .sgds-navbar-item.has-dropdown.is-active .sgds-navbar-link {
+        .navbar-item.has-dropdown:focus .navbar-link,
+        .navbar-item.has-dropdown:hover .navbar-link,
+        .navbar-item.has-dropdown.is-active .navbar-link {
           background-color: $navbar-item-hover-background-color;
           color: $color-invert;
         }
 
-        .sgds-navbar-dropdown {
-          a.sgds-navbar-item {
+        .navbar-dropdown {
+          a.navbar-item {
             &.is-active {
               background-color: $navbar-item-hover-background-color;
               color: $primary;
@@ -167,16 +117,16 @@ body {
   }
 }
 
-.sgds-navbar-brand,
-.sgds-navbar-tabs {
+.navbar-brand,
+.navbar-tabs {
   align-items: stretch;
   display: flex;
   flex-shrink: 0;
   min-height: $navbar-height;
 }
 
-.sgds-navbar-brand {
-  a.sgds-navbar-item {
+.navbar-brand {
+  a.navbar-item {
     &:focus,
     &:hover {
       background-color: $navbar-item-hover-background-color;
@@ -184,7 +134,7 @@ body {
   }
 }
 
-.sgds-navbar-tabs {
+.navbar-tabs {
   @include overflow-touch;
 
   max-width: 100vw;
@@ -192,7 +142,7 @@ body {
   overflow-y: hidden;
 }
 
-.sgds-navbar-burger {
+.navbar-burger {
   color: $navbar-burger-color;
 
   @include hamburger($navbar-height);
@@ -200,12 +150,12 @@ body {
   margin-left: auto;
 }
 
-.sgds-navbar-menu {
+.navbar-menu {
   display: none;
 }
 
-.sgds-navbar-item,
-.sgds-navbar-link {
+.navbar-item,
+.navbar-link {
   color: $navbar-item-color;
   display: block;
   line-height: 1.5;
@@ -220,8 +170,8 @@ body {
   }
 }
 
-a.sgds-navbar-item,
-.sgds-navbar-link {
+a.navbar-item,
+.navbar-link {
   cursor: pointer;
   &:focus,
   &:focus-within,
@@ -233,7 +183,7 @@ a.sgds-navbar-item,
   }
 }
 
-.sgds-navbar-item {
+.navbar-item {
   display: block;
   flex-grow: 0;
   flex-shrink: 0;
@@ -299,12 +249,12 @@ a.sgds-navbar-item,
   }
 }
 
-.sgds-navbar-content {
+.navbar-content {
   flex-grow: 1;
   flex-shrink: 1;
 }
 
-.sgds-navbar-link:not(.is-arrowless) {
+.navbar-link:not(.is-arrowless) {
   padding-right: 2.5em;
 
   &::after {
@@ -314,18 +264,18 @@ a.sgds-navbar-item,
   }
 }
 
-.sgds-navbar-dropdown {
+.navbar-dropdown {
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
 
-  .sgds-navbar-item {
+  .navbar-item {
     font-size: $navbar-dropdown-font-size;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
 
-.sgds-navbar-divider {
+.navbar-divider {
   background-color: $navbar-divider-background-color;
   border: none;
   display: none;
@@ -334,25 +284,25 @@ a.sgds-navbar-item,
 }
 
 @include touch {
-  .sgds-navbar > .sgds-container {
+  .navbar > .sgds-container {
     display: block;
   }
 
-  .sgds-navbar-brand,
-  .sgds-navbar-tabs {
-    .sgds-navbar-item {
+  .navbar-brand,
+  .navbar-tabs {
+    .navbar-item {
       align-items: center;
       display: flex;
     }
   }
 
-  .sgds-navbar-link {
+  .navbar-link {
     &::after {
       display: none;
     }
   }
 
-  .sgds-navbar-menu {
+  .navbar-menu {
     background-color: $navbar-item-hover-background-color;
     box-shadow: 0 4px 8px rgba($black, 0.1);
 
@@ -363,10 +313,10 @@ a.sgds-navbar-item,
     }
   }
 
-  .sgds-navbar-item {
+  .navbar-item {
     padding: 0.75rem 1rem;
 
-    .sgds-navbar-dropdown & {
+    .navbar-dropdown & {
       padding-left: 1.875rem;
     }
 
@@ -378,7 +328,7 @@ a.sgds-navbar-item,
   }
 
   // Fixed navbar
-  .sgds-navbar {
+  .navbar {
     &.is-fixed-bottom-touch,
     &.is-fixed-top-touch {
       @include navbar-fixed;
@@ -398,7 +348,7 @@ a.sgds-navbar-item,
 
     &.is-fixed-top,
     &.is-fixed-top-touch {
-      .sgds-navbar-menu {
+      .navbar-menu {
         @include overflow-touch;
 
         max-height: calc(100vh - #{$navbar-height});
@@ -432,49 +382,49 @@ a.sgds-navbar-item,
 
 
 @include desktop {
-  .sgds-navbar,
-  .sgds-navbar-menu,
-  .sgds-navbar-start,
-  .sgds-navbar-end {
+  .navbar,
+  .navbar-menu,
+  .navbar-start,
+  .navbar-end {
     align-items: stretch;
     display: flex;
   }
 
-  .sgds-navbar {
+  .navbar {
     min-height: $navbar-height;
 
     &.is-spaced {
       padding: $navbar-padding-vertical $navbar-padding-horizontal;
 
-      .sgds-navbar-start,
-      .sgds-navbar-end {
+      .navbar-start,
+      .navbar-end {
         align-items: center;
       }
 
-      a.sgds-navbar-item,
-      .sgds-navbar-link {
+      a.navbar-item,
+      .navbar-link {
         border-radius: $radius;
       }
     }
   }
 
-  .sgds-navbar-burger {
+  .navbar-burger {
     display: none;
   }
 
-  .sgds-navbar-item,
-  .sgds-navbar-link {
+  .navbar-item,
+  .navbar-link {
     align-items: center;
     display: flex;
   }
 
-  .sgds-navbar-item {
+  .navbar-item {
     display: flex;
 
     &.has-dropdown {
       align-items: stretch;
 
-      > a.sgds-navbar-link {
+      > a.navbar-link {
         padding: 0.5rem 2rem 0.5rem 0.5rem;
       }
     }
@@ -486,11 +436,11 @@ a.sgds-navbar-item,
     }
 
     &.has-dropdown-up {
-      .sgds-navbar-link::after {
+      .navbar-link::after {
         transform: rotate(135deg) translate(0.25em, -0.25em);
       }
 
-      .sgds-navbar-dropdown {
+      .navbar-dropdown {
         border-bottom: $navbar-dropdown-border-top;
         border-radius: $navbar-dropdown-radius $navbar-dropdown-radius 0 0;
         border-top: none;
@@ -504,10 +454,10 @@ a.sgds-navbar-item,
     &.is-hoverable:focus,
     &.is-hoverable:focus-within,
     &.is-hoverable:hover {
-      .sgds-navbar-dropdown {
+      .navbar-dropdown {
         display: block;
 
-        .sgds-navbar.is-spaced &,
+        .navbar.is-spaced &,
         &.is-boxed {
           opacity: 1;
           pointer-events: auto;
@@ -517,23 +467,23 @@ a.sgds-navbar-item,
     }
   }
 
-  .sgds-navbar-menu {
+  .navbar-menu {
     flex-grow: 1;
     flex-shrink: 0;
   }
 
-  .sgds-navbar-start {
+  .navbar-start {
     justify-content: flex-start;
     margin-right: auto;
 
   }
 
-  .sgds-navbar-end {
+  .navbar-end {
     justify-content: flex-end;
     margin-left: auto;
   }
 
-  .sgds-navbar-dropdown {
+  .navbar-dropdown {
     background-color: $navbar-dropdown-background-color;
     border-bottom-left-radius: $navbar-dropdown-radius;
     border-bottom-right-radius: $navbar-dropdown-radius;
@@ -547,12 +497,12 @@ a.sgds-navbar-item,
     top: 100%;
     z-index: $navbar-dropdown-z;
 
-    .sgds-navbar-item {
+    .navbar-item {
       padding: 0.5rem 1rem;
       white-space: nowrap;
     }
 
-    a.sgds-navbar-item {
+    a.navbar-item {
       padding-right: 3rem;
       &:focus,
       &:hover {
@@ -568,7 +518,7 @@ a.sgds-navbar-item,
       }
     }
 
-    .sgds-navbar.is-spaced &,
+    .navbar.is-spaced &,
     &.is-boxed {
       border-radius: $navbar-dropdown-boxed-radius;
       border-top: none;
@@ -588,23 +538,23 @@ a.sgds-navbar-item,
     }
   }
 
-  .sgds-navbar-divider {
+  .navbar-divider {
     display: block;
   }
 
-  .sgds-navbar > .sgds-container,
-  .sgds-container > .sgds-navbar {
-    .sgds-navbar-brand {
+  .navbar > .sgds-container,
+  .sgds-container > .navbar {
+    .navbar-brand {
       margin-left: -0.75rem;
     }
 
-    .sgds-navbar-menu {
+    .navbar-menu {
       margin-right: -0.75rem;
     }
   }
 
   // Fixed navbar
-  .sgds-navbar {
+  .navbar {
     &.is-fixed-bottom-desktop,
     &.is-fixed-top-desktop {
       @include navbar-fixed;
@@ -635,8 +585,8 @@ a.sgds-navbar-item,
   }
 
   // Hover/Active states
-  a.sgds-navbar-item,
-  .sgds-navbar-link {
+  a.navbar-item,
+  .navbar-link {
     &.is-active {
       color: $navbar-item-active-color;
       border-bottom: $navbar-tab-active-border-bottom-width solid $primary;
@@ -649,11 +599,11 @@ a.sgds-navbar-item,
     }
   }
 
-  .sgds-navbar-item.has-dropdown {
+  .navbar-item.has-dropdown {
     &:focus,
     &:hover,
     &.is-active {
-      .sgds-navbar-link {
+      .navbar-link {
         background-color: $navbar-item-hover-background-color;
       }
     }
@@ -682,17 +632,17 @@ a.sgds-navbar-item,
 
 // navbar-item helper, wrapper navbar-start
 @include desktop{
-  .sgds-navbar-start{
+  .navbar-start{
     &.has-item-max-width{
-      .sgds-navbar-item{
+      .navbar-item{
         max-width: 140px;
       }
     }
   }
 
-  .sgds-navbar-item {
+  .navbar-item {
     &.is-hoverable:hover {
-        .sgds-navbar-dropdown {
+        .navbar-dropdown {
             display: block;
         }
     }
@@ -700,8 +650,8 @@ a.sgds-navbar-item,
 }
 
 @include touch{
-  .sgds-navbar-start{
-    .sgds-navbar-item{
+  .navbar-start{
+    .navbar-item{
       max-width: none;
     }
   }
