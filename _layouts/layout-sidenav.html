@@ -130,66 +130,6 @@ layout: layout-default
 </section>
 {% endif %}
 
-{% if page.url contains "/demo/" %}
-<section class="sgds-section is-small">
-    <div class="sgds-container">
-        <div class="row">
-            <div class="col is-3 is-hidden-touch has-side-nav">
-                <div class="sidenav">
-                    <aside class="sgds-menu sidebar__inner">
-                        <ul class="sgds-menu-list">
-                            <li>
-                                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
-                                    Level 2a
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="" class="is-active padding--sm">
-                                            Level 3a
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="padding--sm">
-                                            Level 3b
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
-                                    Level 2b
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="" class="is-active padding--sm">
-                                            Level 3a
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="padding--sm">
-                                            Level 3b
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </aside>
-                </div>
-            </div>
-            <div class="col is-9 is-12-touch">
-                <div class="row">
-                    <div class="col">
-                        <div class="content margin--top--sm">
-                            {{content}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{% else %}
 <section class="sgds-section is-small">
     <div class="sgds-container">
         <div class="row sidenav-container">
@@ -206,6 +146,11 @@ layout: layout-default
                     </div>
                     <hr class="margin--top margin--bottom--sm">
                     <ul class="sgds-menu-list">
+                        {% assign gettingStartedClass = nil %}
+                        {% if page.url contains "docs/getting-started" %}
+                            {% assign gettingStartedClass = 'is-active' %}
+                        {% endif %}
+                        <li><a href="/docs/getting-started" class="{{ gettingStartedClass }}">Getting started</a></li>
                         {% for collection in site.collections reversed %}
                             {% if collection.label !='posts' %}
                                 {% assign name = collection.label %}
@@ -224,7 +169,7 @@ layout: layout-default
                                         {% for item in items %}                                        
                                             {% assign class = nil %}
                                             {% if page.url contains item.url %}
-                                                {% assign class = 'is-active has-text-weight-normal' %}
+                                                {% assign class = 'is-active' %}
                                             {% endif %}
                                             <li>
                                                 <a class="component-name second-level-nav-item {{class}}" href="{{item.url}}">
@@ -307,4 +252,3 @@ layout: layout-default
         </div>
     </div>
 </section>
-{% endif %}
