@@ -17,7 +17,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-redirect-from
 
-collections_dir: docs
+collections_dir: collections
 collections:
   layouts:
     permalink: /docs/:path/
