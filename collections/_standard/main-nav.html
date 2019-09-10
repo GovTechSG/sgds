@@ -14,6 +14,15 @@ order: 2
     websites.
 </h4>
 
+<div class="sgds-notification is-toast-warning margin--top margin--bottom">
+    <div class="sgds-notification-detail">
+        <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
+        <div class="sgds-notification-content">
+            <small>Previous version of sgds used <code>.navbar</code> which is now deprecated and may not longer receive updates or fixes. While <code>.navbar</code> may work, it is recommended that you use <code>.sgds-navbar</code> instead, which would also not clash with other css frameworks like Bootstrap</small>
+        </div>
+    </div>
+</div>
+
 <hr class="margin--bottom--lg margin--top--lg" />
 
 <p>
@@ -21,30 +30,30 @@ order: 2
     only.
 </p>
 
-<nav class="navbar" role="navigation">
+<nav class="sgds-navbar" role="navigation">
     <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
+        <div class="sgds-navbar-brand">
+            <a class="sgds-navbar-item">
                 <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-1">
+            <div class="sgds-navbar-burger burger" data-target="mainnav-1">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div id="mainnav-1" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item is-uppercase is-active is-tab">
+        <div id="mainnav-1" class="sgds-navbar-menu">
+            <div class="sgds-navbar-start">
+                <a class="sgds-navbar-item is-uppercase is-active is-tab">
                     Who we are
                 </a>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     Link 2
                 </a>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     Link 3
                 </a>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     Link 4
                 </a>
             </div>
@@ -59,30 +68,30 @@ order: 2
         </a>
         <div class="sgds-accordion-body">
 {%- highlight html -%}
-<nav class="navbar" role="navigation">
+<nav class="sgds-navbar" role="navigation">
     <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
+        <div class="sgds-navbar-brand">
+            <a class="sgds-navbar-item">
                 <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-1">
+            <div class="sgds-navbar-burger burger" data-target="mainnav-1">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div id="mainnav-1" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item is-uppercase is-active is-tab">
+        <div id="mainnav-1" class="sgds-navbar-menu">
+            <div class="sgds-navbar-start">
+                <a class="sgds-navbar-item is-uppercase is-active is-tab">
                     Who we are
                 </a>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     Link 2
                 </a>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     Link 3
                 </a>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     Link 4
                 </a>
             </div>
@@ -108,56 +117,56 @@ order: 2
     Main nav that has a dropdown for secondary selection. Suitable for medium-sized websites.
 </p>
 
-<nav class="navbar" role="navigation">
+<nav class="sgds-navbar" role="navigation">
     <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
+        <div class="sgds-navbar-brand">
+            <a class="sgds-navbar-item">
                 <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-2">
+            <div class="sgds-navbar-burger burger" data-target="mainnav-2">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div id="mainnav-2" class="navbar-menu">
-            <div class="navbar-start">
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link is-uppercase is-active">
+        <div id="mainnav-2" class="sgds-navbar-menu">
+            <div class="sgds-navbar-start">
+                <div class="sgds-navbar-item has-dropdown is-hoverable">
+                    <a class="sgds-navbar-link is-uppercase is-active">
                         Who we are
                     </a>
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item is-active">
+                    <div class="sgds-navbar-dropdown">
+                        <a class="sgds-navbar-item is-active">
                             Sub Link 1
                         </a>
-                        <a class="navbar-item">
+                        <a class="sgds-navbar-item">
                             Sub Link 2
                         </a>
-                        <a class="navbar-item">
+                        <a class="sgds-navbar-item">
                             Sub Link 3
                         </a>
                     </div>
                 </div>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link is-uppercase">
+                <div class="sgds-navbar-item has-dropdown is-hoverable">
+                    <a class="sgds-navbar-link is-uppercase">
                         Link 2
                     </a>
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item">
+                    <div class="sgds-navbar-dropdown">
+                        <a class="sgds-navbar-item">
                             External Link 1
                             <i class="sgds-icon sgds-icon-external"></i>
                         </a>
-                        <a class="navbar-item">
+                        <a class="sgds-navbar-item">
                             External Link 2
                             <i class="sgds-icon sgds-icon-external"></i>
                         </a>
-                        <a class="navbar-item">
+                        <a class="sgds-navbar-item">
                             External Link 3
                             <i class="sgds-icon sgds-icon-external"></i>
                         </a>
                     </div>
                 </div>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     External Link 3
                 </a>
             </div>
@@ -172,56 +181,56 @@ order: 2
         </a>
         <div class="sgds-accordion-body">
 {%- highlight html -%}
-<nav class="navbar" role="navigation">
+<nav class="sgds-navbar" role="navigation">
     <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
+        <div class="sgds-navbar-brand">
+            <a class="sgds-navbar-item">
                 <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-2">
+            <div class="sgds-navbar-burger burger" data-target="mainnav-2">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div id="mainnav-2" class="navbar-menu">
-            <div class="navbar-start">
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link is-uppercase is-active">
+        <div id="mainnav-2" class="sgds-navbar-menu">
+            <div class="sgds-navbar-start">
+                <div class="sgds-navbar-item has-dropdown is-hoverable">
+                    <a class="sgds-navbar-link is-uppercase is-active">
                         Who we are
                     </a>
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item is-active">
+                    <div class="sgds-navbar-dropdown">
+                        <a class="sgds-navbar-item is-active">
                             Sub Link 1
                         </a>
-                        <a class="navbar-item">
+                        <a class="sgds-navbar-item">
                             Sub Link 2
                         </a>
-                        <a class="navbar-item">
+                        <a class="sgds-navbar-item">
                             Sub Link 3
                         </a>
                     </div>
                 </div>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link is-uppercase">
+                <div class="sgds-navbar-item has-dropdown is-hoverable">
+                    <a class="sgds-navbar-link is-uppercase">
                         Link 2
                     </a>
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item">
+                    <div class="sgds-navbar-dropdown">
+                        <a class="sgds-navbar-item">
                             External Link 1
                             <i class="sgds-icon sgds-icon-external"></i>
                         </a>
-                        <a class="navbar-item">
+                        <a class="sgds-navbar-item">
                             External Link 2
                             <i class="sgds-icon sgds-icon-external"></i>
                         </a>
-                        <a class="navbar-item">
+                        <a class="sgds-navbar-item">
                             External Link 3
                             <i class="sgds-icon sgds-icon-external"></i>
                         </a>
                     </div>
                 </div>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     External Link 3
                 </a>
             </div>
@@ -247,57 +256,57 @@ order: 2
     Main nav with a mega menu for secondary selection. Suitable for large-sized websites.
 </p>
 
-<nav class="navbar" role="navigation">
+<nav class="sgds-navbar" role="navigation">
     <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
+        <div class="sgds-navbar-brand">
+            <a class="sgds-navbar-item">
                 <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-3">
+            <div class="sgds-navbar-burger burger" data-target="mainnav-3">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div id="mainnav-3" class="navbar-menu">
-            <div class="navbar-start">
-                <div class="navbar-item has-dropdown is-hoverable is-mega">
-                    <a class="navbar-link is-uppercase is-active">
+        <div id="mainnav-3" class="sgds-navbar-menu">
+            <div class="sgds-navbar-start">
+                <div class="sgds-navbar-item has-dropdown is-hoverable is-mega">
+                    <a class="sgds-navbar-link is-uppercase is-active">
                         Who we are
                     </a>
-                    <div class="navbar-dropdown">
+                    <div class="sgds-navbar-dropdown">
                         <div class="sgds-container is-fluid">
                             <div class="row">
                                 <div class="col is-3">
-                                    <p class="navbar-item is-uppercase">
+                                    <p class="sgds-navbar-item is-uppercase">
                                         <b>Sub Menu 1a</b>
                                     </p>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 1
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 2
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 3
                                     </a>
                                 </div>
                                 <div class="col is-3">
-                                    <p class="navbar-item is-uppercase">
+                                    <p class="sgds-navbar-item is-uppercase">
                                         <b>Sub Menu 1b</b>
                                     </p>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 1
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 2
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 3
                                     </a>
                                 </div>
                                 <div class="col is-6">
-                                    <div class="navbar-item is-wrapped">
+                                    <div class="sgds-navbar-item is-wrapped">
                                         <p>
                                             <b>Sub Menu 1 Info</b><br />
                                             You can put short paragraph of information here to
@@ -309,43 +318,43 @@ order: 2
                         </div>
                     </div>
                 </div>
-                <div class="navbar-item has-dropdown is-hoverable is-mega">
-                    <a class="navbar-link is-uppercase">
+                <div class="sgds-navbar-item has-dropdown is-hoverable is-mega">
+                    <a class="sgds-navbar-link is-uppercase">
                         Mega Menu
                     </a>
-                    <div class="navbar-dropdown">
+                    <div class="sgds-navbar-dropdown">
                         <div class="sgds-container is-fluid">
                             <div class="row is-multiline">
                                 <div class="col is-3">
-                                    <p class="navbar-item is-uppercase">
+                                    <p class="sgds-navbar-item is-uppercase">
                                         <b>Sub Menu 2a</b>
                                     </p>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 1
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 2
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 3
                                     </a>
                                 </div>
                                 <div class="col is-3">
-                                    <p class="navbar-item is-uppercase">
+                                    <p class="sgds-navbar-item is-uppercase">
                                         <b>Sub Menu 2b</b>
                                     </p>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 1
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 2
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 3
                                     </a>
                                 </div>
                                 <div class="col">
-                                    <div class="navbar-item is-wrapped">
+                                    <div class="sgds-navbar-item is-wrapped">
                                         <p>
                                             <b>Sub Menu 2 Info</b><br />
                                             You can put short paragraph of information here to
@@ -369,57 +378,57 @@ order: 2
         </a>
         <div class="sgds-accordion-body">
 {%- highlight html -%}
-<nav class="navbar" role="navigation">
+<nav class="sgds-navbar" role="navigation">
     <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
+        <div class="sgds-navbar-brand">
+            <a class="sgds-navbar-item">
                 <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-3">
+            <div class="sgds-navbar-burger burger" data-target="mainnav-3">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div id="mainnav-3" class="navbar-menu">
-            <div class="navbar-start">
-                <div class="navbar-item has-dropdown is-hoverable is-mega">
-                    <a class="navbar-link is-uppercase is-active">
+        <div id="mainnav-3" class="sgds-navbar-menu">
+            <div class="sgds-navbar-start">
+                <div class="sgds-navbar-item has-dropdown is-hoverable is-mega">
+                    <a class="sgds-navbar-link is-uppercase is-active">
                         Who we are
                     </a>
-                    <div class="navbar-dropdown">
+                    <div class="sgds-navbar-dropdown">
                         <div class="sgds-container is-fluid">
                             <div class="row">
                                 <div class="col is-3">
-                                    <p class="navbar-item is-uppercase">
+                                    <p class="sgds-navbar-item is-uppercase">
                                         <b>Sub Menu 1a</b>
                                     </p>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 1
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 2
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 3
                                     </a>
                                 </div>
                                 <div class="col is-3">
-                                    <p class="navbar-item is-uppercase">
+                                    <p class="sgds-navbar-item is-uppercase">
                                         <b>Sub Menu 1b</b>
                                     </p>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 1
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 2
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 3
                                     </a>
                                 </div>
                                 <div class="col is-6">
-                                    <div class="navbar-item is-wrapped">
+                                    <div class="sgds-navbar-item is-wrapped">
                                         <p>
                                             <b>Sub Menu 1 Info</b><br />
                                             You can put short paragraph of information
@@ -431,43 +440,43 @@ order: 2
                         </div>
                     </div>
                 </div>
-                <div class="navbar-item has-dropdown is-hoverable is-mega">
-                    <a class="navbar-link is-uppercase">
+                <div class="sgds-navbar-item has-dropdown is-hoverable is-mega">
+                    <a class="sgds-navbar-link is-uppercase">
                         Mega Menu
                     </a>
-                    <div class="navbar-dropdown">
+                    <div class="sgds-navbar-dropdown">
                         <div class="sgds-container is-fluid">
                             <div class="row is-multiline">
                                 <div class="col is-3">
-                                    <p class="navbar-item is-uppercase">
+                                    <p class="sgds-navbar-item is-uppercase">
                                         <b>Sub Menu 2a</b>
                                     </p>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 1
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 2
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 3
                                     </a>
                                 </div>
                                 <div class="col is-3">
-                                    <p class="navbar-item is-uppercase">
+                                    <p class="sgds-navbar-item is-uppercase">
                                         <b>Sub Menu 2b</b>
                                     </p>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 1
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 2
                                     </a>
-                                    <a class="navbar-item">
+                                    <a class="sgds-navbar-item">
                                         Sub Link 3
                                     </a>
                                 </div>
                                 <div class="col">
-                                    <div class="navbar-item is-wrapped">
+                                    <div class="sgds-navbar-item is-wrapped">
                                         <p>
                                             <b>Sub Menu 2 Info</b><br />
                                             You can put short paragraph of information
@@ -500,21 +509,21 @@ order: 2
 
 <p>To add search bars to your main mav, please import <code>sgds.js</code>.</p>
 
-<nav class="navbar" role="navigation">
+<nav class="sgds-navbar" role="navigation">
     <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
+        <div class="sgds-navbar-brand">
+            <a class="sgds-navbar-item">
                 <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-4">
+            <div class="sgds-navbar-burger burger" data-target="mainnav-4">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div id="mainnav-4" class="navbar-menu">
-            <div class="navbar-start">
-                <div class="navbar-item is-hidden-desktop">
+        <div id="mainnav-4" class="sgds-navbar-menu">
+            <div class="sgds-navbar-start">
+                <div class="sgds-navbar-item is-hidden-desktop">
                     <form>
                         <div class="field has-addons">
                             <div class="control is-expanded">
@@ -530,13 +539,13 @@ order: 2
                     </form>
                     <hr class="is-marginless margin--top--sm" />
                 </div>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     Who we are
                 </a>
             </div>
         </div>
-        <div class="navbar-end is-hidden-touch">
-            <div class="navbar-item">
+        <div class="sgds-navbar-end is-hidden-touch">
+            <div class="sgds-navbar-item">
                 <button
                     class="sgds-button is-white is-large search-toggle"
                     data-target="searchbar-1"
@@ -588,21 +597,21 @@ order: 2
         </a>
         <div class="sgds-accordion-body">
 {%- highlight html -%}
-<nav class="navbar" role="navigation">
+<nav class="sgds-navbar" role="navigation">
     <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
+        <div class="sgds-navbar-brand">
+            <a class="sgds-navbar-item">
                 <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-4">
+            <div class="sgds-navbar-burger burger" data-target="mainnav-4">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div id="mainnav-4" class="navbar-menu">
-            <div class="navbar-start">
-                <div class="navbar-item is-hidden-desktop">
+        <div id="mainnav-4" class="sgds-navbar-menu">
+            <div class="sgds-navbar-start">
+                <div class="sgds-navbar-item is-hidden-desktop">
                     <form>
                         <div class="field has-addons">
                             <div class="control is-expanded">
@@ -618,13 +627,13 @@ order: 2
                     </form>
                     <hr class="is-marginless margin--top--sm" />
                 </div>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     Who we are
                 </a>
             </div>
         </div>
-        <div class="navbar-end is-hidden-touch">
-            <div class="navbar-item">
+        <div class="sgds-navbar-end is-hidden-touch">
+            <div class="sgds-navbar-item">
                 <button
                     class="sgds-button is-white is-large search-toggle"
                     data-target="searchbar-1"
@@ -689,25 +698,25 @@ order: 2
 <!-- Main Nav 5 -->
 
 <p>
-    Add <code>.has-item-max-width</code> to <code>.navbar-start</code> to constrain
-    <code>.navbar-item</code>'s width for longer text.
+    Add <code>.has-item-max-width</code> to <code>.sgds-navbar-start</code> to constrain
+    <code>.sgds-navbar-item</code>'s width for longer text.
 </p>
 
-<nav class="navbar" role="navigation">
+<nav class="sgds-navbar" role="navigation">
     <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
+        <div class="sgds-navbar-brand">
+            <a class="sgds-navbar-item">
                 <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-5">
+            <div class="sgds-navbar-burger burger" data-target="mainnav-5">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div id="mainnav-5" class="navbar-menu">
-            <div class="navbar-start has-item-max-width">
-                <div class="navbar-item is-hidden-desktop">
+        <div id="mainnav-5" class="sgds-navbar-menu">
+            <div class="sgds-navbar-start has-item-max-width">
+                <div class="sgds-navbar-item is-hidden-desktop">
                     <form>
                         <div class="field has-addons">
                             <div class="control is-expanded">
@@ -723,13 +732,13 @@ order: 2
                     </form>
                     <hr class="is-marginless margin--top--sm" />
                 </div>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     Lorem ipsum dolor sit
                 </a>
             </div>
         </div>
-        <div class="navbar-end is-hidden-touch">
-            <div class="navbar-item">
+        <div class="sgds-navbar-end is-hidden-touch">
+            <div class="sgds-navbar-item">
                 <button
                     type="button"
                     class="sgds-button is-white is-large search-toggle"
@@ -782,22 +791,22 @@ order: 2
         </a>
         <div class="sgds-accordion-body">
 {%- highlight html -%}
-<nav class="navbar" role="navigation">
+<nav class="sgds-navbar" role="navigation">
     <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
+        <div class="sgds-navbar-brand">
+            <a class="sgds-navbar-item">
                 <img src="/assets/img/logo_sgds.png" alt="" />
             </a>
-            <div class="navbar-burger burger" data-target="mainnav-4">
+            <div class="sgds-navbar-burger burger" data-target="mainnav-4">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div id="mainnav-5" class="navbar-menu">
+        <div id="mainnav-5" class="sgds-navbar-menu">
             <!-- Add .has-item-max-width to .navbar-start class to constrain navbar-item width for longer text. -->
-            <div class="navbar-start has-item-max-width">
-                <div class="navbar-item is-hidden-desktop">
+            <div class="sgds-navbar-start has-item-max-width">
+                <div class="sgds-navbar-item is-hidden-desktop">
                     <form>
                         <div class="field has-addons">
                             <div class="control is-expanded">
@@ -813,13 +822,13 @@ order: 2
                     </form>
                     <hr class="is-marginless margin--top--sm" />
                 </div>
-                <a class="navbar-item is-uppercase is-tab">
+                <a class="sgds-navbar-item is-uppercase is-tab">
                     Lorem ipsum dolor sit
                 </a>
             </div>
         </div>
-        <div class="navbar-end is-hidden-touch">
-            <div class="navbar-item">
+        <div class="sgds-navbar-end is-hidden-touch">
+            <div class="sgds-navbar-item">
                 <button
                     class="sgds-button is-white is-large search-toggle"
                     data-target="searchbar-2"
