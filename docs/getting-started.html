@@ -51,7 +51,7 @@ layout: layout-sidenav
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h4 class="has-text-primary">Installing SGDS</h4>
+<h4 class="has-text-primary margin--bottom">Installing SGDS</h4>
 <h5 class="margin--bottom">
     Install in browsers using CDN
 </h5>
@@ -87,7 +87,7 @@ layout: layout-sidenav
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h5 class="has-text-weight-semibold margin--bottom">Install using npm</h5>
+<h5 class="margin--bottom">Install using npm</h5>
 <p>
     npm is a package manager for Nodejs, and hosts the libraries for many
     frontend projects. Design System maintains a package for you to utilize the
@@ -111,25 +111,33 @@ layout: layout-sidenav
     </li>
     <li class="margin--bottom">
         This will generate <code>node_modules/sgds-govtech</code> in your site
-        folder {%- highlight html -%} site/node_modules/sgds-govtech/ ├── css/
-        ├── fonts/ ├── js/ {%- endhighlight -%}
+        folder 
+{%- highlight bash -%} 
+site/node_modules/sgds-govtech/ 
+  ├── css/
+  ├── fonts/
+  ├── js/ 
+{%- endhighlight -%}
     </li>
     <li>
         You can then import the sgds code in your browsers as above, for
-        example: {% highlight html %}
-        <head>
-            ...
-            <link rel="stylesheet" href="/assets/css/sgds.css" />
-            ...
-        </head>
-        {% endhighlight %}
+        example: 
+{% highlight html %}
+<head>
+    ...
+    <link rel="stylesheet" href="/assets/css/sgds.css" />
+    ...
+</head>
+{% endhighlight %}
     </li>
     <li>
-        Or using Webpack: {% highlight javascript %} import
-        "sgds-govtech/css/sgds.css"; import "sgds-govtech/js/sgds"; // Do not
-        use with other web frameworks* {% endhighlight %} Note that usage with
-        frameworks such as React, Vue or Angular is discouraged since they
-        manipulate the DOM in their own environments. Framework-specific
+        Or using Webpack: 
+{% highlight javascript %}
+import "sgds-govtech/css/sgds.css"; 
+import "sgds-govtech/js/sgds"; // Do not use with other web frameworks* 
+{% endhighlight %}
+        Note that usage with frameworks such as React, Vue or Angular is discouraged since they
+        manipulate the DOM in their own environments. Framework-specific 
         implementations are in early development and can be found at
         <a href="https://github.com/govtechsg/sgds-govtech-react"
             >sgds-govtech-react</a
@@ -143,7 +151,7 @@ layout: layout-sidenav
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h5 class="has-text-weight-semibold margin--bottom">Install manually</h5>
+<h5 class="margin--bottom">Install manually</h5>
 <p>
     We provide both minified CSS and JavaScript files that you can use in a
     production environment.
@@ -174,31 +182,31 @@ layout: layout-sidenav
         Reference the CSS and JavaScript files in each HTML page or templates in
         your project, same as above. Note that
         <a href="/docs/components">certain components</a> of SGDS make use of
-        JavaScript, with jQuery as an external dependency. {%- highlight html
-        -%}
-        <head>
-            ...
-            <link rel="stylesheet" href="sitePath/css/sgds.css" />
-        </head>
-        <body>
-            ...
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <!-- Make sure this is included before sgds.js -->
-            <script src="sitePath/js/sgds.js"></script>
-        </body>
-        {%- endhighlight -%}
+        JavaScript, with jQuery as an external dependency. 
+{%- highlight html -%}
+<head>
+    ...
+    <link rel="stylesheet" href="sitePath/css/sgds.css" />
+</head>
+<body>
+    ...
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Make sure this is included before sgds.js -->
+    <script src="sitePath/js/sgds.js"></script>
+</body>
+{%- endhighlight -%}
     </li>
 </ul>
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h5 class="has-text-weight-semibold margin--bottom">Open source</h5>
+<h5 class="margin--bottom">Open source</h5>
 <p>
     The SGDS source is written in Sass and JavaScript. Usage and development
     instructions can be found at
     <a href="https://github.com/govtechsg/sgds"
         >https://github.com/govtechsg/sgds</a
-    >.
+    >. Bug reports and pull requests are also <a href="https://github.com/govtechsg/sgds/issues">welcome!</a>
 </p>
 
 <hr class="margin--bottom--lg margin--top--lg" />
