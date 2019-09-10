@@ -98,7 +98,6 @@ breadcrumb: Docs
                 </div>
                 <div class="row is-multiline is-mobile">
                     {%- for component in site.general -%}
-                        {% if component.isHidden != true %}
                         <div class="col is-3-desktop is-6-touch is-6-mobile">
                             <a href="{{ component.url }}" class="is-flex component-card">
                                 <div class="sgds-card sgds-card-button">
@@ -120,7 +119,6 @@ breadcrumb: Docs
                                 </div>
                             </a>
                         </div>
-                        {% endif %}
                     {%- endfor -%}
                 </div>
             </div>
