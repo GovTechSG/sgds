@@ -8,7 +8,7 @@
      url: /guides/developers/
      lvl3:
       - title: Installing the Design System
-        url: /guides/developers/install-design-system/
+        url: /docs/getting-started/
       - title: Accessibility for Coding
         url: /guides/developers/accessibility-coding/
       - title: Color Contrast Checker

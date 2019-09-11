@@ -1,44 +1,3 @@
-{% if page.url contains '/demo/' %}
-<div class="masthead-container" id="navbar">
-    {% include sgds-masthead.html %}
-<nav class="sgds-navbar" role="navigation">
-    <div class="sgds-container">
-        <div class="sgds-navbar-brand">
-            <a class="sgds-navbar-item">
-                <img src="/assets/img/logo_sgds.png" alt="">
-            </a>
-            <div class="sgds-navbar-burger burger" data-target="mainnav-1">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div id="mainnav-1" class="sgds-navbar-menu">
-            <div class="sgds-navbar-item is-stretched">
-                <a class="sgds-navbar-link is-uppercase is-active">
-                    Who we are
-                </a>
-            </div>
-            <div class="sgds-navbar-item is-stretched">
-                <a class="sgds-navbar-link is-uppercase">
-                    Link 2
-                </a>
-            </div>
-            <div class="sgds-navbar-item is-stretched">
-                <a class="sgds-navbar-link is-uppercase">
-                    Link 3
-                </a>
-            </div>
-            <div class="sgds-navbar-item is-stretched">
-                <a class="sgds-navbar-link is-uppercase">
-                    Link 4
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
-</div>
-{% else %}
 <div class="masthead-container is-fixed has-background-white" id="navbar" style="z-index:50;">
     {% include sgds-masthead.html %}
     <nav class="sgds-navbar" role="navigation">
@@ -80,7 +39,7 @@
                                 <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
                             </a>
                             <a id="install-link" class="sgds-button is-primary is-rounded is-small"
-                               href="/guides/developers/install-design-system/"
+                               href="/docs/getting-started"
                             >
                                 Install Design System
                             </a>
@@ -89,7 +48,7 @@
                             <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
                         </a>
                         <a id="install-link" class="sgds-button is-primary is-rounded is-small is-hidden-touch"
-                           href="/guides/developers/install-design-system/">
+                           href="/docs/getting-started">
                             Install Design System
                         </a>
                         {% if page.layout != 'search' %}
@@ -116,4 +75,3 @@
         </div>
     </div>
 </div>
-{% endif %}

@@ -130,66 +130,6 @@ layout: layout-default
 </section>
 {% endif %}
 
-{% if page.url contains "/demo/" %}
-<section class="sgds-section is-small">
-    <div class="sgds-container">
-        <div class="row">
-            <div class="col is-3 is-hidden-touch has-side-nav">
-                <div class="sidenav">
-                    <aside class="sgds-menu sidebar__inner">
-                        <ul class="sgds-menu-list">
-                            <li>
-                                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
-                                    Level 2a
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="" class="is-active padding--sm">
-                                            Level 3a
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="padding--sm">
-                                            Level 3b
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
-                                    Level 2b
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="" class="is-active padding--sm">
-                                            Level 3a
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="padding--sm">
-                                            Level 3b
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </aside>
-                </div>
-            </div>
-            <div class="col is-9 is-12-touch">
-                <div class="row">
-                    <div class="col">
-                        <div class="content margin--top--sm">
-                            {{content}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{% else %}
 <section class="sgds-section is-small">
     <div class="sgds-container">
         <div class="row sidenav-container">
@@ -206,8 +146,13 @@ layout: layout-default
                     </div>
                     <hr class="margin--top margin--bottom--sm">
                     <ul class="sgds-menu-list">
+                        {% assign gettingStartedClass = nil %}
+                        {% if page.url contains "docs/getting-started" %}
+                            {% assign gettingStartedClass = 'is-active' %}
+                        {% endif %}
+                        <li><a href="/docs/getting-started" class="{{ gettingStartedClass }}">Getting started</a></li>
                         {% for collection in site.collections reversed %}
-                            {% if collection.label !='posts' %}
+                            {% if collection.label !='posts' and collection.label != 'guides' %}
                                 {% assign name = collection.label %}
                                 <li class="second-level-nav">
                                     <a class="second-level-nav-header has-text-primary">
@@ -224,7 +169,7 @@ layout: layout-default
                                         {% for item in items %}                                        
                                             {% assign class = nil %}
                                             {% if page.url contains item.url %}
-                                                {% assign class = 'is-active has-text-weight-normal' %}
+                                                {% assign class = 'is-active' %}
                                             {% endif %}
                                             <li>
                                                 <a class="component-name second-level-nav-item {{class}}" href="{{item.url}}">
@@ -240,49 +185,52 @@ layout: layout-default
                             {% endif %}
                         {% endfor %}
                     </ul>
-                    {% elsif page.url contains '/guides/' %}
+                    {% else %}
                     <ul class="sgds-menu-list">
-                        {%- assign links = site.data.navigation -%}
-                        {%- for lvl1item in links -%}
-                        {%- if page.url contains lvl1item.url -%}
-                        {%- for lvl2item in lvl1item.lvl2 -%}
-                        <li class="second-level-nav">
-                            <a class=" second-level-nav-header has-text-weight-bold">
-                                {{ lvl2item.title}}
-                                {%- if lvl2item.lvl3 -%}
-                                <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
-                                {%- endif -%}
-                            </a>
-                        </li>
-                        {%- if lvl2item.lvl3 -%}
-                        <div class="second-level-nav-div"  id="component-list{{forloop.index}}">
-                            <div class="list">
-                                {%- for lvl3item in lvl2item.lvl3 -%}
-                                {%- assign class = nil -%}
-                                {%- if page.url contains lvl3item.url -%}
-                                {%- assign class = 'is-active' -%}
-                                {%- endif -%}
-                                <li>
-                                    <a class="component-name second-level-nav-item {{class}} is-flex-justify-fs"
-                                        href="{{ lvl3item.url }}">
-                                        {{ lvl3item.title }}
-                                        {%- if lvl3item.label == 'js' -%}
-                                        <span class="sgds-tag is-rounded margin--left--sm">JS</span>
-                                        {%- endif -%}
+                        {% comment %}
+                        Get collection that current page belongs to, then group each document by their sorted "category" field,
+                        {% endcomment %}
+                        {%- assign collectionName = page.collection -%}
+                        {%- assign filteredCollections = site.collections | where: "label", collectionName -%}
+                        {%- assign currentCollection = filteredCollections[0] -%}
+                        {%- assign collectionCategories = currentCollection.docs | sort: "category" | group_by: "category" -%}
+                        {%- for category in collectionCategories -%}
+                            {%- if category.name != '' -%}
+                                <li class="second-level-nav">
+                                    {%- assign class = nil -%} 
+                                    {%- assign categorySlug = category.name | slugify -%}
+                                    {%- if page.url contains categorySlug -%} 
+                                    {%- assign class='is-active' -%}
+                                    {%- endif -%}
+                                    <a class="second-level-nav-header has-text-weight-bold {{ class }}">
+                                        {{ category.name | capitalize }}
+                                        <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
                                     </a>
                                 </li>
-                                {%- endfor -%}
-                            </div>
-                        </div>
-                        {%- endif -%}
-                        {%- endfor -%}
-                        {%- endif -%}
+                                <ul class="second-level-nav-div">
+                                    {%- assign items = category.items | sort: "title" -%}
+                                    {%- for item in items -%}
+                                        {%- assign class = nil -%}
+                                        {%- if page.url contains item.url -%}
+                                        {%- assign class = 'is-active' -%}
+                                        {%- endif -%}
+                                        <li>
+                                            <a
+                                                class="second-level-nav-item padding--top--none {{ class }}"
+                                                href="{{ site.baseurl }}{{ item.url }}"
+                                            >
+                                                {{ item.title }}
+                                            </a>
+                                        </li>
+                                    {%- endfor -%}
+                                </ul>
+                            {%- endif -%}
                         {%- endfor -%}
                     </ul>
                     {% endif %}
                 </div>
             </div>
-            <div class="col is-9 is-12-touch is-offset-1-desktop">
+            <div class="col is-8 is-12-touch is-offset-1-desktop">
                 {% if page.update-notification %}
                 <div class="row">
                     <div class="col">
@@ -298,13 +246,10 @@ layout: layout-default
                     </div>
                 </div>
                 {% endif %}
-
                 <div class="content margin--top--sm">
                     {{content}}
                 </div>
-
             </div>
         </div>
     </div>
 </section>
-{% endif %}
