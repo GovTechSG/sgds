@@ -2,17 +2,26 @@ language: node_js
 node_js:
   - "node"
 branches:
-  only:
-    - dev
+  except:
+    - dev_preview
 install:
+  - bundle install
   - npm ci
 script:
-  - npm run build:lib
+  - npm run build:prod
 deploy:
-  provider: pages
-  target_branch: dev_preview
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  keep_history: true
-  on:
-    branch: dev
+  - provider: pages
+    target_branch: dev_preview
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    keep_history: true
+    on:
+      branch: dev
+  - provider: pages
+    target_branch: gh-pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    keep_history: true
+    on:
+      branch: master
+    local_dir: _site
