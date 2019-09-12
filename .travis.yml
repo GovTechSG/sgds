@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - "node"
+branches:
+  except:
+    - dev_preview
 install:
   - bundle install
   - npm ci
