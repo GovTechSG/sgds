@@ -124,3 +124,9 @@ a[target="_blank"]:after {
   background: rgb(96, 55, 179);
   background: linear-gradient(30deg, rgba(96, 55, 179, 1) 0%, rgba(70, 117, 211, 1) 100%);
 }
+
+.content-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
