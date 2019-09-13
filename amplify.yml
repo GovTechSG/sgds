@@ -1,9 +1,9 @@
-version: 0.1
+version: 1.0
 frontend:
   phases:
     preBuild:
       commands:
-        - gem install bundler -v 2.0.2
+        - gem install bundler
         - bundle install
         - npm ci
     build:
