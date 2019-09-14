@@ -134,7 +134,7 @@ $(document).ready(() => {
     }
 
     // Navbar burger menus
-    const navbarBurgers = $(".navbar-burger");
+    const navbarBurgers = $(".sgds-navbar-burger");
     if (navbarBurgers.length > 0) {
         navbarBurgers.each(function(index, burger) {
             $(burger).click(function() {
@@ -152,7 +152,7 @@ $(document).ready(() => {
     if (dropdowns.length > 0) {
         dropdowns.each((i, dropdown) => {
             let dropdownTrigger = dropdown.querySelector(".sgds-dropdown-trigger");
-            dropdownTrigger.addEventListener("click", event => {
+            dropdownTrigger.addEventListener("click", event => { 
                 event.stopPropagation(); // Stop close listeners
                 dropdown.classList.toggle("is-active");
                 let dropdownIcon = dropdownTrigger.querySelector(".sgds-icon");
