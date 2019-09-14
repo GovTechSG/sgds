@@ -9,7 +9,7 @@
         {% endif %}
         <li><a class="{{class}}" href="/">{{ "Home" | upcase }}</a></li>
 
-        {%- capture page_url_without_index_html -%}{{ page.url | remove: "/index.html" }}{%- endcapture -%}
+        {%- capture page_url_without_index_html -%}{{ page.url | remove: "/index.html" | remove: ".html" }}{%- endcapture -%}
         {% assign splitted_url_parts = page_url_without_index_html | split: '/' %}
         {% capture forLoopMaxInt %}{{ splitted_url_parts.size | minus:1 }}{% endcapture %}
 
