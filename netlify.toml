@@ -1,5 +1,3 @@
 [build]
-    command = "npm run build:dev"
+    command = "npm run build"
     publish = "_site"
-[context.production]
-    command = "npm run build:prod"
