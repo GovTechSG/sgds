@@ -28,38 +28,8 @@
     color: $primary;
   }
 }
-
-.language_selector {
-  cursor: pointer;
-  align-items: center;
-  justify-content: flex-end;
-  &:after {
-    font-family: "sgds-icons";
-    content: "\e93c";
-    margin-left: 5px;
-  }
-}
-
-.language_selector--dropdown {
-  display: none;
-  position: absolute;
-  padding: 1rem;
-  background-color: #f0f0f4;
-  z-index: 99;
-  top: $masthead-height;
-  right: 0rem;
-
-  ul {
-    margin: 0;
-  }
-  li {
-    cursor: pointer;
-    text-align: right;
-    padding: 0.5rem;
-    list-style: none;
-    margin: 0;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+.language_selector{
+  background: transparent;
+  border: 0;
+  font-size: 14px;
 }
