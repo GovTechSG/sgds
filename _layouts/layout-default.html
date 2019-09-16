@@ -4,7 +4,7 @@
         {%- include sgds-head.html -%}
         {% seo %}
     </head>
-    <body class="has-navbar-fixed-top">
+    <body class="has-navbar-fixed-top {% if page.url contains '/docs/' %}has-component-dropdown{% endif %}">
         {% if jekyll.environment == "production" %}
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV9NNPT"
