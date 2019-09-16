@@ -15,7 +15,8 @@
     ],
     "main": "js/sgds.js",
     "scripts": {
-        "build": "npm run packagedownloads && npm run build:site && bundle exec jekyll build",
+        "build:dev": "npm run packagedownloads && npm run build:site && bundle exec jekyll build",
+        "build:prod": "npm run packagedownloads && npm run build:site && JEKYLL_ENV=production bundle exec jekyll build",
         "build:lib": "rm -rf ./js ./css ./fonts && webpack --env.production --env.NODE_ENV=production --mode=production",
         "build:site": "npm run build:lib -- --env.site",
         "dev:jekyll": "bundle exec jekyll serve",
