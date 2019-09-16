@@ -218,7 +218,7 @@ $(document).ready(() => {
     }
 
     // Language Selector
-    let languageSelectors = $(".language_selector");
+    let languageSelectors = $(".language-selector");
     if (languageSelectors.length) {
         languageSelectors.each((i, languageSelector) => {
             let langSelectorTarget = $("#" + languageSelector.dataset.target);

@@ -69,14 +69,14 @@ js: true
     <div class="sgds-masthead">
         <div class="sgds-container">
             <div class="row is-mobile">
-                <div class="col is-9-desktop is-12-mobile">
+                <div class="col is-9-desktop is-12-mobile is-flex">
                     <a href="https://www.gov.sg" target="_blank">
                         <span class="sgds-icon sgds-icon-sg-crest"></span>
                         <span class="is-text">A Singapore Government Agency Website</span>
                     </a>
                 </div>
                 <div class="col has-text-right is-hidden-mobile">
-                    <select class="language_selector" id="lang-selector">
+                    <select class="language-selector" id="lang-selector">
                         <option>English</option>
                         <option>中文</option>
                         <option>Bahasa Melayu</option>
@@ -84,7 +84,6 @@ js: true
                     </select>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>
@@ -100,22 +99,20 @@ js: true
 <div class="sgds-masthead">
     <div class="sgds-container">
         <div class="row is-mobile">
-            <div class="col is-9">
+            <div class="col is-9-desktop is-12-mobile is-flex">
                 <a href="https://www.gov.sg" target="_blank">
                     <span class="sgds-icon sgds-icon-sg-crest"></span>
                     <span class="is-text">A Singapore Government Agency Website</span>
                 </a>
             </div>
-            <div class="col is-3 is-flex language_selector" data-target="lang-selector">
-                English
+            <div class="col has-text-right is-hidden-mobile">
+                <select class="language-selector" id="lang-selector">
+                    <option>English</option>
+                    <option>中文</option>
+                    <option>Bahasa Melayu</option>
+                    <option>தமிழ்</option>
+                </select>
             </div>
-        </div>
-        <div class="language_selector--dropdown" id="lang-selector">
-            <ul>
-                <li>中文</li>
-                <li>Bahasa Melayu</li>
-                <li>தமிழ்</li>
-            </ul>
         </div>
     </div>
 </div>
