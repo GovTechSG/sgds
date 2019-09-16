@@ -1,4 +1,3 @@
-$masthead-height: 1.875rem;
 .sgds-masthead {
   position: relative;
   background-color: $grey-lighter;
@@ -8,7 +7,6 @@ $masthead-height: 1.875rem;
   font-size: 14px;
   @include touch() {
     padding: 2px 12px;
-    max-height: initial;
   }
   .is-text {
     position: relative;
