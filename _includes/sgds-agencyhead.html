@@ -77,4 +77,6 @@
 </div>
 
 {% comment %} Nav bar for mobile {% endcomment %}
-{% include mobile-side-nav.html %}
+{% if page.url contains "/docs/" %}
+{% include mobile-docs-nav.html %}
+{% endif %}
