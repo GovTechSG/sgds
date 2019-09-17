@@ -678,7 +678,8 @@ a.sgds-navbar-item,
 
 // navbar-item helper, wrapper navbar-start
 @include desktop{
-  .sgds-navbar-start{
+  .sgds-navbar-start,
+  .sgds-navbar-end{
     &.has-item-max-width{
       .sgds-navbar-item{
         max-width: 140px;
@@ -696,7 +697,8 @@ a.sgds-navbar-item,
 }
 
 @include touch{
-  .sgds-navbar-start{
+  .sgds-navbar-start,
+  .sgds-navbar-end{
     .sgds-navbar-item{
       max-width: none;
     }
