@@ -1,0 +1,192 @@
+---
+title: Button
+subtitle: Subtitle
+layout: layout-docs
+category: General
+breadcrumb: General
+icon: button
+---
+
+<h4 class="has-text-primary">Button is an ordinary, every-day element of interaction design. Although button looks like a very simple UI element, its design has changed a lot over the past decades. But still, button UX design is always about recognition and clarity</h4>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<div class="row">
+    <div class="col is-3">
+        <button class="sgds-button is-primary margin--bottom">button</button>
+        <br><code>default</code>
+    </div>
+    <div class="col is-3">
+        <button class="sgds-button is-outlined is-primary margin--bottom">button</button>
+        <br><code>.is-outlined</code>
+    </div>
+    <div class="col is-3">
+        <button class="sgds-button is-rounded is-primary margin--bottom">button</button>
+        <br><code>.is-rounded</code>
+    </div>
+    <div class="col is-3">
+        <button class="sgds-button is-primary margin--bottom" disabled>button</button>
+        <br><code>disabled</code>
+    </div>
+</div>
+{%- highlight html -%}
+<button class="sgds-button is-primary">button</button>
+{%- endhighlight -%}
+
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<p class="margin--top--lg">You can also insert icons from our library on any part of a button.</p>
+<button class="sgds-button">
+    <span class="icon"><i class="sgds-icon sgds-icon-twitter"></i></span>
+    <span>Twitter</span>
+</button>
+<button class="sgds-button">
+    <span class="icon"><i class="sgds-icon sgds-icon-facebook"></i></span>
+    <span>Facebook</span>
+</button>
+<button class="sgds-button">
+    <span class="icon"><i class="sgds-icon sgds-icon-download"></i></span>
+</button>
+
+{%- highlight html -%}
+<button class="sgds-button">
+    <span class="icon"><i class="sgds-icon sgds-icon-facebook"></i></span>
+    <span>Facebook</span>
+</button>
+{%- endhighlight -%}
+
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy snippet</button>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<p class="margin--top--lg">You can group buttons together on a single line using the <code>is-grouped</code> modifier on the field container.</p>
+<div class="field is-grouped">
+    <p class="control"><a class="sgds-button is-primary">Save</a></p>
+    <p class="control"><a class="sgds-button">Cancel</a></p>
+    <p class="control"><a class="sgds-button is-danger">Delete</a></p>
+</div>
+
+{%- highlight html -%}
+<div class="field is-grouped">
+    <p class="control">
+        <button class="sgds-button is-primary">Save</button>
+    </p>
+</div>
+{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>Copy snippet</button>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<p class="margin--top--lg"><code>has-addons</code> modifier allows you to attach controls together</p>
+<div class="field has-addons">
+    <p class="control"><a class="sgds-button">Yes</a></p>
+    <p class="control"><a class="sgds-button">Maybe</a></p>
+    <p class="control"><a class="sgds-button">No</a></p>
+</div>
+{%- highlight html -%}
+<div class="field has-addons">
+    <p class="control">
+        <button class="sgds-button">Yes</button>
+    </p>
+</div>
+{%- endhighlight -%}
+
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight3'>Copy snippet</button>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<p class="margin--top--lg">You can use the secondary button for reducing visual prominence. It should not be used as a <b class="has-text-info">Call-to-Action</b> button</p>
+
+<button href="" class="sgds-sec-button">
+    <span>
+        Default Size
+    </span>
+</button><br>
+<button href="" class="sgds-sec-button is-small">
+    <span>
+         .is-small
+    </span>
+</button><br>
+<button href="" class="sgds-sec-button is-medium">
+    <span>
+         .is-medium
+    </span>
+</button><br>
+<button href="" class="sgds-sec-button is-large is-info">
+    <span>
+        is-large.is-info
+    </span>
+</button>
+
+{%- highlight html -%}
+<button href="" class="sgds-sec-button">
+    <span>
+        Default Size
+    </span>
+</button><br>
+<button href="" class="sgds-sec-button is-small">
+    <span>
+         .is-small
+    </span>
+</button><br>
+<button href="" class="sgds-sec-button is-medium">
+    <span>
+         .is-medium
+    </span>
+</button><br>
+<button href="" class="sgds-sec-button is-large is-info">
+    <span>
+        is-large.is-info
+    </span>
+</button>
+{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight3'>Copy snippet</button>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
+<p>Button should:</p>
+<ul>
+    <li>Use labels that tell users what will happen when they click the button</li>
+    <li>User verbs that describe the action, such as Add or Delete</li>
+    <li>User no more than three words for button labels</li>
+</ul>
+
+<hr class="margin--bottom--lg margin--top--lg">
+
+<h5 class="has-text-weight-semibold margin--bottom">Style</h5>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Modifier</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>is-fullwidth</td>
+        <td>Button with width that span the full width of a parent</td>
+    </tr>
+    <tr>
+        <td>is-outlined</td>
+        <td>Display button in border only</td>
+    </tr>
+    <tr>
+        <td>is-rounded</td>
+        <td>Display button with rounded edges</td>
+    </tr>
+    <tr>
+        <td>is-static</td>
+        <td>Display as a non-interactive button. </td>
+    </tr>
+    <tr>
+        <td>disabled</td>
+        <td>Use as an attribute for disable state</td>
+    </tr>
+    </tbody>
+</table>
+
+<hr class="margin--bottom--lg margin--top--lg">
+{%- include sgds-feedback.html -%}

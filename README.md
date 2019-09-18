@@ -88,15 +88,15 @@ $ npm run dev:jekyll # Access from localhost:4000
 
 ### Development Build  [![Build Status](https://travis-ci.org/GovTechSG/sgds.svg?branch=dev)](https://travis-ci.org/GovTechSG/sgds)
 
-Test out the latest development build from jsdelivr:
+Test out the latest development build:
 
 ```html
 <!-- CSS in <head> -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/govtechsg/sgds@dev_preview/css/sgds.css"/>
+<link rel="stylesheet" href="https://dev.designsystem.gov.sg/css/sgds.css"/>
 
 <!-- JS in <body> -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/govtechsg/sgds@dev_preview/js/sgds.js"></script>
+<script src="https://dev.designsystem.gov.sg/js/sgds.js"></script>
 ```
 
 ## Patch Notes

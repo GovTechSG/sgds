@@ -13,88 +13,6 @@ layout: layout-default
         <h1 class="has-text-white has-text-weight-semibold">{{page.title}}</h1>
     </div>
 </section>
-{% comment %} Nav bar for mobile {% endcomment %}
-{% if page.url contains "/docs/" %}
-<section class="sgds-section is-paddingless is-hidden-desktop">
-    <div class="sgds-dropdown is-fullwidth">
-        <div class="sgds-dropdown-trigger">
-            <button class="sgds-button is-outlined is-large" aria-haspopup="true" aria-controls="sgds-dropdown-menu">
-                <span>Choose a component</span>
-                <span class="icon">
-                    <span class="sgds-icon sgds-icon-chevron-down"></span>
-                </span>
-            </button>
-        </div>
-        <div class="sgds-dropdown-menu docs-nav-dropdown" id="sgds-dropdown-menu" role="menu">
-            <div class="sgds-dropdown-content padding">
-                <div class="row has-text-centered">
-                    <div class="col">
-                        <h5 class="margin--top margin--bottom"><b class="has-text-danger">Mandatory</b> components for all gov.sg websites.</h5>
-                    </div>
-                </div>
-                <div class="row is-multiline is-mobile">
-                    {% for component in site.standard %}
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <a href="{{ component.url }}">
-                            <div class="sgds-card sgds-card-button">
-                                <div class="sgds-card-content has-text-centered">
-                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
-                                    <p class="has-text-weight-semibold">{{component.title}}</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-
-                <hr class="margin--bottom--sm margin--top--sm">
-                <div class="row has-text-centered">
-                    <div class="col">
-                        <h5 class="margin--top margin--bottom">Site layout and structure</h5>
-                    </div>
-                </div>
-                <div class="row is-multiline is-mobile">
-                    {% for component in site.layouts %}
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <a href="{{ component.url }}">
-                            <div class="sgds-card sgds-card-button">
-                                <div class="sgds-card-content has-text-centered">
-                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
-                                    <p class="has-text-weight-semibold">{{component.title}}</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-
-
-                <hr class="margin--bottom--sm margin--top--sm">
-                <div class="row has-text-centered">
-                    <div class="col">
-                        <h5 class="margin--top margin--bottom">Plug-and-play components</h5>
-                    </div>
-                </div>
-                <div class="row is-multiline is-mobile">
-                    {% for component in site.general %}
-                    <div class="col is-3-desktop is-6-touch is-6-mobile">
-                        <a href="{{ component.url }}">
-                            <div class="sgds-card sgds-card-button">
-                                <div class="sgds-card-content has-text-centered">
-                                    <span class="sgds-icon sgds-icon-{{component.icon | downcase}} is-size-3"></span>
-                                    <p class="has-text-weight-semibold">{{component.title}}</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-{% endif %}
-
 {% if page.url contains "/guides/" %}
 <section class="sgds-section is-paddingless is-hidden-desktop">
     <div class="sgds-dropdown is-fullwidth">
@@ -130,98 +48,46 @@ layout: layout-default
 </section>
 {% endif %}
 
-{% if page.url contains "/demo/" %}
 <section class="sgds-section is-small">
     <div class="sgds-container">
-        <div class="row">
-            <div class="col is-3 is-hidden-touch has-side-nav">
-                <div class="sidenav">
-                    <aside class="sgds-menu sidebar__inner">
-                        <ul class="sgds-menu-list">
-                            <li>
-                                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
-                                    Level 2a
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="" class="is-active padding--sm">
-                                            Level 3a
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="padding--sm">
-                                            Level 3b
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="" class="is-uppercase has-text-weight-semibold padding--sm">
-                                    Level 2b
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="" class="is-active padding--sm">
-                                            Level 3a
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="padding--sm">
-                                            Level 3b
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </aside>
-                </div>
-            </div>
-            <div class="col is-9 is-12-touch">
-                <div class="row">
-                    <div class="col">
-                        <div class="content margin--top--sm">
-                            {{content}}
-                        </div>
+        <div class="row sidenav-container">
+            <div class="col is-2 is-hidden-touch sidenav" 
+                data-topspacing="140" 
+                data-bottomspacing="40">
+                <div class="sidebar__inner sgds-menu">
+                    {% if page.url contains '/docs/' %}
+                    <div class="control">
+                        <input id="search-field" 
+                            class="input is-rounded is-small" 
+                            type="text" 
+                            placeholder="Search Component">
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{% else %}
-<section class="sgds-section is-small">
-    <div class="sgds-container">
-        <div class="row">
-            <div class="col is-2 is-hidden-touch sidenav-container">
-                <div class="sidenav" data-topspacing="140" data-bottomspacing="40">
-                    <aside class="sgds-menu sidebar__inner">
-
-                        {% if page.url contains '/docs/' %}
-                        <div class="control">
-                            <input id="search-field" class="input is-rounded is-small" type="text" placeholder="Search Component">
-                        </div>
-                        <hr class="margin--top margin--bottom--sm">
-                        <ul class="sgds-menu-list">
-                            {% for collection in site.collections reversed %}
-                                {% if collection.label !='posts' %}
-                                    {% assign name = collection.label %}
-                                    <li class="second-level-nav">
-                                        <a class="second-level-nav-header has-text-primary">
-                                            {{ name | capitalize }}
-                                            <i class="sgds-icon sgds-icon-chevron-up has-text-weight" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <div class="second-level-nav-div" id="{{collection.label}}-component">
-                                        <ul class="list">
-                                            {% assign items = site[name] %}
-                                            {% if collection.label == 'standard' %}
-                                               {% assign items = site[name] | sort:'order' %}
-                                               {% endif %}
-                                               {% for item in items %}                                        
+                    <hr class="margin--top margin--bottom--sm">
+                    <ul class="sgds-menu-list">
+                        {% assign gettingStartedClass = nil %}
+                        {% if page.url contains "docs/getting-started" %}
+                            {% assign gettingStartedClass = 'is-active' %}
+                        {% endif %}
+                        <li><a href="/docs/getting-started" class="{{ gettingStartedClass }}">Getting started</a></li>
+                        {% for collection in site.collections reversed %}
+                            {% if collection.label !='posts' and collection.label != 'guides' %}
+                                {% assign name = collection.label %}
+                                <li class="second-level-nav">
+                                    <a class="second-level-nav-header has-text-primary">
+                                        {{ name | capitalize }}
+                                        <i class="sgds-icon sgds-icon-chevron-up has-text-weight" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <div class="second-level-nav-div" id="{{collection.label}}-component">
+                                    <ul class="list">
+                                        {% assign items = site[name] %}
+                                        {% if collection.label == 'standard' %}
+                                            {% assign items = site[name] | sort:'order' %}
+                                        {% endif %}
+                                        {% for item in items %}                                        
                                             {% assign class = nil %}
                                             {% if page.url contains item.url %}
-                                                {% assign class = 'is-active has-text-weight-normal' %}
+                                                {% assign class = 'is-active' %}
                                             {% endif %}
                                             <li>
                                                 <a class="component-name second-level-nav-item {{class}}" href="{{item.url}}">
@@ -232,55 +98,57 @@ layout: layout-default
                                                 </a>
                                             </li>
                                         {% endfor %}
-                                        </ul>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                        {% elsif page.url contains '/guides/' %}
-                        <ul class="sgds-menu-list">
-                            {%- assign links = site.data.navigation -%}
-                            {%- for lvl1item in links -%}
-                            {%- if page.url contains lvl1item.url -%}
-                            {%- for lvl2item in lvl1item.lvl2 -%}
-                            <li class="second-level-nav">
-                                <a class=" second-level-nav-header has-text-weight-bold">
-                                    {{ lvl2item.title}}
-                                    {%- if lvl2item.lvl3 -%}
-                                    <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
-                                    {%- endif -%}
-                                </a>
-                            </li>
-                            {%- if lvl2item.lvl3 -%}
-                            <div class="second-level-nav-div"  id="component-list{{forloop.index}}">
-                                <div class="list">
-                                    {%- for lvl3item in lvl2item.lvl3 -%}
-                                    {%- assign class = nil -%}
-                                    {%- if page.url contains lvl3item.url -%}
-                                    {%- assign class = 'is-active' -%}
-                                    {%- endif -%}
-                                    <li>
-                                        <a class="component-name second-level-nav-item {{class}} is-flex-justify-fs"
-                                           href="{{ site.baseurl }}{{ lvl3item.url }}">
-                                            {{ lvl3item.title }}
-                                            {%- if lvl3item.label == 'js' -%}
-                                            <span class="sgds-tag is-rounded margin--left--sm">JS</span>
-                                            {%- endif -%}
-                                        </a>
-                                    </li>
-                                    {%- endfor -%}
+                                    </ul>
                                 </div>
-                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <ul class="sgds-menu-list">
+                        {% comment %}
+                        Get collection that current page belongs to, then group each document by their sorted "category" field,
+                        {% endcomment %}
+                        {%- assign collectionName = page.collection -%}
+                        {%- assign filteredCollections = site.collections | where: "label", collectionName -%}
+                        {%- assign currentCollection = filteredCollections[0] -%}
+                        {%- assign collectionCategories = currentCollection.docs | sort: "category" | group_by: "category" -%}
+                        {%- for category in collectionCategories -%}
+                            {%- if category.name != '' -%}
+                                <li class="second-level-nav">
+                                    {%- assign class = nil -%} 
+                                    {%- assign categorySlug = category.name | slugify -%}
+                                    {%- if page.url contains categorySlug -%} 
+                                    {%- assign class='is-active' -%}
+                                    {%- endif -%}
+                                    <a class="second-level-nav-header has-text-weight-bold {{ class }}">
+                                        {{ category.name | capitalize }}
+                                        <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <ul class="second-level-nav-div">
+                                    {%- assign items = category.items | sort: "title" -%}
+                                    {%- for item in items -%}
+                                        {%- assign class = nil -%}
+                                        {%- if page.url contains item.url -%}
+                                        {%- assign class = 'is-active' -%}
+                                        {%- endif -%}
+                                        <li>
+                                            <a
+                                                class="second-level-nav-item padding--top--none {{ class }}"
+                                                href="{{ site.baseurl }}{{ item.url }}"
+                                            >
+                                                {{ item.title }}
+                                            </a>
+                                        </li>
+                                    {%- endfor -%}
+                                </ul>
                             {%- endif -%}
-                            {%- endfor -%}
-                            {%- endif -%}
-                            {%- endfor -%}
-                        </ul>
-                        {% endif %}
-                    </aside>
+                        {%- endfor -%}
+                    </ul>
+                    {% endif %}
                 </div>
             </div>
-            <div class="col is-9 is-12-touch is-offset-1-desktop">
+            <div class="col is-8 is-12-touch is-offset-1-desktop">
                 {% if page.update-notification %}
                 <div class="row">
                     <div class="col">
@@ -296,13 +164,10 @@ layout: layout-default
                     </div>
                 </div>
                 {% endif %}
-
                 <div class="content margin--top--sm">
                     {{content}}
                 </div>
-
             </div>
         </div>
     </div>
 </section>
-{% endif %}

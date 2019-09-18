@@ -1,0 +1,20 @@
+.mobile-side-nav{
+    position: fixed;
+    width: 100%;
+    top: calc(#{$navbar-height} + #{$masthead-height});
+    z-index: 40;
+
+    .sgds-dropdown-content{
+        height: 40vh;
+        overflow-y: scroll;
+    }
+}
+
+body.has-navbar-fixed-top
+{
+    &.has-component-dropdown{
+        @include mobile(){
+            padding-top: calc(#{$navbar-height} + #{$masthead-height} + 50px);
+        }
+    }
+}

@@ -1,20 +1,13 @@
 ---
 layout: layout-default
 ---
-<style>
-.has-background-gradient{
-  background: rgb(96,55,179);
-  background: linear-gradient(30deg, rgba(96,55,179,1) 0%, rgba(70,117,211,1) 100%);
-}
-</style>
-
 <section class="sgds-section is-small has-background-gradient">
   <div class="sgds-container">
     {% include sgds-breadcrumb.html %}
     <h1 class="has-text-white has-text-weight-semibold">{{page.title}}</h1>
   </div>
 </section>
-<section class="sgds-section">
+<section class="sgds-section" style="flex-grow: 1;">
   <div class="sgds-container">
     <div class="content">
       <div class="row">
@@ -25,3 +18,4 @@ layout: layout-default
     </div>
   </div>
 </section>
+{%- include visit-docs-section.html -%}

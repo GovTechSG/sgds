@@ -1,86 +1,45 @@
-{% if page.url contains '/demo/' %}
-<div class="masthead-container" id="navbar">
-    {% include sgds-masthead.html %}
-<nav class="navbar" role="navigation">
-    <div class="sgds-container">
-        <div class="navbar-brand">
-            <a class="navbar-item">
-                <img src="/assets/img/logo_sgds.png" alt="">
-            </a>
-            <div class="navbar-burger burger" data-target="mainnav-1">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div id="mainnav-1" class="navbar-menu">
-            <div class="navbar-item is-stretched">
-                <a class="navbar-link is-uppercase is-active">
-                    Who we are
-                </a>
-            </div>
-            <div class="navbar-item is-stretched">
-                <a class="navbar-link is-uppercase">
-                    Link 2
-                </a>
-            </div>
-            <div class="navbar-item is-stretched">
-                <a class="navbar-link is-uppercase">
-                    Link 3
-                </a>
-            </div>
-            <div class="navbar-item is-stretched">
-                <a class="navbar-link is-uppercase">
-                    Link 4
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
-</div>
-{% else %}
 <div class="masthead-container is-fixed has-background-white" id="navbar" style="z-index:50;">
     {% include sgds-masthead.html %}
-    <nav class="navbar" role="navigation">
+    <nav class="sgds-navbar" role="navigation">
         <div class="sgds-container">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="/">
+            <div class="sgds-navbar-brand">
+                <a class="sgds-navbar-item" href="/">
                     <img src="/assets/img/logo_sgds.png" alt="">
                 </a>
-                <div class="navbar-burger burger" data-target="navbarMain">
+                <div class="sgds-navbar-burger burger" data-target="navbarMain">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
             </div>
-            <div id="navbarMain" class="navbar-menu">
-                <div class="navbar-start">
-                    <form action="{{ site.baseurl }}/search/" method="get" class="is-hidden-desktop">
+            <div id="navbarMain" class="sgds-navbar-menu">
+                <div class="sgds-navbar-start">
+                    <form action="/search/" method="get" class="is-hidden-desktop">
                         {% include sgds-search-box.html %}
                     </form>
                     {%- assign links = site.data.navigation -%}
                     {%- for lvl1item in links -%}
 
                     {%- assign class = nil -%}
-                    {%- if page.url contains lvl1item.url or page.url contains lvl1item.url2 -%}
+                    {%- if page.url contains lvl1item.url -%}
                     {%- assign class = 'is-active' -%}
                     {%- endif -%}
-                    <a class="navbar-item is-uppercase {{class}} has-text-weight-semibold is-tab"
-                       href="{{ site.baseurl }}{{ lvl1item.url }} ">
+                    <a class="sgds-navbar-item is-uppercase {{class}} has-text-weight-semibold is-tab"
+                       href="{{ lvl1item.url }} ">
                         {{ lvl1item.title }}
                     </a>
 
                     {%- endfor -%}
                 </div>
 
-                <div class="navbar-end">
-                    <div class="navbar-item">
+                <div class="sgds-navbar-end">
+                    <div class="sgds-navbar-item">
                         <div class="buttons is-hidden-desktop">
                             <a id="github-link" class="sgds-button is-text is-rounded is-small padding--none margin--right" href="https://github.com/govtechsg/sgds">
                                 <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
                             </a>
                             <a id="install-link" class="sgds-button is-primary is-rounded is-small"
-                               href="/guides/developers/install-design-system/"
+                               href="/docs/getting-started"
                             >
                                 Install Design System
                             </a>
@@ -89,7 +48,7 @@
                             <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
                         </a>
                         <a id="install-link" class="sgds-button is-primary is-rounded is-small is-hidden-touch"
-                           href="/guides/developers/install-design-system/">
+                           href="/docs/getting-started">
                             Install Design System
                         </a>
                         {% if page.layout != 'search' %}
@@ -109,11 +68,15 @@
         <div class="row">
             <div class="col">
                 <hr class="margin--bottom--sm">
-                <form action="{{ site.baseurl }}/search/" method="get">
+                <form action="/search/" method="get">
                     {% include sgds-search-box.html %}
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+{% comment %} Nav bar for mobile {% endcomment %}
+{% if page.url contains "/docs/" %}
+{% include mobile-docs-nav.html %}
 {% endif %}
