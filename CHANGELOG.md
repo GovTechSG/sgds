@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation re-org and improvements
 - Moved sgds-example and sgds-syntax classes out of sgds package.
 - #89 Added sgds prefix to navbar component
-- Updated language selector example in docs to use <select> elements
+- Updated language selector example in docs to use `<select>` elements
 
 ### Fixes
 
