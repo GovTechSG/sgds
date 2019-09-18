@@ -1,7 +1,7 @@
 h1 {
   font-size: $size-1;
   line-height: $size-1-lh;
-  letter-spacing: -1.5px;
+  letter-spacing: -0.09375rem;
 
   @include touch {
     font-size: $size-0-mobile;
@@ -75,6 +75,6 @@ b, strong {
 
 .eyebrow {
   font-size: $size-8;
-  letter-spacing: $size-eiebrow-ls;
+  letter-spacing: $size-eyebrow-ls;
   line-height: $size-eyebrow-lh;
 }

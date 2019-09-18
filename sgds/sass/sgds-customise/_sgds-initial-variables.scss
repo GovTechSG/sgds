@@ -22,13 +22,9 @@ $white: hsl(0, 0%, 100%) !default;
 $orange: #d0021b !default;
 $yellow: #f5a623 !default;
 $green: #1ca161 !default;
-
-//$turquoise:    hsl(171, 100%, 41%) !default
 $cyan: #4372d6 !default;
 $blue: $cyan !default;
 $blue-light: lighten($cyan, 5%) !default;
-
-//$blue-dark:    #2b5fce
 $purple: hsl(271, 100%, 71%) !default;
 $red: #d0021b !default;
 
@@ -81,12 +77,8 @@ $size-8: 1rem !default;
 
 //eyebrow
 $size-eyebrow: 1rem !default;
-$size-eiebrow-ls: 1.5px !default;
-$size-eyebrow-lh: 22px !default;
-
-//Navbar font size
-$navbar-font-size: 15px !default;
-$navbar-dropdown-font-size: 1.125rem !default;
+$size-eyebrow-ls: 0.09375rem !default;
+$size-eyebrow-lh: 1.375rem !default;
 
 // Menu
 $size-menu: 1.0625rem !default;
@@ -112,7 +104,7 @@ $tablet: 769px !default;
 $desktop: 960px + 2 * $gap !default;
 
 // 1152px container + 4rem
-$widescreen: 1152px + 2 * $gap !default;
+$widescreen: 1152px + 2 * $gap !default
 
 // 1344px container + 4rem
 $fullhd: 1344px + 2 * $gap !default;
@@ -129,10 +121,10 @@ $speed: 86ms !default;
 $variable-columns: true !default;
 
 // Images
-//$hero-image: url(../img/bg_splash.png) $secondary !default
 $hero-image: $secondary !default;
 
 
 //Masthead Height
 $navbar-height: 5.25rem !default;
-$masthead-height: 1.875rem !default;
+$masthead-height: 29px !default; //px used is intended to fix the font-size and height for consistency
+$masthead-gutter: 4px !default; //px used is intended to fix the font-size and height for consistency

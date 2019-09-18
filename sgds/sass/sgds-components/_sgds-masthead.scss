@@ -1,23 +1,20 @@
+
 .sgds-masthead {
   position: relative;
   background-color: $grey-lighter;
-  padding: 2px 0;
-  height: $masthead-height;
-  max-height: $masthead-height;
+  height: auto;
+  padding: $masthead-gutter 0;
   font-size: 14px;
-  @include touch() {
-    padding: 2px 12px;
+  @include touch(){
+    padding-left: $masthead-gutter;
+    padding-right: $masthead-gutter;
   }
   .is-text {
-    position: relative;
-    margin-left: 0.25rem;
-    @include touch() {
-      line-height: 1.2rem;
-    }
+    margin-left: $masthead-gutter;
   }
 
   .sgds-icon {
-    font-size: $size-6;
+    font-size: 20px;
   }
   a {
     color: $grey-dark;
@@ -25,10 +22,11 @@
     align-items: center;
   }
   a:hover {
-    color: $primary;
+    color: currentColor;
+    font-weight: $weight-semibold;
   }
 }
-.language_selector{
+.language-selector{
   background: transparent;
   border: 0;
   font-size: 14px;
