@@ -719,15 +719,21 @@ order: 2
         <div id="mainnav-5" class="sgds-navbar-menu">
             <div class="sgds-navbar-start has-item-max-width">
                 <a class="sgds-navbar-item is-uppercase is-tab">
-                    Lorem ipsum dolor sit
+                    Navbar-start, lorem ipsum dolor sit
                 </a>
             </div>
-        </div>
-        <div class="sgds-navbar-end">
-            <div class="sgds-navbar-item has-item-max-width">
+            <div class="sgds-navbar-end has-item-max-width">
                 <a class="sgds-navbar-item is-uppercase is-tab">
-                    Lorem ipsum dolor sit
+                    Navbar-end, lorem ipsum dolor sit
                 </a>
+                <div class="sgds-navbar-item  is-hidden-touch">
+                    <button
+                        class="sgds-button is-white is-large search-toggle"
+                        data-target="searchbar-2"
+                    >
+                        <span class="sgds-icon sgds-icon-search"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -758,12 +764,20 @@ order: 2
                     Lorem ipsum dolor sit
                 </a>
             </div>
-        </div>
-        <div class="sgds-navbar-end">
-            <div class="sgds-navbar-item has-item-max-width">
+            <!-- Add <code>.has-item-max-width</code> to <code>.sgds-navbar-start/end</code> to constrain
+    <code>.sgds-navbar-item</code>'s width for longer text. -->
+            <div class="sgds-navbar-end has-item-max-width">
                 <a class="sgds-navbar-item is-uppercase is-tab">
                     Lorem ipsum dolor sit
                 </a>
+                <div class="sgds-navbar-item  is-hidden-touch">
+                    <button
+                        class="sgds-button is-white is-large search-toggle"
+                        data-target="searchbar-2"
+                    >
+                        <span class="sgds-icon sgds-icon-search"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
