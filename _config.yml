@@ -28,6 +28,9 @@ collections:
   standard:
     permalink: /docs/:path/
     output: true
+  helpers:
+    permalink: /docs/:path/
+    output: true
   guides:
     permalink: /guides/:path/
     output: true
