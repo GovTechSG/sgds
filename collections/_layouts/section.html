@@ -7,6 +7,13 @@ icon: section
 breadcrumb: General
 ---
 
+{% capture default_section_example %}
+<section class="sgds-section">
+    <div class="sgds-container">
+        <h6>Content Here</h6>
+    </div>
+</section>
+{% endcapture %}
 
 <h4 class="has-text-primary">Section is the main building block for all layouts. It can be used as direct children of <code>body</code></h4>
 <hr class="margin--bottom--lg margin--top--lg">
@@ -14,13 +21,7 @@ breadcrumb: General
 <div class="row">
     <div class="col">
         <div class="sgds-example is-marginless">
-            <section class="sgds-section">
-                <div class="sgds-container">
-                    <div class="sgds-notification is-position-relative">
-                        <h6>Content Here</h6>
-                    </div>
-                </div>
-            </section>
+            {{ default_section_example }}
         </div>
     </div>
 </div>
@@ -28,11 +29,7 @@ breadcrumb: General
 <p>Use sections as direct children of <code>body</code></p>
 {% highlight html %}
 <body>
-    <section class="sgds-section">
-        <div class="sgds-container">
-            <h6>Content Here</h6>
-        </div>
-    </section>
+    {{ default_section_example }}
 </body>
 {% endhighlight %}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy Snippet</button>
