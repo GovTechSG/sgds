@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.3] - 18-09-2019
+
+### Changes
+
+- Documentation re-org and improvements
+- Moved sgds-example and sgds-syntax classes out of sgds package.
+- #89 Added sgds prefix to navbar component
+- Updated language selector example in docs to use `<select>` elements
+
+### Fixes
+
+- #83 Main nav language selector gets misaligned when viewport is too wide (>1800px)
+- #85 Documentation for SGDS Steps
+- Fixed Masthead example
+
 ## [1.3.2] - 27-08-2019
 
 - Documentation updates
