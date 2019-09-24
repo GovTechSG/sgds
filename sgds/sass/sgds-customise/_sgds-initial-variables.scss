@@ -22,9 +22,9 @@ $white: hsl(0, 0%, 100%) !default;
 $orange: #d0021b !default;
 $yellow: #f5a623 !default;
 $green: #1ca161 !default;
-$cyan: #4372d6 !default;
-$blue: $cyan !default;
-$blue-light: lighten($cyan, 5%) !default;
+$cyan: #17a2b8 !default;
+$blue: #007bff !default;
+$blue-light: lighten(#007bff, 5%) !default;
 $purple: hsl(271, 100%, 71%) !default;
 $red: #d0021b !default;
 
