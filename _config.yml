@@ -19,15 +19,22 @@ plugins:
 
 collections_dir: collections
 collections:
-  layouts:
-    permalink: /docs/:path/
-    output: true
-  general:
-    permalink: /docs/:path/
-    output: true
   standard:
     permalink: /docs/:path/
     output: true
+    order: 1
+  layouts:
+    permalink: /docs/:path/
+    output: true
+    order: 2
+  general:
+    permalink: /docs/:path/
+    output: true
+    order: 3
+  helpers:
+    permalink: /docs/:path/
+    output: true
+    order: 4
   guides:
     permalink: /guides/:path/
     output: true

@@ -1,0 +1,76 @@
+---
+title: Colours
+layout: layout-docs
+colours:
+    - white
+    - black
+    - light
+    - dark
+    - primary
+    - secondary
+    - link
+    - info
+    - success
+    - warning
+    - danger
+---
+
+<h2 class="has-text-primary">SGDS Colour classes</h2>
+
+<p>
+    SGDS contains predefined classes that apply different colours to specific
+    elements. You can use these colour classes by adding <code>is-</code> or
+    <code>has-</code> prefixes to most elements.
+</p>
+
+<h3>Colour classes</h3>
+
+<ul>
+    {% for colour in page.colours %}
+    <li>{{ colour }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Text colours</h3>
+
+<div class="row">
+    <div class="col">
+        {% for colour in page.colours %}
+        <p
+            class="has-text-{{
+                colour
+            }} {% if colour == 'white' or colour == 'light' %}has-background-dark{% endif %}"
+        >
+            Use the <code>{{ colour }}</code> colour class to set text colour
+        </p>
+{% highlight html %}
+<p class="has-text-{{ colour }}">
+    Use the <code>{{ colour }}</code> colour class to set text colour
+</p>
+{% endhighlight %} 
+        {% endfor %}
+    </div>
+</div>
+
+<h3>Background colours</h3>
+
+<div class="row">
+    <div class="col">
+        {% for colour in page.colours %}
+        <p
+            class="has-background-{{
+                colour
+            }} {% if colour == 'white' or colour == 'light' %}has-text-dark{% else %}has-text-white{% endif %}"
+        >
+            Use the <code>{{ colour }}</code> colour class to set background
+            colour
+        </p>
+{% highlight html %}
+<p class="has-background-{{ colour }} has-text-white">
+    Use the <code>{{ colour }}</code> colour class to set background
+    colour
+</p>
+{% endhighlight %} 
+        {% endfor %}
+    </div>
+</div>
