@@ -1,5 +1,5 @@
 <template>
-    <section class="sgds-section">
+    <section class="sgds-section search-app">
         <div :style="{display: 'flex', justifyContent: 'center'}">
             <div class="lds-ellipsis" v-if="searching">
                 <div></div>
@@ -143,3 +143,9 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.search-app {
+    flex: 1 1 auto;
+}
+</style>

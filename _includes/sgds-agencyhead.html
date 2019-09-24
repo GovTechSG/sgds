@@ -1,69 +1,76 @@
 <div class="masthead-container is-fixed has-background-white" id="navbar" style="z-index:50;">
     {% include sgds-masthead.html %}
     <div class="sgds-container">
-    <nav class="sgds-navbar" role="navigation">
-        <div class="sgds-navbar-brand">
-            <a class="sgds-navbar-item" href="/">
-                <img src="/assets/img/logo_sgds.png" alt="">
-            </a>
-            <div class="sgds-navbar-burger burger" data-target="navbarMain">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div id="navbarMain" class="sgds-navbar-menu">
-            <div class="sgds-navbar-start">
-                <form action="/search/" method="get" class="is-hidden-desktop">
-                    {% include sgds-search-box.html %}
-                </form>
-                {%- assign links = site.data.navigation -%}
-                {%- for lvl1item in links -%}
-
-                {%- assign class = nil -%}
-                {%- if page.url contains lvl1item.url -%}
-                {%- assign class = 'is-active' -%}
-                {%- endif -%}
-                <a class="sgds-navbar-item is-uppercase {{class}} has-text-weight-semibold is-tab"
-                    href="{{ lvl1item.url }} ">
-                    {{ lvl1item.title }}
+        <nav class="sgds-navbar" role="navigation">
+            <div class="sgds-navbar-brand">
+                <a class="sgds-navbar-item" href="/">
+                    <img src="/assets/img/logo_sgds.png" alt="">
                 </a>
-
-                {%- endfor -%}
+                <div class="sgds-navbar-burger burger" data-target="navbarMain">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
+            <div id="navbarMain" class="sgds-navbar-menu">
+                <div class="sgds-navbar-start">
+                    <form action="/search/" method="get" class="is-hidden-desktop">
+                        {% include sgds-search-box.html %}
+                    </form>
+                    {%- assign links = site.data.navigation -%}
+                    {%- for lvl1item in links -%}
 
-            <div class="sgds-navbar-end">
-                <div class="sgds-navbar-item">
-                    <div class="buttons is-hidden-desktop">
-                        <a id="github-link" class="sgds-button is-text is-rounded is-small padding--none margin--right" href="https://github.com/govtechsg/sgds">
+                    {%- assign class = nil -%}
+                    {%- if page.url contains lvl1item.url -%}
+                    {%- assign class = 'is-active' -%}
+                    {%- endif -%}
+                    <a class="sgds-navbar-item is-uppercase {{class}} has-text-weight-semibold is-tab"
+                        href="{{ lvl1item.url }} ">
+                        {{ lvl1item.title }}
+                    </a>
+
+                    {%- endfor -%}
+                </div>
+
+                <div class="sgds-navbar-end">
+                    <div class="sgds-navbar-item">
+                        <div class="buttons is-hidden-desktop">
+                            <a id="github-link" class="sgds-button is-text is-rounded is-small padding--none margin--right" href="https://github.com/govtechsg/sgds">
+                                <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
+                            </a>
+                            <a id="install-link" class="sgds-button is-primary is-rounded is-small"
+                                href="/docs/getting-started"
+                            >
+                                Install Design System
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sgds-navbar-item">
+                        <a id="github-link" class="sgds-button is-text is-rounded is-small padding--none margin--right is-hidden-touch" href="https://github.com/govtechsg/sgds">
                             <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
                         </a>
-                        <a id="install-link" class="sgds-button is-primary is-rounded is-small"
-                            href="/docs/getting-started"
-                        >
+                    </div>
+                    <div class="sgds-navbar-item">
+                        <a id="install-link" class="sgds-button is-primary is-rounded is-small is-hidden-touch"
+                            href="/docs/getting-started">
                             Install Design System
                         </a>
                     </div>
-                    <a id="github-link" class="sgds-button is-text is-rounded is-small padding--none margin--right is-hidden-touch" href="https://github.com/govtechsg/sgds">
-                        <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
-                    </a>
-                    <a id="install-link" class="sgds-button is-primary is-rounded is-small is-hidden-touch"
-                        href="/docs/getting-started">
-                        Install Design System
-                    </a>
-                    {% if page.layout != 'search' %}
-                    <button id="main-search" class="sgds-button is-white is-large is-hidden-touch search-toggle" data-target="searchbar-main">
-                        <span class="sgds-icon sgds-icon-search"></span>
-                    </button>
+                    {% if page.url contains 'search' %}
+                    <div class="sgds-navbar-item">
+                        <button class="sgds-button is-white is-large is-hidden-touch" disabled></button>
+                    </div>
                     {% else %}
-
-                    <button class="sgds-button is-white is-large is-hidden-touch" disabled></button>
+                    <div class="sgds-navbar-item">
+                        <button id="main-search" class="sgds-button is-white is-large is-hidden-touch search-toggle" data-target="searchbar-main">
+                            <span class="sgds-icon sgds-icon-search"></span>
+                        </button>
+                    </div>
                     {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
-    
+        </nav>
         <div class="row is-hidden-touch hide"  id="searchbar-main">
             <div class="col">
                 <hr class="margin--bottom--sm">
@@ -72,7 +79,6 @@
                 </form>
             </div>
         </div>
-    
     </div>
 </div>
 
