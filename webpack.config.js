@@ -82,6 +82,8 @@ module.exports = env => {
   if (env.site) {
     config.entry["apps/build/vue-search-app"] =
       "./apps/src/search/vue-search-app.js";
+    config.entry["apps/build/main"] = "./apps/src/main";
+    config.entry["apps/build/docs"] = "./apps/src/docs";
     config.module.rules.push({
       test: /\.vue$/,
       loader: "vue-loader"
