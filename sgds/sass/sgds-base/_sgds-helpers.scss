@@ -179,20 +179,11 @@ $alignments: ("centered": "center", "justified": "justify", "left": "left", "rig
   }
 }
 
-.has-text-weight-light {
-  font-weight: $weight-light !important;
-}
 
-.has-text-weight-normal {
-  font-weight: $weight-normal !important;
-}
-
-.has-text-weight-semibold {
-  font-weight: $weight-semibold !important;
-}
-
-.has-text-weight-bold {
-  font-weight: $weight-bold !important;
+@each $name, $fontweight in $fontweights {
+  .has-text-#{$name} {
+    font-weight: $fontweight !important;
+  }
 }
 
 // Visibility
