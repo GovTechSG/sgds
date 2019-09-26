@@ -51,16 +51,19 @@ redirect_from:
 
 <h4 class="has-text-primary margin--bottom">Installing SGDS</h4>
 <h5 class="margin--bottom">
-    Install in browsers using CDN
+    Install directly in browsers using a free and highly available CDN:
 </h5>
 <h6>CSS</h6>
 {% highlight html %}
 <head>
     ...
+    <!-- jsDelivr -->
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/sgds-govtech@{{ site.sgds-version }}/css/sgds.css"
     />
+    <!-- Or unpkg -->
+    <link rel="stylesheet" href="https://unpkg.com/sgds-govtech@{{ site.sgds-version }}/css/sgds.css" />
     ...
 </head>
 {% endhighlight %}
@@ -75,7 +78,11 @@ redirect_from:
     ...
     <!-- Make sure jQuery is loaded before sgds.js -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- jsDelivr -->
     <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@{{ site.sgds-version }}/js/sgds.js"></script>
+    <!-- Or unpkg -->
+    <script src="https://unpkg.com/sgds-govtech@{{ site.sgds-version }}/js/sgds.js"></script>
     ...
 </body>
 {% endhighlight %}
@@ -84,10 +91,9 @@ redirect_from:
 
 <h5 class="margin--bottom">Install using npm</h5>
 <p>
-    npm is a package manager for Nodejs, and hosts the libraries for many
-    frontend projects. Design System maintains a package for you to utilize the
-    compiled files on your project. This is especially useful if you use a build
-    tool for your frontend, such as Webpack
+    Frontend developers can use npm to download sgds and use it as a dependency in their projects.
+    Using npm is especially useful for when using a module bundler or build tool for your frontend,
+    such as <a href="https://webpack.js.org">Webpack</a>.
 </p>
 <ul>
     <li class="margin--bottom">
@@ -105,22 +111,22 @@ redirect_from:
         <code>npm install sgds-govtech</code>
     </li>
     <li class="margin--bottom">
-        This will generate <code>node_modules/sgds-govtech</code> in your site
-        folder 
+        This will download sgds into <code>node_modules/sgds-govtech</code> in your current folder:
 {%- highlight bash -%} 
 site/node_modules/sgds-govtech/ 
   ├── css/
   ├── fonts/
   ├── js/ 
 {%- endhighlight -%}
+        You can then load these assets into your frontend projects.
     </li>
     <li>
         If you use a module bundler like Webpack, import sgds in your entry point: 
 {% highlight javascript %}
 import "sgds-govtech/css/sgds.css"; 
-import "sgds-govtech/js/sgds"; // Do not use with other web frameworks* 
+import "sgds-govtech/js/sgds"; // Do not use with other web frameworks!
 {% endhighlight %}
-        Note that usage with frameworks such as React, Vue or Angular is discouraged since they
+        *Note that usage with frameworks such as React, Vue or Angular is discouraged since they
         manipulate the DOM in their own environments. Framework-specific 
         implementations are in early development and can be found at
         <a href="https://github.com/govtechsg/sgds-govtech-react">
