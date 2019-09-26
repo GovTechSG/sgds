@@ -5,147 +5,152 @@ category: General
 icon: typography
 ---
 
-<h4 class="has-text-primary">Typography is used to create clear hierarchies and purposeful alignments that guide users through the website</h4>
+<h4 class="has-text-primary">
+    Use these typography styles to create clear hierarchies and purposeful alignments
+    that guide users through your content.
+</h4>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
-<p>Design System uses <a href="https://fonts.google.com/?query=Lato" target="_blank">Lato</a> as the main typeface, which is an open source font provided by Google <a href="https://fonts.google.com/?query=Lato" target="_blank">here</a>.</p>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>rem</th>
-                <th>pixels</th>
-                <th>Actual size</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>5.25</td>
-                <td>84</td>
-                <td><h1 class="display">Display</h1></td>
-            </tr>
-            <tr>
-                <td>3.375</td>
-                <td>54</td>
-                <td><h1>Header 1</h1></td>
-            </tr>
-            <tr>
-                <td>2.75</td>
-                <td>44</td>
-                <td><h2>Header 2</h2></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>32</td>
-                <td><h3>Header 3</h3></td>
-            </tr>
-            <tr>
-                <td>1.625</td>
-                <td>26</td>
-                <td><h4>Header 4</h4></td>
-            </tr>
-            <tr>
-                <td>1.375</td>
-                <td>22</td>
-                <td><h5>Header 5</h5></td>
-            </tr>
-            <tr>
-                <td>1.25</td>
-                <td>20</td>
-                <td><h6>Header 6</h6></td>
-            </tr>
-            <tr>
-                <td>1.125</td>
-                <td>18</td>
-                <td><p>Paragraph</p></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>16</td>
-                <td><small>small / Base font size</small></td>
-            </tr>
-            </tbody>
-        </table>
+<p>
+    Design System uses
+    <a href="https://fonts.google.com/?query=Lato" target="_blank">Lato</a> as
+    its main typeface. Lato is an open source font provided by Google.
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>rem</th>
+            <th>pixels</th>
+            <th>Actual size</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>5.25</td>
+            <td>84</td>
+            <td><h1 class="display">Display</h1></td>
+        </tr>
+        <tr>
+            <td>3.375</td>
+            <td>54</td>
+            <td><h1>Header 1</h1></td>
+        </tr>
+        <tr>
+            <td>2.75</td>
+            <td>44</td>
+            <td><h2>Header 2</h2></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>32</td>
+            <td><h3>Header 3</h3></td>
+        </tr>
+        <tr>
+            <td>1.625</td>
+            <td>26</td>
+            <td><h4>Header 4</h4></td>
+        </tr>
+        <tr>
+            <td>1.375</td>
+            <td>22</td>
+            <td><h5>Header 5</h5></td>
+        </tr>
+        <tr>
+            <td>1.25</td>
+            <td>20</td>
+            <td><h6>Header 6</h6></td>
+        </tr>
+        <tr>
+            <td>1.125</td>
+            <td>18</td>
+            <td><p>Paragraph</p></td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>16</td>
+            <td><small>small text (base font size)</small></td>
+        </tr>
+    </tbody>
+</table>
 
-
-<hr class="margin--bottom--lg margin--top--lg">
-
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
-<p>You can apply the <code>display</code> class to any text you like to have it prominent. For the rest of the headings, replace <code>h1</code> tag with the size you wish to use from above accordingly.</p>
 {% highlight html %}
 <h1 class="display">display</h1>
-<h1>h1</h1>
-<h2>h2</h2>
-<h3>h3</h3>
-<h4>h4</h4>
-<h5>h5</h5>
-<h6>h6</h6>
-<small>small</small>
+<h1>header 1</h1>
+<h2>header 2</h2>
+<h3>header 3</h3>
+<h4>header 4</h4>
+<h5>header 5</h5>
+<h6>header 6</h6>
+<p>paragraph</p>
+<small>small text</small>
 {% endhighlight %}
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 <h5 class="has-text-weight-semibold margin--bottom">Style</h5>
 <table class="table">
     <thead>
-    <tr>
-        <th>Modifier</th>
-        <th>Description</th>
-    </tr>
+        <tr>
+            <th>Modifier CSS Class</th>
+            <th>Description</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>has-text-primary</td>
-        <td>Use when you want to apply primary color to your text</td>
-    </tr>
-    <tr>
-        <td>has-text-primary</td>
-        <td>Use when you want to apply secondary color to your text</td>
-    </tr>
-    <tr>
-        <td>has-text-weight-light</td>
-        <td>Use when you want to transform text weight to light</td>
-    </tr>
-    <tr>
-        <td>has-text-weight-semibold</td>
-        <td>Use when you want to transform text weight to semi-bold</td>
-    </tr>
-    <tr>
-        <td>has-text-weight-bold</td>
-        <td>Use when you want to transform text weight to bold</td>
-    </tr>
-    <tr>
-        <td>is-lowercase</td>
-        <td>Use when you want to transform all characters to lowercase</td>
-    </tr>
-    <tr>
-        <td>is-uppercase</td>
-        <td>Use when you want to transform all characters to uppercase</td>
-    </tr>
-    <tr>
-        <td>is-italic</td>
-        <td>Use when you want to transform all characters to italic</td>
-    </tr>
-    <tr>
-        <td>has-text-centered</td>
-        <td>Use when you want to make the text centered</td>
-    </tr>
-    <tr>
-        <td>has-text-justified</td>
-        <td>Use when you want to make the text justified</td>
-    </tr>
-    <tr>
-        <td>has-text-left</td>
-        <td>Use when you want to make the text aligned to the left</td>
-    </tr>
-    <tr>
-        <td>has-text-right</td>
-        <td>Use when you want to make the text aligned to the right</td>
-    </tr>
+        <tr>
+            <td>has-text-primary</td>
+            <td>To apply primary color to your text</td>
+        </tr>
+        <tr>
+            <td>has-text-primary</td>
+            <td>To apply secondary color to your text</td>
+        </tr>
+        <tr>
+            <td>has-text-weight-light</td>
+            <td>To transform text weight to light</td>
+        </tr>
+        <tr>
+            <td>has-text-weight-semibold</td>
+            <td>To transform text weight to semi-bold</td>
+        </tr>
+        <tr>
+            <td>has-text-weight-bold</td>
+            <td>To transform text weight to bold</td>
+        </tr>
+        <tr>
+            <td>is-lowercase</td>
+            <td>To transform all characters to lowercase</td>
+        </tr>
+        <tr>
+            <td>is-uppercase</td>
+            <td>To transform all characters to uppercase</td>
+        </tr>
+        <tr>
+            <td>is-italic</td>
+            <td>To transform all characters to italic</td>
+        </tr>
+        <tr>
+            <td>has-text-centered</td>
+            <td>To make the text centered</td>
+        </tr>
+        <tr>
+            <td>has-text-justified</td>
+            <td>To make the text justified</td>
+        </tr>
+        <tr>
+            <td>has-text-left</td>
+            <td>To make the text aligned to the left</td>
+        </tr>
+        <tr>
+            <td>has-text-right</td>
+            <td>To make the text aligned to the right</td>
+        </tr>
     </tbody>
 </table>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
 {%- include sgds-feedback.html -%}
