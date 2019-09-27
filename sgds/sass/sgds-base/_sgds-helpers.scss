@@ -30,7 +30,7 @@
   @each $size in $sizes {
     $i: index($sizes, $size);
 
-    .is-size-#{$i}#{if($target == "", "", "-" + $target)} {
+    .is-size-#{$i - 1}#{if($target == "", "", "-" + $target)} {
       font-size: $size !important;
     }
   }
