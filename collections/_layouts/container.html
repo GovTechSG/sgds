@@ -4,7 +4,30 @@ layout: layout-docs
 category: layouts
 icon: container
 ---
+{% capture default_container_example %}
+<section class="sgds-section">
+    <div class="sgds-container has-background-light">
+        <div class="sgds-notification is-primary is-position-relative">
+            default container
+        </div>
+    </div>
+</section>
+{% endcapture %}
+{% capture default_container_isFluid_example %}
+<section class="sgds-section">
+    <div class="sgds-container is-fluid has-background-light">
+        <div class="sgds-notification is-primary is-position-relative">
+            fluid container
+        </div>
+    </div>
+</section>
+{% endcapture %}
 
+
+<<<<<<< HEAD
+<h4 class="has-text-primary">Container is an element designed to contain page elements to a reasonable maximum width based on the size of a user's screen. This is useful to couple with other UI elements like grid or menu to restrict their width to a reasonable size for display</h4>
+<hr class="margin--bottom--lg margin--top--lg">
+=======
 <h4 class="has-text-primary">
     The container is an element designed to contain page elements to a
     reasonable maximum width based on the size of a user's screen. This is
@@ -12,10 +35,14 @@ icon: container
     content width to a reasonable size.
 </h4>
 <hr class="margin--bottom--lg margin--top--lg" />
+>>>>>>> upstream/dev
 
 <div class="row">
     <div class="col">
         <div class="sgds-example is-marginless">
+<<<<<<< HEAD
+            {{default_container_example}}
+=======
             <section class="sgds-section">
                 <div class="sgds-container has-background-light">
                     <div
@@ -25,12 +52,16 @@ icon: container
                     </div>
                 </div>
             </section>
+>>>>>>> upstream/dev
         </div>
         <p class="margin--top">
             If you do not want a maximum width but keep the 32px margin on both
             sides, add <code>is-fluid</code>.
         </p>
         <div class="sgds-example is-marginless">
+<<<<<<< HEAD
+            {{default_container_isFluid_example}}
+=======
             <section class="sgds-section">
                 <div class="sgds-container is-fluid has-background-light">
                     <div
@@ -40,6 +71,7 @@ icon: container
                     </div>
                 </div>
             </section>
+>>>>>>> upstream/dev
         </div>
     </div>
 </div>
@@ -55,11 +87,8 @@ icon: container
     <li>.sgds-footer</li>
 </ul>
 {%- highlight html -%}
-<section class="sgds-section">
-    <div class="sgds-container">
-        default container
-    </div>
-</section>
+{{default_container_example}}
+{{default_container_isFluid_example}}
 {%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"

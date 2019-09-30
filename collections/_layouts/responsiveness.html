@@ -1,0 +1,130 @@
+---
+title: Responsiveness
+subtitle: Subtitle
+layout: layout-docs
+category: layouts
+icon: container
+breadcrumb: General
+---
+
+{% capture is-mobile-example %}
+<div class="sgds-container">
+  <div class="row is-mobile">
+    <div class="col">1</div>
+    <div class="col">1</div>
+    <div class="col">1</div>
+    <div class="col">1</div>
+  </div>
+</div>
+{% endcapture %}
+
+{% capture is-desktop-example %}
+<div class="sgds-container">
+  <div class="row is-desktop">
+    <div class="col">1</div>
+    <div class="col">1</div>
+    <div class="col">1</div>
+    <div class="col">1</div>
+  </div>
+</div>
+{% endcapture %}
+
+{% capture is-device-example %}
+<div class="sgds-container">
+  <div class="row is-mobile">
+    <div class="col is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+        <code>is-three-quarters-mobile</code>
+        <br><code>is-two-thirds-tablet</code>
+        <br><code>is-half-desktop</code>
+        <br><code>is-one-third-widescreen</code>
+        <br><code>is-one-quarter-fullhd</code>
+    </div>
+    <div class="col">1</div>
+  </div>
+</div>
+{% endcapture %}
+
+<h4 class="has-text-primary">
+  Handle different column layouts for each breakpoint
+</h4>
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="has-text-weight-semibold margin--bottom--sm">Mobile Columns</h5>
+<p>
+  By default, columns are only activated from tablet onwards. This means columns
+  are stacked on top of each other on mobile. If you want columns to work on
+  mobile too, just add the <code>is-mobile</code> modifier on the
+  <code>col</code> container:
+</p>
+<div class="sgds-example is-marginless">
+  {{ is-mobile-example }}
+</div>
+
+<div class="sgds-accordion-container margin--top--lg">
+  <div class="sgds-accordion">
+    <a class="sgds-accordion-header">
+      Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
+    </a>
+    <div class="sgds-accordion-body">
+{% highlight html %}{{ is-mobile-example }}{% endhighlight %}
+      <button
+        class="sgds-button clipboard-btn is-primary is-outlined"
+        data-clipboard-target=".highlight0"
+      >
+        Copy Snippet
+      </button>
+    </div>
+  </div>
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<p>
+  If you only want columns on desktop upwards, just use the
+  <code>is-desktop</code> modifier on the <code>col</code> container:
+</p>
+<div class="sgds-example is-marginless">
+  {{ is-desktop-example }}
+</div>
+<div class="sgds-accordion-container margin--top--lg">
+  <div class="sgds-accordion">
+    <a class="sgds-accordion-header">
+      Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
+    </a>
+    <div class="sgds-accordion-body">
+{% highlight html %}{{ is-desktop-example }}{% endhighlight %}
+      <button
+        class="sgds-button clipboard-btn is-primary is-outlined"
+        data-clipboard-target=".highlight1"
+      >
+        Copy Snippet
+      </button>
+    </div>
+  </div>
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="has-text-weight-semibold margin--bottom--sm">Different column sizes per breakpoint</h5>
+<p>
+    You can define a column size for each viewport size: mobile, tablet, and desktop.
+</p>
+<div class="sgds-example is-marginless">
+    {{is-device-example}}
+</div>
+<div class="sgds-accordion-container margin--top--lg">
+    <div class="sgds-accordion">
+        <a class="sgds-accordion-header">
+        Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+{% highlight html %}{{is-device-example}}{% endhighlight %}
+        <button
+            class="sgds-button clipboard-btn is-primary is-outlined"
+            data-clipboard-target=".highlight2"
+        >
+            Copy Snippet
+        </button>
+        </div>
+    </div>
+</div>
