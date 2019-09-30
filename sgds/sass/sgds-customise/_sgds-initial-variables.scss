@@ -22,9 +22,9 @@ $white: hsl(0, 0%, 100%) !default;
 $orange: #d0021b !default;
 $yellow: #f5a623 !default;
 $green: #1ca161 !default;
-$cyan: #4372d6 !default;
-$blue: $cyan !default;
-$blue-light: lighten($cyan, 5%) !default;
+$cyan: #17a2b8 !default;
+$blue: #007bff !default;
+$blue-light: lighten(#007bff, 5%) !default;
 $purple: hsl(271, 100%, 71%) !default;
 $red: #d0021b !default;
 
@@ -67,13 +67,14 @@ $size-5-lh: 1.875rem !default;
 $size-6: 1.3rem !default;
 $size-6-lh: 1.5rem !default;
 
-//p base font size
+//p 
 $size-7: 1.25rem !default;
 $size-7-lh: 2rem !default;
 $size-7-lh-content: 2.2rem !default;
 
-//small
+//small / base font-size
 $size-8: 1rem !default;
+
 
 //eyebrow
 $size-eyebrow: 1rem !default;
@@ -91,6 +92,8 @@ $weight-normal: 400 !default;
 $weight-medium: 500 !default;
 $weight-semibold: 600 !default;
 $weight-bold: 700 !default;
+$weight-extrabold: 800 !default;
+$weight-black: 900 !default;
 
 // Responsiveness
 

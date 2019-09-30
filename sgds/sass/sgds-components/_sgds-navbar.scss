@@ -63,7 +63,6 @@ $navbar-breakpoint: $desktop !default;
   min-height: $navbar-height;
   position: relative;
   z-index: $navbar-z;
-  font-size: $navbar-font-size;
 
   @each $name, $pair in $colors {
     $color: nth($pair, 1);
@@ -84,7 +83,7 @@ $navbar-breakpoint: $desktop !default;
           &:focus,
           &:hover,
           &.is-active {
-            background-color: $navbar-item-hover-background-color;
+            background-color: darken($color, 5%);
             color: $color-invert;
           }
         }
@@ -128,7 +127,7 @@ $navbar-breakpoint: $desktop !default;
         .sgds-navbar-item.has-dropdown:focus .sgds-navbar-link,
         .sgds-navbar-item.has-dropdown:hover .sgds-navbar-link,
         .sgds-navbar-item.has-dropdown.is-active .sgds-navbar-link {
-          background-color: $navbar-item-hover-background-color;
+          background-color: darken($color, 5%);
           color: $color-invert;
         }
 
@@ -158,7 +157,6 @@ $navbar-breakpoint: $desktop !default;
 
   &.is-fixed-top {
     @include navbar-fixed;
-
     top: 0;
   }
 }
@@ -182,7 +180,7 @@ body {
   a.sgds-navbar-item {
     &:focus,
     &:hover {
-      background-color: $navbar-item-hover-background-color;
+      background-color: transparent;
     }
   }
 }
@@ -197,9 +195,7 @@ body {
 
 .sgds-navbar-burger {
   color: $navbar-burger-color;
-
   @include hamburger($navbar-height);
-
   margin-left: auto;
 }
 
@@ -212,7 +208,7 @@ body {
   color: $navbar-item-color;
   display: block;
   line-height: 1.5;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 0.75rem;
   position: relative;
 
   .sgds-icon {
@@ -232,7 +228,6 @@ a.sgds-navbar-item,
   &.is-active {
     background-color: $navbar-item-hover-background-color;
     color: $navbar-item-hover-color;
-    font-weight: $weight-semibold;
   }
 }
 
@@ -276,23 +271,21 @@ a.sgds-navbar-item,
 
     &:focus,
     &:hover {
-      background-color: $navbar-item-hover-background-color;
-      border-bottom-color: $navbar-tab-active-border-bottom-color;
-      border-bottom-style: $navbar-tab-active-border-bottom-style;
+      background-color: $navbar-tab-hover-background-color;
+      border-bottom-color: $navbar-tab-hover-border-bottom-color;
       border-bottom-width: $navbar-tab-active-border-bottom-width;
       padding-bottom: calc(0.5rem - #{$navbar-tab-active-border-bottom-width});
-
       @include touch {
         border-bottom-color: transparent;
       }
     }
 
     &.is-active {
-      background-color: $navbar-item-hover-background-color;
+      background-color: $navbar-tab-active-background-color;
       border-bottom-color: $navbar-tab-active-border-bottom-color;
       border-bottom-style: $navbar-tab-active-border-bottom-style;
       border-bottom-width: $navbar-tab-active-border-bottom-width;
-      color: $primary;
+      color: $navbar-tab-active-color;
       padding-bottom: calc(0.5rem - 1px);
 
       @include touch {
@@ -447,7 +440,6 @@ a.sgds-navbar-item,
 
     &.is-spaced {
       padding: $navbar-padding-vertical $navbar-padding-horizontal;
-
       .sgds-navbar-start,
       .sgds-navbar-end {
         align-items: center;

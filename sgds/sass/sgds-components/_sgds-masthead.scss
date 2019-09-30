@@ -20,11 +20,11 @@
     color: $grey-dark;
     display: flex;
     align-items: center;
+    &:hover{
+      color: darken($grey-dark, 20%);
+    }
   }
-  a:hover {
-    color: currentColor;
-    font-weight: $weight-semibold;
-  }
+  
 }
 .language-selector{
   background: transparent;
