@@ -1,6 +1,6 @@
 # Description
 
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+Please include a summary of the change and where applicable, the issue you are addressing. Please also include relevant motivation and context. List any dependencies that are required for this change. If necessary, please update documentation (found under the `collections` folder) as well.
 
 Fixes # (issue number)
 
@@ -17,4 +17,4 @@ Please check on the checkbox for those that are relevant (put x between the brac
 
 ## How Has This Been Tested?
 
-Please describe or list the test cases that you ran to verify your changes, and provide instructions so we can reproduce. 
+Please describe or list the test cases that you ran to verify your changes, and provide instructions so we can reproduce them. 
