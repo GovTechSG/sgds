@@ -204,7 +204,7 @@ icon: grid
 <hr class="margin--bottom--lg margin--top--lg">
 
 <h5 class="has-text-weight-semibold margin--bottom">Style</h5>
-<table class="table">
+<table class="table is-bordered is-size-8">
     <thead>
     <tr>
         <th>Modifier</th>
@@ -217,6 +217,18 @@ icon: grid
         <td>To divide the grid into 12 columns</td>
     </tr>
     <tr>
+        <th colspan="2">If you want to change the size of a single column, you can use one of the following classes:</th>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <code>is-half</code><br>
+            <code>is-one-thirds</code> to <code>is-two-thirds</code><br>
+            <code>is-one-quarters</code> to <code>is-three-quarters</code><br>
+            <code>is-one-fifth</code> to <code>is-four-fifths</code><br>
+            <code>is-full</code>
+        </td>
+    </tr>
+    <tr>
         <td><code>is-offset-1</code> to <code>is-offset-12</code></td>
         <td>To create horizontal space around column elements</td>
     </tr>
@@ -226,6 +238,18 @@ icon: grid
     </tr>
     </tbody>
 </table>
+
+
+<div class="sgds-notification is-info margin--top--lg is-hidden-touch">
+    <div class="sgds-notification-detail">
+        <span class="sgds-icon sgds-icon-expand-alt is-size-4"></span>
+        <div class="sgds-notification-content">
+            <small>You can combine the above modifier with responsiveness classes to hide/show elements.<br>
+                <a href="/docs/responsiveness/">See Responsiveness documentation</a>
+            </small>
+        </div>
+    </div>
+</div>
 
 <hr class="margin--bottom--lg margin--top--lg">
 
