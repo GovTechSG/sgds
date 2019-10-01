@@ -41,7 +41,7 @@ coloursList:
 <div class="row is-multiline">
     {%- for colour in page.coloursList -%}
     <div class="col is-3 has-background-{{colour.name}}
-        {% if colour.name == 'white' or colour.name == 'light' -%}
+        {% if colour.name == 'white' or colour.name == 'light' or colour.name == 'warning' -%}
             has-text-dark
         {%- else -%}
             has-text-white
@@ -54,7 +54,11 @@ coloursList:
     {%- endfor -%}
 </div>
 
-<p><sup>1</sup>The warning </p>
+<p>
+    <sup>1</sup>The amber colour used for <code>warning</code> does not meet WCAG contrast 
+    requirements when paired with white, e.g. white text within elements with
+    <code>.has-background-warning</code>
+</p>
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
