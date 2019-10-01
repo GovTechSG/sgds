@@ -20,7 +20,7 @@ Please provide detailed steps for reproducing the issue.
 
 ## Context
 
-Please provide any relevant information about your setup. This is important in case the issue is not reproducible except for under certain conditions.
+Please provide any relevant information about your setup. This is important in case the issue is not reproducible except under certain conditions.
 
 
 ## Failure Logs
