@@ -20,7 +20,6 @@
 .sgds-example{
   width:100%;
   margin:0.75rem;
-  cursor:pointer;
   @include mobile(){
     margin:0;
   }
@@ -67,6 +66,16 @@
     &.has-text-centered{
       text-align:center;
     }
+    &.is-mobile{
+      &:before {
+        @include example-tag('.row.is-mobile');
+      }
+    }
+    &.is-desktop{
+      &:before {
+        @include example-tag('.row.is-desktop');
+      }
+    }
   }
   .col {
     @include example-control(0rem, left);
@@ -77,24 +86,16 @@
       @include example-tag('.col');
     }
     @for $i from 2 through 12 {
-      &.is-#{$i}{
-        &:before{
-          @include example-tag('.col' + '.is-' + '#{$i}');
+      @for $j from 2 through 12{
+        &.is-#{$i}{
+          &:before{
+            @include example-tag('.col' + '.is-' + '#{$i}');
+          }
         }
-      }
-      &.is-6.is-offset-#{$i}{
-        &:before{
-          @include example-tag('.col' + '.is-6' + '.is-offset-' + '#{$i}');
-        }
-      }
-      &.is-5.is-offset-#{$i}{
-        &:before{
-          @include example-tag('.col' + '.is-5' + '.is-offset-' + '#{$i}');
-        }
-      }
-      &.is-3.is-offset-#{$i}{
-        &:before{
-          @include example-tag('.col' + '.is-3' + '.is-offset-' + '#{$i}');
+        &.is-#{$j}.is-offset-#{$i}{
+          &:before{
+            @include example-tag('.col' + '.is-'+ '#{$j}' + '.is-offset-' + '#{$i}');
+          }
         }
       }
     }
@@ -121,6 +122,25 @@
     width: 100%;
     .sgds-container{
       width: auto;
+    }
+  }
+  
+}
+
+
+.responsive-table-cell{
+  padding:0.5rem;
+  span{
+    display: flex;
+    justify-content:center;
+    align-items: center; 
+    background-color: $info;
+    padding: 1rem;
+    height: 60px;
+    color: white;
+    &.unchanged{
+      background-color: $grey-lighter;
+      color: $grey-dark;
     }
   }
 }

@@ -1,18 +1,29 @@
 ---
 title: Colours
 layout: layout-docs
-colours:
-    - white
-    - black
-    - light
-    - dark
-    - primary
-    - secondary
-    - link
-    - info
-    - success
-    - warning
-    - danger
+colours-list:
+    white:
+        hex: '#ffffff'
+    black:
+        hex: '#000000'
+    light:
+        hex: '#f5f5f5'
+    dark:
+        hex: '#323232'
+    primary:
+        hex: '#6037b3'
+    secondary:
+        hex: '#4675d3'
+    link:
+        hex: '#007bff'
+    info:
+        hex: '#17a2b8'
+    success:
+        hex: '#1ca161'
+    warning:
+        hex: '#f5a623'
+    danger:
+        hex: '#d0021b'
 ---
 
 <h2 class="has-text-primary">SGDS Colour classes</h2>
@@ -23,54 +34,86 @@ colours:
     <code>has-</code> prefixes to most elements.
 </p>
 
-<h3>Colour classes</h3>
+<hr class="margin--bottom--lg margin--top--lg" />
 
-<ul>
-    {% for colour in page.colours %}
-    <li>{{ colour }}</li>
+<h3 class="margin--bottom--lg has-text-primary">Colour classes</h3>
+
+<div class="row is-multiline">
+    {% for colour in page.colours-list %}
+    <div class="col is-3 has-background-{{colour[0]}} {% if colour[0] == 'white' or colour[0] == 'light' %}has-text-dark{% else %}has-text-white{% endif %}">
+        <p>
+            <span class="is-capitalized">{{colour[0]}}</span><br>
+            {{colour[1].hex}} {% if colour[0] == 'warning' %}<sup>1</sup>{% endif %}
+        </p>
+
+    </div>
     {% endfor %}
-</ul>
-
-<h3>Text colours</h3>
-
-<div class="row">
-    <div class="col">
-        {% for colour in page.colours %}
-        <p
-            class="has-text-{{
-                colour
-            }} {% if colour == 'white' or colour == 'light' %}has-background-dark{% endif %}"
-        >
-            Use the <code>{{ colour }}</code> colour class to set text colour
-        </p>
-{% highlight html %}
-<p class="has-text-{{ colour }}">
-    Use the <code>{{ colour }}</code> colour class to set text colour
-</p>
-{% endhighlight %} 
-        {% endfor %}
-    </div>
 </div>
 
-<h3>Background colours</h3>
+<p><sup>1</sup> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, tempore?</p>
 
-<div class="row">
-    <div class="col">
-        {% for colour in page.colours %}
-        <p
-            class="has-background-{{
-                colour
-            }} {% if colour == 'white' or colour == 'light' %}has-text-dark{% else %}has-text-white{% endif %}"
-        >
-            Use the <code>{{ colour }}</code> colour class to set background
-            colour
-        </p>
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h3 class="margin--bottom--lg has-text-primary">Text colours</h3>
+
+<table class="sgds-table">
+    <thead>
+        <tr>
+            <td>Class</td>
+            <td>Example</td>
+            <td>Usage</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for colour in page.colours-list %}
+            <tr>
+                <td>has-text-{{colour[0]}}</td>
+                <td>     
+                    <small class="has-text-{{
+                        colour[0]
+                    }} {% if colour[0] == 'white' or colour[0] == 'light' %}has-background-dark{% endif %}">
+                        Use the <code>{{ colour[0] }}</code> colour class to set text colour
+                    </small>
+                </td>
+                <td>
 {% highlight html %}
-<p class="has-background-{{ colour }} has-text-white">
-    Use the <code>{{ colour }}</code> colour class to set background
-    colour
+<p class="has-text-{{ colour[0] }}">
+    Use the <code>{{ colour[0] }}</code> colour class to set text colour
 </p>
 {% endhighlight %} 
+                </td>
+            </tr>
         {% endfor %}
-    </div>
-</div>
+    </tbody>
+</table>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h3 class="margin--bottom--lg has-text-primary">Background colours</h3>
+
+<table class="sgds-table">
+    <thead>
+        <tr>
+            <td>Class</td>
+            <td>Example</td>
+            <td>Usage</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for colour in page.colours-list %}
+            <tr>
+                <td>has-text-{{colour[0]}}</td>
+                <td class="has-background-{{colour[0]}} {% if colour[0] == 'light' or colour[0] == 'white' %}has-text-dark{% else %}has-text-white{% endif %}">
+                    Use the <code>{{ colour[0] }}</code> colour class to set background colour
+                </td>
+                <td>
+{% highlight html %}
+<p class="has-background-{{ colour[0] }}">
+    Use the <code>{{ colour[0] }}</code> colour class to set background colour
+</p>
+{% endhighlight %} 
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

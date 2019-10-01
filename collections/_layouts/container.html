@@ -4,6 +4,21 @@ layout: layout-docs
 category: layouts
 icon: container
 ---
+{% capture default_container_example %}
+<section class="sgds-section">
+    <div class="sgds-container">
+        default container
+    </div>
+</section>
+{% endcapture %}
+{% capture default_container_isFluid_example %}
+<section class="sgds-section">
+    <div class="sgds-container is-fluid">
+        fluid container
+    </div>
+</section>
+{% endcapture %}
+
 
 <h4 class="has-text-primary">
     The container is an element designed to contain page elements to a
@@ -16,30 +31,14 @@ icon: container
 <div class="row">
     <div class="col">
         <div class="sgds-example is-marginless">
-            <section class="sgds-section">
-                <div class="sgds-container has-background-light">
-                    <div
-                        class="sgds-notification is-primary is-position-relative"
-                    >
-                        default container
-                    </div>
-                </div>
-            </section>
+            {{default_container_example}}
         </div>
         <p class="margin--top">
             If you do not want a maximum width but keep the 32px margin on both
             sides, add <code>is-fluid</code>.
         </p>
         <div class="sgds-example is-marginless">
-            <section class="sgds-section">
-                <div class="sgds-container is-fluid has-background-light">
-                    <div
-                        class="sgds-notification is-primary is-position-relative"
-                    >
-                        fluid container
-                    </div>
-                </div>
-            </section>
+            {{default_container_isFluid_example}}
         </div>
     </div>
 </div>
@@ -54,16 +53,29 @@ icon: container
     <li>.sgds-section</li>
     <li>.sgds-footer</li>
 </ul>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
+<h6>Default SGDS Container</h6>
 {%- highlight html -%}
-<section class="sgds-section">
-    <div class="sgds-container">
-        default container
-    </div>
-</section>
+{{default_container_example}}
+
 {%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight0"
+>
+    Copy Snippet
+</button>
+
+<h6 class="margin--top--lg">is-fluid SGDS Container</h6>
+{%- highlight html -%}
+{{default_container_isFluid_example}}
+{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight1"
 >
     Copy Snippet
 </button>
