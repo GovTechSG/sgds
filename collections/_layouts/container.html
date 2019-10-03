@@ -11,7 +11,9 @@ icon: container
     default container
   </div>
 </section>
-{% endcapture %} {% capture default_container_isFluid_example %}
+{% endcapture %} 
+
+{% capture default_container_is_fluid_example %}
 <section class="sgds-section">
   <div class="sgds-container is-fluid">
     fluid container
@@ -20,18 +22,29 @@ icon: container
 {% endcapture %}
 
 <h4 class="has-text-primary">
-  The container is an element designed to contain page elements to a reasonable
-  maximum width based on the size of a user's screen. This is useful to couple
-  with other UI elements like grids or menus to restrict content width to a
-  reasonable size.
+  Use the <code>sgds-container</code> class to limit page elements to a reasonable
+  maximum width based on the size of a user's screen.
 </h4>
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<p>
-  List of how the <code>sgds-container</code> will behave in different
-  screensizes.
-</p>
+<h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
+<div class="sgds-example is-marginless">
+  {{ default_container_example }}
+</div>
+{%- highlight html -%}
+{{ default_container_example }}
+{%- endhighlight -%}
+<button
+  class="sgds-button clipboard-btn is-primary is-outlined"
+  data-clipboard-target=".highlight0"
+>
+  Copy Snippet
+</button>
+
+<h6 class="margin--top margin--bottom">
+  <code>sgds-container</code> class behaviour for different screen sizes
+</h6>
 
 <table class="table is-bordered is-size-8">
   <thead>
@@ -50,60 +63,25 @@ icon: container
       <td>Maximum width of <b>1152px</b></td>
     </tr>
     <tr>
-      <td><code>FullHD</code></td>
+      <td><code>Full HD</code></td>
       <td>Maximum width of <b>1344px</b></td>
-    </tr>
-    <tr>
-        <td><code>Fluid</code></td>
-        <td>Full width container that takes 100% of the screen size regardless of the screen width.</td>
     </tr>
   </tbody>
 </table>
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<div class="row">
-  <div class="col">
-    <div class="sgds-example is-marginless">
-      {{ default_container_example }}
-    </div>
-    <p class="margin--top">
-      If you do not want a maximum width but keep the 32px margin on both sides,
-      add <code>is-fluid</code>.
-    </p>
-    <div class="sgds-example is-marginless">
-      {{ default_container_isFluid_example }}
-    </div>
-  </div>
+<h6 class="margin--top margin--bottom">
+  To remove maximum width limitations but keep the 32px margin on both sides,
+  add <code>is-fluid</code>.
+</h6>
+
+<div class="sgds-example is-marginless">
+  {{ default_container_is_fluid_example }}
 </div>
 
-<p>
-  The <code>sgds-container</code> class can be used in any context, but mostly
-  as a direct child of either:
-</p>
-<a class="is-block is-size-7 margin--bottom" href="/docs/main-nav/"role="button"><i class="sgds-icon sgds-icon-mainnav"></i> sgds-navbar</a>
-<a class="is-block is-size-7 margin--bottom" href="/docs/hero/" role="button"><i class="sgds-icon sgds-icon-hero"></i> sgds-hero</a>
-<a class="is-block is-size-7 margin--bottom" href="/docs/section/" role="button"><i class="sgds-icon sgds-icon-section"></i> sgds-section</a>
-<a class="is-block is-size-7" href="/docs/footer/" role="button"><i class="sgds-icon sgds-icon-footer"></i> sgds-footer</a>
-
-<hr class="margin--bottom--lg margin--top--lg" />
-
-<h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
-<h6>Default SGDS Container</h6>
 {%- highlight html -%}
-{{ default_container_example }}
-
-{%- endhighlight -%}
-<button
-  class="sgds-button clipboard-btn is-primary is-outlined"
-  data-clipboard-target=".highlight0"
->
-  Copy Snippet
-</button>
-
-<h6 class="margin--top--lg">Example of <code>is-fluid</code> SGDS Container</h6>
-{%- highlight html -%}
-{{ default_container_isFluid_example }}
+{{ default_container_is_fluid_example }}
 {%- endhighlight -%}
 <button
   class="sgds-button clipboard-btn is-primary is-outlined"
@@ -112,10 +90,17 @@ icon: container
   Copy Snippet
 </button>
 
-<p class="margin--top--lg">
-    For the other container options, just replace <code>is-fluid</code> with <code>is-widescreen</code> or <code>is-fullhd</code>.
-    <br>Example <code>sgds-container is-fullhd</code>
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<p>
+  The <code>sgds-container</code> class can be used in any context, 
+  but is especially useful as a direct child of:
 </p>
+<ul>
+  <li><a href="/docs/hero/">Hero</a></li>
+  <li><a href="/docs/section/">Section</a></li>
+  <li><a href="/docs/footer/">Footer</a></li>
+</ul>
 
 <hr class="margin--bottom--lg margin--top--lg" />
 

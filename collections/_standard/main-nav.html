@@ -321,15 +321,17 @@ order: 2
     </div>
 </nav>
 {% endcapture %}
+
 {% capture fullwidth_navbar_example %}
 <div class="sgds-container is-fluid">
-    {{default_navbar_example}}
+    {{ default_navbar_example }}
 </div>
 {% endcapture %}
 
 <h4 class="has-text-primary">
-    The main nav is a standard navigation component that must be present in all pages of '.gov.sg'
-    websites.
+    All .gov.sg informational services shall
+    adopt a Global Primary Navigation Panel
+    in every one of its pages
 </h4>
 
 <div class="sgds-notification is-toast-warning margin--top margin--bottom">
@@ -480,10 +482,11 @@ order: 2
 <!-- Main Nav 5 -->
 
 <p>
-    To make make a full width navbar, You can wrap <code>sgds-container.is-fluid</code> around <code>sgds-navbar</code> 
+    To make make a full width navbar, You can wrap <code>.sgds-container.is-fluid</code> 
+    around <code>sgds-navbar</code> 
 </p>
 
-{{fullwidth_navbar_example}}
+{{ fullwidth_navbar_example }}
 
 <div class="sgds-accordion-container margin--top--lg">
     <div class="sgds-accordion">
