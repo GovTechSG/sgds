@@ -1,11 +1,10 @@
-
 .sgds-masthead {
   position: relative;
   background-color: $grey-lighter;
   height: auto;
   padding: $masthead-gutter 0;
   font-size: 14px;
-  @include touch(){
+  @include touch() {
     padding-left: $masthead-gutter;
     padding-right: $masthead-gutter;
   }
@@ -20,14 +19,8 @@
     color: $grey-dark;
     display: flex;
     align-items: center;
-    &:hover{
+    &:hover {
       color: darken($grey-dark, 20%);
     }
   }
-  
-}
-.language-selector{
-  background: transparent;
-  border: 0;
-  font-size: 14px;
 }
