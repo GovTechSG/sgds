@@ -26,7 +26,7 @@ coloursList:
     hex: '#d0021b'
 ---
 
-<h2 class="has-text-primary">SGDS Colour classes</h2>
+<h4 class="has-text-primary">SGDS Colour classes</h4>
 
 <p>
     SGDS contains predefined classes that apply different colours to specific
@@ -36,7 +36,7 @@ coloursList:
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h3 class="margin--bottom--lg has-text-primary">Colour classes</h3>
+<h5 class="margin--bottom--lg has-text-primary">Colour classes</h5>
 
 <div class="row is-multiline">
     {%- for colour in page.coloursList -%}
@@ -62,7 +62,7 @@ coloursList:
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h3 class="margin--bottom--lg has-text-primary">Text colours</h3>
+<h5 class="margin--bottom--lg has-text-primary">Text colours</h5>
 
 <table class="sgds-table">
     <thead>
@@ -78,7 +78,7 @@ coloursList:
                 <td>has-text-{{colour.name}}</td>
                 <td>     
                     <small class="has-text-{{ colour.name }} 
-                        {% if colour.name == 'white' or colour.name == 'light' -%}
+                        {% if colour.name == 'white' or colour.name == 'light' or colour.name == 'warning' -%}
                             has-background-dark
                         {%- endif -%}">
                         Use the <code>has-text-{{ colour.name }}</code> 
@@ -99,7 +99,7 @@ coloursList:
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h3 class="margin--bottom--lg has-text-primary">Background colours</h3>
+<h5 class="margin--bottom--lg has-text-primary">Background colours</h5>
 
 <table class="sgds-table">
     <thead>
@@ -114,7 +114,7 @@ coloursList:
             <tr>
                 <td>has-text-{{colour.name}}</td>
                 <td class="has-background-{{colour.name}} 
-                    {% if colour.name == 'light' or colour.name == 'white' -%}
+                    {% if colour.name == 'light' or colour.name == 'white' or colour.name == 'warning' -%}
                         has-text-dark
                     {%- else -%}
                         has-text-white
