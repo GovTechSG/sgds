@@ -15,7 +15,7 @@
     ...
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.3/css/sgds.css"
+        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.4/css/sgds.css"
     />
     ...
 </head>
@@ -29,7 +29,7 @@
 <body>
     ...
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.3/js/sgds.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.4/js/sgds.js"></script>
     ...
 </body>
 ```
