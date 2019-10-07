@@ -144,6 +144,11 @@ $content-table-foot-cell-color: $text-strong !default;
     font-size: 75%;
   }
 
+  hr{
+    @extend .margin--top--lg; 
+    @extend .margin--bottom--lg;
+  }
+
   table {
     width: 100%;
 

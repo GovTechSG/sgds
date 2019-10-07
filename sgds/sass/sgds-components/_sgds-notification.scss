@@ -58,6 +58,9 @@ $notification-padding: 1rem !default;
     &.is-#{$name} {
       background-color: $color;
       color: $color-invert;
+      @if $name == warning {
+        color: $black;
+      }
     }
 
     &.is-toast-#{$name} {
