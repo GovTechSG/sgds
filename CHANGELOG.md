@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.4] - 04-10-2019
+
+### Fixes
+
+- Added js compatible with old `.navbar` elements for burger button controls
+
 ## [1.3.3] - 18-09-2019
 
 ### Changes
