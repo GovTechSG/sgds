@@ -13,20 +13,20 @@ coloursList:
   - name: primary
     hex: '#6037b3'
   - name: secondary
-    hex: '#4675d3'
+    hex: '#3e69be'
   - name: link
-    hex: '#007bff'
+    hex: '#0070F2'
   - name: info
-    hex: '#17a2b8'
+    hex: '#008196'
   - name: success
-    hex: '#1ca161'
+    hex: '#008649'
   - name: warning
     hex: '#f5a623'
   - name: danger
     hex: '#d0021b'
 ---
 
-<h2 class="has-text-primary">SGDS Colour classes</h2>
+<h4 class="has-text-primary has-text-weight-bold">SGDS Colour classes</h4>
 
 <p>
     SGDS contains predefined classes that apply different colours to specific
@@ -36,13 +36,13 @@ coloursList:
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h3 class="margin--bottom--lg has-text-primary">Colour classes</h3>
+<h5 class="margin--bottom--lg has-text-primary has-text-weight-bold">Colour classes</h5>
 
 <div class="row is-multiline">
     {%- for colour in page.coloursList -%}
     <div class="col is-3 has-background-{{colour.name}}
         {% if colour.name == 'white' or colour.name == 'light' or colour.name == 'warning' -%}
-            has-text-dark
+            has-text-black
         {%- else -%}
             has-text-white
         {%- endif -%}">
@@ -55,14 +55,14 @@ coloursList:
 </div>
 
 <p>
-    <sup>1</sup>The amber colour used for <code>warning</code> does not meet WCAG contrast 
-    requirements when paired with white, e.g. white text within elements with
-    <code>.has-background-warning</code>
+    <sup>1</sup>Most shades of amber such as the one used in the <code>warning</code> class
+    only meet WCAG contrast requirements when paired with black, 
+    e.g. black text within elements with <code>.has-background-warning</code>
 </p>
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h3 class="margin--bottom--lg has-text-primary">Text colours</h3>
+<h5 class="margin--bottom--lg has-text-primary has-text-weight-bold">Text colours</h5>
 
 <table class="sgds-table">
     <thead>
@@ -78,7 +78,7 @@ coloursList:
                 <td>has-text-{{colour.name}}</td>
                 <td>     
                     <small class="has-text-{{ colour.name }} 
-                        {% if colour.name == 'white' or colour.name == 'light' -%}
+                        {% if colour.name == 'white' or colour.name == 'light' or colour.name == 'warning' -%}
                             has-background-dark
                         {%- endif -%}">
                         Use the <code>has-text-{{ colour.name }}</code> 
@@ -99,7 +99,7 @@ coloursList:
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h3 class="margin--bottom--lg has-text-primary">Background colours</h3>
+<h5 class="margin--bottom--lg has-text-primary has-text-weight-bold">Background colours</h5>
 
 <table class="sgds-table">
     <thead>
@@ -114,7 +114,7 @@ coloursList:
             <tr>
                 <td>has-text-{{colour.name}}</td>
                 <td class="has-background-{{colour.name}} 
-                    {% if colour.name == 'light' or colour.name == 'white' -%}
+                    {% if colour.name == 'light' or colour.name == 'white' or colour.name == 'warning' -%}
                         has-text-dark
                     {%- else -%}
                         has-text-white
