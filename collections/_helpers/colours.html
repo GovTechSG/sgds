@@ -4,26 +4,45 @@ layout: layout-docs
 coloursList:
   - name: white
     hex: '#ffffff'
+
   - name: black
     hex: '#000000'
+
   - name: light
     hex: '#f5f5f5'
+
   - name: dark
     hex: '#323232'
+
   - name: primary
     hex: '#6037b3'
+    contrast: 7.79
+
   - name: secondary
     hex: '#3e69be'
+    contrast: 5.29
+
   - name: link
     hex: '#0070F2'
+    contrast-bg: 10
+    contrast: 4.57
+
   - name: info
     hex: '#008196'
+    contrast: 4.58
+
   - name: success
     hex: '#008649'
+    contrast: 4.66
+
   - name: warning
     hex: '#f5a623'
+    contrast: 10.36
+    
   - name: danger
     hex: '#d0021b'
+    contrast: 5.67
+
 ---
 
 <h4 class="has-text-primary has-text-weight-bold">SGDS Colour classes</h4>
@@ -47,8 +66,12 @@ coloursList:
             has-text-white
         {%- endif -%}">
         <p>
-            <span class="is-capitalized">{{colour.name}}</span><br>
-            {{colour.hex}} {%- if colour.name == 'warning' -%}<sup>1</sup>{%- endif -%}
+            <span>
+                <span class="is-capitalized"><b>{{colour.name}} {%- if colour.name == 'warning' -%}<sup>1</sup>{%- endif -%}</b></span><br>
+                {{colour.hex}}<br>
+                {%- if colour.contrast -%}<small>Contrast Ratio : {{colour.contrast}}</small>{%- endif -%}
+            </span>
+
         </p>
     </div>
     {%- endfor -%}
@@ -137,8 +160,8 @@ coloursList:
 <hr class="margin--bottom--lg margin--top--lg" />
 
 <h5 class="margin--bottom--lg has-text-primary has-text-weight-bold">Component colours</h5>
-<p>Use the <code>is-*color</code> color class to set the component color</p>
-<p>List of components that use <code>is-*color</code> :</p>
+<p>Use the <code>is-*color*</code> class to set the component colors for:</p>
+
 <ul>
     <li><a href="/doc/accordion/">Accordion</a></li>
     <li><a href="/doc/button/">Button</a></li>
@@ -162,11 +185,11 @@ coloursList:
             <tr class="{% if colour.name == 'link' or colour.name == 'white' or colour.name == 'light' %}hide{% endif %}">
                 <td>is-{{colour.name}}</td>
                 <td>
-                    <button type="button" class="sgds-button is-{{colour.name}}">Button</button>
+                    <button type="button" class="sgds-button is-{{colour.name}} {% if colour.name == 'warning' %}has-text-black{% endif %}">Button</button>
                 </td>
                 <td>
 {%- highlight html -%}
-<button type="button" class="sgds-button is-{{colour.name}}">Button</button>
+<button type="button" class="sgds-button is-{{colour.name}}{% if colour.name == 'warning' %}has-text-black{% endif %}">Button</button>
 {%- endhighlight -%} 
                 </td>
             </tr>
