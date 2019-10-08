@@ -17,7 +17,7 @@ $content-table-head-cell-color: $text-strong !default;
 $content-table-foot-cell-border-width: 2px 0 0 !default;
 $content-table-foot-cell-color: $text-strong !default;
 
-.sgds-content {
+.content {
   @include block;
 
   // Inline
@@ -149,19 +149,6 @@ $content-table-foot-cell-color: $text-strong !default;
     }
   }
 
-  // Sizes
-  &.is-small {
-    font-size: $size-small;
-  }
-
-  &.is-medium {
-    font-size: $size-medium;
-  }
-
-  &.is-large {
-    font-size: $size-large;
-  }
-
   &.has-default-header-styles {
     h1,
     h2,
@@ -204,5 +191,18 @@ $content-table-foot-cell-color: $text-strong !default;
     h6 {
       margin-bottom: 1em;
     }
+  }
+
+  // Sizes
+  &.is-small {
+    font-size: $size-small;
+  }
+
+  &.is-medium {
+    font-size: $size-medium;
+  }
+
+  &.is-large {
+    font-size: $size-large;
   }
 }
