@@ -54,11 +54,11 @@ coloursList:
     {%- endfor -%}
 </div>
 
-<p>
+<small>
     <sup>1</sup>Most shades of amber such as the one used in the <code>warning</code> class
     only meet WCAG contrast requirements when paired with black, 
     e.g. black text within elements with <code>.has-background-warning</code>
-</p>
+</small>
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
@@ -67,9 +67,9 @@ coloursList:
 <table class="sgds-table">
     <thead>
         <tr>
-            <td>Class</td>
-            <td>Example</td>
-            <td>Usage</td>
+            <th>Class</th>
+            <th>Example</th>
+            <th>Usage</th>
         </tr>
     </thead>
     <tbody>
@@ -104,9 +104,9 @@ coloursList:
 <table class="sgds-table">
     <thead>
         <tr>
-            <td>Class</td>
-            <td>Example</td>
-            <td>Usage</td>
+            <th>Class</th>
+            <th>Example</th>
+            <th>Usage</th>
         </tr>
     </thead>
     <tbody>
@@ -127,6 +127,46 @@ coloursList:
 <p class="has-background-{{ colour.name }}">
     Use the <code>has-background-{{ colour.name }}</code> colour class to set background colour
 </p>
+{%- endhighlight -%} 
+                </td>
+            </tr>
+        {%- endfor -%}
+    </tbody>
+</table>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="margin--bottom--lg has-text-primary has-text-weight-bold">Component colours</h5>
+<p>Use the <code>is-*color</code> color class to set the component color</p>
+<p>List of components that use <code>is-*color</code> :</p>
+<ul>
+    <li><a href="/doc/accordion/">Accordion</a></li>
+    <li><a href="/doc/button/">Button</a></li>
+    <li><a href="/doc/card/">Card</a></li>
+    <li><a href="/doc/notification/">Notification</a></li>
+    <li><a href="/doc/progress-bar/">Progress Bar</a></li>
+</ul>
+
+<p>Example on <code>is-*color*</code> color class works for <a href="/doc/button/">Button</a> component:</p>
+
+<table class="sgds-table">
+    <thead>
+        <tr>
+            <th>Class</th>
+            <th>Example</th>
+            <th>Usage</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%- for colour in page.coloursList -%}
+            <tr class="{% if colour.name == 'link' or colour.name == 'white' or colour.name == 'light' %}hide{% endif %}">
+                <td>is-{{colour.name}}</td>
+                <td>
+                    <button type="button" class="sgds-button is-{{colour.name}}">Button</button>
+                </td>
+                <td>
+{%- highlight html -%}
+<button type="button" class="sgds-button is-{{colour.name}}">Button</button>
 {%- endhighlight -%} 
                 </td>
             </tr>
