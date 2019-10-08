@@ -43,6 +43,12 @@ a[target="_blank"]:after {
   height: 100%;
 }
 
+.language-selector {
+  background: transparent;
+  border: 0;
+  font-size: 14px;
+}
+
 /* Docs mobile nav needs higher z-index */
 .docs-nav-dropdown {
   z-index: 31;
@@ -123,10 +129,14 @@ a[target="_blank"]:after {
 
 .has-background-gradient {
   background: rgb(96, 55, 179);
-  background: linear-gradient(30deg, rgba(96, 55, 179, 1) 0%, rgba(70, 117, 211, 1) 100%);
+  background: linear-gradient(
+    30deg,
+    rgba(96, 55, 179, 1) 0%,
+    rgba(70, 117, 211, 1) 100%
+  );
 }
 
-.content-page{
+.content-page {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
