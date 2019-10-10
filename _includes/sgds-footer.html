@@ -1,62 +1,82 @@
 <footer class="sgds-footer">
-    <div class="top-section">
-        <div class="sgds-container">
-                <div class="row">
-                    <div class="col header">
-                        <h5 class="has-text-white"><b>{{site.title}}</b></h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col is-3">
-                        <p class="has-text-white"><b>User Guides</b></p>
-                        <p><a href="/docs/getting-started/">Get started with Design System</a></p>
-                        <p><a href="https://github.com/GovTechSG/sgds/issues">Suggest a Component</a></p>
-                        <p><a href="/coming-soon/">Submit a Theme</a></p>
-                    </div>
-                    <div class="col is-3">
-                        <p class="has-text-white"><b>Other Sites</b></p>
-                        <p><a href="/coming-soon/">Developer Portal</a></p>
-                        <p><a href="https://www.isomer.gov.sg/">Isomer</a></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col is-right-desktop-only">
-                        <ul>
-                            <li class="is-inline-block-desktop-only">
-                                <!--Tools questionaire-->
-                                <p><a href="{{site.contact_us}}" target="_blank">Contact</a></p>
-                            </li>
-                            <li class="is-inline-block-desktop-only">
-                                <!--Feedback form-->
-                                <p><a href="{{site.feedback_form}}" target="_blank">Feedback</a></p>
-                            </li>
-                            <li class="is-inline-block-desktop-only">
-                                <p><a href="/faq/">FAQs</a></p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-        
-            </div>
+  <div class="top-section">
+    <div class="sgds-container is-fullhd">
+      <div class="row">
+        <div class="col header">
+          <h5 class="has-text-white">
+            <b>{{ site.title }}</b>
+          </h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col is-3">
+          <p class="has-text-white"><b>User Guides</b></p>
+          <p>
+            <a href="/docs/getting-started/">Get started with Design System</a>
+          </p>
+          <p>
+            <a href="https://github.com/GovTechSG/sgds/issues"
+              >Suggest a Component</a
+            >
+          </p>
+          <p><a href="/coming-soon/">Submit a Theme</a></p>
+        </div>
+        <div class="col is-3">
+          <p class="has-text-white"><b>Other Sites</b></p>
+          <p><a href="/coming-soon/">Developer Portal</a></p>
+          <p><a href="https://www.isomer.gov.sg/">Isomer</a></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col is-right-desktop-only">
+          <ul>
+            <li class="is-inline-block-desktop-only">
+              <!--Tools questionaire-->
+              <p><a href="{{ site.contact_us }}" target="_blank">Contact</a></p>
+            </li>
+            <li class="is-inline-block-desktop-only">
+              <!--Feedback form-->
+              <p>
+                <a href="{{ site.feedback_form }}" target="_blank">Feedback</a>
+              </p>
+            </li>
+            <li class="is-inline-block-desktop-only">
+              <p><a href="/faq/">FAQs</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="bottom-section">
-            <div class="sgds-container">
-                <div class="row is-multiline">
-                    <div class="col is-12">
-                        <ul>
-                            <li>
-                               <a href="{{site.report_vulnerability}}" target="_blank">Report Vulnerability</a>
-                            </li>
-                            <li><a href="/privacy/">Privacy</a></li>
-                            <li><a href="/terms/">Terms of Use</a></li>
-                        </ul>
-                    </div>
-                    <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
-                        <p class="is-hidden-touch"> © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated {{site.time | date_to_string -}}</p>
-                        <p class="is-hidden-desktop">© {{ site.time | date: "%Y" }} Government of Singapore</p>
-                        <p class="is-hidden-desktop last-updated">Last Updated {{site.time | date_to_string -}}</p>
-                    </div>
-                </div>
-            </div>
+  </div>
+  <div class="bottom-section">
+    <div class="sgds-container is-fullhd">
+      <div class="row is-multiline">
+        <div class="col is-12">
+          <ul>
+            <li>
+              <a href="{{ site.report_vulnerability }}" target="_blank"
+                >Report Vulnerability</a
+              >
+            </li>
+            <li><a href="/privacy/">Privacy</a></li>
+            <li><a href="/terms/">Terms of Use</a></li>
+          </ul>
+        </div>
+        <div
+          class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile"
+        >
+          <p class="is-hidden-touch">
+            © {{ site.time | date: "%Y" }} Government of Singapore. Last Updated
+            {{site.time | date_to_string -}}
+          </p>
+          <p class="is-hidden-desktop">
+            © {{ site.time | date: "%Y" }} Government of Singapore
+          </p>
+          <p class="is-hidden-desktop last-updated">
+            Last Updated {{site.time | date_to_string -}}
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
 </footer>

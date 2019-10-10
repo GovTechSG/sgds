@@ -3,7 +3,6 @@ title: Singapore Government Design System
 description: >-
   Design System unites Singapore Government digital services around a common visual language 
   and user experience
-url: "https://www.designsystem.gov.sg"
 logo: /assets/img/logo_sgds.png
 
 sgds-version: 1.3.4
@@ -19,15 +18,22 @@ plugins:
 
 collections_dir: collections
 collections:
-  layouts:
-    permalink: /docs/:path/
-    output: true
-  general:
-    permalink: /docs/:path/
-    output: true
   standard:
     permalink: /docs/:path/
     output: true
+    order: 1
+  layouts:
+    permalink: /docs/:path/
+    output: true
+    order: 2
+  general:
+    permalink: /docs/:path/
+    output: true
+    order: 3
+  helpers:
+    permalink: /docs/:path/
+    output: true
+    order: 4
   guides:
     permalink: /guides/:path/
     output: true

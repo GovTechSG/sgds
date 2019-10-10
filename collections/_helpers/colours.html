@@ -1,0 +1,135 @@
+---
+title: Colours
+layout: layout-docs
+coloursList:
+  - name: white
+    hex: '#ffffff'
+  - name: black
+    hex: '#000000'
+  - name: light
+    hex: '#f5f5f5'
+  - name: dark
+    hex: '#323232'
+  - name: primary
+    hex: '#6037b3'
+  - name: secondary
+    hex: '#4675d3'
+  - name: link
+    hex: '#007bff'
+  - name: info
+    hex: '#17a2b8'
+  - name: success
+    hex: '#1ca161'
+  - name: warning
+    hex: '#f5a623'
+  - name: danger
+    hex: '#d0021b'
+---
+
+<h4 class="has-text-primary">SGDS Colour classes</h4>
+
+<p>
+    SGDS contains predefined classes that apply different colours to specific
+    elements. You can use these colour classes by adding <code>is-</code> or
+    <code>has-</code> prefixes to most elements.
+</p>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="margin--bottom--lg has-text-primary">Colour classes</h5>
+
+<div class="row is-multiline">
+    {%- for colour in page.coloursList -%}
+    <div class="col is-3 has-background-{{colour.name}}
+        {% if colour.name == 'white' or colour.name == 'light' or colour.name == 'warning' -%}
+            has-text-dark
+        {%- else -%}
+            has-text-white
+        {%- endif -%}">
+        <p>
+            <span class="is-capitalized">{{colour.name}}</span><br>
+            {{colour.hex}} {%- if colour.name == 'warning' -%}<sup>1</sup>{%- endif -%}
+        </p>
+    </div>
+    {%- endfor -%}
+</div>
+
+<p>
+    <sup>1</sup>Most shades of amber such as the one used in the <code>warning</code> class
+    only meet WCAG contrast requirements when paired with black, 
+    e.g. black text within elements with <code>.has-background-warning</code>
+</p>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="margin--bottom--lg has-text-primary">Text colours</h5>
+
+<table class="sgds-table">
+    <thead>
+        <tr>
+            <td>Class</td>
+            <td>Example</td>
+            <td>Usage</td>
+        </tr>
+    </thead>
+    <tbody>
+        {%- for colour in page.coloursList -%}
+            <tr>
+                <td>has-text-{{colour.name}}</td>
+                <td>     
+                    <small class="has-text-{{ colour.name }} 
+                        {% if colour.name == 'white' or colour.name == 'light' or colour.name == 'warning' -%}
+                            has-background-dark
+                        {%- endif -%}">
+                        Use the <code>has-text-{{ colour.name }}</code> 
+                        colour class to set text colour
+                    </small>
+                </td>
+                <td>
+{%- highlight html -%}
+<p class="has-text-{{ colour.name }}">
+    Use the <code>has-text-{{ colour.name }}</code> colour class to set text colour
+</p>
+{%- endhighlight -%} 
+                </td>
+            </tr>
+        {%- endfor -%}
+    </tbody>
+</table>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="margin--bottom--lg has-text-primary">Background colours</h5>
+
+<table class="sgds-table">
+    <thead>
+        <tr>
+            <td>Class</td>
+            <td>Example</td>
+            <td>Usage</td>
+        </tr>
+    </thead>
+    <tbody>
+        {%- for colour in page.coloursList -%}
+            <tr>
+                <td>has-text-{{colour.name}}</td>
+                <td class="has-background-{{colour.name}} 
+                    {% if colour.name == 'light' or colour.name == 'white' or colour.name == 'warning' -%}
+                        has-text-dark
+                    {%- else -%}
+                        has-text-white
+                    {%- endif -%}">
+                    Use the <code>has-background-{{ colour.name }}</code> colour 
+                    class to set background colour
+                </td>
+                <td>
+{%- highlight html -%}
+<p class="has-background-{{ colour.name }}">
+    Use the <code>has-background-{{ colour.name }}</code> colour class to set background colour
+</p>
+{%- endhighlight -%} 
+                </td>
+            </tr>
+        {%- endfor -%}
+    </tbody>
+</table>

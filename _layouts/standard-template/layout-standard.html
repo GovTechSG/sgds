@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {%- include sgds-head.html -%}
+    </head>
+    <body>
+        {% if jekyll.environment == "production" %}
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV9NNPT"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        {% else %}
+        <!-- Dev env Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJLK728"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        {% endif %}
+        <div class="sgds-masthead">
+            <div class="sgds-container is-fullhd">
+                <div class="row is-mobile">
+                    <div class="col is-9-desktop is-12-mobile is-flex">
+                        <a href="https://www.gov.sg" target="_blank">
+                            <span class="sgds-icon sgds-icon-sg-crest"></span>
+                            <span class="is-text">A Singapore Government Agency Website</span>
+                        </a>
+                    </div>
+                    <div class="col has-text-right is-hidden-mobile">
+                        <select class="language-selector" id="lang-selector">
+                            <option>English</option>
+                            <option>中文</option>
+                            <option>Bahasa Melayu</option>
+                            <option>தமிழ்</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="sgds-navbar" role="navigation">
+            <div class="sgds-container is-fullhd">
+                <div class="sgds-navbar-brand">
+                    <a class="sgds-navbar-item">
+                        <img src="/assets/img/logo_sgds.png" alt="" />
+                    </a>
+                    <div class="sgds-navbar-burger burger" data-target="mainnav-2">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div id="mainnav-2" class="sgds-navbar-menu">
+                    <div class="sgds-navbar-start">
+                        <div class="sgds-navbar-item has-dropdown is-hoverable">
+                            <a class="sgds-navbar-link is-uppercase is-active">
+                                Who we are
+                            </a>
+                            <div class="sgds-navbar-dropdown">
+                                <a class="sgds-navbar-item is-active">
+                                    Sub Link 1
+                                </a>
+                                <a class="sgds-navbar-item">
+                                    Sub Link 2
+                                </a>
+                                <a class="sgds-navbar-item">
+                                    Sub Link 3
+                                </a>
+                            </div>
+                        </div>
+                        <div class="sgds-navbar-item has-dropdown is-hoverable">
+                            <a class="sgds-navbar-link is-uppercase">
+                                Link 2
+                            </a>
+                            <div class="sgds-navbar-dropdown">
+                                <a class="sgds-navbar-item">
+                                    External Link 1
+                                    <i class="sgds-icon sgds-icon-external"></i>
+                                </a>
+                                <a class="sgds-navbar-item">
+                                    External Link 2
+                                    <i class="sgds-icon sgds-icon-external"></i>
+                                </a>
+                                <a class="sgds-navbar-item">
+                                    External Link 3
+                                    <i class="sgds-icon sgds-icon-external"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <a class="sgds-navbar-item is-uppercase is-tab">
+                            External Link 3
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="content-page">
+            {{content}}
+        </div>
+        {%- include sgds-footer.html -%}
+        {%- include import-scripts.html -%}
+    </body>
+</html>

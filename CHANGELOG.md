@@ -1,8 +1,27 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.3.5] - 07-10-2019
+
+### Changes
+
+- #101 Masthead font-size scaling.
+- Masthead link now darkens upon hover.
+- sgds.js no longer initializes a sticky sidebar by default. This feature is not sgds's
+  responsibility and its removal reduces the js library size greatly. Documentation for 
+  this feature to follow.
+- Default colours for `info` and `link` classes have been updated.
+- Added more font-weight classes (e.g. `has-text-weight-extra-bold`).
+- scss sources are now published on NPM. Documentation for usage to follow.
+- Documentation improvements.
+
+### Fixes
+
+- Fixed navbar burger button functionality after new navbar class introduced.
 
 ## [1.3.4] - 04-10-2019
 
@@ -42,43 +61,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.4] - 13-08-2019
 
 ### Accordion
+
 #### Added
-- border with $grey-light (same border color with default table)
-- border $grey-light (same border color with default table) to `sgds-accordion-body`
+
+- border with \$grey-light (same border color with default table)
+- border \$grey-light (same border color with default table) to `sgds-accordion-body`
 - `is-*color*` helper to `sgds-accordion`.
 - `is-*borderless*` helper to `sgds-accordion`.
 - `is-*small* , is-*medium* , is-*large*` helper to `sgds-accordion`.
+
 #### Changed
+
 - background color to white
 - background color to white
 - hover color to darken white
 - padding top/bottom (same padding with default size `sgds-button`)
 
-
 ## [1.1.0] - 07-06-2019
 
--   Side Navigation
+- Side Navigation
 
-    -   `Deprecated` Side navigation with left border
-    -   `New` Added Collaspable Side Navigation
--   Table
+  - `Deprecated` Side navigation with left border
+  - `New` Added Collaspable Side Navigation
 
-    -   `New` Added Horizontal table
-    -   `New` Added Vertical header table
--   Hero
+- Table
 
-    -   `New` Added Hero with Dropdown Button
-    -   `New` Added Hero with Hoverable Dropdown Button
-    -   `New` Added Hero with Search Bar
--   Button
+  - `New` Added Horizontal table
+  - `New` Added Vertical header table
 
-    -   `New` Added Secondary buttons
--   Form
+- Hero
 
-    -   `New` Added example of a feedback form
--   Notification
+  - `New` Added Hero with Dropdown Button
+  - `New` Added Hero with Hoverable Dropdown Button
+  - `New` Added Hero with Search Bar
 
-    -   `New` Added Default notification (with and without icon)
-    -   `New` Added Default Toast notification (with and without icon)
--   Tab
-    -   `New` Added modifiers `is-centered`, `is-small`, `is-medium` , `is-large`
+- Button
+
+  - `New` Added Secondary buttons
+
+- Form
+
+  - `New` Added example of a feedback form
+
+- Notification
+
+  - `New` Added Default notification (with and without icon)
+  - `New` Added Default Toast notification (with and without icon)
+
+- Tab
+  - `New` Added modifiers `is-centered`, `is-small`, `is-medium` , `is-large`

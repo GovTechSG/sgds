@@ -12,7 +12,7 @@ module.exports = env => {
     let config = {
         mode: env.production ? "production" : "development",
         entry: {
-            "js/sgds": "./sgds/index.js"
+            "js/sgds": "./sgds/js/index.js"
         },
         output: {
             filename: "[name].js",
@@ -27,7 +27,9 @@ module.exports = env => {
                         loader: "babel-loader",
                         options: {
                             presets: ["@babel/preset-env"],
-                            plugins: ["@babel/plugin-proposal-object-rest-spread"]
+                            plugins: [
+                                "@babel/plugin-proposal-object-rest-spread"
+                            ]
                         }
                     }
                 },
@@ -80,11 +82,22 @@ module.exports = env => {
     }
 
     if (env.site) {
-        config.entry["apps/build/vue-search-app"] = "./apps/src/search/vue-search-app.js";
-        config.module.rules.push({
-            test: /\.vue$/,
-            loader: "vue-loader"
-        });
+        config.entry["apps/build/vue-search-app"] =
+            "./apps/src/search/vue-search-app.js";
+        config.entry["apps/build/main"] = "./apps/src/main";
+        config.entry["apps/build/docs"] = "./apps/src/docs";
+        config.module.rules.push(
+            ...[
+                {
+                    test: /\.css$/,
+                    use: ["vue-style-loader", "css-loader"]
+                },
+                {
+                    test: /\.vue$/,
+                    loader: "vue-loader"
+                }
+            ]
+        );
         config.plugins.push(
             ...[
                 new CopyWebpackPlugin([

@@ -1,153 +1,294 @@
 ---
 title: Typography
-subtitle: Subtitle
 layout: layout-docs
 category: General
-breadcrumb: General
 icon: typography
 ---
 
-<h4 class="has-text-primary">Typography is used to create clear hierarchies and purposeful alignments that guide users through the website</h4>
+<h4 class="has-text-primary">
+  Use these typography styles to create clear hierarchies and purposeful
+  alignments that guide users through your content.
+</h4>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
 
-<p>Design System uses <a href="https://fonts.google.com/?query=Lato" target="_blank">Lato</a> as the main typeface, which is an open source font provided by Google <a href="https://fonts.google.com/?query=Lato" target="_blank">here</a>.</p>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>rem</th>
-                <th>pixels</th>
-                <th>Actual size</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>5.25</td>
-                <td>84</td>
-                <td><h1 class="display">Display</h1></td>
-            </tr>
-            <tr>
-                <td>3.375</td>
-                <td>54</td>
-                <td><h1>Header 1</h1></td>
-            </tr>
-            <tr>
-                <td>2.75</td>
-                <td>44</td>
-                <td><h2>Header 2</h2></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>32</td>
-                <td><h3>Header 3</h3></td>
-            </tr>
-            <tr>
-                <td>1.625</td>
-                <td>26</td>
-                <td><h4>Header 4</h4></td>
-            </tr>
-            <tr>
-                <td>1.375</td>
-                <td>22</td>
-                <td><h5>Header 5</h5></td>
-            </tr>
-            <tr>
-                <td>1.25</td>
-                <td>20</td>
-                <td><h6>Header 6</h6></td>
-            </tr>
-            <tr>
-                <td>1.125</td>
-                <td>18</td>
-                <td><p>Paragraph / Base size</p></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>16</td>
-                <td><small>small</small></td>
-            </tr>
-            </tbody>
-        </table>
-
-
-<hr class="margin--bottom--lg margin--top--lg">
-
-
-<h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
-<p>You can apply the <code>display</code> class to any text you like to have it prominent. For the rest of the headings, replace <code>h1</code> tag with the size you wish to use from above accordingly.</p>
-{% highlight html %}
-<h1 class="display">display</h1>
-<h1>h1</h1>
-<h2>h2</h2>
-<h3>h3</h3>
-<h4>h4</h4>
-<h5>h5</h5>
-<h6>h6</h6>
-<small>small</small>
-{% endhighlight %}
-
-<hr class="margin--bottom--lg margin--top--lg">
-
-<h5 class="has-text-weight-semibold margin--bottom">Style</h5>
+<p>
+  Design System uses
+  <a href="https://fonts.google.com/?query=Lato" target="_blank">Lato</a> as its
+  main typeface. Lato is an open source font provided by Google.
+</p>
 <table class="table">
-    <thead>
+  <thead>
     <tr>
-        <th>Modifier</th>
-        <th>Description</th>
+      <th>rem</th>
+      <th>pixels</th>
+      <th>Actual size</th>
+      <th>Text size helper</th>
     </tr>
-    </thead>
-    <tbody>
+  </thead>
+  <tbody>
     <tr>
-        <td>has-text-primary</td>
-        <td>Use when you want to apply primary color to your text</td>
-    </tr>
-    <tr>
-        <td>has-text-primary</td>
-        <td>Use when you want to apply secondary color to your text</td>
-    </tr>
-    <tr>
-        <td>has-text-weight-light</td>
-        <td>Use when you want to transform text weight to light</td>
+      <td>5.25</td>
+      <td>84</td>
+      <td><h1 class="display">Display</h1></td>
+      <td><code>is-size-0</code></td>
     </tr>
     <tr>
-        <td>has-text-weight-semibold</td>
-        <td>Use when you want to transform text weight to semi-bold</td>
+      <td>3.375</td>
+      <td>54</td>
+      <td><h1>Header 1</h1></td>
+      <td><code>is-size-1</code></td>
     </tr>
     <tr>
-        <td>has-text-weight-bold</td>
-        <td>Use when you want to transform text weight to bold</td>
+      <td>2.75</td>
+      <td>44</td>
+      <td><h2>Header 2</h2></td>
+      <td><code>is-size-2</code></td>
     </tr>
     <tr>
-        <td>is-lowercase</td>
-        <td>Use when you want to transform all characters to lowercase</td>
+      <td>2</td>
+      <td>32</td>
+      <td><h3>Header 3</h3></td>
+      <td><code>is-size-3</code></td>
     </tr>
     <tr>
-        <td>is-uppercase</td>
-        <td>Use when you want to transform all characters to uppercase</td>
+      <td>1.625</td>
+      <td>26</td>
+      <td><h4>Header 4</h4></td>
+      <td><code>is-size-4</code></td>
     </tr>
     <tr>
-        <td>is-italic</td>
-        <td>Use when you want to transform all characters to italic</td>
+      <td>1.375</td>
+      <td>22</td>
+      <td><h5>Header 5</h5></td>
+      <td><code>is-size-5</code></td>
     </tr>
     <tr>
-        <td>has-text-centered</td>
-        <td>Use when you want to make the text centered</td>
+      <td>1.25</td>
+      <td>20</td>
+      <td><h6>Header 6</h6></td>
+      <td><code>is-size-6</code></td>
     </tr>
     <tr>
-        <td>has-text-justified</td>
-        <td>Use when you want to make the text justified</td>
+      <td>1.125</td>
+      <td>18</td>
+      <td><p>Paragraph</p></td>
+      <td><code>is-size-7</code></td>
     </tr>
     <tr>
-        <td>has-text-left</td>
-        <td>Use when you want to make the text aligned to the left</td>
+      <td>1</td>
+      <td>16</td>
+      <td><small>small text (base font size)</small></td>
+      <td><code>is-size-8</code></td>
     </tr>
-    <tr>
-        <td>has-text-right</td>
-        <td>Use when you want to make the text aligned to the right</td>
-    </tr>
-    </tbody>
+  </tbody>
 </table>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
+<h6>HTML Text Elements</h6>
+
+{% highlight html %}
+<h1 class="display">h1 display</h1>
+<h1>header 1</h1>
+<h2>header 2</h2>
+<h3>header 3</h3>
+<h4>header 4</h4>
+<h5>header 5</h5>
+<h6>header 6</h6>
+<p>paragraph</p>
+<small>small text</small>
+{% endhighlight %}
+
+<h6>Using class helpers</h6>
+
+{% highlight html %}
+<div class="is-size-0">h1 display text size</div>
+<div class="is-size-1">h1 text size</div>
+<div class="is-size-2">h2 text size</div>
+<div class="is-size-3">h3 text size</div>
+<div class="is-size-4">h4 text size</div>
+<div class="is-size-5">h5 text size</div>
+<div class="is-size-6">h6 text size</div>
+<div class="is-size-7">p text size</div>
+<div class="is-size-8">small text size</div>
+{% endhighlight %}
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h4 class="has-text-primary">Alignment</h4>
+<p>Align the text with 4 alignment helpers</p>
+
+<div class="row">
+  <div class="col">
+    <table class="sgds-table is-bordered is-narrow">
+        <thead>
+            <tr>
+            <th width="20%">Class</th>
+            <th width="20%">Alignment</th>
+            <th width="60%">Usage</th>
+            </tr>
+        </thead>
+        <tr>
+          <td><code>has-text-centered</code></td>
+          <td class="has-text-centered">Align text to the center</td>
+          <td>
+            {% highlight html %}<p class="has-text-centered">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td><code>has-text-justified</code></td>
+          <td class="has-text-justified">
+            Makes the text/paragraph justified <br />Lorem ipsum dolor sit, amet
+            consectetur adipisicing elit. Maxime, laborum.
+          </td>
+          <td>
+            {% highlight html %}<p class="has-text-justified">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td><code>has-text-left</code></td>
+          <td class="has-text-left">Align text to the left</td>
+          <td>
+            {% highlight html %}<p class="has-text-left">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td><code>has-text-right</code></td>
+          <td class="has-text-right">Align text to the right</td>
+          <td>
+            {% highlight html %}<p class="has-text-right">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+
+    </table>
+  </div>
+</div>
+
+<h4 class="has-text-primary">Text Transform</h4>
+<p>Transform the text with the use of one of 4 text transformation helpers:</p>
+
+<div class="row">
+  <div class="col">
+    <table class="sgds-table is-bordered is-narrow">
+      <thead>
+            <tr>
+            <th width="20%">Class</th>
+            <th width="20%">Text Transform</th>
+            <th width="60%">Usage</th>
+            </tr>
+        </thead>
+        <tr>
+          <td><code>is-capitalized</code></td>
+          <td class="is-capitalized">
+            Transforms the first character of each word to upper case
+          </td>
+          <td>
+            {% highlight html %}<p class="is-capitalized">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td><code>is-uppercase</code></td>
+          <td class="is-uppercase">
+            Transforms the all characters to uppercase
+          </td>
+          <td>
+            {% highlight html %}<p class="is-uppercase">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td><code>is-lowercase</code></td>
+          <td class="is-lowercase">
+            Transforms the all characters to lower case
+          </td>
+          <td>
+            {% highlight html %}<p class="is-lowercase">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td><code>is-italic</code></td>
+          <td class="is-italic">Transforms the all characters to italic</td>
+          <td>
+            {% highlight html %}<p class="is-italic">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+    </table>
+  </div>
+</div>
+
+<h4 class="has-text-primary">Font Weight</h4>
+<p>Transform the font weight with the use of one of 4 font weight helpers:</p>
+<div class="sgds-notification">
+  <div class="sgds-notification-detail">
+    <div class="sgds-notification-content">
+      <small
+        >The weights available depend on the font-family you are using.
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Fallback_weights"
+          target="_blank"
+          >Learn more about fallback text weight</a
+        ></small
+      >
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <table class="sgds-table is-bordered is-narrow">
+        <thead>
+            <tr>
+            <th width="20%">Class</th>
+            <th width="20%">Font Weight</th>
+            <th width="60%">Usage</th>
+            </tr>
+        </thead>
+        <tr>
+          <td><code>has-text-weight-light</code></td>
+          <td class="has-text-weight-light">Transform text weight to light</td>
+          <td>
+            {% highlight html %}<p class="has-text-weight-light">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td><code>has-text-weight-normal</code></td>
+          <td class="has-text-weight-normal">
+            Transform text weight to normal
+          </td>
+          <td>
+            {% highlight html %}<p class="has-text-weight-normal">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td><code>has-text-weight-medium</code></td>
+          <td class="has-text-weight-medium">
+            Transform text weight to medium
+          </td>
+          <td>
+            {% highlight html %}<p class="has-text-weight-medium">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td><code>has-text-weight-semibold</code></td>
+          <td class="has-text-weight-semibold">
+            Transform text weight to semi bold
+          </td>
+          <td>
+            {% highlight html %}<p class="has-text-weight-semibold">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td><code>has-text-weight-bold</code></td>
+          <td class="has-text-weight-bold">Transform text weight to bold</td>
+          <td>
+            {% highlight html %}<p class="has-text-weight-bold">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+          </td>
+        </tr>
+    </table>
+  </div>
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg" />
 
 {%- include sgds-feedback.html -%}

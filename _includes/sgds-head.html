@@ -3,6 +3,7 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
 {% if page.url contains '/templates/quickstart/' %}
     <link rel="stylesheet" href="/css/sgds.css">
     <title>Site Title</title>
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="/css/sgds.css">
     <link rel="stylesheet" href="/assets/custom-css/main.css">
 {% endif %}
+
 {% if jekyll.environment == "production" %}
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -38,7 +40,6 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
-
 {% else %}
     <!-- Dev env Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144934503-2"></script>
@@ -58,9 +59,9 @@
     })(window,document,'script','dataLayer','GTM-NJLK728');</script>
     <!-- End Google Tag Manager -->    
     <script src="https://assets.dcube.cloud/scripts/wogaa.js"></script>
-    
 {% endif %}
-<!-- This is to track what people are copying from our documentation-->
+
+<!-- This is to track what people are copying from documentation-->
 <script>
     // Declare function to get selected text from document
     function getSelectionText() {
@@ -75,7 +76,6 @@
         
     // Declare function on copy event
     document.addEventListener('copy', function(e){
-        console.log(getSelectionText())
         dataLayer.push({
         'event': 'textCopied',
         'clipboardText': getSelectionText(),

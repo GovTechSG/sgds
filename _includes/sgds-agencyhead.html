@@ -1,12 +1,12 @@
 <div class="masthead-container is-fixed has-background-white" id="navbar" style="z-index:50;">
     {% include sgds-masthead.html %}
-    <nav class="sgds-navbar" role="navigation">
-        <div class="sgds-container">
+    <div class="sgds-container is-fullhd">
+        <nav class="sgds-navbar" role="navigation">
             <div class="sgds-navbar-brand">
                 <a class="sgds-navbar-item" href="/">
                     <img src="/assets/img/logo_sgds.png" alt="">
                 </a>
-                <div class="sgds-navbar-burger burger" data-target="navbarMain">
+                <div class="sgds-navbar-burger" data-target="navbarMain">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -25,7 +25,7 @@
                     {%- assign class = 'is-active' -%}
                     {%- endif -%}
                     <a class="sgds-navbar-item is-uppercase {{class}} has-text-weight-semibold is-tab"
-                       href="{{ lvl1item.url }} ">
+                        href="{{ lvl1item.url }} ">
                         {{ lvl1item.title }}
                     </a>
 
@@ -33,39 +33,42 @@
                 </div>
 
                 <div class="sgds-navbar-end">
-                    <div class="sgds-navbar-item">
-                        <div class="buttons is-hidden-desktop">
-                            <a id="github-link" class="sgds-button is-text is-rounded is-small padding--none margin--right" href="https://github.com/govtechsg/sgds">
+                    <div class="sgds-navbar-item is-hidden-desktop">
+                        <div class="buttons is-flex">
+                            <a class="sgds-button is-text is-rounded is-small padding--none margin--right" 
+                                href="https://github.com/govtechsg/sgds">
                                 <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
                             </a>
-                            <a id="install-link" class="sgds-button is-primary is-rounded is-small"
-                               href="/docs/getting-started"
+                            <a class="sgds-button is-primary is-rounded is-small"
+                                href="/docs/getting-started"
                             >
                                 Install Design System
                             </a>
                         </div>
-                        <a id="github-link" class="sgds-button is-text is-rounded is-small padding--none margin--right is-hidden-touch" href="https://github.com/govtechsg/sgds">
-                            <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
-                        </a>
-                        <a id="install-link" class="sgds-button is-primary is-rounded is-small is-hidden-touch"
-                           href="/docs/getting-started">
-                            Install Design System
-                        </a>
-                        {% if page.layout != 'search' %}
-                        <button id="main-search" class="sgds-button is-white is-large is-hidden-touch search-toggle" data-target="searchbar-main">
-                            <span class="sgds-icon sgds-icon-search"></span>
-                        </button>
-                        {% else %}
-
-                        <button class="sgds-button is-white is-large is-hidden-touch" disabled></button>
-                        {% endif %}
+                    </div>
+                    <div class="sgds-navbar-item is-hidden-touch">
+                        <div class="buttons is-flex is-flex-alignitems-c">
+                            <a class="sgds-button is-text is-rounded is-small padding--none margin--right" 
+                                href="https://github.com/govtechsg/sgds">
+                                <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
+                            </a>
+                            <a class="sgds-button is-primary is-rounded is-small"
+                                href="/docs/getting-started">
+                                Install Design System
+                            </a>
+                            {% if page.url contains 'search' %}
+                                <button class="sgds-button is-white is-large" disabled></button>
+                            {% else %}
+                                <button id="main-search" class="sgds-button is-white is-large search-toggle" data-target="searchbar-main">
+                                    <span class="sgds-icon sgds-icon-search"></span>
+                                </button>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
-    <div class="sgds-container is-hidden-touch hide" id="searchbar-main">
-        <div class="row">
+        </nav>
+        <div class="row is-hidden-touch hide"  id="searchbar-main">
             <div class="col">
                 <hr class="margin--bottom--sm">
                 <form action="/search/" method="get">

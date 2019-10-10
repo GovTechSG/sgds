@@ -24,25 +24,21 @@ redirect_from:
             >
         </p>
     </div>
-    {% assign components = site.standard | sort: 'order' %} {%- for component in
-    components -%}
+    {% assign components = site.standard | sort: 'order' %} 
+    {%- for component in components -%}
     <div class="col is-3-desktop is-12-mobile">
         <a href="{{ component.url }}" class="is-flex component-card">
             <div class="sgds-card sgds-card-button">
                 <div class="sgds-card-content has-text-centered">
                     <span
-                        class="sgds-icon sgds-icon-{{
-                            component.icon | downcase
-                        }} is-size-3"
+                        class="sgds-icon sgds-icon-{{ component.icon | downcase }} is-size-3"
                     ></span>
                     <small
                         class="has-text-weight-semibold is-block margin--top--sm"
                     >
                         {{ component.title }}
                         {%- if component.js -%}
-                        <span class="sgds-tag is-rounded margin--left--sm"
-                            >JS</span
-                        >
+                        <span class="sgds-tag is-rounded margin--left--sm">JS</span>
                         {%- endif -%}
                     </small>
                 </div>
@@ -56,34 +52,38 @@ redirect_from:
 
 <h4 class="has-text-primary margin--bottom">Installing SGDS</h4>
 <h5 class="margin--bottom">
-    Install in browsers using CDN
+    Install directly in browsers using a free and highly available CDN:
 </h5>
 <h6>CSS</h6>
 {% highlight html %}
 <head>
     ...
+    <!-- jsDelivr -->
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/sgds-govtech@{{
-            site.sgds-version
-        }}/css/sgds.css"
+        href="https://cdn.jsdelivr.net/npm/sgds-govtech@{{ site.sgds-version }}/css/sgds.css"
     />
+    <!-- Or unpkg -->
+    <link rel="stylesheet" href="https://unpkg.com/sgds-govtech@{{ site.sgds-version }}/css/sgds.css" />
     ...
 </head>
 {% endhighlight %}
 <h6>JavaScript</h6>
 <p>
-    <a href="/docs/components">Certain components</a> of SGDS make use of
-    JavaScript, with jQuery as an external dependency. If you only need the
-    visual parts of SGDS, you do not to import the following.
+    <a href="/docs/">Certain components</a> of SGDS make use of
+    JavaScript, with jQuery as an external dependency. <strong>If you only need the
+    visual parts of SGDS (i.e. css), you do not need to import the following.</strong>
 </p>
 {% highlight html %}
 <body>
     ...
+    <!-- Make sure jQuery is loaded before sgds.js -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@{{
-            site.sgds-version
-        }}/js/sgds.js"></script>
+
+    <!-- jsDelivr -->
+    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@{{ site.sgds-version }}/js/sgds.js"></script>
+    <!-- Or unpkg -->
+    <script src="https://unpkg.com/sgds-govtech@{{ site.sgds-version }}/js/sgds.js"></script>
     ...
 </body>
 {% endhighlight %}
@@ -92,63 +92,51 @@ redirect_from:
 
 <h5 class="margin--bottom">Install using npm</h5>
 <p>
-    npm is a package manager for Nodejs, and hosts the libraries for many
-    frontend projects. Design System maintains a package for you to utilize the
-    compiled files on your project. This is especially useful if you use a build
-    tool for your frontend, such as Webpack
+    Frontend developers can use npm to download sgds and use it as a dependency in their projects.
+    Using npm is especially useful when using a module bundler or build tool for your frontend,
+    such as <a href="https://webpack.js.org">Webpack</a>.
 </p>
 <ul>
-    <li class="margin--bottom">
+    <li>
         Install Node.js
         <a href="https://nodejs.org/en/download/" target="_blank">here</a>
     </li>
-    <li class="margin--bottom">
+    <li>
         To see if npm is installed, open your preferred command line tool and
         type in <code>npm -v</code>. This should print the npm version number
         that look something like this <code>6.10.0</code>
     </li>
-    <li class="margin--bottom">
-        To install the sgds-govtech package, navigate to your site folder using
+    <li>
+        To install the sgds-govtech package, navigate to your site's codebase folder using
         your terminal and run this command:
         <code>npm install sgds-govtech</code>
     </li>
-    <li class="margin--bottom">
-        This will generate <code>node_modules/sgds-govtech</code> in your site
-        folder 
-{%- highlight bash -%} 
+    <li>
+        This will download sgds into <code>node_modules/sgds-govtech</code> in your current folder:
+{%- highlight bash -%}
 site/node_modules/sgds-govtech/ 
   ├── css/
   ├── fonts/
-  ├── js/ 
+  ├── js/
 {%- endhighlight -%}
+        You can then load these assets into your frontend projects.
     </li>
     <li>
-        You can then import the sgds code in your browsers as above, for
-        example: 
-{% highlight html %}
-<head>
-    ...
-    <link rel="stylesheet" href="/assets/css/sgds.css" />
-    ...
-</head>
-{% endhighlight %}
-    </li>
-    <li>
-        Or using Webpack: 
+        If you use a module bundler like Webpack, import sgds in your entry point: 
 {% highlight javascript %}
 import "sgds-govtech/css/sgds.css"; 
-import "sgds-govtech/js/sgds"; // Do not use with other web frameworks* 
+import "sgds-govtech/js/sgds"; // Do not use with other web frameworks!
 {% endhighlight %}
-        Note that usage with frameworks such as React, Vue or Angular is discouraged since they
+        *Note that usage with frameworks such as React, Vue or Angular is discouraged since they
         manipulate the DOM in their own environments. Framework-specific 
         implementations are in early development and can be found at
-        <a href="https://github.com/govtechsg/sgds-govtech-react"
-            >sgds-govtech-react</a
-        >
+        <a href="https://github.com/govtechsg/sgds-govtech-react">
+            sgds-govtech-react
+        </a>
         and
-        <a href="https://github.com/govtechsg/sgds-govtech-vue"
-            >sgds-govtech-vue</a
-        >
+        <a href="https://github.com/govtechsg/sgds-govtech-vue">
+            sgds-govtech-vue
+        </a>.
     </li>
 </ul>
 
@@ -156,8 +144,8 @@ import "sgds-govtech/js/sgds"; // Do not use with other web frameworks*
 
 <h5 class="margin--bottom">Install manually</h5>
 <p>
-    We provide both minified CSS and JavaScript files that you can use in a
-    production environment.
+    You can download minified sgds CSS and JavaScript files and host them yourself
+    in your production environment.
 </p>
 <p>
     <a
@@ -165,17 +153,18 @@ import "sgds-govtech/js/sgds"; // Do not use with other web frameworks*
         class="sgds-button is-rounded margin--bottom margin--top is-primary"
         href="/assets/downloads/sgds-govtech.zip"
         target="_blank"
-        >Download Design System package</a
+        >Download SGDS package</a
     >
 </p>
 <ul>
     <li class="margin--bottom">
-        The zip package contains the following files<br />
-        <code>css/sgds.css</code><br />
-        <code>js/sgds.js</code><br />
-        <code>fonts/sgds-icons.svg</code><br />
-        <code>fonts/sgds-icons.wott</code><br />
-        <code>fonts/sgds-icons.ttf</code>
+        <p>The zip package contains the following files:</p>
+        <p><code>css/sgds.css</code></p>
+        <p><code>js/sgds.js</code></p>
+        <p><code>fonts/sgds-icons.svg</code></p>
+        <p><code>fonts/sgds-icons.wott</code></p>
+        <p><code>fonts/sgds-icons.ttf</code></p>
+        <p><code>sgds/sass/...</code>(source files for advanced usage)</p>
     </li>
     <li class="margin--bottom">
         Extract and copy the files and folders into a relevant place in your
@@ -184,18 +173,18 @@ import "sgds-govtech/js/sgds"; // Do not use with other web frameworks*
     <li class="margin--bottom">
         Reference the CSS and JavaScript files in each HTML page or templates in
         your project, same as above. Note that
-        <a href="/docs/components">certain components</a> of SGDS make use of
+        <a href="/docs/">certain components</a> of SGDS make use of
         JavaScript, with jQuery as an external dependency. 
 {%- highlight html -%}
 <head>
     ...
-    <link rel="stylesheet" href="sitePath/css/sgds.css" />
+    <link rel="stylesheet" href="/my/static/files/css/sgds.css" />
 </head>
 <body>
     ...
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- Make sure this is included before sgds.js -->
-    <script src="sitePath/js/sgds.js"></script>
+    <!-- Make sure jQuery is included before sgds.js -->
+    <script src="/my/static/files/jquery-3.4.1.min.js"></script>
+    <script src="/my/static/files/js/sgds.js"></script>
 </body>
 {%- endhighlight -%}
     </li>

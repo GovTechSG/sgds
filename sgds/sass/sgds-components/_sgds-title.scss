@@ -83,8 +83,7 @@ $subtitle-strong-weight: $weight-semibold !default;
   // Sizes
   @each $size in $sizes {
     $i: index($sizes, $size);
-
-    &.is-#{$i} {
+    &.is-#{$i - 1} {
       font-size: $size;
     }
   }
