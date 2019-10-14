@@ -1,56 +1,49 @@
 $container-border-color: $grey-light !default;
+$container-offset: (2 * $gap) !default
 
 .sgds {
   &-container {
+    flex-grow: 1;
     margin: 0 auto;
     position: relative;
-
+    width: auto;
+    &.is-fluid{
+      max-width: none;
+      padding-left: $gap;
+      padding-right: $gap;
+      width: 100%;
+    }
+    
     &.is-full {
       margin: 0;
     }
 
     @include from($desktop) {
-      max-width: $desktop - 2 * $gap;
-      width: $desktop - 2 * $gap;
-
-      &.is-fluid {
-        margin-left: $gap;
-        margin-right: $gap;
-        max-width: none;
-        width: auto;
-      }
+      max-width: $desktop - $container-offset;
     }
 
 
     @include until($widescreen) {
       &.is-widescreen {
-        max-width: $widescreen - 2 * $gap;
-        width: auto;
+        max-width: $widescreen - $container-offset;
       }
     }
 
 
     @include until($fullhd) {
       &.is-fullhd {
-        max-width: $fullhd - 2 * $gap;
-        width: auto;
+        max-width: $fullhd - $container-offset;
       }
     }
 
 
     @include from($widescreen) {
-      &.is-widescreen{
-        max-width: $widescreen - 2 * $gap;
-        width: $widescreen - 2 * $gap;
-      }
+      max-width: $widescreen - $container-offset;
     }
 
 
     @include from($fullhd) {
-      &.is-fullhd{
-        max-width: $fullhd - 2 * $gap;
-        width: $fullhd - 2 * $gap;
-      }
+      max-width: $fullhd - $container-offset;
     }
 
 
