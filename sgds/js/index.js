@@ -153,6 +153,18 @@ $(document).ready(() => {
       });
     });
   }
+  const oldNavbarBurgers = $(".navbar-burger");
+  if (oldNavbarBurgers.length > 0) {
+    oldNavbarBurgers.each(function(index, burger) {
+      $(burger).click(function() {
+        const targetMenuId = burger.dataset.target;
+        const targetMenu = document.getElementById(targetMenuId);
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        burger.classList.toggle("is-active");
+        targetMenu.classList.toggle("is-active");
+      });
+    });
+  }
 
   // Dropdowns
   const dropdowns = $(".sgds-dropdown:not(.is-hoverable)");
