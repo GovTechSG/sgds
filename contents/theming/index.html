@@ -1,0 +1,78 @@
+---
+title: Theming using SASS
+layout: layout-post
+permalink: /theming/
+breadcrumb: Theming using Sass
+---
+
+<h4 class="has-text-primary">Lorem ipsum dolor sit amet.</h4>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat fugit recusandae neque possimus mollitia obcaecati soluta tempora, eum fuga exercitationem.</p>
+
+{% highlight scss %}
+@charset "utf-8";
+
+@import "yourSassPath/sgds/sass/sgds-customise/all";
+
+//Customisation starts here
+// Colors
+$primary: #6037b3 !default;
+$secondary: #3e69be !default;
+
+$black: hsl(0, 0%, 4%) !default;
+$black-bis: hsl(0, 0%, 7%) !default;
+$black-ter: hsl(0, 0%, 14%) !default;
+
+$grey-darker: #323232 !default;
+$grey-dark: #484848 !default;
+$grey: #767676 !default;
+$grey-light: #d6d6d6 !default;
+$grey-lighter: #f0f0f0 !default;
+$footer-grey: #b7b7b7;
+$table-grey: #f0f4f6;
+
+$white-trans: rgba(255, 255, 255, 0.7) !default;
+$white-ter: hsl(0, 0%, 96%) !default;
+$white-bis: hsl(0, 0%, 98%) !default;
+$white: hsl(0, 0%, 100%) !default;
+
+$yellow: #f5a623 !default;
+$green: #008649 !default;
+$cyan: #008196 !default;
+$blue: #0070F2 !default;
+$blue-light: lighten(#007bff, 5%) !default;
+$purple: hsl(271, 100%, 71%) !default;
+$red: #d0021b !default;
+
+
+@import "yourSassPath/sgds/sass/sgds-base/all";
+@import "yourSassPath/sgds/sass/sgds-icons/all";
+@import "yourSassPath/sgds/sass/sgds-components/all";
+@import "yourSassPath/sgds/sass/sgds-layout/all";
+
+{% endhighlight%}
+
+<div class="sgds-notification is-info">
+    <div class="sgds-notification-detail">
+        <div class="sgds-notification-content">
+            <small>Kick start your web production using SGDS</small><br>
+            <small><a href="/docs/getting-started/">Diffrent ways of installing SGDS</a></small>
+        </div>
+    </div>
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h4 class="has-text-primary">Initial Variables</h4>
+
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat fugit recusandae neque possimus mollitia obcaecati soluta tempora, eum fuga exercitationem.</p>
+
+<table class="table is-bordered">
+    {% for init-variable in site.data.initial-variables.by_name %}
+        <tr>
+            <p>{{init-variable[0]}}</p>
+        </tr>
+    {% endfor %}
+</table>
