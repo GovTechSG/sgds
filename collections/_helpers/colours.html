@@ -4,29 +4,48 @@ layout: layout-docs
 coloursList:
   - name: white
     hex: '#ffffff'
+
   - name: black
     hex: '#000000'
+
   - name: light
     hex: '#f5f5f5'
+
   - name: dark
     hex: '#323232'
+
   - name: primary
     hex: '#6037b3'
+    contrast: 7.79
+
   - name: secondary
-    hex: '#4675d3'
+    hex: '#3e69be'
+    contrast: 5.29
+
   - name: link
-    hex: '#007bff'
+    hex: '#0070F2'
+    contrast-bg: 10
+    contrast: 4.57
+
   - name: info
-    hex: '#17a2b8'
+    hex: '#008196'
+    contrast: 4.58
+
   - name: success
-    hex: '#1ca161'
+    hex: '#008649'
+    contrast: 4.66
+
   - name: warning
     hex: '#f5a623'
+    contrast: 10.36
+    
   - name: danger
     hex: '#d0021b'
+    contrast: 5.67
+
 ---
 
-<h4 class="has-text-primary">SGDS Colour classes</h4>
+<h4 class="has-text-primary has-text-weight-bold">SGDS Colour classes</h4>
 
 <p>
     SGDS contains predefined classes that apply different colours to specific
@@ -36,40 +55,44 @@ coloursList:
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h5 class="margin--bottom--lg has-text-primary">Colour classes</h5>
+<h5 class="margin--bottom--lg has-text-primary has-text-weight-bold">Colour classes</h5>
 
 <div class="row is-multiline">
     {%- for colour in page.coloursList -%}
     <div class="col is-3 has-background-{{colour.name}}
         {% if colour.name == 'white' or colour.name == 'light' or colour.name == 'warning' -%}
-            has-text-dark
+            has-text-black
         {%- else -%}
             has-text-white
         {%- endif -%}">
         <p>
-            <span class="is-capitalized">{{colour.name}}</span><br>
-            {{colour.hex}} {%- if colour.name == 'warning' -%}<sup>1</sup>{%- endif -%}
+            <span>
+                <span class="is-capitalized"><b>{{colour.name}} {%- if colour.name == 'warning' -%}<sup>1</sup>{%- endif -%}</b></span><br>
+                {{colour.hex}}<br>
+                {%- if colour.contrast -%}<small>Contrast Ratio : {{colour.contrast}}</small>{%- endif -%}
+            </span>
+
         </p>
     </div>
     {%- endfor -%}
 </div>
 
-<p>
+<small>
     <sup>1</sup>Most shades of amber such as the one used in the <code>warning</code> class
     only meet WCAG contrast requirements when paired with black, 
     e.g. black text within elements with <code>.has-background-warning</code>
-</p>
+</small>
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h5 class="margin--bottom--lg has-text-primary">Text colours</h5>
+<h5 class="margin--bottom--lg has-text-primary has-text-weight-bold">Text colours</h5>
 
 <table class="sgds-table">
     <thead>
         <tr>
-            <td>Class</td>
-            <td>Example</td>
-            <td>Usage</td>
+            <th>Class</th>
+            <th>Example</th>
+            <th>Usage</th>
         </tr>
     </thead>
     <tbody>
@@ -99,14 +122,14 @@ coloursList:
 
 <hr class="margin--bottom--lg margin--top--lg" />
 
-<h5 class="margin--bottom--lg has-text-primary">Background colours</h5>
+<h5 class="margin--bottom--lg has-text-primary has-text-weight-bold">Background colours</h5>
 
 <table class="sgds-table">
     <thead>
         <tr>
-            <td>Class</td>
-            <td>Example</td>
-            <td>Usage</td>
+            <th>Class</th>
+            <th>Example</th>
+            <th>Usage</th>
         </tr>
     </thead>
     <tbody>
@@ -127,6 +150,46 @@ coloursList:
 <p class="has-background-{{ colour.name }}">
     Use the <code>has-background-{{ colour.name }}</code> colour class to set background colour
 </p>
+{%- endhighlight -%} 
+                </td>
+            </tr>
+        {%- endfor -%}
+    </tbody>
+</table>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h5 class="margin--bottom--lg has-text-primary has-text-weight-bold">Component colours</h5>
+<p>Use the <code>is-*color*</code> class to set the component colors for:</p>
+
+<ul>
+    <li><a href="/docs/accordion/">Accordion</a></li>
+    <li><a href="/docs/button/">Button</a></li>
+    <li><a href="/docs/card/">Card</a></li>
+    <li><a href="/docs/notification/">Notification</a></li>
+    <li><a href="/docs/progress-bar/">Progress Bar</a></li>
+</ul>
+
+<p>Example on <code>is-*color*</code> color class works for <a href="/doc/button/">Button</a> component:</p>
+
+<table class="sgds-table">
+    <thead>
+        <tr>
+            <th>Class</th>
+            <th>Example</th>
+            <th>Usage</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%- for colour in page.coloursList -%}
+            <tr class="{% if colour.name == 'link' or colour.name == 'white' or colour.name == 'light' %}hide{% endif %}">
+                <td>is-{{colour.name}}</td>
+                <td>
+                    <button type="button" class="sgds-button is-{{colour.name}} {% if colour.name == 'warning' %}has-text-black{% endif %}">Button</button>
+                </td>
+                <td>
+{%- highlight html -%}
+<button type="button" class="sgds-button is-{{colour.name}}{% if colour.name == 'warning' %}has-text-black{% endif %}">Button</button>
 {%- endhighlight -%} 
                 </td>
             </tr>
