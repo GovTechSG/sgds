@@ -5,7 +5,7 @@ description: >-
   and user experience
 logo: /assets/img/logo_sgds.png
 
-sgds-version: 1.3.4
+sgds-version: 1.3.5
 report_vulnerability: "https://tech.gov.sg/report_vulnerability"
 contact_us: "https://form.gov.sg/forms/govtech/5bc440ac507956000fdbae91"
 feedback_form: "https://form.gov.sg/#!/forms/govtech/5bd12c6668dbe7000fff9ace"
