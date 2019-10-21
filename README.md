@@ -99,6 +99,22 @@ Test out the latest development build:
 <script src="https://dev.designsystem.gov.sg/js/sgds.js"></script>
 ```
 
+### Releasing
+
+0. Make sure branch is at master.
+1. Change all references in documentation from previous version to new version, e.g. inside the `_config.yml` and `readme.md` files.
+2. Update and tag new version using npm.
+
+```bash
+npm version (major|minor|patch)
+```
+
+3. Publish to npm. This will trigger a rebuild locally.
+
+```bash
+npm publish
+```
+
 ## Patch Notes
 
 See [Changelog](https://github.com/GovTechSG/sgds/blob/master/CHANGELOG.md)
