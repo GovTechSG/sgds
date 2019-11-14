@@ -3,8 +3,124 @@ title: Steps
 layout: layout-docs
 category: General
 icon: table
-published: false
+published: true
 ---
+
+{% capture default_stepper %}
+<div class="stepper-wrapper">
+  <button class="stepper-item is-active is-success">
+    <span class="stepper-marker">1</span>
+    <span class="stepper-title">Sign Up</span>
+  </button>
+  <div class="stepper-connector"></div>
+  <button class="stepper-item is-active is-secondary">
+    <span class="stepper-marker">2</span>
+    <span class="stepper-title">Particular</span>
+  </button>
+  <div class="stepper-connector"></div>
+  <button class="stepper-item">
+    <span class="stepper-marker">3</span>
+    <span class="stepper-title">Address</span>
+  </button>
+  <div class="stepper-connector"></div>
+  <button class="stepper-item">
+    <span class="stepper-marker">4</span>
+    <span class="stepper-title">Confirm</span>
+  </button>
+  <div class="stepper-connector"></div>
+  <button class="stepper-item">
+    <span class="stepper-marker">5</span>
+    <span class="stepper-title">Checkout</span>
+  </button>
+</div>
+{% endcapture %}
+{% capture default_stack_stepper %}
+<div class="stepper-wrapper has-stack-marker">
+  <button class="stepper-item is-active is-primary">
+    <span class="stepper-marker">1</span>
+    <span class="stepper-title">Sign Up</span>
+  </button>
+  <div class="stepper-connector"></div>
+  <button class="stepper-item is-active is-secondary">
+    <span class="stepper-marker">2</span>
+    <span class="stepper-title">Particular</span>
+  </button>
+  <div class="stepper-connector"></div>
+  <button class="stepper-item">
+    <span class="stepper-marker">3</span>
+    <span class="stepper-title">Address</span>
+  </button>
+  <div class="stepper-connector"></div>
+  <button class="stepper-item">
+    <span class="stepper-marker">4</span>
+    <span class="stepper-title">Confirm</span>
+  </button>
+  <div class="stepper-connector"></div>
+  <button class="stepper-item">
+    <span class="stepper-marker">5</span>
+    <span class="stepper-title">Checkout</span>
+  </button>
+</div>
+{% endcapture %}
+{% capture vertical_stepper %}
+<div class="stepper-wrapper is-stepper-vertical">
+  <button class="stepper-item is-active is-primary">
+    <span class="stepper-marker">1</span>
+    <span class="stepper-title">Sign Up</span>
+  </button>
+  <div class="stepper-connector">
+    <div class="stepper-content">
+      <div class="field">
+        <label class="label" for="name">Dicta, illo?</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input" id="name" />
+          <button class="sgds-button is-link margin--top">next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="stepper-item is-active is-secondary">
+    <span class="stepper-marker">2</span>
+    <span class="stepper-title">Particular</span>
+  </button>
+  <div class="stepper-connector">
+    <div class="stepper-content">
+      <div class="content">
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, inventore a. Doloremque debitis enim laboriosam obcaecati voluptate ad minima impedit?</p>
+          <button class="sgds-button is-primary">Next</button>
+      </div>
+      
+    </div>
+  </div>
+  <button class="stepper-item">
+    <span class="stepper-marker">3</span>
+    <span class="stepper-title">Address</span>
+  </button>
+  <div class="stepper-connector">
+    <div class="stepper-content">
+      <div class="field">
+        <label class="label" for="message">Message</label>
+        <div class="control">
+          <textarea
+            class="textarea"
+            placeholder="Textarea"
+            id="message"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="stepper-item">
+    <span class="stepper-marker">4</span>
+    <span class="stepper-title">Confirm</span>
+  </button>
+  <div class="stepper-connector"></div>
+  <button class="stepper-item">
+    <span class="stepper-marker">5</span>
+    <span class="stepper-title">Checkout</span>
+  </button>
+</div>
+{% endcapture %}
 
 <h4 class="has-text-primary">
   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste facere odio
@@ -12,49 +128,30 @@ published: false
 </h4>
 
 <hr class="margin--bottom--lg margin--top--lg" />
+<h5 class="has-text-weight-semibold margin--bottom--lg">Horizontal Steps</h5>
 
-<h5 class="has-text-weight-semibold margin--bottom--lg">Default Steps</h5>
+{{ default_stepper }}
+{% highlight html %}
+{{ default_stepper }}
+{% endhighlight %}
 
-<div class="sgds-steps">
-  <div class="sgds-step-item">
-    <div class="sgds-step-marker">
-      1
-    </div>
-    <div class="sgds-step-details">
-      <h4>Step 1</h4>
-      <p>This is the first step of the process.</p>
-    </div>
-  </div>
-  <div class="sgds-step-item">
-    <div class="sgds-step-marker">2</div>
-    <div class="sgds-step-details">
-      <h4>Step 2</h4>
-      <p>
-        This is the second step. You get here once you have completed the first
-        step.
-      </p>
-    </div>
-  </div>
-  <div class="sgds-step-item">
-    <div class="sgds-step-marker">3</div>
-    <div class="sgds-step-details">
-      <h4>Step 3</h4>
-      <p>This is the third step. One more step before the end.</p>
-    </div>
-  </div>
-  <div class="sgds-step-item">
-    <div class="sgds-step-marker">
-      4
-    </div>
-    <div class="sgds-step-details">
-      <h4>Step 4</h4>
-      <p>
-        Final step. You have completed all the previous steps and end the
-        process.
-      </p>
-    </div>
-  </div>
-</div>
+<hr class="margin--bottom--lg margin--top--lg" />
+<h5 class="has-text-weight-semibold margin--bottom--lg">Horizontal Steps with stack markers</h5>
+
+{{ default_stack_stepper }}
+{% highlight html %}
+{{ default_stack_stepper }}
+{% endhighlight %}
+
+<hr class="margin--bottom--lg margin--top--lg" />
+<h5 class="has-text-weight-semibold margin--bottom--lg">Vertical Steps</h5>
+
+{{ vertical_stepper }}
+{% highlight html %}
+{{ vertical_stepper }}
+{% endhighlight %}
+<!-- /.Stepers Wrapper -->
+<!-- /.Horizontal Steppers -->
 
 {%- highlight html -%}
 <div class="sgds-steps">
@@ -211,7 +308,7 @@ published: false
 </h5>
 
 <div class="sgds-steps">
-  <div class="sgds-step-item is-completed">
+  <div class="sgds-step-item is-completed is-success">
     <div class="sgds-step-marker">
       <span class="sgds-icon sgds-icon-check"></span>
     </div>

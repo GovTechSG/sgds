@@ -1,0 +1,114 @@
+$stepper-offset: 1rem !default;
+$stepper-connector-width: 2px !default;
+
+.stepper {
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+
+  &-item {
+    align-items: center;
+    border: 0;
+    font-size: inherit;
+    margin-left: $stepper-offset;
+    margin-right: $stepper-offset;
+    padding: 0;
+    > .stepper-marker {
+      display: inline-block;
+      border-radius: 4999px;
+      background-color: grey;
+      color: white;
+      width: 2rem;
+      height: 2rem;
+      text-align: center;
+      line-height: 2rem;
+      margin-right: $stepper-offset/2;
+    }
+
+    @each $name, $pair in $colors {
+      $color: nth($pair, 1);
+      $color-invert: nth($pair, 2);
+      &.is-#{$name} {
+        color: $color;
+        > .stepper-marker {
+          background-color: $color;
+        }
+        > .stepper-connector {
+          border-color: $color;
+        }
+      }
+      &.is-active {
+        font-weight: $weight-bold;
+        > .stepper-marker {
+          font-weight: $weight-bold;
+        }
+      }
+    }
+  }
+
+  &-connector {
+    flex: 1 1 auto;
+    border-top: $stepper-connector-width solid grey;
+  }
+}
+
+//Helper
+.stepper-wrapper {
+  &.is-stepper-vertical{
+    display:block;
+    .stepper-item {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: $stepper-offset;
+        margin-bottom: $stepper-offset;
+        
+    }
+    .stepper-connector {
+        margin-left: $stepper-offset;
+        border-top: none;
+        border-left: $stepper-connector-width solid grey;
+        min-height: 2rem;
+    }
+
+    .stepper-content{
+        padding-top: $stepper-offset/2;
+        padding-bottom: $stepper-offset/2;
+        margin-left: 2rem;
+    }
+  }
+  &.has-stack-marker {
+    .stepper-item {
+      > .stepper-marker {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: $stepper-offset/2;
+      }
+    }
+    .stepper-connector {
+      margin-bottom: $stepper-offset;
+    }
+  }
+
+  &.is-small {
+    .stepper-item {
+      > .stepper-marker {
+        width: calc(2rem * 0.75);
+        height: calc(2rem * 0.75);
+        line-height: calc(2rem * 0.75);
+      }
+    }
+  }
+
+  &.is-large {
+    .stepper-item {
+      > .stepper-marker {
+        font-size: $size-6;
+        width: calc(2rem * 1.25 );
+        height: calc(2rem * 1.25 );
+        line-height: calc(2rem * 1.25 );
+      }
+    }
+  }
+}
