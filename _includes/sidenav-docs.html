@@ -1,0 +1,56 @@
+<div class="control">
+    <input id="search-field" 
+        class="input is-rounded is-small" 
+        type="text" 
+        placeholder="Search Component">
+</div>
+<hr class="margin--top margin--bottom--sm">
+<ul class="sgds-menu-list">
+
+    {% assign gettingStartedClass = nil %}
+    {% if page.url contains "docs/getting-started" %}
+        {% assign gettingStartedClass = 'is-active' %}
+    {% endif %}
+    <li><a href="/docs/getting-started" class="{{ gettingStartedClass }}">Getting started</a></li>
+
+    {% assign customiseSgdsClass = nil %}
+    {% if page.url contains "docs/customise-sgds" %}
+        {% assign customiseSgdsClass = 'is-active' %}
+    {% endif %}
+    <li><a href="/docs/customise-sgds" class="{{ customiseSgdsClass }}">Customise SGDS with Sass</a></li>
+
+    {% assign collections = site.collections | sort: 'order' %}
+    {% for collection in collections %}
+        {% if collection.label !='posts' and collection.label != 'guides' %}
+            {% assign name = collection.label %}
+            <li class="second-level-nav">
+                <a class="second-level-nav-header has-text-primary">
+                    {{ name | capitalize }}
+                    <i class="sgds-icon sgds-icon-chevron-up has-text-weight" aria-hidden="true"></i>
+                </a>
+            </li>
+            <div class="second-level-nav-div" id="{{collection.label}}-component">
+                <ul class="list">
+                    {% assign items = site[name] %}
+                    {% if collection.label == 'standard' %}
+                        {% assign items = site[name] | sort:'order' %}
+                    {% endif %}
+                    {% for item in items %}                                        
+                        {% assign class = nil %}
+                        {% if page.url contains item.url %}
+                            {% assign class = 'is-active' %}
+                        {% endif %}
+                        <li>
+                            <a class="component-name second-level-nav-item {{class}}" href="{{item.url}}">
+                                {{item.title}}
+                                {%- if item.js -%}
+                                    <span class="sgds-tag is-rounded margin--left--sm">JS</span>
+                                {%- endif -%}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endfor %}
+</ul>
