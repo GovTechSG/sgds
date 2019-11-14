@@ -1,0 +1,188 @@
+---
+title: Text Input
+layout: layout-docs
+category: General
+icon: checklist
+---
+
+<h4 class="has-text-primary">
+    Text inputs allow users to enter any combination of letters, numbers, or symbols in a structured
+    format.
+</h4>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<div class="field margin--bottom--lg">
+        <label class="label" for="name">Text Input Label</label>
+        <div class="control">
+            <input class="input" type="text" id="name" />
+        </div>
+</div>
+
+<div class="field">
+    <label class="label" for="hint">Text Input Label</label>
+    <span class="hint">This is a example of hint text</span>
+    <div class="control">
+        <input class="input" type="text" id="hint" />
+    </div>
+</div>
+
+<h5 class="has-text-weight-semibold margin--bottom margin--top--lg">Component Code</h5>
+{%- highlight html -%}
+<div class="field">
+    <label class="label" for="name">Name</label>
+    <div class="control">
+        <input class="input" type="text" placeholder="Text input" id="name" />
+    </div>
+</div>
+
+<div class="field">
+        <label class="label" for="hint">Text Input Label</label>
+        <span class="hint">This is a example of hint text</span>
+        <div class="control">
+            <input class="input" type="text" id="hint" />
+        </div>
+</div>
+{%- endhighlight -%}
+
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0">
+    Copy snippet
+</button>
+
+
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
+<p>Use the text input component when you only need users to enter text 
+    that is no longer than a single line. The label of the text input should clearly indicate what the user needs to key in.
+</p>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should consider something else</h4>
+<p>If you require users to enter text and/or long answers that span multiple lines.
+    In such cases, using the <a href="/docs/text area/">text area</a> component would be more appropriate.</p>
+<p>If you require users to select from a predetermined list, then using the <a href="/docs/dropdown/">dropdown</a>, <a href="/docs/checkbox/">checkbox</a> or 
+    <a href="/docs/radio-buttons/">radio buttons</a> components would be more appropriate.
+</p>
+
+<h4 class="margin--top--lg has-text-weight-semibold">Usability Guidelines</h4>
+<ul>
+        <li>
+            Use the appropriate field length for the input. The length provides the users with an idea of how much text to input. 
+            E.g a postal code text input should only be 6 numbers long.
+        </li>
+    
+        <li>
+            Do avoid using placeholder text inside of the text field. This is so that users
+            will still have the hint text available when they need to review their answers. If the placeholder text disappears when users start typing, 
+            they will no longer have the hint text available to them. It is always better to have clear labels that users will understand.
+        </li>
+
+        <li>
+            If you do require hint text, do give examples of how you want the user to enter their answers or how their information will be used. 
+            E.g for emails, a useful hint text would be "We will only use your email for receipts." or specify the date format.
+        </li>
+
+    </ul>
+
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h4 class="margin--top--lg margin--bottom has-text-weight-semibold">Error Messaging</h4>
+<div class="field">
+        <label class="label" for="email">Text Input Label</label>
+        <span class="error" for="email">This is a error message</span>
+        <div class="control">
+            <input
+                class="input is-danger"
+                type="email"
+                placeholder="Email input"
+                value="hello@example.com"
+                id="email"
+            />
+        </div>
+</div>
+
+
+
+<h5 class="margin--top--lg has-text-weight-semibold">Component Code</h5>
+{%- highlight html -%}
+<div class="field">
+        <label class="label" for="email">Text Input Label</label>
+        <span class="error" for="email">This is a error message</span>
+        <div class="control">
+            <input
+                class="input is-danger"
+                type="email"
+                placeholder="Email input"
+                value="hello@example.com"
+                id="email"
+            />
+        </div>
+</div>
+
+{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight1">
+    Copy snippet
+</button>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
+<p>Do use error messaging that is clear and concise. The error message should tell users what went wrong and/or how to recitify it.
+</p>
+
+<p>The error message should be inbetween the text input label and the text input field. If you have hint text, it should be inbetween
+    the hint text and the text input field.
+</p>
+
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h4 class="margin--top--lg margin--bottom has-text-weight-semibold">Success Messaging</h4>
+<div class="field">
+        <label class="label" for="email">Email Address</label>
+        <span class="success" for="email">This is a valid email</span>
+        <div class="control">
+            <input
+                class="input is-success"
+                type="email"
+                placeholder="Email input"
+                value="hello@example.com"
+                id="email"
+            />
+        </div>
+</div>
+
+<h5 class="margin--top--lg has-text-weight-semibold">Component Code</h5>
+{%- highlight html -%}
+<div class="field">
+        <label class="label" for="email">Email Address</label>
+        <span class="success" for="email">This is a valid email</span>
+        <div class="control">
+            <input
+                class="input is-success"
+                type="email"
+                placeholder="Email input"
+                value="hello@example.com"
+                id="email"
+            />
+        </div>
+</div>
+
+{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight1">
+    Copy snippet
+</button>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
+<p>Success messaging should be used when you require inline validation. It can be used with or without the hint text. If hint text is used,
+    it should clearly state what the user needs to enter into the field.
+</p>
+
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+{%- include sgds-feedback.html -%}

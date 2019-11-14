@@ -1,54 +1,19 @@
 ---
-title: Getting started
-layout: layout-sidenav
-permalink: /docs/getting-started/
-redirect_from:
-  - /docs/
+title: Get Started
+layout: layout-post
+permalink: /get-started/
 ---
 
 <div class="row">
     <div class="col">
-        <h3 class="title has-text-primary">{{ page.title }}</h3>
+        <h3 class="title has-text-primary">Installation Guides</h3>
+        <p>You'll find the various ways you can install and start using the design system below.
+            If you are looking for code snippets and guidelines, they can be found in the <a href="/docs/">components</a> section of the site.
+        </p>
     </div>
 </div>
 
 <hr class="margin--bottom--lg" />
-
-<div class="row is-multiline">
-    <div class="col is-12">
-        <h4 class="has-text-primary">Standard components for all gov.sg web services</h4>
-        <p>
-            As defined in the
-            <a href="https://www.tech.gov.sg/digital-service-standards/"
-                >Digital Service Standards</a
-            >
-        </p>
-    </div>
-    {% assign components = site.standard | sort: 'order' %} 
-    {%- for component in components -%}
-    <div class="col is-3-desktop is-12-mobile">
-        <a href="{{ component.url }}" class="is-flex component-card">
-            <div class="sgds-card sgds-card-button">
-                <div class="sgds-card-content has-text-centered">
-                    <span
-                        class="sgds-icon sgds-icon-{{ component.icon | downcase }} is-size-3"
-                    ></span>
-                    <small
-                        class="has-text-weight-semibold is-block margin--top--sm"
-                    >
-                        {{ component.title }}
-                        {%- if component.js -%}
-                        <span class="sgds-tag is-rounded margin--left--sm">JS</span>
-                        {%- endif -%}
-                    </small>
-                </div>
-            </div>
-        </a>
-    </div>
-    {%- endfor -%}
-</div>
-
-<hr class="margin--bottom--lg margin--top--lg" />
 
 <h4 class="has-text-primary margin--bottom">Installing SGDS</h4>
 <h5 class="margin--bottom">
@@ -334,7 +299,7 @@ import "sgds-govtech/js/sgds"; // Do not use with other web frameworks!
                 ><i class="sgds-icon sgds-icon-wordpress"></i>&nbsp;Download
                 Wordpress Theme</a
             >
-        </p>
+        </p> 
         <p>Adding the Wordpress theme to your project:</p>
         <ol>
             <li>

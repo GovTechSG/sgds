@@ -7,9 +7,7 @@ js: true
 ---
 
 <h4 class="has-text-primary">
-    Tabs are navigation elements that let users easily access different areas of a site or different
-    parts of an individual page. Think tabbed dividers in a filing cabinet – by clicking a tab,
-    users can easily locate a page containing related content
+    Tabs are navigation elements that let users navigate between related content that are grouped together.
 </h4>
 <div class="sgds-tabs">
     <ul class="no-margin" role="tablist">
@@ -67,9 +65,8 @@ js: true
     </div>
 </div>
 
-<hr class="margin--bottom--lg margin--top--lg" />
 
-<h6 class="has-text-weight-semibold">Code Snippets for Tabs</h6>
+<h6 class="has-text-weight-semibold margin--top--lg margin--bottom">Component Code</h6>
 {%- highlight html -%}
 <div class="sgds-tabs">
     <ul class="no-margin" role="tablist">
@@ -96,44 +93,25 @@ js: true
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight0"
 >
-    Copy snippet for the tabs
-</button>
-<hr class="margin--bottom--lg margin--top--lg" />
-<h6 class="has-text-weight-semibold">Code Snippets for Tab Content</h6>
-{%- highlight html -%}
-<div class="row" id="tab1">
-    <div class="col">
-        <p>Tab content 1</p>
-    </div>
-</div>
-<div class="row" id="tab2">
-    <div class="col">
-        <p>Tab content 2</p>
-    </div>
-</div>
-<div class="row" id="tab3">
-    <div class="col">
-        <p>Tab content 3</p>
-    </div>
-</div>
-{%- endhighlight -%}
-<button
-    class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight1"
->
-    Copy snippet for the tab content
+    Copy snippet
 </button>
 
-<hr class="margin--bottom--lg margin--top--lg" />
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
+<p>The tab component can help users in switching between related information and users don't need to view all information at once.
+</p>
 
-<h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
-<p>Tab should:</p>
-<ul>
-    <li>Be clearly labeled to differentiate the sections beneath them</li>
-    <li>Have short labels, kept to single words if possible</li>
-    <li>Have only one being active at a time</li>
-    <li>Not be used for primary navigation</li>
-</ul>
+<h4 class="margin--top--lg has-text-weight-semibold">When you should consider something else</h4>
+<p>Tabs hide information from the user. If you have a lot of information contained within the tabs, do consider reducing the content.
+    You may want to consider splitting the content into different sections using properly formatted text.
+</p>
+
+<p>Tabs should be used sparingly, this is to reduce cognitive load for the user. Having too many tabs may also affect the performace of the page
+    which could result in longer loading times.
+    </p>
+
+<p>If you need users to compare information, using the <a href="/docs/table/">table</a> component would be more appropriate.
+</p>
+
 
 <hr class="margin--bottom--lg margin--top--lg" />
 

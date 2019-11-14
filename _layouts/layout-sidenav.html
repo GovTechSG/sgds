@@ -63,7 +63,7 @@ layout: layout-default
                         {% if page.url contains "docs/getting-started" %}
                             {% assign gettingStartedClass = 'is-active' %}
                         {% endif %}
-                        <li><a href="/docs/getting-started" class="{{ gettingStartedClass }}">Getting started</a></li>
+                        <li><a href="/docs/getting-started" class="{{ gettingStartedClass }}">Getting Started</a></li>
                         {% assign collections = site.collections | sort: 'order' %}
                         {% for collection in collections %}
                             {% if collection.label !='posts' and collection.label != 'guides' %}

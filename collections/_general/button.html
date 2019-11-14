@@ -5,7 +5,7 @@ category: General
 icon: button
 ---
 
-<h4 class="has-text-primary">Button is an ordinary, every-day element of interaction design. Although button looks like a very simple UI element, its design has changed a lot over the past decades. But still, button UX design is always about recognition and clarity</h4>
+<h4 class="has-text-primary">Buttons are used to draw attention to important actions that you want the users to take.</h4>
 
 <hr class="margin--bottom--lg margin--top--lg">
 
@@ -27,9 +27,21 @@ icon: button
         <br><code>disabled</code>
     </div>
 </div>
+
+<h5 class="has-text-weight-semibold margin--top--lg margin--bottom">Component Code</h5>
 {%- highlight html -%}
 <button class="sgds-button is-primary">button</button>
 {%- endhighlight -%}
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
+<p>You should use buttons for important actions that you want the user to take like send message or save to draft.</p>
+    <p>Button labels should be clear and specific to the action that the user is taking.</p>
+   <p>Secondary buttons should be used to indicate less common actions and have less prominance as compared to primary buttons.</p>
+   <p>In the examples below, you can reference on how to group buttons, insert icons, attach controls and style text links.</p>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use something else</h4>
+   <p>If you are linking within pages in a site, you can use regular text links instead.</p>  
+
 
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
 
@@ -48,6 +60,7 @@ icon: button
     <span class="icon"><i class="sgds-icon sgds-icon-download"></i></span>
 </button>
 
+<h5 class="has-text-weight-semibold margin--top--lg margin--bottom">Component Code</h5>
 {%- highlight html -%}
 <button class="sgds-button">
     <span class="icon"><i class="sgds-icon sgds-icon-facebook"></i></span>
@@ -66,6 +79,7 @@ icon: button
     <p class="control"><a class="sgds-button is-danger">Delete</a></p>
 </div>
 
+<h5 class="has-text-weight-semibold margin--top--lg margin--bottom">Component Code</h5>
 {%- highlight html -%}
 <div class="field is-grouped">
     <p class="control">
@@ -83,6 +97,8 @@ icon: button
     <p class="control"><a class="sgds-button">Maybe</a></p>
     <p class="control"><a class="sgds-button">No</a></p>
 </div>
+
+<h5 class="has-text-weight-semibold margin--top--lg margin--bottom">Component Code</h5>
 {%- highlight html -%}
 <div class="field has-addons">
     <p class="control">
@@ -118,6 +134,7 @@ icon: button
     </span>
 </button>
 
+<h5 class="has-text-weight-semibold margin--top--lg margin--bottom">Component Code</h5>
 {%- highlight html -%}
 <button href="" class="sgds-sec-button">
     <span>
@@ -141,16 +158,6 @@ icon: button
 </button>
 {%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight3'>Copy snippet</button>
-
-<hr class="margin--bottom--lg margin--top--lg">
-
-<h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
-<p>Button should:</p>
-<ul>
-    <li>Use labels that tell users what will happen when they click the button</li>
-    <li>User verbs that describe the action, such as Add or Delete</li>
-    <li>User no more than three words for button labels</li>
-</ul>
 
 <hr class="margin--bottom--lg margin--top--lg">
 
