@@ -1,10 +1,8 @@
 ---
 title: Responsiveness
-subtitle: Subtitle
 layout: layout-docs
 category: layouts
 icon: container
-breadcrumb: General
 ---
 
 {% capture is-mobile-example %}
@@ -33,6 +31,7 @@ breadcrumb: General
 <div class="sgds-container">
   <div class="row is-mobile">
     <div class="col is-11-mobile is-7-tablet is-5-desktop is-3-widescreen is-1-fullhd">
+      <br />
       <code>is-11-mobile</code><br>
       <code>is-7-tablet</code><br>
       <code>is-5-desktop</code><br>
@@ -45,44 +44,44 @@ breadcrumb: General
 {% endcapture %}
 
 <h4 class="has-text-primary">
-  Handle different grid layouts for each screensize
+  Use responsive classes to define how the <a href="/docs/grid">grid</a> behaves at different screen sizes.
 </h4>
 
 <hr/>
 
-<h5 class="has-text-weight-semibold margin--bottom--sm">Different column sizes per breakpoint</h5>
+<h5 class="has-text-weight-semibold margin--bottom--sm">Breakpoints</h5>
 <p>
-    You can define a column size for each viewport size: <b>mobile, tablet, desktop, widescreen and fullHD</b>.
+  Under the <a href="/docs/grid">grid system</a>, each column's width can be defined for a 
+  specific viewport size: <b>mobile, tablet, desktop, widescreen and fullhd</b>.
 </p>
-
 
 <table class="table is-bordered is-size-8">
   <thead>
     <tr>
-      <td>Class</td>
+      <td>Class (x can take values between 1 and 12)</td>
       <td>Breakpoint</td>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>is-x-mobile</code></td>
-      <td>Mobile Up to <b>768px</b></td>
+      <td>Up to <b>768px</b></td>
     </tr>
     <tr>
       <td><code>is-x-tablet</code></td>
-      <td>Tablet between <b>768px</b> to <b>1023px</b></td>
+      <td>Between <b>768px</b> to <b>1023px</b></td>
     </tr>
     <tr>
       <td><code>is-x-desktop</code></td>
-      <td>Desktop between <b>1024px</b> to <b>1215px</b></td>
+      <td>Between <b>1024px</b> to <b>1215px</b></td>
     </tr>
     <tr>
       <td><code>is-x-widescreen</code></td>
-      <td>Widescreen between <b>1216px</b> to <b>1407px</b></td>
+      <td>Between <b>1216px</b> to <b>1407px</b></td>
     </tr>
     <tr>
       <td><code>is-x-fullhd</code></td>
-      <td>FullHD from <b>1408px</b> and above</td>
+      <td><b>1408px</b> and above</td>
     </tr>
   </tbody>
 </table>
@@ -92,8 +91,8 @@ breadcrumb: General
       <span class="sgds-icon sgds-icon-grid is-size-4"></span>
       <div class="sgds-notification-content">
           <small>
-            Resize the browser to see how the grid respond to different screensizes<br>
-            <a href="/docs/grid/">Learn more about SGDS Grid System</a>
+            Resize the browser to see how the columns respond to different screen sizes<br>
+            <a href="/docs/grid/">Learn more about the grid system</a>
           </small>
       </div>
   </div>
@@ -123,8 +122,8 @@ breadcrumb: General
 
 <h5 class="has-text-weight-semibold margin--bottom--sm">Mobile Columns</h5>
 <p>
-  By default, columns <code>col</code> are stacked on top of each other on mobile. If you want columns to work on
-  mobile, add the <code>is-mobile</code> modifier on the <code>row</code> container:
+  By default, columns <code>col</code> are stacked on top of each other on mobile.
+  To have columns displayed in a row on mobile, add the <code>is-mobile</code> class to the <code>row</code> container:
 </p>
 <div class="sgds-example is-marginless">
   {{ is-mobile-example }}
@@ -150,8 +149,8 @@ breadcrumb: General
 <hr/>
 
 <p>
-  If you only want columns on desktop upwards, just use the
-  <code>is-desktop</code> modifier on the <code>row</code> container:
+  To display columns only on desktop (1024px) and above, add the
+  <code>is-desktop</code> class on the <code>row</code> container:
 </p>
 <div class="sgds-example is-marginless">
   {{ is-desktop-example }}

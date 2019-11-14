@@ -15,7 +15,7 @@
     ...
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.3/css/sgds.css"
+        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.7/css/sgds.css"
     />
     ...
 </head>
@@ -29,7 +29,7 @@
 <body>
     ...
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.3/js/sgds.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.7/js/sgds.js"></script>
     ...
 </body>
 ```
@@ -97,6 +97,22 @@ Test out the latest development build:
 <!-- JS in <body> -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://dev.designsystem.gov.sg/js/sgds.js"></script>
+```
+
+### Releasing
+
+0. Make sure branch is at master.
+1. Change all references in documentation from previous version to new version, e.g. inside the `_config.yml` and `readme.md` files.
+2. Update and tag new version using npm.
+
+```bash
+npm version (major|minor|patch)
+```
+
+3. Publish to npm. This will trigger a rebuild locally.
+
+```bash
+npm publish
 ```
 
 ## Patch Notes
