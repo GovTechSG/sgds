@@ -51,5 +51,8 @@ exclude:
   - Gruntfile.js
   - amplify.yml
 
+include:
+  - _redirects
+
 sass:
   sass_dir: assets/custom-css
