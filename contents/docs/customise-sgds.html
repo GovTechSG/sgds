@@ -4,22 +4,43 @@ layout: layout-sidenav
 permalink: /docs/customise-sgds/
 ---
 
-<h4 class="has-text-primary">If you use Sass in your project, you can use your own custom Sass source in conjunction with SGDS to achieve a high level of customisation.</h4>
+<h4 class="has-text-primary">
+	If you use Sass in your project, you can use your own custom Sass source in conjunction with SGDS to achieve a high level of customisation.
+</h4>
+<hr />
+<h5>File Structure</h5>
 
-<hr class="margin--bottom--lg margin--top--lg" />
-<p>Setup the sass import</p>
+<p>You’ll have a file structure that looks like this if using a package manager like npm:</p>
+
+{%- highlight bash  -%}
+site-folder/
+├── scss
+│   └── custom.scss
+└── node_modules/
+    └── sgds-govtech/sass/
+        └── sgds.scss
+{%- endhighlight -%}
+
+<p>If you’ve downloaded our source files and aren’t using a package manager, you’ll want to manually setup something similar to that structure.</p>
+
+{%- highlight bash -%}
+site-folder/
+├── scss
+│   └── custom.scss
+└── sgds-govtech/sass/
+	└── sgds.scss
+{%- endhighlight -%}
+
+<hr>
+
+<h5>Importing SGDS.scss</h5>
+<p></p>
 
 {% highlight scss %}
-@import "site/node_modules/sgds-govtech/sgds/sass/sgds-customise/all"; 
-
 //Customisation starts here 
 @import "site/youSassPath/customVariable"; 
 //Customisation end here 
-
-@import "site/node_modules/sgds-govtech/sgds/sass/sgds-base/all"; 
-@import "site/node_modules/sgds-govtech/sgds/sass/sgds-icons/all"; 
-@import "site/node_modules/sgds-govtech/sgds/sass/sgds-components/all"; 
-@import "site/node_modules/sgds-govtech/sgds/sass/sgds-layout/all"; 
+@import "site/node_modules/sgds-govtech/sgds/sass/sgds"; 
 {% endhighlight%}
 
 <div class="sgds-notification is-info">
@@ -31,7 +52,7 @@ permalink: /docs/customise-sgds/
 	</div>
 </div>
 
-<hr class="margin--bottom--lg margin--top--lg" />
+<hr/>
 
 <p>Lists of default SGDS variables that can be overwritten</p>
 
