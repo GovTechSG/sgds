@@ -65,8 +65,9 @@ js: true
     </div>
 </div>
 
+<hr/>
 
-<h6 class="has-text-weight-semibold margin--top--lg margin--bottom">Component Code</h6>
+<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <div class="sgds-tabs">
     <ul class="no-margin" role="tablist">
@@ -111,11 +112,37 @@ js: true
 
 <p>If you need users to compare information, using the <a href="/docs/table/">table</a> component would be more appropriate.
 </p>
+</button>
+<hr/>
 
+<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+{%- highlight html -%}
+<div class="row" id="tab1">
+    <div class="col">
+        <p>Tab content 1</p>
+    </div>
+</div>
+<div class="row" id="tab2">
+    <div class="col">
+        <p>Tab content 2</p>
+    </div>
+</div>
+<div class="row" id="tab3">
+    <div class="col">
+        <p>Tab content 3</p>
+    </div>
+</div>
+{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight1"
+>
+    Copy snippet
+</button>
 
-<hr class="margin--bottom--lg margin--top--lg" />
+<hr/>
 
-<h5 class="has-text-weight-semibold margin--bottom">Styles</h5>
+<h5 class="has-text-weight-semibold">Styles</h5>
 <table class="table">
     <thead>
         <tr>
@@ -143,8 +170,8 @@ js: true
     </tbody>
 </table>
 
-<hr class="margin--bottom--lg margin--top--lg" />
-<h5 class="has-text-weight-semibold margin--bottom">Examples</h5>
+<hr/>
+<h5 class="has-text-weight-semibold">Examples</h5>
 <ul>
     <li>is-boxed</li>
     {%- highlight html -%}
@@ -172,7 +199,7 @@ js: true
             </li>
         </ul>
     </div>
-    <hr class="margin--bottom--lg margin--top--lg" />
+    <hr/>
     <li>is-toggle</li>
     {%- highlight html -%}
     <div class="sgds-tabs is-toggle">...</div>
@@ -199,7 +226,7 @@ js: true
             </li>
         </ul>
     </div>
-    <hr class="margin--bottom--lg margin--top--lg" />
+    <hr/>
     <li>is-centered</li>
     {%- highlight html -%}
     <div class="sgds-tabs is-centered">...</div>

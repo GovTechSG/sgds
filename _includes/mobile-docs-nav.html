@@ -93,6 +93,34 @@
                     </div>
                     {%- endfor -%}
                 </div>
+                <hr class="margin--bottom--sm margin--top--sm">
+
+                <div class="row has-text-centered">
+                    <div class="col">
+                        <h5 class="margin--top margin--bottom">Plug-and-play components</h5>
+                    </div>
+                </div>
+                <div class="row is-multiline is-mobile">
+                    {%- for component in site.helpers -%}
+                    <div class="col is-3-desktop is-4-tablet is-6-mobile">
+                        <a href="{{ component.url }}" class="is-flex component-card">
+                            <div class="sgds-card sgds-card-button">
+                                <div class="sgds-card-content has-text-centered">
+                                    
+                                    <small
+                                        class="has-text-weight-semibold is-block"
+                                    >
+                                        {{ component.title }}
+                                        {%- if component.js -%}
+                                        <span class="sgds-tag is-rounded margin--left--sm">JS</span>
+                                        {%- endif -%}
+                                    </small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {%- endfor -%}
+                </div>
             </div>
         </div>
     </div>
