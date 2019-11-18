@@ -2,20 +2,20 @@
 layout: layout-default
 ---
 <section class="sgds-section is-small has-background-gradient">
-  <div class="sgds-container ">
+  <div class="sgds-container is-fullhd">
     {% include sgds-breadcrumb.html %}
     <h1 class="has-text-white has-text-weight-semibold">{{page.title}}</h1>
   </div>
 </section>
 <section class="sgds-section" style="flex-grow: 1;">
-  <div class="sgds-container">
-    <div class="content has-default-header-styles">
+  <div class="sgds-container is-fullhd">
+    
       <div class="row">
         <div class="col is-8 is-offset-2">
           {{content}}
         </div>
       </div>
-    </div>
+    
   </div>
 </section>
 {%- include visit-docs-section.html -%}
