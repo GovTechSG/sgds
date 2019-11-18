@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.7] - 21-10-2019
+
+### Changes
+
+- #35 Added color contrast result and examples of `is-*color*` class
+- Updated colors with recommended ratio >= 4.5
+    - `Secondary` -> `#4370cc`
+    - `Warning` -> `#a86500`
+    - `Success` -> `#008649`
+    - `Info` -> `#008196`
+    - `Link` -> `#0070F2`
+
+- Added instructions for releasing. See [Readme.md](https://github.com/GovTechSG/sgds/blob/master/README.md)
+
+### Fixes
+- Fixed missing gutters (left/right) for `sgds-container`
+
+## [1.3.6] - 18-10-2019
+
+### Changes
+
+- Added sass to npm package
+
 ## [1.3.5] - 07-10-2019
 
 ### Changes
