@@ -1,0 +1,160 @@
+{
+    "$primary": {
+        "name": "$primary",
+        "value": "#6037b3 ",
+        "type": "colours",
+        "state": "primary"
+    },
+    "$secondary": {
+        "name": "$secondary",
+        "value": "#3e69be",
+        "type": "colours",
+        "state": "secondary"
+    },
+    "$yellow": {
+        "name": "$yellow",
+        "value": "#f5a623",
+        "type": "colours",
+        "state": "warning"
+    },
+    "$green": {
+        "name": "$green",
+        "value": "#008649",
+        "type": "colours",
+        "state": "success"
+    },
+    "$cyan": {
+        "name": "$cyan",
+        "value": "#008196",
+        "type": "colours",
+        "state": "info"
+    },
+    "$blue": {
+        "name": "$blue",
+        "value": "#0070F2",
+        "type": "colours",
+        "state": "link"
+    },
+    "$red": {
+        "name": "$red",
+        "value": "#d0021b",
+        "type": "colours",
+        "state": "danger"
+    },
+    "$family-sans-serif": {
+        "name": "$family-sans-serif",
+        "value": "\"Lato\", BlinkMacSystemFont, -apple-system, \"Segoe UI\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif",
+        "type": "Typography"
+    },
+    
+    "$size-0": {
+        "name": "$size-0",
+        "value": "5.25rem",
+        "type": "Typography"
+    },
+    "$size-1": {
+        "name": "$size-1",
+        "value": "3.375rem",
+        "type": "Typography"
+    },
+    "$size-2": {
+        "name": "$size-2",
+        "value": "2.75rem",
+        "type": "Typography"
+    },
+    "$size-3": {
+        "name": "$size-3",
+        "value": "2.8125rem",
+        "type": "Typography"
+    },
+    "$size-4": {
+        "name": "$size-4",
+        "value": "1.625rem",
+        "type": "Typography"
+    },
+    "$size-5": {
+        "name": "$size-5",
+        "value": "1.375rem",
+        "type": "Typography"
+    },
+    "$size-6": {
+        "name": "$size-6",
+        "value": "1.3rem",
+        "type": "Typography"
+    },
+    "$size-7": {
+        "name": "$size-7",
+        "value": "1.25rem",
+        "type": "Typography"
+    },
+    "$size-8": {
+        "name": "$size-8",
+        "value": "1rem",
+        "type": "Typography"
+    },
+    "$size-8": {
+        "name": "$size-8",
+        "value": "1rem",
+        "type": "Typography"
+    },
+    "$weight-light": {
+        "name": "$weight-light",
+        "value": "300",
+        "type": "Typography"
+    },
+    "$weight-normal": {
+        "name": "$weight-normal",
+        "value": "400",
+        "type": "Typography"
+    },
+    "$weight-medium": {
+        "name": "$weight-medium",
+        "value": "500",
+        "type": "Typography"
+    },
+    "$weight-semibold": {
+        "name": "$weight-semibold",
+        "value": "600",
+        "type": "Typography"
+    },
+    "$weight-bold": {
+        "name": "$weight-bold",
+        "value": "700",
+        "type": "Typography"
+    },
+    "$weight-extrabold": {
+        "name": "$weight-extrabold",
+        "value": "800",
+        "type": "Typography"
+    },
+    "$weight-black": {
+        "name": "$weight-black",
+        "value": "900",
+        "type": "Typography"
+    },
+    "$gap": {
+        "name": "$gap",
+        "value": "32px",
+        "type": "Responsiveness"
+    },
+    "$tablet": {
+        "name": "$tablet",
+        "value": "769px",
+        "type": "Responsiveness"
+    },
+    "$desktop": {
+        "name": "$desktop",
+        "value": "960px + 2 * <b>$gap</b>",
+        "type": "Responsiveness"
+    },
+    "$widescreen": {
+        "name": "$widescreen",
+        "value": "1152px + 2 * <b>$gap</b>",
+        "type": "Responsiveness"
+    },
+    "$fullhd": {
+        "name": "$fullhd",
+        "value": "1344px + 2 * <b>$gap</b>",
+        "type": "Responsiveness"
+    }
+}
