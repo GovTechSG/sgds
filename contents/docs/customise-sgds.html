@@ -21,7 +21,7 @@ site-folder/
         └── sgds.scss
 {%- endhighlight -%}
 
-<p>If you’ve downloaded our source files and aren’t using a package manager, you’ll want to manually setup something similar to that structure.</p>
+<p>If you’ve manually <a href="http://localhost:4000/docs/getting-started">downloaded</a> our source files and aren’t using a package manager, you’ll want to setup something similar to that structure.</p>
 
 {%- highlight bash -%}
 site-folder/
@@ -34,14 +34,47 @@ site-folder/
 <hr>
 
 <h5>Importing SGDS.scss</h5>
-<p></p>
-
+<p>You can import the full SGDS framework</p>
 {% highlight scss %}
-//Customisation starts here 
-@import "site/youSassPath/customVariable"; 
-//Customisation end here 
-@import "site/node_modules/sgds-govtech/sgds/sass/sgds"; 
+// Version 1.0.24
+@charset "utf-8";
+
+// Custom sass files 
+@import 'custom.scss';
+$primary:black;
+$secondary:red;
+$warning:red;
+$button-color: yellow;
+
+// Required sass files
+@import "../node_modules/sgds-govtech/sgds/sass/sgds.scss
 {% endhighlight%}
+
+
+<p>or pick the SGDS components needed for your project</p>
+{% highlight scss %}
+@charset "utf-8";
+
+// Custom sass files 
+@import 'custom.scss';
+$primary:black;
+$secondary:red;
+$warning:red;
+$button-color: yellow;
+
+// Required sass files
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-customise/all";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-base/all";
+
+// Optional
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-masthead";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-navbar";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-side-navigation";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-footer";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-button";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-accordion";
+{% endhighlight%}
+
 
 <div class="sgds-notification is-info">
 	<div class="sgds-notification-detail">
@@ -87,4 +120,3 @@ site-folder/
 		{% endfor %}
 	</tbody>
 </table>
-
