@@ -7,12 +7,19 @@ permalink: /docs/customise-sgds/
 <h4 class="has-text-primary">
 	If you use Sass in your project, you can use your own custom Sass source in conjunction with SGDS to achieve a high level of customisation.
 </h4>
+
 <hr />
-<h5>File Structure</h5>
 
-<p>You’ll have a file structure that looks like this if using a package manager like npm:</p>
+<h5>Working with SGDS's source files</h5>
 
-{%- highlight bash  -%}
+<h6>If you installed sgds with NPM</h6>
+
+<p>
+	The Sass source files for sgds can be found under 
+	<code>node_modules/sgds-govtech/sass</code>:
+</p>
+
+{%- highlight plaintext  -%}
 site-folder/
 ├── scss
 │   └── custom.scss
@@ -21,46 +28,57 @@ site-folder/
         └── sgds.scss
 {%- endhighlight -%}
 
-<p>If you’ve manually <a href="http://localhost:4000/docs/getting-started">downloaded</a> our source files and aren’t using a package manager, you’ll want to setup something similar to that structure.</p>
+<h6>If you manually downloaded SGDS</h6>
 
-{%- highlight bash -%}
+<p>
+	If you've manually <a href="/docs/getting-started">downloaded</a> the Sass files and are not
+	using a package manager, you can set up your code with the following folder structure:
+</p>
+
+{%- highlight plaintext -%}
 site-folder/
 ├── scss
 │   └── custom.scss
-└── sgds-govtech/sass/
+└── sgds/sass/
 	└── sgds.scss
 {%- endhighlight -%}
 
 <hr>
 
-<h5>Importing SGDS.scss</h5>
-<p>You can import the full SGDS framework</p>
+<h5>Importing and overriding SGDS styles</h5>
+
+<p>Import all styles:</p>
+
 {% highlight scss %}
 // Version 1.0.24
 @charset "utf-8";
 
-// Custom sass files 
-@import 'custom.scss';
-$primary:black;
-$secondary:red;
-$warning:red;
-$button-color: yellow;
+// Override SGDS defaults
+$primary: black;
+$secondary: darkorange;
+$warning: red;
 
-// Required sass files
-@import "../node_modules/sgds-govtech/sgds/sass/sgds.scss
+// This must be overridden if you want to use icons! See below for more details
+$sgds-font-path: "../../../fonts";
+
+// Import all of sgds
+@import "../node_modules/sgds-govtech/sgds/sass/sgds.scss";
+
+// If using Webpack
+@import "~sgds-govtech/sgds/sass/sgds.scss";
 {% endhighlight%}
 
+<p>or import individual components as needed:</p>
 
-<p>or pick the SGDS components needed for your project</p>
 {% highlight scss %}
 @charset "utf-8";
 
-// Custom sass files 
-@import 'custom.scss';
-$primary:black;
-$secondary:red;
-$warning:red;
-$button-color: yellow;
+$primary: black;
+$secondary: darkorange;
+$warning: red;
+
+// This must be overridden if you want to use icons! See below for more details
+$sgds-font-path: "../../../fonts";
 
 // Required sass files
 @import "../node_modules/sgds-govtech/sgds/sass/sgds-customise/all";
@@ -73,21 +91,35 @@ $button-color: yellow;
 @import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-footer";
 @import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-button";
 @import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-accordion";
+
+// If using Webpack
+@import "~sgds-govtech/sgds/sass/...";
 {% endhighlight%}
 
-
-<div class="sgds-notification is-info">
+<div class="sgds-notification is-warning">
 	<div class="sgds-notification-detail">
+		<span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
 		<div class="sgds-notification-content">
-			<small>Kick start your web production using SGDS</small><br />
-			<small><a href="/docs/getting-started/">Diffrent ways of installing SGDS</a></small>
+			<p>
+				If you want to use icons, <a href="#font-path-override">
+				you <strong>must</strong> override</a>
+				the $sgds-font-path variable
+				depending on your site or application's structure.
+			</p>
 		</div>
 	</div>
 </div>
 
+<h5 id="font-path-override">Overriding <code>$sgds-font-path</code> to properly load icons</h5>
+
+<p>
+	Depending on how your site or application is hosted, you would need to correct
+	the <code>$sgds-font-path</code> variable so that your generated css/styles can load SGDS icons correctly.
+</p>
+
 <hr/>
 
-<p>Lists of default SGDS variables that can be overwritten</p>
+<h5>The following default SGDS variables can be overridden:</h5>
 
 <table class="table is-striped is-size-8">
 	<thead>

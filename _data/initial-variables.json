@@ -43,7 +43,7 @@
     },
     "$family-sans-serif": {
         "name": "$family-sans-serif",
-        "value": "BlinkMacSystemFont, -apple-system, \"Segoe UI\", \"Lato\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif",
+        "value": "\"Lato\", BlinkMacSystemFont, -apple-system, \"Segoe UI\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif",
         "type": "Typography"
     },
     
