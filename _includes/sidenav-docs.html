@@ -17,7 +17,7 @@
     {% if page.url contains "docs/customise-sgds" %}
         {% assign customiseSgdsClass = 'is-active' %}
     {% endif %}
-    <li><a href="/docs/customise-sgds" class="{{ customiseSgdsClass }}">Customise SGDS with Sass</a></li>
+    <li><a href="/docs/customise-sgds" class="{{ customiseSgdsClass }}">Customise with Sass</a></li>
 
     {% assign collections = site.collections | sort: 'order' %}
     {% for collection in collections %}
