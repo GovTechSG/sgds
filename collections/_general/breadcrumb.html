@@ -5,7 +5,7 @@ category: General
 icon: breadcrumb
 ---
 
-<h4 class="has-text-primary">Breadcrumb is a navigation aid that display a user's location on a website as a row of links, usually around the top of the page</h4>
+<h4 class="has-text-primary">Breadcrumb is a component that helps users understand where they are on in the website.</h4>
 
 <hr/>
 
@@ -18,7 +18,7 @@ icon: breadcrumb
     </ul>
 </nav>
 
-<h5 class="has-text-weight-semibold">Usage</h5>
+<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <nav class="sgds-breadcrumb" aria-label="breadcrumbs">
     <ul>
@@ -29,6 +29,20 @@ icon: breadcrumb
 </nav>
 {%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
+
+<h4 class="has-text-weight-semibold margin--top--lg ">When you should use this component</h4>
+<p>The breadcrumb component should be used when you need to help users understand where they are in the website and move between
+    different levels.
+</p>
+
+<h4 class="has-text-weight-semibold margin--top--lg ">When you should consider something else</h4>
+<p>Breadcrumbs must not be used as a replacement for your primary navigation. It should also not be used to display progress such as
+    completing a transaction. In those cases, using the <a href="/docs/progress-bar">progress bar</a> component would be more appropriate
+</p>
+
+<p>If you have multiple navigational items on the website or page such as <a href="/docs/side-nav">side nav</a>, you may want to
+    evaluate whether using the breadcrumb component is necessary. 
+    </p>
 
 <hr/>
 
@@ -42,7 +56,7 @@ icon: breadcrumb
 </nav>
 
 
-<h5 class="has-text-weight-semibold">Usage</h5>
+<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <nav class="sgds-breadcrumb has-background-dark" aria-label="breadcrumbs">
     <ul>
@@ -53,20 +67,6 @@ icon: breadcrumb
 </nav>
 {%- endhighlight -%}
  <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
-
-<hr/>
-
-<h5 class="has-text-weight-semibold">Guidelines</h5>
-<p>Breadcrumb should:</p>
-<ul>
-    <li>Not replace primary navigation with breadcrumb</li>
-    <li>Not be used if all the pages are on the same level</li>
-    <li>Use to show hierarchy and not history</li>
-    <li>Be located in the top half of your web page</li>
-    <li>Progress from the highest level to the lowest</li>
-    <li>Always start with the homepage and end with the current page</li>
-</ul>
-
 
 <hr/>
 

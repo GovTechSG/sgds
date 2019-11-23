@@ -635,6 +635,31 @@ $help-size: $size-small !default;
   }
 }
 
+
+.hint {
+  @extend .label;
+  font-size: $size-7;
+  margin-bottom: 0.5em;
+  font-weight: lighter;
+  color: $grey;
+}
+
+.error {
+  @extend .label;
+  font-size: $size-7;
+  margin-bottom: 0.5em;
+  font-weight: lighter;
+  color: $danger;
+}
+
+.success {
+  @extend .label;
+  font-size: $size-7;
+  margin-bottom: 0.5em;
+  font-weight: lighter;
+  color: $success;
+}
+
 .help {
   display: block;
   font-size: $help-size;
