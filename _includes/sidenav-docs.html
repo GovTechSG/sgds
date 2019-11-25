@@ -24,12 +24,20 @@
         {% if collection.label !='posts' and collection.label != 'guides' %}
             {% assign name = collection.label %}
             <li class="second-level-nav">
-                <a class="second-level-nav-header has-text-primary">
+                <a class="second-level-nav-header">
                     {{ name | capitalize }}
+                    {% if name == page.collection %}
                     <i class="sgds-icon sgds-icon-chevron-up has-text-weight" aria-hidden="true"></i>
+                    {% else %}
+                    <i class="sgds-icon sgds-icon-chevron-down has-text-weight" aria-hidden="true"></i>
+                    {% endif %}
                 </a>
             </li>
+            {% if name == page.collection %}
             <div class="second-level-nav-div" id="{{collection.label}}-component">
+            {% else %}
+            <div class="second-level-nav-div is-hidden" id="{{collection.label}}-component">
+            {% endif %}
                 <ul class="list">
                     {% assign items = site[name] %}
                     {% if collection.label == 'standard' %}
