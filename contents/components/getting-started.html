@@ -1,5 +1,5 @@
 ---
-title: Getting started
+title: Getting Started
 layout: layout-sidenav
 permalink: /docs/getting-started/
 redirect_from:
@@ -8,53 +8,18 @@ redirect_from:
 
 <div class="row">
     <div class="col">
-        <h3 class="title has-text-primary">{{ page.title }}</h3>
+        <h3 class="has-text-primary">SGDS Documentation</h3>
+        <p>Use the side navigation to learn about available components as well as usage instructions.</p>
     </div>
 </div>
 
 <hr class="margin--bottom--lg" />
 
-<div class="row is-multiline">
-    <div class="col is-12">
-        <h4 class="has-text-primary">Standard components for all gov.sg web services</h4>
-        <p>
-            As defined in the
-            <a href="https://www.tech.gov.sg/digital-service-standards/"
-                >Digital Service Standards</a
-            >
-        </p>
-    </div>
-    {% assign components = site.standard | sort: 'order' %} 
-    {%- for component in components -%}
-    <div class="col is-3-desktop is-12-mobile">
-        <a href="{{ component.url }}" class="is-flex component-card">
-            <div class="sgds-card sgds-card-button">
-                <div class="sgds-card-content has-text-centered">
-                    <span
-                        class="sgds-icon sgds-icon-{{ component.icon | downcase }} is-size-3"
-                    ></span>
-                    <small
-                        class="has-text-weight-semibold is-block margin--top--sm"
-                    >
-                        {{ component.title }}
-                        {%- if component.js -%}
-                        <span class="sgds-tag is-rounded margin--left--sm">JS</span>
-                        {%- endif -%}
-                    </small>
-                </div>
-            </div>
-        </a>
-    </div>
-    {%- endfor -%}
-</div>
-
-<hr class="margin--bottom--lg margin--top--lg" />
-
 <h4 class="has-text-primary margin--bottom">Installing SGDS</h4>
 <h5 class="margin--bottom">
     Install directly in browsers using a free and highly available CDN:
-</h5>
-<h6>CSS</h6>
+</h4>
+<h5>CSS</h5>
 {% highlight html %}
 <head>
     ...
@@ -68,7 +33,7 @@ redirect_from:
     ...
 </head>
 {% endhighlight %}
-<h6>JavaScript</h6>
+<h5>JavaScript</h5>
 <p>
     <a href="/docs/">Certain components</a> of SGDS make use of
     JavaScript, with jQuery as an external dependency. <strong>If you only need the
@@ -93,22 +58,17 @@ redirect_from:
 <h5 class="margin--bottom">Install using npm</h5>
 <p>
     Frontend developers can use npm to download sgds and use it as a dependency in their projects.
-    Using npm is especially useful when using a module bundler or build tool for your frontend,
+    Using npm is especially useful when using a module bundler or build tool,
     such as <a href="https://webpack.js.org">Webpack</a>.
 </p>
 <ul>
     <li>
-        Install Node.js
-        <a href="https://nodejs.org/en/download/" target="_blank">here</a>
+        Install <a href="https://nodejs.org/en/download/" target="_blank">Node.js</a>,
+        which includes an installation of npm.
     </li>
     <li>
-        To see if npm is installed, open your preferred command line tool and
-        type in <code>npm -v</code>. This should print the npm version number
-        that look something like this <code>6.10.0</code>
-    </li>
-    <li>
-        To install the sgds-govtech package, navigate to your site's codebase folder using
-        your terminal and run this command:
+        Install sgds by navigating to your site's codebase folder using
+        your terminal and run:
         <code>npm install sgds-govtech</code>
     </li>
     <li>
@@ -118,8 +78,9 @@ site/node_modules/sgds-govtech/
   ├── css/
   ├── fonts/
   ├── js/
+  ├── * sgds/sass/
 {%- endhighlight -%}
-        You can then load these assets into your frontend projects.
+        * SGDS Sass source files, for <a href="/docs/customise-sgds">advanced usage</a>.
     </li>
     <li>
         If you use a module bundler like Webpack, import sgds in your entry point: 
@@ -164,7 +125,7 @@ import "sgds-govtech/js/sgds"; // Do not use with other web frameworks!
         <p><code>fonts/sgds-icons.svg</code></p>
         <p><code>fonts/sgds-icons.wott</code></p>
         <p><code>fonts/sgds-icons.ttf</code></p>
-        <p><code>sgds/sass/...</code>(source files for advanced usage)</p>
+        <p><code>sgds/sass/...</code>(source files for <a href="/docs/customise-sgds">advanced usage</a>)</p>
     </li>
     <li class="margin--bottom">
         Extract and copy the files and folders into a relevant place in your
@@ -353,3 +314,4 @@ import "sgds-govtech/js/sgds"; // Do not use with other web frameworks!
         </ol>
     </div>
 </div>
+    

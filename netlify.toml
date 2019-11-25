@@ -3,3 +3,8 @@
     publish = "_site"
 [context.production]
     command = "npm run build:prod"
+[[redirects]]
+    from = "https://sg-design-system.netlify.com/*"
+    to = "https://www.designsystem.gov.sg/:splat"
+    status = 301
+    force = true

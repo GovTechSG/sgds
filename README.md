@@ -15,7 +15,7 @@
     ...
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.7/css/sgds.css"
+        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.8/css/sgds.css"
     />
     ...
 </head>
@@ -29,7 +29,7 @@
 <body>
     ...
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.7/js/sgds.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.8/js/sgds.js"></script>
     ...
 </body>
 ```
@@ -99,19 +99,34 @@ Test out the latest development build:
 <script src="https://dev.designsystem.gov.sg/js/sgds.js"></script>
 ```
 
-### Releasing
+### Release
 
-0. Make sure branch is at master.
-1. Change all references in documentation from previous version to new version, e.g. inside the `_config.yml` and `readme.md` files.
-2. Update and tag new version using npm.
+#### Promotion to master
+
+1. Use dev branch
+2. Change all references in documentation from previous version to new version, e.g. inside the `_config.yml` and `readme.md` files.
+3. Update and tag new version using npm.
 
 ```bash
 npm version (major|minor|patch)
 ```
 
-3. Publish to npm. This will trigger a rebuild locally.
+4. Push to this repo's dev branch, including tags
 
 ```bash
+git push origin dev
+git push origin v[new version]
+```
+
+5. PR to master
+
+#### Publish to NPM
+
+1. Switch to latest master branch
+
+```bash
+git checkout master
+git pull
 npm publish
 ```
 

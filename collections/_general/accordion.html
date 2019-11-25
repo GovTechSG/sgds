@@ -7,13 +7,12 @@ js: true
 ---
 
 <h4 class="has-text-primary">
-    The accordion is a graphical control element comprising a vertically stacked list of items, such as labels or thumbnails. 
-    Each item can be "expanded" or "stretched" to reveal its associated content.
+    An accordion is a component that allows users to show or hide related content.
 </h4>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr/>
 
-<h5 class="has-text-weight-semibold margin--bottom">Simple accordion</h5>
+<h5 class="has-text-weight-semibold">Simple accordion</h5>
 
 <div class="row">
     <div class="col">
@@ -37,7 +36,7 @@ js: true
     </div>
 </div>
 
-<h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
+<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <div class="sgds-accordion is-open">
     <a href="#!" class="sgds-accordion-header is-active" role="button" aria-expanded="true">
@@ -59,10 +58,39 @@ js: true
 {%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
+<p>You should use the accordion component if there is insufficient space within the page to display the information or
+    if users need to see a overview of specific content that's related to one another.
+</p>
 
-<h5 class="has-text-weight-semibold margin--bottom">Accordion set</h5>
+<h4 class="margin--top--lg has-text-weight-semibold">When you should consider something else</h4>
+<p>Accordions hide content from the user, and there may be cases where users will miss content completely or not understand how
+    accordions work. It is not advisable to use the accordion for information that is essential to your users.</p>
+
+<p>If users need to see all information on a single page, you may want to:</p>
+<ul>
+    <li>
+        reduce content
+    </li>
+
+    <li>
+        use well-formatted text instead which give clear distinction between headers, content and sections.
+    </li>
+
+    <li>
+        have essential information split up into smaller sections that can be displayed on a single page
+    </li>
+</ul>
+
+<p>Accordions increases the cognitive load for users, as decisions have to be made when 
+    clicking on the headers. Users may also ignore important information if it is hidden in an accordion.
+    </p>
+
+<hr/>
+
+<h5 class="has-text-weight-semibold">Accordion set</h5>
 <p>A set of accordions, of which only one can be open at a time.</p>
+<p>You can add the <code>is-open</code> class to <code>sgds-accordion</code> to show the content on page load</p>
 <div class="row">
     <div class="col">
         <div class="sgds-accordion-set">
@@ -79,7 +107,7 @@ js: true
                     accordion bar 2 <i class="sgds-icon sgds-icon-chevron-up"></i>
                 </a>
                 <div class="sgds-accordion-body">
-                    <p>You can add the <code>is-open</code> class to <code>sgds-accordion</code> to show the content on page load</p>
+                    <p>This is an example of a open section</p>
                 </div>
             </div>
             <div class="sgds-accordion">
@@ -94,7 +122,7 @@ js: true
     </div>
 </div>
 
-<h5 class="has-text-weight-semibold margin--bottom">Usage</h5>
+<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <div class="sgds-accordion-set">
     <div class="sgds-accordion">
@@ -125,19 +153,9 @@ js: true
 {%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy snippet</button>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr/>
 
-<h5 class="has-text-weight-semibold margin--bottom">Guidelines</h5>
-<p>Accordion should:</p>
-<ul>
-    <li>Use only when there is enough content to condense</li>
-    <li>Avoid nested accordions as it increases the cognitive load for users</li>
-    <li>Have multiple accordions open at the same time</li>
-</ul>
-
-<hr class="margin--bottom--lg margin--top--lg">
-
-<h5 class="has-text-weight-semibold margin--bottom">Style</h5>
+<h5 class="has-text-weight-semibold">Style</h5>
 <table class="table">
     <thead>
     <tr>
@@ -171,6 +189,6 @@ js: true
     </tbody>
 </table>
 
-<hr class="margin--bottom--lg margin--top--lg">
+<hr/>
 
 {%- include sgds-feedback.html -%}

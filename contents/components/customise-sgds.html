@@ -1,0 +1,155 @@
+---
+title: Customise SGDS with Sass
+layout: layout-sidenav
+permalink: /docs/customise-sgds/
+---
+
+<h4 class="has-text-primary">
+	You can use <a href="https://sass-lang.com/">Sass</a> to customise how
+	SGDS looks and behaves in your project.
+</h4>
+
+<hr />
+
+<h5>Working with SGDS's source files</h5>
+
+<h6>If you installed sgds with NPM</h6>
+
+<p>
+	The Sass source files for sgds can be found under 
+	<code>node_modules/sgds-govtech/sass</code>:
+</p>
+
+{%- highlight plaintext  -%}
+site-folder/
+├── scss
+│   └── custom.scss
+└── node_modules/
+    └── sgds-govtech/sass/
+        └── sgds.scss
+{%- endhighlight -%}
+
+<h6>If you manually downloaded SGDS</h6>
+
+<p>
+	If you've manually <a href="/docs/getting-started">downloaded</a> the Sass files and are not
+	using a package manager, you can set up your code with the following folder structure:
+</p>
+
+{%- highlight plaintext -%}
+site-folder/
+├── scss
+│   └── custom.scss
+└── sgds/sass/
+	└── sgds.scss
+{%- endhighlight -%}
+
+<hr>
+
+<h5>Importing and overriding SGDS styles</h5>
+
+<p>Import all styles:</p>
+
+{% highlight scss %}
+// Version 1.0.24
+@charset "utf-8";
+
+// Override SGDS defaults
+$primary: black;
+$secondary: darkorange;
+$warning: red;
+
+// This must be overridden if you want to use icons! See below for more details
+$sgds-font-path: "../../../fonts";
+
+// Import all of sgds
+@import "../node_modules/sgds-govtech/sgds/sass/sgds.scss";
+
+// If using Webpack
+@import "~sgds-govtech/sgds/sass/sgds.scss";
+{% endhighlight%}
+
+<p>or import individual components as needed:</p>
+
+{% highlight scss %}
+@charset "utf-8";
+
+$primary: black;
+$secondary: darkorange;
+$warning: red;
+
+// This must be overridden if you want to use icons! See below for more details
+$sgds-font-path: "../../../fonts";
+
+// Required sass files
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-customise/all";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-base/all";
+
+// Optional
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-masthead";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-navbar";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-side-navigation";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-footer";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-button";
+@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-accordion";
+
+// If using Webpack
+@import "~sgds-govtech/sgds/sass/...";
+{% endhighlight%}
+
+<div class="sgds-notification is-warning">
+	<div class="sgds-notification-detail">
+		<span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
+		<div class="sgds-notification-content">
+			<p>
+				If you want to use icons, <a href="#font-path-override">
+				you <strong>must</strong> override</a>
+				the $sgds-font-path variable
+				depending on your site or application's structure.
+			</p>
+		</div>
+	</div>
+</div>
+
+<h5 id="font-path-override">Overriding <code>$sgds-font-path</code> to properly load icons</h5>
+
+<p>
+	Depending on how your site or application is hosted, you would need to correct
+	the <code>$sgds-font-path</code> variable so that your generated css/styles can load SGDS icons correctly.
+</p>
+
+<hr/>
+
+<h5>The following default SGDS variables can be overridden:</h5>
+
+<table class="table is-striped is-size-8">
+	<thead>
+		<th>Variable</th>
+		<th>Default Value</th>
+		<th>Type</th>
+	</thead>
+	<tbody>
+		{% for variable_name in site.data.initial-variables %}
+		<tr>
+			<td width="30%">
+				<code>{{ variable_name[1].name }}</code>
+			</td>
+			<td>
+				<div class="is-flex is-flex-alignitems-c">
+					{% if variable_name[1].type == 'colour' %}
+					<span class="colorBox margin--right--sm is-{{
+              variable_name[1].state | remove: '$'
+            }}"></span>
+					{% endif %}
+					<code>{{ variable_name[1].value }}</code>
+				</div>
+			</td>
+			<td width="30%">
+				<a href="/docs/{{ variable_name[1].type }}">{{
+          variable_name[1].type | capitalize
+        }}</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
