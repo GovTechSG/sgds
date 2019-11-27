@@ -143,3 +143,29 @@ a[target="_blank"]:after {
   flex-direction: column;
   justify-content: space-between;
 }
+
+.header_bg {
+  position: absolute;
+  top: -24px;
+  right: 0;
+  width: 55vw;
+  height: 600px;
+  background-color: #7B50CE;
+  transform: skewX(-32deg);
+  transform-origin: right bottom;
+}
+
+.hide-element{
+  overflow: hidden;
+  position: relative;
+}
+
+.sgds-card-button.has-outline {
+  background-color: #ffffff;
+  box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+  color: #484848;
+  transition: .2s all;
+  &:hover {
+    background-color: #f6f6f6;
+  }
+}

@@ -3,37 +3,43 @@ title: Home
 layout: layout-default
 ---
 
-<section class="sgds-hero has-background-primary">
-    <div class="sgds-hero-body"
-        style="background:url('assets/img/bg_splash.png') center center; background-size:cover;">
-        <div class="row is-vcentered">
-            <div class="col is-6 is-offset-3 has-text-centered has-text-white">
-                <h1 class="display">
-                    <b>design system</b>
-                    <br>
-                </h1>
-                <h6>v{{site.sgds-version}}</h6>
+<section class="sgds-section hide-element" >
+    <div class="header_bg"></div>
+    <div class="sgds-container">
+      <div class="content">
+        <div class="row">
+          <div class="col is-5 is-flex is-flex-alignitems-c">
+            <h2 class="has-text-weight-black">
+              Singapore Government Design System
+              <p class="has-text-weight-normal margin--top">
+                v{{site.sgds-version}}
                 <br>
-                <h6 class="margin--bottom--lg">Streamlining Singapore Government Digital Services with
-                consistent user interface and experience</h6>
-                <a href="/docs/" class="sgds-button is-rounded is-white">Available Components</a>
-            </div>
+                Build a better digital experience for Singapore
+              </p>
+              <a href="/docs/" class="sgds-button is-rounded is-primary">Get Started</a>
+            </h2>
+          </div>
+          
+          <div class="col">
+            <img src="/assets/img/bg_people.png" alt="two people around web browsers and mobile browsers" />
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<section class="sgds-section has-background-light">
+  <section class="sgds-section">
     <div class="sgds-container ">
-        {% include guide-card-section.html %}
-    </div>
-</section>
+        {% include component-guide-section.html %}
+        </div>
+  </section>
 
 <section class="sgds-section">
     <div class="sgds-container ">
         <div class="content">
             <div class="row has-text-centered">
                 <div class="col is-10 is-offset-1">
-                    <h2 class="has-text-primary">Why use Design System</h2>
+                    <h2 class="has-text-weight-black">Why use SGDS</h2>
                 </div>
             </div>
             <div class="row has-text-centered">
@@ -69,7 +75,7 @@ layout: layout-default
                             <p class="margin--top margin--bottom--xs has-text-weight-bold">Uncomplicated Compliance</p>
                             <p>With <a
                                     href="https://www.tech.gov.sg/digital-service-standards/">Digital Services
-                                    Standards.</a> and <a href="https://www.w3.org/WAI/standards-guidelines/wcag/">WCAG</a>.</p>
+                                    Standards</a> and <a href="https://www.w3.org/WAI/standards-guidelines/wcag/">WCAG</a></p>
                         </div>
                     </div>
                 </div>
@@ -84,15 +90,16 @@ layout: layout-default
 </section>
 
 <section class="sgds-section has-background-gradient">
-    <div class="sgds-container ">
+    <div class="sgds-container">
         <div class="content has-text-white">
             <div class="row has-text-centered">
                 <div class="col is-10 is-offset-1">
-                    <h2>Be Part of the Change</h2>
+                    <h2 class="margin--bottom--lg has-text-weight-bold">Be Part of the Change</h2>
                 </div>
             </div>
             <div class="row has-text-centered">
                 <div class="col is-8 is-offset-2">
+                        <img src="/assets/img/img_change.png" alt="two ladies meeting" />
                     <p class="has-text-white">
                         SGDS is <a href="https://github.com/govtechsg/sgds" class="has-text-white" style="text-decoration: underline">open source.</a>
                     </p>
