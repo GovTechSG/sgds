@@ -6,6 +6,47 @@ icon: tab
 js: true
 ---
 
+{% capture tab-selector %}
+<div class="sgds-tabs">
+    <ul class="no-margin" role="tablist">
+        <li class="is-active">
+            <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
+                <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
+                Tab 1
+            </a>
+        </li>
+        <li>
+            <a data-tab="#tab2" role="tab" aria-selected="false" aria-controls="tab2">
+                <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>Tab 2
+            </a>
+        </li>
+        <li>
+            <a data-tab="#tab3" role="tab" aria-selected="false" aria-controls="tab3">
+                <i class="sgds-icon sgds-icon-map padding--right--sm"></i>Tab 3
+            </a>
+        </li>
+    </ul>
+</div>
+{% endcapture %}
+
+{% capture tab-content %}
+<div class="row" id="tab1">
+    <div class="col">
+        <p>Tab content 1</p>
+    </div>
+</div>
+<div class="row" id="tab2">
+    <div class="col">
+        <p>Tab content 2</p>
+    </div>
+</div>
+<div class="row" id="tab3">
+    <div class="col">
+        <p>Tab content 3</p>
+    </div>
+</div>
+{% endcapture %}
+
 <h4 class="has-text-primary">
     Tabs are navigation elements that let users navigate between related content that are grouped together.
 </h4>
@@ -68,27 +109,9 @@ js: true
 <hr/>
 
 <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+<p class="margin--top--lg">For Tab Selectors</p>
 {%- highlight html -%}
-<div class="sgds-tabs">
-    <ul class="no-margin" role="tablist">
-        <li class="is-active">
-            <a data-tab="#tab1" role="tab" aria-selected="true" aria-controls="tab1">
-                <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
-                Tab 1
-            </a>
-        </li>
-        <li>
-            <a data-tab="#tab2" role="tab" aria-selected="false" aria-controls="tab2">
-                <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>Tab 2
-            </a>
-        </li>
-        <li>
-            <a data-tab="#tab3" role="tab" aria-selected="false" aria-controls="tab3">
-                <i class="sgds-icon sgds-icon-map padding--right--sm"></i>Tab 3
-            </a>
-        </li>
-    </ul>
-</div>
+{{tab-selector}}
 {%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
@@ -96,6 +119,19 @@ js: true
 >
     Copy snippet
 </button>
+<p class="margin--top--lg">For Tab Content</p>
+{%- highlight html -%}
+{{tab-content}}
+{%- endhighlight -%}
+
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight1"
+>
+    Copy snippet
+</button>
+
+<hr/>
 
 <h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
 <p>The tab component can help users in switching between related information and users don't need to view all information at once.
@@ -112,33 +148,8 @@ js: true
 
 <p>If you need users to compare information, using the <a href="/docs/table/">table</a> component would be more appropriate.
 </p>
-</button>
-<hr/>
 
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-{%- highlight html -%}
-<div class="row" id="tab1">
-    <div class="col">
-        <p>Tab content 1</p>
-    </div>
-</div>
-<div class="row" id="tab2">
-    <div class="col">
-        <p>Tab content 2</p>
-    </div>
-</div>
-<div class="row" id="tab3">
-    <div class="col">
-        <p>Tab content 3</p>
-    </div>
-</div>
-{%- endhighlight -%}
-<button
-    class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight1"
->
-    Copy snippet
-</button>
+
 
 <hr/>
 

@@ -33,6 +33,8 @@ icon: button
 <button class="sgds-button is-primary">button</button>
 {%- endhighlight -%}
 
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
+
 <h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
 <p>You should use buttons for important actions that you want the user to take like send message or save to draft.</p>
     <p>Button labels should be clear and specific to the action that the user is taking.</p>
@@ -41,9 +43,6 @@ icon: button
 
 <h4 class="margin--top--lg has-text-weight-semibold">When you should use something else</h4>
    <p>If you are linking within pages in a site, you can use regular text links instead.</p>  
-
-
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
 
 <hr/>
 
@@ -74,17 +73,23 @@ icon: button
 
 <p class="margin--top--lg">You can group buttons together on a single line using the <code>is-grouped</code> modifier on the field container.</p>
 <div class="field is-grouped">
-    <p class="control"><a class="sgds-button is-primary">Save</a></p>
-    <p class="control"><a class="sgds-button">Cancel</a></p>
-    <p class="control"><a class="sgds-button is-danger">Delete</a></p>
+    <div class="control"><button class="sgds-button is-primary">Save</button></div>
+    <div class="control"><button class="sgds-button">Cancel</button></div>
+    <div class="control"><button class="sgds-button is-danger">Delete</button></div>
 </div>
 
 <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <div class="field is-grouped">
-    <p class="control">
+    <div class="control">
         <button class="sgds-button is-primary">Save</button>
-    </p>
+    </div>
+    <div class="control">
+        <button class="sgds-button">Cancel</button>
+    </div>
+    <div class="control">
+        <button class="sgds-button is-danger">Delete</button>
+    </div>
 </div>
 {%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>Copy snippet</button>
@@ -93,17 +98,17 @@ icon: button
 
 <p class="margin--top--lg"><code>has-addons</code> modifier allows you to attach controls together</p>
 <div class="field has-addons">
-    <p class="control"><a class="sgds-button">Yes</a></p>
-    <p class="control"><a class="sgds-button">Maybe</a></p>
-    <p class="control"><a class="sgds-button">No</a></p>
+    <div class="control"><button class="sgds-button">Yes</button></div>
+    <div class="control"><button class="sgds-button">Maybe</button></div>
+    <div class="control"><button class="sgds-button">No</button></div>
 </div>
 
 <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <div class="field has-addons">
-    <p class="control">
-        <button class="sgds-button">Yes</button>
-    </p>
+    <div class="control"><button class="sgds-button">Yes</button></div>
+    <div class="control"><button class="sgds-button">Maybe</button></div>
+    <div class="control"><button class="sgds-button">No</button></div>
 </div>
 {%- endhighlight -%}
 
@@ -157,7 +162,7 @@ icon: button
     </span>
 </button>
 {%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight3'>Copy snippet</button>
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight4'>Copy snippet</button>
 
 <hr/>
 
