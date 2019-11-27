@@ -160,8 +160,12 @@ a[target="_blank"]:after {
   position: relative;
 }
 
-.sgds-card-button.has-outline{
+.sgds-card-button.has-outline {
   background-color: #ffffff;
   box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
   color: #484848;
+  transition: .2s all;
+  &:hover {
+    background-color: #f6f6f6;
+  }
 }
