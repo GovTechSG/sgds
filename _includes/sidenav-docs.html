@@ -14,6 +14,12 @@
     <li><a href="/docs/getting-started" class="{{ gettingStartedClass }}">Getting started</a></li>
 
     {% assign customiseSgdsClass = nil %}
+    {% if page.url contains "docs/installation-guides" %}
+        {% assign customiseSgdsClass = 'is-active' %}
+    {% endif %}
+    <li><a href="/docs/installation-guides" class="{{ customiseSgdsClass }}">Installation Guides</a></li>
+
+    {% assign customiseSgdsClass = nil %}
     {% if page.url contains "docs/customise-sgds" %}
         {% assign customiseSgdsClass = 'is-active' %}
     {% endif %}
