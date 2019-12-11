@@ -19,7 +19,7 @@ order: 3
     For services with two or more levels of navigation, pages should contain secondary navigation
     at the side of the page to aid users in locating site content.
 </p>
-<hr/>
+<hr />
 
 <!-- Side Nav 1 -->
 
@@ -38,34 +38,28 @@ order: 3
 </div>
 
 
-<div class="sgds-accordion-container margin--top--lg">
-    <div class="sgds-accordion">
-        <a class="sgds-accordion-header">
-            Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-            {%- highlight html -%}
-<aside class="sgds-menu">
-    <ul class="sgds-menu-list">
-        <li><a class="is-active" href="#!">Level 2A</a></li>
-        <li><a href="#!">Level 2B</a></li>
-        <li><a href="#!">Level 2C</a></li>
-    </ul>
-</aside>
-            {%- endhighlight -%}
-            <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy
-                Snippet</button>
-        </div>
-    </div>
+<div class="sgds-container margin--top--lg">
+    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+    {%- highlight html -%}
+    <aside class="sgds-menu">
+        <ul class="sgds-menu-list">
+            <li><a class="is-active" href="#!">Level 2A</a></li>
+            <li><a href="#!">Level 2B</a></li>
+            <li><a href="#!">Level 2C</a></li>
+        </ul>
+    </aside>
+    {%- endhighlight -%}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy
+        Snippet</button>
 </div>
 
-<hr/>
+<hr />
 
 <!-- Side Nav 2 -->
 
 <!-- <p>Advanced side nav to support level 3 navigation, please ensure you have included <code>jquery.sticky-sidebar.js</code> for it to work.</p> -->
-<p>Level 2 navigation dropdowns that show/hide level 3 navigation links 
-    <span class="sgds-tag is-rounded margin--left--sm">JS</span></p>
+<h5>Level 2 navigation dropdowns that show/hide level 3 navigation links
+    <span class="sgds-tag is-rounded margin--left--sm">JS</span></h5>
 
 <div class="row">
     <div class="col is-3">
@@ -99,51 +93,43 @@ order: 3
     </div>
 </div>
 
-<div class="sgds-accordion-container margin--top--lg">
-    <div class="sgds-accordion">
-        <a class="sgds-accordion-header">
-            Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-            {%- highlight html -%}
-<aside class="sgds-menu">
-    <ul class="sgds-menu-list">
-        <li class="second-level-nav">
-            <a class="second-level-nav-header is-active">
-                Level 2A
-                <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
-            </a>
-        </li>
-        <div class="second-level-nav-div">
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-        </div>
-        <li><a href="#!">Level 2B</a></li>
-        <li class="second-level-nav">
-            <a class="second-level-nav-header">
-                Level 2C
-                <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
-            </a>
-        </li>
-        <div class="second-level-nav-div">
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-        </div>
-    </ul>
-</aside>
-            {%- endhighlight -%}
-            <button
-                class="sgds-button clipboard-btn is-primary is-outlined"
-                data-clipboard-target='.highlight1'>
-                Copy Snippet
-            </button>
-        </div>
-    </div>
+<div class="sgds-container margin--top--lg">
+    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+    {%- highlight html -%}
+    <aside class="sgds-menu">
+        <ul class="sgds-menu-list">
+            <li class="second-level-nav">
+                <a class="second-level-nav-header is-active">
+                    Level 2A
+                    <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
+                </a>
+            </li>
+            <div class="second-level-nav-div">
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+            </div>
+            <li><a href="#!">Level 2B</a></li>
+            <li class="second-level-nav">
+                <a class="second-level-nav-header">
+                    Level 2C
+                    <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
+                </a>
+            </li>
+            <div class="second-level-nav-div">
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+            </div>
+        </ul>
+    </aside>
+    {%- endhighlight -%}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>
+        Copy Snippet
+    </button>
 </div>
 
-<hr/>
+<hr />
 
 <h5>Guidelines</h5>
 <p>Side navigation should:</p>
@@ -152,6 +138,6 @@ order: 3
     <li>Be hidden when used on mobile devices</li>
 </ul>
 
-<hr/>
+<hr />
 
 {%- include sgds-feedback.html -%}
