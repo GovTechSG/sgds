@@ -13,7 +13,7 @@ order: 1
     Online Logo) across all pages
 </h4>
 
-<hr/>
+<hr />
 <div class="sgds-example-others">
     <div class="sgds-masthead">
         <div class="sgds-container">
@@ -29,34 +29,28 @@ order: 1
     </div>
 </div>
 
-<div class="sgds-accordion-container margin--top--lg">
-    <div class="sgds-accordion">
-        <a class="sgds-accordion-header">
-            Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-{% highlight html %}
-<div class="sgds-masthead">
-    <div class="sgds-container">
-        <div class="row">
-            <div class="col">
-                <a href="https://www.gov.sg" target="_blank">
-                    <span class="sgds-icon sgds-icon-sg-crest"></span>
-                    <span class="is-text">A Singapore Government Agency Website</span>
-                </a>
+<div class="sgds-container margin--top--lg">
+    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+    {% highlight html %}
+    <div class="sgds-masthead">
+        <div class="sgds-container">
+            <div class="row">
+                <div class="col">
+                    <a href="https://www.gov.sg" target="_blank">
+                        <span class="sgds-icon sgds-icon-sg-crest"></span>
+                        <span class="is-text">A Singapore Government Agency Website</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-{% endhighlight %}
-            <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
-                Copy Masthead Snippet
-            </button>
-        </div>
-    </div>
+    {% endhighlight %}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
+        Copy Snippet
+    </button>
 </div>
 
-<hr/>
+<hr />
 
 <p>
     If you require a language selector, add a <code>select</code> element at the right side
@@ -67,7 +61,8 @@ order: 1
     <div class="sgds-notification-detail">
         <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
         <div class="sgds-notification-content">
-            <small>The Masthead language selector should be hidden in mobile view to prevent clashing with the masthead text.
+            <small>The Masthead language selector should be hidden in mobile view to prevent clashing with the masthead
+                text.
                 However, it should still be accessible in the navigation panel. For example, include the
                 language selector in the
                 <a href="/docs/main-nav/">main navigation</a> and display it only on mobile views.</small>
@@ -86,7 +81,7 @@ order: 1
                     </a>
                 </div>
                 <div class="col has-text-right is-hidden-mobile">
-                    <select class="language-selector">
+                    <select class="language-selector" aria-label="language">
                         <option>English</option>
                         <option>中文</option>
                         <option>Bahasa Melayu</option>
@@ -99,43 +94,36 @@ order: 1
 </div>
 
 
-<div class="sgds-accordion-container margin--top--lg">
-    <div class="sgds-accordion">
-        <a class="sgds-accordion-header">
-            Show code snippet
-            <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-{% highlight html %}
-<div class="sgds-masthead">
-    <div class="sgds-container">
-        <div class="row is-mobile">
-            <div class="col is-9-desktop is-12-mobile is-flex">
-                <a href="https://www.gov.sg" target="_blank">
-                    <span class="sgds-icon sgds-icon-sg-crest"></span>
-                    <span class="is-text">A Singapore Government Agency Website</span>
-                </a>
-            </div>
-            <div class="col has-text-right is-hidden-mobile">
-                <select class="language-selector">
-                    <option>English</option>
-                    <option>中文</option>
-                    <option>Bahasa Melayu</option>
-                    <option>தமிழ்</option>
-                </select>
+<div class="sgds-container margin--top--lg">
+    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+    {% highlight html %}
+    <div class="sgds-masthead">
+        <div class="sgds-container">
+            <div class="row is-mobile">
+                <div class="col is-9-desktop is-12-mobile is-flex">
+                    <a href="https://www.gov.sg" target="_blank">
+                        <span class="sgds-icon sgds-icon-sg-crest"></span>
+                        <span class="is-text">A Singapore Government Agency Website</span>
+                    </a>
+                </div>
+                <div class="col has-text-right is-hidden-mobile">
+                    <select class="language-selector" aria-label="language">
+                        <option>English</option>
+                        <option>中文</option>
+                        <option>Bahasa Melayu</option>
+                        <option>தமிழ்</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
-</div>
-{% endhighlight %}
-            <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
-                Copy Masthead Snippet
-            </button>
-        </div>
-    </div>
+    {% endhighlight %}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
+        Copy Snippet
+    </button>
 </div>
 
-<hr/>
+<hr />
 
 <h5>Guidelines</h5>
 <p>The Masthead should:</p>
@@ -151,6 +139,6 @@ order: 1
     <li>Be positioned at the top left corner of the web page</li>
 </ul>
 
-<hr/>
+<hr />
 
 {%- include sgds-feedback.html -%}

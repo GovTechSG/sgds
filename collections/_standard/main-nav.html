@@ -44,7 +44,7 @@ order: 2
 <nav class="sgds-navbar" role="navigation">
     <div class="sgds-navbar-brand">
         <a class="sgds-navbar-item">
-            <img src="/assets/img/logo_sgds.png" alt="" />
+            <img src="/assets/img/logo_sgds.png" alt="Design System Logo" />
         </a>
         <div class="sgds-navbar-burger" data-target="mainnav-2">
             <span></span>
@@ -101,7 +101,7 @@ order: 2
 <nav class="sgds-navbar" role="navigation" style="z-index: 31">
     <div class="sgds-navbar-brand">
         <a class="sgds-navbar-item">
-            <img src="/assets/img/logo_sgds.png" alt="" />
+            <img src="/assets/img/logo_sgds.png" alt="Design System Logo" />
         </a>
         <div class="sgds-navbar-burger" data-target="mainnav-3">
             <span></span>
@@ -216,7 +216,7 @@ order: 2
 <nav class="sgds-navbar" role="navigation">
     <div class="sgds-navbar-brand">
         <a class="sgds-navbar-item">
-            <img src="/assets/img/logo_sgds.png" alt="" />
+            <img src="/assets/img/logo_sgds.png" alt="Design System Logo" />
         </a>
         <div class="sgds-navbar-burger" data-target="mainnav-4">
             <span></span>
@@ -230,13 +230,9 @@ order: 2
                 <form>
                     <div class="field has-addons">
                         <div class="control is-expanded">
-                            <input
-                                class="input is-fullwidth"
-                                id="nav-4-search-mobile"
-                                type="text"
-                                placeholder="{{ site.search_placeholder }}"
-                                name="nav-4-search-mobile"
-                            />
+                            <input class="input is-fullwidth" id="nav-4-search-mobile" type="text"
+                                placeholder="{{ site.search_placeholder }}" name="nav-4-search-mobile"
+                                aria-label="search" />
                         </div>
                     </div>
                 </form>
@@ -249,38 +245,31 @@ order: 2
     </div>
     <div class="sgds-navbar-end is-hidden-touch">
         <div class="sgds-navbar-item">
-            <button
-                class="sgds-button is-white is-large search-toggle"
-                data-target="searchbar-1"
-            >
-                <span class="sgds-icon sgds-icon-search"></span>
+            <button class="sgds-button is-white is-large search-toggle" data-target="searchbar-1">
+                <span class="sgds-icon sgds-icon-search">
+                    <span style="display:none;">
+                        search
+                    </span>
+                </span>
             </button>
         </div>
     </div>
 </nav>
-<div class="row is-hidden-touch is-marginless hide"  id="searchbar-1" >
+<div class="row is-hidden-touch is-marginless hide" id="searchbar-1">
     <div class="col">
         <hr class="margin--bottom--sm" />
         <form>
             <div class="field has-addons padding--sm">
                 <div class="control has-icons-left is-expanded padding--bottom--sm">
-                    <input
-                        class="input is-fullwidth is-borderless is-shadowless"
-                        id="nav-4-search"
-                        type="text"
-                        placeholder="{{ site.search_placeholder }}"
-                        name="nav-4-search"
-                        autocomplete="off"
-                    />
+                    <input class="input is-fullwidth is-borderless is-shadowless" id="nav-4-search" type="text"
+                        placeholder="{{ site.search_placeholder }}" name="nav-4-search" autocomplete="off"
+                        aria-label="search" />
                     <span class="icon is-left">
                         <i class="search-bar-icon sgds-icon sgds-icon-search is-size-7"></i>
                     </span>
                 </div>
                 <div class="control">
-                    <button
-                        type="button"
-                        class="sgds-button is-primary has-text-white padding--left padding--right"
-                    >
+                    <button type="button" class="sgds-button is-primary has-text-white padding--left padding--right">
                         SEARCH
                     </button>
                 </div>
@@ -293,7 +282,7 @@ order: 2
 <nav class="sgds-navbar" role="navigation">
     <div class="sgds-navbar-brand">
         <a class="sgds-navbar-item">
-            <img src="/assets/img/logo_sgds.png" alt="" />
+            <img src="/assets/img/logo_sgds.png" alt="Design System Logo" />
         </a>
         <div class="sgds-navbar-burger" data-target="mainnav-5">
             <span></span>
@@ -312,11 +301,12 @@ order: 2
                 Navbar-end, lorem ipsum dolor sit
             </a>
             <div class="sgds-navbar-item  is-hidden-touch">
-                <button
-                    class="sgds-button is-white is-large search-toggle"
-                    data-target="searchbar-2"
-                >
-                    <span class="sgds-icon sgds-icon-search"></span>
+                <button class="sgds-button is-white is-large search-toggle" data-target="searchbar-2">
+                    <span class="sgds-icon sgds-icon-search">
+                        <span style="display:none;">
+                            search
+                        </span>
+                    </span>
                 </button>
             </div>
         </div>
@@ -341,16 +331,16 @@ order: 2
         <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
         <div class="sgds-notification-content">
             <small>
-                Previous version of sgds used the <code>.navbar</code> class which is now deprecated 
+                Previous version of sgds used the <code>.navbar</code> class which is now deprecated
                 and may not longer receive updates or fixes. While <code>.navbar</code> may work, it is
-                recommended that you use <code>.sgds-navbar</code> instead, which would also not clash 
+                recommended that you use <code>.sgds-navbar</code> instead, which would also not clash
                 with other css frameworks like Bootstrap.
             </small>
         </div>
     </div>
 </div>
 
-<hr/>
+<hr />
 
 <h5>
     Basic main navigation example
@@ -358,19 +348,12 @@ order: 2
 
 {{ default_navbar_example }}
 
-<div class="sgds-accordion margin--top--lg">
-    <a class="sgds-accordion-header">
-        Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-    </a>
-    <div class="sgds-accordion-body">
-{%- highlight html -%}{{default_navbar_example}}{%- endhighlight -%}
-        <button
-            class="sgds-button clipboard-btn is-primary is-outlined"
-            data-clipboard-target=".highlight0"
-        >
-            Copy Snippet
-        </button>
-    </div>
+<div class="sgds-container margin--top--lg">
+    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+    {%- highlight html -%}{{default_navbar_example}}{%- endhighlight -%}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight0">
+        Copy Snippet
+    </button>
 </div>
 
 <hr class="margin--top margin--bottom">
@@ -381,11 +364,13 @@ order: 2
 <ul>
     <li>
         <code>.sgds-navbar-brand</code>
-        <p>The <code>.sgds-navbar-brand</code> container is visible across all device sizes and always sits at the left</p>
+        <p>The <code>.sgds-navbar-brand</code> container is visible across all device sizes and always sits at the left
+        </p>
     </li>
     <li>
         <code>.sgds-navbar-menu</code>
-        <p>The <code>.sgds-navbar-menu</code> is to the right of <code>.sgds-navbar-brand</code>, and hidden on mobile devices (&lt;1024px wide). 
+        <p>The <code>.sgds-navbar-menu</code> is to the right of <code>.sgds-navbar-brand</code>, and hidden on mobile
+            devices (&lt;1024px wide).
             Its children can further be positioned with:</p>
         <ul>
             <li>
@@ -405,11 +390,12 @@ order: 2
 <h6>Burger button on mobile views <span class="sgds-tag is-rounded margin--left--sm">JS</span></h6>
 
 <p>
-    Since the <code>.sgds-navbar-menu</code> element is hidden on mobile devices, you can add a <code>.sgds-navbar-burger</code>
+    Since the <code>.sgds-navbar-menu</code> element is hidden on mobile devices, you can add a
+    <code>.sgds-navbar-burger</code>
     button inside <code>.sgds-navbar-brand</code> to toggle the visibility of the navbar menu.
 </p>
 
-<hr/>
+<hr />
 
 <!-- Main Nav 2 -->
 
@@ -419,24 +405,15 @@ order: 2
 
 {{dropdown_navbar_example}}
 
-<div class="sgds-accordion-container margin--top--lg">
-    <div class="sgds-accordion">
-        <a class="sgds-accordion-header">
-            Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-{%- highlight html -%}{{dropdown_navbar_example}}{%- endhighlight -%}
-            <button
-                class="sgds-button clipboard-btn is-primary is-outlined"
-                data-clipboard-target=".highlight1"
-            >
-                Copy Snippet
-            </button>
-        </div>
-    </div>
+<div class="sgds-container margin--top--lg">
+    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+    {%- highlight html -%}{{dropdown_navbar_example}}{%- endhighlight -%}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight1">
+        Copy Snippet
+    </button>
 </div>
 
-<hr/>
+<hr />
 
 <!-- Main Nav 3 -->
 
@@ -446,24 +423,15 @@ order: 2
 
 {{mega_menu_navbar_example}}
 
-<div class="sgds-accordion-container margin--top--lg">
-    <div class="sgds-accordion">
-        <a class="sgds-accordion-header">
-            Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-{%- highlight html -%}{{mega_menu_navbar_example}}{%- endhighlight -%}
-            <button
-                class="sgds-button clipboard-btn is-primary is-outlined"
-                data-clipboard-target=".highlight2"
-            >
-                Copy Snippet
-            </button>
-        </div>
-    </div>
+<div class="sgds-container margin--top--lg">
+    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+    {%- highlight html -%}{{mega_menu_navbar_example}}{%- endhighlight -%}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight2">
+        Copy Snippet
+    </button>
 </div>
 
-<hr/>
+<hr />
 
 <!-- Main Nav 4 -->
 
@@ -471,79 +439,51 @@ order: 2
 
 {{searchbar_navbar_example}}
 
-<div class="sgds-accordion-container margin--top--lg">
-    <div class="sgds-accordion">
-        <a class="sgds-accordion-header">
-            Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-{%- highlight html -%}{{searchbar_navbar_example}}{%- endhighlight -%}
-            <button
-                class="sgds-button clipboard-btn is-primary is-outlined"
-                data-clipboard-target=".highlight3"
-            >
-                Copy Snippet
-            </button>
-        </div>
-    </div>
+<div class="sgds-container margin--top--lg">
+    {%- highlight html -%}{{searchbar_navbar_example}}{%- endhighlight -%}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight3">
+        Copy Snippet
+    </button>
 </div>
 
-<hr/>
+<hr />
 
 <!-- Main Nav 5 -->
 
 <p>
-    To accommodate links containing longer text, add <code>.has-item-max-width</code> to <code>.sgds-navbar-start</code> or <code>.sgds-navbar-end</code>
+    To accommodate links containing longer text, add <code>.has-item-max-width</code> to <code>.sgds-navbar-start</code>
+    or <code>.sgds-navbar-end</code>
     to fix the width of their children <code>.sgds-navbar-item</code> elements.
 </p>
 
 {{item_width_navbar_example}}
 
-<div class="sgds-accordion-container margin--top--lg">
-    <div class="sgds-accordion">
-        <a class="sgds-accordion-header">
-            Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-{%- highlight html -%}{{item_width_navbar_example}}{%- endhighlight -%}
-            <button
-                class="sgds-button clipboard-btn is-primary is-outlined"
-                data-clipboard-target=".highlight4"
-            >
-                Copy Snippet
-            </button>
-        </div>
-    </div>
+<div class="sgds-container margin--top--lg">
+    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+    {%- highlight html -%}{{item_width_navbar_example}}{%- endhighlight -%}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight4">
+        Copy Snippet
+    </button>
 </div>
 
-<hr/>
+<hr />
 <!-- Main Nav 5 -->
 
 <p>
-    To make make a full width navbar, You can wrap <code>.sgds-container.is-fluid</code> 
-    around <code>sgds-navbar</code> 
+    To make make a full width navbar, You can wrap <code>.sgds-container.is-fluid</code>
+    around <code>sgds-navbar</code>
 </p>
 
 {{ fullwidth_navbar_example }}
 
-<div class="sgds-accordion-container margin--top--lg">
-    <div class="sgds-accordion">
-        <a class="sgds-accordion-header">
-            Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-{%- highlight html -%}{{fullwidth_navbar_example}}{%- endhighlight -%}
-            <button
-                class="sgds-button clipboard-btn is-primary is-outlined"
-                data-clipboard-target=".highlight5"
-            >
-                Copy Snippet
-            </button>
-        </div>
-    </div>
+<div class="sgds-container margin--top--lg">
+    {%- highlight html -%}{{fullwidth_navbar_example}}{%- endhighlight -%}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight5">
+        Copy Snippet
+    </button>
 </div>
 
-<hr/>
+<hr />
 
 <h5>Guidelines</h5>
 <p>Main navs should:</p>
@@ -554,6 +494,6 @@ order: 2
     <li>Have the search function accessible on the right side</li>
 </ul>
 
-<hr/>
+<hr />
 
 {%- include sgds-feedback.html -%}
