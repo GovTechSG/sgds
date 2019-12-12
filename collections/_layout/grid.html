@@ -161,7 +161,6 @@ icon: grid
 
 </div>
 
-
 <hr />
 <p class="margin--top">Create empty horizontal space from the left using <code>is-offset-X</code>.</p>
 <div class="sgds-example is-marginless">
@@ -169,75 +168,75 @@ icon: grid
 </div>
 <div class="sgds-container margin--top--lg">
     <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-        {% highlight html %}{{offset_grid_example}}{% endhighlight %}
-        <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>Copy
-            Snippet</button>
-    </div>
+    {% highlight html %}{{offset_grid_example}}{% endhighlight %}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>Copy
+        Snippet</button>
+</div>
 
-    <hr />
-    <p class="margin--top">You can <b>nest</b> columns to have more flexibility in your design.</p>
-    <div class="sgds-example is-marginless">
-        {{nested_grid_example}}
-    </div>
-    <div class="sgds-container margin--top--lg">
-        <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-            {% highlight html %}{{nested_grid_example}}{% endhighlight %}
-            <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight3'>Copy
-                Snippet</button>
+<hr />
+
+<p class="margin--top">You can <b>nest</b> columns to have more flexibility in your design.</p>
+<div class="sgds-example is-marginless">
+    {{nested_grid_example}}
+</div>
+<div class="sgds-container margin--top--lg">
+    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+    {% highlight html %}{{nested_grid_example}}{% endhighlight %}
+    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight3'>Copy
+        Snippet</button>
+</div>
+
+<hr />
+
+<h5>Style</h5>
+<table class="table is-bordered is-size-8">
+    <thead>
+        <tr>
+            <th>Modifier</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>is-1</code> to <code>is-12</code></td>
+            <td>To divide the grid into 12 columns</td>
+        </tr>
+        <tr>
+            <th colspan="2">If you want to change the size of a single column, you can use one of the following
+                classes:
+            </th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <code>is-half</code><br>
+                <code>is-one-thirds</code> to <code>is-two-thirds</code><br>
+                <code>is-one-quarters</code> to <code>is-three-quarters</code><br>
+                <code>is-one-fifths</code> to <code>is-four-fifths</code><br>
+                <code>is-full</code>
+            </td>
+        </tr>
+        <tr>
+            <td><code>is-offset-1</code> to <code>is-offset-12</code></td>
+            <td>To create horizontal space around column elements</td>
+        </tr>
+        <tr>
+            <td><code>is-narrow</code></td>
+            <td>To take the space it needs, while the other column takes up the remaining space</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="sgds-notification is-info margin--top--lg is-hidden-touch">
+    <div class="sgds-notification-detail">
+        <span class="sgds-icon sgds-icon-expand-alt is-size-4"></span>
+        <div class="sgds-notification-content">
+            <small>You can combine the above modifier with responsiveness classes to hide/show elements.<br>
+                <a href="/docs/responsiveness/">See Responsiveness documentation</a>
+            </small>
         </div>
+    </div>
+</div>
 
-        <hr />
+<hr />
 
-        <h5>Style</h5>
-        <table class="table is-bordered is-size-8">
-            <thead>
-                <tr>
-                    <th>Modifier</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>is-1</code> to <code>is-12</code></td>
-                    <td>To divide the grid into 12 columns</td>
-                </tr>
-                <tr>
-                    <th colspan="2">If you want to change the size of a single column, you can use one of the following
-                        classes:
-                    </th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <code>is-half</code><br>
-                        <code>is-one-thirds</code> to <code>is-two-thirds</code><br>
-                        <code>is-one-quarters</code> to <code>is-three-quarters</code><br>
-                        <code>is-one-fifths</code> to <code>is-four-fifths</code><br>
-                        <code>is-full</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td><code>is-offset-1</code> to <code>is-offset-12</code></td>
-                    <td>To create horizontal space around column elements</td>
-                </tr>
-                <tr>
-                    <td><code>is-narrow</code></td>
-                    <td>To take the space it needs, while the other column takes up the remaining space</td>
-                </tr>
-            </tbody>
-        </table>
-
-
-        <div class="sgds-notification is-info margin--top--lg is-hidden-touch">
-            <div class="sgds-notification-detail">
-                <span class="sgds-icon sgds-icon-expand-alt is-size-4"></span>
-                <div class="sgds-notification-content">
-                    <small>You can combine the above modifier with responsiveness classes to hide/show elements.<br>
-                        <a href="/docs/responsiveness/">See Responsiveness documentation</a>
-                    </small>
-                </div>
-            </div>
-        </div>
-
-        <hr />
-
-        {%- include sgds-feedback.html -%}
+{%- include sgds-feedback.html -%}
