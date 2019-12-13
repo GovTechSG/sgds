@@ -100,7 +100,7 @@ export default {
     },
     created() {
         let u = new URL(window.location.href);
-        this.searchQuery = u.searchParams.get("query");
+        this.searchQuery = u.searchParams.get("search");
         if (!this.searchQuery) return;
         this.searching = true;
         axios

@@ -47,11 +47,11 @@ icon: container
   Use responsive classes to define how the <a href="/docs/grid">grid</a> behaves at different screen sizes.
 </h4>
 
-<hr/>
+<hr />
 
 <h5>Breakpoints</h5>
 <p>
-  Under the <a href="/docs/grid">grid system</a>, each column's width can be defined for a 
+  Under the <a href="/docs/grid">grid system</a>, each column's width can be defined for a
   specific viewport size: <b>mobile, tablet, desktop, widescreen and fullhd</b>.
 </p>
 
@@ -88,37 +88,28 @@ icon: container
 
 <div class="sgds-notification is-info margin--top--lg is-hidden-touch">
   <div class="sgds-notification-detail">
-      <span class="sgds-icon sgds-icon-grid is-size-4"></span>
-      <div class="sgds-notification-content">
-          <small>
-            Resize the browser to see how the columns respond to different screen sizes<br>
-            <a href="/docs/grid/">Learn more about the grid system</a>
-          </small>
-      </div>
+    <span class="sgds-icon sgds-icon-grid is-size-4"></span>
+    <div class="sgds-notification-content">
+      <small>
+        Resize the browser to see how the columns respond to different screen sizes<br>
+        <a href="/docs/grid/">Learn more about the grid system</a>
+      </small>
+    </div>
   </div>
 </div>
 
 <div class="sgds-example is-marginless">
-    {{is-device-example}}
+  {{is-device-example}}
 </div>
-<div class="sgds-accordion-container margin--top--lg">
-    <div class="sgds-accordion">
-        <a class="sgds-accordion-header">
-        Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-{% highlight html %}{{is-device-example}}{% endhighlight %}
-        <button
-            class="sgds-button clipboard-btn is-primary is-outlined"
-            data-clipboard-target=".highlight0"
-        >
-            Copy Snippet
-        </button>
-        </div>
-    </div>
+<div class="sgds-container margin--top--lg">
+  <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+  {% highlight html %}{{is-device-example}}{% endhighlight %}
+  <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight0">
+    Copy Snippet
+  </button>
 </div>
 
-<hr/>
+<hr />
 
 <h5>Mobile Columns</h5>
 <p>
@@ -129,24 +120,15 @@ icon: container
   {{ is-mobile-example }}
 </div>
 
-<div class="sgds-accordion-container margin--top--lg">
-  <div class="sgds-accordion">
-    <a class="sgds-accordion-header">
-      Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-    </a>
-    <div class="sgds-accordion-body">
-{% highlight html %}{{ is-mobile-example }}{% endhighlight %}
-      <button
-        class="sgds-button clipboard-btn is-primary is-outlined"
-        data-clipboard-target=".highlight1"
-      >
+<div class="sgds-container margin--top--lg">
+    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+      {% highlight html %}{{ is-mobile-example }}{% endhighlight %}
+      <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight1">
         Copy Snippet
       </button>
-    </div>
-  </div>
 </div>
 
-<hr/>
+<hr />
 
 <p>
   To display columns only on desktop (1024px) and above, add the
@@ -155,19 +137,10 @@ icon: container
 <div class="sgds-example is-marginless">
   {{ is-desktop-example }}
 </div>
-<div class="sgds-accordion-container margin--top--lg">
-  <div class="sgds-accordion">
-    <a class="sgds-accordion-header">
-      Show code snippet <i class="sgds-icon sgds-icon-chevron-down"></i>
-    </a>
-    <div class="sgds-accordion-body">
-{% highlight html %}{{ is-desktop-example }}{% endhighlight %}
-      <button
-        class="sgds-button clipboard-btn is-primary is-outlined"
-        data-clipboard-target=".highlight2"
-      >
+<div class="sgds--container margin--top--lg">
+    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+      {% highlight html %}{{ is-desktop-example }}{% endhighlight %}
+      <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight2">
         Copy Snippet
       </button>
-    </div>
-  </div>
 </div>

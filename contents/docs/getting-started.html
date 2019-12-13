@@ -1,0 +1,117 @@
+---
+title: Getting Started
+layout: layout-sidenav
+permalink: /docs/getting-started/
+redirect_from:
+    - /docs/
+---
+
+<h2 class="has-text-primary">Overview</h2>
+<p><a href="/docs/installation">Installation</a></p>
+<p>
+    <a href="/docs/customise-sgds">Advanced customisation with Sass</a>
+</p>
+<p>
+    We highly recommend customising your site by extending base SGDS classes
+    using separate CSS or <a href="/docs/customise-sgds">Sass</a> files. This
+    way, your site will automatically inherit non-conflicting fixes and
+    improvements made to SGDS without breaking existing styles.
+</p>
+<p>
+    Links that contain the
+    <span class="sgds-tag is-rounded has-text-weight-semibold">JS</span>
+    tags contain interactive elements that require
+    <a href="/docs/installation">JavaScript</a>. If you are using React, check
+    out the helper library in development at
+    <a href="https://github.com/govtechsg/sgds-govtech-react">
+        sgds-govtech-react </a
+    >.
+</p>
+
+<hr />
+
+<h2 class="has-text-primary">Component reference</h2>
+<p>
+    Use the component reference to implement layouts, elements and components
+    with our CSS classes and modifiers. Each page includes usage instructions, examples and guidelines.
+</p>
+
+<hr />
+
+<h3 class="has-text-primary">Standard Components</h3>
+<p>
+    These components aid users in basic site identification and navigation, and
+    should be present in all .gov.sg websites as stated in the
+    <a href="https://www.tech.gov.sg/digital-service-standards/" target="_blank"
+        >Digital Service Standards</a
+    >.
+</p>
+
+<div class="row is-multiline is-mobile">
+    {% include component-list.html collectionName='standard' %}
+</div>
+
+<hr />
+
+<h4 class="has-text-primary">Layout</h4>
+<p>
+    CSS classes for composing site layout. You can also find the breakpoints that we use
+    for desktop and mobile devices.
+</p>
+
+<div class="row is-multiline is-mobile">
+    {% include component-list.html collectionName='layout' %}
+</div>
+
+<hr />
+
+<h4 class="has-text-primary">General</h4>
+<p>
+    Common components that can be used individually or composed to form
+    patterns and templates. For example, group the hero with cards to 
+    build a landing page.
+</p>
+
+<div class="row is-multiline is-mobile">
+    {% assign generalComponents = site.general %} 
+    {% for component in generalComponents %}
+    <div class="col is-4">
+        <ul style="margin-top: 0">
+            <li style="margin-top: 0">
+                <a href="{{ component.url }}">{{ component.title }}</a>
+                {% if component.js %}
+                <span
+                    class="sgds-tag is-rounded margin--left--sm has-text-weight-semibold"
+                    >JS</span
+                >
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h4 class="has-text-primary margin--bottom">Form</h4>
+<p>
+    Form components and guidelines for the collection of user input.
+</p>
+
+<div class="row is-multiline is-mobile">
+        {% include component-list.html collectionName='form' %}
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h4 class="has-text-primary margin--bottom">Helpers</h4>
+<p>
+    Helper classes to help you alter the style of almost any
+    component.
+</p>
+
+<div class="row is-multiline is-mobile margin--bottom--lg">
+    {% include component-list.html collectionName='helpers' %}
+</div>
+
+

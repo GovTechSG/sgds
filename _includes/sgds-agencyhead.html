@@ -4,7 +4,7 @@
         <nav class="sgds-navbar" role="navigation">
             <div class="sgds-navbar-brand">
                 <a class="sgds-navbar-item" href="/">
-                    <img src="/assets/img/logo_sgds.png" alt="">
+                    <img src="/assets/img/logo_sgds.png" alt="Design System Logo">
                 </a>
                 <div class="sgds-navbar-burger" data-target="navbarMain">
                     <span></span>
@@ -35,40 +35,42 @@
                 <div class="sgds-navbar-end">
                     <div class="sgds-navbar-item is-hidden-desktop">
                         <div class="buttons is-flex">
-                            <a class="sgds-button is-text is-rounded is-small padding--none margin--right" 
+                            <a class="sgds-button is-text is-rounded is-small padding--none margin--right"
                                 href="https://github.com/govtechsg/sgds">
-                                <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
+                                <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub">
                             </a>
-                            <a class="sgds-button is-primary is-rounded is-small"
-                                href="/docs/getting-started"
-                            >
+                            <a class="sgds-button is-primary is-rounded is-small" href="/docs/installation/">
                                 Install Design System
                             </a>
                         </div>
                     </div>
                     <div class="sgds-navbar-item is-hidden-touch">
                         <div class="buttons is-flex is-flex-alignitems-c">
-                            <a class="sgds-button is-text is-rounded is-small padding--none margin--right" 
+                            <a class="sgds-button is-text is-rounded is-small padding--none margin--right"
                                 href="https://github.com/govtechsg/sgds">
-                                <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" >
+                                <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub">
                             </a>
-                            <a class="sgds-button is-primary is-rounded is-small"
-                                href="/docs/getting-started">
+                            <a class="sgds-button is-primary is-rounded is-small" href="/docs/installation/">
                                 Install Design System
                             </a>
                             {% if page.url contains 'search' %}
-                                <button class="sgds-button is-white is-large" disabled></button>
+                            <button class="sgds-button is-white is-large" disabled></button>
                             {% else %}
-                                <button id="main-search" class="sgds-button is-white is-large search-toggle" data-target="searchbar-main">
-                                    <span class="sgds-icon sgds-icon-search"></span>
-                                </button>
+                            <button id="main-search" class="sgds-button is-white is-large search-toggle"
+                                data-target="searchbar-main" type="button">
+                                <span class="sgds-icon sgds-icon-search">
+                                        <span style="display:none;">
+                                                search
+                                            </span>
+                                </span>
+                            </button>
                             {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
-        <div class="row is-hidden-touch hide"  id="searchbar-main">
+        <div class="row is-hidden-touch hide" id="searchbar-main">
             <div class="col">
                 <hr class="margin--bottom--sm">
                 <form action="/search/" method="get">

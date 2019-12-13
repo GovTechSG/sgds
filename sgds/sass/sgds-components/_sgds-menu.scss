@@ -31,7 +31,8 @@ $menu-label-color: $text-light !default;
       justify-content: space-between;
       align-items: center;
       padding: 0.75rem 0;
-      border-bottom: 1px solid $grey;
+      /*border-bottom: 1px solid $grey;
+      this gives a extra border bottom for side nav*/
 
       .sgds-icon {
         font-size: $size-menu-icon;
@@ -39,7 +40,8 @@ $menu-label-color: $text-light !default;
 
       &:hover {
         color: $menu-item-active-color;
-        border-bottom: 1px solid $menu-item-active-color;
+        /*border-bottom: 1px solid $menu-item-active-color;
+        this is gives a extra border bottom for side nav on hover*/
       }
 
       &.is-active {
