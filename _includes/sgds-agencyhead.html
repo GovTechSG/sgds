@@ -82,6 +82,9 @@
 </div>
 
 {% comment %} Nav bar for mobile {% endcomment %}
-{% if page.url contains "/docs/" %}
-{% include mobile-docs-nav.html %}
+{% if page.url contains "/docs/" or page.url contains "/guides/" %}
+    {% if page.title != 'Guides' %}
+        {% include mobile-docs-nav.html %}
+    {% endif %}
+    {% include sgds-breadcrumb.html %}
 {% endif %}

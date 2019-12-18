@@ -1,30 +1,35 @@
 <!-- https://github.com/comsysto/jekyll-breadcrumb-for-github-pages -->
-<nav class="sgds-breadcrumb padding--top--sm" aria-label="breadcrumbs">
-    <ul>
-        {% assign class = nil %}
-        {% if page.url contains "admin-template" %}
-        {% assign class = '' %}
-        {% else %}
-        {% assign class = 'has-text-white' %}
-        {% endif %}
-        <li><a class="{{class}}" href="/">{{ "Home" | upcase }}</a></li>
+<section class="sgds-section is-small has-background-gradient">
+    <div class="sgds-container ">
+        <nav class="sgds-breadcrumb padding--top--sm" aria-label="breadcrumbs">
+            <ul>
+                {% assign class = nil %}
+                {% if page.url contains "admin-template" %}
+                {% assign class = '' %}
+                {% else %}
+                {% assign class = 'has-text-white' %}
+                {% endif %}
+                <li><a class="{{class}}" href="/">{{ "Home" | upcase }}</a></li>
 
-        {%- capture page_url_without_index_html -%}{{ page.url | remove: "/index.html" | remove: ".html" }}{%- endcapture -%}
-        {% assign splitted_url_parts = page_url_without_index_html | split: '/' %}
-        {% capture forLoopMaxInt %}{{ splitted_url_parts.size | minus:1 }}{% endcapture %}
+                {%- capture page_url_without_index_html -%}{{ page.url | remove: "/index.html" | remove: ".html" }}{%- endcapture -%}
+                {% assign splitted_url_parts = page_url_without_index_html | split: '/' %}
+                {% capture forLoopMaxInt %}{{ splitted_url_parts.size | minus:1 }}{% endcapture %}
 
-        {% for i in (1..forLoopMaxInt) %}
+                {% for i in (1..forLoopMaxInt) %}
 
-        {% capture current_breadcrumb_url %}{{next_prepender}}/{{ splitted_url_parts[i] }}/index.html{% endcapture %}
-        {% capture current_breadcrumb_md_url %}{{next_prepender}}/{{ splitted_url_parts[i] }}/{% endcapture %}
-        {% capture next_prepender %}{{next_prepender}}/{{ splitted_url_parts[i] }}{% endcapture %}
+                {% capture current_breadcrumb_url %}{{next_prepender}}/{{ splitted_url_parts[i] }}/index.html{% endcapture %}
+                {% capture current_breadcrumb_md_url %}{{next_prepender}}/{{ splitted_url_parts[i] }}/{% endcapture %}
+                {% capture next_prepender %}{{next_prepender}}/{{ splitted_url_parts[i] }}{% endcapture %}
 
-        <li>
-            <a class="{{ class }}" href="{{current_breadcrumb_md_url}}">
-                {{ current_breadcrumb_md_url | split: '/' | last | replace: '-', ' ' |upcase }}
-            </a>
-        </li>
+                <li>
+                    <a class="{{ class }}" href="{{current_breadcrumb_md_url}}">
+                        {{ current_breadcrumb_md_url | split: '/' | last | replace: '-', ' ' |upcase }}
+                    </a>
+                </li>
 
-        {% endfor %}
-    </ul>
-</nav>
+                {% endfor %}
+            </ul>
+        </nav>
+        <h1 class="has-text-white has-text-weight-semibold">{{page.title}}</h1>
+    </div>
+</section>
