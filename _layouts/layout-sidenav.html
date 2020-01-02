@@ -52,6 +52,8 @@ layout: layout-default
                 <div class="sidebar__inner sgds-menu">
                     {% if page.url contains '/docs/' %}
                     {% include sidenav-docs.html %}
+                    {% elsif page.url contains '/patterns/' %}
+                    {% include sidenav-patterns.html %}
                     {% else %}
                     {% include sidenav-collection.html %}
                     {% endif %}

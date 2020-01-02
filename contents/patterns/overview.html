@@ -1,0 +1,93 @@
+---
+title: Overview
+layout: layout-sidenav
+permalink: /patterns/overview/
+redirect_from:
+    - /patterns/
+---
+<h1 class="has-text-primary">Overview</h1>
+<p>Here you find common patterns that you can use to start building your site.
+These are baseline patterns and can be tweaked to suit your product or service, these have basic accessibility built in but do
+refer back to WCAG and the DSS to see if you need to add in more to meet certain standards that you are trying to achieve.
+</p>
+
+<hr />
+
+
+<h2 class="has-text-primary">Our Patterns</h3>
+<p>
+    These components aid users in basic site identification and navigation, and
+    should be present in all .gov.sg websites as stated in the
+    <a href="https://www.tech.gov.sg/digital-service-standards/" target="_blank"
+        >Digital Service Standards</a
+    >.
+</p>
+
+<div class="row is-multiline is-mobile">
+    {% include component-list.html collectionName='standard' %}
+</div>
+
+<hr />
+
+<h4 class="has-text-primary">Layout</h4>
+<p>
+    CSS classes for composing site layout. You can also find the breakpoints that we use
+    for desktop and mobile devices.
+</p>
+
+<div class="row is-multiline is-mobile">
+    {% include component-list.html collectionName='layout' %}
+</div>
+
+<hr />
+
+<h4 class="has-text-primary">General</h4>
+<p>
+    Common components that can be used individually or composed to form
+    patterns and templates. For example, group the hero with cards to 
+    build a landing page.
+</p>
+
+<div class="row is-multiline is-mobile">
+    {% assign generalComponents = site.general %} 
+    {% for component in generalComponents %}
+    <div class="col is-4">
+        <ul style="margin-top: 0">
+            <li style="margin-top: 0">
+                <a href="{{ component.url }}">{{ component.title }}</a>
+                {% if component.js %}
+                <span
+                    class="sgds-tag is-rounded margin--left--sm has-text-weight-semibold"
+                    >JS</span
+                >
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h4 class="has-text-primary margin--bottom">Form</h4>
+<p>
+    Form components and guidelines for the collection of user input.
+</p>
+
+<div class="row is-multiline is-mobile">
+        {% include component-list.html collectionName='form' %}
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h4 class="has-text-primary margin--bottom">Helpers</h4>
+<p>
+    Helper classes to help you alter the style of almost any
+    component.
+</p>
+
+<div class="row is-multiline is-mobile margin--bottom--lg">
+    {% include component-list.html collectionName='helpers' %}
+</div>
+
+
