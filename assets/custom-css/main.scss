@@ -11,6 +11,7 @@ $body-color: #323232;
 @import "sgds-syntax";
 @import "mobile-side-nav";
 @import "spinner";
+@import "docs";
 
 /* Keep footer at bottom of viewport if page isn't high enough */
 html,
@@ -50,11 +51,6 @@ a[target="_blank"]:after {
   background: transparent;
   border: 0;
   font-size: 14px;
-}
-
-/* Docs mobile nav needs higher z-index */
-.docs-nav-dropdown {
-  z-index: 31;
 }
 
 .card-section .col a {
