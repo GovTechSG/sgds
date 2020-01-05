@@ -53,18 +53,16 @@
                             <a class="sgds-button is-primary is-rounded is-small" href="/docs/installation/">
                                 Install Design System
                             </a>
-                            {% if page.url contains 'search' %}
-                            <button class="sgds-button is-white is-large" disabled></button>
-                            {% else %}
-                            <button id="main-search" class="sgds-button is-white is-large search-toggle"
-                                data-target="searchbar-main" type="button">
+                            <button id="main-search" 
+                                class="sgds-button is-white is-large search-toggle"
+                                data-target="searchbar-main" 
+                                type="button">
                                 <span class="sgds-icon sgds-icon-search">
-                                        <span style="display:none;">
-                                                search
-                                            </span>
+                                    <span style="display:none;">
+                                        search
+                                    </span>
                                 </span>
                             </button>
-                            {% endif %}
                         </div>
                     </div>
                 </div>
