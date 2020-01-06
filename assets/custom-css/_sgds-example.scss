@@ -1,4 +1,4 @@
-@mixin example-tag($content){
+@mixin example-tag($content) {
   content: $content;
   position: absolute;
   top: 0;
@@ -6,74 +6,77 @@
   padding: 0.05rem 0.5rem;
   font-size: 0.7rem;
   background: $warning;
-  color:black!important;
+  color: black !important;
 }
 
-@mixin example-control($padding,$text-align){
-  border:1px dotted $info;
-  padding:$padding;
+@mixin example-control($padding, $text-align) {
+  border: 1px dotted $info;
+  padding: $padding;
   background-color: rgba($info, 0.2);
-  position:relative;
-  text-align:$text-align;
+  position: relative;
+  text-align: $text-align;
 }
 
-.sgds-example{
-  width:100%;
-  margin:0.75rem;
-  @include mobile(){
-    margin:0;
+.sgds-example {
+  width: 100%;
+  margin: 0.75rem;
+  @include mobile() {
+    margin: 0;
   }
-  padding:0.3rem;
+  padding: 0.3rem;
   border: 1px solid $warning;
   .sgds-section {
     @include example-control(auto, center);
     &:before {
-      @include example-tag('.sgds-section');
+      @include example-tag(".sgds-section");
     }
     &.is-small {
       &:before {
-        content: '.sgds-section.is-small' !important
+        content: ".sgds-section.is-small" !important;
       }
     }
     &.is-medium {
       &:before {
-        content: '.sgds-section.is-medium' !important
+        content: ".sgds-section.is-medium" !important;
       }
     }
     &.is-large {
       &:before {
-        content: '.sgds-section.is-large' !important
+        content: ".sgds-section.is-large" !important;
       }
     }
   }
-  .sgds-container{
-    width:inherit;
+  .sgds-container {
+    width: inherit;
     @include example-control(2.5rem, center);
     &:before {
-      @include example-tag('.sgds-container');
+      @include example-tag(".sgds-container");
     }
-    &.is-fluid{
-      &:before{
-        content:'.sgds-container.is-fluid'
+    &.is-fluid {
+      &:before {
+        content: ".sgds-container.is-fluid";
       }
     }
   }
-  .row{
+  .row {
     @include example-control(1.5rem, center);
     &:before {
-      @include example-tag('.row');
+      @include example-tag(".row");
     }
-    &.has-text-centered{
-      text-align:center;
+    &.is-multiline:before {
+      @include example-tag(".row .is-multiline");
     }
-    &.is-mobile{
+    &.has-text-centered {
+      text-align: center;
+    }
+    &.is-mobile {
       &:before {
-        @include example-tag('.row.is-mobile');
+        @include example-tag(".row.is-mobile");
       }
     }
-    &.is-desktop{
+    &.is-desktop {
       &:before {
-        @include example-tag('.row.is-desktop');
+        @include example-tag(".row.is-desktop");
       }
     }
   }
@@ -83,62 +86,62 @@
     color: black;
     text-align: center;
     &:before {
-      @include example-tag('.col');
+      @include example-tag(".col");
     }
     @for $i from 2 through 12 {
-      @for $j from 2 through 12{
-        &.is-#{$i}{
-          &:before{
-            @include example-tag('.col' + '.is-' + '#{$i}');
+      @for $j from 2 through 12 {
+        &.is-#{$i} {
+          &:before {
+            @include example-tag(".col" + ".is-" + "#{$i}");
           }
         }
-        &.is-#{$j}.is-offset-#{$i}{
-          &:before{
-            @include example-tag('.col' + '.is-'+ '#{$j}' + '.is-offset-' + '#{$i}');
+        &.is-#{$j}.is-offset-#{$i} {
+          &:before {
+            @include example-tag(
+              ".col" + ".is-"+ "#{$j}"+".is-offset-"+"#{$i}"
+            );
           }
         }
       }
     }
-    &.is-nested{
-      padding:2rem;
+    &.is-nested {
+      padding: 2rem;
     }
   }
   //example util
-  &.no-styling{
+  &.no-styling {
+    div,
+    section {
+      background-color: white !important;
+      border: 0 !important;
 
-    div,section{
-      background-color: white!important;
-      border:0!important;
-
-      &:before{
-        display:none;
+      &:before {
+        display: none;
       }
     }
-    section{
-      padding:3rem 1.5rem!important;
+    section {
+      padding: 3rem 1.5rem !important;
     }
   }
-  &-others{
+  &-others {
     width: 100%;
-    .sgds-container{
+    .sgds-container {
       width: auto;
     }
   }
-  
 }
 
-
-.responsive-table-cell{
-  padding:0.5rem;
-  span{
+.responsive-table-cell {
+  padding: 0.5rem;
+  span {
     display: flex;
-    justify-content:center;
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     background-color: $info;
     padding: 1rem;
     height: 60px;
     color: white;
-    &.unchanged{
+    &.unchanged {
       background-color: $grey-lighter;
       color: $grey-dark;
     }
