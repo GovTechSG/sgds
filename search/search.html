@@ -5,10 +5,9 @@ permalink: /search/
 breadcrumb: Search
 ---
 
-<section class="sgds-section is-small has-background-primary">
+<section class="sgds-section">
     <div class="sgds-container">
         {% include sgds-breadcrumb.html %}
-        <h2 class="has-text-white ">{{ page.title }}</h2>
     </div>
     <div class="sgds-container">
         <form action="/search/" method="get">
@@ -20,7 +19,7 @@ breadcrumb: Search
                                 class="input"
                                 type="text"
                                 placeholder="{{ site.search_placeholder }}"
-                                name="query"
+                                name="search"
                             />
                         </div>
                         <div class="control">
