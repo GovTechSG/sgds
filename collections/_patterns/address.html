@@ -1,0 +1,124 @@
+---
+title: Address
+layout: layout-docs
+---
+
+<h4 class="has-text-primary">
+    Help your users fill in their addresses by providing a address lookup and multiple text fields.
+</h4>
+
+<hr />
+
+<div class="field">
+    <label class="label" for="hint">Postal Code</label>
+    <div class="control">
+        <input class="input col is-4" type="text" id="postal code" autocomplete="postal-code" />
+    </div>
+    <div><button class="sgds-button is-primary margin--top--lg">Find Address</button></div>
+</div>
+
+<div class="field margin--top--lg">
+    <label class="label" for="name">Block/Street Name</label>
+    <div class="control">
+        <input
+            class="input margin--bottom--lg col is-8"
+            type="text"
+            id="street name"
+            autocomplete="street-address"
+        />
+    </div>
+</div>
+
+<div class="field">
+    <label class="label" for="name">Building/House No.</label>
+    <span class="hint">If applicable</span>
+    <div class="control">
+        <input class="input margin--bottom--lg col is-4" type="text" id="building number" />
+    </div>
+</div>
+
+<div class="field">
+    <label class="label" for="name">Unit No.</label>
+    <div class="control">
+        <input
+            class="input margin--bottom--lg col is-4"
+            type="text"
+            id="unit number"
+            autocomplete="unit number"
+        />
+    </div>
+</div>
+
+<h5 class="margin--top--lg">Component Code</h5>
+
+{%- highlight html -%}
+<div class="field">
+    <label class="label" for="hint">Postal Code</label>
+    <div class="control">
+        <input class="input col is-4" type="text" id="postal code" autocomplete="postal-code" />
+    </div>
+    <div><button class="sgds-button is-primary margin--top--lg">Find Address</button></div>
+</div>
+
+<div class="field margin--top--lg">
+    <label class="label" for="name">Block/Street Name</label>
+    <div class="control">
+        <input
+            class="input margin--bottom--lg col is-8"
+            type="text"
+            id="street name"
+            autocomplete="street-address"
+        />
+    </div>
+</div>
+
+<div class="field">
+    <label class="label" for="name">Building/House No.</label>
+    <span class="hint">If applicable</span>
+    <div class="control">
+        <input class="input margin--bottom--lg col is-4" type="text" id="building number" />
+    </div>
+</div>
+
+<div class="field">
+    <label class="label" for="name">Unit No.</label>
+    <div class="control">
+        <input
+            class="input margin--bottom--lg col is-4"
+            type="text"
+            id="unit number"
+            autocomplete="unit number"
+        />
+    </div>
+</div>
+{%- endhighlight -%}
+
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this pattern</h4>
+<p>
+    Use this pattern when you want to ask users for a Singapore address. You should allow users to
+    key in their postal code to lookup their address and also allow them to enter it manually.
+</p>
+
+<p>
+    The fields should always have the <code>autocomplete</code> attribute to help your users
+    complete it quickly.
+</p>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When not to use this pattern</h4>
+<p>
+    If you are mainly asking for international addresses, then your form should be formatted to
+    follow the structural conventions of international address. Only use the address lookup if you
+    are asking for a address from only a specific country, otherwise leave out the address lookup
+    function.
+</p>
+
+<hr />
+
+{%- include sgds-feedback.html -%}
