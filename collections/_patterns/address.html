@@ -3,11 +3,15 @@ title: Address
 layout: layout-docs
 ---
 
-<h4 class="has-text-primary">
-    Help your users fill in their addresses by providing a address lookup and multiple text fields.
-</h4>
+<h2 class="has-text-primary">
+    Help your users fill in their addresses
+</h2>
 
 <hr />
+
+<h3>
+    Address lookup
+</h3>
 
 <div class="field">
     <label class="label" for="hint">Postal Code</label>
@@ -106,17 +110,29 @@ layout: layout-docs
     key in their postal code to lookup their address and also allow them to enter it manually.
 </p>
 
+<h4 class="margin--top--lg has-text-weight-semibold">Guidelines</h4>
+<h5>Address lookup</h5>
+<p>
+    Make it clear to users that this will only work with Singapore addresses.
+</p>
+<p>
+    Use the address lookup only if you are asking for a Singapore address, else use use multiple
+    text inputs or a text area when asking for addresses outside of Singapore.
+</p>
+
 <p>
     The fields should always have the <code>autocomplete</code> attribute to help your users
     complete it quickly.
 </p>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When not to use this pattern</h4>
 <p>
-    If you are mainly asking for international addresses, then your form should be formatted to
-    follow the structural conventions of international address. Only use the address lookup if you
-    are asking for a address from only a specific country, otherwise leave out the address lookup
-    function.
+    You will need to include the <code>autocomplete</code> attribute to meet
+    <a
+        href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+        target="_blank"
+        >WCAG 2.1 AA</a
+    >
+    for production.
 </p>
 
 <hr />
