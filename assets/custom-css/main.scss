@@ -114,3 +114,10 @@ a[target="_blank"]:after {
   justify-content: center;
   align-items: flex-start;
 }
+.table-container {
+    @include touch() {
+      width: 90vw;
+      overflow-x: scroll;
+    }
+  }
+

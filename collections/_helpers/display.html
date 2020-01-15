@@ -3,9 +3,10 @@ title: Display
 layout: layout-docs
 ---
 
-<h4 class="has-text-primary">SGDS provides helper classes to display elements for different screensizes via media queries</h4>
+<h4 class="has-text-primary">SGDS provides helper classes to display elements for different screensizes via media
+    queries</h4>
 
-<hr/>
+<hr />
 
 <h5 class="has-text-primary">CSS display classes</h5>
 <p>You can use one of the <code>display</code>classes: </p>
@@ -19,400 +20,404 @@ layout: layout-docs
 </ul>
 
 <h5>Example on how <code>is-flex</code> works:</h5>
-<table class="table is-bordered is-size-8">
-    <thead>
-        <tr>
-            <td width="20%">Class</td>
-            <td width="16.6%">Mobile Up to <b>768px</b></td>
-            <td width="16.6%">Tablet between <b>768px</b> to <b>1023px</b></td>
-            <td width="16.6%">Desktop between <b>1024px</b> to <b>1215px</b></td>
-            <td width="16.6%">Widescreen between <b>1216px</b> to <b>1407px</b></td>
-            <td width="16.6%">FullHD from <b>1408px</b> and above</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><code>is-flex</code></td>
-            <td class="responsive-table-cell">
-               <span>flex</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-flex-mobile</code></td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
+<div class="table-container">
+    <table class="table is-bordered is-size-8 overflow-table">
+        <thead>
+            <tr>
+                <td width="20%">Class</td>
+                <td width="16.6%">Mobile Up to <b>768px</b></td>
+                <td width="16.6%">Tablet between <b>768px</b> to <b>1023px</b></td>
+                <td width="16.6%">Desktop between <b>1024px</b> to <b>1215px</b></td>
+                <td width="16.6%">Widescreen between <b>1216px</b> to <b>1407px</b></td>
+                <td width="16.6%">FullHD from <b>1408px</b> and above</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>is-flex</code></td>
+                <td class="responsive-table-cell">
                     <span>flex</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-flex-desktop-only</code></td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-flex-mobile</code></td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
                     <span>flex</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-flex-widescreen-only</code></td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-flex-desktop-only</code></td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-flex-widescreen-only</code></td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <h5>Helper classes to display element for different screensizes</h5>
-
-<table class="table is-bordered is-size-8">
-    <thead>
-        <tr>
-            <td width="20%">Class</td>
-            <td width="16.6%">Mobile Up to <b>768px</b></td>
-            <td width="16.6%">Tablet between <b>768px</b> to <b>1023px</b></td>
-            <td width="16.6%">Desktop between <b>1024px</b> to <b>1215px</b></td>
-            <td width="16.6%">Widescreen between <b>1216px</b> to <b>1407px</b></td>
-            <td width="16.6%">FullHD from <b>1408px</b> and above</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><code>is-flex-touch</code></td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-flex-tablet</code></td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-flex-desktop</code></td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-flex-widescreen</code></td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span> 
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-flex-fullhd</code></td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">unchanged</span>   
-            </td>
-            <td class="responsive-table-cell">
-                <span>flex</span>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="table-container">
+    <table class="table is-bordered is-size-8 overflow-table">
+        <thead>
+            <tr>
+                <td width="20%">Class</td>
+                <td width="16.6%">Mobile Up to <b>768px</b></td>
+                <td width="16.6%">Tablet between <b>768px</b> to <b>1023px</b></td>
+                <td width="16.6%">Desktop between <b>1024px</b> to <b>1215px</b></td>
+                <td width="16.6%">Widescreen between <b>1216px</b> to <b>1407px</b></td>
+                <td width="16.6%">FullHD from <b>1408px</b> and above</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>is-flex-touch</code></td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-flex-tablet</code></td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-flex-desktop</code></td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-flex-widescreen</code></td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-flex-fullhd</code></td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">unchanged</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>flex</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <p>
-    For the other display options, just replace <code>is-flex</code> with <code>is-block</code> <code>is-inline</code> <code>is-inline-block</code> or <code>is-inline-flex</code>.
+    For the other display options, just replace <code>is-flex</code> with <code>is-block</code> <code>is-inline</code>
+    <code>is-inline-block</code> or <code>is-inline-flex</code>.
     <br>Example <code>is-inline-block-fullhd</code>
 </p>
 
-<hr/>
+<hr />
 
 <h5>Hiding content for different displays</h5>
-
-<table class="table is-bordered is-size-8">
-    <thead>
-        <tr>
-            <td width="20%">Class</td>
-            <td width="16.6%">Mobile Up to <b>768px</b></td>
-            <td width="16.6%">Tablet between <b>768px</b> to <b>1023px</b></td>
-            <td width="16.6%">Desktop between <b>1024px</b> to <b>1215px</b></td>
-            <td width="16.6%">Widescreen between <b>1216px</b> to <b>1407px</b></td>
-            <td width="16.6%">FullHD from <b>1408px</b> and above</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><code>is-hidden-mobile</code></td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-hidden-tablet-only</code></td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-hidden-desktop-only</code></td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-hidden-widescreen-only</code></td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
+<div class="table-container">
+    <table class="table is-bordered is-size-8 overflow-table">
+        <thead>
+            <tr>
+                <td width="20%">Class</td>
+                <td width="16.6%">Mobile Up to <b>768px</b></td>
+                <td width="16.6%">Tablet between <b>768px</b> to <b>1023px</b></td>
+                <td width="16.6%">Desktop between <b>1024px</b> to <b>1215px</b></td>
+                <td width="16.6%">Widescreen between <b>1216px</b> to <b>1407px</b></td>
+                <td width="16.6%">FullHD from <b>1408px</b> and above</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>is-hidden-mobile</code></td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-hidden-tablet-only</code></td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-hidden-desktop-only</code></td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-hidden-widescreen-only</code></td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <h5>Helper classes to hide element for different screensizes</h5>
-
-<table class="table is-bordered is-size-8">
-    <thead>
-        <tr>
-            <td width="20%">Class</td>
-            <td width="16.6%">Mobile Up to <b>768px</b></td>
-            <td width="16.6%">Tablet between <b>768px</b> to <b>1023px</b></td>
-            <td width="16.6%">Desktop between <b>1024px</b> to <b>1215px</b></td>
-            <td width="16.6%">Widescreen between <b>1216px</b> to <b>1407px</b></td>
-            <td width="16.6%">FullHD from <b>1408px</b> and above</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><code>is-hidden-touch</code></td>
-            <td class="responsive-table-cell">
+<div class="table-container">
+    <table class="table is-bordered is-size-8 overflow-table">
+        <thead>
+            <tr>
+                <td width="20%">Class</td>
+                <td width="16.6%">Mobile Up to <b>768px</b></td>
+                <td width="16.6%">Tablet between <b>768px</b> to <b>1023px</b></td>
+                <td width="16.6%">Desktop between <b>1024px</b> to <b>1215px</b></td>
+                <td width="16.6%">Widescreen between <b>1216px</b> to <b>1407px</b></td>
+                <td width="16.6%">FullHD from <b>1408px</b> and above</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>is-hidden-touch</code></td>
+                <td class="responsive-table-cell">
                     <span class="unchanged">hidden</span>
-            </td>
-            <td class="responsive-table-cell">
+                </td>
+                <td class="responsive-table-cell">
                     <span class="unchanged">hidden</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-hidden-tablet</code></td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-hidden-desktop</code></td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-hidden-widescreen</code></td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span> 
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-        </tr>
-        <tr>
-            <td><code>is-hidden-fullhd</code></td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>
-            </td>
-            <td class="responsive-table-cell">
-                <span>visible</span>   
-            </td>
-            <td class="responsive-table-cell">
-                <span class="unchanged">hidden</span>
-            </td>
-        </tr>
-    </tbody>
-</table>
-    
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-hidden-tablet</code></td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-hidden-desktop</code></td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-hidden-widescreen</code></td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>is-hidden-fullhd</code></td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span>visible</span>
+                </td>
+                <td class="responsive-table-cell">
+                    <span class="unchanged">hidden</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
