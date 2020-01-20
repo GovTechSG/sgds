@@ -20,10 +20,9 @@ layout: layout-docs
         <div class="control">
             <input
                 class="input"
-                type="number"
+                type="text"
                 id="dob-day"
                 name="dob-day"
-                type="number"
                 pattern="[0-9]"
                 maxlength="2"
             />
@@ -35,10 +34,9 @@ layout: layout-docs
         <div class="control">
             <input
                 class="input"
-                type="number"
+                type="text"
                 id="dob-month"
                 name="dob-month"
-                type="number"
                 autocomplete="bday-month"
                 pattern="[0-9]"
                 maxlength="2"
@@ -51,10 +49,9 @@ layout: layout-docs
         <div class="control">
             <input
                 class="input"
-                type="number"
+                type="text"
                 id="dob-year"
                 name="dob-year"
-                type="number"
                 autocomplete="bday-year"
                 pattern="[0-9]"
                 maxlength="4"
@@ -68,15 +65,13 @@ layout: layout-docs
 {%- highlight html -%}
 <div class="field row is-mobile">
     <div class="col is-3-mobile is-2-desktop">
-        <label class="label" for="hint">Day</label>
+        <label class="label" for="day">Day</label>
         <div class="control">
             <input
                 class="input"
-                type="number"
+                type="text"
                 id="dob-day"
                 name="dob-day"
-                type="number"
-                autocomplete="bday-day"
                 pattern="[0-9]"
                 maxlength="2"
             />
@@ -84,15 +79,14 @@ layout: layout-docs
     </div>
 
     <div class="col is-3-mobile is-2-desktop">
-        <label class="label" for="hint">Month</label>
+        <label class="label" for="month">Month</label>
         <div class="control">
             <input
                 class="input"
-                type="number"
+                type="text"
                 id="dob-month"
                 name="dob-month"
                 autocomplete="bday-month"
-                type="number"
                 pattern="[0-9]"
                 maxlength="2"
             />
@@ -100,15 +94,14 @@ layout: layout-docs
     </div>
 
     <div class="col is-3-mobile is-3-desktop">
-        <label class="label" for="hint">Year</label>
+        <label class="label" for="year">Year</label>
         <div class="control">
             <input
                 class="input"
-                type="number"
+                type="text"
                 id="dob-year"
                 name="dob-year"
                 autocomplete="bday-year"
-                type="number"
                 pattern="[0-9]"
                 maxlength="4"
             />
