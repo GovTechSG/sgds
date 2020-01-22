@@ -135,7 +135,7 @@ coloursList:
     <tbody>
         {%- for colour in page.coloursList -%}
             <tr>
-                <td>has-text-{{colour.name}}</td>
+                <td>has-background-{{colour.name}}</td>
                 <td class="has-background-{{colour.name}} 
                     {% if colour.name == 'light' or colour.name == 'white' or colour.name == 'warning' -%}
                         has-text-dark
@@ -147,9 +147,9 @@ coloursList:
                 </td>
                 <td>
 {%- highlight html -%}
-<p class="has-background-{{ colour.name }}">
+<div class="has-background-{{ colour.name }}">
     Use the <code>has-background-{{ colour.name }}</code> colour class to set background colour
-</p>
+</div>
 {%- endhighlight -%} 
                 </td>
             </tr>
