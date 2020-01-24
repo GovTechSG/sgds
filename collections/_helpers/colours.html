@@ -45,7 +45,7 @@ coloursList:
 
 ---
 
-<h4 class="has-text-primary">SGDS Colour classes</h4>
+<h3 class="has-text-primary">SGDS Colour classes</h3>
 
 <p>
     SGDS contains predefined classes that apply different colours to specific
@@ -53,9 +53,9 @@ coloursList:
     <code>has-</code> prefixes to most elements.
 </p>
 
-<hr/>
+<hr />
 
-<h5 class="has-text-primary">Colour classes</h5>
+<h4 class="has-text-primary">Colour classes</h4>
 
 <div class="row is-multiline">
     {%- for colour in page.coloursList -%}
@@ -85,81 +85,7 @@ coloursList:
 
 <hr/>
 
-<h5 class="has-text-primary">Text colours</h5>
-
-<table class="sgds-table">
-    <thead>
-        <tr>
-            <th>Class</th>
-            <th>Example</th>
-            <th>Usage</th>
-        </tr>
-    </thead>
-    <tbody>
-        {%- for colour in page.coloursList -%}
-            <tr>
-                <td>has-text-{{colour.name}}</td>
-                <td>     
-                    <small class="has-text-{{ colour.name }} 
-                        {% if colour.name == 'white' or colour.name == 'light' or colour.name == 'warning' -%}
-                            has-background-dark
-                        {%- endif -%}">
-                        Use the <code>has-text-{{ colour.name }}</code> 
-                        colour class to set text colour
-                    </small>
-                </td>
-                <td>
-{%- highlight html -%}
-<p class="has-text-{{ colour.name }}">
-    Use the <code>has-text-{{ colour.name }}</code> colour class to set text colour
-</p>
-{%- endhighlight -%} 
-                </td>
-            </tr>
-        {%- endfor -%}
-    </tbody>
-</table>
-
-<hr/>
-
-<h5 class="has-text-primary">Background colours</h5>
-
-<table class="sgds-table">
-    <thead>
-        <tr>
-            <th>Class</th>
-            <th>Example</th>
-            <th>Usage</th>
-        </tr>
-    </thead>
-    <tbody>
-        {%- for colour in page.coloursList -%}
-            <tr>
-                <td>has-background-{{colour.name}}</td>
-                <td class="has-background-{{colour.name}} 
-                    {% if colour.name == 'light' or colour.name == 'white' or colour.name == 'warning' -%}
-                        has-text-dark
-                    {%- else -%}
-                        has-text-white
-                    {%- endif -%}">
-                    Use the <code>has-background-{{ colour.name }}</code> colour 
-                    class to set background colour
-                </td>
-                <td>
-{%- highlight html -%}
-<div class="has-background-{{ colour.name }}">
-    Use the <code>has-background-{{ colour.name }}</code> colour class to set background colour
-</div>
-{%- endhighlight -%} 
-                </td>
-            </tr>
-        {%- endfor -%}
-    </tbody>
-</table>
-
-<hr class="margin--bottom--lg margin--top--lg" />
-
-<h5 class="has-text-primary">Component colours</h5>
+<h4 class="has-text-primary">Component colours</h4>
 <p>Use the <code>is-*color*</code> class to set the component colours for:</p>
 
 <ul>
@@ -182,17 +108,91 @@ coloursList:
     </thead>
     <tbody>
         {%- for colour in page.coloursList -%}
-            <tr class="{% if colour.name == 'link' or colour.name == 'white' or colour.name == 'light' %}hide{% endif %}">
-                <td>is-{{colour.name}}</td>
-                <td>
-                    <button type="button" class="sgds-button is-{{colour.name}} {% if colour.name == 'warning' %}has-text-black{% endif %}">Button</button>
-                </td>
-                <td>
+        <tr class="{% if colour.name == 'link' or colour.name == 'white' or colour.name == 'light' %}hide{% endif %}">
+            <td>is-{{colour.name}}</td>
+            <td>
+                <button type="button" class="sgds-button is-{{colour.name}} {% if colour.name == 'warning' %}has-text-black{% endif %}">Button</button>
+            </td>
+            <td>
 {%- highlight html -%}
 <button type="button" class="sgds-button is-{{colour.name}}{% if colour.name == 'warning' %}has-text-black{% endif %}">Button</button>
 {%- endhighlight -%} 
-                </td>
-            </tr>
+            </td>
+        </tr>
+        {%- endfor -%}
+    </tbody>
+</table>
+
+<hr />
+
+<h4 class="has-text-primary">Text colours</h4>
+
+<table class="sgds-table">
+    <thead>
+        <tr>
+            <th>Class</th>
+            <th>Example</th>
+            <th>Usage</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%- for colour in page.coloursList -%}
+        <tr>
+            <td>has-text-{{colour.name}}</td>
+            <td>     
+                <small class="has-text-{{ colour.name }} 
+                    {% if colour.name == 'white' or colour.name == 'light' or colour.name == 'warning' -%}
+                        has-background-dark
+                    {%- endif -%}">
+                    Use the <code>has-text-{{ colour.name }}</code> 
+                    colour class to set text colour
+                </small>
+            </td>
+            <td>
+{%- highlight html -%}
+<p class="has-text-{{ colour.name }}">
+Use the <code>has-text-{{ colour.name }}</code> colour class to set text colour
+</p>
+{%- endhighlight -%} 
+            </td>
+        </tr>
+        {%- endfor -%}
+    </tbody>
+</table>
+
+<hr/>
+
+<h4 class="has-text-primary">Background colours</h4>
+
+<table class="sgds-table">
+    <thead>
+        <tr>
+            <th>Class</th>
+            <th>Example</th>
+            <th>Usage</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%- for colour in page.coloursList -%}
+        <tr>
+            <td>has-background-{{colour.name}}</td>
+            <td class="has-background-{{colour.name}} 
+                {% if colour.name == 'light' or colour.name == 'white' or colour.name == 'warning' -%}
+                    has-text-dark
+                {%- else -%}
+                    has-text-white
+                {%- endif -%}">
+                Use the <code>has-background-{{ colour.name }}</code> colour 
+                class to set background colour
+            </td>
+            <td>
+{%- highlight html -%}
+<div class="has-background-{{ colour.name }}">
+Use the <code>has-background-{{ colour.name }}</code> colour class to set background colour
+</div>
+{%- endhighlight -%} 
+            </td>
+        </tr>
         {%- endfor -%}
     </tbody>
 </table>
