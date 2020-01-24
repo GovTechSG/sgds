@@ -4,16 +4,16 @@ layout: layout-sidenav
 permalink: /docs/customise-sgds/
 ---
 
-<h4 class="has-text-primary">
-	You can use <a href="https://sass-lang.com/" target="_blank">Sass</a> to customise how
-	SGDS looks and behaves in your project.
-</h4>
+<h2 class="has-text-primary">
+	Use <a href="https://sass-lang.com/" target="_blank">Sass</a> to customise how
+	SGDS looks and behaves in your project
+</h2>
 
 <hr />
 
-<h5>Working with SGDS's source files</h5>
+<h3>Working with SGDS's source files</h3>
 
-<h6>If you installed sgds with NPM</h6>
+<h4>If you installed sgds with NPM</h4>
 
 <p>
 	The Sass source files for sgds can be found under 
@@ -29,7 +29,7 @@ site-folder/
         └── sgds.scss
 {%- endhighlight -%}
 
-<h6>If you manually downloaded SGDS</h6>
+<h4>If you manually downloaded SGDS</h4>
 
 <p>
 	If you've manually <a href="/docs/getting-started">downloaded</a> the Sass files and are not
@@ -46,7 +46,7 @@ site-folder/
 
 <hr>
 
-<h5>Importing and overriding SGDS styles</h5>
+<h3>Importing and overriding SGDS styles</h3>
 
 <p>Import all styles:</p>
 
@@ -97,30 +97,51 @@ $sgds-font-path: "../../../fonts";
 @import "~sgds-govtech/sgds/sass/...";
 {% endhighlight%}
 
+<h3 id="font-path-override">Overriding <code>$sgds-font-path</code> to properly load icons</h3>
+
 <div class="sgds-notification is-warning">
 	<div class="sgds-notification-detail">
 		<span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
 		<div class="sgds-notification-content">
 			<p>
-				If you want to use icons, <a href="#font-path-override">
-				you <strong>must</strong> override</a>
-				the $sgds-font-path variable
-				depending on your site or application's structure.
+				If you are building a single-page application (such as React or Vue)
+				and use Webpack to compile your Sass files
+				into inline styles (using style-loader),
+				you <strong>must</strong> override
+				the <code>$sgds-font-path</code> variable when importing 
+				<em>all styles</em> (sgds/sass/sgds.scss) or 
+				<em>sgds-icons</em> (sgds/sass/sgds-icons). Otherwise you may encounter
+				a build error stating that the path to the <code>../fonts</code> folder cannot be resolved.
 			</p>
 		</div>
 	</div>
 </div>
-
-<h5 id="font-path-override">Overriding <code>$sgds-font-path</code> to properly load icons</h5>
-
+<h4>Explanation</h4>
 <p>
-	Depending on how your site or application is hosted, you would need to correct
-	the <code>$sgds-font-path</code> variable so that your generated css/styles can load SGDS icons correctly.
+	When importing SGDS's Sass, Webpack has to resolve its <code>fonts</code> folder
+	relative to the node module's sgds-icons folder in order to load inline styles correctly.
+	This usually means that you would need to point Webpack to the correct fonts folder
+	manually by overriding <code>$sgds-font-path</code>. For instance, with the following
+	folder structure:
 </p>
+
+{% highlight plaintext %}
+node_modules/
+└── sgds-govtech/
+    ├── fonts/
+    │   └── font files
+    └── sgds/
+        └── sass/
+            └── sgds-icons/
+
+{% endhighlight %}
+
+<p>The path from <code>sgds-icons/</code> to the <code>fonts/</code> folder is
+<code>../../../fonts</code>, which would be what <code>$sgds-font-path</code> must be set to.</p>
 
 <hr/>
 
-<h5>The following default SGDS variables can be overridden:</h5>
+<h3>The following default SGDS variables can be overridden:</h3>
 
 <table class="table is-striped is-size-8">
 	<thead>
