@@ -20,7 +20,7 @@
 
     {% assign collections = site.collections | sort: 'order' %}
     {% for collection in collections %}
-        {% if collection.label !='posts' and collection.label != 'guides' %}
+    {% if collection.label !='posts' and collection.label != 'guides' and collection.label !='patterns' %}
             {% assign name = collection.label %}
             <li class="second-level-nav">
                 <a class="second-level-nav-header">
