@@ -17,16 +17,18 @@
                     <form action="/search/" method="get" class="is-hidden-desktop">
                         {% include sgds-search-box.html %}
                     </form>
-                    {%- assign links = site.data.navigation -%} {%- for lvl1item in links -%} {%-
-                    assign class = nil -%} {%- if page.url contains lvl1item.url -%} {%- assign
-                    class = 'is-active' -%} {%- endif -%}
+                    {%- assign links = site.data.navigation -%} 
+                    {%- for lvl1item in links -%}
+                        {%- assign class = nil -%}
+                        {%- if page.url contains lvl1item.url -%} 
+                            {%- assign class = 'is-active' -%} 
+                        {%- endif -%}
                     <a
                         class="sgds-navbar-item is-uppercase {{class}} has-text-weight-semibold is-tab"
                         href="{{ lvl1item.url }} "
                     >
                         {{ lvl1item.title }}
                     </a>
-
                     {%- endfor -%}
                 </div>
 
@@ -92,6 +94,10 @@
     </div>
 </div>
 
-{% comment %} Nav bar for mobile {% endcomment %} {% if page.url contains "/docs/" or page.url
-contains "/guides/" or page.url contains "/patterns/" %} {% if page.title != 'Guides' %} {% include
-mobile-nav.html %} {% endif %} {% include sgds-breadcrumb.html %} {% endif %}
+{% comment %} Nav bar for mobile {% endcomment %}
+{% if page.url contains "/docs/" or page.url contains "/guides/" or page.url contains "/patterns/" %}
+    {% if page.title != 'Guides' %}
+        {% include mobile-nav.html %}
+    {% endif %}
+    {% include sgds-breadcrumb.html %}
+{% endif %}
