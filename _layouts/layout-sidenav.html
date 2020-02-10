@@ -11,9 +11,13 @@ layout: layout-default
                 data-bottomspacing="40"
             >
                 <div class="sidebar__inner sgds-menu">
-                    {% if page.url contains '/docs/' %} {% include sidenav-docs.html %} {% elsif
-                    page.url contains '/patterns/' %} {% include sidenav-patterns.html %} {% else %}
-                    {% include sidenav-collection.html %} {% endif %}
+                    {% if page.url contains '/docs/' %}
+                        {% include sidenav-docs.html %} 
+                    {% elsif page.url contains '/patterns/' %}
+                        {% include sidenav-patterns.html %}
+                    {% else %}
+                        {% include sidenav-collection.html %}
+                    {% endif %}
                 </div>
             </div>
             <div class="col is-8 is-12-touch is-offset-1-desktop">

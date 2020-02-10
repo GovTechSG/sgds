@@ -5,19 +5,13 @@
     {% endif %}
     <li><a href="/patterns/overview" class="{{ activeClass }}">Overview</a></li>
 
-    {% assign collections = site.collections | sort: 'order' %}
-    {% for collection in collections %}
-        {% if collection.label == 'patterns' %}
-            {% assign name = collection.label %}
-            {% assign items = site[name] %}
-            {% for item in items %}                                        
-                {% assign class = nil %}
-                {% if page.url contains item.url %}
-                    {% assign class = 'is-active' %}
-                {% endif %}
-                <li><a href="{{item.url}}" class="{{ class }}">{{item.title}}</a></li>
-                
-            {% endfor %} 
+    {%- for pattern in site.patterns -%}
+    {% assign class = nil %}
+        {% if page.url contains pattern.url %}
+            {% assign class = 'is-active' %}
         {% endif %}
-    {% endfor %}
+        {% if pattern.title != 'Overview' %}
+            <li><a href="{{ pattern.url }}" class="{{ class }}">{{ pattern.title }}</a></li>
+        {% endif %}
+    {%- endfor -%}   
 </ul>
