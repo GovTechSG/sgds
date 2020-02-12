@@ -1,0 +1,105 @@
+---
+title: Email Address
+layout: layout-docs
+---
+
+<h3 class="has-text-primary">
+    This pattern allows you to capture a user's email address
+</h3>
+
+<hr />
+
+<div class="field">
+    <label class="label" for="email">Email Address</label>
+    <span class="hint">We will only use this for resetting your password</span>
+    <div class="control">
+        <input
+            class="input margin--bottom--lg col is-6"
+            id="email"
+            name="email"
+            type="email"
+            aria-describedby="email"
+            autocomplete="email"
+            spellcheck="false"
+        />
+    </div>
+</div>
+
+<h5>Component Code</h5>
+
+{%- highlight html -%}
+<div class="field">
+    <label class="label" for="email">Email Address</label>
+    <span class="hint">We will only use this for announcements</span>
+    <div class="control">
+        <input
+            class="input margin--bottom--lg col is-4"
+            id="email"
+            name="email"
+            type="email"
+            aria-describedby="email"
+            autocomplete="email"
+            spellcheck="false"
+        />
+    </div>
+</div>
+{%- endhighlight -%}
+
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<h4 class="margin--top--lg">When you should use this component</h4>
+<p>
+    Use this component when you need to ask user's for their email address and state clearly what
+    their email address will be used for.
+</p>
+
+<h4 class="margin--top--lg">Guidelines</h4>
+<h5 class="margin--top--lg">Tell users how their email address will be used</h5>
+<p>Make it clear to the user what it will be used for. This is so that:</p>
+<ul>
+    <li>users will be confident that you will not abuse their email address</li>
+    <li>users are able to choose which email address they want to use</li>
+</ul>
+
+<h5 class="margin--top--lg">Make sure it works for all users</h5>
+<p>
+    A email address can be 256 characters long including punctuation, so do make sure your text
+    field can accomodate the maximum length for email addresses.
+</p>
+
+<h5 class="margin--top--lg">Help users along when entering their email addresses</h5>
+<p>Make it easier for users to enter their email address by:</p>
+<ul>
+    <li>allowing them to copy and paste their email address</li>
+    <li>
+        setting the <code>type</code> attribute to <code>email</code> so that the correct keyboard
+        is displayed
+    </li>
+    <li>
+        setting the <code>spellcheck</code> attribute to <code>false</code> so that their email
+        addresses are not spell checked by the browser or device
+    </li>
+    <li>
+        setting the <code>autocomplete</code> attribute so that browsers can fill in their email
+        address if they have entered it previously
+    </li>
+</ul>
+
+<p>
+    You will need to include the <code>autocomplete</code> attribute to meet
+    <a
+        href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+        target="_blank"
+        >WCAG 2.1 AA</a
+    >
+    for production.
+</p>
+
+<hr />
+
+{%- include sgds-feedback.html -%}

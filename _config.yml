@@ -41,6 +41,9 @@ collections:
   guides:
     permalink: /guides/:path/
     output: true
+  patterns:
+    permalink: /patterns/:path/
+    output: true
 
 exclude:
   - apps/src

@@ -1,62 +1,17 @@
-<!-- <div class="control">
-    <input id="search-field" 
-        class="input is-rounded is-small" 
-        type="text" 
-        placeholder="Search Component">
-</div> -->
-<!-- <hr class="margin--top margin--bottom--sm"> -->
 <ul class="sgds-menu-list">
-
-    {% assign gettingStartedClass = nil %}
+    {% assign activeClass = nil %}
     {% if page.url contains "patterns/overview/" %}
-        {% assign gettingStartedClass = 'is-active' %}
+        {% assign activeClass = 'is-active' %}
     {% endif %}
-    <li><a href="/patterns/overview" class="{{ gettingStartedClass }}">Overview</a></li>
+    <li><a href="/patterns/overview" class="{{ activeClass }}">Overview</a></li>
 
-    {% assign collections = site.collections | sort: 'order' %}
-    {% for collection in collections %}
-        {% if collection.label !='posts' and collection.label != 'guides' %}
-            {% assign name = collection.label %}
-            <li class="second-level-nav">
-                <a class="second-level-nav-header">
-                    {{ name | capitalize }}
-                    {% if name == page.collection %}
-                    <i class="sgds-icon sgds-icon-chevron-up has-text-weight" aria-hidden="true"></i>
-                    {% else %}
-                    <i class="sgds-icon sgds-icon-chevron-down has-text-weight" aria-hidden="true"></i>
-                    {% endif %}
-                </a>
-            </li>
-            {% if name == page.collection %}
-            <div class="second-level-nav-div" id="{{collection.label}}-component">
-            {% else %}
-            <div class="second-level-nav-div is-hidden" id="{{collection.label}}-component">
-            {% endif %}
-                <ul class="list">
-                    {% assign items = site[name] %}
-                    {% if collection.label == 'standard' %}
-                        {% assign items = site[name] | sort:'order' %}
-                    {% endif %}
-                    {% for item in items %}                                        
-                        {% assign class = nil %}
-                        {% if page.url contains item.url %}
-                            {% assign class = 'is-active' %}
-                        {% endif %}
-                        <li>
-                            <a class="component-name second-level-nav-item {{class}}" href="{{item.url}}">
-                                {{item.title}}
-                                {%- if item.js -%}
-                                    <span class="sgds-tag is-rounded margin--left--sm">JS</span>
-                                {%- endif -%}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
+    {%- for pattern in site.patterns -%}
+    {% assign class = nil %}
+        {% if page.url contains pattern.url %}
+            {% assign class = 'is-active' %}
         {% endif %}
-        
-        {% if collection.label == 'patterns' %}
-        
+        {% if pattern.title != 'Overview' %}
+            <li><a href="{{ pattern.url }}" class="{{ class }}">{{ pattern.title }}</a></li>
         {% endif %}
-    {% endfor %}
+    {%- endfor -%}   
 </ul>
