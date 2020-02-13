@@ -1,0 +1,118 @@
+---
+title: Names
+layout: layout-docs
+---
+
+<h3 class="has-text-primary">
+    Use this pattern when you need to ask users for their names
+</h3>
+
+<hr />
+
+<div class="field">
+    <label class="label" for="full-name">Full Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="full-name"
+            name="full-name"
+            type="text"
+            autocomplete="name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+
+<h5 class="margin--top--lg">Component Code</h5>
+
+{%- highlight html -%}
+<div class="field">
+    <label class="label" for="full-name">Full Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="full-name"
+            name="full-name"
+            type="text"
+            autocomplete="name"
+            spellcheck="false"
+        />
+    </div>
+</div>v>
+</div>
+{%- endhighlight -%}
+
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this pattern</h4>
+<p>
+    You should follow this pattern when you need to ask for a user’s name and only ask for names if
+    you need that information to deliver a service.
+</p>
+
+<h4 class="margin--top--lg has-text-weight-semibold">Guidelines</h4>
+<h5>Make sure the name field works for your users</h5>
+<p>
+    Name fields should be long enough to accomodate the names of your users. Do make sure that you
+    support all characters that users may need to enter, including symbols and numbers.
+</p>
+
+<h5>Single name fields</h5>
+<p>
+    This can accomodate the widest range of name types and formats and is recommended to reduce the
+    risk that your user's enter their name in the incorrect format. However by using this, you may
+    not be able to reliable extract parts of a name.
+</p>
+
+<h5>Multiple name fields</h5>
+<p>
+    Use multiple name fields based on your user's needs. Not everyone's name fits the general
+    first-name, last-name convention. Using multiple name fields increases the risk that a person's
+    name will not fit the same convention and may be entered incorrectly.
+</p>
+
+<h5>Labelling of name fields</h5>
+<p>
+    For single name fields, use "Full name".
+</p>
+
+<p>
+    For multiple name fields, use:
+</p>
+<ul>
+    <li>'Given name'</li>
+    <li>'Family name'</li>
+</ul>
+
+<p>
+    Do make it clear whether you are asking for a user's common name, or as written on a official
+    document such as NRIC or passport.
+</p>
+
+<p>
+    If you are unsure of how your users will fill in their name or know that you have a wide range
+    of users with different formats for their names, it is highly recommended to use a single name
+    field.
+</p>
+
+<p>
+    This is to ensure that your users:
+</p>
+<ul>
+    <li>Do not get confused as to how they should be filling in their name</li>
+    <li>
+        Reduce the risk that their name may be filled in wrongly and making extracting their names
+        difficult
+    </li>
+</ul>
+
+<hr />
+
+{%- include sgds-feedback.html -%}

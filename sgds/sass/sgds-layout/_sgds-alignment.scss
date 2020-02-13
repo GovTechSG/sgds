@@ -1,210 +1,209 @@
 @for $i from 1 through 10 {
-  .is-vh-#{$i}0{
+  .is-vh-#{$i}0 {
     height: #{$i * 10}vh;
   }
 }
 
-.no-margin{
-  margin:0!important;
+.no-margin {
+  margin: 0 !important;
 }
 
 $base-margin-padding: 1rem;
 
-@include mobile(){
+@include mobile() {
   $base-margin-padding: 0.25rem;
 }
 
-.margin{
-  margin:$base-margin-padding !important;
-  &--xs{
+.margin {
+  margin: $base-margin-padding !important;
+  &--xs {
     margin: $base-margin-padding / 4 !important; //0.25rem
   }
-  &--sm{
+  &--sm {
     margin: $base-margin-padding / 2 !important; //0.5rem
   }
-  &--lg{
+  &--lg {
     margin: $base-margin-padding + 1 !important; //2rem
   }
-  &--xl{
+  &--xl {
     margin: $base-margin-padding + 3 !important; //4rem
   }
-  &--none{
-    margin:0 !important;
+  &--none {
+    margin: 0 !important;
   }
 
-  &--top{
-    margin-top:$base-margin-padding !important;
-    &--xs{
+  &--top {
+    margin-top: $base-margin-padding !important;
+    &--xs {
       margin-top: $base-margin-padding / 4 !important; //0.25rem
     }
-    &--sm{
+    &--sm {
       margin-top: $base-margin-padding / 2 !important; //0.5rem
     }
-    &--lg{
+    &--lg {
       margin-top: $base-margin-padding + 1 !important; //2rem
     }
-    &--xl{
+    &--xl {
       margin-top: $base-margin-padding + 3 !important; //4rem
     }
-    &--none{
-      margin-top:0 !important;
+    &--none {
+      margin-top: 0 !important;
     }
   }
-  &--right{
-    margin-right:$base-margin-padding !important;
-    &--xs{
+  &--right {
+    margin-right: $base-margin-padding !important;
+    &--xs {
       margin-right: $base-margin-padding / 4 !important; //0.25rem
     }
-    &--sm{
+    &--sm {
       margin-right: $base-margin-padding / 2 !important; //0.5rem
     }
-    &--lg{
+    &--lg {
       margin-right: $base-margin-padding + 1 !important; //2rem
     }
-    &--xl{
+    &--xl {
       margin-right: $base-margin-padding + 3 !important; //4rem
     }
-    &--none{
-      margin-right:0 !important;
+    &--none {
+      margin-right: 0 !important;
     }
   }
-  &--bottom{
-    margin-bottom:$base-margin-padding !important;
-    &--xs{
+  &--bottom {
+    margin-bottom: $base-margin-padding !important;
+    &--xs {
       margin-bottom: $base-margin-padding / 4 !important; //0.25rem
     }
-    &--sm{
+    &--sm {
       margin-bottom: $base-margin-padding / 2 !important; //0.5rem
     }
-    &--lg{
+    &--lg {
       margin-bottom: $base-margin-padding + 1 !important; //2rem
     }
-    &--xl{
+    &--xl {
       margin-bottom: $base-margin-padding + 3 !important; //4rem
     }
-    &--none{
-      margin-bottom:0 !important;
+    &--none {
+      margin-bottom: 0 !important;
     }
   }
-  &--left{
-    margin-left:$base-margin-padding !important;
-    &--xs{
+  &--left {
+    margin-left: $base-margin-padding !important;
+    &--xs {
       margin-left: $base-margin-padding / 4 !important; //0.25rem
     }
-    &--sm{
+    &--sm {
       margin-left: $base-margin-padding / 2 !important; //0.5rem
     }
-    &--lg{
+    &--lg {
       margin-left: $base-margin-padding + 1 !important; //2rem
     }
-    &--xl{
+    &--xl {
       margin-left: $base-margin-padding + 3 !important; //4rem
     }
-    &--none{
-      margin-left:0 !important;
+    &--none {
+      margin-left: 0 !important;
     }
   }
 }
 
-.padding{
-  padding:$base-margin-padding !important;
-  &--xs{
+.padding {
+  padding: $base-margin-padding !important;
+  &--xs {
     padding: $base-margin-padding / 4 !important; //0.25rem
   }
-  &--sm{
+  &--sm {
     padding: $base-margin-padding / 2 !important; //0.5rem
   }
-  &--lg{
+  &--lg {
     padding: $base-margin-padding + 1 !important; //2rem
   }
-  &--xl{
+  &--xl {
     padding: $base-margin-padding + 3 !important; //4rem
   }
-  &--none{
-    padding:0 !important;
+  &--none {
+    padding: 0 !important;
   }
 
-  &--top{
-    padding-top:$base-margin-padding !important;
-    &--xs{
+  &--top {
+    padding-top: $base-margin-padding !important;
+    &--xs {
       padding-top: $base-margin-padding / 4 !important; //0.25rem
     }
-    &--sm{
+    &--sm {
       padding-top: $base-margin-padding / 2 !important; //0.5rem
     }
-    &--lg{
+    &--lg {
       padding-top: $base-margin-padding + 1 !important; //2rem
     }
-    &--xl{
+    &--xl {
       padding-top: $base-margin-padding + 3 !important; //4rem
     }
-    &--none{
-      padding-top:0 !important;
+    &--none {
+      padding-top: 0 !important;
     }
   }
-  &--right{
-    padding-right:$base-margin-padding !important;
-    &--xs{
+  &--right {
+    padding-right: $base-margin-padding !important;
+    &--xs {
       padding-right: $base-margin-padding / 4 !important; //0.25rem
     }
-    &--sm{
+    &--sm {
       padding-right: $base-margin-padding / 2 !important; //0.5rem
     }
-    &--lg{
+    &--lg {
       padding-right: $base-margin-padding + 1 !important; //2rem
     }
-    &--xl{
+    &--xl {
       padding-right: $base-margin-padding + 3 !important; //4rem
     }
-    &--none{
-      padding-right:0 !important;
+    &--none {
+      padding-right: 0 !important;
     }
   }
-  &--bottom{
-    padding-bottom:$base-margin-padding !important;
-    &--xs{
+  &--bottom {
+    padding-bottom: $base-margin-padding !important;
+    &--xs {
       padding-bottom: $base-margin-padding / 4 !important; //0.25rem
     }
-    &--sm{
+    &--sm {
       padding-bottom: $base-margin-padding / 2 !important; //0.5rem
     }
-    &--lg{
+    &--lg {
       padding-bottom: $base-margin-padding + 1 !important; //2rem
     }
-    &--xl{
+    &--xl {
       padding-bottom: $base-margin-padding + 3 !important; //4rem
     }
-    &--none{
-      padding-bottom:0 !important;
+    &--none {
+      padding-bottom: 0 !important;
     }
-
   }
-  &--left{
-    padding-left:$base-margin-padding !important;
-    &--xs{
+  &--left {
+    padding-left: $base-margin-padding !important;
+    &--xs {
       padding-left: $base-margin-padding / 4 !important; //0.25rem
     }
-    &--sm{
+    &--sm {
       padding-left: $base-margin-padding / 2 !important; //0.5rem
     }
-    &--lg{
+    &--lg {
       padding-left: $base-margin-padding + 1 !important; //2rem
     }
-    &--xl{
+    &--xl {
       padding-left: $base-margin-padding + 3 !important; //4rem
     }
-    &--none{
-      padding-left:0 !important;
+    &--none {
+      padding-left: 0 !important;
     }
   }
 }
 
-.is-offset-sideNav{
+.is-offset-sidenav {
   position: fixed;
-  width:22%;
-  top:40px;
-  .touch &{
+  width: 22%;
+  top: 40px;
+  .touch & {
     @extend .is-position-relative;
-    width:100%;
+    width: 100%;
   }
 }

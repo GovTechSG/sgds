@@ -5,7 +5,10 @@
     "pages": [
         {%- for page in site.pages -%}
             {%- if page.name contains '.html' %} 
-                {%- unless page.url contains '/admin-template' or page.url contains '/testing' or page.url contains '/search' -%}
+                {%- unless page.url contains '/admin-template' or 
+                    page.url contains '/testing' or 
+                    page.url contains '/search' or 
+                    page.url contains '404.html' -%}
                 {
                     "title": "{{ page.title }}",
                     "category": "{{ page.category }}",

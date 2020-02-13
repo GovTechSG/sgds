@@ -1,0 +1,17 @@
+<ul class="sgds-menu-list">
+    {% assign activeClass = nil %}
+    {% if page.url contains "patterns/overview/" %}
+        {% assign activeClass = 'is-active' %}
+    {% endif %}
+    <li><a href="/patterns/overview" class="{{ activeClass }}">Overview</a></li>
+
+    {%- for pattern in site.patterns -%}
+    {% assign class = nil %}
+        {% if page.url contains pattern.url %}
+            {% assign class = 'is-active' %}
+        {% endif %}
+        {% if pattern.title != 'Overview' %}
+            <li><a href="{{ pattern.url }}" class="{{ class }}">{{ pattern.title }}</a></li>
+        {% endif %}
+    {%- endfor -%}   
+</ul>
