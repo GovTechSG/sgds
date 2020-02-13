@@ -30,7 +30,6 @@ site-folder/
 {%- endhighlight -%}
 
 <h4>If you manually downloaded SGDS</h4>
-
 <p>
 	If you've manually <a href="/docs/getting-started">downloaded</a> the Sass files and are not
 	using a package manager, you can set up your code with the following folder structure:
@@ -97,13 +96,13 @@ $sgds-font-path: "../../../fonts";
 @import "~sgds-govtech/sgds/sass/...";
 {% endhighlight%}
 
-<h3 id="font-path-override">Overriding <code>$sgds-font-path</code> to properly load icons</h3>
+<h4 id="font-path-override">Overriding <code>$sgds-font-path</code> to properly load icons</h4>
 
 <div class="sgds-notification is-warning">
 	<div class="sgds-notification-detail">
 		<span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
 		<div class="sgds-notification-content">
-			<p>
+
 				If you are building a single-page application (such as React or Vue)
 				and use Webpack to compile your Sass files
 				into inline styles (using style-loader),
@@ -112,7 +111,7 @@ $sgds-font-path: "../../../fonts";
 				<em>all styles</em> (sgds/sass/sgds.scss) or 
 				<em>sgds-icons</em> (sgds/sass/sgds-icons). Otherwise you may encounter
 				a build error stating that the path to the <code>../fonts</code> folder cannot be resolved.
-			</p>
+
 		</div>
 	</div>
 </div>

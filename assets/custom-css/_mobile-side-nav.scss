@@ -13,7 +13,7 @@
 body.has-navbar-fixed-top
 {
     &.has-component-dropdown{
-        @include mobile(){
+        @include touch(){
             padding-top: calc(#{$navbar-height} + #{$masthead-height} + 50px);
         }
     }
