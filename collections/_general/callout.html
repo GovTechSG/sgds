@@ -4,30 +4,23 @@ layout: layout-docs
 category: General
 icon: callout
 ---
+{% capture default_callout %}
+<blockquote>
+    <p><b>Note:</b></p>
+    <ul>
+        <li>Excerpt 1</li>
+        <li>Excerpt 2</li>
+    </ul>
+</blockquote>
+{% endcapture %}
 
-
-<h4 class="has-text-primary">Callout is an excerpt of text used in design to draw attention to or label something</h4>
+<h2 class="has-text-primary">Callout is an excerpt of text used in design to draw attention to or label something</h2>
 
 <hr/>
-
-<blockquote>
-    <p><b>Note:</b></p>
-    <ul>
-        <li>Excerpt 1</li>
-        <li>Excerpt 2</li>
-    </ul>
-</blockquote>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-{%- highlight html -%}
-<blockquote>
-    <p><b>Note:</b></p>
-    <ul>
-        <li>Excerpt 1</li>
-        <li>Excerpt 2</li>
-    </ul>
-</blockquote>
-{%- endhighlight -%}
+<div class="sgds-example-others">
+    {{default_callout}}
+</div>
+{%- highlight html -%}{{default_callout}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
 
 <h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>

@@ -9,28 +9,20 @@ icon: button
 
 <hr/>
 
-<div class="row">
-    <div class="col is-3">
-        <button class="sgds-button is-primary">button</button>
-        <br><code>default</code>
-    </div>
-    <div class="col is-3">
-        <button class="sgds-button is-outlined is-primary">button</button>
-        <br><code>.is-outlined</code>
-    </div>
-    <div class="col is-3">
-        <button class="sgds-button is-rounded is-primary">button</button>
-        <br><code>.is-rounded</code>
-    </div>
-    <div class="col is-3">
-        <button class="sgds-button is-primary" disabled>button</button>
-        <br><code>disabled</code>
+<div class="sgds-example-others">
+    <div class="sgds-buttons">
+        <button class="sgds-button is-primary">Default button</button>
+        <button class="sgds-button is-outlined is-primary">Outlined button</button>
+        <button class="sgds-button is-rounded is-primary">Rounded button</button>
+        <button class="sgds-button is-primary" disabled>Disabled button</button>
     </div>
 </div>
 
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <button class="sgds-button is-primary">button</button>
+<button class="sgds-button is-outlined is-primary">button</button>
+<button class="sgds-button is-rounded is-primary">button</button>
+<button class="sgds-button is-primary" disabled>button</button>
 {%- endhighlight -%}
 
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
@@ -47,6 +39,26 @@ icon: button
 <hr/>
 
 <p class="margin--top--lg">You can also insert icons from our library on any part of a button.</p>
+<div class="sgds-example-others">
+    <div class="sgds-buttons">
+        <button class="sgds-button">
+            <span class="icon"><i class="sgds-icon sgds-icon-twitter"></i></span>
+            <span>Twitter</span>
+        </button>
+        <button class="sgds-button">
+            <span class="icon"><i class="sgds-icon sgds-icon-facebook"></i></span>
+            <span>Facebook</span>
+        </button>
+        <button class="sgds-button">
+            <span class="icon"><i class="sgds-icon sgds-icon-download"></i></span>
+        </button>
+    </div>
+</div>
+{%- highlight html -%}
+<button class="sgds-button">
+    <span class="icon"><i class="sgds-icon sgds-icon-facebook"></i></span>
+    <span>Facebook</span>
+</button>
 <button class="sgds-button">
     <span class="icon"><i class="sgds-icon sgds-icon-twitter"></i></span>
     <span>Twitter</span>
@@ -58,38 +70,25 @@ icon: button
 <button class="sgds-button">
     <span class="icon"><i class="sgds-icon sgds-icon-download"></i></span>
 </button>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-{%- highlight html -%}
-<button class="sgds-button">
-    <span class="icon"><i class="sgds-icon sgds-icon-facebook"></i></span>
-    <span>Facebook</span>
-</button>
 {%- endhighlight -%}
 
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy snippet</button>
 
 <hr/>
 
-<p class="margin--top--lg">You can group buttons together on a single line using the <code>is-grouped</code> modifier on the field container.</p>
-<div class="field is-grouped">
-    <div class="control"><button class="sgds-button is-primary">Save</button></div>
-    <div class="control"><button class="sgds-button">Cancel</button></div>
-    <div class="control"><button class="sgds-button is-danger">Delete</button></div>
-</div>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-{%- highlight html -%}
-<div class="field is-grouped">
-    <div class="control">
+<p class="margin--top--lg">You can group buttons together on a single line using the <code>sgds-buttons</code> modifier on container.</p>
+<div class="sgds-example-others">
+    <div class="sgds-buttons">
         <button class="sgds-button is-primary">Save</button>
-    </div>
-    <div class="control">
         <button class="sgds-button">Cancel</button>
-    </div>
-    <div class="control">
         <button class="sgds-button is-danger">Delete</button>
     </div>
+</div>
+{%- highlight html -%}
+<div class="sgds-buttons">
+    <button class="sgds-button is-primary">Save</button>
+    <button class="sgds-button">Cancel</button>
+    <button class="sgds-button is-danger">Delete</button>
 </div>
 {%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>Copy snippet</button>
@@ -97,13 +96,13 @@ icon: button
 <hr/>
 
 <p class="margin--top--lg"><code>has-addons</code> modifier allows you to attach controls together</p>
-<div class="field has-addons">
-    <div class="control"><button class="sgds-button">Yes</button></div>
-    <div class="control"><button class="sgds-button">Maybe</button></div>
-    <div class="control"><button class="sgds-button">No</button></div>
+<div class="sgds-example-others">
+    <div class="field has-addons">
+        <div class="control"><button class="sgds-button">Yes</button></div>
+        <div class="control"><button class="sgds-button">Maybe</button></div>
+        <div class="control"><button class="sgds-button">No</button></div>
+    </div>
 </div>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <div class="field has-addons">
     <div class="control"><button class="sgds-button">Yes</button></div>
@@ -116,30 +115,30 @@ icon: button
 
 <hr/>
 
-<p class="margin--top--lg">You can use the secondary button for reducing visual prominence. It should not be used as a <b class="has-text-info">Call-to-Action</b> button</p>
+<p class="margin--top--lg">You can use the secondary button for reducing visual prominence.<br>It should not be used as a <b class="has-text-info">Call-to-Action</b> button</p>
+<div class="sgds-example-others">
+    <button href="" class="sgds-sec-button">
+        <span>
+            Default Size
+        </span>
+    </button><br>
+    <button href="" class="sgds-sec-button is-small">
+        <span>
+            .is-small
+        </span>
+    </button><br>
+    <button href="" class="sgds-sec-button is-medium">
+        <span>
+            .is-medium
+        </span>
+    </button><br>
+    <button href="" class="sgds-sec-button is-large is-info">
+        <span>
+            is-large.is-info
+        </span>
+    </button>
+</div>
 
-<button href="" class="sgds-sec-button">
-    <span>
-        Default Size
-    </span>
-</button><br>
-<button href="" class="sgds-sec-button is-small">
-    <span>
-         .is-small
-    </span>
-</button><br>
-<button href="" class="sgds-sec-button is-medium">
-    <span>
-         .is-medium
-    </span>
-</button><br>
-<button href="" class="sgds-sec-button is-large is-info">
-    <span>
-        is-large.is-info
-    </span>
-</button>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <button href="" class="sgds-sec-button">
     <span>
@@ -166,7 +165,7 @@ icon: button
 
 <hr/>
 
-<h5 class="has-text-weight-semibold">Style</h5>
+<h3 class="has-text-weight-semibold">Style</h3>
 <table class="table">
     <thead>
     <tr>
