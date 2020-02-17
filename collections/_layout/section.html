@@ -6,35 +6,28 @@ icon: section
 ---
 
 {% capture default_section_example %}
-<section class="sgds-section">
-    <div class="sgds-container">
-        <h6>Content Here</h6>
-    </div>
-</section>
+<body>
+    <section class="sgds-section">
+        <div class="sgds-container">
+            <h6>Content Here</h6>
+        </div>
+    </section>
+</body>
 {% endcapture %}
 
-<h4 class="has-text-primary">Section is the main building block for all layouts. It can be used as direct children of <code>body</code></h4>
+<h2 class="has-text-primary">Section is the main building block for all layouts. It can be used as direct children of <code>body</code></h2>
 <hr/>
 
-<div class="row">
-    <div class="col">
-        <div class="sgds-example is-marginless">
-            {{ default_section_example }}
-        </div>
-    </div>
-</div>
 
-<p>Use sections as direct children of <code>body</code></p>
-{% highlight html %}
-<body>
+<div class="sgds-example is-marginless">
     {{ default_section_example }}
-</body>
-{% endhighlight %}
+</div>
+{% highlight html %}{{ default_section_example }}{% endhighlight %}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy Snippet</button>
 
 <hr/>
 
-<h5>Style</h5>
+<h3>Style</h3>
 <table class="table">
     <thead>
         <tr>

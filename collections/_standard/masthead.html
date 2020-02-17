@@ -6,52 +6,60 @@ icon: masthead
 order: 1
 ---
 
-<h4 class="has-text-primary">
-    All .gov.sg digital services shall implement
-    the Official Government Banner
-    (containing the Singapore Government
-    Online Logo) across all pages
-</h4>
-
-<hr />
-<div class="sgds-example-others">
-    <div class="sgds-masthead">
-        <div class="sgds-container">
-            <div class="row">
-                <div class="col">
-                    <a href="https://www.gov.sg" target="_blank">
-                        <span class="sgds-icon sgds-icon-sg-crest"></span>
-                        <span class="is-text">A Singapore Government Agency Website</span>
-                    </a>
-                </div>
+{% capture default_masthead %}
+<div class="sgds-masthead">
+    <div class="sgds-container">
+        <div class="row">
+            <div class="col">
+                <a href="https://www.gov.sg" target="_blank">
+                    <span class="sgds-icon sgds-icon-sg-crest"></span>
+                    <span class="is-text">A Singapore Government Agency Website</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
+{% endcapture %}
 
-<div class="sgds-container margin--top--lg">
-    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-    {% highlight html %}
-    <div class="sgds-masthead">
-        <div class="sgds-container">
-            <div class="row">
-                <div class="col">
-                    <a href="https://www.gov.sg" target="_blank">
-                        <span class="sgds-icon sgds-icon-sg-crest"></span>
-                        <span class="is-text">A Singapore Government Agency Website</span>
-                    </a>
-                </div>
+{% capture lang_selector_masthead %}
+<div class="sgds-masthead">
+    <div class="sgds-container">
+        <div class="row is-mobile">
+            <div class="col is-9-desktop is-12-mobile is-flex">
+                <a href="https://www.gov.sg" target="_blank">
+                    <span class="sgds-icon sgds-icon-sg-crest"></span>
+                    <span class="is-text">A Singapore Government Agency Website</span>
+                </a>
+            </div>
+            <div class="col has-text-right is-hidden-mobile">
+                <select class="language-selector" aria-label="language">
+                    <option>English</option>
+                    <option>中文</option>
+                    <option>Bahasa Melayu</option>
+                    <option>தமிழ்</option>
+                </select>
             </div>
         </div>
     </div>
-    {% endhighlight %}
-    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
-        Copy Snippet
-    </button>
 </div>
+{% endcapture %}
+
+<h2 class="has-text-primary">
+    All .gov.sg digital services shall implement the Official Government Banner (containing the Singapore Government Online Logo) across all pages
+</h2>
 
 <hr />
 
+<h3>Default Masthead</h3>
+<div class="sgds-example-others">{{default_masthead}}</div>
+{% highlight html %}{{default_masthead}}{% endhighlight %}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
+    Copy Snippet
+</button>
+
+<hr />
+
+<h3>Masthead with language selector</h3>
 <p>
     If you require a language selector, add a <code>select</code> element at the right side
     of the masthead.
@@ -71,63 +79,20 @@ order: 1
 </div>
 
 <div class="sgds-example-others">
-    <div class="sgds-masthead">
-        <div class="sgds-container">
-            <div class="row is-mobile">
-                <div class="col is-9-desktop is-12-mobile is-flex">
-                    <a href="https://www.gov.sg" target="_blank">
-                        <span class="sgds-icon sgds-icon-sg-crest"></span>
-                        <span class="is-text">A Singapore Government Agency Website</span>
-                    </a>
-                </div>
-                <div class="col has-text-right is-hidden-mobile">
-                    <select class="language-selector" aria-label="language">
-                        <option>English</option>
-                        <option>中文</option>
-                        <option>Bahasa Melayu</option>
-                        <option>தமிழ்</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{lang_selector_masthead}}
 </div>
 
 
-<div class="sgds-container margin--top--lg">
-    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-    {% highlight html %}
-    <div class="sgds-masthead">
-        <div class="sgds-container">
-            <div class="row is-mobile">
-                <div class="col is-9-desktop is-12-mobile is-flex">
-                    <a href="https://www.gov.sg" target="_blank">
-                        <span class="sgds-icon sgds-icon-sg-crest"></span>
-                        <span class="is-text">A Singapore Government Agency Website</span>
-                    </a>
-                </div>
-                <div class="col has-text-right is-hidden-mobile">
-                    <select class="language-selector" aria-label="language">
-                        <option>English</option>
-                        <option>中文</option>
-                        <option>Bahasa Melayu</option>
-                        <option>தமிழ்</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endhighlight %}
-    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
-        Copy Snippet
-    </button>
-</div>
+{% highlight html %}{{lang_selector_masthead}}{% endhighlight %}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
+    Copy Snippet
+</button>
 
 <hr />
 
-<h5>Guidelines</h5>
+<h3>Guidelines</h3>
 <p>The Masthead should:</p>
-<ul>
+<ul class="style-disc">
     <li>
         Contain the Singapore Government Logo, which shall be positioned at the top
         left corner of the banner
