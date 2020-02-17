@@ -9,16 +9,10 @@
         margin-bottom: 2rem;
     }
     h3{
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
     h4{
-        margin-bottom: 1rem;
-        &:first-child{
-            margin-top:0;
-        }
-        &:nth-last-child{
-            margin-bottom:0;
-        }
+        margin-bottom: 0;
     }
     // h5{
 
