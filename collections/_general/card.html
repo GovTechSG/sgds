@@ -5,42 +5,7 @@ category: General
 icon: card
 ---
 
-<h4 class="has-text-primary">
-    The card is a flexible and extensible content container. It includes options
-    for headers and footers, a wide variety of content, contextual background
-    colors, and powerful display options
-</h4>
-
-<hr/>
-
-<h5>
-    Card with mixed content
-</h5>
-<div class="row">
-    <div class="col is-4">
-        <div class="sgds-card">
-            <div class="sgds-card-image">
-                <figure class="sgds-image is-16by9">
-                    <img
-                        alt="Development Guides"
-                        src="https://via.placeholder.com/160x90/868e96/ffffff?text=Image"
-                    />
-                </figure>
-            </div>
-            <div class="sgds-card-content">
-                <h4>This is card content</h4>
-                <p>Add anything here</p>
-                <button type="button" href="!#" class="sgds-button">
-                    A Button
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<h5 class="margin--top--lg">Component Code</h5>
-
-{%- highlight html -%}
+{% capture card_mix_content %}
 <div class="sgds-card">
     <div class="sgds-card-image">
         <figure class="sgds-image is-16by9">
@@ -53,10 +18,32 @@ icon: card
     <div class="sgds-card-content">
         <h4>This is card content</h4>
         <p>Add anything here</p>
-        <button type="button" href="!#" class="sgds-button">A Button</button>
+        <button type="button" href="!#" class="sgds-button">
+            A Button
+        </button>
     </div>
 </div>
-{%- endhighlight -%}
+{% endcapture %}
+
+<h2 class="has-text-primary">
+    The card is a flexible and extensible content container. It includes options
+    for headers and footers, a wide variety of content, contextual background
+    colors, and powerful display options
+</h2>
+
+<hr/>
+
+<h3>
+    With mixed content
+</h3>
+<div class="sgds-example-others">
+    <div class="row">
+        <div class="col is-4">
+            {{card_mix_content}}
+        </div>
+    </div>
+</div>
+{%- highlight html -%}{{card_mix_content}}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight0"
@@ -64,7 +51,7 @@ icon: card
     Copy snippet
 </button>
 
-<h4 class="margin--top--lg">When you should use this component</h4>
+<h4>When you should use this component</h4>
 <p>You should use the card component when you want to display groups of related content.
     E.g in a media page containing pdfs or news articles. 
 </p>
@@ -75,18 +62,18 @@ icon: card
 </p>
 
 <h5>Do:</h5>
-<ul>
-    <li>Use headings that set clear expectations about their purpose.</li>
+<ul class="style-disc margin--bottom--lg">
+    <li>use headings that set clear expectations about their purpose.</li>
     <li>
-        Contain prioritised content - cards are not meant for extensive reading.
+        contain prioritised content - cards are not meant for extensive reading.
     </li>
     <li>
-        Avoid too many call-to-action buttons. There should be only one primary
-        call-to-action per card
+        avoid too many call-to-action buttons. There should be only one primary
+        call-to-action per card.
     </li>
 </ul>
 
-<h4 class="margin--top--lg">When you should consider something else</h4>
+<h4>When you should consider something else</h4>
 <p>Cards should not be used in complex pages as they may get mixed up with other visually prominent elements and may confuse users.</p>
 
 <p>If there is a need to have many cards on a page, it should generally be contained in a section of the page. It should not be used to draw
@@ -97,54 +84,52 @@ icon: card
 
 
 <hr/>
+<h3>With headers for titles or footers for interactions</h3>
 
-<h5>
-    Add headers for titles or footers for interactions
-</h5>
-
-<div class="row">
-    <div class="col is-4">
-        <div class="sgds-card">
-            <div class="sgds-card-header">
-                <p class="sgds-card-header-title">Header title text</p>
-            </div>
-            <div class="sgds-card-content">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sequi, nulla.
-                </p>
-            </div>
-            <div class="sgds-card-footer">
-                <div class="sgds-card-footer-item">
-                    <span><a href="#!">View</a></span>
+<div class="sgds-example-others">
+    <div class="row">
+        <div class="col is-4">
+            <div class="sgds-card">
+                <div class="sgds-card-header">
+                    <p class="sgds-card-header-title">Header title text</p>
+                </div>
+                <div class="sgds-card-content">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sequi, nulla.
+                    </p>
+                </div>
+                <div class="sgds-card-footer">
+                    <div class="sgds-card-footer-item">
+                        <span><a href="#!">View</a></span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="col is-4">
-        <div class="sgds-card">
-            <div class="sgds-card-header">
-                <p class="sgds-card-header-title">Lorem ipsum</p>
-            </div>
-            <div class="sgds-card-content">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sequi, nulla.
-                </p>
-            </div>
-            <div class="sgds-card-footer">
-                <div class="sgds-card-footer-item">
-                    <span><a href="#!">View</a></span>
+        <div class="col is-4">
+            <div class="sgds-card">
+                <div class="sgds-card-header">
+                    <p class="sgds-card-header-title">Lorem ipsum</p>
                 </div>
-                <div class="sgds-card-footer-item">
-                    <span><a href="#!">Share</a></span>
+                <div class="sgds-card-content">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sequi, nulla.
+                    </p>
+                </div>
+                <div class="sgds-card-footer">
+                    <div class="sgds-card-footer-item">
+                        <span><a href="#!">View</a></span>
+                    </div>
+                    <div class="sgds-card-footer-item">
+                        <span><a href="#!">Share</a></span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 {%- highlight html -%}
 <div class="sgds-card">
     <div class="sgds-card-header">
@@ -175,38 +160,39 @@ icon: card
 
 <hr/>
 
-<h5>
+<h3>
     Interactive cards
-</h5>
+</h3>
 <p>
     For interactive cards with functionality similar to buttons or links, add
     hover effects by using the
     <code>sgds-card sgds-card-button</code> class.
 </p>
-<div class="row">
-    <div class="col is-4">
-        <a href="#!">
-            <div class="sgds-card sgds-card-button">
-                <div class="sgds-card-image">
-                    <figure class="sgds-image is-16by9">
-                        <img
-                            alt="Development Guides"
-                            src="https://via.placeholder.com/160x90/868e96/ffffff?text=Image"
-                        />
-                    </figure>
+<div class="sgds-example-others">
+    <div class="row">
+        <div class="col is-4">
+            <a href="#!">
+                <div class="sgds-card sgds-card-button">
+                    <div class="sgds-card-image">
+                        <figure class="sgds-image is-16by9">
+                            <img
+                                alt="Development Guides"
+                                src="https://via.placeholder.com/160x90/868e96/ffffff?text=Image"
+                            />
+                        </figure>
+                    </div>
+                    <div class="sgds-card-content">
+                        <h5>Lorem ipsum</h5>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sequi, nulla.
+                        </p>
+                    </div>
                 </div>
-                <div class="sgds-card-content">
-                    <h5>Lorem ipsum</h5>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sequi, nulla.
-                    </p>
-                </div>
-            </div>
-        </a>
+            </a>
+        </div>
     </div>
 </div>
-
 {%- highlight html -%}
 <a href="#!">
     <div class="sgds-card sgds-card-button">
@@ -237,75 +223,76 @@ icon: card
 
 <hr/>
 
-<h5>Media Cards</h5>
+<h3>Media Cards</h3>
 <p>
     Media cards are graphical links that contain simple text content. Media
     cards have fixed height and hence can be stacked together in a grid of
     columns and rows.
 </p>
-<div class="row">
-    <div class="col is-4">
-        <a href="#!" class="is-media-card">
-            <div class="sgds-card">
-                <div class="sgds-card-content">
-                    <header>
-                        <div class="padding--bottom">Lorem ipsum</div>
-                        <h5 class="has-text-weight-bold">
-                            Lorem ipsum dolor sit amet.
-                        </h5>
-                    </header>
-                    <footer>
-                        <span>19 oct 2018</span>
-                        <span
-                            class="sgds-icon sgds-icon-download is-size-6"
-                        ></span>
-                    </footer>
+<div class="sgds-example-others">
+    <div class="row">
+        <div class="col is-4">
+            <a href="#!" class="is-media-card">
+                <div class="sgds-card">
+                    <div class="sgds-card-content">
+                        <header>
+                            <div class="padding--bottom">Lorem ipsum</div>
+                            <h5 class="has-text-weight-bold">
+                                Lorem ipsum dolor sit amet.
+                            </h5>
+                        </header>
+                        <footer>
+                            <span>19 oct 2018</span>
+                            <span
+                                class="sgds-icon sgds-icon-download is-size-6"
+                            ></span>
+                        </footer>
+                    </div>
                 </div>
-            </div>
-        </a>
-    </div>
-    <div class="col is-4">
-        <a href="#!" class="is-media-card">
-            <div class="sgds-card">
-                <div class="sgds-card-content">
-                    <header>
-                        <div class="padding--bottom">Lorem ipsum</div>
-                        <h5 class="has-text-weight-bold">
-                            Lorem ipsum dolor sit amet.
-                        </h5>
-                    </header>
-                    <footer>
-                        <span>19 oct 2018</span>
-                        <span
-                            class="sgds-icon sgds-icon-download is-size-6"
-                        ></span>
-                    </footer>
+            </a>
+        </div>
+        <div class="col is-4">
+            <a href="#!" class="is-media-card">
+                <div class="sgds-card">
+                    <div class="sgds-card-content">
+                        <header>
+                            <div class="padding--bottom">Lorem ipsum</div>
+                            <h5 class="has-text-weight-bold">
+                                Lorem ipsum dolor sit amet.
+                            </h5>
+                        </header>
+                        <footer>
+                            <span>19 oct 2018</span>
+                            <span
+                                class="sgds-icon sgds-icon-download is-size-6"
+                            ></span>
+                        </footer>
+                    </div>
                 </div>
-            </div>
-        </a>
-    </div>
-    <div class="col is-4">
-        <a href="#!" class="is-media-card">
-            <div class="sgds-card">
-                <div class="sgds-card-content">
-                    <header>
-                        <div class="padding--bottom">Lorem ipsum</div>
-                        <h5 class="has-text-weight-bold">
-                            Lorem ipsum dolor sit amet.
-                        </h5>
-                    </header>
-                    <footer>
-                        <span>19 oct 2018</span>
-                        <span
-                            class="sgds-icon sgds-icon-download is-size-6"
-                        ></span>
-                    </footer>
+            </a>
+        </div>
+        <div class="col is-4">
+            <a href="#!" class="is-media-card">
+                <div class="sgds-card">
+                    <div class="sgds-card-content">
+                        <header>
+                            <div class="padding--bottom">Lorem ipsum</div>
+                            <h5 class="has-text-weight-bold">
+                                Lorem ipsum dolor sit amet.
+                            </h5>
+                        </header>
+                        <footer>
+                            <span>19 oct 2018</span>
+                            <span
+                                class="sgds-icon sgds-icon-download is-size-6"
+                            ></span>
+                        </footer>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     </div>
 </div>
-
 {%- highlight html -%}
 <a href="#!" class="is-media-card">
     <div class="sgds-card">
@@ -333,7 +320,7 @@ icon: card
 
 <hr/>
 
-<h5>Style</h5>
+<h3>Style</h3>
 <table class="table">
     <thead>
         <tr>

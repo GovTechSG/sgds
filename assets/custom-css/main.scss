@@ -23,6 +23,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+
+
 .content-page {
   flex: 1 0 auto;
 }
@@ -114,4 +117,12 @@ a[target="_blank"]:after {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+}
+
+.sgds-breadcrumb[class*="has-background"]{
+  li{
+    &::before{
+      color: white;
+    }
+  }
 }
