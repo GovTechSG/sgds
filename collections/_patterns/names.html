@@ -3,12 +3,12 @@ title: Names
 layout: layout-docs
 ---
 
-<h3 class="has-text-primary">
+<h2 class="has-text-primary">
     Use this pattern when you need to ask users for their names
-</h3>
+</h2>
 
 <hr />
-
+<div class="sgds-example-others">
 <div class="field">
     <label class="label" for="full-name">Full Name</label>
     <div class="control">
@@ -23,8 +23,7 @@ layout: layout-docs
         />
     </div>
 </div>
-
-<h5 class="margin--top--lg">Component Code</h5>
+</div>
 
 {%- highlight html -%}
 <div class="field">
@@ -57,28 +56,30 @@ layout: layout-docs
     you need that information to deliver a service.
 </p>
 
-<h4 class="margin--top--lg has-text-weight-semibold">Guidelines</h4>
-<h5>Make sure the name field works for your users</h5>
+<hr/>
+
+<h3>Guidelines</h3>
+<h4>Make sure the name field works for your users</h4>
 <p>
     Name fields should be long enough to accomodate the names of your users. Do make sure that you
     support all characters that users may need to enter, including symbols and numbers.
 </p>
 
-<h5>Single name fields</h5>
+<h4>Single name fields</h4>
 <p>
     This can accomodate the widest range of name types and formats and is recommended to reduce the
     risk that your user's enter their name in the incorrect format. However by using this, you may
     not be able to reliable extract parts of a name.
 </p>
 
-<h5>Multiple name fields</h5>
+<h4>Multiple name fields</h4>
 <p>
     Use multiple name fields based on your user's needs. Not everyone's name fits the general
     first-name, last-name convention. Using multiple name fields increases the risk that a person's
     name will not fit the same convention and may be entered incorrectly.
 </p>
 
-<h5>Labelling of name fields</h5>
+<h4>Labelling of name fields</h5>
 <p>
     For single name fields, use "Full name".
 </p>
@@ -86,7 +87,7 @@ layout: layout-docs
 <p>
     For multiple name fields, use:
 </p>
-<ul>
+<ul class="style-disc">
     <li>'Given name'</li>
     <li>'Family name'</li>
 </ul>
@@ -105,7 +106,7 @@ layout: layout-docs
 <p>
     This is to ensure that your users:
 </p>
-<ul>
+<ul class="style-disc">
     <li>Do not get confused as to how they should be filling in their name</li>
     <li>
         Reduce the risk that their name may be filled in wrongly and making extracting their names

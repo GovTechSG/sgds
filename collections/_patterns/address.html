@@ -3,12 +3,14 @@ title: Address
 layout: layout-docs
 ---
 
-<h3 class="has-text-primary">
+<h2 class="has-text-primary">
     Help your users fill in their addresses
-</h3>
+</h2>
 
 <hr />
 
+<h3>General Address Format</h3>
+<div class="sgds-example-others">
 <div class="field">
     <label class="label" for="postal-code">Postal Code</label>
     <div class="control">
@@ -48,8 +50,7 @@ layout: layout-docs
         />
     </div>
 </div>
-
-<h5 class="margin--top--lg">Component Code</h5>
+</div>
 
 {%- highlight html -%}
 <div class="field">
@@ -106,30 +107,25 @@ layout: layout-docs
     key in their postal code to lookup their address and also allow them to enter it manually.
 </p>
 
-<h4 class="margin--top--lg has-text-weight-semibold">Guidelines</h4>
-<h5>Address lookup</h5>
-<p>
-    Make it clear to users that this will only work with Singapore addresses.
-</p>
-<p>
-    Use the address lookup only if you are asking for a Singapore address, else use use multiple
-    text inputs or a text area when asking for addresses outside of Singapore.
-</p>
+<hr/>
 
-<p>
-    The fields should always have the <code>autocomplete</code> attribute to help your users
-    complete it quickly.
-</p>
+<h3>Guidelines</h3>
 
-<p>
-    You will need to include the <code>autocomplete</code> attribute to meet
-    <a
-        href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
-        target="_blank"
-        >WCAG 2.1 AA</a
-    >
-    for production.
-</p>
+<h4>Address lookup</h4>
+<ul class="style-disc">
+    <li>Make it clear to users that this will only work with Singapore addresses.</li>
+    <li>Use the address lookup only if you are asking for a Singapore address, else use use multiple
+        text inputs or a text area when asking for addresses outside of Singapore.</li>
+    <li>The fields should always have the <code>autocomplete</code> attribute to help your users
+        complete it quickly.</li>
+    <li>You will need to include the <code>autocomplete</code> attribute to meet
+        <a
+            href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+            target="_blank"
+            >WCAG 2.1 AA</a
+        >
+        for production.</li>
+</ul>
 
 <hr />
 

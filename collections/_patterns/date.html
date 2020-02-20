@@ -3,12 +3,14 @@ title: Date
 layout: layout-docs
 ---
 
-<h3 class="has-text-primary">
+<h2 class="has-text-primary">
     Help your users fill in dates that are required for your service.
-</h3>
+</h2>
 
 <hr />
 
+<h3>General date format</h3>
+<div class="sgds-example-others">
 <h5>
     Please enter your date of birth
     <span class="hint">E.g 01 01 1990</span>
@@ -59,8 +61,7 @@ layout: layout-docs
         </div>
     </div>
 </div>
-
-<h5 class="margin--top--lg">Component Code</h5>
+</div>
 
 {%- highlight html -%}
 <div class="field row is-mobile">
@@ -124,12 +125,14 @@ layout: layout-docs
     from a few specific dates, in this case, you may use the radio button component to display them.
 </p>
 
-<h4 class="margin--top--lg has-text-weight-semibold">Guidelines</h4>
-<h5>Date format</h5>
+<hr/>
+
+<h3>Guidelines</h3>
+<h4>Date format</h4>
 <p>
     Help users fill in dates for your services by:
 </p>
-<ul>
+<ul class="style-disc">
     <li>
         Ensuring that you state clearly how the date should be filled in. E.g Day Month Year
     </li>
@@ -139,27 +142,24 @@ layout: layout-docs
     </li>
 </ul>
 
-<h5 class="margin--top--lg">Memorable dates</h5>
+<h4 class="margin--top--lg">Memorable dates</h4>
 <p>
     When asking for memorable dates such as date of birth, do ensure that:
 </p>
-<ul>
+<ul class="style-disc">
     <li>
-        The fields should always have the
+        The fields, in this example, should always have the
         <code>autocomplete</code> attribute for these 3 fields, <code>bday-day</code>,
         <code>bday-month</code> and <code>bday-year</code> to help your users complete it quickly.
     </li>
+    <li>You will need to include the <code>autocomplete</code> attribute to meet
+        <a
+            href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+            target="_blank"
+            >WCAG 2.1 AA</a
+        >
+        for production.</li>
 </ul>
-
-<p>
-    You will need to include the <code>autocomplete</code> attribute to meet
-    <a
-        href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
-        target="_blank"
-        >WCAG 2.1 AA</a
-    >
-    for production.
-</p>
 
 <hr />
 
