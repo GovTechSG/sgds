@@ -14,9 +14,15 @@ layout: layout-docs
 <div class="field">
     <label class="label" for="postal-code">Postal Code</label>
     <div class="control">
-        <input class="input col is-4" type="text" id="postal-code" autocomplete="postal-code" />
+        <input class="input col is-4" 
+        type="text"
+        name="postal-code" 
+        id="postal-code"
+        autocomplete="postal-code" />
     </div>
-    <div><button class="sgds-button is-primary margin--top--lg">Find Address</button></div>
+    <div>
+        <button class="sgds-button is-primary margin--top--lg">Find Address</button>
+    </div>
 </div>
 
 <div class="field margin--top--lg">
@@ -25,7 +31,8 @@ layout: layout-docs
         <input
             class="input margin--bottom--lg col is-8"
             type="text"
-            id="street-name"
+            name="street-address"
+            id="street-address"
             autocomplete="street-address"
         />
     </div>
@@ -35,7 +42,10 @@ layout: layout-docs
     <label class="label" for="building-number">Building/House Number</label>
     <span class="hint">If applicable</span>
     <div class="control">
-        <input class="input margin--bottom--lg col is-4" type="text" id="building-number" />
+        <input class="input margin--bottom--lg col is-4" 
+        type="text"
+        name="building-number" 
+        id="building-number" />
     </div>
 </div>
 
@@ -46,7 +56,8 @@ layout: layout-docs
             class="input margin--bottom--lg col is-4"
             type="text"
             id="unit-number"
-            autocomplete="unit number"
+            name="unit-number"
+            autocomplete="unit-number"
         />
     </div>
 </div>
@@ -56,9 +67,15 @@ layout: layout-docs
 <div class="field">
     <label class="label" for="postal-code">Postal Code</label>
     <div class="control">
-        <input class="input col is-4" type="text" id="postal-code" autocomplete="postal-code" />
+        <input class="input col is-4" 
+        type="text"
+        name="postal-code" 
+        id="postal-code"
+        autocomplete="postal-code" />
     </div>
-    <div><button class="sgds-button is-primary margin--top--lg">Find Address</button></div>
+    <div>
+        <button class="sgds-button is-primary margin--top--lg">Find Address</button>
+    </div>
 </div>
 
 <div class="field margin--top--lg">
@@ -67,7 +84,8 @@ layout: layout-docs
         <input
             class="input margin--bottom--lg col is-8"
             type="text"
-            id="street-name"
+            name="street-address"
+            id="street-address"
             autocomplete="street-address"
         />
     </div>
@@ -77,7 +95,10 @@ layout: layout-docs
     <label class="label" for="building-number">Building/House Number</label>
     <span class="hint">If applicable</span>
     <div class="control">
-        <input class="input margin--bottom--lg col is-4" type="text" id="building-number" />
+        <input class="input margin--bottom--lg col is-4" 
+        type="text"
+        name="building-number" 
+        id="building-number" />
     </div>
 </div>
 
@@ -88,7 +109,8 @@ layout: layout-docs
             class="input margin--bottom--lg col is-4"
             type="text"
             id="unit-number"
-            autocomplete="unit number"
+            name="unit-number"
+            autocomplete="unit-number"
         />
     </div>
 </div>
@@ -116,6 +138,10 @@ layout: layout-docs
     <li>Make it clear to users that this will only work with Singapore addresses.</li>
     <li>Use the address lookup only if you are asking for a Singapore address, else use use multiple
         text inputs or a text area when asking for addresses outside of Singapore.</li>
+</ul>
+
+<h4>Entering manually</h4>
+<ul class="style-disc">
     <li>The fields should always have the <code>autocomplete</code> attribute to help your users
         complete it quickly.</li>
     <li>You will need to include the <code>autocomplete</code> attribute to meet
@@ -126,7 +152,6 @@ layout: layout-docs
         >
         for production.</li>
 </ul>
-
 <hr />
 
 {%- include sgds-feedback.html -%}

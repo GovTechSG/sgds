@@ -8,6 +8,7 @@ layout: layout-docs
 </h2>
 
 <hr />
+<h3>General name field</h3>
 <div class="sgds-example-others">
 <div class="field">
     <label class="label" for="full-name">Full Name</label>
@@ -58,6 +59,83 @@ layout: layout-docs
 
 <hr/>
 
+<h3>Multiline name field</h3>
+<div class="sgds-example-others">
+<div class="field">
+    <label class="label" for="given-name">Given Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="given-name"
+            name="given-name"
+            type="text"
+            autocomplete="given-name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+<div class="field margin--top--lg">
+    <label class="label" for="family-name">Family Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="family-name"
+            name="family-name"
+            type="text"
+            autocomplete="family-name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+</div>
+
+{%- highlight html -%}
+<div class="field">
+    <label class="label" for="given-name">Given Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="given-name"
+            name="given-name"
+            type="text"
+            autocomplete="given-name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+<div class="field margin--top--lg">
+    <label class="label" for="family-name">Family Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="family-name"
+            name="family-name"
+            type="text"
+            autocomplete="family-name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+{%- endhighlight -%}
+
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this pattern</h4>
+<p>
+    You should follow this pattern when you know that your users follow the given-name and family-name convention.
+</p>
+
+<hr/>
+
 <h3>Guidelines</h3>
 <h4>Make sure the name field works for your users</h4>
 <p>
@@ -103,7 +181,7 @@ layout: layout-docs
     field.
 </p>
 
-<p>
+<p class="has-text-weight-bold">
     This is to ensure that your users:
 </p>
 <ul class="style-disc">
