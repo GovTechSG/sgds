@@ -86,10 +86,10 @@ i {
   color: lighten(#323232, 20%);
 }
 
+.mobile-side-nav .sgds-dropdown-trigger button {
+  margin-bottom: 0;
+}
 
-button{
-    margin-bottom: 1rem;
-    &[aria-controls="sgds-dropdown-menu"]{
-        margin-bottom: -1px;
-    }
+button {
+  margin-bottom: 1rem; 
 }
