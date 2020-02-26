@@ -26,22 +26,18 @@ icon: card
 {% endcapture %}
 
 <h2 class="has-text-primary">
-    The card is a flexible and extensible content container. It includes options
-    for headers and footers, a wide variety of content, contextual background
-    colors, and powerful display options
+    The card is a flexible and extensible content container
 </h2>
-
+<p>It includes options
+    for headers and footers, a wide variety of content, contextual background
+    colors, and powerful display options</p>
 <hr/>
 
 <h3>
     With mixed content
 </h3>
 <div class="sgds-example-others">
-    <div class="row">
-        <div class="col is-4">
-            {{card_mix_content}}
-        </div>
-    </div>
+    {{card_mix_content}}
 </div>
 {%- highlight html -%}{{card_mix_content}}{%- endhighlight -%}
 <button
@@ -62,16 +58,18 @@ icon: card
 </p>
 
 <h5>Do:</h5>
-<ul class="style-disc margin--bottom--lg">
-    <li>use headings that set clear expectations about their purpose.</li>
-    <li>
-        contain prioritised content - cards are not meant for extensive reading.
-    </li>
-    <li>
-        avoid too many call-to-action buttons. There should be only one primary
-        call-to-action per card.
-    </li>
-</ul>
+<p>
+    <ul class="style-disc">
+        <li>use headings that set clear expectations about their purpose.</li>
+        <li>
+            contain prioritised content - cards are not meant for extensive reading.
+        </li>
+        <li>
+            avoid too many call-to-action buttons. There should be only one primary
+            call-to-action per card.
+        </li>
+    </ul>
+</p>
 
 <h4>When you should consider something else</h4>
 <p>Cards should not be used in complex pages as they may get mixed up with other visually prominent elements and may confuse users.</p>
@@ -81,10 +79,10 @@ icon: card
 <p>If you require users to take note of important information, you may want to consider using the
 <a href="/docs/notification">notification</a> component with the correct color state or the <a href="/docs/callout/">callout</a> component instead.</p>
 
-
-
 <hr/>
-<h3>With headers for titles or footers for interactions</h3>
+
+<h3>Cards can be used with <a href="/docs/grid">grids</a> and contain
+    headers for titles or footers for interactions</h3>
 
 <div class="sgds-example-others">
     <div class="row">
@@ -131,29 +129,52 @@ icon: card
     </div>
 </div>
 {%- highlight html -%}
-<div class="sgds-card">
-    <div class="sgds-card-header">
-        <p class="sgds-card-header-title">Lorem ipsum</p>
-    </div>
-    <div class="sgds-card-content">
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi,
-            nulla.
-        </p>
-    </div>
-    <div class="sgds-card-footer">
-        <div class="sgds-card-footer-item">
-            <span><a href="#!">View</a></span>
+<div class="row">
+    <div class="col is-4">
+        <div class="sgds-card">
+            <div class="sgds-card-header">
+                <p class="sgds-card-header-title">Header title text</p>
+            </div>
+            <div class="sgds-card-content">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Sequi, nulla.
+                </p>
+            </div>
+            <div class="sgds-card-footer">
+                <div class="sgds-card-footer-item">
+                    <span><a href="#!">View</a></span>
+                </div>
+            </div>
         </div>
-        <div class="sgds-card-footer-item">
-            <span><a href="#!">Share</a></span>
+    </div>
+
+    <div class="col is-4">
+        <div class="sgds-card">
+            <div class="sgds-card-header">
+                <p class="sgds-card-header-title">Lorem ipsum</p>
+            </div>
+            <div class="sgds-card-content">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Sequi, nulla.
+                </p>
+            </div>
+            <div class="sgds-card-footer">
+                <div class="sgds-card-footer-item">
+                    <span><a href="#!">View</a></span>
+                </div>
+                <div class="sgds-card-footer-item">
+                    <span><a href="#!">Share</a></span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 {%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight0"
+    data-clipboard-target=".highlight1"
 >
     Copy snippet
 </button>
@@ -216,7 +237,7 @@ icon: card
 {%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight1"
+    data-clipboard-target=".highlight2"
 >
     Copy snippet
 </button>
@@ -313,7 +334,7 @@ icon: card
 {%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight2"
+    data-clipboard-target=".highlight3"
 >
     Copy snippet
 </button>
