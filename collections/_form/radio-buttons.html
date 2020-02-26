@@ -3,58 +3,67 @@ title: Radio Buttons
 layout: layout-docs
 ---
 
-<h2 class="has-text-primary">
-    Allow users to see all available options and select only one from a list.
+<h2>
+  Radio buttons allow users to select one option from a list
 </h2>
+
+<p>
+  Radio buttons are typically part of a group, where only one radio button in a
+  group can be selected at one time.
+</p>
 
 <hr />
 
 <h3>Default radio button</h3>
 
 <div class="sgds-example-others">
-<div class="field">
+  <div class="field">
     <div class="control">
-        <label class="radio">
-            <input type="radio" name="yes" />
-            Yes
-        </label>
-        <label class="radio">
-            <input type="radio" name="no" />
-            No
-        </label>
+      <label class="radio">
+        <input type="radio" name="accept" />
+        Yes
+      </label>
+      <label class="radio">
+        <input type="radio" name="accept" />
+        No
+      </label>
     </div>
-</div>
+  </div>
 </div>
 
 {%- highlight html -%}
 <div class="field">
-    <div class="control">
-        <label class="radio">
-            <input type="radio" name="yes" />
-            Yes
-        </label>
-        <label class="radio">
-            <input type="radio" name="no" />
-            No
-        </label>
-    </div>
+  <div class="control">
+    <label class="radio">
+      <input type="radio" name="accept" />
+      Yes
+    </label>
+    <label class="radio">
+      <input type="radio" name="accept" />
+      No
+    </label>
+  </div>
 </div>
 {%- endhighlight -%}
 
 <button
-    class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight0"
+  class="sgds-button clipboard-btn is-primary is-outlined"
+  data-clipboard-target=".highlight0"
 >
-    Copy snippet
+  Copy snippet
 </button>
 
 <h4>When you should use this component</h4>
-<p>You should use the radio button component when users can only select one item from a list of options.
+<p>
+  Use the radio button component when users can only select one item from a list
+  of options.
 </p>
 
 <h4>When you should consider something else</h4>
-<p>Do not use the raido button component if users can select more than one option. If you require users to select multiple options,
-    then using the <a href="/docs/checkbox">checkbox</a> component would be more appropriate.
+<p>
+  Do not use the radio button component if users can select more than one
+  option. If you require users to select multiple options, then using the
+  <a href="/docs/checkbox">checkbox</a> component would be more appropriate.
 </p>
 
 <hr />
@@ -62,46 +71,52 @@ layout: layout-docs
 <h3>Stacked Radio Buttons</h3>
 
 <div class="sgds-example-others">
-<div class="field">
+  <div class="field">
     <div class="control">
-        <label class="radio is-block margin--bottom--sm">
-            <input type="radio" name="yes" />
-            Yes
-        </label>
-        <label class="radio is-block margin--bottom--sm" style="margin:0;">
-            <input type="radio" name="no" />
-            No
-        </label>
+      <label class="radio">
+        <input type="radio" name="choice" />
+        Yes
+      </label>
     </div>
-</div>
+    <div class="control">
+      <label class="radio">
+        <input type="radio" name="choice" />
+        No
+      </label>
+    </div>
+  </div>
 </div>
 
 {%- highlight html -%}
 <div class="field">
-        <div class="control">
-            <label class="radio is-block margin--bottom--sm">
-                <input type="radio" name="yes" />
-                Yes
-            </label>
-            <label class="radio is-block margin--bottom--sm">
-                <input type="radio" name="no" />
-                No
-            </label>
-        </div>
-    </div>
+  <div class="control">
+    <label class="radio">
+      <input type="radio" name="choice" />
+      Yes
+    </label>
+  </div>
+  <div class="control">
+    <label class="radio">
+      <input type="radio" name="choice" />
+      No
+    </label>
+  </div>
+</div>
 {%- endhighlight -%}
 
 <button
-    class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight1"
+  class="sgds-button clipboard-btn is-primary is-outlined"
+  data-clipboard-target=".highlight1"
 >
-    Copy snippet
+  Copy snippet
 </button>
 
 <h4>When you should use this component</h4>
-<p>Inline radio buttons can sometimes be difficult to scan, as users may find it difficult to differentiate
-    which label the checkbox option belongs to: the one before or after the option. By arranging the radio buttons in a vertical
-    block as above, this helps to eliminate any confusion the user may have
+<p>
+  Inline radio buttons can sometimes be difficult to scan, as users may find it
+  difficult to differentiate which label the option belongs to: the one
+  before or after the option. By arranging the radio buttons in a vertical block
+  as above, this helps to eliminate possible confusion.
 </p>
 
 <hr />
