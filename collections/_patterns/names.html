@@ -11,13 +11,13 @@ layout: layout-docs
 <h3>General name field</h3>
 <div class="sgds-example-others">
 <div class="field">
-    <label class="label" for="full-name">Full Name</label>
+    <label class="label" for="name">Full Name</label>
     <div class="control">
         <input
             class="input col is-8"
             type="text"
-            id="full-name"
-            name="full-name"
+            id="name"
+            name="name"
             type="text"
             autocomplete="name"
             spellcheck="false"
@@ -28,13 +28,13 @@ layout: layout-docs
 
 {%- highlight html -%}
 <div class="field">
-    <label class="label" for="full-name">Full Name</label>
+    <label class="label" for="name">Full Name</label>
     <div class="control">
         <input
             class="input col is-8"
             type="text"
-            id="full-name"
-            name="full-name"
+            id="name"
+            name="name"
             type="text"
             autocomplete="name"
             spellcheck="false"
@@ -54,7 +54,7 @@ layout: layout-docs
 <h4 class="margin--top--lg has-text-weight-semibold">When you should use this pattern</h4>
 <p>
     You should follow this pattern when you need to ask for a user’s name and only ask for names if
-    you need that information to deliver a service.
+    you need it for a service.
 </p>
 
 <hr/>
@@ -143,11 +143,15 @@ layout: layout-docs
     support all characters that users may need to enter, including symbols and numbers.
 </p>
 
+<p>
+    Do ensure that you do not spellcheck a user's name by setting the <code>spellcheck</code> attribute to <code>false</code>
+</p>
+
 <h4>Single name fields</h4>
 <p>
     This can accomodate the widest range of name types and formats and is recommended to reduce the
     risk that your user's enter their name in the incorrect format. However by using this, you may
-    not be able to reliable extract parts of a name.
+    not be able to extract parts of a name.
 </p>
 
 <h4>Multiple name fields</h4>
@@ -157,7 +161,7 @@ layout: layout-docs
     name will not fit the same convention and may be entered incorrectly.
 </p>
 
-<h4>Labelling of name fields</h5>
+<h4>Labelling of name fields</h4>
 <p>
     For single name fields, use "Full name".
 </p>
@@ -187,10 +191,31 @@ layout: layout-docs
 <ul class="style-disc">
     <li>Do not get confused as to how they should be filling in their name</li>
     <li>
-        Reduce the risk that their name may be filled in wrongly and making extracting their names
-        difficult
+        Reduce the risk that their name may be filled in wrongly
     </li>
 </ul>
+
+<h4>Autocomplete</h4>
+<p>
+    Do use the <code>autocomplete</code> attribute when asking for a user's name. This makes it easier
+    for the user to fill in their name if they have done so previously on the browser.
+</p>
+
+<ul class="style-disc">
+    <li>Full name: use <code>name</code></li>
+    <li>Given name: use <code>given-name</code></li>
+    <li>Family name: use <code>family-name</code></li>
+</ul>
+
+<p>
+    You will need to include the <code>autocomplete</code> attribute to meet
+        <a
+            href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+            target="_blank"
+            >WCAG 2.1 AA</a
+        >
+        for production.
+</p>
 
 <hr />
 
