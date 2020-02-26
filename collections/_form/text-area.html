@@ -3,46 +3,52 @@ title: Text Area
 layout: layout-docs
 ---
 
-<h2 class="has-text-primary">
-    Allow users to enter text that is longer than a single line.
+<h2>
+  Collect text input longer than a single line
 </h2>
 
-<hr/>
+<hr />
 
 <h3>Default text area</h3>
 
 <div class="sgds-example-others">
-<div class="field">
-    <label class="label" for="textarea">Text Area Label</label>
+  <div class="field">
+    <label class="label" for="my-textarea">Text Area Label</label>
     <div class="control">
-        <textarea class="textarea" id="textarea"></textarea>
+      <textarea class="textarea" id="my-textarea"></textarea>
     </div>
-</div>
+  </div>
 </div>
 {%- highlight html -%}
 <div class="field">
-    <label class="label" for="textarea">Text Area Label</label>
-    <div class="control">
-        <textarea class="textarea" id="textarea"></textarea>
-    </div>
+  <label class="label" for="my-textarea">Text Area Label</label>
+  <div class="control">
+    <textarea class="textarea" id="my-textarea"></textarea>
+  </div>
 </div>
 {%- endhighlight -%}
 <button
-    class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight0"
+  class="sgds-button clipboard-btn is-primary is-outlined"
+  data-clipboard-target=".highlight0"
 >
-    Copy snippet
+  Copy snippet
 </button>
 
 <h4>When you should use this component</h4>
-<p>You should use the text area component when you require users to enter more than a line of text.</p>
-
-<h4>When you should consider something else</h4>
-<p>Users can sometimes find it difficult giving open-ended answers. If your use case permits, instead of asking users a single
-    complex question, it is advisable to break it up into a series of simplier questions. E.g using the <a href="/docs/checkbox/">checkbox</a> component if you want users
-    to give multiple answers from a predetermined set of options.
+<p>
+  You should use the text area component when you require users to enter more
+  than a line of text.
 </p>
 
-<hr/>
+<h4>When you should consider something else</h4>
+<p>
+  Users can sometimes find it difficult giving open-ended answers. If your use
+  case permits, instead of asking users a single complex question, it is
+  advisable to break it up into a series of simplier questions. E.g using the
+  <a href="/docs/checkbox/">checkbox</a> component if you want users to give
+  multiple answers from a predetermined set of options.
+</p>
+
+<hr />
 
 {%- include sgds-feedback.html -%}
