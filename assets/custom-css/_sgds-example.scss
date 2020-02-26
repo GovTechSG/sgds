@@ -135,6 +135,11 @@
     .sgds-container {
       width: auto;
     }
+    .field {
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
   }
 }
 
