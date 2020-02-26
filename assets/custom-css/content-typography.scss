@@ -83,4 +83,7 @@
 
     button{
         margin-bottom: 1rem;
+        &[aria-controls="sgds-dropdown-menu"]{
+            margin-bottom: -1px;
+        }
     }
