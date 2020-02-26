@@ -3,8 +3,8 @@ title: Checkbox
 layout: layout-docs
 ---
 
-<h2 class="has-text-primary">
-    Allow users to select one or more options from a list
+<h2>
+  Checkboxes let users select one or more options from a list
 </h2>
 
 <hr />
@@ -12,58 +12,56 @@ layout: layout-docs
 <h3>Default checkbox</h3>
 
 <div class="sgds-example-others">
-<div class="field">
+  <div class="field">
     <div class="control">
-        <label class="checkbox is-block margin--bottom--sm">
-            <input type="checkbox" />
-                Option 1
-        </label>
-        <label class="checkbox is-block margin--bottom--sm">
-            <input type="checkbox" />
-                Option 2
-        </label>
-        <label class="checkbox is-block margin--bottom--sm">
-            <input type="checkbox" />
-                Option 3
-        </label>
+      <input type="checkbox" id="input-1" />
+      <label for="input-1" class="checkbox">Option 1</label>
     </div>
-</div>
+    <div class="control">
+      <input type="checkbox" id="input-2" />
+      <label for="input-2" class="checkbox">Option 2</label>
+    </div>
+    <div class="control">
+      <input type="checkbox" id="input-3" disabled />
+      <label for="input-3" class="checkbox" disabled>Option 3 - Disabled</label>
+    </div>
+  </div>
 </div>
 
 {%- highlight html -%}
-<div class="field">
-    <div class="control">
-        <label class="checkbox is-block margin--bottom--sm">
-            <input type="checkbox" />
-                Option 1
-        </label>
-        <label class="checkbox is-block margin--bottom--sm">
-            <input type="checkbox" />
-                Option 2
-        </label>
-        <label class="checkbox is-block margin--bottom--sm">
-            <input type="checkbox" />
-                Option 3
-        </label>
-    </div>
+<div class="control">
+  <input type="checkbox" id="input-1" />
+  <label for="input-1" class="checkbox">Option 1</label>
+</div>
+<div class="control">
+  <input type="checkbox" id="input-2" />
+  <label for="input-2" class="checkbox">Option 2</label>
+</div>
+<div class="control">
+  <input type="checkbox" id="input-3" disabled />
+  <label for="input-3" class="checkbox" disabled>Option 3 - Disabled</label>
 </div>
 {%- endhighlight -%}
 <button
-    class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight0"
+  class="sgds-button clipboard-btn is-primary is-outlined"
+  data-clipboard-target=".highlight0"
 >
-    Copy snippet
+  Copy snippet
 </button>
 
 <h4>When you should use this component</h4>
-<p>You should use this component when you want users to select multiple items from
-    a predetermined list of items or when your users need to see all available options at once.
+<p>
+  You should use this component when you want users to select multiple items
+  from a predetermined list of items or when your users need to see all
+  available options at once.
 </p>
 
 <h4>When you should consider something else</h4>
-<p>When you have too many options to be displayed.
-    If users can only select one option from the list, then using 
-    <a href="/docs/radio-buttons/">radio buttons</a> would be more appropriate.</p>
+<p>
+  When you have too many options to be displayed. If users can only select one
+  option from the list, then using
+  <a href="/docs/radio-buttons/">radio buttons</a> would be more appropriate.
+</p>
 
 <hr />
 
