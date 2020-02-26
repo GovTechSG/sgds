@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Components
 
-- Default Toast Notification now have higher contrast
+- Default Toast Notification now has higher contrast border color
 
 ### Docs
 
