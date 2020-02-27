@@ -80,22 +80,7 @@ redirect_from:
 </p>
 
 <div class="row is-multiline is-mobile">
-    {% assign generalComponents = site.general %} 
-    {% for component in generalComponents %}
-    <div class="col is-4">
-        <ul style="margin-top: 0">
-            <li style="margin-top: 0">
-                <a href="{{ component.url }}">{{ component.title }}</a>
-                {% if component.js %}
-                <span
-                    class="sgds-tag is-rounded margin--left--sm has-text-weight-semibold"
-                    >JS</span
-                >
-                {% endif %}
-            </li>
-        </ul>
-    </div>
-    {% endfor %}
+    {% include component-list.html collectionName='general' %}
 </div>
 
 <hr class="margin--bottom--lg margin--top--lg" />

@@ -1,17 +1,12 @@
 {% assign helper = site[include.collectionName] | sort: "order" %}
 {% for component in helper %}
 <div class="col is-4">
-  <ul>    
-    <li>
-        <a href="{{ component.url }}">{{ component.title }}</a>
-        {% if component.js %}
-        <span
-            class="sgds-tag is-rounded margin--left--sm has-text-weight-semibold"
-            >JS</span
-        >
-        {% endif %}
-    </li>
-    
-  </ul>
+  <a class="is-size-7" href="{{ component.url }}">{{ component.title }}</a>
+  {% if component.js %}
+  <span
+      class="sgds-tag is-rounded margin--left--sm has-text-weight-semibold"
+      >JS</span
+  >
+  {% endif %}
 </div>
 {% endfor %}

@@ -3,8 +3,8 @@ title: General
 layout: layout-docs
 ---
 
-<h2 class="has-text-primary">General form design guidelines</h2>
-
+<h2>General form design guidelines</h2>
+<hr>
 ### Make the path to completion clear
 
 - Avoid multiple columns
