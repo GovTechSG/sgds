@@ -5,12 +5,7 @@ category: General
 icon: table
 ---
 
-<h4 class="has-text-primary">
-    Pagination helps to break down long lists into multiple sections that are indexed by a
-    pagination component.
-</h4>
-<hr/>
-
+{% capture default_pagination %}
 <nav class="sgds-pagination" role="navigation" aria-label="pagination">
     <a class="sgds-pagination-previous">Previous</a>
     <ul class="sgds-pagination-list">
@@ -20,20 +15,79 @@ icon: table
     </ul>
     <a class="sgds-pagination-next">Next</a>
 </nav>
+{% endcapture %}
 
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-{%- highlight html -%}
-<!-- is-current highlights the currently selected page -->
-<nav class="sgds-pagination" role="navigation" aria-label="pagination">
+{% capture default_pagination_disabled %}
+<nav class="sgds-pagination is-right" role="navigation" aria-label="pagination">
+    <a class="sgds-pagination-previous" disabled>Previous</a>
+    <ul class="sgds-pagination-list">
+        <li class="sgds-pagination-link is-current">1</li>
+        <li class="sgds-pagination-link">2</li>
+        <li class="sgds-pagination-link">3</li>
+    </ul>
+    <a class="sgds-pagination-next">Next</a>
+</nav>
+{% endcapture %}
+
+{% capture default_pagination_centered %}
+<nav class="sgds-pagination is-centered" role="navigation" aria-label="pagination">
+    <a class="sgds-pagination-previous" disabled>Previous</a>
+    <ul class="sgds-pagination-list">
+        <li class="sgds-pagination-link is-current">1</li>
+        <li class="sgds-pagination-link">2</li>
+        <li class="sgds-pagination-link">3</li>
+    </ul>
+    <a class="sgds-pagination-next">Next</a>
+</nav>
+{% endcapture %}
+
+{% capture default_pagination_right %}
+<nav class="sgds-pagination is-right" role="navigation" aria-label="pagination">
+    <a class="sgds-pagination-previous" disabled>Previous</a>
+    <ul class="sgds-pagination-list">
+        <li class="sgds-pagination-link is-current">1</li>
+        <li class="sgds-pagination-link">2</li>
+        <li class="sgds-pagination-link">3</li>
+    </ul>
+    <a class="sgds-pagination-next">Next</a>
+</nav>
+{% endcapture %}
+
+{% capture pagination_rounded %}
+<nav class="sgds-pagination is-rounded" role="navigation" aria-label="pagination">
     <a class="sgds-pagination-previous">Previous</a>
     <ul class="sgds-pagination-list">
         <li class="sgds-pagination-link is-current">1</li>
         <li class="sgds-pagination-link">2</li>
         <li class="sgds-pagination-link">3</li>
     </ul>
-    <a class="sgds-pagination-next">Next page</a>
+    <a class="sgds-pagination-next">Next</a>
 </nav>
-{%- endhighlight -%}
+{% endcapture %}
+
+{% capture pagination_customise %}
+<nav class="sgds-pagination" role="navigation" aria-label="pagination">
+    <a class="sgds-pagination-previous"
+        ><span class="sgds-icon sgds-icon-arrow-left is-size-5"></span
+    ></a>
+    <ul class="sgds-pagination-list">
+        <li class="sgds-pagination-link">1</li>
+        <li class="sgds-pagination-link is-current">2</li>
+        <li class="sgds-pagination-link">3</li>
+    </ul>
+    <a class="sgds-pagination-next"
+        ><span class="sgds-icon sgds-icon-arrow-right is-size-5"></span
+    ></a>
+</nav>
+{% endcapture %}
+
+<h2>
+    Pagination helps to break down long lists into multiple sections that are indexed by a
+    pagination component.
+</h2>
+<hr/>
+<div class="sgds-example-others">{{default_pagination}}</div>
+{%- highlight html -%}{{default_pagination}}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight0"
@@ -41,12 +95,12 @@ icon: table
     Copy Snippet
 </button>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
+<h4>When you should use this component</h4>
 <p>You should use the pagination component when you want to display large amounts of related content that
     spans across multiple pages. E.g Search results or forum posts.
 </p>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should consider something else</h4>
+<h4>When you should consider something else</h4>
 <p>You should not use the pagination component to indicate progress, such as in a transaction.</p>
 
 <p>You should also not use the component as a replacement for navigation. 
@@ -54,75 +108,55 @@ icon: table
 
 <hr/>
 
-<h5 class="has-text-weight-semibold">Rounded Pagination buttons</h5>
-<p>You can use <code>.is-rounded</code> to make all pagination buttons rounded.</p>
-<!--Add class name table-h for horizontal tables-->
-<nav class="sgds-pagination is-rounded" role="navigation" aria-label="pagination">
-    <a class="sgds-pagination-previous">Previous</a>
-    <ul class="sgds-pagination-list">
-        <li class="sgds-pagination-link is-current">1</li>
-        <li class="sgds-pagination-link">2</li>
-        <li class="sgds-pagination-link">3</li>
-    </ul>
-    <a class="sgds-pagination-next">Next</a>
-</nav>
-
-{%- highlight html -%}
-<nav class="sgds-pagination is-rounded" role="navigation" aria-label="pagination">
-    <a class="sgds-pagination-previous">Previous</a>
-    <ul class="sgds-pagination-list">
-        <li class="sgds-pagination-link is-current">1</li>
-        <li class="sgds-pagination-link">2</li>
-        <li class="sgds-pagination-link">3</li>
-    </ul>
-    <a class="sgds-pagination-next">Next</a>
-</nav>
-
-{%- endhighlight -%}
+<h3>Disabling the button</h3>
+<p>You can disable some links if they are not active by adding a <code>disabled</code> attribute</p>
+<div class="sgds-example-others">{{default_pagination_disabled}}</div>
+{%- highlight html -%}{{default_pagination_disabled}}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight1"
->
-    Copy Snippet
-</button>
+>Copy Snippet</button>
+<hr/>
+
+
+<h3>Alignments</h3>
+<p>You can align the pagination buttons using the <code>is-centered</code> & <code>is-right</code> classes</p>
+<h5><code>is-centered</code></h5>
+<div class="sgds-example-others">{{default_pagination_centered}}</div>
+{%- highlight html -%}{{default_pagination_centered}}{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight2"
+>Copy Snippet</button>
+
+<p></p>
+<h5><code>is-right</code></h5>
+<div class="sgds-example-others">{{default_pagination_right}}</div>
+{%- highlight html -%}{{default_pagination_right}}{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight3"
+>Copy Snippet</button>
+<hr/>
+
+<h3>Rounded Pagination buttons</h3>
+<p>You can use <code>.is-rounded</code> to make all pagination buttons rounded.</p>
+<div class="sgds-example-others">{{pagination_rounded}}</div>
+{%- highlight html -%}{{pagination_rounded}}{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight4"
+>Copy Snippet</button>
 
 <hr/>
 
-<h5 class="has-text-weight-semibold">Customisable buttons</h5>
+<h3>Customisable buttons</h3>
 <p>
     You can nest icons instead of text in the previous and next buttons by nesting child elements
     within the <code>a</code> tags.
 </p>
-
-<nav class="sgds-pagination" role="navigation" aria-label="pagination">
-    <a class="sgds-pagination-previous"
-        ><span class="sgds-icon sgds-icon-arrow-left is-size-5"></span
-    ></a>
-    <ul class="sgds-pagination-list">
-        <li class="sgds-pagination-link">1</li>
-        <li class="sgds-pagination-link is-current">2</li>
-        <li class="sgds-pagination-link">3</li>
-    </ul>
-    <a class="sgds-pagination-next"
-        ><span class="sgds-icon sgds-icon-arrow-right is-size-5"></span
-    ></a>
-</nav>
-
-{%- highlight html -%}
-<nav class="sgds-pagination" role="navigation" aria-label="pagination">
-    <a class="sgds-pagination-previous"
-        ><span class="sgds-icon sgds-icon-arrow-left is-size-5"></span
-    ></a>
-    <ul class="sgds-pagination-list">
-        <li class="sgds-pagination-link">1</li>
-        <li class="sgds-pagination-link is-current">2</li>
-        <li class="sgds-pagination-link">3</li>
-    </ul>
-    <a class="sgds-pagination-next"
-        ><span class="sgds-icon sgds-icon-arrow-right is-size-5"></span
-    ></a>
-</nav>
-{%- endhighlight -%}
+<div class="sgds-example-others">{{pagination_customise}}</div>
+{%- highlight html -%}{{pagination_customise}}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight2"
@@ -132,7 +166,7 @@ icon: table
 
 <hr/>
 
-<h5 class="has-text-weight-semibold">Style</h5>
+<h3>Style</h3>
 <table class="table">
     <thead>
         <tr>
