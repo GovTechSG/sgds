@@ -1,6 +1,5 @@
 <section class="sgds-section is-paddingless is-hidden-desktop mobile-side-nav">
 {% if page.url contains "/docs/" %}
-
     <div class="sgds-dropdown is-fullwidth">
         <div class="sgds-dropdown-trigger">
             <button class="sgds-button is-outlined is-large" aria-haspopup="true" aria-controls="sgds-dropdown-menu">
@@ -29,28 +28,27 @@
                         <hr class="margin--bottom--sm margin--top--sm">
                         {% assign name = collection.label %}
                         <p>{{name | capitalize }}</p>
-                            <div class="row is-multiline is-mobile">
-                                {% assign items = site[name] | sort:'order' %}
-                                {% for item in items %}  
-                                <div class="col is-3-desktop is-4-tablet is-6-mobile">
-                                    <a href="{{ item.url }}" class="is-flex component-card">
-                                        <div class="sgds-card sgds-card-button">
-                                            <div class="sgds-card-content has-text-centered">
-                                                <small
-                                                    class="has-text-weight-semibold is-block"
-                                                >
-                                                    {{ item.title }}
-                                                    {%- if item.js -%}
-                                                    <span class="sgds-tag is-rounded margin--left--sm">JS</span>
-                                                    {%- endif -%}
-                                                </small>
-                                            </div>
+                        <div class="row is-multiline is-mobile">
+                            {% assign items = site[name] | sort:'order' %}
+                            {% for item in items %}
+                            <div class="col is-3-desktop is-4-tablet is-6-mobile">
+                                <a href="{{ item.url }}" class="is-flex component-card">
+                                    <div class="sgds-card sgds-card-button">
+                                        <div class="sgds-card-content has-text-centered">
+                                            <small
+                                                class="has-text-weight-semibold is-block"
+                                            >
+                                                {{ item.title }}
+                                                {%- if item.js -%}
+                                                <span class="sgds-tag is-rounded margin--left--sm">JS</span>
+                                                {%- endif -%}
+                                            </small>
                                         </div>
-                                    </a>
-                                </div>
-                                {% endfor %}
+                                    </div>
+                                </a>
                             </div>
-                        
+                            {% endfor %}
+                        </div>
                     {% endif %}
                 {% endfor %}
             </div>
@@ -58,8 +56,8 @@
     </div>
 
 {% endif %}
-{% if page.url contains "/guides/" %}
 
+{% if page.url contains "/guides/" %}
     <div class="sgds-dropdown is-fullwidth">
         <div class="sgds-dropdown-trigger">
             <button class="sgds-button is-outlined is-large" aria-haspopup="true" aria-controls="sgds-dropdown-menu">
@@ -89,6 +87,5 @@
             </div>
         </div>
     </div>
-
 {% endif %}
 </section>

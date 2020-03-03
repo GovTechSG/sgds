@@ -5,136 +5,145 @@ category: General
 icon: table
 ---
 
+<h4 class="has-text-primary">
+    Table present raw data sets and lend meaning to the data, while maintaining that the data is
+    readable, scannable and easily comparable
+</h4>
+<hr />
 
-<h4 class="has-text-primary">Table present raw data sets and lend meaning to the data, while maintaining that the data is readable, scannable and easily comparable</h4>
-<hr/>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Header Field A</th>
+            <th>Header Field B</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Data 1A</td>
+            <td>Data 1B</td>
+        </tr>
+        <tr>
+            <td>Data 2A</td>
+            <td>Data 2B</td>
+        </tr>
+        <tr>
+            <td>Data 3A</td>
+            <td>Data 3B</td>
+        </tr>
+    </tbody>
+</table>
 
+<p>You only need to attach a single <code>table</code> CSS class within the table tag.</p>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Header Field A</th>
-                <th>Header Field B</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Data 1A</td>
-                <td>Data 1B</td>
-            </tr>
-            <tr>
-                <td>Data 2A</td>
-                <td>Data 2B</td>
-            </tr>
-            <tr>
-                <td>Data 3A</td>
-                <td>Data 3B</td>
-            </tr>
-            </tbody>
-        </table>
-
-
-
-        <p>You only need to attach a single <code>table</code> CSS class within the table tag.</p>
-
-        <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <table class="table">
     <thead>
-    <tr>
-        <th>Header Field A</th>
-        <th>Header Field B</th>
-    </tr>
+        <tr>
+            <th>Header Field A</th>
+            <th>Header Field B</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>Data 1A</td>
-        <td>Data 1B</td>
-    </tr>
-    <tr>
-        <td>Data 2A</td>
-        <td>Data 2B</td>
-    </tr>
-    <tr>
-        <td>Data 3A</td>
-        <td>Data 3B</td>
-    </tr>
+        <tr>
+            <td>Data 1A</td>
+            <td>Data 1B</td>
+        </tr>
+        <tr>
+            <td>Data 2A</td>
+            <td>Data 2B</td>
+        </tr>
+        <tr>
+            <td>Data 3A</td>
+            <td>Data 3B</td>
+        </tr>
     </tbody>
 </table>
 {%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy Snippet</button>
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy Snippet
+</button>
 
 <h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
-<p>You should use the table component when you want to display tabular information such as statistics or if you want
-    users to compare information.
+<p>
+    You should use the table component when you want to display tabular information such as
+    statistics or if you want users to compare information.
 </p>
 
 <h4 class="margin--top--lg has-text-weight-semibold">When you should consider something else</h4>
 <p>When displaying non-tabular data, consider using lists instead.</p>
 <p>A table should never be used to layout a page or be used in large sections within a page.</p>
 
-
-
-<hr/>
-
+<hr />
 
 <h5 class="has-text-weight-semibold">Horizontal Table</h5>
-<p>You can use this table without the emphasis of a table header. Just add a class<code>.table-h</code></p>
+<p>
+    You can use this table without the emphasis of a table header. Just add a class<code
+        >.table-h</code
+    >
+</p>
 <!--Add class name table-h for horizontal tables-->
 <table class="table table-h">
     <tbody>
-    <tr>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-    </tr>
-    <tr>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-    </tr>
-    <tr>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-    </tr>
+        <tr>
+            <th>Lorem ipsum dolor.</th>
+            <th>Lorem ipsum dolor.</th>
+            <th>Lorem ipsum dolor.</th>
+            <th>Lorem ipsum dolor.</th>
+        </tr>
+        <tr>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+        </tr>
+        <tr>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+        </tr>
     </tbody>
 </table>
-
 
 <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <!--Add class name table-h for horizontal tables-->
 <table class="table table-h">
     <tbody>
-    <tr>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-    </tr>
-    <tr>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-    </tr>
-    <tr>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-        <td>Lorem ipsum dolor.</td>
-    </tr>
+        <tr>
+            <th>Lorem ipsum dolor.</td>
+            <th>Lorem ipsum dolor.</td>
+            <th>Lorem ipsum dolor.</td>
+            <th>Lorem ipsum dolor.</td>
+        </tr>
+        <tr>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+        </tr>
+        <tr>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+            <td>Lorem ipsum dolor.</td>
+        </tr>
     </tbody>
 </table>
 {%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy Snippet</button>
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight1"
+>
+    Copy Snippet
+</button>
 
-<hr/>
-
+<hr />
 
 <h5 class="has-text-weight-semibold">Vertical Header Table</h5>
 <p>You can use this table with left header header. Just add a class<code>.table-v</code></p>
@@ -183,45 +192,49 @@ icon: table
         <td>Lorem ipsum dolor.</td>
     </tr>
 </table>
+
 {%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>Copy Snippet</button>
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight2"
+>
+    Copy Snippet
+</button>
 
-
-<hr/>
-
+<hr />
 
 <h5 class="has-text-weight-semibold">Style</h5>
 <table class="table">
     <thead>
-    <tr>
-        <th>Modifier</th>
-        <th>Description</th>
-    </tr>
+        <tr>
+            <th>Modifier</th>
+            <th>Description</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>is-bordered</td>
-        <td>Use when you want to add borders to all the cells</td>
-    </tr>
-    <tr>
-        <td>is-striped</td>
-        <td>Use when you want to add stripes to all the cells</td>
-    </tr>
-    <tr>
-        <td>is-narrow</td>
-        <td>Use when you want to make the cells narrower</td>
-    </tr>
-    <tr>
-        <td>is-hoverable</td>
-        <td>Use when you want to add hover effect on each row</td>
-    </tr>
-    <tr>
-        <td>is-fullwidth</td>
-        <td>Use when you want to have a fullwidth table</td>
-    </tr>
+        <tr>
+            <td>is-bordered</td>
+            <td>Use when you want to add borders to all the cells</td>
+        </tr>
+        <tr>
+            <td>is-striped</td>
+            <td>Use when you want to add stripes to all the cells</td>
+        </tr>
+        <tr>
+            <td>is-narrow</td>
+            <td>Use when you want to make the cells narrower</td>
+        </tr>
+        <tr>
+            <td>is-hoverable</td>
+            <td>Use when you want to add hover effect on each row</td>
+        </tr>
+        <tr>
+            <td>is-fullwidth</td>
+            <td>Use when you want to have a fullwidth table</td>
+        </tr>
     </tbody>
 </table>
 
-<hr/>
+<hr />
 
 {%- include sgds-feedback.html -%}

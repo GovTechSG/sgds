@@ -5,12 +5,7 @@ category: General
 icon: dropdown
 js: true
 ---
-<h4 class="has-text-primary">
-    Dropdowns allow users to select a option from a list in a menu
-</h4>
-
-<hr/>
-
+{% capture default_dropdown %}
 <div class="sgds-dropdown">
     <div class="sgds-dropdown-trigger">
         <button class="sgds-button" aria-haspopup="true" aria-controls="sgds-dropdown-menu">
@@ -71,49 +66,35 @@ js: true
         </div>
     </div>
 </div>
+{% endcapture %}
 
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-<p>Use this code snippet to any part of your project.</p>
-{%- highlight html -%}
-<div class="sgds-dropdown">
-    <div class="sgds-dropdown-trigger">
-        <button class="sgds-button" aria-haspopup="true" aria-controls="sgds-dropdown-menu">
-            <span>Click me</span>
-            <span class="icon">
-                <span class="sgds-icon sgds-icon-chevron-down"></span>
-            </span>
-        </button>
-    </div>
-    <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
-        <div class="sgds-dropdown-content">
-            <a href="#" class="sgds-dropdown-item">Dropdown item</a>
-            <a class="sgds-dropdown-item">Other dropdown item</a>
-            <a href="#" class="sgds-dropdown-item is-active">Active dropdown item</a>
-            <a href="#" class="sgds-dropdown-item">Other dropdown item</a>
-            <hr class="sgds-dropdown-divider">
-            <a href="#" class="sgds-dropdown-item">With a divider</a>
-        </div>
-    </div>
+<h2>
+    Dropdowns allow users to select a option from a list in a menu
+</h2>
+
+<hr/>
+<div class="sgds-example-others">
+    {{default_dropdown}}
 </div>
-{%- endhighlight -%}
+{%- highlight html -%}{{default_dropdown}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy
             snippet</button>
 
-            <h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
-            <p>Dropdowns should be used sparingly. Ideally, you should use dropdowns when you have limited space or if your list is too long.
-                E.g Having more than 7 items in a predetermined list.
-            </p>
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
+<p>Dropdowns should be used sparingly. Ideally, you should use dropdowns when you have limited space or if your list is too long.
+    E.g Having more than 7 items in a predetermined list.
+</p>
 
-            <p>Dropdowns content should bring users to a different page or section within a page.
-                </p>
-            
-            <h4 class="margin--top--lg has-text-weight-semibold">When you should consider something else</h4>
-            <p>If you require users to select from a predetermined list of answers, do consider using the <a href="/docs/checkbox/">checkbox</a> or <a href="/docs/radio-buttons/">radios</a> component.
-                Try not to use checkboxes in the dropdown component as users may not know how to select multiple options presented to them in a dropdown.
-            </p>
+<p>Dropdowns content should bring users to a different page or section within a page.
+    </p>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should consider something else</h4>
+<p>If you require users to select from a predetermined list of answers, do consider using the <a href="/docs/checkbox/">checkbox</a> or <a href="/docs/radio-buttons/">radios</a> component.
+    Try not to use checkboxes in the dropdown component as users may not know how to select multiple options presented to them in a dropdown.
+</p>
 <hr/>
 
-<h5 class="has-text-weight-semibold">Style</h5>
+<h3 class="has-text-weight-semibold">Style</h5>
 <table class="table">
     <thead>
         <tr>

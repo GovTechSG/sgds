@@ -1,0 +1,168 @@
+---
+title: Date
+layout: layout-docs
+---
+
+<h2>
+    Help your users fill in dates that are required for your service.
+</h2>
+
+<hr />
+
+<h3>General date format</h3>
+<div class="sgds-example-others">
+<h5>
+    Please enter your date of birth
+    <span class="hint">E.g 01 01 1990</span>
+</h5>
+
+<div class="field row is-mobile">
+    <div class="col is-3-mobile is-2-desktop">
+        <label class="label" for="dob-day">Day</label>
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                id="bday-day"
+                name="bday-day"
+                autocomplete="bday-day"
+                pattern="[0-9]"
+                maxlength="2"
+            />
+        </div>
+    </div>
+
+    <div class="col is-3-mobile is-2-desktop">
+        <label class="label" for="dob-month">Month</label>
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                id="bday-month"
+                name="bday-month"
+                autocomplete="bday-month"
+                pattern="[0-9]"
+                maxlength="2"
+            />
+        </div>
+    </div>
+
+    <div class="col is-3-mobile is-3-desktop">
+        <label class="label" for="dob-year">Year</label>
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                id="bday-year"
+                name="bday-year"
+                autocomplete="bday-year"
+                pattern="[0-9]"
+                maxlength="4"
+            />
+        </div>
+    </div>
+</div>
+</div>
+
+{%- highlight html -%}
+<div class="field row is-mobile">
+    <div class="col is-3-mobile is-2-desktop">
+        <label class="label" for="dob-day">Day</label>
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                id="bday-day"
+                name="bday-day"
+                autocomplete="bday-day"
+                pattern="[0-9]"
+                maxlength="2"
+            />
+        </div>
+    </div>
+
+    <div class="col is-3-mobile is-2-desktop">
+        <label class="label" for="dob-month">Month</label>
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                id="bday-month"
+                name="bday-month"
+                autocomplete="bday-month"
+                pattern="[0-9]"
+                maxlength="2"
+            />
+        </div>
+    </div>
+
+    <div class="col is-3-mobile is-3-desktop">
+        <label class="label" for="dob-year">Year</label>
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                id="bday-year"
+                name="bday-year"
+                autocomplete="bday-year"
+                pattern="[0-9]"
+                maxlength="4"
+            />
+        </div>
+    </div>
+</div>
+{%- endhighlight -%}
+
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<h4 class="margin--top--lg">When you should use this pattern</h4>
+<p>
+    Use this pattern when you want to ask users for a specific date. E.g Their date of birth or when
+    something was issued to them. However, there may be instances where you need users to select
+    from a few specific dates, in this case, you may use the radio button component to display them.
+</p>
+
+<hr/>
+
+<h3>Guidelines</h3>
+<h4>Date format</h4>
+<p>
+    Help users fill in dates for your services by:
+</p>
+<ul>
+    <li>
+        Ensuring that you state clearly how the date should be filled in. E.g Day Month Year
+    </li>
+    <li>
+        Ensuring that you give a example of how the date should be filled. E.g 01 01 2020 vs 1 1
+        2020
+    </li>
+</ul>
+
+<h4 class="margin--top--lg">Memorable dates</h4>
+<p>
+    When asking for memorable dates such as date of birth, do ensure that:
+</p>
+<ul>
+    <li>
+        The fields, in this example, should always have the
+        <code>autocomplete</code> attribute for these 3 fields, <code>bday-day</code>,
+        <code>bday-month</code> and <code>bday-year</code> to help your users complete it quickly.
+    </li>
+    <li>You will need to include the <code>autocomplete</code> attribute to meet
+        <a
+            href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+            target="_blank"
+            >WCAG 2.1 AA</a
+        >
+        for production.</li>
+</ul>
+
+<hr />
+
+{%- include sgds-feedback.html -%}

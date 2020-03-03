@@ -45,19 +45,18 @@ coloursList:
 
 ---
 
-<h3 class="has-text-primary">SGDS Colour classes</h3>
+<h2>SGDS Colour classes</h2>
 
+<hr />
+
+<h3 class="has-text-primary">Colour classes</h3>
 <p>
     SGDS contains predefined classes that apply different colours to specific
     elements. You can use these colour classes by adding <code>is-</code> or
     <code>has-</code> prefixes to most elements.
 </p>
 
-<hr />
-
-<h4 class="has-text-primary">Colour classes</h4>
-
-<div class="row is-multiline">
+<div class="row is-multiline margin--top--sm">
     {%- for colour in page.coloursList -%}
     <div class="col is-3 has-background-{{colour.name}}
         {% if colour.name == 'white' or colour.name == 'light' or colour.name == 'warning' -%}
@@ -85,7 +84,7 @@ coloursList:
 
 <hr/>
 
-<h4 class="has-text-primary">Component colours</h4>
+<h3>Component colours</h3>
 <p>Use the <code>is-*color*</code> class to set the component colours for:</p>
 
 <ul>
@@ -98,7 +97,7 @@ coloursList:
 
 <p>Example of <code>is-*color*</code> classes for the <a href="/doc/button/">Button</a> component:</p>
 
-<table class="sgds-table">
+<table class="table margin--top--sm">
     <thead>
         <tr>
             <th>Class</th>
@@ -125,9 +124,9 @@ coloursList:
 
 <hr />
 
-<h4 class="has-text-primary">Text colours</h4>
+<h4>Text colours</h4>
 
-<table class="sgds-table">
+<table class="table">
     <thead>
         <tr>
             <th>Class</th>
@@ -162,9 +161,9 @@ Use the <code>has-text-{{ colour.name }}</code> colour class to set text colour
 
 <hr/>
 
-<h4 class="has-text-primary">Background colours</h4>
+<h4>Background colours</h4>
 
-<table class="sgds-table">
+<table class="table">
     <thead>
         <tr>
             <th>Class</th>

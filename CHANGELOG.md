@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.10] - 26-02-2020
+
+### Components
+
+- Default Toast Notification now has higher contrast border color
+
+### Docs
+
+- Added breadcrumb variations
+
+### Patterns
+
+- Added pattern groups and documentation
+
 ## [1.3.9] - 13-12-2019
 
 ### Components

@@ -1,0 +1,222 @@
+---
+title: Names
+layout: layout-docs
+---
+
+<h2>
+    Use this pattern when you need to ask users for their names
+</h2>
+
+<hr />
+<h3>General name field</h3>
+<div class="sgds-example-others">
+<div class="field">
+    <label class="label" for="name">Full Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+</div>
+
+{%- highlight html -%}
+<div class="field">
+    <label class="label" for="name">Full Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            spellcheck="false"
+        />
+    </div>
+</div>v>
+</div>
+{%- endhighlight -%}
+
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this pattern</h4>
+<p>
+    You should follow this pattern when you need to ask for a user’s name and only ask for names if
+    you need it for a service.
+</p>
+
+<hr/>
+
+<h3>Multiline name field</h3>
+<div class="sgds-example-others">
+<div class="field">
+    <label class="label" for="given-name">Given Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="given-name"
+            name="given-name"
+            type="text"
+            autocomplete="given-name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+<div class="field margin--top--lg">
+    <label class="label" for="family-name">Family Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="family-name"
+            name="family-name"
+            type="text"
+            autocomplete="family-name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+</div>
+
+{%- highlight html -%}
+<div class="field">
+    <label class="label" for="given-name">Given Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="given-name"
+            name="given-name"
+            type="text"
+            autocomplete="given-name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+<div class="field margin--top--lg">
+    <label class="label" for="family-name">Family Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="family-name"
+            name="family-name"
+            type="text"
+            autocomplete="family-name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+{%- endhighlight -%}
+
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this pattern</h4>
+<p>
+    You should follow this pattern when you know that your users follow the given-name and family-name convention.
+</p>
+
+<hr/>
+
+<h3>Guidelines</h3>
+<h4>Make sure the name field works for your users</h4>
+<p>
+    Name fields should be long enough to accomodate the names of your users. Do make sure that you
+    support all characters that users may need to enter, including symbols and numbers.
+</p>
+
+<p>
+    Do ensure that you do not spellcheck a user's name by setting the <code>spellcheck</code> attribute to <code>false</code>
+</p>
+
+<h4>Single name fields</h4>
+<p>
+    This can accomodate the widest range of name types and formats and is recommended to reduce the
+    risk that your user's enter their name in the incorrect format. However by using this, you may
+    not be able to extract parts of a name.
+</p>
+
+<h4>Multiple name fields</h4>
+<p>
+    Use multiple name fields based on your user's needs. Not everyone's name fits the general
+    first-name, last-name convention. Using multiple name fields increases the risk that a person's
+    name will not fit the same convention and may be entered incorrectly.
+</p>
+
+<h4>Labelling of name fields</h4>
+<p>
+    For single name fields, use "Full name".
+</p>
+
+<p>
+    For multiple name fields, use:
+</p>
+<ul>
+    <li>'Given name'</li>
+    <li>'Family name'</li>
+</ul>
+
+<p>
+    Do make it clear whether you are asking for a user's common name, or as written on a official
+    document such as NRIC or passport.
+</p>
+
+<p>
+    If you are unsure of how your users will fill in their name or know that you have a wide range
+    of users with different formats for their names, it is highly recommended to use a single name
+    field.
+</p>
+
+<p class="has-text-weight-bold">
+    This is to ensure that your users:
+</p>
+<ul>
+    <li>Do not get confused as to how they should be filling in their name</li>
+    <li>
+        Reduce the risk that their name may be filled in wrongly
+    </li>
+</ul>
+
+<h4>Autocomplete</h4>
+<p>
+    Do use the <code>autocomplete</code> attribute when asking for a user's name. This makes it easier
+    for the user to fill in their name if they have done so previously on the browser.
+</p>
+
+<ul>
+    <li>Full name: use <code>name</code></li>
+    <li>Given name: use <code>given-name</code></li>
+    <li>Family name: use <code>family-name</code></li>
+</ul>
+
+<p>
+    You will need to include the <code>autocomplete</code> attribute to meet
+        <a
+            href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+            target="_blank"
+            >WCAG 2.1 AA</a
+        >
+        for production.
+</p>
+
+<hr />
+
+{%- include sgds-feedback.html -%}

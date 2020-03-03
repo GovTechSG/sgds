@@ -1,0 +1,157 @@
+---
+title: Address
+layout: layout-docs
+---
+
+<h2>
+    Help your users fill in their addresses
+</h2>
+
+<hr />
+
+<h3>General Address Format</h3>
+<div class="sgds-example-others">
+<div class="field">
+    <label class="label" for="postal-code">Postal Code</label>
+    <div class="control">
+        <input class="input col is-4" 
+        type="text"
+        name="postal-code" 
+        id="postal-code"
+        autocomplete="postal-code" />
+    </div>
+    <div>
+        <button class="sgds-button is-primary margin--top--lg">Find Address</button>
+    </div>
+</div>
+
+<div class="field margin--top--lg">
+    <label class="label" for="street-name">Block/Street Name</label>
+    <div class="control">
+        <input
+            class="input margin--bottom--lg col is-8"
+            type="text"
+            name="street-address"
+            id="street-address"
+            autocomplete="street-address"
+        />
+    </div>
+</div>
+
+<div class="field">
+    <label class="label" for="building-number">Building/House Number</label>
+    <span class="hint">If applicable</span>
+    <div class="control">
+        <input class="input margin--bottom--lg col is-4" 
+        type="text"
+        name="building-number" 
+        id="building-number" />
+    </div>
+</div>
+
+<div class="field">
+    <label class="label" for="unit-number">Unit Number</label>
+    <div class="control">
+        <input
+            class="input margin--bottom--lg col is-4"
+            type="text"
+            id="unit-number"
+            name="unit-number"
+            autocomplete="unit-number"
+        />
+    </div>
+</div>
+</div>
+
+{%- highlight html -%}
+<div class="field">
+    <label class="label" for="postal-code">Postal Code</label>
+    <div class="control">
+        <input class="input col is-4" 
+        type="text"
+        name="postal-code" 
+        id="postal-code"
+        autocomplete="postal-code" />
+    </div>
+    <div>
+        <button class="sgds-button is-primary margin--top--lg">Find Address</button>
+    </div>
+</div>
+
+<div class="field margin--top--lg">
+    <label class="label" for="street-name">Block/Street Name</label>
+    <div class="control">
+        <input
+            class="input margin--bottom--lg col is-8"
+            type="text"
+            name="street-address"
+            id="street-address"
+            autocomplete="street-address"
+        />
+    </div>
+</div>
+
+<div class="field">
+    <label class="label" for="building-number">Building/House Number</label>
+    <span class="hint">If applicable</span>
+    <div class="control">
+        <input class="input margin--bottom--lg col is-4" 
+        type="text"
+        name="building-number" 
+        id="building-number" />
+    </div>
+</div>
+
+<div class="field">
+    <label class="label" for="unit-number">Unit Number</label>
+    <div class="control">
+        <input
+            class="input margin--bottom--lg col is-4"
+            type="text"
+            id="unit-number"
+            name="unit-number"
+            autocomplete="unit-number"
+        />
+    </div>
+</div>
+{%- endhighlight -%}
+
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<h4 class="margin--top--lg has-text-weight-semibold">When you should use this pattern</h4>
+<p>
+    Use this pattern when you want to ask users for a Singapore address. You should allow users to
+    key in their postal code to lookup their address and also allow them to enter it manually.
+</p>
+
+<hr/>
+
+<h3>Guidelines</h3>
+
+<h4>Address lookup</h4>
+<ul>
+    <li>Make it clear to users that this will only work with Singapore addresses.</li>
+    <li>Use the address lookup only if you are asking for a Singapore address, else use use multiple
+        text inputs or a text area when asking for addresses outside of Singapore.</li>
+</ul>
+
+<h4>Entering manually</h4>
+<ul>
+    <li>The fields should always have the <code>autocomplete</code> attribute to help your users
+        complete it quickly.</li>
+    <li>You will need to include the <code>autocomplete</code> attribute to meet
+        <a
+            href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+            target="_blank"
+            >WCAG 2.1 AA</a
+        >
+        for production.</li>
+</ul>
+<hr />
+
+{%- include sgds-feedback.html -%}
