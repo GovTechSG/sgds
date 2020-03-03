@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added breadcrumb variations
 
+### Patterns
+
+- Added pattern groups and documentation
+
 ## [1.3.9] - 13-12-2019
 
 ### Components
