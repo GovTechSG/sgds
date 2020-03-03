@@ -44,11 +44,15 @@ module.exports = env => {
             {
               loader: "css-loader",
               options: {
-                url: false
+                url: false,
+                sourceMap: true
               }
             },
             {
-              loader: "sass-loader"
+              loader: "sass-loader",
+              options: {
+                sourceMap: true
+              }
             }
           ]
         },

@@ -3,18 +3,26 @@ title: Address
 layout: layout-docs
 ---
 
-<h3 class="has-text-primary">
+<h2>
     Help your users fill in their addresses
-</h3>
+</h2>
 
 <hr />
 
+<h3>General Address Format</h3>
+<div class="sgds-example-others">
 <div class="field">
     <label class="label" for="postal-code">Postal Code</label>
     <div class="control">
-        <input class="input col is-4" type="text" id="postal-code" autocomplete="postal-code" />
+        <input class="input col is-4" 
+        type="text"
+        name="postal-code" 
+        id="postal-code"
+        autocomplete="postal-code" />
     </div>
-    <div><button class="sgds-button is-primary margin--top--lg">Find Address</button></div>
+    <div>
+        <button class="sgds-button is-primary margin--top--lg">Find Address</button>
+    </div>
 </div>
 
 <div class="field margin--top--lg">
@@ -23,7 +31,8 @@ layout: layout-docs
         <input
             class="input margin--bottom--lg col is-8"
             type="text"
-            id="street-name"
+            name="street-address"
+            id="street-address"
             autocomplete="street-address"
         />
     </div>
@@ -33,7 +42,10 @@ layout: layout-docs
     <label class="label" for="building-number">Building/House Number</label>
     <span class="hint">If applicable</span>
     <div class="control">
-        <input class="input margin--bottom--lg col is-4" type="text" id="building-number" />
+        <input class="input margin--bottom--lg col is-4" 
+        type="text"
+        name="building-number" 
+        id="building-number" />
     </div>
 </div>
 
@@ -44,20 +56,26 @@ layout: layout-docs
             class="input margin--bottom--lg col is-4"
             type="text"
             id="unit-number"
-            autocomplete="unit number"
+            name="unit-number"
+            autocomplete="unit-number"
         />
     </div>
 </div>
-
-<h5 class="margin--top--lg">Component Code</h5>
+</div>
 
 {%- highlight html -%}
 <div class="field">
     <label class="label" for="postal-code">Postal Code</label>
     <div class="control">
-        <input class="input col is-4" type="text" id="postal-code" autocomplete="postal-code" />
+        <input class="input col is-4" 
+        type="text"
+        name="postal-code" 
+        id="postal-code"
+        autocomplete="postal-code" />
     </div>
-    <div><button class="sgds-button is-primary margin--top--lg">Find Address</button></div>
+    <div>
+        <button class="sgds-button is-primary margin--top--lg">Find Address</button>
+    </div>
 </div>
 
 <div class="field margin--top--lg">
@@ -66,7 +84,8 @@ layout: layout-docs
         <input
             class="input margin--bottom--lg col is-8"
             type="text"
-            id="street-name"
+            name="street-address"
+            id="street-address"
             autocomplete="street-address"
         />
     </div>
@@ -76,7 +95,10 @@ layout: layout-docs
     <label class="label" for="building-number">Building/House Number</label>
     <span class="hint">If applicable</span>
     <div class="control">
-        <input class="input margin--bottom--lg col is-4" type="text" id="building-number" />
+        <input class="input margin--bottom--lg col is-4" 
+        type="text"
+        name="building-number" 
+        id="building-number" />
     </div>
 </div>
 
@@ -87,7 +109,8 @@ layout: layout-docs
             class="input margin--bottom--lg col is-4"
             type="text"
             id="unit-number"
-            autocomplete="unit number"
+            name="unit-number"
+            autocomplete="unit-number"
         />
     </div>
 </div>
@@ -106,31 +129,29 @@ layout: layout-docs
     key in their postal code to lookup their address and also allow them to enter it manually.
 </p>
 
-<h4 class="margin--top--lg has-text-weight-semibold">Guidelines</h4>
-<h5>Address lookup</h5>
-<p>
-    Make it clear to users that this will only work with Singapore addresses.
-</p>
-<p>
-    Use the address lookup only if you are asking for a Singapore address, else use use multiple
-    text inputs or a text area when asking for addresses outside of Singapore.
-</p>
+<hr/>
 
-<p>
-    The fields should always have the <code>autocomplete</code> attribute to help your users
-    complete it quickly.
-</p>
+<h3>Guidelines</h3>
 
-<p>
-    You will need to include the <code>autocomplete</code> attribute to meet
-    <a
-        href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
-        target="_blank"
-        >WCAG 2.1 AA</a
-    >
-    for production.
-</p>
+<h4>Address lookup</h4>
+<ul>
+    <li>Make it clear to users that this will only work with Singapore addresses.</li>
+    <li>Use the address lookup only if you are asking for a Singapore address, else use use multiple
+        text inputs or a text area when asking for addresses outside of Singapore.</li>
+</ul>
 
+<h4>Entering manually</h4>
+<ul>
+    <li>The fields should always have the <code>autocomplete</code> attribute to help your users
+        complete it quickly.</li>
+    <li>You will need to include the <code>autocomplete</code> attribute to meet
+        <a
+            href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+            target="_blank"
+            >WCAG 2.1 AA</a
+        >
+        for production.</li>
+</ul>
 <hr />
 
 {%- include sgds-feedback.html -%}

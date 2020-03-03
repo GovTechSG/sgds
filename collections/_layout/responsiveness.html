@@ -43,13 +43,13 @@ icon: container
 </div>
 {% endcapture %}
 
-<h4 class="has-text-primary">
+<h2>
   Use responsive classes to define how the <a href="/docs/grid">grid</a> behaves at different screen sizes.
-</h4>
+</h2>
 
 <hr />
 
-<h5>Breakpoints</h5>
+<h3>Breakpoints</h3>
 <p>
   Under the <a href="/docs/grid">grid system</a>, each column's width can be defined for a
   specific viewport size: <b>mobile, tablet, desktop, widescreen and fullhd</b>.
@@ -101,17 +101,15 @@ icon: container
 <div class="sgds-example is-marginless">
   {{is-device-example}}
 </div>
-<div class="sgds-container margin--top--lg">
-  <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-  {% highlight html %}{{is-device-example}}{% endhighlight %}
-  <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight0">
-    Copy Snippet
-  </button>
-</div>
+{% highlight html %}{{is-device-example}}{% endhighlight %}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight0">
+  Copy Snippet
+</button>
+
 
 <hr />
 
-<h5>Mobile Columns</h5>
+<h3>Mobile Columns</h3>
 <p>
   By default, columns <code>col</code> are stacked on top of each other on mobile.
   To have columns displayed in a row on mobile, add the <code>is-mobile</code> class to the <code>row</code> container:
@@ -119,14 +117,11 @@ icon: container
 <div class="sgds-example is-marginless">
   {{ is-mobile-example }}
 </div>
+{% highlight html %}{{ is-mobile-example }}{% endhighlight %}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight1">
+  Copy Snippet
+</button>
 
-<div class="sgds-container margin--top--lg">
-    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-      {% highlight html %}{{ is-mobile-example }}{% endhighlight %}
-      <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight1">
-        Copy Snippet
-      </button>
-</div>
 
 <hr />
 
@@ -137,10 +132,11 @@ icon: container
 <div class="sgds-example is-marginless">
   {{ is-desktop-example }}
 </div>
-<div class="sgds--container margin--top--lg">
-    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-      {% highlight html %}{{ is-desktop-example }}{% endhighlight %}
-      <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight2">
-        Copy Snippet
-      </button>
-</div>
+{% highlight html %}{{ is-desktop-example }}{% endhighlight %}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight2">
+  Copy Snippet
+</button>
+
+<hr />
+
+{%- include sgds-feedback.html -%}

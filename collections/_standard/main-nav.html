@@ -320,11 +320,11 @@ order: 2
 </div>
 {% endcapture %}
 
-<h4 class="has-text-primary">
+<h2>
     All .gov.sg informational services shall
     adopt a Global Primary Navigation Panel
     across all pages
-</h4>
+</h2>
 
 <div class="sgds-notification is-toast-warning margin--top margin--bottom">
     <div class="sgds-notification-detail">
@@ -342,23 +342,21 @@ order: 2
 
 <hr />
 
-<h5>
+<h3>
     Basic main navigation example
-</h5>
-
+</h3>
+<div class="sgds-example-others">
 {{ default_navbar_example }}
-
-<div class="sgds-container margin--top--lg">
-    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-    {%- highlight html -%}{{default_navbar_example}}{%- endhighlight -%}
-    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight0">
-        Copy Snippet
-    </button>
 </div>
+{%- highlight html -%}{{default_navbar_example}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight0">
+    Copy Snippet
+</button>
 
-<hr class="margin--top margin--bottom">
 
-<h6>Navbar sections</h6>
+<hr/>
+
+<h3>Navbar sections</h3>
 
 <p>The <code>sgds-navbar</code> component supports 3 types of direct children containers:</p>
 <ul>
@@ -385,9 +383,9 @@ order: 2
     </li>
 </ul>
 
-<hr class="margin--bottom margin--top" />
+<hr />
 
-<h6>Burger button on mobile views <span class="sgds-tag is-rounded margin--left--sm">JS</span></h6>
+<h3>Burger button on mobile views <span class="sgds-tag is-rounded margin--left--sm">JS</span></h3>
 
 <p>
     Since the <code>.sgds-navbar-menu</code> element is hidden on mobile devices, you can add a
@@ -398,94 +396,78 @@ order: 2
 <hr />
 
 <!-- Main Nav 2 -->
-
+<h3>With dropdown</h3>
 <p>
     Main nav that has a dropdown for secondary selection. Suitable for medium-sized websites.
 </p>
 
-{{dropdown_navbar_example}}
-
-<div class="sgds-container margin--top--lg">
-    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-    {%- highlight html -%}{{dropdown_navbar_example}}{%- endhighlight -%}
+<div class="sgds-example-others">{{dropdown_navbar_example}}</div>
+{%- highlight html -%}{{dropdown_navbar_example}}{%- endhighlight -%}
     <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight1">
         Copy Snippet
     </button>
-</div>
+
 
 <hr />
 
 <!-- Main Nav 3 -->
-
+<h3>With mega menu</h3>
 <p>
     Main nav with a mega menu for secondary selection. Suitable for large-sized websites.
 </p>
 
-{{mega_menu_navbar_example}}
+<div class="sgds-example-others">{{mega_menu_navbar_example}}</div>
+{%- highlight html -%}{{mega_menu_navbar_example}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight2">
+    Copy Snippet
+</button>
 
-<div class="sgds-container margin--top--lg">
-    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-    {%- highlight html -%}{{mega_menu_navbar_example}}{%- endhighlight -%}
-    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight2">
-        Copy Snippet
-    </button>
-</div>
 
 <hr />
 
 <!-- Main Nav 4 -->
-
+<h3>With search bars</h3>
 <p>To add search bars to your main mav, please import <code>sgds.js</code>.</p>
-
-{{searchbar_navbar_example}}
-
-<div class="sgds-container margin--top--lg">
-    {%- highlight html -%}{{searchbar_navbar_example}}{%- endhighlight -%}
-    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight3">
-        Copy Snippet
-    </button>
-</div>
+<div class="sgds-example-others">{{searchbar_navbar_example}}</div>
+{%- highlight html -%}{{searchbar_navbar_example}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight3">
+    Copy Snippet
+</button>
 
 <hr />
 
 <!-- Main Nav 5 -->
 
-<p>
+<!-- <p>
     To accommodate links containing longer text, add <code>.has-item-max-width</code> to <code>.sgds-navbar-start</code>
     or <code>.sgds-navbar-end</code>
     to fix the width of their children <code>.sgds-navbar-item</code> elements.
 </p>
 
-{{item_width_navbar_example}}
+<div class="sgds-example-others">{{item_width_navbar_example}}</div>
+{%- highlight html -%}{{item_width_navbar_example}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight4">
+    Copy Snippet
+</button>
 
-<div class="sgds-container margin--top--lg">
-    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-    {%- highlight html -%}{{item_width_navbar_example}}{%- endhighlight -%}
-    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight4">
-        Copy Snippet
-    </button>
-</div>
 
-<hr />
+<hr /> -->
 <!-- Main Nav 5 -->
-
+<h3>Full width Navbar</h3>
 <p>
     To make make a full width navbar, You can wrap <code>.sgds-container.is-fluid</code>
     around <code>sgds-navbar</code>
 </p>
+<div class="sgds-example-others">{{ fullwidth_navbar_example }}</div>
+{%- highlight html -%}{{fullwidth_navbar_example}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight5">
+    Copy Snippet
+</button>
 
-{{ fullwidth_navbar_example }}
-
-<div class="sgds-container margin--top--lg">
-    {%- highlight html -%}{{fullwidth_navbar_example}}{%- endhighlight -%}
-    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight5">
-        Copy Snippet
-    </button>
-</div>
 
 <hr />
 
-<h5>Guidelines</h5>
+<h3>Guidelines</h3>
 <p>Main navs should:</p>
 <ul>
     <li>Be positioned below the masthead of every page</li>

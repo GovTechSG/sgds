@@ -4,44 +4,78 @@ layout: layout-docs
 category: General
 icon: notification
 ---
+{% capture default_notification %}
+<div class="sgds-notification">
+    <div class="sgds-notification-detail">
+        <div class="sgds-notification-content">
+            <p class="has-text-weight-bold">Updates</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
+                dicta, ea facere fugit incidunt laborum officia quod unde.
+            </p>
+        </div>
+        <span class="delete" id="cancel-notification"></span>
+    </div>
+</div>
+{% endcapture %}
 
-<h4 class="has-text-primary">
+{% capture with_icon_notification %}
+<div class="sgds-notification">
+    <div class="sgds-notification-detail">
+        <span class="sgds-icon sgds-icon-callout is-size-4"></span>
+        <div class="sgds-notification-content">
+            <p class="has-text-weight-bold">Updates</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
+                dicta, ea facere fugit incidunt laborum officia quod unde.
+            </p>
+        </div>
+        <span class="delete" id="cancel-notification"></span>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture default_toast %}
+<div class="sgds-notification is-toast">
+    <div class="sgds-notification-detail">
+        <div class="sgds-notification-content">
+            <p class="has-text-weight-bold">Updates</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
+                dicta, ea facere fugit incidunt laborum officia quod unde.
+            </p>
+        </div>
+        <span class="delete" id="cancel-notification"></span>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture with_icon_toast %}
+<div class="sgds-notification is-toast">
+    <div class="sgds-notification-detail">
+        <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
+        <div class="sgds-notification-content">
+            <p class="has-text-weight-bold">Updates</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
+                dicta, ea facere fugit incidunt laborum officia quod unde.
+            </p>
+        </div>
+        <span class="delete" id="cancel-notification"></span>
+    </div>
+</div>
+{% endcapture %}
+
+<h2>
     The notification component allows you to display critical or important information that the
     users need to be aware of.
-</h4>
+</h2>
 
 <hr />
 
-<h5 class="has-text-weight-semibold">Default {{page.title}}</h5>
-
-<div class="sgds-notification">
-    <div class="sgds-notification-detail">
-        <div class="sgds-notification-content">
-            <p class="has-text-weight-bold">Updates</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
-                dicta, ea facere fugit incidunt laborum officia quod unde.
-            </p>
-        </div>
-        <span class="delete" id="cancel-notification"></span>
-    </div>
-</div>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-{%- highlight html -%}
-<div class="sgds-notification">
-    <div class="sgds-notification-detail">
-        <div class="sgds-notification-content">
-            <p class="has-text-weight-bold">Updates</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
-                dicta, ea facere fugit incidunt laborum officia quod unde.
-            </p>
-        </div>
-        <span class="delete" id="cancel-notification"></span>
-    </div>
-</div>
-{%- endhighlight -%}
+<h3>Default {{page.title}}</h3>
+<div class="sgds-example-others">{{default_notification}}</div>
+{%- highlight html -%}{{default_notification}}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight0"
@@ -51,38 +85,9 @@ icon: notification
 
 <hr />
 
-<h5 class="has-text-weight-semibold">Default {{page.title}} with Icon</h5>
-
-<div class="sgds-notification">
-    <div class="sgds-notification-detail">
-        <span class="sgds-icon sgds-icon-callout is-size-4"></span>
-        <div class="sgds-notification-content">
-            <p class="has-text-weight-bold">Updates</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
-                dicta, ea facere fugit incidunt laborum officia quod unde.
-            </p>
-        </div>
-        <span class="delete" id="cancel-notification"></span>
-    </div>
-</div>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-{%- highlight html -%}
-<div class="sgds-notification">
-    <div class="sgds-notification-detail">
-        <span class="sgds-icon sgds-icon-callout is-size-4"></span>
-        <div class="sgds-notification-content">
-            <p class="has-text-weight-bold">Updates</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
-                dicta, ea facere fugit incidunt laborum officia quod unde.
-            </p>
-        </div>
-        <span class="delete" id="cancel-notification"></span>
-    </div>
-</div>
-{%- endhighlight -%}
+<h3 class="has-text-weight-semibold">With icon</h3>
+<div class="sgds-example-others">{{with_icon_notification}}</div>
+{%- highlight html -%}{{with_icon_notification}}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight1"
@@ -92,36 +97,10 @@ icon: notification
 
 <hr />
 
-<h5 class="has-text-weight-semibold">Default Toast {{page.title}}</h5>
+<h3 class="has-text-weight-semibold">Toast {{page.title}}</h3>
 
-<div class="sgds-notification is-toast">
-    <div class="sgds-notification-detail">
-        <div class="sgds-notification-content">
-            <p class="has-text-weight-bold">Updates</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
-                dicta, ea facere fugit incidunt laborum officia quod unde.
-            </p>
-        </div>
-        <span class="delete" id="cancel-notification"></span>
-    </div>
-</div>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-{%- highlight html -%}
-<div class="sgds-notification is-toast">
-    <div class="sgds-notification-detail">
-        <div class="sgds-notification-content">
-            <p class="has-text-weight-bold">Updates</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
-                dicta, ea facere fugit incidunt laborum officia quod unde.
-            </p>
-        </div>
-        <span class="delete" id="cancel-notification"></span>
-    </div>
-</div>
-{%- endhighlight -%}
+<div class="sgds-example-others">{{default_toast}}</div>
+{%- highlight html -%}{{default_toast}}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight2"
@@ -131,38 +110,9 @@ icon: notification
 
 <hr />
 
-<h5 class="has-text-weight-semibold">Default Toast {{page.title}} With Icon</h5>
-
-<div class="sgds-notification is-toast">
-    <div class="sgds-notification-detail">
-        <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
-        <div class="sgds-notification-content">
-            <p class="has-text-weight-bold">Updates</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
-                dicta, ea facere fugit incidunt laborum officia quod unde.
-            </p>
-        </div>
-        <span class="delete" id="cancel-notification"></span>
-    </div>
-</div>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-{%- highlight html -%}
-<div class="sgds-notification is-toast">
-    <div class="sgds-notification-detail">
-        <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
-        <div class="sgds-notification-content">
-            <p class="has-text-weight-bold">Updates</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aut
-                dicta, ea facere fugit incidunt laborum officia quod unde.
-            </p>
-        </div>
-        <span class="delete" id="cancel-notification"></span>
-    </div>
-</div>
-{%- endhighlight -%}
+<h3 class="has-text-weight-semibold">Toast {{page.title}} with icon</h3>
+<div class="sgds-example-others">{{with_icon_toast}}</div>
+{%- highlight html -%}{{with_icon_toast}}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight2"
@@ -172,7 +122,7 @@ icon: notification
 
 <hr />
 
-<h5>Style</h5>
+<h3>Style</h3>
 <table class="table">
     <thead>
         <tr>
