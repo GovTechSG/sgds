@@ -6,38 +6,7 @@ icon: accordion
 js: true
 ---
 
-<h4 class="has-text-primary">
-    An accordion is a component that allows users to show or hide related content.
-</h4>
-
-<hr/>
-
-<h5 class="has-text-weight-semibold">Simple accordion</h5>
-
-<div class="row">
-    <div class="col">
-        <div class="sgds-accordion is-open">
-            <a href="#!" class="sgds-accordion-header is-active" role="button" aria-expanded="true">
-                I have content below me <i class="sgds-icon sgds-icon-chevron-up"></i>
-            </a>
-            <div class="sgds-accordion-body">
-                <p>This is my accordion content</p>
-            </div>
-        </div>
-
-        <div class="sgds-accordion">
-            <a href="#!" class="sgds-accordion-header" role="button" aria-expanded="false">
-                I also have content below me <i class="sgds-icon sgds-icon-chevron-down"></i>
-            </a>
-            <div class="sgds-accordion-body">
-                <p>This is my accordion content</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-{%- highlight html -%}
+{% capture default_accordion %}
 <div class="sgds-accordion is-open">
     <a href="#!" class="sgds-accordion-header is-active" role="button" aria-expanded="true">
         I have content below me <i class="sgds-icon sgds-icon-chevron-up"></i>
@@ -46,7 +15,6 @@ js: true
         <p>This is my accordion content</p>
     </div>
 </div>
-
 <div class="sgds-accordion">
     <a href="#!" class="sgds-accordion-header" role="button" aria-expanded="false">
         I also have content below me <i class="sgds-icon sgds-icon-chevron-down"></i>
@@ -55,15 +23,55 @@ js: true
         <p>This is my accordion content</p>
     </div>
 </div>
-{%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
+{% endcapture %}
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
+{% capture accordion_set %}
+<div class="sgds-accordion-set">
+    <div class="sgds-accordion">
+        <a href="#!" class="sgds-accordion-header" role="button" aria-expanded="false">
+            accordion bar 1 <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>your content 1</p>
+        </div>
+    </div>
+    <div class="sgds-accordion is-open">
+        <a class="sgds-accordion-header is-active" role="button" aria-expanded="true">
+            accordion bar 2 <i class="sgds-icon sgds-icon-chevron-up"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>This is an example of a open section</p>
+        </div>
+    </div>
+    <div class="sgds-accordion">
+        <a class="sgds-accordion-header" role="button" aria-expanded="false">
+            accordion bar 3 <i class="sgds-icon sgds-icon-chevron-down"></i>
+        </a>
+        <div class="sgds-accordion-body">
+            <p>your content 3</p>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+<h2>
+    Accordions allow users to show or hide related content
+</h2>
+
+<hr/>
+
+<h3>Simple accordion</h3>
+<div class="sgds-example-others">{{default_accordion}}</div>
+{%- highlight html -%}{{default_accordion}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" 
+    data-clipboard-target='.highlight0'>Copy snippet</button>
+
+<h4>When you should use this component</h4>
 <p>You should use the accordion component if there is insufficient space within the page to display the information or
     if users need to see a overview of specific content that's related to one another.
 </p>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should consider something else</h4>
+<h4>When you should consider something else</h4>
 <p>Accordions hide content from the user, and there may be cases where users will miss content completely or not understand how
     accordions work. It is not advisable to use the accordion for information that is essential to your users.</p>
 
@@ -88,74 +96,18 @@ js: true
 
 <hr/>
 
-<h5 class="has-text-weight-semibold">Accordion set</h5>
+<h3>Accordion set</h3>
 <p>A set of accordions, of which only one can be open at a time.</p>
 <p>You can add the <code>is-open</code> class to <code>sgds-accordion</code> to show the content on page load</p>
-<div class="row">
-    <div class="col">
-        <div class="sgds-accordion-set">
-            <div class="sgds-accordion">
-                <a href="#!" class="sgds-accordion-header" role="button" aria-expanded="false">
-                    accordion bar 1 <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>your content 1</p>
-                </div>
-            </div>
-            <div class="sgds-accordion is-open">
-                <a class="sgds-accordion-header is-active" role="button" aria-expanded="true">
-                    accordion bar 2 <i class="sgds-icon sgds-icon-chevron-up"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>This is an example of a open section</p>
-                </div>
-            </div>
-            <div class="sgds-accordion">
-                <a class="sgds-accordion-header" role="button" aria-expanded="false">
-                    accordion bar 3 <i class="sgds-icon sgds-icon-chevron-down"></i>
-                </a>
-                <div class="sgds-accordion-body">
-                    <p>your content 3</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="sgds-example-others">
+    {{accordion_set}}
 </div>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-{%- highlight html -%}
-<div class="sgds-accordion-set">
-    <div class="sgds-accordion">
-        <a href="#!" class="sgds-accordion-header" role="button" aria-expanded="false">
-            accordion bar 1 <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-            <p>your content 1</p>
-        </div>
-    </div>
-    <div class="sgds-accordion is-open">
-        <a class="sgds-accordion-header is-active" role="button" aria-expanded="true">
-            accordion bar 2 <i class="sgds-icon sgds-icon-chevron-up"></i>
-        </a>
-        <div class="sgds-accordion-body">
-            <p>You can add the <code>is-open</code> class to <code>sgds-accordion</code> to show the content on page load</p>
-        </div>
-    </div>
-    <div class="sgds-accordion">
-        <a class="sgds-accordion-header" role="button" aria-expanded="false">
-            accordion bar 3 <i class="sgds-icon sgds-icon-chevron-down"></i>
-        </a>
-        <div class="sgds-accordion-body">
-            <p>your content 3</p>
-        </div>
-    </div>
-</div>
-{%- endhighlight -%}
+{%- highlight html -%}{{accordion_set}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy snippet</button>
 
 <hr/>
 
-<h5 class="has-text-weight-semibold">Style</h5>
+<h3>Style</h3>
 <table class="table">
     <thead>
     <tr>

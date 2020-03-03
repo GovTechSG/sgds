@@ -3,7 +3,7 @@ title: General Guidelines
 layout: layout-docs
 ---
 
-<h2 class="has-text-primary">General form design guidelines</h2>
+## General form design guidelines
 
 ### Make the path to completion clear
 

@@ -5,7 +5,7 @@ redirect_from:
     - /patterns/
 ---
 
-<h1 class="has-text-primary">Overview</h1>
+<h2>Overview</h2>
 <p>
     Here you find common patterns that you can use to start building your site. These are baseline
     patterns and can be tweaked to suit your product or service, these have basic accessibility
@@ -16,16 +16,16 @@ redirect_from:
 
 <hr />
 
-<h2 class="has-text-primary">Our Patterns</h2>
-<p>
-    These components aid users in basic site identification and navigation, and should be present in
-    all .gov.sg websites as stated in the
-</p>
-<ul>
+<h3>Our Patterns</h3>
+
+<div class="row is-multiline is-mobile">
+    {% include component-list.html collectionName='patterns' %}
+</div>
+
+<!-- <ul>
     <li><a href="/patterns/address/">Address</a></li>
     <li><a href="/patterns/date/">Date</a></li>
     <li><a href="/patterns/email-address/">Email Address</a></li>
-    <li><a href="/patterns/payment-details/">Payment Details</a></li>
-</ul>
+    <li><a href="/patterns/names/">Names</a></li>
+</ul> -->
 
-<hr />

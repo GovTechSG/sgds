@@ -6,15 +6,55 @@ icon: sidenav
 js: true
 order: 3
 ---
+{% capture lvl2_sidenav %}
+<aside class="sgds-menu">
+    <ul class="sgds-menu-list">
+        <li><a class="is-active" href="#!">Level 2A</a></li>
+        <li><a href="#!">Level 2B</a></li>
+        <li><a href="#!">Level 2C</a></li>
+    </ul>
+</aside>
+{% endcapture %}
+{% capture lvl2_dropdown_sidenav %}
+<aside class="sgds-menu">
+    <ul class="sgds-menu-list">
+        <li class="second-level-nav">
+            <a class="second-level-nav-header is-active">
+                Level 2A
+                <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
+            </a>
+        </li>
+        <div class="second-level-nav-div">
+            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+        </div>
+        <li><a href="#!">Level 2B</a></li>
+        <li class="second-level-nav">
+            <a class="second-level-nav-header">
+                Level 2C
+                <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
+            </a>
+        </li>
+        <div class="second-level-nav-div">
+            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+        </div>
+    </ul>
+</aside>
+{% endcapture %}
+
+
 <!--TODO remove lvl 3-->
 <!--TODO showcase lvl 1 & 2-->
 <!--TODO add guidelines for lvl 2 -->
 
-<h4 class="has-text-primary">
+<h2>
     All .gov.sg informational services shall
     adopt a Global Primary Navigation Panel
     across all pages
-</h4>
+</h2>
 <p>
     For services with two or more levels of navigation, pages should contain secondary navigation
     at the side of the page to aid users in locating site content.
@@ -23,115 +63,38 @@ order: 3
 
 <!-- Side Nav 1 -->
 
-<h5>Basic side navigation to support level 2 navigation.</h5>
-
-<div class="row">
-    <div class="col is-3">
-        <aside class="sgds-menu">
-            <ul class="sgds-menu-list">
-                <li><a class="is-active" href="#!">Level 2A</a></li>
-                <li><a href="#!">Level 2B</a></li>
-                <li><a href="#!">Level 2C</a></li>
-            </ul>
-        </aside>
+<h3>Basic side navigation to support level 2 navigation.</h3>
+<div class="sgds-example-others">
+    <div class="row">
+        <div class="col is-3">{{lvl2_sidenav}}</div>
     </div>
 </div>
-
-
-<div class="sgds-container margin--top--lg">
-    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-    {%- highlight html -%}
-    <aside class="sgds-menu">
-        <ul class="sgds-menu-list">
-            <li><a class="is-active" href="#!">Level 2A</a></li>
-            <li><a href="#!">Level 2B</a></li>
-            <li><a href="#!">Level 2C</a></li>
-        </ul>
-    </aside>
-    {%- endhighlight -%}
-    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy
-        Snippet</button>
-</div>
+{%- highlight html -%}{{lvl2_sidenav}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy Snippet</button>
 
 <hr />
 
 <!-- Side Nav 2 -->
 
 <!-- <p>Advanced side nav to support level 3 navigation, please ensure you have included <code>jquery.sticky-sidebar.js</code> for it to work.</p> -->
-<h5>Level 2 navigation dropdowns that show/hide level 3 navigation links
-    <span class="sgds-tag is-rounded margin--left--sm">JS</span></h5>
-
-<div class="row">
-    <div class="col is-3">
-        <aside class="sgds-menu">
-            <ul class="sgds-menu-list">
-                <li class="second-level-nav">
-                    <a class="second-level-nav-header is-active">
-                        Level 2A
-                        <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
-                    </a>
-                </li>
-                <div class="second-level-nav-div">
-                    <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-                    <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-                    <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-                </div>
-                <li><a href="#!">Level 2B</a></li>
-                <li class="second-level-nav">
-                    <a class="second-level-nav-header">
-                        Level 2C
-                        <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
-                    </a>
-                </li>
-                <div class="second-level-nav-div">
-                    <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-                    <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-                    <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-                </div>
-            </ul>
-        </aside>
+<h3>Level 2 navigation dropdowns that show/hide level 3 navigation links
+<span class="sgds-tag is-rounded margin--left--sm">JS</span></h3>
+<div class="sgds-example-others">
+    <div class="row">
+        <div class="col is-3">
+            {{lvl2_dropdown_sidenav}}
+        </div>
     </div>
 </div>
+{%- highlight html -%}{{lvl2_dropdown_sidenav}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>
+    Copy Snippet
+</button>
 
-<div class="sgds-container margin--top--lg">
-    <h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
-    {%- highlight html -%}
-    <aside class="sgds-menu">
-        <ul class="sgds-menu-list">
-            <li class="second-level-nav">
-                <a class="second-level-nav-header is-active">
-                    Level 2A
-                    <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
-                </a>
-            </li>
-            <div class="second-level-nav-div">
-                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-            </div>
-            <li><a href="#!">Level 2B</a></li>
-            <li class="second-level-nav">
-                <a class="second-level-nav-header">
-                    Level 2C
-                    <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
-                </a>
-            </li>
-            <div class="second-level-nav-div">
-                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-            </div>
-        </ul>
-    </aside>
-    {%- endhighlight -%}
-    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>
-        Copy Snippet
-    </button>
-</div>
 
 <hr />
 
-<h5>Guidelines</h5>
+<h3>Guidelines</h3>
 <p>Side navigation should:</p>
 <ul>
     <li>Be positioned on the left of every inner page in a digital service</li>

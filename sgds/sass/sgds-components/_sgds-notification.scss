@@ -42,12 +42,10 @@ $notification-padding: 1rem !default;
 
   &.is-toast {
     background-color: transparent;
-    border: 1px solid darken($notification-background-color, 10%);
-    border-left: 5px solid darken($notification-background-color, 10%);
+    border: 1px solid currentColor;
+    border-left: 5px solid currentColor;
+    color: currentColor;
 
-    .sgds-icon {
-      color: darken($notification-background-color, 10%);
-    }
   }
 
   // Colors
