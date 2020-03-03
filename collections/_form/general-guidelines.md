@@ -1,6 +1,7 @@
 ---
 title: General Guidelines
 layout: layout-docs
+order: 1
 ---
 
 ## General form design guidelines
