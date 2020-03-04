@@ -1,0 +1,17 @@
+version: 1.0
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - bundle update --bundler
+        - bundle install
+        - npm ci
+    build:
+      commands:
+        - npm run build:prod
+  artifacts:
+    baseDirectory: _site
+    files:
+      - '**/*'
+  cache:
+    paths: []
