@@ -8,7 +8,14 @@ frontend:
         - npm ci
     build:
       commands:
-        - npm run build:prod
+        - |
+          if [ "${AWS_BRANCH}" = "master" ]
+          then 
+            JEKYLL_ENV=production npm run build:prod
+          else
+            npm run build
+          fi
+
   artifacts:
     baseDirectory: _site
     files:
