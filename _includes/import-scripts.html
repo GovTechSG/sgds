@@ -7,6 +7,6 @@
 <script src="/js/sgds.js"></script>
 <script src="/apps/build/main.js"></script>
 
-{% if page.url contains "/docs/" %}
+{% if page.url contains "/docs/" or page.url contains "/patterns/" %}
 <script src="/apps/build/docs.js"></script>
 {% endif %}

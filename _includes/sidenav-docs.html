@@ -38,7 +38,7 @@
         {% endif %}
                 <ul class="list">
                     {% assign items = site[name] %}
-                    {% if collection.label == 'standard' %}
+                    {% if collection.label == 'standard' or collection.label == 'form' %}
                         {% assign items = site[name] | sort:'order' %}
                     {% endif %}
                     {% for item in items %}                                        

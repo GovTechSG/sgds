@@ -2,47 +2,61 @@
 title: Names
 layout: layout-docs
 ---
+{% capture general_name_field %}
+<div class="field">
+    <label class="label" for="name">Full Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+{% endcapture %}
 
+{% capture multiple_name_field %}
+<div class="field">
+    <label class="label" for="given-name">Given Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="given-name"
+            name="given-name"
+            type="text"
+            autocomplete="given-name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+<div class="field margin--top--lg">
+    <label class="label" for="family-name">Family Name</label>
+    <div class="control">
+        <input
+            class="input col is-8"
+            type="text"
+            id="family-name"
+            name="family-name"
+            type="text"
+            autocomplete="family-name"
+            spellcheck="false"
+        />
+    </div>
+</div>
+{% endcapture %}
 <h2>
     Use this pattern when you need to ask users for their names
 </h2>
 
 <hr />
 <h3>General name field</h3>
-<div class="sgds-example-others">
-<div class="field">
-    <label class="label" for="name">Full Name</label>
-    <div class="control">
-        <input
-            class="input col is-8"
-            type="text"
-            id="name"
-            name="name"
-            type="text"
-            autocomplete="name"
-            spellcheck="false"
-        />
-    </div>
-</div>
-</div>
-
-{%- highlight html -%}
-<div class="field">
-    <label class="label" for="name">Full Name</label>
-    <div class="control">
-        <input
-            class="input col is-8"
-            type="text"
-            id="name"
-            name="name"
-            type="text"
-            autocomplete="name"
-            spellcheck="false"
-        />
-    </div>
-</div>v>
-</div>
-{%- endhighlight -%}
+<div class="sgds-example-others">{{general_name_field}}</div>
+{%- highlight html -%}{{general_name_field}}{%- endhighlight -%}
 
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
@@ -60,71 +74,13 @@ layout: layout-docs
 <hr/>
 
 <h3>Multiline name field</h3>
-<div class="sgds-example-others">
-<div class="field">
-    <label class="label" for="given-name">Given Name</label>
-    <div class="control">
-        <input
-            class="input col is-8"
-            type="text"
-            id="given-name"
-            name="given-name"
-            type="text"
-            autocomplete="given-name"
-            spellcheck="false"
-        />
-    </div>
-</div>
-<div class="field margin--top--lg">
-    <label class="label" for="family-name">Family Name</label>
-    <div class="control">
-        <input
-            class="input col is-8"
-            type="text"
-            id="family-name"
-            name="family-name"
-            type="text"
-            autocomplete="family-name"
-            spellcheck="false"
-        />
-    </div>
-</div>
-</div>
+<div class="sgds-example-others">{{multiple_name_field}}</div>
 
-{%- highlight html -%}
-<div class="field">
-    <label class="label" for="given-name">Given Name</label>
-    <div class="control">
-        <input
-            class="input col is-8"
-            type="text"
-            id="given-name"
-            name="given-name"
-            type="text"
-            autocomplete="given-name"
-            spellcheck="false"
-        />
-    </div>
-</div>
-<div class="field margin--top--lg">
-    <label class="label" for="family-name">Family Name</label>
-    <div class="control">
-        <input
-            class="input col is-8"
-            type="text"
-            id="family-name"
-            name="family-name"
-            type="text"
-            autocomplete="family-name"
-            spellcheck="false"
-        />
-    </div>
-</div>
-{%- endhighlight -%}
+{%- highlight html -%}{{multiple_name_field}}{%- endhighlight -%}
 
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight0"
+    data-clipboard-target=".highlight1"
 >
     Copy snippet
 </button>
