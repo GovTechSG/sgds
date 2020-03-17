@@ -66,8 +66,6 @@ $card-max-height: 21rem !default;
 
   &-card-header-title {
     align-items: center;
-
-    // color: $card-header-color
     display: flex;
     flex-grow: 1;
     font-weight: $card-header-weight;
@@ -109,6 +107,31 @@ $card-max-height: 21rem !default;
     flex-shrink: 0;
     justify-content: center;
     padding: 0.75rem;
+    @each $name, $pair in $colors {
+      $color: nth($pair, 1);
+      $color-invert: nth($pair, 2);
+      &.is-#{$name} {
+        background-color: $color;
+        color: $color-invert;
+
+        &:hover,
+        &.is-hovered {
+          background-color: darken($color, 8%);
+          color: $color-invert;
+        }
+
+        &:active,
+        &.is-active {
+          background-color: lighten($color, 8%);
+          color: $color-invert;
+        }
+
+        &[disabled] {
+          background-color: $color;
+          box-shadow: none;
+        }
+      }
+    }
 
     &:not(:last-child) {
       border-right: $card-footer-border-top;
