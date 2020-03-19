@@ -4,10 +4,9 @@ layout: layout-docs
 order: 5
 ---
 
-<h2>Collect user input in a single line</h2>
+<h2>Overview</h2>
 <p>
-  Input elements allow users to enter letters, numbers and symbols in a single
-  line.
+  Text inputs allow users to enter letters, numbers and symbols on a single line.
 </p>
 
 <hr />
@@ -70,7 +69,7 @@ order: 5
 </p>
 <p>
   If you require users to select from a predetermined list, then using the
-  <a href="/docs/dropdown/">dropdown</a>,
+  <code>&lt;select&gt;</code>,
   <a href="/docs/checkbox/">checkbox</a> or
   <a href="/docs/radio-buttons/">radio buttons</a> components would be more
   appropriate.
@@ -100,21 +99,6 @@ order: 5
     length provides the users with an idea of how much text to input. E.g a
     postal code text input should only be 6 numbers long.
   </li>
-
-  <li>
-    Do avoid using placeholder text inside of the text field. This is so that
-    users will still have the hint text available when they need to review their
-    answers. If the placeholder text disappears when users start typing, they
-    will no longer have the hint text available to them. It is always better to
-    have clear labels that users will understand.
-  </li>
-
-  <li>
-    If you do require hint text, do give examples of how you want the user to
-    enter their answers or how their information will be used. E.g for emails, a
-    useful hint text would be "We will only use your email for receipts." or
-    specify the date format.
-  </li>
 </ul>
 
 <hr />
@@ -124,7 +108,7 @@ order: 5
 <div class="sgds-example-others">
     <div class="field">
         <label class="label" for="my-email">Text Input Label</label>
-        <span class="error">This is a error message</span>
+        <span class="error">This is an error message</span>
         <div class="control">
           <input
             class="input is-danger"
@@ -140,7 +124,7 @@ order: 5
 {%- highlight html -%}
 <div class="field">
   <label class="label" for="my-email">Text Input Label</label>
-  <span class="error">This is a error message</span>
+  <span class="error">This is an error message</span>
   <div class="control">
     <input
       class="input is-danger"
@@ -167,7 +151,7 @@ order: 5
 
 <p>
   The error message should be in between the text input label and the text input
-  field. If you have hint text, it should be in between the hint text and the
+  field. If you have hint text, it should be in between the error message and the
   text input field.
 </p>
 
