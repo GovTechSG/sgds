@@ -11,7 +11,7 @@ frontend:
         - |
           if [ "${AWS_BRANCH}" = "master" ]
           then 
-            JEKYLL_ENV=production npm run build:prod
+            JEKYLL_ENV=production npm run build
           else
             npm run build
           fi
