@@ -66,16 +66,17 @@ icon: notification
 </div>
 {% endcapture %}
 
-<h2>
-    The notification component allows you to display critical or important information that the
+<h2>Overview</h2>
+<p>
+    The notification component allows pages to display critical or important information that the
     users need to be aware of.
-</h2>
+</p>
 
 <hr />
 
-<h3>Default {{page.title}}</h3>
-<div class="sgds-example-others">{{default_notification}}</div>
-{%- highlight html -%}{{default_notification}}{%- endhighlight -%}
+<h3>Default notification</h3>
+<div class="sgds-example-others">{{ default_notification }}</div>
+{%- highlight html -%}{{ default_notification }}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight0"
@@ -85,9 +86,9 @@ icon: notification
 
 <hr />
 
-<h3 class="has-text-weight-semibold">With icon</h3>
-<div class="sgds-example-others">{{with_icon_notification}}</div>
-{%- highlight html -%}{{with_icon_notification}}{%- endhighlight -%}
+<h3>With icon</h3>
+<div class="sgds-example-others">{{ with_icon_notification }}</div>
+{%- highlight html -%}{{ with_icon_notification }}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight1"
@@ -97,10 +98,10 @@ icon: notification
 
 <hr />
 
-<h3 class="has-text-weight-semibold">Toast {{page.title}}</h3>
+<h3>Toast notification</h3>
 
-<div class="sgds-example-others">{{default_toast}}</div>
-{%- highlight html -%}{{default_toast}}{%- endhighlight -%}
+<div class="sgds-example-others">{{ default_toast }}</div>
+{%- highlight html -%}{{ default_toast }}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight2"
@@ -110,12 +111,12 @@ icon: notification
 
 <hr />
 
-<h3 class="has-text-weight-semibold">Toast {{page.title}} with icon</h3>
-<div class="sgds-example-others">{{with_icon_toast}}</div>
-{%- highlight html -%}{{with_icon_toast}}{%- endhighlight -%}
+<h3>Toast notification with icon</h3>
+<div class="sgds-example-others">{{ with_icon_toast }}</div>
+{%- highlight html -%}{{ with_icon_toast }}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
-    data-clipboard-target=".highlight2"
+    data-clipboard-target=".highlight3"
 >
     Copy snippet
 </button>

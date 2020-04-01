@@ -5,10 +5,11 @@ category: General
 icon: table
 ---
 
-<h4 class="has-text-primary">
+<h2>Overview</h2>
+<p>
     Pagination helps to break down long lists into multiple sections that are indexed by a
     pagination component.
-</h4>
+</p>
 <hr/>
 
 <nav class="sgds-pagination" role="navigation" aria-label="pagination">
@@ -20,8 +21,6 @@ icon: table
     </ul>
     <a class="sgds-pagination-next">Next</a>
 </nav>
-
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
 {%- highlight html -%}
 <!-- is-current highlights the currently selected page -->
 <nav class="sgds-pagination" role="navigation" aria-label="pagination">
@@ -41,20 +40,20 @@ icon: table
     Copy Snippet
 </button>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
+<h3>When you should use this component</h3>
 <p>You should use the pagination component when you want to display large amounts of related content that
-    spans across multiple pages. E.g Search results or forum posts.
+    spans across multiple pages, such as search results or forum posts.
 </p>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should consider something else</h4>
+<h3>When you should consider something else</h3>
 <p>You should not use the pagination component to indicate progress, such as in a transaction.</p>
 
 <p>You should also not use the component as a replacement for navigation. 
-    For main navigation, do use the <a href="/docs/main-nav/">main nav</a> and <a href="/docs/side-nav/">side nav</a> components</p>
+    For main navigation, use the <a href="/docs/main-nav/">main nav</a> and <a href="/docs/side-nav/">side nav</a> components</p>
 
-<hr/>
+<hr />
 
-<h5 class="has-text-weight-semibold">Rounded Pagination buttons</h5>
+<h3>Rounded Pagination buttons</h3>
 <p>You can use <code>.is-rounded</code> to make all pagination buttons rounded.</p>
 <!--Add class name table-h for horizontal tables-->
 <nav class="sgds-pagination is-rounded" role="navigation" aria-label="pagination">
@@ -66,7 +65,6 @@ icon: table
     </ul>
     <a class="sgds-pagination-next">Next</a>
 </nav>
-
 {%- highlight html -%}
 <nav class="sgds-pagination is-rounded" role="navigation" aria-label="pagination">
     <a class="sgds-pagination-previous">Previous</a>
@@ -77,7 +75,6 @@ icon: table
     </ul>
     <a class="sgds-pagination-next">Next</a>
 </nav>
-
 {%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
@@ -88,7 +85,7 @@ icon: table
 
 <hr/>
 
-<h5 class="has-text-weight-semibold">Customisable buttons</h5>
+<h3>Customisable buttons</h3>
 <p>
     You can nest icons instead of text in the previous and next buttons by nesting child elements
     within the <code>a</code> tags.
@@ -107,7 +104,6 @@ icon: table
         ><span class="sgds-icon sgds-icon-arrow-right is-size-5"></span
     ></a>
 </nav>
-
 {%- highlight html -%}
 <nav class="sgds-pagination" role="navigation" aria-label="pagination">
     <a class="sgds-pagination-previous"
@@ -132,7 +128,7 @@ icon: table
 
 <hr/>
 
-<h5 class="has-text-weight-semibold">Style</h5>
+<h3>Style</h3>
 <table class="table">
     <thead>
         <tr>

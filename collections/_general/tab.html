@@ -47,9 +47,10 @@ js: true
 </div>
 {% endcapture %}
 
-<h4 class="has-text-primary">
+<h2>Overview</h2>
+<p>
     Tabs are navigation elements that let users navigate between related content that are grouped together.
-</h4>
+</p>
 <div class="sgds-tabs">
     <ul class="no-margin" role="tablist">
         <li class="is-active">
@@ -108,7 +109,7 @@ js: true
 
 <hr/>
 
-<h5 class="has-text-weight-semibold margin--top--lg">Component Code</h5>
+<h3>Code</h3>
 <p class="margin--top--lg">For Tab Selectors</p>
 {%- highlight html -%}
 {{tab-selector}}
@@ -133,27 +134,36 @@ js: true
 
 <hr/>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
-<p>The tab component can help users in switching between related information and users don't need to view all information at once.
+<h3>When you should use this component</h3>
+<p>
+    Tabs should be used to expose related but separate content, such as sub-pages or
+    different content under the same category.
 </p>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should consider something else</h4>
-<p>Tabs hide information from the user. If you have a lot of information contained within the tabs, do consider reducing the content.
-    You may want to consider splitting the content into different sections using properly formatted text.
+<h3>When you should consider something else</h3>
+<p>
+    Tabs hide information from the user. 
+    If you have a lot of information contained within tabs, 
+    do consider reducing the content.
+    You may want to consider splitting your content into different 
+    sections using properly formatted text instead.
 </p>
 
-<p>Tabs should be used sparingly, this is to reduce cognitive load for the user. Having too many tabs may also affect the performace of the page
+<p>
+    Tabs should be used sparingly to reduce cognitive load for the user. 
+    Having too many tabs may also affect the performace of the page
     which could result in longer loading times.
-    </p>
-
-<p>If you need users to compare information, using the <a href="/docs/table/">table</a> component would be more appropriate.
 </p>
 
-
+<p>
+    If you need users to make comparisons or present tabular data, 
+    using the <a href="/docs/table/">table</a> 
+    component may be more appropriate.
+</p>
 
 <hr/>
 
-<h5 class="has-text-weight-semibold">Styles</h5>
+<h3>Styles</h3>
 <table class="table">
     <thead>
         <tr>
@@ -182,88 +192,91 @@ js: true
 </table>
 
 <hr/>
-<h5 class="has-text-weight-semibold">Examples</h5>
-<ul>
-    <li>is-boxed</li>
-    {%- highlight html -%}
-    <div class="sgds-tabs is-boxed">...</div>
-    {%- endhighlight -%}
-    <div class="sgds-tabs is-boxed">
-        <ul class="no-margin" role="tablist">
-            <li class="is-active">
-                <a data-tab="#t1" role="tab" aria-selected="true" aria-controls="t1">
-                    <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
-                    Tab 1
-                </a>
-            </li>
-            <li>
-                <a data-tab="#t2" role="tab" aria-selected="false" aria-controls="t2">
-                    <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
-                    Tab 2
-                </a>
-            </li>
-            <li>
-                <a data-tab="#t3" role="tab" aria-selected="false" aria-controls="t3">
-                    <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
-                    Tab 3
-                </a>
-            </li>
-        </ul>
-    </div>
-    <hr/>
-    <li>is-toggle</li>
-    {%- highlight html -%}
-    <div class="sgds-tabs is-toggle">...</div>
-    {%- endhighlight -%}
-    <div class="sgds-tabs is-toggle">
-        <ul class="no-margin" role="tablist">
-            <li class="is-active">
-                <a data-tab="#t4" role="tab" aria-selected="true" aria-controls="t4">
-                    <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
-                    Tab 1
-                </a>
-            </li>
-            <li>
-                <a data-tab="#t5" role="tab" aria-selected="false" aria-controls="t5">
-                    <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
-                    Tab 2
-                </a>
-            </li>
-            <li>
-                <a data-tab="#t6" role="tab" aria-selected="false" aria-controls="t6">
-                    <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
-                    Tab 3
-                </a>
-            </li>
-        </ul>
-    </div>
-    <hr/>
-    <li>is-centered</li>
-    {%- highlight html -%}
-    <div class="sgds-tabs is-centered">...</div>
-    {%- endhighlight -%}
-    <div class="sgds-tabs is-centered">
-        <ul class="no-margin" role="tablist">
-            <li class="is-active">
-                <a data-tab="#t7" role="tab" aria-selected="true" aria-controls="t7">
-                    <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
-                    Tab 1
-                </a>
-            </li>
-            <li>
-                <a data-tab="#t8" role="tab" aria-selected="false" aria-controls="t8">
-                    <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
-                    Tab 2
-                </a>
-            </li>
-            <li>
-                <a data-tab="#t9" role="tab" aria-selected="false" aria-controls="t9">
-                    <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
-                    Tab 3
-                </a>
-            </li>
-        </ul>
-    </div>
-</ul>
+
+<h3>Examples</h3>
+<h4>Boxed</h4>
+<div class="sgds-tabs is-boxed">
+    <ul class="no-margin" role="tablist">
+        <li class="is-active">
+            <a data-tab="#t1" role="tab" aria-selected="true" aria-controls="t1">
+                <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
+                Tab 1
+            </a>
+        </li>
+        <li>
+            <a data-tab="#t2" role="tab" aria-selected="false" aria-controls="t2">
+                <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
+                Tab 2
+            </a>
+        </li>
+        <li>
+            <a data-tab="#t3" role="tab" aria-selected="false" aria-controls="t3">
+                <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
+                Tab 3
+            </a>
+        </li>
+    </ul>
+</div>
+{%- highlight html -%}
+<div class="sgds-tabs is-boxed">...</div>
+{%- endhighlight -%}
+
+<hr/>
+
+<h4>Toggle</h4>
+<div class="sgds-tabs is-toggle">
+    <ul class="no-margin" role="tablist">
+        <li class="is-active">
+            <a data-tab="#t4" role="tab" aria-selected="true" aria-controls="t4">
+                <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
+                Tab 1
+            </a>
+        </li>
+        <li>
+            <a data-tab="#t5" role="tab" aria-selected="false" aria-controls="t5">
+                <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
+                Tab 2
+            </a>
+        </li>
+        <li>
+            <a data-tab="#t6" role="tab" aria-selected="false" aria-controls="t6">
+                <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
+                Tab 3
+            </a>
+        </li>
+    </ul>
+</div>
+{%- highlight html -%}
+<div class="sgds-tabs is-toggle">...</div>
+{%- endhighlight -%}
+
+<hr/>
+
+<h4>Centered</h4>
+<div class="sgds-tabs is-centered">
+    <ul class="no-margin" role="tablist">
+        <li class="is-active">
+            <a data-tab="#t7" role="tab" aria-selected="true" aria-controls="t7">
+                <i class="sgds-icon sgds-icon-place padding--right--sm"></i>
+                Tab 1
+            </a>
+        </li>
+        <li>
+            <a data-tab="#t8" role="tab" aria-selected="false" aria-controls="t8">
+                <i class="sgds-icon sgds-icon-boat padding--right--sm"></i>
+                Tab 2
+            </a>
+        </li>
+        <li>
+            <a data-tab="#t9" role="tab" aria-selected="false" aria-controls="t9">
+                <i class="sgds-icon sgds-icon-map padding--right--sm"></i>
+                Tab 3
+            </a>
+        </li>
+    </ul>
+</div>
+{%- highlight html -%}
+<div class="sgds-tabs is-centered">...</div>
+{%- endhighlight -%}
 
 {%- include sgds-feedback.html -%}

@@ -15,6 +15,10 @@ $body-color: #323232;
 @import "docs";
 
 /* Keep footer at bottom of viewport if page isn't high enough */
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   height: 100%;
@@ -23,8 +27,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-
 
 .content-page {
   flex: 1 0 auto;
