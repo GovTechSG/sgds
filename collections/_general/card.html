@@ -38,8 +38,7 @@ icon: card
     </div>
     <div class="sgds-card-footer">        
         <a href="#!" class="sgds-card-footer-item is-primary">View</a>
-        <a href="#!" class="sgds-card-footer-item is-success">Edit</a>
-        <a href="#!" class="sgds-card-footer-item">Save</a>
+        <a href="#!" class="sgds-card-footer-item is-link">Edit</a>
     </div>
 </div>
 {% endcapture %}
@@ -128,46 +127,19 @@ icon: card
 {% endcapture %}
 
 {% capture card_grid_example %}
-<div class="row">
-    <div class="col is-4">
-        <div class="sgds-card">
-            <div class="sgds-card-header">
-                <p class="sgds-card-header-title">Header title text</p>
-            </div>
-            <div class="sgds-card-content">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sequi, nulla.
-                </p>
-            </div>
-            <div class="sgds-card-footer">
-                <div class="sgds-card-footer-item">
-                    <span><a href="#!">View</a></span>
-                </div>
-            </div>
-        </div>
+<div class="sgds-card">
+    <div class="sgds-card-header">
+        <p class="sgds-card-header-title">Header title text</p>
     </div>
-
-    <div class="col is-4">
-        <div class="sgds-card">
-            <div class="sgds-card-header">
-                <p class="sgds-card-header-title">Lorem ipsum</p>
-            </div>
-            <div class="sgds-card-content">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sequi, nulla.
-                </p>
-            </div>
-            <div class="sgds-card-footer">
-                <div class="sgds-card-footer-item">
-                    <span><a href="#!">View</a></span>
-                </div>
-                <div class="sgds-card-footer-item">
-                    <span><a href="#!">Share</a></span>
-                </div>
-            </div>
-        </div>
+    <div class="sgds-card-content">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Sequi, nulla.
+        </p>
+    </div>
+    <div class="sgds-card-footer">
+        <a href="#!" class="sgds-card-footer-item is-success">Save</a>
+        <a href="#!" class="sgds-card-footer-item">Cancel</a>
     </div>
 </div>
 {% endcapture %}
@@ -187,10 +159,9 @@ icon: card
 <div class="sgds-example-others">
     <row>
         <div class="col is-4">
-            {{card_mix_content}}
+            {{ card_mix_content }}
         </div>
     </row>
-    
 </div>
 {%- highlight html -%}
 {{ card_mix_content }}
@@ -252,9 +223,8 @@ icon: card
         </div>
     </div>
 </div>
-{%- highlight html -%}{{ card_with_footer }}{%- endhighlight -%}
-
 {%- highlight html -%}
+{{ card_with_footer }}
 {{ card_grid_example }}
 {%- endhighlight -%}
 
