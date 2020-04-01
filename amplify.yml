@@ -1,0 +1,24 @@
+version: 1.0
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - bundle update --bundler
+        - bundle install
+        - npm ci
+    build:
+      commands:
+        - |
+          if [ "${AWS_BRANCH}" = "master" ]
+          then 
+            JEKYLL_ENV=production npm run build
+          else
+            npm run build
+          fi
+
+  artifacts:
+    baseDirectory: _site
+    files:
+      - '**/*'
+  cache:
+    paths: []
