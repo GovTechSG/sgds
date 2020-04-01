@@ -5,16 +5,23 @@ category: General
 icon: callout
 ---
 {% capture default_callout %}
-<blockquote>
-    <p><b>Note:</b></p>
-    <ul>
-        <li>Excerpt 1</li>
-        <li>Excerpt 2</li>
-    </ul>
-</blockquote>
+<div class="content">
+    <blockquote>
+        <p><b>Note:</b></p>
+        <p>
+            The <code>&lt;blockquote&gt;</code> element will only be styled in this way when
+            it is a child of an element with the <code>.content</code> class.
+        </p>
+        <ul>
+            <li>Excerpt 1</li>
+            <li>Excerpt 2</li>
+        </ul>
+    </blockquote>
+</div>
 {% endcapture %}
 
-<h2>Callout is an excerpt of text used in design to draw attention to or label something</h2>
+<h2>Overview</h2>
+<p>The callout is an excerpt of text used in design to draw attention to or label content.</p>
 
 <hr/>
 <div class="sgds-example-others">
@@ -24,28 +31,30 @@ icon: callout
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
 
 <h4>When you should use this component</h4>
-<p>You should use the callout component when you want to highlight very specific information within a page and to differentiate it from
-    content that surrounds it. E.g Quotes or additional information.
+<p>
+    You should use the callout component when you want to highlight very specific 
+    information within a page and to differentiate it from
+    content that surrounds it. E.g quotes or additional information.
 </p>
 
-<p>The callout component should be used sparingly and not have multiple callouts on your page as this will lose it's effectiveness and may confuse users.
-    </p>
+<p>
+    The callout component should be used sparingly and
+    there should not be multiple callouts on your page as they
+    may lose their effectiveness, or worse confuse users.
+</p>
 
 <h4>When you should consider something else</h4>
-<p>Callouts should not be used in complex pages as some users may not notice the callout if they are presented together
-    with visually prominent elements.</p>
+<p>
+    Callouts should not be used in complex pages as some users may 
+    not notice the callout if they are presented together
+    with other visually prominent elements.
+</p>
 
-<p>If there is a need to draw attention to important or critical information, you may want to consider using the
-    <a href="/docs/notification">notification</a> component with the correct color state instead.</p>
-
-<hr/>
-
-<h3>Guidelines</h3>
-<p>Callout should:</p>
-<ul>
-    <li>Use when you want to highlight certain part of an article prominently</li>
-    <li>Use sparingly in a page as too many of it will cause distractions</li>
-</ul>
+<p>
+    If there is a need to draw attention to important or critical information, 
+    you may want to consider using the
+    <a href="/docs/notification">notification</a> component with the correct color state instead.
+</p>
 
 <hr/>
 

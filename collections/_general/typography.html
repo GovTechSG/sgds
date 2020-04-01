@@ -6,10 +6,11 @@ icon: typography
 order: 1 # For some reason mobile-nav sorts this page to first naturally. Override.
 ---
 
-<h4 class="has-text-primary">
+<h2>Overview</h2>
+<p>
   Use these typography styles to create clear hierarchies and purposeful
   alignments that guide users through your content.
-</h4>
+</p>
 
 <hr/>
 
@@ -87,8 +88,9 @@ order: 1 # For some reason mobile-nav sorts this page to first naturally. Overri
 
 <hr/>
 
-<h5 class="has-text-weight-semibold">Usage</h5>
-<h6>HTML Text Elements</h6>
+<h3>Usage</h3>
+
+<h4>HTML Text Elements</h4>
 
 {% highlight html %}
 <h1 class="display">h1 display</h1>
@@ -102,7 +104,7 @@ order: 1 # For some reason mobile-nav sorts this page to first naturally. Overri
 <small>small text</small>
 {% endhighlight %}
 
-<h6>Using class helpers</h6>
+<h4>With helper classes</h4>
 
 {% highlight html %}
 <div class="is-size-0">h1 display text size</div>
@@ -118,8 +120,9 @@ order: 1 # For some reason mobile-nav sorts this page to first naturally. Overri
 
 <hr/>
 
-<h4 class="has-text-primary">Alignment</h4>
-<p>Align the text with 4 alignment helpers</p>
+<h3>Alignment</h3>
+
+<p>Align text with 4 alignment helper classes</p>
 
 <div class="row">
   <div class="col">
@@ -167,8 +170,8 @@ order: 1 # For some reason mobile-nav sorts this page to first naturally. Overri
   </div>
 </div>
 
-<h4 class="has-text-primary">Text Transform</h4>
-<p>Transform the text with the use of one of 4 text transformation helpers:</p>
+<h3>CSS Text Transform</h3>
+<p>Transform text with the use of one of 4 text transformation helpers</p>
 
 <div class="row">
   <div class="col">
@@ -218,9 +221,9 @@ order: 1 # For some reason mobile-nav sorts this page to first naturally. Overri
   </div>
 </div>
 
-<h4 class="has-text-primary">Font Weight</h4>
-<p>Transform the font weight with the use of one of 4 font weight helpers:</p>
-<div class="sgds-notification">
+<h3>Font Weight</h3>
+<p>Transform font weight with the use of one of 4 font weight helpers</p>
+<div class="sgds-notification is-info">
   <div class="sgds-notification-detail">
     <div class="sgds-notification-content">
       <small
@@ -234,61 +237,56 @@ order: 1 # For some reason mobile-nav sorts this page to first naturally. Overri
     </div>
   </div>
 </div>
-
-<div class="row">
-  <div class="col">
-    <table class="sgds-table is-bordered is-narrow">
-        <thead>
-            <tr>
-            <th width="20%">Class</th>
-            <th width="20%">Font Weight</th>
-            <th width="60%">Usage</th>
-            </tr>
-        </thead>
+<table class="sgds-table is-bordered is-narrow">
+    <thead>
         <tr>
-          <td><code>has-text-weight-light</code></td>
-          <td class="has-text-weight-light">Transform text weight to light</td>
-          <td>
-            {% highlight html %}<p class="has-text-weight-light">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
-          </td>
+        <th width="20%">Class</th>
+        <th width="20%">Font Weight</th>
+        <th width="60%">Usage</th>
         </tr>
-        <tr>
-          <td><code>has-text-weight-normal</code></td>
-          <td class="has-text-weight-normal">
-            Transform text weight to normal
-          </td>
-          <td>
-            {% highlight html %}<p class="has-text-weight-normal">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
-          </td>
-        </tr>
-        <tr>
-          <td><code>has-text-weight-medium</code></td>
-          <td class="has-text-weight-medium">
-            Transform text weight to medium
-          </td>
-          <td>
-            {% highlight html %}<p class="has-text-weight-medium">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
-          </td>
-        </tr>
-        <tr>
-          <td><code>has-text-weight-semibold</code></td>
-          <td class="has-text-weight-semibold">
-            Transform text weight to semi bold
-          </td>
-          <td>
-            {% highlight html %}<p class="has-text-weight-semibold">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
-          </td>
-        </tr>
-        <tr>
-          <td><code>has-text-weight-bold</code></td>
-          <td class="has-text-weight-bold">Transform text weight to bold</td>
-          <td>
-            {% highlight html %}<p class="has-text-weight-bold">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
-          </td>
-        </tr>
-    </table>
-  </div>
-</div>
+    </thead>
+    <tr>
+      <td><code>has-text-weight-light</code></td>
+      <td class="has-text-weight-light">Transform text weight to light</td>
+      <td>
+        {% highlight html %}<p class="has-text-weight-light">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+      </td>
+    </tr>
+    <tr>
+      <td><code>has-text-weight-normal</code></td>
+      <td class="has-text-weight-normal">
+        Transform text weight to normal
+      </td>
+      <td>
+        {% highlight html %}<p class="has-text-weight-normal">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+      </td>
+    </tr>
+    <tr>
+      <td><code>has-text-weight-medium</code></td>
+      <td class="has-text-weight-medium">
+        Transform text weight to medium
+      </td>
+      <td>
+        {% highlight html %}<p class="has-text-weight-medium">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+      </td>
+    </tr>
+    <tr>
+      <td><code>has-text-weight-semibold</code></td>
+      <td class="has-text-weight-semibold">
+        Transform text weight to semi bold
+      </td>
+      <td>
+        {% highlight html %}<p class="has-text-weight-semibold">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+      </td>
+    </tr>
+    <tr>
+      <td><code>has-text-weight-bold</code></td>
+      <td class="has-text-weight-bold">Transform text weight to bold</td>
+      <td>
+        {% highlight html %}<p class="has-text-weight-bold">Lorem ipsum dolor sit amet.</p>{% endhighlight %}
+      </td>
+    </tr>
+</table>
 
 <hr/>
 

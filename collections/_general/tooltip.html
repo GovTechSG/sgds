@@ -5,17 +5,18 @@ category: General
 icon: circle-question
 ---
 
-<h4 class="has-text-primary">
+<h2>Overview</h2>
+<p>
     A tooltip is a brief, informative message that appears when a user interacts
     with an element.
-</h4>
+</p>
 
 <hr/>
 
-<h5>
+<p>
     Position your tooltip using the
     <code>sgds-tooltip is-tooltip-*position*</code> class.
-</h5>
+</p>
 <div class="row is-multiline">
     <div class="col is-6 has-text-centered">
         <button
@@ -59,8 +60,6 @@ icon: circle-question
     </div>
 </div>
 
-<h5 class="margin--top--lg">Component Code</h5>
-
 {%- highlight html -%}
 <button
     href="!#"
@@ -102,25 +101,33 @@ icon: circle-question
     Copy snippet
 </button>
 
-<h4 class="margin--top--lg">When you should use this component</h4>
-<p>Use the tooltip component when you want to give a brief description of a feature or page element. Information inside the tooltip
-    should be brief and helpful to the user. E.g in a form, tooltip to explain what a certain field does.
+<h3>When you should use this component</h3>
+<p>Use the tooltip component when you want to give a brief 
+    description of a feature or page element. Information inside the tooltip
+    should be brief and helpful to the user. E.g in a form, 
+    tooltip to explain what a certain field does.
 </p>
 
-<h4 class="margin--top--lg">When you should consider something else</h4>
-<p>Tooltips should never be used for critical or important information to the user. They should also not be used for information that
+<h3>When you should consider something else</h3>
+<p>Tooltips should never be used for critical or important 
+    information to the user. They should also not be used for 
+    information that
     is vital to the user for them to complete a task.</p>
-    
-<p>It would be more appropriate to use well formatted <a href="/docs/text-input/">hint text</a> instead of tooltips when you
-    want user to fill in critical or important information in a form.
+
+<p>It would be more appropriate to use well formatted <a href="/docs/text-input/">hint text</a>
+    instead of tooltips when you
+    want users to fill in critical or important information in a form.
 </p>
 
 <hr/>
 
-<h5>
+<h3>
+    Colours
+</h3>
+<p>
     Assign colours to your tooltip using the
     <code>sgds-tooltip is-tooltip-*stateColor*</code> class.
-</h5>
+</p>
 <div class="row">
     <div class="col">
         <div class="sgds-buttons">
@@ -176,7 +183,7 @@ icon: circle-question
     </div>
 </div>
 
-<h5 class="margin--top--lg">Component Code</h5>
+<h4>Component code</h4>
 {%- highlight html -%}
 <button
     href="!#"

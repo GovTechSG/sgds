@@ -4,9 +4,10 @@ layout: layout-docs
 order: 2
 ---
 
-<h2>
+<h2>Overview</h2>
+<p>
   Checkboxes let users select one or more options from a list
-</h2>
+</p>
 
 <hr />
 
@@ -16,15 +17,15 @@ order: 2
   <div class="field">
     <div class="control">
       <input type="checkbox" id="input-1" />
-      <label for="input-1" class="checkbox">Option 1</label>
+      <label for="input-1" class="checkbox" name="selected-features">Option 1</label>
     </div>
     <div class="control">
       <input type="checkbox" id="input-2" />
-      <label for="input-2" class="checkbox">Option 2</label>
+      <label for="input-2" class="checkbox" name="selected-features">Option 2</label>
     </div>
     <div class="control">
       <input type="checkbox" id="input-3" disabled />
-      <label for="input-3" class="checkbox" disabled>Option 3 - Disabled</label>
+      <label for="input-3" class="checkbox" name="selected-features" disabled>Option 3 - Disabled</label>
     </div>
   </div>
 </div>
@@ -32,15 +33,15 @@ order: 2
 {%- highlight html -%}
 <div class="control">
   <input type="checkbox" id="input-1" />
-  <label for="input-1" class="checkbox">Option 1</label>
+  <label for="input-1" class="checkbox" name="selected-features">Option 1</label>
 </div>
 <div class="control">
   <input type="checkbox" id="input-2" />
-  <label for="input-2" class="checkbox">Option 2</label>
+  <label for="input-2" class="checkbox" name="selected-features">Option 2</label>
 </div>
 <div class="control">
   <input type="checkbox" id="input-3" disabled />
-  <label for="input-3" class="checkbox" disabled>Option 3 - Disabled</label>
+  <label for="input-3" class="checkbox" name="selected-features" disabled>Option 3 - Disabled</label>
 </div>
 {%- endhighlight -%}
 <button
@@ -49,6 +50,20 @@ order: 2
 >
   Copy snippet
 </button>
+
+<h4>Checkbox behaviour</h4>
+<p>
+  When checkboxes are part of a <code>&lt;form&gt;</code>, you can use
+  Use the <code>name</code> and <code>value</code> attributes on checkbox inputs to
+  control the form's behaviour.
+</p>
+
+<p>
+  When a form containing checkboxes is submitted, only checkboxes which are currently
+  checked are submitted to the server, with key-value pairs defined by their
+  <code>name</code> and <code>value</code> attributes. For more information, see
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox">MDN</a>.
+</p>
 
 <h4>When you should use this component</h4>
 <p>

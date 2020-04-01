@@ -68,33 +68,37 @@ js: true
 </div>
 {% endcapture %}
 
-<h2>
-    Dropdowns allow users to select a option from a list in a menu
-</h2>
+<h2>Overview</h2>
+<p>
+    Dropdowns menus allow users to read or select different options.
+</p>
 
 <hr/>
 <div class="sgds-example-others">
-    {{default_dropdown}}
+    {{ default_dropdown }}
 </div>
-{%- highlight html -%}{{default_dropdown}}{%- endhighlight -%}
+{%- highlight html -%}{{ default_dropdown }}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy
             snippet</button>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should use this component</h4>
-<p>Dropdowns should be used sparingly. Ideally, you should use dropdowns when you have limited space or if your list is too long.
+<h4>When you should use this component</h4>
+<p>
+    Dropdowns should be used sparingly. Ideally, you should use dropdowns when you have limited space or if your list is too long.
     E.g Having more than 7 items in a predetermined list.
 </p>
 
-<p>Dropdowns content should bring users to a different page or section within a page.
-    </p>
+<p>
+    Dropdowns content should bring users to a different page or section within a page.
+</p>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should consider something else</h4>
-<p>If you require users to select from a predetermined list of answers, do consider using the <a href="/docs/checkbox/">checkbox</a> or <a href="/docs/radio-buttons/">radios</a> component.
+<h4>When you should consider something else</h4>
+<p>
+    If you require users to select from a predetermined list of answers, do consider using the <a href="/docs/checkbox/">checkbox</a> or <a href="/docs/radio-buttons/">radios</a> component.
     Try not to use checkboxes in the dropdown component as users may not know how to select multiple options presented to them in a dropdown.
 </p>
 <hr/>
 
-<h3 class="has-text-weight-semibold">Style</h5>
+<h3>Style</h3>
 <table class="table">
     <thead>
         <tr>

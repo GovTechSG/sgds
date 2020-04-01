@@ -21,10 +21,12 @@ icon: container
 </section>
 {% endcapture %}
 
-<h2>
+<h2>Overview</h2>
+
+<p>
   Use the <code>sgds-container</code> class to limit page elements to a reasonable
   maximum width based on the size of a user's screen.
-</h2>
+</p>
 
 <hr />
 
@@ -39,25 +41,10 @@ icon: container
 
 <hr />
 
-<h3 class="margin--top">
-  To remove maximum width limitations but keep the 32px margin on both sides,
-  add <code>is-fluid</code>.
-</h3>
+<h3>Maximum width</h3>
 
-<div class="sgds-example is-marginless">
-  {{ default_container_is_fluid_example }}
-</div>
-
-{%- highlight html -%}
-{{ default_container_is_fluid_example }}
-{%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight1">
-  Copy Snippet
-</button>
-
-<hr />
-<p class="margin--top">
-  The <code>sgds-container</code> class behaviour for different screen sizes
+<p>
+  <code>sgds-container</code> class behaviour at different screen sizes
 </p>
 <table class="table is-bordered is-size-8">
   <thead>
@@ -81,6 +68,27 @@ icon: container
     </tr>
   </tbody>
 </table>
+
+<p>
+  <strong>
+    To remove maximum width limitations but keep the 32px margin on both sides,
+    add <code>is-fluid</code>.
+  </strong>
+</p>
+
+<div class="sgds-example is-marginless">
+  {{ default_container_is_fluid_example }}
+</div>
+
+{%- highlight html -%}
+{{ default_container_is_fluid_example }}
+{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight1">
+  Copy Snippet
+</button>
+
+<hr />
+
 <p>
   The <code>sgds-container</code> class can be used in any context,
   but is especially useful as a direct child of:
