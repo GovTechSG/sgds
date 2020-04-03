@@ -140,17 +140,17 @@ $pagination-shadow-inset: inset 0 1px 2px rgba($black, 0.2);
   }
 
   @include mobile {
-    .sgds-pagination {
+    &-pagination {
       flex-wrap: wrap;
     }
 
-    .sgds-pagination-previous,
-    .sgds-pagination-next {
+    &-pagination-previous,
+    &-pagination-next {
       flex-grow: 1;
       flex-shrink: 1;
     }
 
-    .sgds-pagination-list {
+    &-pagination-list {
       li {
         flex-grow: 1;
         flex-shrink: 1;
@@ -160,22 +160,22 @@ $pagination-shadow-inset: inset 0 1px 2px rgba($black, 0.2);
 
 
   @include tablet {
-    .sgds-pagination-list {
+    &-pagination-list {
       flex-grow: 1;
       flex-shrink: 1;
       justify-content: flex-start;
       order: 1;
     }
 
-    .sgds-pagination-previous {
+    &-pagination-previous {
       order: 2;
     }
 
-    .sgds-pagination-next {
+    &-pagination-next {
       order: 3;
     }
 
-    .sgds-pagination {
+    &-pagination {
       justify-content: space-between;
 
       &.is-centered {

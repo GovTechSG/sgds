@@ -25,47 +25,121 @@ icon: card
 </div>
 {% endcapture %}
 
-{% capture card_grid_example %}
-<div class="row">
-    <div class="col is-4">
-        <div class="sgds-card">
-            <div class="sgds-card-header">
-                <p class="sgds-card-header-title">Header title text</p>
-            </div>
-            <div class="sgds-card-content">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sequi, nulla.
-                </p>
-            </div>
-            <div class="sgds-card-footer">
-                <div class="sgds-card-footer-item">
-                    <span><a href="#!">View</a></span>
-                </div>
-            </div>
+{% capture card_with_footer %}
+<div class="sgds-card">
+    <div class="sgds-card-header">
+        <p class="sgds-card-header-title">Header title text</p>
+    </div>
+    <div class="sgds-card-content">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Sequi, nulla.
+        </p>
+    </div>
+    <div class="sgds-card-footer">        
+        <a href="#!" class="sgds-card-footer-item is-primary">View</a>
+        <a href="#!" class="sgds-card-footer-item is-link">Edit</a>
+    </div>
+</div>
+{% endcapture %}
+{% capture interactive_card %}
+<a href="#!">
+    <div class="sgds-card sgds-card-button">
+        <div class="sgds-card-image">
+            <figure class="sgds-image is-16by9">
+                <img
+                    alt="Development Guides"
+                    src="https://via.placeholder.com/160x90/868e96/ffffff?text=Image"
+                />
+            </figure>
+        </div>
+        <div class="sgds-card-content">
+            <h5>Lorem ipsum</h5>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sequi, nulla.
+            </p>
         </div>
     </div>
-
-    <div class="col is-4">
-        <div class="sgds-card">
-            <div class="sgds-card-header">
-                <p class="sgds-card-header-title">Lorem ipsum</p>
-            </div>
-            <div class="sgds-card-content">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sequi, nulla.
-                </p>
-            </div>
-            <div class="sgds-card-footer">
-                <div class="sgds-card-footer-item">
-                    <span><a href="#!">View</a></span>
-                </div>
-                <div class="sgds-card-footer-item">
-                    <span><a href="#!">Share</a></span>
-                </div>
-            </div>
+</a>
+{% endcapture %}
+{% capture media_card_default %}
+<a href="#!" class="is-media-card">
+    <div class="sgds-card">
+        <div class="sgds-card-content">
+            <header>
+                <div class="padding--bottom">Lorem ipsum</div>
+                <h5 class="has-text-weight-bold">
+                    Lorem ipsum dolor sit amet.
+                </h5>
+            </header>
+            <footer>
+                <span>19 oct 2018</span>
+                <span
+                    class="sgds-icon sgds-icon-download is-size-6"
+                ></span>
+            </footer>
         </div>
+    </div>
+</a>
+{% endcapture %}
+{% capture media_card_primary %}
+{%- assign class='is-primary' -%}
+<a href="#!" class="is-media-card">
+    <div class="sgds-card {{class}}">
+        <div class="sgds-card-content">
+            <header>
+                <div class="padding--bottom">Lorem ipsum</div>
+                <h5 class="has-text-weight-bold">
+                    Lorem ipsum dolor sit amet.
+                </h5>
+            </header>
+            <footer>
+                <span>19 oct 2018</span>
+                <span
+                    class="sgds-icon sgds-icon-download is-size-6"
+                ></span>
+            </footer>
+        </div>
+    </div>
+</a>
+{% endcapture %}
+{% capture media_card_secondary %}
+{%- assign class='is-secondary' -%}
+<a href="#!" class="is-media-card">
+    <div class="sgds-card {{class}}">
+        <div class="sgds-card-content">
+            <header>
+                <div class="padding--bottom">Lorem ipsum</div>
+                <h5 class="has-text-weight-bold">
+                    Lorem ipsum dolor sit amet.
+                </h5>
+            </header>
+            <footer>
+                <span>19 oct 2018</span>
+                <span
+                    class="sgds-icon sgds-icon-download is-size-6"
+                ></span>
+            </footer>
+        </div>
+    </div>
+</a>
+{% endcapture %}
+
+{% capture card_grid_example %}
+<div class="sgds-card">
+    <div class="sgds-card-header">
+        <p class="sgds-card-header-title">Header title text</p>
+    </div>
+    <div class="sgds-card-content">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Sequi, nulla.
+        </p>
+    </div>
+    <div class="sgds-card-footer">
+        <a href="#!" class="sgds-card-footer-item is-success">Save</a>
+        <a href="#!" class="sgds-card-footer-item">Cancel</a>
     </div>
 </div>
 {% endcapture %}
@@ -83,7 +157,11 @@ icon: card
     With mixed content
 </h3>
 <div class="sgds-example-others">
-    {{card_mix_content}}
+    <row>
+        <div class="col is-4">
+            {{ card_mix_content }}
+        </div>
+    </row>
 </div>
 {%- highlight html -%}
 {{ card_mix_content }}
@@ -131,15 +209,25 @@ icon: card
 <hr/>
 
 <h3>Grids, headers and footers</h3>
-<p>Cards can be used with <a href="/docs/grid">grids</a> and contain
-    headers for titles or footers for interactions</p>
-
+<p>
+    Cards can be used with <a href="/docs/grid">grids</a> and contain
+    headers for titles or footers for interactions
+</p>
 <div class="sgds-example-others">
-    {{ card_grid_example }}
+    <div class="row">
+        <div class="col is-4">
+            {{ card_with_footer }}
+        </div>
+        <div class="col is-4">
+            {{ card_grid_example }}
+        </div>
+    </div>
 </div>
 {%- highlight html -%}
+{{ card_with_footer }}
 {{ card_grid_example }}
 {%- endhighlight -%}
+
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight1"
@@ -160,49 +248,11 @@ icon: card
 <div class="sgds-example-others">
     <div class="row">
         <div class="col is-4">
-            <a href="#!">
-                <div class="sgds-card sgds-card-button">
-                    <div class="sgds-card-image">
-                        <figure class="sgds-image is-16by9">
-                            <img
-                                alt="Development Guides"
-                                src="https://via.placeholder.com/160x90/868e96/ffffff?text=Image"
-                            />
-                        </figure>
-                    </div>
-                    <div class="sgds-card-content">
-                        <h5>Lorem ipsum</h5>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Sequi, nulla.
-                        </p>
-                    </div>
-                </div>
-            </a>
+            {{interactive_card}}
         </div>
     </div>
 </div>
-{%- highlight html -%}
-<a href="#!">
-    <div class="sgds-card sgds-card-button">
-        <div class="sgds-card-image">
-            <figure class="sgds-image is-16by9">
-                <img
-                    alt="Development Guides"
-                    src="https://via.placeholder.com/160x90/868e96/ffffff?text=Image"
-                />
-            </figure>
-        </div>
-        <div class="sgds-card-content">
-            <h5>Lorem ipsum</h5>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi,
-                nulla.
-            </p>
-        </div>
-    </div>
-</a>
-{%- endhighlight -%}
+{%- highlight html -%}{{interactive_card}}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight2"
@@ -221,85 +271,17 @@ icon: card
 <div class="sgds-example-others">
     <div class="row">
         <div class="col is-4">
-            <a href="#!" class="is-media-card">
-                <div class="sgds-card">
-                    <div class="sgds-card-content">
-                        <header>
-                            <div class="padding--bottom">Lorem ipsum</div>
-                            <h5 class="has-text-weight-bold">
-                                Lorem ipsum dolor sit amet.
-                            </h5>
-                        </header>
-                        <footer>
-                            <span>19 oct 2018</span>
-                            <span
-                                class="sgds-icon sgds-icon-download is-size-6"
-                            ></span>
-                        </footer>
-                    </div>
-                </div>
-            </a>
+            {{media_card_default}}
         </div>
         <div class="col is-4">
-            <a href="#!" class="is-media-card">
-                <div class="sgds-card">
-                    <div class="sgds-card-content">
-                        <header>
-                            <div class="padding--bottom">Lorem ipsum</div>
-                            <h5 class="has-text-weight-bold">
-                                Lorem ipsum dolor sit amet.
-                            </h5>
-                        </header>
-                        <footer>
-                            <span>19 oct 2018</span>
-                            <span
-                                class="sgds-icon sgds-icon-download is-size-6"
-                            ></span>
-                        </footer>
-                    </div>
-                </div>
-            </a>
+            {{media_card_primary}}
         </div>
         <div class="col is-4">
-            <a href="#!" class="is-media-card">
-                <div class="sgds-card">
-                    <div class="sgds-card-content">
-                        <header>
-                            <div class="padding--bottom">Lorem ipsum</div>
-                            <h5 class="has-text-weight-bold">
-                                Lorem ipsum dolor sit amet.
-                            </h5>
-                        </header>
-                        <footer>
-                            <span>19 oct 2018</span>
-                            <span
-                                class="sgds-icon sgds-icon-download is-size-6"
-                            ></span>
-                        </footer>
-                    </div>
-                </div>
-            </a>
+            {{media_card_secondary}}
         </div>
     </div>
 </div>
-{%- highlight html -%}
-<a href="#!" class="is-media-card">
-    <div class="sgds-card">
-        <div class="sgds-card-content">
-            <header>
-                <div class="padding--bottom">Lorem ipsum</div>
-                <h5 class="has-text-weight-bold">
-                    Lorem ipsum dolor sit amet.
-                </h5>
-            </header>
-            <footer>
-                <span>19 oct 2018</span>
-                <span class="sgds-icon sgds-icon-download is-size-6"></span>
-            </footer>
-        </div>
-    </div>
-</a>
-{%- endhighlight -%}
+{%- highlight html -%}{{media_card_default}}{%- endhighlight -%}
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target=".highlight3"

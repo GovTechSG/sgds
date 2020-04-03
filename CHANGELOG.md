@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.11] - 02-04-2020
+
+### Components
+
+- Added is-stateColor modifier for Card footer button
+- Pagination component is now left align by default
+- Added .is-centered & .is-right alignment helper for Pagination component
+
 ## [1.3.10] - 26-02-2020
 
 ### Components
