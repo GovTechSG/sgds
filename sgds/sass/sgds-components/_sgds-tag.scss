@@ -26,6 +26,14 @@ $tag-delete-margin: 1px !default;
       margin-bottom: 1rem;
     }
 
+    // Sizes
+    &.are-medium{
+      .sgds-tag:not(.is-normal){
+        font-size: $size-normal
+      }
+    }
+  
+
     &.has-addons {
       .sgds-tag {
         margin-right: 0;
@@ -72,7 +80,7 @@ $tag-delete-margin: 1px !default;
     border-radius: $tag-radius;
     color: $tag-color;
     display: inline-flex;
-    font-size: 0.75rem;
+    font-size: $size-small;
     height: 2em;
     justify-content: center;
     line-height: 1.5;
@@ -93,6 +101,16 @@ $tag-delete-margin: 1px !default;
       &.is-#{$name} {
         background-color: $color;
         color: $color-invert;
+        @if $name == 'warning' {
+          color: black;
+        }
+        &.is-light{
+          background-color: mix(white,$color, 90%);
+          color: $color;
+          @if $name == 'warning' {
+            color: darken($color, 25%);
+          }
+        }
       }
     }
 

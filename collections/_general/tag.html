@@ -1,0 +1,113 @@
+---
+title: Tag
+layout: layout-docs
+category: General
+icon: accordion
+js: false
+---
+{% capture tag %}
+<span class="sgds-tag">Default</span>
+<span class="sgds-tag is-black">black</span>
+<span class="sgds-tag is-dark">dark</span>
+<span class="sgds-tag is-white">white</span>
+<span class="sgds-tag is-primary">primary</span>
+<span class="sgds-tag is-secondary">secondary</span>
+<span class="sgds-tag is-success">success</span>
+<span class="sgds-tag is-info">info</span>
+<span class="sgds-tag is-warning">warning</span>
+<span class="sgds-tag is-danger">danger</span>
+{% endcapture %}
+
+{% capture tag_is_light %}
+<span class="sgds-tag is-primary is-light">primary</span>
+<span class="sgds-tag is-secondary is-light">secondary</span>
+<span class="sgds-tag is-success is-light">success</span>
+<span class="sgds-tag is-info is-light">info</span>
+<span class="sgds-tag is-warning is-light">warning</span>
+<span class="sgds-tag is-danger is-light">danger</span>
+{% endcapture %}
+
+{% capture tag_sizes %}
+<span class="sgds-tag">default</span>
+<span class="sgds-tag is-medium">medium</span>
+{% endcapture %}
+
+{% capture tags_are_medium %}
+<div class="sgds-tags are-medium">
+    <span class="sgds-tag is-primary is-light">primary</span>
+    <span class="sgds-tag is-secondary is-light">secondary</span>
+    <span class="sgds-tag is-success is-light">success</span>
+    <span class="sgds-tag is-info is-light">info</span>
+    <span class="sgds-tag is-warning is-light">warning</span>
+    <span class="sgds-tag is-danger is-light">danger</span>
+</div>
+{% endcapture %}
+
+{% capture tags_list %}
+<div class="sgds-tags">
+    <span class="sgds-tag">One</span>
+    <span class="sgds-tag">Two</span>
+    <span class="sgds-tag">Three</span>
+    <span class="sgds-tag">Four</span>
+    <span class="sgds-tag">Five</span>
+    <span class="sgds-tag">Six</span>
+    <span class="sgds-tag">Seven</span>
+    <span class="sgds-tag">Eight</span>
+    <span class="sgds-tag">Nine</span>
+    <span class="sgds-tag">Ten</span>
+    <span class="sgds-tag">Eleven</span>
+    <span class="sgds-tag">Twelve</span>
+    <span class="sgds-tag">Thirteen</span>
+    <span class="sgds-tag">Fourteen</span>
+    <span class="sgds-tag">Fifteen</span>
+    <span class="sgds-tag">Sixteen</span>
+    <span class="sgds-tag">Seventeen</span>
+    <span class="sgds-tag">Eighteen</span>
+    <span class="sgds-tag">Nineteen</span>
+    <span class="sgds-tag">Twenty</span>
+</div>
+{% endcapture %}
+
+
+<h2>Overview</h2>
+<p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ipsam ipsum mollitia eos architecto repellendus, sequi harum maiores facere! Molestiae hic laudantium harum aliquid rerum. Est ipsam pariatur aliquam laborum?
+</p>
+<hr>
+
+<h3>Tag with colour</h3>
+<div class="sgds-example-others">
+    {{tag}}
+</div>
+{%- highlight html -%}{{tag}}{%- endhighlight -%}
+
+<p>Add <code>.is-light</code> class for tag with less emphasis</p>
+<div class="sgds-example-others">
+    {{tag_is_light}}
+</div>
+{%- highlight html -%}{{tag_is_light}}{%- endhighlight -%}
+<hr>
+<h3>List of tags</h3>
+<p>Contain the long list of tags with <code>sgds-tags</code></p>
+<div class="sgds-example-others">
+    <div class="row">
+        <div class="col is-6">
+            {{tags_list}}
+        </div>
+    </div>
+</div>
+{%- highlight html -%}{{tags_list}}{%- endhighlight -%}
+<hr>
+<h3>Tag with different sizes</h3>
+<div class="sgds-example-others">
+    {{tag_sizes}}
+</div>
+{%- highlight html -%}{{tag_sizes}}{%- endhighlight -%}
+
+<p>You can also change all the tags sizes by containing them with <code>sgds-tags are-medium</code> classes</p>
+<div class="sgds-example-others">
+    {{tags_are_medium}}
+</div>
+{%- highlight html -%}{{tags_are_medium}}{%- endhighlight -%}
+<hr>
+
