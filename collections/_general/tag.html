@@ -68,6 +68,65 @@ js: false
 </div>
 {% endcapture %}
 
+{% capture tags_add_on %}
+<div class="sgds-tags has-addons">
+    <span class="sgds-tag is-black">npm</span>
+    <span class="sgds-tag is-primary">{{site.sgds-version}}</span>
+</div>
+<div class="sgds-tags has-addons">
+    <span class="sgds-tag is-secondary">CSS</span>
+    <a class="sgds-tag is-delete"></a>
+</div>
+{% endcapture %}
+
+{% capture tags_add_on_grouped_2 %}
+<div class="field is-grouped is-grouped-multiline">
+    <div class="control">
+      <div class="sgds-tags has-addons">
+        <span class="sgds-tag is-secondary">CSS</span>
+        <a class="sgds-tag is-delete"></a>
+      </div>
+    </div>
+  
+    <div class="control">
+      <div class="sgds-tags has-addons">
+        <span class="sgds-tag is-secondary">JS</span>
+        <a class="sgds-tag is-delete"></a>
+      </div>
+    </div>
+  
+    <div class="control">
+      <div class="sgds-tags has-addons">
+        <span class="sgds-tag is-secondary">React</span>
+        <a class="sgds-tag is-delete"></a>
+      </div>
+    </div>
+  </div>
+{% endcapture %}
+{% capture tags_add_on_grouped %}
+<div class="field is-grouped is-grouped-multiline">
+    <div class="control">
+      <div class="sgds-tags has-addons">
+        <span class="sgds-tag is-dark">npm</span>
+        <span class="sgds-tag is-info">v{{site.sgds-version}}</span>
+      </div>
+    </div>
+  
+    <div class="control">
+      <div class="sgds-tags has-addons">
+        <span class="sgds-tag is-dark">build</span>
+        <span class="sgds-tag is-success">passing</span>
+      </div>
+    </div>
+  
+    <div class="control">
+      <div class="sgds-tags has-addons">
+        <span class="sgds-tag is-dark">chat</span>
+        <span class="sgds-tag is-primary">telegram</span>
+      </div>
+    </div>
+  </div>
+{% endcapture %}
 
 <h2>Overview</h2>
 <p>
@@ -110,4 +169,19 @@ js: false
 </div>
 {%- highlight html -%}{{tags_are_medium}}{%- endhighlight -%}
 <hr>
+<h3>Tag with addons</h3>
+<p>Attach tags together with <code>has-addons</code> class</p>
+<div class="sgds-example-others">
+    {{tags_add_on}}
+</div>
+{%- highlight html -%}{{tags_add_on}}{%- endhighlight -%}
+<p>Group the list of addons tag with <code>field is-grouped is-grouped-multiline</code></p>
+<div class="sgds-example-others">
+    {{tags_add_on_grouped}}
+</div>
+{%- highlight html -%}{{tags_add_on_grouped}}{%- endhighlight -%}
 
+<div class="sgds-example-others">
+    {{tags_add_on_grouped_2}}
+</div>
+{%- highlight html -%}{{tags_add_on_grouped_2}}{%- endhighlight -%}
