@@ -45,26 +45,26 @@ js: false
 
 {% capture tags_list %}
 <div class="sgds-tags">
-    <span class="sgds-tag">One</span>
-    <span class="sgds-tag">Two</span>
-    <span class="sgds-tag">Three</span>
-    <span class="sgds-tag">Four</span>
-    <span class="sgds-tag">Five</span>
-    <span class="sgds-tag">Six</span>
-    <span class="sgds-tag">Seven</span>
-    <span class="sgds-tag">Eight</span>
-    <span class="sgds-tag">Nine</span>
-    <span class="sgds-tag">Ten</span>
-    <span class="sgds-tag">Eleven</span>
-    <span class="sgds-tag">Twelve</span>
-    <span class="sgds-tag">Thirteen</span>
-    <span class="sgds-tag">Fourteen</span>
-    <span class="sgds-tag">Fifteen</span>
-    <span class="sgds-tag">Sixteen</span>
-    <span class="sgds-tag">Seventeen</span>
-    <span class="sgds-tag">Eighteen</span>
-    <span class="sgds-tag">Nineteen</span>
-    <span class="sgds-tag">Twenty</span>
+  <span class="sgds-tag">One</span>
+  <span class="sgds-tag">Two</span>
+  <span class="sgds-tag">Three</span>
+  <span class="sgds-tag">Four</span>
+  <span class="sgds-tag">Five</span>
+  <span class="sgds-tag">Six</span>
+  <span class="sgds-tag">Seven</span>
+  <span class="sgds-tag">Eight</span>
+  <span class="sgds-tag">Nine</span>
+  <span class="sgds-tag">Ten</span>
+  <span class="sgds-tag">Eleven</span>
+  <span class="sgds-tag">Twelve</span>
+  <span class="sgds-tag">Thirteen</span>
+  <span class="sgds-tag">Fourteen</span>
+  <span class="sgds-tag">Fifteen</span>
+  <span class="sgds-tag">Sixteen</span>
+  <span class="sgds-tag">Seventeen</span>
+  <span class="sgds-tag">Eighteen</span>
+  <span class="sgds-tag">Nineteen</span>
+  <span class="sgds-tag">Twenty</span>
 </div>
 {% endcapture %}
 
@@ -81,71 +81,73 @@ js: false
 
 {% capture tags_add_on_grouped_2 %}
 <div class="field is-grouped is-grouped-multiline">
-    <div class="control">
-      <div class="sgds-tags has-addons">
-        <span class="sgds-tag is-secondary">CSS</span>
-        <a class="sgds-tag is-delete"></a>
-      </div>
-    </div>
-  
-    <div class="control">
-      <div class="sgds-tags has-addons">
-        <span class="sgds-tag is-secondary">JS</span>
-        <a class="sgds-tag is-delete"></a>
-      </div>
-    </div>
-  
-    <div class="control">
-      <div class="sgds-tags has-addons">
-        <span class="sgds-tag is-secondary">React</span>
-        <a class="sgds-tag is-delete"></a>
-      </div>
+  <div class="control">
+    <div class="sgds-tags has-addons">
+      <span class="sgds-tag is-secondary">CSS</span>
+      <a class="sgds-tag is-delete"></a>
     </div>
   </div>
+
+  <div class="control">
+    <div class="sgds-tags has-addons">
+      <span class="sgds-tag is-secondary">JS</span>
+      <a class="sgds-tag is-delete"></a>
+    </div>
+  </div>
+
+  <div class="control">
+    <div class="sgds-tags has-addons">
+      <span class="sgds-tag is-secondary">React</span>
+      <a class="sgds-tag is-delete"></a>
+    </div>
+  </div>
+</div>
 {% endcapture %}
 {% capture tags_add_on_grouped %}
 <div class="field is-grouped is-grouped-multiline">
-    <div class="control">
-      <div class="sgds-tags has-addons">
-        <span class="sgds-tag is-dark">npm</span>
-        <span class="sgds-tag is-info">v{{site.sgds-version}}</span>
-      </div>
-    </div>
-  
-    <div class="control">
-      <div class="sgds-tags has-addons">
-        <span class="sgds-tag is-dark">build</span>
-        <span class="sgds-tag is-success">passing</span>
-      </div>
-    </div>
-  
-    <div class="control">
-      <div class="sgds-tags has-addons">
-        <span class="sgds-tag is-dark">chat</span>
-        <span class="sgds-tag is-primary">telegram</span>
-      </div>
+  <div class="control">
+    <div class="sgds-tags has-addons">
+      <span class="sgds-tag is-dark">npm</span>
+      <span class="sgds-tag is-info">v{{site.sgds-version}}</span>
     </div>
   </div>
+
+  <div class="control">
+    <div class="sgds-tags has-addons">
+      <span class="sgds-tag is-dark">build</span>
+      <span class="sgds-tag is-success">passing</span>
+    </div>
+  </div>
+
+  <div class="control">
+    <div class="sgds-tags has-addons">
+      <span class="sgds-tag is-dark">chat</span>
+      <span class="sgds-tag is-primary">telegram</span>
+    </div>
+  </div>
+</div>
 {% endcapture %}
 
 <h2>Overview</h2>
 <p>
-    A label component that is use for content classification
+    Tags can be used to label or classify content.
 </p>
-<hr>
+
+<hr />
 
 <!-- TODO When to use and consideration-->
 
-
-<h3>Tag with colour</h3>
+<h3>Tag colours</h3>
 <div class="sgds-example-others">
     {{tag}}
 </div>
 {%- highlight html -%}{{tag}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy
   snippet</button>
-<p>&nbsp;</p>
-<p>Add <code>.is-light</code> class for tag with less emphasis</p>
+
+<h4>Light variants</h4>
+
+<p>Add the <code>.is-light</code> class for tag with less emphasis.</p>
 
 <div class="sgds-example-others">
     {{tag_is_light}}
@@ -153,12 +155,15 @@ js: false
 {%- highlight html -%}{{tag_is_light}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy
   snippet</button>
-<hr>
-<h3>List of tags</h3>
-<p>Contain the long list of tags with <code>sgds-tags</code></p>
+
+<hr />
+
+<h3>Groups of tags</h3>
+<p>Wrap tags with an element with the <code>.sgds-tags</code> class to easily display a list of tags that are
+  vertically centered and automatically wrap lines.</p>
 <div class="sgds-example-others">
     <div class="row">
-        <div class="col is-6">
+        <div class="col is-12-mobile is-8-tablet">
             {{tags_list}}
         </div>
     </div>
@@ -166,47 +171,60 @@ js: false
 {%- highlight html -%}{{tags_list}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>Copy
   snippet</button>
-<hr>
-<h3>Tag with different sizes</h3>
+  
+<hr />
+
+<h3>Tag sizes</h3>
 <div class="sgds-example-others">
     {{tag_sizes}}
 </div>
 {%- highlight html -%}{{tag_sizes}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight3'>Copy
   snippet</button>
-<p>&nbsp;</p>
-<p>You can also change all the tags sizes by containing them with <code>sgds-tags are-medium</code> classes</p>
+
+<h4>Size entire groups of tags</h4>
+
+<p>Change tags sizes for entire groups of tags by wrapping
+  tags with an element with <code>.sgds-tags .are-medium</code> classes.</p>
 <div class="sgds-example-others">
     {{tags_are_medium}}
 </div>
 {%- highlight html -%}{{tags_are_medium}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight4'>Copy
   snippet</button>
+
 <hr>
-<h3>Tag with addons</h3>
-<p>Attach tags together with <code>has-addons</code> class</p>
+
+<h3>Tags with addons</h3>
+<p>Join tags with the <code>has-addons</code> class.</p>
 <div class="sgds-example-others">
     {{tags_add_on}}
 </div>
 {%- highlight html -%}{{tags_add_on}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight5'>Copy
   snippet</button>
-<p>&nbsp;</p>
+
+<h4>Group tags with addons</h4>
 <p>Group the list of addons tag with <code>field is-grouped is-grouped-multiline</code></p>
+
 <div class="sgds-example-others">
     {{tags_add_on_grouped}}
 </div>
 {%- highlight html -%}{{tags_add_on_grouped}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight6'>Copy
   snippet</button>
+
 <p>&nbsp;</p>
+
 <div class="sgds-example-others">
     {{tags_add_on_grouped_2}}
 </div>
 {%- highlight html -%}{{tags_add_on_grouped_2}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight7'>Copy
   snippet</button>
+
 <hr>
+
 <h3>Styles</h3>
 <table class="table">
     <thead>
@@ -218,17 +236,19 @@ js: false
     <tbody>
         <tr>
             <td>is-light</td>
-            <td>Use when you want tag with lighter colour</td>
+            <td>Display tags with a lighter colour</td>
         </tr>
         <tr>
             <td>is-*color*</td>
-            <td>Use when you want to set the component colours. See <a href="/docs/colours/">Colour Helper</a></td>
+            <td>Set tag colour. See above, or <a href="/docs/colours/">colour helper classes</a>.</td>
         </tr>
         <tr>
             <td>is-small<br />is-medium</td>
-            <td>Use when you want to change the size of your tag</td>
+            <td>Set tag size</td>
         </tr>
     </tbody>
 </table>
+
 <hr>
+
 {%- include sgds-feedback.html -%}
