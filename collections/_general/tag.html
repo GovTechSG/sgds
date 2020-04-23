@@ -130,21 +130,29 @@ js: false
 
 <h2>Overview</h2>
 <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ipsam ipsum mollitia eos architecto repellendus, sequi harum maiores facere! Molestiae hic laudantium harum aliquid rerum. Est ipsam pariatur aliquam laborum?
+    A label component that is use for content classification
 </p>
 <hr>
+
+<!-- TODO When to use and consideration-->
+
 
 <h3>Tag with colour</h3>
 <div class="sgds-example-others">
     {{tag}}
 </div>
 {%- highlight html -%}{{tag}}{%- endhighlight -%}
-
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy
+  snippet</button>
+<p>&nbsp;</p>
 <p>Add <code>.is-light</code> class for tag with less emphasis</p>
+
 <div class="sgds-example-others">
     {{tag_is_light}}
 </div>
 {%- highlight html -%}{{tag_is_light}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy
+  snippet</button>
 <hr>
 <h3>List of tags</h3>
 <p>Contain the long list of tags with <code>sgds-tags</code></p>
@@ -156,18 +164,24 @@ js: false
     </div>
 </div>
 {%- highlight html -%}{{tags_list}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>Copy
+  snippet</button>
 <hr>
 <h3>Tag with different sizes</h3>
 <div class="sgds-example-others">
     {{tag_sizes}}
 </div>
 {%- highlight html -%}{{tag_sizes}}{%- endhighlight -%}
-
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight3'>Copy
+  snippet</button>
+<p>&nbsp;</p>
 <p>You can also change all the tags sizes by containing them with <code>sgds-tags are-medium</code> classes</p>
 <div class="sgds-example-others">
     {{tags_are_medium}}
 </div>
 {%- highlight html -%}{{tags_are_medium}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight4'>Copy
+  snippet</button>
 <hr>
 <h3>Tag with addons</h3>
 <p>Attach tags together with <code>has-addons</code> class</p>
@@ -175,13 +189,46 @@ js: false
     {{tags_add_on}}
 </div>
 {%- highlight html -%}{{tags_add_on}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight5'>Copy
+  snippet</button>
+<p>&nbsp;</p>
 <p>Group the list of addons tag with <code>field is-grouped is-grouped-multiline</code></p>
 <div class="sgds-example-others">
     {{tags_add_on_grouped}}
 </div>
 {%- highlight html -%}{{tags_add_on_grouped}}{%- endhighlight -%}
-
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight6'>Copy
+  snippet</button>
+<p>&nbsp;</p>
 <div class="sgds-example-others">
     {{tags_add_on_grouped_2}}
 </div>
 {%- highlight html -%}{{tags_add_on_grouped_2}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight7'>Copy
+  snippet</button>
+<hr>
+<h3>Styles</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Modifier</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>is-light</td>
+            <td>Use when you want tag with lighter colour</td>
+        </tr>
+        <tr>
+            <td>is-*color*</td>
+            <td>Use when you want to set the component colours. See <a href="/docs/colours/">Colour Helper</a></td>
+        </tr>
+        <tr>
+            <td>is-small<br />is-medium</td>
+            <td>Use when you want to change the size of your tag</td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+{%- include sgds-feedback.html -%}
