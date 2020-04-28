@@ -105,6 +105,7 @@ js: false
 {% endcapture %}
 {% capture tags_add_on_grouped %}
 <div class="field is-grouped is-grouped-multiline">
+  <!-- The .control modifier adds margin between each has-addons tags -->
   <div class="control">
     <div class="sgds-tags has-addons">
       <span class="sgds-tag is-dark">npm</span>
@@ -118,7 +119,7 @@ js: false
       <span class="sgds-tag is-success">passing</span>
     </div>
   </div>
-
+  
   <div class="control">
     <div class="sgds-tags has-addons">
       <span class="sgds-tag is-dark">chat</span>
@@ -196,7 +197,7 @@ js: false
 <hr>
 
 <h3>Tags with addons</h3>
-<p>Join tags with the <code>has-addons</code> class.</p>
+<p>Join tags together with the <code>has-addons</code> class.</p>
 <div class="sgds-example-others">
     {{tags_add_on}}
 </div>
@@ -205,7 +206,7 @@ js: false
   snippet</button>
 
 <h4>Group tags with addons</h4>
-<p>Group the list of addons tag with <code>field is-grouped is-grouped-multiline</code></p>
+<p>Group the list of <code>sgds-tags has-addons</code> container with <code>field is-grouped is-grouped-multiline</code></p>
 
 <div class="sgds-example-others">
     {{tags_add_on_grouped}}
