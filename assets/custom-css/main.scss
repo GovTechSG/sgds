@@ -8,7 +8,7 @@ $body-color: #323232;
 @import "../../sgds/sass/sgds-customise/all";
 @import "../../sgds/sass/sgds-base/all";
 @import "sgds-example";
-@import "content-typography.scss";
+@import "content-typography";
 @import "sgds-syntax";
 @import "mobile-side-nav";
 @import "spinner";
@@ -126,5 +126,13 @@ a[target="_blank"]:after {
     &::before{
       color: white;
     }
+  }
+}
+
+.sgds-navbar-brand{
+  a.sgds-navbar-item img{
+    width: 200px;
+    height: 80px;
+    max-height: none;
   }
 }

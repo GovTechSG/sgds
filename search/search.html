@@ -1,38 +1,31 @@
 ---
-layout: layout-default
+layout: layout-post
 title: Search
 permalink: /search/
 breadcrumb: Search
 ---
 
-<section class="sgds-section">
-    <div class="sgds-container">
-        {% include sgds-breadcrumb.html %}
-    </div>
-    <div class="sgds-container">
-        <form action="/search/" method="get">
-            <div class="row padding--bottom--lg padding--top--lg">
-                <div class="col">
-                    <div class="field has-addons">
-                        <div class="control is-expanded">
-                            <input
-                                class="input"
-                                type="text"
-                                placeholder="{{ site.search_placeholder }}"
-                                name="search"
-                            />
-                        </div>
-                        <div class="control">
-                            <button class="sgds-button">
-                                Search
-                            </button>
-                        </div>
-                    </div>
+<form action="/search/" method="get">
+    <div class="row">
+        <div class="col">
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input
+                        class="input"
+                        type="text"
+                        placeholder="{{ site.search_placeholder }}"
+                        name="search"
+                    />
+                </div>
+                <div class="control">
+                    <button class="sgds-button">
+                        Search
+                    </button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</section>
+</form>
 <section class="sgds-section" id="search-app" style="flex: 1 1 auto">
     <div style="display: flex; justify-content: center">
         <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
