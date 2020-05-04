@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.12] - 04-05-2020
+
+### Docs
+- Added tag documentation
+
+### Fixes and updates
+- Update SGDS logo and favicon
+- Fixes for search page
+- Style / layout fixes
+- Upgraded to Jekyll 4.0
+
 ## [1.3.11] - 02-04-2020
 
 ### Components
