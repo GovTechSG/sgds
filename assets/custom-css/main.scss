@@ -7,6 +7,7 @@ $body-color: #323232;
 
 @import "../../sgds/sass/sgds-customise/all";
 @import "../../sgds/sass/sgds-base/all";
+@import "navbar";
 @import "sgds-example";
 @import "content-typography";
 @import "sgds-syntax";
@@ -26,6 +27,14 @@ body {
 body {
   display: flex;
   flex-direction: column;
+  &.has-navbar-fixed-top {
+    padding-top: calc(5.25rem + 41px);
+  }
+  @media screen and (max-width: 1023px) {
+    &.has-navbar-fixed-top {
+      padding-top: calc(5.25rem + 49px);
+    }
+  }
 }
 
 .content-page {
@@ -95,21 +104,21 @@ a[target="_blank"]:after {
   right: 0;
   width: 55vw;
   height: 420px;
-  background-color: #7B50CE;
+  background-color: #7b50ce;
   transform: skewX(-32deg);
   transform-origin: right bottom;
 }
 
-.hide-element{
+.hide-element {
   overflow: hidden;
   position: relative;
 }
 
 .sgds-card-button.has-outline {
   background-color: #ffffff;
-  box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   color: #484848;
-  transition: .2s all;
+  transition: 0.2s all;
   &:hover {
     background-color: #f6f6f6;
   }
@@ -121,18 +130,10 @@ a[target="_blank"]:after {
   align-items: flex-start;
 }
 
-.sgds-breadcrumb[class*="has-background"]{
-  li{
-    &::before{
+.sgds-breadcrumb[class*="has-background"] {
+  li {
+    &::before {
       color: white;
     }
-  }
-}
-
-.sgds-navbar-brand{
-  a.sgds-navbar-item img{
-    width: 200px;
-    height: 80px;
-    max-height: none;
   }
 }

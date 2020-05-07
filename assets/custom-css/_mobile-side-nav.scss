@@ -1,20 +1,19 @@
-.mobile-side-nav{
-    position: fixed;
-    width: 100%;
-    top: calc(#{$navbar-height} + #{$masthead-height});
-    z-index: 40;
+.mobile-side-nav {
+  position: fixed;
+  width: 100%;
+  top: calc(#{$navbar-height} + #{$masthead-height} + 21px);
+  z-index: 40;
 
-    .sgds-dropdown-content{
-        height: 40vh;
-        overflow-y: scroll;
-    }
+  .sgds-dropdown-content {
+    height: 40vh;
+    overflow-y: scroll;
+  }
 }
 
-body.has-navbar-fixed-top
-{
-    &.has-component-dropdown{
-        @include touch(){
-            padding-top: calc(#{$navbar-height} + #{$masthead-height} + 50px);
-        }
+body.has-navbar-fixed-top {
+  &.has-component-dropdown {
+    @include touch() {
+      padding-top: calc(#{$navbar-height} + #{$masthead-height} + 71px);
     }
+  }
 }
