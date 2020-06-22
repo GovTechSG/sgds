@@ -83,9 +83,13 @@ icon: table
 
 <h2>Overview</h2>
 <p>
-    Pagination helps to break down long lists into multiple sections that are indexed by a
-    pagination component.
+    Pagination controls provide swift access to all pages, while indicating that more pages exist.
 </p>
+
+<hr/>
+
+<h3>Usage</h3>
+<p>Long lists are broken down into multiple sections by pagination.</p>
 
 <div class="sgds-example-others">{{ default_pagination }}</div>
 {%- highlight html -%}{{ default_pagination }}{%- endhighlight -%}
@@ -96,20 +100,11 @@ icon: table
     Copy Snippet
 </button>
 
-<h4>When you should use this component</h4>
-<p>You should use the pagination component when you want to display large amounts of related content that
-    spans across multiple pages. E.g Search results or forum posts.
-</p>
-
-<h4>When you should consider something else</h4>
-<p>You should not use the pagination component to indicate progress, such as in a transaction.</p>
-
-<p>You should also not use the component as a replacement for navigation. 
-    For main navigation, do use the <a href="/docs/main-nav/">main nav</a> and <a href="/docs/side-nav/">side nav</a> components</p>
-
 <hr/>
 
-<h3>Disabling the button</h3>
+<h2>Types</h2>
+
+<h3>1) Disabling the button</h3>
 <p>You can disable some links if they are not active by adding a <code>disabled</code> attribute</p>
 <div class="sgds-example-others">{{default_pagination_disabled}}</div>
 {%- highlight html -%}{{default_pagination_disabled}}{%- endhighlight -%}
@@ -120,7 +115,7 @@ icon: table
 <hr/>
 
 
-<h3>Alignments</h3>
+<h3>2) Alignments</h3>
 <p>You can align the pagination buttons using the <code>is-centered</code> & <code>is-right</code> classes</p>
 <h5><code>is-centered</code></h5>
 <div class="sgds-example-others">{{default_pagination_centered}}</div>
@@ -140,7 +135,7 @@ icon: table
 >Copy Snippet</button>
 <hr/>
 
-<h3>Rounded Pagination buttons</h3>
+<h3>3) Rounded Pagination buttons</h3>
 <p>You can use <code>.is-rounded</code> to make all pagination buttons rounded.</p>
 <div class="sgds-example-others">{{pagination_rounded}}</div>
 {%- highlight html -%}{{pagination_rounded}}{%- endhighlight -%}
@@ -151,7 +146,7 @@ icon: table
 
 <hr/>
 
-<h3>Customisable buttons</h3>
+<h3>4) Customisable buttons</h3>
 <p>
     You can nest icons instead of text in the previous and next buttons by nesting child elements
     within the <code>a</code> tags.
@@ -190,6 +185,29 @@ icon: table
         </tr>
     </tbody>
 </table>
+
+<hr/>
+
+<h3>When to use</h3>
+
+<h6>Pagination should be used for:</h6>
+<ul>
+    <li>Displaying large amounts of related content that spans across multiple pages.</li>
+    <ul>
+      <li>For example, search results or forum posts.</li>
+    </ul>
+</ul>
+
+<h6>Pagination should not be used for:</h6>
+<ul>
+    <li>Indicating progress, such as in a transaction.</li>
+    <li>Replacing Navigation.</li>
+    <ul>
+      <li>For main navigation, you are advised to use the 
+          <a href="/docs/main-nav/">main nav</a> and 
+          <a href="/docs/side-nav/">side nav</a> components.</li>
+    </ul>
+</ul>
 
 <hr/>
 
