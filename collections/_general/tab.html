@@ -49,8 +49,15 @@ js: true
 
 <h2>Overview</h2>
 <p>
-    Tabs are navigation elements that let users navigate between related content that are grouped together.
+    Tabs organize content across different screens, data sets, and other interactions.
 </p>
+
+<h3>Interactive Demo</h3>
+<p>
+    This demo lets you preview the tab component and its variations. 
+    Each tab displays a different type of tab.
+</p>
+
 <div class="sgds-tabs">
     <ul class="no-margin" role="tablist">
         <li class="is-active">
@@ -109,7 +116,7 @@ js: true
 
 <hr/>
 
-<h3>Code</h3>
+<h3>Usage</h3>
 <p class="margin--top--lg">For Tab Selectors</p>
 {%- highlight html -%}
 {{tab-selector}}
@@ -131,35 +138,6 @@ js: true
 >
     Copy snippet
 </button>
-
-<hr/>
-
-<h3>When you should use this component</h3>
-<p>
-    Tabs should be used to expose related but separate content, such as sub-pages or
-    different content under the same category.
-</p>
-
-<h3>When you should consider something else</h3>
-<p>
-    Tabs hide information from the user. 
-    If you have a lot of information contained within tabs, 
-    do consider reducing the content.
-    You may want to consider splitting your content into different 
-    sections using properly formatted text instead.
-</p>
-
-<p>
-    Tabs should be used sparingly to reduce cognitive load for the user. 
-    Having too many tabs may also affect the performace of the page
-    which could result in longer loading times.
-</p>
-
-<p>
-    If you need users to make comparisons or present tabular data, 
-    using the <a href="/docs/table/">table</a> 
-    component may be more appropriate.
-</p>
 
 <hr/>
 
@@ -278,5 +256,33 @@ js: true
 {%- highlight html -%}
 <div class="sgds-tabs is-centered">...</div>
 {%- endhighlight -%}
+
+<hr/>
+
+<h3>When to use</h3>
+
+<h6>Tabs should be used for:</h6>
+<ul>
+    <li>Exposing related but separate content.</li>
+    <ul>
+      <li>For example, subpages or different content under the same category.</li>
+    </ul>
+</ul>
+
+<h6>Tabs should not be used for:</h6>
+<ul>
+    <li>Containing excessive information.</li>
+    <ul>
+      <li>You should consider reducing the content.</li>
+      <li>Alternatively, you can consider splitting your content into 
+          different sections using properly formatted text.</li>
+    </ul>
+    <li>Making comparisons or presenting tabular data.</li>
+    <ul>
+      <li>Using the <a href="/docs/table/">table</a> component may be more appropriate.</li>
+    </ul>
+</ul>
+
+<hr/>
 
 {%- include sgds-feedback.html -%}
