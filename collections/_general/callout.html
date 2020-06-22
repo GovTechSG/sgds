@@ -21,40 +21,42 @@ icon: callout
 {% endcapture %}
 
 <h2>Overview</h2>
-<p>The callout is an excerpt of text used in design to draw attention to or label content.</p>
+<p>Callouts are excerpts of text used in design to draw attention to or label content.</p>
 
 <hr/>
+<h3>Usage</h3>
+
 <div class="sgds-example-others">
     {{default_callout}}
 </div>
 {%- highlight html -%}{{default_callout}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy snippet</button>
 
-<h4>When you should use this component</h4>
-<p>
-    You should use the callout component when you want to highlight very specific 
-    information within a page and to differentiate it from
-    content that surrounds it. E.g quotes or additional information.
-</p>
+<hr/>
 
-<p>
-    The callout component should be used sparingly and
-    there should not be multiple callouts on your page as they
-    may lose their effectiveness, or worse confuse users.
-</p>
+<h3>When to use</h3>
 
-<h4>When you should consider something else</h4>
-<p>
-    Callouts should not be used in complex pages as some users may 
-    not notice the callout if they are presented together
-    with other visually prominent elements.
-</p>
+<h6>Callouts should be used for:</h6>
+<ul>
+  <li>Highlighting very specific information within a page by
+    differentiating it from surrounding content.</li>
+  <ul>
+    <li>For example, quotes or additional information.</li>
+  </ul>
+</ul>
 
-<p>
-    If there is a need to draw attention to important or critical information, 
-    you may want to consider using the
-    <a href="/docs/notification">notification</a> component with the correct color state instead.
-</p>
+<h6>Callouts should not be used for:</h6>
+<ul>
+  <li>Information presented in complex pages.</li>
+    <ul>
+      <li>Readers will be distracted by the other visually prominent elements.</li>
+    </ul>
+  <li>Important or critical information .</li>
+    <ul>
+      <li>The <a href="/docs/notification">notification</a> component
+        with the correct color state.</li>
+    </ul>
+</ul>
 
 <hr/>
 

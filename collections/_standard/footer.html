@@ -163,20 +163,22 @@ order: 4
 {% endcapture %}
 
 <h2>Overview</h2>
+<p>Contains supporting information for your service at the bottom of your website.</p>
+
+<h3>Usage</h3>
 <p>
-    All .gov.sg digital services shall contain
-    adopt a Global Footer Bar across all pages
+  All <b>.gov.sg</b> digital services shall contain a Global Footer Bar across all pages.
 </p>
 
 <p>
-    The Global Footer Bar should include the name of the digital
-    service, contact information, a privacy statement and the terms of
-    use
+  The Global Footer Bar should include the name of the digital service,
+  contact information, a privacy statement and the terms of use.
 </p>
 
 <hr />
 
-<h3>Basic example</h3>
+<h2>Types</h2>
+<h3>1) Basic example</h3>
 <div class="sgds-example-others is-paddingless">{{default_footer}}</div>
 
 {% highlight html %}{{default_footer}}{% endhighlight %}
@@ -185,7 +187,8 @@ order: 4
 
 <hr />
 
-<h3>You should have no more than six columns of footer links.</h3>
+<h3>2) Include columns in footer</h3>
+<p>We advise that you <b>avoid</b> using <b>more than 6 columns</b> of footer links.</p>
 <div class="sgds-example-others is-paddingless">{{no_6_column_footer}}</div>
 {% highlight html %}{{no_6_column_footer}}{% endhighlight %}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy
@@ -193,7 +196,11 @@ order: 4
 
 <hr />
 
-<h3>The first column can be used to present a brief description of your website.</h3>
+<h3>3) Include description in footer</h3>
+<p>
+  We recommend that you use the <b>1st column</b> to present a
+  <b>brief description</b> of your website.
+</p>
 <div class="sgds-example-others is-paddingless">{{description_footer}}</div>
 {% highlight html %}{{description_footer}}{% endhighlight %}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>Copy
@@ -203,20 +210,24 @@ order: 4
 <h3>Guidelines</h3>
 <p>Footers should:</p>
 <ul>
-    <li class="margin--bottom">Be positioned at the bottom of every page</li>
-    <li class="margin--bottom">Contain a '<a href="{{site.report_vulnerability}}" target="_blank">Report
-            Vulnerability</a>' link on the bottom left corner</li>
-    <li class="margin--bottom">Contain links to 'Privacy' and 'Terms of Use' pages on the bottom left corner</li>
+    <li class="margin--bottom">Be positioned at the <b>bottom of every page.</b></li>
+    <li class="margin--bottom">
+      Contain a '<a href="{{site.report_vulnerability}}" target="_blank">
+        Report Vulnerability</a>' link on the <b>bottom left</b> corner</li>
+    <li class="margin--bottom">
+      Contain <b>links to 'Privacy' and 'Terms of Use' pages</b>
+      on the <b>bottom left</b> corner</li>
     <li class="margin--bottom">Contain a 'Feedback' link, if there are feedback channels</li>
-    <li class="margin--bottom">Contain a 'Rate this Service' link, if the website is collecting customer
-        satisfaction
-        statistics</li>
-    <li class="margin--bottom">Contain the Copyright Statement in the format '&copy; [current year in YYYY]
-        Government
-        of Singapore' on the bottom right corner of the footer panel</li>
-    <li class="margin--bottom">Contain the Last Updated Statement in the format 'Last Updated [DD CurrentMonth
-        YYYY]' on
-        the bottom right corner of the footer panel</li>
+    <li class="margin--bottom">
+      Contain a 'Rate this Service' link, if the website is collecting customer
+      satisfaction statistics</li>
+    <li class="margin--bottom">
+      Contain the <b>Copyright Statement</b> in the format '&copy; [current year in YYYY]
+      Government of Singapore' on the <b>bottom right</b> corner of the footer panel</li>
+    <li class="margin--bottom">
+      Contain the <b>Last Updated Statement</b> in the format
+      'Last Updated [DD CurrentMonth YYYY]' on the <b>bottom right</b>
+      corner of the footer panel</li>
 </ul>
 
 <hr />
