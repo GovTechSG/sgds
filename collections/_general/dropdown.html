@@ -74,28 +74,16 @@ js: true
 </p>
 
 <hr/>
+
+<h3>Usage</h3>
+
 <div class="sgds-example-others">
     {{ default_dropdown }}
 </div>
 {%- highlight html -%}{{ default_dropdown }}{%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy
-            snippet</button>
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>
+  Copy snippet</button>
 
-<h4>When you should use this component</h4>
-<p>
-    Dropdowns should be used sparingly. Ideally, you should use dropdowns when you have limited space or if your list is too long.
-    E.g Having more than 7 items in a predetermined list.
-</p>
-
-<p>
-    Dropdowns content should bring users to a different page or section within a page.
-</p>
-
-<h4>When you should consider something else</h4>
-<p>
-    If you require users to select from a predetermined list of answers, do consider using the <a href="/docs/checkbox/">checkbox</a> or <a href="/docs/radio-buttons/">radios</a> component.
-    Try not to use checkboxes in the dropdown component as users may not know how to select multiple options presented to them in a dropdown.
-</p>
 <hr/>
 
 <h3>Style</h3>
@@ -113,6 +101,31 @@ js: true
         </tr>
     </tbody>
 </table>
+
+<hr/>
+
+<h3>When to use</h3>
+
+<h6>Dropdowns should be used:</h6>
+<ul>
+  <li>When you have limited space or your list is too long.</li>
+    <ul>
+      <li>For example, having more than 7 items in a predetermined list.</li>
+    </ul>
+  <li>For bringing users to a different page, or section within a page.</li>
+</ul>
+
+<h6>Dropdowns should not be used:</h6>
+<ul>
+  <li>When requiring users to select from a predetermined list of answers.</li>
+    <ul>
+      <li>Better alternatives would be the
+        <a href="/docs/checkbox/">checkbox</a> or
+        <a href="/docs/radio-buttons/">radios</a> component.</li>
+    </ul>
+  <li>for including checkboxes as users may not know how to
+    select multiple options presented to them in a dropdown.</li>
+</ul>
 
 <hr/>
 
