@@ -67,17 +67,17 @@ icon: table
 
 {% capture pagination_customise %}
 <nav class="sgds-pagination" role="navigation" aria-label="pagination">
-    <a class="sgds-pagination-previous"
-        ><span class="sgds-icon sgds-icon-arrow-left is-size-5"></span
-    ></a>
+    <a class="sgds-pagination-previous">
+        <span class="sgds-icon sgds-icon-arrow-left is-size-5"></span>
+    </a>
     <ul class="sgds-pagination-list">
         <li class="sgds-pagination-link">1</li>
         <li class="sgds-pagination-link is-current">2</li>
         <li class="sgds-pagination-link">3</li>
     </ul>
-    <a class="sgds-pagination-next"
-        ><span class="sgds-icon sgds-icon-arrow-right is-size-5"></span
-    ></a>
+    <a class="sgds-pagination-next">
+        <span class="sgds-icon sgds-icon-arrow-right is-size-5"></span>
+    </a>
 </nav>
 {% endcapture %}
 
@@ -102,9 +102,9 @@ icon: table
 
 <hr/>
 
-<h2>Types</h2>
+<h3>Types</h3>
 
-<h3>1) Disabling the button</h3>
+<h4>1) Disabling the button</h4>
 <p>You can disable some links if they are not active by adding a <code>disabled</code> attribute</p>
 <div class="sgds-example-others">{{default_pagination_disabled}}</div>
 {%- highlight html -%}{{default_pagination_disabled}}{%- endhighlight -%}
@@ -115,9 +115,9 @@ icon: table
 <hr/>
 
 
-<h3>2) Alignments</h3>
+<h4>2) Alignments</h4>
 <p>You can align the pagination buttons using the <code>is-centered</code> & <code>is-right</code> classes</p>
-<h5><code>is-centered</code></h5>
+<h5>is-centered</h5>
 <div class="sgds-example-others">{{default_pagination_centered}}</div>
 {%- highlight html -%}{{default_pagination_centered}}{%- endhighlight -%}
 <button
@@ -125,8 +125,7 @@ icon: table
     data-clipboard-target=".highlight2"
 >Copy Snippet</button>
 
-<p></p>
-<h5><code>is-right</code></h5>
+<h5>is-right</h5>
 <div class="sgds-example-others">{{default_pagination_right}}</div>
 {%- highlight html -%}{{default_pagination_right}}{%- endhighlight -%}
 <button
@@ -135,7 +134,7 @@ icon: table
 >Copy Snippet</button>
 <hr/>
 
-<h3>3) Rounded Pagination buttons</h3>
+<h4>3) Rounded Pagination buttons</h4>
 <p>You can use <code>.is-rounded</code> to make all pagination buttons rounded.</p>
 <div class="sgds-example-others">{{pagination_rounded}}</div>
 {%- highlight html -%}{{pagination_rounded}}{%- endhighlight -%}
