@@ -153,9 +153,16 @@ icon: grid
 
 <h2>Overview</h2>
 <p>Structure your content with a twelve-column system, powered by CSS flexbox.</p>
+
 <hr />
-<p>The following example creates three equal-width columns on tablet, desktop, and widescreen
-    devices. Columns must have a <code>row</code> as a parent.</p>
+
+<h3>Types</h3>
+
+<h4>1) 3 Columns</h4>
+<p>
+    The example below shows the creation of 3 equal-width columns on the tablet, desktop,
+    and widescreen devices. Columns must have a<code>row</code> as a parent.
+</p>
 
 <div class="sgds-example is-marginless">
     {{default_grid_example}}
@@ -165,8 +172,12 @@ icon: grid
     Snippet</button>
 
 <hr />
-<p>Grids can be divided into 12 columns with size classes ranging from <code>is-2</code> to
-    <code>is-12</code>. In the following example we see the difference between <code>is-2</code> and <code>is-6</code>.
+
+<h4>2) 12 Columns</h4>
+<p>
+    Grids can be divided into 12 columns with size classes ranging from <code>is-2</code> to
+    <code>is-12</code>. In the following example we see the difference between
+    <code>is-2</code> and <code>is-6</code>.
 </p>
 <div class="sgds-example is-marginless">
     {{grid_2_12_example}}
@@ -177,19 +188,23 @@ icon: grid
 
 <hr />
 
-<p>Use <code>is-multiline</code> on <code>row</code> elements to have 
-    columns automatically wrap to a new line.</p>
+<h4>3) Columns wrap to a new line</h4>
+<p>
+    Use <code>is-multiline</code> on <code>row</code> elements to have
+    columns automatically wrap to a new line.
+</p>
 <div class="sgds-example is-marginless">
     {{ multiline_example }}
 </div>
 {% highlight html %}{{ multiline_example }}{% endhighlight %}
-<button class="sgds-button clipboard-btn is-primary is-outlined" 
+<button class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target='.highlight2'>
     Copy Snippet
 </button>
 
 <hr />
 
+<h4>4) Horizontal Space</h4>
 <p>Create empty horizontal space from the left using <code>is-offset-X</code>.</p>
 <div class="sgds-example is-marginless">
     {{offset_grid_example}}
@@ -200,7 +215,9 @@ icon: grid
 
 <hr />
 
-<p>You can <b>nest</b> columns to have more flexibility in your design.</p>
+<h4>5) Nest Columns</h4>
+<p>Nested columns provide you with more flexibility in your design.</p>
+
 <div class="sgds-example is-marginless">
     {{nested_grid_example}}
 </div>
