@@ -6,7 +6,7 @@ order: 3
 
 <h2>Overview</h2>
 <p>
-  Radio buttons allow users to select one option from a list
+  Radio buttons allow the user to select one option from a set while seeing all available options.
 </p>
 
 <p>
@@ -17,7 +17,9 @@ order: 3
 
 <hr />
 
-<h3>Default radio button</h3>
+<h2>Types</h2>
+
+<h3>1) Default Radio Buttons</h3>
 
 <div class="sgds-example-others">
   <div class="field">
@@ -56,22 +58,19 @@ order: 3
   Copy snippet
 </button>
 
-<h4>When you should use this component</h4>
-<p>
-  Use the radio button component when users can only select one item from a list
-  of options.
-</p>
-
-<h4>When you should consider something else</h4>
-<p>
-  Do not use the radio button component if users can select more than one
-  option. If you require users to select multiple options, then using the
-  <a href="/docs/checkbox">checkbox</a> component would be more appropriate.
-</p>
-
 <hr />
 
-<h3>Stacked Radio Buttons</h3>
+<h3>2) Stacked Radio Buttons</h3>
+
+<p>
+  Inline radio buttons can sometimes be difficult to scan. 
+  Users may find it difficult to differentiate which label the option belongs to: 
+  the one before or after the option.
+</p>
+<p>
+  <b>Note:</b> Arranging the radio buttons in a vertical block (seen below) 
+  helps to eliminate possible confusion.
+</p>
 
 <div class="sgds-example-others">
   <div class="field">
@@ -114,14 +113,29 @@ order: 3
   Copy snippet
 </button>
 
-<h4>When you should use this component</h4>
-<p>
-  Inline radio buttons can sometimes be difficult to scan, as users may find it
-  difficult to differentiate which label the option belongs to: the one
-  before or after the option. By arranging the radio buttons in a vertical block
-  as above, this helps to eliminate possible confusion.
-</p>
+<hr />
+
+<h3>When to use</h3>
+
+<h6>Radio buttons should be used:</h6>
+
+<ul>
+  <li>When users can only select one item from a list of options.</li>
+</ul>
+
+<h6>Radio buttons should not be used:</h6>
+
+<ul>
+  <li>If you want users to select multiple options.</li>
+  <ul>
+    <li>
+      Using the <a href="/docs/checkbox">checkbox</a> 
+      component would be more appropriate.
+    </li>
+  </ul>
+</ul>
 
 <hr />
+
 
 {%- include sgds-feedback.html -%}
