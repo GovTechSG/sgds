@@ -15,7 +15,7 @@ icon: icons
 
 <h3>Usage</h3>
 <p>Replace <code>sgds-icon-iconName</code> with the one you wish to use from the lists below.</p>
-{% highlight html %}<span class="sgds-icon sgds-icon-iconName"></span>{% endhighlight %}
+{% highlight html %}<span class="sgds-icon sgds-icon-iconName" role="img" aria-label="iconName"></span>{% endhighlight %}
 
 <hr />
 
@@ -50,7 +50,7 @@ icon: icons
     <div class="col is-2-desktop is-4-tablet is-4-mobile is-boxed is-flex ">
         <a class="has-text-dark icon-clipboard-btn sgds-tooltip" data-clipboard-text=".sgds-icon-{{icon.iconName}}" data-tooltip="Click to Copy">
             <div class="icon-container">
-                <span class="sgds-icon sgds-icon-{{icon.iconName}} is-size-4"></span>
+                <span class="sgds-icon sgds-icon-{{icon.iconName}} is-size-4" role="img" aria-label="{{icon.iconName}}"></span>
             </div>
             <small>.sgds-icon-{{icon.iconName}}</small>
         </a>

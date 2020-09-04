@@ -1,3 +1,7 @@
+- category: Mandatory
+  icons:
+  - iconName: sg-crest
+
 - category: Fundamentals
   icons:
   - iconName: home
@@ -5,9 +9,12 @@
   - iconName: notification
   - iconName: ellipsis
   - iconName: image
+  - iconName: add-image
   - iconName: cog
   - iconName: plus
+  - iconName: circle-plus
   - iconName: minus
+  - iconName: circle-minus
   - iconName: cross
   - iconName: check
   - iconName: chevron-down
@@ -16,7 +23,10 @@
   - iconName: chevron-right
   - iconName: arrow-top-left
   - iconName: arrow-top-right
+  - iconName: arrow-up
   - iconName: arrow-down
+  - iconName: arrow-left
+  - iconName: arrow-right
 
 - category: Maps and Transportation
   icons:
@@ -67,7 +77,7 @@
   - iconName: hdd
   - iconName: calculator
   - iconName: browser
-  - iconName: cloud-success
+  - iconName: cloud-success 
   - iconName: signal
 
 - category: Action
@@ -142,6 +152,7 @@
   - iconName: linkedin
   - iconName: linkedin-alt
   - iconName: youtube
+  - iconName: twitter
   - iconName: instagram
   - iconName: docker
 
