@@ -39,6 +39,8 @@ $label-color: $grey-darker !default;
 $label-weight: $weight-bold !default;
 
 $help-size: $size-small !default;
+$hint-size : $size-normal !default;
+$hint-color : $grey !default;
 
 @mixin input {
   @include control;
@@ -635,29 +637,18 @@ $help-size: $size-small !default;
   }
 }
 
-
 .hint {
-  @extend .label;
-  font-size: $size-7;
-  margin-bottom: 0.5em;
+  display:block;
+  font-size: $hint-size;
   font-weight: lighter;
-  color: $grey;
-}
-
-.error {
-  @extend .label;
-  font-size: $size-7;
   margin-bottom: 0.5em;
-  font-weight: lighter;
-  color: $danger;
-}
-
-.success {
-  @extend .label;
-  font-size: $size-7;
-  margin-bottom: 0.5em;
-  font-weight: lighter;
-  color: $success;
+  color: $hint-color;
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    &.is-#{$name} {
+      color: $color;
+    }
+  }
 }
 
 .help {
