@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.15] - 07-09-2020
+- Fixes for input hint text
+- Added is-*color classes for hint text
+- Removed .success & .error class for hint text
+- Update input & text area documentation
+
+## [1.3.14] - 15-07-2020
+- update $size-7 paragraph font size to 1.125rem
+
 ## [1.3.13] - 04-05-2020
 - Navbar fixes
 

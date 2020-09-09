@@ -17,34 +17,34 @@ order: 5
 
 <div class="sgds-example-others">
   <div class="field">
-    <label class="label" for="name">Text Input Label</label>
+    <label class="label" for=input-1">Text Input Label</label>
     <div class="control">
-      <input class="input" type="text" id="name" />
+      <input class="input" type="text" id=input-1" />
     </div>
   </div>
 
   <div class="field">
-    <label class="label" for="hint">Text Input Label</label>
+    <label class="label" for=input-2">Text Input Label</label>
     <span class="hint">This is a example of hint text</span>
     <div class="control">
-      <input class="input" type="text" id="hint" />
+      <input class="input" type="text" id=input-2" />
     </div>
   </div>
 </div>
 
 {%- highlight html -%}
 <div class="field">
-  <label class="label" for="name">Name</label>
+  <label class="label" for=input-1">Text Input Label</label>
   <div class="control">
-    <input class="input" type="text" placeholder="Text input" id="name" />
+    <input class="input" type="text" id=input-1" />
   </div>
 </div>
 
 <div class="field">
-  <label class="label" for="hint">Text Input Label</label>
+  <label class="label" for=input-2">Text Input Label</label>
   <span class="hint">This is a example of hint text</span>
   <div class="control">
-    <input class="input" type="text" id="hint" />
+    <input class="input" type="text" id=input-2" />
   </div>
 </div>
 {%- endhighlight -%}
@@ -70,34 +70,38 @@ order: 5
 </p>
 
 <div class="sgds-example-others">
-    <div class="field">
-        <label class="label" for="my-email">Text Input Label</label>
-        <span class="error">This is an error message</span>
-        <div class="control">
-          <input
-            class="input is-danger"
-            type="email"
-            placeholder="Email input"
-            value="hello@example.com"
-            id="my-email"
-          />
-        </div>
+  <div class="field">
+    <label class="label" for=input-3">Email Address</label>
+    <span class="hint">This is a example of hint text</span>
+    <span class="help is-danger">This email is invalid</span>
+    <div class="control">
+      <input
+        class="input is-danger"
+        type="email"
+        placeholder="Email Address"
+        value="hello_example.com"
+        id=input-3"
+      />
     </div>
+    
+  </div>
 </div>
 
 {%- highlight html -%}
 <div class="field">
-  <label class="label" for="my-email">Text Input Label</label>
-  <span class="error">This is an error message</span>
+  <label class="label" for=input-3">Email Address</label>
+  <span class="hint">This is a example of hint text</span>
+  <span class="help is-danger">This email is invalid</span>
   <div class="control">
     <input
       class="input is-danger"
       type="email"
-      placeholder="Email input"
-      value="hello@example.com"
-      id="my-email"
+      placeholder="Email Address"
+      value="hello_example.com"
+      id=input-3"
     />
   </div>
+  
 </div>
 {%- endhighlight -%}
 <button
@@ -120,33 +124,37 @@ order: 5
 
 <div class="sgds-example-others">
     <div class="field">
-        <label class="label" for="user-email">Email Address</label>
-        <span class="success">This is a valid email</span>
+        <label class="label" for=input-4">Email Address</label>
+        <span class="hint">This is a example of hint text</span>
+        <span class="help is-success">This email is valid</span>
         <div class="control">
             <input
             class="input is-success"
             type="email"
             placeholder="Email input"
             value="hello@example.com"
-            id="user-email"
+            id=input-4"
             />
         </div>
+        
     </div>
 </div>
 
 {%- highlight html -%}
 <div class="field">
-  <label class="label" for="user-email">Email Address</label>
-  <span class="success">This is a valid email</span>
+  <label class="label" for=input-4">Email Address</label>
+  <span class="hint">This is a example of hint text</span>
+  <span class="help is-success">This email is valid</span>
   <div class="control">
-    <input
+      <input
       class="input is-success"
       type="email"
       placeholder="Email input"
       value="hello@example.com"
-      id="user-email"
-    />
+      id=input-4"
+      />
   </div>
+  
 </div>
 {%- endhighlight -%}
 <button
