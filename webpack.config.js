@@ -1,22 +1,21 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const ImageminPlugin = require("imagemin-webpack-plugin").default;
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-module.exports = env => {
+module.exports = (env) => {
   if (!env) env = {};
   // This object only for SGDS Main Library
   // Site config (Vue, ImageMin etc) is below this object
   let config = {
     mode: env.production ? "production" : "development",
     entry: {
-      "js/sgds": "./sgds/js/index.js"
+      "js/sgds": "./sgds/js/index.js",
     },
     output: {
       filename: "[name].js",
-      path: path.resolve(__dirname)
+      path: path.resolve(__dirname),
     },
     module: {
       rules: [
@@ -27,9 +26,9 @@ module.exports = env => {
             loader: "babel-loader",
             options: {
               presets: [["@babel/preset-env", { targets: { ie: "11" } }]],
-              plugins: ["@babel/plugin-proposal-object-rest-spread"]
-            }
-          }
+              plugins: ["@babel/plugin-proposal-object-rest-spread"],
+            },
+          },
         },
         {
           // sass -> css -> extract to dist/css
@@ -38,23 +37,23 @@ module.exports = env => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                publicPath: "/"
-              }
+                publicPath: "/",
+              },
             },
             {
               loader: "css-loader",
               options: {
                 url: false,
-                sourceMap: true
-              }
+                sourceMap: true,
+              },
             },
             {
               loader: "sass-loader",
               options: {
-                sourceMap: true
-              }
-            }
-          ]
+                sourceMap: true,
+              },
+            },
+          ],
         },
         {
           // fonts -> file loader to dist/fonts
@@ -64,18 +63,18 @@ module.exports = env => {
               loader: "file-loader",
               options: {
                 name: "[name].[ext]",
-                outputPath: "fonts"
-              }
-            }
-          ]
-        }
-      ]
+                outputPath: "fonts",
+              },
+            },
+          ],
+        },
+      ],
     },
     plugins: [
       new MiniCssExtractPlugin({
-        moduleFilename: ({ name }) => `${name.replace("js", "css")}.css`
-      })
-    ]
+        moduleFilename: ({ name }) => `${name.replace("js", "css")}.css`,
+      }),
+    ],
   };
 
   if (env.production) {
@@ -92,30 +91,20 @@ module.exports = env => {
       ...[
         {
           test: /\.css$/,
-          use: ["vue-style-loader", "css-loader"]
+          use: ["vue-style-loader", "css-loader"],
         },
         {
           test: /\.vue$/,
-          loader: "vue-loader"
-        }
+          loader: "vue-loader",
+        },
       ]
     );
     config.plugins.push(
       ...[
-        new CopyWebpackPlugin([
-          {
-            from: "assets/uncompressed_images",
-            to: "assets/img"
-          }
-        ]),
-        // ImageminWebpackPlugin must be placed after CopyWebpackPlugin
-        // (or any other plugins that deal with images) in plugins array.
-        new ImageminPlugin({
-          pngquant: {
-            quality: "95-100"
-          }
+        new CopyPlugin({
+          patterns: [{ from: "assets/uncompressed_images", to: "assets/img" }],
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
       ]
     );
   }
