@@ -49,12 +49,23 @@ layout: layout-docs
     </div>
 </div>
 {% endcapture %}
-<h2>
-    Use this pattern when you need to ask users for their names
-</h2>
+
+<h2>Collecting names</h2>
+
+<p>
+  Use this pattern when you need to ask users for their names.
+</p>
 
 <hr />
-<h3>General name field</h3>
+
+<h3>Types</h3>
+
+<h4>1) General name field</h4>
+<p>
+    You should follow this pattern when you need to ask for a user’s name.
+    You should only ask for names if you need it for a service.
+</p>
+
 <div class="sgds-example-others">{{general_name_field}}</div>
 {%- highlight html -%}{{general_name_field}}{%- endhighlight -%}
 
@@ -65,15 +76,15 @@ layout: layout-docs
     Copy snippet
 </button>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should use this pattern</h4>
-<p>
-    You should follow this pattern when you need to ask for a user’s name and only ask for names if
-    you need it for a service.
-</p>
-
 <hr/>
 
-<h3>Multiline name field</h3>
+<h4>2) Multiline name field</h4>
+<p>
+  You should follow this pattern when you know that your users will follow the
+  given-name and family-name convention.
+</p>
+
+
 <div class="sgds-example-others">{{multiple_name_field}}</div>
 
 {%- highlight html -%}{{multiple_name_field}}{%- endhighlight -%}
@@ -85,60 +96,67 @@ layout: layout-docs
     Copy snippet
 </button>
 
-<h4 class="margin--top--lg has-text-weight-semibold">When you should use this pattern</h4>
-<p>
-    You should follow this pattern when you know that your users follow the given-name and family-name convention.
-</p>
-
 <hr/>
 
 <h3>Guidelines</h3>
 <h4>Make sure the name field works for your users</h4>
-<p>
-    Name fields should be long enough to accomodate the names of your users. Do make sure that you
-    support all characters that users may need to enter, including symbols and numbers.
-</p>
-
-<p>
-    Do ensure that you do not spellcheck a user's name by setting the <code>spellcheck</code> attribute to <code>false</code>
-</p>
-
-<h4>Single name fields</h4>
-<p>
-    This can accomodate the widest range of name types and formats and is recommended to reduce the
-    risk that your user's enter their name in the incorrect format. However by using this, you may
-    not be able to extract parts of a name.
-</p>
-
-<h4>Multiple name fields</h4>
-<p>
-    Use multiple name fields based on your user's needs. Not everyone's name fits the general
-    first-name, last-name convention. Using multiple name fields increases the risk that a person's
-    name will not fit the same convention and may be entered incorrectly.
-</p>
-
-<h4>Labelling of name fields</h4>
-<p>
-    For single name fields, use "Full name".
-</p>
-
-<p>
-    For multiple name fields, use:
-</p>
 <ul>
-    <li>'Given name'</li>
-    <li>'Family name'</li>
+    <li>
+      Name fields should be long enough to accommodate the names of your users
+    </li>
+    <li>
+        Make sure that you support all characters that users may need to enter,
+        including symbols and numbers
+    </li>
+    <li>
+       Set the <code>spellcheck</code> attribute to <code>false</code> so that
+       you do not spellcheck a user's name
+    </li>
 </ul>
 
-<p>
-    Do make it clear whether you are asking for a user's common name, or as written on a official
-    document such as NRIC or passport.
-</p>
+<h4>Single name fields</h4>
+<ul>
+    <li>
+      This accommodates the widest range of name types and formats
+    </li>
+    <li>
+        Reduces the risk of users entering their name in the incorrect format
+    </li>
+    <li>
+       However, by using this, you may not be able to extract parts of a name
+    </li>
+</ul>
+
+<h4>Multiple name fields</h4>
+<ul>
+    <li>
+      Use multiple name fields with discretion.
+      Not everyone's name fits the general first-name, last-name convention.
+    </li>
+    <li>
+        Using multiple name fields increases the risk of a person's name
+        not fitting the same convention. Hence, it may be entered incorrectly.
+    </li>
+</ul>
+
+<h4>Labelling of name fields</h4>
+<ol>
+  <li>For <b>single name</b> fields, use "Full Name".</li>
+  <li>For <b>multiple name</b> fields, use:</li>
+  <ul>
+    <li>'Given Name'</li>
+    <li>'Family Name'</li>
+  </ul>
+</ol>
 
 <p>
-    If you are unsure of how your users will fill in their name or know that you have a wide range
-    of users with different formats for their names, it is highly recommended to use a single name
-    field.
+  Make it clear whether you are asking for a user's common name, or
+  as written on an official document such as NRIC or passport.
+</p>
+<p>
+    If you are unsure of how your users will fill in their name or know that
+    you have a wide range of users with different formats for their names,
+    it is highly recommended to use a single name field to prevent errors and confusion.
 </p>
 
 <p class="has-text-weight-bold">
@@ -153,8 +171,9 @@ layout: layout-docs
 
 <h4>Autocomplete</h4>
 <p>
-    Do use the <code>autocomplete</code> attribute when asking for a user's name. This makes it easier
-    for the user to fill in their name if they have done so previously on the browser.
+  Use the <code>autocomplete</code> attribute when asking for a user's name.
+  This makes it easier for the user to fill in their name if they have done so
+  previously on the browser.
 </p>
 
 <ul>

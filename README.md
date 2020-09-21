@@ -15,7 +15,7 @@
     ...
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.13/css/sgds.css"
+        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.15/css/sgds.css"
     />
     ...
 </head>
@@ -28,8 +28,8 @@
 ```html
 <body>
     ...
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.13/js/sgds.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.15/js/sgds.js"></script>
     ...
 </body>
 ```
@@ -95,7 +95,7 @@ Test out the latest development build:
 <link rel="stylesheet" href="https://dev.designsystem.gov.sg/css/sgds.css"/>
 
 <!-- JS in <body> -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://dev.designsystem.gov.sg/js/sgds.js"></script>
 ```
 

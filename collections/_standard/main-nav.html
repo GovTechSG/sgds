@@ -323,9 +323,8 @@ order: 2
 <h2>Overview</h2>
 
 <p>
-    All .gov.sg informational services shall
-    adopt a Global Primary Navigation Panel
-    across all pages
+  All <b>.gov.sg</b> informational services shall adopt a
+  Global Primary Navigation Panel across all pages.
 </p>
 
 <div class="sgds-notification is-toast-warning margin--top margin--bottom">
@@ -344,9 +343,9 @@ order: 2
 
 <hr />
 
-<h3>
-    Basic main navigation example
-</h3>
+<h3>Types</h3>
+<h4>1) Basic Main Navigation</h4>
+
 <div class="sgds-example-others">
 {{ default_navbar_example }}
 </div>
@@ -355,12 +354,84 @@ order: 2
     Copy Snippet
 </button>
 
-
 <hr/>
 
-<h3>Navbar sections</h3>
+<!-- Main Nav 2 -->
+<h4>2) With Dropdown</h4>
+<p>
+    Main nav that has a dropdown for secondary selection. Suitable for medium-sized websites.
+</p>
+
+<div class="sgds-example-others">{{dropdown_navbar_example}}</div>
+{%- highlight html -%}{{dropdown_navbar_example}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight1">
+    Copy Snippet
+</button>
+
+<hr />
+
+<!-- Main Nav 3 -->
+<h4>3) With Mega Menu</h4>
+<p>
+    Main nav with a mega menu for secondary selection. Suitable for large-sized websites.
+</p>
+
+<div class="sgds-example-others">{{mega_menu_navbar_example}}</div>
+{%- highlight html -%}{{mega_menu_navbar_example}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight2">
+    Copy Snippet
+</button>
+
+<hr />
+
+<!-- Main Nav 4 -->
+<h4>4) With Search Bars</h4>
+<p>To add search bars to your main mav, please import <code>sgds.js</code>.</p>
+<div class="sgds-example-others">{{searchbar_navbar_example}}</div>
+{%- highlight html -%}{{searchbar_navbar_example}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight3">
+    Copy Snippet
+</button>
+
+<hr />
+
+<!-- Main Nav 5 -->
+
+<!-- <p>
+    To accommodate links containing longer text, add <code>.has-item-max-width</code> to <code>.sgds-navbar-start</code>
+    or <code>.sgds-navbar-end</code>
+    to fix the width of their children <code>.sgds-navbar-item</code> elements.
+</p>
+
+<div class="sgds-example-others">{{item_width_navbar_example}}</div>
+{%- highlight html -%}{{item_width_navbar_example}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight4">
+    Copy Snippet
+</button>
+
+
+<hr /> -->
+<!-- Main Nav 5 -->
+<h4>5) Full-Width Navbar</h4>
+<p>
+    To make make a full width navbar, You can wrap <code>.sgds-container.is-fluid</code>
+    around <code>sgds-navbar</code>
+</p>
+<div class="sgds-example-others">{{ fullwidth_navbar_example }}</div>
+{%- highlight html -%}{{fullwidth_navbar_example}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight5">
+    Copy Snippet
+</button>
+
+
+<hr />
+
+<h2>Important Information</h2>
+
+<h3>Navbar section behaviour</h3>
 
 <p>The <code>sgds-navbar</code> component supports 3 types of direct children containers:</p>
+
 <ul>
     <li>
         <code>.sgds-navbar-brand</code>
@@ -397,85 +468,13 @@ order: 2
 
 <hr />
 
-<!-- Main Nav 2 -->
-<h3>With dropdown</h3>
-<p>
-    Main nav that has a dropdown for secondary selection. Suitable for medium-sized websites.
-</p>
-
-<div class="sgds-example-others">{{dropdown_navbar_example}}</div>
-{%- highlight html -%}{{dropdown_navbar_example}}{%- endhighlight -%}
-    <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight1">
-        Copy Snippet
-    </button>
-
-
-<hr />
-
-<!-- Main Nav 3 -->
-<h3>With mega menu</h3>
-<p>
-    Main nav with a mega menu for secondary selection. Suitable for large-sized websites.
-</p>
-
-<div class="sgds-example-others">{{mega_menu_navbar_example}}</div>
-{%- highlight html -%}{{mega_menu_navbar_example}}{%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight2">
-    Copy Snippet
-</button>
-
-
-<hr />
-
-<!-- Main Nav 4 -->
-<h3>With search bars</h3>
-<p>To add search bars to your main mav, please import <code>sgds.js</code>.</p>
-<div class="sgds-example-others">{{searchbar_navbar_example}}</div>
-{%- highlight html -%}{{searchbar_navbar_example}}{%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight3">
-    Copy Snippet
-</button>
-
-<hr />
-
-<!-- Main Nav 5 -->
-
-<!-- <p>
-    To accommodate links containing longer text, add <code>.has-item-max-width</code> to <code>.sgds-navbar-start</code>
-    or <code>.sgds-navbar-end</code>
-    to fix the width of their children <code>.sgds-navbar-item</code> elements.
-</p>
-
-<div class="sgds-example-others">{{item_width_navbar_example}}</div>
-{%- highlight html -%}{{item_width_navbar_example}}{%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight4">
-    Copy Snippet
-</button>
-
-
-<hr /> -->
-<!-- Main Nav 5 -->
-<h3>Full width Navbar</h3>
-<p>
-    To make make a full width navbar, You can wrap <code>.sgds-container.is-fluid</code>
-    around <code>sgds-navbar</code>
-</p>
-<div class="sgds-example-others">{{ fullwidth_navbar_example }}</div>
-{%- highlight html -%}{{fullwidth_navbar_example}}{%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight5">
-    Copy Snippet
-</button>
-
-
-<hr />
-
 <h3>Guidelines</h3>
-<p>Main navs should:</p>
+<p>Main navigation  should:</p>
 <ul>
-    <li>Be positioned below the masthead of every page</li>
-    <li>Contain the service's name and logo</li>
-    <li>Have the logo hyperlinked to the service's homepage</li>
-    <li>Have the search function accessible on the right side</li>
+    <li>Be positioned <b>below the masthead</b> of every page</li>
+    <li>Contain the <b>service's name</b> and <b>logo</b></li>
+    <li>Have the <b>logo hyperlinked</b> to the service's homepage</li>
+    <li>Have the <b>search function</b> accessible on the <b>right side</b></li>
 </ul>
 
 <hr />

@@ -3,13 +3,26 @@ title: Date
 layout: layout-docs
 ---
 
-<h2>
-    Help your users fill in dates that are required for your service.
-</h2>
+<h2>Date input</h2>
+
+<p>
+    Use this pattern when you want to ask users for a specific date,
+    e.g their date of birth or when something was issued to them.
+</p>
+
+<p>
+  <b>Note:</b> If you need users to select from a few specific dates, we recommend
+  that you use the radio button component to allow them to choose easily.
+</p>
 
 <hr />
 
-<h3>General date format</h3>
+<h3>Usage</h3>
+<p>
+  Below you will find a <b>General Date Format</b> you can use, along with
+  the code needed to build this element.
+</p>
+
 <div class="sgds-example-others">
 <h5>
     Please enter your date of birth
@@ -120,39 +133,27 @@ layout: layout-docs
     Copy snippet
 </button>
 
-<h4 class="margin--top--lg">When you should use this pattern</h4>
-<p>
-    Use this pattern when you want to ask users for a specific date. E.g Their date of birth or when
-    something was issued to them. However, there may be instances where you need users to select
-    from a few specific dates, in this case, you may use the radio button component to display them.
-</p>
-
 <hr/>
 
 <h3>Guidelines</h3>
-<h4>Date format</h4>
-<p>
-    Help users fill in dates for your services by:
-</p>
+<h4 class="margin--top--lg">When you require users to fill in dates for your services</h4>
+
 <ul>
     <li>
-        Ensuring that you state clearly how the date should be filled in. E.g Day Month Year
+        State clearly how the data should be filled (e.g. <b>Day Month Year</b>)
     </li>
     <li>
-        Ensuring that you give a example of how the date should be filled. E.g 01 01 2020 vs 1 1
-        2020
+        Give an example of how the date should be filled in
+        (e.g. <b>01 01 2020</b> vs <b>1 1 2020</b>)
     </li>
 </ul>
 
-<h4 class="margin--top--lg">Memorable dates</h4>
-<p>
-    When asking for memorable dates such as date of birth, do ensure that:
-</p>
+<h4 class="margin--top--lg">When you request users to fill in memorable dates </h4>
 <ul>
     <li>
-        The fields, in this example, should always have the
+        For example, asking for Date-Of-Birth means you should always have the
         <code>autocomplete</code> attribute for these 3 fields, <code>bday-day</code>,
-        <code>bday-month</code> and <code>bday-year</code> to help your users complete it quickly.
+        <code>bday-month</code> and <code>bday-year</code> to bring convenience to users.
     </li>
     <li>You will need to include the <code>autocomplete</code> attribute to meet
         <a

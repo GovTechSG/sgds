@@ -56,21 +56,23 @@ js: true
 
 <h2>Overview</h2>
 <p>
-    Accordions are interactive elements that allow users to show or hide related content through
-    a dropdown mechanism.
+  Accordions are interactive elements that allow users to either
+  show or hide related content, through a dropdown mechanism.
 </p>
 
 <hr/>
 
-<h3>Simple accordion</h3>
+<h2>Types</h2>
+
+<h3>1) Simple accordion</h3>
 <div class="sgds-example-others">{{ default_accordion }}</div>
 {%- highlight html -%}{{ default_accordion }}{%- endhighlight -%}
-<button class="sgds-button clipboard-btn is-primary is-outlined" 
+<button class="sgds-button clipboard-btn is-primary is-outlined"
     data-clipboard-target='.highlight0'>Copy snippet</button>
 
 <hr/>
 
-<h3>Accordion set</h3>
+<h3>2) Accordion set</h3>
 <p>A set of accordions, of which only one can be open at a time.</p>
 <p>You can add the <code>is-open</code> class to <code>sgds-accordion</code> to show the content on page load</p>
 <div class="sgds-example-others">
@@ -80,37 +82,6 @@ js: true
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy snippet</button>
 
 <hr/>
-
-<h4>When you should use this component</h4>
-<p>You should use the accordion component if there is insufficient space within the page to display the information or
-    if users need to see a overview of specific content that's related to one another.
-</p>
-
-<h4>When you should consider something else</h4>
-<p>Accordions hide content from the user, and there may be cases where users will miss content completely or not understand how
-    accordions work. It is not advisable to use the accordion for information that is essential to your users.</p>
-
-<p>If users need to see all information on a single page, you may want to:</p>
-<ul>
-    <li>
-        reduce content
-    </li>
-
-    <li>
-        use well-formatted text instead which give clear distinction between headers, content and sections.
-    </li>
-
-    <li>
-        have essential information split up into smaller sections that can be displayed on a single page
-    </li>
-</ul>
-
-<p>
-    Accordions increases the cognitive load for users, as decisions have to be made when 
-    clicking on the headers. Users may also ignore important information if it is hidden in an accordion.
-</p>
-
-<hr />
 
 <h3>Style</h3>
 <table class="table">
@@ -147,5 +118,38 @@ js: true
 </table>
 
 <hr/>
+
+<h3>When to use</h3>
+
+<h6>Accordions should be used when:</h6>
+<ul>
+  <li>There is insufficient space within the page to display the necessary information.</li>
+  <li>Users require an overview of specific content that’s related to one another.</li>
+</ul>
+
+<h6>Accordions should not be used when:</h6>
+<ul>
+  <li>They contain information that is essential to your users.</li>
+  <ul>
+    <li>
+      Accordions hide content, and there may be users who may
+      miss the content or not understand how accordions work.
+    </li>
+    <li>
+      If users need to see all information in a single page, you can
+      consider reducing your content, splitting them into smaller sections,
+      or use well-formatted text (e.g. headers, contents, section)
+    </li>
+  </ul>
+</ul>
+
+<p>
+  Accordions increases the cognitive load for users, as decisions have to be made when
+  clicking on the headers. Users may also ignore important information if
+  it is hidden in an accordion.
+</p>
+
+<hr />
+
 
 {%- include sgds-feedback.html -%}

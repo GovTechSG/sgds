@@ -1,6 +1,10 @@
 {
   "name": "sgds-govtech",
+<<<<<<< HEAD
   "version": "1.3.13",
+=======
+  "version": "1.3.15",
+>>>>>>> 5e0c811988f5e482d99cb1a13022f10b6ca55127
   "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
   "repository": {
     "type": "git",
@@ -8,48 +12,46 @@
   },
   "license": "MIT",
   "author": "Tey Liang Tai",
+  "main": "css/sgds.css",
   "files": [
     "css",
     "fonts",
     "js",
     "sgds/sass"
   ],
-  "main": "js/sgds.js",
   "scripts": {
     "build": "npm run packagedownloads && npm run build:site && bundle exec jekyll build",
     "build:lib": "rm -rf ./js ./css ./fonts && webpack --env.production --env.NODE_ENV=production --mode=production",
     "build:site": "npm run build:lib -- --env.site",
+    "dev": "concurrently npm:dev:static npm:dev:jekyll",
     "dev:jekyll": "bundle exec jekyll serve",
-    "dev:server": "npm run dev:static & npm run dev:jekyll",
     "dev:static": "webpack --watch --env.site",
     "packagedownloads": "./build/packagedownloads.sh",
     "prepublishOnly": "npm run build:lib",
-    "start": "bundle exec jekyll serve",
-    "test": "snyk test"
+    "start": "bundle exec jekyll serve"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+    "@babel/preset-env": "^7.11.5",
     "axios": "^0.19.2",
     "babel-loader": "^8.0.6",
     "clipboard": "^2.0.4",
-    "copy-webpack-plugin": "^5.1.1",
+    "concurrently": "^5.3.0",
+    "copy-webpack-plugin": "^6.1.0",
     "css-loader": "^3.4.2",
     "file-loader": "^4.3.0",
-    "imagemin-webpack-plugin": "^2.4.2",
     "list.js": "^1.5.0",
-    "lunr": "^2.3.8",
+    "lunr": "^2.3.9",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.13.1",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
     "sass-loader": "^7.3.1",
-    "snyk": "^1.279.1",
     "sticky-sidebar": "^3.3.1",
-    "vue": "^2.6.11",
-    "vue-loader": "^15.8.3",
-    "vue-template-compiler": "^2.6.11",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "vue": "^2.6.12",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   }
 }

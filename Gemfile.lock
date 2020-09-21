@@ -37,7 +37,7 @@ GEM
       jekyll (>= 3.3, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
-    kramdown (2.2.1)
+    kramdown (2.3.0)
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
@@ -65,9 +65,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jekyll
-  jekyll-redirect-from
-  jekyll-seo-tag
+  jekyll (~> 4.0)
+  jekyll-redirect-from (~> 0.16)
+  jekyll-seo-tag (~> 2.6)
   tzinfo-data
 
 BUNDLED WITH
