@@ -1,4 +1,4 @@
-<ul class="sgds-menu-list">
+<div class="sgds-menu-list">
     {% assign activeClass = nil %}
     {% if page.url contains "patterns/overview/" %}
         {% assign activeClass = 'is-active' %}
@@ -14,4 +14,4 @@
             <li><a href="{{ pattern.url }}" class="{{ class }}">{{ pattern.title }}</a></li>
         {% endif %}
     {%- endfor -%}   
-</ul>
+</div>

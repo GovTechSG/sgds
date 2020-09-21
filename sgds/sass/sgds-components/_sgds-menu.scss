@@ -19,6 +19,7 @@ $menu-label-color: $text-light !default;
 .sgds-menu {
   &-list {
     margin: 0;
+    list-style-type: none;
 
     .content & {
       list-style: none;
