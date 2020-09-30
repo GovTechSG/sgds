@@ -1,4 +1,4 @@
-<div class="sgds-menu-list">
+<ul class="sgds-menu-list">
     {% assign gettingStartedClass = nil %}
     {% if page.url contains "docs/getting-started" %}
         {% assign gettingStartedClass = 'is-active' %}
@@ -32,11 +32,11 @@
             </a>
         </li>
         {% if name == page.collection %}
-            <div class="second-level-nav-div" id="{{collection.label}}-component">
+            <li class="second-level-nav-div" id="{{collection.label}}-component">
         {% else %}
-            <div class="second-level-nav-div is-hidden" id="{{collection.label}}-component">
+            <li class="second-level-nav-div is-hidden" id="{{collection.label}}-component">
         {% endif %}
-                <ul class="list">
+                <ul>
                     {% assign items = site[name] %}
                     {% if collection.label == 'standard' or collection.label == 'form' %}
                         {% assign items = site[name] | sort:'order' %}
@@ -56,7 +56,7 @@
                         </li>
                     {% endfor %}
                 </ul>
-            </div>
+            </li>
         {% endif %}
     {% endfor %}
-</div>
+</ul>

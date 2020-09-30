@@ -66,12 +66,6 @@ $menu-label-color: $text-light !default;
       line-height: 2rem;
       margin: 0;
 
-      ul {
-        border-left: 1px dotted $menu-item-active-color;
-        margin: 1em;
-        padding-left: 1em;
-      }
-
       &.second-level-nav-header {
         &.is-active + div.second-level-nav-div {
           display: block;

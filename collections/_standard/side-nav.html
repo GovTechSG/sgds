@@ -8,27 +8,29 @@ order: 3
 ---
 {% capture lvl2_sidenav %}
 <aside class="sgds-menu">
-    <div class="sgds-menu-list">
+    <ul class="sgds-menu-list">
         <li><a class="is-active" href="#!">Level 2A</a></li>
         <li><a href="#!">Level 2B</a></li>
         <li><a href="#!">Level 2C</a></li>
-    </div>
+    </ul>
 </aside>
 {% endcapture %}
 {% capture lvl2_dropdown_sidenav %}
 <aside class="sgds-menu">
-    <div class="sgds-menu-list">
+    <ul class="sgds-menu-list">
         <li class="second-level-nav">
             <a class="second-level-nav-header is-active">
                 Level 2A
                 <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
             </a>
         </li>
-        <div class="second-level-nav-div">
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-        </div>
+        <li class="second-level-nav-div">
+            <ul>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+            </ul>
+        </li>
         <li><a href="#!">Level 2B</a></li>
         <li class="second-level-nav">
             <a class="second-level-nav-header">
@@ -36,12 +38,14 @@ order: 3
                 <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
             </a>
         </li>
-        <div class="second-level-nav-div">
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-            <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
-        </div>
-    </div>
+        <li class="second-level-nav-div">
+            <ul>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+            </ul>
+        </li>
+    </ul>
 </aside>
 {% endcapture %}
 
