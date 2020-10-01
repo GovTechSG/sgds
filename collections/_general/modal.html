@@ -1,0 +1,91 @@
+---
+title: Modal
+layout: layout-docs
+category: General
+---
+
+{% capture card-modal %}
+<div class="sgds-modal" id="card-modal">
+    <div class="sgds-modal-background"></div>
+    <!-- You can add a card width for the sgds-modal-card class -->
+    <div class="sgds-modal-card" style="width:50vw;">
+        <header class="sgds-modal-card-head">
+            <p class="sgds-modal-card-title">Modal title</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="sgds-modal-card-body">
+            <p>Hello</p>
+        </section>
+        <footer class="sgds-modal-card-foot is-flex-justify-fe">
+            <button class="sgds-button is-success">Save changes</button>
+            <button class="sgds-button">Cancel</button>
+        </footer>
+    </div>
+</div>
+{% endcapture %}
+
+<h2>Overview</h2>
+<p>
+    The modal component inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks. Use this sparingly because they are interruptive.
+</p>
+
+<hr/>
+
+<h2>Types</h2>
+
+<h3>1) Card modal</h3>
+<div class="sgds-example-others">
+    {{ card-modal }}
+    <button class="sgds-button is-primary is-outlined modal-button" data-target="card-modal">Launch card modal</button>
+</div>
+{%- highlight html -%}{{ card-modal }}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target='.highlight0'>Copy snippet</button>
+
+
+
+
+<script>
+    function getAll(selector) 
+    {
+        var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+        return Array.prototype.slice.call(parent.querySelectorAll(selector), 0);
+    }
+
+    var rootEl = document.documentElement;
+    var $modals = getAll('.sgds-modal');
+    var $modalButtons = getAll('.modal-button');
+    var $modalCloses = getAll('.sgds-modal-background, .sgds-modal-close, .sgds-modal-card-head .delete, .sgds-modal-card-foot .sgds-button');
+
+    if ($modalButtons.length > 0) {
+        $modalButtons.forEach(function ($el) {
+            $el.addEventListener('click', function () {
+                var target = $el.dataset.target;
+                console.log(target)
+                openModal(target);
+            });
+        });
+    }
+
+    if ($modalCloses.length > 0) {
+        $modalCloses.forEach(function ($el) {
+            $el.addEventListener('click', function () {
+                closeModals();
+            });
+        });
+    }
+
+    function openModal(target) {
+        var $target = document.getElementById(target);
+        rootEl.classList.add('is-clipped');
+        $target.classList.add('is-active');
+    }
+
+    function closeModals() {
+        rootEl.classList.remove('is-clipped');
+        $modals.forEach(function ($el) {
+            console.log($el);
+            $el.classList.remove('is-active');
+        });
+    }
+</script>
