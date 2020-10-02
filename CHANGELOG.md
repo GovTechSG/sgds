@@ -7,13 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.3.16] - 01-10-2020
 
-### sgds-menu
-- Accessibility fixes for sgds-menu
-- Replace `div.second-level-nav-dev` with `li.second-level-nav-dev`
-- All `li.second-level-nav-dev` nav items must be contained with `<ul>`
-- Updated [Side Nav](https://https://www.designsystem.tech.gov.sg/docs/side-nav/) documentation
+- Removed left borders for `.sgds-menu-list li ul` elements so side nav is consistent with previous behaviour.
 
-### sgds-masthead
+### Documentation: sgds-menu
+- Accessibility fixes for sgds-menu
+- Replace `div.second-level-nav-div` with `li.second-level-nav-div`
+- All `li.second-level-nav-div` nav items should be children of `<ul>`
+
+### Documentation: sgds-masthead
 1. Add aria-label for masthead
 
 ## [1.3.15] - 07-09-2020
