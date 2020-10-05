@@ -20,8 +20,7 @@ layout: layout-docs
   Below you will find a <b>General Address Format</b> you can use, along with
   the code needed to build this element.
 </p>
-
-<div class="sgds-example-others">
+{% capture address %}
 <div class="field">
     <label class="label" for="postal-code">Postal Code</label>
     <div class="control">
@@ -31,9 +30,7 @@ layout: layout-docs
         id="postal-code"
         autocomplete="postal-code" />
     </div>
-    <div>
-        <button class="sgds-button is-primary margin--top--lg">Find Address</button>
-    </div>
+    <button class="sgds-button is-primary margin--top--sm">Find Address</button>
 </div>
 
 <div class="field margin--top--lg">
@@ -42,8 +39,8 @@ layout: layout-docs
         <input
             class="input margin--bottom--lg col is-8"
             type="text"
-            name="street-address"
-            id="street-address"
+            name="street-name"
+            id="street-name"
             autocomplete="street-address"
         />
     </div>
@@ -68,64 +65,14 @@ layout: layout-docs
             type="text"
             id="unit-number"
             name="unit-number"
-            autocomplete="unit-number"
         />
     </div>
 </div>
-</div>
+{% endcapture %}
 
-{%- highlight html -%}
-<div class="field">
-    <label class="label" for="postal-code">Postal Code</label>
-    <div class="control">
-        <input class="input col is-4"
-        type="text"
-        name="postal-code"
-        id="postal-code"
-        autocomplete="postal-code" />
-    </div>
-    <div>
-        <button class="sgds-button is-primary margin--top--lg">Find Address</button>
-    </div>
-</div>
 
-<div class="field margin--top--lg">
-    <label class="label" for="street-name">Block/Street Name</label>
-    <div class="control">
-        <input
-            class="input margin--bottom--lg col is-8"
-            type="text"
-            name="street-address"
-            id="street-address"
-            autocomplete="street-address"
-        />
-    </div>
-</div>
-
-<div class="field">
-    <label class="label" for="building-number">Building/House Number</label>
-    <span class="hint">If applicable</span>
-    <div class="control">
-        <input class="input margin--bottom--lg col is-4"
-        type="text"
-        name="building-number"
-        id="building-number" />
-    </div>
-</div>
-
-<div class="field">
-    <label class="label" for="unit-number">Unit Number</label>
-    <div class="control">
-        <input
-            class="input margin--bottom--lg col is-4"
-            type="text"
-            id="unit-number"
-            name="unit-number"
-            autocomplete="unit-number"
-        />
-    </div>
-</div>
-{%- endhighlight -%}
+<div class="sgds-example-others">{{address}}</div>
+{%- highlight html -%}{{address}}{%- endhighlight -%}
 
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
