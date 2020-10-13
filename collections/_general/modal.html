@@ -80,7 +80,7 @@ category: General
         <tr>
             <td><code>sgds-modal is-active</code></td>
             <td>
-                <p>Set the modal to display:block </p>
+                <p>Set the modal to display:block</p>
                 <small>(default value is display:none)</small>
             </td>
         </tr>
@@ -133,7 +133,6 @@ category: General
         return Array.prototype.slice.call(parent.querySelectorAll(selector), 0);
     }
 
-    let rootEl = document.documentElement;
     let $modals = getAll('.sgds-modal');
     let $modalButtons = getAll('.modal-button');
     let $modalCloses = getAll('.sgds-modal-background, .sgds-modal-close, .sgds-modal-card-head .delete, .sgds-modal-card-foot .sgds-button');
@@ -158,12 +157,10 @@ category: General
 
     function openModal(target) {
         let $target = document.getElementById(target);
-        rootEl.classList.add('is-clipped');
         $target.classList.add('is-active');
     }
 
     function closeModals() {
-        rootEl.classList.remove('is-clipped');
         $modals.forEach(function ($el) {
             console.log($el);
             $el.classList.remove('is-active');
