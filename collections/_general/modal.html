@@ -6,12 +6,12 @@ category: General
 
 {% capture card-modal %}
 <!-- You can change the modal width using .sgds-modal.is-small & .sgds-modal.is-large modifier-->
-<div class="sgds-modal" id="default-modal">
+<div class="sgds-modal" id="default-modal" aria-labelledby="sgds-modal-title" role="dialog">
     <div class="sgds-modal-background"></div>
     
     <div class="sgds-modal-card">
         <header class="sgds-modal-card-head">
-            <p class="sgds-modal-card-title">{{site.title}}</p>
+            <p class="sgds-modal-card-title" id="sgds-modal-title">{{site.title}}</p>
             <button class="delete" aria-label="close"></button>
         </header>
         <section class="sgds-modal-card-body">
@@ -26,7 +26,7 @@ category: General
 {% endcapture %}
 
 {% capture image-modal %}
-<div class="sgds-modal" id="image-modal">
+<div class="sgds-modal" id="image-modal" aria-label="Image caption here" role="dialog">
     <div class="sgds-modal-background"></div>
     <div class="sgds-modal-content">
         <p class="image is-16by9">
