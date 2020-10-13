@@ -150,6 +150,14 @@
         list-style: none;
       }
     }
+    .sgds-modal{
+      button{
+        margin-bottom: 0;
+      }
+      p.sgds-modal-card-title{
+        margin-bottom: 0;
+      }
+    }
     .field {
       &:not(:last-child) {
         margin-bottom: 2rem;
