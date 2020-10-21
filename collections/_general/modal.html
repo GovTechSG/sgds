@@ -32,9 +32,7 @@ category: General
 <div class="sgds-modal" id="image-modal" aria-label="Image caption here" role="dialog">
     <div class="sgds-modal-background"></div>
     <div class="sgds-modal-content">
-        <p class="image is-16by9">
-            <img src="https://placehold.it/1280x720/" alt="placeholder image">
-        </p>
+        <img src="https://placehold.it/1280x720/" alt="placeholder image">
     </div>
     <button class="sgds-modal-close is-large" aria-label="close"></button>
 </div>
@@ -162,8 +160,9 @@ category: General
         You want to interrupt a user’s current task to direct 
         the user’s attention to something important.
         e.g confirming when a user wants to submit a form, 
-        or when you require user input such as a sign up 
-        or login without leaving the current page.
+        or when you require user input such as a sign up, 
+        or login without leaving the current page
+        or highlight an important event with infographic upon entering the website.
     </li>
 </ul>
 
@@ -198,7 +197,6 @@ category: General
         $modalButtons.forEach(function ($el) {
             $el.addEventListener('click', function () {
                 let target = $el.dataset.target;
-                console.log(target)
                 openModal(target);
             });
         });
@@ -219,7 +217,6 @@ category: General
 
     function closeModals() {
         $modals.forEach(function ($el) {
-            console.log($el);
             $el.classList.remove('is-active');
         });
     }
