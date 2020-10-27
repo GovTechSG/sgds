@@ -2,7 +2,10 @@ $modal-z: 9999 !default;
 
 $modal-background-background-color: rgba($black, 0.86) !default;
 
-$modal-content-width: 720px !default;
+$modal-content-width: 50vw !default;
+$modal-content-width-sm: 30vw !default;
+$modal-content-width-lg: 70vw !default;
+$modal-content-width-fullwidth: 95vw !default;
 $modal-content-margin-mobile: 20px !default;
 $modal-content-spacing-mobile: 160px !default;
 $modal-content-spacing-tablet: 40px !default;
@@ -43,11 +46,26 @@ $modal-card-body-padding: 20px !default;
     &.is-active {
       display: flex;
     }
+
+    &.is-small{
+      .sgds-modal-card{
+        width: $modal-content-width-sm;
+      }
+    }
+    &.is-large{
+      .sgds-modal-card{
+        width: $modal-content-width-lg;
+      }
+    }
+    &.is-fullwidth{
+      .sgds-modal-card{
+        width: $modal-content-width-fullwidth;
+      }
+    }
   }
 
   &-modal-background {
     @include overlay;
-
     background-color: $modal-background-background-color;
   }
 
@@ -58,12 +76,6 @@ $modal-card-body-padding: 20px !default;
     overflow: auto;
     position: relative;
 
-    // Responsiveness
-    //+tablet
-    //  margin: 0 auto
-    //  max-height: calc(100vh - #{$modal-content-spacing-tablet})
-    //  width: $modal-content-width
- 
   }
 
   &-modal-close {
@@ -79,6 +91,7 @@ $modal-card-body-padding: 20px !default;
 
   &-modal-card {
     display: flex;
+    width: $modal-content-width;
     flex-direction: column;
     max-height: calc(100vh - #{$modal-card-spacing});
     overflow: hidden;
@@ -87,7 +100,7 @@ $modal-card-body-padding: 20px !default;
   &-modal-card-head,
   &-modal-card-foot {
     align-items: center;
-    background-color: $modal-card-head-background-color;
+    background-color: $white;
     display: flex;
     flex-shrink: 0;
     justify-content: flex-start;
@@ -112,7 +125,6 @@ $modal-card-body-padding: 20px !default;
   &-modal-card-foot {
     border-bottom-left-radius: $modal-card-foot-radius;
     border-bottom-right-radius: $modal-card-foot-radius;
-    border-top: $modal-card-foot-border-top;
 
     .button {
       &:not(:last-child) {
@@ -123,7 +135,6 @@ $modal-card-body-padding: 20px !default;
 
   &-modal-card-body {
     @include overflow-touch;
-
     background-color: $modal-card-body-background-color;
     flex-grow: 1;
     flex-shrink: 1;
