@@ -15,7 +15,7 @@
     ...
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.16/css/sgds.css"
+        href="https://cdn.jsdelivr.net/npm/sgds-govtech@{{site.version}}/css/sgds.css"
     />
     ...
 </head>
@@ -29,7 +29,7 @@
 <body>
     ...
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@1.3.16/js/sgds.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@{{site.version}}/js/sgds.js"></script>
     ...
 </body>
 ```
@@ -106,6 +106,7 @@ Test out the latest development build:
 1. Use dev branch
 2. Change all references in documentation from previous version to new version, e.g. inside the `_config.yml` and `readme.md` files.
 3. Update and tag new version using npm.
+
 
 ```bash
 npm version (major|minor|patch)
