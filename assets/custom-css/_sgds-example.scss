@@ -25,6 +25,12 @@
   }
   padding: 0.3rem;
   border: 1px solid $warning;
+
+  .sgds-menu{
+    ul{
+      list-style: none;
+    }
+  }
   .sgds-section {
     @include example-control(auto, center);
     &:before {
@@ -135,6 +141,22 @@
     }
     .sgds-container {
       width: auto;
+    }
+    .sgds-menu{
+      ul{
+        margin:0;
+      }
+      li{
+        list-style: none;
+      }
+    }
+    .sgds-modal{
+      button{
+        margin-bottom: 0;
+      }
+      p.sgds-modal-card-title{
+        margin-bottom: 0;
+      }
     }
     .field {
       &:not(:last-child) {

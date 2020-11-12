@@ -23,108 +23,71 @@ layout: layout-docs
   the code needed to build this element.
 </p>
 
-<div class="sgds-example-others">
-<h5>
+{% capture date %}
+<p>
     Please enter your date of birth
     <span class="hint">E.g 01 01 1990</span>
-</h5>
-
-<div class="field row is-mobile">
+</p>
+<div class="row">
     <div class="col is-3-mobile is-2-desktop">
-        <label class="label" for="dob-day">Day</label>
-        <div class="control">
-            <input
-                class="input"
-                type="text"
-                id="bday-day"
-                name="bday-day"
-                autocomplete="bday-day"
-                pattern="[0-9]"
-                maxlength="2"
-            />
+        <div class="field">
+            <label class="label" for="dob-day">Day</label>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    id="dob-day"
+                    name="dob-day"
+                    autocomplete="bday-day"
+                    pattern="[0-9]"
+                    maxlength="2"
+                />
+            </div>
         </div>
     </div>
 
     <div class="col is-3-mobile is-2-desktop">
-        <label class="label" for="dob-month">Month</label>
-        <div class="control">
-            <input
-                class="input"
-                type="text"
-                id="bday-month"
-                name="bday-month"
-                autocomplete="bday-month"
-                pattern="[0-9]"
-                maxlength="2"
-            />
+        <div class="field">
+            <label class="label" for="dob-month">Month</label>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    id="dob-month"
+                    name="dob-month"
+                    autocomplete="bday-month"
+                    pattern="[0-9]"
+                    maxlength="2"
+                />
+            </div>
         </div>
     </div>
 
     <div class="col is-3-mobile is-3-desktop">
-        <label class="label" for="dob-year">Year</label>
-        <div class="control">
-            <input
-                class="input"
-                type="text"
-                id="bday-year"
-                name="bday-year"
-                autocomplete="bday-year"
-                pattern="[0-9]"
-                maxlength="4"
-            />
+        <div class="field">
+            <label class="label" for="dob-year">Year</label>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    id="dob-year"
+                    name="dob-year"
+                    autocomplete="bday-year"
+                    pattern="[0-9]"
+                    maxlength="4"
+                />
+            </div>
         </div>
     </div>
 </div>
+{% endcapture %}
+
+
+<div class="sgds-example-others">
+    
+    {{date}}
 </div>
-
-{%- highlight html -%}
-<div class="field row is-mobile">
-    <div class="col is-3-mobile is-2-desktop">
-        <label class="label" for="dob-day">Day</label>
-        <div class="control">
-            <input
-                class="input"
-                type="text"
-                id="bday-day"
-                name="bday-day"
-                autocomplete="bday-day"
-                pattern="[0-9]"
-                maxlength="2"
-            />
-        </div>
-    </div>
-
-    <div class="col is-3-mobile is-2-desktop">
-        <label class="label" for="dob-month">Month</label>
-        <div class="control">
-            <input
-                class="input"
-                type="text"
-                id="bday-month"
-                name="bday-month"
-                autocomplete="bday-month"
-                pattern="[0-9]"
-                maxlength="2"
-            />
-        </div>
-    </div>
-
-    <div class="col is-3-mobile is-3-desktop">
-        <label class="label" for="dob-year">Year</label>
-        <div class="control">
-            <input
-                class="input"
-                type="text"
-                id="bday-year"
-                name="bday-year"
-                autocomplete="bday-year"
-                pattern="[0-9]"
-                maxlength="4"
-            />
-        </div>
-    </div>
-</div>
-{%- endhighlight -%}
+{%- highlight html -%}{{date}}{%- endhighlight -%}
 
 <button
     class="sgds-button clipboard-btn is-primary is-outlined"
