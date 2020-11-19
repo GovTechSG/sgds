@@ -2,11 +2,15 @@
 Get collection that current page belongs to, then group each document by their sorted
 "category" field
 {% endcomment %}
+
+
 <ul class="sgds-menu-list">
+
     {%- assign collectionName = page.collection -%}
+    {%- assign sorting = page.collection.sort -%}
     {%- assign filteredCollections = site.collections | where: "label", collectionName -%}
     {%- assign currentCollection = filteredCollections[0] -%}
-    {%- assign collectionCategories = currentCollection.docs | sort: "category" | group_by: "category" -%}
+    {%- assign collectionCategories = currentCollection.docs | group_by: "category"  -%}
     {%- for category in collectionCategories -%} 
         {%- if category.name != '' -%}
         <li class="second-level-nav">

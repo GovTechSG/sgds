@@ -31,11 +31,19 @@
         lvl3:
             - title: Accessibility for Content
               url: /guides/writers/accessibility-content/
+- title: Get started
+  url: /get-started/
 
-- title: Docs
-  url: /docs/
+- title: Components
+  url: /components/
+
+- title: Utilities
+  url: /utilities/
 
 - title: Patterns
   url: /patterns/
+
+- title: Theme Customiser
+  url: /theme-customiser/
 # - title: FAQ
 #   url: /faq/

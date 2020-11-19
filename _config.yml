@@ -18,32 +18,38 @@ plugins:
 
 collections_dir: collections
 collections:
-  standard:
-    permalink: /docs/:path/
+  components:
+    permalink: /component/:path/
     output: true
-    order: 1
-  layout:
-    permalink: /docs/:path/
-    output: true
-    order: 2
-  general:
-    permalink: /docs/:path/
-    output: true
-    order: 3
-  form:
-    permalink: /docs/:path/
-    output: true
-    order: 4
-  helpers:
-    permalink: /docs/:path/
-    output: true
-    order: 5
+  # standard:
+  #   permalink: /component/:path/
+  #   output: true
+  #   order: 1
+  #   category : components
+  # general:
+  #   permalink: /component/:path/
+  #   output: true
+  #   order: 2
+  #   category : components
+  # form:
+  #   permalink: /component/:path/
+  #   output: true
+  #   order: 3
+  #   category : components
+  # layout:
+  #   permalink: /component/:path/
+  #   output: true
+  # helpers:
+  #   permalink: /component/:path/
+  #   output: true
+  #   order: 5
   guides:
     permalink: /guides/:path/
     output: true
   patterns:
     permalink: /patterns/:path/
     output: true
+  
 
 exclude:
   - apps/src

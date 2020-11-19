@@ -1,22 +1,4 @@
 <ul class="sgds-menu-list">
-    {% assign gettingStartedClass = nil %}
-    {% if page.url contains "docs/getting-started" %}
-        {% assign gettingStartedClass = 'is-active' %}
-    {% endif %}
-    <li><a href="/docs/getting-started" class="{{ gettingStartedClass }}">Getting started</a></li>
-
-    {% assign customiseSgdsClass = nil %}
-    {% if page.url contains "docs/installation" %}
-        {% assign customiseSgdsClass = 'is-active' %}
-    {% endif %}
-    <li><a href="/docs/installation" class="{{ customiseSgdsClass }}">Installation</a></li>
-
-    {% assign customiseSgdsClass = nil %}
-    {% if page.url contains "docs/customise-sgds" %}
-        {% assign customiseSgdsClass = 'is-active' %}
-    {% endif %}
-    <li><a href="/docs/customise-sgds" class="{{ customiseSgdsClass }}">Customise with Sass</a></li>
-
     {% assign collections = site.collections | sort: 'order' %}
     {% for collection in collections %}
     {% if collection.label !='posts' and collection.label != 'guides' and collection.label !='patterns' %}
