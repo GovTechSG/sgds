@@ -19,7 +19,16 @@ plugins:
 collections_dir: collections
 collections:
   components:
-    permalink: /component/:path/
+    permalink: /components/:path/
+    output: true
+    order: 
+      - overview.html
+      - standard/masthead.html
+      - general/accordion.html
+      - form/geenral-guidelines.html
+      
+  utilities:
+    permalink: /utilities/:path/
     output: true
   # standard:
   #   permalink: /component/:path/
@@ -43,6 +52,7 @@ collections:
   #   permalink: /component/:path/
   #   output: true
   #   order: 5
+  
   guides:
     permalink: /guides/:path/
     output: true

@@ -2,17 +2,15 @@
 Get collection that current page belongs to, then group each document by their sorted
 "category" field
 {% endcomment %}
-
-
 <ul class="sgds-menu-list">
 
     {%- assign collectionName = page.collection -%}
     {%- assign sorting = page.collection.sort -%}
     {%- assign filteredCollections = site.collections | where: "label", collectionName -%}
     {%- assign currentCollection = filteredCollections[0] -%}
-    {%- assign collectionCategories = currentCollection.docs | group_by: "category"  -%}
+    {%- assign collectionCategories = currentCollection.docs | group_by: "category" -%}
     {%- for category in collectionCategories -%} 
-        {%- if category.name != '' -%}
+        {% if category.name !="" %}
         <li class="second-level-nav">
             {%- assign class = nil -%}
             {%- assign categorySlug = category.name | slugify -%}
@@ -40,6 +38,18 @@ Get collection that current page belongs to, then group each document by their s
             {%- endfor -%}
             </ul>
         </li>
-        {%- endif -%}
+        {% else %}
+        {%- for item in category.items -%}
+                {%- assign class = nil -%}
+                {%- if page.url contains item.url -%}
+                    {%- assign class = 'is-active' -%}
+                {%- endif -%}
+            <li>
+                <a class="{{ class }}" href="{{ item.url }}">
+                    {{ item.title }}
+                </a>
+            </li>
+            {% endfor %}
+        {% endif %}
     {%- endfor -%}
 </ul>
