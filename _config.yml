@@ -25,11 +25,24 @@ collections:
       - overview.html
       - standard/masthead.html
       - general/accordion.html
-      - form/geenral-guidelines.html
-      
+      - form/general-guidelines.html
   utilities:
     permalink: /utilities/:path/
     output: true
+    sort_by: category
+
+  get-started:
+    permalink: /get-started/:path/
+    output: true
+    order:
+      - overview.html
+      - for-developers/installation.html
+  patterns:
+    permalink: /patterns/:path/
+    output: true
+    order:
+      - overview.html
+      - address.html
   # standard:
   #   permalink: /component/:path/
   #   output: true
@@ -53,12 +66,9 @@ collections:
   #   output: true
   #   order: 5
   
-  guides:
-    permalink: /guides/:path/
-    output: true
-  patterns:
-    permalink: /patterns/:path/
-    output: true
+  # guides:
+  #   permalink: /guides/:path/
+  #   output: true
   
 
 exclude:

@@ -1,7 +1,7 @@
 ---
 title: Installation
 layout: layout-sidenav
-permalink: /docs/installation/
+category: for-developers
 ---
 
 <h2>Installing SGDS</h2>
@@ -23,12 +23,14 @@ permalink: /docs/installation/
     ...
 </head>
 {% endhighlight %}
+
 <h4>JavaScript</h4>
 <p>
-    <a href="/docs/">Certain components</a> of SGDS make use of
+    <a href="/components/">Certain components</a> of SGDS make use of
     JavaScript, with jQuery as an external dependency. <strong>If you only need the
     visual parts of SGDS (i.e. css), you do not need to import the following.</strong>
 </p>
+
 {% highlight html %}
 <body>
     ...
@@ -68,7 +70,7 @@ site/node_modules/sgds-govtech/
   ├── js/
   ├── * sgds/sass/
 {%- endhighlight -%}
-        <i>* SGDS Sass source files, for <a href="/docs/customise-sgds">advanced usage</a>.</i>
+        <i>* SGDS Sass source files, for <a href="/for-developers/customise-sgds">advanced usage</a>.</i>
     </li>
     <li>
         If you use a module bundler like Webpack, import sgds in your entry point: 
@@ -115,7 +117,7 @@ import "sgds-govtech/js/sgds"; // Do not use with other web frameworks!
     <p><code>fonts/sgds-icons.svg</code></p>
     <p><code>fonts/sgds-icons.wott</code></p>
     <p><code>fonts/sgds-icons.ttf</code></p>
-    <p><code>sgds/sass/...</code>(source files for <a href="/docs/customise-sgds">advanced usage</a>)</p>
+    <p><code>sgds/sass/...</code>(source files for <a href="/for-developers/customise-sgds">advanced usage</a>)</p>
     
     <li>
         Extract and copy the files and folders into a relevant place in your
@@ -124,7 +126,7 @@ import "sgds-govtech/js/sgds"; // Do not use with other web frameworks!
     <li>
         Reference the CSS and JavaScript files in each HTML page or templates in
         your project, same as above. Note that
-        <a href="/docs/">certain components</a> of SGDS make use of
+        <a href="/components/">certain components</a> of SGDS make use of
         JavaScript, with jQuery as an external dependency. 
 {%- highlight html -%}
 <head>
