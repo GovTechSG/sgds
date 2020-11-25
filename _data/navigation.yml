@@ -37,5 +37,7 @@
 
 - title: Patterns
   url: /patterns/
-# - title: FAQ
-#   url: /faq/
+  
+- title: Theme Customiser
+  url: 'https://customiser.designsystem.gov.sg'
+  target: '_blank'
