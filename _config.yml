@@ -29,8 +29,10 @@ collections:
   utilities:
     permalink: /utilities/:path/
     output: true
-    sort_by: category
-
+    order:
+      - overview.html
+      - layout-grid/container.html
+      - margin-and-padding/advance-setting.html
   get-started:
     permalink: /get-started/:path/
     output: true

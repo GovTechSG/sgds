@@ -18,7 +18,7 @@ Get collection that current page belongs to, then group each document by their s
                 {%- assign class='is-active' -%}
             {%- endif -%}
             <a class="second-level-nav-header has-text-weight-bold {{ class }}">
-                {{ category.name | capitalize }}
+                {{ category.name | capitalize | replace: "-", " "}}
                 <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
             </a>
         </li>
@@ -38,7 +38,7 @@ Get collection that current page belongs to, then group each document by their s
             {%- endfor -%}
             </ul>
         </li>
-        {% else %}
+        {% elsif category.name="" %}
         {%- for item in category.items -%}
                 {%- assign class = nil -%}
                 {%- if page.url contains item.url -%}
