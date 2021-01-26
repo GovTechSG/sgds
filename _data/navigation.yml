@@ -1,7 +1,10 @@
 - title: About
   url: /about/
 
-- title: Guides
+- title: Get started
+  url: /get-started/
+
+- title: Guidelines
   url: /guides/
   lvl2:
       - title: Developers
@@ -31,17 +34,15 @@
         lvl3:
             - title: Accessibility for Content
               url: /guides/writers/accessibility-content/
-- title: Get started
-  url: /get-started/
 
 - title: Components
   url: /components/
 
-- title: Utilities
-  url: /utilities/
-
 - title: Patterns
   url: /patterns/
+
+- title: Utilities
+  url: /utilities/
   
 - title: Theme Customiser
   url: 'https://customiser.designsystem.gov.sg'
