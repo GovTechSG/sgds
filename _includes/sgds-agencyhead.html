@@ -21,7 +21,7 @@
                     {%- for lvl1item in links -%}
                         {%- assign class = nil -%}
                         {%- if page.url contains lvl1item.url -%} 
-                            {%- assign class = 'is-active' -%} 
+                            {%- assign class = 'is-active' -%}  
                         {%- endif -%}
                     <a
                         class="sgds-navbar-item is-uppercase {{class}} has-text-weight-semibold is-tab"
@@ -31,19 +31,18 @@
                     </a>
                     {%- endfor -%}
                 </div>
-
                 <div class="sgds-navbar-end">
                     <div class="sgds-navbar-item is-hidden-desktop">
                         <div class="buttons is-flex">
                             <a
-                                class="sgds-button is-text is-rounded is-small padding--none margin--right"
-                                href="https://github.com/govtechsg/sgds"
+                                class="sgds-button is-text is-rounded is-small padding--none margin--right" role="button"
+                                href="{{site.github}}"
                             >
                                 <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" width="36" height="36"/>
                             </a>
                             <a
-                                class="sgds-button is-primary is-rounded is-small"
-                                href="/docs/installation/"
+                                class="sgds-button is-primary is-rounded is-small" role="button"
+                                href="/get-started/for-developers/installation/"
                             >
                                 Install SGDS
                             </a>
@@ -53,13 +52,13 @@
                         <div class="buttons is-flex is-flex-alignitems-c">
                             <a
                                 class="sgds-button is-text is-rounded is-small padding--none margin--right"
-                                href="https://github.com/govtechsg/sgds"
+                                href="{{site.github}}"
                             >
                             <img src="/assets/img/GitHub-Mark-64px.png" alt="GitHub" width="36" height="36"/>
                             </a>
                             <a
                                 class="sgds-button is-primary is-rounded is-small"
-                                href="/docs/installation/"
+                                href="/get-started/for-developers/installation/"
                             >
                                 Install SGDS
                             </a>
@@ -91,6 +90,8 @@
                 </form>
             </div>
         </div>
+ 
+        
     </div>
 </div>
 
