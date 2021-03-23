@@ -1,0 +1,58 @@
+.sgds{
+    &-file-upload{
+        .sgds-input-file{
+            position: absolute;
+            overflow: hidden;
+            width: 0.1px;
+            height: 0.1px;
+            opacity:0;
+            z-index:-1;
+            + .sgds-file-label{
+                font-size: $size-normal;
+                color: black;
+                background-color: hsl(0,0%,90%);
+                display: inline-block; 
+                padding: $button-padding-vertical $button-padding-horizontal ;
+                border: 1px solid  hsl(0,0%,90%);
+                i{
+                    color: black;
+                    margin-right: 0.625rem;
+                }
+                &:hover{
+                    background-color: hsl(0,0%,75%);
+                    cursor: pointer;
+                }
+            }
+        }
+        @each $name, $pair in $colors {
+            $color: nth($pair, 1);
+            $color-invert: nth($pair, 2); 
+            &.is-#{$name}{
+                .sgds-file-label{
+                    background-color: $color;
+                    color: $color-invert;
+                    @if $name == 'warning'{
+                        color: black;
+                    }
+                    border-color: $color;
+                    i{
+                        color: $color-invert;
+                        @if $name == 'warning'{
+                            color: black;
+                        }
+                    }
+                    &:hover,
+                    &.is-hovered {
+                        background-color: darken($color, 8%);
+                        border-color: transparent;
+                        color: $color-invert;
+                        
+                        @if $name == 'warning'{
+                            color: black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

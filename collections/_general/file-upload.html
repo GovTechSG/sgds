@@ -1,0 +1,55 @@
+---
+title: File Upload
+layout: layout-docs
+category: General
+icon: card
+---
+
+<h2>Overview</h2>
+<p>
+  Cards contain content and actions about a single subject.
+</p>
+<p>
+  It includes options for headers and footers, a wide variety of content,
+  contextual background colors, and powerful display options.
+</p>
+<hr />
+<div class="is-flex">
+  <div class="sgds-file-upload">
+    <input type="file" name="file" id="file" class="sgds-input-file" data-multiple-caption="{count} files selected"
+      multiple />
+    <label for="file" class="sgds-file-label">
+      <i class="sgds-icon sgds-icon-upload"></i>
+      <span>Choose a file...</span>
+    </label>
+  </div>
+</div>
+
+<script>
+  var inputs = document.querySelectorAll('.sgds-input-file');
+  Array.prototype.forEach.call(inputs, function (input) {
+    var label = input.nextElementSibling,
+      labelVal = label.innerHTML;
+
+    input.addEventListener('change', function (e) {
+      console.log("changed")
+      var fileName = '';
+      if (this.files && this.files.length > 1) {
+        fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+      }
+
+      else {
+        fileName = e.target.value.split('\\' ).pop();
+      }
+
+      if (fileName) {
+        label.querySelector('span').innerHTML = fileName;
+      }
+
+      else {
+        label.innerHTML = labelVal;
+      }
+
+    });
+  });
+</script>
