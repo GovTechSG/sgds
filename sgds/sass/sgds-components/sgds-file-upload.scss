@@ -27,15 +27,15 @@
         @each $name, $pair in $colors {
             $color: nth($pair, 1);
             $color-invert: nth($pair, 2); 
-            &.is-#{$name}{
-                .sgds-file-label{
+            &.is-#{$name} {
+                .sgds-file-label {
                     background-color: $color;
                     color: $color-invert;
                     @if $name == 'warning'{
                         color: black;
                     }
                     border-color: $color;
-                    i{
+                    .sgds-icon{
                         color: $color-invert;
                         @if $name == 'warning'{
                             color: black;
@@ -47,11 +47,22 @@
                         border-color: transparent;
                         color: $color-invert;
                         
-                        @if $name == 'warning'{
+                        @if $name == 'warning' {
                             color: black;
                         }
                     }
                 }
+            }
+        }
+        &-selectedFiles{
+            border: 1px solid hsl(0,0%,99%);
+            display: hidden;
+            visibility:hidden;
+            &.hasFiles{
+                margin-top: 1rem;
+                display: block;
+                visibility:visible;
+                padding: $button-padding-vertical $button-padding-horizontal;
             }
         }
     }

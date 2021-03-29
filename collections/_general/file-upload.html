@@ -4,7 +4,18 @@ layout: layout-docs
 category: General
 icon: card
 ---
-
+{% capture default %}
+<div class="sgds-file-upload">
+    
+  <input type="file" name="file" id="file" class="sgds-input-file" data-multiple-caption="{count} files selected"
+    multiple />
+  <label for="file" class="sgds-file-label">
+    <i class="sgds-icon sgds-icon-upload"></i>
+    <span>Choose a file...</span>
+  </label>
+  <div class="sgds-file-upload-selectedFiles"></div>
+</div>
+{% endcapture %}
 <h2>Overview</h2>
 <p>
   Cards contain content and actions about a single subject.
@@ -13,33 +24,53 @@ icon: card
   It includes options for headers and footers, a wide variety of content,
   contextual background colors, and powerful display options.
 </p>
-<hr />
-<div class="is-flex">
-  <div class="sgds-file-upload">
-    <input type="file" name="file" id="file" class="sgds-input-file" data-multiple-caption="{count} files selected"
-      multiple />
-    <label for="file" class="sgds-file-label">
-      <i class="sgds-icon sgds-icon-upload"></i>
-      <span>Choose a file...</span>
-    </label>
-  </div>
+<hr/>
+
+<h2>Types</h2>
+
+<h3>1) Default </h3>
+
+<div class="sgds-example-others">
+    <row>
+        <div class="col is-4">
+            {{ default }}
+        </div>
+    </row>
 </div>
+{%- highlight html -%}
+{{ default }}
+{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<hr/>
 
 <script>
   var inputs = document.querySelectorAll('.sgds-input-file');
+  var filenames = document.querySelector('.sgds-file-upload-selectedFiles');
   Array.prototype.forEach.call(inputs, function (input) {
     var label = input.nextElementSibling,
       labelVal = label.innerHTML;
-
     input.addEventListener('change', function (e) {
-      console.log("changed")
-      var fileName = '';
+      
+      var files = e.target.files;
+      
       if (this.files && this.files.length > 1) {
+        filenames.classList.add('hasFiles');
         fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+        for(var i = 0 ; i < files.length; i++){
+          var file = files[i];
+          filenames.innerHTML += file.name + "</br>";
+        }
       }
-
       else {
         fileName = e.target.value.split('\\' ).pop();
+        filenames.classList.remove('hasFiles');
+        filenames.innerHTML = null;
       }
 
       if (fileName) {
@@ -49,7 +80,6 @@ icon: card
       else {
         label.innerHTML = labelVal;
       }
-
     });
   });
 </script>
