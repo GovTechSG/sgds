@@ -49,6 +49,53 @@ icon: card
 
 <hr/>
 
+<h3>When to use</h3>
+
+<h6>{{page.title}} should be used for:</h6>
+
+<ul>
+  <li>Displaying groups of related content.</li>
+  <ul>
+    <li>
+      For example, enclose related images, links and text that
+      represent an upcoming event in a card.
+    </li>
+    <li>
+      Keep headers and text short but descriptive.
+    </li>
+    <li>
+      Prioritise important content - cards are not meant for extensive reading.
+    </li>
+    <li>
+      There should be only one primary call-to-action per card.
+      Avoid excessive call-to-action buttons as it creates confusion.
+    </li>
+    <li>
+      If there is a need to have many cards,
+      it should generally be contained in a section of the page.
+    </li>
+  </ul>
+</ul>
+
+<h6>{{page.title}} should not be used for:</h6>
+
+<ul>
+  <li>
+    Complex pages - cards will be mixed with other
+    visually prominent elements and this may confuse users.
+  </li>
+  <li>
+    Drawing users’ attention to important information - other options like
+    the <a href="/docs/notification">notification</a> component with
+    the correct colour state or the <a href="/docs/callout/">callout</a> component
+    are more suitable.
+  </li>
+</ul>
+
+<hr/>
+
+{%- include sgds-feedback.html -%}
+
 <script>
   var inputs = document.querySelectorAll('.sgds-input-file');
   var filenames = document.querySelector('.sgds-file-upload-selectedFiles');
