@@ -1,5 +1,6 @@
 {% assign helper = site[include.collectionName] %}
 {% for component in helper %}
+
 {% if component.title != 'Overview' %}
 <div class="col is-4">
   <a class="is-size-7" href="{{ component.url }}">{{ component.title }}</a>
