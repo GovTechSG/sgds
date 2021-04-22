@@ -158,6 +158,11 @@
         margin-bottom: 0;
       }
     }
+    .sgds-breadcrumb{
+      ul,li{
+        margin:0;
+      }
+    }
     .field {
       &:not(:last-child) {
         margin-bottom: 2rem;
