@@ -5,8 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.18] - 15-04-2021
+- Added stepper component. See documentation at https://designsystem.gov.sg/docs for details.
+
 ## [1.3.17] - 27-10-2020
-- Added modal documentation
+- Added modal documentation.
 
 ## [1.3.16] - 01-10-2020
 
