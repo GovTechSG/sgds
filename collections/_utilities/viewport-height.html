@@ -4,4 +4,22 @@ layout: layout-docs
 icon: container
 ---
 
-{{page.title}}
+<h2>{{page.title}}</h2>
+
+<h3>Element height in vh units</h3>
+<table class="table is-bordered">
+  <thead>
+    <tr>
+      <td>Class</td>
+      <td>CSS Attribute</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for h in (1..10) %}
+    <tr>
+      <td><code>is-vh-{{ h | times: 10 }}</code></td>
+      <td><code>height: {{ h | times: 10 }}vh;</code></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

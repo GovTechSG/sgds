@@ -4,3 +4,48 @@ layout: layout-docs
 category: margin-and-padding
 
 ---
+
+<h3>{{page.title}}</h3>
+<!-- <p>Replace <code>margin</code> with <code>padding</code> in the table below to control padding.</p> -->
+<table class="table">
+  <thead>
+    <tr>
+      <td>Class</td>
+      <td>CSS Attribute</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>padding</code></td>
+      <td><code>padding: 1rem;</code></td>
+    </tr>
+    <tr>
+      <td><code>padding--{size}</code></td>
+      <td>
+        <code>padding: .25rem; (xs)</code><br />
+        <code>padding: .5rem; (sm)</code><br />
+        <code>padding: 2rem; (lg)</code><br />
+        <code>padding: 4rem; (xl)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>padding--{direction}</code>
+      </td>
+      <td>
+          <code>padding-top: 1rem; (top)</code><br />
+          <code>padding-right: 1rem; (right)</code><br />
+          <code>padding-bottom: 1rem; (bottom)</code><br />
+          <code>padding-left: 1rem; (left)</code>
+      </td>
+    </tr>
+    <tr>
+        <td>
+            <code>padding--{direction}--{size}</code>
+        </td>
+        <td>
+            Combination as derived from above
+        </td>
+    </tr>
+  </tbody>
+</table>

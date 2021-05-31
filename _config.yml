@@ -27,6 +27,13 @@ collections:
       - standard/masthead.html
       - general/accordion.html
       - form/general-guidelines.html
+  guides:
+    permalink: /guides/:path/
+    output: true
+    order:
+      - overview.html
+      - layout-grid/container.html
+      - margin-and-padding/advance-setting.html
   utilities:
     permalink: /utilities/:path/
     output: true
