@@ -5,4 +5,37 @@ category: layout-grid
 icon: container
 ---
 
-{{page.title}}
+{% capture multiline_example %}
+<div class="sgds-container">
+    <div class="row is-multiline">
+        <div class="col is-12">
+            <h6>col 1</h6>
+        </div>
+        <div class="col is-5">
+            <h6>col 2</h6>
+        </div>
+        <div class="col is-7">
+            <h6>col 3</h6>
+        </div>
+        <div class="col is-5">
+            <h6>col 4</h6>
+        </div>
+        <div class="col is-8">
+            <h6>col 5</h6>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+<h2>Overview</h2>
+<p>Our grid system allows easy wrapping of columns to the next line. Use is-multiline on row elements to have columns automatically wrap to a new line.</p>
+
+<div class="sgds-example is-marginless">
+    {{multiline_example}}
+</div>
+{% highlight html %}{{multiline_example}}{% endhighlight %}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy Snippet</button>
+
+<hr/>
+
+{%- include sgds-feedback.html -%}

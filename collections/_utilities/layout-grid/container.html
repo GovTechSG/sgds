@@ -25,14 +25,15 @@ icon: container
 <h2>Overview</h2>
 
 <p>
-  The <code>sgds-container</code> class helps you to limit page elements 
-  to a reasonable maximum width, based on the size of a user's screen.
+  The <code>sgds-container</code> class helps you to limit page elements to a reasonable maximum width, based on the size of a user's screen. The <code>sgds-container</code> class can be used in any context, but is especially useful as a direct child of:
 </p>
+<ul>
+  <li><a href="/components/general/hero/">Hero</a></li>
+  <li><a href="/utilities/layout-grid/section/">Section</a></li>
+  <li><a href="/components/standard/footer/">Footer</a></li>
+</ul>
 
-<hr />
-
-<h3>Usage</h3>
-<p>Below is a default container which you can use.</p>
+<p>Below you’ll find the code snippets and the maximum widths that we have for browsers</p>
 
 <div class="sgds-example is-marginless">
   {{ default_container_example }}
@@ -47,8 +48,7 @@ icon: container
 <h3>Maximum width</h3>
 
 <p>
-  You can reference the table below of <code>sgds-container</code> 
-  class behaviour at different screen sizes.
+  In the table below, you’ll find the maximum widths for the <code>.sgds-container</code>     
 </p>
 <table class="table is-bordered is-size-8">
   <thead>
@@ -90,21 +90,5 @@ icon: container
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".highlight1">
   Copy Snippet
 </button>
-
-<hr />
-
-<h3>Additional Information</h3>
-
-<p>
-  The <code>sgds-container</code> class can be used in any context,
-  but is especially useful as a direct child of:
-</p>
-<ul>
-  <li><a href="/docs/hero/">Hero</a></li>
-  <li><a href="/docs/section/">Section</a></li>
-  <li><a href="/docs/footer/">Footer</a></li>
-</ul>
-
-<hr />
-
+<hr>
 {%- include sgds-feedback.html -%}
