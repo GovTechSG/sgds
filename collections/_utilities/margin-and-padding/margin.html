@@ -1,50 +1,345 @@
 ---
-title: Margins
+title: Margin
 layout: layout-docs
 category: margin-and-padding
 ---
 
-<h3>{{page.title}}</h3>
-<!-- <p>Replace <code>margin</code> with <code>padding</code> in the table below to control padding.</p> -->
+<h3>Overview</h3>
+<p>Here you’ll find all the {{page.title | downcase}}s that we use in our framework to change spacing around an item</p>
+<hr>
+<h4>{{page.title}}s on all sides</h4>
 <table class="table">
-  <thead>
-    <tr>
-      <td>Class</td>
-      <td>CSS Attribute</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>margin</code></td>
-      <td><code>margin: 1rem;</code></td>
-    </tr>
-    <tr>
-      <td><code>margin--{size}</code></td>
-      <td>
-        <code>margin: .25rem; (xs)</code><br />
-        <code>margin: .5rem; (sm)</code><br />
-        <code>margin: 2rem; (lg)</code><br />
-        <code>margin: 4rem; (xl)</code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>margin--{direction}</code>
-      </td>
-      <td>
-          <code>margin-top: 1rem; (top)</code><br />
-          <code>margin-right: 1rem; (right)</code><br />
-          <code>margin-bottom: 1rem; (bottom)</code><br />
-          <code>margin-left: 1rem; (left)</code>
-      </td>
-    </tr>
-    <tr>
-        <td>
-            <code>margin--{direction}--{size}</code>
-        </td>
-        <td>
-            Combination as derived from above
-        </td>
-    </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <td width="30%">Class</td>
+            <td width="10%">Size</td>
+            <td width="60%">Example</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>.{{page.title | downcase}}--none</code></td>
+            <td><p>0rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-none">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--xs</code></td>
+            <td><p>0.25rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-xs">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--sm</code></td>
+            <td><p>0.5rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-sm">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}</code></td>
+            <td><p>1rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--lg</code></td>
+            <td><p>2rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-lg">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--xl</code></td>
+            <td><p>4rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-xl">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h4>{{page.title}} top</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <td width="30%">Class</td>
+            <td width="10%">Size</td>
+            <td width="60%">Example</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>.{{page.title | downcase}}--top--none</code></td>
+            <td><p>0rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-none">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--top--xs</code></td>
+            <td><p>0.25rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-top-xs">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--top--sm</code></td>
+            <td><p>0.5rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-top-sm">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--top</code></td>
+            <td><p>1rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-top">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--top--lg</code></td>
+            <td><p>2rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-top-lg">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--top--xl</code></td>
+            <td><p>4rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-top-xl">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<hr>
+<h4>{{page.title}} bottom</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <td width="30%">Class</td>
+            <td width="10%">Size</td>
+            <td width="60%">Example</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>.{{page.title | downcase}}--bottom--none</code></td>
+            <td><p>0rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-none">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--bottom--xs</code></td>
+            <td><p>0.25rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-bottom-xs">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--bottom--sm</code></td>
+            <td><p>0.5rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-bottom-sm">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--bottom</code></td>
+            <td><p>1rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-bottom">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--bottom--lg</code></td>
+            <td><p>2rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-bottom-lg">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--bottom--xl</code></td>
+            <td><p>4rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-bottom-xl">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<hr>
+<h4>{{page.title}} left</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <td width="30%">Class</td>
+            <td width="10%">Size</td>
+            <td width="60%">Example</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>.{{page.title | downcase}}--left--none</code></td>
+            <td><p>0rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-left-none">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--left--xs</code></td>
+            <td><p>0.25rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-left-xs">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--left--sm</code></td>
+            <td><p>0.5rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-left-sm">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--left</code></td>
+            <td><p>1rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-left">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--left--lg</code></td>
+            <td><p>2rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-left-lg">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--left--xl</code></td>
+            <td><p>4rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-left-xl">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h4>{{page.title}} right</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <td width="30%">Class</td>
+            <td width="10%">Size</td>
+            <td width="60%">Example</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>.{{page.title | downcase}}--right--none</code></td>
+            <td><p>0rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-right-none">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--right--xs</code></td>
+            <td><p>0.25rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-right-xs">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--right--sm</code></td>
+            <td><p>0.5rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-right-sm">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--right</code></td>
+            <td><p>1rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-right">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--right--lg</code></td>
+            <td><p>2rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-right-lg">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><code>.{{page.title | downcase}}--right--xl</code></td>
+            <td><p>4rem</p></td>
+            <td>
+                <div class="{{page.title | downcase}}-shadow-right-xl">
+                    <div class="box-example"></div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
 </table>

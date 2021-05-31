@@ -1,0 +1,115 @@
+$values: (
+    "-none": 0rem, 
+    "-xs": 0.25rem, 
+    "-sm": 0.5rem , 
+    "" : 1rem, 
+    "-lg" : 2rem, 
+    "-xl" : 4rem
+);
+
+$box-example-width: 80px;
+$box-example-height: 30px;
+
+
+@each $name, $size in $values {
+
+    .margin-shadow{
+        &#{$name}{
+            padding: #{$size};
+            background-color: rgba(green, 0.5);
+            width: calc( (#{$size} * 2) + #{$box-example-width});
+        }
+        
+        &-top#{$name}{
+            padding-top: #{$size};
+            background-color: rgba(green, 0.5);
+            width: calc( #{$box-example-width} );
+        }
+    
+        &-bottom#{$name}{
+            padding-bottom: #{$size};
+            background-color: rgba(green, 0.5);
+            width: calc( #{$box-example-width} );
+        }
+    
+        &-left#{$name}{
+            padding-left: #{$size};
+            background-color: rgba(green, 0.5);
+            width: calc( #{$box-example-width} );
+        }
+
+        &-right#{$name}{
+            padding-right: #{$size};
+            background-color: rgba(green, 0.5);
+            width: calc( #{$box-example-width} + #{$size} );
+        }
+
+    }
+    
+
+    .padding-shadow{
+        &#{$name}{
+            padding: #{$size};
+            background-color: rgba(green, 0.5);
+            width: calc( (#{$size} * 2) + #{$box-example-width});
+            @if $name != "-none" {
+                @debug $name;
+                border: 1px dotted $grey;
+                .box-example{
+                    border:0;
+                }
+            }
+        }
+        
+        &-top#{$name}{
+            padding-top: #{$size};
+            background-color: rgba(green, 0.5);
+            width: calc( #{$box-example-width} );
+            
+                border: 1px dotted $grey;
+                .box-example{
+                    border:0;
+                    width: 78px;
+                }
+            
+        }
+    
+        &-bottom#{$name}{
+            padding-bottom: #{$size};
+            background-color: rgba(green, 0.5);
+            width: calc( #{$box-example-width} );
+            border: 1px dotted $grey;
+            .box-example{
+                border:0;
+                width: 78px;
+            }
+        }
+    
+        &-left#{$name},
+        &-right#{$name}{
+            background-color: rgba(green, 0.5);
+            width: $size;
+            @if $name != "-none" {
+                @debug $name;
+                border: 1px dotted $grey;
+                .box-example{
+                    border-left:0;
+                }
+            }
+        }
+
+    }
+}
+
+.box-example{
+    width: $box-example-width;
+    height: $box-example-height;
+    border: 1px dotted $grey;
+    background: $white;
+}
+
+.padding-margin-diagram{
+    display: flex;
+    gap: 1rem;
+}
+
