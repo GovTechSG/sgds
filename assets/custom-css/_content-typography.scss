@@ -64,3 +64,15 @@ button {
     margin-bottom:0;
   }
 }
+
+// text length readability
+@supports (width: 10ch){
+  .custom-content{
+    & > p,
+    & > ul li{
+      @include from($desktop) {
+          width: min(75ch);
+      }
+    }
+  }
+}
