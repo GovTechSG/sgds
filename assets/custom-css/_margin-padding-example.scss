@@ -16,31 +16,31 @@ $box-example-height: 30px;
     .margin-shadow{
         &#{$name}{
             padding: #{$size};
-            background-color: rgba(green, 0.5);
+            background-color: rgba(orange, 0.5);
             width: calc( (#{$size} * 2) + #{$box-example-width});
         }
         
         &-top#{$name}{
             padding-top: #{$size};
-            background-color: rgba(green, 0.5);
+            background-color: rgba(orange, 0.5);
             width: calc( #{$box-example-width} );
         }
     
         &-bottom#{$name}{
             padding-bottom: #{$size};
-            background-color: rgba(green, 0.5);
+            background-color: rgba(orange, 0.5);
             width: calc( #{$box-example-width} );
         }
     
         &-left#{$name}{
             padding-left: #{$size};
-            background-color: rgba(green, 0.5);
+            background-color: rgba(orange, 0.5);
             width: calc( #{$box-example-width} );
         }
 
         &-right#{$name}{
             padding-right: #{$size};
-            background-color: rgba(green, 0.5);
+            background-color: rgba(orange, 0.5);
             width: calc( #{$box-example-width} + #{$size} );
         }
 
