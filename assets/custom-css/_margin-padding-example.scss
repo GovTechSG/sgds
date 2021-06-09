@@ -53,7 +53,6 @@ $box-example-height: 30px;
             background-color: rgba(green, 0.5);
             width: calc( (#{$size} * 2) + #{$box-example-width});
             @if $name != "-none" {
-                @debug $name;
                 border: 1px dotted $grey;
                 .box-example{
                     border:0;
@@ -90,14 +89,12 @@ $box-example-height: 30px;
             background-color: rgba(green, 0.5);
             width: $size;
             @if $name != "-none" {
-                @debug $name;
                 border: 1px dotted $grey;
                 .box-example{
                     border-left:0;
                 }
             }
         }
-
     }
 }
 
