@@ -7,13 +7,17 @@ $body-color: #323232;
 
 @import "../../sgds/sass/sgds-customise/all";
 @import "../../sgds/sass/sgds-base/all";
+@import "grid";
 @import "navbar";
 @import "sgds-example";
 @import "content-typography";
 @import "sgds-syntax";
 @import "mobile-side-nav";
+@import "mobile-dropdown";
 @import "spinner";
+@import "card";
 @import "docs";
+@import "margin-padding-example";
 
 /* Keep footer at bottom of viewport if page isn't high enough */
 html {
@@ -103,8 +107,7 @@ a[target="_blank"]:after {
   top: -24px;
   right: 0;
   width: 55vw;
-  height: 420px;
-  background-color: #7b50ce;
+  height: 500px;
   transform: skewX(-32deg);
   transform-origin: right bottom;
 }

@@ -1,0 +1,124 @@
+---
+title: Grid System
+layout: layout-docs
+category: layout-grid
+icon: container
+---
+
+{% capture grid_2_12_example %}
+<div class="sgds-container">
+    <div class="row">
+        <div class="col is-2">
+            <h6>is-2</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col is-6">
+            <h6>is-6</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+        <div class="col">
+            <h6>1</h6>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture default_grid_example %}
+<section class="sgds-section">
+    <div class="sgds-container">
+        <div class="row">
+            <div class="col">
+                <h6>col 1</h6>
+            </div>
+            <div class="col">
+                <h6>col 2</h6>
+            </div>
+            <div class="col">
+                <h6>col 3</h6>
+            </div>
+        </div>
+    </div>
+</section>
+{% endcapture %}
+
+
+<h2>Overview</h2>
+<p>Use our flexible grid system to structure website content. Our grid system is based on a twelve-column system, and is powered by flexbox</p>
+
+<h3>How it works</h3>
+<p>Our grid system uses a series of containers, rows, and columns to lay out and align content. Below is you will find examples on how all this comes together</p>
+
+<h3>12 columns</h3>
+<p>This is our baseline grid that we use, with size classes ranging from is-2 to is-12. In the following example we see the difference between is-2 and is-6.</p>
+
+<div class="sgds-example is-marginless">
+    {{grid_2_12_example}}
+</div>
+{% highlight html %}{{grid_2_12_example}}{% endhighlight %}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight0'>Copy
+    Snippet</button>
+
+<h4>Container</h4>
+<p><code>.sgds-container</code> centers the container and gives it a maximum width of 1300px.</p>
+
+<h4>Row</h4>
+<p><code>.row</code> sets a row within the container with appropriate spacing in place</p>
+
+<h4>Columns</h4>
+<p><code>.col is-[2-12]</code> indicates the number of columns the item spans out of a possible 12 per row. If you want 3 equal-width columns across, use <code>.col is-4</code> for each item (please see 3 columns section below).  If you want a single column, use .col without using [is-2-12]</p>
+
+
+<hr>
+
+<h3>3 Columns </h3>
+<div class="sgds-example is-marginless">
+    {{default_grid_example}}
+</div>
+{% highlight html %}{{default_grid_example}}{% endhighlight %}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>Copy
+    Snippet</button>
