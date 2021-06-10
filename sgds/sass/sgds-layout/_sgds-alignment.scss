@@ -8,11 +8,11 @@
   margin: 0 !important;
 }
 
-$base-margin-padding: 1rem;
-
 @include mobile() {
   $base-margin-padding: 0.25rem;
 }
+
+
 
 .margin {
   margin: $base-margin-padding !important;

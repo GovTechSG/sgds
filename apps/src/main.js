@@ -1,5 +1,5 @@
 import StickySidebar from "sticky-sidebar";
-
+// import barba from '@barba/core';
 import { default as $ } from "./lib/jQuery";
 
 $(document).ready(() => {
@@ -26,3 +26,10 @@ function initializeStickySidebar() {
     }
   }
 }
+
+// barba.init({
+//   schema: {
+//     prefix: 'data-barba',
+//     wrapper: 'wrapper'
+//   }
+// });

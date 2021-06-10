@@ -1,86 +1,12 @@
 ---
-title: Display
+title: CSS display attributes
 layout: layout-docs
 ---
 
 <h2>Overview</h2>
+
 <p>
-  Helper classes to customise how an element is displayed.
-</p>
-
-<hr/>
-
-<h3>Element height in vh units</h3>
-<table class="table is-bordered">
-  <thead>
-    <tr>
-      <td>Class</td>
-      <td>CSS Attribute</td>
-    </tr>
-  </thead>
-  <tbody>
-    {% for h in (1..10) %}
-    <tr>
-      <td><code>is-vh-{{ h | times: 10 }}</code></td>
-      <td><code>height: {{ h | times: 10 }}vh;</code></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-<hr/>
-
-<h3>Margin and padding</h3>
-<p>Replace <code>margin</code> with <code>padding</code> in the table below to control padding.</p>
-<table class="table">
-  <thead>
-    <tr>
-      <td>Class</td>
-      <td>CSS Attribute</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>margin</code></td>
-      <td><code>margin: 1rem;</code></td>
-    </tr>
-    <tr>
-      <td><code>margin--{size}</code></td>
-      <td>
-        <code>margin: .25rem; (xs)</code><br />
-        <code>margin: .5rem; (sm)</code><br />
-        <code>margin: 2rem; (lg)</code><br />
-        <code>margin: 4rem; (xl)</code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>margin--{direction}</code>
-      </td>
-      <td>
-          <code>margin-top: 1rem; (top)</code><br />
-          <code>margin-right: 1rem; (right)</code><br />
-          <code>margin-bottom: 1rem; (bottom)</code><br />
-          <code>margin-left: 1rem; (left)</code>
-      </td>
-    </tr>
-    <tr>
-        <td>
-            <code>margin--{direction}--{size}</code>
-        </td>
-        <td>
-            Combination as derived from above
-        </td>
-    </tr>
-  </tbody>
-</table>
-
-<hr/>
-
-<h3>CSS display attributes</h3>
-<p>
-  You can use one of the following classes to set your <code>display</code> CSS
-  attribute:
+  Here you’ll find classes to set your display CSS attribute. Also included in this section is the classes we use to set an item’s flexbox properties, hiding content for different screen sizes and helper classes to hide elements for different screen sizes.
 </p>
 
 <ul>
@@ -91,7 +17,8 @@ layout: layout-docs
   <li><code>is-inline-flex</code></li>
 </ul>
 
-<h4>Example on how <code>is-flex</code> works:</h4>
+<h4>Using Flexbox</h4>
+<p>In the tables below you’ll find the classes that we use to set an item’s flexbox properties.</p>
 <table class="table is-bordered is-size-8 margin--top--sm">
   <thead>
     <tr>
@@ -178,7 +105,7 @@ layout: layout-docs
     </tr>
   </tbody>
 </table>
-
+<hr>
 <h4>Helper classes to display element for different screensizes</h4>
 
 <table class="table is-bordered is-size-8 margin--top--sm">
@@ -382,7 +309,7 @@ layout: layout-docs
     </tr>
   </tbody>
 </table>
-
+<hr>
 <h4>Helper classes to hide element for different screensizes</h4>
 
 <table class="table is-bordered is-size-8 margin--top--sm">

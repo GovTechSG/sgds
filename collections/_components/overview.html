@@ -4,7 +4,78 @@ layout: layout-docs
 icon: section
 
 redirect_from:
-    - /components/
+- /components/
 ---
 
-{{page.title}}
+<h2>{{page.title}}</h2>
+
+<hr />
+
+<h3>Component reference</h3>
+<p>
+    Component reference is helpful for you to implement layouts, elements and
+    components, using our CSS class and modifiers.
+</p>
+<p>
+    Each page provides you with comprehensive usage instructions, examples and guidelines.
+</p>
+
+<hr />
+
+<h3>Standard Components</h3>
+<p>
+    Standard components aid users in basic site identification and navigation.
+    They should be present in all <b>.gov.sg</b> websites as stated in the
+    <a href="https://www.tech.gov.sg/digital-service-standards/" target="_blank">
+        Digital Service Standards</a>.
+</p>
+
+<div class="row is-multiline is-mobile">
+    {% include component-list.html collectionName='standard' %}
+</div>
+
+<hr />
+
+<!-- <h3>Layout</h3>
+<p>
+    CSS classes are used for composing your site layout. Over here, you can also
+    find the breakpoints that we use for desktop and mobile devices.
+</p>
+
+<div class="row is-multiline is-mobile">
+    {% include component-list.html collectionName='layout' %}
+</div>
+
+<hr /> -->
+
+<h3>General</h3>
+<p>
+    Common components that can be used individually or grouped to form patterns
+    and templates. For example, you can group the hero with cards to build a landing page.
+</p>
+
+<div class="row is-multiline is-mobile">
+    {% include component-list.html collectionName='components.general' %}
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<h3>Form</h3>
+<p>
+    Form components and guidelines for the collection of user input.
+</p>
+
+<div class="row is-multiline is-mobile">
+    {% include component-list.html collectionName='form' %}
+</div>
+
+<hr class="margin--bottom--lg margin--top--lg" />
+
+<!-- <h3>Helpers</h3>
+<p>
+    Helper classes to help you alter the style of almost any component.
+</p>
+
+<div class="row is-multiline is-mobile margin--bottom--lg">
+    {% include component-list.html collectionName='helpers' %}
+</div> -->

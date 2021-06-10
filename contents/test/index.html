@@ -1,0 +1,27 @@
+---
+title: Test
+layout: layout-docs
+permalink: /test/
+
+---
+
+<!-- <pre id="jekyll-debug"></pre>
+<script>
+  var obj = JSON.parse(decodeURIComponent("{{ site.collections | jsonify | uri_escape }}"));
+  var prettyJson = JSON.stringify(obj, null, 4);  // Pretty-printed JSON (indented 4 spaces).
+  document.getElementById("jekyll-debug").textContent = prettyJson;
+</script> -->
+
+{%- assign collectionName = page.collection -%}
+{%- assign sorting = page.collection.sort -%}
+{%- assign filteredCollections = site.collections | where: "label", collectionName -%}
+{%- assign currentCollection = filteredCollections[0] -%}
+{%- assign collectionCategories = currentCollection.docs | group_by: "category" -%}
+
+
+<pre>
+    {{ page.collection  | inspect }}
+    {{ filteredCollections | inspect }}
+    {{ currentCollection | inspect }}
+    {{ collectionCategories | inspect }}
+</pre>

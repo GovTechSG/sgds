@@ -1,14 +1,14 @@
 {% assign helper = site[include.collectionName] %}
+
+<p>{{helper}}</p>
 {% for component in helper %}
-{% if component.title != 'Overview' %}
-<div class="col is-4">
-  <a class="is-size-7" href="{{ component.url }}">{{ component.title }}</a>
-  {% if component.js %}
-  <span
-      class="sgds-tag is-rounded margin--left--sm has-text-weight-semibold"
-      >JS</span
-  >
+
+  {% if component.title != 'Overview' %}
+  <div class="col is-4">
+    <a class="is-size-7" href="{{ component.url }}">{{ component.title }}</a>
+    {% if component.js %}
+    <span class="sgds-tag is-rounded margin--left--sm has-text-weight-semibold">JS</span>
+    {% endif %}
   {% endif %}
-{% endif %}
 </div>
 {% endfor %}
