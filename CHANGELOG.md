@@ -1,3 +1,9 @@
+---
+title: Changelog
+layout: layout-post
+permalink: /changelog
+---
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -5,60 +11,59 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.3.18] - 15-04-2021
+#### [1.3.18] - 15-04-2021
 - Added stepper component. See documentation at https://designsystem.gov.sg/docs for details.
 
-## [1.3.17] - 27-10-2020
+#### [1.3.17] - 27-10-2020
 - Added modal documentation.
 
-## [1.3.16] - 01-10-2020
-
+#### [1.3.16] - 01-10-2020
 - Removed left borders for `.sgds-menu-list li ul` elements so side nav is consistent with previous behaviour.
 
-### Documentation: sgds-menu
+#### Documentation: sgds-menu
 - Accessibility fixes for sgds-menu
 - Replace `div.second-level-nav-div` with `li.second-level-nav-div`
 - All `li.second-level-nav-div` nav items should be children of `<ul>`
 
-### Documentation: sgds-masthead
+#### Documentation: sgds-masthead
 1. Add aria-label for masthead
 
-## [1.3.15] - 07-09-2020
+#### [1.3.15] - 07-09-2020
 - Fixes for input hint text
 - Added is-*color classes for hint text
 - Removed .success & .error class for hint text
 - Update input & text area documentation
 
-## [1.3.14] - 15-07-2020
+#### [1.3.14] - 15-07-2020
 - update $size-7 paragraph font size to 1.125rem
 
-## [1.3.13] - 04-05-2020
+#### [1.3.13] - 04-05-2020
 - Navbar fixes
 
-### Docs
+#### Docs
 - Added tag documentation
 
-### Fixes and updates
+#### Fixes and updates
 - Update SGDS logo and favicon
 - Fixes for search page
 - Style / layout fixes
 - Upgraded to Jekyll 4.0
 
-## [1.3.11] - 02-04-2020
+#### [1.3.11] - 02-04-2020
 
-### Components
+#### Components
 
 - Added is-stateColor modifier for Card footer button
 - Pagination component is now left align by default
 - Added .is-centered & .is-right alignment helper for Pagination component
 
-## [1.3.10] - 26-02-2020
+#### [1.3.10] - 26-02-2020
 
-### Components
+#### Components
 
 - Default Toast Notification now has higher contrast border color
 
-### Docs
+#### Docs
 
 - Added breadcrumb variations
 
@@ -66,34 +71,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added pattern groups and documentation
 
-## [1.3.9] - 13-12-2019
+#### [1.3.9] - 13-12-2019
 
-### Components
+#### Components
 
 - Button colours now have higher contrast when in :hover, :focus and :active.
 
-### Docs
+#### Docs
 
 - Accessibility improvements made from WAVE evaluations.
 - Reorganization of docs and layouts.
 
-## [1.3.8] - 23-11-2019
+#### [1.3.8] - 23-11-2019
 
-### Components
+#### Components
 
 - Added .has-default-header-styles modifier to .content class. This gives top and bottom margins `<h1>` to `<h6>` elements.
 - `<hr>` elements now have default top and bottom margins.
 - Added .hint, .success and .error classes for form input labels.
 
-### Docs
+#### Docs
 
 - Docs for form elements split into separate category
 - Added docs for advanced customisation using Sass
 - Documentation additions and reorg
 
-## [1.3.7] - 21-10-2019
+#### [1.3.7] - 21-10-2019
 
-### Changes
+#### Changes
 
 - #35 Added color contrast result and examples of `is-*color*` class
 - Updated colors with recommended ratio >= 4.5
@@ -105,18 +110,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added instructions for releasing. See [Readme.md](https://github.com/GovTechSG/sgds/blob/master/README.md)
 
-### Fixes
+#### Fixes
 - Fixed missing gutters (left/right) for `sgds-container`
 
-## [1.3.6] - 18-10-2019
+#### [1.3.6] - 18-10-2019
 
-### Changes
+#### Changes
 
 - Added sass to npm package
 
-## [1.3.5] - 07-10-2019
+#### [1.3.5] - 07-10-2019
 
-### Changes
+#### Changes
 
 - #101 Masthead font-size scaling.
 - Masthead link now darkens upon hover.
@@ -128,37 +133,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - scss sources are now published on NPM. Documentation for usage to follow.
 - Documentation improvements.
 
-### Fixes
+#### Fixes
 
 - Fixed navbar burger button functionality after new navbar class introduced.
 
-## [1.3.4] - 04-10-2019
+#### [1.3.4] - 04-10-2019
 
-### Fixes
+#### Fixes
 
 - Added js compatible with old `.navbar` elements for burger button controls
 
-## [1.3.3] - 18-09-2019
+#### [1.3.3] - 18-09-2019
 
-### Changes
+#### Changes
 
 - Documentation re-org and improvements
 - Moved sgds-example and sgds-syntax classes out of sgds package.
 - #89 Added sgds prefix to navbar component
 - Updated language selector example in docs to use `<select>` elements
 
-### Fixes
+#### Fixes
 
 - #83 Main nav language selector gets misaligned when viewport is too wide (>1800px)
 - #85 Documentation for SGDS Steps
 - Fixed Masthead example
 
-## [1.3.2] - 27-08-2019
+#### [1.3.2] - 27-08-2019
 
 - Documentation updates
 - Improved IE compatibility for sgds.js.
 
-## [1.3.1] - 26-08-2019
+#### [1.3.1] - 26-08-2019
 
 - Documentation updates
 - IE fix for main nav dropdowns
@@ -167,9 +172,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed babel build to handle sticky-sidebar
 - CI pipeline for dev build
 
-## [1.2.4] - 13-08-2019
+#### [1.2.4] - 13-08-2019
 
-### Accordion
+#### Accordion
 
 #### Added
 
@@ -186,7 +191,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - hover color to darken white
 - padding top/bottom (same padding with default size `sgds-button`)
 
-## [1.1.0] - 07-06-2019
+#### [1.1.0] - 07-06-2019
 
 - Side Navigation
 
