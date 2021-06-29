@@ -9,6 +9,10 @@ $card-header-weight: $weight-bold !default;
 $card-footer-border-top: 1px solid $border !default;
 $card-max-height: 21rem !default;
 
+//variant
+//highlight
+$card-variant-highlight-magin-top: var(--card-variant-highlight-margin-top);
+
 .sgds {
   &-card {
     background-color: $card-background-color;
@@ -151,6 +155,31 @@ $card-max-height: 21rem !default;
   &-card {
     .media:not(:last-child) {
       margin-bottom: 0.75rem;
+    }
+  }
+}
+
+//variant-highlight
+.sgds{
+  &-card{
+    &-variant-highlight{
+      margin-top: #{$card-variant-highlight-magin-top};
+      display: flex;
+      flex-flow: column;
+      .sgds-card-image{
+          margin-top: calc(#{$card-variant-highlight-magin-top} * -1 );
+          @extend .has-text-centered;
+          img{
+              margin-bottom: 0;
+          }
+      }
+      .sgds-card-content{
+        @extend .has-text-centered;
+        flex-grow: 1;
+        h3{
+            margin-bottom: 0;
+        }
+      }
     }
   }
 }
