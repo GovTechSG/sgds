@@ -72,7 +72,8 @@ module.exports = (env) => {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        moduleFilename: ({ name }) => `${name.replace("js", "css")}.css`,
+        // moduleFilename: ({ chunk }) => `${chunk.name.replace("js", "css")}.css`,
+        filename: ({ chunk }) => `${chunk.name.replace("js", "css")}.css`,
       }),
     ],
   };
