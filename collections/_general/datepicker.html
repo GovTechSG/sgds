@@ -1,0 +1,54 @@
+---
+title: Date Picker
+layout: layout-docs
+category: general
+js: true
+---
+{% capture default-single-date %}
+<label class="label" for="datepicker">Select a date</label>
+<div class="control has-icons-right">
+    <input class="input datepicker" type="text" id="datepicker" placeholder="YYYY-MM-DD" width="350">
+    <span class="icon is-small is-right">
+        <i class="sgds-icon sgds-icon-calendar"></i>
+    </span>
+</div>
+{% endcapture %}
+
+{% capture default-start-end-date %}
+<div class="sgds-container">
+    <div class="row">
+        <div class="col is-6">
+            <label class="label" for="datepicker">Select a start date</label>
+            <div class="control has-icons-right">
+                <input class="input datepicker" type="text" placeholder="YYYY-MM-DD" width="350">
+                <span class="icon is-small is-right">
+                    <i class="sgds-icon sgds-icon-calendar"></i>
+                </span>
+            </div>
+        </div>
+        <div class="col is-6">
+            <label class="label" for="datepicker">Select a end date</label>
+            <div class="control has-icons-right">
+                <input class="input datepicker" type="text" placeholder="YYYY-MM-DD" width="350">
+                <span class="icon is-small is-right">
+                    <i class="sgds-icon sgds-icon-calendar"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endcapture %}
+
+<h2>Overview</h2>
+<p>
+    Plugin from <a href="https://flatpickr.js.org/" target="_blank">flatpickr</a>
+</p>
+
+<h3>Select single date</h3>
+<div class="sgds-example-others">{{default-single-date}}</div>
+{%- highlight html -%}{{default-single-date}}{%- endhighlight -%}
+
+<hr/>
+
+{%- include sgds-feedback.html -%}

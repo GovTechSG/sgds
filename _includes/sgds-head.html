@@ -8,6 +8,9 @@
 <title>Site Title</title>
 {% else %}
 <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon" />
+{% if page.url contains '/datepicker/' %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endif %}
 <link rel="stylesheet" href="/css/sgds.css" />
 <link rel="stylesheet" href="/assets/custom-css/main.css" />
 {% endif %}

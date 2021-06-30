@@ -1,5 +1,6 @@
 import ClipboardJS from "clipboard";
 import List from "list.js";
+import flatpickr from "flatpickr";
 import { default as $ } from "./lib/jQuery";
 
 $(document).ready(function() {
@@ -64,3 +65,5 @@ function initializeComponentFilter() {
     });
   }
 }
+
+var datepicker = new flatpickr("#datepicker", {});

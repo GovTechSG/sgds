@@ -107,6 +107,58 @@ icon: hero
 </section>
 {% endcapture %}
 
+{% capture hero-with-highlight-card %}
+<section class="sgds-hero has-background-primary" style="height: 500px;">
+    <div class="sgds-hero-body sgds-container is-fluid">
+        <div class="row is-vcentered has-text-centered">
+            <div class="col is-8 is-offset-2 has-text-white">
+                <h1 class="display"><b>design system</b></h1>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="sgds-container" style="margin-top:-130px;">
+    <div class="row">
+        <div class="col is-5 is-offset-1">
+            <div class="sgds-card sgds-card-variant-highlight">
+                <div class="sgds-card-image">
+                    <!-- You can change the css variable value for var(--sgds-card-variant-highlight-margin-top). The number should be half of the total height of the card image -->
+                    <img src="https://via.placeholder.com/160x160" alt="">
+                </div>
+                <div class="sgds-card-content">
+                    <h3>Title</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sequi, nulla.
+                    </p>
+                </div>
+                <div class="sgds-card-footer">
+                    <a href="#!" class="sgds-card-footer-item">Read our documentation</a>
+                </div>
+            </div>
+        </div>
+        <div class="col is-5">
+            <div class="sgds-card sgds-card-variant-highlight">
+                <div class="sgds-card-image">
+                    <!-- You can change the css variable value for var(--sgds-card-variant-highlight-margin-top). The number should be half of the total height of the card image -->
+                    <img src="https://via.placeholder.com/160x160" alt="">
+                </div>
+                <div class="sgds-card-content">
+                    <h3>Title</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sequi, nulla.
+                    </p>
+                </div>
+                <div class="sgds-card-footer">
+                    <a href="#!" class="sgds-card-footer-item">Read our documentation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
 <h2>Overview</h2>
 <p>
   Heroes are large web banners, usually placed in the centre of a page. 
@@ -155,6 +207,15 @@ icon: hero
 {%- highlight html -%}{{search_bar_hero}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight3'>Copy snippet</button>
 
+<hr/>
+
+<!--Hero with highlight card-->
+
+<h3 class="has-text-weight-semibold">5) With Highlight card</h3>
+
+<div class="sgds-example-others">{{hero-with-highlight-card}}</div>
+{%- highlight html -%}{{hero-with-highlight-card}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight4'>Copy snippet</button>
 
 <hr/>
 
