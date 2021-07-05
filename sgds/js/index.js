@@ -215,10 +215,6 @@ $(document).ready(() => {
     });
   }
 
-  if (document.querySelector("li.second-level-nav")) {
-    initSecondLevelNavInteraction();
-  }
-
   // Language Selector
   let languageSelectors = $(".language-selector");
   if (languageSelectors.length) {
@@ -235,6 +231,10 @@ $(document).ready(() => {
     });
   }
 });
+
+if (document.querySelector("li.second-level-nav")) {
+  initSecondLevelNavInteraction();
+}
 
 function initSecondLevelNavInteraction() {
   let secondLevelNavHeaderArray = document.querySelectorAll(

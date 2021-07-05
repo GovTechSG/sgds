@@ -1,0 +1,129 @@
+---
+title: File Upload
+layout: layout-docs
+category: general
+icon: card
+---
+{% capture default %}
+<div class="sgds-file-upload">
+    
+  <input type="file" name="file" id="file" class="sgds-input-file" data-multiple-caption="{count} files selected"
+    multiple />
+  <label for="file" class="sgds-file-label">
+    <i class="sgds-icon sgds-icon-upload"></i>
+    <span>Choose a file...</span>
+  </label>
+  <div class="sgds-file-upload-selectedFiles"></div>
+</div>
+{% endcapture %}
+<h2>Overview</h2>
+<p>
+  Upload files through a file input form element or a placeholder area.
+</p>
+
+<hr/>
+
+<h2>Types</h2>
+
+<h3>1) Default </h3>
+
+<div class="sgds-example-others">
+    <row>
+        <div class="col is-4">
+            {{ default }}
+        </div>
+    </row>
+</div>
+{%- highlight html -%}
+{{ default }}
+{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<hr/>
+
+<!-- <h3>When to use</h3>
+
+<h6>{{page.title}} should be used for:</h6>
+
+<ul>
+  <li>Displaying groups of related content.</li>
+  <ul>
+    <li>
+      For example, enclose related images, links and text that
+      represent an upcoming event in a card.
+    </li>
+    <li>
+      Keep headers and text short but descriptive.
+    </li>
+    <li>
+      Prioritise important content - cards are not meant for extensive reading.
+    </li>
+    <li>
+      There should be only one primary call-to-action per card.
+      Avoid excessive call-to-action buttons as it creates confusion.
+    </li>
+    <li>
+      If there is a need to have many cards,
+      it should generally be contained in a section of the page.
+    </li>
+  </ul>
+</ul>
+
+<h6>{{page.title}} should not be used for:</h6>
+
+<ul>
+  <li>
+    Complex pages - cards will be mixed with other
+    visually prominent elements and this may confuse users.
+  </li>
+  <li>
+    Drawing users’ attention to important information - other options like
+    the <a href="/docs/notification">notification</a> component with
+    the correct colour state or the <a href="/docs/callout/">callout</a> component
+    are more suitable.
+  </li>
+</ul> -->
+
+
+
+{%- include sgds-feedback.html -%}
+
+<script>
+  var inputs = document.querySelectorAll('.sgds-input-file');
+  var filenames = document.querySelector('.sgds-file-upload-selectedFiles');
+  Array.prototype.forEach.call(inputs, function (input) {
+    var label = input.nextElementSibling,
+      labelVal = label.innerHTML;
+    input.addEventListener('change', function (e) {
+      
+      var files = e.target.files;
+      
+      if (this.files && this.files.length > 1) {
+        filenames.classList.add('hasFiles');
+        fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+        for(var i = 0 ; i < files.length; i++){
+          var file = files[i];
+          filenames.innerHTML += file.name + "</br>";
+        }
+      }
+      else {
+        fileName = e.target.value.split('\\' ).pop();
+        filenames.classList.remove('hasFiles');
+        filenames.innerHTML = null;
+      }
+
+      if (fileName) {
+        label.querySelector('span').innerHTML = fileName;
+      }
+
+      else {
+        label.innerHTML = labelVal;
+      }
+    });
+  });
+</script>
