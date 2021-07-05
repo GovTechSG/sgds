@@ -117,3 +117,18 @@ $menu-label-color: $text-light !default;
     }
   }
 }
+
+.sgds-menu{
+  &.variant-simple{
+    .sgds-menu-list{
+      li:not(:first-child) a{
+        border: none;
+      }
+
+      a{
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+}
