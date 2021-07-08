@@ -1,65 +1,40 @@
-@mixin grid-mobile(){
-    @include mobile() {
-        grid-template-columns: 1fr;
-        grid-gap: 3rem;
-      }
-}
-
 .grid-container{
     display:grid;
-    grid-gap: 2rem;
-    &.is-4{
-        grid-template-columns: repeat(4, 1fr);
-        @include grid-mobile();
-    }
-    &.is-3{
-        grid-template-columns: repeat(3, 1fr);
-        @include grid-mobile();
-    }
-    &.is-2{
-        grid-template-columns: repeat(2, 1fr);
-        @include grid-mobile();
-    }
+    
 
-    .item{
-        display: flex;
-        flex-direction: column;
-        div{
-            flex-grow: 1;
+    &.template-sidenav{
+        grid-template-columns: 15rem 1fr;
+        grid-gap: 6rem;
+        grid-template-areas: 
+            "aside article";
+
+        @include until($desktop){
+            grid-template-areas: 
+                "article article";
+        }
+
+        aside{
+            grid-area: aside;
+            @extend .is-hidden-touch;
+            .sgds-menu{
+                position: sticky;
+                top:8.75rem;
+            }
+            
+        }
+
+        article{
+            grid-area: article;
         }
     }
 
-    &.part-of-change-template{
-        grid-template-areas:
-        'img header'
-        'img text';
-        grid-template-columns: 1fr 1fr;
-        .item.img{
-            grid-area: img;
-            align-self: center;
-            justify-self:center;
-        }
-        .item.header{
-            grid-area: header;
-
-        }
-        .item.text{
-            grid-area: text;
-        }
-        @include mobile(){
-            grid-template-areas:                                
-            'header'
-            'img'
-            'text';
-            grid-template-columns: 1fr;
+    &.template-icons{
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-gap: 0.5rem;
+        .icon-clipboard-btn{
+            padding:1rem;
+            border: 1px solid $grey-lighter;
         }
     }
-}
 
-.fit-content{
-    width: fit-content;
-}
-
-main{
-    flex-grow: 1;
 }

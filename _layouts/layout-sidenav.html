@@ -3,19 +3,22 @@ layout: layout-default
 ---
 <section class="sgds-section is-small">
     <div class="sgds-container">
-        <div class="row sidenav-container">
-            <div class="col is-2 is-hidden-touch">
-                <div class="sidenav" data-topspacing="140" data-bottomspacing="40">
-                    <div class="sidebar__inner sgds-menu">
-                            {% include sidenav-collection.html %}
-                    </div>
+        <div class="grid-container template-sidenav">
+            <aside class="sidenav">
+                <div class="sgds-menu">
+                    {% if page.url contains '/docs/' %}
+                        {% include sidenav-docs.html %} 
+                    {% elsif page.url contains '/patterns/' %}
+                        {% include sidenav-patterns.html %}
+                    {% else %}
+                        {% include sidenav-collection.html %}
+                    {% endif %}
                 </div>
-            </div>
-            <div class="col is-8 is-12-touch is-offset-1-desktop">
-                <div class="content custom-content">
-                    {{ content }}          
-                </div>
-            </div>
+            </aside>
+            <article class="content custom-content">
+                {{ content }}          
+            </article>
+
         </div>
     </div>
 </section>

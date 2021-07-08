@@ -1,3 +1,6 @@
+$primary: hsl(260, 53%, 46%) !default;
+$secondary: hsl(220, 51%, 49%) !default;
+
 $info: $cyan !default;
 $success: $green !default;
 $warning: $yellow !default;
@@ -8,25 +11,44 @@ $dark: $grey-darker !default;
 
 // Invert colors
 
+$orange-invert: findColorInvert($orange) !default;
 $yellow-invert: findColorInvert($yellow) !default;
 $green-invert: findColorInvert($green) !default;
-
-//$turquoise-invert: findColorInvert($turquoise) !default
+$turquoise-invert: findColorInvert($primary) !default;
 $cyan-invert: findColorInvert($cyan) !default;
 $blue-invert: findColorInvert($blue) !default;
 $purple-invert: findColorInvert($purple) !default;
 $red-invert: findColorInvert($red) !default;
 
 $primary-invert: findColorInvert($primary) !default;
+$primary-light: findLightColor($primary) !default;
+$primary-dark: findDarkColor($primary) !default;
 $secondary-invert: findColorInvert($secondary) !default;
-$info-invert: $cyan-invert !default;
-$success-invert: $green-invert !default;
-$warning-invert: $yellow-invert !default;
-$danger-invert: $red-invert !default;
-$light-invert: $dark !default;
-$dark-invert: $light !default;
+$secondary-light: findLightColor($secondary) !default;
+$secondary-dark: findDarkColor($secondary) !default;
+$info-invert: findColorInvert($info) !default;
+$info-light: findLightColor($info) !default;
+$info-dark: findDarkColor($info) !default;
+$success-invert: findColorInvert($success) !default;
+$success-light: findLightColor($success) !default;
+$success-dark: findDarkColor($success) !default;
+$warning-invert: findColorInvert($warning) !default;
+$warning-light: findLightColor($warning) !default;
+$warning-dark: findDarkColor($warning) !default;
+$danger-invert: findColorInvert($danger) !default;
+$danger-light: findLightColor($danger) !default;
+$danger-dark: findDarkColor($danger) !default;
+$light-invert: findColorInvert($light) !default;
+$dark-invert: findColorInvert($dark) !default;
 
 // General colors
+$scheme-main: $white !default;
+$scheme-main-bis: $white-bis !default;
+$scheme-main-ter: $white-ter !default;
+$scheme-invert: $black !default;
+$scheme-invert-bis: $black-bis !default;
+$scheme-invert-ter: $black-ter !default;
+
 
 $background: $white-ter !default;
 
@@ -51,13 +73,15 @@ $pre-background: $background !default;
 // Link colors
 
 $link: $blue !default;
-$link-invert: $blue-invert !default;
+$link-invert: findColorInvert($link) !default;
+$link-light: findLightColor($link) !default;
+$link-dark: findDarkColor($link) !default;
 $link-visited: $purple !default;
 
-$link-hover: $blue-light !default;
+$link-hover: lighten($blue, 5%) !default;
 $link-hover-border: $grey-light !default;
 
-$link-focus: $blue-light !default;
+$link-focus: lighten($blue, 5%) !default;
 $link-focus-border: $blue !default;
 
 $link-active: $grey-darker !default;
@@ -79,6 +103,14 @@ $custom-shades: null !default;
 
 $colors: mergeColorMaps(
   (
+    "primary": (
+      $primary,
+      $primary-invert,
+    ),
+    "secondary": (
+      $secondary,
+      $secondary-invert,
+    ),
     "white": (
       $white,
       $black,
@@ -94,14 +126,6 @@ $colors: mergeColorMaps(
     "dark": (
       $dark,
       $dark-invert,
-    ),
-    "primary": (
-      $primary,
-      $primary-invert,
-    ),
-    "secondary": (
-      $secondary,
-      $secondary-invert,
     ),
     "link": (
       $link,

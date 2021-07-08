@@ -11,12 +11,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [1.3.19] - XX-XX-2021
-##### New components
-- [File upload component](https://localhost:4000/components/general/file-upload)
-- [Date picker component](http://localhost:4000/components/general/datepicker/)
+## [1.3.20] - 07-07-2021
+- Fixed sgds step marker height and width properties. 
+- Remove hero banner container width
 
-#### [1.3.18] - 15-04-2021
+## [1.3.19] - 05-07-2021
+### Added New general components 
+- [File upload](https://www.designsystem.gov.sg/docs/file-upload/)
+- [Date picker](https://www.designsystem.gov.sg/docs/datepicker/)
+
+### New variants
+- [Simple 2 level sidenav](https://www.designsystem.gov.sg/docs/side-nav/)
+- [Highlight card](https://www.designsystem.gov.sg/docs/card/)
+
+## [1.3.18] - 15-04-2021
 - Added stepper component. See documentation at https://designsystem.gov.sg/docs for details.
 
 #### [1.3.17] - 27-10-2020

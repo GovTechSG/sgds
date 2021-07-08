@@ -68,5 +68,4 @@ function initializeComponentFilter() {
   }
 }
 
-
 var datepicker = new flatpickr("#datepicker", {});
