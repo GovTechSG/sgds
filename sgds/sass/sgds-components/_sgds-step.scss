@@ -1,5 +1,5 @@
 $steps-maker-default-color: $grey-light !default;
-$steps-marker-default-border: .25rem solid #fff !default;
+$steps-marker-default-border: .25rem solid $white !default;
 $steps-default-color: $grey-lighter !default;
 $steps-completed-color: $primary !default;
 $steps-active-color: $primary !default;
@@ -7,7 +7,7 @@ $steps-divider-height: .25rem !default;
 
 @mixin steps-size($size){
     font-size: $size;
-    min-height: #{$size} * 2;
+    min-height: calc(#{$size} * 2rem);
     .sgds-step-item{
         &:not(:first-child)::before{
             height: $steps-divider-height;
@@ -17,8 +17,8 @@ $steps-divider-height: .25rem !default;
             top: #{$size};
         }
         .sgds-step-marker{
-            height: #{$size} * 2;
-            width: #{$size} * 2;
+            height: calc(#{$size} * 2);
+            width: calc(#{$size} * 2);
             position: absolute;
             left: calc(50% - #{$size});
             .icon *{
@@ -26,7 +26,7 @@ $steps-divider-height: .25rem !default;
             }
         }
         .sgds-step-details{
-            margin-top: #{$size} * 2;
+            margin-top: calc(#{$size} * 2);
             margin-left: 0.5rem;
             margin-right: 0.5rem;
         }
