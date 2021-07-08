@@ -49,6 +49,40 @@ order: 3
 </aside>
 {% endcapture %}
 
+{% capture simple-sidenav %}
+<aside class="sgds-menu variant-simple">
+    <ul class="sgds-menu-list">
+        <li class="second-level-nav">
+            <a class="second-level-nav-header is-active">
+                Level 2A
+                <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="second-level-nav-div">
+            <ul>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+            </ul>
+        </li>
+        <li><a href="#!">Level 2B</a></li>
+        <li class="second-level-nav">
+            <a class="second-level-nav-header">
+                Level 2C
+                <i class="sgds-icon sgds-icon-chevron-up" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="second-level-nav-div">
+            <ul>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+                <li><a class="second-level-nav-item" href="#!">Level 3 item</a></li>
+            </ul>
+        </li>
+    </ul>
+</aside>
+{% endcapture %}
+
 
 <!--TODO remove lvl 3-->
 <!--TODO showcase lvl 1 & 2-->
@@ -94,6 +128,25 @@ order: 3
 </div>
 {%- highlight html -%}{{lvl2_dropdown_sidenav}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight1'>
+    Copy Snippet
+</button>
+
+
+<hr />
+
+<!-- Side Nav 3 -->
+
+<h4>3) Simple side navigation with level 2 navigation.</h4>
+<p>Add <code>.variant-simple</code> to the top-level <code>&LT;aside&gt;</code>element for a nav featuring less white space.</p>
+<div class="sgds-example-others">
+    <div class="row">
+        <div class="col is-3">
+            {{simple-sidenav}}
+        </div>
+    </div>
+</div>
+{%- highlight html -%}{{simple-sidenav}}{%- endhighlight -%}
+<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target='.highlight2'>
     Copy Snippet
 </button>
 
