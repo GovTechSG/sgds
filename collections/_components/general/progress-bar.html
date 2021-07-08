@@ -1,0 +1,91 @@
+---
+title: Progress Bar
+layout: layout-docs
+category: general
+---
+
+{% capture default_bar %}
+<progress class="sgds-progress" value="15" max="100" aria-valuemin="0" aria-valuemax="100" aria-valuenow="15"></progress>
+{% endcapture %}
+
+{% capture colorState_bar %}
+<progress class="sgds-progress is-primary" value="15" max="100" aria-valuemin="0" aria-valuemax="100" aria-valuenow="15"></progress>
+<progress class="sgds-progress is-secondary" value="30" max="100" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30"></progress>
+<progress class="sgds-progress is-success" value="45" max="100" aria-valuemin="0" aria-valuemax="100" aria-valuenow="45"></progress>
+<progress class="sgds-progress is-info" value="60" max="100" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60"></progress>
+<progress class="sgds-progress is-warning" value="75" max="100" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"></progress>
+<progress class="sgds-progress is-danger" value="100" max="100" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"></progress>
+{% endcapture %}
+<h2>
+    Overview
+</h2>
+<p>
+    A progress bar is a graphical element that informs users of the current
+    working state of a task. It can be used to reduce uncertainty.
+</p>
+<hr/>
+
+<h5 class="has-text-weight-semibold">
+    Default progress bar
+</h5>
+<div class="sgds-example-others">{{default_bar}}</div>
+
+{%- highlight html -%}{{default_bar}}{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<hr/>
+
+<h5 class="has-text-weight-semibold">
+    Assign colours to your progress bar using the
+    <code>sgds-progress is-*stateColor*</code> class.
+</h5>
+<div class="sgds-example-others">{{colorState_bar}}</div>
+
+{%- highlight html -%}{{colorState_bar}}{%- endhighlight -%}
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight1"
+>
+    Copy snippet
+</button>
+
+<hr/>
+
+<h5>Guidelines</h5>
+<ul>
+    <li>
+        Always give some type of immediate feedback, such an animated visual
+        change. Without any visual change from the system, most users will
+        assume the action was not registered and they will try again.
+    </li>
+
+    <li>
+        Don't use static progress indicators, such as an unmoving image or text.
+        If the system hangs or becomes stuck, the user has no way of knowing if
+        they need to restart the action.
+    </li>
+
+    <li>
+        Avoid using don't-click-again warnings as users rarely read excess word
+        count (until it's too late). The way to avoid extra clicks is to show
+        the user that the first click has been accepted and is being worked on.
+    </li>
+</ul>
+
+<small
+    >Source:
+    <a
+        href="https://www.nngroup.com/articles/progress-indicators/"
+        target="_blank"
+        >NNG Group</a
+    ></small
+>
+
+<hr/>
+
+{%- include sgds-feedback.html -%}

@@ -1,0 +1,123 @@
+---
+title: Font family and sizes
+layout: layout-docs
+category: typography
+icon: typography
+---
+
+<h2>Overview</h2>
+<p>
+  Typography creates clear hierarchies and purposeful alignments that guide users through your content.
+</p>
+
+<hr/>
+
+<h3>Font Size</h3>
+
+<p>
+  Design System uses
+  <a href="https://fonts.google.com/?query=Lato" target="_blank">Lato</a> as its
+  main typeface. Lato is an open source font provided by Google.
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>rem</th>
+      <th>pixels</th>
+      <th>Actual size</th>
+      <th>Text size helper</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5.25</td>
+      <td>84</td>
+      <td><h1 class="display">Display</h1></td>
+      <td><code>is-size-0</code></td>
+    </tr>
+    <tr>
+      <td>3.375</td>
+      <td>54</td>
+      <td><h1>Header 1</h1></td>
+      <td><code>is-size-1</code></td>
+    </tr>
+    <tr>
+      <td>2.75</td>
+      <td>44</td>
+      <td><h2 class="has-text-black">Header 2</h2></td>
+      <td><code>is-size-2</code></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>32</td>
+      <td><h3>Header 3</h3></td>
+      <td><code>is-size-3</code></td>
+    </tr>
+    <tr>
+      <td>1.625</td>
+      <td>26</td>
+      <td><h4>Header 4</h4></td>
+      <td><code>is-size-4</code></td>
+    </tr>
+    <tr>
+      <td>1.375</td>
+      <td>22</td>
+      <td><h5>Header 5</h5></td>
+      <td><code>is-size-5</code></td>
+    </tr>
+    <tr>
+      <td>1.25</td>
+      <td>20</td>
+      <td><h6>Header 6</h6></td>
+      <td><code>is-size-6</code></td>
+    </tr>
+    <tr>
+      <td>1.125</td>
+      <td>18</td>
+      <td><p>Paragraph</p></td>
+      <td><code>is-size-7</code></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>16</td>
+      <td><small>small text (base font size)</small></td>
+      <td><code>is-size-8</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr/>
+
+<h3>Usage</h3>
+
+<h4>HTML Text Elements</h4>
+
+{% highlight html %}
+<h1 class="display">h1 display</h1>
+<h1>header 1</h1>
+<h2>header 2</h2>
+<h3>header 3</h3>
+<h4>header 4</h4>
+<h5>header 5</h5>
+<h6>header 6</h6>
+<p>paragraph</p>
+<small>small text</small>
+{% endhighlight %}
+
+<h4>With helper classes</h4>
+
+{% highlight html %}
+<div class="is-size-0">h1 display text size</div>
+<div class="is-size-1">h1 text size</div>
+<div class="is-size-2">h2 text size</div>
+<div class="is-size-3">h3 text size</div>
+<div class="is-size-4">h4 text size</div>
+<div class="is-size-5">h5 text size</div>
+<div class="is-size-6">h6 text size</div>
+<div class="is-size-7">p text size</div>
+<div class="is-size-8">small text size</div>
+{% endhighlight %}
+
+<hr/>
+
+{%- include sgds-feedback.html -%}

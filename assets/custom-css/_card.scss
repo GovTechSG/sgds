@@ -1,0 +1,9 @@
+.sgds-card{
+    &.flex-card{
+        display:flex;
+        flex-direction: column;
+        .sgds-card-content{
+            flex-grow: 1;
+        }
+    }
+}

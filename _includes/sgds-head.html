@@ -5,6 +5,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
 
+{% if page.url contains '/datepicker/' %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endif %}
+
 {% if page.url contains '/templates/quickstart/' %}
 <link rel="stylesheet" href="/css/sgds.css" />
 <title>Site Title</title>
@@ -16,6 +20,8 @@
 <link rel="stylesheet" href="/css/sgds.css" />
 <link rel="stylesheet" href="/assets/custom-css/main.css" />
 {% endif %}
+
+
 
 {% if jekyll.environment == "production" %}
 <!-- Google Tag Manager -->

@@ -1,55 +1,32 @@
 <section class="sgds-section is-paddingless is-hidden-desktop mobile-side-nav">
-{% if page.url contains "/docs/" %}
+{% if page.url contains "/components/" %}
     <div class="sgds-dropdown is-fullwidth">
         <div class="sgds-dropdown-trigger">
             <button class="sgds-button is-outlined is-large" aria-haspopup="true" aria-controls="sgds-dropdown-menu">
-                <span>Docs</span>
+                <span>{{page.title}}</span>
                 <span class="icon">
                     <span class="sgds-icon sgds-icon-chevron-down"></span>
                 </span>
             </button>
         </div>
-        <div class="sgds-dropdown-menu docs-nav-dropdown" id="sgds-dropdown-menu" role="menuitem">
-            <div class="sgds-dropdown-content padding has-background-light">
-                <div class="row is-multiline is-mobile">
-                    <div class="col is-12">
-                            <a class="is-block is-size-7" href="/docs/getting-started/">Getting Started</a>
+        <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
+            <div class="sgds-dropdown-content padding">
+                {%- assign filteredCollections = site.collections | where: "label", 'components' -%}
+                {%- assign currentCollection = filteredCollections[0] -%}
+                {%- assign collectionCategories = currentCollection.docs | sort: "category" | group_by: "category" -%}
+                {%- for category in collectionCategories -%}
+                    {%- assign items = category.items | sort: "title" -%}
+                    <div class="mobile-dropdown-category">
+                        <p class="has-text-grey-dark margin-bottom--sm">{{category.name | capitalize}}</p>
+                        {% for item in items %}
+                            <p>
+                                <a href="{{item.url}}">{{item.title}}</a>
+                                {%- if item.js -%}
+                                    <span class="sgds-tag is-rounded margin--left--sm">JS</span>
+                                {%- endif -%}
+                            </p>
+                        {% endfor %}
                     </div>
-                    <div class="col is-12">
-                            <a class="is-block is-size-7" href="/docs/installation/">Installation</a>
-                    </div>
-                    <div class="col is-12">
-                            <a class="is-block is-size-7" href="/docs/customise-sgds/">Customise SGDS with Sass</a>
-                    </div>
-                </div>
-                {% assign collections = site.collections | sort: 'order' %}
-                {% for collection in collections %}
-                    {% if collection.label !='posts' and collection.label != 'guides' and collection.label != 'patterns' %}
-                        <hr class="margin--bottom--sm margin--top--sm">
-                        {% assign name = collection.label %}
-                        <p>{{name | capitalize }}</p>
-                        <div class="row is-multiline is-mobile">
-                            {% assign items = site[name] | sort:'order' %}
-                            {% for item in items %}
-                            <div class="col is-3-desktop is-4-tablet is-6-mobile">
-                                <a href="{{ item.url }}" class="is-flex component-card">
-                                    <div class="sgds-card sgds-card-button">
-                                        <div class="sgds-card-content has-text-centered">
-                                            <small
-                                                class="has-text-weight-semibold is-block"
-                                            >
-                                                {{ item.title }}
-                                                {%- if item.js -%}
-                                                <span class="sgds-tag is-rounded margin--left--sm">JS</span>
-                                                {%- endif -%}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
                 {% endfor %}
             </div>
         </div>
