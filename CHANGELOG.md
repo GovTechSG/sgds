@@ -5,11 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.3.20] - 07-07-2021
+## [1.3.20] 
+## 🗓️ 03-08-2021
+### Added 3 default templates
+- [Template Overview](https://www.designsystem.gov.sg/templates/)
+## 🗓️ 07-07-2021
 - Fixed sgds step marker height and width properties. 
 - Remove hero banner container width
 
-## [1.3.19] - 05-07-2021
+## [1.3.19] - 🗓️ 05-07-2021
 ### Added New general components 
 - [File upload](https://www.designsystem.gov.sg/docs/file-upload/)
 - [Date picker](https://www.designsystem.gov.sg/docs/datepicker/)
@@ -18,13 +22,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Simple 2 level sidenav](https://www.designsystem.gov.sg/docs/side-nav/)
 - [Highlight card](https://www.designsystem.gov.sg/docs/card/)
 
-## [1.3.18] - 15-04-2021
+## [1.3.18] - 🗓️ 15-04-2021
 - Added stepper component. See documentation at https://designsystem.gov.sg/docs for details.
 
-## [1.3.17] - 27-10-2020
+## [1.3.17] - 🗓️ 27-10-2020
 - Added modal documentation.
 
-## [1.3.16] - 01-10-2020
+## [1.3.16] - 🗓️ 01-10-2020
 
 - Removed left borders for `.sgds-menu-list li ul` elements so side nav is consistent with previous behaviour.
 
@@ -36,16 +40,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Documentation: sgds-masthead
 1. Add aria-label for masthead
 
-## [1.3.15] - 07-09-2020
+## [1.3.15] - 🗓️ 07-09-2020
 - Fixes for input hint text
 - Added is-*color classes for hint text
 - Removed .success & .error class for hint text
 - Update input & text area documentation
 
-## [1.3.14] - 15-07-2020
+## [1.3.14] - 🗓️ 15-07-2020
 - update $size-7 paragraph font size to 1.125rem
 
-## [1.3.13] - 04-05-2020
+## [1.3.13] - 🗓️ 04-05-2020
 - Navbar fixes
 
 ### Docs
@@ -57,7 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Style / layout fixes
 - Upgraded to Jekyll 4.0
 
-## [1.3.11] - 02-04-2020
+## [1.3.11] - 🗓️ 02-04-2020
 
 ### Components
 
@@ -65,7 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pagination component is now left align by default
 - Added .is-centered & .is-right alignment helper for Pagination component
 
-## [1.3.10] - 26-02-2020
+## [1.3.10] - 🗓️ 26-02-2020
 
 ### Components
 
@@ -79,7 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added pattern groups and documentation
 
-## [1.3.9] - 13-12-2019
+## [1.3.9] - 🗓️ 13-12-2019
 
 ### Components
 
@@ -90,7 +94,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Accessibility improvements made from WAVE evaluations.
 - Reorganization of docs and layouts.
 
-## [1.3.8] - 23-11-2019
+## [1.3.8] - 🗓️ 23-11-2019
 
 ### Components
 
@@ -104,7 +108,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added docs for advanced customisation using Sass
 - Documentation additions and reorg
 
-## [1.3.7] - 21-10-2019
+## [1.3.7] - 🗓️ 21-10-2019
 
 ### Changes
 
@@ -121,13 +125,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixes
 - Fixed missing gutters (left/right) for `sgds-container`
 
-## [1.3.6] - 18-10-2019
+## [1.3.6] - 🗓️ 18-10-2019
 
 ### Changes
 
 - Added sass to npm package
 
-## [1.3.5] - 07-10-2019
+## [1.3.5] - 🗓️ 07-10-2019
 
 ### Changes
 
@@ -145,13 +149,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed navbar burger button functionality after new navbar class introduced.
 
-## [1.3.4] - 04-10-2019
+## [1.3.4] - 🗓️ 04-10-2019
 
 ### Fixes
 
 - Added js compatible with old `.navbar` elements for burger button controls
 
-## [1.3.3] - 18-09-2019
+## [1.3.3] - 🗓️ 18-09-2019
 
 ### Changes
 
@@ -166,12 +170,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - #85 Documentation for SGDS Steps
 - Fixed Masthead example
 
-## [1.3.2] - 27-08-2019
+## [1.3.2] - 🗓️ 27-08-2019
 
 - Documentation updates
 - Improved IE compatibility for sgds.js.
 
-## [1.3.1] - 26-08-2019
+## [1.3.1] - 🗓️ 26-08-2019
 
 - Documentation updates
 - IE fix for main nav dropdowns
@@ -180,7 +184,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed babel build to handle sticky-sidebar
 - CI pipeline for dev build
 
-## [1.2.4] - 13-08-2019
+## [1.2.4] - 🗓️ 13-08-2019
 
 ### Accordion
 
@@ -199,7 +203,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - hover color to darken white
 - padding top/bottom (same padding with default size `sgds-button`)
 
-## [1.1.0] - 07-06-2019
+## [1.1.0] - 🗓️ 07-06-2019
 
 - Side Navigation
 
