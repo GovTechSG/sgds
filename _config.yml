@@ -22,28 +22,39 @@ collections:
     permalink: /docs/:path/
     output: true
     order: 1
+    cat: components
   layout:
     permalink: /docs/:path/
     output: true
     order: 2
+    cat: components
   general:
     permalink: /docs/:path/
     output: true
     order: 3
+    cat: components
   form:
     permalink: /docs/:path/
     output: true
     order: 4
+    cat: components
   helpers:
     permalink: /docs/:path/
     output: true
     order: 5
+    cat: components
   guides:
     permalink: /guides/:path/
     output: true
+    cat: guides
   patterns:
     permalink: /patterns/:path/
     output: true
+    cat: patterns
+  default-templates:
+    permalink: /templates/:path/
+    output: true
+    cat: templates
 
 exclude:
   - apps/src

@@ -36,4 +36,8 @@
         }
     }
 
+    &.grid-18-75rem{
+        grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+        grid-gap: 2rem;
+    }
 }

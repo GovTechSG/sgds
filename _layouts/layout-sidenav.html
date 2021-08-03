@@ -8,6 +8,8 @@ layout: layout-default
                 <div class="sgds-menu">
                     {% if page.url contains '/docs/' %}
                         {% include sidenav-docs.html %} 
+                    {% elsif page.url contains '/templates/' %}
+                        {% include sidenav-templates.html %} 
                     {% elsif page.url contains '/patterns/' %}
                         {% include sidenav-patterns.html %}
                     {% else %}
