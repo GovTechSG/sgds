@@ -24,7 +24,7 @@
                 </div>
                 {% assign collections = site.collections | sort: 'order' %}
                 {% for collection in collections %}
-                    {% if collection.label !='posts' and collection.label != 'guides' and collection.label != 'patterns' %}
+                    {% if collection.cat == "components" %}
                         <hr class="margin--bottom--sm margin--top--sm">
                         {% assign name = collection.label %}
                         <p>{{name | capitalize }}</p>
