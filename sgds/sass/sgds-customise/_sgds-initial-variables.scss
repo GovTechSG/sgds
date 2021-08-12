@@ -38,10 +38,10 @@
 
   //alignment
   --global-alignment: 1rem;
-  --global-alignment-xs: 0.25;
-  --global-alignment-sm: 0.5;
-  --global-alignment-lg: 2;
-  --global-alignment-xl: 4;
+  --global-alignment-multiplier-xs: 0.25;
+  --global-alignment-multiplier-sm: 0.5;
+  --global-alignment-multiplier-lg: 2;
+  --global-alignment-multiplier-xl: 4;
 }
 
 // Colors
@@ -184,10 +184,10 @@ $masthead-gutter: 4px !default; //px used is intended to fix the font-size and h
 // Alignment / Spaces
 $base-margin-padding: var(--global-alignment) !default;
 $spacing-maps: (
-  "xs": var(--global-alignment-xs),
-  "sm": var(--global-alignment-sm),
-  "lg": var(--global-alignment-lg),
-  "xl": var(--global-alignment-xl),
+  "xs": var(--global-alignment-multiplier-xs),
+  "sm": var(--global-alignment-multiplier-sm),
+  "lg": var(--global-alignment-multiplier-lg),
+  "xl": var(--global-alignment-multiplier-xl),
   "none": 0,
 ) !default;
 $position-maps: top, right, bottom, left !default;
