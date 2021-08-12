@@ -35,6 +35,13 @@
   --font-size-small: 1rem;
 
   --card-variant-highlight-margin-top: 80px;
+
+  //alignment
+  --global-alignment: 1rem;
+  --global-alignment-xs: 0.25;
+  --global-alignment-sm: 0.5;
+  --global-alignment-lg: 2;
+  --global-alignment-xl: 4;
 }
 
 // Colors
@@ -173,3 +180,14 @@ $hero-image: $secondary !default;
 $navbar-height: 5.25rem !default;
 $masthead-height: 29px !default; //px used is intended to fix the font-size and height for consistency
 $masthead-gutter: 4px !default; //px used is intended to fix the font-size and height for consistency
+
+//Alignment / Spaces
+$base-margin-padding: var(--global-alignment) !default;
+$spacing-maps: (
+  "xs": var(--global-alignment-xs),
+  "sm": var(--global-alignment-sm),
+  "lg": var(--global-alignment-lg),
+  "xl": var(--global-alignment-xl),
+  "none": 0,
+) !default;
+$position-maps: top, right, bottom, left !default;
