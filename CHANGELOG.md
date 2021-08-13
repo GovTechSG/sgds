@@ -12,13 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   `--global-alignment: 1rem;`
 
-  `--global-alignment-xs: 0.25;`
+  `--global-alignment-multiplier-xs: 0.25;`
 
-  `--global-alignment-sm: 0.5;`
+  `--global-alignment-multiplier-sm: 0.5;`
 
-  `--global-alignment-lg: 2;`
+  `--global-alignment-multiplier-lg: 2;`
 
-  `--global-alignment-xl: 4;`
+  `--global-alignment-multiplier-xl: 4;`
 
 ## [1.3.20] 
 ## 🗓️ 03-08-2021
