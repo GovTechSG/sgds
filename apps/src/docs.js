@@ -11,6 +11,7 @@ $(document).ready(function() {
   const timepicker = new flatpickr("#timepicker", {
     enableTime: true,
     noCalendar: true,
+    dateFormat: "H:i"
   });
 });
 
