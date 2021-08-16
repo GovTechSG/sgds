@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.21]
+
+- Fixed Alignment helper interpolation
+- Added alignment css variables
+
+  `--global-alignment: 1rem;`
+
+  `--global-alignment-multiplier-xs: 0.25;`
+
+  `--global-alignment-multiplier-sm: 0.5;`
+
+  `--global-alignment-multiplier-lg: 2;`
+
+  `--global-alignment-multiplier-xl: 4;`
+
 ## [1.3.20] 
 ## 🗓️ 03-08-2021
 ### Added 3 default templates
