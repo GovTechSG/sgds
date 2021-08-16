@@ -42,6 +42,9 @@
   --global-alignment-multiplier-sm: 0.5;
   --global-alignment-multiplier-lg: 2;
   --global-alignment-multiplier-xl: 4;
+
+  //timepicker global height
+  --timepicker-height: 70px;
 }
 
 // Colors
@@ -191,3 +194,5 @@ $spacing-maps: (
   "none": 0,
 ) !default;
 $position-maps: top, right, bottom, left !default;
+
+
