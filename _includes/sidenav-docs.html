@@ -1,23 +1,23 @@
 <ul class="sgds-menu-list">
     {% assign collections = site.collections | sort: 'order' %}
     {% for collection in collections %}
-    {% if collection.label !='posts' and collection.label != 'guides' and collection.label !='patterns' %}
-        {% assign name = collection.label %}
-        <li class="second-level-nav">
-            <a class="second-level-nav-header">
-                {{ name | capitalize }}
-                {% if name == page.collection %}
-                <i class="sgds-icon sgds-icon-chevron-up has-text-weight" aria-hidden="true"></i>
-                {% else %}
-                <i class="sgds-icon sgds-icon-chevron-down has-text-weight" aria-hidden="true"></i>
-                {% endif %}
-            </a>
-        </li>
-        {% if name == page.collection %}
-            <li class="second-level-nav-div" id="{{collection.label}}-component">
-        {% else %}
-            <li class="second-level-nav-div is-hidden" id="{{collection.label}}-component">
-        {% endif %}
+        {% if collection.cat == "components" %}
+            {% assign name = collection.label %}
+            <li class="second-level-nav">
+                <a class="second-level-nav-header">
+                    {{ name | capitalize }}
+                    {% if name == page.collection %}
+                    <i class="sgds-icon sgds-icon-chevron-up has-text-weight" aria-hidden="true"></i>
+                    {% else %}
+                    <i class="sgds-icon sgds-icon-chevron-down has-text-weight" aria-hidden="true"></i>
+                    {% endif %}
+                </a>
+            </li>
+            {% if name == page.collection %}
+                <li class="second-level-nav-div" id="{{collection.label}}-component">
+            {% else %}
+                <li class="second-level-nav-div is-hidden" id="{{collection.label}}-component">
+            {% endif %}
                 <ul>
                     {% assign items = site[name] %}
                     {% if collection.label == 'standard' or collection.label == 'form' %}

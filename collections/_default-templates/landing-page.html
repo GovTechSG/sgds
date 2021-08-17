@@ -1,0 +1,113 @@
+---
+title: Landing page
+layout: layout-full
+category: default
+---
+
+
+{% capture template %}
+<div class="sgds-masthead">
+    <a href="https://www.gov.sg" target="_blank">
+        <span class="sgds-icon sgds-icon-sg-crest"></span>
+        <span class="is-text">A Singapore Government Agency Website</span>
+    </a>
+</div>
+<nav class="sgds-navbar" role="navigation">
+    <div class="sgds-navbar-brand">
+        <a class="sgds-navbar-item">
+            <img src="/assets/img/logo_sgds.svg" alt="Design System" />
+        </a>
+        <div class="sgds-navbar-burger" data-target="mainnav-1">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div id="mainnav-1" class="sgds-navbar-menu">
+        <div class="sgds-navbar-start">
+            <a class="sgds-navbar-item is-uppercase is-active is-tab">
+                Who we are
+            </a>
+            <a class="sgds-navbar-item is-uppercase is-tab">
+                Link 2
+            </a>
+            <a class="sgds-navbar-item is-uppercase is-tab">
+                Link 3
+            </a>
+        </div>
+        <div class="sgds-navbar-end">
+            <a class="sgds-navbar-item is-uppercase is-tab">
+                Link 4
+            </a>
+        </div>
+    </div>
+</nav>
+<section class="sgds-section has-background-light" style="height:40vh;">
+    <div class="sgds-contain">
+        <div class="row">
+            <div class="col">
+                <h4>Place your content here</h4>
+            </div>
+        </div>
+    </div>
+    
+</section>
+<footer class='sgds-footer'>
+    <div class="top-section">
+        <div class="sgds-container is-fluid">
+            <div class="row">
+                <div class="col">
+                    <h5 class="has-text-white"><b>Singapore Government Design System</b></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col is-right-desktop-only">
+                    <ul>
+                        <li class="is-inline-block-desktop-only">
+                            <p><a href="" target="_blank">Contact</a></p>
+                        </li>
+                        <li class="is-inline-block-desktop-only">
+                            <p><a href="" target="_blank">Feedback</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-section">
+        <div class="sgds-container is-fluid">
+            <div class="row is-multiline">
+                <div class="col is-12">
+                    <ul>
+                        <li>
+                            <a href="https://tech.gov.sg/report_vulnerability" target="_blank">Report Vulnerability</a>
+                        </li>
+                        <li><a href="">Privacy</a></li>
+                        <li><a href="">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="col is-12 has-text-right-desktop has-text-right-tablet has-text-left-mobile">
+                    <p class="is-hidden-touch"> © 2021 Government of Singapore. Last Updated
+                        12 Jul 2021</p>
+                    <p class="is-hidden-desktop">© 2021 Government of Singapore</p>
+                    <p class="is-hidden-desktop last-updated">Last Updated 12 Jul 2021</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endcapture %}
+
+<div class="sgds-example-others">{{template}}</div>
+{%- highlight html -%}{{template}}{%- endhighlight -%}
+
+<button
+    class="sgds-button clipboard-btn is-primary is-outlined"
+    data-clipboard-target=".highlight0"
+>
+    Copy snippet
+</button>
+
+<hr>
+
+{%- include sgds-feedback.html -%}

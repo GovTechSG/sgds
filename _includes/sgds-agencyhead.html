@@ -133,10 +133,11 @@
     </div>
 </div>
 
-{% comment %} Nav bar for mobile {% endcomment %}
+{% comment %} Nav bar for mobile 
 {% if page.url contains "/components/" or page.url contains "/guides/" or page.url contains "/patterns/" or page.url contains "/utilities/" or page.url contains "/get-started/" %}
     {% if page.title != 'Guides' %}
         {% include mobile-nav.html %}
     {% endif %}
     {% include sgds-breadcrumb.html %}
 {% endif %}
+{% endcomment %}

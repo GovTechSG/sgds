@@ -27,6 +27,35 @@
                             </p>
                         {% endfor %}
                     </div>
+                </div>
+                {% assign collections = site.collections | sort: 'order' %}
+                {% for collection in collections %}
+                    {% if collection.cat == "components" %}
+                        <hr class="margin--bottom--sm margin--top--sm">
+                        {% assign name = collection.label %}
+                        <p>{{name | capitalize }}</p>
+                        <div class="row is-multiline is-mobile">
+                            {% assign items = site[name] | sort:'order' %}
+                            {% for item in items %}
+                            <div class="col is-3-desktop is-4-tablet is-6-mobile">
+                                <a href="{{ item.url }}" class="is-flex component-card">
+                                    <div class="sgds-card sgds-card-button">
+                                        <div class="sgds-card-content has-text-centered">
+                                            <small
+                                                class="has-text-weight-semibold is-block"
+                                            >
+                                                {{ item.title }}
+                                                {%- if item.js -%}
+                                                <span class="sgds-tag is-rounded margin--left--sm">JS</span>
+                                                {%- endif -%}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>

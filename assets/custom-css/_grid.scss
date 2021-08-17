@@ -9,18 +9,17 @@
             "aside article";
 
         @include until($desktop){
-            grid-template-areas: 
-                "article article";
+            grid-template-columns: 1fr;
+            grid-template-areas: "article";
         }
 
         aside{
             grid-area: aside;
-            @extend .is-hidden-touch;
             .sgds-menu{
                 position: sticky;
                 top:8.75rem;
             }
-            
+            @extend .is-hidden-touch;
         }
 
         article{
@@ -37,4 +36,8 @@
         }
     }
 
+    &.grid-18-75rem{
+        grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+        grid-gap: 2rem;
+    }
 }

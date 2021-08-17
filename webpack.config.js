@@ -21,7 +21,6 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.m?js$/,
-          exclude: /node_modules\/(?!(sticky-sidebar))/,
           use: {
             loader: "babel-loader",
             options: {
