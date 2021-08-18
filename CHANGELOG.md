@@ -6,8 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.3.21]
-
-- Fixed Alignment helper interpolation
+- Renamed `sgds-icon/sgds-variables.scss` to `sgds-icon/sgds-icon-variables.scss`  
+- Fixed duplicate `is-light` classes for tag component
+- Fixed alignment helper interpolation
 - Added alignment css variables
 
   `--global-alignment: 1rem;`
