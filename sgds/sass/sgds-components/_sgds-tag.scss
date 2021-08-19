@@ -107,7 +107,6 @@ $tag-delete-margin: 1px !default;
         @if $name !='light'{
           &.is-light{
             background-color: mix(white,$color, 90%);
-            @debug $color, mix(white,$color, 90%);
             color: $color;
             @if $name == 'warning' {
               color: darken($color, 25%);
