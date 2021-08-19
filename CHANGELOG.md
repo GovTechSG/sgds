@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   `--global-alignment-multiplier-xl: 4;`
 
+- Added border radius css variables
+
+  `--radius: 0;`
 ## [1.3.20] 
 ## 🗓️ 03-08-2021
 ### Added 3 default templates
