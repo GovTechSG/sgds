@@ -35,14 +35,4 @@
             border: 1px solid $grey-lighter;
         }
     }
-
-    &.col-4-grid{
-        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-        grid-gap: 0.5rem;
-    }
-
-    &.grid-18-75rem{
-        grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
-        grid-gap: 2rem;
-    }
 }
