@@ -6,10 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.3.21]
+## 🗓️ 06-09-2021
 - Renamed `sgds-icon/sgds-variables.scss` to `sgds-icon/sgds-icon-variables.scss`  
 - Fixed duplicate `is-light` classes for tag component
+- [#229](https://github.com/GovTechSG/sgds/issues/229) Resolved hexadecimal for all state colors 
 - Fixed alignment helper interpolation
 - Added alignment css variables
+  
+  `:root{`
 
   `--global-alignment: 1rem;`
 
@@ -21,9 +25,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   `--global-alignment-multiplier-xl: 4;`
 
-- Added border radius css variables
+  `}`
 
+- Added border radius css variables, add this to the `:root` css will affect all inputs and button radius
+
+  `:root{`
+  
   `--radius: 0;`
+
+  `}`
+
 ## [1.3.20] 
 ## 🗓️ 03-08-2021
 ### Added 3 default templates
