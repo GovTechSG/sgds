@@ -1,0 +1,15 @@
+.request{
+    background-color: hsl(260,43%,95%);
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+    h3,p{
+        margin: 0;
+    }
+    @include until($desktop){
+        grid-template-columns: 1fr;
+        p{
+            margin-bottom: 1rem;
+        }
+    }
+}

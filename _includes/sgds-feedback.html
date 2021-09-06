@@ -1,10 +1,10 @@
+{% comment %}
 <h4>
     {%if page.url contains 'faq' %}
         How can I start creating a website?
-    {% else %}
-        Feedback
     {% endif %}
 </h4>
+
 <p>
     {%if page.url contains 'faq' %}
         Please drop us a message to discuss on your requirements and we'll guide you for the next steps.
@@ -13,3 +13,12 @@
     {% endif %}
 </p>
 <a class="sgds-button is-rounded is-medium is-primary" href="https://t.me/sgds_public" target="_blank">Chat with the team</a>
+{% endcomment %}
+
+<div class="padding request">
+    <div>
+        <h3>Cant find a component?</h3>
+        <p>Let us know what you need and we’ll be happy to look into it</p>
+    </div>
+    <a href="{{site.request-component}}" class="sgds-button is-primary" target="_blank" >Request component</a>
+</div>

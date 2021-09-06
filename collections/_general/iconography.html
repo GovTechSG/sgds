@@ -44,7 +44,7 @@ icon: icons
 
 <h3>{{cat.category}} Icons</h3>
 
-<div class="grid-container template-icons">
+<div class="grid-container col-3-grid">
     {% assign icons = cat.icons | sort: 'iconName' %}
     {% for icon in icons %}
     
