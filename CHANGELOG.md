@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   `}`
 
-- Added border radius css variables, add this to the `:root` css will affect all inputs and button radius
+- Added border radius css variables, editing the value (default is `0`) will affect all inputs and button border-radius
 
   `:root{`
   
