@@ -16,6 +16,8 @@ $body-color: #323232;
 @import "mobile-side-nav";
 @import "spinner";
 @import "docs";
+@import "request-component";
+@import "sidenav";
 
 /* Keep footer at bottom of viewport if page isn't high enough */
 html {

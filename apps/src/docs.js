@@ -6,6 +6,13 @@ import { default as $ } from "./lib/jQuery";
 $(document).ready(function() {
   initializeCodeClipboard();
   initializeComponentFilter();
+
+  const datepicker = new flatpickr("#datepicker", {});
+  const timepicker = new flatpickr("#timepicker", {
+    enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i"
+  });
 });
 
 function initializeCodeClipboard() {
@@ -66,4 +73,3 @@ function initializeComponentFilter() {
   }
 }
 
-var datepicker = new flatpickr("#datepicker", {});

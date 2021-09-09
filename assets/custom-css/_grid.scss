@@ -27,17 +27,12 @@
         }
     }
 
-    &.template-icons{
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    &.col-3-grid{
+        grid-template-columns: repeat(auto-fill, minmax(15.625rem, 1fr));
         grid-gap: 0.5rem;
         .icon-clipboard-btn{
             padding:1rem;
             border: 1px solid $grey-lighter;
         }
-    }
-
-    &.grid-18-75rem{
-        grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
-        grid-gap: 2rem;
     }
 }

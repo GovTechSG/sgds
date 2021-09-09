@@ -21,7 +21,6 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.m?js$/,
-          exclude: /node_modules\/(?!(sticky-sidebar))/,
           use: {
             loader: "babel-loader",
             options: {
@@ -72,6 +71,7 @@ module.exports = (env) => {
     },
     plugins: [
       new MiniCssExtractPlugin({
+        // filename: ({ chunk }) => `${chunk.name.replace("js", "css")}.css`,
         moduleFilename: ({ name }) => `${name.replace("js", "css")}.css`,
       }),
     ],

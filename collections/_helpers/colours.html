@@ -4,44 +4,55 @@ layout: layout-docs
 coloursList:
   - name: white
     hex: '#ffffff'
+    hsl: hsl(0,0%,100%)
 
   - name: black
     hex: '#000000'
+    hsl: hsl(0,0%,0%)
 
   - name: light
     hex: '#f5f5f5'
+    hsl: hsl(0,0%,96%)
 
   - name: dark
     hex: '#323232'
+    hsl: hsl(0,0%,20%)
 
   - name: primary
-    hex: '#6037b3'
-    contrast: 7.79
+    hex: '#6137b3'
+    hsl: hsl(260, 53%, 40%)
+    contrast: 7.76
 
   - name: secondary
-    hex: '#3e69be'
+    hex: '#3d68bd'
+    hsl: hsl(220, 51%, 49%)
     contrast: 5.29
 
   - name: link
-    hex: '#0070F2'
+    hex: '#0070f0'
+    hsl: hsl(212, 100%, 47%)
     contrast-bg: 10
-    contrast: 4.57
+    contrast: 4.59
 
   - name: info
-    hex: '#008196'
-    contrast: 4.58
+    hex: '#008094'
+    hsl: hsl(188, 100%, 29%)
+    contrast: 4.65
 
   - name: success
-    hex: '#008649'
-    contrast: 4.66
+    hex: '#008549'
+    hsl: hsl(153, 100%, 26%)
+    contrast: 4.72
 
   - name: warning
-    hex: '#f5a623'
-    contrast: 10.36
+    hex: '#f5a524'
+    hsl: hsl(37, 91%, 55%)
+    contrast: 10.29
     
   - name: danger
-    hex: '#d0021b'
-    contrast: 5.67
+    hex: '#cf021a'
+    hsl: hsl(353, 98%, 41%)
+    contrast: 5.71
 
 ---
 
@@ -56,9 +67,9 @@ coloursList:
     <code>has-</code> prefixes to most elements.
 </p>
 
-<div class="row is-multiline margin--top--sm">
+<div class="grid-container col-3-grid margin--top--sm">
     {%- for colour in page.coloursList -%}
-    <div class="col is-3 has-background-{{colour.name}}
+    <div class=" padding has-background-{{colour.name}}
         {% if colour.name == 'white' or colour.name == 'light' or colour.name == 'warning' -%}
             has-text-black
         {%- else -%}
