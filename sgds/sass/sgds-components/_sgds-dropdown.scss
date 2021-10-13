@@ -109,6 +109,12 @@ $dropdown-divider-background-color: $border !default;
     }
   }
 
+  //for multi select dropdown list
+  div.sgds-dropdown-item {
+    padding-right: 3rem;
+    white-space: nowrap;
+  }
+
   a.sgds-dropdown-item {
     padding-right: 3rem;
     white-space: nowrap;
