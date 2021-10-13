@@ -7,6 +7,7 @@ js: true
 ---
 
 {% capture default_dropdown %}
+<!-- start of dropdown(click) -->
 <div class="sgds-dropdown">
   <div class="sgds-dropdown-trigger">
     <button
@@ -32,6 +33,7 @@ js: true
     </div>
   </div>
 </div>
+<!-- start of dropdown(hover) -->
 <div class="sgds-dropdown is-hoverable">
   <div class="sgds-dropdown-trigger">
     <button
@@ -70,7 +72,7 @@ js: true
             </span>
         </button>
     </div>
-    <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
+    <div class="sgds-dropdown-menu is-multiselect" id="sgds-dropdown-menu" role="menu">
         <div class="sgds-dropdown-content">
           <div class="control sgds-dropdown-item">
             <input type="checkbox" id="checkbox-4" />
@@ -102,7 +104,7 @@ js: true
             </span>
         </button>
     </div>
-    <div class="sgds-dropdown-menu" id="sgds-dropdown-menu" role="menu">
+    <div class="sgds-dropdown-menu is-multiselect" id="sgds-dropdown-menu" role="menu">
         <div class="sgds-dropdown-content">
           <div class="control sgds-dropdown-item">
             <input type="checkbox" id="checkbox-8" />
