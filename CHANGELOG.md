@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.22]
+## 🗓️ 15-10-2021
+- Added [dropdown with multi-select component](https://designsystem.tech.gov.sg/docs/dropdown/)
+
 ## [1.3.21]
 ## 🗓️ 06-09-2021
 - Renamed `sgds-icon/sgds-variables.scss` to `sgds-icon/sgds-icon-variables.scss`  
