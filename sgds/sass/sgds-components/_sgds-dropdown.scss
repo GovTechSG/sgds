@@ -80,6 +80,10 @@ $dropdown-divider-background-color: $border !default;
     position: absolute;
     top: 100%;
     z-index: $dropdown-content-z;
+      
+    &.is-multiselect {
+      white-space: nowrap;
+    }
   }
 
   &-dropdown-content {
@@ -98,6 +102,7 @@ $dropdown-divider-background-color: $border !default;
     padding: 0.5rem 1rem;
     position: relative;
 
+
     .sgds-hero & {
       font-size: $size-6;
       text-align: left;
@@ -108,6 +113,8 @@ $dropdown-divider-background-color: $border !default;
       color: $dropdown-item-active-color;
     }
   }
+
+  
 
   a.sgds-dropdown-item {
     padding-right: 3rem;
