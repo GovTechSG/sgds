@@ -1,23 +1,9 @@
 ---
 ---
 
-@charset 'UTF-8';
+// @import "../../sgds/sass/sgds-customise/all";
 
-$family-sans-serif: 'Source Sans Pro', BlinkMacSystemFont, -apple-system, "Segoe UI", sans-serif;
-$body-color: #323232;
 
-@import "../../sgds/sass/sgds-customise/all";
-@import "../../sgds/sass/sgds-base/all";
-@import "grid";
-@import "navbar";
-@import "sgds-example";
-@import "content-typography";
-@import "sgds-syntax";
-@import "mobile-side-nav";
-@import "spinner";
-@import "docs";
-@import "request-component";
-@import "sidenav";
 
 /* Keep footer at bottom of viewport if page isn't high enough */
 html {
