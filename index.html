@@ -3,27 +3,86 @@ title: Home
 layout: layout-playground
 ---
 
-<button class="sgds btn btn-primary">Button</button>
-<button class="sgds btn btn-secondary">Button</button>
-<button class="sgds btn btn-warning">Button</button>
-<button class="sgds btn btn-success">Button</button>
-<button class="sgds btn btn-danger">Button</button>
-<button class="sgds btn btn-info">Button</button>
 
 
-<form>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+
+            <button class="sgds btn btn-primary">Button</button>
+            <button class="sgds btn btn-secondary">Button</button>
+            <button class="sgds btn btn-warning">Button</button>
+
+
+        </div>
+        <div class="col-3">
+            <button class="sgds btn btn-success">Button</button>
+            <button class="sgds btn btn-danger">Button</button>
+            <button class="sgds btn btn-info">Button</button>
+        </div>
     </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-6">
+            <form>
+                <label for="exampleInputEmail1" class="form-label">Your Vanity URL</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <span class="input-group-text" id="basic-addon2">@example.com</span>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control border-end-0" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <span class="input-group-text border-start-0" id="basic-addon2">@example.com</span>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <div id="emailHelp" class="form-text mb-1">We'll never share your email with anyone else.</div>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
     </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Lorem, ipsum.</h3>
+                    <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis ex dolore,
+                        enim ab sed harum unde earum perferendis laboriosam illo ea error esse corporis iusto ratione
+                        odit incidunt, ad voluptatum!</p>
+                    <a href="">Link</a>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+</div>
+
+<style>
+    p {
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    h3 {
+        font-weight: bold;
+        font-size: 2rem;
+        line-height: 1.5;
+    }
+</style>
