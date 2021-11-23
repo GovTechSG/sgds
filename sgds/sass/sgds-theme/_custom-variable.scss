@@ -2,26 +2,58 @@
     --font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --sgds-body-font-size: 1.125rem;
 }
+// Gray color variables
+$white:    #fff;
+$gray-100: #F7F7F9;
+$gray-200: #E4E7EC;
+$gray-300: #D0D5DD;
+$gray-400: #98A2B3;
+$gray-500: #667085;
+$gray-600: #344054;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
 
+// Color color variables
+// $colors: (
+//   "blue":       $blue,
+//   "indigo":     $indigo,
+//   "purple":     $purple,
+//   "pink":       $pink,
+//   "red":        $red,
+//   "orange":     $orange,
+//   "yellow":     $yellow,
+//   "green":      $green,
+//   "teal":       $teal,
+//   "cyan":       $cyan,
+//   "white":      $white,
+//   "gray":       $gray-600,
+//   "gray-dark":  $gray-800
+// ) !default;
+
+$border-radius:  5px;
+
+//Typography
+$font-size-base: 1.125rem;
 $font-family-sans-serif: var(--font-family-sans-serif);
-$border-radius:          5px;
+
+//Inputs and buttons
 $input-btn-padding-x:    1rem;
 $input-btn-padding-y:    0.5rem;
-$input-btn-font-size:    1.125rem;
 $input-btn-line-height:  1.7;
 $input-btn-focus-width:  .125rem;
 
-$form-label-font-size:   1.125rem;
-$form-label-font-weight: 700;
+//Input groups
+$input-group-addon-bg: $gray-400;
 
-$form-text-font-size: $form-label-font-size;
+// Forms
+$form-label-font-weight: 700;
 $form-text-margin-top: null;
 $form-text-margin-bottom: 0.5rem;  
+$form-check-input-width: 1.335em;
 
-$spacer: 1.5rem;
-// $card-spacer-y: 1.5rem;
-// $card-spacer-x: 1.5rem;
-
-
+$card-spacer-y: 1.5rem;
+$card-spacer-x: 1.5rem; 
+$card-border-color: $gray-400;
 
 $variable-prefix: sgds-
