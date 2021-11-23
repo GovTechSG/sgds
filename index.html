@@ -8,7 +8,7 @@ layout: layout-playground
 <div class="container">
     <div class="row">
         <div class="col-3">
-
+            <a class="sgds btn btn-primary">Button</a>
             <button class="sgds btn btn-primary">Button</button>
             <button class="sgds btn btn-secondary">Button</button>
             <button class="sgds btn btn-warning">Button</button>
@@ -32,9 +32,9 @@ layout: layout-playground
                     <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <span class="input-group-text" id="basic-addon2">@example.com</span>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control border-end-0" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    <span class="input-group-text border-start-0" id="basic-addon2">@example.com</span>
+                <div class="form-group mb-3">
+                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -46,10 +46,31 @@ layout: layout-playground
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1">
                 </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">+65</span>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control w-75" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    <select class="form-select" id="inputGroupSelect01">
+                      <option selected value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                      <option value="4">Four</option>
+                    </select>
+                  </div>
+
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Default radio
+                    </label>
+                  </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
@@ -58,8 +79,8 @@ layout: layout-playground
 
 <div class="container mt-4">
     <div class="row">
-        <div class="col-6">
-            <div class="card">
+        <div class="col-4">
+            <div class="sgds card">
                 <div class="card-body">
                     <h3 class="card-title">Lorem, ipsum.</h3>
                     <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis ex dolore,
@@ -67,9 +88,19 @@ layout: layout-playground
                         odit incidunt, ad voluptatum!</p>
                     <a href="">Link</a>
                 </div>
-
             </div>
-
+        </div>
+        <div class="col-4">
+            <div class="sgds card">
+                <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">Lorem, ipsum.</h3>
+                    <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis ex dolore,
+                        enim ab sed harum unde earum perferendis laboriosam illo ea error esse corporis iusto ratione
+                        odit incidunt, ad voluptatum!</p>
+                    <a href="">Link</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
