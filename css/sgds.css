@@ -5951,14 +5951,17 @@ textarea.form-control-lg {
 .sgds.card a:not(.btn) {
   font-weight: bold; }
 
-.sgds.accordion {
+.sgds.accordion .accordion-body {
   line-height: 2rem; }
-  .sgds.accordion .accordion-button {
-    line-height: 2rem; }
-  .sgds.accordion .accordion-button:not(.collapsed) {
-    font-weight: 700;
-    box-shadow: none; }
-  .sgds.accordion .accordion-body {
-    padding-bottom: 1.5rem;
-    padding-top: 0; }
+
+.sgds.accordion .accordion-button {
+  line-height: 2rem; }
+
+.sgds.accordion .accordion-button:not(.collapsed) {
+  font-weight: 700;
+  box-shadow: none; }
+
+.sgds.accordion .accordion-body {
+  padding-bottom: 1.5rem;
+  padding-top: 0; }
 

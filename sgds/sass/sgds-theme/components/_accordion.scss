@@ -1,6 +1,8 @@
 .sgds{
     &.accordion{
-        line-height: 2rem;
+        .accordion-body{
+            line-height: 2rem;
+        }
 
         .accordion-button{
             line-height: 2rem;
