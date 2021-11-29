@@ -1,12 +1,74 @@
 <div class="sgds-masthead" aria-label="Official SG Government Agency Website">
-    <div class="sgds-container ">
+    <div class="sgds-container">
         <div class="row is-mobile">
             <div class="col">
-                <a href="https://www.gov.sg" target="_blank">
+                <a href="https://www.gov.sg" target="_blank" class="is-inline">
                     <span class="sgds-icon sgds-icon-sg-crest"></span>
-                    <span class="is-text">A Singapore Government Agency Website</span>
+                    <span class="is-text govsg">A Singapore Government Agency Website</span>
+                    
                 </a>
+                <div id="sgds-masthead-identify" class="is-inline is-link" aria-expanded="false">
+                    <span class="is-text has-text-link" ><u>How to identify</u></span>
+                    <span class="sgds-icon is-size-8 sgds-icon-chevron-down has-text-link" id="sgds-masthead-identify-icon"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sgds-container is-hidden" id="sgds-masthead-content" aria-labelledby="gds-masthead-identify">
+        <div class="row">
+            <div class="col is-4">
+                <div class="grid">
+                    <div>
+                        <img src="https://d33wubrfki0l68.cloudfront.net/2ec2122b2010672b9cbb6efb5138048d8aff4a09/5d1ab/assets/img/government_building.svg" class="banner-icon">
+                    </div>
+                    <div>
+                        <p class="banner-title"><strong>Official website links end with .gov.sg</strong></p>
+                        <small>
+                            Government agencies communicate via
+                            <strong> .gov.sg </strong>
+                            websites <span class="avoidwrap">(e.g. go.gov.sg/open)</span>.
+                        </small>
+                        <a href="https://go.gov.sg/trusted-sites" class="has-text-link margin--top--sm" target="_blank">
+                            Trusted websites
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col is-4">
+                <div class="grid">
+                    <div>
+                        <img src="https://d33wubrfki0l68.cloudfront.net/aecdf1b88c0edfa72e7fef099f28e93b80c8336a/8c6a1/assets/img/lock.svg" class="banner-icon">
+                    </div>
+                    <div>
+                        <p class="banner-title"><strong>Secure websites use HTTPS</strong></p>
+                        <small>
+                            Look for a
+                            <strong> lock </strong>(<img src="https://d33wubrfki0l68.cloudfront.net/aecdf1b88c0edfa72e7fef099f28e93b80c8336a/8c6a1/assets/img/lock.svg" class="inline-banner-icon">)
+                            or https:// as an added precaution. Share sensitive information only on official, secure websites.
+                        </small>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+const identify = document.getElementById("sgds-masthead-identify");
+const identifyIcon = document.getElementById("sgds-masthead-identify-icon");
+const mastheadContent = document.getElementById("sgds-masthead-content");
+
+identify.setAttribute("aria-expanded", false);
+identify.addEventListener("click", ()=>{
+    const ariaExpanded = identify.getAttribute("aria-expanded");
+    if(ariaExpanded === "true"){
+        
+        identify.setAttribute("aria-expanded", false);
+    }
+    else{
+        identify.setAttribute("aria-expanded", true);
+    }
+    identifyIcon.classList.toggle("sgds-icon-chevron-up");
+    mastheadContent.classList.toggle("is-hidden");
+  
+});
+</script>

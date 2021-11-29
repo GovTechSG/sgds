@@ -1,15 +1,23 @@
+:root{
+  --masthead-content-lineheight: 1.5;
+}
 .sgds-masthead {
   position: relative;
   background-color: $grey-lighter;
   height: auto;
   padding: $masthead-gutter 0;
   font-size: 14px;
+  user-select: none;   
   @include touch() {
-    padding-left: $masthead-gutter;
-    padding-right: $masthead-gutter;
+    padding-left: calc(#{$masthead-gutter} + 0.5rem);
+    padding-right: calc(#{$masthead-gutter} + 0.5rem);
   }
   .is-text {
     margin-left: $masthead-gutter;
+    
+  }
+  .is-link{
+    cursor: pointer; 
   }
 
   .sgds-icon {
@@ -21,6 +29,34 @@
     align-items: center;
     &:hover {
       color: darken($grey-dark, 20%);
+    }
+  }
+}
+
+#sgds-masthead-content{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  .grid{
+    display: grid;
+    grid-template-columns: 17px 350px;
+    grid-gap: 0.5rem;
+    .banner-icon{
+      margin-top: 6px;
+    }
+    .banner-title{
+     margin-bottom: 0;
+    }
+    small{
+      line-height: var(--masthead-content-lineheight);
+    }
+  }
+  @include touch() {
+    .banner-title{
+      font-size: 16px;
+    }
+    small{
+      font-size: 14px;
     }
   }
 }
