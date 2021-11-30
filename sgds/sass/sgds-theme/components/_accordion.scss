@@ -1,0 +1,16 @@
+.sgds{
+    &.accordion{
+        .accordion-button{
+            line-height: 2rem;
+        }
+        .accordion-button:not(.collapsed){
+            font-weight: 700;
+            box-shadow: none;
+        }
+        .accordion-body{
+            padding-bottom: 1.5rem;
+            padding-top: 0;
+            line-height: 2rem;
+        }
+    }
+}
