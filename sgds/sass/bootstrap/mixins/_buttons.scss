@@ -45,8 +45,9 @@
   .btn-check:checked + &,
   .btn-check:active + &,
   &:active,
-  &.active,
-  .show > &.dropdown-toggle {
+  &.active
+  // .show > &.dropdown-toggle {
+    {
     color: $active-color;
     background-color: $active-background;
     // Remove CSS gradients if they're enabled

@@ -8,9 +8,35 @@
 
 .dropdown-toggle {
   white-space: nowrap;
+  width: 359px;
+  padding: 7px 15px; // account for 1px border = 8px 16px
+  height: 48px;
+  background-color: white;
+  text-align: left;
+  color: $dark;
+  border-color: #0f71bb;
+  
+  &:hover, &:focus {
+    color: $dark;
+    background-color: #fff;
+    box-shadow: 0;
+  }
 
+  &.active, &:active {
+    color: $dark;
+    background-color: #fff;
+    box-shadow: 0;
+    
+  }
   // Generate the caret automatically
   @include caret();
+  &::after {
+    position: relative;
+    left: 240px;
+    top: 3px;
+    font-size: 20px;
+
+  }
 }
 
 // The dropdown menu
@@ -19,8 +45,8 @@
   z-index: $zindex-dropdown;
   display: none; // none by default, but block on "open" of the menu
   min-width: $dropdown-min-width;
-  padding: $dropdown-padding-y $dropdown-padding-x;
-  margin: 0; // Override default margin of ul
+  padding: 0;
+  margin-top: 10px; // Override default margin of ul
   @include font-size($dropdown-font-size);
   color: $dropdown-color;
   text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
@@ -28,7 +54,7 @@
   background-color: $dropdown-bg;
   background-clip: padding-box;
   border: $dropdown-border-width solid $dropdown-border-color;
-  @include border-radius($dropdown-border-radius);
+  @include border-radius(0);
   @include box-shadow($dropdown-box-shadow);
 
   &[data-bs-popper] {
@@ -130,34 +156,38 @@
 // `<button>`-specific styles are denoted with `// For <button>s`
 .dropdown-item {
   display: block;
-  width: 100%; // For `<button>`s
-  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  min-width: 359px; // For `<button>`s
+  height: 64px;
+  line-height: 32px;
+  padding: 16px;
   clear: both;
   font-weight: $font-weight-normal;
   color: $dropdown-link-color;
-  text-align: inherit; // For `<button>`s
+  text-align: left; // For `<button>`s
   text-decoration: if($link-decoration == none, null, none);
   white-space: nowrap; // prevent links from randomly breaking onto new lines
   background-color: transparent; // For `<button>`s
+  border-radius: 0;
   border: 0; // For `<button>`s
 
   // Prevent dropdown overflow if there's no padding
   // See https://github.com/twbs/bootstrap/pull/27703
   @if $dropdown-padding-y == 0 {
     &:first-child {
-      @include border-top-radius($dropdown-inner-border-radius);
+      @include border-top-radius(0);
     }
 
     &:last-child {
-      @include border-bottom-radius($dropdown-inner-border-radius);
+      @include border-bottom-radius(0);
     }
   }
 
   &:hover,
   &:focus {
-    color: $dropdown-link-hover-color;
+    color: #fff;
     text-decoration: if($link-hover-decoration == underline, none, null);
-    @include gradient-bg($dropdown-link-hover-bg);
+    @include gradient-bg(#0f71bb
+    );
   }
 
   &.active,
