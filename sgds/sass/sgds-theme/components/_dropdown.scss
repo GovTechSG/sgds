@@ -41,7 +41,6 @@
       // set the new icon as desired
       flex-shrink: 0;
       position: relative;
-      left: 170px;
       top: 6px;
       width: $accordion-icon-width;
       height: $accordion-icon-width;
@@ -82,7 +81,7 @@
 .sgds {
   .dropdown-item {
     display: block;
-    min-width: $dropdown-min-width; // For `<button>`s
+    min-width: 100%; // For `<button>`s
     height: 64px;
     line-height: 32px;
     padding: 16px;
