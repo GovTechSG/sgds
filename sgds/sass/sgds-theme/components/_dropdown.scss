@@ -1,0 +1,134 @@
+.sgds {
+  .dropdown-toggle {
+    display: flex;
+    white-space: nowrap;
+    min-width: $dropdown-min-width;
+    padding: 7px 15px;
+    height: 48px;
+    line-height: 30px;
+    background-color: #fff;
+    text-align: left;
+    color: $dark;
+    border-color: $gray-600;
+
+    &.btn:hover,
+    &.btn:focus,
+    &.btn:active,
+    &.btn.active {
+      outline: 1px solid $blue-600;
+      box-shadow: none;
+      border-color: $blue-600;
+      color: $dark;
+    }
+
+    // &:hover,
+    // &:focus,&.active,
+    // &:active  {
+    //   color: $dark;
+    //   background-color: #fff;
+    //   box-shadow: 0;
+
+    // }
+
+    // Generate the caret automatically
+
+    @include caret();
+
+    &::after {
+      // disable: caret is not an icon, but a border with properties
+      border: none;
+
+      // set the new icon as desired
+      flex-shrink: 0;
+      position: relative;
+      left: 170px;
+      top: 6px;
+      width: $accordion-icon-width;
+      height: $accordion-icon-width;
+      content: "";
+      background-image: escape-svg($accordion-button-icon);
+      background-repeat: no-repeat;
+      background-size: $accordion-icon-width;
+    }
+  }
+}
+
+.sgds {
+  .dropdown-menu {
+    position: relative;
+    z-index: $zindex-dropdown;
+    display: none; // none by default, but block on "open" of the menu
+    min-width: $dropdown-min-width;
+    padding: 0;
+    margin-top: 10px !important; // Override default margin of ul
+    @include font-size($dropdown-font-size);
+    color: $dropdown-color;
+    text-align: inherit; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+    list-style: none;
+    background-color: $dropdown-bg;
+    background-clip: padding-box;
+    border: $dropdown-border-width solid $dropdown-border-color;
+    @include border-radius(0);
+    @include box-shadow($dropdown-box-shadow);
+
+    &[data-bs-popper] {
+      top: 100%;
+      left: 0;
+      margin-top: $dropdown-spacer;
+    }
+  }
+}
+
+.sgds {
+  .dropdown-item {
+    display: block;
+    min-width: $dropdown-min-width; // For `<button>`s
+    height: 64px;
+    line-height: 32px;
+    padding: 16px;
+    clear: both;
+    font-weight: $font-weight-normal;
+    color: $dropdown-link-color;
+    text-align: left; // For `<button>`s
+    text-decoration: if($link-decoration == none, null, none);
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+    background-color: transparent; // For `<button>`s
+    border-radius: 0;
+    border: 0; // For `<button>`s
+
+    // Prevent dropdown overflow if there's no padding
+    // See https://github.com/twbs/bootstrap/pull/27703
+    @if $dropdown-padding-y == 0 {
+      &:first-child {
+        @include border-top-radius(0);
+      }
+
+      &:last-child {
+        @include border-bottom-radius(0);
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $white;
+      text-decoration: if($link-hover-decoration == underline, none, null);
+      @include gradient-bg($blue-600);
+    }
+
+    &.active,
+    &:active {
+      color: $dropdown-link-active-color;
+      text-decoration: none;
+      @include gradient-bg($blue-600);
+    }
+
+    &.disabled,
+    &:disabled {
+      color: $dropdown-link-disabled-color;
+      pointer-events: none;
+      background-color: transparent;
+      // Remove CSS gradients if they're enabled
+      background-image: if($enable-gradients, none, null);
+    }
+  }
+}
