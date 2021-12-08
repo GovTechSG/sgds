@@ -1,11 +1,12 @@
 @charset "utf-8";
 
 //SGDS Custom Variables
-@import "sgds-theme/custom-variable";
+// @import "sgds-theme/custom-variable";
 
 // Configuration
 @import "bootstrap/functions";
-@import "bootstrap/variables";
+@import "sgds-theme/sgds-variables-v2";
+// @import "bootstrap/variables";
 @import "bootstrap/mixins";
 @import "bootstrap/utilities";
 
