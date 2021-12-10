@@ -18,7 +18,7 @@
                         </span>
                     </span>
                 </div>
-                <div class="masthead-divider is-hidden" id="masthead-divider"
+                <div class="masthead-divider is-hidden" id="sgds-masthead-divider"
                     style="padding-left: -12px; padding-right:-12px;">
                 </div>
             </div>
@@ -64,6 +64,7 @@
     const identify = document.getElementById("sgds-masthead-identify");
     const identifyIcon = document.getElementById("sgds-masthead-identify-icon");
     const mastheadContent = document.getElementById("sgds-masthead-content");
+    const mastheadDivider = document.getElementById("sgds-masthead-divider");
     
     identify.setAttribute("aria-expanded", false);
     identify.addEventListener("click", ()=>{
@@ -77,6 +78,7 @@
         }
         identifyIcon.classList.toggle("sgds-icon-chevron-up");
         mastheadContent.classList.toggle("is-hidden");
+        mastheadDivider.classList.toggle("is-hidden");
     
     });
     </script>

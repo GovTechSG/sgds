@@ -73,7 +73,10 @@
 .sgds-masthead {
   padding: 0;
   background-color: #f0f0f0;
-  color: #484848
+  color: #484848;
+  p{
+    margin-bottom: none;
+  }
 }
 
 .sgds-masthead .masthead-layout {
