@@ -31,10 +31,10 @@
 // @import "bootstrap/breadcrumb";
 // @import "bootstrap/pagination";
 // @import "bootstrap/badge";
-// @import "bootstrap/alert";
+@import "bootstrap/alert";
 // @import "bootstrap/progress";
 // @import "bootstrap/list-group";
-// @import "bootstrap/close";
+@import "bootstrap/close";
 // @import "bootstrap/toasts";
 // @import "bootstrap/modal";
 // @import "bootstrap/tooltip";
@@ -55,4 +55,5 @@
 @import "sgds-theme/custom/grid";
 @import "sgds-theme/components/card";
 @import "sgds-theme/components/accordion";
+@import "sgds-theme/components/alert";
 @import "sgds-theme/components/dropdown";

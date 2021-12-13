@@ -2973,6 +2973,110 @@ textarea.form-control-lg {
   .accordion-flush .accordion-item .accordion-button {
     border-radius: 0; }
 
+.alert {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.3125rem; }
+
+.alert-heading {
+  color: inherit; }
+
+.alert-link {
+  font-weight: 700; }
+
+.alert-dismissible {
+  padding-right: 3rem; }
+  .alert-dismissible .btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    padding: 1.25rem 1rem; }
+
+.alert-primary {
+  color: #351684;
+  background-color: #ded3f8;
+  border-color: #cdbef5; }
+  .alert-primary .alert-link {
+    color: #2a126a; }
+
+.alert-secondary {
+  color: #1f2632;
+  background-color: #d6d9dd;
+  border-color: #c2c6cc; }
+  .alert-secondary .alert-link {
+    color: #191e28; }
+
+.alert-success {
+  color: #236b2a;
+  background-color: #d8f0da;
+  border-color: #c4e8c8; }
+  .alert-success .alert-link {
+    color: #1c5622; }
+
+.alert-info {
+  color: #055160;
+  background-color: #cff4fc;
+  border-color: #b6effb; }
+  .alert-info .alert-link {
+    color: #04414d; }
+
+.alert-warning {
+  color: #65460e;
+  background-color: #ffefd3;
+  border-color: #fee7bd; }
+  .alert-warning .alert-link {
+    color: #51380b; }
+
+.alert-danger {
+  color: #963427;
+  background-color: #feddd9;
+  border-color: #fecdc6; }
+  .alert-danger .alert-link {
+    color: #782a1f; }
+
+.alert-light {
+  color: #636364;
+  background-color: #fdfdfe;
+  border-color: #fdfdfd; }
+  .alert-light .alert-link {
+    color: #4f4f50; }
+
+.alert-dark {
+  color: #141619;
+  background-color: #d3d3d4;
+  border-color: #bcbebf; }
+  .alert-dark .alert-link {
+    color: #101214; }
+
+.btn-close {
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: 0.25em 0.25em;
+  color: #000;
+  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+  border: 0;
+  border-radius: 0.3125rem;
+  opacity: 0.5; }
+  .btn-close:hover {
+    color: #000;
+    text-decoration: none;
+    opacity: 0.75; }
+  .btn-close:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.125rem rgba(89, 37, 220, 0.25);
+    opacity: 1; }
+  .btn-close:disabled, .btn-close.disabled {
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.25; }
+
+.btn-close-white {
+  filter: invert(1) grayscale(100%) brightness(200%); }
+
 .clearfix::after {
   display: block;
   clear: both;
@@ -5902,6 +6006,9 @@ textarea.form-control-lg {
   padding-bottom: 1.5rem;
   padding-top: 0;
   line-height: 2rem; }
+
+.sgds.alert .btn-close {
+  background: none; }
 
 .sgds .dropdown-toggle {
   display: flex;
