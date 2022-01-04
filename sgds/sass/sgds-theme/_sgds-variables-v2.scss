@@ -524,7 +524,7 @@ $border-widths: (
   5: 5px
 ) !default;
 
-$border-color:                $gray-300 !default;
+$border-color:                $gray-400 !default;
 // scss-docs-end border-variables
 
 // scss-docs-start border-radius-variables
@@ -1215,7 +1215,7 @@ $pagination-bg:                     $white !default;
 $pagination-border-width:           $border-width !default;
 $pagination-border-radius:          $border-radius !default;
 $pagination-margin-start:           -$pagination-border-width !default;
-$pagination-border-color:           $gray-300 !default;
+$pagination-border-color:           $border-color !default;
 
 $pagination-focus-color:            $link-hover-color !default;
 $pagination-focus-bg:               $gray-200 !default;
@@ -1232,7 +1232,7 @@ $pagination-active-border-color:    $pagination-active-bg !default;
 
 $pagination-disabled-color:         $gray-600 !default;
 $pagination-disabled-bg:            $white !default;
-$pagination-disabled-border-color:  $gray-300 !default;
+$pagination-disabled-border-color:  $border-color !default;
 
 $pagination-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
 
@@ -1278,7 +1278,7 @@ $accordion-padding-x:                     1.25rem !default;
 $accordion-color:                         $body-color !default;
 $accordion-bg:                            $body-bg !default;
 $accordion-border-width:                  $border-width !default;
-$accordion-border-color:                  rgba($black, .125) !default;
+$accordion-border-color:                  $border-color !default;
 $accordion-border-radius:                 $border-radius !default;
 $accordion-inner-border-radius:           subtract($accordion-border-radius, $accordion-border-width) !default;
 
@@ -1400,7 +1400,7 @@ $badge-border-radius:               $border-radius !default;
 // Modals
 
 // scss-docs-start modal-variables
-$modal-inner-padding:               $spacer !default;
+$modal-inner-padding:               1.5rem !default;
 
 $modal-footer-margin-between:       .5rem !default;
 
@@ -1411,7 +1411,7 @@ $modal-title-line-height:           $line-height-base !default;
 
 $modal-content-color:               null !default;
 $modal-content-bg:                  $white !default;
-$modal-content-border-color:        rgba($black, .2) !default;
+$modal-content-border-color:        $border-color !default;
 $modal-content-border-width:        $border-width !default;
 $modal-content-border-radius:       $border-radius-lg !default;
 $modal-content-inner-border-radius: subtract($modal-content-border-radius, $modal-content-border-width) !default;
@@ -1421,7 +1421,7 @@ $modal-content-box-shadow-sm-up:    $box-shadow !default;
 $modal-backdrop-bg:                 $black !default;
 $modal-backdrop-opacity:            .5 !default;
 $modal-header-border-color:         $border-color !default;
-$modal-footer-border-color:         $modal-header-border-color !default;
+$modal-footer-border-color:         transparent !default;
 $modal-header-border-width:         $modal-content-border-width !default;
 $modal-footer-border-width:         $modal-header-border-width !default;
 $modal-header-padding-y:            $modal-inner-padding !default;
