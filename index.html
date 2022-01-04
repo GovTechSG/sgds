@@ -2,19 +2,54 @@
 title: Home
 layout: layout-playground
 ---
+{% capture default-modal %}
+ <!-- Button trigger modal -->
+ <button type="button" class="sgds btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button>
 
-<div class="container">
+<!-- Modal -->
+<div class="sgds modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel"><strong>Modal</strong></h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="sgds btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="sgds btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+<div class="container p-4">
+    <div class="row">
+        <h4>Modal</h4>
+        {{default-modal}}
+    </div>
+    <div class="row">
+        {%- highlight html -%}{{default-modal}}{%- endhighlight -%}
+    </div>
+</div>
+<hr>
+<div class="container p-4">
     <div class="row">
         <h4>Dropdown</h4>
         <div class="col-3">
             <div class="sgds dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown button
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown button
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
             </div>
         </div>
@@ -22,7 +57,7 @@ layout: layout-playground
 </div>
 <hr>
 
-<div class="container">
+<div class="container p-4">
     <div class="row">
         <h4>button</h4>
         <div class="col-3">
@@ -40,6 +75,7 @@ layout: layout-playground
         </div>
     </div>
 </div>
+
 <hr>
 
 <div class="container mt-4">
@@ -103,7 +139,9 @@ layout: layout-playground
 
 <div class="container mt-4">
     <div class="row">
-        <div class="col-12"><h4>Card</h4></div>
+        <div class="col-12">
+            <h4>Card</h4>
+        </div>
         <div class="col-4">
             <div class="sgds card">
                 <div class="card-body">
@@ -132,7 +170,7 @@ layout: layout-playground
 </div>
 <hr>
 
-<div class="container">
+<div class="container p-4">
     <div class="row">
         <div class="col">
             <h4>Accordion</h4>
@@ -148,10 +186,12 @@ layout: layout-playground
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <strong>This is the first item's accordion body.</strong> It is shown by default, until the
+                                <strong>This is the first item's accordion body.</strong> It is shown by default, until
+                                the
                                 collapse plugin adds the appropriate classes that we use to style each element. These
                                 classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default variables.
+                                transitions. You can modify any of this with custom CSS or overriding our default
+                                variables.
                                 It's also worth noting that just about any HTML can go within the
                                 <code>.accordion-body</code>, though the transition does limit overflow.
                             </div>
@@ -167,10 +207,13 @@ layout: layout-playground
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <strong>This is the second item's accordion body.</strong> It is hidden by default, until
-                                the collapse plugin adds the appropriate classes that we use to style each element. These
+                                <strong>This is the second item's accordion body.</strong> It is hidden by default,
+                                until
+                                the collapse plugin adds the appropriate classes that we use to style each element.
+                                These
                                 classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default variables.
+                                transitions. You can modify any of this with custom CSS or overriding our default
+                                variables.
                                 It's also worth noting that just about any HTML can go within the
                                 <code>.accordion-body</code>, though the transition does limit overflow.
                             </div>
@@ -186,10 +229,12 @@ layout: layout-playground
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until
+                                the
                                 collapse plugin adds the appropriate classes that we use to style each element. These
                                 classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default variables.
+                                transitions. You can modify any of this with custom CSS or overriding our default
+                                variables.
                                 It's also worth noting that just about any HTML can go within the
                                 <code>.accordion-body</code>, though the transition does limit overflow.
                             </div>
@@ -201,7 +246,7 @@ layout: layout-playground
     </div>
 </div>
 <hr>
-<div class="container">
+<div class="container p-4">
     <div class="row">
         <h4>Alerts</h4>
         <div class="col-4">
@@ -211,7 +256,7 @@ layout: layout-playground
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                     <i class="bi bi-x-lg"></i>
                 </button>
-              </div>
+            </div>
         </div>
         <div class="col-4">
             <div class="sgds alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
@@ -220,7 +265,7 @@ layout: layout-playground
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                     <i class="bi bi-x-lg"></i>
                 </button>
-              </div>
+            </div>
         </div>
         <div class="col-4">
             <div class="sgds alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
@@ -229,32 +274,33 @@ layout: layout-playground
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                     <i class="bi bi-x-lg"></i>
                 </button>
-              </div>
+            </div>
         </div>
     </div>
 </div>
 <hr>
-<div class="container">
+<div class="container p-4">
     <div class="row">
         <div class="col">
             <nav aria-label="...">
                 <ul class="pagination">
-                  <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active" aria-current="page">
-                    <span class="page-link">2</span>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                  </li>
+                    <li class="page-item disabled">
+                        <span class="page-link">Previous</span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">2</span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
                 </ul>
-              </nav>
+            </nav>
         </div>
     </div>
 </div>
+
 
 <style>
     p {
@@ -266,5 +312,8 @@ layout: layout-playground
         font-weight: bold;
         font-size: 2rem;
         line-height: 1.5;
+    }
+    .highlight{
+        padding: 1rem;
     }
 </style>
