@@ -3,13 +3,17 @@ title: Home
 layout: layout-playground
 ---
 {% capture default-modal %}
+<div class="btn-group">
  <!-- Button trigger modal -->
- <button type="button" class="sgds btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
+ <button type="button" class="sgds btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-default">
+    Launch default modal
 </button>
-
-<!-- Modal -->
-<div class="sgds modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<button type="button" class="sgds btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-center-align-icon">
+    Launch centered align with icon modal
+</button>
+</div>
+<!-- Default Modal -->
+<div class="sgds modal fade" id="modal-default" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,7 +25,28 @@ layout: layout-playground
             </div>
             <div class="modal-footer">
                 <button type="button" class="sgds btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="sgds btn btn-primary">Save changes</button>
+                <button type="button" class="sgds btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sgds modal fade" id="modal-center-align-icon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" variant="centered-align-icon">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">
+                    <i class="bi bi-exclamation-circle"></i>
+                    <strong>Modal</strong>
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                222 brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="sgds btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="sgds btn btn-primary">Submit</button>
             </div>
         </div>
     </div>

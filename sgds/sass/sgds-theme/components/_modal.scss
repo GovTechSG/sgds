@@ -1,7 +1,33 @@
 .sgds{
     &.modal{
         .modal-footer{
-            padding-top: 0;
+            @extend .pt-0;
+        }
+
+        button.btn-close {
+            // TODO: overall font size not set yet.
+            font-size: 0.75rem;
+        }
+
+        &[variant="centered-align-icon"]{
+            .modal-content{
+                @extend .text-center;
+            }
+            .modal-header{
+                @extend .border-bottom-0;
+                @extend .pb-0;
+                @extend .align-items-start;
+            }
+            .modal-title{
+                @extend .flex-grow-1;
+                @extend .d-flex;
+                @extend .flex-column;
+                @extend .justify-content-center;
+                
+            }
+            .modal-footer{
+                @extend .justify-content-center;
+            }
         }
     }
 }
