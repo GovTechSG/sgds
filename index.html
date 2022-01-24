@@ -4,13 +4,13 @@ layout: layout-playground
 ---
 {% capture default-modal %}
 <div class="btn-group">
- <!-- Button trigger modal -->
- <button type="button" class="sgds btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-default">
-    Launch default modal
-</button>
-<button type="button" class="sgds btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-center-align-icon">
-    Launch centered align with icon modal
-</button>
+    <!-- Button trigger modal -->
+    <button type="button" class="sgds btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-default">
+        Launch default modal
+    </button>
+    <button type="button" class="sgds btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-center-align-icon">
+        Launch centered align with icon modal
+    </button>
 </div>
 <!-- Default Modal -->
 <div class="sgds modal fade" id="modal-default" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -21,7 +21,8 @@ layout: layout-playground
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs.
+                The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by
+                fox whelps. Bawds jog, flick quartz, vex nymphs.
             </div>
             <div class="modal-footer">
                 <button type="button" class="sgds btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -31,7 +32,8 @@ layout: layout-playground
     </div>
 </div>
 
-<div class="sgds modal fade" id="modal-center-align-icon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" variant="centered-align-icon">
+<div class="sgds modal fade" id="modal-center-align-icon" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" variant="centered-align-icon">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -42,7 +44,8 @@ layout: layout-playground
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                222 brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs.
+                222 brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox
+                whelps. Bawds jog, flick quartz, vex nymphs.
             </div>
             <div class="modal-footer">
                 <button type="button" class="sgds btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -121,8 +124,19 @@ layout: layout-playground
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <div id="emailHelp" class="form-text mb-1">We'll never share your email with anyone else.</div>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" class="form-control is-valid" id="exampleInputEmail1"
+                        aria-describedby="emailHelp">
 
+                </div>
+                <div class="mb-3">
+                    <!-- input starts here -->
+                    <label for="exampleFormControlInput1" class="form-label">Label</label>
+                    <!-- add variant attribute to input-group wrapper -->
+                    <div class="sgds input-group" variant="has-icon">
+                        <i class="bi bi-calendar3 form-control-icon"></i>
+                        <input type="email" class=" form-control is-invalid" id="exampleFormControlInput1"
+                            placeholder="John Doe">
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -338,7 +352,8 @@ layout: layout-playground
         font-size: 2rem;
         line-height: 1.5;
     }
-    .highlight{
+
+    .highlight {
         padding: 1rem;
     }
 </style>

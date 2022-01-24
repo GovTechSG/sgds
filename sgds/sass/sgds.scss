@@ -5,7 +5,7 @@
 
 // Configuration
 @import "bootstrap/functions";
-@import "sgds-theme/sgds-variables-v2";
+@import "sgds-theme/sgds-variables";
 // @import "bootstrap/variables";
 @import "bootstrap/mixins";
 @import "bootstrap/utilities";
@@ -51,8 +51,8 @@
 @import "bootstrap/utilities/api";
 // scss-docs-end import-stack
 
-//Custom
-@import "sgds-theme/custom/grid";
+//Custom'
+@import "sgds-theme/components/form";
 @import "sgds-theme/components/card";
 @import "sgds-theme/components/accordion";
 @import "sgds-theme/components/alert";

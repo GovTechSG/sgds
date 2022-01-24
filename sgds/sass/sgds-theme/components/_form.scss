@@ -1,0 +1,37 @@
+%icon-position {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $input-font-size;
+  z-index: 4;
+  //3rem == button/ input height
+  width: 3rem;
+  height: 3rem;
+}
+
+.sgds {
+  &.input-group {
+    &[variant="has-icon"] {
+      .form-control {
+        border-radius: $input-border-radius !important;
+        padding-left: 3rem;
+      }
+    }
+
+    .form-control-icon {
+      @extend %icon-position;
+      &-validate {
+        @extend %icon-position;
+        left: inherit;
+        right: 0;
+      }
+    }
+    &-text {
+      + input.form-control {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+      }
+    }
+  }
+}
