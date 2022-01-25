@@ -7023,7 +7023,8 @@ textarea.form-control-lg {
 .sgds.modal button.btn-close {
   font-size: 0.75rem; }
 
-.sgds.tooltip {
+.sgds.tooltip-inner {
   display: flex;
-  gap: 2rem; }
+  gap: 2rem;
+  text-align: left; }
 

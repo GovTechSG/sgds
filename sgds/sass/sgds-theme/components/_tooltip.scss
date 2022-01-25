@@ -1,6 +1,9 @@
 .sgds{
     &.tooltip{
-        display: flex;
-        gap: 2rem;
+        &-inner{
+            display: flex;
+            gap: 2rem;
+            text-align: left;
+        }
     }
 }
