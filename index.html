@@ -55,6 +55,7 @@ layout: layout-playground
     </div>
 </div>
 {% endcapture %}
+
 <div class="container p-4">
     <div class="row">
         <h4>Modal</h4>
@@ -84,7 +85,15 @@ layout: layout-playground
     </div>
 </div>
 <hr>
-
+<div class="container p-4">
+    <div class="row">
+        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
+            title="Tooltip on top" id="exampletooltip">
+            Tooltip on top
+        </button>
+    </div>
+</div>
+<hr>
 <div class="container p-4">
     <div class="row">
         <h4>button</h4>
@@ -123,7 +132,8 @@ layout: layout-playground
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <div id="emailHelp" class="form-text mb-1">We'll never share your email with anyone else.</div>
+                    <div id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
+                    </div>
                     <input type="email" class="form-control is-valid" id="exampleInputEmail1"
                         aria-describedby="emailHelp">
 
