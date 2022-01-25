@@ -1302,8 +1302,8 @@ $accordion-icon-active-color:             $accordion-button-active-color !defaul
 $accordion-icon-transition:               transform .2s ease-in-out !default;
 $accordion-icon-transform:                rotate(-180deg) !default;
 
-$accordion-button-icon:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
-$accordion-button-active-icon:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$accordion-button-icon:                   url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$accordion-button-active-icon:            url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
 // scss-docs-end accordion-variables
 
 // Tooltips
@@ -1312,11 +1312,11 @@ $accordion-button-active-icon:  url("data:image/svg+xml,<svg xmlns='http://www.w
 $tooltip-font-size:                 $font-size-sm !default;
 $tooltip-max-width:                 200px !default;
 $tooltip-color:                     $white !default;
-$tooltip-bg:                        $black !default;
+$tooltip-bg:                        $gray-600 !default;
 $tooltip-border-radius:             $border-radius !default;
-$tooltip-opacity:                   .9 !default;
-$tooltip-padding-y:                 $spacer * .25 !default;
-$tooltip-padding-x:                 $spacer * .5 !default;
+$tooltip-opacity:                   1 !default;
+$tooltip-padding-y:                 $spacer * .5 !default;
+$tooltip-padding-x:                 $spacer !default;
 $tooltip-margin:                    0 !default;
 
 $tooltip-arrow-width:               .8rem !default;

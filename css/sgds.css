@@ -1998,11 +1998,11 @@ textarea.form-control-lg {
   z-index: 5;
   display: none;
   max-width: 100%;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 1rem;
   margin-top: .1rem;
   font-size: 0.98438rem;
   color: #000;
-  background-color: rgba(59, 179, 70, 0.9);
+  background-color: #3bb346;
   border-radius: 0.3125rem; }
 
 .was-validated :valid ~ .valid-feedback,
@@ -2070,11 +2070,11 @@ textarea.form-control-lg {
   z-index: 5;
   display: none;
   max-width: 100%;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 1rem;
   margin-top: .1rem;
   font-size: 0.98438rem;
   color: #000;
-  background-color: rgba(250, 87, 65, 0.9);
+  background-color: #fa5741;
   border-radius: 0.3125rem; }
 
 .was-validated :invalid ~ .invalid-feedback,
@@ -3967,7 +3967,7 @@ textarea.form-control-lg {
   word-wrap: break-word;
   opacity: 0; }
   .tooltip.show {
-    opacity: 0.9; }
+    opacity: 1; }
   .tooltip .tooltip-arrow {
     position: absolute;
     display: block;
@@ -3986,7 +3986,7 @@ textarea.form-control-lg {
     .bs-tooltip-top .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^="top"] .tooltip-arrow::before {
       top: -1px;
       border-width: 0.4rem 0.4rem 0;
-      border-top-color: #000; }
+      border-top-color: #344054; }
 
 .bs-tooltip-end, .bs-tooltip-auto[data-popper-placement^="right"] {
   padding: 0 0.4rem; }
@@ -3997,7 +3997,7 @@ textarea.form-control-lg {
     .bs-tooltip-end .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^="right"] .tooltip-arrow::before {
       right: -1px;
       border-width: 0.4rem 0.4rem 0.4rem 0;
-      border-right-color: #000; }
+      border-right-color: #344054; }
 
 .bs-tooltip-bottom, .bs-tooltip-auto[data-popper-placement^="bottom"] {
   padding: 0.4rem 0; }
@@ -4006,7 +4006,7 @@ textarea.form-control-lg {
     .bs-tooltip-bottom .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^="bottom"] .tooltip-arrow::before {
       bottom: -1px;
       border-width: 0 0.4rem 0.4rem;
-      border-bottom-color: #000; }
+      border-bottom-color: #344054; }
 
 .bs-tooltip-start, .bs-tooltip-auto[data-popper-placement^="left"] {
   padding: 0 0.4rem; }
@@ -4017,14 +4017,14 @@ textarea.form-control-lg {
     .bs-tooltip-start .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^="left"] .tooltip-arrow::before {
       left: -1px;
       border-width: 0.4rem 0 0.4rem 0.4rem;
-      border-left-color: #000; }
+      border-left-color: #344054; }
 
 .tooltip-inner {
   max-width: 200px;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 1rem;
   color: #fff;
   text-align: center;
-  background-color: #000;
+  background-color: #344054;
   border-radius: 0.3125rem; }
 
 .clearfix::after {
@@ -7022,4 +7022,8 @@ textarea.form-control-lg {
 
 .sgds.modal button.btn-close {
   font-size: 0.75rem; }
+
+.sgds.tooltip {
+  display: flex;
+  gap: 2rem; }
 
