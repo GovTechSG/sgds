@@ -820,7 +820,7 @@ $btn-active-border-tint-amount:   10% !default;
 
 // scss-docs-start form-text-variables
 $form-text-margin-top:                  null !default;
-$form-text-font-size:                   $small-font-size !default;
+$form-text-font-size:                   $font-size-base !default;
 $form-text-font-style:                  null !default;
 $form-text-font-weight:                 null !default;
 $form-text-color:                       $text-muted !default;
@@ -1203,8 +1203,8 @@ $dropdown-dark-header-color:        $gray-500 !default;
 // Pagination
 
 // scss-docs-start pagination-variables
-$pagination-padding-y:              .375rem !default;
-$pagination-padding-x:              .75rem !default;
+$pagination-padding-y:              0.5rem !default;
+$pagination-padding-x:              1rem !default;
 $pagination-padding-y-sm:           .25rem !default;
 $pagination-padding-x-sm:           .5rem !default;
 $pagination-padding-y-lg:           .75rem !default;
