@@ -7,7 +7,7 @@
                     <span style="display: table-cell; vertical-align: middle">
                         <span class="banner-text-layout">
                             <span class="is-text">
-                                A Singapore government agency website.&ensp;
+                                A Singapore Government Agency Website&ensp;
                             </span>
                             <span class="sgds-masthead-button" id="sgds-masthead-identify">
                                 <span class="is-text sgds-masthead-button-text">
@@ -65,20 +65,20 @@
     const identifyIcon = document.getElementById("sgds-masthead-identify-icon");
     const mastheadContent = document.getElementById("sgds-masthead-content");
     const mastheadDivider = document.getElementById("sgds-masthead-divider");
-    
+
     identify.setAttribute("aria-expanded", false);
-    identify.addEventListener("click", ()=>{
+    identify.addEventListener("click", () => {
         const ariaExpanded = identify.getAttribute("aria-expanded");
-        if(ariaExpanded === "true"){
-    
+        if (ariaExpanded === "true") {
+
             identify.setAttribute("aria-expanded", false);
         }
-        else{
+        else {
             identify.setAttribute("aria-expanded", true);
         }
         identifyIcon.classList.toggle("sgds-icon-chevron-up");
         mastheadContent.classList.toggle("is-hidden");
         mastheadDivider.classList.toggle("is-hidden");
-    
+
     });
-    </script>
+</script>
