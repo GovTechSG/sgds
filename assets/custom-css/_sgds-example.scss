@@ -136,6 +136,15 @@
     border: 1px solid #ddd;
     border-bottom: 0;
     background-color: #fff;
+    .sgds-masthead{
+      .col{
+        padding: 0;
+      }
+      .row{
+        margin-left: 0;
+        padding: 0 0.5rem;
+      }
+    }
     .sgds-button{
       margin-bottom: 0;
     }

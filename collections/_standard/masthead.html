@@ -7,12 +7,7 @@ order: 1
 ---
 
 {% capture default_masthead %}
-<div class="sgds-masthead">
-    <a href="https://www.gov.sg" target="_blank">
-        <span class="sgds-icon sgds-icon-sg-crest"></span>
-        <span class="is-text">A Singapore Government Agency Website</span>
-    </a>
-</div>
+{% include sgds-masthead.html %}
 {% endcapture %}
 
 {% capture lang_selector_masthead %}
@@ -53,6 +48,14 @@ order: 1
 
 <h3>Types</h3>
 <h4>1) Default Masthead</h4>
+<div class="sgds-notification is-toast-success margin--top margin--bottom">
+    <div class="sgds-notification-detail">
+        <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
+        <div class="sgds-notification-content">
+            <small>You can check out how the masthead dropdown works at the top of this page</small>
+        </div>
+    </div>
+</div>
 <div class="sgds-example-others">{{default_masthead}}</div>
 {% highlight html %}{{default_masthead}}{% endhighlight %}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
@@ -61,7 +64,7 @@ order: 1
 
 <hr />
 
-<h4>2) Masthead with language selector</h4>
+<!-- <h4>2) Masthead with language selector</h4>
 <p>
     If you require a language selector, add a <code>select</code> element
     at the right side of the Masthead.
@@ -88,20 +91,20 @@ order: 1
 {% highlight html %}{{lang_selector_masthead}}{% endhighlight %}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
     Copy Snippet
-</button>
+</button> -->
 
-<hr />
+<!-- <hr /> -->
 
 <h3>Guidelines</h3>
 <p>Your Masthead should:</p>
 <ul>
     <li>
-      Contain the <b>Singapore Government Logo</b>.
-      It shall be positioned at the top left corner of the banner.
+        Contain the <b>Singapore Government Logo</b>.
+        It shall be positioned at the top left corner of the banner.
     </li>
     <li>
-      Include the <b>official government site descriptor</b>.
-      It shall state ‘A Singapore Government Agency Website’.
+        Include the <b>official government site descriptor</b>.
+        It shall state ‘A Singapore Government Agency Website’.
     </li>
     <li>Be positioned at the <b>top left corner</b> of the web page</li>
 </ul>
