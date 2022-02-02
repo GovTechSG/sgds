@@ -9,20 +9,21 @@
                             <span class="is-text">
                                 A Singapore Government Agency Website&ensp;
                             </span>
-                            <span class="sgds-masthead-button" id="sgds-masthead-identify">
+                            <span class="sgds-masthead-button" id="sgds-masthead-identify-sgds">
                                 <span class="is-text sgds-masthead-button-text">
                                     How to identify
                                 </span>
-                                <span class="sgds-icon sgds-icon-chevron-down" id="sgds-masthead-identify-icon"></span>
+                                <span class="sgds-icon sgds-icon-chevron-down"
+                                    id="sgds-masthead-identify-icon-sgds"></span>
                             </span>
                         </span>
                     </span>
                 </div>
-                <div class="masthead-divider is-hidden" id="sgds-masthead-divider"
+                <div class="masthead-divider is-hidden" id="sgds-masthead-divider-sgds"
                     style="padding-left: -12px; padding-right:-12px;">
                 </div>
             </div>
-            <div class="col banner-content-layout is-hidden" id="sgds-masthead-content">
+            <div class="col banner-content-layout is-hidden" id="sgds-masthead-content-sgds">
                 <div class="banner-content">
                     <img src="https://d33wubrfki0l68.cloudfront.net/2ec2122b2010672b9cbb6efb5138048d8aff4a09/5d1ab/assets/img/government_building.svg"
                         class="banner-icon">
@@ -61,24 +62,24 @@
 </section>
 
 <script>
-    const identify = document.getElementById("sgds-masthead-identify");
-    const identifyIcon = document.getElementById("sgds-masthead-identify-icon");
-    const mastheadContent = document.getElementById("sgds-masthead-content");
-    const mastheadDivider = document.getElementById("sgds-masthead-divider");
+    const identifySgds = document.getElementById("sgds-masthead-identify-sgds");
+    const identifyIconSgds = document.getElementById("sgds-masthead-identify-icon-sgds");
+    const mastheadContentSgds = document.getElementById("sgds-masthead-content-sgds");
+    const mastheadDividerSgds = document.getElementById("sgds-masthead-divider-sgds");
 
-    identify.setAttribute("aria-expanded", false);
-    identify.addEventListener("click", () => {
-        const ariaExpanded = identify.getAttribute("aria-expanded");
+    identifySgds.setAttribute("aria-expanded", false);
+    identifySgds.addEventListener("click", () => {
+        const ariaExpanded = identifySgds.getAttribute("aria-expanded");
         if (ariaExpanded === "true") {
 
-            identify.setAttribute("aria-expanded", false);
+            identifySgds.setAttribute("aria-expanded", false);
         }
         else {
-            identify.setAttribute("aria-expanded", true);
+            identifySgds.setAttribute("aria-expanded", true);
         }
-        identifyIcon.classList.toggle("sgds-icon-chevron-up");
-        mastheadContent.classList.toggle("is-hidden");
-        mastheadDivider.classList.toggle("is-hidden");
+        identifyIconSgds.classList.toggle("sgds-icon-chevron-up");
+        mastheadContentSgds.classList.toggle("is-hidden");
+        mastheadDividerSgds.classList.toggle("is-hidden");
 
     });
 </script>
