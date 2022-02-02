@@ -7,12 +7,90 @@ order: 1
 ---
 
 {% capture default_masthead %}
-<div class="sgds-masthead">
-    <a href="https://www.gov.sg" target="_blank">
-        <span class="sgds-icon sgds-icon-sg-crest"></span>
-        <span class="is-text">A Singapore Government Agency Website</span>
-    </a>
-</div>
+<section class="sgds-masthead">
+    <div class="sgds-container">
+        <div class="row is-multiline is-vcentered masthead-layout-container">
+            <div class="col is-9-desktop is-12-touch has-text-centered-touch">
+                <div class="masthead-layout">
+                    <span class="sgds-icon sgds-icon-sg-crest" style="color:red"></span>
+                    <span style="display: table-cell; vertical-align: middle">
+                        <span class="banner-text-layout">
+                            <span class="is-text">
+                                A Singapore Government Agency Website&ensp;
+                            </span>
+                            <span class="sgds-masthead-button" id="sgds-masthead-identify">
+                                <span class="is-text sgds-masthead-button-text">
+                                    How to identify
+                                </span>
+                                <span class="sgds-icon sgds-icon-chevron-down" id="sgds-masthead-identify-icon"></span>
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <div class="masthead-divider is-hidden" id="sgds-masthead-divider"
+                    style="padding-left: -12px; padding-right:-12px;">
+                </div>
+            </div>
+            <div class="col banner-content-layout is-hidden" id="sgds-masthead-content">
+                <div class="banner-content">
+                    <img src="https://d33wubrfki0l68.cloudfront.net/2ec2122b2010672b9cbb6efb5138048d8aff4a09/5d1ab/assets/img/government_building.svg"
+                        class="banner-icon">
+                    <div class="banner-content-text-container">
+                        <strong class="banner-content-title">Official website links end with .gov.sg</strong>
+                        <p>
+                            Government agencies communicate via
+                            <strong> .gov.sg </strong>
+                            websites <span class="avoidwrap">(e.g. go.gov.sg/open)</span>.
+                            <a href="https://go.gov.sg/trusted-sites"
+                                class="banner-content-text sgds-masthead-button-link sgds-masthead-button-text"
+                                target="_blank" rel="noreferrer">
+                                Trusted website<text style="letter-spacing: -3px">s</text>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="banner-content">
+                    <img src="https://d33wubrfki0l68.cloudfront.net/aecdf1b88c0edfa72e7fef099f28e93b80c8336a/8c6a1/assets/img/lock.svg"
+                        class="banner-icon">
+                    <div class="banner-content-text-container">
+                        <strong class="banner-content-title">Secure websites use HTTPS</strong>
+                        <p>
+                            Look for a
+                            <strong> lock </strong>(<img
+                                src="https://d33wubrfki0l68.cloudfront.net/aecdf1b88c0edfa72e7fef099f28e93b80c8336a/8c6a1/assets/img/lock.svg"
+                                class="inline-banner-icon">)
+                            or https:// as an added precaution. Share sensitive information only on official, secure
+                            websites.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const identify = document.getElementById("sgds-masthead-identify");
+    const identifyIcon = document.getElementById("sgds-masthead-identify-icon");
+    const mastheadContent = document.getElementById("sgds-masthead-content");
+    const mastheadDivider = document.getElementById("sgds-masthead-divider");
+
+    identify.setAttribute("aria-expanded", false);
+    identify.addEventListener("click", () => {
+        const ariaExpanded = identify.getAttribute("aria-expanded");
+        if (ariaExpanded === "true") {
+
+            identify.setAttribute("aria-expanded", false);
+        }
+        else {
+            identify.setAttribute("aria-expanded", true);
+        }
+        identifyIcon.classList.toggle("sgds-icon-chevron-up");
+        mastheadContent.classList.toggle("is-hidden");
+        mastheadDivider.classList.toggle("is-hidden");
+
+    });
+</script>
 {% endcapture %}
 
 {% capture lang_selector_masthead %}
@@ -53,39 +131,8 @@ order: 1
 
 <h3>Types</h3>
 <h4>1) Default Masthead</h4>
-<div class="sgds-example-others">{{default_masthead}}</div>
-{% highlight html %}{{default_masthead}}{% endhighlight %}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
-    Copy Snippet
-</button>
-
-<hr />
-
-<h4>2) Masthead with language selector</h4>
-<p>
-    If you require a language selector, add a <code>select</code> element
-    at the right side of the Masthead.
-</p>
-
-<div class="sgds-notification is-toast-warning margin--top margin--bottom">
-    <div class="sgds-notification-detail">
-        <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
-        <div class="sgds-notification-content">
-            <small>The Masthead language selector should be hidden in mobile view to prevent clashing with the masthead
-                text.
-                However, it should still be accessible in the navigation panel. For example, include the
-                language selector in the
-                <a href="/docs/main-nav/">main navigation</a> and display it only on mobile views.</small>
-        </div>
-    </div>
-</div>
-
-<div class="sgds-example-others">
-    {{lang_selector_masthead}}
-</div>
-
-
-{% highlight html %}{{lang_selector_masthead}}{% endhighlight %}
+<div class="sgds-example-others masthead">{{default_masthead}}</div>
+{%- highlight html -%}{{default_masthead}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
     Copy Snippet
 </button>
@@ -96,12 +143,12 @@ order: 1
 <p>Your Masthead should:</p>
 <ul>
     <li>
-      Contain the <b>Singapore Government Logo</b>.
-      It shall be positioned at the top left corner of the banner.
+        Contain the <b>Singapore Government Logo</b>.
+        It shall be positioned at the top left corner of the banner.
     </li>
     <li>
-      Include the <b>official government site descriptor</b>.
-      It shall state ‘A Singapore Government Agency Website’.
+        Include the <b>official government site descriptor</b>.
+        It shall state 'A Singapore Government Agency Website'.
     </li>
     <li>Be positioned at the <b>top left corner</b> of the web page</li>
 </ul>
