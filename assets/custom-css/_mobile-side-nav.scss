@@ -1,8 +1,9 @@
 .mobile-side-nav {
-  position: fixed;
+  position: sticky;
   width: 100%;
-  top: calc(#{$navbar-height} + #{$masthead-height} + 21px);
+  // top: calc(#{$navbar-height} + #{$masthead-height} + 21px);
   z-index: 40;
+  top: 0;
 
   .sgds-dropdown-content {
     height: 40vh;
