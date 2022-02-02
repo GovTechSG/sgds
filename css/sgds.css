@@ -7057,11 +7057,19 @@ textarea.form-control-lg {
       .sgds-steps .sgds-step-item:not(:first-child)::before {
         content: " ";
         position: absolute; }
+    .sgds-steps .sgds-step-item.stepper__item--clickable {
+      cursor: pointer; }
+      .sgds-steps .sgds-step-item.stepper__item--clickable:hover .sgds-step-marker {
+        border-color: #4A1FB8;
+        background-color: #4A1FB8; }
+      .sgds-steps .sgds-step-item.stepper__item--clickable:hover .sgds-step-details * {
+        color: #4A1FB8;
+        transition: all 0.5s ease; }
     .sgds-steps .sgds-step-item::before {
       background: linear-gradient(to left, #D0D5DD 50%, #5925DC 50%);
       background-size: 200% 100%;
       background-position: right bottom; }
-      .sgds-steps .sgds-step-item::before .step-marker {
+      .sgds-steps .sgds-step-item::before .sgds-step-marker {
         color: #fff; }
     .sgds-steps .sgds-step-item.is-active::before {
       background-position: left bottom; }

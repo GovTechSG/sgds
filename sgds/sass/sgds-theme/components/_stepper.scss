@@ -19,6 +19,7 @@
             .icon *{
                 font-size: $size;
             }
+            
         }
         .sgds-step-details{
             margin-top: calc(#{$size} * 2);
@@ -48,11 +49,25 @@
                 position: absolute;
             }
         }
+        &.stepper__item--clickable{
+            cursor: pointer;
+            &:hover{
+                .sgds-step-marker{
+                    border-color: $purple-600;
+                    background-color: $purple-600;
+                    
+                }
+                .sgds-step-details *{
+                    color: $purple-600;
+                    transition: all 0.5s ease;
+                }
+            }
+        }
         &::before{
             background: linear-gradient(to left, $steps-default-color 50%, $steps-active-color 50%);
             background-size: 200% 100%;
             background-position: right bottom;
-            .step-marker{
+            .sgds-step-marker{
                 color: $white;
             }
         }
@@ -90,39 +105,6 @@
         .sgds-step-details{
             text-align: center;
         }
-
-        // Override marker color per step
-        // @each $name, $pair in $colors{
-        //     $color: nth($pair, 1);
-        //     $color-invert: nth($pair, 2);
-        //     &.is-#{$name}{
-        //         &::before{
-        //             background: linear-gradient(to left, $steps-default-color 50%, $color 50%);
-        //             background-size: 200% 100%;
-        //             background-position: right bottom;
-        //         }
-        //         &.is-active{
-        //             &::before{
-        //                 background-position: left bottom;
-        //             }
-        //             .sgds-step-marker{
-        //                 background-color: $color;
-        //                 border-color: $color;
-        //                 color: $white;
-        //             }
-        //         }
-        //         &.is-completed{
-        //             &::before{
-        //                 background-position: left bottom;
-        //             }
-        //             .sgds-step-marker{
-        //                 color: $color-invert;
-        //                 background-color: $color;
-        //                 border-color: $color;
-        //             }
-        //         }
-        //     }
-        // }
     }
 
     .sgds-steps-content{
