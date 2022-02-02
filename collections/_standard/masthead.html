@@ -11,7 +11,7 @@ order: 1
     <div class="sgds-container">
         <div class="row is-multiline is-vcentered masthead-layout-container">
             <div class="col is-9-desktop is-12-touch has-text-centered-touch">
-                <div class="masthead-layout" id="bp-masthead">
+                <div class="masthead-layout">
                     <span class="sgds-icon sgds-icon-sg-crest" style="color:red"></span>
                     <span style="display: table-cell; vertical-align: middle">
                         <span class="banner-text-layout">
@@ -132,43 +132,12 @@ order: 1
 <h3>Types</h3>
 <h4>1) Default Masthead</h4>
 <div class="sgds-example-others">{{default_masthead}}</div>
-{% highlight html %}{{default_masthead}}{% endhighlight %}
+{%- highlight html -%}{{default_masthead}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
     Copy Snippet
 </button>
 
 <hr />
-
-<!-- <h4>2) Masthead with language selector</h4>
-<p>
-    If you require a language selector, add a <code>select</code> element
-    at the right side of the Masthead.
-</p>
-
-<div class="sgds-notification is-toast-warning margin--top margin--bottom">
-    <div class="sgds-notification-detail">
-        <span class="sgds-icon sgds-icon-circle-info is-size-4"></span>
-        <div class="sgds-notification-content">
-            <small>The Masthead language selector should be hidden in mobile view to prevent clashing with the masthead
-                text.
-                However, it should still be accessible in the navigation panel. For example, include the
-                language selector in the
-                <a href="/docs/main-nav/">main navigation</a> and display it only on mobile views.</small>
-        </div>
-    </div>
-</div>
-
-<div class="sgds-example-others">
-    {{lang_selector_masthead}}
-</div>
-
-
-{% highlight html %}{{lang_selector_masthead}}{% endhighlight %}
-<button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
-    Copy Snippet
-</button> -->
-
-<!-- <hr /> -->
 
 <h3>Guidelines</h3>
 <p>Your Masthead should:</p>
@@ -179,7 +148,7 @@ order: 1
     </li>
     <li>
         Include the <b>official government site descriptor</b>.
-        It shall state ‘A Singapore Government Agency Website’.
+        It shall state 'A Singapore Government Agency Website'.
     </li>
     <li>Be positioned at the <b>top left corner</b> of the web page</li>
 </ul>
