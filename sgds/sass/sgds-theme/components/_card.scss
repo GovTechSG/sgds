@@ -1,7 +1,75 @@
-.sgds{
-    &.card{
-        a:not(.btn){
+$card-border-width: 2px;
+.sgds {
+    &.card {
+        a:not(.btn) {
             font-weight: bold;
+        }
+        &[variant*="card-action"] {
+            transition-property: box-shadow, border-color;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+            .card-body {
+                display: flex;
+                justify-content: space-between;
+                gap: 2rem;
+                > div:not([class]) {
+                    * {
+                        margin-bottom: 0;
+                        + * {
+                            margin-top: 1rem;
+                        }
+                    }
+                    i {
+                        font-size: 1.5rem;
+                        margin-right: 1rem;
+                    }
+                }
+                > input[type] {
+                    margin-top: 0;
+                }
+            }
+            &:hover,
+            &.is-active {
+                border-color: transparent;
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1),
+                    inset 0px 0px 0px 2.1px #0f71bb;
+            }
+            .form-check-input {
+                min-width: 1.5rem;
+                min-height: 1.5rem;
+            }
+        }
+        &[variant="card-action-quantity-toggle"] {
+            .card-body {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            div:not([class]) {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .btn {
+                    margin-top: 0;
+                }
+                .input-group {
+                    margin-top: 0;
+                    .btn i {
+                        margin-right: 0;
+                    }
+                    input,
+                    button {
+                        margin-top: 0;
+                    }
+                    input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                }
+                .card-unit {
+                    flex-basis: 150%;
+                }
+            }
         }
     }
 }

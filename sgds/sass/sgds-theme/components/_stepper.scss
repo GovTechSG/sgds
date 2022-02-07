@@ -1,9 +1,7 @@
-
-
 @mixin steps-size($size){
     font-size: $size;
     min-height: calc(#{$size} * 2rem);
-    .sgds-step-item{
+    .stepper-item{
         &:not(:first-child)::before{
             height: $steps-divider-height;
             width: 100%;
@@ -11,7 +9,7 @@
             left: -50%;
             top: #{$size};
         }
-        .sgds-step-marker{
+        .stepper-marker{
             height: calc(#{$size} * 2);
             width: calc(#{$size} * 2);
             position: absolute;
@@ -19,9 +17,8 @@
             .icon *{
                 font-size: $size;
             }
-            
         }
-        .sgds-step-details{
+        .stepper-detail{
             margin-top: calc(#{$size} * 2);
             margin-left: 0.5rem;
             margin-right: 0.5rem;
@@ -29,101 +26,93 @@
     }
 }
 
-.sgds-steps{
-    &:not(:last-child) {
-        margin-bottom: 1.5rem;
-    }
-    display: flex;
-    flex-wrap: wrap;
-    .sgds-step-item{
-        margin-top: 0;
-        position: relative;
-        flex-grow: 1;
-        flex-basis: 0;
-        &:not(:first-child){
-            flex-basis: 1em;
+.sgds{
+    &.stepper{
+        &:not(:last-child) {
+            margin-bottom: 1.5rem;
+        }
+        display: flex;
+        flex-wrap: wrap;
+        .stepper-item{
+            margin-top: 0;
+            position: relative;
             flex-grow: 1;
-            flex-shrink: 1;
-            &::before{
-                content: " ";
-                position: absolute;
-            }
-        }
-        &.stepper__item--clickable{
-            cursor: pointer;
-            &:hover{
-                .sgds-step-marker{
-                    border-color: $purple-600;
-                    background-color: $purple-600;
-                    
-                }
-                .sgds-step-details *{
-                    color: $purple-600;
-                    transition: all 0.5s ease;
+            flex-basis: 0;
+            &:not(:first-child){
+                flex-basis: 1em;
+                flex-grow: 1;
+                flex-shrink: 1;
+                &::before{
+                    content: " ";
+                    position: absolute;
                 }
             }
-        }
-        &::before{
-            background: linear-gradient(to left, $steps-default-color 50%, $steps-active-color 50%);
-            background-size: 200% 100%;
-            background-position: right bottom;
-            .sgds-step-marker{
-                color: $white;
+            &.is-clickable{
+                cursor: pointer;
+                &:hover{
+                    .stepper-marker{
+                        border-color: $purple-600;
+                        background-color: $purple-600;
+                        
+                    }
+                    .stepper-detail > *,
+                    .stepper-detail{
+                        color: $purple-600;
+                        transition: all 0.5s ease;
+                    }
+                }
             }
-        }
-        &.is-active{
             &::before{
-                background-position: left bottom;
+                background: linear-gradient(to left, $steps-default-color 50%, $steps-active-color 50%);
+                background-size: 200% 100%;
+                background-position: right bottom;
+                .stepper-marker{
+                    color: $white;
+                }
             }
-            .sgds-step-marker{
-                background-color: $white;
-                border-color: $steps-active-color;
-                color: $steps-active-color;
-            }
-        }
-        &.is-completed{
-            &::before{
-                background-position: left bottom;
-            }
-            .sgds-step-marker{
-                color: $white;
-                background-color: $steps-completed-color;
-                border-color: $steps-completed-color;
-            }
-        }
-        .sgds-step-marker{
-            align-items: center;
-            display: flex;
-            border-radius: 50%;
-            font-weight: $font-weight-bold;
-            justify-content: center;
-            background: $steps-maker-default-color;
-            color: $white;
-            border: $steps-marker-default-border;
-            z-index: 1;
-        }
-        .sgds-step-details{
-            text-align: center;
-        }
-    }
-
-    .sgds-steps-content{
-        align-items: stretch;
-        flex-basis: 100%;
-        margin: 2rem 0;
-        .step-content{
-            display: none;
             &.is-active{
-                display: block;
+                &::before{
+                    background-position: left bottom;
+                }
+                .stepper-marker{
+                    background-color: $white;
+                    border-color: $steps-active-color;
+                    color: $steps-active-color;
+                }
+            }
+            &.is-completed{
+                &::before{
+                    background-position: left bottom;
+                }
+                .stepper-marker{
+                    color: $white;
+                    background-color: $steps-completed-color;
+                    border-color: $steps-completed-color;
+                }
+            }
+            > .stepper-marker{
+                align-items: center;
+                display: flex;
+                border-radius: 50%;
+                font-weight: $font-weight-bold;
+                justify-content: center;
+                background: $steps-maker-default-color;
+                color: $white;
+                border: $steps-marker-default-border;
+                z-index: 1;
+            }
+            > .stepper-detail{
+                text-align: center;
             }
         }
-    }
-    @include steps-size($font-size-base);
-    &.is-small{
-        @include steps-size($font-size-sm);
-    }
-    
-    &.is-large{
-        @include steps-size($font-size-lg);
+
+        @include steps-size($font-size-base);
+        &.is-small{
+            @include steps-size($font-size-sm);
+        }
+        
+        &.is-large{
+            @include steps-size($font-size-lg);
+        }
     }
 }

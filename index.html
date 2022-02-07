@@ -354,40 +354,40 @@ layout: layout-playground
 <div class="container p-4">
     <div class="row">
         <div class="col">
-            <div class="sgds-steps stepper">
-                <div data-testid="sgds-step" class="sgds-step-item stepper__item--clickable is-completed">
-                    <div class="sgds-step-marker">1</div>
-                    <div class="sgds-step-details">
+            <div class="sgds stepper">
+                <div class="stepper-item is-clickable is-completed">
+                    <div class="stepper-marker">1</div>
+                    <div class="stepper-detail">
                         <p><b>Personal Details</b></p>
                     </div>
                 </div>
-                <div data-testid="sgds-step" class="sgds-step-item stepper__item--clickable is-completed">
-                    <div class="sgds-step-marker">2</div>
-                    <div class="sgds-step-details">
+                <div class="stepper-item is-completed is-clickable">
+                    <div class="stepper-marker">2</div>
+                    <div class="stepper-detail">
                         <p><b>Address and Contact Information</b></p>
                     </div>
                 </div>
-                <div data-testid="sgds-step" class="sgds-step-item stepper__item is-active">
-                    <div class="sgds-step-marker">3</div>
-                    <div class="sgds-step-details">
+                <div class="stepper-item is-active">
+                    <div class="stepper-marker">3</div>
+                    <div class="stepper-detail">
                         <p><b>Configuration</b></p>
                     </div>
                 </div>
-                <div data-testid="sgds-step" class="sgds-step-item stepper__item">
-                    <div class="sgds-step-marker">4</div>
-                    <div class="sgds-step-details">
+                <div class="stepper-item">
+                    <div class="stepper-marker">4</div>
+                    <div class="stepper-detail">
                         <p><b>Review</b></p>
                     </div>
                 </div>
-                <div data-testid="sgds-step" class="sgds-step-item stepper__item">
-                    <div class="sgds-step-marker">5</div>
-                    <div class="sgds-step-details">
+                <div class="stepper-item">
+                    <div class="stepper-marker">5</div>
+                    <div class="stepper-detail">
                         <p><b>Configuration</b></p>
                     </div>
                 </div>
-                <div data-testid="sgds-step" class="sgds-step-item stepper__item">
-                    <div class="sgds-step-marker">6</div>
-                    <div class="sgds-step-details">
+                <div class="stepper-item">
+                    <div class="stepper-marker">6</div>
+                    <div class="stepper-detail">
                         <p><b>Review</b></p>
                     </div>
                 </div>
@@ -429,6 +429,149 @@ layout: layout-playground
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container p-4">
+    <div class="row">
+        <div class="col">
+            <div class="sgds card" variant="card-action-quantity-toggle">
+                <div class="card-body">
+                    <div>
+                        <h5 class="card-title fw-bold">Checkbox Card</h5>
+                        <button class="btn btn-close text-danger"></button>
+                    </div>
+                    <div>
+                        <div class="card-unit">
+                            <h6 class="card-subtitle text-muted">Unit Price/ month</h6>
+                            <h6 class="card-subtitle mt-2">$1,000,000</h6>
+                        </div>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-primary btn-sm sgds"><i
+                                    class="bi bi-dash"></i></button>
+                            <input name="quantity" type="number" class="form-control text-center" value="100">
+                            <button type="button" class="btn btn-primary btn-sm sgds"><i
+                                    class="bi bi-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group">
+                <button type="button" class="btn btn-primary btn-sm sgds"><i class="bi bi-dash"></i></button>
+                <input name="quantity" type="number" class="form-control text-center" value="100">
+                <button type="button" class="btn btn-primary btn-sm sgds"><i class="bi bi-plus"></i></button>
+            </div>
+        </div>
+        <div class="row pt-4">
+            <div class="col">
+                <div class="sgds card is-active" variant="card-action">
+                    <div class="card-body">
+                        <div>
+                            <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Icon title</h6>
+                            <h5 class="card-title fw-bold">Checkbox Card [Active Card]</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the card's content.</p>
+                        </div>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="sgds card" variant="card-action">
+                    <div class="card-body">
+                        <div>
+                            <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Icon title</h6>
+                            <h5 class="card-title fw-bold">Radio Button Card</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the card's content.</p>
+                        </div>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="sgds card" variant="card-action">
+                    <div class="card-body">
+                        <div>
+                            <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Icon title</h6>
+                            <h5 class="card-title fw-bold">Checkbox Card</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the card's content.</p>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4">
+            <div class="col">
+                <div class="sgds card" variant="card-action">
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Checkbox Card</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the card's content.</p>
+                        </div>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="sgds card" variant="card-action">
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Radio Button Card</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the card's content.</p>
+                        </div>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="sgds card" variant="card-action">
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Checkbox Card</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the card's content.</p>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4">
+            <div class="col col-4">
+                <div class="sgds card" variant="card-action">
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Long title Lorem ipsum dolor sit
+                                amet
+                                consectetur adipisicing elit. Architecto, aut?</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the card's content.</p>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

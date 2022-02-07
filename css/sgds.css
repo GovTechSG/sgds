@@ -6970,6 +6970,54 @@ textarea.form-control-lg {
 .sgds.card a:not(.btn) {
   font-weight: bold; }
 
+.sgds.card[variant*="card-action"] {
+  transition-property: box-shadow, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease; }
+  .sgds.card[variant*="card-action"] .card-body {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem; }
+    .sgds.card[variant*="card-action"] .card-body > div:not([class]) * {
+      margin-bottom: 0; }
+      .sgds.card[variant*="card-action"] .card-body > div:not([class]) * + * {
+        margin-top: 1rem; }
+    .sgds.card[variant*="card-action"] .card-body > div:not([class]) i {
+      font-size: 1.5rem;
+      margin-right: 1rem; }
+    .sgds.card[variant*="card-action"] .card-body > input[type] {
+      margin-top: 0; }
+  .sgds.card[variant*="card-action"]:hover, .sgds.card[variant*="card-action"].is-active {
+    border-color: transparent;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1), inset 0px 0px 0px 2.1px #0f71bb; }
+  .sgds.card[variant*="card-action"] .form-check-input {
+    min-width: 1.5rem;
+    min-height: 1.5rem; }
+
+.sgds.card[variant="card-action-quantity-toggle"] .card-body {
+  flex-direction: column;
+  gap: 2rem; }
+
+.sgds.card[variant="card-action-quantity-toggle"] div:not([class]) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .btn {
+    margin-top: 0; }
+  .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .input-group {
+    margin-top: 0; }
+    .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .input-group .btn i {
+      margin-right: 0; }
+    .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .input-group input,
+    .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .input-group button {
+      margin-top: 0; }
+    .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .input-group input::-webkit-outer-spin-button,
+    .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .input-group input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0; }
+  .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .card-unit {
+    flex-basis: 150%; }
+
 .sgds.accordion .accordion-button {
   line-height: 2rem; }
 
@@ -7038,52 +7086,53 @@ textarea.form-control-lg {
   gap: 2rem;
   text-align: left; }
 
-.sgds-steps {
+.sgds.stepper {
   display: flex;
   flex-wrap: wrap;
   font-size: 1.125rem;
   min-height: calc(1.125rem * 2rem); }
-  .sgds-steps:not(:last-child) {
+  .sgds.stepper:not(:last-child) {
     margin-bottom: 1.5rem; }
-  .sgds-steps .sgds-step-item {
+  .sgds.stepper .stepper-item {
     margin-top: 0;
     position: relative;
     flex-grow: 1;
     flex-basis: 0; }
-    .sgds-steps .sgds-step-item:not(:first-child) {
+    .sgds.stepper .stepper-item:not(:first-child) {
       flex-basis: 1em;
       flex-grow: 1;
       flex-shrink: 1; }
-      .sgds-steps .sgds-step-item:not(:first-child)::before {
+      .sgds.stepper .stepper-item:not(:first-child)::before {
         content: " ";
         position: absolute; }
-    .sgds-steps .sgds-step-item.stepper__item--clickable {
+    .sgds.stepper .stepper-item.is-clickable {
       cursor: pointer; }
-      .sgds-steps .sgds-step-item.stepper__item--clickable:hover .sgds-step-marker {
+      .sgds.stepper .stepper-item.is-clickable:hover .stepper-marker {
         border-color: #4A1FB8;
         background-color: #4A1FB8; }
-      .sgds-steps .sgds-step-item.stepper__item--clickable:hover .sgds-step-details * {
+      .sgds.stepper .stepper-item.is-clickable:hover .stepper-detail > *,
+      .sgds.stepper .stepper-item.is-clickable:hover .stepper-detail {
         color: #4A1FB8;
         transition: all 0.5s ease; }
-    .sgds-steps .sgds-step-item::before {
+    .sgds.stepper .stepper-item::before {
       background: linear-gradient(to left, #D0D5DD 50%, #5925DC 50%);
       background-size: 200% 100%;
       background-position: right bottom; }
-      .sgds-steps .sgds-step-item::before .sgds-step-marker {
+      .sgds.stepper .stepper-item::before .stepper-marker {
         color: #fff; }
-    .sgds-steps .sgds-step-item.is-active::before {
+    .sgds.stepper .stepper-item.is-active::before {
       background-position: left bottom; }
-    .sgds-steps .sgds-step-item.is-active .sgds-step-marker {
+    .sgds.stepper .stepper-item.is-active .stepper-marker {
       background-color: #fff;
       border-color: #5925DC;
       color: #5925DC; }
-    .sgds-steps .sgds-step-item.is-completed::before {
+    .sgds.stepper .stepper-item.is-completed::before {
       background-position: left bottom; }
-    .sgds-steps .sgds-step-item.is-completed .sgds-step-marker {
+    .sgds.stepper .stepper-item.is-completed .stepper-marker {
       color: #fff;
       background-color: #5925DC;
       border-color: #5925DC; }
-    .sgds-steps .sgds-step-item .sgds-step-marker {
+    .sgds.stepper .stepper-item > .stepper-marker {
       align-items: center;
       display: flex;
       border-radius: 50%;
@@ -7093,70 +7142,62 @@ textarea.form-control-lg {
       color: #fff;
       border: 0.25rem solid #fff;
       z-index: 1; }
-    .sgds-steps .sgds-step-item .sgds-step-details {
+    .sgds.stepper .stepper-item > .stepper-detail {
       text-align: center; }
-  .sgds-steps .sgds-steps-content {
-    align-items: stretch;
-    flex-basis: 100%;
-    margin: 2rem 0; }
-    .sgds-steps .sgds-steps-content .step-content {
-      display: none; }
-      .sgds-steps .sgds-steps-content .step-content.is-active {
-        display: block; }
-  .sgds-steps .sgds-step-item:not(:first-child)::before {
+  .sgds.stepper .stepper-item:not(:first-child)::before {
     height: 0.25rem;
     width: 100%;
     bottom: 0;
     left: -50%;
     top: 1.125rem; }
-  .sgds-steps .sgds-step-item .sgds-step-marker {
+  .sgds.stepper .stepper-item .stepper-marker {
     height: calc(1.125rem * 2);
     width: calc(1.125rem * 2);
     position: absolute;
     left: calc(50% - 1.125rem); }
-    .sgds-steps .sgds-step-item .sgds-step-marker .icon * {
+    .sgds.stepper .stepper-item .stepper-marker .icon * {
       font-size: 1.125rem; }
-  .sgds-steps .sgds-step-item .sgds-step-details {
+  .sgds.stepper .stepper-item .stepper-detail {
     margin-top: calc(1.125rem * 2);
     margin-left: 0.5rem;
     margin-right: 0.5rem; }
-  .sgds-steps.is-small {
+  .sgds.stepper.is-small {
     font-size: 0.98438rem;
     min-height: calc(0.98438rem * 2rem); }
-    .sgds-steps.is-small .sgds-step-item:not(:first-child)::before {
+    .sgds.stepper.is-small .stepper-item:not(:first-child)::before {
       height: 0.25rem;
       width: 100%;
       bottom: 0;
       left: -50%;
       top: 0.98438rem; }
-    .sgds-steps.is-small .sgds-step-item .sgds-step-marker {
+    .sgds.stepper.is-small .stepper-item .stepper-marker {
       height: calc(0.98438rem * 2);
       width: calc(0.98438rem * 2);
       position: absolute;
       left: calc(50% - 0.98438rem); }
-      .sgds-steps.is-small .sgds-step-item .sgds-step-marker .icon * {
+      .sgds.stepper.is-small .stepper-item .stepper-marker .icon * {
         font-size: 0.98438rem; }
-    .sgds-steps.is-small .sgds-step-item .sgds-step-details {
+    .sgds.stepper.is-small .stepper-item .stepper-detail {
       margin-top: calc(0.98438rem * 2);
       margin-left: 0.5rem;
       margin-right: 0.5rem; }
-  .sgds-steps.is-large {
+  .sgds.stepper.is-large {
     font-size: 1.40625rem;
     min-height: calc(1.40625rem * 2rem); }
-    .sgds-steps.is-large .sgds-step-item:not(:first-child)::before {
+    .sgds.stepper.is-large .stepper-item:not(:first-child)::before {
       height: 0.25rem;
       width: 100%;
       bottom: 0;
       left: -50%;
       top: 1.40625rem; }
-    .sgds-steps.is-large .sgds-step-item .sgds-step-marker {
+    .sgds.stepper.is-large .stepper-item .stepper-marker {
       height: calc(1.40625rem * 2);
       width: calc(1.40625rem * 2);
       position: absolute;
       left: calc(50% - 1.40625rem); }
-      .sgds-steps.is-large .sgds-step-item .sgds-step-marker .icon * {
+      .sgds.stepper.is-large .stepper-item .stepper-marker .icon * {
         font-size: 1.40625rem; }
-    .sgds-steps.is-large .sgds-step-item .sgds-step-details {
+    .sgds.stepper.is-large .stepper-item .stepper-detail {
       margin-top: calc(1.40625rem * 2);
       margin-left: 0.5rem;
       margin-right: 0.5rem; }
