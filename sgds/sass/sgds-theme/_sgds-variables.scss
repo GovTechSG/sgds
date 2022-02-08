@@ -1266,23 +1266,27 @@ $placeholder-opacity-min:           .2 !default;
 // Cards
 
 // scss-docs-start card-variables
-$card-spacer-y:                     1.5rem !default;
-$card-spacer-x:                     1.5rem !default;
-$card-title-spacer-y:               $spacer * .5 !default;
-$card-border-width:                 $border-width !default;
-$card-border-color:                 $gray-400 !default;
-$card-border-radius:                $border-radius !default;
-$card-box-shadow:                   null !default;
-$card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
-$card-cap-padding-y:                $card-spacer-y * .5 !default;
-$card-cap-padding-x:                $card-spacer-x !default;
-$card-cap-bg:                       rgba($black, .03) !default;
-$card-cap-color:                    null !default;
-$card-height:                       null !default;
-$card-color:                        null !default;
-$card-bg:                           $white !default;
-$card-img-overlay-padding:          $spacer !default;
-$card-group-margin:                 $grid-gutter-width * .5 !default;
+$card-spacer-y:                   1.5rem !default;
+$card-spacer-x:                   1.5rem !default;
+$card-title-spacer-y:             $spacer * .5 !default;
+$card-border-width:               $border-width !default;
+$card-border-color:               $gray-400 !default;
+$card-border-radius:              $border-radius !default;
+$card-box-shadow:                 null !default;
+$card-inner-border-radius:        subtract($card-border-radius, $card-border-width) !default;
+$card-cap-padding-y:              $card-spacer-y * .5 !default;
+$card-cap-padding-x:              $card-spacer-x !default;
+$card-cap-bg:                     rgba($black, .03) !default;
+$card-cap-color:                  null !default;
+$card-height:                     null !default;
+$card-color:                      null !default;
+$card-bg:                         $white !default;
+$card-img-overlay-padding:        $spacer !default;
+$card-group-margin:               $grid-gutter-width * .5 !default;
+//Action card specific
+$card-transition-duration:        0.3s !default;
+$card-transition-timing-function: ease-in-out !default;
+$card-active-border:              inset 0px 0px 0px 2.1px $blue-600 !default;
 // scss-docs-end card-variables
 
 // Accordion

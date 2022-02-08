@@ -6973,7 +6973,7 @@ textarea.form-control-lg {
 .sgds.card[variant*="card-action"] {
   transition-property: box-shadow, border-color;
   transition-duration: 0.3s;
-  transition-timing-function: ease; }
+  transition-timing-function: ease-in-out; }
   .sgds.card[variant*="card-action"] .card-body {
     display: flex;
     justify-content: space-between;
@@ -6989,7 +6989,7 @@ textarea.form-control-lg {
       margin-top: 0; }
   .sgds.card[variant*="card-action"]:hover, .sgds.card[variant*="card-action"].is-active {
     border-color: transparent;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1), inset 0px 0px 0px 2.1px #0f71bb; }
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15), inset 0px 0px 0px 2.1px #0F71BB; }
   .sgds.card[variant*="card-action"] .form-check-input {
     min-width: 1.5rem;
     min-height: 1.5rem; }
