@@ -2,6 +2,39 @@
 title: Home
 layout: layout-playground
 ---
+<nav class="sgds navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="/assets/img/logo-sgds.svg" alt="Design System Logo" width="160"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown link
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 {% capture default-modal %}
 <div class="btn-group">
     <!-- Button trigger modal -->
@@ -61,19 +94,30 @@ layout: layout-playground
         <h4>Modal</h4>
         {{default-modal}}
     </div>
-    <div class="row">
+    <!-- <div class="row">
         {%- highlight html -%}{{default-modal}}{%- endhighlight -%}
+    </div> -->
+</div>
+<hr>
+
+<div class="container p-4">
+    <div class="row">
+        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
+            title="Tooltip on top" id="exampletooltip">
+            Tooltip on top
+        </button>
     </div>
 </div>
 <hr>
 <div class="container p-4">
     <div class="row">
         <h4>Dropdown</h4>
-        <div class="col-3">
+        <div class="col-5">
+            <label for="exampleInputEmail1" class="form-label">Your Vanity URL</label>
             <div class="sgds dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
+                    Dropdown button <i class="bi bi-chevron-down"></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="#">Action</a></li>
@@ -82,15 +126,6 @@ layout: layout-playground
                 </ul>
             </div>
         </div>
-    </div>
-</div>
-<hr>
-<div class="container p-4">
-    <div class="row">
-        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
-            title="Tooltip on top" id="exampletooltip">
-            Tooltip on top
-        </button>
     </div>
 </div>
 <hr>
@@ -121,7 +156,7 @@ layout: layout-playground
         <div class="col-6">
             <form>
                 <label for="exampleInputEmail1" class="form-label">Your Vanity URL</label>
-                <div class="input-group mb-3">
+                <div class="sgds input-group mb-3">
                     <input type="text" class="form-control" placeholder="Recipient's username"
                         aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <span class="input-group-text" id="basic-addon2">@example.com</span>
@@ -153,10 +188,32 @@ layout: layout-playground
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1">
                 </div>
-                <div class="input-group mb-3">
+                <div class="sgds input-group mb-3" variant="has-icon">
                     <span class="input-group-text" id="basic-addon1">+65</span>
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                        aria-describedby="basic-addon1">
+                    <div>
+                        <i class="bi bi-calendar3 form-control-icon"></i>
+                        <input type="text" class="form-control is-invalid" placeholder="Username" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                </div>
+
+                <div class="sgds input-group mb-3" variant="has-icon">
+                    <div>
+                        <i class="bi bi-calendar3 form-control-icon"></i>
+                        <input type="text" class="form-control is-valid" placeholder="Username" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                    <span class="input-group-text" id="basic-addon1">+65</span>
+                </div>
+
+                <div class="sgds input-group mb-3" variant="has-icon">
+                    <span class="input-group-text" id="basic-addon1">+65</span>
+                    <div>
+                        <i class="bi bi-calendar3 form-control-icon"></i>
+                        <input type="text" class="form-control is-valid" placeholder="Username" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                    <span class="input-group-text" id="basic-addon1">+65</span>
                 </div>
 
                 <div class="input-group mb-3">
@@ -447,12 +504,10 @@ layout: layout-playground
                             <h6 class="card-subtitle text-muted">Unit Price/ month</h6>
                             <h6 class="card-subtitle mt-2">$1,000,000</h6>
                         </div>
-                        <div class="input-group">
-                            <button type="button" class="btn btn-primary btn-sm sgds"><i
-                                    class="bi bi-dash"></i></button>
+                        <div class="input-group input-group-sm">
+                            <button type="button" class="btn btn-primary sgds"><i class="bi bi-dash"></i></button>
                             <input name="quantity" type="number" class="form-control text-center" value="100">
-                            <button type="button" class="btn btn-primary btn-sm sgds"><i
-                                    class="bi bi-plus"></i></button>
+                            <button type="button" class="btn btn-primary sgds"><i class="bi bi-plus"></i></button>
                         </div>
                     </div>
                 </div>

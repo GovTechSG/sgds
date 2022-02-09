@@ -1,78 +1,28 @@
 .sgds {
-  .dropdown-toggle {
-    display: flex;
-    min-width: auto;
-    padding: 7px 15px;
-    height: 48px;
-    line-height: 30px;
-    background-color: #fff;
-    text-align: left;
-    color: $dark;
-    border-color: $gray-600;
-
-    &.btn:hover,
-    &.btn:focus,
-    &.btn:active,
-    &.btn.active {
-      outline: 1px solid $blue-600;
-      box-shadow: none;
-      border-color: $blue-600;
-      color: $dark;
-    }
-
-    &::after {
-      // disable: caret is not an icon, but a border with properties
-      border: none;
-
-      // set the new icon as desired
-      flex-shrink: 0;
-      position: relative;
-      top: 6px;
-      width: $accordion-icon-width;
-      height: $accordion-icon-width;
-      content: "";
-      background-image: escape-svg($accordion-button-icon);
-      background-repeat: no-repeat;
-      background-size: $accordion-icon-width;
-    }
-  }
-}
-
-.sgds {
-  .dropdown-menu {
-    position: relative;
-    padding: 0;
-    @include border-radius(0);
-  }
-}
-
-.sgds {
-  .dropdown-item {
-    height: 64px;
-    line-height: 32px;
-    padding: 16px;
-
-    // Prevent dropdown overflow if there's no padding
-    // See https://github.com/twbs/bootstrap/pull/27703
-    @if $dropdown-padding-y == 0 {
-      &:first-child {
-        @include border-top-radius(0);
-      }
-
-      &:last-child {
-        @include border-bottom-radius(0);
+  &.dropdown{
+    .dropdown-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      &::after {
+        // disable: caret is not an icon, but a border with properties
+        content: none;
       }
     }
-
-    &:hover,
-    &:focus {
-      color: $white;
-      @include gradient-bg($blue-600);
-    }
-
-    &.active,
-    &:active {
-      @include gradient-bg($blue-600);
+    .dropdown-menu{
+      border: 1px solid $border-color;
+      padding: 0;
+      li{
+        a.dropdown-item{
+          padding: 1rem;
+          &:hover,
+          &.active{
+            background-color: $blue-600;
+            color: $white;
+          }
+        }
+      }
     }
   }
 }

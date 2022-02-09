@@ -28,6 +28,23 @@
         border-radius: $input-border-radius !important;
         padding-left: 3rem;
       }
+
+      > div{
+        flex-grow: 1;
+        > input.form-control{
+          border-radius: 5px 0 0 5px !important;
+        }
+        &:not(:first-child){
+          > input.form-control{
+            border-radius: 0px 5px 5px 0px !important;
+          }
+        }
+        &:not(:first-child):not(:last-child){
+          > input.form-control{
+            border-radius: 0px !important;
+          }
+        }
+      }
     }
 
     .form-control-icon {
