@@ -30,7 +30,8 @@
       }
 
       > div{
-        flex-grow: 1;
+        flex: 1 1 auto;
+        width: 1%;
         > input.form-control{
           border-radius: 5px 0 0 5px !important;
         }
