@@ -91,560 +91,646 @@ layout: layout-playground
 
 <div class="container p-4">
     <div class="row">
-        <h4>Modal</h4>
-        {{default-modal}}
+        <h4>Toast</h4>
+        <div class="col">
+            <div class="toast-container">
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="bi bi-boombox me-2"></i>
+                        <strong class="me-auto">Bootstrap Toast</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        class="toast"
+                    </div>
+                </div>
+                <div class="sgds toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="bi bi-boombox me-2"></i>
+                        <strong class="me-auto">Default</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        class="sgds toast"
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="toast-container">
+                <div class="sgds toast show is-warning" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="bi bi-boombox me-2"></i>
+                        <strong class="me-auto">Warning</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        class="sgds toast is-warning"
+                    </div>
+                </div>
+                <div class="sgds toast show is-danger" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="bi bi-boombox me-2"></i>
+                        <strong class="me-auto">Danger</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        class="sgds toast is-danger"
+                    </div>
+                </div>
+                <div class="sgds toast show is-success" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="bi bi-boombox me-2"></i>
+                        <strong class="me-auto">Success</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        class="sgds toast is-success"
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <!-- <div class="row">
+    <hr>
+
+    <div class="container p-4">
+        <div class="row">
+            <h4>Modal</h4>
+            {{default-modal}}
+        </div>
+        <!-- <div class="row">
         {%- highlight html -%}{{default-modal}}{%- endhighlight -%}
     </div> -->
-</div>
-<hr>
-
-<div class="container p-4">
-    <div class="row">
-        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
-            title="Tooltip on top" id="exampletooltip">
-            Tooltip on top
-        </button>
     </div>
-</div>
-<hr>
-<div class="container p-4">
-    <div class="row">
-        <h4>Dropdown</h4>
-        <div class="col-5">
-            <label for="exampleInputEmail1" class="form-label">Your Vanity URL</label>
-            <div class="sgds dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button <i class="bi bi-chevron-down"></i>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-            </div>
+    <hr>
+
+    <div class="container p-4">
+        <div class="row">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Tooltip on top" id="exampletooltip">
+                Tooltip on top
+            </button>
         </div>
     </div>
-</div>
-<hr>
-<div class="container p-4">
-    <div class="row">
-        <h4>button</h4>
-        <div class="col-3">
-            <a class="sgds btn btn-primary">Button</a>
-            <button class="sgds btn btn-primary">Button</button>
-            <button class="sgds btn btn-secondary">Button</button>
-            <button class="sgds btn btn-warning">Button</button>
-
-
-        </div>
-        <div class="col-3">
-            <button class="sgds btn btn-success">Button</button>
-            <button class="sgds btn btn-danger">Button</button>
-            <button class="sgds btn btn-info">Button</button>
-        </div>
-    </div>
-</div>
-
-<hr>
-
-<div class="container mt-4">
-    <div class="row">
-        <h4>Form</h4>
-        <div class="col-6">
-            <form>
+    <hr>
+    <div class="container p-4">
+        <div class="row">
+            <h4>Dropdown</h4>
+            <div class="col-5">
                 <label for="exampleInputEmail1" class="form-label">Your Vanity URL</label>
-                <div class="sgds input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Recipient's username"
-                        aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    <span class="input-group-text" id="basic-addon2">@example.com</span>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="exampleFormControlTextarea1">Example textarea</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <div id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
-                    </div>
-                    <input type="email" class="form-control is-valid" id="exampleInputEmail1"
-                        aria-describedby="emailHelp">
-
-                </div>
-                <div class="mb-3">
-                    <!-- input starts here -->
-                    <label for="exampleFormControlInput1" class="form-label">Label</label>
-                    <!-- add variant attribute to input-group wrapper -->
-                    <div class="sgds input-group" variant="has-icon">
-                        <i class="bi bi-calendar3 form-control-icon"></i>
-                        <input type="email" class=" form-control is-invalid" id="exampleFormControlInput1"
-                            placeholder="John Doe">
-                    </div>
-                    <div class="valid-feedback">Looks good!</div>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <div class="sgds input-group mb-3" variant="has-icon">
-                    <span class="input-group-text" id="basic-addon1">+65</span>
-                    <div>
-                        <i class="bi bi-calendar3 form-control-icon"></i>
-                        <input type="text" class="form-control is-invalid" placeholder="Username" aria-label="Username"
-                            aria-describedby="basic-addon1">
-                    </div>
-                </div>
-
-                <div class="sgds input-group mb-3" variant="has-icon">
-                    <div>
-                        <i class="bi bi-calendar3 form-control-icon"></i>
-                        <input type="text" class="form-control is-valid" placeholder="Username" aria-label="Username"
-                            aria-describedby="basic-addon1">
-                    </div>
-                    <span class="input-group-text" id="basic-addon1">+65</span>
-                </div>
-
-                <div class="sgds input-group mb-3" variant="has-icon">
-                    <span class="input-group-text" id="basic-addon1">+65</span>
-                    <div>
-                        <i class="bi bi-calendar3 form-control-icon"></i>
-                        <input type="text" class="form-control is-valid" placeholder="Username" aria-label="Username"
-                            aria-describedby="basic-addon1">
-                    </div>
-                    <span class="input-group-text" id="basic-addon1">+65</span>
-                </div>
-
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control w-75" placeholder="Username" aria-label="Username"
-                        aria-describedby="basic-addon1">
-                    <select class="form-select" id="inputGroupSelect01">
-                        <option selected value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                    </select>
-                </div>
-
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <div class="mb-3 form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Default radio
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
-</div>
-<hr>
-
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-12">
-            <h4>Card</h4>
-        </div>
-        <div class="col-4">
-            <div class="sgds card">
-                <div class="card-body">
-                    <h3 class="card-title">Lorem, ipsum.</h3>
-                    <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis ex dolore,
-                        enim ab sed harum unde earum perferendis laboriosam illo ea error esse corporis iusto ratione
-                        odit incidunt, ad voluptatum!</p>
-                    <a href="">Link</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="sgds card">
-                <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h3 class="card-title">Lorem, ipsum.</h3>
-                    <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis ex dolore,
-                        enim ab sed harum unde earum perferendis laboriosam illo ea error esse corporis iusto ratione
-                        odit incidunt, ad voluptatum!</p>
-                    <a href="">Link</a>
+                <div class="sgds dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown button <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<hr>
+    <hr>
+    <div class="container p-4">
+        <div class="row">
+            <h4>button</h4>
+            <div class="col-3">
+                <a class="sgds btn btn-primary">Button</a>
+                <button class="sgds btn btn-primary">Button</button>
+                <button class="sgds btn btn-secondary">Button</button>
+                <button class="sgds btn btn-warning">Button</button>
 
-<div class="container p-4">
-    <div class="row">
-        <div class="col">
-            <h4>Accordion</h4>
-            <div class="mt-4">
-                <div class="sgds accordion" id="accordionExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Accordion Item #1
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                                the
-                                collapse plugin adds the appropriate classes that we use to style each element. These
-                                classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default
-                                variables.
-                                It's also worth noting that just about any HTML can go within the
-                                <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
+
+            </div>
+            <div class="col-3">
+                <button class="sgds btn btn-success">Button</button>
+                <button class="sgds btn btn-danger">Button</button>
+                <button class="sgds btn btn-info">Button</button>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container mt-4">
+        <div class="row">
+            <h4>Form</h4>
+            <div class="col-6">
+                <form>
+                    <label for="exampleInputEmail1" class="form-label">Your Vanity URL</label>
+                    <div class="sgds input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Recipient's username"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <span class="input-group-text" id="basic-addon2">@example.com</span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleFormControlTextarea1">Example textarea</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <div id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
                         </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Accordion Item #2
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                                until
-                                the collapse plugin adds the appropriate classes that we use to style each element.
-                                These
-                                classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default
-                                variables.
-                                It's also worth noting that just about any HTML can go within the
-                                <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Accordion Item #3
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until
-                                the
-                                collapse plugin adds the appropriate classes that we use to style each element. These
-                                classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default
-                                variables.
-                                It's also worth noting that just about any HTML can go within the
-                                <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<hr>
-<div class="container p-4">
-    <div class="row">
-        <h4>Alerts</h4>
-        <div class="col-4">
-            <div class="sgds alert alert-primary d-flex align-items-center alert-dismissible fade show" role="alert">
-                <i class="bi bi-info-circle flex-shrink-0 me-4"></i>
-                <div><strong>Holy guacamole!</strong> You should check in on some of those fields below.</div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <i class="bi bi-x-lg"></i>
-                </button>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="sgds alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-                <i class="bi bi-info-circle flex-shrink-0 me-4"></i>
-                <div><strong>Holy guacamole!</strong> You should check in on some of those fields below.</div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <i class="bi bi-x-lg"></i>
-                </button>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="sgds alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
-                <i class="bi bi-info-circle flex-shrink-0 me-4"></i>
-                <div><strong>Holy guacamole!</strong> You should check in on some of those fields below.</div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <i class="bi bi-x-lg"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-<hr>
-<div class="container p-4">
-    <div class="row">
-        <div class="col">
-            <nav aria-label="...">
-                <ul class="sgds pagination">
-                    <li class="page-item disabled">
-                        <span class="page-link">Previous</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">2</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div>
-<hr>
-<div class="container p-4">
-    <div class="row">
-        <div class="col">
-            <div class="sgds stepper">
-                <div class="stepper-item is-clickable is-completed">
-                    <div class="stepper-marker">1</div>
-                    <div class="stepper-detail">
-                        <p><b>Personal Details</b></p>
-                    </div>
-                </div>
-                <div class="stepper-item is-completed is-clickable">
-                    <div class="stepper-marker">2</div>
-                    <div class="stepper-detail">
-                        <p><b>Address and Contact Information</b></p>
-                    </div>
-                </div>
-                <div class="stepper-item is-active">
-                    <div class="stepper-marker">3</div>
-                    <div class="stepper-detail">
-                        <p><b>Configuration</b></p>
-                    </div>
-                </div>
-                <div class="stepper-item">
-                    <div class="stepper-marker">4</div>
-                    <div class="stepper-detail">
-                        <p><b>Review</b></p>
-                    </div>
-                </div>
-                <div class="stepper-item">
-                    <div class="stepper-marker">5</div>
-                    <div class="stepper-detail">
-                        <p><b>Configuration</b></p>
-                    </div>
-                </div>
-                <div class="stepper-item">
-                    <div class="stepper-marker">6</div>
-                    <div class="stepper-detail">
-                        <p><b>Review</b></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        <input type="email" class="form-control is-valid" id="exampleInputEmail1"
+                            aria-describedby="emailHelp">
 
-<hr>
-<div class="container p-4">
-    <div class="row">
-        <div class="col">
-            <table class="sgds table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<hr>
-<div class="container p-4">
-    <div class="row">
-        <div class="col">
-            <div class="sgds card" variant="card-action-quantity-toggle">
-                <div class="card-body">
-                    <div>
-                        <h5 class="card-title fw-bold">Checkbox Card</h5>
-                        <button class="btn btn-close text-danger"></button>
                     </div>
-                    <div>
-                        <div class="card-unit">
-                            <h6 class="card-subtitle text-muted">Unit Price/ month</h6>
-                            <h6 class="card-subtitle mt-2">$1,000,000</h6>
+                    <div class="mb-3">
+                        <!-- input starts here -->
+                        <label for="exampleFormControlInput1" class="form-label">Label</label>
+                        <!-- add variant attribute to input-group wrapper -->
+                        <div class="sgds input-group" variant="has-icon">
+                            <i class="bi bi-calendar3 form-control-icon"></i>
+                            <input type="email" class=" form-control is-invalid" id="exampleFormControlInput1"
+                                placeholder="John Doe">
                         </div>
-                        <div class="input-group input-group-sm">
-                            <button type="button" class="btn btn-primary sgds"><i class="bi bi-dash"></i></button>
-                            <input name="quantity" type="number" class="form-control text-center" value="100">
-                            <button type="button" class="btn btn-primary sgds"><i class="bi bi-plus"></i></button>
-                        </div>
+                        <div class="valid-feedback">Looks good!</div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="input-group">
-                <button type="button" class="btn btn-primary btn-sm sgds"><i class="bi bi-dash"></i></button>
-                <input name="quantity" type="number" class="form-control text-center" value="100">
-                <button type="button" class="btn btn-primary btn-sm sgds"><i class="bi bi-plus"></i></button>
-            </div>
-        </div>
-        <div class="row pt-4">
-            <div class="col">
-                <div class="sgds card is-active" variant="card-action">
-                    <div class="card-body">
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="sgds input-group mb-3" variant="has-icon">
+                        <span class="input-group-text" id="basic-addon1">+65</span>
                         <div>
-                            <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Icon title</h6>
-                            <h5 class="card-title fw-bold">Checkbox Card [Active Card]</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
+                            <i class="bi bi-calendar3 form-control-icon"></i>
+                            <input type="text" class="form-control is-invalid" placeholder="Username"
+                                aria-label="Username" aria-describedby="basic-addon1">
                         </div>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                     </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="sgds card" variant="card-action">
-                    <div class="card-body">
+
+                    <div class="sgds input-group mb-3" variant="has-icon">
                         <div>
-                            <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Icon title</h6>
-                            <h5 class="card-title fw-bold">Radio Button Card</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
+                            <i class="bi bi-calendar3 form-control-icon"></i>
+                            <input type="text" class="form-control is-valid" placeholder="Username"
+                                aria-label="Username" aria-describedby="basic-addon1">
                         </div>
+                        <span class="input-group-text" id="basic-addon1">+65</span>
+                    </div>
+
+                    <div class="sgds input-group mb-3" variant="has-icon">
+                        <span class="input-group-text" id="basic-addon1">+65</span>
+                        <div>
+                            <i class="bi bi-calendar3 form-control-icon"></i>
+                            <input type="text" class="form-control is-valid" placeholder="Username"
+                                aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <span class="input-group-text" id="basic-addon1">+65</span>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control w-75" placeholder="Username" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                        <select class="form-select" id="inputGroupSelect01">
+                            <option selected value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Four</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <div class="mb-3 form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Default radio
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h4>Card</h4>
+            </div>
+            <div class="col-4">
+                <div class="sgds card">
+                    <div class="card-body">
+                        <h3 class="card-title">Lorem, ipsum.</h3>
+                        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis ex
+                            dolore,
+                            enim ab sed harum unde earum perferendis laboriosam illo ea error esse corporis iusto
+                            ratione
+                            odit incidunt, ad voluptatum!</p>
+                        <a href="">Link</a>
                     </div>
                 </div>
             </div>
+            <div class="col-4">
+                <div class="sgds card">
+                    <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">Lorem, ipsum.</h3>
+                        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis ex
+                            dolore,
+                            enim ab sed harum unde earum perferendis laboriosam illo ea error esse corporis iusto
+                            ratione
+                            odit incidunt, ad voluptatum!</p>
+                        <a href="">Link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="container p-4">
+        <div class="row">
             <div class="col">
-                <div class="sgds card" variant="card-action">
+                <h4>Accordion</h4>
+                <div class="mt-4">
+                    <div class="sgds accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Accordion Item #1
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the first item's accordion body.</strong> It is shown by default,
+                                    until
+                                    the
+                                    collapse plugin adds the appropriate classes that we use to style each element.
+                                    These
+                                    classes control the overall appearance, as well as the showing and hiding via CSS
+                                    transitions. You can modify any of this with custom CSS or overriding our default
+                                    variables.
+                                    It's also worth noting that just about any HTML can go within the
+                                    <code>.accordion-body</code>, though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Accordion Item #2
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the second item's accordion body.</strong> It is hidden by default,
+                                    until
+                                    the collapse plugin adds the appropriate classes that we use to style each element.
+                                    These
+                                    classes control the overall appearance, as well as the showing and hiding via CSS
+                                    transitions. You can modify any of this with custom CSS or overriding our default
+                                    variables.
+                                    It's also worth noting that just about any HTML can go within the
+                                    <code>.accordion-body</code>, though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Accordion Item #3
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
+                                    until
+                                    the
+                                    collapse plugin adds the appropriate classes that we use to style each element.
+                                    These
+                                    classes control the overall appearance, as well as the showing and hiding via CSS
+                                    transitions. You can modify any of this with custom CSS or overriding our default
+                                    variables.
+                                    It's also worth noting that just about any HTML can go within the
+                                    <code>.accordion-body</code>, though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container p-4">
+        <div class="row">
+            <h4>Alerts</h4>
+            <div class="col-4">
+                <div class="sgds alert alert-primary d-flex align-items-center alert-dismissible fade show"
+                    role="alert">
+                    <i class="bi bi-info-circle flex-shrink-0 me-4"></i>
+                    <div><strong>Holy guacamole!</strong> You should check in on some of those fields below.</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="sgds alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
+                    <i class="bi bi-info-circle flex-shrink-0 me-4"></i>
+                    <div><strong>Holy guacamole!</strong> You should check in on some of those fields below.</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="sgds alert alert-success d-flex align-items-center alert-dismissible fade show"
+                    role="alert">
+                    <i class="bi bi-info-circle flex-shrink-0 me-4"></i>
+                    <div><strong>Holy guacamole!</strong> You should check in on some of those fields below.</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container p-4">
+        <div class="row">
+            <div class="col">
+                <nav aria-label="...">
+                    <ul class="sgds pagination">
+                        <li class="page-item disabled">
+                            <span class="page-link">Previous</span>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">2</span>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container p-4">
+        <div class="row">
+            <div class="col">
+                <div class="sgds stepper">
+                    <div class="stepper-item is-clickable is-completed">
+                        <div class="stepper-marker">1</div>
+                        <div class="stepper-detail">
+                            <p><b>Personal Details</b></p>
+                        </div>
+                    </div>
+                    <div class="stepper-item is-completed is-clickable">
+                        <div class="stepper-marker">2</div>
+                        <div class="stepper-detail">
+                            <p><b>Address and Contact Information</b></p>
+                        </div>
+                    </div>
+                    <div class="stepper-item is-active">
+                        <div class="stepper-marker">3</div>
+                        <div class="stepper-detail">
+                            <p><b>Configuration</b></p>
+                        </div>
+                    </div>
+                    <div class="stepper-item">
+                        <div class="stepper-marker">4</div>
+                        <div class="stepper-detail">
+                            <p><b>Review</b></p>
+                        </div>
+                    </div>
+                    <div class="stepper-item">
+                        <div class="stepper-marker">5</div>
+                        <div class="stepper-detail">
+                            <p><b>Configuration</b></p>
+                        </div>
+                    </div>
+                    <div class="stepper-item">
+                        <div class="stepper-marker">6</div>
+                        <div class="stepper-detail">
+                            <p><b>Review</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="container p-4">
+        <div class="row">
+            <div class="col">
+                <table class="sgds table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container p-4">
+        <div class="row">
+            <div class="col">
+                <div class="sgds card" variant="card-action-quantity-toggle">
                     <div class="card-body">
                         <div>
-                            <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Icon title</h6>
                             <h5 class="card-title fw-bold">Checkbox Card</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
+                            <button class="btn btn-close text-danger"></button>
                         </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row pt-4">
-            <div class="col">
-                <div class="sgds card" variant="card-action">
-                    <div class="card-body">
                         <div>
-                            <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Checkbox Card</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
+                            <div class="card-unit">
+                                <h6 class="card-subtitle text-muted">Unit Price/ month</h6>
+                                <h6 class="card-subtitle mt-2">$1,000,000</h6>
+                            </div>
+                            <div class="input-group input-group-sm">
+                                <button type="button" class="btn btn-primary sgds"><i class="bi bi-dash"></i></button>
+                                <input name="quantity" type="number" class="form-control text-center" value="100">
+                                <button type="button" class="btn btn-primary sgds"><i class="bi bi-plus"></i></button>
+                            </div>
                         </div>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                     </div>
                 </div>
             </div>
             <div class="col">
-                <div class="sgds card" variant="card-action">
-                    <div class="card-body">
-                        <div>
-                            <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Radio Button Card</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
-                        </div>
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    </div>
+                <div class="input-group">
+                    <button type="button" class="btn btn-primary btn-sm sgds"><i class="bi bi-dash"></i></button>
+                    <input name="quantity" type="number" class="form-control text-center" value="100">
+                    <button type="button" class="btn btn-primary btn-sm sgds"><i class="bi bi-plus"></i></button>
                 </div>
             </div>
-            <div class="col">
-                <div class="sgds card" variant="card-action">
-                    <div class="card-body">
-                        <div>
-                            <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Checkbox Card</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
-                        </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <div class="row pt-4">
+                <div class="col">
+                    <div class="sgds card is-active" variant="card-action">
+                        <div class="card-body">
+                            <div>
+                                <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Icon title</h6>
+                                <h5 class="card-title fw-bold">Checkbox Card [Active Card]</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of
+                                    the card's content.</p>
+                            </div>
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row pt-4">
-            <div class="col col-4">
-                <div class="sgds card" variant="card-action">
-                    <div class="card-body">
-                        <div>
-                            <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Long title Lorem ipsum dolor sit
-                                amet
-                                consectetur adipisicing elit. Architecto, aut?</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
+                <div class="col">
+                    <div class="sgds card" variant="card-action">
+                        <div class="card-body">
+                            <div>
+                                <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Icon title</h6>
+                                <h5 class="card-title fw-bold">Radio Button Card</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of
+                                    the card's content.</p>
+                            </div>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                         </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="sgds card" variant="card-action">
+                        <div class="card-body">
+                            <div>
+                                <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Icon title</h6>
+                                <h5 class="card-title fw-bold">Checkbox Card</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of
+                                    the card's content.</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col">
+                    <div class="sgds card" variant="card-action">
+                        <div class="card-body">
+                            <div>
+                                <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Checkbox Card</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of
+                                    the card's content.</p>
+                            </div>
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="sgds card" variant="card-action">
+                        <div class="card-body">
+                            <div>
+                                <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Radio Button Card</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of
+                                    the card's content.</p>
+                            </div>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="sgds card" variant="card-action">
+                        <div class="card-body">
+                            <div>
+                                <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Checkbox Card</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of
+                                    the card's content.</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col col-4">
+                    <div class="sgds card" variant="card-action">
+                        <div class="card-body">
+                            <div>
+                                <h5 class="card-title fw-bold"><i class="bi bi-box"></i>Long title Lorem ipsum dolor sit
+                                    amet
+                                    consectetur adipisicing elit. Architecto, aut?</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of
+                                    the card's content.</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<style>
-    p {
-        font-size: 18px;
-        line-height: 1.7;
-    }
+    <style>
+        p {
+            font-size: 18px;
+            line-height: 1.7;
+        }
 
-    h3 {
-        font-weight: bold;
-        font-size: 2rem;
-        line-height: 1.5;
-    }
+        h3 {
+            font-weight: bold;
+            font-size: 2rem;
+            line-height: 1.5;
+        }
 
-    .highlight {
-        padding: 1rem;
-    }
-</style>
+        .highlight {
+            padding: 1rem;
+        }
+    </style>
