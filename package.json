@@ -12,7 +12,6 @@
   "files": [
     "css",
     "fonts",
-    "js",
     "sgds/sass"
   ],
   "scripts": {
