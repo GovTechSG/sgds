@@ -2,6 +2,7 @@
     &.sidenav {
         width: $sidenav-width;
         font-size: $sidenav-fontsize;
+        @include list-unstyled;
 
         .sidenav-item {
             +.sidenav-item {
