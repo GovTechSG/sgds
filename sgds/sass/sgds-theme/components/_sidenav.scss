@@ -1,0 +1,76 @@
+.sgds {
+    &.sidenav {
+        width: $sidenav-width;
+        font-size: $sidenav-fontsize;
+
+        .sidenav-item {
+            +.sidenav-item {
+                margin-top: $sidenav-item-spacing;
+            }
+
+            .sgds.btn {
+                color: $primary;
+                font-size: inherit;
+                font-weight: bold;
+                line-height: 1.5;
+                width: 100%;
+                text-align: initial;
+
+                display: flex;
+                justify-content: space-between;
+                gap: 1rem;
+
+                border: 0;
+                background: 0;
+                padding-top: $sidenav-btn-padding-x;
+                padding-bottom: $sidenav-btn-padding-y;
+                padding-left: 1rem;
+                border-left: $sidenav-btn-border-width solid $primary;
+                border-radius: 0;
+
+                >i {
+                    transition: $transition-collapse;
+                    transform: rotate(180deg);
+                }
+
+                &.collapsed,
+                &.inactive {
+                    color: inherit;
+                    border-color: transparent;
+
+                    i {
+                        transform: rotate(0deg);
+                    }
+                }
+
+                &:hover {
+                    color: $primary;
+                }
+            }
+
+            .collapse,
+            .collapse.show,
+            .collapsing {
+                margin-top: $sidenav-item-spacing;
+
+                ul li a.nav-link {
+                    color: inherit;
+                    font-size: inherit;
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
+                    padding-left: calc(#{$sidenav-item-spacing * 4} + #{$sidenav-btn-border-width});
+                    padding-right: 0;
+
+                    +a.nav-link {
+                        margin-top: $sidenav-item-spacing;
+                    }
+
+                    &:active,
+                    &:hover {
+                        color: $primary;
+                    }
+                }
+            }
+        }
+    }
+}
