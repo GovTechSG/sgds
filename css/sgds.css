@@ -4571,6 +4571,64 @@ textarea.form-control-lg {
 .sgds.modal button.btn-close {
   font-size: 0.75rem; }
 
+.sgds.sidenav {
+  width: 20rem;
+  font-size: 1rem;
+  padding-left: 0;
+  list-style: none; }
+  .sgds.sidenav .sidenav-item + .sidenav-item {
+    margin-top: 0.5rem; }
+  .sgds.sidenav .sidenav-item .sgds.btn {
+    color: #5925DC;
+    font-size: inherit;
+    font-weight: bold;
+    line-height: 1.5;
+    width: 100%;
+    text-align: initial;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 0;
+    background: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    border-left: 0.25rem solid #5925DC;
+    border-radius: 0; }
+    .sgds.sidenav .sidenav-item .sgds.btn > i {
+      transition: height 0.35s ease;
+      transform: rotate(180deg); }
+    .sgds.sidenav .sidenav-item .sgds.btn.collapsed, .sgds.sidenav .sidenav-item .sgds.btn.inactive {
+      color: inherit;
+      border-color: transparent; }
+      .sgds.sidenav .sidenav-item .sgds.btn.collapsed i, .sgds.sidenav .sidenav-item .sgds.btn.inactive i {
+        transform: rotate(0deg); }
+    .sgds.sidenav .sidenav-item .sgds.btn:hover {
+      color: #5925DC; }
+  .sgds.sidenav .sidenav-item .collapse,
+  .sgds.sidenav .sidenav-item .collapse.show,
+  .sgds.sidenav .sidenav-item .collapsing {
+    margin-top: 0.5rem; }
+    .sgds.sidenav .sidenav-item .collapse a.nav-link,
+    .sgds.sidenav .sidenav-item .collapse.show a.nav-link,
+    .sgds.sidenav .sidenav-item .collapsing a.nav-link {
+      color: inherit;
+      font-size: inherit;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-left: calc(2rem + 0.25rem);
+      padding-right: 0; }
+      .sgds.sidenav .sidenav-item .collapse a.nav-link + a.nav-link,
+      .sgds.sidenav .sidenav-item .collapse.show a.nav-link + a.nav-link,
+      .sgds.sidenav .sidenav-item .collapsing a.nav-link + a.nav-link {
+        margin-top: 0.5rem; }
+      .sgds.sidenav .sidenav-item .collapse a.nav-link:active, .sgds.sidenav .sidenav-item .collapse a.nav-link:hover,
+      .sgds.sidenav .sidenav-item .collapse.show a.nav-link:active,
+      .sgds.sidenav .sidenav-item .collapse.show a.nav-link:hover,
+      .sgds.sidenav .sidenav-item .collapsing a.nav-link:active,
+      .sgds.sidenav .sidenav-item .collapsing a.nav-link:hover {
+        color: #5925DC; }
+
 .sgds.stepper {
   display: flex;
   flex-wrap: wrap;

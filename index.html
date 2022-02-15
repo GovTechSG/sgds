@@ -88,6 +88,101 @@ layout: layout-playground
     </div>
 </div>
 {% endcapture %}
+<div class="container p-4">
+    <div class="row">
+        <h4>Sidenav</h4>
+        <div class="col">
+            <nav class="sidenav sgds list-unstyled" class="sidenav">
+                <h5>Collapse 1 at a time</h5>
+                <li class="sidenav-item">
+                    <a type="button" class="sgds btn inactive">
+                        1 level item
+                    </a>
+                </li>
+                <li class="sidenav-item">
+                    <button class="sgds btn collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquet faucibus dui scelerisque
+                        ornare. Suspendisse iaculis diam quis mauris venenatis. <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="collapse" id="collapseExample1" data-bs-parent=".sidenav">
+                        <ul class="list-unstyled">
+                            <li><a href="https://icons.getbootstrap.com/" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Etiam aliquet faucibus dui scelerisque ornare. Suspendisse iaculis diam quis mauris
+                                    venenatis.</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidenav-item">
+                    <button class="sgds btn collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+                        Accordion Item #2 <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="collapse" id="collapseExample2" data-bs-parent=".sidenav">
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                        </ul>
+
+                    </div>
+                </li>
+                <li class="sidenav-item">
+                    <a type="button" class="sgds btn inactive">
+                        1 level item
+                    </a>
+                </li>
+            </nav>
+        </div>
+        <div class="col">
+            <nav class="sidenav sgds list-unstyled" class="sidenav2">
+                <h5>Open sub menu</h5>
+                <li class="sidenav-item">
+                    <a type="button" class="sgds btn inactive">
+                        1 level item
+                    </a>
+                </li>
+                <li class="sidenav-item">
+                    <button class="sgds btn " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3"
+                        aria-expanded="false" aria-controls="collapseExample3">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquet faucibus dui scelerisque
+                        ornare. Suspendisse iaculis diam quis mauris venenatis. <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="collapse show" id="collapseExample3">
+                        <ul class="list-unstyled">
+                            <li><a href="https://icons.getbootstrap.com/" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Etiam aliquet faucibus dui scelerisque ornare. Suspendisse iaculis diam quis mauris
+                                    venenatis.</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidenav-item">
+                    <button class="sgds btn collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample4">
+                        Accordion Item #2 <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="collapse" id="collapseExample4">
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                        </ul>
+
+                    </div>
+                </li>
+                <li class="sidenav-item">
+                    <a type="button" class="sgds btn inactive">
+                        1 level item
+                    </a>
+                </li>
+            </nav>
+        </div>
+    </div>
+</div>
 
 <div class="container p-4">
     <div class="row">
