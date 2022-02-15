@@ -4604,7 +4604,8 @@ textarea.form-control-lg {
       .sgds.sidenav .sidenav-item .sgds.btn.collapsed i, .sgds.sidenav .sidenav-item .sgds.btn.inactive i {
         transform: rotate(0deg); }
     .sgds.sidenav .sidenav-item .sgds.btn:hover {
-      color: #5925DC; }
+      color: #5925DC;
+      border-left-color: #5925DC; }
   .sgds.sidenav .sidenav-item .collapse,
   .sgds.sidenav .sidenav-item .collapse.show,
   .sgds.sidenav .sidenav-item .collapsing {
@@ -4628,6 +4629,10 @@ textarea.form-control-lg {
       .sgds.sidenav .sidenav-item .collapsing a.nav-link:active,
       .sgds.sidenav .sidenav-item .collapsing a.nav-link:hover {
         color: #5925DC; }
+      .sgds.sidenav .sidenav-item .collapse a.nav-link.disabled,
+      .sgds.sidenav .sidenav-item .collapse.show a.nav-link.disabled,
+      .sgds.sidenav .sidenav-item .collapsing a.nav-link.disabled {
+        color: #344054; }
 
 .sgds.stepper {
   display: flex;
