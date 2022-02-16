@@ -10,7 +10,7 @@
             }
 
             .sgds.btn {
-                color: $primary;
+                color: $sidenav-color;
                 font-size: inherit;
                 font-weight: bold;
                 line-height: 1.5;
@@ -18,7 +18,7 @@
                 text-align: initial;
 
                 display: flex;
-                justify-content: space-between;
+                align-items: center;
                 gap: 1rem;
 
                 border: 0;
@@ -26,12 +26,15 @@
                 padding-top: $sidenav-btn-padding-x;
                 padding-bottom: $sidenav-btn-padding-y;
                 padding-left: 1rem;
-                border-left: $sidenav-btn-border-width solid $primary;
+                border-left: $sidenav-btn-border-width solid $sidenav-color;
                 border-radius: 0;
 
-                >i {
-                    transition: $transition-collapse;
-                    transform: rotate(180deg);
+                i {
+                    &.bi-chevron-down {
+                        @extend .ms-auto;
+                        transition: all 0.3s ease-in-out;
+                        transform: rotate(180deg);
+                    }
                 }
 
                 &.collapsed,
@@ -45,8 +48,8 @@
                 }
 
                 &:hover {
-                    color: $primary;
-                    border-left-color: $primary;
+                    color: $sidenav-color;
+                    border-left-color: $sidenav-color;
                 }
             }
 
@@ -67,9 +70,9 @@
                         margin-top: $sidenav-item-spacing;
                     }
 
-                    &:active,
+                    &.active,
                     &:hover {
-                        color: $primary;
+                        color: $sidenav-color;
                     }
 
                     &.disabled {

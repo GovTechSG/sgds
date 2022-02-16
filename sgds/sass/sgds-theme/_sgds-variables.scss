@@ -1359,6 +1359,7 @@ $popover-arrow-outer-color: fade-in($popover-border-color, .05) !default;
 // scss-docs-end popover-variables
 
 //Sidenav
+$sidenav-color: $primary !default;
 $sidenav-fontsize: 1rem !default;
 $sidenav-width: 20rem !default;
 $sidenav-item-spacing: 0.5rem !default;

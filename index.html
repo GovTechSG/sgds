@@ -107,7 +107,7 @@ layout: layout-playground
                     </button>
                     <div class="collapse" id="collapseExample1" data-bs-parent=".sidenav">
                         <ul class="list-unstyled">
-                            <li><a href="https://icons.getbootstrap.com/" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link active">Active</a></li>
                             <li><a href="#" class="nav-link">nav-link</a></li>
                             <li><a href="#" class="nav-link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Etiam aliquet faucibus dui scelerisque ornare. Suspendisse iaculis diam quis mauris
@@ -147,8 +147,7 @@ layout: layout-playground
                 <li class="sidenav-item">
                     <button class="sgds btn " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3"
                         aria-expanded="false" aria-controls="collapseExample3">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquet faucibus dui scelerisque
-                        ornare. Suspendisse iaculis diam quis mauris venenatis. <i class="bi bi-chevron-down"></i>
+                        Lorem ipsum dolor <i class="bi bi-chevron-down"></i>
                     </button>
                     <div class="collapse show" id="collapseExample3">
                         <ul class="list-unstyled">
@@ -176,6 +175,57 @@ layout: layout-playground
                 </li>
                 <li class="sidenav-item">
                     <a type="button" class="sgds btn inactive">
+                        1 level item
+                    </a>
+                </li>
+            </nav>
+        </div>
+
+        <div class="col">
+            <nav class="sidenav sgds list-unstyled" class="sidenav2">
+                <h5>With left icon</h5>
+                <li class="sidenav-item">
+                    <a type="button" class="sgds btn inactive">
+                        <i class="bi bi-apple"></i>
+                        1 level item
+                    </a>
+                </li>
+                <li class="sidenav-item">
+                    <button class="sgds btn " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3"
+                        aria-expanded="false" aria-controls="collapseExample3">
+
+                        Lorem ipsum dolor
+                        <i class="bi bi-chevron-down ms-auto"></i>
+                    </button>
+                    <div class="collapse show" id="collapseExample3">
+                        <ul class="list-unstyled">
+                            <li><a href="https://icons.getbootstrap.com/" class="nav-link active">nav-link</a></li>
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Etiam aliquet faucibus dui scelerisque ornare. Suspendisse iaculis diam quis mauris
+                                    venenatis.</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidenav-item">
+                    <button class="sgds btn collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample4">
+                        <i class="bi bi-bag-fill"></i>
+                        Accordion Item #2
+                        <i class="bi bi-chevron-down ms-auto"></i>
+                    </button>
+                    <div class="collapse" id="collapseExample4">
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                            <li><a href="#" class="nav-link">nav-link</a></li>
+                        </ul>
+
+                    </div>
+                </li>
+                <li class="sidenav-item">
+                    <a type="button" class="sgds btn inactive">
+                        <i class="bi bi-boombox"></i>
                         1 level item
                     </a>
                 </li>
