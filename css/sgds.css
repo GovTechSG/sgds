@@ -4330,6 +4330,51 @@ textarea.form-control-lg {
   padding: 1rem 1rem;
   color: #1D2939; }
 
+@keyframes spinner-border {
+  to {
+    transform: rotate(360deg) /* rtl:ignore */; } }
+
+.spinner-border {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: -0.125em;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: 0.75s linear infinite spinner-border; }
+
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.2em; }
+
+@keyframes spinner-grow {
+  0% {
+    transform: scale(0); }
+  50% {
+    opacity: 1;
+    transform: none; } }
+
+.spinner-grow {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: -0.125em;
+  background-color: currentColor;
+  border-radius: 50%;
+  opacity: 0;
+  animation: 0.75s linear infinite spinner-grow; }
+
+.spinner-grow-sm {
+  width: 1rem;
+  height: 1rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner-border,
+  .spinner-grow {
+    animation-duration: 1.5s; } }
+
 .offcanvas {
   position: fixed;
   bottom: 0;
@@ -4461,6 +4506,43 @@ textarea.form-control-lg {
   padding-top: 0;
   line-height: 2rem; }
 
+.sgds.navbar {
+  padding: 0 1rem 0;
+  min-height: 80px;
+  align-items: stretch; }
+  .sgds.navbar a.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding-bottom: 4px; }
+  .sgds.navbar .navbar-collapse {
+    align-items: stretch; }
+  .sgds.navbar .nav-item.has-megamenu {
+    position: static; }
+  .sgds.navbar .nav-item a.nav-link {
+    color: #344054;
+    border-bottom: 4px solid transparent;
+    min-height: 100%;
+    display: flex;
+    align-items: center; }
+    .sgds.navbar .nav-item a.nav-link.active, .sgds.navbar .nav-item a.nav-link:hover {
+      color: #5925DC;
+      border-color: #5925DC; }
+    .sgds.navbar .nav-item a.nav-link.dropdown-toggle {
+      gap: 0.75rem; }
+      .sgds.navbar .nav-item a.nav-link.dropdown-toggle.show {
+        color: #5925DC;
+        border-bottom: 4px solid #5925DC; }
+  .sgds.navbar .dropdown-menu {
+    margin-top: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 5px 5px;
+    background-color: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
+    .sgds.navbar .dropdown-menu.megamenu {
+      left: 0;
+      right: 0;
+      width: 100%; }
+
 .sgds.card a:not(.btn) {
   font-weight: bold; }
 
@@ -4586,7 +4668,7 @@ textarea.form-control-lg {
     width: 100%;
     text-align: initial;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     gap: 1rem;
     border: 0;
     background: 0;
@@ -4595,8 +4677,8 @@ textarea.form-control-lg {
     padding-left: 1rem;
     border-left: 0.25rem solid #5925DC;
     border-radius: 0; }
-    .sgds.sidenav .sidenav-item .sgds.btn > i {
-      transition: height 0.35s ease;
+    .sgds.sidenav .sidenav-item .sgds.btn i.bi-chevron-down {
+      transition: all 0.3s ease-in-out;
       transform: rotate(180deg); }
     .sgds.sidenav .sidenav-item .sgds.btn.collapsed, .sgds.sidenav .sidenav-item .sgds.btn.inactive {
       color: inherit;
@@ -4623,10 +4705,10 @@ textarea.form-control-lg {
       .sgds.sidenav .sidenav-item .collapse.show a.nav-link + a.nav-link,
       .sgds.sidenav .sidenav-item .collapsing a.nav-link + a.nav-link {
         margin-top: 0.5rem; }
-      .sgds.sidenav .sidenav-item .collapse a.nav-link:active, .sgds.sidenav .sidenav-item .collapse a.nav-link:hover,
-      .sgds.sidenav .sidenav-item .collapse.show a.nav-link:active,
+      .sgds.sidenav .sidenav-item .collapse a.nav-link.active, .sgds.sidenav .sidenav-item .collapse a.nav-link:hover,
+      .sgds.sidenav .sidenav-item .collapse.show a.nav-link.active,
       .sgds.sidenav .sidenav-item .collapse.show a.nav-link:hover,
-      .sgds.sidenav .sidenav-item .collapsing a.nav-link:active,
+      .sgds.sidenav .sidenav-item .collapsing a.nav-link.active,
       .sgds.sidenav .sidenav-item .collapsing a.nav-link:hover {
         color: #5925DC; }
       .sgds.sidenav .sidenav-item .collapse a.nav-link.disabled,
@@ -5560,7 +5642,7 @@ textarea.form-control-lg {
 .ms-5 {
   margin-left: 3rem !important; }
 
-.ms-auto {
+.ms-auto, .sgds.sidenav .sidenav-item .sgds.btn i.bi-chevron-down {
   margin-left: auto !important; }
 
 .p-0 {
