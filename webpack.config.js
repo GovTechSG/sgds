@@ -53,26 +53,12 @@ module.exports = (env) => {
               },
             },
           ],
-        },
-        {
-          // fonts -> file loader to dist/fonts
-          test: /sgds-icons\.(svg|ttf|woff)$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: "[name].[ext]",
-                outputPath: "fonts",
-              },
-            },
-          ],
-        },
+        }
       ],
     },
     plugins: [
       new MiniCssExtractPlugin({
-        // filename: ({ chunk }) => `${chunk.name.replace("js", "css")}.css`,
-        moduleFilename: ({ name }) => `${name.replace("js", "css")}.css`,
+        filename: './sgds/sgds.css'
       }),
     ],
   };
