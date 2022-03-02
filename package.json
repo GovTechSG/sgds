@@ -8,15 +8,15 @@
   },
   "license": "MIT",
   "author": "Tey Liang Tai",
-  "main": "css/sgds.css",
+  "main": "sgds/sgds.css",
   "files": [
-    "css",
-    "fonts",
-    "sgds/sass"
+    "sgds/sass",
+    "sgds/sgds.css",
+    "sgds/sgds.scss"
   ],
   "scripts": {
     "build": "npm run packagedownloads && npm run build:site && bundle exec jekyll build",
-    "build:lib": "rm -rf ./js ./css ./fonts && webpack --env.production --env.NODE_ENV=production --mode=production",
+    "build:lib": "rm -rf ./js ./sgds/sgds.css && webpack --env.production --env.NODE_ENV=production --mode=production",
     "build:site": "npm run build:lib -- --env.site",
     "dev": "concurrently npm:dev:static npm:dev:jekyll",
     "dev:jekyll": "bundle exec jekyll serve",

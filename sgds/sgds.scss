@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+//SGDS Custom Variables
+// @import "sgds-theme/custom-variable";
+
+// Configuration
+@import "./sass/bootstrap/functions";
+@import "./sass/sgds-theme/sgds-variables";
+// @import "./sass/bootstrap/variables";
+@import "./sass/bootstrap/mixins";
+@import "./sass/bootstrap/utilities";
+
+// Layout & components
+@import "./sass/bootstrap/root";
+// @import "sgds-theme/root";
+@import "./sass/bootstrap/reboot";
+@import "./sass/bootstrap/type";
+@import "./sass/bootstrap/images";
+@import "./sass/bootstrap/containers";
+@import "./sass/bootstrap/grid";
+@import "./sass/bootstrap/tables";
+@import "./sass/bootstrap/forms";
+@import "./sass/bootstrap/buttons";
+@import "./sass/bootstrap/transitions";
+@import "./sass/bootstrap/dropdown";
+@import "./sass/bootstrap/button-group";
+@import "./sass/bootstrap/nav";
+@import "./sass/bootstrap/navbar";
+@import "./sass/bootstrap/card";
+@import "./sass/bootstrap/accordion";
+@import "./sass/bootstrap/breadcrumb";
+@import "./sass/bootstrap/pagination";
+@import "./sass/bootstrap/badge";
+@import "./sass/bootstrap/alert";
+@import "./sass/bootstrap/progress";
+// @import "./sass/bootstrap/list-group";
+@import "./sass/bootstrap/close";
+@import "./sass/bootstrap/toasts";
+@import "./sass/bootstrap/modal";
+@import "./sass/bootstrap/tooltip";
+@import "./sass/bootstrap/popover";
+// @import "./sass/bootstrap/carousel";
+@import "./sass/bootstrap/spinners";
+@import "./sass/bootstrap/offcanvas";
+@import "./sass/bootstrap/placeholders";
+
+//Custom'
+@import "./sass/sgds-theme/components/all";
+
+// Helpers
+@import "./sass/bootstrap/helpers";
+
+// Utilities
+@import "./sass/bootstrap/utilities/api";
+// scss-docs-end import-stack
