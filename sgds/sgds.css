@@ -4602,12 +4602,12 @@ textarea.form-control-lg {
   .sgds.dropdown .dropdown-toggle::after {
     content: none; }
 
-.sgds.dropdown .dropdown-menu {
+.sgds.dropdown-menu {
   border: 1px solid #98A2B3;
   padding: 0; }
-  .sgds.dropdown .dropdown-menu li a.dropdown-item {
+  .sgds.dropdown-menu li a.dropdown-item {
     padding: 1rem; }
-    .sgds.dropdown .dropdown-menu li a.dropdown-item:hover, .sgds.dropdown .dropdown-menu li a.dropdown-item.active {
+    .sgds.dropdown-menu li a.dropdown-item:hover, .sgds.dropdown-menu li a.dropdown-item.active {
       background-color: #0F71BB;
       color: #fff; }
 
@@ -4632,14 +4632,14 @@ textarea.form-control-lg {
   border-radius: 0.3125rem !important;
   padding-left: 3rem; }
 
-.sgds.input-group[variant="has-icon"] > div {
+.sgds.input-group[variant="has-icon"] > .form-input-wrapper {
   flex: 1 1 auto;
   width: 1%; }
-  .sgds.input-group[variant="has-icon"] > div > input.form-control {
+  .sgds.input-group[variant="has-icon"] > .form-input-wrapper > input.form-control {
     border-radius: 5px 0 0 5px !important; }
-  .sgds.input-group[variant="has-icon"] > div:not(:first-child) > input.form-control {
+  .sgds.input-group[variant="has-icon"] > .form-input-wrapper:not(:first-child) > input.form-control {
     border-radius: 0px 5px 5px 0px !important; }
-  .sgds.input-group[variant="has-icon"] > div:not(:first-child):not(:last-child) > input.form-control {
+  .sgds.input-group[variant="has-icon"] > .form-input-wrapper:not(:first-child):not(:last-child) > input.form-control {
     border-radius: 0px !important; }
 
 .sgds.input-group .form-control-icon-validate {
@@ -4649,6 +4649,15 @@ textarea.form-control-lg {
 .sgds.input-group-text + input.form-control {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important; }
+
+.sgds.input-group .sgds.dropdown:first-child .sgds.btn {
+  border-radius: 5px 0 0 5px; }
+
+.sgds.input-group .sgds.dropdown:last-child .sgds.btn {
+  border-radius: 0 5px 5px 0; }
+
+.sgds.input-group .sgds.btn.dropdown-toggle-split::after {
+  content: none; }
 
 .sgds.modal button.btn-close {
   font-size: 0.75rem; }

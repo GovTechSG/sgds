@@ -29,7 +29,7 @@
         padding-left: 3rem;
       }
 
-      > div{
+      > .form-input-wrapper{
         flex: 1 1 auto;
         width: 1%;
         > input.form-control{
@@ -60,6 +60,23 @@
       + input.form-control {
         border-top-left-radius: 0 !important;
         border-bottom-left-radius: 0 !important;
+      }
+    }
+    .sgds.dropdown{
+      &:first-child{
+        .sgds.btn{
+          border-radius: 5px 0 0 5px;
+        }
+      }
+      &:last-child{
+        .sgds.btn{
+          border-radius: 0 5px 5px 0;
+        }
+      }
+    }
+    .sgds.btn.dropdown-toggle-split{
+      &::after{
+        content: none;
       }
     }
   }
