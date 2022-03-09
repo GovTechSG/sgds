@@ -4587,10 +4587,6 @@ textarea.form-control-lg {
     .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .input-group input,
     .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .input-group button {
       margin-top: 0; }
-    .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .input-group input::-webkit-outer-spin-button,
-    .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .input-group input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0; }
   .sgds.card[variant="card-action-quantity-toggle"] div:not([class]) .card-unit {
     flex-basis: 150%; }
 
@@ -4641,6 +4637,11 @@ textarea.form-control-lg {
     border-radius: 0px 5px 5px 0px !important; }
   .sgds.input-group[variant="has-icon"] > .form-input-wrapper:not(:first-child):not(:last-child) > input.form-control {
     border-radius: 0px !important; }
+
+.sgds.input-group[variant="quantity-toggle"] input::-webkit-outer-spin-button,
+.sgds.input-group[variant="quantity-toggle"] input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
 
 .sgds.input-group .form-control-icon-validate {
   left: inherit;
