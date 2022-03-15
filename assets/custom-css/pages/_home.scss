@@ -2,7 +2,6 @@
     gap: 2rem;
     &.sgds-hero{
         height: 37rem;
-        
         grid-template-columns: 40% 60%;
         .sgds-hero-content{
             align-self: center;
@@ -84,8 +83,15 @@ section{
     background-color: hsl(228, 38%, 97%);
 }
 .part-of-change{
-    grid-template-columns: 40% 1fr;
+    grid-template-columns: 0.55fr 1fr;
     align-items: center;
+    gap: 3rem;
+    &:nth-child(odd){
+        grid-template-columns: 1fr 0.55fr;
+    }
+    + .part-of-change{
+        margin-top: 8rem;
+    }
 }
 
 .hero-bg{

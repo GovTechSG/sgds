@@ -2,10 +2,13 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+
 module.exports = {
   entry: {
-    "assets/sgds": './src/sgds.js'
+    "assets/sgds": './src/sgds.js',
+    "assets/js/sgds": './src/sgds.bundle.js',
   },
+  devtool: 'source-map',
   mode: "development",
   output: {
     filename: "[name].js",
@@ -15,7 +18,7 @@ module.exports = {
     rules: [
       {
         // sass -> css -> extract to dist/css
-        test: /sgds\.s(a|c)ss$/,
+        test: /\.s[ac]ss$/i,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
