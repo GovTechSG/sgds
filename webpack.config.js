@@ -4,12 +4,12 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: {
-    "sgds": './src/sgds.js'
+    "assets/sgds": './src/sgds.js'
   },
   mode: "development",
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname,"dist")
+    path: path.resolve(__dirname)
   },
   module: {
     rules: [
@@ -45,14 +45,13 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '../sgds/sgds.css'
+      filename: './sgds/sgds.css'
     }),
     new CopyPlugin({
       patterns: [
         { 
-          from: "./assets/uncompressed_images/", 
-          to: "./assets/img/",
-          force: true
+          from: "assets/uncompressed_images/", 
+          to: "assets/img/",
         }
       ],
     }),
