@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: {
     "sgds": './src/sgds.js'
@@ -45,6 +46,15 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '../sgds/sgds.css'
+    }),
+    new CopyPlugin({
+      patterns: [
+        { 
+          from: "./assets/uncompressed_images/", 
+          to: "./assets/img/",
+          force: true
+        }
+      ],
     }),
   ],
 };
