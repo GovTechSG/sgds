@@ -1,13 +1,14 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 module.exports = {
   entry: {
     "sgds": './src/sgds.js'
-},
+  },
   mode: "development",
-  output :{
+  output: {
     filename: "[name].js",
-    path: path.resolve(__dirname,"./assets/js")
+    path: path.resolve(__dirname,"dist")
   },
   module: {
     rules: [
@@ -17,14 +18,10 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: "/",
-            },
           },
           {
             loader: "css-loader",
             options: {
-              url: false,
               sourceMap: true,
             },
           },
@@ -39,9 +36,15 @@ module.exports = {
     ]
       
   },
+  // minimiser only runs in --mode=production
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
+    ],
+  },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './[name]/[name].css'
+      filename: '../sgds/sgds.css'
     }),
   ],
 };
