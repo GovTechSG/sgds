@@ -1,0 +1,17 @@
+.wrapper{
+    display: grid;
+    max-width: 1300px;
+    margin: 0 auto;
+    &.sidenav-layout{
+        grid-template-columns: 240px 1fr;
+    }
+}
+
+
+$columns: 2, 3, 4;
+
+@each $column in $columns{
+    .grid-column-#{$column}{
+        grid-template-columns: repeat(#{$column}, 1fr);
+    }
+}
