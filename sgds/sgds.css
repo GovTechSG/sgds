@@ -4,14 +4,11 @@
 @charset "UTF-8";
 :root {
   --sgds-blue: #1f69ff;
-  --sgds-indigo: #6610f2;
   --sgds-purple: #5925DC;
   --sgds-pink: #d63384;
   --sgds-red: #FA5741;
-  --sgds-orange: #fd7e14;
   --sgds-yellow: #FDB022;
   --sgds-green: #3BB346;
-  --sgds-teal: #20c997;
   --sgds-cyan: #59a1d4;
   --sgds-white: #fff;
   --sgds-gray: #344054;
@@ -11085,3 +11082,5 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+/*# sourceMappingURL=sgds.css.map*/
