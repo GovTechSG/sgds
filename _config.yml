@@ -58,7 +58,7 @@ collections:
     cat: templates
 
 exclude:
-  - apps/src
+  - src
   - node_modules
   - build
   - scripts
@@ -69,6 +69,8 @@ exclude:
   - webpack.config.js
   - Gruntfile.js
   - amplify.yml
+  - sgds/sgds.scss
+  - sgds/sass
 
 sass:
   sass_dir: assets/custom-css

@@ -1,0 +1,31 @@
+.sgds-example{
+    border: 1px solid var(--sgds-gray-300);
+    padding: 2rem;
+    &:last-child{
+        border-top:none;
+    }
+}
+
+
+// compopnent-specific 
+.sgds-example{
+    &.highlight{
+        padding:0;
+        figure {
+            margin-bottom: 0;
+            pre{
+                padding: 1rem 2rem;
+                margin: 0;
+                code{
+                    color: inherit;
+                }
+            }
+        }
+        code{
+            
+        }
+    }
+    > .btn{
+        margin: 0.25rem;
+    }
+}   

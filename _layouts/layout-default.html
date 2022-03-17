@@ -1,33 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        {%- include sgds-head.html -%}
-        {% seo %}
-    </head>
-    {% assign offset-dropdown = "" %}
-    {% if page.url contains '/docs/' or page.url contains '/patterns/' or page.url contains '/guides/' and page.title !='Guides' %}
-        {% assign offset-dropdown = "has-component-dropdown" %}
-    {% endif %}
-
-    <body class="has-navbar-fixed-top {{offset-dropdown}}">
-        {% if jekyll.environment == "production" %}
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV9NNPT"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
-        {% else %}
-        <!-- Dev env Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJLK728"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
-        {% endif %}
-        <main>
-            {%- include sgds-agencyhead.html -%}
-            <div class="content-page">
-                {{content}}
-            </div>
-        </main>
-        {%- include sgds-footer.html -%}
-        {%- include import-scripts.html -%}
-    </body>
+{% include head.html %}
+<body>
+    <div class="position-absolute hero-bg"></div>
+    <div class="container-fluid">
+        {% include navigation.html %}
+    </div>
+    <main>
+        {{content}}
+    </main>
+</body>
 </html>
