@@ -34,7 +34,7 @@ $grays: ("100": $gray-100,
 // fusv-enable
 
 // scss-docs-start color-variables
-$blue: #358DCA !default;
+$blue: #1f69ff !default; //secondary
 $indigo: #6610f2 !default;
 $purple: #5925DC !default;
 $pink: #d63384 !default;
@@ -43,7 +43,7 @@ $orange: #fd7e14 !default;
 $yellow: #FDB022 !default;
 $green: #3BB346 !default;
 $teal: #20c997 !default;
-$cyan: #0dcaf0 !default;
+$cyan: #59a1d4 !default; //link
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
@@ -64,7 +64,7 @@ $colors: ("blue": $blue,
 
 // scss-docs-start theme-color-variables
 $primary: $purple !default;
-$secondary: $gray-600 !default;
+$secondary: $blue !default;
 $success: $green !default;
 $info: $cyan !default;
 $warning: $yellow !default;
@@ -72,8 +72,6 @@ $danger: $red !default;
 $light: $gray-100 !default;
 $dark: $gray-900 !default;
 // scss-docs-end theme-color-variables
-
-
 
 // scss-docs-start theme-colors-map
 $theme-colors: ("primary": $primary,
@@ -98,16 +96,16 @@ $min-contrast-ratio: 4.5 !default;
 $color-contrast-dark: $black !default;
 $color-contrast-light: $white !default;
 
-// fusv-disable
-$blue-100: #E2EFF8 !default;
-$blue-200: #B8D7EC !default;
-$blue-300: #88BCE0 !default;
-$blue-400: #58A1D4 !default;
-$blue-500: $blue !default;
-$blue-600: #0F71BB !default;
-$blue-700: #0C66B3 !default;
-$blue-800: shade-color($blue, 60%) !default;
-$blue-900: shade-color($blue, 80%) !default;
+// fusv-disable secondary
+$blue-100: #EBF1FF !default;
+$blue-200: #D3E2FF !default;
+$blue-300: #99BBFF !default;
+$blue-400: #70A0FF !default;
+$blue-500: $blue !default; //hsl(220, 100%, 56%)
+$blue-600: #004FF0 !default;
+$blue-700: #0040C2 !default;
+$blue-800: #003194 !default;
+$blue-900: #002266 !default;
 
 $indigo-100: tint-color($indigo, 80%) !default;
 $indigo-200: tint-color($indigo, 60%) !default;
@@ -119,15 +117,16 @@ $indigo-700: shade-color($indigo, 40%) !default;
 $indigo-800: shade-color($indigo, 60%) !default;
 $indigo-900: shade-color($indigo, 80%) !default;
 
-$purple-100: #EBE9FE !default;
-$purple-200: #CFCBFD !default;
-$purple-300: #A29BFB !default;
-$purple-400: #7857FF !default;
+//Primary
+$purple-100: #ECE6FB !default;
+$purple-200: #C7B6F3 !default;
+$purple-300: #A386EC !default;
+$purple-400: #7E55E4 !default;
 $purple-500: $purple !default;
-$purple-600: #4A1FB8 !default;
-$purple-700: #3E1C96 !default;
-$purple-800: shade-color($purple, 60%) !default;
-$purple-900: shade-color($purple, 80%) !default;
+$purple-600: #491DB6 !default;
+$purple-700: #39178E !default;
+$purple-800: #291167 !default;
+$purple-900: #190A3F !default;
 
 $pink-100: tint-color($pink, 80%) !default;
 $pink-200: tint-color($pink, 60%) !default;
@@ -189,15 +188,15 @@ $teal-700: shade-color($teal, 40%) !default;
 $teal-800: shade-color($teal, 60%) !default;
 $teal-900: shade-color($teal, 80%) !default;
 
-$cyan-100: tint-color($cyan, 80%) !default;
-$cyan-200: tint-color($cyan, 60%) !default;
-$cyan-300: tint-color($cyan, 40%) !default;
-$cyan-400: tint-color($cyan, 20%) !default;
+$cyan-100: #e2eff8 !default;
+$cyan-200: #b9d8ee  !default;
+$cyan-300: #90c1e4  !default;
+$cyan-400: #59a1d4 !default;
 $cyan-500: $cyan !default;
-$cyan-600: shade-color($cyan, 20%) !default;
-$cyan-700: shade-color($cyan, 40%) !default;
-$cyan-800: shade-color($cyan, 60%) !default;
-$cyan-900: shade-color($cyan, 80%) !default;
+$cyan-600: #0f72bd !default;
+$cyan-700: #0c5b97!default;
+$cyan-800: #0a4776 !default;
+$cyan-900: #08395e !default;
 
 // scss-docs-start gray-colors-map
 $primarys: ("100": $purple-100,
@@ -417,7 +416,7 @@ $utilities-bg-colors: map-loop($utilities-bg, rgba-css-var, "$key", "bg") !defau
 //
 // Style anchor elements.
 
-$link-color: $blue-600 !default;
+$link-color: $cyan-600 !default;
 $link-decoration: underline !default;
 $link-shade-percentage: 20% !default;
 $link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
@@ -511,7 +510,7 @@ $box-shadow-inset: inset 0 1px 2px rgba($black, .075) !default;
 // scss-docs-end box-shadow-variables
 
 $component-active-color: $white !default;
-$component-active-bg: $blue-600 !default;
+$component-active-bg: $cyan-600 !default;
 
 // scss-docs-start caret-variables
 $caret-width: .3em !default;
@@ -541,7 +540,7 @@ $aspect-ratios: ("1x1": 100%,
 
 // scss-docs-start font-variables
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: "Source Sans Pro",
+$font-family-sans-serif: "Inter",
 system-ui,
 -apple-system,
 "Segoe UI",
@@ -569,7 +568,7 @@ $font-family-code: var(--#{$variable-prefix}font-monospace) !default;
 // $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
 // $font-size-base affects the font size of the body text
 $font-size-root: null !default;
-$font-size-base: 1.125rem !default; // Assumes the browser default, typically `16px`
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-sm: $font-size-base * .875 !default;
 $font-size-lg: $font-size-base * 1.25 !default;
 
@@ -581,20 +580,23 @@ $font-weight-bolder: bolder !default;
 
 $font-weight-base: $font-weight-normal !default;
 
-$line-height-base: 1.7 !default;
-$line-height-sm: 1.25 !default;
-$line-height-lg: 2 !default;
+$line-height-base: 2 !default;
+$line-height-sm: 1.75 !default;
+$line-height-lg: 2.25 !default;
 
-$h1-font-size: $font-size-base * 2.5 !default;
-$h2-font-size: $font-size-base * 2 !default;
-$h3-font-size: $font-size-base * 1.75 !default;
-$h4-font-size: $font-size-base * 1.5 !default;
+$h0-font-size: $font-size-base * 3.5 !default;
+$h1-font-size: $font-size-base * 3 !default;
+$h2-font-size: $font-size-base * 2.5 !default;
+$h3-font-size: $font-size-base * 2 !default; //32px
+$h4-font-size: $font-size-base * 1.5 !default; //24px
 $h5-font-size: $font-size-base * 1.25 !default;
 $h6-font-size: $font-size-base !default;
 // scss-docs-end font-variables
 
 // scss-docs-start font-sizes
-$font-sizes: (1: $h1-font-size,
+$font-sizes: (
+  0: $h0-font-size,
+  1: $h1-font-size,
   2: $h2-font-size,
   3: $h3-font-size,
   4: $h4-font-size,
@@ -612,12 +614,15 @@ $headings-color: null !default;
 // scss-docs-end headings-variables
 
 // scss-docs-start display-headings
-$display-font-sizes: (1: 5rem,
-  2: 4.5rem,
-  3: 4rem,
-  4: 3.5rem,
-  5: 3rem,
-  6: 2.5rem) !default;
+$display-font-sizes: (
+  0: $h0-font-size,
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size
+) !default;
 
 $display-font-weight: 300 !default;
 $display-line-height: $headings-line-height !default;
@@ -722,7 +727,7 @@ $table-variants: ("primary": shift-color($primary, $table-bg-scale),
 // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 
 // scss-docs-start input-btn-variables
-$input-btn-padding-y: .5rem !default;
+$input-btn-padding-y: .4375rem !default;
 $input-btn-padding-x: 1rem !default;
 $input-btn-font-family: null !default;
 $input-btn-font-size: $font-size-base !default;
@@ -1261,7 +1266,7 @@ $card-group-margin: $grid-gutter-width * .5 !default;
 //Action card specific
 $card-transition-duration: 0.3s !default;
 $card-transition-timing-function: ease-in-out !default;
-$card-active-border: inset 0px 0px 0px 2.1px $blue-600 !default;
+$card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
 // scss-docs-end card-variables
 
 // Accordion
