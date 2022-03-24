@@ -1,0 +1,28 @@
+.sgds {
+  &.fileupload-list {
+    list-style: none;
+    padding-left: 0;
+    .fileupload-list-item {
+      display: flex;
+      &:first-child {
+        margin-top: 16px;
+      }
+      .check-icon {
+        color: $green-600;
+        font-size: $font-size-base;
+      }
+      .filename {
+        color: $blue-600;
+        text-decoration: underline;
+        font-weight: $font-weight-base;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .x-circle-icon {
+        color: $red-600;
+        font-size: $font-size-base;
+      }
+    }
+  }
+}
