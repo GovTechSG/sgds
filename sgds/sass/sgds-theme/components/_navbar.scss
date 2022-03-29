@@ -1,8 +1,11 @@
+@import "../../bootstrap/nav";
+@import "../../bootstrap/navbar";
+
 $navbar-border-bottom-height: 4px;
 
 .sgds {
     &.navbar {
-        padding: 0 1rem 0;
+        padding: 0 2rem 0;
         min-height: 80px;
         align-items: stretch;
 

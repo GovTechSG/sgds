@@ -1,55 +1,47 @@
 @charset "utf-8";
 
-//SGDS Custom Variables
-// @import "sgds-theme/custom-variable";
-
 // Configuration
 @import "./sass/bootstrap/functions";
 @import "./sass/sgds-theme/sgds-variables";
-// @import "./sass/bootstrap/variables";
 @import "./sass/bootstrap/mixins";
 @import "./sass/bootstrap/utilities";
 
 // Layout & components
 @import "./sass/bootstrap/root";
-// @import "sgds-theme/root";
 @import "./sass/bootstrap/reboot";
 @import "./sass/bootstrap/type";
 @import "./sass/bootstrap/images";
 @import "./sass/bootstrap/containers";
 @import "./sass/bootstrap/grid";
-@import "./sass/bootstrap/tables";
-@import "./sass/bootstrap/forms";
-@import "./sass/bootstrap/buttons";
-@import "./sass/bootstrap/transitions";
-@import "./sass/bootstrap/dropdown";
-@import "./sass/bootstrap/button-group";
-@import "./sass/bootstrap/nav";
-@import "./sass/bootstrap/navbar";
-@import "./sass/bootstrap/card";
-@import "./sass/bootstrap/accordion";
-@import "./sass/bootstrap/breadcrumb";
-@import "./sass/bootstrap/pagination";
-@import "./sass/bootstrap/badge";
-@import "./sass/bootstrap/alert";
-@import "./sass/bootstrap/progress";
-// @import "./sass/bootstrap/list-group";
-@import "./sass/bootstrap/close";
-@import "./sass/bootstrap/toasts";
-@import "./sass/bootstrap/modal";
-@import "./sass/bootstrap/tooltip";
-@import "./sass/bootstrap/popover";
-// @import "./sass/bootstrap/carousel";
-@import "./sass/bootstrap/spinners";
-@import "./sass/bootstrap/offcanvas";
-@import "./sass/bootstrap/placeholders";
 
-//Custom'
-@import "./sass/sgds-theme/components/all";
+//Custom sgds themes
+@import "./sass/sgds-theme/components/table";
+@import "./sass/sgds-theme/components/forms";
+@import "./sass/sgds-theme/components/buttons";
+@import "./sass/sgds-theme/components/transitions";
+@import "./sass/sgds-theme/components/dropdown";
+@import "./sass/sgds-theme/components/navbar";
+@import "./sass/sgds-theme/components/card";
+@import "./sass/sgds-theme/components/accordion";
+@import "./sass/sgds-theme/components/breadcrumb";
+@import "./sass/sgds-theme/components/pagination";
+@import "./sass/sgds-theme/components/badge";
+@import "./sass/sgds-theme/components/alert";
+@import "./sass/sgds-theme/components/progress";
+@import "./sass/sgds-theme/components/close";
+@import "./sass/sgds-theme/components/sidenav";
+@import "./sass/sgds-theme/components/stepper";
+@import "./sass/sgds-theme/components/toasts";
+@import "./sass/sgds-theme/components/modal";
+@import "./sass/sgds-theme/components/tooltip";
+@import "./sass/sgds-theme/components/popover";
+@import "./sass/sgds-theme/components/carousel";
+@import "./sass/sgds-theme/components/spinners";
+@import "./sass/sgds-theme/components/offcanvas";
+@import "./sass/sgds-theme/components/placeholders";
+//Helpers
+@import "./sass/sgds-theme/components/helpers";
+//Utilites
+@import "./sass/sgds-theme/components/utilities";
 
-// Helpers
-@import "./sass/bootstrap/helpers";
-
-// Utilities
-@import "./sass/bootstrap/utilities/api";
 // scss-docs-end import-stack

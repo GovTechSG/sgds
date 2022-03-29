@@ -6,7 +6,8 @@ const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: {
     "assets/sgds": './src/sgds.js',
-    "assets/js/sgds": './src/sgds.bundle.js',
+    "assets/js/bundle": './src/sgds.bundle.js',
+    "assets/js/vendor": './src/sgds.vendor.js'
   },
   devtool: 'source-map',
   mode: "development",
@@ -57,6 +58,7 @@ module.exports = {
           to: "assets/img/",
         }
       ],
+   
     }),
   ],
 };

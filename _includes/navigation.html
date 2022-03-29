@@ -1,29 +1,23 @@
-<!-- {% include masthead.html %} -->
+
 <nav class="sgds navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#"><img src="/assets/img/logo-sgds.svg" alt="Home" height="60"></a>
+    <a class="navbar-brand" href="/"><img src="/assets/img/logo-sgds.svg" alt="Home" height="60"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <i class="bi bi-list"></i>
     </button>
     <div class="collapse navbar-collapse navbarNavDropdown">
         <ul class="navbar-nav ms-auto">
+            {% for item in site.data.navigation %}
+            {%- assign class = nil -%}
+            {%- if page.url contains item.title -%} 
+                {%- assign class = 'active' -%} 
+            {%- endif -%}
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Components</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Patterns</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Templates</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Theme Customiser</a>
-              </li>
-              <li class="nav-item align-self-center" style="margin-top:-5px">
-                <a class="sgds btn btn-primary btn-sm" aria-current="page" href="#">Get Started</a>
-              </li>
+              <a class="nav-link {{class}}" aria-current="page" href="{{item.url}}">{{item.title | capitalize}}</a>
+            </li>
+            {% endfor %}
+            <li class="nav-item align-self-center" style="margin-top:-5px">
+              <a class="sgds btn btn-primary btn-sm" aria-current="page" href="#">Get Started</a>
+            </li>
         </ul>
     </div>
 </nav>

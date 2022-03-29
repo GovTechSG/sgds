@@ -1,0 +1,10 @@
+<header class="header-component">
+    <h1 class="fw-bold">{{page.title}}</h1>
+    <div class="badges">
+        <span class="sgds badge bg-secondary">{{page.category | capitalize}}</span>
+        {% if page.react %}
+            <span class="sgds badge bg-success"><i class="bi bi-check-lg"></i> ReactJS</span>
+        {% endif %}
+    </div>
+</header>
+<p>{{page.description}}</p>

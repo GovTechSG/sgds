@@ -1,0 +1,13 @@
+aside{
+    .sidenav{
+        padding: 1rem;
+        background-color: var(--sgds-gray-100);
+        a{
+            text-decoration: none;
+            color: var(--sgds-gray-500);
+            &:hover{
+                color: var(--sgds-gray-700);
+            }
+        }
+    }
+}

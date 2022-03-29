@@ -7,3 +7,24 @@
 body{
     color: var(--sgds-gray-600);
 }
+
+.title{
+    font-weight: bold;
+}
+
+p{
+    color: var(--sgds-gray-500)
+}
+
+h1{
+    letter-spacing: -0.02em;
+}
+
+header{
+    &.header-component{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 3rem;
+        align-items: center;
+    }
+}

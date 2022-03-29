@@ -1,0 +1,27 @@
+---
+layout: layout-default
+---
+<div class="wrapper-sidenav">
+    <aside>
+        <div class="sidenav">
+            {% assign collections = site.collections | sort: 'order' %}
+            {% for collection in collections %}
+                {% if collection.category == "components" %}
+                    {% assign name = collection.label %}
+                    {% for item in site[collection.label] %}
+                    {%- assign class = nil -%}
+                    {%- if page.url contains item.title -%} 
+                        {%- assign class = 'active' -%} 
+                    {%- endif -%}                  
+                        <a class="d-block {{class}}" href="{{item.url}}">{{item.title}}</a>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </aside>
+    <main>
+        {{content}}
+    </main>
+</div>
+
+

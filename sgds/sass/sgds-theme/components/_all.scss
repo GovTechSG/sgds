@@ -1,11 +1,28 @@
-@import "accordion";
+@import "table";
+@import "forms";
+@import "buttons";
+@import "transitions";
+@import "dropdown";
 @import "navbar";
 @import "card";
-@import "dropdown";
-@import "form";
-@import "modal";
+@import "accordion";
+@import "breadcrumb";
+@import "pagination";
+@import "badge";
+@import "alert";
+@import "progress";
+@import "close";
 @import "sidenav";
 @import "stepper";
-@import "table";
-@import "toast";
+@import "toasts";
+@import "modal";
 @import "tooltip";
+@import "popover";
+@import "carousel";
+@import "spinners";
+@import "offcanvas";
+@import "placeholders";
+//Helpers
+@import "helpers";
+//Utilites
+@import "utilities";

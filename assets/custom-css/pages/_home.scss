@@ -1,10 +1,10 @@
 .wrapper{
     gap: 2rem;
     &.sgds-hero{
-        height: 37rem;
+        height: 65vh;
         grid-template-columns: 40% 60%;
+        align-items: center;
         .sgds-hero-content{
-            align-self: center;
             .image-stack.image-grid{
                 height: 32.5rem;
                 img{
@@ -17,6 +17,11 @@
     &.home-get-started{
         grid-template-columns: 30% 1fr;
         gap:3rem;
+        .home-get-started-content{
+            position: sticky;
+            top: 110px;
+            align-self: start;
+        }
         .home-get-started-header{
             margin-bottom: 2rem;
         }

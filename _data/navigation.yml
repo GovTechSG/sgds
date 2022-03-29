@@ -1,45 +1,11 @@
-- title: About
+- title: about
   url: /about/
-
-- title: Guides
-  url: /guides/
-  lvl2:
-      - title: Developers
-        url: /guides/developers/
-        lvl3:
-            - title: Installing the Design System
-              url: /docs/getting-started/
-            - title: Accessibility for Coding
-              url: /guides/developers/accessibility-coding/
-            - title: Color Contrast Checker
-              url: /guides/developers/color-contrast/
-
-      - title: Designers
-        url: /guides/designers/
-        lvl3:
-            #- title: Using the Sketch UI Kit
-            #  url: /guides/designers/sketch-kit/
-            - title: Accessibility for Design
-              url: /guides/designers/accessibility-design/
-            - title: Color Contrast Checker
-              url: /guides/designers/color-contrast/
-            - title: Image Optimisation
-              url: /guides/designers/image-optimisation/
-
-      - title: Writers
-        url: /guides/writers/
-        lvl3:
-            - title: Accessibility for Content
-              url: /guides/writers/accessibility-content/
-
-- title: Docs
-  url: /docs/
-
-- title: Patterns
+- title: components
+  url: /components/
+- title: patterns
   url: /patterns/
-- title: Templates
+- title: templates
   url: /templates/
-  
-- title: Theme Customiser
+- title: theme customiser
   url: 'https://customiser.designsystem.gov.sg'
   target: '_blank'

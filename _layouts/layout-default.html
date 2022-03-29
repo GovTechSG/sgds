@@ -2,12 +2,18 @@
 <html lang="en">
 {% include head.html %}
 <body>
+    {% if page.title == 'home' %}
     <div class="position-absolute hero-bg"></div>
-    <div class="container-fluid">
+    {% endif %}
+    <div class="sticky-top">
+        {% include masthead.html %}
         {% include navigation.html %}
     </div>
     <main>
         {{content}}
     </main>
+
+    <script src="/assets/js/bundle.js"></script>
+    <script src="/assets/js/vendor.js"></script>
 </body>
 </html>
