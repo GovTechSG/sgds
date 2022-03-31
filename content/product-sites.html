@@ -1,0 +1,32 @@
+---
+title: Product site list
+permalink: /product-sites/
+layout: layout-default
+---
+
+  <div class="directory-list">
+      <ul>
+          {% for url in site.data.product-sites %}
+          <li>
+              <a href="{{url.url}}" class="external">{{url.url}}</a>
+          </li>
+          {% endfor %}
+      </ul>
+  </div>
+
+  <!-- export const extraSitesUrl = "https://v2.designsystem.gov.sg/product-sites/"; -->
+<!-- export const ministriesUrl = "%";
+export const statBoardsUrl = "https://www.sgdi.gov.sg/statutory-boards";
+export const organsOfStateUrl = "https://www.sgdi.gov.sg/organs-of-state"; -->
+<!-- async function getPageLinks(pageUrl: string): Promise<string[]> {
+    const pageResponse: string = (await axios.get(pageUrl)).data;
+    const $ = cheerio.load(pageResponse);
+    const urls: string[] = [];
+    $(".directory-list ul li a.external").each(function () {
+      const url = $(this).attr("href");
+      if (url) {
+        urls.push(url);
+      }
+    });
+    return urls;
+  } -->
