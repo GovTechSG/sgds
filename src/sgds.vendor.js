@@ -1,5 +1,7 @@
 import { gsap } from 'gsap';
 import {ScrollTrigger} from 'gsap/dist/ScrollTrigger';
+// import Shuffle from 'shufflejs';
+
 gsap.registerPlugin(ScrollTrigger);
 gsap.to(".sgds.navbar",{
     scrollTrigger: {

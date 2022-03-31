@@ -7490,6 +7490,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap_dist_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(gsap_dist_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1__);
 
 
+// import Shuffle from 'shufflejs';
+
 gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.registerPlugin(gsap_dist_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1__.ScrollTrigger);
 gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.to(".sgds.navbar",{
     scrollTrigger: {
@@ -7501,6 +7503,12 @@ gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.to(".sgds.navbar",{
     backdropFilter: "blur(10px)",
     duration: 0.35
 });
+
+
+
+var Shuffle = window.shuffle;
+
+
 })();
 
 /******/ })()

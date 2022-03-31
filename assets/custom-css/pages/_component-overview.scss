@@ -1,8 +1,5 @@
 .page-component-overview{
     article{
-        display: grid;
-        grid-template-columns: 20% 1fr;
-        gap: 2rem;
         .page-component-item-wrapper{
             display: grid;
             grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
@@ -11,7 +8,5 @@
         + article{
             margin-top: 2rem;
         }
-    }
-
-    
+    }   
 }
