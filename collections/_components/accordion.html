@@ -5,5 +5,92 @@ description: A dropdown mechanism that allow users to either show or hide relate
 category: general
 react: true
 ---
-{% include component-header.html %}
+
+{% capture default-accordion %}
+<div class="sgds accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Accordion Item #1
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Accordion Item #2
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Accordion Item #3
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcapture %}
+
+<div class="page-component">
+    <article>
+        {% include page-component/component-header.html %}
+        <div class="component-anatomies">
+            <h2 class="title fw-bold">Anatomy</h2>
+            <div class="component-anatomy">
+                <h3 class="subtitle fw-bold">Closed</h3>
+                <ol>
+                    <li>
+                        <b>Text:</b> Serves to tell users what the accordion is being used for
+                    </li>
+                    <li>
+                        <b>Container:</b> Encloses the content within, width and height to be adjusted according to content
+                    </li>
+                </ol>
+                <img src="{{site.baseurl}}/assets/img/component/anatomy/accordion/anatomy-accordion-1.svg" alt="">
+            </div>
+            <div class="component-anatomy">
+                <h3 class="subtitle fw-bold">Open</h3>
+                <ol>
+                    <li>
+                        <b>Text:</b> Serves to tell users what the accordion is being used for. Bold when the accordion is open.
+                    </li>
+                    <li>
+                        <b>Container:</b> Encloses the content within, width and height to be adjusted according to content.
+                    </li>
+                    <li>
+                        <b>Content:</b> Content should be kept as short and to the point as possible to help with scanning
+                    </li>
+                </ol>
+                <img src="{{site.baseurl}}/assets/img/component/anatomy/accordion/anatomy-accordion-2.svg" alt="">
+            </div>
+        </div>
+
+        <h2 class="title fw-bold">Example</h2>
+        <h3 class="subtitle fw-bold">Default Accordion</h3>
+        <div class="sgds-example">
+            {{default-accordion}}
+        </div>
+        {% include page-component/component-code-snippet.html compName="default-accordion" content=default-accordion %}
+    </article>
+    <aside>
+        Component anchor goes here
+    </aside>
+</div>
+
 

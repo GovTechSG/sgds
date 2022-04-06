@@ -1,0 +1,46 @@
+.page{
+    &-component{
+            display: grid;
+            grid-template-columns: 1fr 240px;
+            gap: 2rem;
+    }
+}
+
+.sgds.accordion.code-snippet{
+    .accordion-header{
+        display: flex;
+    }
+    .accordion-item{
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-top: 0;
+        .btn-copy{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0;
+            width: 4rem;
+            height: 4rem;
+            color: var(--sgds-primary);
+
+        }
+    }
+    .accordion-body{
+        padding: 1rem 0.5rem;
+        background-color: #272822;
+    }
+}
+
+.component-anatomies{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    .component-anatomy{
+    img{
+        padding: 2rem;
+        background-color: white;
+    }
+        + .component-anatomy{
+            padding-top: 2rem;
+        }
+    }
+}

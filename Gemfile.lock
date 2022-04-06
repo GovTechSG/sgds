@@ -69,6 +69,7 @@ DEPENDENCIES
   jekyll (~> 4.0)
   jekyll-redirect-from (~> 0.16)
   jekyll-seo-tag (~> 2.6)
+  rouge
   tzinfo-data
   webrick (~> 1.7)
 

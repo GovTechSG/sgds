@@ -1,0 +1,24 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ site.baseurl }}/">
+                <i class="bi bi-house-fill"></i>
+            </a>
+        </li>
+        {%- capture page_url_without_index_html -%}
+            {{ page.url | remove: ".html" |remove: "/index" | remove: "/index.html" }}
+        {%- endcapture -%}
+
+        {% assign splitted_url_parts = page_url_without_index_html | split: '/' %}
+        {% capture forLoopMaxInt %}{{ splitted_url_parts.size | minus:2 }}{% endcapture %}
+        {% assign breadcrumbs_sections = '' %}
+        {% for i in (1..forLoopMaxInt) %}
+            {% assign breadcrumbs_sections = breadcrumbs_sections | append: '/' | append: splitted_url_parts[i] %}
+            <li class="breadcrumb-item {{class}}">
+                <a href="{{ site.baseurl }}{{breadcrumbs_sections}}">
+                {{ splitted_url_parts[i] | capitalize | replace: "-", " "}}
+                </a>
+            </li>
+        {% endfor %}
+    </ol>
+</nav>

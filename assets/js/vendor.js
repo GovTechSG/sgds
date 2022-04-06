@@ -7504,11 +7504,6 @@ gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.to(".sgds.navbar",{
     duration: 0.35
 });
 
-
-
-var Shuffle = window.shuffle;
-
-
 })();
 
 /******/ })()
