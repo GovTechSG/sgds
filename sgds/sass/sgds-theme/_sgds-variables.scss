@@ -199,25 +199,25 @@ $cyan-800: #0a4776 !default;
 $cyan-900: #08395e !default;
 
 // scss-docs-start gray-colors-map
-$primarys: ("100": $purple-100,
-  "200": $purple-200,
-  "300": $purple-300,
-  "400": $purple-400,
-  "500": $purple-500,
-  "600": $purple-600,
-  "700": $purple-700,
-  "800": $purple-800,
-  "900": $purple-900) !default;
+$primarys: ("primary-100": $purple-100,
+  "primary-200": $purple-200,
+  "primary-300": $purple-300,
+  "primary-400": $purple-400,
+  "primary-500": $purple-500,
+  "primary-600": $purple-600,
+  "primary-700": $purple-700,
+  "primary-800": $purple-800,
+  "primary-900": $purple-900) !default;
 
-$blues: ("blue-100": $blue-100,
-  "blue-200": $blue-200,
-  "blue-300": $blue-300,
-  "blue-400": $blue-400,
-  "blue-500": $blue-500,
-  "blue-600": $blue-600,
-  "blue-700": $blue-700,
-  "blue-800": $blue-800,
-  "blue-900": $blue-900) !default;
+$secondarys: ("secondary-100": $blue-100,
+  "secondary-200": $blue-200,
+  "secondary-300": $blue-300,
+  "secondary-400": $blue-400,
+  "secondary-500": $blue-500,
+  "secondary-600": $blue-600,
+  "secondary-700": $blue-700,
+  "secondary-800": $blue-800,
+  "secondary-900": $blue-900) !default;
 
 // $indigos: ("indigo-100": $indigo-100,
 //   "indigo-200": $indigo-200,
