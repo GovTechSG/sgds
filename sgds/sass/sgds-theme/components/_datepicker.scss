@@ -1,0 +1,46 @@
+.sgds{
+    &.datepicker{
+        font-size: $font-size-base;
+        max-width: 24rem;
+        transform: translate(0px,56px)!important;
+
+        > .popover-header{
+            background-color: white;
+            padding: 1.5rem 1.5rem 0;
+            border: none;
+            color: $primary;
+            button{
+                background-color: transparent;
+                color: $primary;
+                border: none;
+            }
+        }
+        > .popover-body {
+            padding: 0 1.5rem 1.5rem;
+        }
+        td{
+            width: 48px;
+            height: 48px;
+            padding: 0;
+        }
+
+        &.monthpicker,
+        &.yearpicker{
+            display: grid;
+            grid-template-columns: repeat(3, 48px);
+            grid-template-rows: repeat(4,48px);
+            justify-content: space-between;
+        }
+        .month,
+        .year{
+            padding:0;
+            border: 0;
+            background-color: transparent;
+            cursor: pointer;
+            &.active{
+                color: $primary;
+                background-color: $purple-100;
+            }
+        }
+    }
+}
