@@ -1397,15 +1397,15 @@ $toast-header-border-color: rgba($black, .05) !default;
 // Badges
 
 // scss-docs-start badge-variables
-$badge-font-size: 0.875em !default;
+$badge-font-size: .875em !default;
 $badge-font-size-max: 2rem !default;
 $badge-font-weight: $font-weight-bold !default;
 $badge-line-height: 1.145 !default;
 $badge-color: $white !default;
-$badge-padding-y: 0.285em !default;
-$badge-padding-x: 0.571em !default;
+$badge-padding-y: .285em !default;
+$badge-padding-x: .571em !default;
 $badge-border-radius: $border-radius !default;
-$badge-icon-padding: 0.43em !default;
+$badge-icon-padding: .43em !default;
 // scss-docs-end badge-variables
 
 
