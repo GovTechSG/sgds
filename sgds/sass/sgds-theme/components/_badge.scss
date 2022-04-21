@@ -1,1 +1,19 @@
 @import "../../bootstrap/badge";
+
+.sgds{
+    &.badge{
+      // Set max badge to expand until h3 size
+      font-size: min( 0.875em, 2rem);
+      line-height: 1.145;
+      padding: 0.285em 0.571em;
+      font-weight: 400;
+      i{
+        &:first-child{
+          padding-right: 0.43em;
+        }
+        &:last-child{
+          padding-left: 0.43em;
+        }
+      }
+    }
+  }
