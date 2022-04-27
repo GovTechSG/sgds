@@ -11,7 +11,9 @@
                 {%- assign class = 'active' -%} 
             {%- endif -%}
             <li class="nav-item">
-              <a class="nav-link {{class}}" aria-current="page" href="{{item.url}}">{{item.title | capitalize}}</a>
+                <a class="nav-link {{class}}" aria-current="page" href="{{item.url}}">
+                    {{item.title | capitalize}}
+                </a>
             </li>
             {% endfor %}
             <li class="nav-item align-self-center" style="margin-top:-5px">
