@@ -12,10 +12,17 @@ body{
         grid-template-columns: 240px 1fr;
         max-width: 100%;
         padding: 1rem 2rem;
+        @include media-breakpoint-down(lg){
+            display:block;
+            aside{
+                display:none;
+            }
+        }
     }
     &-fluid{
         max-width: 100%;
     }
+    
 }
 
 

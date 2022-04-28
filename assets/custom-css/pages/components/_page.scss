@@ -3,6 +3,9 @@
             display: grid;
             grid-template-columns: 1fr 240px;
             gap: 2rem;
+            @include media-breakpoint-down(lg){
+                display:block;
+            }
     }
 }
 
@@ -31,16 +34,20 @@
     }
 }
 
-.component-anatomies{
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    .component-anatomy{
-    img{
-        padding: 2rem;
-        background-color: white;
+
+
+.component-anatomy{
+img{
+    padding: 2rem;
+    background-color: white;
+}
+    + .component-anatomy{
+        padding-top: 2rem;
     }
-        + .component-anatomy{
-            padding-top: 2rem;
-        }
+}
+
+section{
+    + section{
+        margin-top: 3rem;
     }
 }

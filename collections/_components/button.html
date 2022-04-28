@@ -5,9 +5,14 @@ layout: layout-sidenav
 category: general
 react: true
 ---
-{% include page-component/component-header.html %}
+<div class="page-component">
+    <article>
+        {% include page-component/component-header.html %}
+        <button class="sgds btn btn-primary btn-sm">Small</button>
+        <button class="sgds btn btn-primary">Default</button>
+        <button class="sgds btn btn-primary btn-lg">Large</button>
+    </article>
+</div>
 
 
-<button class="sgds btn btn-primary btn-sm">Small</button>
-<button class="sgds btn btn-primary">Default</button>
-<button class="sgds btn btn-primary btn-lg">Large</button>
+

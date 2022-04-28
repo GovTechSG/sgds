@@ -25,6 +25,13 @@
   @extend h6;
 }
 
+p + p {
+  margin-top: calc(#{$spacer} * 1.5);
+}
+
+a{
+  text-underline-offset: calc(#{$spacer} * .25);
+}
 
 .lead {
   @include font-size($lead-font-size);

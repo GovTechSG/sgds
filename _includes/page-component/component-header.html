@@ -1,6 +1,20 @@
 {% include breadcrumb.html %}
-<header class="header-component">
-    <h1 class="fw-bold">{{page.title}}</h1>
-    <p>{{page.description}}</p>
-    
-</header>
+<section>
+    <header class="header-component">
+        <h1 class="fw-bold">{{page.title}}</h1>
+        <p>{{page.description}}</p>
+        <div class="component-source-grid">
+            <div>
+                <span class="sgds badge badge-light bg-primary-100 text-primary border border-primary">{{page.category | capitalize}}</span>
+            </div>
+            
+            <div>
+                <i class="bi bi-github"></i> <a href="{{page.github}}">View it on Github</a>
+            </div>
+
+            <div>
+                <img src="{{site.baseurl}}/assets/img/component/storybook-icon.svg" alt=""> <a href="{{page.storybook}}">View it on React Storybook</a>
+            </div>
+        </div>
+    </header>
+</section>

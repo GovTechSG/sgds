@@ -31,7 +31,7 @@ layout: layout-sidenav
                 <div class="sgds card" data-groups="['{{item.category}}', '{{react}}']" data-title="{{item.title}}">
                   <img src="../assets/img/component-overview/{{item.title | downcase | replace: ' ', '-'}}.png" class="card-img-top" alt="{{item.title | append: ' image' }}">
                   <div class="card-body">
-                    <a class="stretched-link" href="/components/{{item.title | replace: ' ', '-' | lowercase}}/"><h5 class="card-title">{{item.title}}</h5></a>
+                    <a class="stretched-link" href="/components/{{item.title | replace: ' ', '-' | downcase}}/"><h5 class="card-title">{{item.title}}</h5></a>
                     <p class="card-text">{{item.description}}</p>
                     <span class="badge bg-primary">{{item.category | capitalize}}</span>
                     {% if item.react %}

@@ -1,0 +1,14 @@
+.page-component{
+    header{
+        .component-source-grid{
+            display: flex;
+            gap: 2rem;
+            @include media-breakpoint-down(lg){
+                display: block;
+                div + div{
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+    }
+}
