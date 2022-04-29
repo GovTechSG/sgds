@@ -4248,8 +4248,8 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -4723,9 +4723,14 @@ textarea.form-control-lg {
 }
 
 .sgds.navbar {
-  padding: 0 2rem 0;
+  padding: 0 calc(2rem) 0;
   min-height: 80px;
   align-items: stretch;
+}
+@media (max-width: 991.98px) {
+  .sgds.navbar {
+    padding: 0 1rem 0;
+  }
 }
 .sgds.navbar a.navbar-brand {
   display: flex;
