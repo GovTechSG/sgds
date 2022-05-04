@@ -16,7 +16,7 @@
                 //     border-color: transparent;
                 // }
                 &.active{
-                    border-bottom: 5px solid $link-color;
+                    border-bottom: $navbar-border-bottom-height solid $link-color;
                     font-weight: $font-weight-bold;
                     background-color: transparent;
                 }

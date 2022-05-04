@@ -4735,7 +4735,7 @@ textarea.form-control-lg {
 .sgds.navbar a.navbar-brand {
   display: flex;
   align-items: center;
-  padding-bottom: 4px;
+  padding-bottom: 0.125rem;
 }
 .sgds.navbar .navbar-collapse {
   align-items: stretch;
@@ -4745,7 +4745,7 @@ textarea.form-control-lg {
 }
 .sgds.navbar .nav-item a.nav-link {
   color: #344054;
-  border-bottom: 4px solid transparent;
+  border-bottom: 0.125rem solid transparent;
   min-height: 100%;
   display: flex;
   align-items: center;
@@ -4759,7 +4759,7 @@ textarea.form-control-lg {
 }
 .sgds.navbar .nav-item a.nav-link.dropdown-toggle.show {
   color: #5925DC;
-  border-bottom: 4px solid #5925DC;
+  border-bottom: 0.125rem solid #5925DC;
 }
 .sgds.navbar .dropdown-menu {
   margin-top: 0;
@@ -6091,7 +6091,7 @@ textarea.form-control-lg {
   border: none;
 }
 .sgds.nav-tabs li.nav-item button.nav-link.active {
-  border-bottom: 5px solid #0f72bd;
+  border-bottom: 0.125rem solid #0f72bd;
   font-weight: 700;
   background-color: transparent;
 }

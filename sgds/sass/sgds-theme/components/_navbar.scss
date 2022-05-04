@@ -1,8 +1,6 @@
 @import "../../bootstrap/nav";
 @import "../../bootstrap/navbar";
 
-$navbar-border-bottom-height: 4px;
-
 .sgds {
     &.navbar {
         padding: 0 calc(#{$spacer * 2}) 0;
@@ -36,16 +34,16 @@ $navbar-border-bottom-height: 4px;
 
                 &.active,
                 &:hover {
-                    color: #5925DC;
-                    border-color: #5925DC;
+                    color: $primary;
+                    border-color: $primary;
                 }
 
                 &.dropdown-toggle {
                     gap: 0.75rem;
 
                     &.show {
-                        color: #5925DC;
-                        border-bottom: $navbar-border-bottom-height solid #5925DC;
+                        color: $primary;
+                        border-bottom: $navbar-border-bottom-height solid $primary;
                     }
                 }
             }
