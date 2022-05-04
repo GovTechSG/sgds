@@ -2,7 +2,11 @@
 <section>
     <header class="header-component">
         <h1 class="fw-bold">{{page.title}}</h1>
-        <p>{{page.description}}</p>
+        {% assign class = nil %}
+        {% if page.ready == false %}
+        {% assign class = 'text-danger' %}
+        {% endif %}
+        <p class="{{class}}">{{page.description}}</p>
         <div class="component-source-grid">
             <div>
                 <span class="sgds badge badge-light bg-primary-100 text-primary border border-primary">{{page.category | capitalize}}</span>

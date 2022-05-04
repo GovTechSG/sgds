@@ -1,0 +1,30 @@
+.sgds{
+    &.nav-tabs{
+        border-bottom: none;
+        gap: 2rem;
+        li.nav-item{
+            button.nav-link{
+                padding-top: 0;
+                padding-left: 0;
+                padding-right: 0;
+                background-color: transparent;
+                color: $body-color;
+                border-color: transparent;
+                border: none;
+                // &:hover,&:focus{
+                //     outline: 0;
+                //     border-color: transparent;
+                // }
+                &.active{
+                    border-bottom: 5px solid $link-color;
+                    font-weight: $font-weight-bold;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+    &.tab-content{
+        padding-top: $nav-sgds-tabs-padding-y;
+        padding-bottom: $nav-sgds-tabs-padding-y;
+    }
+}

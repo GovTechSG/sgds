@@ -4176,7 +4176,7 @@ textarea.form-control-lg {
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #D0D5DD;
+  border-bottom: 1px solid transparent;
 }
 .nav-tabs .nav-link {
   margin-bottom: -1px;
@@ -4186,7 +4186,7 @@ textarea.form-control-lg {
   border-top-right-radius: 0.3125rem;
 }
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-  border-color: #E4E7EC #E4E7EC #D0D5DD;
+  border-color: #E4E7EC #E4E7EC transparent;
   isolation: isolate;
 }
 .nav-tabs .nav-link.disabled {
@@ -6075,6 +6075,29 @@ textarea.form-control-lg {
 }
 .sgds.modal[variant=centered-align-icon] .modal-footer {
   justify-content: center;
+}
+
+.sgds.nav-tabs {
+  border-bottom: none;
+  gap: 2rem;
+}
+.sgds.nav-tabs li.nav-item button.nav-link {
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: transparent;
+  color: #1D2939;
+  border-color: transparent;
+  border: none;
+}
+.sgds.nav-tabs li.nav-item button.nav-link.active {
+  border-bottom: 5px solid #0f72bd;
+  font-weight: 700;
+  background-color: transparent;
+}
+.sgds.tab-content {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .tooltip {
