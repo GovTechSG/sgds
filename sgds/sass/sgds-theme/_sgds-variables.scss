@@ -432,7 +432,7 @@ $stretched-link-z-index: 1 !default;
 //
 // Style p element.
 
-$paragraph-margin-bottom: 1rem !default;
+$paragraph-margin-bottom: 1.5rem !default;
 
 
 // Grid breakpoints
@@ -575,7 +575,7 @@ $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-sm: $font-size-base * .875 !default;
 $font-size-lg: $font-size-base * 1.25 !default;
 
-$font-size-header-1: 2.5rem !default;
+
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-sm: $font-size-base * .875 !default;
 $font-size-lg: $font-size-base * 1.25 !default;
@@ -592,14 +592,22 @@ $line-height-base: 2 !default;
 $line-height-sm: 1.75 !default;
 $line-height-lg: 2.25 !default;
 
-$h0-font-size: $font-size-base * 3.5 !default;
-$h1-font-size: $font-size-base * 3 !default;
-$h2-font-size: $font-size-base * 2.5 !default;
-$h3-font-size: $font-size-base * 2 !default; //32px
-$h4-font-size: $font-size-base * 1.5 !default; //24px
-$h5-font-size: $font-size-base * 1.25 !default;
+$h0-font-size: $font-size-base * 3.5 !default; //56px
+$h1-font-size: $font-size-base * 2.5 !default; //40px
+$h2-font-size: $font-size-base * 2 !default; //32px
+$h3-font-size: $font-size-base * 1.5 !default; //24px
+$h4-font-size: $font-size-base * 1.125 !default; //18px
+$h5-font-size: $font-size-base !default; 
 $h6-font-size: $font-size-base !default;
 // scss-docs-end font-variables
+
+$h0-line-height:  1.4 !default; //56px
+$h1-line-height:  1.2 !default; //40px
+$h2-line-height:  1.25 !default; //32px
+$h3-line-height:  1.33 !default; //24px
+$h4-line-height:  1.78 !default; //18px
+$h5-line-height:  1.2 !default; 
+$h6-line-height:  1.2 !default;
 
 // scss-docs-start font-sizes
 $font-sizes: (
@@ -616,7 +624,7 @@ $font-sizes: (
 $headings-margin-bottom: $spacer * .5 !default;
 $headings-font-family: null !default;
 $headings-font-style: null !default;
-$headings-font-weight: 500 !default;
+$headings-font-weight: $font-weight-bold !default;
 $headings-line-height: 1.2 !default;
 $headings-color: null !default;
 // scss-docs-end headings-variables
@@ -632,7 +640,7 @@ $display-font-sizes: (
   6: $h6-font-size
 ) !default;
 
-$display-font-weight: 300 !default;
+$display-font-weight: $font-weight-bold !default;
 $display-line-height: $headings-line-height !default;
 // scss-docs-end display-headings
 

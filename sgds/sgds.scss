@@ -46,8 +46,9 @@ $utilities: map-merge(
 
 // Layout & components
 @import "./sass/bootstrap/root";
-@import "./sass/bootstrap/reboot";
-@import "./sass/bootstrap/type";
+@import "./sass/sgds-theme/mixins";
+@import "./sass/sgds-theme/reboot";
+@import "./sass/sgds-theme/type";
 @import "./sass/bootstrap/images";
 @import "./sass/bootstrap/containers";
 @import "./sass/bootstrap/grid";
