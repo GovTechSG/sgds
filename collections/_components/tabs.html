@@ -10,48 +10,190 @@ ready: false
 ---
 {% capture default-tabs %}
 <ul class="sgds nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
-    </li>
-  </ul>
-  <div class="sgds tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Tab 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, accusantium!</div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Tab 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, accusantium!</div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Tab 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, accusantium!</div>
-  </div>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
+      aria-controls="home" aria-selected="true">Home</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
+      aria-controls="profile" aria-selected="false">Profile</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
+      aria-controls="contact" aria-selected="false">Contact</button>
+  </li>
+</ul>
+<div class="sgds tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Tab 1. Lorem ipsum dolor
+    sit amet, consectetur adipisicing elit. Sit, accusantium!</div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Tab 2. Lorem ipsum dolor sit
+    amet, consectetur adipisicing elit. Sit, accusantium!</div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Tab 3. Lorem ipsum dolor sit
+    amet, consectetur adipisicing elit. Sit, accusantium!</div>
+</div>
 {% endcapture %}
+
+{% capture basic-toggle-tabs %}
+<!-- Add variant="tabs-basic-toggle" -->
+<ul class="sgds nav nav-tabs" id="myTab" role="tablist" variant="tabs-basic-toggle">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home1" type="button" role="tab"
+      aria-controls="home" aria-selected="true"><i class="bi bi-house left"></i>Home</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile1" type="button" role="tab"
+      aria-controls="profile" aria-selected="false">
+      Profile
+      <span class="sgds badge bg-light text-dark right">99</span>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact1" type="button" role="tab"
+      aria-controls="contact" aria-selected="false">Contact<i class="bi bi-telephone right"></i></button>
+  </li>
+</ul>
+<div class="sgds tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home1" role="tabpanel" aria-labelledby="home-tab">
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio inventore commodi iure at doloribus architecto sed animi cumque fuga quod exercitationem iste consequatur similique molestiae ab, rerum amet quam laboriosam?</p>
+  </div>
+  <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="profile-tab">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane fade" id="contact1" role="tabpanel" aria-labelledby="contact-tab">Tab 3. Lorem ipsum dolor sit
+    amet, consectetur adipisicing elit. Sit, accusantium!</div>
+</div>
+{% endcapture %}
+{% capture info-toggle-tabs %}
+<!-- Add variant="tabs-info-toggle" -->
+<ul class="sgds nav nav-tabs" id="myTab" role="tablist" variant="tabs-info-toggle">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab2" data-bs-toggle="tab" data-bs-target="#home2" type="button" role="tab"
+      aria-controls="home" aria-selected="true">
+      <!-- Add has-icon for label if icon is included -->
+      <div class="tabs-info-label has-icon">
+        <i class="bi bi-house"></i>
+        Home
+      </div>
+      <div class="tabs-info-count">99</div>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab2" data-bs-toggle="tab" data-bs-target="#profile2" type="button" role="tab"
+      aria-controls="profile" aria-selected="true">
+      <div class="tabs-info-label">
+        Profile
+      </div>
+      <div class="tabs-info-count">99</div>
+    </button>
+  </li>
+</ul>
+<div class="sgds tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home-tab">
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio inventore commodi iure at doloribus architecto sed animi cumque fuga quod exercitationem iste consequatur similique molestiae ab, rerum amet quam laboriosam?</p>
+  </div>
+  <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endcapture %}
+
 <div class="page-component">
-    <article>
-        {% include page-component/component-header.html %}
-        <section>
-            <h2 class="title fw-bold">Anatomy</h2>
-            <div class="component-anatomy">
-                <h3 class="subtitle fw-bold">Closed</h3>
-                <ol>
-                    <li>
-                        <b>Text:</b> Serves to tell users what the accordion is being used for
-                    </li>
-                    <li>
-                        <b>Container:</b> Encloses the content within, width and height to be adjusted according to
-                        content
-                    </li>
-                </ol>
-                <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/anatomy/accordion/anatomy-accordion-1.svg" alt="">
-            </div>
-        </section>
-        <section>
-            <h2 class="title fw-bold">Example</h2>
-            <h3 class="subtitle fw-bold">Default Tabs</h3>
-            <div class="sgds-example">
-                {{default-tabs}}
-            </div>
-            {% include page-component/component-code-snippet.html compName="default-tabs" content=default-tabs %}
-        </section>
-    </article>
+  <article>
+    {% include page-component/component-header.html %}
+    <section>
+      <h2 class="title fw-bold">Anatomy</h2>
+      <div class="component-anatomy">
+        <h3 class="subtitle fw-bold">Closed</h3>
+        <ol>
+          <li>
+            <b>Text:</b> Serves to tell users what the accordion is being used for
+          </li>
+          <li>
+            <b>Container:</b> Encloses the content within, width and height to be adjusted according to
+            content
+          </li>
+        </ol>
+        <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/anatomy/accordion/anatomy-accordion-1.svg"
+          alt="">
+      </div>
+    </section>
+    <section>
+      <h2 class="title fw-bold">Example</h2>
+      <h3 class="subtitle fw-bold">Default Tabs</h3>
+      <div class="sgds-example">
+        {{default-tabs}}
+      </div>
+      {% include page-component/component-code-snippet.html compName="default-tabs" content=default-tabs %}
+    </section>
+    <section>
+      <h3 class="subtitle fw-bold">Basic toggle tabs</h3>
+      <div class="sgds-example">
+        {{basic-toggle-tabs}}
+      </div>
+      {% include page-component/component-code-snippet.html compName="basic-toggle-tabs" content=basic-toggle-tabs %}
+    </section>
+    <section>
+      <h3 class="subtitle fw-bold">Info toggle tabs</h3>
+      <div class="sgds-example">
+        {{info-toggle-tabs}}
+      </div>
+      {% include page-component/component-code-snippet.html compName="info-toggle-tabs" content=info-toggle-tabs %}
+    </section>
+  </article>
 </div>

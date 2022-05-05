@@ -5249,10 +5249,10 @@ textarea.form-control-lg {
   line-height: 1.145;
   padding: 0.285em 0.571em;
 }
-.sgds.badge i:first-child {
+.sgds.badge i.left {
   padding-right: 0.43em;
 }
-.sgds.badge i:last-child {
+.sgds.badge i.right {
   padding-left: 0.43em;
 }
 
@@ -6081,7 +6081,55 @@ textarea.form-control-lg {
   border-bottom: none;
   gap: 2rem;
 }
-.sgds.nav-tabs li.nav-item button.nav-link {
+.sgds.nav-tabs[variant=tabs-info-toggle] li.nav-item button.nav-link {
+  padding: 0.75rem;
+  border-radius: 0.3125rem;
+  color: #1D2939;
+  background-color: #fff;
+  border: 1px solid #98A2B3;
+  min-width: 11.875rem;
+}
+.sgds.nav-tabs[variant=tabs-info-toggle] li.nav-item button.nav-link .tabs-info-label {
+  display: flex;
+  text-align: right;
+  justify-content: flex-end;
+}
+.sgds.nav-tabs[variant=tabs-info-toggle] li.nav-item button.nav-link .tabs-info-label.has-icon {
+  justify-content: space-between;
+}
+.sgds.nav-tabs[variant=tabs-info-toggle] li.nav-item button.nav-link .tabs-info-count {
+  text-align: right;
+}
+.sgds.nav-tabs[variant=tabs-info-toggle] li.nav-item button.nav-link.active, .sgds.nav-tabs[variant=tabs-info-toggle] li.nav-item button.nav-link:hover {
+  border-color: #5925DC;
+  color: #5925DC;
+  font-weight: 700;
+}
+.sgds.nav-tabs[variant=tabs-basic-toggle] {
+  gap: 0;
+}
+.sgds.nav-tabs[variant=tabs-basic-toggle] li.nav-item + li.nav-item {
+  margin-left: -2px;
+}
+.sgds.nav-tabs[variant=tabs-basic-toggle] li.nav-item button.nav-link {
+  padding: initial;
+  border: 1px solid #98A2B3;
+  border-radius: 0;
+  padding: 0.5rem 1.5rem;
+  color: #1D2939;
+  background-color: #fff;
+}
+.sgds.nav-tabs[variant=tabs-basic-toggle] li.nav-item button.nav-link i.left, .sgds.nav-tabs[variant=tabs-basic-toggle] li.nav-item button.nav-link span.left {
+  margin-right: 1rem;
+}
+.sgds.nav-tabs[variant=tabs-basic-toggle] li.nav-item button.nav-link i.right, .sgds.nav-tabs[variant=tabs-basic-toggle] li.nav-item button.nav-link span.right {
+  margin-left: 1rem;
+}
+.sgds.nav-tabs[variant=tabs-basic-toggle] li.nav-item button.nav-link.active, .sgds.nav-tabs[variant=tabs-basic-toggle] li.nav-item button.nav-link:hover {
+  color: #fff;
+  background-color: #0f72bd;
+}
+.sgds.nav-tabs:not([variant=tabs-basic-toggle]):not([variant=tabs-info-toggle]) li.nav-item button.nav-link {
   padding-top: 0;
   padding-left: 0;
   padding-right: 0;
@@ -6090,7 +6138,7 @@ textarea.form-control-lg {
   border-color: transparent;
   border: none;
 }
-.sgds.nav-tabs li.nav-item button.nav-link.active {
+.sgds.nav-tabs:not([variant=tabs-basic-toggle]):not([variant=tabs-info-toggle]) li.nav-item button.nav-link.active {
   border-bottom: 0.125rem solid #0f72bd;
   font-weight: 700;
   background-color: transparent;

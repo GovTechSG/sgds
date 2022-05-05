@@ -575,6 +575,11 @@ $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-sm: $font-size-base * .875 !default;
 $font-size-lg: $font-size-base * 1.25 !default;
 
+$font-size-header-1: 2.5rem !default;
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-sm: $font-size-base * .875 !default;
+$font-size-lg: $font-size-base * 1.25 !default;
+
 $font-weight-lighter: lighter !default;
 $font-weight-light: 300 !default;
 $font-weight-normal: 400 !default;
@@ -1092,6 +1097,7 @@ $nav-tabs-link-active-bg: $body-bg !default;
 $nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
 $nav-sgds-tabs-active-border-color: $link-color !default;
 $nav-sgds-tabs-padding-y: $spacer !default;
+$nav-sgds-tabs-icon-padding: $spacer !default;
 
 $nav-pills-border-radius: $border-radius !default;
 $nav-pills-link-active-color: $component-active-color !default;

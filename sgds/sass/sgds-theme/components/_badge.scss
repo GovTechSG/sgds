@@ -7,10 +7,10 @@
       line-height: $badge-line-height;
       padding: $badge-padding-y $badge-padding-x;
       i{
-        &:first-child{
+        &.left{
           padding-right: $badge-icon-padding;
         }
-        &:last-child{
+        &.right{
           padding-left: $badge-icon-padding;
         }
       }
