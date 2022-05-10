@@ -1,5 +1,8 @@
 .toc-wrapper{
     @extend %aside-sticky;
+    a{
+        text-decoration: none;
+    }
     .toc{
         padding-left: 1rem;
         list-style-type: none;
