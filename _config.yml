@@ -16,7 +16,8 @@ search_placeholder: "What are you looking for?"
 plugins:
   - jekyll-seo-tag
   - jekyll-redirect-from
-
+  - jekyll-toc
+  
 collections_dir: collections
 collections:
   components:
@@ -41,3 +42,11 @@ exclude:
 
 sass:
   sass_dir: assets/custom-css
+
+toc:
+  list_id: toc # Default: "toc"
+  list_class: toc # Default: "section-nav"
+  no_toc_section_class: no-toc-section
+  sublist_class: toc-sublist # Default: no class for sublists
+  item_class: toc-item # Default: "toc-entry"
+  item_prefix: item- # Default: "toc-":

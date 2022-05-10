@@ -6,6 +6,7 @@ category: general
 react: true
 github: https://google.com
 storybook: https://google.com
+toc: true
 ---
 
 {% capture default-accordion %}
@@ -67,13 +68,13 @@ storybook: https://google.com
 </div>
 {% endcapture %}
 
-<div class="page-component">
+<div class="page-component" data-bs-spy="scroll" data-bs-target="#toc" data-bs-offset="0">
     <article>
         {% include page-component/component-header.html %}
         <section>
-            <h2 class="title fw-bold">Anatomy</h2>
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
             <div class="component-anatomy">
-                <h3 class="subtitle fw-bold">Closed</h3>
+                <h3 class="subtitle fw-bold" id="closed">Closed</h3>
                 <ol>
                     <li>
                         <b>Text:</b> Serves to tell users what the accordion is being used for
@@ -86,7 +87,7 @@ storybook: https://google.com
                 <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/anatomy/accordion/anatomy-accordion-1.svg" alt="">
             </div>
             <div class="component-anatomy">
-                <h3 class="subtitle fw-bold">Open</h3>
+                <h3 class="subtitle fw-bold" id="open">Open</h3>
                 <ol>
                     <li>
                         <b>Text:</b> Serves to tell users what the accordion is being used for. Bold when the accordion
@@ -105,30 +106,30 @@ storybook: https://google.com
             </div>
         </section>
         <section>
-            <h2 class="title fw-bold">Spacing</h2>
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
             <div class="component-anatomy">
-                <h3 class="subtitle fw-bold">Accordion button</h3>
+                <h3 class="subtitle fw-bold" id="accordion-button">Accordion button</h3>
                 <p>Ensure that there is a min of 24px horizontal spacing and 16px vertical spacing</p>
                 <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/accordion/spacing-accordion-1.svg" alt="">
             </div>
             <div class="component-anatomy">
-                <h3 class="subtitle fw-bold">Within the accordion</h3>
+                <h3 class="subtitle fw-bold" id="within-the-accordion">Within the accordion</h3>
                 <p>Ensure that there is a min of 24px spacing within the accordion, and 16px vertical spacing
                     between the accordion title and content </p>
                 <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/accordion/spacing-accordion-2.svg" alt="">
             </div>
         </section>
         <section>
-            <h2 class="title fw-bold">Example</h2>
-            <h3 class="subtitle fw-bold">Default Accordion</h3>
-            <div class="sgds-example">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <h3 class="subtitle fw-bold" id="default-accordion">Default Accordion</h3>
+            <div class="sgds-example no-toc-section">
                 {{default-accordion}}
             </div>
             {% include page-component/component-code-snippet.html compName="default-accordion" content=default-accordion
             %}
         </section>
         <section>
-            <h3 class="title fw-bold">Usage guidelines</h3>
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
             <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers. Users may also ignore important information if it is hidden in an accordion.</p>
             <p class="fw-bold">When to use the accordion component:</p>
             <ol>
@@ -147,7 +148,7 @@ storybook: https://google.com
             </ol>
         </section>
         <section>
-            <h3 class="title fw-bold">Usage guidelines</h3>
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
                 <b>Do ensure that the entire heading is clickable to the user.</b><br>
                 A larger target will make it easier for users to manipulate
@@ -166,7 +167,4 @@ storybook: https://google.com
             
         </section>
     </article>
-    <aside>
-        Component anchor goes here
-    </aside>
 </div>

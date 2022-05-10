@@ -9,7 +9,7 @@ body{
     &-sidenav{
         display: grid;
         gap: 2rem;
-        grid-template-columns: 240px 1fr;
+        grid-template-columns: 240px 1fr 240px;
         max-width: 100%;
         padding: 1rem 2rem;
         @include media-breakpoint-down(lg){
