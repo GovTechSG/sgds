@@ -1,0 +1,16 @@
+.toc-wrapper{
+    @extend %aside-sticky;
+    a{
+        text-decoration: none;
+    }
+    .toc{
+        padding-left: 1rem;
+        list-style-type: none;
+        border-left: 1px solid var(--sgds-gray-300);
+        font-size: 0.875rem;
+        ul{
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+    }
+}

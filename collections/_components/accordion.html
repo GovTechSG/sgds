@@ -6,8 +6,36 @@ category: general
 react: true
 github: https://google.com
 storybook: https://google.com
+toc: true
 ---
-
+{% capture accordion-design-tokens %}
+$accordion-padding-y: 1rem !default;
+$accordion-padding-x: 1.25rem !default;
+$accordion-color: $body-color !default;
+$accordion-bg: $body-bg !default;
+$accordion-border-width: $border-width !default;
+$accordion-border-color: $border-color !default;
+$accordion-border-radius: $border-radius !default;
+$accordion-inner-border-radius: subtract($accordion-border-radius, $accordion-border-width) !default;
+$accordion-body-padding-y: $accordion-padding-y !default;
+$accordion-body-padding-x: 1.5rem !default;
+$accordion-button-padding-y: $accordion-padding-y !default;
+$accordion-button-padding-x: 1.5rem !default;
+$accordion-button-color: $accordion-color !default;
+$accordion-button-bg: $accordion-bg !default;
+$accordion-transition: $btn-transition, border-radius .15s ease !default;
+$accordion-button-active-bg: none !default;
+$accordion-button-active-color: $purple-500 !default;
+$accordion-button-focus-border-color: $input-focus-border-color !default;
+$accordion-button-focus-box-shadow: $btn-focus-box-shadow !default;
+$accordion-icon-width: 1.25rem !default;
+$accordion-icon-color: $accordion-button-color !default;
+$accordion-icon-active-color: $accordion-button-active-color !default;
+$accordion-icon-transition: transform .2s ease-in-out !default;
+$accordion-icon-transform: rotate(-180deg) !default;
+$accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+{% endcapture %}
 {% capture default-accordion %}
 <div class="sgds accordion" id="accordionExample">
     <div class="accordion-item">
@@ -71,22 +99,21 @@ storybook: https://google.com
     <article>
         {% include page-component/component-header.html %}
         <section>
-            <h2 class="title fw-bold">Anatomy</h2>
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
             <div class="component-anatomy">
-                <h3 class="subtitle fw-bold">Closed</h3>
+                <h3 class="subtitle fw-bold" id="closed">Closed</h3>
                 <ol>
                     <li>
                         <b>Text:</b> Serves to tell users what the accordion is being used for
                     </li>
                     <li>
-                        <b>Container:</b> Encloses the content within, width and height to be adjusted according to
-                        content
+                        <b>Container:</b> Encloses the content within, width and height to be adjusted according to content
                     </li>
                 </ol>
                 <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/anatomy/accordion/anatomy-accordion-1.svg" alt="">
             </div>
             <div class="component-anatomy">
-                <h3 class="subtitle fw-bold">Open</h3>
+                <h3 class="subtitle fw-bold" id="open">Open</h3>
                 <ol>
                     <li>
                         <b>Text:</b> Serves to tell users what the accordion is being used for. Bold when the accordion
@@ -105,22 +132,22 @@ storybook: https://google.com
             </div>
         </section>
         <section>
-            <h2 class="title fw-bold">Spacing</h2>
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
             <div class="component-anatomy">
-                <h3 class="subtitle fw-bold">Accordion button</h3>
+                <h3 class="subtitle fw-bold" id="accordion-button">Accordion button</h3>
                 <p>Ensure that there is a min of 24px horizontal spacing and 16px vertical spacing</p>
                 <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/accordion/spacing-accordion-1.svg" alt="">
             </div>
             <div class="component-anatomy">
-                <h3 class="subtitle fw-bold">Within the accordion</h3>
+                <h3 class="subtitle fw-bold" id="within-the-accordion">Within the accordion</h3>
                 <p>Ensure that there is a min of 24px spacing within the accordion, and 16px vertical spacing
                     between the accordion title and content </p>
                 <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/accordion/spacing-accordion-2.svg" alt="">
             </div>
         </section>
         <section>
-            <h2 class="title fw-bold">Example</h2>
-            <h3 class="subtitle fw-bold">Default Accordion</h3>
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <h3 class="subtitle fw-bold" id="default-accordion">Default Accordion</h3>
             <div class="sgds-example">
                 {{default-accordion}}
             </div>
@@ -128,7 +155,7 @@ storybook: https://google.com
             %}
         </section>
         <section>
-            <h3 class="title fw-bold">Usage guidelines</h3>
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
             <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers. Users may also ignore important information if it is hidden in an accordion.</p>
             <p class="fw-bold">When to use the accordion component:</p>
             <ol>
@@ -147,7 +174,7 @@ storybook: https://google.com
             </ol>
         </section>
         <section>
-            <h3 class="title fw-bold">Usage guidelines</h3>
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
                 <b>Do ensure that the entire heading is clickable to the user.</b><br>
                 A larger target will make it easier for users to manipulate
@@ -165,8 +192,9 @@ storybook: https://google.com
             <p>This is to prevent the user from accidentally closing the accordion</p> -->
             
         </section>
+        <section>
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{accordion-design-tokens}}{%- endhighlight -%}
+        </section>
     </article>
-    <aside>
-        Component anchor goes here
-    </aside>
 </div>

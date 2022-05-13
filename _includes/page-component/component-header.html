@@ -1,7 +1,8 @@
 {% include breadcrumb.html %}
 <section>
+    {% assign pageHeader = page.title | downcase %}
     <header class="header-component">
-        <h1 class="fw-bold">{{page.title}}</h1>
+        <h1 class="fw-bold" id="{{pageHeader}}">{{page.title}}</h1>
         {% assign class = nil %}
         {% if page.ready == false %}
         {% assign class = 'text-danger' %}
