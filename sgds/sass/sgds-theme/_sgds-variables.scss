@@ -428,6 +428,8 @@ $link-hover-decoration: null !default;
 $stretched-link-pseudo-element: after !default;
 $stretched-link-z-index: 1 !default;
 
+$link-underline-offset: $spacer * .25 !default;
+
 // Paragraphs
 //
 // Style p element.
@@ -479,7 +481,6 @@ $grid-row-columns: 6 !default;
 $gutters: $spacers !default;
 
 // Container padding
-
 $container-padding-x: $grid-gutter-width * .5 !default;
 
 
@@ -1429,7 +1430,9 @@ $badge-border-radius: $border-radius !default;
 $badge-icon-padding: .43em !default;
 // scss-docs-end badge-variables
 
-
+//File Upload
+$fileupload-list-margin-top: 1rem !default;
+$fileupload-list-item-spacing: $spacer * .5 !default;
 // Modals
 
 // scss-docs-start modal-variables

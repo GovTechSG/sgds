@@ -1,0 +1,29 @@
+.sgds {
+    &.fileupload-list {
+        margin-top: $fileupload-list-margin-top;
+        list-style-type: none;
+        padding: 0;
+
+        .fileupload-list-item {
+            &+.fileupload-list-item {
+                margin-top: $fileupload-list-item-spacing;
+            }
+
+            i {
+                &:first-child {
+                    color: $success;
+                }
+
+                &:last-child {
+                    color: $danger;
+                }
+            }
+
+            .filename {
+                color: $link-color;
+                text-decoration: $link-decoration;
+                text-underline-offset: $link-underline-offset;
+            }
+        }
+    }
+}
