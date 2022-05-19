@@ -13,3 +13,14 @@ gsap.to(".sgds.navbar",{
     backdropFilter: "blur(10px)",
     duration: 0.35
 });
+
+const navbarToggler = document.querySelector(".navbar-toggler");
+const navbarCollapse = document.querySelector(".navbar-collapse");
+document.addEventListener("devConsoleWidgetToggle", function (event) {
+    const widgetState = event.detail.isWidgetOpen;
+    // Widget is open
+    if (widgetState) {
+        navbarToggler.setAttribute("aria-expanded", false)
+        navbarCollapse.classList.remove("show");
+    }
+});
