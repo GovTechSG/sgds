@@ -476,7 +476,7 @@ p + p {
 }
 
 a {
-  text-underline-offset: calc(1rem * .25);
+  text-underline-offset: 0.25rem;
 }
 
 .lead {
@@ -4142,6 +4142,26 @@ textarea.form-control-lg {
   color: #fff;
 }
 
+.sgds.fileupload-list {
+  margin-top: 1rem;
+  list-style-type: none;
+  padding: 0;
+}
+.sgds.fileupload-list .fileupload-list-item + .fileupload-list-item {
+  margin-top: 0.5rem;
+}
+.sgds.fileupload-list .fileupload-list-item i:first-child {
+  color: #3BB346;
+}
+.sgds.fileupload-list .fileupload-list-item i:last-child {
+  color: #FA5741;
+}
+.sgds.fileupload-list .fileupload-list-item .filename {
+  color: #0f72bd;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -5766,13 +5786,12 @@ textarea.form-control-lg {
 }
 
 .sgds.sidenav {
-  width: 20rem;
+  width: auto;
   font-size: 1rem;
-  padding-left: 0;
   list-style: none;
 }
 .sgds.sidenav .sidenav-item + .sidenav-item {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 .sgds.sidenav .sidenav-item .sgds.btn {
   color: #5925DC;
@@ -5780,6 +5799,7 @@ textarea.form-control-lg {
   font-weight: bold;
   width: 100%;
   text-align: initial;
+  line-height: 1.5;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -5788,7 +5808,7 @@ textarea.form-control-lg {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
-  border-left: 0.25rem solid #5925DC;
+  border-left: 0.125rem solid #5925DC;
   border-radius: 0;
 }
 .sgds.sidenav .sidenav-item .sgds.btn i.bi-chevron-down {
@@ -5809,7 +5829,7 @@ textarea.form-control-lg {
 .sgds.sidenav .sidenav-item .collapse,
 .sgds.sidenav .sidenav-item .collapse.show,
 .sgds.sidenav .sidenav-item .collapsing {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 .sgds.sidenav .sidenav-item .collapse a.nav-link,
 .sgds.sidenav .sidenav-item .collapse.show a.nav-link,
@@ -5818,13 +5838,13 @@ textarea.form-control-lg {
   font-size: inherit;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  padding-left: calc(2rem + 0.25rem);
+  padding-left: calc(4rem + 0.125rem);
   padding-right: 0;
 }
 .sgds.sidenav .sidenav-item .collapse a.nav-link + a.nav-link,
 .sgds.sidenav .sidenav-item .collapse.show a.nav-link + a.nav-link,
 .sgds.sidenav .sidenav-item .collapsing a.nav-link + a.nav-link {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 .sgds.sidenav .sidenav-item .collapse a.nav-link.active, .sgds.sidenav .sidenav-item .collapse a.nav-link:hover,
 .sgds.sidenav .sidenav-item .collapse.show a.nav-link.active,
