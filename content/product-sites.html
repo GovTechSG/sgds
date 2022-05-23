@@ -6,9 +6,9 @@ layout: layout-default
 
 <div class="directory-list">
     <ul>
-        {% for sites in site.data.siteTracked %}
+        {% for sites in site.data.product-sites %}
         <li>
-            <a href="{{sites.Url}}" class="external">{{sites.Url}}</a>
+            <a href="{{sites.url}}" class="external">{{sites.url}}</a>
         </li>
         {% endfor %}
     </ul>
