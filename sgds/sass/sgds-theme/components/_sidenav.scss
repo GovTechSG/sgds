@@ -2,20 +2,18 @@
     &.sidenav {
         width: $sidenav-width;
         font-size: $sidenav-fontsize;
-        @include list-unstyled;
-
+        list-style: none;
         .sidenav-item {
             +.sidenav-item {
                 margin-top: $sidenav-item-spacing;
             }
-
             .sgds.btn {
                 color: $sidenav-color;
                 font-size: inherit;
                 font-weight: bold;
                 width: 100%;
                 text-align: initial;
-
+                line-height: 1.5;
                 display: flex;
                 align-items: center;
                 gap: 1rem;
@@ -25,7 +23,7 @@
                 padding-top: $sidenav-btn-padding-x;
                 padding-bottom: $sidenav-btn-padding-y;
                 padding-left: 1rem;
-                border-left: $sidenav-btn-border-width solid $sidenav-color;
+                border-left: $navbar-border-bottom-height solid $sidenav-color;
                 border-radius: 0;
 
                 i {

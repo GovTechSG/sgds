@@ -1388,9 +1388,9 @@ $popover-arrow-outer-color: fade-in($popover-border-color, .05) !default;
 //Sidenav
 $sidenav-color: $primary !default;
 $sidenav-fontsize: 1rem !default;
-$sidenav-width: 20rem !default;
-$sidenav-item-spacing: 0.5rem !default;
-$sidenav-btn-border-width: 0.25rem !default;
+$sidenav-width: auto !default;
+$sidenav-item-spacing: 1rem !default;
+$sidenav-btn-border-width: $navbar-border-bottom-height !default;
 $sidenav-btn-padding-x: 0.5rem;
 $sidenav-btn-padding-y: 0.5rem;
 
