@@ -99,6 +99,15 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
     <article>
         {% include page-component/component-header.html %}
         <section>
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <h3 class="subtitle fw-bold" id="default-accordion">Default Accordion</h3>
+            <div class="sgds-example">
+                {{default-accordion}}
+            </div>
+            {% include page-component/component-code-snippet.html compName="default-accordion" content=default-accordion
+            %}
+        </section>
+        <section>
             <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
             <div class="component-anatomy">
                 <h3 class="subtitle fw-bold" id="closed">Closed</h3>
@@ -145,15 +154,7 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
                 <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/accordion/spacing-accordion-2.svg" alt="">
             </div>
         </section>
-        <section>
-            <h2 class="title fw-bold" id="example">Example</h2>
-            <h3 class="subtitle fw-bold" id="default-accordion">Default Accordion</h3>
-            <div class="sgds-example">
-                {{default-accordion}}
-            </div>
-            {% include page-component/component-code-snippet.html compName="default-accordion" content=default-accordion
-            %}
-        </section>
+        
         <section>
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
             <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers. Users may also ignore important information if it is hidden in an accordion.</p>

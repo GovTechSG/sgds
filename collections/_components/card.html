@@ -4,5 +4,38 @@ description: Cards contain content and actions about a single subject.
 layout: layout-sidenav
 category: general
 react: true
+toc: true
 ---
-{% include page-component/component-header.html %}
+{% capture card-with-image %}
+<div class="card sgds" style="width: 18rem;"><img class="card-img-top"
+        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+    <div class="card-body">
+        <h3 class="card-title">Card Title</h3>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p><a class="card-link" href="#">Go somewhere</a>
+    </div>
+</div>
+{% endcapture %}
+
+<div class="page-component">
+    <article>
+        {% include page-component/component-header.html %}
+        <section>
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <h3 class="subtitle fw-bold" id="card-with-image">Card with image</h3>
+            <div class="sgds-example">
+                {{card-with-image}}
+            </div>
+            {% include page-component/component-code-snippet.html compName="card-with-image" content=card-with-image %}
+        </section>
+
+        <section>
+            <h3 class="subtitle fw-bold" id="card-with-image">Default Accordion</h3>
+            <div class="sgds-example">
+                {{card-with-image}}
+            </div>
+            {% include page-component/component-code-snippet.html compName="card-with-image" content=card-with-image %}
+        </section>
+
+    </article>
+</div>

@@ -1,5 +1,5 @@
 aside{
-    .sidenav{
+    .sgds.sidenav{
         padding: 1rem;
         background-color: var(--sgds-gray-100);
         @extend %aside-sticky;
@@ -10,5 +10,10 @@ aside{
                 color: var(--sgds-gray-700);
             }
         }
+
+        .sidenav-item + .sidenav-item{
+            margin-top: 0;
+        }
+
     }
 }

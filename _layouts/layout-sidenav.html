@@ -1,23 +1,26 @@
 ---
 layout: layout-default
 ---
-<div class="wrapper-sidenav">
+<nav class="wrapper-sidenav">
     <aside>
-        <div class="sidenav">
+        <nav class="sgds sidenav list-unstyled">
             {% assign collections = site.collections | sort: 'order' %}
             {% for collection in collections %}
                 {% if collection.category == "components" %}
                     {% assign name = collection.label %}
                     {% for item in site[collection.label] %}
-                    {%- assign class = nil -%}
-                    {%- if page.url contains item.title -%} 
+                    {%- assign class = 'inactive' -%}
+                    {%- assign title = item.title  -%}
+                    {%- if page.title == title -%}
                         {%- assign class = 'active' -%} 
-                    {%- endif -%}                  
-                        <a class="d-block {{class}}" href="{{item.url}}">{{item.title}}</a>
+                    {%- endif -%}
+                        <li class="sidenav-item">
+                            <a type="button" class="sgds btn {{class}}" href="{{item.url}}">{{item.title}}</a>
+                        </li>                  
                     {% endfor %}
                 {% endif %}
             {% endfor %}
-        </div>
+        </nav>
     </aside>
     <main>
         {{content}}
@@ -31,5 +34,3 @@ layout: layout-default
     </aside>
     {% endif %}
 </div>
-
-
