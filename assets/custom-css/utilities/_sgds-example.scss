@@ -29,8 +29,8 @@
     }
 }   
 
-.sgds-example{
-    &-image-container{
+.sgds-example-image{
+    &-container{
         display: grid;
         padding: 2rem;
         background-color: var(--sgds-gray-100);
@@ -38,7 +38,7 @@
         margin-bottom: 1rem;
         border-radius: $border-radius;
     }
-    &-image-grid{
+    &-grid{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
@@ -47,6 +47,12 @@
             max-width: 100%;
             height: auto;
             background: transparent;
+            padding: 0;
         }
+    }
+    &-subgrid{
+        display: grid;
+        gap: 1rem;
+        place-items: center;
     }
 }
