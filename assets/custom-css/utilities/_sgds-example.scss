@@ -28,3 +28,25 @@
         margin: 0.25rem;
     }
 }   
+
+.sgds-example{
+    &-image-container{
+        display: grid;
+        padding: 2rem;
+        background-color: var(--sgds-gray-100);
+        place-items: center;
+        margin-bottom: 1rem;
+        border-radius: $border-radius;
+    }
+    &-image-grid{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        place-items: center;
+        img,svg{
+            max-width: 100%;
+            height: auto;
+            background: transparent;
+        }
+    }
+}

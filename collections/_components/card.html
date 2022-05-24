@@ -1,6 +1,6 @@
 ---
 title: Card
-description: Cards contain content and actions about a single subject.
+description: Cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.
 layout: layout-sidenav
 category: general
 react: true
@@ -16,13 +16,37 @@ toc: true
     </div>
 </div>
 {% endcapture %}
+{% capture card-design-tokens %}
+$card-spacer-y: 1.5rem !default;
+$card-spacer-x: 1.5rem !default;
+$card-title-spacer-y: $spacer * .5 !default;
+$card-border-width: $border-width !default;
+$card-border-color: $gray-400 !default;
+$card-border-radius: $border-radius !default;
+$card-box-shadow: null !default;
+$card-inner-border-radius: subtract($card-border-radius, $card-border-width) !default;
+$card-cap-padding-y: $card-spacer-y * .5 !default;
+$card-cap-padding-x: $card-spacer-x !default;
+$card-cap-bg: rgba($black, .03) !default;
+$card-cap-color: null !default;
+$card-height: null !default;
+$card-color: null !default;
+$card-bg: $white !default;
+$card-img-overlay-padding: $spacer !default;
+$card-group-margin: $grid-gutter-width * .5 !default;
+//Action card specific
+$card-transition-duration: 0.3s !default;
+$card-transition-timing-function: ease-in-out !default;
+$card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
+{% endcapture %}
 
 <div class="page-component">
     <article>
         {% include page-component/component-header.html %}
+        
         <section>
-            <h2 class="title fw-bold" id="example">Example</h2>
-            <h3 class="subtitle fw-bold" id="card-with-image">Card with image</h3>
+            <h3 class="title fw-bold" id="example">Example</h3>
+            <h4 class="subtitle fw-bold" id="card-with-image">Card with image</h4>
             <div class="sgds-example">
                 {{card-with-image}}
             </div>
@@ -30,12 +54,109 @@ toc: true
         </section>
 
         <section>
-            <h3 class="subtitle fw-bold" id="card-with-image">Default Accordion</h3>
+            <h4 class="subtitle fw-bold" id="card-with-image">Default Accordion</h4>
             <div class="sgds-example">
                 {{card-with-image}}
             </div>
             {% include page-component/component-code-snippet.html compName="card-with-image" content=card-with-image %}
         </section>
+        <section>
+            <h3 class="title fw-bold" id="anatomy">Anatomy</h3>
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-1.svg" alt="">
+                    <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-2.svg" alt="">
+                    <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-3.svg" alt="">
+                    <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-4.svg" alt="">
+                </div>
+            </div>
+            <div class="component-anatomy">
+                <ol>
+                    <li>
+                        <b>Title:</b> Serves to let the user know exactly what the card is about, ideal to keep this short and to the point
+                    </li>
+                    <li>
+                        <b>Description:</b>  Serves to give users information on the card
+                    </li>
+                    <li>
+                        <b>Call to action (situational):</b> When you need users to take a action, this can be omitted if the card is meant to display only information
+                    </li>
+                    <li>
+                        <b>Image:</b> Gives context to the user as to what the card is about
+                    </li>
+                    <li>
+                        <b>Icon:</b> Serves to support the nature of the card. Gives more context to the user about what the card is about. E.g category
+                    </li>
+                    <li>
+                        <b>Selector:</b> Allows users to select one or more cards
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <h3 class="title fw-bold" id="anatomy">Spacing</h3>
+            <div class="component-anatomy">
 
+                <h4 class="subtitle fw-bold" id="open">Within the card</h4>
+                <p>Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p>
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-1.svg" alt="">
+                        <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-2.svg" alt="">
+                        <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-3.svg" alt="">
+                        <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-4.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="component-anatomy">
+
+            
+                <h4 class="subtitle fw-bold" id="open">Outside the card</h4>
+                <p>Ensure that there is a min 32px spacing vertically and horizontally between cards</p>
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-1.svg" alt="">
+                        <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-2.svg" alt="">
+                        <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-3.svg" alt="">
+                        <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-4.svg" alt="">
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        <section>
+            <h3 class="title fw-bold" id="usage-guidelines">Usage guidelines</h3>
+            <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers. Users may also ignore important information if it is hidden in an accordion.</p>
+            <p class="fw-bold mb-0">When to use the accordion component:</p>
+            <ol>
+                <li>There is insufficient space within the page to display the necessary information.</li>
+                <li>Users require an overview of specific content that's related to one another.</li>
+            </ol>
+            <p class="fw-bold mb-0">When not to use the accordion component:</p>
+            <ol>
+                <li>
+                    There is insufficient space within the page to display the necessary information.
+                    <ul>
+                        <li>Accordions hide content, and there may be users who may miss the content or not understand how accordions work.</li>
+                        <li>If users need to see all information in a single page, you can consider reducing your content, splitting them into smaller sections, or use well-formatted text (e.g. headers, contents, section)</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <h3 class="title fw-bold" id="usability-guidelines">Usability guidelines</h3>
+            <p>
+                <b>Do ensure that the entire heading is clickable to the user.</b><br>
+                A larger target will make it easier for users to manipulate
+            </p>
+            <p>
+                <b>Ensure enough space between content and headings</b><br>
+                This is to prevent the user from accidentally closing the accordion
+            </p>
+        </section>
+        <section>
+            <h3 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h3>
+            {%- highlight sass -%}{{card-design-tokens}}{%- endhighlight -%}
+        </section>
     </article>
 </div>

@@ -1,11 +1,14 @@
 .page{
     &-component{
-            display: grid;
-            grid-template-columns: 1fr 240px;
-            gap: 2rem;
-            @include media-breakpoint-down(lg){
-                display:block;
-            }
+           .subtitle{
+               margin-bottom: 0;
+           }
+
+           .subtitle,.title{
+               & + [class*='sgds-example']{
+                   margin-top: 1rem;
+               }
+           }
     }
 }
 
