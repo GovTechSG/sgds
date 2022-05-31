@@ -33,8 +33,16 @@ $accordion-icon-color: $accordion-button-color !default;
 $accordion-icon-active-color: $accordion-button-active-color !default;
 $accordion-icon-transition: transform .2s ease-in-out !default;
 $accordion-icon-transform: rotate(-180deg) !default;
-$accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
-$accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'
+    fill='#{$accordion-icon-color}'>
+    <path fill-rule='evenodd'
+        d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z' />
+</svg>") !default;
+$accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'
+    fill='#{$accordion-icon-active-color}'>
+    <path fill-rule='evenodd'
+        d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z' />
+</svg>") !default;
 {% endcapture %}
 {% capture default-accordion %}
 <div class="sgds accordion" id="accordionExample">
@@ -96,126 +104,131 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
 {% endcapture %}
 
 <div class="page-component">
-    <article>
-        {% include page-component/component-header.html %}
-         <!-- Code Example Section -->
-         <section name="section-examples">
-            <h3 class="title fw-bold" id="example">Example</h3>
-            <div class="section-sub">
-                {% 
-                    include page-component/component-code-snippet.html 
-                    compTitle="Default Accordion" 
-                    compName="default-accordion" 
-                    code=default-accordion 
-                %}
-            </div>
-        </section>
 
-        <!-- Anatomy Section -->
-        <section name="section-anatomy">
-            <h3 class="title fw-bold" id="anatomy">Anatomy</h3>
-            <div class="section-sub">
-                <h4 class="subtitle fw-bold" id="closed">Closed</h4>
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/accordion/anatomy-accordion-1.svg" alt="">
-                    </div>
-                </div>
-                
-                <ol>
-                    <li>
-                        <b>Text:</b> Serves to tell users what the accordion is being used for
-                    </li>
-                    <li>
-                        <b>Container:</b> Encloses the content within, width and height to be adjusted according to content
-                    </li>
-                </ol>
-            </div>
-            <div class="section-sub">
-                <h4 class="subtitle fw-bold" id="open">Open</h4>
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/accordion/anatomy-accordion-2.svg" alt="">
-                    </div>
-                </div>
-                <ol>
-                    <li>
-                        <b>Text:</b> Serves to tell users what the accordion is being used for. Bold when the accordion
-                        is open.
-                    </li>
-                    <li>
-                        <b>Container:</b> Encloses the content within, width and height to be adjusted according to
-                        content.
-                    </li>
-                    <li>
-                        <b>Content:</b> Content should be kept as short and to the point as possible to help with
-                        scanning
-                    </li>
-                </ol>
-            </div>
-        </section>
+    {% include page-component/component-header.html %}
+    <!-- Code Example Section -->
+    <section name="section-examples">
+        <h3 class="title fw-bold" id="example">Example</h3>
+        <div class="section-sub">
+            {%
+            include page-component/component-code-snippet.html
+            compTitle="Default Accordion"
+            compName="default-accordion"
+            code=default-accordion
+            %}
+        </div>
+    </section>
 
-        <!-- Spacing Section -->
-        <section name="section-spacing">
-            <h3 class="title fw-bold" id="spacing">Spacing</h3>
-            <div class="section-sub">
-                <h4 class="subtitle fw-bold" id="accordion-button">Accordion button</h4>
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/accordion/spacing-accordion-1.svg" alt="">
-                    </div>
+    <!-- Anatomy Section -->
+    <section name="section-anatomy">
+        <h3 class="title fw-bold" id="anatomy">Anatomy</h3>
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="closed">Closed</h4>
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/accordion/anatomy-accordion-1.svg" alt="">
                 </div>
-                <p>Ensure that there is a min of 24px horizontal spacing and 16px vertical spacing</p>
             </div>
-            <div class="section-sub">
-                <h4 class="subtitle fw-bold" id="within-the-accordion">Within the accordion</h4>
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/accordion/spacing-accordion-2.svg" alt="">
-                    </div>
-                </div>
-                <p>Ensure that there is a min of 24px spacing within the accordion, and 16px vertical spacing
-                    between the accordion title and content </p>
-            </div>
-        </section>
-        
-        <!-- Usage guidelines Section -->
-        <section name="section-usage-guidelines">
-            <h3 class="title fw-bold" id="usage-guidelines">Usage guidelines</h3>
-            <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers. Users may also ignore important information if it is hidden in an accordion.</p>
-            <p class="fw-bold mb-0">When to use the accordion component:</p>
-            <ol>
-                <li>There is insufficient space within the page to display the necessary information.</li>
-                <li>Users require an overview of specific content that's related to one another.</li>
-            </ol>
-            <p class="fw-bold mb-0">When not to use the accordion component:</p>
+
             <ol>
                 <li>
-                    There is insufficient space within the page to display the necessary information.
-                    <ul>
-                        <li>Accordions hide content, and there may be users who may miss the content or not understand how accordions work.</li>
-                        <li>If users need to see all information in a single page, you can consider reducing your content, splitting them into smaller sections, or use well-formatted text (e.g. headers, contents, section)</li>
-                    </ul>
+                    <b>Text:</b> Serves to tell users what the accordion is being used for
+                </li>
+                <li>
+                    <b>Container:</b> Encloses the content within, width and height to be adjusted according to content
                 </li>
             </ol>
-        </section>
+        </div>
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="open">Open</h4>
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/accordion/anatomy-accordion-2.svg" alt="">
+                </div>
+            </div>
+            <ol>
+                <li>
+                    <b>Text:</b> Serves to tell users what the accordion is being used for. Bold when the accordion
+                    is open.
+                </li>
+                <li>
+                    <b>Container:</b> Encloses the content within, width and height to be adjusted according to
+                    content.
+                </li>
+                <li>
+                    <b>Content:</b> Content should be kept as short and to the point as possible to help with
+                    scanning
+                </li>
+            </ol>
+        </div>
+    </section>
 
-        <!-- Usability guidelines Section -->
-        <section name="section-usability-guidelines">
-            <h3 class="title fw-bold" id="usability-guidelines">Usability guidelines</h3>
-            <p>
-                <b>Do ensure that the entire heading is clickable to the user.</b><br>
-                A larger target will make it easier for users to manipulate
-            </p>
-            <p>
-                <b>Ensure enough space between content and headings</b><br>
-                This is to prevent the user from accidentally closing the accordion
-            </p>
-        </section>
-        
-        <section>
-            <h3 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h3>
-            {%- highlight sass -%}{{accordion-design-tokens}}{%- endhighlight -%}
-        </section>
-    </article>
+    <!-- Spacing Section -->
+    <section name="section-spacing">
+        <h3 class="title fw-bold" id="spacing">Spacing</h3>
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="accordion-button">Accordion button</h4>
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/accordion/spacing-accordion-1.svg" alt="">
+                </div>
+            </div>
+            <p>Ensure that there is a min of 24px horizontal spacing and 16px vertical spacing</p>
+        </div>
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="within-the-accordion">Within the accordion</h4>
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/accordion/spacing-accordion-2.svg"
+                        alt="">
+                </div>
+            </div>
+            <p>Ensure that there is a min of 24px spacing within the accordion, and 16px vertical spacing
+                between the accordion title and content </p>
+        </div>
+    </section>
+
+    <!-- Usage guidelines Section -->
+    <section name="section-usage-guidelines">
+        <h3 class="title fw-bold" id="usage-guidelines">Usage guidelines</h3>
+        <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers.
+            Users may also ignore important information if it is hidden in an accordion.</p>
+        <p class="fw-bold mb-0">When to use the accordion component:</p>
+        <ol>
+            <li>There is insufficient space within the page to display the necessary information.</li>
+            <li>Users require an overview of specific content that's related to one another.</li>
+        </ol>
+        <p class="fw-bold mb-0">When not to use the accordion component:</p>
+        <ol>
+            <li>
+                There is insufficient space within the page to display the necessary information.
+                <ul>
+                    <li>Accordions hide content, and there may be users who may miss the content or not understand how
+                        accordions work.</li>
+                    <li>If users need to see all information in a single page, you can consider reducing your content,
+                        splitting them into smaller sections, or use well-formatted text (e.g. headers, contents,
+                        section)</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+
+    <!-- Usability guidelines Section -->
+    <section name="section-usability-guidelines">
+        <h3 class="title fw-bold" id="usability-guidelines">Usability guidelines</h3>
+        <p>
+            <b>Do ensure that the entire heading is clickable to the user.</b><br>
+            A larger target will make it easier for users to manipulate
+        </p>
+        <p>
+            <b>Ensure enough space between content and headings</b><br>
+            This is to prevent the user from accidentally closing the accordion
+        </p>
+    </section>
+
+    <section>
+        <h3 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h3>
+        {%- highlight sass -%}{{accordion-design-tokens}}{%- endhighlight -%}
+    </section>
+
 </div>
