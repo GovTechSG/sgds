@@ -1,8 +1,14 @@
 aside{
+     
+     &:not(.toc-container){
+        @extend %aside-sticky;
+        height: calc(100vh - 240px);
+        overflow: auto;
+    }
     .sgds.sidenav{
         padding: 1rem;
         background-color: var(--sgds-gray-100);
-        @extend %aside-sticky;
+       
         a{
             text-decoration: none;
             color: var(--sgds-gray-500);
