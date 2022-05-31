@@ -1,6 +1,6 @@
 # Steps to construct a component page
 1. Navigate to ```collections/_components/template.html```
-2. Duplicate the file and rename to the component name.
+2. Duplicate the file and rename to the component name in lower case. Use - for space.
 
 # Front end matter
 
@@ -21,11 +21,11 @@ toc: true
 
 > title: name of the component
 
-> layout: name of the template used for the page. **WARNING**: Do not remove
+> layout: template used for the page. **WARNING**: Do not remove
 
 > description: description of the component
 
-> category: Under which catergory the component falls into. **general** or **standard**
+> category: **general** / **standard**. Under which catergory the component falls into. 
 
 > react-link: Link to the component in react storybook, if any
 
@@ -33,7 +33,7 @@ toc: true
 
 > github-link: Link to the component in github repo
 
-> toc: enable table of contents
+> toc: **true** / **false** enable table of contents
 
 
 # Overall Page layout
@@ -90,19 +90,6 @@ See [Front end matter](#front-end-matter)
 </div>
 ```
 
-# Sub section
-Must be child of the main section
-You can use 1 or more sub sections
-```
-
-<div class="section-sub">
-    ...
-</div>
-<div class="section-sub">
-    ...
-</div>
-```
-
 # Section-Example 
 This section should only contain the default component and other variants
 
@@ -117,6 +104,7 @@ This section should only contain the default component and other variants
             code=card-with-image
         %}
     </div>
+    <!-- Add addtional section-sub for more variants -->
     ...
 </section>
 ```
@@ -154,7 +142,16 @@ This section contains the anatomy of all variants
     </div>
 </section>
 ```
-
+> ```.sgds-example-image-grid``` 
+>
+> This contain your main image for Anatomy
+>
+> ![Anatomy Master](../../assets/img/example-template/anatomy-1.png)
+>
+> If you need to add in more images, add ```div.sgds-example-image-subgrid``` inside the image grid
+>
+> ![Anatomy Master](../../assets/img/example-template/anatomy-2.png)
+>
 ## Folder structure for anatomy images.
 
 ```
@@ -183,7 +180,16 @@ This section contains the spacing of all variants
     </div>
 </section>
 ```
-
+> ```.sgds-example-image-grid``` 
+>
+> This contain your main image for Spacing
+>
+> ![Anatomy Master](../../assets/img/example-template/spacing-1.png)
+>
+> If you need to add in more images, add ```div.sgds-example-image-subgrid``` inside the image grid
+>
+> ![Anatomy Master](../../assets/img/example-template/spacing-2.png)
+>
 
 ## Folder structure for spacing images.
 
@@ -191,7 +197,7 @@ This section contains the spacing of all variants
 assets/img/component/(name of page title in lowercase)/spacing-(name of page title in lowercase)-x.{svg | png | jpg}
 ```
 
-# Section Usage / usability guidelines
+# Section usage / usability guidelines
 ## Usage guidelines
 
 ```
@@ -237,4 +243,17 @@ assets/img/component/(name of page title in lowercase)/spacing-(name of page tit
     <h3 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h3>
     {%- highlight sass -%}{{card-design-tokens}}{%- endhighlight -%}
 </section>
+```
+
+# Sub section
+Must be child of the main section.
+**You must include at least 1 sub section.**
+```
+
+<div class="section-sub">
+    ...
+</div>
+<div class="section-sub">
+    ...
+</div>
 ```
