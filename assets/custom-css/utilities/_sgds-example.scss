@@ -7,6 +7,16 @@
     &:last-child{
         border-top:none;
     }
+    &.grid-auto-column{
+        display: grid;
+        gap: 2rem;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+    }
+}
+
+[class*='sgds-example']{
+    margin-top: 1rem;
 }
 
 // compopnent-specific 
@@ -37,10 +47,13 @@
         place-items: center;
         margin-bottom: 1rem;
         border-radius: $border-radius;
+        
     }
     &-grid{
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        // grid-template-columns: repeat(2, 1fr);
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
         gap: 1rem;
         place-items: center;
         img,svg{
@@ -49,9 +62,14 @@
             background: transparent;
             padding: 0;
         }
+        @include media-breakpoint-down(lg){
+            grid-auto-flow: row;
+        }
     }
     &-subgrid{
         display: grid;
+        grid-auto-flow: row;
+        grid-auto-rows: max-content;
         gap: 1rem;
         place-items: center;
     }

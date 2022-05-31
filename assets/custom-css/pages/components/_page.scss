@@ -1,16 +1,26 @@
 .page{
     &-component{
+            section{
+                + section{
+                    margin-top: $spacer * 3.5;
+                }
+
+                .section-sub{
+                    + .section-sub{
+                        margin-top: $spacer * 3;
+                    }
+                }
+            }
            .subtitle{
                margin-bottom: 0;
            }
 
-           .subtitle,.title{
-               & + [class*='sgds-example']{
-                   margin-top: 1rem;
-               }
-           }
+           
+           
     }
 }
+
+
 
 .sgds.accordion.code-snippet{
     .accordion-header{
@@ -49,8 +59,4 @@ img{
     }
 }
 
-section{
-    + section{
-        margin-top: 3rem;
-    }
-}
+

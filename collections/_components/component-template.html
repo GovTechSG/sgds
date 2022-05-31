@@ -1,6 +1,7 @@
+
 ---
-title: Card
-description: Cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.
+title: ComponentName
+description: Include your description here
 layout: layout-sidenav
 category: general
 react-link: true
@@ -8,99 +9,33 @@ vue-link: true
 github-link: true
 toc: true
 ---
-{% capture card-with-image %}
-<div class="card sgds" style="width: 20rem;"><img class="card-img-top"
-        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
-    <div class="card-body">
-        <h3 class="card-title">Card Title</h3>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p><a class="card-link" href="#">Go somewhere</a>
-    </div>
-</div>
+{% capture default-component %}
+<h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, odio.</h5>
 {% endcapture %}
 
-{% capture card-action %}
-<div class="sgds card" variant="card-action">
-    <div class="card-body">
-      <div>
-        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Checkbox Action Card</h6>
-        <h5 class="card-title fw-bold">Checkbox Card</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-input">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-      </div>
-    </div>
-</div>
-<div class="sgds card" variant="card-action">
-    <div class="card-body">
-      <div>
-        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Radio Button Action Card</h6>
-        <h5 class="card-title fw-bold">Radio Button Card</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-input">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-      </div>
-    </div>
-</div>
-<div class="sgds card" variant="card-action">
-    <div class="card-body">
-      <div>
-        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Switch button Action Card</h6>
-        <h5 class="card-title fw-bold">Switch button Card</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-input form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-      </div>
-    </div>
-</div>
+{% capture variant-component %}
+<h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, odio.</h5>
 {% endcapture %}
 
-{% capture card-design-tokens %}
-$card-spacer-y: 1.5rem !default;
-$card-spacer-x: 1.5rem !default;
-$card-title-spacer-y: $spacer * .5 !default;
-$card-border-width: $border-width !default;
-$card-border-color: $gray-400 !default;
-$card-border-radius: $border-radius !default;
-$card-box-shadow: null !default;
-$card-inner-border-radius: subtract($card-border-radius, $card-border-width) !default;
-$card-cap-padding-y: $card-spacer-y * .5 !default;
-$card-cap-padding-x: $card-spacer-x !default;
-$card-cap-bg: rgba($black, .03) !default;
-$card-cap-color: null !default;
-$card-height: null !default;
-$card-color: null !default;
-$card-bg: $white !default;
-$card-img-overlay-padding: $spacer !default;
-$card-group-margin: $grid-gutter-width * .5 !default;
-//Action card specific
-$card-transition-duration: 0.3s !default;
-$card-transition-timing-function: ease-in-out !default;
-$card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
+{% capture design-tokens %}
+<h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, odio.</h5>
 {% endcapture %}
 
 
 <!-- Page starts here -->
 <div class="page-component">
         
+        <!-- Generated header from front end matters -->
         {% include page-component/component-header.html %}
 
-        <!-- Code Example Section -->
+        <!-- Example Section -->
         <section name="section-examples">
             <h3 class="title fw-bold" id="example">Example</h3>
             <div class="section-sub">
-                {% 
-                    include page-component/component-code-snippet.html 
-                    compTitle="Card with image" 
-                    compName="card-with-image" 
-                    code=card-with-image 
-                %}
+                {% include page-component/component-code-snippet.html compTitle="Default Component" compName="default-component" code=default-component %}
             </div>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Action card" compName="card-action" code=card-action %}
+                {% include page-component/component-code-snippet.html compTitle="Default Component" compName="default-component" code=default-component %}
             </div>
         </section>
 
@@ -110,11 +45,11 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-1.svg" alt="">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-1.svg" alt="">
                         <div class="sgds-example-image-subgrid">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-2.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-3.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-4.svg" alt="">
+                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-2.svg" alt="">
+                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-3.svg" alt="">
+                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-4.svg" alt="">
                         </div>
                     </div>
                 </div>
@@ -149,11 +84,11 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
                 <p>Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p>
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-1.svg" alt="">
+                        <img src="{{site.baseurl}}/assets/img/component/card/spacing-within-1.svg" alt="">
                         <div class="sgds-example-image-subgrid">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-2.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-3.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-4.svg" alt="">
+                            <img src="{{site.baseurl}}/assets/img/component/card/spacing-within-2.svg" alt="">
+                            <img src="{{site.baseurl}}/assets/img/component/card/spacing-within-3.svg" alt="">
+                            <img src="{{site.baseurl}}/assets/img/component/card/spacing-within-4.svg" alt="">
                         </div>
                     </div>
                 </div>
@@ -163,11 +98,11 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
                 <p>Ensure that there is a min 32px spacing vertically and horizontally between cards</p>
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-1.svg" alt="">
+                        <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-1.svg" alt="">
                         <div class="sgds-example-image-subgrid">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-2.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-3.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-4.svg" alt="">
+                            <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-2.svg" alt="">
+                            <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-3.svg" alt="">
+                            <img src="{{site.baseurl}}/assets/img/component/card/anatomy-card-4.svg" alt="">
                         </div>
                     </div>
                 </div>
@@ -211,8 +146,6 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
         <!-- Design token Section -->
         <section name="section-design-tokens">
             <h3 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h3>
-            {%- highlight sass -%}{{card-design-tokens}}{%- endhighlight -%}
+            {%- highlight sass -%}{{design-tokens}}{%- endhighlight -%}
         </section>
-
-    
 </div>

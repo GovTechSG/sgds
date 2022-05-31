@@ -4948,7 +4948,7 @@ textarea.form-control-lg {
 }
 
 .sgds.card a:not(.btn) {
-  font-weight: bold;
+  font-weight: 700;
 }
 .sgds.card[variant*=card-action] {
   transition-property: box-shadow, border-color;
@@ -4977,7 +4977,8 @@ textarea.form-control-lg {
   border-color: transparent;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15), inset 0px 0px 0px 2.1px #0f72bd;
 }
-.sgds.card[variant*=card-action] .form-check-input {
+.sgds.card[variant*=card-action] .card-input input.form-check-input {
+  margin-top: 0;
   min-width: 1.5rem;
   min-height: 1.5rem;
 }
@@ -5796,7 +5797,6 @@ textarea.form-control-lg {
 .sgds.sidenav .sidenav-item .sgds.btn {
   color: #5925DC;
   font-size: inherit;
-  font-weight: bold;
   width: 100%;
   text-align: initial;
   line-height: 1.5;
@@ -5822,9 +5822,10 @@ textarea.form-control-lg {
 .sgds.sidenav .sidenav-item .sgds.btn.collapsed i, .sgds.sidenav .sidenav-item .sgds.btn.inactive i {
   transform: rotate(0deg);
 }
-.sgds.sidenav .sidenav-item .sgds.btn:hover {
+.sgds.sidenav .sidenav-item .sgds.btn:hover, .sgds.sidenav .sidenav-item .sgds.btn.active {
   color: #5925DC;
   border-left-color: #5925DC;
+  font-weight: 700;
 }
 .sgds.sidenav .sidenav-item .collapse,
 .sgds.sidenav .sidenav-item .collapse.show,

@@ -2,7 +2,7 @@
 .sgds {
     &.card {
         a:not(.btn) {
-            font-weight: bold;
+            font-weight: $font-weight-bold;
         }
         &[variant*="card-action"] {
             transition-property: box-shadow, border-color;
@@ -33,10 +33,14 @@
                 border-color: transparent;
                 box-shadow: $box-shadow, $card-active-border;
             }
-            .form-check-input {
-                min-width: 1.5rem;
-                min-height: 1.5rem;
+            .card-input{
+                input.form-check-input {
+                    margin-top: 0;
+                    min-width: 1.5rem;
+                    min-height: 1.5rem;
+                }
             }
+            
         }
         &[variant="card-action-quantity-toggle"] {
             .card-body {

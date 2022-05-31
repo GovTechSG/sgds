@@ -6,7 +6,7 @@
             line-height: 2rem;
         }
         .accordion-button:not(.collapsed){
-            font-weight: 700;
+            font-weight: $font-weight-bold;
             box-shadow: none;
         }
         .accordion-body{

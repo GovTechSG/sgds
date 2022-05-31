@@ -1,7 +1,11 @@
 ---
 layout: layout-default
 ---
-<nav class="wrapper-sidenav">
+
+{% if page.toc == true %}
+ {% assign class = 'with-toc' %}
+{% endif %}
+<nav class="wrapper-sidenav {{class}}">
     <aside>
         <nav class="sgds sidenav list-unstyled">
             {% assign collections = site.collections | sort: 'order' %}

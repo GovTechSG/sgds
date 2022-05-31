@@ -1,8 +1,9 @@
 {% include breadcrumb.html %}
-<section>
+<!-- Section Component header -->
+<section name="section-component-header">
     {% assign pageHeader = page.title | downcase %}
     <header class="header-component">
-        <h1 class="fw-bold" id="{{pageHeader}}">{{page.title}}</h1>
+        <h1 class="fw-bold" id="{{pageHeader}}-component">{{page.title}}</h1>
         {% assign class = nil %}
         {% if page.ready == false %}
         {% assign class = 'text-danger' %}
@@ -14,12 +15,18 @@
             </div>
             
             <div>
-                <i class="bi bi-github"></i> <a href="{{page.github}}">View it on Github</a>
+                <i class="bi bi-github"></i> <a href="{{page.github-link}}" target="_blank">View it on Github</a>
             </div>
-
+            {% if page.react-link %}
             <div>
-                <img src="{{site.baseurl}}/assets/img/component/storybook-icon.svg" alt=""> <a href="{{page.storybook}}">View it on React Storybook</a>
+                <img src="{{site.baseurl}}/assets/img/component/storybook-icon.svg" alt=""> <a href="{{page.react-link}}" target="_blank">View it on React Storybook</a>
             </div>
+            {% endif %}
+            {% if page.vue-link %}
+            <div>
+                <img src="{{site.baseurl}}/assets/img/component/storybook-icon.svg" alt=""> <a href="{{page.react-link}}" target="_blank">View it on Vue Storybook</a>
+            </div>
+            {% endif %}
         </div>
     </header>
 </section>

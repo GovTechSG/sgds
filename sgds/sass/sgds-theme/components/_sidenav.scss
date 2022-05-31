@@ -10,7 +10,7 @@
             .sgds.btn {
                 color: $sidenav-color;
                 font-size: inherit;
-                font-weight: bold;
+
                 width: 100%;
                 text-align: initial;
                 line-height: 1.5;
@@ -38,16 +38,18 @@
                 &.inactive {
                     color: inherit;
                     border-color: transparent;
-
                     i {
                         transform: rotate(0deg);
                     }
                 }
 
-                &:hover {
+                &:hover,
+                &.active{
                     color: $sidenav-color;
                     border-left-color: $sidenav-color;
+                    font-weight: $font-weight-bold;
                 }
+
             }
 
             .collapse,
