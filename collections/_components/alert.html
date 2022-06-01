@@ -1,11 +1,41 @@
 ---
 title: Alert
 layout: layout-sidenav
+description: Alerts provide short, timely, and relevant information for your users.
 category: general
-react: true
+react-link: true
+vue-link: true
+github-link: true
+toc: true
 ---
+{% capture default-alert %}
+<div role="alert" class="sgds alert alert-primary fade d-flex align-items-center show">
+    <div>
+        <i class="bi bi-exclamation-circle me-4"></i>This is a primary alert—check it out!
+    </div>
+</div>
+{% endcapture %}
 <div class="page-component">
-    <article>
-{% include page-component/component-header.html %}
-</article>
+
+    {% include page-component/component-header.html %}
+
+    <section name="section-examples">
+        <h3 class="title fw-bold" id="example">Example</h3>
+        <div class="section-sub">
+            {%
+            include page-component/component-code-snippet.html
+            compTitle="Default Alert"
+            compName="default-alert"
+            code=default-alert
+            %}
+        </div>
+        <div class="section-sub">
+            {%
+            include page-component/component-code-snippet.html
+            compTitle="Default Alert"
+            compName="default-alert"
+            code=default-alert
+            %}
+        </div>
+    </section>
 </div>

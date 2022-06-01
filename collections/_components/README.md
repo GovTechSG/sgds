@@ -20,19 +20,19 @@ toc: true
 ```
 
 > title: name of the component
-
+>
 > layout: template used for the page. **WARNING**: Do not remove
-
+>
 > description: description of the component
-
+>
 > category: **general** / **standard**. Under which catergory the component falls into. 
-
+>
 > react-link: Link to the component in react storybook, if any
-
+>
 > vue-link: Link to the component in vue storybook, if any
-
+>
 > github-link: Link to the component in github repo
-
+>
 > toc: **true** / **false** enable table of contents
 
 
@@ -95,7 +95,7 @@ This section should only contain the default component and other variants
 
 ```
 <section name="section-examples">
-    ...
+    <h3 class="title fw-bold" id="example">Example</h3>
     <div class="section-sub">
         {% 
             include page-component/component-code-snippet.html 
