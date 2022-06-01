@@ -1,11 +1,123 @@
 ---
 title: Badge
 layout: layout-sidenav
-category: general
-react: true
+description: Badges can be used to highlight important bits of information such as labels, notifications & status.
+category: general 
+react-link: https://....
+github-link: https://....
+toc: true
 ---
+{% capture badge-design-tokens %}
+$badge-font-size: .75em !default;
+$badge-font-weight: $font-weight-bold !default;
+$badge-color: $white !default;
+$badge-padding-y: .35em !default;
+$badge-padding-x: .65em !default;
+$badge-border-radius: $border-radius !default;
+{% endcapture %}
+
+{% capture badge-default %}
+<span class="sgds badge bg-primary"><i class="bi bi-qr-code"></i>With icon<i class="bi bi-qr-code"></i></span>
+<span class="sgds badge bg-primary">Primary</span>
+<span class="sgds badge bg-secondary">Secondary</span>
+<span class="sgds badge bg-success">Success</span>
+<span class="sgds badge bg-danger">Danger</span>
+<span class="sgds badge bg-warning text-dark">Warning</span>
+<span class="sgds badge bg-info text-dark">Info</span>
+<span class="sgds badge bg-light text-dark">Light</span>
+<span class="sgds badge bg-dark">Dark</span>
+{% endcapture %}
+
+{% capture badge-wrapper %}
+<h1 class="d-flex align-items-center">H1 Header <span class="ms-4 sgds badge bg-dark"><i class="bi bi-qr-code"></i>Dark<i class="bi bi-qr-code"></i></span></h1>
+<h2>H2 Header <span class="sgds badge bg-dark">Dark</span></h2>
+<h3>H3 Header <span class="sgds badge bg-dark">Dark</span></h3>
+<h4>H4 Header <span class="sgds badge bg-dark">Dark</span></h4>
+<p>Paragraph <span class="sgds badge bg-secondary">Dev</span></p>
+{% endcapture %}
+
+{% capture badge-button %}
+<div class="sgds btn btn-primary">Testing <span class="sgds badge bg-light text-dark">99</span></div>
+<div class="sgds btn btn-primary btn-lg">Testing <span class="sgds badge bg-light text-dark">99</span></div>
+<button type="button" class="sgds btn btn-primary position-relative">
+    Inbox
+    <span class="sgds position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      99+
+      <span class="visually-hidden">unread messages</span>
+    </span>
+  </button>
+  <button type="button" class="sgds btn btn-primary position-relative">
+    Profile
+    <span class="sgds position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+      <span class="visually-hidden">New alerts</span>
+    </span>
+  </button>
+  <i class="bi bi-bell position-relative fs-4">
+    <span class="sgds position-absolute top-0 start-100 translate-middle p-2 bg-warning border border-light rounded-circle">
+      <span class="visually-hidden">New alerts</span>
+    </span>
+  </i>
+
+{% endcapture %}
+
 <div class="page-component">
-    <article>
-{% include page-component/component-header.html %}
-</article>
+    {% include page-component/component-header.html %}
+    <section name="section-examples">
+        <h3 class="title fw-bold" id="example">Example</h3>
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Default Badge" 
+                compName="badge-default" 
+                code=badge-default
+            %}
+        </div>
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Wrapper Badge" 
+                compName="badge-wrapper" 
+                code=badge-wrapper
+            %}
+        </div>
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Buttn Badge" 
+                compName="badge-button" 
+                code=badge-button
+            %}
+        </div>
+        <!-- Add addtional section-sub for more variants -->
+    </section>
+    <section name="section-anatomy">
+        <h3 class="title fw-bold" id="anatomy">Anatomy</h3>
+        <div class="section-sub">
+            ...
+        </div>
+    </section>
+    <section name="section-spacing">
+        <h3 class="title fw-bold" id="spacing">Spacing</h3>
+        <div class="section-sub">
+            ...
+        </div>
+    </section>
+    <section name="section-usage-guidelines">
+        <h3 class="title fw-bold" id="usage-guidelines">Usage guidelines</h3>
+        <div class="section-sub">
+            ...
+        </div>
+    </section>
+    <section name="section-usability-guidelines">
+        <h3 class="title fw-bold" id="usability-guidelines">Usability guidelines</h3>
+        <div class="section-sub">
+            ...
+        </div>
+    </section>
+    <section name="section-design-token">
+        <h3 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h3>
+        <div class="section-sub">
+            ...
+        </div>
+    </section>
 </div>
