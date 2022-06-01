@@ -112,7 +112,7 @@ This section should only contain the default component and other variants
 
 > compName: ID for the component name 
 
-> code: name of code snippet captured at the top of the page
+> code: name of code snippet captured at the top of the page ```{% capture compName %}...{% endcapture %}```
 
 > **WARNING**: Do not remove ```include page-component/component-code-snippet.html ```
 
