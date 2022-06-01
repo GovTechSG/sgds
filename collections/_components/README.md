@@ -52,37 +52,37 @@ See [Front end matter](#front-end-matter)
 <div class="page-component">
     {% include page-component/component-header.html %}
     <section name="section-examples">
-        <h3 class="title fw-bold" id="example">Example</h3>
+        <h2 class="title fw-bold" id="example">Example</h2>
         <div class="section-sub">
             ... // See [Sub Sections](#sub-section)
         </div>
     </section>
     <section name="section-anatomy">
-        <h3 class="title fw-bold" id="anatomy">Anatomy</h3>
+        <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
         <div class="section-sub">
             ...
         </div>
     </section>
     <section name="section-spacing">
-        <h3 class="title fw-bold" id="spacing">Spacing</h3>
+        <h2 class="title fw-bold" id="spacing">Spacing</h2>
         <div class="section-sub">
             ...
         </div>
     </section>
     <section name="section-usage-guidelines">
-        <h3 class="title fw-bold" id="usage-guidelines">Usage guidelines</h3>
+        <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
         <div class="section-sub">
             ...
         </div>
     </section>
     <section name="section-usability-guidelines">
-        <h3 class="title fw-bold" id="usability-guidelines">Usability guidelines</h3>
+        <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
         <div class="section-sub">
             ...
         </div>
     </section>
     <section name="section-design-token">
-        <h3 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h3>
+        <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
         <div class="section-sub">
             ...
         </div>
@@ -95,7 +95,7 @@ This section should only contain the default component and other variants
 
 ```
 <section name="section-examples">
-    <h3 class="title fw-bold" id="example">Example</h3>
+    <h2 class="title fw-bold" id="example">Example</h2>
     <div class="section-sub">
         {% 
             include page-component/component-code-snippet.html 
@@ -110,9 +110,9 @@ This section should only contain the default component and other variants
 ```
 > compTitle: name of the example component
 
-> compName: ID for the component name for accordion to work
+> compName: ID for the component name 
 
-> code: name of code snippet captured at the top of the page
+> code: name of code snippet captured at the top of the page ```{% capture compName %}...{% endcapture %}```
 
 > **WARNING**: Do not remove ```include page-component/component-code-snippet.html ```
 
@@ -121,7 +121,7 @@ This section contains the anatomy of all variants
 
 ```
 <section name="section-anatomy">
-    <h3 class="title fw-bold" id="anatomy">Anatomy</h3>
+    <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
     <div class="section-sub">
         <div class="sgds-example-image-container">
             <div class="sgds-example-image-grid">
@@ -163,9 +163,9 @@ This section contains the spacing of all variants
 
 ```
 <section name="section-spacing">
-    <h3 class="title fw-bold" id="spacing">Spacing</h3>
+    <h2 class="title fw-bold" id="spacing">Spacing</h2>
     <div class="section-sub">
-        <h4 class="subtitle fw-bold" id="within-the-card">Within the card</h4>
+        <h3 class="subtitle fw-bold" id="within-the-card">Within the card</h3>
         <p>Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p>
         <div class="sgds-example-image-container">
             <div class="sgds-example-image-grid">
@@ -202,7 +202,7 @@ assets/img/component/(name of page title in lowercase)/spacing-(name of page tit
 
 ```
 <section name="section-usage-guidelines">
-    <h3 class="title fw-bold" id="usage-guidelines">Usage guidelines</h3>
+    <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
     <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers. Users may also ignore important information if it is hidden in an accordion.</p>
     <p class="fw-bold mb-0">When to use the accordion component:</p>
     <ol>
@@ -225,7 +225,7 @@ assets/img/component/(name of page title in lowercase)/spacing-(name of page tit
 ## Usability guidelines
 ```
 <section name="section-usability-guidelines">
-    <h3 class="title fw-bold" id="usability-guidelines">Usability guidelines</h3>
+    <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
     <p>
         <b>Do ensure that the entire heading is clickable to the user.</b><br>
         A larger target will make it easier for users to manipulate
@@ -240,7 +240,7 @@ assets/img/component/(name of page title in lowercase)/spacing-(name of page tit
 # Section Design token
 ```
 <section name="section-design-tokens">
-    <h3 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h3>
+    <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
     {%- highlight sass -%}{{card-design-tokens}}{%- endhighlight -%}
 </section>
 ```
