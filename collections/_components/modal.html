@@ -1,7 +1,190 @@
 ---
 title: Modal
 layout: layout-sidenav
-category: general
-react: true
+description: The modal component inform users about a specific task and may contain critical information which users then have to make a decision. E.g Accepting the T&Cs during signup
+category: general 
+react-link: https://....
+github-link: https://....
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture badge-design-tokens %}
+$modal-inner-padding:$spacer !default;
+$modal-footer-margin-between:.5rem !default;
+$modal-dialog-margin:.5rem !default;
+$modal-dialog-margin-y-sm-up:1.75rem !default;
+$modal-title-line-height:$line-height-base !default;
+$modal-content-color:null !default;
+$modal-content-bg:$white !default;
+$modal-content-border-color:rgba($black, .2) !default;
+$modal-content-border-width:$border-width !default;
+$modal-content-border-radius:$border-radius-lg !default;
+$modal-content-inner-border-radius:subtract($modal-content-border-radius, $modal-content-border-width) !default;
+$modal-content-box-shadow-xs:$box-shadow-sm !default;
+$modal-content-box-shadow-sm-up:$box-shadow !default;
+
+$modal-backdrop-bg:                 $black !default;
+$modal-backdrop-opacity:            .5 !default;
+$modal-header-border-color:         $border-color !default;
+$modal-footer-border-color:         $modal-header-border-color !default;
+$modal-header-border-width:         $modal-content-border-width !default;
+$modal-footer-border-width:         $modal-header-border-width !default;
+$modal-header-padding-y:            $modal-inner-padding !default;
+$modal-header-padding-x:            $modal-inner-padding !default;
+$modal-header-padding:              $modal-header-padding-y $modal-header-padding-x !default; // Keep this for backwards compatibility
+
+$modal-sm:                          300px !default;
+$modal-md:                          500px !default;
+$modal-lg:                          800px !default;
+$modal-xl:                          1140px !default;
+
+$modal-fade-transform:              translate(0, -50px) !default;
+$modal-show-transform:              none !default;
+$modal-transition:                  transform .3s ease-out !default;
+$modal-scale-transform:             scale(1.02) !default;
+{% endcapture %}
+
+{% capture modal-default %}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-title h4">Modal heading</div>
+            <button type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">Woohoo, you're reading this text in a modal!</div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary sgds">Close</button>
+            <button type="button" class="btn btn-primary sgds">Save Changes</button>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture modal-default-demo %}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary sgds" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch default modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          This is a modal
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary sgds" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary sgds">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcapture %}
+
+{% capture size-demo %}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary sgds" data-bs-toggle="modal" data-bs-target="#exampleSmall">
+    Launch small modal
+</button>
+<button type="button" class="btn btn-primary sgds" data-bs-toggle="modal" data-bs-target="#exampleMedium">
+    Launch medium modal
+</button>
+<button type="button" class="btn btn-primary sgds" data-bs-toggle="modal" data-bs-target="#exampleLarge">
+    Launch large modal
+</button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleSmall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          This is a modal
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary sgds" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary sgds">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleMedium" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          This is a modal
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary sgds" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary sgds">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleLarge" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          This is a modal
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary sgds" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary sgds">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcapture %}
+
+
+
+<div class="page-component">
+    {% include page-component/component-header.html %}
+    <section name="section-examples">
+        <h2 class="title fw-bold" id="example">Example</h2>
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Default Modal" 
+                compName="modal-default" 
+                code=modal-default
+            %}
+        </div>
+
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Default modal demo" 
+                compName="modal-default-demo" 
+                code=modal-default-demo
+            %}
+        </div>
+
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Size" 
+                compName="size-demo" 
+                code=size-demo
+            %}
+        </div>
+        <!-- Add addtional section-sub for more variants -->
+    </section>
