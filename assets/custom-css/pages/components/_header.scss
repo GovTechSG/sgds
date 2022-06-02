@@ -1,5 +1,11 @@
 .page-component{
-    header{
+    .header-component{
+        .header-component-description{
+            width: 75ch;
+            @include media-breakpoint-down(lg){
+                width: auto;
+            }
+        }
         .component-source-grid{
             display: flex;
             gap: 2rem;

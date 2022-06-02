@@ -1,7 +1,225 @@
 ---
 title: Toast
 layout: layout-sidenav
-category: general
-react: true
+description: Allows you to convey quick messaging notifications to the user. E.g When an action is completed, a success toast notification can be displayed and dismissed by the user or dismissed after a set amount of time has passed.
+ Alternatively, a CTA can be used with the toast to allow the user to proceed with next steps or try again
+category: general 
+react-link: https://....
+github-link: https://....
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture toast-design-tokens %}
+$toast-max-width: 350px !default;
+$toast-padding-x: .75rem !default;
+$toast-padding-y: .5rem !default;
+$toast-font-size: .875rem !default;
+$toast-color: null !default;
+$toast-background-color: rgba($white, .85) !default;
+$toast-border-width: 1px !default;
+$toast-border-color: rgba($black, .1) !default;
+$toast-border-radius: $border-radius !default;
+$toast-box-shadow: $box-shadow !default;
+$toast-spacing: $container-padding-x !default;
+$toast-header-color: $gray-600 !default;
+$toast-header-background-color: rgba($white, .85) !default;
+$toast-header-border-color: rgba($black, .05) !default;
+{% endcapture %}
+
+{% capture toast-default %}
+<div class="row mt-4">
+    <div class="col">
+      <div class="sgds toast show is-warning" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+          <strong class="me-auto">Warning</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          This is a warning message
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="sgds toast show is-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <i class="bi bi-check-circle me-2"></i>
+          <strong class="me-auto">Success</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            This is a success message
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="sgds toast show is-danger" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <i class="bi bi-exclamation-circle me-2"></i>
+          <strong class="me-auto">Danger</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            This is a error message
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcapture %}
+
+{% capture toast-action %}
+<div class="row mt-4">
+    <div class="col">
+      <div class="sgds toast show is-warning" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          <strong class="me-auto">Warning</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          This is a warning message
+          <br>
+            <button type="button" class="btn btn-outline-dark btn-sm sgds">Proceed</button>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="sgds toast show is-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <i class="bi bi-check-circle me-2"></i>
+          <strong class="me-auto">Success</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            This is a success message <br>
+            <button type="button" class="btn btn-outline-dark btn-sm sgds">Done</button>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="sgds toast show is-danger" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <i class="bi bi-exclamation-circle me-2"></i>
+          <strong class="me-auto">Danger</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            This is a error message
+            <br>
+            <button type="button" class="btn btn-outline-dark btn-sm sgds">Try again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcapture %}
+
+<div class="page-component">
+    {% include page-component/component-header.html %}
+    <section name="section-examples">
+        <h2 class="title fw-bold" id="example">Example</h2>
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Default Toast" 
+                compName="toast-default" 
+                code=toast-default
+            %}
+        </div>
+
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Action toast" 
+                compName="toast-action" 
+                code=toast-action
+            %}
+        </div>
+        <!-- Add addtional section-sub for more variants -->
+    </section>
+
+    <!-- Anatomy Section -->   
+    <section name="section-anatomy">
+        <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+        <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/toast/anatomy-toast.svg" alt="">
+                </div>
+            </div>
+
+            <ol>
+                <li>
+                    <b>Icon (situational):</b> Used as a supporting element for the notification, 
+                    giving more context to the nature of the notification
+                </li>
+                <li>
+                    <b>Title:</b> Name of the toast letting users know what the toast is about
+                </li>
+                <li>
+                    <b>Close icon (situational):</b> Used when you are not using time-based toasts. 
+                    This allows users to manually dismiss the toast
+                </li>
+                <li>
+                    <b>CTA (situational):</b> Used to allow users to carry out actions immediately upon completion of a task
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Spacing Section -->
+    <section name="section-spacing">
+        <h2 class="title fw-bold" id="spacing">Spacing</h2>
+        <div class="section-sub">
+            <h3 class="subtitle fw-bold" id="within-the-accordion">Within the badge</h3>
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/toast/spacing-toast.svg"
+                        alt="">
+                </div>
+            </div>
+            <p>Ensure that there is a min of 16px spacing within the toast notification and 32px spacing between content and CTA</p>
+        </div>
+    </section>
+
+
+<!-- Usage guidelines Section -->
+<section name="section-usage-guidelines">
+    <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+    <p class="fw-bold mb-0">Toasts should be used:</p>
+    <ol>
+        <li>When you want to present quick snippets of information to users. 
+            Such as when users have submitted a form sucessfully or when a system error occurs</li>
+    </ol>
+    <p class="fw-bold mb-0">Toasts should not be used:</p>
+    <ol>
+        <li>
+            When conveying important alerts. E.g If your system is going down for maintenance
+        </li>
+    </ol>
+</section>
+
+<!-- Usability guidelines Section -->
+<section name="section-usability-guidelines">
+    <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+    <p>
+        <b>Don’t stack the notifications</b><br>
+        Avoid stacking multiple toasts together as this will cause confusion for users. 
+        If stacking cannot be avoided, ensure that the toasts are of a similar nature. E.g Error messaging
+    </p>
+    <p>
+        <b>Make sure they are small and unobtrusive</b><br>
+        This is so that content is not blocked and is part of the users natural task flow
+    </p>
+    <p>
+        <b>Make toasts as brief as possible</b><br>
+        Toasts convey quick snippets of information and therefore should not contain more than 2-3 lines of text. 
+        The content should make sense with as little words as possible. E.g Message sent vs Your message has been sent
+    </p>
+</section>
+
+<section>
+    <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+    {%- highlight sass -%}{{toast-design-tokens}}{%- endhighlight -%}
+</section>
+
+</div>
