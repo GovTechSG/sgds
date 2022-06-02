@@ -10,62 +10,74 @@ toc: true
 ---
 
 {% capture with-hint-icon %}
-<div class="sgds row">
-    <div class="col form-group has-feedback">
-        <p>Default</p>
-        <label for="defaultWith" class="form-label">Label</label>
-        <div id="defaultWithHelp" class="form-text">This is the hint text</div>
-        <input type="text" class="form-control" id="defaultWith" aria-describedby="defaultWithHelp" placeholder="Text goes here" />
-        <i class="bi bi-search form-control-feedback"></i>
+<div class="sgds form-group mb-2">
+    Default
+    <br />
+    <label for="defaultWith" class="form-label">Label</label>
+    <div id="defaultWithHelp" class="form-text">This is the hint text</div>
+    <div class="input-group" variant="has-icon">
+        <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Text goes here">
+        <i class="bi bi-search form-control-icon"></i>
     </div>
-    <div class="col form-group has-feedback">
-        <p>Hover</p>
-        <label for="hoverWith" class="form-label">Label</label>
-        <div id="hoverWithHelp" class="form-text">This is the hint text</div>
+</div>
+<div class="sgds form-group mb-2">
+    Hover
+    <br />
+    <label for="hoverWith" class="form-label">Label</label>
+    <div id="hoverWithHelp" class="form-text">This is the hint text</div>
+    <div class="input-group" variant="has-icon">
         <input type="text" class="form-control" id="hoverWith" aria-describedby="hoverWithHelp" placeholder="Text goes here" autofocus />
-        <i class="bi bi-search form-control-feedback"></i>
+        <i class="bi bi-search form-control-icon"></i>
     </div>
-    <div class="col form-group has-feedback">
-        <p>Error</p>
-        <label for="errorWith" class="form-label">Label</label>
-        <div id="errorWithHelp" class="form-text">This is the hint text</div>
-        <input type="text" class="form-control invalid" id="errorWith" aria-describedby="errorWithHelp" placeholder="Text goes here" />
-        <i class="bi bi-search form-control-feedback"></i>
+</div>
+<div class="sgds form-group mb-2 was-validated">
+    Error
+    <br />
+    <label for="errorWith" class="form-label">Label</label>
+    <div id="errorWithHelp" class="form-text">This is the hint text</div>
+    <div class="input-group" variant="has-icon">
+        <input type="text" class="form-control" id="errorWith" aria-describedby="errorWithHelp errorWithInvalid" placeholder="Text goes here" required />
+        <i class="bi bi-search form-control-icon"></i>
         <div id="errorWithInvalid" class="invalid-feedback">Error message</div>
     </div>
-    <div class="col form-group has-feedback">
-        <p>Disabled</p>
-        <label for="disabledWith" class="form-label">Label</label>
-        <div id="disabledWithHelp" class="form-text">This is the hint text</div>
-        <input type="text" class="form-control disabled" id="disabledWith" aria-describedby="disabledWithHelp" placeholder="Text goes here" />
-        <i class="bi bi-search form-control-feedback"></i>
+</div>
+<div class="sgds form-group has-feedback mb-2">
+    Disabled
+    <br />
+    <label for="disabledWith" class="form-label">Label</label>
+    <div id="disabledWithHelp" class="form-text">This is the hint text</div>
+    <div class="input-group" variant="has-icon">
+        <input type="text" class="form-control" id="disabledWith" aria-describedby="disabledWithHelp" placeholder="Text goes here" disabled />
+        <i class="bi bi-search form-control-icon"></i>
     </div>
 </div>
 {% endcapture %}
 
 {% capture without-hint-icon %}
-<div class="sgds row">
-    <div class="col form-group">
-        <p>Default</p>
-        <label for="defaultWithout" class="form-label">Label</label>
-        <input type="text" class="form-control" id="defaultWithout" placeholder="Text goes here" />
-    </div>
-    <div class="col form-group">
-        <p>Hover</p>
-        <label for="hoverWithout" class="form-label">Label</label>
-        <input type="text" class="form-control" id="hoverWithout" placeholder="Text goes here" autofocus />
-    </div>
-    <div class="col form-group">
-        <p>Error</p>
-        <label for="errorWithout" class="form-label">Label</label>
-        <input type="text" class="form-control invalid" id="errorWithout" placeholder="Text goes here" />
-        <div id="errorWithoutInvalid" class="invalid-feedback">Error message</div>
-    </div>
-    <div class="col form-group">
-        <p>Disabled</p>
-        <label for="disabledWithout" class="form-label">Label</label>
-        <input type="text" class="form-control disabled" id="disabledWithout" placeholder="Text goes here" />
-    </div>
+<div class="form-group mb-2">
+    Default
+    <br />
+    <label for="defaultWithout" class="form-label">Label</label>
+    <input type="text" class="form-control" id="defaultWithout" placeholder="Text goes here" />
+</div>
+<div class="form-group mb-2">
+    Hover
+    <br />
+    <label for="hoverWithout" class="form-label">Label</label>
+    <input type="text" class="form-control" id="hoverWithout" placeholder="Text goes here" autofocus />
+</div>
+<div class="form-group mb-2 was-validated">
+    Error
+    <br />
+    <label for="errorWithout" class="form-label">Label</label>
+    <input type="text" class="form-control" id="errorWithout" aria-describedby="errorWithoutInvalid" placeholder="Text goes here" required />
+    <div id="errorWithoutInvalid" class="invalid-feedback">Error message</div>
+</div>
+<div class="form-group mb-2">
+    Disabled
+    <br />
+    <label for="disabledWithout" class="form-label">Label</label>
+    <input type="text" class="form-control" id="disabledWithout" placeholder="Text goes here" disabled />
 </div>
 {% endcapture %}
 
@@ -150,7 +162,7 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
 
         <!-- Anatomy Section -->
         <section name="section-anatomy">
-            <h3 class="title fw-bold" id="anatomy">Anatomy</h3>
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
@@ -179,21 +191,21 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
 
         <!-- Spacing Section -->
         <section name="section-spacing">
-            <h3 class="title fw-bold" id="spacing">Spacing</h3>
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
                         <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-text-input-1.svg" alt="Text Input Spacing">
                     </div>
                 </div>
-                <h4 class="subtitle fw-bold" id="within-the-card">Within the text input</h4>
+                <h3 class="subtitle fw-bold" id="within-the-card">Within the text input</h3>
                 <p>Ensure that there is a min of 8px vertical spacing and 16px horizontal spacing on the left and right.</p>
             </div>
         </section>
 
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
-            <h3 class="title fw-bold" id="usage-guidelines">Usage guidelines</h3>
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
             <p class="fw-bold mb-0">Text input should be used when:</p>
             <ul>
                 <li>When you need users to enter text that is only a single line.</li>
@@ -219,7 +231,7 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
 
         <!-- Usability guidelines Section -->
         <section name="section-usability-guidelines">
-            <h3 class="title fw-bold" id="usability-guidelines">Usability guidelines</h3>
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
                 <b>Ensure that the labels are short and concise</b><br>
                 This will allow users to understand what needs to be entered quickly.
@@ -244,7 +256,7 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
 
         <!-- Design token Section -->
         <section name="section-design-tokens">
-            <h3 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h3>
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
             {%- highlight sass -%}{{text-input-design-tokens}}{%- endhighlight -%}
         </section>
 </div>
