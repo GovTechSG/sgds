@@ -17,7 +17,7 @@ $badge-border-radius: $border-radius !default;
 {% endcapture %}
 
 {% capture badge-default %}
-<span class="sgds badge bg-primary"><i class="bi bi-qr-code"></i>With icon<i class="bi bi-qr-code"></i></span>
+<span class="sgds badge bg-primary"><i class="bi bi-qr-code left"></i>With icon<i class="bi bi-qr-code right"></i></span>
 <span class="sgds badge bg-primary">Primary</span>
 <span class="sgds badge bg-secondary">Secondary</span>
 <span class="sgds badge bg-success">Success</span>
@@ -29,7 +29,7 @@ $badge-border-radius: $border-radius !default;
 {% endcapture %}
 
 {% capture badge-wrapper %}
-<h1 class="d-flex align-items-center">H1 Header <span class="ms-4 sgds badge bg-dark"><i class="bi bi-qr-code"></i>Dark<i class="bi bi-qr-code"></i></span></h1>
+<h1 class="d-flex align-items-center">H1 Header <span class="ms-4 sgds badge bg-dark"><i class="bi bi-qr-code left"></i>Dark<i class="bi bi-qr-code right"></i></span></h1>
 <h2>H2 Header <span class="sgds badge bg-dark">Dark</span></h2>
 <h3>H3 Header <span class="sgds badge bg-dark">Dark</span></h3>
 <h4>H4 Header <span class="sgds badge bg-dark">Dark</span></h4>
@@ -63,7 +63,7 @@ $badge-border-radius: $border-radius !default;
 <div class="page-component">
     {% include page-component/component-header.html %}
     <section name="section-examples">
-        <h3 class="title fw-bold" id="example">Example</h3>
+        <h2 class="title fw-bold" id="example">Example</h2>
         <div class="section-sub">
             {% 
                 include page-component/component-code-snippet.html 
@@ -83,41 +83,97 @@ $badge-border-radius: $border-radius !default;
         <div class="section-sub">
             {% 
                 include page-component/component-code-snippet.html 
-                compTitle="Buttn Badge" 
+                compTitle="Button Badge" 
                 compName="badge-button" 
                 code=badge-button
             %}
         </div>
         <!-- Add addtional section-sub for more variants -->
     </section>
+
+    <!-- Anatomy Section -->   
     <section name="section-anatomy">
-        <h3 class="title fw-bold" id="anatomy">Anatomy</h3>
+        <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
         <div class="section-sub">
-            ...
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/badge/anatomy-badge.svg" alt="">
+                </div>
+            </div>
+
+            <ol>
+                <li>
+                    <b>Icon (situational):</b> Serves to give more context to the badge. E.g avatar, logo, or icon.
+                </li>
+                <li>
+                    <b>Container:</b> Takes on the length of the text and/or icons within the badge
+                </li>
+                <li>
+                    <b>Text:</b> Text can be an entity name, description, tag, action, or conversational. 
+                    Length of the text is expandable
+                </li>
+                <li>
+                    <b>Icon (situational):</b> Input can include a Remove icon.
+                </li>
+            </ol>
         </div>
     </section>
+
+    <!-- Spacing Section -->
     <section name="section-spacing">
-        <h3 class="title fw-bold" id="spacing">Spacing</h3>
+        <h2 class="title fw-bold" id="spacing">Spacing</h2>
         <div class="section-sub">
-            ...
+            <h3 class="subtitle fw-bold" id="within-the-accordion">Within the badge</h3>
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/badge/spacing-badge.svg"
+                        alt="">
+                </div>
+            </div>
+            <p>Ensure that there is a min of 4px vertical spacing and 8px horizontal spacing within the badge 
+                and 6px spacing between icons and text. Base height 24px</p>
         </div>
     </section>
-    <section name="section-usage-guidelines">
-        <h3 class="title fw-bold" id="usage-guidelines">Usage guidelines</h3>
-        <div class="section-sub">
-            ...
-        </div>
-    </section>
-    <section name="section-usability-guidelines">
-        <h3 class="title fw-bold" id="usability-guidelines">Usability guidelines</h3>
-        <div class="section-sub">
-            ...
-        </div>
-    </section>
-    <section name="section-design-token">
-        <h3 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h3>
-        <div class="section-sub">
-            ...
-        </div>
-    </section>
+
+
+<!-- Usage guidelines Section -->
+<section name="section-usage-guidelines">
+    <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+    <p class="fw-bold mb-0">Badges should be used:</p>
+    <ol>
+        <li>To give a status update on a piece of information or action</li>
+        <li>When you want to highlight something</li>
+    </ol>
+    <p class="fw-bold mb-0">Badges should not be used:</p>
+    <ol>
+        <li>
+            When users are likely to confuse a badge with a small button - 
+            Badges should not be clickable especially when they appear in the same area of the page as buttons
+        </li>
+    </ol>
+</section>
+
+<!-- Usability guidelines Section -->
+<section name="section-usability-guidelines">
+    <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+    <p>
+        <b>Avoid long sentences</b><br>
+        Minimize badge text length to one- to three-words. Content should be clear and concise, and easy to identify
+    </p>
+    <p>
+        <b>Users may confuse badges as buttons</b><br>
+        Avoid triggering interaction with a badge as they may be confused as small buttons
+    </p>
+    <p>
+        <b>Badges should include tooltips, where necessary, to enhance user understanding</b><br>
+        For example, a badge is used in conjunction with an icon
+    </p>
+</section>
+
+<section>
+    <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+    {%- highlight sass -%}{{badge-design-tokens}}{%- endhighlight -%}
+</section>
+
 </div>
+
