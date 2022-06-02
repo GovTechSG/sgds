@@ -102,8 +102,8 @@ This section should only contain the default component and other variants
             compTitle="component name" 
             compName="card-with-image" 
             code=card-with-image
-            compDescTop=card-with-image
-            compDescBottom=card-with-image
+            compDescTop="Description below the title"
+            compDescBottom=card-with-image-bottomDesc
         %}
     </div>
     <!-- Add addtional section-sub for more variants -->
