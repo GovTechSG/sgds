@@ -8,7 +8,7 @@
         {% if page.ready == false %}
         {% assign class = 'text-danger' %}
         {% endif %}
-        <p class="{{class}}">{{page.description}}</p>
+        <p class="header-component-description {{class}}">{{page.description}}</p>
         <div class="component-source-grid">
             <div>
                 <span class="sgds badge badge-light bg-primary-100 text-primary border border-primary">{{page.category | capitalize}}</span>
