@@ -1,4 +1,4 @@
-.list-styling{
+.footer-list-styling{
     ul{
       padding: 0;
       margin: 0;
@@ -11,9 +11,9 @@
         }
         a{
           text-decoration: none;
-          color: #ddd;
+          color: var(--sgds-gray-300);
           &:hover{
-            color: #eee;
+            color: var(--sgds-gray-100);
           }
         }
       }
@@ -23,60 +23,48 @@
   .sgds{
     &.footer{
       width: 100vw;
+      height: auto;
       display: grid;
       grid-auto-flow: row;
       justify-content: center;
-      color: #ddd;
+      color: var(--sgds-gray-100);
+      background-color: var(--sgds-gray-900);
     }
     .footer-section{
       width: 100vw;
       display: flex;
       justify-content: center;
       &.top{
-        background-color: #333;
-        padding: $spacer 0;
+        padding: calc(#{$spacer} * 3) 0 calc(#{$spacer} * 1.5);
       }
       &.bottom{
-        background-color: #000;
-        padding: 1.5rem 0;
+        border-top: 1px solid var(--sgds-gray-800);
+        padding: calc(#{$spacer} * 1.5) 0;
       }
     }
-    
-    
-    .footer-wrapper{
-      width: 1440px;
-      display: grid;
-      grid-auto-flow: row;
-      gap: $spacer;
-      .footer-description{
-        width: 75ch;
-        margin-bottom: 0;
-      }
-      .footer-link-wrapper{
-        display: grid;
-        grid-auto-flow: column;
-        //Max 6 columns
-        grid-auto-columns: 0.17fr;
-        gap: 2rem;
-      }
-      .footer-quick-links{
-        @extend .list-styling;
-        ul{
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          gap: $spacer;
-          li{
-            margin-top: 0 !important;
+
+    .footer-section.top{
+      .container{
+        .row{
+          + .row{
+            margin-top: $spacer * 2;
           }
         }
       }
-      
     }
-    
+
     .footer-title{
-      font-size: 1.125rem;
-      font-weight: bold;
+      @extend h3;
+    }
+
+    .footer-description{
+      @include media-breakpoint-up(lg) { 
+        width: 75ch;
+      }
+      
+      margin-bottom: 0;
+      color: var(--sgds-gray-400);
+      @extend p;
     }
   }
 
@@ -85,5 +73,24 @@
       font-weight: bold;
       margin-bottom: 0.5rem;
     }
-    @extend .list-styling;
+    @extend .footer-list-styling;
+  }
+
+  .footer-quick-links{
+    @extend .footer-list-styling;
+    
+    @include media-breakpoint-up(lg) { 
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    ul{
+      li{
+        display: inline-block;
+        font-size: 1rem;
+        + li{
+          margin-left: 1rem;
+        }
+      }
+    }
   }
