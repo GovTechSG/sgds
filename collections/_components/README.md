@@ -102,17 +102,23 @@ This section should only contain the default component and other variants
             compTitle="component name" 
             compName="card-with-image" 
             code=card-with-image
+            compDescTop=card-with-image
+            compDescBottom=card-with-image
         %}
     </div>
     <!-- Add addtional section-sub for more variants -->
     ...
 </section>
 ```
-> compTitle: name of the example component
+> **compTitle**: name of the example component
 
-> compName: ID for the component name 
+> **compName**: ID for the component name 
 
-> code: name of code snippet captured at the top of the page ```{% capture compName %}...{% endcapture %}```
+> **code**: name of code snippet captured at the top of the page ```{% capture compName %}...{% endcapture %}```
+
+> **compDescTop** (optional): Description below the variant name. Can be use with either quotation marks ```"description here"``` or ```{% capture captureName %}``` for rich text. 
+
+> **compDescBottom** (optional): Description below the variant example. Can be use with either quotation marks ```"description here"``` or ```{% capture captureName %}``` for rich text. 
 
 > **WARNING**: Do not remove ```include page-component/component-code-snippet.html ```
 
