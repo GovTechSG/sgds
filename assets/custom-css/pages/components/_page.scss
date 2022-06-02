@@ -1,62 +1,54 @@
 .page{
     &-component{
-            section{
-                + section{
-                    margin-top: $spacer * 3.5;
-                }
+        section{
+            + section{
+                margin-top: $spacer * 3.5;
+            }
 
-                .section-sub{
-                    + .section-sub{
-                        margin-top: $spacer * 3;
-                    }
+            .section-sub{
+                + .section-sub{
+                    margin-top: $spacer * 3;
                 }
             }
-           .subtitle{
-               margin-bottom: 0;
-           }
-
-           
-           
-    }
-}
-
-
-
-.sgds.accordion.code-snippet{
-    .accordion-header{
-        display: flex;
-    }
-    .accordion-item{
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-top: 0;
-        .btn-copy{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 0;
-            width: 4rem;
-            height: 4rem;
-            color: var(--sgds-primary);
-
         }
-    }
-    .accordion-body{
-        padding: 1rem 0.5rem;
-        background-color: #272822;
+        .subtitle{
+            margin-bottom: 0;
+        }
+
+        .sgds.accordion.code-snippet{
+            .accordion-header{
+                display: flex;
+            }
+            .accordion-item{
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                border-top: 0;
+                .btn-copy{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 0;
+                    width: 4rem;
+                    height: 4rem;
+                    color: var(--sgds-primary);
+        
+                }
+            }
+            .accordion-body{
+                padding: 1rem 0.5rem;
+                background-color: #272822;
+            }
+
+            + .desc-bottom{
+                margin-top: $spacer;
+            }
+        }
+                
     }
 }
 
 
 
-.component-anatomy{
-img{
-    padding: 2rem;
-    background-color: white;
-}
-    + .component-anatomy{
-        padding-top: 2rem;
-    }
-}
+
 
 
