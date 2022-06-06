@@ -1,7 +1,178 @@
 ---
 title: Toast
+description: Allows you to convey quick messaging notifications to the user. E.g When an action is completed, a success toast notification can be displayed and dismissed by the user or dismissed after a set amount of time has passed. Alternatively, a CTA can be used with the toast to allow the user to proceed with next steps or try again.
 layout: layout-sidenav
 category: general
-react: true
+react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/components-toast--default-story
+vue-link: https://dev-2-00.dcqvx0j20dou8.amplifyapp.com/?path=/docs/components-stoast-stoast--default-toast
+github-link: true
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture basic-toast %}
+<div class="sgds toast show" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+        <i class="bi bi-check-circle me-2"></i>
+        <strong class="me-auto">Title</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        This is a toast message
+    </div>
+</div>
+{% endcapture %}
+
+{% capture complex-toast %}
+<div class="sgds toast show is-danger" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i class="bi bi-exclamation-circle me-2"></i>
+      <strong class="me-auto">Launch Failed</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        Request limit exceeded.
+        <div>
+            <button class="btn btn-outline-dark">Try again</button>
+        </div>
+    </div>
+</div>
+<div class="sgds toast show is-warning" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i class="bi bi-exclamation-triangle me-2"></i>
+      <strong class="me-auto">Warning</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        This is a warning message.
+        <div>
+            <button class="btn btn-outline-dark">Proceed</button>
+        </div>
+    </div>
+</div>
+<div class="sgds toast show is-success" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i class="bi bi-check-circle me-2"></i>
+      <strong class="me-auto">Success</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        This is a success message.
+        <div>
+            <button class="btn btn-outline-dark">Next action</button>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture text-input-design-tokens %}
+$toast-max-width: 350px !default;
+$toast-padding-x: .75rem !default;
+$toast-padding-y: .5rem !default;
+$toast-font-size: 1rem !default;
+$toast-color: null !default;
+$toast-background-color: rgba($white, .85) !default;
+$toast-border-width: 1px !default;
+$toast-border-left-width: 5px !default;
+$toast-border-color: rgba($black, .1) !default;
+$toast-border-radius: $border-radius !default;
+$toast-box-shadow: $box-shadow !default;
+$toast-spacing: $container-padding-x !default;
+$toast-header-color: $gray-600 !default;
+$toast-header-background-color: rgba($white, .85) !default;
+$toast-header-border-color: rgba($black, .05) !default;
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Basic toast" compName="basic-toast" code=basic-toast %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Complex toast" compName="complex-toast" code=complex-toast %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-text-input-1.svg" alt="Toast Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Icon (situational):</b> Used as a supporting element for the notification, giving more context to the nature of the notification
+                    </li>
+                    <li>
+                        <b>Title:</b> Name of the toast letting users know what the toast is about
+                    </li>
+                    <li>
+                        <b>Close icon (situational):</b> Used when you are not using time-based toasts. This allows users to manually dismiss the toast
+                    </li>
+                    <li>
+                        <b>CTA (situational):</b> Used to allow users to carry out actions immediately upon completion of a task
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-text-input-1.svg" alt="Toast Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-card">Within the text input</h3>
+                <p>Ensure that there is a min of 16px spacing within the toast notification and 32px spacing between content and CTA.</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Toasts should be used when:</p>
+            <ol>
+                <li>You want to present quick snippets of information to users, such as when users have submitted a form successfully or when a system error occurs</li>
+            </ol>
+            <p class="fw-bold mb-0">Toasts should not be used when:</p>
+            <ol>
+                <li>Conveying important alers. E.g If your system is going down for maintenance</li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Don't stack the notifications</b><br>
+                Avoid stacking multiple toasts together as this will cause confusion for users. If stacking cannot be avoided, ensure that the toasts are of a similar nature. E.g Error messaging
+            </p>
+            <p>
+                <b>Make sure they are small and unobtrusive</b><br>
+                This is so that content is not blocked and part of the users natural task flow
+            </p>
+            <p>
+                <b>Make toasts as brief as possible</b><br>
+                Toasts convey quick snippets of information and therefore should not contain more than 2-3 lines of text. The content should make sense with as little words as possible. E.g Message sent vs Your message has been sent
+            </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{text-input-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>
