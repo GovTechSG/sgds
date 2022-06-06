@@ -1,7 +1,132 @@
 ---
 title: Stepper
+description: Used to inform users which step they are at in a form or a process
 layout: layout-sidenav
 category: general
-react: true
+react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/components-stepper--default-story
+vue-link: true
+github-link: true
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture stepper-examples %}
+<div class="sgds stepper">
+    <div class="stepper-item is-completed">
+        <div class="stepper-marker">1</div>
+        <div class="stepper-detail">
+            <p><b>Marker title</b></p>
+        </div>
+    </div>
+    <div class="stepper-item is-active">
+        <div class="stepper-marker">2</div>
+        <div class="stepper-detail">
+            <p><b>Marker title</b></p>
+        </div>
+    </div>
+    <div class="stepper-item">
+        <div class="stepper-marker">3</div>
+        <div class="stepper-detail">
+            <p><b>Marker title</b></p>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture stepper-design-tokens %}
+$steps-maker-default-color: $gray-400 !default;
+$steps-marker-default-border: .25rem solid $white !default;
+$steps-default-color: $gray-300 !default;
+$steps-completed-color: $primary !default;
+$steps-active-color: $primary !default;
+$steps-divider-height: .25rem !default;
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Examples</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compName="stepper-examples" code=stepper-examples %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-stepper-1.svg" alt="Stepper Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Step number:</b> Indicate the sequence of step
+                    </li>
+                    <li>
+                        <b>Marker title:</b> Label that indicates the purpose of the steps
+                    </li>
+                    <li>
+                        <b>Track:</b> A bar to show the progress through a set of steps
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-stepper-1.svg" alt="Stepper Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-card">Within the stepper</h3>
+                <p>Ensure that there is a min of 4px vertical spacing between the marker icon and marker title</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Steppers should be used when:</p>
+            <ul>
+                <li>There are multiple steps in a form where content can be divided into logical steps.</li>
+            </ul>
+            <p class="fw-bold mb-0">Steppers should not be used when:</p>
+            <ul>
+                <li>
+                    Form is short. If a form or process has fewer than three sections, there is no need to use a stepper.
+                </li>
+            </ul>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Keep marker title short and concise</b><br>
+                Use labels that clearly indicate the purpose of the step and keep it as short as 1 to 2 words.
+            </p>
+            <p>
+                <b>Logical ordering</b><br>
+                Display the steps in order from left to right. Indicate to the user that they are performing a multistep process, and show the progress using the different states. Allow the user to return to a previous step to make ammendment.
+            </p>
+            <p>
+                <b>Indicate the current step</b><br>
+                Inform user of their current step within the process. This helps the user to know where they are in relation to where they have beem, and what sections are to follow. Use validation to confirm that a previous step has been completed.
+            </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{stepper-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>
