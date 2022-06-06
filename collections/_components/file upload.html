@@ -2,7 +2,7 @@
 title: File upload
 layout: layout-sidenav
 description: Allows users to upload files of various sizes and formats
-category: general 
+category: general
 react-link: https://....
 github-link: https://....
 toc: true
@@ -10,125 +10,159 @@ toc: true
 
 {% capture file-upload %}
 <form class="">
-    <input multiple="" type="file" id="fileupload1" class="d-none form-control">
-    <button type="button" class="btn btn-primary sgds">
-      <i class="bi bi-upload me-2"></i>
-      Choose a file
-    </button>
-    <ul class="fileupload-list sgds">
-      <li class="fileupload-list-item"><i class="bi bi-check me-2 check-icon"></i><span class="filename">Screenshot 2022-04-11 at 5.56.25 PM.png</span><i class="bi bi-x-circle ms-2 x-circle-icon"></i></li>
-      <li class="fileupload-list-item"><i class="bi bi-check me-2 check-icon"></i><span class="filename">Screenshot 2022-04-29 at 2.53.40 PM.png</span><i class="bi bi-x-circle ms-2 x-circle-icon"></i></li>
-      <li class="fileupload-list-item"><i class="bi bi-check me-2 check-icon"></i><span class="filename">Screenshot 2022-04-29 at 5.12.56 PM.png</span><i class="bi bi-x-circle ms-2 x-circle-icon"></i></li>
-    </ul>
-  </form>
-{% endcapture %}
+  <input multiple="" type="file" id="fileupload1" class="d-none form-control" />
+  <button type="button" class="btn btn-primary sgds">
+    <i class="bi bi-upload me-2"></i>
+    Choose a file
+  </button>
+  <ul class="fileupload-list sgds">
+    <li class="fileupload-list-item">
+      <i class="bi bi-check me-2 check-icon"></i
+      ><span class="filename">Screenshot 2022-04-11 at 5.56.25 PM.png</span
+      ><i class="bi bi-x-circle ms-2 x-circle-icon"></i>
+    </li>
+    <li class="fileupload-list-item">
+      <i class="bi bi-check me-2 check-icon"></i
+      ><span class="filename">Screenshot 2022-04-29 at 2.53.40 PM.png</span
+      ><i class="bi bi-x-circle ms-2 x-circle-icon"></i>
+    </li>
+    <li class="fileupload-list-item">
+      <i class="bi bi-check me-2 check-icon"></i
+      ><span class="filename">Screenshot 2022-04-29 at 5.12.56 PM.png</span
+      ><i class="bi bi-x-circle ms-2 x-circle-icon"></i>
+    </li>
+  </ul>
+</form>
 
-{% capture hint-text %}
+{% endcapture %} {% capture hint-text %}
 <form class="">
-    <input multiple="" type="file" id="fileupload1" class="d-none form-control">
-    <button type="button" class="btn btn-primary sgds">
-      <i class="bi bi-upload me-2"></i>
-      Choose a file
-    </button>
-    <p>This is a hint text</p>
-    <ul class="fileupload-list sgds">
-      <li class="fileupload-list-item"><i class="bi bi-check me-2 check-icon"></i><span class="filename">Screenshot 2022-04-11 at 5.56.25 PM.png</span><i class="bi bi-x-circle ms-2 x-circle-icon"></i></li>
-      <li class="fileupload-list-item"><i class="bi bi-check me-2 check-icon"></i><span class="filename">Screenshot 2022-04-29 at 2.53.40 PM.png</span><i class="bi bi-x-circle ms-2 x-circle-icon"></i></li>
-      <li class="fileupload-list-item"><i class="bi bi-check me-2 check-icon"></i><span class="filename">Screenshot 2022-04-29 at 5.12.56 PM.png</span><i class="bi bi-x-circle ms-2 x-circle-icon"></i></li>
-    </ul>
-  </form>
+  <input multiple="" type="file" id="fileupload1" class="d-none form-control" />
+  <button type="button" class="btn btn-primary sgds">
+    <i class="bi bi-upload me-2"></i>
+    Choose a file
+  </button>
+  <p>This is a hint text</p>
+  <ul class="fileupload-list sgds">
+    <li class="fileupload-list-item">
+      <i class="bi bi-check me-2 check-icon"></i
+      ><span class="filename">Screenshot 2022-04-11 at 5.56.25 PM.png</span
+      ><i class="bi bi-x-circle ms-2 x-circle-icon"></i>
+    </li>
+    <li class="fileupload-list-item">
+      <i class="bi bi-check me-2 check-icon"></i
+      ><span class="filename">Screenshot 2022-04-29 at 2.53.40 PM.png</span
+      ><i class="bi bi-x-circle ms-2 x-circle-icon"></i>
+    </li>
+    <li class="fileupload-list-item">
+      <i class="bi bi-check me-2 check-icon"></i
+      ><span class="filename">Screenshot 2022-04-29 at 5.12.56 PM.png</span
+      ><i class="bi bi-x-circle ms-2 x-circle-icon"></i>
+    </li>
+  </ul>
+</form>
 {% endcapture %}
 
 <div class="page-component">
-    {% include page-component/component-header.html %}
-    <section name="section-examples">
-        <h2 class="title fw-bold" id="example">Example</h2>
-        <div class="section-sub">
-            {% 
-                include page-component/component-code-snippet.html 
-                compTitle="Default" 
-                compName="file-upload" 
-                code=file-upload
-            %}
+  {% include page-component/component-header.html %}
+  <section name="section-examples">
+    <h2 class="title fw-bold" id="example">Example</h2>
+    <div class="section-sub">
+      {% include page-component/component-code-snippet.html compTitle="Default"
+      compName="file-upload" code=file-upload %}
+    </div>
+    <!-- Add addtional section-sub for more variants -->
+  </section>
+
+  <!-- Anatomy Section -->
+  <section name="section-anatomy">
+    <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+    <div class="section-sub">
+      <div class="sgds-example-image-container">
+        <div class="sgds-example-image-grid">
+          <img
+            src="{{site.baseurl}}/assets/img/component/fileupload/anatomy-fileupload.svg"
+            alt=""
+          />
         </div>
-        <!-- Add addtional section-sub for more variants -->
-    </section>
+      </div>
 
-    <!-- Anatomy Section -->   
-    <section name="section-anatomy">
-        <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
-        <div class="section-sub">
-            <div class="sgds-example-image-container">
-                <div class="sgds-example-image-grid">
-                    <img src="{{site.baseurl}}/assets/img/component/fileupload/anatomy-fileupload.svg" alt="">
-                </div>
-            </div>
+      <ol>
+        <li>
+          <b>Icon (situational):</b> Serves to give a visual queue to the upload
+          button
+        </li>
+        <li><b>Button:</b> Button component is used</li>
+        <li>
+          <b>Uploaded content:</b> Displayed to show users what has been
+          uploaded
+        </li>
+        <li>
+          <b>Validation and remove:</b> Serves to inform users if a file has
+          been sucessfully uploaded and allow them to remove if necessary
+        </li>
+      </ol>
+    </div>
+  </section>
 
-            <ol>
-                <li>
-                    <b>Icon (situational):</b> Serves to give a visual queue to the upload button
-                </li>
-                <li>
-                    <b>Button:</b> Button component is used
-                </li>
-                <li>
-                    <b>Uploaded content:</b> Displayed to show users what has been uploaded
-                </li>
-                <li>
-                    <b>Validation and remove:</b> Serves to inform users if a file has been 
-                    sucessfully uploaded and allow them to remove if necessary
-                </li>
-            </ol>
+  <!-- Spacing Section -->
+  <section name="section-spacing">
+    <h2 class="title fw-bold" id="spacing">Spacing</h2>
+    <div class="section-sub">
+      <h3 class="subtitle fw-bold" id="within-the-accordion">
+        Within the file upload
+      </h3>
+      <div class="sgds-example-image-container">
+        <div class="sgds-example-image-grid">
+          <img
+            class="img-fluid"
+            src="{{site.baseurl}}/assets/img/component/fileupload/spacing-fileupload.svg"
+            alt=""
+          />
         </div>
-    </section>
+      </div>
+      <p>
+        Ensure that there is a min of 16px vertical spacing between the button,
+        hint text and uploaded items and a min of 8px between uploaded items.
+      </p>
+    </div>
+  </section>
 
-    <!-- Spacing Section -->
-    <section name="section-spacing">
-        <h2 class="title fw-bold" id="spacing">Spacing</h2>
-        <div class="section-sub">
-            <h3 class="subtitle fw-bold" id="within-the-accordion">Within the file upload</h3>
-            <div class="sgds-example-image-container">
-                <div class="sgds-example-image-grid">
-                    <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/fileupload/spacing-fileupload.svg"
-                        alt="">
-                </div>
-            </div>
-            <p>Ensure that there is a min of 16px vertical spacing between the button, 
-                hint text and uploaded items and a min of 8px between uploaded items.</p>
-        </div>
-    </section>
-
-
-<!-- Usage guidelines Section -->
-<section name="section-usage-guidelines">
+  <!-- Usage guidelines Section -->
+  <section name="section-usage-guidelines">
     <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
     <p class="fw-bold mb-0">File upload should be used:</p>
     <ol>
-        <li>When you require users to upload mandatory documents. E.g proof of signature</li>
+      <li>
+        When you require users to upload mandatory documents. E.g proof of
+        signature
+      </li>
     </ol>
     <p class="fw-bold mb-0">File upload should not be used:</p>
     <ol>
-        <li>Documents are optional</li>
-        <li>When you require users to upload large files</li>
+      <li>Documents are optional</li>
+      <li>When you require users to upload large files</li>
     </ol>
-</section>
+  </section>
 
-<!-- Usability guidelines Section -->
-<section name="section-usability-guidelines">
-    <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+  <!-- Usability guidelines Section -->
+  <section name="section-usability-guidelines">
+    <h2 class="title fw-bold" id="usability-guidelines">
+      Usability guidelines
+    </h2>
     <p>
-        <b>State the format of the file(s)</b><br>
-        This will prevent users from uploading invalid formats and encountering errors
+      <b>State the format of the file(s)</b><br />
+      This will prevent users from uploading invalid formats and encountering
+      errors
     </p>
     <p>
-        <b>State the maximum file size</b><br>
-        This is to prevent users from uploading files sizes that are too large and encountering errors
+      <b>State the maximum file size</b><br />
+      This is to prevent users from uploading files sizes that are too large and
+      encountering errors
     </p>
     <p>
-        <b>Have clear labelling and use hint text</b><br>
-        Ensure you label the file upload clearly as well as 
-        hint text when necessaryso users know what exactly they have to upload
+      <b>Have clear labelling and use hint text</b><br />
+      Ensure you label the file upload clearly as well as hint text when
+      necessaryso users know what exactly they have to upload
     </p>
-</section>
-
+  </section>
 </div>
