@@ -8,14 +8,17 @@
 
         }
         .component-source-grid{
-            display: flex;
-            gap: 2rem;
-            @include media-breakpoint-down(lg){
+            @media (max-width: 1405px) { 
                 display: block;
                 div + div{
                     margin-top: 0.5rem;
-                }
             }
+                
+            }
+
+            display: flex;
+            gap: 2rem;
+            
         }
     }
 }

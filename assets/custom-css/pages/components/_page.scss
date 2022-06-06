@@ -1,7 +1,7 @@
 .page{
     &-component{
-        section{
-            + section{
+        section[name*='section-']{
+            + section[name*='section-']{
                 margin-top: $spacer * 3.5;
             }
 
