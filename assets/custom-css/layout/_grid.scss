@@ -9,7 +9,7 @@ body{
     &-sidenav{
         display: grid;
         gap: 3rem;
-        grid-template-columns: 240px 1fr;
+        grid-template-columns: 15rem minmax(25rem, 1fr);
         max-width: 100%;
         padding: 1rem 2rem;
         @include media-breakpoint-down(lg){
@@ -19,7 +19,7 @@ body{
             }
         }
         &.with-toc{
-            grid-template-columns: 240px 1fr 240px;
+            grid-template-columns: 15rem minmax(25rem, 1fr)  15rem;
         }
     }
     &-fluid{

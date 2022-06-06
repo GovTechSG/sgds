@@ -6,6 +6,7 @@
 @import "./sass/bootstrap/mixins";
 @import "./sass/bootstrap/utilities";
 
+
 $all-colors: map-merge-multiple($primarys, $secondarys,  $purples,  $reds, $yellows, $greens,  $cyans);
 
 $utilities: map-merge(
@@ -85,6 +86,7 @@ $utilities: map-merge(
 //Helpers
 @import "./sass/sgds-theme/components/helpers";
 //Utilites
-@import "./sass/sgds-theme/components/utilities";
+@import "./sass/bootstrap/utilities/api";
+
 
 // scss-docs-end import-stack
