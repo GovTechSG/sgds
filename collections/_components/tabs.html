@@ -1,12 +1,12 @@
 ---
 title: Tabs
 layout: layout-sidenav
-description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, iure.
+description: Tabs are a navigation element resembling tabbed dividers in a filing cabinet - by clicking a tab, users can easily locate a page containing related content.
 category: general
-react: true
-github: https://google.com
-storybook: https://google.com
-ready: false
+react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/components-tabs--default-story
+vue-link: true
+github-link: true
+toc: true
 ---
 {% capture default-tabs %}
 <ul class="sgds nav nav-tabs" id="myTab" role="tablist">
@@ -91,6 +91,7 @@ ready: false
     amet, consectetur adipisicing elit. Sit, accusantium!</div>
 </div>
 {% endcapture %}
+
 {% capture info-toggle-tabs %}
 <!-- Add variant="tabs-info-toggle" -->
 <ul class="sgds nav nav-tabs" id="myTab" role="tablist" variant="tabs-info-toggle">
@@ -153,47 +154,97 @@ ready: false
 </div>
 {% endcapture %}
 
+{% capture tabs-design-tokens %}
+$nav-tabs-border-color: transparent !default;
+$nav-tabs-border-width: $border-width !default;
+$nav-tabs-border-radius: $border-radius !default;
+$nav-tabs-link-hover-border-color: $gray-200 $gray-200 $nav-tabs-border-color !default;
+$nav-tabs-link-active-color: $gray-700 !default;
+$nav-tabs-link-active-bg: $body-bg !default;
+$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
+$nav-sgds-tabs-active-border-color: $link-color !default;
+$nav-sgds-tabs-padding-y: $spacer !default;
+$nav-sgds-tabs-icon-padding: $spacer !default;
+{% endcapture %}
+
+<!-- Page starts here -->
 <div class="page-component">
-  <article>
-    {% include page-component/component-header.html %}
-    <section>
-      <h2 class="title fw-bold">Anatomy</h2>
-      <div class="component-anatomy">
-        <h3 class="subtitle fw-bold">Closed</h3>
-        <ol>
-          <li>
-            <b>Text:</b> Serves to tell users what the accordion is being used for
-          </li>
-          <li>
-            <b>Container:</b> Encloses the content within, width and height to be adjusted according to
-            content
-          </li>
-        </ol>
-        <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/anatomy/accordion/anatomy-accordion-1.svg"
-          alt="">
-      </div>
-    </section>
-    <section>
-      <h2 class="title fw-bold">Example</h2>
-      <h3 class="subtitle fw-bold">Default Tabs</h3>
-      <div class="sgds-example">
-        {{default-tabs}}
-      </div>
-      {% include page-component/component-code-snippet.html compName="default-tabs" content=default-tabs %}
-    </section>
-    <section>
-      <h3 class="subtitle fw-bold">Basic toggle tabs</h3>
-      <div class="sgds-example">
-        {{basic-toggle-tabs}}
-      </div>
-      {% include page-component/component-code-snippet.html compName="basic-toggle-tabs" content=basic-toggle-tabs %}
-    </section>
-    <section>
-      <h3 class="subtitle fw-bold">Info toggle tabs</h3>
-      <div class="sgds-example">
-        {{info-toggle-tabs}}
-      </div>
-      {% include page-component/component-code-snippet.html compName="info-toggle-tabs" content=info-toggle-tabs %}
-    </section>
-  </article>
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Default tabs" compName="default-tabs" code=default-tabs %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Basic toggle tabs" compName="basic-toggle-tabs" code=basic-toggle-tabs %}
+            </div>
+            <div class="section-sub">
+              {% include page-component/component-code-snippet.html compTitle="Info toggle tabs" compName="info-toggle-tabs" code=info-toggle-tabs %}
+          </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-tabs-1.svg" alt="Tabs Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Label:</b> Text
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-tabs-1.svg" alt="Tabs Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-card">Within the tabs</h3>
+                <p>Text</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Tabs should be used when:</p>
+            <ul>
+                <li>Text</li>
+            </ul>
+            <p class="fw-bold mb-0">Tabs should not be used when:</p>
+            <ol>
+                <li>
+                    Text
+                </li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Title</b><br>
+                Text
+            </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{tabs-design-tokens}}{%- endhighlight -%}
+        </section>
 </div>
