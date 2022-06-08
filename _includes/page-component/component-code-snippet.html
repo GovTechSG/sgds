@@ -1,4 +1,7 @@
 <h3 class="subtitle fw-bold" id="{{include.compName}}">{{include.compTitle}}</h3>
+{% if include.compDescTop %}
+<div class="desc-top">{{include.compDescTop}}</div>
+{% endif %}
 <div class="sgds-example">
     {{include.code}}
 </div>
@@ -22,3 +25,6 @@
     </div>
   </div>
 </div>
+{% if include.compDescBottom %}
+<div class="desc-bottom">{{include.compDescBottom}}</div>
+{% endif %}

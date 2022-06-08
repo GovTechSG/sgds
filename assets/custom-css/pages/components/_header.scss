@@ -1,20 +1,24 @@
 .page-component{
     .header-component{
         .header-component-description{
-            width: 75ch;
-            @include media-breakpoint-down(lg){
-                width: auto;
+            @media (min-width: 1390px) { 
+                width: 75ch;
             }
+            width: auto;
+
         }
         .component-source-grid{
-            display: flex;
-            gap: 2rem;
-            @include media-breakpoint-down(lg){
+            @media (max-width: 1405px) { 
                 display: block;
                 div + div{
                     margin-top: 0.5rem;
-                }
             }
+                
+            }
+
+            display: flex;
+            gap: 2rem;
+            
         }
     }
 }
