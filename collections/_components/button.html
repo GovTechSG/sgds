@@ -1,18 +1,231 @@
 ---
 title: Button
-description: Buttons allow users to take actions, and make choices, with a single tap.
 layout: layout-sidenav
+description: Buttons communicate actions that users can take throughout your portal which can be used in places such as modals, forms and cards
 category: general
-react: true
+react-link: https://....
+github-link: https://....
+toc: true
 ---
+
+{% capture button-design-tokens %}
+$btn-padding-y:               $input-btn-padding-y !default;
+$btn-padding-x:               $input-btn-padding-x !default;
+$btn-font-family:             $input-btn-font-family !default;
+$btn-font-size:               $input-btn-font-size !default;
+$btn-line-height:             $input-btn-line-height !default;
+$btn-white-space:             null !default; // Set to `nowrap` to prevent text wrapping
+
+$btn-padding-y-sm:            $input-btn-padding-y-sm !default;
+$btn-padding-x-sm:            $input-btn-padding-x-sm !default;
+$btn-font-size-sm:            $input-btn-font-size-sm !default;
+
+$btn-padding-y-lg:            $input-btn-padding-y-lg !default;
+$btn-padding-x-lg:            $input-btn-padding-x-lg !default;
+$btn-font-size-lg:            $input-btn-font-size-lg !default;
+
+$btn-border-width:            $input-btn-border-width !default;
+
+$btn-font-weight:             $font-weight-normal !default;
+$btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default;
+$btn-focus-width:             $input-btn-focus-width !default;
+$btn-focus-box-shadow:        $input-btn-focus-box-shadow !default;
+$btn-disabled-opacity:        .65 !default;
+$btn-active-box-shadow:       inset 0 3px 5px rgba($black, .125) !default;
+
+$btn-link-color:              $link-color !default;
+$btn-link-hover-color:        $link-hover-color !default;
+$btn-link-disabled-color:     $gray-600 !default;
+
+
+$btn-border-radius:           $border-radius !default;
+$btn-border-radius-sm:        $border-radius-sm !default;
+$btn-border-radius-lg:        $border-radius-lg !default;
+
+$btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+
+$btn-hover-bg-shade-amount:       15% !default;
+$btn-hover-bg-tint-amount:        15% !default;
+$btn-hover-border-shade-amount:   20% !default;
+$btn-hover-border-tint-amount:    10% !default;
+$btn-active-bg-shade-amount:      20% !default;
+$btn-active-bg-tint-amount:       20% !default;
+$btn-active-border-shade-amount:  25% !default;
+$btn-active-border-tint-amount:   10% !default;
+{% endcapture %}
+
+{% capture button-default %}
+<button type="button" class="btn btn-primary sgds">Default</button>
+{% endcapture %}
+
+{% capture button-variants %}
+<button type="button" class="m-1 btn btn-primary sgds">primary</button>
+<button type="button" class="m-1 btn btn-secondary sgds">secondary</button>
+<button type="button" class="m-1 btn btn-success sgds">success</button>
+<button type="button" class="m-1 btn btn-danger sgds">danger</button>
+<button type="button" class="m-1 btn btn-warning sgds">warning</button>
+<button type="button" class="m-1 btn btn-info sgds">info</button>
+<button type="button" class="m-1 btn btn-light sgds">light</button>
+<button type="button" class="m-1 btn btn-dark sgds">dark</button>
+{% endcapture %}
+
+{% capture button-outline %}
+<button type="button" class="btn btn-outline-primary sgds">Primary</button>
+<button type="button" class="btn btn-outline-secondary sgds">Secondary</button>
+<button type="button" class="btn btn-outline-success sgds">Success</button>
+<button type="button" class="btn btn-outline-warning sgds">Warning</button>
+<button type="button" class="btn btn-outline-danger sgds">Danger</button>
+<button type="button" class="btn btn-outline-info sgds">Info</button>
+<button type="button" class="btn btn-outline-light sgds">Light</button>
+<button type="button" class="btn btn-outline-dark sgds">Dark</button>
+{% endcapture %}
+
+{% capture button-size %}
+<button type="button" class="btn btn-primary btn-lg sgds">Large button</button>
+<button type="button" class="btn btn-primary btn-sm sgds">Small button</button>
+{% endcapture %}
+
+{% capture button-block %}
+<div class="d-grid gap-2">
+    <button class="btn btn-primary btn-lg" type="button">Button</button>
+    <button class="btn btn-outline-dark btn-lg" type="button">Button</button>
+  </div>
+{% endcapture %}
+
+{% capture button-disable %}
+    <button disabled="" type="button" class="btn btn-primary sgds">Primary button</button>
+    <button disabled="" type="button" class="btn btn-secondary sgds">Secondary button</button>
+    <button disabled="" type="button" class="btn btn-outline-dark sgds">Outline button</button>
+{% endcapture %}
+
+{% capture button-icon %}
+    <button type="button" class="btn btn-primary sgds"><i class="bi bi-arrow-90deg-left"></i> Button with icon</button>
+    <button type="button" class="btn btn-primary btn-sm sgds"><i class="bi bi-arrow-90deg-left"></i> Button with icon</button>
+{% endcapture %}
+
 <div class="page-component">
-    <article>
-        {% include page-component/component-header.html %}
-        <button class="sgds btn btn-primary btn-sm">Small</button>
-        <button class="sgds btn btn-primary">Default</button>
-        <button class="sgds btn btn-primary btn-lg">Large</button>
-    </article>
+    {% include page-component/component-header.html %}
+    <section name="section-examples">
+        <h2 class="title fw-bold" id="example">Example</h2>
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Default button" 
+                compName="button-default" 
+                code=button-default
+            %}
+        </div>
+
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Variants" 
+                compName="button-variants" 
+                code=button-variants
+                compDescTop="Use any of the available button styles such as <code>primary</code> to quickly created styled buttons" 
+            %}
+        </div>
+
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Outline" 
+                compName="button-outline" 
+                code=button-outline
+            %}
+        </div>
+
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Sizes" 
+                compName="button-size" 
+                code=button-size
+                compDescTop="Our default button size is large, use the class <code>btn-sm</code> if you want to use the small sized button"
+            %}
+        </div>
+
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Block buttons" 
+                compName="button-block" 
+                code=button-block
+                compDescTop="Use a mix of display and grid utilities to create full-width stacks or block buttons"
+            %}
+        </div>
+
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Disabled buttons" 
+                compName="button-disable" 
+                code=button-disable
+                compDescTop="Use the <code>disabled</code> class to created disabled buttons."
+            %}
+        </div>
+
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Icon buttons" 
+                compName="button-icon" 
+                code=button-icon
+            %}
+        </div>
+        <!-- Add addtional section-sub for more variants -->
+        </section>
+
+        <!-- Usage guidelines Section -->
+<section name="section-usage-guidelines">
+    <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+    <p class="fw-bold mb-0">Buttons should be used:</p>
+    <ol>
+        <li>
+            For important actions that you want your users to take. For example submission of a form or editing a page
+        </li>
+    </ol>
+    <p class="fw-bold mb-0">Buttons should not be used:</p>
+    <ol>
+        <li>
+            When linking pages in a site
+        </li>
+        <li>
+            For less important actions. For those types of actions, consider using text links.
+        </li>
+    </ol>
+</section>
+
+<!-- Usability guidelines Section -->
+<section name="section-usability-guidelines">
+    <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+    <p>
+        <b>Use primary buttons for actions that go to the next step or for submission</b><br>
+        This makes it clear to the user that a action will happen when they click on the button
+    </p>
+    <p>
+        <b>Use outline or secondary buttons for secondary actions</b><br>
+        This will help differentiate it from primary action buttons
+    </p>
+    <p>
+        <b>Ensure buttons look clickable</b><br>
+        Do ensure that hover and active states are clear to the user from it’s static state
+    </p>
+    <p>
+        <b>Avoid using too many buttons</b><br>
+        Buttons should be reserved mainly primary actions the users is supposed to take within a page. 
+        E.g on a form you may use 2 buttons, 1 primary and 1 secondary but text links for actions within the page
+    </p>
+    <p>
+        <b>Keep text within button short</b><br>
+        Text should be as short as possible and with action text to allow the user to easily understand what will happen when the button is clicked. 
+        E.g Submit, Next or Download
+    </p>
+</section>
+
+<section>
+    <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+    {%- highlight sass -%}{{button-design-tokens}}{%- endhighlight -%}
+</section>
+
 </div>
-
-
-
