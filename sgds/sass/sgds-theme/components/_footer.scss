@@ -36,13 +36,13 @@
       }
       &-header{
         .title{
-          @extend h3;
+          @extend #{$footer-title-header};
           margin-bottom: $spacer;
         }
         .description{
           color: $footer-description-color;
-          @extend p;
         }
+        margin-bottom: calc(#{$spacer} * 1.5);
       }
     
       &-items{
@@ -83,7 +83,7 @@
 
       &-bottom{
         background-color: $footer-bottom-bg-color;
-        border-top: 1px solid var(--sgds-gray-800);
+        border-top: $footer-bottom-border-width solid $footer-bottom-border-color;
         padding: $footer-bottom-padding;
       }
 
