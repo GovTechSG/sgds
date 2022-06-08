@@ -1,7 +1,7 @@
 ---
 title: Pagination
 layout: layout-sidenav
-description: Pagination enables the user to select a specific page from a range of pages
+description: The pagination component is used to display a list of page numbers for your users, so that they can navigate to the next or previous page.
 category: general
 react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/components-pagination--standard
 vue-link: https://dev-2-00.dcqvx0j20dou8.amplifyapp.com/?path=/docs/components-spagination--default-pagination-less-than-3-pages
@@ -9,15 +9,50 @@ github-link: true
 toc: true
 ---
 
-{% capture default-pagination %}
+{% capture with-texts-arrows %}
 <nav aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i>Previous</a></li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
       <li class="page-item"><a class="page-link" href="#">2</a></li>
       <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">4</a></li>
+      <li class="page-item"><a class="page-link" href="#">5</a></li>
       <li class="page-item"><a class="page-link" href="#">...</a></li>
+      <li class="page-item"><a class="page-link" href="#">12</a></li>
       <li class="page-item"><a class="page-link" href="#">Next<i class="bi bi-chevron-right"></i></a></li>
+    </ul>
+  </nav>
+{% endcapture %}
+
+{% capture with-texts %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">4</a></li>
+      <li class="page-item"><a class="page-link" href="#">5</a></li>
+      <li class="page-item"><a class="page-link" href="#">...</a></li>
+      <li class="page-item"><a class="page-link" href="#">12</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
+{% endcapture %}
+
+{% capture with-arrows %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">4</a></li>
+      <li class="page-item"><a class="page-link" href="#">5</a></li>
+      <li class="page-item"><a class="page-link" href="#">...</a></li>
+      <li class="page-item"><a class="page-link" href="#">12</a></li>
+      <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
     </ul>
   </nav>
 {% endcapture %}
@@ -73,7 +108,13 @@ $pagination-border-radius-lg: $border-radius-lg !default;
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Example</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compName="default-pagination" code=default-pagination %}
+                {% include page-component/component-code-snippet.html compTitle="With texts and arrows" compName="with-texts-arrows" code=with-texts-arrows %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="With texts only" compName="with-texts" code=with-texts %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="With arrows only" compName="with-arrows" code=with-arrows %}
             </div>
         </section>
 
@@ -88,7 +129,13 @@ $pagination-border-radius-lg: $border-radius-lg !default;
                 </div>
                 <ol>
                     <li>
-                        <b>Label:</b> Text
+                        <b>Previous and next buttons:</b> Allows users to go backward or forward a page, can be text or icon, can be used individually depending on situation and space constraints
+                    </li>
+                    <li>
+                        <b>Numbering:</b> Allow users to skip to different pages anytime
+                    </li>
+                    <li>
+                        <b>Truncation:</b> When a threshold of pages is reached, the list is truncated using an ellipsis
                     </li>
                 </ol>
             </div>
@@ -104,7 +151,7 @@ $pagination-border-radius-lg: $border-radius-lg !default;
                     </div>
                 </div>
                 <h3 class="subtitle fw-bold" id="within-the-card">Within the pagination</h3>
-                <p>Text</p>
+                <p>Ensure that there is a min of 8px vertical spacing and 16px horizontal spacing. Base height 48px</p>
             </div>
         </section>
 
@@ -112,14 +159,14 @@ $pagination-border-radius-lg: $border-radius-lg !default;
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
             <p class="fw-bold mb-0">Pagination should be used when:</p>
-            <ul>
-                <li>Text</li>
-            </ul>
+            <ol>
+                <li>Long content can be separated into multiple pages that can be navigated sequentially or by selecting a specific page within the pagination set.</li>
+            </ol>
             <p class="fw-bold mb-0">Pagination should not be used when:</p>
             <ol>
-                <li>
-                    Text
-                </li>
+                <li>The page has infinite scrolling, i.e. loading data as the user scrolls down the page.</li>
+                <li>The content is not part of the same set, consider using <a href="{{site.baseurl}}/components/navigation/">navigation</a> instead.</li>
+                <li>Switching between slides or content in a carousel</li>
             </ol>
         </section>
 
@@ -127,8 +174,16 @@ $pagination-border-radius-lg: $border-radius-lg !default;
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>Title</b><br>
-                Text
+                <b>Show the total number of pages in the pagination set whenever possible</b><br>
+                Users should know the total number of pages or items. Truncation can be used when the number of pages exceeds the pagination display limit.
+            </p>
+            <p>
+                <b>Highlight the current page</b><br>
+                Pagination should highlight the page the user is currently on.
+            </p>
+            <p>
+                <b>Place pagination at the bottom of the set of results</b><br>
+                Do place pagination at the bottom of page so that users are able to navigate between pages.
             </p>
         </section>
 
