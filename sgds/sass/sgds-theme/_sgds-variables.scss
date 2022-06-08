@@ -682,6 +682,17 @@ $list-inline-padding: .5rem !default;
 $mark-bg: #fcf8e3 !default;
 // scss-docs-end type-variables
 
+//Footers
+
+$footer-color: $gray-100 !default;
+$footer-description-color: $gray-400 !default;
+$footer-link-color: $gray-300 !default;
+$footer-link-hover-color: $footer-color !default;
+$footer-top-bg-color: $gray-900 !default;
+$footer-top-padding: calc(#{$spacer} * 3) 0 calc(#{$spacer} * 1.5) !default;
+$footer-bottom-bg-color: $gray-900 !default;
+$footer-bottom-padding: calc(#{$spacer} * 1.5) 0 !default;
+
 
 // Tables
 //
