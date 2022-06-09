@@ -1,0 +1,45 @@
+---
+title: Patterns
+permalink: /patterns/
+layout: layout-sidenav
+---
+
+{% capture address-pattern %}
+<div class="sgds form-group mb-2">
+    <label for="postalCode" class="form-label">Postal Code</label>
+    <input type="text" class="form-control" id="postalCode" placeholder="e.g 730317">
+</div>
+<button class="btn btn-primary mb-2">Find Address</button>
+<div class="sgds form-group mb-2">
+    <label for="streetName" class="form-label">Block/Street Name</label>
+    <input type="text" class="form-control" id="streetName" placeholder="e.g. 220 Pasir Ris Drive 50">
+</div>
+<div class="sgds form-group mb-2">
+    <label for="buildingNumber" class="form-label">Building/House Number</label>
+    <div id="buildingNumberText" class="form-text">If applicable</div>
+    <input type="text" class="form-control" id="buildingNumber" aria-describedby="buildingNumberText">
+</div>
+<div class="sgds form-group mb-2">
+    <label for="unitNumber" class="form-label">Unit Number</label>
+    <div id="unitNumberText" class="form-text">If applicable</div>
+    <input type="text" class="form-control" id="unitNumber" aria-describedby="unitNumberText">
+</div>
+{% endcapture %}
+
+<div class="wrapper wrapper-fluid">
+<header>
+    <h1 class="title">{{page.title}}</h1>
+    <h5>Commonly used patterns made using our components.</h5>
+</header>
+
+<div class="page-component">
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Address</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compName="address-pattern" code=address-pattern %}
+            </div>
+        </section>
+
+</div>
+    
+</div>
