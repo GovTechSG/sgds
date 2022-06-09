@@ -21,82 +21,76 @@ toc: true
 
 {% capture checkbox-add-on %}
 <div class="input-group mb-3">
-    <span class="input-group-text">
+    <div class="input-group-text">
         <input type="checkbox" class="form-check-input" />
-    </span>
+    </div>
     <input type="text" class="form-control" />
 </div>
 <div class="input-group">
     <input type="text" class="form-control" />
-    <span class="input-group-text">
+    <div class="input-group-text">
         <input type="checkbox" class="form-check-input" />
-    </span>
+    </div>
 </div>
 {% endcapture %}
 
 {% capture radio-add-on %}
 <div class="input-group mb-3">
-    <span class="input-group-text">
+    <div class="input-group-text">
         <input type="radio" class="form-check-input" />
-    </span>
+    </div>
     <input type="text" class="form-control" />
 </div>
 <div class="input-group">
     <input type="text" class="form-control" />
-    <span class="input-group-text">
+    <div class="input-group-text">
         <input type="radio" class="form-check-input" />
-    </span>
+    </div>
 </div>
 {% endcapture %}
 
 {% capture multiple-add-on %}
 <div class="input-group">
-    <span class="input-group-text">Label</span>
-    <span class="input-group-text">
-        <input type="checkbox" class="form-check-input" />
-    </span>
+    <span class="input-group-text">S</span>
+    <span class="input-group-text">$</span>
     <input type="text" class="form-control" />
-    <span class="input-group-text">Label</span>
+    <span class="input-group-text">.00</span>
 </div>
 {% endcapture %}
 
 {% capture button-add-on %}
 <div class="input-group mb-3">
-    <button class="btn btn-outline-secondary">Button</button>
+    <button class="btn btn-outline-secondary" type="button">Button</button>
     <input type="text" class="form-control" />
 </div>
 <div class="input-group">
     <input type="text" class="form-control" />
-    <button class="btn btn-outline-secondary">Button</button>
+    <button class="btn btn-outline-secondary" type="button">Button</button>
 </div>
 {% endcapture %}
 
 {% capture dropdown-add-on %}
 <div class="input-group mb-3">
-    <div class="dropdown">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown button
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-    </div>
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
     <input type="text" class="form-control" />
 </div>
 <div class="input-group">
     <input type="text" class="form-control" />
-    <div class="dropdown">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown button
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-    </div>
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
 </div>
 {% endcapture %}
 
