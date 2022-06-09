@@ -1,7 +1,122 @@
 ---
-title: Text Area
-description: Text areas allow for the collection of text input longer than a single line.
+title: Text area
 layout: layout-sidenav
-category: form
-react: true
+description: Text areas allow for the collection of input longer than a single line.
+category: general 
+react-link: https://....
+github-link: https://....
+toc: true
 ---
+
+{% capture textarea-default %}
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Name</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write something"></textarea>
+</div>
+{% endcapture %}
+
+{% capture textarea-disabled %}
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Name</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="This is disabled" disabled=""></textarea>
+</div>
+{% endcapture %}
+
+<div class="page-component">
+    {% include page-component/component-header.html %}
+    <section name="section-examples">
+        <h2 class="title fw-bold" id="example">Example</h2>
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Text area" 
+                compName="textarea-default" 
+                code=textarea-default
+                compDescTop="To add more rows to the text area, increase the number in the <code>row</code> class"
+            %}
+        </div>
+
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Disabled text area" 
+                compName="textarea-disabled" 
+                code=textarea-disabled
+                compDescTop="Add in the <code>disabled</code> class if you want to disable the text area"
+            %}
+        </div>
+        <!-- Add addtional section-sub for more variants -->
+    </section>
+
+    <!-- Anatomy Section -->   
+    <section name="section-anatomy">
+        <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+        <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/textarea/anatomy-textarea.svg" alt="">
+                </div>
+            </div>
+
+            <ol>
+                <li>
+                    <b>Label:</b> Inform users of what data should be put into the field, labels must always be outside of the text field
+                </li>
+                <li>
+                    <b>Word count (situational):</b> Serves to let users know the max number of characters is allowed and when they have gone over
+                </li>
+            </ol>
+        </div>
+    </section>  
+    
+    <!-- Spacing Section -->
+    <section name="section-spacing">
+        <h2 class="title fw-bold" id="spacing">Spacing</h2>
+        <div class="section-sub">
+            <h3 class="subtitle fw-bold" id="within-the-accordion">Within the text area</h3>
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/textarea/spacing-textarea.svg"
+                        alt="">
+                </div>
+            </div>
+            <p>Ensure that there is a min of 16px horizontal spacing and 8px vertical spacing within the text area</p>
+        </div>
+    </section>
+
+<!-- Usage guidelines Section -->
+<section name="section-usage-guidelines">
+    <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+    <p class="fw-bold mb-0">Text area should be used:</p>
+    <ol>
+        <li>When users are required to enter more than a line of text</li>
+    </ol>
+    <p class="fw-bold mb-0">Text area should not be used:</p>
+    <ol>
+        <li>
+            When have complex or too many open-ended answers.
+            We recommend that you break your questions up into a series of simpler questions instead. 
+            For example, consider using the checkbox component if you want users to give multiple answers from a predetermined set of options.
+        </li>
+    </ol>
+</section>
+
+<!-- Usability guidelines Section -->
+<section name="section-usability-guidelines">
+    <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+    <p>
+        <b>Use word count</b><br>
+        Do use word count if you want to limit a users answers
+    </p>
+    <p>
+        <b>Labels are outside of the text field</b><br>
+        Labels should be above or next to the text field. This makes it clear that the user is able to input a answer
+    </p>
+    <p>
+        <b>Avoid placeholder text</b><br>
+        Placeholder text disappears when a text input is filled in. If the placeholder text is not visible, 
+        users will no longer have the text when they need to review their entries. Use hint text instead of placeholder text
+    </p>
+</section>
+
+</div>
