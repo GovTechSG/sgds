@@ -1,9 +1,7 @@
 aside{
      
      &:not(.toc-container){
-        @extend %aside-sticky;
-        height: calc(100vh - 240px);
-        overflow: auto;
+
     }
     .sgds.sidenav{
         padding: 1rem;

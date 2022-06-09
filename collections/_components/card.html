@@ -3,8 +3,7 @@ title: Card
 description: Cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.
 layout: layout-sidenav
 category: general
-react-link: true
-vue-link: true
+react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/components-card-informational-card--base-card
 github-link: true
 toc: true
 ---
@@ -58,6 +57,28 @@ toc: true
 </div>
 {% endcapture %}
 
+{% capture card-quantity %}
+<div class="sgds card" variant="card-action-quantity-toggle">
+    <div class="card-body">
+      <div>
+        <h5 class="card-title fw-bold">Checkbox Card</h5>
+        <button class="btn btn-close text-danger"></button>
+      </div>
+      <div>
+        <div class="card-unit">
+          <h6 class="card-subtitle text-muted">Unit Price/ month</h6>
+          <h6 class="card-subtitle mt-2">$1,000,000</h6>
+        </div>
+        <div class="input-group sgds" variant="quantity-toggle">
+          <button type="button" class="btn btn-primary btn-sm sgds"><i class="bi bi-dash"></i></button>
+          <input name="quantity" type="number" class="form-control text-center" value="100">
+          <button type="button" class="btn btn-primary btn-sm sgds"><i class="bi bi-plus"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcapture %}
+
 {% capture card-design-tokens %}
 $card-spacer-y: 1.5rem !default;
 $card-spacer-x: 1.5rem !default;
@@ -101,6 +122,9 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
             </div>
             <div class="section-sub">
                 {% include page-component/component-code-snippet.html compTitle="Action card" compName="card-action" code=card-action %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Quantity toggle card" compName="card-quantity" code=card-quantity %}
             </div>
         </section>
 

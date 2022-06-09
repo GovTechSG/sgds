@@ -2,10 +2,12 @@
     --sgds-font-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --sgds-masthead-font-family: var(--sgds-font-sans-serif);
 }
+
 body,html{
-    overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
 }
+
 body{
     position: relative;
 }
