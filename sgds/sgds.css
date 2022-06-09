@@ -90,7 +90,7 @@ hr:not([size]) {
   height: 1px;
 }
 
-h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+h6, .h6, h5, .h5, h4, .h4, h3, .sgds .footer-title, .h3, h2, .h2, h1, .h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-weight: 700;
@@ -117,12 +117,12 @@ h2, .h2 {
   }
 }
 
-h3, .h3 {
+h3, .sgds .footer-title, .h3 {
   font-size: calc(1.275rem + 0.3vw);
   line-height: 1.33;
 }
 @media (min-width: 1200px) {
-  h3, .h3 {
+  h3, .sgds .footer-title, .h3 {
     font-size: 1.5rem;
   }
 }
@@ -142,7 +142,7 @@ h6, .h6 {
   line-height: 1.2;
 }
 
-p {
+p, .sgds .footer-description {
   margin-top: 0;
   margin-bottom: 1.5rem;
 }
@@ -471,12 +471,20 @@ progress {
   display: none !important;
 }
 
-p + p {
+p + p, .sgds .footer-description + p, .sgds p + .footer-description, .sgds .footer-description + .footer-description {
   margin-top: 1.5rem;
 }
 
 a {
   text-underline-offset: 0.25rem;
+}
+
+a[target=_blank]:after {
+  display: inline-block;
+  font-family: bootstrap-icons;
+  content: "\f1c5";
+  padding-left: 0.25rem;
+  text-decoration-line: none;
 }
 
 .lead {
@@ -3134,6 +3142,79 @@ textarea.form-control-lg {
   content: none;
 }
 
+.footer-list-styling ul, .footer-quick-links ul, .footer-links ul {
+  padding: 0;
+  margin: 0;
+}
+.footer-list-styling ul li, .footer-quick-links ul li, .footer-links ul li {
+  list-style-type: none;
+  line-height: 1.5;
+  font-size: 14px;
+}
+.footer-list-styling ul li + li, .footer-quick-links ul li + li, .footer-links ul li + li {
+  margin-top: 0.5rem;
+}
+.footer-list-styling ul li a, .footer-quick-links ul li a, .footer-links ul li a {
+  text-decoration: none;
+  color: var(--sgds-gray-300);
+}
+.footer-list-styling ul li a:hover, .footer-quick-links ul li a:hover, .footer-links ul li a:hover {
+  color: var(--sgds-gray-100);
+}
+
+.sgds.footer {
+  width: 100vw;
+  height: auto;
+  display: grid;
+  grid-auto-flow: row;
+  justify-content: center;
+  color: var(--sgds-gray-100);
+  background-color: var(--sgds-gray-900);
+}
+.sgds .footer-section {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+.sgds .footer-section.top {
+  padding: calc(1rem * 3) 0 calc(1rem * 1.5);
+}
+.sgds .footer-section.bottom {
+  border-top: 1px solid var(--sgds-gray-800);
+  padding: calc(1rem * 1.5) 0;
+}
+.sgds .footer-section.top .container .row + .row {
+  margin-top: 2rem;
+}
+.sgds .footer-description {
+  margin-bottom: 0;
+  color: var(--sgds-gray-400);
+}
+@media (min-width: 992px) {
+  .sgds .footer-description {
+    width: 75ch;
+  }
+}
+
+.footer-links .footer-link-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 992px) {
+  .footer-quick-links {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+.footer-quick-links ul li {
+  display: inline-block;
+  font-size: 1rem;
+}
+.footer-quick-links ul li + li {
+  margin-left: 1rem;
+}
+
 .btn {
   display: inline-block;
   font-weight: 400;
@@ -5606,6 +5687,46 @@ textarea.form-control-lg {
 .sgds.badge i.right {
   padding-left: 0.43em;
 }
+.sgds.badge-light.bg-primary {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-primary);
+  border: 1px solid var(--sgds-primary);
+}
+.sgds.badge-light.bg-secondary {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-secondary);
+  border: 1px solid var(--sgds-secondary);
+}
+.sgds.badge-light.bg-success {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-success);
+  border: 1px solid var(--sgds-success);
+}
+.sgds.badge-light.bg-info {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-info);
+  border: 1px solid var(--sgds-info);
+}
+.sgds.badge-light.bg-warning {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-warning);
+  border: 1px solid var(--sgds-warning);
+}
+.sgds.badge-light.bg-danger {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-danger);
+  border: 1px solid var(--sgds-danger);
+}
+.sgds.badge-light.bg-light {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-gray-500);
+  border: 1px solid var(--sgds-gray-500);
+}
+.sgds.badge-light.bg-dark {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-dark);
+  border: 1px solid var(--sgds-dark);
+}
 
 .alert {
   position: relative;
@@ -5704,10 +5825,6 @@ textarea.form-control-lg {
 }
 .alert-dark .alert-link {
   color: #101214;
-}
-
-.sgds.alert .btn-close {
-  background: none;
 }
 
 @keyframes progress-bar-stripes {
