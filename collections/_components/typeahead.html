@@ -1,0 +1,187 @@
+---
+title: Typeahead
+layout: layout-sidenav
+description: Typeahead provides hints and lists of possible choices to the user while they search for something or fill a form.
+category: general
+react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/components-typeahead--default-story
+github-link: true
+toc: true
+---
+{% capture default-typeahead %}
+<div class="sgds form-group mb-2">
+    <label for="defaultTypeahead" class="form-label">Select a fruit</label>
+    <div class="sgds input-group dropdown" variant="has-icon">
+        <input type="text" class=" form-control dropdown-toggle" id="defaultTypeahead" data-bs-toggle="dropdown" aria-expanded="false" aria-describedby="defaultTypeahead">
+        <i class="bi bi-search form-control-icon"></i>
+        <ul class="dropdown-menu my-2" aria-labelledby="defaultTypeahead">
+            <li><a class="dropdown-item" href="#">Apple</a></li>
+            <li><a class="dropdown-item" href="#">Orange</a></li>
+            <li><a class="dropdown-item" href="#">Banana</a></li>
+        </ul>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture typeahead-design-tokens %}
+$form-text-margin-top: null !default;
+$form-text-font-size: $font-size-base !default;
+$form-text-font-style: null !default;
+$form-text-font-weight: null !default;
+$form-text-color: $text-muted !default;
+$form-label-margin-bottom: .5rem !default;
+$form-label-font-size: null !default;
+$form-label-font-style: null !default;
+$form-label-font-weight: $font-weight-bold !default;
+$form-label-color: null !default;
+$input-padding-y: $input-btn-padding-y !default;
+$input-padding-x: $input-btn-padding-x !default;
+$input-font-family: $input-btn-font-family !default;
+$input-font-size: $input-btn-font-size !default;
+$input-font-weight: $font-weight-base !default;
+$input-line-height: $input-btn-line-height !default;
+$input-padding-y-sm: $input-btn-padding-y-sm !default;
+$input-padding-x-sm: $input-btn-padding-x-sm !default;
+$input-font-size-sm: $input-btn-font-size-sm !default;
+$input-padding-y-lg: $input-btn-padding-y-lg !default;
+$input-padding-x-lg: $input-btn-padding-x-lg !default;
+$input-font-size-lg: $input-btn-font-size-lg !default;
+$input-bg: $body-bg !default;
+$input-disabled-bg: $gray-200 !default;
+$input-disabled-border-color: null !default;
+$input-color: $body-color !default;
+$input-border-color: $gray-400 !default;
+$input-border-width: $input-btn-border-width !default;
+$input-box-shadow: $box-shadow-inset !default;
+$input-border-radius: $border-radius !default;
+$input-border-radius-sm: $border-radius-sm !default;
+$input-border-radius-lg: $border-radius-lg !default;
+$input-focus-bg: $input-bg !default;
+$input-focus-border-color: tint-color($component-active-bg, 50%) !default;
+$input-focus-color: $input-color !default;
+$input-focus-width: $input-btn-focus-width !default;
+$input-focus-box-shadow: $input-btn-focus-box-shadow !default;
+$input-placeholder-color: $gray-400 !default;
+$input-plaintext-color: $body-color !default;
+$input-height-border: $input-border-width * 2 !default;
+$input-height-inner: add($input-line-height * 1em, $input-padding-y * 2) !default;
+$input-height-inner-half: add($input-line-height * .5em, $input-padding-y) !default;
+$input-height-inner-quarter: add($input-line-height * .25em, $input-padding-y * .5) !default;
+$input-height: add($input-line-height * 1em, add($input-padding-y * 2, $input-height-border, false)) !default;
+$input-height-sm: add($input-line-height * 1em, add($input-padding-y-sm * 2, $input-height-border, false)) !default;
+$input-height-lg: add($input-line-height * 1em, add($input-padding-y-lg * 2, $input-height-border, false)) !default;
+$input-transition: border-color .15s ease-in-out,
+box-shadow .15s ease-in-out !default;
+$form-color-width: 3rem !default;
+$dropdown-min-width: 10rem !default;
+$dropdown-padding-x: 0 !default;
+$dropdown-padding-y: .5rem !default;
+$dropdown-spacer: .125rem !default;
+$dropdown-font-size: $font-size-base !default;
+$dropdown-color: $body-color !default;
+$dropdown-bg: $white !default;
+$dropdown-border-color: rgba($black, .15) !default;
+$dropdown-border-radius: $border-radius !default;
+$dropdown-border-width: $border-width !default;
+$dropdown-inner-border-radius: subtract($dropdown-border-radius, $dropdown-border-width) !default;
+$dropdown-divider-bg: $dropdown-border-color !default;
+$dropdown-divider-margin-y: $spacer * .5 !default;
+$dropdown-box-shadow: $box-shadow !default;
+$dropdown-link-color: $gray-900 !default;
+$dropdown-link-hover-color: shade-color($dropdown-link-color, 10%) !default;
+$dropdown-link-hover-bg: $gray-200 !default;
+$dropdown-link-active-color: $component-active-color !default;
+$dropdown-link-active-bg: $component-active-bg !default;
+$dropdown-link-disabled-color: $gray-500 !default;
+$dropdown-item-padding-y: $spacer * .25 !default;
+$dropdown-item-padding-x: $spacer !default;
+$dropdown-header-color: $gray-600 !default;
+$dropdown-header-padding: $dropdown-padding-y $dropdown-item-padding-x !default;
+$dropdown-dark-color: $gray-300 !default;
+$dropdown-dark-bg: $gray-800 !default;
+$dropdown-dark-border-color: $dropdown-border-color !default;
+$dropdown-dark-divider-bg: $dropdown-divider-bg !default;
+$dropdown-dark-box-shadow: null !default;
+$dropdown-dark-link-color: $dropdown-dark-color !default;
+$dropdown-dark-link-hover-color: $white !default;
+$dropdown-dark-link-hover-bg: rgba($white, .15) !default;
+$dropdown-dark-link-active-color: $dropdown-link-active-color !default;
+$dropdown-dark-link-active-bg: $dropdown-link-active-bg !default;
+$dropdown-dark-link-disabled-color: $gray-500 !default;
+$dropdown-dark-header-color: $gray-500 !default;
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compName="default-typeahead" code=default-typeahead %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-typeahead-1.svg" alt="Typeahead Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Label:</b> Text
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-typeahead-1.svg" alt="Typeahead Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-card">Within the typeahead</h3>
+                <p>Text</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Typeahead should be used when:</p>
+            <ul>
+                <li>Text</li>
+            </ul>
+            <p class="fw-bold mb-0">Typeahead should not be used when:</p>
+            <ol>
+                <li>
+                    Text
+                </li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Title</b><br>
+                Text
+            </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{typeahead-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>
