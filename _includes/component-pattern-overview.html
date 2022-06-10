@@ -1,0 +1,44 @@
+<div class="wrapper wrapper-fluid">
+    <header>
+      <h1 class="title">{{page.title}}</h1>
+      <h4>{{page.description}}</h4>
+    </header>
+    <input type="text" class="js-shuffle-search">
+  
+    <section class="page-component-overview">
+      <article>
+        <div id="grid" class="page-component-item-wrapper picture-item">
+          {% assign collections = site.collections %}
+          {% for collection in collections %}
+          {% if collection.category == page.pageCategory %}
+          {% assign name = collection.label %}
+          {% for item in site[collection.label] %}
+          {%- assign class = nil -%}
+          {%- if page.url contains item.title -%}
+          {%- assign class = 'active' -%}
+          {%- endif -%}
+          {% assign react = nil %}
+          {% if item.react %}
+          {% assign react = 'react' %}
+          {% endif %}
+          <div class="sgds card" data-groups="['{{item.category}}', '{{react}}']" data-title="{{item.title}}">
+            <img src="../assets/img/{{page.pageCategory}}-overview/{{item.title | downcase | replace: ' ', '-'}}.png"
+              class="card-img-top" alt="{{item.title | append: ' image' }}">
+            <div class="card-body">
+              <a class="stretched-link" href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}/">
+                <h5 class="card-title">{{item.title}}</h5>
+              </a>
+              <p class="card-text">{{item.description}}</p>
+              <span class="badge bg-primary">{{item.category | capitalize}}</span>
+              {% if item.react %}
+              <span class="badge bg-success">ReactJS</span>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endfor %}
+        </div>
+      </article>
+    </section>
+  </div>

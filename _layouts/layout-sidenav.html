@@ -10,7 +10,7 @@ layout: layout-default
         <nav class="sgds sidenav list-unstyled">
             {% assign collections = site.collections | sort: 'order' %}
             {% for collection in collections %}
-                {% if collection.category == "components" %}
+                {% if collection.category == page.pageCategory %}
                     {% assign name = collection.label %}
                     {% for item in site[collection.label] %}
                     {%- assign class = 'inactive' -%}
