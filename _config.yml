@@ -37,12 +37,14 @@ defaults:
     values:
       layout: "layout-sidenav"
       pageCategory: "patterns"
+      toc: true
   -
     scope:
       type: "components" 
     values:
       layout: "layout-sidenav"
       pageCategory: "components"
+      toc: true
       
 exclude:
   - src
