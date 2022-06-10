@@ -5606,6 +5606,46 @@ textarea.form-control-lg {
 .sgds.badge i.right {
   padding-left: 0.43em;
 }
+.sgds.badge-light.bg-primary {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-primary);
+  border: 1px solid var(--sgds-primary);
+}
+.sgds.badge-light.bg-secondary {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-secondary);
+  border: 1px solid var(--sgds-secondary);
+}
+.sgds.badge-light.bg-success {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-success);
+  border: 1px solid var(--sgds-success);
+}
+.sgds.badge-light.bg-info {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-info);
+  border: 1px solid var(--sgds-info);
+}
+.sgds.badge-light.bg-warning {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-warning);
+  border: 1px solid var(--sgds-warning);
+}
+.sgds.badge-light.bg-danger {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-danger);
+  border: 1px solid var(--sgds-danger);
+}
+.sgds.badge-light.bg-light {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-gray-500);
+  border: 1px solid var(--sgds-gray-500);
+}
+.sgds.badge-light.bg-dark {
+  --sgds-bg-opacity: 0.1;
+  color: var(--sgds-dark);
+  border: 1px solid var(--sgds-dark);
+}
 
 .alert {
   position: relative;
@@ -5704,10 +5744,6 @@ textarea.form-control-lg {
 }
 .alert-dark .alert-link {
   color: #101214;
-}
-
-.sgds.alert .btn-close {
-  background: none;
 }
 
 @keyframes progress-bar-stripes {
