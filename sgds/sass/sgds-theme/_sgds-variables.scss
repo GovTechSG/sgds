@@ -14,8 +14,8 @@ $gray-400: #98A2B3 !default;
 $gray-500: #667085 !default;
 $gray-600: #344054 !default;
 $gray-700: #1D2939 !default;
-$gray-800: #343a40 !default;
-$gray-900: #212529 !default;
+$gray-800: #000 !default;
+$gray-900: #000 !default;
 $black: #000 !default;
 // scss-docs-end gray-color-variables
 
@@ -38,12 +38,12 @@ $blue: #1f69ff !default; //secondary
 $indigo: #6610f2 !default;
 $purple: #5925DC !default;
 $pink: #d63384 !default;
-$red: #FA5741 !default;
+$red: #D7260F !default;
 $orange: #fd7e14 !default;
-$yellow: #FDB022 !default;
-$green: #3BB346 !default;
+$yellow: #F79009 !default;
+$green: #0A8217 !default;
 $teal: #20c997 !default;
-$cyan: #59a1d4 !default; //link
+$cyan: #0F71BB !default; //link
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
@@ -138,12 +138,12 @@ $purple-900: #190A3F !default;
 // $pink-800: shade-color($pink, 60%) !default;
 // $pink-900: shade-color($pink, 80%) !default;
 
-$red-100: #FFECEB !default;
+$red-100: #FFF4F3 !default;
 $red-200: #FFCFC8 !default;
 $red-300: #FC9C90 !default;
 $red-400: #FB7463 !default;
-$red-500: $red !default;
-$red-600: #F93920 !default;
+$red-500: #FA5741 !default;
+$red-600: $red !default;
 $red-700: #F8331C !default;
 $red-800: shade-color($red, 60%) !default;
 $red-900: shade-color($red, 80%) !default;
@@ -162,8 +162,8 @@ $yellow-100: #FFFAEB !default;
 $yellow-200: #FEF0C7 !default;
 $yellow-300: #FEDF89 !default;
 $yellow-400: #FEC84B !default;
-$yellow-500: $yellow !default;
-$yellow-600: #F79009 !default;
+$yellow-500: #FDB022 !default;
+$yellow-600: $yellow !default;
 $yellow-700: #DC6803 !default;
 $yellow-800: shade-color($yellow, 60%) !default;
 $yellow-900: shade-color($yellow, 80%) !default;
@@ -172,8 +172,8 @@ $green-100: #E7F6E9 !default;
 $green-200: #C4E8C8 !default;
 $green-300: #9DD9A3 !default;
 $green-400: #58BE62 !default;
-$green-500: $green !default;
-$green-600: #35AC3F !default;
+$green-500: #3BB346 !default;
+$green-600: $green !default;
 $green-700: #2DA337 !default;
 $green-800: shade-color($green, 60%) !default;
 $green-900: shade-color($green, 80%) !default;
@@ -191,9 +191,9 @@ $green-900: shade-color($green, 80%) !default;
 $cyan-100: #e2eff8 !default;
 $cyan-200: #b9d8ee  !default;
 $cyan-300: #90c1e4  !default;
-$cyan-400: #59a1d4 !default;
-$cyan-500: $cyan !default;
-$cyan-600: #0f72bd !default;
+$cyan-400: #58A1D4 !default;
+$cyan-500: #59a1d4 !default;
+$cyan-600: $cyan !default;
 $cyan-700: #0c5b97!default;
 $cyan-800: #0a4776 !default;
 $cyan-900: #08395e !default;
@@ -229,8 +229,8 @@ $secondarys: ("secondary-100": $blue-100,
 //   "indigo-800": $indigo-800,
 //   "indigo-900": $indigo-900) !default;
 
-$purples: ("purple-100": $purple-200,
-  "purple-200": $purple-100,
+$purples: ("purple-100": $purple-100,
+  "purple-200": $purple-200,
   "purple-300": $purple-300,
   "purple-400": $purple-400,
   "purple-500": $purple-500,
@@ -682,6 +682,18 @@ $list-inline-padding: .5rem !default;
 $mark-bg: #fcf8e3 !default;
 // scss-docs-end type-variables
 
+//Footers
+$footer-color: $gray-100 !default;
+$footer-title-header: h3 !default;
+$footer-description-color: $gray-400 !default;
+$footer-link-color: $gray-300 !default;
+$footer-link-hover-color: $footer-color !default;
+$footer-top-bg-color: $gray-900 !default;
+$footer-top-padding: calc(#{$spacer} * 3) 0 calc(#{$spacer} * 1.5) !default;
+$footer-bottom-bg-color: $gray-900 !default;
+$footer-bottom-padding: calc(#{$spacer} * 1.5) 0 !default;
+$footer-bottom-border-width: $border-width !default;
+$footer-bottom-border-color: $gray-800 !default;
 
 // Tables
 //
