@@ -9,7 +9,7 @@ Must be included at the top of the page.
 ```
 ---
 title: Accordion
-layout: layout-sidenav
+
 description: A dropdown mechanism that allow users to either show or hide related content. 
 category: general 
 react-link: https://....

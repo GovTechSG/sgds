@@ -24,7 +24,26 @@ collections:
     permalink: /:collection/:name/
     output: true
     category: components
-  
+  patterns:
+    permalink: /:collection/:name/
+    output: true
+    category: patterns
+
+# set all patterns collection to use certain layouts
+defaults:
+  -
+    scope:
+      type: "patterns" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "patterns"
+  -
+    scope:
+      type: "components" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "components"
+      
 exclude:
   - src
   - node_modules
