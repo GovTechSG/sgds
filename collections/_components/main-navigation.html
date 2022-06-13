@@ -1,8 +1,150 @@
 ---
 title: Main Navigation
-description: Navigation provide access to destinations in your Website.
 layout: layout-sidenav
-category: standard
-react: true
+description: This component is the primary means that your users will use to navigate through your portal. It includes horizontal navigation and branding to identify your site.
+category: general
+react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/components-navigation-navbar--default-story
+github-link: true
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture default-main-navigation %}
+<nav class="sgds navbar navbar-expand-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg" alt="Home">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-list"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Components</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Patterns</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Templates</a>
+                </li>
+            <li class="nav-item sgds dropdown">
+                <a class="nav-link sgds dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Theme customiser<i class="bi bi-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Option 1</a></li>
+                <li><a class="dropdown-item active" href="#">Option 2</a></li>
+                <li><a class="dropdown-item" href="#">Option 3</a></li>
+                <li><a class="dropdown-item" href="#">Option 4</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-grid-3x3-gap-fill"></i></a>
+            </li>
+        </ul>
+        </div>
+    </div>
+</nav>
+{% endcapture %}
+
+{% capture main-navigation-tokens %}
+
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compName="default-main-navigation" code=default-main-navigation %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/main-navigation/anatomy-main-navigation-1.svg" alt="Main Navigation Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Label:</b> Serve to tell the user what the page/item is about
+                    </li>
+                    <li>
+                        <b>Indicator:</b> Used when it is active, this allows the user to know what page/item they are on
+                    </li>
+                    <li>
+                        <b>Icon (situational):</b> Used when there are sub items
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/main-navigation/spacing-main-navigation-1.svg" alt="Main Navigation Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-main-navigation">Within the main navigation</h3>
+                <p>Ensure that there is a min of 16px spacing between label and icon and 24px between label and indicator</p>
+                <h3 class="subtitle fw-bold" id="outside-the-main-navigation">Outside the main navigation</h3>
+                <p>Ensure that there is a min of 24px spacing vertically between each main nav item</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers. Users may also ignore important information if it is hidden in an accordion.</p>
+            <p class="fw-bold mb-0">When to use main navigation</p>
+            <ul>
+                <li>The main navigation is required on all government websites. It must include:</li>
+                <ol>
+                    <li>Logo or site name</li>
+                    <li>You site's primary navigation</li>
+                </ol>
+            </ul>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Highlight the current section</b><br>
+                Show users where they are by highlighting it in the navigation bar so they know which section they are currently in. If the page they are in is hidden in the dropdown menu, you can still highlight the parent page in the main navigation.
+            </p>
+            <p>
+                <b>Use straightforward labels</b><br>
+                Labels should be clear to your users. You should avoid jargon or unfamiliar terms that users cannot understand.
+            </p>
+            <p>
+                <b>Keep responsiveness in mind</b><br>
+                When designing the main navigation, think about how it scales down for mobile or scales up for desktop. In a desktop navigation bar, you should be able to see the essential pages, whereas on mobile, you should be able to collapse the pages under a hamburger (3 bars icon) menu.
+            </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{main-navigation-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>
