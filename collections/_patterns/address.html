@@ -36,7 +36,9 @@ toc: true
 
     <!-- Pattern Section -->
     <section name="section-pattern">
-        {% include page-component/component-code-snippet.html compName="address-pattern" code=address-pattern %}
+        <div class="section-sub">
+            {% include page-component/component-code-snippet.html compName="address-pattern" code=address-pattern %}
+        </div>
     </section>
 
     <!-- Guidelines Section -->
@@ -52,7 +54,7 @@ toc: true
         <h2 class="title fw-bold" id="accessibility">Accessibility</h2>
         <strong>For manually-entered addresses</strong>
         <ul>
-            <li>The fields should always have the autocomplete attribute to help your users complete it quickly.</li>
+            <li>The fields should always have the <code>autocomplete</code> attribute to help your users complete it quickly.</li>
             <li>You will need to include the autocomplete attribute to meet <strong>WCAG 2.1 AA</strong> for production.</li>
         </ul>
     </section>
