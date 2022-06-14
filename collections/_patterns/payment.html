@@ -13,13 +13,13 @@ toc: true
 <div class="sgds form-group mb-3">
     <label for="cardNumber" class="form-label">Card Number</label>
     <div id="cardNumberText" class="form-text">Enter the 16-digit number on the card</div>
-    <input type="text" class="form-control" id="cardNumber" autocomplete="cardNumber" aria-describedby="expiryDateText">
+    <input type="text" class="form-control" id="cardNumber" autocomplete="cardNumber" pattern="[0-9]" maxlength="16" aria-describedby="expiryDateText">
 </div>
 <div class="row">
   <div class="sgds col form-group mb-3">
     <label for="expiryDate" class="form-label">Expiry Date</label>
     <div id="expiryDateText" class="form-text">MM/YY</div>
-    <input type="text" class="form-control" id="expiryDate" autocomplete="expiryDate" aria-describedby="expiryDateText">
+    <input type="text" class="form-control" id="expiryDate" autocomplete="expiryDate" pattern="[0-9]{2}/[0-9]{2}" maxlength="5" aria-describedby="expiryDateText" oninput="formatDate()">
   </div>
   <div class="sgds col form-group mb-3">
     <label for="cvv" class="form-label">CVV</label>
@@ -76,3 +76,13 @@ toc: true
     </section>
 
 </div>
+
+<script>
+function formatDate() {
+    let dateVal = document.getElementById("expiryDate")
+    let key = event.key
+    if (!isNaN(dateVal.value) && dateVal.value.length == 2) {
+        dateVal.value = dateVal.value + "/"
+    }
+}
+</script>
