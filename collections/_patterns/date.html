@@ -10,7 +10,7 @@ toc: true
 <div class="sgds form-group">
     <label class="form-label" for="date">Date of Birth</label>
     <span class="form-text">E.g 01 June 1980</span>
-    <input class="form-control" type="text" id="day" autocomplete="date" required />
+    <input class="form-control" type="text" id="day" autocomplete="date" />
 </div>
 {% endcapture %}
 
@@ -18,15 +18,15 @@ toc: true
 <div class="sgds row">
     <div class="col form-group">
       <label class="form-label" for="day">DD</label>
-      <input class="form-control" type="text" id="day" autocomplete="day" pattern="[0-9]" maxlength="2" required />
+      <input class="form-control" type="number" id="day" autocomplete="day" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)" />
     </div>
     <div class="col form-group">
       <label class="form-label" for="month">MM</label>
-      <input class="form-control" type="text" id="month" autocomplete="month" pattern="[0-9]" maxlength="2" required />
+      <input class="form-control" type="number" id="month" autocomplete="month" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
     </div>
      <div class="col form-group">
       <label class="form-label" for="year">YYYY</label>
-      <input class="form-control" type="text" id="year" autocomplete="year" pattern="[0-9]" maxlength="4" required />
+      <input class="form-control" type="number" id="year" autocomplete="year" data-maxlength="4" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
     </div>
 </div>
 {% endcapture %}

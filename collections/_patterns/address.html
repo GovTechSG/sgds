@@ -9,7 +9,7 @@ toc: true
 {% capture address-pattern %}
 <div class="sgds form-group mb-3">
     <label for="postalCode" class="form-label">Postal Code</label>
-    <input type="text" class="form-control" id="postalCode" placeholder="e.g 730317" pattern="[0-9]" maxlength="6" autocomplete="postalCode">
+    <input type="number" class="form-control" id="postalCode" placeholder="e.g 730317" autocomplete="postalCode" data-maxlength="6" oninput="this.value=this.value.slice(0, this.dataset.maxlength)">
 </div>
 <button class="btn btn-primary mb-3" onclick="findAddress()">Find Address</button>
 <div class="sgds form-group mb-3">
