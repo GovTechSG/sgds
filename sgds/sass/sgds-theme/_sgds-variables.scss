@@ -83,7 +83,6 @@ $theme-colors: ("primary": $primary,
   "light": $light,
   "dark": $dark) !default;
 // scss-docs-end theme-colors-map
-
 // scss-docs-start theme-colors-rgb
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value") !default;
 // scss-docs-end theme-colors-rgb
@@ -218,6 +217,76 @@ $secondarys: ("secondary-100": $blue-100,
   "secondary-700": $blue-700,
   "secondary-800": $blue-800,
   "secondary-900": $blue-900) !default;
+
+$successs: ("success-100": $green-100,
+  "success-200": $green-200,
+  "success-300": $green-300,
+  "success-400": $green-400,
+  "success-500": $green-500,
+  "success-600": $green-600,
+  "success-700": $green-700,
+  "success-800": $green-800,
+  "success-900": $green-900) !default;
+
+$infos: ("info-100": $cyan-100,
+  "info-200": $cyan-200,
+  "info-300": $cyan-300,
+  "info-400": $cyan-400,
+  "info-500": $cyan-500,
+  "info-600": $cyan-600,
+  "info-700": $cyan-700,
+  "info-800": $cyan-800,
+  "info-900": $cyan-900) !default;
+
+$warnings: ("warning-100": $yellow-100,
+  "warning-200": $yellow-200,
+  "warning-300": $yellow-300,
+  "warning-400": $yellow-400,
+  "warning-500": $yellow-500,
+  "warning-600": $yellow-600,
+  "warning-700": $yellow-700,
+  "warning-800": $yellow-800,
+  "warning-900": $yellow-900) !default;
+
+$dangers: ("danger-100": $red-100,
+  "danger-200": $red-200,
+  "danger-300": $red-300,
+  "danger-400": $red-400,
+  "danger-500": $red-500,
+  "danger-600": $red-600,
+  "danger-700": $red-700,
+  "danger-800": $red-800,
+  "danger-900": $red-900) !default;
+
+$lights: ("light-100": $gray-100,
+  "light-200": $gray-200,
+  "light-300": $gray-300,
+  "light-400": $gray-400,
+  "light-500": $gray-500,
+  "light-600": $gray-600,
+  "light-700": $gray-700,
+  "light-800": $gray-800,
+  "light-900": $gray-900) !default;
+
+$darks: ("dark-100": $gray-100,
+  "dark-200": $gray-200,
+  "dark-300": $gray-300,
+  "dark-400": $gray-400,
+  "dark-500": $gray-500,
+  "dark-600": $gray-600,
+  "dark-700": $gray-700,
+  "dark-800": $gray-800,
+  "dark-900": $gray-900) !default;
+
+  $theme-colors-set: ("primary": $primarys,
+  "secondary": $secondarys,
+  "success": $successs,
+  "info": $infos,
+  "warning": $warnings,
+  "danger": $dangers,
+  "light": $lights,
+  "dark": $darks) !default;
+
 
 // $indigos: ("indigo-100": $indigo-100,
 //   "indigo-200": $indigo-200,

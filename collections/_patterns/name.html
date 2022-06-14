@@ -1,0 +1,68 @@
+---
+title: Name
+description: Use this pattern when you need to ask users for their names
+github-link: true
+toc: true
+---
+
+{% capture general-name-field %}
+<div class="sgds form-group">
+    <label class="form-label" for="fullName">Full Name as per NRIC</label>
+    <input class="form-control" type="text" id="fullName" autocomplete="fullName" required />
+</div>
+{% endcapture %}
+
+{% capture multiline-name-field %}
+<div class="sgds form-group mb-3">
+    <label class="form-label" for="givenName">Given Name</label>
+    <input class="form-control" type="text" id="givenName" autocomplete="givenName" required />
+</div>
+<div class="sgds form-group">
+    <label class="form-label" for="familyName">Family Name</label>
+    <input class="form-control" type="text" id="familyName" autocomplete="familyName" required />
+</div>
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+    <!-- Generated header from front end matters -->
+    {% include page-component/component-header.html %}
+
+    <!-- Pattern Section -->
+    <section name="section-pattern">
+        <div class="section-sub">
+            {% include page-component/component-code-snippet.html compTitle="General name field" compName="general-name-field" code=general-name-field %}
+        </div>
+        <div class="section-sub">
+            {% include page-component/component-code-snippet.html compTitle="Multiline name field" compName="multiline-name-field" code=multiline-name-field %}
+        </div>
+    </section>
+
+    <!-- Guidelines Section -->
+    <section name="section-guidelines">
+        <h2 class="title fw-bold" id="guidelines">Guidelines</h2>
+        <p>
+            <strong>Labeling of name fields</strong>
+            <ul>
+                <li>Name fields should be long enough to accommodate the names of your users</li>
+                <li>Make sure that you support all characters that users may need to enter, including symbols and numbers</li>
+            </ul>
+        </p>
+        <p>
+            <strong>General name fields</strong>
+            <ul>
+                <li>This accommodates the widest range of name types and formats</li>
+                <li>Reduces the risk of users entering their name in the incorrect format</li>
+            </ul>
+        </p>
+        <p>
+            <strong>Multiline name fields</strong>
+            <ul>
+                <li>Use multiple name fields with discretion. Not everyone's name fits the general first-name, last-name convention</li>
+                <li>Using multiple name fields increases the risk of a person's name not fitting the same convention. Hence, it may be entered incorrectly</li>
+            </ul>
+        </p>
+    </section>
+
+</div>

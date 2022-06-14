@@ -1,0 +1,59 @@
+---
+title: Address
+description: Use an address lookup when you are asking users for a Singapore address.
+react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/components-form-patterns--address
+github-link: true
+toc: true
+---
+
+{% capture address-pattern %}
+<div class="sgds form-group mb-3">
+    <label for="postalCode" class="form-label">Postal Code</label>
+    <input type="text" class="form-control" id="postalCode" placeholder="e.g 730317" pattern="[0-9]" maxlength="6" autocomplete="postalCode">
+</div>
+<button class="btn btn-primary mb-3">Find Address</button>
+<div class="sgds form-group mb-3">
+    <label for="streetName" class="form-label">Block/Street Name</label>
+    <input type="text" class="form-control" id="streetName" placeholder="e.g. 220 Pasir Ris Drive 50" autocomplete="streetName">
+</div>
+<div class="sgds form-group mb-3">
+    <label for="buildingNumber" class="form-label">Building/House Number</label>
+    <div id="buildingNumberText" class="form-text">If applicable</div>
+    <input type="text" class="form-control" id="buildingNumber" autocomplete="buildingNumber" aria-describedby="buildingNumberText">
+</div>
+<div class="sgds form-group mb-3">
+    <label for="unitNumber" class="form-label">Unit Number</label>
+    <div id="unitNumberText" class="form-text">If applicable</div>
+    <input type="text" class="form-control" id="unitNumber" autocomplete="unitNumber" aria-describedby="unitNumberText">
+</div>
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+    <!-- Generated header from front end matters -->
+    {% include page-component/component-header.html %}
+
+    <!-- Pattern Section -->
+    <section name="section-pattern">
+        {% include page-component/component-code-snippet.html compName="address-pattern" code=address-pattern %}
+    </section>
+
+    <!-- Guidelines Section -->
+    <section name="section-guidelines">
+        <h2 class="title fw-bold" id="guidelines">Guidelines</h2>
+        <ul>
+            <li>Use a manual option such as multiple text inputes or a textarea when you are collecting mostly or only international addresses.</li>
+        </ul>
+    </section>
+
+    <!-- Accessibility Section -->
+    <section name="section-accessibility">
+        <h2 class="title fw-bold" id="accessibility">Accessibility</h2>
+        <strong>For manually-entered addresses</strong>
+        <ul>
+            <li>The fields should always have the autocomplete attribute to help your users complete it quickly.</li>
+            <li>You will need to include the autocomplete attribute to meet <strong>WCAG 2.1 AA</strong> for production.</li>
+        </ul>
+    </section>
+</div>
