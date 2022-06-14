@@ -11,7 +11,7 @@ toc: true
     <label for="postalCode" class="form-label">Postal Code</label>
     <input type="text" class="form-control" id="postalCode" placeholder="e.g 730317" pattern="[0-9]" maxlength="6" autocomplete="postalCode">
 </div>
-<button class="btn btn-primary mb-3">Find Address</button>
+<button class="btn btn-primary mb-3" onclick="findAddress()">Find Address</button>
 <div class="sgds form-group mb-3">
     <label for="streetName" class="form-label">Block/Street Name</label>
     <input type="text" class="form-control" id="streetName" placeholder="e.g. 220 Pasir Ris Drive 50" autocomplete="streetName">
@@ -59,3 +59,19 @@ toc: true
         </ul>
     </section>
 </div>
+
+<script>
+    function findAddress() {
+        var postalCode = document.getElementById("postalCode").value
+        var streetName = document.getElementById("streetName")
+        fetch(
+            'https://developers.onemap.sg/commonapi/search?searchVal=' +
+            postalCode +
+            '&returnGeom=Y&getAddrDetails=Y'
+        )
+        .then((response) => response.json())
+        .then((json) => 
+            streetName.value = json.results[0].ADDRESS
+        );
+    }
+</script>
