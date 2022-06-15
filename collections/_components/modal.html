@@ -3,12 +3,13 @@ title: Modal
 layout: layout-sidenav
 description: The modal component inform users about a specific task and may contain critical information which users then have to make a decision. E.g Accepting the T&Cs during signup
 category: general
-react-link: https://....
-github-link: https://....
+react-link: ?path=/docs/components-modal--default-story
+github-link: true
 toc: true
 ---
 
-{% capture modal-design-tokens %} $modal-inner-padding:$spacer !default;
+{% capture modal-design-tokens %}
+$modal-inner-padding:$spacer !default;
 $modal-footer-margin-between:.5rem !default; $modal-dialog-margin:.5rem
 !default; $modal-dialog-margin-y-sm-up:1.75rem !default;
 $modal-title-line-height:$line-height-base !default; $modal-content-color:null
@@ -30,8 +31,10 @@ $modal-header-padding-x !default; // Keep this for backwards compatibility
 $modal-sm: 300px !default; $modal-md: 500px !default; $modal-lg: 800px !default;
 $modal-xl: 1140px !default; $modal-fade-transform: translate(0, -50px) !default;
 $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
-!default; $modal-scale-transform: scale(1.02) !default; {% endcapture %} {%
-capture modal-default %}
+!default; $modal-scale-transform: scale(1.02) !default;
+{% endcapture %}
+
+{% capture modal-default %}
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
@@ -47,7 +50,9 @@ capture modal-default %}
     </div>
   </div>
 </div>
-{% endcapture %} {% capture modal-default-demo %}
+{% endcapture %}
+
+{% capture modal-default-demo %}
 <!-- Button trigger modal -->
 <button
   type="button"
@@ -93,7 +98,9 @@ capture modal-default %}
     </div>
   </div>
 </div>
-{% endcapture %} {% capture size-demo %}
+{% endcapture %}
+
+{% capture size-demo %}
 <!-- Button trigger modal -->
 <button
   type="button"
@@ -225,7 +232,9 @@ capture modal-default %}
     </div>
   </div>
 </div>
-{% endcapture %} {% capture scrollable-demo %}
+{% endcapture %}
+
+{% capture scrollable-demo %}
 <!-- Button trigger modal -->
 <button
   type="button"
@@ -319,7 +328,9 @@ capture modal-default %}
     </div>
   </div>
 </div>
-{% endcapture %} {% capture fullscreen-demo %}
+{% endcapture %}
+
+{% capture fullscreen-demo %}
 <!-- Button trigger modal -->
 <button
   type="button"
@@ -407,7 +418,7 @@ capture modal-default %}
         <div class="sgds-example-image-grid">
           <img
             src="{{site.baseurl}}/assets/img/component/modal/anatomy-modal.svg"
-            alt=""
+            alt="Modal Anatomy"
           />
         </div>
       </div>
@@ -435,7 +446,7 @@ capture modal-default %}
   <section name="section-spacing">
     <h2 class="title fw-bold" id="spacing">Spacing</h2>
     <div class="section-sub">
-      <h3 class="subtitle fw-bold" id="within-the-accordion">
+      <h3 class="subtitle fw-bold" id="within-the-modal">
         Within the modal
       </h3>
       <div class="sgds-example-image-container">
@@ -443,7 +454,7 @@ capture modal-default %}
           <img
             class="img-fluid"
             src="{{site.baseurl}}/assets/img/component/modal/spacing-modal.svg"
-            alt=""
+            alt="Modal Spacing"
           />
         </div>
       </div>

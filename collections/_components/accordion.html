@@ -3,11 +3,11 @@ title: Accordion
 layout: layout-sidenav
 description: A dropdown mechanism that allow users to either show or hide related content.
 category: general
-react-link: true
-vue-link: true
+react-link: ?path=/docs/components-accordion--basic
 github-link: true
 toc: true
 ---
+
 {% capture accordion-design-tokens %}
 $accordion-padding-y: 1rem !default;
 $accordion-padding-x: 1.25rem !default;
@@ -44,6 +44,7 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
         d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z' />
 </svg>") !default;
 {% endcapture %}
+
 {% capture default-accordion %}
 <div class="sgds accordion" id="accordionExample">
     <div class="accordion-item">
@@ -126,7 +127,7 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
             <h3 class="subtitle fw-bold" id="closed">Closed</h3>
             <div class="sgds-example-image-container">
                 <div class="sgds-example-image-grid">
-                    <img src="{{site.baseurl}}/assets/img/component/accordion/anatomy-accordion-1.svg" alt="">
+                    <img src="{{site.baseurl}}/assets/img/component/accordion/anatomy-accordion-1.svg" alt="Closed Accordion Anatomy">
                 </div>
             </div>
 
@@ -143,7 +144,7 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
             <h3 class="subtitle fw-bold" id="open">Open</h3>
             <div class="sgds-example-image-container">
                 <div class="sgds-example-image-grid">
-                    <img src="{{site.baseurl}}/assets/img/component/accordion/anatomy-accordion-2.svg" alt="">
+                    <img src="{{site.baseurl}}/assets/img/component/accordion/anatomy-accordion-2.svg" alt="Open Accordion Anatomy">
                 </div>
             </div>
             <ol>
@@ -170,7 +171,7 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
             <h3 class="subtitle fw-bold" id="accordion-button">Accordion button</h3>
             <div class="sgds-example-image-container">
                 <div class="sgds-example-image-grid">
-                    <img src="{{site.baseurl}}/assets/img/component/accordion/spacing-accordion-1.svg" alt="">
+                    <img src="{{site.baseurl}}/assets/img/component/accordion/spacing-accordion-1.svg" alt="Accordion Spacing">
                 </div>
             </div>
             <p>Ensure that there is a min of 24px horizontal spacing and 16px vertical spacing</p>
