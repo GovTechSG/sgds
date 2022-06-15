@@ -1,8 +1,107 @@
 ---
 title: Breadcrumb
-description: To help users navigate and understand where they are on the current website or service.
 layout: layout-sidenav
+description: Indicate the current page's location within a navigational hierarchy that automatically adds separators
 category: general
-react: true
+react-link: ?path=/docs/components-breadcrumb--default-story
+github-link: true
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture default-breadcrumb %}
+<nav class="sgds" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Library</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Data</li>
+    </ol>
+</nav>
+{% endcapture %}
+
+{% capture breadcrumb-design-tokens %}
+$breadcrumb-font-size: null !default;
+$breadcrumb-padding-y: 0 !default;
+$breadcrumb-padding-x: 0 !default;
+$breadcrumb-item-padding-x: .5rem !default;
+$breadcrumb-margin-bottom: 1rem !default;
+$breadcrumb-bg: null !default;
+$breadcrumb-divider-color: $gray-600 !default;
+$breadcrumb-active-color: $gray-600 !default;
+$breadcrumb-divider: quote("/") !default;
+$breadcrumb-divider-flipped: $breadcrumb-divider !default;
+$breadcrumb-border-radius: null !default;
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compName="default-breadcrumb" code=default-breadcrumb %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/tab/anatomy-breadcrumb-1.svg" alt="Breadcrumb Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Label: </b> Text
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/tab/spacing-breadcrumb.svg" alt="Breadcrumb Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-breadcrumb">Title</h3>
+                <p>Text</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Breadcrumb should be used:</p>
+            <ul>
+                <li>Text</li>
+            </ul>
+            <p class="fw-bold mb-0">Breadcrumb should not be used:</p>
+            <ol>
+                <li>Text</li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Title</b><br>
+                Text
+            </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{breadcrumb-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>
