@@ -1,7 +1,7 @@
 ---
 title: Address
 description: Use an address lookup when you are asking users for a Singapore address.
-react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/components-form-patterns--address
+react-link: ?path=/docs/components-form-patterns--address
 github-link: true
 toc: true
 ---
@@ -9,9 +9,9 @@ toc: true
 {% capture address-pattern %}
 <div class="sgds form-group mb-3">
     <label for="postalCode" class="form-label">Postal Code</label>
-    <input type="text" class="form-control" id="postalCode" placeholder="e.g 730317" pattern="[0-9]" maxlength="6" autocomplete="postalCode">
+    <input type="number" class="form-control" id="postalCode" placeholder="e.g 730317" autocomplete="postalCode" data-maxlength="6" oninput="this.value=this.value.slice(0, this.dataset.maxlength)">
 </div>
-<button class="btn btn-primary mb-3">Find Address</button>
+<button class="btn btn-primary mb-3" onclick="findAddress()">Find Address</button>
 <div class="sgds form-group mb-3">
     <label for="streetName" class="form-label">Block/Street Name</label>
     <input type="text" class="form-control" id="streetName" placeholder="e.g. 220 Pasir Ris Drive 50" autocomplete="streetName">
@@ -36,7 +36,9 @@ toc: true
 
     <!-- Pattern Section -->
     <section name="section-pattern">
-        {% include page-component/component-code-snippet.html compName="address-pattern" code=address-pattern %}
+        <div class="section-sub">
+            {% include page-component/component-code-snippet.html compName="address-pattern" code=address-pattern %}
+        </div>
     </section>
 
     <!-- Guidelines Section -->
@@ -52,8 +54,24 @@ toc: true
         <h2 class="title fw-bold" id="accessibility">Accessibility</h2>
         <strong>For manually-entered addresses</strong>
         <ul>
-            <li>The fields should always have the autocomplete attribute to help your users complete it quickly.</li>
+            <li>The fields should always have the <code>autocomplete</code> attribute to help your users complete it quickly.</li>
             <li>You will need to include the autocomplete attribute to meet <strong>WCAG 2.1 AA</strong> for production.</li>
         </ul>
     </section>
 </div>
+
+<script>
+    function findAddress() {
+        var postalCode = document.getElementById("postalCode").value
+        var streetName = document.getElementById("streetName")
+        fetch(
+            'https://developers.onemap.sg/commonapi/search?searchVal=' +
+            postalCode +
+            '&returnGeom=Y&getAddrDetails=Y'
+        )
+        .then((response) => response.json())
+        .then((json) => 
+            streetName.value = json.results[0].ADDRESS
+        );
+    }
+</script>
