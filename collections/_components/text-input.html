@@ -199,14 +199,14 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
             <ol>
                 <li>
                     When you require users to enter text and/or long answers that span multiple lines.
-                    <ol>
+                    <ol type="a">
                         <li>Using the <a href="{{site.baseurl}}/components/text-area/">text area</a> component would be more appropriate.</li>
                     </ol>
                 </li>
                 <li>
                     When you require users to select from a predetermined list.
                     <ol>
-                        <li>Using the &lt;select&gt;, <a href="{{site.baseurl}}/components/checkbox/">checkbox</a> or <a href="{{site.baseurl}}/components/radio-button/">radio button</a> components would be more appropriate.</li>
+                        <li type="a">Using the <code>&lt;select&gt;</code>, <a href="{{site.baseurl}}/components/checkbox/">checkbox</a> or <a href="{{site.baseurl}}/components/radio-button/">radio button</a> components would be more appropriate.</li>
                     </ol>
                 </li>
             </ol>
@@ -239,7 +239,7 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
 
         <!-- Design token Section -->
         <section name="section-design-tokens">
-            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            <h2 class="title fw-bold" id="design-tokens">Text input design tokens</h2>
             {%- highlight sass -%}{{text-input-design-tokens}}{%- endhighlight -%}
         </section>
 </div>
