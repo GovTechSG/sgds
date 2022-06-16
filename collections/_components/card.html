@@ -7,7 +7,19 @@ react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/component
 github-link: true
 toc: true
 ---
-{% capture card-with-image %}
+
+{% capture base-card %}
+<div class="card sgds" style="width: 20rem;"><img class="card-img-top" alt="img alternate text goes here"
+        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+    <div class="card-body">
+        <h3 class="card-title">Card Title</h3>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p><a class="card-link" href="#">Go somewhere</a>
+    </div>
+</div>
+{% endcapture %}
+
+<!--{% capture card-with-image %}
 <div class="card sgds" style="width: 20rem;"><img class="card-img-top"
         src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
     <div class="card-body">
@@ -17,13 +29,114 @@ toc: true
     </div>
 </div>
 {% endcapture %}
+-->
+
+{% capture card-with-cta %}
+<div class="row">
+    <div class="col-md-auto">
+        <div class="card sgds" style="width: 20rem;"><img class="card-img-top" alt="img alternate text goes here"
+                src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+            <div class="card-body">
+                <h3 class="card-title" href="#">Card Title</h3>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a class="card-link" href="#">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-auto">
+        <div class="card sgds" style="width: 20rem;">
+            <img class="card-img-top" alt="img alternate text goes here"
+                src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+            <div class="card-body"><a class="card-link" href="#">
+                    <h3 class="card-title">Card Title</h3>
+                </a>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture informational-card %}
+<div class="card sgds" style="width: 20rem;"><img class="card-img-top" alt="img alternate text goes here"
+        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+    <div class="card-body">
+        <h3 class="card-title">Card Title</h3>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+    </div>
+</div>{% endcapture %}
+
+{% capture customise-card %}
+<div class="row">
+        <div class="col-md-auto">
+        <div class="card sgds" style="width: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title">Card Title</h5><a class="card-text">Some quick example text to build on the card title
+                    and make up the bulk of the card's content.</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-auto">
+        <div class="card sgds" style="width: 20rem;">
+            <div class="card-body">
+                <h1 class="card-title">Card Title</h1><strong class="card-text">Some quick example text to build on the card
+                    title and make up the bulk of the card's content.</strong>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture stretched-link-card %}
+<div class="card sgds" style="width: 20rem;"><img class="card-img-top" alt="img alternate text goes here"
+        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+    <div class="card-body"><a class="card-link stretched-link" href="#">
+            <h3 class="card-title">Card Title</h3>
+        </a>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture card-group %}
+<div class="card-group">
+    <div class="card sgds"><img class="card-img-top" alt="img alternate text goes here"
+            src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+        <div class="card-body">
+            <h3 class="card-title">Card Title</h3>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p><a class="card-link" href="#">Go somewhere</a>
+        </div>
+    </div>
+    <div class="card sgds"><img class="card-img-top" alt="img alternate text goes here"
+            src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+        <div class="card-body">
+            <h3 class="card-title">Card Title</h3>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p><a class="card-link" href="#">Go somewhere</a>
+        </div>
+    </div>
+    <div class="card sgds"><img class="card-img-top" alt="img alternate text goes here"
+            src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+        <div class="card-body">
+            <h3 class="card-title">Card Title</h3>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p><a class="card-link" href="#">Go somewhere</a>
+        </div>
+    </div>
+</div>
+{% endcapture %}
 
 {% capture card-action %}
 <div class="sgds card" variant="card-action">
     <div class="card-body">
       <div>
-        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Checkbox Action Card</h6>
-        <h5 class="card-title fw-bold">Checkbox Card</h5>
+        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Checkbox action card</h6>
+        <h5 class="card-title fw-bold">Checkbox card</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
       <div class="card-input">
@@ -34,8 +147,8 @@ toc: true
 <div class="sgds card" variant="card-action">
     <div class="card-body">
       <div>
-        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Radio Button Action Card</h6>
-        <h5 class="card-title fw-bold">Radio Button Card</h5>
+        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Radio button action card</h6>
+        <h5 class="card-title fw-bold">Radio button card</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
       <div class="card-input">
@@ -46,8 +159,8 @@ toc: true
 <div class="sgds card" variant="card-action">
     <div class="card-body">
       <div>
-        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Switch button Action Card</h6>
-        <h5 class="card-title fw-bold">Switch button Card</h5>
+        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Switch button action card</h6>
+        <h5 class="card-title fw-bold">Switch button card</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
       <div class="card-input form-check form-switch">
@@ -55,6 +168,8 @@ toc: true
       </div>
     </div>
 </div>
+
+
 {% endcapture %}
 
 {% capture card-quantity %}
@@ -115,11 +230,62 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
             <div class="section-sub">
                 {% 
                     include page-component/component-code-snippet.html 
+                    compTitle="Base card" 
+                    compName="base-card" 
+                    code=base-card 
+                %}
+            </div>
+           <!--  <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
                     compTitle="Card with image" 
                     compName="card-with-image" 
                     code=card-with-image 
                 %}
+            </div> -->
+            <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Card with Call To Action (CTA)" 
+                    compName="card-with-cta" 
+                    code=card-with-cta 
+                %}
             </div>
+            <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Informational card" 
+                    compName="informational-card" 
+                    code=informational-card 
+                %}
+            </div>
+            <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Customise card sub-components' HTMLElements" 
+                    compName="customise-card" 
+                    code=customise-card 
+                %}
+            </div>
+
+            <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Stretched link" 
+                    compName="stretched-link-card" 
+                    code=stretched-link-card 
+                %}
+            </div>
+
+            <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Card group" 
+                    compName="card-group" 
+                    code=card-group 
+                %}
+            </div>
+
             <div class="section-sub">
                 {% include page-component/component-code-snippet.html compTitle="Action card" compName="card-action" code=card-action %}
             </div>
