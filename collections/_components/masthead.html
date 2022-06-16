@@ -1,7 +1,91 @@
 ---
 title: Masthead
 layout: layout-sidenav
-category: standard
-react: true
+description: Insert description
+category: Mandatory
+react-link: true
+github-link: true
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture masthead %}
+<sgds-masthead></sgds-masthead>
+{% endcapture %}
+
+{% capture masthead-design-tokens %}
+
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compName="masthead" code=masthead %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/main-navigation/anatomy-masthead-1.svg" alt="Masthead Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Label:</b> Text
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/main-navigation/spacing-masthead-1.svg" alt="Masthead Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-main-navigation">Within the masthead</h3>
+                <p>Text</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Masthead should be used when:</p>
+            <ul>
+                <li>Text</li>
+            </ul>
+            <p class="fw-bold mb-0">Masthead should not be used when:</p>
+            <ol>
+                <li>Text</li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Title</b><br>
+                Text
+            </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{masthead-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>
