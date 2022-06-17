@@ -315,49 +315,22 @@ $table-variants: ("primary": shift-color($primary, $table-bg-scale),
             </div>
         </section>
 
-        <!-- Anatomy Section -->
-        <section name="section-anatomy">
-            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
-            <div class="section-sub">
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-table-1.svg" alt="Table Anatomy">
-                    </div>
-                </div>
-                <ol>
-                    <li>
-                        <b>Label:</b> Text
-                    </li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- Spacing Section -->
-        <section name="section-spacing">
-            <h2 class="title fw-bold" id="spacing">Spacing</h2>
-            <div class="section-sub">
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-table-1.svg" alt="Table Spacing">
-                    </div>
-                </div>
-                <h3 class="subtitle fw-bold" id="within-the-table">Within the table</h3>
-                <p>Text</p>
-            </div>
-        </section>
-
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Table should be used when:</p>
+            <p class="fw-bold mb-0">Table should be used:</p>
             <ul>
-                <li>Text</li>
+                <li>When you want to show tabular information, such as statistics</li>
+                <li>For displaying directories where content of similar nature and structure are grouped together</li>
             </ul>
-            <p class="fw-bold mb-0">Table should not be used when:</p>
+            <p class="fw-bold mb-0">Table should not be used:</p>
             <ol>
                 <li>
-                    Text
+                    For complex data visualisation, you may want to use inforgraphics or bars and charts
                 </li>
+                <li>
+                  For dashboard displays. Table data should follow a consistant structure with logical headers, rows and columns
+              </li>
             </ol>
         </section>
 
@@ -365,9 +338,19 @@ $table-variants: ("primary": shift-color($primary, $table-bg-scale),
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>Title</b><br>
-                Text
+                <b>Keep tables simple</b><br>
+                Tables are useful when displaying data and complex information. Try to use minimal visual styling to surface information easily
             </p>
+
+            <p>
+              <b>Consider mobile applications</b><br>
+              As table rows can be long in nature, do consider if your content requires to be in a table
+          </p>
+
+          <p>
+            <b>Enable sorting</b><br>
+            Do enable sorting where applicable as this will help users move through content within the table
+        </p>
         </section>
 
         <!-- Design token Section -->
