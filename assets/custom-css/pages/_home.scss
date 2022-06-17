@@ -2,7 +2,7 @@
     padding-top: 0;
     padding: 3.5rem;
     @include media-breakpoint-down(lg){
-        padding: 1rem;
+        padding: 1rem 0;
     }
 
     .wrapper{

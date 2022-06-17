@@ -13,12 +13,17 @@
         {% include masthead.html %}
         {% include navigation.html %}
     </div>
-    <main>
+    {% assign container = 'container' %}
+    {% if page.pageCategory %}
+        {% assign container = 'container-fluid' %}
+    {% endif %}
+    <main class="{{container}}">
         {{content}}
     </main>
     {% include footer.html %}
     {% include off-canvas-menu.html %}
-    <script src="/assets/js/bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <!-- <script src="/assets/js/bundle.js"></script> -->
     <script src="/assets/js/vendor.js"></script>
 </body>
 </html>
