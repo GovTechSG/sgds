@@ -1,0 +1,147 @@
+---
+title: Input Group
+layout: layout-sidenav
+description: Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs and custom select.
+category: general
+react-link: ?path=/docs/components-form-input-group--example
+github-link: true
+toc: true
+---
+
+{% capture input-group-examples %}
+<div class="mb-3">
+    <label for="textAddon" class="form-label">Text Add-on</label>
+    <div class="sgds input-group">
+        <span class="input-group-text">+65</span>
+        <input type="text" class="form-control" id="textAddon" />
+    </div>
+</div>
+<div class="mb-3">
+    <label for="checkboxAddon" class="form-label">Checkbox Add-on</label>
+    <div class="sgds input-group">
+        <div class="input-group-text">
+            <input class="form-check-input" type="checkbox" value="" />
+        </div>
+        <input type="text" class="form-control" id="checkboxAddon" />
+    </div>
+</div>
+<div class="mb-3">
+    <label for="radioAddon" class="form-label">Radio Add-on</label>
+    <div class="sgds input-group">
+        <div class="input-group-text">
+            <input class="form-check-input" type="radio" value="" />
+        </div>
+        <input type="text" class="form-control" id="radioAddon" />
+    </div>
+</div>
+<div class="mb-3">
+    <label for="multipleAddon" class="form-label">Multiple Add-on</label>
+    <div class="sgds input-group">
+        <span class="input-group-text">$</span>
+        <span class="input-group-text">0.00</span>
+        <input type="text" class="form-control" id="multipleAddon" />
+    </div>
+</div>
+<div class="mb-3">
+    <label for="buttonAddon" class="form-label">Button Add-on</label>
+    <div class="sgds input-group">
+        <button class="btn btn-outline-secondary">Button</button>
+        <input type="text" class="form-control" id="buttonAddon" />
+    </div>
+</div>
+<div>
+    <label for="dropdownAddon" class="form-label">Dropdown Add-on</label>
+    <div class="sgds input-group">
+        <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another Action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+        <input type="text" class="form-control" id="dropdownAddon" />
+    </div>
+</div>
+{% endcapture %}
+
+{% capture input-group-design-tokens %}
+$input-group-addon-padding-y: $input-padding-y !default;
+$input-group-addon-padding-x: $input-padding-x !default;
+$input-group-addon-font-weight: $input-font-weight !default;
+$input-group-addon-color: $input-color !default;
+$input-group-addon-bg: $gray-200 !default;
+$input-group-addon-border-color: $input-border-color !default;
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compName="input-group-examples" code=input-group-examples %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/input-group/anatomy-input-group-1.svg" alt="Input Group Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Label:</b> Text
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/input-group/spacing-input-group-1.svg" alt="Input Group Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-input-group">Within the input group</h3>
+                <p>Text</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Input group should be used when:</p>
+            <ul>
+                <li>Text</li>
+            </ul>
+            <p class="fw-bold mb-0">Input group should not be used when:</p>
+            <ol>
+                <li>Text</li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Title</b><br>
+                Text
+            </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">Input group design tokens</h2>
+            {%- highlight sass -%}{{input-group-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>

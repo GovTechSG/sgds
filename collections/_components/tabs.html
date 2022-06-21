@@ -1,13 +1,13 @@
 ---
 title: Tabs
 layout: layout-sidenav
-description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, iure.
+description: Tabs are a navigation element resembling tabbed dividers in a filing cabinet - by clicking a tab, users can easily locate a page containing related content.
 category: general
-react: true
-github: https://google.com
-storybook: https://google.com
-ready: false
+react-link: ?path=/docs/components-tabs--default-story
+github-link: true
+toc: true
 ---
+
 {% capture default-tabs %}
 <ul class="sgds nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
@@ -91,6 +91,7 @@ ready: false
     amet, consectetur adipisicing elit. Sit, accusantium!</div>
 </div>
 {% endcapture %}
+
 {% capture info-toggle-tabs %}
 <!-- Add variant="tabs-info-toggle" -->
 <ul class="sgds nav nav-tabs" id="myTab" role="tablist" variant="tabs-info-toggle">
@@ -153,47 +154,187 @@ ready: false
 </div>
 {% endcapture %}
 
+{% capture tabs-design-tokens %}
+$nav-tabs-border-color: transparent !default;
+$nav-tabs-border-width: $border-width !default;
+$nav-tabs-border-radius: $border-radius !default;
+$nav-tabs-link-hover-border-color: $gray-200 $gray-200 $nav-tabs-border-color !default;
+$nav-tabs-link-active-color: $gray-700 !default;
+$nav-tabs-link-active-bg: $body-bg !default;
+$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
+$nav-sgds-tabs-active-border-color: $link-color !default;
+$nav-sgds-tabs-padding-y: $spacer !default;
+$nav-sgds-tabs-icon-padding: $spacer !default;
+{% endcapture %}
+
+<!-- Page starts here -->
 <div class="page-component">
-  <article>
-    {% include page-component/component-header.html %}
-    <section>
-      <h2 class="title fw-bold">Anatomy</h2>
-      <div class="component-anatomy">
-        <h3 class="subtitle fw-bold">Closed</h3>
-        <ol>
-          <li>
-            <b>Text:</b> Serves to tell users what the accordion is being used for
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Default tabs" compName="default-tabs" code=default-tabs %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Basic toggle tabs" compName="basic-toggle-tabs" code=basic-toggle-tabs %}
+            </div>
+            <div class="section-sub">
+              {% include page-component/component-code-snippet.html compTitle="Info toggle tabs" compName="info-toggle-tabs" code=info-toggle-tabs %}
+          </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <h3 class="title fw-bold" id="anatomy-default">Default tab</h3>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/tab/anatomy-defaulttab.svg" alt="default tab">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Icon (situational):</b> Used as a supporting element for the tab, giving more context to the nature of the tab label
+                    </li>
+                    <li>
+                      <b>Label:</b> Used to inform the user what the tab is about. Should always be short and to the point. Should always be centered
+                  </li>
+                </ol>
+            </div>
+        </section>
+
+        <section name="section-anatomy">
+          <h3 class="title fw-bold" id="anatomy-toggle">Toggle tab</h3>
+          <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/tab/anatomy-toggletab.svg" alt="toggle tab">
+                </div>
+            </div>
+            <ol>
+                <li>
+                    <b>Icon (situational):</b> Used as a supporting element for the tab, giving more context to the nature of the tab label
+                </li>
+                <li>
+                  <b>Label:</b> Used to inform the user what the tab is about. Should always be short and to the point. Should always be centered
+              </li>
+              <li>
+                <b>Number count (situational):</b> Used as a supporting element to the tab. E.g number of notifications
+            </li>
+            </ol>
+        </div>
+      </section>
+
+      <section name="section-anatomy">
+        <h3 class="title fw-bold" id="anatomy-info-toggle">Info toggle tab</h3>
+        <div class="section-sub">
+          <div class="sgds-example-image-container">
+              <div class="sgds-example-image-grid">
+                  <img src="{{site.baseurl}}/assets/img/component/tab/anatomy-infotoggle.svg" alt="info toggle tab">
+              </div>
+          </div>
+          <p>Unlike the other 2 tabs, info toggle tabs are more locked down in design and interaction.
+            It should be used as it is with change in color the only exception</p>
+          <ol>
+              <li>
+                  <b>Icon (situational):</b> Used as a supporting element for the tab, giving more context to the nature of the tab label
+              </li>
+              <li>
+                <b>Label:</b> Used to inform the user what the tab is about. Should always be short and to the point. Should always be centered
+            </li>
+            <li>
+              <b>Number count (situational):</b> Used as a supporting element to the tab. E.g number of users
           </li>
-          <li>
-            <b>Container:</b> Encloses the content within, width and height to be adjusted according to
-            content
-          </li>
-        </ol>
-        <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/anatomy/accordion/anatomy-accordion-1.svg"
-          alt="">
+          </ol>
       </div>
     </section>
-    <section>
-      <h2 class="title fw-bold">Example</h2>
-      <h3 class="subtitle fw-bold">Default Tabs</h3>
-      <div class="sgds-example">
-        {{default-tabs}}
-      </div>
-      {% include page-component/component-code-snippet.html compName="default-tabs" content=default-tabs %}
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <h3 class="title fw-bold" id="spacing-default">Default tab</h3>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/tab/spacing-defaulttab.svg" alt="default tabs spacing">
+                    </div>
+                </div>
+                <p><b>Within the default tabs</b><br/>
+                <p>Ensure that there is at least 8px of vertical spacing between the text and indicator taking into account line height</p>
+            </div>
+        </section>
+
+        <section name="section-spacing">
+          <h3 class="title fw-bold" id="spacing-toggle">Toggle tab</h3>
+          <div class="section-sub">
+              <div class="sgds-example-image-container">
+                  <div class="sgds-example-image-grid">
+                      <img src="{{site.baseurl}}/assets/img/component/tab/spacing-toggletab.svg" alt="toggle tabs spacing">
+                  </div>
+              </div>
+              <p><b>Within the toggle tabs</b><br/>
+                Ensure that there is at least 16px of horizontal spacing and vertical spacing within the tab</p>
+          </div>
+      </section>
+
+      <section name="section-spacing">
+        <h3 class="title fw-bold" id="spacing-info-toggle">Info toggle tab</h3>
+        <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/tab/spacing-infotoggle.svg" alt="info toggle tabs spacing">
+                </div>
+            </div>
+            <p><b>Within the info toggle tabs</b><br/>
+            Ensure that there is at least 12px of horizontal and vertical spacing within the tab and 8px vertical spacing between the lable and number count</p>
+        </div>
     </section>
-    <section>
-      <h3 class="subtitle fw-bold">Basic toggle tabs</h3>
-      <div class="sgds-example">
-        {{basic-toggle-tabs}}
-      </div>
-      {% include page-component/component-code-snippet.html compName="basic-toggle-tabs" content=basic-toggle-tabs %}
-    </section>
-    <section>
-      <h3 class="subtitle fw-bold">Info toggle tabs</h3>
-      <div class="sgds-example">
-        {{info-toggle-tabs}}
-      </div>
-      {% include page-component/component-code-snippet.html compName="info-toggle-tabs" content=info-toggle-tabs %}
-    </section>
-  </article>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Tabs should be used:</p>
+            <ul>
+                <li>When you want to expose simliar but seperate content</li>
+                <li>When you can seperate the content into clearly labelled sections</li>
+                <li>When you want to expose simliar but seperate content</li>
+            </ul>
+            <p class="fw-bold mb-0">Tabs should not be used:</p>
+            <ol>
+                <li>When you want to display critical information to the user, content like this should always be displayed upfront</li>
+                <li>When you require users to read the content in a specific order, e.g a step by step guide</li>
+                <li>When users will need to compare information in the different tabs</li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Keep labels short</b><br>
+                As there will be multiple tabs, it is best to keep labels as short and to the point as possible
+            </p>
+
+            <p>
+              <b>Use sparingly</b><br>
+              As tabs hide content, it is best to use them sparingly although they do help to save space. Do consider if the content can be displayed upfront instead of being in a tab. 
+              In some cases, having too may tabs on a page may cause it to load slowly.
+          </p>
+
+          <p>
+            <b>Do not use as a form of page navigation</b><br>
+            Tabs should exclusively be used as a form of content navigation within a given page
+        </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{tabs-design-tokens}}{%- endhighlight -%}
+        </section>
 </div>

@@ -32,6 +32,14 @@
   a{
     text-underline-offset: $link-underline-offset;
   }
+
+  a[target="_blank"]:after {
+    display: inline-block;
+    font-family: bootstrap-icons;
+    content: "\F1C5";
+    padding-left: calc($spacer * 0.25);
+    text-decoration-line: none;
+}
   
   .lead {
     @include font-size($lead-font-size);
