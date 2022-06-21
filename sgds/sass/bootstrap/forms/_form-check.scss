@@ -17,6 +17,7 @@
 .form-check-input {
   width: $form-check-input-width;
   height: $form-check-input-width;
+  margin-top: ($line-height-base - $form-check-input-width) * .5;
   vertical-align: top;
   background-color: $form-check-input-bg;
   background-repeat: no-repeat;
