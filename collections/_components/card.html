@@ -298,89 +298,157 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
         <section name="section-anatomy">
             <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
             <div class="section-sub">
+                <h3 class="subtitle fw-bold" id="default-card">Default card</h3>
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
                         <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-1.svg" alt="">
-                        <div class="sgds-example-image-subgrid">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-2.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-3.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-4.svg" alt="">
-                        </div>
                     </div>
                 </div>
                 <ol>
                     <li>
-                        <b>Title:</b> Serves to let the user know exactly what the card is about, ideal to keep this short and to the point
+                        <b>Image (situational):</b> Gives context to the user as to what the card is about
                     </li>
                     <li>
-                        <b>Description:</b>  Serves to give users information on the card
+                        <b>Title:</b> Serves to let the user know exactly what the card is about, ideal to keep this short and
+                        to the point
                     </li>
                     <li>
-                        <b>Call to action (situational):</b> When you need users to take a action, this can be omitted if the card is meant to display only information
+                        <b>Description:</b> Serves to give users information on the card
                     </li>
                     <li>
-                        <b>Image:</b> Gives context to the user as to what the card is about
+                        <b>CTA (situational):</b> When you need users to take a action, this can be omitted if the card is meant
+                        to display only information. Text link can be replaced by a button if needed if the situation calls for
+                        it
                     </li>
+        
+                </ol>
+            </div>
+        </section>
+        <section name="section-anatomy">
+            <h3 class="subtitle fw-bold" id="action-card">Action card</h3>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-2.svg" alt="">
+                    </div>
+                </div>
+                <ol>
                     <li>
-                        <b>Icon:</b> Serves to support the nature of the card. Gives more context to the user about what the card is about. E.g category
-                    </li>
+                        <b>Icon:</b> Gives more context to what the card is about
                     <li>
                         <b>Selector:</b> Allows users to select one or more cards
                     </li>
                 </ol>
             </div>
         </section>
+            
+            <section name="section-anatomy">
+                <h3 class="subtitle fw-bold" id="action-qty-card">Action card with quantity toggle</h3>
+            
+                <div class="section-sub">
+                    <div class="sgds-example-image-container">
+                        <div class="sgds-example-image-grid">
+                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-3.svg" alt="">
+                        </div>
+                    </div>
+                    <p>Used mainly for situations with subscriptions or when you require users to select a amount for a given item.
+                        This allows users to select a item and decide on the quantity they want</p>
+                    <ol>
+                        <li>
+                            <b>Quantity toggle:</b> Allows users to select the amount they require
+                        <li>
+                            <b>Price (situational):</b> Displays the amount of a single item. Can be used to show total based on
+                            amount selected. Pricing can be omitted if you do not require it
+                        </li>
+                    </ol>
+                </div>
+            
+            </section>
 
+            <section name="section-anatomy">
+                <h3 class="subtitle fw-bold" id="info-card">Informational card with status</h3>
+            
+                <div class="section-sub">
+                    <div class="sgds-example-image-container">
+                        <div class="sgds-example-image-grid">
+                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-4.svg" alt="">
+                        </div>
+                    </div>
+                    <ol>
+                        <li>
+                            <b>Status badge:</b> Used to inform the user about the status e.g status of a service
+                        <li>
+                            <b>CTA (situational):</b> Allows the users to view more information in a seperate page. If the card is purely informational, this can be omitted
+                        </li>
+                    </ol>
+                </div>
+            
+            </section>
         <!-- Spacing Section -->
         <section name="section-spacing">
             <h2 class="title fw-bold" id="spacing">Spacing</h2>
             <div class="section-sub">
-                <h3 class="subtitle fw-bold" id="within-the-card">Within the card</h3>
-                <p>Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p>
+                <h3 class="subtitle fw-bold" id="default-card">Default card</h3>
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
                         <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-1.svg" alt="">
-                        <div class="sgds-example-image-subgrid">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-2.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-3.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-4.svg" alt="">
-                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="section-sub">
-                <h3 class="subtitle fw-bold" id="outside-the-card">Outside the card</h3>
-                <p>Ensure that there is a min 32px spacing vertically and horizontally between cards</p>
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-1.svg" alt="">
-                        <div class="sgds-example-image-subgrid">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-2.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-3.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-4.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>  
         </section>
 
+        <section name="section-spacing">
+            <h3 class="subtitle fw-bold" id="action-card">Action card</h3>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-2.svg" alt="">
+                    </div>
+                </div>
+            </div>  
+        </section>
+
+        <section name="section-spacing">
+            <h3 class="subtitle fw-bold" id="action-qty-card">Action card with quantity toggle</h3>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-3.svg" alt="">
+                    </div>
+                </div>
+            </div>  
+        </section>
+
+        <section name="section-spacing">
+            <h3 class="subtitle fw-bold" id="info-card">Informational card with status</h3>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-4.svg" alt="">
+                    </div>
+                </div>
+            </div>  
+        </section>
+
+            <h3 class="subtitle fw-bold" id="within-the-card">Within the card</h3>
+        <p>Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p>
+        <section name="section-spacing">
+</section>
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
             <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers. Users may also ignore important information if it is hidden in an accordion.</p>
-            <p class="fw-bold mb-0">When to use the accordion component:</p>
+            <p class="fw-bold mb-0">Cards should be used when:</p>
             <ol>
-                <li>There is insufficient space within the page to display the necessary information.</li>
-                <li>Users require an overview of specific content that's related to one another.</li>
+                <li>You need to display similar content and actions on a topic inside a container.</li>
+                <li>You need to visually separate specific parts of content in a view.</li>
             </ol>
-            <p class="fw-bold mb-0">When not to use the accordion component:</p>
+            <p class="fw-bold mb-0">Cards should not be used when:</p>
             <ol>
-                <li>
-                    There is insufficient space within the page to display the necessary information.
-                    <ul>
-                        <li>Accordions hide content, and there may be users who may miss the content or not understand how accordions work.</li>
-                        <li>If users need to see all information in a single page, you can consider reducing your content, splitting them into smaller sections, or use well-formatted text (e.g. headers, contents, section)</li>
-                    </ul>
+                <li>You need to inform user about important changes. Use Alerts component instead.</li>
+                <li>The information contained within the card is not related.</li>
+
+                        
                 </li>
             </ol>
         </section>
@@ -389,14 +457,15 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>Do ensure that the entire heading is clickable to the user.</b><br>
-                A larger target will make it easier for users to manipulate
-            </p>
+                <b>Keep card title brief and clear</b><br>
+                Be brief and keep it to a single line by utilizing a sentence fragment. Avoid using punctuation as much as possible.            </p>
             <p>
-                <b>Ensure enough space between content and headings</b><br>
-                This is to prevent the user from accidentally closing the accordion
-            </p>
-        </section>
+                <b>Use consistent elements when cards are arranged in a group</b><br>
+                For groups of cards, ensure the components used are consistent from card to card. Eg. Use the same height and width for each card on the page            </p>
+                <p>
+                    <b>Card content should be summarised and easy to digest</b><br>
+                    Don't overwhelm the space with excessive content. The content should be easily accessed and explored so that it is easier for users to find what they are interested in.</p>
+                </section>
 
         <!-- Design token Section -->
         <section name="section-design-tokens">
