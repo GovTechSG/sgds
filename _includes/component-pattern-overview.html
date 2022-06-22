@@ -29,9 +29,14 @@
                 <h5 class="card-title">{{item.title}}</h5>
               </a>
               <p class="card-text">{{item.description}}</p>
-              <span class="badge bg-primary">{{item.category | capitalize}}</span>
+              {% if item.category == 'mandatory' %}
+              <span class="sgds badge badge-light bg-danger">{{item.category | capitalize}}</span>
+              {% else %}
+              <span class="sgds badge badge-light bg-primary">{{item.category | capitalize}}</span>
+              {% endif %}
+              
               {% if item.react %}
-              <span class="badge bg-success">ReactJS</span>
+              <span class="sgds badge badge-light bg-success">ReactJS</span>
               {% endif %}
             </div>
           </div>

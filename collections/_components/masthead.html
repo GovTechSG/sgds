@@ -1,19 +1,34 @@
 ---
 title: Masthead
 layout: layout-sidenav
-description: Insert description
-category: Mandatory
+description: All .gov.sg digital services shall adopt The Official Government Banner for every page in the digital
+category: mandatory
 react-link: true
 github-link: true
 toc: true
 ---
 
 {% capture masthead %}
-<sgds-masthead></sgds-masthead>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-masthead/dist/sgds-masthead/sgds-masthead.css">
+    <script
+        type="module"
+        src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-masthead/dist/sgds-masthead/sgds-masthead.js">
+    </script>
+</head>
+<body>
+    <sgds-masthead></sgds-masthead>
+</body>
 {% endcapture %}
 
 {% capture masthead-design-tokens %}
-
+--sgds-masthead-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+--sgds-masthead-link-color: #4372d6;
+--sgds-masthead-link-hover-color: #3a79ff;
+<!-- Font size for tablet view 1024px -->
+--sgds-masthead-tablet-font-size: 0.75rem
+<!-- Left and right padding for tablet view 1024px -->
+--sgds-masthead-tablet-padding-x: 1.25rem;
 {% endcapture %}
 
 <!-- Page starts here -->
@@ -36,12 +51,18 @@ toc: true
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/main-navigation/anatomy-masthead-1.svg" alt="Masthead Anatomy">
+                        <img src="{{site.baseurl}}/assets/img/component/masthead/anatomy-masthead.svg" alt="Masthead Anatomy">
                     </div>
                 </div>
                 <ol>
                     <li>
-                        <b>Label:</b> Text
+                        <b>Container:</b> Takes on the length of the browser
+                    </li>
+                    <li>
+                        <b>Container:</b> Serves to inform the user that the website is a official Singapore Government website. The wording should not be edited in anyway
+                    </li>
+                    <li>
+                        <b>Dropdown:</b> Serves to inform the user on how to identify official Singapore Government websites
                     </li>
                 </ol>
             </div>
@@ -53,38 +74,15 @@ toc: true
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/main-navigation/spacing-masthead-1.svg" alt="Masthead Spacing">
+                        <img src="{{site.baseurl}}/assets/img/component/masthead/spacing-masthead.svg" alt="Masthead Spacing">
                     </div>
                 </div>
                 <h3 class="subtitle fw-bold" id="within-the-main-navigation">Within the masthead</h3>
-                <p>Text</p>
+                <p>Ensure that there is a min of 8px vertical spacing and 16px horizontal spacing. Base height of 40px</p>
             </div>
         </section>
 
-        <!-- Usage guidelines Section -->
-        <section name="section-usage-guidelines">
-            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Masthead should be used when:</p>
-            <ul>
-                <li>Text</li>
-            </ul>
-            <p class="fw-bold mb-0">Masthead should not be used when:</p>
-            <ol>
-                <li>Text</li>
-            </ol>
-        </section>
-
-        <!-- Usability guidelines Section -->
-        <section name="section-usability-guidelines">
-            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-            <p>
-                <b>Title</b><br>
-                Text
-            </p>
-        </section>
-
-        <!-- Design token Section -->
-        <section name="section-design-tokens">
+        <section>
             <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
             {%- highlight sass -%}{{masthead-design-tokens}}{%- endhighlight -%}
         </section>
