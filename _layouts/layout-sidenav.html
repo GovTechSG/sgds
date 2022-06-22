@@ -6,8 +6,8 @@ layout: layout-default
  {% assign class = 'with-toc' %}
 {% endif %}
 <section class="wrapper-sidenav {{class}}">
-    <aside>
-        <nav class="sgds sidenav">
+    <aside aria-label="Side Navigation Container">
+        <nav class="sgds sidenav" aria-label="Side Navigation">
             <ul class="list-unstyled">
             {% assign collections = site.collections | sort: 'order' %}
             {% for collection in collections %}
@@ -28,11 +28,11 @@ layout: layout-default
             </ul>
         </nav>
     </aside>
-    <main>
+    <aside aria-label="Content">
         {{content}}
-    </main>
+    </aside>
     {% if page.overview == null %}
-    <aside class="toc-container">
+    <aside class="toc-container" aria-label="Table of Contents">
         <div class="toc-wrapper">
             <p class="h4">On this page</p>
             {% toc %}
