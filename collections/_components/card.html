@@ -19,18 +19,6 @@ toc: true
 </div>
 {% endcapture %}
 
-<!--{% capture card-with-image %}
-<div class="card sgds" style="width: 20rem;"><img class="card-img-top"
-        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
-    <div class="card-body">
-        <h2 class="card-title">Card Title</h2>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p><a class="card-link" href="#">Go somewhere</a>
-    </div>
-</div>
-{% endcapture %}
--->
-
 {% capture card-with-cta %}
 <div class="row">
     <div class="col-md-auto">
@@ -262,7 +250,7 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
             <div class="section-sub">
                 {% 
                     include page-component/component-code-snippet.html 
-                    compTitle="Customise card sub-components' HTMLElements" 
+                    compTitle="Customise card sub-components' HTML Elements" 
                     compName="customise-card" 
                     code=customise-card 
                 %}
@@ -365,25 +353,6 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
             
             </section>
 
-            <section name="section-anatomy">
-                <h3 class="subtitle fw-bold" id="info-card">Informational card with status</h3>
-            
-                <div class="section-sub">
-                    <div class="sgds-example-image-container">
-                        <div class="sgds-example-image-grid">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-4.svg" alt="">
-                        </div>
-                    </div>
-                    <ol>
-                        <li>
-                            <b>Status badge:</b> Used to inform the user about the status e.g status of a service
-                        <li>
-                            <b>CTA (situational):</b> Allows the users to view more information in a seperate page. If the card is purely informational, this can be omitted
-                        </li>
-                    </ol>
-                </div>
-            
-            </section>
         <!-- Spacing Section -->
         <section name="section-spacing">
             <h2 class="title fw-bold" id="spacing">Spacing</h2>
@@ -394,7 +363,9 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
                         <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-1.svg" alt="">
                     </div>
                 </div>
-            </div>  
+            </div> 
+            <p><b>Within the default</b><br/>
+                Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p> 
         </section>
 
         <section name="section-spacing">
@@ -405,7 +376,9 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
                         <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-2.svg" alt="">
                     </div>
                 </div>
-            </div>  
+            </div>
+            <p><b>Within the action card</b><br/>
+                Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p>  
         </section>
 
         <section name="section-spacing">
@@ -416,24 +389,11 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
                         <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-3.svg" alt="">
                     </div>
                 </div>
-            </div>  
+            </div>
+            <p><b>Within the action card with quantity toggle</b><br/>
+                Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p>  
         </section>
 
-        <section name="section-spacing">
-            <h3 class="subtitle fw-bold" id="info-card">Informational card with status</h3>
-            <div class="section-sub">
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-4.svg" alt="">
-                    </div>
-                </div>
-            </div>  
-        </section>
-
-            <h3 class="subtitle fw-bold" id="within-the-card">Within the card</h3>
-        <p>Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p>
-        <section name="section-spacing">
-</section>
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
