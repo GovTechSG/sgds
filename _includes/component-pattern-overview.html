@@ -25,8 +25,8 @@
             <img src="../assets/img/{{page.pageCategory}}-overview/{{item.title | downcase | replace: ' ', '-'}}.png"
               class="card-img-top" alt="{{item.title | append: ' image' }}">
             <div class="card-body">
-              <a class="stretched-link" href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}/">
-                <a class="card-title">{{item.title}}</a>
+              <a class="stretched-link link-primary" href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}/">
+                <p class="h5 text-primary card-title">{{item.title}}</p>
               </a>
               <p class="card-text">{{item.description}}</p>
               {% if item.category == 'mandatory' %}
