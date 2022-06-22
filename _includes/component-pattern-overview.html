@@ -26,7 +26,7 @@
               class="card-img-top" alt="{{item.title | append: ' image' }}">
             <div class="card-body">
               <a class="stretched-link" href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}/">
-                <h5 class="card-title">{{item.title}}</h5>
+                <a class="card-title">{{item.title}}</a>
               </a>
               <p class="card-text">{{item.description}}</p>
               {% if item.category == 'mandatory' %}
