@@ -7,7 +7,8 @@ layout: layout-default
 {% endif %}
 <section class="wrapper-sidenav {{class}}">
     <aside>
-        <nav class="sgds sidenav list-unstyled">
+        <nav class="sgds sidenav">
+            <ul class="list-unstyled">
             {% assign collections = site.collections | sort: 'order' %}
             {% for collection in collections %}
                 {% if collection.category == page.pageCategory %}
@@ -24,6 +25,7 @@ layout: layout-default
                     {% endfor %}
                 {% endif %}
             {% endfor %}
+            </ul>
         </nav>
     </aside>
     <main>

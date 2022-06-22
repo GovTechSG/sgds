@@ -1,5 +1,6 @@
-{ % if include.compTitle % }
+{% if include.compTitle %}
 <h3 class="subtitle fw-bold" id="{{include.compName}}">{{include.compTitle}}</h3>
+{% endif %}
 {% if include.compDescTop %}
 <div class="desc-top">{{include.compDescTop}}</div>
 {% endif %}
@@ -15,7 +16,7 @@
         See Code
 
       </button>
-      <a href="https://www.google.com" class="sgds btn btn-link btn-sm btn-copy" type="button"><i
+      <a href="https://www.google.com" class="sgds btn btn-link btn-sm btn-copy" type="button" aria-label="Copy"><i
           class="bi bi-clipboard"></i></a>
     </h2>
     <div id="collapse-{{include.compName}}" class="accordion-collapse collapse"
