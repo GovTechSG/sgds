@@ -3,7 +3,7 @@ title: Progress Bar
 layout: layout-sidenav
 description: Provide up-to-date feedback on the progress of a workflow or action with simple yet flexible progress bars.
 category: general
-react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/components-progress-bar--default-story
+react-link: ?path=/docs/components-progress-bar--default-story
 github-link: true
 toc: true
 ---
@@ -108,42 +108,30 @@ $progress-bar-transition: width .6s ease !default;
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/progress-bar/anatomy-progress-bar-1.svg" alt="Progress Bar Anatomy">
+                        <img src="{{site.baseurl}}/assets/img/component/progress-bar/anatomy-progressbar.svg" alt="Progress Bar Anatomy">
                     </div>
                 </div>
                 <ol>
                     <li>
-                        <b>Label:</b> Text
+                        <b>Indicator:</b> Tells the users how far along in a process they are in
                     </li>
                 </ol>
             </div>
         </section>
 
-        <!-- Spacing Section -->
-        <section name="section-spacing">
-            <h2 class="title fw-bold" id="spacing">Spacing</h2>
-            <div class="section-sub">
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/progress-bar/spacing-progress-bar-1.svg" alt="Progress Bar Spacing">
-                    </div>
-                </div>
-                <h3 class="subtitle fw-bold" id="within-the-progress-bar">Within the progress bar</h3>
-                <p>Text</p>
-            </div>
-        </section>
 
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Progress bar should be used when:</p>
+            <p class="fw-bold mb-0">Progress bar should be used:</p>
             <ul>
-                <li>Text</li>
+                <li>When you want to show users where they are in a process</li>
+                <li>When you want to amount completed, e.g when a user uploads a document</li>
             </ul>
-            <p class="fw-bold mb-0">Progress bar should not be used when:</p>
+            <p class="fw-bold mb-0">Progress bar should not be used:</p>
             <ol>
                 <li>
-                    Text
+                    As a indicator when users are navigating from page to page
                 </li>
             </ol>
         </section>
@@ -152,14 +140,19 @@ $progress-bar-transition: width .6s ease !default;
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>Title</b><br>
-                Text
+                <b>Keeps progress bars moving</b><br>
+                This allows users to know that their task is progressing. Users may associate a stationary indicator as a stalled process.
+            </p>
+
+            <p>
+                <b>Use consistent progress bars</b><br>
+                Do use one type of indicator bar style and not switch between as this may cause confusion to the user
             </p>
         </section>
 
         <!-- Design token Section -->
         <section name="section-design-tokens">
-            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            <h2 class="title fw-bold" id="design-tokens">Progress bar design tokens</h2>
             {%- highlight sass -%}{{progress-bar-design-tokens}}{%- endhighlight -%}
         </section>
 </div>
