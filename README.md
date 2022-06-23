@@ -123,13 +123,17 @@ git push origin v[new version]
 
 #### Publish to NPM
 
-1. Switch to latest master branch
+#### Publishing pre-released version to NPM 
 
+1. When ready to publish, manually bump on local, the prerelease version with the right tag 
+
+- For alpha tag 
 ```bash
-git checkout master
-git pull
-npm publish
+   npm version prerelease  --preid=alpha 
 ```
+2. Push to 2.0.0-dev branch. It will trigger github action to run .github/workflows/publish-alpha.yml
+
+**NOTE** It is intended that the runner will fail to publish when version is not change. Until version-check allows check for pre-releases version changes.
 
 ## Patch Notes
 
