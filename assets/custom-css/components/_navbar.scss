@@ -10,6 +10,11 @@
             height: 100%;
             gap: 1rem;
         }
+        .navbar-toggler{
+            &:focus{
+                box-shadow: none;
+            }
+        }
     }
 
 }
