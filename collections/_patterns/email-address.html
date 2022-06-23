@@ -10,7 +10,7 @@ toc: true
 <div class="sgds form-group">
     <label class="form-label" for="email">Email Address</label>
     <span class="form-text">Your email will only be used for updates</span>
-    <input class="form-control" type="email" id="email" autocomplete="email" spellcheck="false" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="256" placeholder="Enter email" oninput="setValidation()" />
+    <input class="form-control" type="email" id="email" autocomplete="on" spellcheck="false" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="256" placeholder="Enter email" oninput="setValidation()" />
 </div>
 {% endcapture %}
 
@@ -22,6 +22,7 @@ toc: true
 
     <!-- Pattern Section -->
     <section name="section-pattern">
+        <h2 class="title fw-bold" id="example">Example</h2>
         <div class="section-sub">
             {% include page-component/component-code-snippet.html compName="email-pattern" code=email-pattern %}
         </div>
