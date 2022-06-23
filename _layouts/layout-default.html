@@ -13,11 +13,7 @@
         {% include masthead.html %}
         {% include navigation.html %}
     </div>
-    {% assign container = 'container' %}
-    {% if page.pageCategory %}
-        {% assign container = 'container-fluid' %}
-    {% endif %}
-    <main class="{{container}}">
+    <main aria-label="Main Content">
         {{content}}
     </main>
     {% include footer.html %}
