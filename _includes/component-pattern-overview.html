@@ -1,9 +1,12 @@
 <div class="wrapper wrapper-fluid">
     <header>
       <h1 class="title">{{page.title}}</h1>
-      <label for="search" class="h4">{{page.description}}</label>
+      <div class="h4">{{page.description}}</div>
     </header>
-    <input type="text" class="js-shuffle-search" id="search">
+    <div class="sgds form-group">
+      <label for="search" class="form-label">Search:</label>
+      <input type="text" class="js-shuffle-search form-control" id="search">
+    </div>
   
     <section class="page-component-overview">
       <article>
@@ -26,7 +29,7 @@
               class="card-img-top" alt="{{item.title | append: ' image' }}">
             <div class="card-body">
               <a class="stretched-link link-primary" href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}/">
-                <p class="h5 text-primary card-title">{{item.title}}</p>
+                <div class="h5 text-primary card-title">{{item.title}}</div>
               </a>
               <p class="card-text">{{item.description}}</p>
               {% if item.category == 'mandatory' %}
