@@ -47,7 +47,6 @@
     "@govtechsg/sgds-masthead": "^0.0.9",
     "@popperjs/core": "^2.11.5",
     "bootstrap": "^5.1.3",
-    "flatpickr": "^4.6.9",
     "gsap": "^3.9.1",
     "shufflejs": "^6.0.0"
   }

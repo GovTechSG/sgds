@@ -1,12 +1,13 @@
 .wrapper{
     display: grid;
+    max-width: 1440px;
     margin: 0 auto;
     &-sidenav{
         display: grid;
         gap: 3rem;
         grid-template-columns: 15rem minmax(25rem, 1fr);
         max-width: 100%;
-        padding: 1rem 0;
+        padding: 1rem;
         @include media-breakpoint-down(lg){
             display:block;
             aside{

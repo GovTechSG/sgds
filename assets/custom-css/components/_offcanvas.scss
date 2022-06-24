@@ -7,6 +7,7 @@
     background-color: var(--sgds-primary);
     &-start{
         border: 0;
+        width: 80vw;
     }
     &-header{
         padding: 2.3rem 2.5rem 1rem 1rem;
@@ -60,12 +61,5 @@
         a[target="_blank"]{
             color: var(--sgds-gray-300)
         }
-    }
-
-    &-backdrop{
-        background-color: var(--sgds-primary);
-
-    }
-
-    
+    }    
 }
