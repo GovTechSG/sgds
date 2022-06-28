@@ -2,15 +2,14 @@
 title: Date
 description: Use this pattern when you want to ask users for a specific date, e.g. their date of birth or when something was issued to them.
 react-link: ?path=/docs/components-form-patterns--single-date
-github-link: true
 toc: true
 ---
 
 {% capture single-date-input %}
 <div class="sgds form-group">
-    <label class="form-label" for="date">Date of Birth</label>
+    <label class="form-label" for="dateInput">Date of Birth</label>
     <span class="form-text">E.g 01 June 1980</span>
-    <input class="form-control" type="text" id="day" autocomplete="date" />
+    <input class="form-control" type="text" id="dateInput" autocomplete="on" />
 </div>
 {% endcapture %}
 
@@ -18,15 +17,15 @@ toc: true
 <div class="sgds row">
     <div class="col form-group">
       <label class="form-label" for="day">DD</label>
-      <input class="form-control" type="number" id="day" autocomplete="day" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)" />
+      <input class="form-control" type="number" id="day" autocomplete="on" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)" />
     </div>
     <div class="col form-group">
       <label class="form-label" for="month">MM</label>
-      <input class="form-control" type="number" id="month" autocomplete="month" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
+      <input class="form-control" type="number" id="month" autocomplete="on" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
     </div>
      <div class="col form-group">
       <label class="form-label" for="year">YYYY</label>
-      <input class="form-control" type="number" id="year" autocomplete="year" data-maxlength="4" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
+      <input class="form-control" type="number" id="year" autocomplete="on" data-maxlength="4" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
     </div>
 </div>
 {% endcapture %}
@@ -39,6 +38,7 @@ toc: true
 
     <!-- Pattern Section -->
     <section name="section-pattern">
+        <h2 class="title fw-bold" id="example">Examples</h2>
         <div class="section-sub">
             {% include page-component/component-code-snippet.html compTitle="Single Date Input" compName="single-date-input" code=single-date-input %}
         </div>
@@ -53,15 +53,19 @@ toc: true
         <strong>When to use the date pattern</strong>
         <ul>
             <li>When you require users to fill in dates for your services</li>
-            <ul>
-                <li>State clearly how the data should be filled (e.g. Day Month Year).</li>
-                <li>Give an example of how the date should be filled in (e.g. 01 01 2020 vs 1 1 2020) when using a single form input.</li>
-            </ul>
+            <li>
+                <ul>
+                    <li>State clearly how the data should be filled (e.g. Day Month Year).</li>
+                    <li>Give an example of how the date should be filled in (e.g. 01 01 2020 vs 1 1 2020) when using a single form input.</li>
+                </ul>
+            </li>
             <li>When requesting users to fill in memorable dates</li>
-            <ul>
-                <li>For example, asking for a Date-Of-Birth means you should always have the <code>autocomplete</code> attribute for these 3 fields, <code>bday-day</code>, <code>bday-month</code>and <code>bday-year</code> to bring convenience to users.</li>
-                <li>You will need to include the <code>autocomplete</code> attribute to meet <strong>WCAG 2.1 AA</strong> for production.</li>
-            </ul>
+            <li>
+                <ul>
+                    <li>For example, asking for a Date-Of-Birth means you should always have the <code>autocomplete</code> attribute for these 3 fields, <code>bday-day</code>, <code>bday-month</code> and <code>bday-year</code> to bring convenience to users.</li>
+                    <li>You will need to include the <code>autocomplete</code> attribute to meet <strong>WCAG 2.1 AA</strong> for production.</li>
+                </ul>
+            </li>
         </ul>
         <strong>When not to use the date pattern</strong>
         <ul>

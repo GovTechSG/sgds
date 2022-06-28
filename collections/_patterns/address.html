@@ -2,29 +2,28 @@
 title: Address
 description: Use an address lookup when you are asking users for a Singapore address.
 react-link: ?path=/docs/components-form-patterns--address
-github-link: true
 toc: true
 ---
 
 {% capture address-pattern %}
 <div class="sgds form-group mb-3">
     <label for="postalCode" class="form-label">Postal Code</label>
-    <input type="number" class="form-control" id="postalCode" placeholder="e.g 730317" autocomplete="postalCode" data-maxlength="6" oninput="this.value=this.value.slice(0, this.dataset.maxlength)">
+    <input type="number" class="form-control" id="postalCode" placeholder="e.g 730317" autocomplete="on" data-maxlength="6" oninput="this.value=this.value.slice(0, this.dataset.maxlength)">
 </div>
 <button class="btn btn-primary mb-3" onclick="findAddress()">Find Address</button>
 <div class="sgds form-group mb-3">
     <label for="streetName" class="form-label">Block/Street Name</label>
-    <input type="text" class="form-control" id="streetName" placeholder="e.g. 220 Pasir Ris Drive 50" autocomplete="streetName">
+    <input type="text" class="form-control" id="streetName" placeholder="e.g. 220 Pasir Ris Drive 50" autocomplete="on">
 </div>
 <div class="sgds form-group mb-3">
     <label for="buildingNumber" class="form-label">Building/House Number</label>
     <div id="buildingNumberText" class="form-text">If applicable</div>
-    <input type="text" class="form-control" id="buildingNumber" autocomplete="buildingNumber" aria-describedby="buildingNumberText">
+    <input type="text" class="form-control" id="buildingNumber" autocomplete="on" aria-describedby="buildingNumberText">
 </div>
 <div class="sgds form-group mb-3">
     <label for="unitNumber" class="form-label">Unit Number</label>
     <div id="unitNumberText" class="form-text">If applicable</div>
-    <input type="text" class="form-control" id="unitNumber" autocomplete="unitNumber" aria-describedby="unitNumberText">
+    <input type="text" class="form-control" id="unitNumber" autocomplete="on" aria-describedby="unitNumberText">
 </div>
 {% endcapture %}
 
@@ -36,6 +35,7 @@ toc: true
 
     <!-- Pattern Section -->
     <section name="section-pattern">
+        <h2 class="title fw-bold" id="example">Example</h2>
         <div class="section-sub">
             {% include page-component/component-code-snippet.html compName="address-pattern" code=address-pattern %}
         </div>
