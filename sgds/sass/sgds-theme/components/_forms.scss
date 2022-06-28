@@ -12,14 +12,24 @@
   height: 3rem;
 }
 
-.form-label{
+.form-label {
   margin-bottom: 0;
 }
 
-.form-text{
+.form-text {
   @extend .d-block;
-  font-weight : $font-weight-light;
+  font-weight: $font-weight-light;
   font-size: $h6-font-size;
+}
+
+.form-control{
+  &[aria-describedby="cvvText"], &[aria-describedby="cardNumberText"]{
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+  }
 }
 
 
@@ -32,19 +42,19 @@
         padding-left: 3rem;
       }
 
-      > .form-input-wrapper{
+      > .form-input-wrapper {
         flex: 1 1 auto;
         width: 1%;
-        > input.form-control{
+        > input.form-control {
           border-radius: 5px 0 0 5px !important;
         }
-        &:not(:first-child){
-          > input.form-control{
+        &:not(:first-child) {
+          > input.form-control {
             border-radius: 0px 5px 5px 0px !important;
           }
         }
-        &:not(:first-child):not(:last-child){
-          > input.form-control{
+        &:not(:first-child):not(:last-child) {
+          > input.form-control {
             border-radius: 0px !important;
           }
         }
@@ -73,20 +83,20 @@
         border-bottom-left-radius: 0 !important;
       }
     }
-    .sgds.dropdown{
-      &:first-child{
-        .sgds.btn{
+    .sgds.dropdown {
+      &:first-child {
+        .sgds.btn {
           border-radius: $border-radius 0 0 $border-radius;
         }
       }
-      &:last-child{
-        .sgds.btn{
+      &:last-child {
+        .sgds.btn {
           border-radius: 0 $border-radius $border-radius 0;
         }
       }
     }
-    .sgds.btn.dropdown-toggle-split{
-      &::after{
+    .sgds.btn.dropdown-toggle-split {
+      &::after {
         content: none;
       }
     }
