@@ -8,4 +8,127 @@ github-link: true
 toc: true
 ---
 
-{% include page-component/component-header.html %}
+{% capture default-dropdown %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown Button
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+</div>
+{% endcapture %}
+
+{% capture dropdown-design-tokens %}
+$dropdown-min-width: 10rem !default;
+$dropdown-padding-x: 0 !default;
+$dropdown-padding-y: .5rem !default;
+$dropdown-spacer: .125rem !default;
+$dropdown-font-size: $font-size-base !default;
+$dropdown-color: $body-color !default;
+$dropdown-bg: $white !default;
+$dropdown-border-color: rgba($black, .15) !default;
+$dropdown-border-radius: $border-radius !default;
+$dropdown-border-width: $border-width !default;
+$dropdown-inner-border-radius: subtract($dropdown-border-radius, $dropdown-border-width) !default;
+$dropdown-divider-bg: $dropdown-border-color !default;
+$dropdown-divider-margin-y: $spacer * .5 !default;
+$dropdown-box-shadow: $box-shadow !default;
+$dropdown-link-color: $gray-900 !default;
+$dropdown-link-hover-color: shade-color($dropdown-link-color, 10%) !default;
+$dropdown-link-hover-bg: $gray-200 !default;
+$dropdown-link-active-color: $component-active-color !default;
+$dropdown-link-active-bg: $component-active-bg !default;
+$dropdown-link-disabled-color: $gray-500 !default;
+$dropdown-item-padding-y: $spacer * .25 !default;
+$dropdown-item-padding-x: $spacer !default;
+$dropdown-header-color: $gray-600 !default;
+$dropdown-header-padding: $dropdown-padding-y $dropdown-item-padding-x !default;
+{% endcapture %}
+
+<div class="page-component">
+    {% include page-component/component-header.html %}
+    <section name="section-examples">
+      <h2 class="title fw-bold" id="example">Examples</h2>
+      <div class="section-sub">
+        {% include page-component/component-code-snippet.html compTitle="Default
+        dropdown" compName="default-dropdown" code=default-dropdown %}
+      </div>
+    </section>
+  
+    <!-- Anatomy Section -->
+    <section name="section-anatomy">
+      <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+      <div class="section-sub">
+        <div class="sgds-example-image-container">
+          <div class="sgds-example-image-grid">
+            <img
+              src="{{site.baseurl}}/assets/img/component/dropdown/anatomy-dropdown-1.svg"
+              alt="Dropdown Anatomy"
+            />
+          </div>
+        </div>
+  
+        <ol>
+          <li>
+            <b>Label:</b> Text
+          </li>
+        </ol>
+      </div>
+    </section>
+  
+    <!-- Spacing Section -->
+    <section name="section-spacing">
+      <h2 class="title fw-bold" id="spacing">Spacing</h2>
+      <div class="section-sub">
+        <h3 class="subtitle fw-bold" id="within-the-dropdown">
+          Within the dropdown
+        </h3>
+        <div class="sgds-example-image-container">
+          <div class="sgds-example-image-grid">
+            <img
+              class="img-fluid"
+              src="{{site.baseurl}}/assets/img/component/dropdown/spacing-dropdown-1.svg"
+              alt="Dropdown Spacing"
+            />
+          </div>
+        </div>
+        <p>
+          Text
+        </p>
+      </div>
+    </section>
+  
+    <!-- Usage guidelines Section -->
+    <section name="section-usage-guidelines">
+      <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+      <p class="fw-bold mb-0">Dropdown should be used:</p>
+      <ol>
+        <li>Text</li>
+      </ol>
+      <p class="fw-bold mb-0">Dropdown should not be used:</p>
+      <ol>
+        <li>Text</li>
+      </ol>
+    </section>
+  
+    <!-- Usability guidelines Section -->
+    <section name="section-usability-guidelines">
+      <h2 class="title fw-bold" id="usability-guidelines">
+        Usability guidelines
+      </h2>
+      <p>
+        <b>Label</b><br />
+        Text
+      </p>
+    </section>
+  
+    <section>
+      <h2 class="title fw-bold" id="design-tokens">
+        {{page.title}} design tokens
+      </h2>
+      {%- highlight sass -%}{{dropdown-design-tokens}}{%- endhighlight -%}
+    </section>
+  </div>
