@@ -22,17 +22,6 @@
   font-size: $h6-font-size;
 }
 
-.form-control{
-  &[aria-describedby="cvvText"], &[aria-describedby="cardNumberText"]{
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-  }
-}
-
-
 .sgds {
   &.input-group {
     &[variant="has-icon"] {
