@@ -13,6 +13,7 @@
             aside{
                 display:none;
             }
+            padding: 1rem;
         }
         &.with-toc{
             grid-template-columns: 15rem minmax(25rem, 1fr) 15rem;

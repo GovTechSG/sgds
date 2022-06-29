@@ -11,19 +11,19 @@
         {% endif %}
         <p class="header-component-description {{class}}">{{page.description}}</p>
         <div class="component-source-grid">
-            
-
-            {% if page.category == 'mandatory' %}
-            <div><span class="sgds badge badge-light bg-danger">{{page.category | capitalize}}</span></div>
-            
-            {% elsif page.category %}
-            <div><span class="sgds badge badge-light bg-primary">{{page.category | capitalize}}</span></div>
-            {% else %}
-            {% endif %}
-                
             <div>
-                <i class="bi bi-github"></i> <a href="{{page.github-link}}" target="_blank">View it on Github</a>
+                {% if page.category == 'mandatory' %}
+                <span class="sgds badge badge-light bg-danger">{{page.category | capitalize}}</span>
+                {% else %}
+                <span class="sgds badge badge-light bg-primary">{{page.category | capitalize}}</span>
+                {% endif %}
+                
             </div>
+            {% if page.github-link %}
+            <div>
+                <i class="bi bi-github"></i> <a href="{{site.github-link}}" target="_blank">View it on Github</a>
+            </div>
+            {% endif %}
             {% if page.react-link %}
             <div>
                 <img src="{{site.baseurl}}/assets/img/component/storybook-icon.svg" alt=""> <a href="{{site.react-storybook | append: page.react-link}}" target="_blank">View it on React Storybook</a>

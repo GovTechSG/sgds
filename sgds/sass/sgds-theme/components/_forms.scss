@@ -27,7 +27,8 @@
   &.input-group {
     &[variant="has-icon"] {
       .form-control {
-        border-radius: $input-border-radius !important;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
         padding-left: 3rem;
       }
 
