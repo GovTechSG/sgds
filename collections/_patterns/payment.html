@@ -23,7 +23,7 @@ toc: true
   <div class="sgds col form-group mb-3">
     <label for="cvv" class="form-label">CVV</label>
     <div id="cvvText" class="form-text">The 3-digit number at the back of the card</div>
-    <input type="number" class="form-control" id="cvv" autocomplete="on" aria-describedby="cvvText" data-maxlength="3" oninput="this.value=this.value.slice(0, this.dataset.maxlength)">
+    <input type="text" inputmode="numeric" class="form-control" id="cvv" autocomplete="on" aria-describedby="cvvText" data-maxlength="3" oninput="this.value=this.value.slice(0, this.dataset.maxlength)">
   </div>
 </div>
 {% endcapture %}
