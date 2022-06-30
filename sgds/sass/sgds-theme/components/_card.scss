@@ -10,28 +10,31 @@
             transition-timing-function: $card-transition-timing-function;
             .card-body {
                 display: flex;
-                justify-content: space-between;
-                gap: 2rem;
-                > div:not([class]) {
-                    * {
-                        margin-bottom: 0;
-                        + * {
-                            margin-top: 1rem;
-                        }
-                    }
-                    i {
-                        font-size: 1.5rem;
-                        margin-right: 1rem;
-                    }
+                flex-direction: column;
+                gap: 1rem;
+                i {
+                    font-size: 1.5rem;
+                    margin-right: 1rem;
                 }
-                > input[type] {
-                    margin-top: 0;
+                > * {
+                    margin-bottom: 0;
                 }
             }
             &:hover,
             &.is-active {
                 border-color: transparent;
                 box-shadow: $box-shadow, $card-active-border;
+            }
+            .card-subtitle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+                div {
+                    display: flex;
+                    align-items: center;
+
+                }
             }
             .card-input{
                 input.form-check-input {

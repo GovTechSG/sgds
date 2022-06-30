@@ -1,8 +1,134 @@
 ---
 title: Tooltip
-description: None
 layout: layout-sidenav
+description: Insert description
 category: general
-react: true
+react-link: ?path=/docs/components-tooltip--default-story
+github-link: true
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture tooltip-top %}
+<button type="button" class="sgds btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+  Tooltip on top
+</button>
+{% endcapture %}
+
+{% capture tooltip-bottom %}
+<button type="button" class="sgds btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom">
+  Tooltip on bottom
+</button>
+{% endcapture %}
+
+{% capture tooltip-right %}
+<button type="button" class="sgds btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
+  Tooltip on right
+</button>
+{% endcapture %}
+
+{% capture tooltip-left %}
+<button type="button" class="sgds btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="left" title="Tooltip on left">
+  Tooltip on left
+</button>
+{% endcapture %}
+
+{% capture tooltip-design-tokens %}
+$tooltip-font-size: $font-size-sm !default;
+$tooltip-max-width: 200px !default;
+$tooltip-color: $white !default;
+$tooltip-bg: $gray-600 !default;
+$tooltip-border-radius: $border-radius !default;
+$tooltip-opacity: 1 !default;
+$tooltip-padding-y: $spacer * .5 !default;
+$tooltip-padding-x: $spacer !default;
+$tooltip-margin: 0 !default;
+$tooltip-arrow-width: .8rem !default;
+$tooltip-arrow-height: .4rem !default;
+$tooltip-arrow-color: $tooltip-bg !default;
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+              {% include page-component/component-code-snippet.html compTitle="Top" compName="tooltip-top" code=tooltip-top %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Bottom" compName="tooltip-bottom" code=tooltip-bottom %}
+            </div>
+            <div class="section-sub">
+              {% include page-component/component-code-snippet.html compTitle="Right" compName="tooltip-right" code=tooltip-right %}
+            </div>
+            <div class="section-sub">
+              {% include page-component/component-code-snippet.html compTitle="Left" compName="tooltip-left" code=tooltip-left %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+          <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+          <div class="section-sub">
+              <div class="sgds-example-image-container">
+                  <div class="sgds-example-image-grid">
+                      <img src="{{site.baseurl}}/assets/img/component/tooltip/anatomy-tooltip-1.svg" alt="Tooltip Anatomy">
+                  </div>
+              </div>
+              <ol>
+                  <li>
+                      <b>Container:</b> Serves to house information and depending on situation where you want the tooltip to appear
+                  </li>
+                  <li>
+                    <b>Text:</b> Serves to tell users what the tooltip is about
+                  </li>
+              </ol>
+          </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/tooltip/spacing-tooltip-1.svg" alt="Tooltip Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-tooltip">Within the tooltip</h3>
+                <p>Ensure that there is a min of 16px spacing within the tooltip.</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Tooltip should be used:</p>
+            <ul>
+                <li>Text</li>
+            </ul>
+            <p class="fw-bold mb-0">Tooltip should not be used:</p>
+            <ol>
+                <li>Text</li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Title</b><br>
+                Text
+            </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{tooltip-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>

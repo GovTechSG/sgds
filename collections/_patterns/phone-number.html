@@ -1,0 +1,50 @@
+---
+title: Phone Number
+description: Use this pattern when you need to ask users for their phone number
+toc: true
+---
+
+{% capture phone-number %}
+<div class="sgds form-group">
+    <label class="form-label" for="phone">Phone Number</label>
+    <div class="input-group">
+      <span class="input-group-text">+65</span>
+      <input class="form-control" type="text" id="phone" autocomplete="on" pattern="[0-9]" maxlength="8" />
+    </div>
+</div>
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+    <!-- Generated header from front end matters -->
+    {% include page-component/component-header.html %}
+
+    <!-- Pattern Section -->
+    <section name="section-pattern">
+        <h2 class="title fw-bold" id="example">Example</h2>
+        <div class="section-sub">
+            {% include page-component/component-code-snippet.html compName="phone-number" code=phone-number %}
+        </div>
+    </section>
+
+    <!-- Guidelines Section -->
+    <section name="section-guidelines">
+        <h2 class="title fw-bold" id="guidelines">Guidelines</h2>
+        <p>
+            <strong>Explain the rationale of requesting for users' phone number</strong><br>
+            This allows users to:
+            <ul>
+                <li>Feel assured that their phone number will not be misappropriated</li>
+                <li>Choose which phone number they prefer to use</li>
+            </ul>
+        </p>
+        <p>
+            <strong>Make sure it works for all users</strong>
+            <ul>
+                <li>Your text field should accommodate only numbers and 8 characters</li>
+            </ul>
+        </p>
+    </section>
+
+</div>

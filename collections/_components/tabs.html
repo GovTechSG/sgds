@@ -3,10 +3,11 @@ title: Tabs
 layout: layout-sidenav
 description: Tabs are a navigation element resembling tabbed dividers in a filing cabinet - by clicking a tab, users can easily locate a page containing related content.
 category: general
-react-link: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/?path=/docs/components-tabs--default-story
+react-link: ?path=/docs/components-tabs--default-story
 github-link: true
 toc: true
 ---
+
 {% capture default-tabs %}
 <ul class="sgds nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
@@ -189,46 +190,125 @@ $nav-sgds-tabs-icon-padding: $spacer !default;
         <!-- Anatomy Section -->
         <section name="section-anatomy">
             <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <h3 class="title fw-bold" id="anatomy-default">Default tab</h3>
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-tabs-1.svg" alt="Tabs Anatomy">
+                        <img src="{{site.baseurl}}/assets/img/component/tab/anatomy-defaulttab.svg" alt="default tab">
                     </div>
                 </div>
                 <ol>
                     <li>
-                        <b>Label:</b> Text
+                        <b>Icon (situational):</b> Used as a supporting element for the tab, giving more context to the nature of the tab label
                     </li>
+                    <li>
+                      <b>Label:</b> Used to inform the user what the tab is about. Should always be short and to the point. Should always be centered
+                  </li>
                 </ol>
             </div>
         </section>
 
+        <section name="section-anatomy">
+          <h3 class="title fw-bold" id="anatomy-toggle">Toggle tab</h3>
+          <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/tab/anatomy-toggletab.svg" alt="toggle tab">
+                </div>
+            </div>
+            <ol>
+                <li>
+                    <b>Icon (situational):</b> Used as a supporting element for the tab, giving more context to the nature of the tab label
+                </li>
+                <li>
+                  <b>Label:</b> Used to inform the user what the tab is about. Should always be short and to the point. Should always be centered
+              </li>
+              <li>
+                <b>Number count (situational):</b> Used as a supporting element to the tab. E.g number of notifications
+            </li>
+            </ol>
+        </div>
+      </section>
+
+      <section name="section-anatomy">
+        <h3 class="title fw-bold" id="anatomy-info-toggle">Info toggle tab</h3>
+        <div class="section-sub">
+          <div class="sgds-example-image-container">
+              <div class="sgds-example-image-grid">
+                  <img src="{{site.baseurl}}/assets/img/component/tab/anatomy-infotoggle.svg" alt="info toggle tab">
+              </div>
+          </div>
+          <p>Unlike the other 2 tabs, info toggle tabs are more locked down in design and interaction.
+            It should be used as it is with change in color the only exception</p>
+          <ol>
+              <li>
+                  <b>Icon (situational):</b> Used as a supporting element for the tab, giving more context to the nature of the tab label
+              </li>
+              <li>
+                <b>Label:</b> Used to inform the user what the tab is about. Should always be short and to the point. Should always be centered
+            </li>
+            <li>
+              <b>Number count (situational):</b> Used as a supporting element to the tab. E.g number of users
+          </li>
+          </ol>
+      </div>
+    </section>
+
         <!-- Spacing Section -->
         <section name="section-spacing">
             <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <h3 class="title fw-bold" id="spacing-default">Default tab</h3>
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-tabs-1.svg" alt="Tabs Spacing">
+                        <img src="{{site.baseurl}}/assets/img/component/tab/spacing-defaulttab.svg" alt="default tabs spacing">
                     </div>
                 </div>
-                <h3 class="subtitle fw-bold" id="within-the-card">Within the tabs</h3>
-                <p>Text</p>
+                <p><b>Within the default tabs</b><br/>
+                <p>Ensure that there is at least 8px of vertical spacing between the text and indicator taking into account line height</p>
             </div>
         </section>
+
+        <section name="section-spacing">
+          <h3 class="title fw-bold" id="spacing-toggle">Toggle tab</h3>
+          <div class="section-sub">
+              <div class="sgds-example-image-container">
+                  <div class="sgds-example-image-grid">
+                      <img src="{{site.baseurl}}/assets/img/component/tab/spacing-toggletab.svg" alt="toggle tabs spacing">
+                  </div>
+              </div>
+              <p><b>Within the toggle tabs</b><br/>
+                Ensure that there is at least 16px of horizontal spacing and vertical spacing within the tab</p>
+          </div>
+      </section>
+
+      <section name="section-spacing">
+        <h3 class="title fw-bold" id="spacing-info-toggle">Info toggle tab</h3>
+        <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/tab/spacing-infotoggle.svg" alt="info toggle tabs spacing">
+                </div>
+            </div>
+            <p><b>Within the info toggle tabs</b><br/>
+            Ensure that there is at least 12px of horizontal and vertical spacing within the tab and 8px vertical spacing between the lable and number count</p>
+        </div>
+    </section>
 
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Tabs should be used when:</p>
+            <p class="fw-bold mb-0">Tabs should be used:</p>
             <ul>
-                <li>Text</li>
+                <li>When you want to expose simliar but seperate content</li>
+                <li>When you can seperate the content into clearly labelled sections</li>
+                <li>When you want to expose simliar but seperate content</li>
             </ul>
-            <p class="fw-bold mb-0">Tabs should not be used when:</p>
+            <p class="fw-bold mb-0">Tabs should not be used:</p>
             <ol>
-                <li>
-                    Text
-                </li>
+                <li>When you want to display critical information to the user, content like this should always be displayed upfront</li>
+                <li>When you require users to read the content in a specific order, e.g a step by step guide</li>
+                <li>When users will need to compare information in the different tabs</li>
             </ol>
         </section>
 
@@ -236,9 +316,20 @@ $nav-sgds-tabs-icon-padding: $spacer !default;
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>Title</b><br>
-                Text
+                <b>Keep labels short</b><br>
+                As there will be multiple tabs, it is best to keep labels as short and to the point as possible
             </p>
+
+            <p>
+              <b>Use sparingly</b><br>
+              As tabs hide content, it is best to use them sparingly although they do help to save space. Do consider if the content can be displayed upfront instead of being in a tab. 
+              In some cases, having too may tabs on a page may cause it to load slowly.
+          </p>
+
+          <p>
+            <b>Do not use as a form of page navigation</b><br>
+            Tabs should exclusively be used as a form of content navigation within a given page
+        </p>
         </section>
 
         <!-- Design token Section -->

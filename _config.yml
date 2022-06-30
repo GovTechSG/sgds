@@ -12,6 +12,8 @@ contact-us: "https://form.gov.sg/forms/govtech/5bc440ac507956000fdbae91"
 feedback-form: "https://form.gov.sg/#!/forms/govtech/5bd12c6668dbe7000fff9ace"
 request-component: "https://form.gov.sg/6136ea11658bea0012fc9e80"
 search_placeholder: "What are you looking for?"
+react-storybook: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/
+github-link: https://github.com/GovTechSG/sgds/tree/2.0.0-dev
 
 plugins:
   - jekyll-seo-tag
