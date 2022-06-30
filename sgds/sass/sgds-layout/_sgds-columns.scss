@@ -109,11 +109,11 @@ $column-border-color: $grey-lighter !default;
   @for $i from 1 through 12 {
     .row.is-mobile > &.is-#{$i} {
       flex: none;
-      width: $i / 12 * 100%;
+      width: calc(#{$i} / 12 * 100%);
     }
 
     .row.is-mobile > &.is-offset-#{$i} {
-      margin-left: $i / 12 * 100%;
+      margin-left: calc(#{$i} / 12 * 100%);
     }
   }
 
@@ -211,11 +211,11 @@ $column-border-color: $grey-lighter !default;
     @for $i from 1 through 12 {
       &.is-#{$i}-mobile {
         flex: none;
-        width: $i / 12 * 100%;
+        width: calc(#{$i} / 12 * 100%);
       }
 
       &.is-offset-#{$i}-mobile {
-        margin-left: $i / 12 * 100%;
+        margin-left: calc(#{$i} / 12 * 100%);
       }
     }
   }
@@ -336,12 +336,12 @@ $column-border-color: $grey-lighter !default;
       &.is-#{$i},
       &.is-#{$i}-tablet {
         flex: none;
-        width: $i / 12 * 100%;
+        width: calc(#{$i} / 12 * 100%);
       }
 
       &.is-offset-#{$i},
       &.is-offset-#{$i}-tablet {
-        margin-left: $i / 12 * 100%;
+        margin-left: calc(#{$i} / 12 * 100%);
       }
     }
   }
@@ -441,11 +441,11 @@ $column-border-color: $grey-lighter !default;
     @for $i from 1 through 12 {
       &.is-#{$i}-touch {
         flex: none;
-        width: $i / 12 * 100%;
+        width: calc(#{$i} / 12 * 100%);
       }
 
       &.is-offset-#{$i}-touch {
-        margin-left: $i / 12 * 100%;
+        margin-left: calc(#{$i} / 12 * 100%);
       }
     }
   }
@@ -545,11 +545,11 @@ $column-border-color: $grey-lighter !default;
     @for $i from 1 through 12 {
       &.is-#{$i}-desktop {
         flex: none;
-        width: $i / 12 * 100%;
+        width: calc(#{$i} / 12 * 100%);
       }
 
       &.is-offset-#{$i}-desktop {
-        margin-left: $i / 12 * 100%;
+        margin-left: calc(#{$i} / 12 * 100%);
       }
     }
   }
@@ -649,11 +649,11 @@ $column-border-color: $grey-lighter !default;
     @for $i from 1 through 12 {
       &.is-#{$i}-widescreen {
         flex: none;
-        width: $i / 12 * 100%;
+        width: calc(#{$i} / 12 * 100%);
       }
 
       &.is-offset-#{$i}-widescreen {
-        margin-left: $i / 12 * 100%;
+        margin-left: calc(#{$i} / 12 * 100%);
       }
     }
   }
@@ -753,11 +753,11 @@ $column-border-color: $grey-lighter !default;
     @for $i from 1 through 12 {
       &.is-#{$i}-fullhd {
         flex: none;
-        width: $i / 12 * 100%;
+        width: calc(#{$i} / 12 * 100%);
       }
 
       &.is-offset-#{$i}-fullhd {
-        margin-left: $i / 12 * 100%;
+        margin-left: calc(#{$i} / 12 * 100%);
       }
     }
   }
