@@ -47,7 +47,7 @@
       @for $i from 1 through 12 {
         &.is-#{$i} {
           flex: none;
-          width: $i / 12 * 100%;
+          width: calc(#{$i} / 12 * 100%);
         }
       }
     }

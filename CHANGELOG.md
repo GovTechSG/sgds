@@ -5,18 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.23]
+
+## 🗓️ 27-01-2022
+
+- Added [collapsible masthead](https://designsystem.tech.gov.sg/docs/masthead/)
+
 ## [1.3.22]
+
 ## 🗓️ 15-10-2021
+
 - Added [dropdown with multi-select component](https://designsystem.tech.gov.sg/docs/dropdown/)
 
 ## [1.3.21]
+
 ## 🗓️ 06-09-2021
-- Renamed `sgds-icon/sgds-variables.scss` to `sgds-icon/sgds-icon-variables.scss`  
+
+- Renamed `sgds-icon/sgds-variables.scss` to `sgds-icon/sgds-icon-variables.scss`
 - Fixed duplicate `is-light` classes for tag component
-- [#229](https://github.com/GovTechSG/sgds/issues/229) Resolved hexadecimal for all state colors 
+- [#229](https://github.com/GovTechSG/sgds/issues/229) Resolved hexadecimal for all state colors
 - Fixed alignment helper interpolation
 - Added alignment css variables
-  
+
   `:root{`
 
   `--global-alignment: 1rem;`
@@ -34,32 +44,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added border radius css variables, editing the value (default is `0`) will affect all inputs and button border-radius
 
   `:root{`
-  
+
   `--radius: 0;`
 
   `}`
 
-## [1.3.20] 
+## [1.3.20]
+
 ## 🗓️ 03-08-2021
+
 ### Added 3 default templates
+
 - [Template Overview](https://www.designsystem.gov.sg/templates/)
+
 ## 🗓️ 07-07-2021
-- Fixed sgds step marker height and width properties. 
+
+- Fixed sgds step marker height and width properties.
 - Remove hero banner container width
 
 ## [1.3.19] - 🗓️ 05-07-2021
-### Added New general components 
+
+### Added New general components
+
 - [File upload](https://www.designsystem.gov.sg/docs/file-upload/)
 - [Date picker](https://www.designsystem.gov.sg/docs/datepicker/)
 
 ### New variants
+
 - [Simple 2 level sidenav](https://www.designsystem.gov.sg/docs/side-nav/)
 - [Highlight card](https://www.designsystem.gov.sg/docs/card/)
 
 ## [1.3.18] - 🗓️ 15-04-2021
+
 - Added stepper component. See documentation at https://designsystem.gov.sg/docs for details.
 
 ## [1.3.17] - 🗓️ 27-10-2020
+
 - Added modal documentation.
 
 ## [1.3.16] - 🗓️ 01-10-2020
@@ -67,29 +87,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed left borders for `.sgds-menu-list li ul` elements so side nav is consistent with previous behaviour.
 
 ### Documentation: sgds-menu
+
 - Accessibility fixes for sgds-menu
 - Replace `div.second-level-nav-div` with `li.second-level-nav-div`
 - All `li.second-level-nav-div` nav items should be children of `<ul>`
 
 ### Documentation: sgds-masthead
+
 1. Add aria-label for masthead
 
 ## [1.3.15] - 🗓️ 07-09-2020
+
 - Fixes for input hint text
-- Added is-*color classes for hint text
+- Added is-\*color classes for hint text
 - Removed .success & .error class for hint text
 - Update input & text area documentation
 
 ## [1.3.14] - 🗓️ 15-07-2020
-- update $size-7 paragraph font size to 1.125rem
+
+- update \$size-7 paragraph font size to 1.125rem
 
 ## [1.3.13] - 🗓️ 04-05-2020
+
 - Navbar fixes
 
 ### Docs
+
 - Added tag documentation
 
 ### Fixes and updates
+
 - Update SGDS logo and favicon
 - Fixes for search page
 - Style / layout fixes
@@ -148,15 +175,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - #35 Added color contrast result and examples of `is-*color*` class
 - Updated colors with recommended ratio >= 4.5
-    - `Secondary` -> `#4370cc`
-    - `Warning` -> `#a86500`
-    - `Success` -> `#008649`
-    - `Info` -> `#008196`
-    - `Link` -> `#0070F2`
+
+  - `Secondary` -> `#4370cc`
+  - `Warning` -> `#a86500`
+  - `Success` -> `#008649`
+  - `Info` -> `#008196`
+  - `Link` -> `#0070F2`
 
 - Added instructions for releasing. See [Readme.md](https://github.com/GovTechSG/sgds/blob/master/README.md)
 
 ### Fixes
+
 - Fixed missing gutters (left/right) for `sgds-container`
 
 ## [1.3.6] - 🗓️ 18-10-2019
@@ -172,7 +201,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - #101 Masthead font-size scaling.
 - Masthead link now darkens upon hover.
 - sgds.js no longer initializes a sticky sidebar by default. This feature is not sgds's
-  responsibility and its removal reduces the js library size greatly. Documentation for 
+  responsibility and its removal reduces the js library size greatly. Documentation for
   this feature to follow.
 - Default colours for `info` and `link` classes have been updated.
 - Added more font-weight classes (e.g. `has-text-weight-extra-bold`).
