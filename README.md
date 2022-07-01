@@ -15,7 +15,7 @@
     ...
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/sgds-govtech@{{site.version}}/css/sgds.css"
+        href="https://cdn.jsdelivr.net/npm/@govtechsg/sgds@{{site.version}}/css/sgds.css"
     />
     ...
 </head>
@@ -29,7 +29,7 @@
 <body>
     ...
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@{{site.version}}/js/sgds.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds@{{site.version}}/js/sgds.js"></script>
     ...
 </body>
 ```
@@ -49,14 +49,14 @@ For more information, please refer to the [documentation](https://www.designsyst
 ### NPM
 
 ```sh
-$ npm i sgds-govtech
+$ npm i @govtechsg/sgds
 ```
 
 #### Webpack
 
 ```javascript
-import "sgds-govtech/css/sgds.css";
-import "sgds-govtech/js/sgds"; // Do not use with other web frameworks*
+import "@govtechsg/sgds/css/sgds.css";
+import "@govtechsg/sgds/js/sgds"; // Do not use with other web frameworks*
 ```
 
 ##### Frontend frameworks
