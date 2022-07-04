@@ -8,4 +8,386 @@ github-link: true
 toc: true
 ---
 
-{% include page-component/component-header.html %}
+{% capture default-dropdown %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Default dropdown
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+</div>
+{% endcapture %}
+
+{% capture dropdown-variants %}
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  primary
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  secondary
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  success
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  info
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  warning
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  danger
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  light
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  dark
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  outline-primary
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  outline-secondary
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  outline-success
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  outline-info
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-outline-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  outline-warning
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-outline-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  outline-danger
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  outline-light
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+<button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  outline-dark
+</button>
+<ul class="dropdown-menu">
+  <li><a class="dropdown-item" href="#">Action</a></li>
+  <li><a class="dropdown-item" href="#">Another action</a></li>
+  <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+{% endcapture %}
+
+{% capture dropdown-sizes %}
+<div class="dropdown">
+    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Large
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Small
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+</div>
+{% endcapture %}
+
+{% capture dark-dropdown %}
+<div class="dropdown">
+  <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dark dropdown menu
+  </button>
+  <ul class="dropdown-menu dropdown-menu-dark">
+    <li><a class="dropdown-item active" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+{% endcapture %}
+
+{% capture dropdown-directions %}
+<div class="d-flex">
+  <div class="dropup me-2">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropup
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+  <div class="dropend me-2">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropend
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+  <div class="dropstart">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropstart
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+</div>
+{% endcapture %}
+
+{% capture right-menu %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Right-aligned menu
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+</div>
+{% endcapture %}
+
+{% capture dropdown-menu-behavior %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+      Clickable outside
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+      Clickable inside
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
+      Manual close
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+</div>
+{% endcapture %}
+
+{% capture dropdown-design-tokens %}
+$dropdown-min-width: 10rem !default;
+$dropdown-padding-x: 0 !default;
+$dropdown-padding-y: .5rem !default;
+$dropdown-spacer: .125rem !default;
+$dropdown-font-size: $font-size-base !default;
+$dropdown-color: $body-color !default;
+$dropdown-bg: $white !default;
+$dropdown-border-color: rgba($black, .15) !default;
+$dropdown-border-radius: $border-radius !default;
+$dropdown-border-width: $border-width !default;
+$dropdown-inner-border-radius: subtract($dropdown-border-radius, $dropdown-border-width) !default;
+$dropdown-divider-bg: $dropdown-border-color !default;
+$dropdown-divider-margin-y: $spacer * .5 !default;
+$dropdown-box-shadow: $box-shadow !default;
+$dropdown-link-color: $gray-900 !default;
+$dropdown-link-hover-color: shade-color($dropdown-link-color, 10%) !default;
+$dropdown-link-hover-bg: $gray-200 !default;
+$dropdown-link-active-color: $component-active-color !default;
+$dropdown-link-active-bg: $component-active-bg !default;
+$dropdown-link-disabled-color: $gray-500 !default;
+$dropdown-item-padding-y: $spacer * .25 !default;
+$dropdown-item-padding-x: $spacer !default;
+$dropdown-header-color: $gray-600 !default;
+$dropdown-header-padding: $dropdown-padding-y $dropdown-item-padding-x !default;
+{% endcapture %}
+
+<div class="page-component">
+    {% include page-component/component-header.html %}
+    <section name="section-examples">
+      <h2 class="title fw-bold" id="example">Examples</h2>
+      <div class="section-sub">
+        {% include page-component/component-code-snippet.html compTitle="Default dropdown" compName="default-dropdown" code=default-dropdown %}
+      </div>
+      <div class="section-sub">
+        {% include page-component/component-code-snippet.html compTitle="Variants" compName="dropdown-variants" code=dropdown-variants %}
+      </div>
+      <div class="section-sub">
+        {% include page-component/component-code-snippet.html compTitle="Sizes" compName="dropdown-sizes" code=dropdown-sizes %}
+      </div>
+      <div class="section-sub">
+        {% include page-component/component-code-snippet.html compTitle="Dark dropdown menu" compName="dark-dropdown" code=dark-dropdown %}
+      </div>
+      <div class="section-sub">
+        {% include page-component/component-code-snippet.html compTitle="Dropdown directions" compName="dropdown-directions" code=dropdown-directions %}
+      </div>
+      <div class="section-sub">
+        {% include page-component/component-code-snippet.html compTitle="Right-aligned menu" compName="right-menu" code=right-menu %}
+      </div>
+      <div class="section-sub">
+        {% include page-component/component-code-snippet.html compTitle="Dropdown menu behavior" compName="dropdown-menu-behavior" code=dropdown-menu-behavior %}
+      </div>
+    </section>
+  
+    <!-- Anatomy Section -->
+    <section name="section-anatomy">
+      <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+      <div class="section-sub">
+        <div class="sgds-example-image-container">
+          <div class="sgds-example-image-grid">
+            <img
+              src="{{site.baseurl}}/assets/img/component/dropdown/anatomy-dropdown-1.svg"
+              alt="Dropdown Anatomy"
+            />
+          </div>
+        </div>
+  
+        <ol>
+          <li>
+            <b>Label:</b> Text
+          </li>
+        </ol>
+      </div>
+    </section>
+  
+    <!-- Spacing Section -->
+    <section name="section-spacing">
+      <h2 class="title fw-bold" id="spacing">Spacing</h2>
+      <div class="section-sub">
+        <h3 class="subtitle fw-bold" id="within-the-dropdown">
+          Within the dropdown
+        </h3>
+        <div class="sgds-example-image-container">
+          <div class="sgds-example-image-grid">
+            <img
+              class="img-fluid"
+              src="{{site.baseurl}}/assets/img/component/dropdown/spacing-dropdown-1.svg"
+              alt="Dropdown Spacing"
+            />
+          </div>
+        </div>
+        <p>
+          Text
+        </p>
+      </div>
+    </section>
+  
+    <!-- Usage guidelines Section -->
+    <section name="section-usage-guidelines">
+      <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+      <p class="fw-bold mb-0">Dropdown should be used:</p>
+      <ol>
+        <li>Text</li>
+      </ol>
+      <p class="fw-bold mb-0">Dropdown should not be used:</p>
+      <ol>
+        <li>Text</li>
+      </ol>
+    </section>
+  
+    <!-- Usability guidelines Section -->
+    <section name="section-usability-guidelines">
+      <h2 class="title fw-bold" id="usability-guidelines">
+        Usability guidelines
+      </h2>
+      <p>
+        <b>Label</b><br />
+        Text
+      </p>
+    </section>
+  
+    <section>
+      <h2 class="title fw-bold" id="design-tokens">
+        {{page.title}} design tokens
+      </h2>
+      {%- highlight sass -%}{{dropdown-design-tokens}}{%- endhighlight -%}
+    </section>
+  </div>
