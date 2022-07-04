@@ -1,4 +1,4 @@
-import "../sass/sgds.scss";
+import "../../sass/sgds.scss";
 import "../fonts/sgds-icons.svg";
 import "../fonts/sgds-icons.ttf";
 import "../fonts/sgds-icons.woff";

@@ -1,6 +1,6 @@
 {
   "name": "@govtechsg/sgds",
-  "version": "1.3.24",
+  "version": "1.4.0",
   "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
     "css",
     "fonts",
     "js",
-    "sgds/sass"
+    "sass"
   ],
   "scripts": {
     "build": "npm run packagedownloads && npm run build:site && bundle exec jekyll build",
