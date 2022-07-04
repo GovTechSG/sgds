@@ -8,7 +8,7 @@ toc: true
 {% capture address-pattern %}
 <div class="sgds form-group mb-3">
     <label for="postalCode" class="form-label">Postal Code</label>
-    <input type="number" class="form-control" id="postalCode" placeholder="e.g 730317" autocomplete="on" data-maxlength="6" oninput="this.value=this.value.slice(0, this.dataset.maxlength)">
+    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="postalCode" placeholder="e.g 730317" autocomplete="on" maxlength="6" onkeypress="return onlyNumberKey(event)">
 </div>
 <button class="btn btn-primary mb-3" onclick="findAddress()">Find Address</button>
 <div class="sgds form-group mb-3">
@@ -73,5 +73,12 @@ toc: true
         .then((json) => 
             streetName.value = json.results[0].ADDRESS
         );
+    }
+    function onlyNumberKey( evt ) {
+        // Only ASCII character in that range allowed
+        var ASCIICode = ( evt.which ) ? evt.which : evt.keyCode
+        if ( ASCIICode > 31 && ( ASCIICode < 48 || ASCIICode > 57 ) )
+            return false;
+        return true;
     }
 </script>
