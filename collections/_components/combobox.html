@@ -1,19 +1,19 @@
 ---
-title: Typeahead
+title: Combobox
 layout: layout-sidenav
-description: Typeahead provides hints and lists of possible choices to the user while they search for something or fill a form.
+description: Combobox provides hints and lists of possible choices to the user while they search for something or fill a form.
 category: general
-react-link: ?path=/docs/components-typeahead--default-story
+react-link: ?path=/docs/components-combobox--default-story
 github-link: true
 toc: true
 ---
-{% capture default-typeahead %}
+{% capture default-Combobox %}
 <div class="sgds form-group mb-2">
-    <label for="defaultTypeahead" class="form-label">Select a fruit</label>
-    <div class="sgds combobox" variant="has-icon">
-        <input type="text" class=" form-control dropdown-toggle" id="defaultTypeahead" data-bs-toggle="dropdown" aria-expanded="false" aria-describedby="defaultTypeahead">
+    <label for="defaultCombobox" class="form-label">Select a fruit</label>
+    <div class="sgds combobox" >
+        <input type="text" class="form-control dropdown-toggle" id="defaultCombobox" data-bs-toggle="dropdown" aria-expanded="false" aria-describedby="defaultCombobox">
         <i class="bi bi-search form-control-icon"></i>
-        <ul class="dropdown-menu my-2" aria-labelledby="defaultTypeahead">
+        <ul class="dropdown-menu my-2" aria-labelledby="defaultCombobox">
             <li><a class="dropdown-item" href="#">Apple</a></li>
             <li><a class="dropdown-item" href="#">Orange</a></li>
             <li><a class="dropdown-item" href="#">Banana</a></li>
@@ -32,7 +32,7 @@ toc: true
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Example</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compName="default-typeahead" code=default-typeahead %}
+                {% include page-component/component-code-snippet.html compName="default-Combobox" code=default-Combobox %}
             </div>
         </section>
 
@@ -42,7 +42,7 @@ toc: true
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-typeahead-1.svg" alt="Typeahead Anatomy">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-Combobox-1.svg" alt="Combobox Anatomy">
                     </div>
                 </div>
                 <ol>
@@ -59,10 +59,10 @@ toc: true
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-typeahead-1.svg" alt="Typeahead Spacing">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-Combobox-1.svg" alt="Combobox Spacing">
                     </div>
                 </div>
-                <h3 class="subtitle fw-bold" id="within-the-typeahead">Within the typeahead</h3>
+                <h3 class="subtitle fw-bold" id="within-the-Combobox">Within the Combobox</h3>
                 <p>Text</p>
             </div>
         </section>
@@ -70,11 +70,11 @@ toc: true
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Typeahead should be used when:</p>
+            <p class="fw-bold mb-0">Combobox should be used when:</p>
             <ul>
                 <li>Text</li>
             </ul>
-            <p class="fw-bold mb-0">Typeahead should not be used when:</p>
+            <p class="fw-bold mb-0">Combobox should not be used when:</p>
             <ol>
                 <li>
                     Text
