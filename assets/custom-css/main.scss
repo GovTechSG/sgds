@@ -6,8 +6,8 @@
 $family-sans-serif: 'Source Sans Pro', BlinkMacSystemFont, -apple-system, "Segoe UI", sans-serif;
 $body-color: #323232;
 
-@import "../../sgds/sass/sgds-customise/all";
-@import "../../sgds/sass/sgds-base/all";
+@import "./sass/sgds-customise/all";
+@import "./sass/sgds-base/all";
 @import "grid";
 @import "navbar";
 @import "sgds-example";

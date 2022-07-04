@@ -18,7 +18,7 @@ permalink: /docs/customise-sgds/
 
 <p>
 	The Sass source files for sgds can be found under 
-	<code>node_modules/sgds-govtech/sass</code>:
+	<code>node_modules/@govtechsg/sgds/sass</code>:
 </p>
 
 {%- highlight plaintext  -%}
@@ -26,7 +26,7 @@ site-folder/
 ├── scss
 │   └── custom.scss
 └── node_modules/
-    └── sgds-govtech/sass/
+    └── @govtechsg/sgds/sass/
         └── sgds.scss
 {%- endhighlight -%}
 
@@ -63,10 +63,10 @@ $warning: red;
 $sgds-font-path: "../../../fonts";
 
 // Import all of sgds
-@import "../node_modules/sgds-govtech/sgds/sass/sgds.scss";
+@import "../node_modules/@govtechsg/sgds/sass/sgds.scss";
 
 // If using Webpack
-@import "~sgds-govtech/sgds/sass/sgds.scss";
+@import "~@govtechsg/sgds/sass/sgds.scss";
 {% endhighlight%}
 
 <p>or import individual components as needed:</p>
@@ -82,19 +82,19 @@ $warning: red;
 $sgds-font-path: "../../../fonts";
 
 // Required sass files
-@import "../node_modules/sgds-govtech/sgds/sass/sgds-customise/all";
-@import "../node_modules/sgds-govtech/sgds/sass/sgds-base/all";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-customise/all";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-base/all";
 
 // Optional
-@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-masthead";
-@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-navbar";
-@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-side-navigation";
-@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-footer";
-@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-button";
-@import "../node_modules/sgds-govtech/sgds/sass/sgds-components/sgds-accordion";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-components/sgds-masthead";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-components/sgds-navbar";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-components/sgds-side-navigation";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-components/sgds-footer";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-components/sgds-button";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-components/sgds-accordion";
 
 // If using Webpack
-@import "~sgds-govtech/sgds/sass/...";
+@import "~@govtechsg/sgds/sass/...";
 {% endhighlight%}
 
 <h4 id="font-path-override">Overriding <code>$sgds-font-path</code> to properly load icons</h4>
@@ -127,7 +127,7 @@ $sgds-font-path: "../../../fonts";
 
 {% highlight plaintext %}
 node_modules/
-└── sgds-govtech/
+└── @govtechsg/sgds/
     ├── fonts/
     │   └── font files
     └── sgds/
