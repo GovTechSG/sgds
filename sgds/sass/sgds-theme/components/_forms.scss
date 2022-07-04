@@ -1,16 +1,15 @@
 @import "../../bootstrap/forms";
 
 
-.form-label{
+.form-label {
   margin-bottom: 0;
 }
 
-.form-text{
+.form-text {
   @extend .d-block;
-  font-weight : $font-weight-light;
+  font-weight: $font-weight-light;
   font-size: $h6-font-size;
 }
-
 
 .sgds {
   &.input-group {

@@ -12,7 +12,8 @@
   "files": [
     "sgds/sass",
     "sgds/sgds.css",
-    "sgds/sgds.scss"
+    "sgds/sgds.scss",
+    "sgds/sgds.css.map"
   ],
   "scripts": {
     "build": "npm run packagedownloads && npm run build:site && bundle exec jekyll build",
