@@ -6,7 +6,7 @@ description: >-
 logo: /assets/img/logo_sgds.png
 
 # Site data
-sgds-version: 1.3.23
+sgds-version: 1.4.0
 report-vulnerability: "https://tech.gov.sg/report_vulnerability"
 contact-us: "https://form.gov.sg/forms/govtech/5bc440ac507956000fdbae91"
 feedback-form: "https://form.gov.sg/#!/forms/govtech/5bd12c6668dbe7000fff9ace"

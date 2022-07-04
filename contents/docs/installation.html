@@ -16,10 +16,10 @@ permalink: /docs/installation/
     <!-- jsDelivr -->
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/sgds-govtech@{{ site.sgds-version }}/css/sgds.css"
+        href="https://cdn.jsdelivr.net/npm/@govtechsg/sgds@{{ site.sgds-version }}/css/sgds.css"
     />
     <!-- Or unpkg -->
-    <link rel="stylesheet" href="https://unpkg.com/sgds-govtech@{{ site.sgds-version }}/css/sgds.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@govtechsg/sgds@{{ site.sgds-version }}/css/sgds.css" />
     ...
 </head>
 {% endhighlight %}
@@ -36,9 +36,9 @@ permalink: /docs/installation/
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <!-- jsDelivr -->
-    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@{{ site.sgds-version }}/js/sgds.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds@{{ site.sgds-version }}/js/sgds.js"></script>
     <!-- Or unpkg -->
-    <script src="https://unpkg.com/sgds-govtech@{{ site.sgds-version }}/js/sgds.js"></script>
+    <script src="https://unpkg.com/@govtechsg/sgds@{{ site.sgds-version }}/js/sgds.js"></script>
     ...
 </body>
 {% endhighlight %}
@@ -60,21 +60,21 @@ permalink: /docs/installation/
         <code>npm install sgds-govtech</code>
     </li>
     <li>
-        This will download sgds into <code>node_modules/sgds-govtech</code> in your current folder:
+        This will download sgds into <code>node_modules/@govtechsg/sgds</code> in your current folder:
 {%- highlight bash -%}
-site/node_modules/sgds-govtech/ 
+site/node_modules/@govtechsg/sgds/ 
   ├── css/
   ├── fonts/
   ├── js/
-  ├── * sgds/sass/
+  ├── sass/
 {%- endhighlight -%}
         <i>* SGDS Sass source files, for <a href="/docs/customise-sgds">advanced usage</a>.</i>
     </li>
     <li>
         If you use a module bundler like Webpack, import sgds in your entry point: 
 {% highlight javascript %}
-import "sgds-govtech/css/sgds.css"; 
-import "sgds-govtech/js/sgds"; // Do not use with other web frameworks!
+import "@govtechsg/sgds/css/sgds.css"; 
+import "@govtechsg/sgds/js/sgds"; // Do not use with other web frameworks!
 {% endhighlight %}
         <i>*Note that usage with frameworks such as React, Vue or Angular is discouraged since they
         manipulate the DOM in their own environments. Framework-specific 

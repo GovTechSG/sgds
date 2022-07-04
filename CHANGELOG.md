@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0]
+
+## 🗓️ 04-07-2022
+
+- Change package name to ```@govtechsg/sgds```
+- Updated npm folder structure 
+
+Updated documentation page for: 
+- [Getting started](https://www.designsystem.tech.gov.sg/docs/getting-started/)
+- [Installation](https://www.designsystem.tech.gov.sg/docs/installation/)
+- [Customise with Sass](https://www.designsystem.tech.gov.sg/docs/customise-sgds/)
+
 ## [1.3.23]
 
 ## 🗓️ 27-01-2022
