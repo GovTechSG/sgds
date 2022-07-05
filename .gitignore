@@ -20,9 +20,9 @@ node_modules
 /fonts
 /js
 /contents/testing
-sgds/sgds.css.map
+css/sgds.css.map
 assets/js/*.js
 assets/js/*.js.map
 assets/sgds.js
 assets/sgds.js.map
-sgds/sgds.css
+css/sgds.css

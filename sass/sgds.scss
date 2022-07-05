@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+// Configuration
+@import "bootstrap/functions";
+@import "sgds-theme/sgds-variables";
+@import "bootstrap/mixins";
+@import "bootstrap/utilities";
+
+
+$all-colors: map-merge-multiple($primarys, $secondarys,  $purples,  $reds, $yellows, $greens,  $cyans);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "color": map-merge(
+      map-get($utilities, "color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "color"), "values"),
+          (
+            $all-colors
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "background-color": map-merge(
+      map-get($utilities, "background-color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "background-color"), "values"),
+          (
+            $all-colors
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+
+
+// Layout & components
+@import "bootstrap/root";
+@import "sgds-theme/root";
+@import "sgds-theme/mixins";
+@import "sgds-theme/reboot";
+@import "sgds-theme/type";
+@import "bootstrap/images";
+@import "bootstrap/containers";
+@import "bootstrap/grid";
+
+//Custom sgds themes
+@import "sgds-theme/components/table";
+@import "sgds-theme/components/forms";
+@import "sgds-theme/forms";
+@import "sgds-theme/components/footer";
+@import "sgds-theme/components/buttons";
+@import "sgds-theme/components/transitions";
+@import "sgds-theme/components/datepicker";
+@import "sgds-theme/components/dropdown";
+@import "sgds-theme/components/fileupload";
+@import "sgds-theme/components/navbar";
+@import "sgds-theme/components/card";
+@import "sgds-theme/components/accordion";
+@import "sgds-theme/components/breadcrumb";
+@import "sgds-theme/components/pagination";
+@import "sgds-theme/components/list-group";
+@import "sgds-theme/components/badge";
+@import "sgds-theme/components/alert";
+@import "sgds-theme/components/progress";
+@import "sgds-theme/components/close";
+@import "sgds-theme/components/sidenav";
+@import "sgds-theme/components/stepper";
+@import "sgds-theme/components/toasts";
+@import "sgds-theme/components/modal";
+@import "sgds-theme/components/tabs";
+@import "sgds-theme/components/tooltip";
+@import "sgds-theme/components/popover";
+@import "sgds-theme/components/carousel";
+@import "sgds-theme/components/spinners";
+@import "sgds-theme/components/offcanvas";
+@import "sgds-theme/components/placeholders";
+@import "sgds-theme/components/combobox";
+//Helpers
+@import "sgds-theme/components/helpers";
+//Utilites
+@import "bootstrap/utilities/api";
+
+
+// scss-docs-end import-stack
