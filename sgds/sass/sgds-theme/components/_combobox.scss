@@ -1,6 +1,6 @@
 
 .sgds{
     &.combobox {
-        @extend .input-group
+        @extend .form-control-group
     }
 }
