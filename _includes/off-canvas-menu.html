@@ -8,17 +8,46 @@
         <nav class="sidenav sgds list-unstyled open2">
             {% for item in site.data.navigation %}
             {%- assign class = nil -%}
-            {%- if page.url contains item.title -%} 
-                {%- assign class = 'active' -%} 
+            {%- if page.url contains item.title -%}
+            {%- assign class = 'active' -%}
             {%- endif -%}
 
             <li class="sidenav-item">
+                {% if item.has-collection == false %}
                 <a type="button" class="sgds btn {{class}}" href="{{item.url}}">
                     {{item.title | capitalize}}
                 </a>
+                {% endif %}
+                {% for collection in site.collections %}
+                {% if item.title == collection.category %}
+                <button class="sgds btn collapsed {{ class }}" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExampleD" aria-expanded="false" aria-controls="collapseExampleD">
+                    {{ collection.category | capitalize}}
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="collapse show" id="collapseExampleD" data-bs-parent=".open2">
+                    <ul class="list-unstyled">
+                        {% if page.url != item.url %}
+                        {% assign class="inactive" %}
+                        {% endif %}
+                        <li><a href="{{item.url}}" class="nav-link {{class}}">Overview</a></li>
+                        {% for item in site[collection.label] %}
+                        {%- assign itemClass = 'inactive' -%}
+                        {% if page.title == item.title %}
+                        {% assign itemClass = 'active' %}
+                        {%- endif -%}
+                        <li><a href="{{item.url}}" class="nav-link {{itemClass}}">{{item.title}}</a></li>
+                        {% endfor%}
+                    </ul>
+                </div>
+
+                {% endif %}
+
+                {% endfor %}
+
             </li>
             {% endfor %}
-            
+
         </nav>
     </div>
     <hr>
