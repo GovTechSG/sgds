@@ -8,8 +8,10 @@
         <nav class="sidenav sgds list-unstyled open2">
             {% for item in site.data.navigation %}
             {%- assign class = nil -%}
+            {%- assign show = nil -%}
             {%- if page.url contains item.title -%}
             {%- assign class = 'active' -%}
+            {%- assign show = 'show' -%}
             {%- endif -%}
 
             <li class="sidenav-item">
@@ -19,13 +21,14 @@
                 </a>
                 {% endif %}
                 {% for collection in site.collections %}
+                {% assign id = collection.category | append: '-off-canvas-collapse' %}
                 {% if item.title == collection.category %}
                 <button class="sgds btn collapsed {{ class }}" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseExampleD" aria-expanded="false" aria-controls="collapseExampleD">
+                    data-bs-target="#{{id}}" aria-expanded="false" aria-controls="{{id}}">
                     {{ collection.category | capitalize}}
                     <i class="bi bi-chevron-down"></i>
                 </button>
-                <div class="collapse show" id="collapseExampleD" data-bs-parent=".open2">
+                <div class="collapse {{ show }}" id="{{id}}" data-bs-parent=".open2">
                     <ul class="list-unstyled">
                         {% if page.url != item.url %}
                         {% assign class="inactive" %}

@@ -22,26 +22,14 @@ plugins:
   
 collections_dir: collections
 collections:
-  # about:
-  #   permalink: /:collection/
-  #   output: true
-  #   category: about
   components:
-    permalink: /:collection/:name/
+    permalink: /:collection/:name
     output: true
     category: components
   patterns:
-    permalink: /:collection/:name/
+    permalink: /:collection/:name
     output: true
     category: patterns
-  # templates: 
-  #   permalink: /:collection/
-  #   output: true
-  #   category: templates
-  # theme-customiser: 
-  #   permalink: 'https://customiser.designsystem.gov.sg'
-  #   output: true
-  #   category: theme customiser
 
 # set all patterns collection to use certain layouts
 defaults:
