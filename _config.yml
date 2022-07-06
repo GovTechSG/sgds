@@ -19,6 +19,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-redirect-from
   - jekyll-toc
+  - jekyll-get-json
   
 collections_dir: collections
 collections:
@@ -75,3 +76,7 @@ toc:
   sublist_class: toc-sublist # Default: no class for sublists
   item_class: toc-item # Default: "toc-entry"
   item_prefix: item- # Default: "toc-":
+    
+jekyll_get_json: 
+  - data: npm-data-prev-ver
+    json: 'https://registry.npmjs.org/-/v1/search?text=@govtechsg/sgds'

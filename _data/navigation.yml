@@ -1,3 +1,4 @@
+# navigation data for navigation.html and off-canvas-menu.html
 - title: about
   url: /about/
   has-collection: false
@@ -15,4 +16,8 @@
   target: '_blank'
   beta: true
   has-collection: false
+- title: get started
+  url: '/#/'
+  has-collection: false
+
 
