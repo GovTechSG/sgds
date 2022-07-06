@@ -1,7 +1,522 @@
 ---
 title: Modal
 layout: layout-sidenav
+description: The modal component inform users about a specific task and may contain critical information which users then have to make a decision. E.g Accepting the T&Cs during signup
 category: general
-react: true
+react-link: ?path=/docs/components-modal--default-story
+github-link: true
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture modal-design-tokens %}
+$modal-inner-padding:$spacer !default;
+$modal-footer-margin-between:.5rem !default; $modal-dialog-margin:.5rem
+!default; $modal-dialog-margin-y-sm-up:1.75rem !default;
+$modal-title-line-height:$line-height-base !default; $modal-content-color:null
+!default; $modal-content-bg:$white !default;
+$modal-content-border-color:rgba($black, .2) !default;
+$modal-content-border-width:$border-width !default;
+$modal-content-border-radius:$border-radius-lg !default;
+$modal-content-inner-border-radius:subtract($modal-content-border-radius,
+$modal-content-border-width) !default;
+$modal-content-box-shadow-xs:$box-shadow-sm !default;
+$modal-content-box-shadow-sm-up:$box-shadow !default; $modal-backdrop-bg: $black
+!default; $modal-backdrop-opacity: .5 !default; $modal-header-border-color:
+$border-color !default; $modal-footer-border-color: $modal-header-border-color
+!default; $modal-header-border-width: $modal-content-border-width !default;
+$modal-footer-border-width: $modal-header-border-width !default;
+$modal-header-padding-y: $modal-inner-padding !default; $modal-header-padding-x:
+$modal-inner-padding !default; $modal-header-padding: $modal-header-padding-y
+$modal-header-padding-x !default; // Keep this for backwards compatibility
+$modal-sm: 300px !default; $modal-md: 500px !default; $modal-lg: 800px !default;
+$modal-xl: 1140px !default; $modal-fade-transform: translate(0, -50px) !default;
+$modal-show-transform: none !default; $modal-transition: transform .3s ease-out
+!default; $modal-scale-transform: scale(1.02) !default;
+{% endcapture %}
+
+{% capture modal-default %}
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title" id="exampleModalLabel">
+        <i class="bi bi-exclamation-circle left me-3"></i>Modal title
+      </h3>
+      <button type="button" class="btn-close" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">Woohoo, you're reading this text in a modal!</div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark sgds">Close</button>
+      <button type="button" class="btn btn-primary sgds">Save Changes</button>
+    </div>
+  </div>
+</div>
+{% endcapture %}
+
+{% capture modal-default-demo %}
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary sgds"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  Launch default modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">
+          <i class="bi bi-exclamation-circle left me-2"></i>Modal title
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">This is a modal</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark sgds"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary sgds">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endcapture %}
+
+{% capture size-demo %}
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary sgds"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModalSmall"
+>
+  Launch small modal
+</button>
+<button
+  type="button"
+  class="btn btn-primary sgds"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModalMedium"
+>
+  Launch large modal
+</button>
+<button
+  type="button"
+  class="btn btn-primary sgds"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModalLarge"
+>
+  Launch Extra large modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModalSmall"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">
+          <i class="bi bi-exclamation-circle left me-2"></i>Modal title
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">This is a modal</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark sgds"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary sgds">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModalMedium"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">
+          <i class="bi bi-exclamation-circle left me-2"></i>Modal title
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">This is a modal</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark sgds"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary sgds">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModalLarge"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">
+          <i class="bi bi-exclamation-circle left me-2"></i>Modal title
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">This is a modal</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark sgds"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary sgds">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endcapture %}
+
+{% capture scrollable-demo %}
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModalScrollable"
+>
+  Launch scrollable modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModalScrollable"
+  tabindex="-1"
+  aria-labelledby="exampleModalScrollableTitle"
+  aria-modal="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalScrollableTitle">
+          <i class="bi bi-exclamation-circle left me-2"></i>Modal title
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          TLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id
+          egestas libero. Proin sed erat sed lectus efficitur rutrum condimentum
+          ac orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+          ut vehicula diam. Cras placerat placerat aliquam. Cras semper risus
+          sed libero feugiat, at luctus ipsum pellentesque. Vivamus posuere leo
+          dolor, vel ornare justo convallis quis. Quisque volutpat aliquet
+          maximus. Nulla nibh nibh, malesuada non cursus eu, mollis a tellus.
+          Etiam ante purus, tincidunt sed quam porta, semper tincidunt diam. In
+          hac habitasse platea dictumst. Proin auctor feugiat mollis. Quisque
+          sit amet sem elementum, pulvinar quam sit amet, tristique metus.
+          Suspendisse potenti. Aliquam blandit et diam vitae pulvinar. Sed
+          vestibulum eget sapien sit amet vestibulum. Lorem ipsum dolor sit
+          amet, consectetur adipiscing elit. Vivamus semper porta enim, sed
+          viverra eros auctor ac. Nulla consequat maximus lorem, condimentum
+          consequat mi. Maecenas malesuada volutpat consequat. Praesent tempor
+          in risus ut commodo. Proin ut velit blandit, tincidunt velit id,
+          finibus urna. Vestibulum a ligula tortor. Etiam id felis odio. Nunc
+          interdum placerat ante ut fermentum. Morbi vitae nisi a tellus
+          hendrerit imperdiet vel in elit. Nam eget enim ultricies urna
+          tristique vehicula. Pellentesque tempor nunc eu diam elementum, eget
+          egestas odio viverra. Integer in sapien urna. Cras rhoncus, neque eget
+          auctor ultricies, tortor tortor pharetra purus, vitae ullamcorper
+          tellus sem a justo. Ut egestas, felis quis vestibulum elementum, velit
+          purus varius massa, ac dignissim nibh libero at massa. Donec non
+          maximus est, a facilisis nulla. Phasellus a tortor dignissim, auctor
+          lorem eget, tristique urna. Aenean efficitur nunc sed sodales
+          scelerisque. Praesent maximus pharetra nisi, dignissim elementum
+          ligula volutpat ut. Vivamus sagittis tincidunt augue, vitae sagittis
+          ligula dictum eu. Vestibulum aliquam augue arcu, eget bibendum urna
+          posuere sed. Fusce vulputate velit sit amet enim tempor aliquam sed eu
+          ante. Nam sit amet dui ipsum. Etiam ac arcu lectus. Praesent pretium
+          neque erat, at placerat augue cursus id. Integer cursus erat sit amet
+          lectus tristique vehicula. Ut id justo quis leo malesuada porta non
+          vel ante. Maecenas eget nisl tellus. Vivamus porttitor in nisl
+          vulputate blandit. Suspendisse id imperdiet neque. Integer et
+          convallis eros. Mauris tellus ligula, placerat efficitur porttitor ut,
+          sagittis at enim. Sed pulvinar ipsum purus. Nullam eleifend
+          scelerisque mauris, vitae consequat enim eleifend non. Aliquam
+          suscipit egestas tellus nec aliquet. Morbi a bibendum lorem. Vivamus
+          magna sapien, viverra quis maximus sed, finibus vitae est. Donec
+          mollis pretium arcu, at sodales nisi pretium vel. Quisque a imperdiet
+          enim. Suspendisse feugiat sagittis quam, vitae feugiat lorem aliquam
+          sit amet. Duis convallis consequat elit sed bibendum. Sed aliquam
+          vehicula dolor vitae gravida. Nulla ut diam in nibh pharetra commodo
+          at in purus.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark sgds"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endcapture %}
+
+{% capture fullscreen-demo %}
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary sgds"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModalFullscreen"
+>
+  Full screen
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModalFullscreen"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">
+          <i class="bi bi-exclamation-circle left me-2"></i>Modal title
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">This is a modal</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark sgds"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary sgds">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endcapture %}
+
+<div class="page-component">
+  {% include page-component/component-header.html %}
+  <section name="section-examples">
+    <h2 class="title fw-bold" id="example">Example</h2>
+    <div class="section-sub">
+      {% include page-component/component-code-snippet.html compTitle="Default
+      Modal" compName="modal-default" code=modal-default %}
+    </div>
+
+    <div class="section-sub">
+      {% include page-component/component-code-snippet.html compTitle="Default
+      modal demo" compName="modal-default-demo" code=modal-default-demo %}
+    </div>
+
+    <div class="section-sub">
+      {% include page-component/component-code-snippet.html compTitle="Size"
+      compName="size-demo" code=size-demo %}
+    </div>
+
+    <div class="section-sub">
+      {% include page-component/component-code-snippet.html
+      compTitle="Scrollable" compName="scrollable-demo" code=scrollable-demo %}
+    </div>
+
+    <div class="section-sub">
+      {% include page-component/component-code-snippet.html
+      compTitle="Fullscreen" compName="fullscreen-demo" code=fullscreen-demo %}
+    </div>
+
+    <!-- Add addtional section-sub for more variants -->
+  </section>
+
+  <!-- Anatomy Section -->
+  <section name="section-anatomy">
+    <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+    <div class="section-sub">
+      <div class="sgds-example-image-container">
+        <div class="sgds-example-image-grid">
+          <img
+            src="{{site.baseurl}}/assets/img/component/modal/anatomy-modal.svg"
+            alt="Modal Anatomy"
+          />
+        </div>
+      </div>
+
+      <ol>
+        <li>
+          <b>Icon (situational):</b> Serves to give more context to what the
+          modal is about
+        </li>
+        <li><b>Title:</b> Serves to tell users what the modal is about</li>
+        <li>
+          <b>Close icon (situational):</b> Allows users to close the modal
+          manually without the use of CTA buttons
+        </li>
+        <li>
+          <b>Content:</b> Serves to explain what the model is about. For e.g
+          error messaging or confirmation messaging
+        </li>
+        <li><b>CTA buttons:</b> Serves to let users take a action or cancel</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Spacing Section -->
+  <section name="section-spacing">
+    <h2 class="title fw-bold" id="spacing">Spacing</h2>
+    <div class="section-sub">
+      <h3 class="subtitle fw-bold" id="within-the-modal">
+        Within the modal
+      </h3>
+      <div class="sgds-example-image-container">
+        <div class="sgds-example-image-grid">
+          <img
+            class="img-fluid"
+            src="{{site.baseurl}}/assets/img/component/modal/spacing-modal.svg"
+            alt="Modal Spacing"
+          />
+        </div>
+      </div>
+      <p>
+        Ensure that there is at least 24px of spacing within the modal and
+        between content elements
+      </p>
+    </div>
+  </section>
+
+  <!-- Usage guidelines Section -->
+  <section name="section-usage-guidelines">
+    <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+    <p class="fw-bold mb-0">Modals should be used:</p>
+    <ol>
+      <li>
+        When you want to interrupt a user’s current task to direct the user’s
+        attention to something important. For example, confirming when a user
+        wants to submit a form, user sign up and login, or highlighting an
+        important event with an infographic upon entering your website
+      </li>
+      <li>When you want to highlight something</li>
+    </ol>
+    <p class="fw-bold mb-0">Badges should not be used:</p>
+    <ol>
+      <li>
+        When you need to present simple notifications to the user. It should
+        always accompany something actionable by the user such as confirming or
+        filling in a form. If you need to notifiy the user, use something less
+        intrusive such as the notification component instead
+      </li>
+    </ol>
+  </section>
+
+  <!-- Usability guidelines Section -->
+  <section name="section-usability-guidelines">
+    <h2 class="title fw-bold" id="usability-guidelines">
+      Usability guidelines
+    </h2>
+    <p>
+      <b>Avoid long sentences</b><br />
+      Minimize badge text length to one- to three-words. Content should be clear
+      and concise, and easy to identify
+    </p>
+    <p>
+      <b>Users may confuse badges as buttons</b><br />
+      Avoid triggering interaction with a badge as they may be confused as small
+      buttons
+    </p>
+    <p>
+      <b
+        >Badges should include tooltips, where necessary, to enhance user
+        understanding</b
+      ><br />
+      For example, a badge is used in conjunction with an icon
+    </p>
+  </section>
+
+  <section>
+    <h2 class="title fw-bold" id="design-tokens">
+      {{page.title}} design tokens
+    </h2>
+    {%- highlight sass -%}{{modal-design-tokens}}{%- endhighlight -%}
+  </section>
+</div>

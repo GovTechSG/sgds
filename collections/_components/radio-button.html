@@ -2,6 +2,158 @@
 title: Radio Button
 description: Radio buttons allow the user to select one option from a set while seeing all available options.
 layout: layout-sidenav
-category: form
-react: true
+category: general
+react-link: ?path=/docs/components-form-formcheck--default-radio
+github-link: true
+toc: true
 ---
+
+{% capture radio-button-examples %}
+<div class="row">
+    <div class="col">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" value="" id="radioDefault" />
+            <label class="form-check-label" for="radioDefault">
+                Default
+            </label>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" value="" id="radioActive" checked />
+            <label class="form-check-label" for="radioActive">
+                Active
+            </label>
+        </div>   
+    </div>
+    <div class="col">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" value="" id="radioDisabled" disabled />
+            <label class="form-check-label" for="radioDisabled">
+                Disabled
+            </label>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture radio-button-design-tokens %}
+$form-check-input-width: 1.125em !default;
+$form-check-min-height: $font-size-base * $line-height-base !default;
+$form-check-padding-start: $form-check-input-width+.5em !default;
+$form-check-margin-bottom: .125rem !default;
+$form-check-label-color: null !default;
+$form-check-label-cursor: null !default;
+$form-check-transition: null !default;
+$form-check-input-active-filter: brightness(90%) !default;
+$form-check-input-bg: $input-bg !default;
+$form-check-input-border: 1px solid rgba($black, .25) !default;
+$form-check-input-border-radius: .25em !default;
+$form-check-radio-border-radius: 50% !default;
+$form-check-input-focus-border: $input-focus-border-color !default;
+$form-check-input-focus-box-shadow: $input-btn-focus-box-shadow !default;
+$form-check-input-checked-color: $component-active-color !default;
+$form-check-input-checked-bg-color: $component-active-bg !default;
+$form-check-input-checked-border-color: $form-check-input-checked-bg-color !default;
+$form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='#{$form-check-input-checked-color}' viewBox='0 0 16 16'><path d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/></svg>") !default;
+$form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>") !default;
+$form-check-input-indeterminate-color: $component-active-color !default;
+$form-check-input-indeterminate-bg-color: $component-active-bg !default;
+$form-check-input-indeterminate-border-color: $form-check-input-indeterminate-bg-color !default;
+$form-check-input-indeterminate-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-indeterminate-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/></svg>") !default;
+$form-check-input-disabled-opacity: .5 !default;
+$form-check-label-disabled-opacity: $form-check-input-disabled-opacity !default;
+$form-check-btn-check-disabled-opacity: $btn-disabled-opacity !default;
+$form-check-inline-margin-end: 1rem !default;
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Examples</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compName="radio-button-examples" code=radio-button-examples %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/radio-button/anatomy-radio-button-1.svg" alt="Radio Button Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Radio:</b> Allows users to select and deselect the radio button
+                    </li>
+                    <li>
+                        <b>Label:</b> Informs the user what the option is for the radio button
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/radio-button/spacing-radio-button-1.svg" alt="Radio Button Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-radio-button">Within the radio button</h3>
+                <p>Ensure that there is at least 16px of horizontal spacing between the radio button and the label</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Radio buttons should be used when:</p>
+            <ul>
+                <li>When you want users to only select obe item from a list of options</li>
+            </ul>
+            <p class="fw-bold mb-0">Radio buttons should not be used when:</p>
+            <ol>
+                <li>
+                    When you want users to select multiple options. Using the checkbox component would be more appropriate.
+                </li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>List available options verically</b><br>
+                It is recommended to list options vertically as horizontal listings may confuse users and make it difficult to tell which label belongs to which option
+            </p>
+            <p>
+                <b>Use logical labels</b><br>
+                Ensure that labels for radio buttons and groups are clear to the user
+            </p>
+            <p>
+                <b>Logical ordering</b><br>
+                Ensure that options provided are organised in a meaningful way as this would help users to find the options easily
+            </p>
+            <p>
+                <b>Ensure there is enough spacing</b><br>
+                Space options out and ensure there is adequate space for touch devices or mobile screens
+            </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">Radio button design tokens</h2>
+            {%- highlight sass -%}{{radio-button-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>

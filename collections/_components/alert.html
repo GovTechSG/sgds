@@ -3,28 +3,130 @@ title: Alert
 layout: layout-sidenav
 description: Alerts provide short, timely, and relevant information for your users.
 category: general
-react-link: true
-vue-link: true
+react-link: ?path=/docs/components-alert--default-story
 github-link: true
 toc: true
 ---
+
+{% capture alert-design-tokens %}
+$alert-padding-y: $spacer !default;
+$alert-padding-x: $spacer !default;
+$alert-margin-bottom: 1rem !default;
+$alert-border-radius: $border-radius !default;
+$alert-link-font-weight: $font-weight-bold !default;
+$alert-border-width: $border-width !default;
+$alert-bg-scale: -80% !default;
+$alert-border-scale: -70% !default;
+$alert-color-scale: 40% !default;
+$alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width of x plus default padding on either side
+{% endcapture %}
+
 {% capture default-alert %}
 <div role="alert" class="sgds alert alert-primary fade d-flex align-items-center show">
     <div>
-        <i class="bi bi-exclamation-circle me-4"></i>This is a primary alert—check it out!
+        <i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!
     </div>
 </div>
 {% endcapture %}
+
+{% capture icon-alert %}
+<div role="alert" class="fade d-flex align-items-center alert alert-primary show sgds">
+    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+</div>
+<div role="alert" class="fade d-flex align-items-center alert alert-secondary show sgds">
+    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+</div>
+<div role="alert" class="fade d-flex align-items-center alert alert-success show sgds">
+    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+</div>
+<div role="alert" class="fade d-flex align-items-center alert alert-danger show sgds">
+    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+</div>
+<div role="alert" class="fade d-flex align-items-center alert alert-warning show sgds">
+    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+</div>
+<div role="alert" class="fade d-flex align-items-center alert alert-info show sgds">
+    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+</div>
+<div role="alert" class="fade d-flex align-items-center alert alert-light show sgds">
+    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+</div>
+<div role="alert" class="fade d-flex align-items-center alert alert-dark show sgds">
+    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+</div>
+{% endcapture %}
+
+{% capture link-alert %}
+<div role="alert" class="fade d-flex align-items-center alert alert-primary show sgds">
+    <div>
+        <i class="bi bi-exclamation-circle me-2"></i>
+        This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
+        it a click if you like.
+    </div>
+</div>
+<div role="alert" class="fade d-flex align-items-center alert alert-secondary show sgds">
+    <div>
+        <i class="bi bi-exclamation-circle me-2"></i>
+        This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
+        it a click if you like.
+    </div>
+</div>
+<div role="alert" class="fade d-flex align-items-center alert alert-success show sgds">
+    <div>
+        <i class="bi bi-exclamation-circle me-2"></i>
+        This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
+        it a click if you like.
+    </div>
+</div>
+<div role="alert" class="fade d-flex align-items-center alert alert-danger show sgds">
+    <div>
+        <i class="bi bi-exclamation-circle me-2"></i>
+        This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
+        it a click if you like.
+    </div>
+</div>
+<div role="alert" class="fade d-flex align-items-center alert alert-warning show sgds">
+    <div>
+        <i class="bi bi-exclamation-circle me-2"></i>
+        This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
+        it a click if you like.
+    </div>
+</div>
+{% endcapture %}
+
+{% capture additional-alert %}
+<div role="alert" class="fade d-flex align-items-center alert alert-success show sgds">
+    <i class="bi bi-exclamation-circle me-4"></i>
+    <div>
+        <div class="alert-heading h4">Hey, nice to see you</div>
+        <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer
+            so that you can see how spacing within an alert works with this kind of content.</p>
+        <hr>
+        <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture dismissable-alert %}
+<div role="alert" class="fade d-flex align-items-center alert alert-primary alert-dismissible show sgds">
+    <button type="button" class="btn-close btn-sm" aria-label="Close alert"></button>
+    <i class="bi bi-exclamation-circle me-4"></i>
+    <div>
+        <div class="alert-heading h4">Oh snap! You got an error!</div>
+        <p class="mb-0">Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
+            eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+    </div>
+</div>
+{% endcapture %}
+
 <div class="page-component">
-
     {% include page-component/component-header.html %}
-
     <section name="section-examples">
-        <h3 class="title fw-bold" id="example">Example</h3>
+        <h2 class="title fw-bold" id="example">Example</h2>
         <div class="section-sub">
             {%
             include page-component/component-code-snippet.html
-            compTitle="Default Alert"
+            compTitle="Default alert"
             compName="default-alert"
             code=default-alert
             %}
@@ -32,10 +134,118 @@ toc: true
         <div class="section-sub">
             {%
             include page-component/component-code-snippet.html
-            compTitle="Default Alert"
-            compName="default-alert"
-            code=default-alert
+            compTitle="With link"
+            compName="link-alert"
+            code=link-alert
             %}
+        </div>
+
+        <div class="section-sub">
+            {%
+            include page-component/component-code-snippet.html
+            compTitle="Additional content"
+            compName="additional-alert"
+            code=additional-alert
+            %}
+        </div>
+
+        <div class="section-sub">
+            {%
+            include page-component/component-code-snippet.html
+            compTitle="Dismissable"
+            compName="dismissable-alert"
+            code=dismissable-alert
+            %}
+        </div>
+        <!-- Add addtional section-sub for more variants -->
+    </section>
+
+    <!-- Anatomy Section -->
+    <section name="section-anatomy">
+        <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+        <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/alert/anatomy-alert-1.svg" alt="Alert Anatomy">
+                </div>
+            </div>
+
+            <ol>
+                <li>
+                    <b>Icon (situational):</b> Serves to give more context to the alert
+                </li>
+                <li>
+                    <b>Text:</b> Serves to tell users what the alert is about
+                </li>
+                <li>
+                    <b>Close icon (situational):</b> Can be used as a close button to allow users to dismiss the alert
+                </li>
+                <li>
+                    <b>Container:</b> Serves to house the content of the alert. Width and height will vary depending on
+                    the amount of content within
+                </li>
+            </ol>
         </div>
     </section>
+
+    <!-- Spacing Section -->
+    <section name="section-spacing">
+        <h2 class="title fw-bold" id="spacing">Spacing</h2>
+        <div class="section-sub">
+            <h3 class="subtitle fw-bold" id="within-the-alert">Within the alert</h3>
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/alert/spacing-alert-1.svg" alt="Alert Spacing">
+                </div>
+            </div>
+            <p>Ensure that there is a min of 16px vertical spacing and 24px horizontal spacing within
+                the alert and 16px spacing between icon and text. Base height 64px</p>
+        </div>
+    </section>
+
+
+    <!-- Usage guidelines Section -->
+    <section name="section-usage-guidelines">
+        <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+        <p class="fw-bold mb-0">Alerts should be used:</p>
+        <ol>
+            <li>When you need system status messaging - The alert may be in the form of a notification that keeps users
+                informed of the status of a system. This may or may not require the user to take action and/or respond.
+                Some examples of this can be in the form of errors, warnings or generic updates for the users.</li>
+        </ol>
+        <p class="fw-bold mb-0">Alerts should not be used:</p>
+        <ol>
+            <li>
+                For validation errors - Alerts should not be used for validation errors, these should be displayed on
+                the component that the user is on
+            </li>
+            <li>
+                Multiple alerts - There should not be multiple alerts on a single page. E.g A notification alert and a
+                error/warning alert. Use the one that is most important to the user.
+            </li>
+        </ol>
+    </section>
+
+    <!-- Usability guidelines Section -->
+    <section name="section-usability-guidelines">
+        <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+        <p>
+            <b>Do not use multiple notifications on a page</b><br>
+            This may overwhelm or annoy users and may result in them ignoring the notification altogether
+        </p>
+        <p>
+            <b>Dismissable alerts</b><br>
+            Avoid triggering interaction with a badge as they may be confused as small buttons
+        </p>
+        <p>
+            <b>Proper context</b><br>
+            Do not use alerts that are not related to a user’s goal
+        </p>
+    </section>
+
+    <section>
+        <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+        {%- highlight sass -%}{{alert-design-tokens}}{%- endhighlight -%}
+    </section>
+
 </div>

@@ -13,11 +13,12 @@
         {% include masthead.html %}
         {% include navigation.html %}
     </div>
-    <main>
+    <main aria-label="Main Content">
         {{content}}
     </main>
-    <footer></footer>
-    <script src="/assets/js/bundle.js"></script>
-    <script src="/assets/js/vendor.js"></script>
+    {% include footer.html %}
+    <script src="{{site.baseurl}}/assets/js/bundle.js"></script>
+    <script src="{{site.baseurl}}/assets/js/vendor.js"></script>
+    
 </body>
 </html>

@@ -1,0 +1,84 @@
+---
+title: Email Address
+description: Use this pattern when you need to ask users for their email address.
+react-link: ?path=/docs/components-form-patterns--email
+toc: true
+---
+
+{% capture email-pattern %}
+<div class="sgds form-group">
+    <label class="form-label" for="email">Email Address</label>
+    <span class="form-text">Your email will only be used for updates</span>
+    <input class="form-control" type="email" id="email" autocomplete="on" spellcheck="false" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="256" placeholder="Enter email" oninput="setValidation()" />
+</div>
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+    <!-- Generated header from front end matters -->
+    {% include page-component/component-header.html %}
+
+    <!-- Pattern Section -->
+    <section name="section-pattern">
+        <h2 class="title fw-bold" id="example">Example</h2>
+        <div class="section-sub">
+            {% include page-component/component-code-snippet.html compName="email-pattern" code=email-pattern %}
+        </div>
+    </section>
+
+    <!-- Usage Guidelines Section -->
+    <section name="section-usage-guidelines">
+        <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+        <strong>When to use the email pattern</strong>
+        <ul>
+            <li>When you need to collect a user's email address</li>
+        </ul>
+        <strong>When not to use the email pattern</strong>
+        <ul>
+            <li>Do not ask for user's email address if it is not necessary</li>
+        </ul>
+
+    </section>
+
+    <!-- Usability Guidelines Section -->
+    <section name="section-usability-guidelines">
+        <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+        <p>
+            <strong>Explain the rationale of requesting for user's email address</strong><br>
+            This allows users to:
+            <ul>
+                <li>Feel assured that their email address will not be misappropriated</li>
+                <li>Choose which email address they prefer to use</li>
+            </ul>
+        </p>
+        <p>
+            <strong>Make sure it works for all users</strong><br>
+            You text field should accommodate the maximum length of email addresses (256 characters long, including punctuation)
+        </p>
+        <p>
+            <strong>Guide users to enter their email address</strong><br>
+            Make it easier for users by:
+            <ul>
+                <li>Allowing them to copy and paste their email address</li>
+                <li>Setting the type attribute to email so that the correct keyboard is displayed</li>
+                <li>Setting the spellcheck attribute to false so that their email addresses are not spell checked by the browser or device</li>
+                <li>Setting the autocomplete attribute so that browsers can fill in their email address if they have entered in previously</li>
+                <li>You will need to include the autocomplete attribute to meet WCAG 2.1 AA for production</li>
+            </ul>
+        </p>
+    </section>
+</div>
+
+<script>
+    function setValidation() {
+        let ele = document.getElementById("email")
+        if (/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(ele.value)) {
+            ele.classList.remove("is-invalid")
+            ele.classList.add("is-valid")
+        } else {
+            ele.classList.remove("is-valid")
+            ele.classList.add("is-invalid")
+        }
+    }
+</script>

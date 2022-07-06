@@ -1,8 +1,137 @@
 ---
 title: Quantity Toggle
 layout: layout-sidenav
+description: The quantity toggle component is used to increase or decrease an incremental venue, usually best used when the user needs to enter or adjust the quantity of a selected item.
 category: general
-react: true
-img: 'quantity-toggle.png'
+react-link: ?path=/docs/components-quantitytoggle--default-story
+github-link: true
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture quantity-toggle-left-disabled %}
+<div class="input-group" variant="quantity-toggle">
+    <button type="button" class="btn btn-primary btn-sm sgds" disabled><i class="bi bi-dash"></i></button>
+    <input id="quantityLeftDisabled" type="number" class="form-control text-center" value="0">
+    <button type="button" class="btn btn-primary btn-sm sgds" onclick="increment('LeftDisabled')"><i class="bi bi-plus"></i></button>
+</div>
+{% endcapture %}
+
+{% capture quantity-toggle-right-disabled %}
+<div class="input-group" variant="quantity-toggle">
+    <button type="button" class="btn btn-primary btn-sm sgds" onclick="decrement('RightDisabled')"><i class="bi bi-dash"></i></button>
+    <input id="quantityRightDisabled" type="number" class="form-control text-center" value="1">
+    <button type="button" class="btn btn-primary btn-sm sgds" disabled><i class="bi bi-plus"></i></button>
+</div>
+{% endcapture %}
+
+{% capture quantity-toggle-left-right-disabled %}
+<div class="input-group" variant="quantity-toggle">
+    <button type="button" class="btn btn-primary btn-sm sgds" disabled" disabled><i class="bi bi-dash"></i></button>
+    <input id="quantityLeftRightDisabled" type="number" class="form-control text-center" value="2" disabled>
+    <button type="button" class="btn btn-primary btn-sm sgds" disabled><i class="bi bi-plus"></i></button>
+</div>
+{% endcapture %}
+
+{% capture quantity-toggle-enabled %}
+<div class="input-group" variant="quantity-toggle">
+    <button type="button" class="btn btn-primary btn-sm sgds" onclick="decrement('Enabled')"><i class="bi bi-dash"></i></button>
+    <input id="quantityEnabled" type="number" class="form-control text-center" value="3">
+    <button type="button" class="btn btn-primary btn-sm sgds" onclick="increment('Enabled')"><i class="bi bi-plus"></i></button>
+</div>
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Left disabled" compName="quantity-toggle-left-disabled" code=quantity-toggle-left-disabled %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Right disabled" compName="quantity-toggle-right-disabled" code=quantity-toggle-right-disabled %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Left & right disabled" compName="quantity-toggle-left-right-disabled" code=quantity-toggle-left-right-disabled %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Enabled" compName="quantity-toggle-enabled" code=quantity-toggle-enabled %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/quantity-toggle/anatomy-quantity-toggle-1.svg" alt="Quantity Toggle Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Quantity field:</b> Informs the user what the current value is.
+                    </li>
+                    <li>
+                        <b>Button:</b> Allows users to increase or decrease a value.
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/quantity-toggle/spacing-quantity-toggle-1.svg" alt="Quantity Toggle Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-quantity-toggle">Within the quantity toggle</h3>
+                <p>Ensure that there is at least 16px of horizontal spacing withi the quantity toggle.</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Quantity toggle should be used:</p>
+            <ul>
+                <li>When the numeric field needs to be adjusted by a small amount that can be done with only a few clicks.</li>
+            </ul>
+            <p class="fw-bold mb-0">Quantity toggle should not be used:</p>
+            <ul>
+                <li>The numeric field can take a large range of values.</li>
+            </ul>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Ensure that a default value is shown within the field.</b><br>
+                List the current value of the input so that user is able to know how much the value should increase/decrease upon clicking on up/down button.
+            </p>
+            <p>
+                <b>Enable the user to also choose to type a number in the field.</b><br>
+                User may prefer to type the value instead of clicking on the buttons, so such options should remain enabled.
+            </p>
+        </section>
+</div>
+
+<script>
+    function decrement(val) {
+        let input = document.getElementById("quantity" + val)
+        input.value = parseInt(input.value) - 1
+    }
+
+    function increment(val) {
+        let input = document.getElementById("quantity" + val)
+        input.value = parseInt(input.value) + 1
+    }
+</script>

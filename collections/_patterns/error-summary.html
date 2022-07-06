@@ -1,0 +1,63 @@
+---
+title: Error Summary
+description: This shows a summary of errors the user has made at the top of the page.
+toc: true
+---
+
+{% capture error-summary %}
+<div role="alert" class="sgds alert alert-danger border border-2 border-danger">
+    <h3 class="text-dark">There is a problem with your submission</h3>
+    <a class="alert-link" href="#">The date format entered is wrong</a>
+    <br />
+    <a class="alert-link" href="#">Address must be filled in</a>
+    <br />
+    <a class="alert-link" href="#">Email address is not valid</a>
+</div>
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+    <!-- Generated header from front end matters -->
+    {% include page-component/component-header.html %}
+
+    <!-- Pattern Section -->
+    <section name="section-pattern">
+        <h2 class="title fw-bold" id="example">Example</h2>
+        <div class="section-sub">
+            {% include page-component/component-code-snippet.html compName="error-summary" code=error-summary %}
+        </div>
+    </section>
+
+    <!-- Usage Guidelines Section -->
+    <section name="section-usage-guidelines">
+        <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+        <strong>When to use the error summary pattern</strong>
+        <ul>
+            <li>When you need to show users a summary of errors that they have made, usually upon submission of aa form</li>
+            <li>When you want to be able to link to the specific error on a page</li>
+        </ul>
+        <strong>When not to use the error summary pattern</strong>
+        <ul>
+            <li>It should never be used as a standalone for error messaging. If you require the error summary, it should always be used together with inline validation</li>
+        </ul>
+
+    </section>
+
+    <!-- Usability Guidelines Section -->
+    <section name="section-usability-guidelines">
+        <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+        <p>
+            <strong>Error summary must always be at the top</strong><br>
+            This is to ensure that users will see the error summary when the page loads
+        </p>
+        <p>
+            <strong>Clear and concise message</strong><br>
+            This ensures that the users know exactly what errors there are and are able to rectify them. Having unclear messaging may annoy the user and lead to fustration
+        </p>
+        <p>
+            <strong>Link to error</strong><br>
+            Users will be able to quickly access the errors and rectify them without having to go through the entire page
+        </p>
+    </section>
+</div>

@@ -1,8 +1,212 @@
 ---
 title: Side Navigation
-description: Secondary navigation at the side to aid users in locating site content.
 layout: layout-sidenav
-category: standard
-react: true
+description: The side navigation is used to display a list of links to move between pages within a related category. It is used as a secondary form of navigation where the primary navigation is located hierachically above the page frame.
+category: general
+react-link: ?path=/docs/components-navigation-sidenav--default-story
+github-link: true
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture side-navigation-icon %}
+<nav class="sidenav sgds list-unstyled open1">
+    <li class="sidenav-item">
+        <button class="sgds btn collapsed active" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExampleA"
+            aria-expanded="false" aria-controls="collapseExampleA" >
+            <i class="bi bi-layers"></i>Sub menu
+            <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="collapse show" id="collapseExampleA" data-bs-parent=".open1">
+            <ul class="list-unstyled">
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+                <li><a href="#" class="nav-link active">Sub menu item</a></li>
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+            </ul>
+        </div>
+    </li>
+    <li class="sidenav-item">
+        <button class="sgds btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExampleB"
+            aria-expanded="false" aria-controls="collapseExampleB" >
+            <i class="bi bi-layers"></i>Sub menu
+            <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="collapse" id="collapseExampleB" data-bs-parent=".open1">
+            <ul class="list-unstyled">
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+            </ul>
+        </div>
+    </li>
+    <li class="sidenav-item">
+        <button class="sgds btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExampleC"
+            aria-expanded="false" aria-controls="collapseExampleC" >
+            <i class="bi bi-layers"></i>Sub menu
+            <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="collapse" id="collapseExampleC" data-bs-parent=".open1">
+            <ul class="list-unstyled">
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+            </ul>
+        </div>
+    </li>
+</nav>
+{% endcapture %}
+
+{% capture side-navigation-no-icon %}
+<nav class="sidenav sgds list-unstyled open2">
+    <li class="sidenav-item">
+        <button class="sgds btn collapsed active" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExampleD"
+            aria-expanded="false" aria-controls="collapseExampleD" >
+            Sub menu
+            <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="collapse show" id="collapseExampleD" data-bs-parent=".open2">
+            <ul class="list-unstyled">
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+                <li><a href="#" class="nav-link active">Sub menu item</a></li>
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+            </ul>
+        </div>
+    </li>
+    <li class="sidenav-item">
+        <button class="sgds btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExampleE"
+            aria-expanded="false" aria-controls="collapseExampleE" >
+            Sub menu
+            <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="collapse" id="collapseExampleE" data-bs-parent=".open2">
+            <ul class="list-unstyled">
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+            </ul>
+        </div>
+    </li>
+    <li class="sidenav-item">
+        <button class="sgds btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExampleF"
+            aria-expanded="false" aria-controls="collapseExampleF" >
+            Sub menu
+            <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="collapse" id="collapseExampleF" data-bs-parent=".open2">
+            <ul class="list-unstyled">
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+                <li><a href="#" class="nav-link">Sub menu item</a></li>
+            </ul>
+        </div>
+    </li>
+</nav>
+{% endcapture %}
+
+{% capture side-navigation-design-tokens %}
+$sidenav-color: $primary !default;
+$sidenav-fontsize: 1rem !default;
+$sidenav-width: auto !default;
+$sidenav-item-spacing: 1rem !default;
+$sidenav-btn-border-width: $navbar-border-bottom-height !default;
+$sidenav-btn-padding-x: 0.5rem;
+$sidenav-btn-padding-y: 0.5rem;
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="With icon" compName="side-navigation-icon" code=side-navigation-icon %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="With no icon" compName="side-navigation-no-icon" code=side-navigation-no-icon %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/side-navigation/anatomy-side-navigation-1.svg" alt="Side Navigation Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Indicator:</b> Used when it is active, this allows the user to know what page/item they are on
+                    </li>
+                    <li>
+                        <b>Sub menu label (expanded):</b> Serve to tell the user what the page is about
+                    </li>
+                    <li>
+                        <b>Icon (situational):</b> Used when there are sub menu items to indicate that sub menu can be expanded or collapsed
+                    </li>
+                    <li>
+                        <b>Sub menu item label:</b> Serve to tell the user what the item is about
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <h3 class="subtitle fw-bold" id="within-outside-sub-menu">Within & outside the sub menu</h3>
+                <p>Ensure that there is a min of 16px spacing between label and icon/indicator</p>
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/side-navigation/spacing-side-navigation-1.svg" alt="Side Navigation Spacing 1">
+                    </div>
+                </div>
+            </div>
+            <div class="section-sub">
+                <h3 class="subtitle fw-bold" id="outside-the-side-navigation">Within the sub menu item</h3>
+                <p>Ensure that there is a min 32px horizontal spacing between dropdown item</p>
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/side-navigation/spacing-side-navigation-2.svg" alt="Side Navigation Spacing 2">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Side navigation should be used when</p>
+            <ul>
+                <li>There are many sub pages under the selected section in the main menu. The side navigation will make it easy to scale and add on more options</li>
+            </ul>
+            <p class="fw-bold mb-0">Side navigation should not be used when</p>
+            <ul>
+                <li>There are not many navigation options in the selected section</li>
+            </ul>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Highlight the current section</b><br>
+                Show users where they are by highlighting it in the side navigation so they know which section they are currently in.
+            </p>
+            <p>
+                <b>Use straightforward labels</b><br>
+                Labels should be clear to your users. You should avoid jargon or unfamiliar terms that users cannot understand.
+            </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">Side navigation design tokens</h2>
+            {%- highlight sass -%}{{side-navigation-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>

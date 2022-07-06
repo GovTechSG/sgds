@@ -1,7 +1,361 @@
 ---
 title: Table
 layout: layout-sidenav
+description: Insert description
 category: general
-react: true
+react-link: ?path=/docs/components-table--default-story
+github-link: true
+toc: true
 ---
-{% include page-component/component-header.html %}
+
+{% capture default-table %}
+<div class="table-responsive-lg">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+ </table>
+</div>
+{% endcapture %}
+
+{% capture small-table %}
+<div class="table-responsive-lg">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+ </table>
+</div>
+{% endcapture %}
+
+{% capture striped-table %}
+<div class="table-responsive-lg">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+ </table>
+</div>
+{% endcapture %}
+
+{% capture bordered-table %}
+<div class="table-responsive-lg">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+ </table>
+</div>
+{% endcapture %}
+
+{% capture borderless-table %}
+<div class="table-responsive-lg">
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+ </table>
+</div>
+{% endcapture %}
+
+{% capture hoverable-table %}
+<div class="table-responsive-lg">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+ </table>
+</div>
+{% endcapture %}
+
+{% capture dark-table %}
+<div class="table-responsive-lg">
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+ </table>
+</div>
+{% endcapture %}
+
+{% capture table-design-tokens %}
+$table-cell-padding-y: 1rem !default;
+$table-cell-padding-x: 1rem !default;
+$table-cell-padding-y-sm: .5rem !default;
+$table-cell-padding-x-sm: .5rem !default;
+$table-cell-vertical-align: top !default;
+$table-color: $body-color !default;
+$table-bg: transparent !default;
+$table-accent-bg: transparent !default;
+$table-th-font-weight: null !default;
+$table-striped-color: $table-color !default;
+$table-striped-bg-factor: .05 !default;
+$table-striped-bg: rgba($black, $table-striped-bg-factor) !default;
+$table-active-color: $table-color !default;
+$table-active-bg-factor: .1 !default;
+$table-active-bg: rgba($black, $table-active-bg-factor) !default;
+$table-hover-color: $table-color !default;
+$table-hover-bg-factor: .075 !default;
+$table-hover-bg: rgba($black, $table-hover-bg-factor) !default;
+$table-border-factor: .1 !default;
+$table-border-width: $border-width !default;
+$table-border-color: $gray-400 !default;
+$table-striped-order: odd !default;
+$table-group-separator-color: currentColor !default;
+$table-caption-color: $text-muted !default;
+$table-bg-scale: 100% !default;
+$table-variants: ("primary": shift-color($primary, $table-bg-scale),
+  "secondary": shift-color($secondary, $table-bg-scale),
+  "success": shift-color($success, $table-bg-scale),
+  "info": shift-color($info, $table-bg-scale),
+  "warning": shift-color($warning, $table-bg-scale),
+  "danger": shift-color($danger, $table-bg-scale),
+  "light": $light,
+  "dark": $dark,
+) !default;
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Default table" compName="default-table" code=default-table %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Small table" compName="small-table" code=small-table %}
+            </div>
+            <div class="section-sub">
+              {% include page-component/component-code-snippet.html compTitle="Striped table" compName="striped-table" code=striped-table %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Bordered table" compName="bordered-table" code=bordered-table %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Borderless table" compName="borderless-table" code=borderless-table %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Hoverable table" compName="hoverable-table" code=hoverable-table %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Dark table" compName="dark-table" code=dark-table %}
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Table should be used:</p>
+            <ul>
+                <li>When you want to show tabular information, such as statistics</li>
+                <li>For displaying directories where content of similar nature and structure are grouped together</li>
+            </ul>
+            <p class="fw-bold mb-0">Table should not be used:</p>
+            <ol>
+                <li>
+                    For complex data visualisation, you may want to use inforgraphics or bars and charts
+                </li>
+                <li>
+                  For dashboard displays. Table data should follow a consistant structure with logical headers, rows and columns
+              </li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Keep tables simple</b><br>
+                Tables are useful when displaying data and complex information. Try to use minimal visual styling to surface information easily
+            </p>
+
+            <p>
+              <b>Consider mobile applications</b><br>
+              As table rows can be long in nature, do consider if your content requires to be in a table
+          </p>
+
+          <p>
+            <b>Enable sorting</b><br>
+            Do enable sorting where applicable as this will help users move through content within the table
+        </p>
+        </section>
+
+        <!-- Design token Section -->
+        <section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{table-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>

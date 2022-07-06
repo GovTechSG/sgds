@@ -21,3 +21,7 @@ node_modules
 /js
 /contents/testing
 sgds/sgds.css.map
+assets/js/*.js
+assets/js/*.js.map
+assets/sgds.js
+sgds/sgds.css
