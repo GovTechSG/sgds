@@ -2830,31 +2830,29 @@ textarea.form-control-lg {
   transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
 }
 
-.input-group, .sgds.combobox {
+.input-group {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
 }
-.input-group > .form-control, .sgds.combobox > .form-control,
-.input-group > .form-select,
-.sgds.combobox > .form-select {
+.input-group > .form-control,
+.input-group > .form-select {
   position: relative;
   flex: 1 1 auto;
   width: 1%;
   min-width: 0;
 }
-.input-group > .form-control:focus, .sgds.combobox > .form-control:focus,
-.input-group > .form-select:focus,
-.sgds.combobox > .form-select:focus {
+.input-group > .form-control:focus,
+.input-group > .form-select:focus {
   z-index: 3;
 }
-.input-group .btn, .sgds.combobox .btn {
+.input-group .btn {
   position: relative;
   z-index: 2;
 }
-.input-group .btn:focus, .sgds.combobox .btn:focus {
+.input-group .btn:focus {
   z-index: 3;
 }
 
@@ -2896,19 +2894,17 @@ textarea.form-control-lg {
   padding-right: 4rem;
 }
 
-.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu), .sgds.combobox:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu),
-.input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3),
-.sgds.combobox:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3) {
+.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu),
+.input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.input-group.has-validation > :nth-last-child(n+3):not(.dropdown-toggle):not(.dropdown-menu), .has-validation.sgds.combobox > :nth-last-child(n+3):not(.dropdown-toggle):not(.dropdown-menu),
-.input-group.has-validation > .dropdown-toggle:nth-last-child(n+4),
-.has-validation.sgds.combobox > .dropdown-toggle:nth-last-child(n+4) {
+.input-group.has-validation > :nth-last-child(n+3):not(.dropdown-toggle):not(.dropdown-menu),
+.input-group.has-validation > .dropdown-toggle:nth-last-child(n+4) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback), .sgds.combobox > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
   margin-left: -1px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -2991,18 +2987,14 @@ textarea.form-control-lg {
   margin-left: 0.5em;
 }
 
-.was-validated .input-group .form-control:valid, .was-validated .sgds.combobox .form-control:valid, .input-group .form-control.is-valid, .sgds.combobox .form-control.is-valid,
+.was-validated .input-group .form-control:valid, .input-group .form-control.is-valid,
 .was-validated .input-group .form-select:valid,
-.was-validated .sgds.combobox .form-select:valid,
-.input-group .form-select.is-valid,
-.sgds.combobox .form-select.is-valid {
+.input-group .form-select.is-valid {
   z-index: 1;
 }
-.was-validated .input-group .form-control:valid:focus, .was-validated .sgds.combobox .form-control:valid:focus, .input-group .form-control.is-valid:focus, .sgds.combobox .form-control.is-valid:focus,
+.was-validated .input-group .form-control:valid:focus, .input-group .form-control.is-valid:focus,
 .was-validated .input-group .form-select:valid:focus,
-.was-validated .sgds.combobox .form-select:valid:focus,
-.input-group .form-select.is-valid:focus,
-.sgds.combobox .form-select.is-valid:focus {
+.input-group .form-select.is-valid:focus {
   z-index: 3;
 }
 
@@ -3083,30 +3075,15 @@ textarea.form-control-lg {
   margin-left: 0.5em;
 }
 
-.was-validated .input-group .form-control:invalid, .was-validated .sgds.combobox .form-control:invalid, .input-group .form-control.is-invalid, .sgds.combobox .form-control.is-invalid,
+.was-validated .input-group .form-control:invalid, .input-group .form-control.is-invalid,
 .was-validated .input-group .form-select:invalid,
-.was-validated .sgds.combobox .form-select:invalid,
-.input-group .form-select.is-invalid,
-.sgds.combobox .form-select.is-invalid {
+.input-group .form-select.is-invalid {
   z-index: 2;
 }
-.was-validated .input-group .form-control:invalid:focus, .was-validated .sgds.combobox .form-control:invalid:focus, .input-group .form-control.is-invalid:focus, .sgds.combobox .form-control.is-invalid:focus,
+.was-validated .input-group .form-control:invalid:focus, .input-group .form-control.is-invalid:focus,
 .was-validated .input-group .form-select:invalid:focus,
-.was-validated .sgds.combobox .form-select:invalid:focus,
-.input-group .form-select.is-invalid:focus,
-.sgds.combobox .form-select.is-invalid:focus {
+.input-group .form-select.is-invalid:focus {
   z-index: 3;
-}
-
-.sgds.input-group .form-control-icon-validate, .sgds.combobox .form-control-icon-validate, .sgds.input-group .form-control-icon, .sgds.combobox .form-control-icon {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  z-index: 4;
-  width: 3rem;
-  height: 3rem;
 }
 
 .form-label {
@@ -3118,48 +3095,42 @@ textarea.form-control-lg {
   font-size: 1rem;
 }
 
-.sgds.input-group[variant=has-icon] .form-control, .sgds[variant=has-icon].combobox .form-control {
-  border-radius: 0.3125rem !important;
-  padding-left: 3rem;
-}
-.sgds.input-group[variant=has-icon] > .form-input-wrapper, .sgds[variant=has-icon].combobox > .form-input-wrapper {
-  flex: 1 1 auto;
-  width: 1%;
-}
-.sgds.input-group[variant=has-icon] > .form-input-wrapper > input.form-control, .sgds[variant=has-icon].combobox > .form-input-wrapper > input.form-control {
-  border-radius: 5px 0 0 5px !important;
-}
-.sgds.input-group[variant=has-icon] > .form-input-wrapper:not(:first-child) > input.form-control, .sgds[variant=has-icon].combobox > .form-input-wrapper:not(:first-child) > input.form-control {
-  border-radius: 0px 5px 5px 0px !important;
-}
-.sgds.input-group[variant=has-icon] > .form-input-wrapper:not(:first-child):not(:last-child) > input.form-control, .sgds[variant=has-icon].combobox > .form-input-wrapper:not(:first-child):not(:last-child) > input.form-control {
-  border-radius: 0px !important;
-}
-.sgds.input-group[variant=quantity-toggle] input::-webkit-outer-spin-button, .sgds[variant=quantity-toggle].combobox input::-webkit-outer-spin-button,
-.sgds.input-group[variant=quantity-toggle] input::-webkit-inner-spin-button,
-.sgds[variant=quantity-toggle].combobox input::-webkit-inner-spin-button {
+.sgds.input-group[variant=quantity-toggle] input::-webkit-outer-spin-button,
+.sgds.input-group[variant=quantity-toggle] input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.sgds.input-group .form-control-icon-validate, .sgds.combobox .form-control-icon-validate {
+
+.sgds.form-control-group .form-control-icon-validate, .sgds.combobox .form-control-icon-validate, .sgds.form-control-group .form-control-icon, .sgds.combobox .form-control-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  z-index: 4;
+  width: 3rem;
+  height: 3rem;
+}
+
+.sgds.form-control-group, .sgds.combobox {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+.sgds.form-control-group > .form-control, .sgds.combobox > .form-control {
+  padding-left: 3rem;
+}
+.sgds.form-control-group > .form-control:focus, .sgds.combobox > .form-control:focus {
+  z-index: 3;
+}
+.sgds.form-control-group .form-control-icon-validate, .sgds.combobox .form-control-icon-validate {
   left: inherit;
   right: 0;
 }
-.sgds.input-group-text + input.form-control {
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
-}
-.sgds.input-group .sgds.dropdown:first-child .sgds.btn, .sgds.combobox .sgds.dropdown:first-child .sgds.btn {
-  border-radius: 0.3125rem 0 0 0.3125rem;
-}
-.sgds.input-group .sgds.dropdown:last-child .sgds.btn, .sgds.combobox .sgds.dropdown:last-child .sgds.btn {
-  border-radius: 0 0.3125rem 0.3125rem 0;
-}
-.sgds.input-group .sgds.btn.dropdown-toggle-split::after, .sgds.combobox .sgds.btn.dropdown-toggle-split::after {
-  content: none;
-}
 
-.sgds.input-group .input-group-text .form-check-input, .sgds.combobox .input-group-text .form-check-input {
+.sgds.input-group .input-group-text .form-check-input {
   margin-top: 0;
 }
 
@@ -3774,7 +3745,7 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.btn-toolbar .input-group, .btn-toolbar .sgds.combobox {
+.btn-toolbar .input-group {
   width: auto;
 }
 
@@ -5108,15 +5079,14 @@ textarea.form-control-lg {
 .sgds.card[variant=card-action-quantity-toggle] div:not([class]) .btn {
   margin-top: 0;
 }
-.sgds.card[variant=card-action-quantity-toggle] div:not([class]) .input-group, .sgds.card[variant=card-action-quantity-toggle] div:not([class]) .sgds.combobox {
+.sgds.card[variant=card-action-quantity-toggle] div:not([class]) .input-group {
   margin-top: 0;
 }
-.sgds.card[variant=card-action-quantity-toggle] div:not([class]) .input-group .btn i, .sgds.card[variant=card-action-quantity-toggle] div:not([class]) .sgds.combobox .btn i {
+.sgds.card[variant=card-action-quantity-toggle] div:not([class]) .input-group .btn i {
   margin-right: 0;
 }
-.sgds.card[variant=card-action-quantity-toggle] div:not([class]) .input-group input, .sgds.card[variant=card-action-quantity-toggle] div:not([class]) .sgds.combobox input,
-.sgds.card[variant=card-action-quantity-toggle] div:not([class]) .input-group button,
-.sgds.card[variant=card-action-quantity-toggle] div:not([class]) .sgds.combobox button {
+.sgds.card[variant=card-action-quantity-toggle] div:not([class]) .input-group input,
+.sgds.card[variant=card-action-quantity-toggle] div:not([class]) .input-group button {
   margin-top: 0;
 }
 .sgds.card[variant=card-action-quantity-toggle] div:not([class]) .card-unit {

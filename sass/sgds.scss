@@ -58,7 +58,8 @@ $utilities: map-merge(
 //Custom sgds themes
 @import "sgds-theme/components/table";
 @import "sgds-theme/components/forms";
-@import "sgds-theme/forms";
+@import "sgds-theme/forms/form-control-group";
+@import "sgds-theme/forms/input-group";
 @import "sgds-theme/components/footer";
 @import "sgds-theme/components/buttons";
 @import "sgds-theme/components/transitions";

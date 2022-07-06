@@ -1,16 +1,5 @@
 @import "../../bootstrap/forms";
 
-%icon-position {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: $input-font-size;
-  z-index: 4;
-  //3rem == button/ input height
-  width: 3rem;
-  height: 3rem;
-}
 
 .form-label {
   margin-bottom: 0;
@@ -24,68 +13,11 @@
 
 .sgds {
   &.input-group {
-    &[variant="has-icon"] {
-      .form-control {
-        border-radius: $input-border-radius !important;
-        padding-left: 3rem;
-      }
-
-      > .form-input-wrapper {
-        flex: 1 1 auto;
-        width: 1%;
-        > input.form-control {
-          border-radius: 5px 0 0 5px !important;
-        }
-        &:not(:first-child) {
-          > input.form-control {
-            border-radius: 0px 5px 5px 0px !important;
-          }
-        }
-        &:not(:first-child):not(:last-child) {
-          > input.form-control {
-            border-radius: 0px !important;
-          }
-        }
-      }
-    }
-
     &[variant="quantity-toggle"] {
       input::-webkit-outer-spin-button,
       input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
-      }
-    }
-
-    .form-control-icon {
-      @extend %icon-position;
-      &-validate {
-        @extend %icon-position;
-        left: inherit;
-        right: 0;
-      }
-    }
-    &-text {
-      + input.form-control {
-        border-top-left-radius: 0 !important;
-        border-bottom-left-radius: 0 !important;
-      }
-    }
-    .sgds.dropdown {
-      &:first-child {
-        .sgds.btn {
-          border-radius: $border-radius 0 0 $border-radius;
-        }
-      }
-      &:last-child {
-        .sgds.btn {
-          border-radius: 0 $border-radius $border-radius 0;
-        }
-      }
-    }
-    .sgds.btn.dropdown-toggle-split {
-      &::after {
-        content: none;
       }
     }
   }
