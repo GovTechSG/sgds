@@ -1,4 +1,9 @@
 .page-faqs{
+    max-width: 1440px;
+    margin: 0 auto;
+    header{
+        margin-bottom: 1rem;
+    }
     .sgds{
         &.accordion{
             margin-bottom: 1rem;
