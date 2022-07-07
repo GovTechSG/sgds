@@ -4,7 +4,7 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
     </div>
     <hr>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body menu">
         <nav class="sidenav sgds list-unstyled open2">
             {% for item in site.data.navigation %}
             {%- assign class = nil -%}
@@ -37,7 +37,7 @@
                         {% for component in site[collection.label] %}
                         {%- assign componentClass = 'inactive' -%}
                         {% if page.title == component.title %}
-                        {% assign componentClass = 'active' %}
+                        {% assign componentClass = 'active pe-none' %}
                         {%- endif -%}
                         <li><a href="{{component.url}}" class="nav-link {{componentClass}}">{{component.title}}</a></li>
                         {% endfor%}
