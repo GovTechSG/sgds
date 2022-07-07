@@ -26,10 +26,17 @@ collections:
     permalink: /:collection/:name/
     output: true
     category: components
+    order:
+      - masthead.html
+
   patterns:
     permalink: /:collection/:name/
     output: true
     category: patterns
+  templates:
+    permalink: /:collection/:name/
+    output: true
+    category: templates
 
 # set all patterns collection to use certain layouts
 defaults:
@@ -46,6 +53,13 @@ defaults:
     values:
       layout: "layout-sidenav"
       pageCategory: "components"
+      toc: true
+  -
+    scope:
+      type: "templates" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "templates"
       toc: true
       
 exclude:
