@@ -4,7 +4,6 @@ description: >-
   Design System unites Singapore Government digital services around a common visual language 
   and user experience
 logo: /assets/img/logo_sgds.png
-
 # Site data
 sgds-version: 1.3.22
 report-vulnerability: "https://tech.gov.sg/report_vulnerability"
@@ -19,7 +18,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-redirect-from
   - jekyll-toc
-  
+
 collections_dir: collections
 collections:
   components:
@@ -30,24 +29,32 @@ collections:
     permalink: /:collection/:name/
     output: true
     category: patterns
+  templates:
+    permalink: /:collection/:name/
+    output: true
+    category: templates
 
 # set all patterns collection to use certain layouts
 defaults:
-  -
-    scope:
-      type: "patterns" 
+  - scope:
+      type: "templates"
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "templates"
+      toc: true
+  - scope:
+      type: "patterns"
     values:
       layout: "layout-sidenav"
       pageCategory: "patterns"
       toc: true
-  -
-    scope:
-      type: "components" 
+  - scope:
+      type: "components"
     values:
       layout: "layout-sidenav"
       pageCategory: "components"
       toc: true
-      
+
 exclude:
   - src
   - node_modules
@@ -69,7 +76,7 @@ sass:
 toc:
   list_id: toc # Default: "toc"
   list_class: toc # Default: "section-nav"
-  no_toc_section_class: 
+  no_toc_section_class:
     - sgds-example
     - code-snippet
   sublist_class: toc-sublist # Default: no class for sublists

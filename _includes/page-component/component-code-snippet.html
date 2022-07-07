@@ -1,26 +1,41 @@
 {% if include.compTitle %}
-<h3 class="subtitle fw-bold" id="{{include.compName}}">{{include.compTitle}}</h3>
-{% endif %}
-{% if include.compDescTop %}
+<h3 class="subtitle fw-bold" id="{{include.compName}}">
+  {{include.compTitle}}
+</h3>
+{% endif %} {% if include.compDescTop %}
 <div class="desc-top">{{include.compDescTop}}</div>
 {% endif %}
-<div class="sgds-example">
-    {{include.code}}
-</div>
-<div class="sgds accordion code-snippet no-toc-section" id="example-{{include.compName}}">
+<div class="sgds-example">{{include.code}}</div>
+<div
+  class="sgds accordion code-snippet no-toc-section"
+  id="example-{{include.compName}}"
+>
   <div class="accordion-item">
     <h2 class="accordion-header" id="heading-{{include.compName}}">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-        data-bs-target="#collapse-{{include.compName}}" aria-expanded="false"
-        aria-controls="collapse-{{include.compName}}">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse-{{include.compName}}"
+        aria-expanded="false"
+        aria-controls="collapse-{{include.compName}}"
+      >
         See Code
-
       </button>
-      <a href="https://www.google.com" class="sgds btn btn-link btn-sm btn-copy" type="button" aria-label="Copy code"><i
-          class="bi bi-clipboard"></i></a>
+      <a
+        href="https://www.google.com"
+        class="sgds btn btn-link btn-sm btn-copy"
+        type="button"
+        aria-label="Copy code"
+        ><i class="bi bi-clipboard"></i
+      ></a>
     </h2>
-    <div id="collapse-{{include.compName}}" class="accordion-collapse collapse"
-      aria-labelledby="heading-{{include.compName}}" data-bs-parent="#example-{{include.compName}}">
+    <div
+      id="collapse-{{include.compName}}"
+      class="accordion-collapse collapse"
+      aria-labelledby="heading-{{include.compName}}"
+      data-bs-parent="#example-{{include.compName}}"
+    >
       <div class="accordion-body">
         {%- highlight html -%}{{include.code}}{%- endhighlight -%}
       </div>
