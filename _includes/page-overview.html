@@ -1,13 +1,17 @@
-<div class="wrapper wrapper-fluid">
-    <header>
+<div class="wrapper-fluid">
+    <header class="header-overview">
       <h1 class="title">{{page.title}}</h1>
-      <div class="h4">{{page.description}}</div>
+      <p>{{page.description}}</p>
+
+      
+      <div class="sgds form-control-group mt-4">
+          <input type="text" class="form-control" id="filterItems" aria-describedby="filterItems" placeholder="Filter {{page.title | replace: 'Overview' , ''}}">
+          <i class="bi bi-funnel form-control-icon"></i>
+      </div>
+      
+
     </header>
-    <div class="sgds form-group">
-      <label for="search" class="form-label">Search:</label>
-      <input type="text" class="js-shuffle-search form-control" id="search">
-    </div>
-  
+    
     <section class="page-component-overview">
       <article>
         <div id="grid" class="page-component-item-wrapper picture-item">
@@ -31,7 +35,7 @@
               <a class="stretched-link link-primary" href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}/">
                 <div class="h5 text-primary card-title">{{item.title}}</div>
               </a>
-              <p class="card-text">{{item.description}}</p>
+              <p class="card-text">{{item.description | truncate: 100}}</p>
               {% if item.category == 'mandatory' %}
               <span class="sgds badge badge-light bg-danger">{{item.category | capitalize}}</span>
               {% else %}

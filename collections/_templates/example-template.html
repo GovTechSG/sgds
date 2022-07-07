@@ -1,6 +1,6 @@
 ---
-title: Address
-description: Use an address lookup when you are asking users for a Singapore address.
+title: Example Template
+description: This is an example template
 react-link: ?path=/docs/components-form-patterns--address
 toc: true
 ---
@@ -59,26 +59,3 @@ toc: true
         </ul>
     </section>
 </div>
-
-<script>
-    function findAddress() {
-        var postalCode = document.getElementById("postalCode").value
-        var streetName = document.getElementById("streetName")
-        fetch(
-            'https://developers.onemap.sg/commonapi/search?searchVal=' +
-            postalCode +
-            '&returnGeom=Y&getAddrDetails=Y'
-        )
-        .then((response) => response.json())
-        .then((json) => 
-            streetName.value = json.results[0].ADDRESS
-        );
-    }
-    function onlyNumberKey( evt ) {
-        // Only ASCII character in that range allowed
-        var ASCIICode = ( evt.which ) ? evt.which : evt.keyCode
-        if ( ASCIICode > 31 && ( ASCIICode < 48 || ASCIICode > 57 ) )
-            return false;
-        return true;
-    }
-</script>
