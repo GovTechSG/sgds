@@ -1,113 +1,134 @@
-.page-home{
-    padding-top: 0;
-    padding: 3.5rem;
-    @include media-breakpoint-down(lg){
-        padding: 1rem;
-    }
-
-    .wrapper{
-        + .wrapper{
-            margin-top: 3rem;
-        }
-    }
-}
-
-
-.wrapper{
-    gap: 2rem;
-    &.sgds-hero{
-        height: 65vh;
-        grid-template-columns: 0.4fr 0.6fr;
-        align-items: center;
+section.wrapper{
+    &.home{
         @include media-breakpoint-down(lg){
-            grid-template-columns: 1fr;
-            height: auto;
+            padding-left: calc(#{$spacer} * 1);
+            padding-right: calc(#{$spacer} * 1);
         }
-        .sgds-hero-content{
-            .image-stack.image-grid{
-                height: 32.5rem;
-                img{
-                    filter: drop-shadow(0 0 0.9rem var(--sgds-gray-300));
-                }
+        section{
+            padding-top: calc(#{$spacer} * 3);
+            padding-bottom: calc(#{$spacer} * 3);
+            @include media-breakpoint-down(lg){
+                padding-top: calc(#{$spacer} * 1);
+                padding-bottom: calc(#{$spacer} * 1);
+            }
+            &.home-hero{
+                display:grid;
+                grid-template-columns: 0.4fr 0.6fr;
+                align-items: center;
                 @include media-breakpoint-down(lg){
-                    margin-top: 1rem;
+                    grid-template-columns: 1fr;
                     height: auto;
-                    img{
-                        filter: drop-shadow(0 0 0.5rem var(--sgds-gray-300));
+                }
+                .home-hero-content{
+                    .image-stack.image-grid{
+                        height: 32.5rem;
+                        img{
+                            filter: drop-shadow(0 0 0.9rem var(--sgds-gray-300));
+                        }
+                        @include media-breakpoint-down(lg){
+                            margin-top: 1rem;
+                            height: auto;
+                            img{
+                                filter: drop-shadow(0 0 0.5rem var(--sgds-gray-300));
+                            }
+                        }
+                        
                     }
                 }
-                
             }
-        }
-        
-    }
-    &.home-get-started{
-        grid-template-columns: 30% 1fr;
-        gap:3rem;
-        @include media-breakpoint-down(lg){
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-        .home-get-started-content{
-            @media (min-width: 1200px) { 
-                position: sticky;
-                top: 110px;
-                align-self: start;
-            }
-        }
-        .home-get-started-header{
-            margin-bottom: 2rem;
-        }
-        .home-get-started-content-grid{
-            display: grid;
-            grid-template-columns: repeat(2,1fr);
-            gap: 3rem;
-            @include media-breakpoint-down(lg){
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            .grid{
+            &.home-get-started{
                 display:grid;
-                grid-template-rows: repeat(2,1fr);
-                gap: 3rem;
+                grid-template-columns: 30% 1fr;
+                gap:3rem;
                 @include media-breakpoint-down(lg){
+                    grid-template-columns: 1fr;
                     gap: 1rem;
                 }
-                justify-content: stretch;
-                &.left{
-                    padding-bottom: 3rem;
-                    @include media-breakpoint-down(lg){
-                        padding: 0;
+                .home-get-started-content{
+                    @media (min-width: 1200px) { 
+                        position: sticky;
+                        top: 110px;
+                        align-self: start;
                     }
                 }
-                &.right{
-                    padding-top: 3rem;
-                    @include media-breakpoint-down(lg){
-                        padding: 0;
-                    }
+                .home-get-started-header{
+                    margin-bottom: 2rem;
                 }
-
-                .card{
-                    background: hsl(228, 38%, 97%);
-                    border: none;
-                    &-eyebrow{
-                        color: var(--sgds-primary);
-                        margin-bottom: 4px;
-                        font-weight: bold;
+                .home-get-started-content-grid{
+                    display: grid;
+                    grid-template-columns: repeat(2,1fr);
+                    gap: 3rem;
+                    @include media-breakpoint-down(lg){
+                        grid-template-columns: 1fr;
+                        gap: 1rem;
                     }
-                    &-body{
-                        padding: 30px 50px;
-                        color: var(--sgds-gray-600);
-                        a{
-                            color: var(--sgds-primary);
-                            font-weight: bold;
+                    .grid{
+                        display:grid;
+                        grid-template-rows: repeat(2,1fr);
+                        gap: 3rem;
+                        @include media-breakpoint-down(lg){
+                            gap: 1rem;
                         }
+                        justify-content: stretch;
+                        &.left{
+                            padding-bottom: 3rem;
+                            @include media-breakpoint-down(lg){
+                                padding: 0;
+                            }
+                        }
+                        &.right{
+                            padding-top: 3rem;
+                            @include media-breakpoint-down(lg){
+                                padding: 0;
+                            }
+                        }
+        
+                        .card{
+                            background: hsl(228, 38%, 97%);
+                            border: none;
+                            &-eyebrow{
+                                color: var(--sgds-primary);
+                                margin-bottom: 4px;
+                                font-weight: bold;
+                            }
+                            &-body{
+                                padding: 30px 50px;
+                                color: var(--sgds-gray-600);
+                                a{
+                                    color: var(--sgds-primary);
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            &.home-part-of-change{
+                display: grid;
+                grid-template-columns: 0.55fr 1fr;
+                align-items: center;
+                gap: 3rem;
+                @include media-breakpoint-down(lg){
+                    grid-template-columns: 1fr;
+                }
+                &:nth-child(odd){
+                    grid-template-columns: 1fr 0.55fr;
+                    @include media-breakpoint-down(lg){
+                        grid-template-columns: 1fr;
+                    }
+                }
+                + .part-of-change{
+                    margin-top: 8rem;
+                    @include media-breakpoint-down(lg){
+                        margin-top: 3rem;
                     }
                 }
             }
-            
         }
     }
+    
+    
 }
 
 .image-stack{
@@ -128,29 +149,8 @@
         }
     }
 }
-.bg-primary-200{
-    background-color: hsl(228, 38%, 97%);
-}
-.part-of-change{
-    grid-template-columns: 0.55fr 1fr;
-    align-items: center;
-    gap: 3rem;
-    @include media-breakpoint-down(lg){
-        grid-template-columns: 1fr;
-    }
-    &:nth-child(odd){
-        grid-template-columns: 1fr 0.55fr;
-        @include media-breakpoint-down(lg){
-            grid-template-columns: 1fr;
-        }
-    }
-    + .part-of-change{
-        margin-top: 8rem;
-        @include media-breakpoint-down(lg){
-            margin-top: 3rem;
-        }
-    }
-}
+
+
 
 .hero-bg{
     background: url('../img/landing-hero/bg.svg');

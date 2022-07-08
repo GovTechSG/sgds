@@ -2,7 +2,7 @@
     article{
         .page-component-item-wrapper{
             display: grid;
-            grid-template-columns: repeat(auto-fit,minmax(18rem,1fr));
+            grid-template-columns: repeat(auto-fill,minmax(18.75rem,1fr));
             gap: 2rem;
         }
         + article{
