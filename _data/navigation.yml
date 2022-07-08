@@ -10,7 +10,7 @@
   has-collection: true
 - title: templates
   url: /templates/
-  has-collection: false
+  has-collection: true
 - title: theme customiser
   url: 'https://customiser.designsystem.gov.sg'
   target: '_blank'
