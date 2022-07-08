@@ -185,7 +185,17 @@ toc: true
       <aside class="toc-container" aria-label="Table of Content">
         <div class="toc-wrapper">
           <div class="h4">On this page</div>
-          {% toc %}
+          <ul id="toc" class="toc">
+            <li class="toc-item item-h2">
+              <a href="#page-heading">Page heading</a>
+              <ul class="toc-sublist">
+                <li class="toc-item item-h4">
+                  <a href="#overview">Overview</a>
+                </li>
+              </ul>
+            </li>
+            <li class="toc-item item-h2"><a href="#example">Example</a></li>
+          </ul>
         </div>
       </aside>
     </div>
