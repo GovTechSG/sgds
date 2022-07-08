@@ -8,12 +8,12 @@ toc: true
 {% capture address-pattern %}
 <div class="sgds form-group mb-3">
     <label for="postalCode" class="form-label">Postal Code</label>
-    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="postalCode" placeholder="e.g 730317" autocomplete="on" maxlength="6" onkeypress="return onlyNumberKey(event)">
+    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="postalCode" placeholder="e.g 730317" autocomplete="postal-code" maxlength="6" onkeypress="return onlyNumberKey(event)">
 </div>
 <button class="btn btn-primary mb-3" onclick="findAddress()">Find Address</button>
 <div class="sgds form-group mb-3">
     <label for="streetName" class="form-label">Block/Street Name</label>
-    <input type="text" class="form-control" id="streetName" placeholder="e.g. 220 Pasir Ris Drive 50" autocomplete="on">
+    <input type="text" class="form-control" id="streetName" placeholder="e.g. 220 Pasir Ris Drive 50" autocomplete="street-address">
 </div>
 <div class="sgds form-group mb-3">
     <label for="buildingNumber" class="form-label">Building/House Number</label>
@@ -54,7 +54,7 @@ toc: true
         <h2 class="title fw-bold" id="accessibility">Accessibility</h2>
         <strong>For manually-entered addresses</strong>
         <ul>
-            <li>The fields should always have the <code>autocomplete</code> attribute to help your users complete it quickly.</li>
+            <li>The fields should always have the <code>autocomplete</code> attribute to help your users complete it quickly. Use <code>postal-code</code> and <code>street-address</code> to bring convenience to your users.</li>
             <li>You will need to include the autocomplete attribute to meet <strong>WCAG 2.1 AA</strong> for production.</li>
         </ul>
     </section>
