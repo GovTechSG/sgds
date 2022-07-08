@@ -17,15 +17,15 @@ toc: true
 <div class="sgds row">
     <div class="col form-group">
       <label class="form-label" for="day">DD</label>
-      <input class="form-control" type="number" id="day" autocomplete="on" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)" />
+      <input class="form-control" type="number" id="day" autocomplete="bday-day" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)" />
     </div>
     <div class="col form-group">
       <label class="form-label" for="month">MM</label>
-      <input class="form-control" type="number" id="month" autocomplete="on" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
+      <input class="form-control" type="number" id="month" autocomplete="bday-month" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
     </div>
      <div class="col form-group">
       <label class="form-label" for="year">YYYY</label>
-      <input class="form-control" type="number" id="year" autocomplete="on" data-maxlength="4" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
+      <input class="form-control" type="number" id="year" autocomplete="bday-year" data-maxlength="4" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
     </div>
 </div>
 {% endcapture %}
