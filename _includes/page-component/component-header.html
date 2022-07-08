@@ -1,6 +1,7 @@
 {% include breadcrumb.html %}
 <!-- Section Component header -->
 <section name="section-component-header">
+    
     {% assign pageHeader = page.title | downcase %}
     <header class="header-component">
         <h1 class="fw-bold" id="{{pageHeader}}-component">{{page.title}}</h1>
@@ -11,7 +12,6 @@
         <p class="header-component-description {{class}}">{{page.description}}</p>
         <div class="component-source-grid">
             <div>
-                
                 {% if page.category == 'mandatory' %}
                 <span class="sgds badge badge-light bg-danger">{{page.category | capitalize}}</span>
                 {% else %}

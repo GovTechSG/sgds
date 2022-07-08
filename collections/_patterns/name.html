@@ -7,18 +7,18 @@ toc: true
 {% capture general-name-field %}
 <div class="sgds form-group">
     <label class="form-label" for="fullName">Full Name as per NRIC</label>
-    <input class="form-control" type="text" id="fullName" autocomplete="on" required />
+    <input class="form-control" type="text" id="fullName" autocomplete="name" required />
 </div>
 {% endcapture %}
 
 {% capture multiline-name-field %}
 <div class="sgds form-group mb-3">
     <label class="form-label" for="givenName">Given Name</label>
-    <input class="form-control" type="text" id="givenName" autocomplete="on" required />
+    <input class="form-control" type="text" id="givenName" autocomplete="given-name" required />
 </div>
 <div class="sgds form-group">
     <label class="form-label" for="familyName">Family Name</label>
-    <input class="form-control" type="text" id="familyName" autocomplete="on" required />
+    <input class="form-control" type="text" id="familyName" autocomplete="family-name" required />
 </div>
 {% endcapture %}
 
@@ -54,6 +54,7 @@ toc: true
             <ul>
                 <li>This accommodates the widest range of name types and formats</li>
                 <li>Reduces the risk of users entering their name in the incorrect format</li>
+                <li>Set the <code>autocomplete</code> attribute to <code>name</code> so that browsers can fill in their name if they have entered in previously</li>
             </ul>
         </p>
         <p>
@@ -61,6 +62,7 @@ toc: true
             <ul>
                 <li>Use multiple name fields with discretion. Not everyone's name fits the general first-name, last-name convention</li>
                 <li>Using multiple name fields increases the risk of a person's name not fitting the same convention. Hence, it may be entered incorrectly</li>
+                <li>Set the <code>autocomplete</code> attributes to <code>given-name</code> and <code>family-name</code> so that browsers can fill in their names if they have entered in previously</li>
             </ul>
         </p>
     </section>
