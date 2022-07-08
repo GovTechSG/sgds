@@ -3,8 +3,8 @@
     <div class="d-lg-none">
         <div class="navbar-mobile-widget">   
             <dev-console-widget iconColor="black" iconWidth="24px" iconHeight="24px"></dev-console-widget>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi bi-list"></i>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <i class="bi bi-list h2"></i>
             </button>
         </div>
     </div>
@@ -15,16 +15,18 @@
             {%- if page.url contains item.title -%} 
                 {%- assign class = 'active' -%} 
             {%- endif -%}
+            {%- if item.title == "get started" -%}
+            <li class="nav-item align-self-center">
+                <a class="sgds btn btn-primary btn-sm" aria-current="page" href="{{item.url}}">{{item.title | capitalize}}</a>
+              </li>
+              {%- else -%}
             <li class="nav-item">
                 <a class="nav-link {{class}}" aria-current="page" href="{{item.url}}">
                     {{item.title | capitalize}}
                 </a>
             </li>
+            {%- endif -%}
             {% endfor %}
-            <li class="nav-item align-self-center">
-              
-              <a class="sgds btn btn-primary btn-sm" aria-current="page" href="#">Get Started</a>
-            </li>
             <li class="nav-item align-self-center d-none d-lg-block" style="margin-top:-5px">
                 <dev-console-widget iconColor="black" iconWidth="24px" iconHeight="24px"></dev-console-widget>
             </li>
