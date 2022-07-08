@@ -5,8 +5,9 @@
 <div class="desc-top">{{include.compDescTop}}</div>
 {% endif %}
 <div class="sgds-example">
-    {{include.code}}
+  {{include.code}}
 </div>
+
 <div class="sgds accordion code-snippet no-toc-section" id="example-{{include.compName}}">
   <div class="accordion-item">
     <h2 class="accordion-header" id="heading-{{include.compName}}">
@@ -14,15 +15,25 @@
         data-bs-target="#collapse-{{include.compName}}" aria-expanded="false"
         aria-controls="collapse-{{include.compName}}">
         See Code
-
       </button>
-      <a href="https://www.google.com" class="sgds btn btn-link btn-sm btn-copy" type="button" aria-label="Copy code"><i
-          class="bi bi-clipboard"></i></a>
     </h2>
     <div id="collapse-{{include.compName}}" class="accordion-collapse collapse"
       aria-labelledby="heading-{{include.compName}}" data-bs-parent="#example-{{include.compName}}">
-      <div class="accordion-body">
-        {%- highlight html -%}{{include.code}}{%- endhighlight -%}
+      <div class="accordion-body position-relative">
+        <button 
+            class="sgds btn btn-link btn-sm btn-copy position-absolute top-0 end-0 text-white" 
+            type="button"
+            data-clipboard-target="#code-{{include.compName}}" 
+            aria-label="Copy code" 
+            data-bs-toggle="tooltip"
+            data-bs-placement="top" 
+            title="Copy code"
+          >
+           <i class="h4 bi bi-clipboard"></i>
+        </button>
+        <div id="code-{{include.compName}}">
+          {%- highlight html -%}{{include.code}}{%- endhighlight -%}
+        </div>
       </div>
     </div>
   </div>
