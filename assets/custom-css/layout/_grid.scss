@@ -7,7 +7,7 @@
         gap: 3rem;
         grid-template-columns: 15rem minmax(25rem, 1fr);
         max-width: 100%;
-        padding: 1rem 2rem;
+        padding: 1rem;
         @include media-breakpoint-down(lg){
             display:block;
             aside{
@@ -16,16 +16,13 @@
             padding: 1rem;
         }
         &.with-toc{
-            grid-template-columns: 15rem minmax(25rem, 1fr)  15rem;
+            grid-template-columns: 15rem minmax(25rem, 1fr) 15rem;
         }
     }
     &-fluid{
         max-width: 100%;
-    }
-    
+    }   
 }
-
-
 $columns: 2, 3, 4;
 
 @each $column in $columns{

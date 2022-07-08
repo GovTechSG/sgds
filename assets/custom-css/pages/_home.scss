@@ -49,9 +49,11 @@
             gap: 1rem;
         }
         .home-get-started-content{
-            position: sticky;
-            top: 110px;
-            align-self: start;
+            @media (min-width: 1200px) { 
+                position: sticky;
+                top: 110px;
+                align-self: start;
+            }
         }
         .home-get-started-header{
             margin-bottom: 2rem;
