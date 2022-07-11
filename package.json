@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "npm run packagedownloads && npm run build:site && bundle exec jekyll build",
-    "build:lib": "rm -rf ./sgds/sgds.css && webpack --mode=production",
+    "build:lib": "rm -rf ./css && webpack --mode=production",
     "build:site": "npm run build:lib",
     "dev": "concurrently npm:dev:static npm:dev:jekyll",
     "dev:jekyll": "bundle exec jekyll serve",
