@@ -1,12 +1,23 @@
+# navigation data for navigation.html and off-canvas-menu.html
 - title: about
   url: /about/
+  has-collection: false
 - title: components
   url: /components/
+  has-collection: true
 - title: patterns
   url: /patterns/
+  has-collection: true
 - title: templates
   url: /templates/
+  has-collection: true
 - title: theme customiser
   url: 'https://customiser.designsystem.gov.sg'
   target: '_blank'
   beta: true
+  has-collection: false
+- title: get started
+  url: '/#/'
+  has-collection: false
+
+
