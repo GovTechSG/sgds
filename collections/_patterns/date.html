@@ -17,15 +17,15 @@ toc: true
 <div class="sgds row">
     <div class="col form-group">
       <label class="form-label" for="day">DD</label>
-      <input class="form-control" type="number" id="day" autocomplete="bday-day" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)" />
+      <input class="form-control" type="text" inputmode="numeric" pattern="[0-9]*" id="day" autocomplete="on" maxlength="2" onkeypress="return onlyNumberKey(event)" />
     </div>
     <div class="col form-group">
       <label class="form-label" for="month">MM</label>
-      <input class="form-control" type="number" id="month" autocomplete="bday-month" data-maxlength="2" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
+      <input class="form-control" type="text" inputmode="numeric" pattern="[0-9]*" id="month" autocomplete="on" maxlength="2" onkeypress="return onlyNumberKey(event)"/>
     </div>
      <div class="col form-group">
       <label class="form-label" for="year">YYYY</label>
-      <input class="form-control" type="number" id="year" autocomplete="bday-year" data-maxlength="4" oninput="this.value=this.value.slice(0, this.dataset.maxlength)"/>
+      <input class="form-control" type="text" inputmode="numeric" pattern="[0-9]*" id="year" autocomplete="on" maxlength="4" onkeypress="return onlyNumberKey(event)"/>
     </div>
 </div>
 {% endcapture %}
@@ -97,3 +97,13 @@ toc: true
         </p>
     </section>
 </div>
+
+<script>
+     function onlyNumberKey( evt ) {
+        // Only ASCII character in that range allowed
+        var ASCIICode = ( evt.which ) ? evt.which : evt.keyCode
+        if ( ASCIICode > 31 && ( ASCIICode < 48 || ASCIICode > 57 ) )
+            return false;
+        return true;
+    }
+</script>
