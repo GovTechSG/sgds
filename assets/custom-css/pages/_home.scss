@@ -1,9 +1,5 @@
 section.wrapper{
     &.home{
-        @include media-breakpoint-down(xxl){
-            padding-left: calc(#{$spacer} * 1);
-            padding-right: calc(#{$spacer} * 1);
-        }
         section{
             padding-top: calc(#{$spacer} * 3);
             padding-bottom: calc(#{$spacer} * 3);
