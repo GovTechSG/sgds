@@ -71,7 +71,6 @@ exclude:
   - Dockerfile
   - Gemfile*
   - package*.json
-  - README.md
   - webpack.config.js
   - Gruntfile.js
   - amplify.yml

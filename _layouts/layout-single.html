@@ -2,6 +2,11 @@
 layout: layout-default
 ---
 
-<section class="wrapper {{page.title | downcase }} layout-single">
+<section class="wrapper {{page.title | downcase | replace: ' ', '-' }} layout-single">
+    {% if page.title == 'Get Started' %}
+    <header>
+        {% include breadcrumb.html %}
+    </header>
+    {% endif %}
     {{content}}
 </section>
