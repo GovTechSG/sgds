@@ -1,8 +1,0 @@
-.layout{
-    &-single{
-        @include media-breakpoint-down(xxl){
-            padding-left: calc(#{$spacer} * 1);
-            padding-right: calc(#{$spacer} * 1);
-        }
-    }
-}
