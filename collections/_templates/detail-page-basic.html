@@ -8,74 +8,72 @@ toc: true
 <div style="background-color: white">
   <!-- Masthead -->
   <sgds-masthead fluid></sgds-masthead>
-  <section class="my-8 mx-md-8">
-    <!--Main Nav Component-->
-    <nav class="sgds navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img
-            src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg"
-            alt="Home"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <i class="bi bi-list"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Components</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Patterns</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Templates</a>
-            </li>
-            <li class="nav-item sgds dropdown">
-              <a
-                class="nav-link sgds dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Theme customiser<i class="bi bi-chevron-down"></i>
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Option 1</a></li>
-                <li><a class="dropdown-item active" href="#">Option 2</a></li>
-                <li><a class="dropdown-item" href="#">Option 3</a></li>
-                <li><a class="dropdown-item" href="#">Option 4</a></li>
-              </ul>
-            </li>
-            <li class="nav-item align-self-center d-none d-lg-block">
-              <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
-            </li>
-            <li class="nav-item align-self-center d-none d-lg-block">
-              <a class="nav-link" href="#"
-                ><i class="bi bi-grid-3x3-gap-fill"></i
-              ></a>
-            </li>
-          </ul>
-        </div>
+  <!--Main Nav Component-->
+  <nav class="mt-4 sgds navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img
+          src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg"
+          alt="Home"
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Components</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Patterns</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Templates</a>
+          </li>
+          <li class="nav-item sgds dropdown">
+            <a
+              class="nav-link sgds dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Theme customiser<i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Option 1</a></li>
+              <li><a class="dropdown-item active" href="#">Option 2</a></li>
+              <li><a class="dropdown-item" href="#">Option 3</a></li>
+              <li><a class="dropdown-item" href="#">Option 4</a></li>
+            </ul>
+          </li>
+          <li class="nav-item align-self-center d-none d-lg-block">
+            <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
+          </li>
+          <li class="nav-item align-self-center d-none d-lg-block">
+            <a class="nav-link" href="#"
+              ><i class="bi bi-grid-3x3-gap-fill"></i
+            ></a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </section>
+    </div>
+  </nav>
   <!--Breadcrumb component-->
-  <section class="my-8 mx-md-8">
+  <section class="m-8">
     <nav class="sgds" aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -85,7 +83,7 @@ toc: true
     </nav>
   </section>
   <!--Content section-->
-  <section class="my-8 mx-md-8">
+  <section class="m-8">
     <div class="row">
       <div class="col">
         <h2>Page heading</h2>
@@ -215,7 +213,8 @@ toc: true
   <section name="section-templates">
     <h2 class="title fw-bold" id="example">Example</h2>
     <div class="section-sub">
-      {% include page-component/component-code-snippet.html compName="detail-page-basic" code=detail-page-basic %}
+      {% include page-component/component-code-snippet.html
+      compName="detail-page-basic" code=detail-page-basic %}
     </div>
   </section>
 </div>

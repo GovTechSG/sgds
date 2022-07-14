@@ -8,73 +8,72 @@ toc: true
 <div style="background-color: white">
   <!-- Masthead -->
   <sgds-masthead fluid></sgds-masthead>
-  <section class="my-8 mx-md-8">
-    <!--Main Nav Component-->
-    <nav class="sgds navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img
-            src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg"
-            alt="Home"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <i class="bi bi-list"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Components</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Patterns</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Templates</a>
-            </li>
-            <li class="nav-item sgds dropdown">
-              <a
-                class="nav-link sgds dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Theme customiser<i class="bi bi-chevron-down"></i>
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Option 1</a></li>
-                <li><a class="dropdown-item active" href="#">Option 2</a></li>
-                <li><a class="dropdown-item" href="#">Option 3</a></li>
-                <li><a class="dropdown-item" href="#">Option 4</a></li>
-              </ul>
-            </li>
-            <li class="nav-item align-self-center d-none d-lg-block">
-              <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
-            </li>
-            <li class="nav-item align-self-center d-none d-lg-block">
-              <a class="nav-link" href="#"
-                ><i class="bi bi-grid-3x3-gap-fill"></i
-              ></a>
-            </li>
-          </ul>
-        </div>
+  <!--Main Nav Component-->
+  <nav class="mt-4 sgds navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img
+          src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg"
+          alt="Home"
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Components</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Patterns</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Templates</a>
+          </li>
+          <li class="nav-item sgds dropdown">
+            <a
+              class="nav-link sgds dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Theme customiser<i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Option 1</a></li>
+              <li><a class="dropdown-item active" href="#">Option 2</a></li>
+              <li><a class="dropdown-item" href="#">Option 3</a></li>
+              <li><a class="dropdown-item" href="#">Option 4</a></li>
+            </ul>
+          </li>
+          <li class="nav-item align-self-center d-none d-lg-block">
+            <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
+          </li>
+          <li class="nav-item align-self-center d-none d-lg-block">
+            <a class="nav-link" href="#"
+              ><i class="bi bi-grid-3x3-gap-fill"></i
+            ></a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </section>
-  <div class="row my-8 mx-md-8">
+    </div>
+  </nav>
+  <div class="row m-8">
+    <!-- Side Nav component -->
     <div class="col-lg-3 d-none d-lg-block">
       <nav class="sidenav sgds list-unstyled open2">
         <li class="sidenav-item">
@@ -143,7 +142,7 @@ toc: true
         </li>
       </nav>
     </div>
-    <div class="col-lg-7 col-12">
+    <div class="col-lg-7">
       <!--Breadcrumb component-->
       <nav class="sgds" aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -153,46 +152,35 @@ toc: true
         </ol>
       </nav>
       <!--Content section-->
-      <div class="row">
-        <div class="col">
-          <h2>Page heading</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <h4>Overview</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </p>
-        </div>
-      </div>
+      <h2>Page heading</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <h4>Overview</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur.
+      </p>
     </div>
     <!--Table of Contents section-->
     <div class="col-lg-2 d-none d-lg-block">
-      <aside class="toc-container" aria-label="Table of Content">
-        <div class="toc-wrapper">
-          <div class="h4">On this page</div>
-          <ul id="toc" class="toc">
-            <li class="toc-item item-h2">
-              <a href="#page-heading">Page heading</a>
-              <ul class="toc-sublist">
-                <li class="toc-item item-h4">
-                  <a href="#overview">Overview</a>
-                </li>
-              </ul>
-            </li>
-            <li class="toc-item item-h2"><a href="#example">Example</a></li>
-          </ul>
-        </div>
+      <aside aria-label="Table of Content">
+        <h4>On this page</h4>
+        <ul style="list-style: none">
+          <li>
+            <a href="#" style="text-decoration: none">Page heading</a>
+            <ul>
+              <li style="list-style: none">
+                <a href="#" style="text-decoration: none">Overview</a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#" style="text-decoration: none">Example</a></li>
+        </ul>
       </aside>
     </div>
   </div>
