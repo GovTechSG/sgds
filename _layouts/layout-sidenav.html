@@ -8,7 +8,7 @@ layout: layout-default
 <section class="wrapper layout-sidenav {{class}}">
     <aside aria-label="Side Navigation Container">
         <nav class="sgds sidenav" aria-label="Side Navigation">
-            <ul class="list-unstyled">
+            <ul class="list-unstyled mb-0">
             {% assign collections = site.collections | sort: 'order' %}
             {% for collection in collections %}
                 {% if collection.category == page.pageCategory %}
@@ -28,9 +28,13 @@ layout: layout-default
             </ul>
         </nav>
     </aside>
+    <article>
+        {{content}}
+        <p>{{ page.previous.title }}</p>
+        <p>{{ page.next.title }}</p>
+    </article>
     
-    {{content}}
-
+    
     {% if page.overview == null %}
     <aside class="toc-container" aria-label="Table of Content">
         <div class="toc-wrapper">
