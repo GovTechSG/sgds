@@ -20,7 +20,7 @@ plugins:
   - jekyll-redirect-from
   - jekyll-toc
   - jekyll-get-json
-  
+
 collections_dir: collections
 collections:
   components:
@@ -40,10 +40,14 @@ collections:
     permalink: /:collection/:name
     output: true
     category: templates
-  getStarted:
+  get-started:
     permalink: /:collection/:name
     output: true
-    category: getStarted
+    category: get-started
+    order:
+      - installation.html
+      - customise-with-sass.html
+      - ui-kit.html
 
 # set all patterns collection to use certain layouts
 defaults:
@@ -53,6 +57,7 @@ defaults:
     values:
       layout: "layout-sidenav"
       pageCategory: "patterns"
+      source-grid: true
       toc: true
   -
     scope:
@@ -60,6 +65,7 @@ defaults:
     values:
       layout: "layout-sidenav"
       pageCategory: "components"
+      source-grid: true
       toc: true
   -
     scope:
@@ -67,13 +73,15 @@ defaults:
     values:
       layout: "layout-sidenav"
       pageCategory: "templates"
+      source-grid: false
       toc: true
   -
     scope:
-      type: "getStarted" 
+      type: "get-started" 
     values:
       layout: "layout-sidenav"
-      pageCategory: "getStarted"
+      pageCategory: "get-started"
+      source-grid: false
       toc: true
       
 exclude:
