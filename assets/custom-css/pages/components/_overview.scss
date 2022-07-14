@@ -4,6 +4,24 @@
             display: grid;
             grid-template-columns: repeat(auto-fill,minmax(18.75rem,1fr));
             gap: 2rem;
+            .sgds.card{
+                transition: $transition-base;
+                overflow: hidden;
+                .card-body{
+                    z-index: 1;
+                    background-color: #fff;
+                }
+                img{
+                    transition: transform 0.2s ease-in-out;
+                }
+                &:hover{
+                    filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.15));
+                    img{
+                        transform: scale(1.03) rotate(0.01deg);
+                        
+                    }
+                }
+            }
         }
         + article{
             margin-top: 2rem;
