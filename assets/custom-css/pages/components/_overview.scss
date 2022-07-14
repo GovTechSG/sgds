@@ -17,7 +17,7 @@
                     transition: transform 0.2s ease-in-out;
                 }
                 &:hover{
-                    filter: drop-shadow(0 15px 15px rgba(var(--sgds-), 0.15));
+                    filter: drop-shadow(0 15px 15px rgba(var(--sgds-black-rgb), 0.15));
                     img{
                         transform: scale(1.03) rotate(0.01deg);
                         
