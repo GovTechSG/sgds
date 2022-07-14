@@ -2,11 +2,15 @@
     max-width: 1440px;
     margin: 0 auto;
     header{
-        margin-bottom: 1rem;
+        margin-bottom: 3.5rem;
+        margin-left: 30rem;
+        margin-right: 30rem;
     }
     .sgds{
         &.accordion{
             margin-bottom: 1rem;
+            margin-left: 20rem;
+            margin-right: 20rem;
         }
     }
 }
