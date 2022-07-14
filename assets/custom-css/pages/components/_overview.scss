@@ -7,15 +7,17 @@
             .sgds.card{
                 transition: $transition-base;
                 overflow: hidden;
+                background: rgba(246,247,251,1);
                 .card-body{
                     z-index: 1;
-                    background-color: #fff;
+                    background: var(--sgds-white);
+                    background: linear-gradient(0deg, rgba(255,255,255,1) 74%, rgba(246,247,251,1) 100%);
                 }
                 img{
                     transition: transform 0.2s ease-in-out;
                 }
                 &:hover{
-                    filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.15));
+                    filter: drop-shadow(0 15px 15px rgba(var(--sgds-), 0.15));
                     img{
                         transform: scale(1.03) rotate(0.01deg);
                         
