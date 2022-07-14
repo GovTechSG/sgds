@@ -3,15 +3,12 @@
       {% include breadcrumb.html %}
       <h1 class="title">{{page.title}}</h1>
       <p>{{page.description}}</p>
-
       {% if site.search %}
       <div class="sgds form-control-group mt-4">
           <input type="text" class="form-control" id="filterItems" aria-describedby="filterItems" placeholder="Filter {{page.title | replace: 'Overview' , ''}}">
           <i class="bi bi-funnel form-control-icon"></i>
       </div>
       {% endif %}
-      
-
     </header>
     
     <section class="page-component-overview">
