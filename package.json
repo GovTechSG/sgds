@@ -1,6 +1,6 @@
 {
   "name": "@govtechsg/sgds",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
   "repository": {
     "type": "git",
@@ -8,16 +8,14 @@
   },
   "license": "MIT",
   "author": "Tey Liang Tai",
-  "main": "sgds/sgds.css",
+  "main": "css/sgds.css",
   "files": [
-    "sgds/sass",
-    "sgds/sgds.css",
-    "sgds/sgds.scss",
-    "sgds/sgds.css.map"
+    "sass",
+    "css"
   ],
   "scripts": {
     "build": "npm run packagedownloads && npm run build:site && bundle exec jekyll build",
-    "build:lib": "rm -rf ./sgds/sgds.css && webpack --mode=production",
+    "build:lib": "rm -rf ./css && webpack --mode=production",
     "build:site": "npm run build:lib",
     "dev": "concurrently npm:dev:static npm:dev:jekyll",
     "dev:jekyll": "bundle exec jekyll serve",
