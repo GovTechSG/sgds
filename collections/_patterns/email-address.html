@@ -9,7 +9,7 @@ toc: true
 <div class="sgds form-group">
     <label class="form-label" for="email">Email Address</label>
     <span class="form-text">Your email will only be used for updates</span>
-    <input class="form-control" type="email" id="email" autocomplete="on" spellcheck="false" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="256" placeholder="Enter email" oninput="setValidation()" />
+    <input class="form-control" type="email" id="email" autocomplete="email" spellcheck="false" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="256" placeholder="Enter email" oninput="setValidation()" />
 </div>
 {% endcapture %}
 
@@ -61,10 +61,10 @@ toc: true
             Make it easier for users by:
             <ul>
                 <li>Allowing them to copy and paste their email address</li>
-                <li>Setting the type attribute to email so that the correct keyboard is displayed</li>
-                <li>Setting the spellcheck attribute to false so that their email addresses are not spell checked by the browser or device</li>
-                <li>Setting the autocomplete attribute so that browsers can fill in their email address if they have entered in previously</li>
-                <li>You will need to include the autocomplete attribute to meet WCAG 2.1 AA for production</li>
+                <li>Setting the <code>type</code> attribute to <code>email</code> so that the correct keyboard is displayed</li>
+                <li>Setting the <code>spellcheck</code> attribute to <code>false</code> so that their email addresses are not spell checked by the browser or device</li>
+                <li>Setting the <code>autocomplete</code> attribute to <code>email</code> so that browsers can fill in their email address if they have entered in previously</li>
+                <li>You will need to include the <code>autocomplete</code> attribute to meet WCAG 2.1 AA for production</li>
             </ul>
         </p>
     </section>

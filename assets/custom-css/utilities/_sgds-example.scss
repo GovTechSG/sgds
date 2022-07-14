@@ -41,6 +41,7 @@
 
 .sgds-example-image{
     &-container{
+        overflow-x: auto;
         display: grid;
         padding: 2rem;
         background-color: var(--sgds-gray-100);

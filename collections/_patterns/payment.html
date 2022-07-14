@@ -7,27 +7,27 @@ toc: true
 {% capture payment-pattern %}
 <div class="sgds form-group mb-3">
     <label for="nameOnCard" class="form-label">Name on Card</label>
-    <input type="text" class="form-control" id="nameOnCard" autocomplete="on">
+    <input type="text" class="form-control" id="nameOnCard" autocomplete="name">
 </div>
 <div class="sgds form-group mb-3">
     <label for="cardNumber" class="form-label">Card Number</label>
     <div id="cardNumberText" class="form-text">Enter the 16-digit number on the card</div>
     <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="19" class="form-control" id="cardNumber"
-        autocomplete="on" aria-describedby="cardNumberText" onkeypress="return onlyNumberKey(event)"
+        autocomplete="cc-number" aria-describedby="cardNumberText" onkeypress="return onlyNumberKey(event)"
         oninput="this.value = creditCardFormatter(event)">
 </div>
 <div class="row">
     <div class="sgds col form-group mb-3">
         <label for="expiryDate" class="form-label">Expiry Date</label>
         <div id="expiryDateText" class="form-text">MM/YY</div>
-        <input type="text" class="form-control" id="expiryDate" autocomplete="on" pattern="[0-9]{2}/[0-9]{2}"
+        <input type="text" class="form-control" id="expiryDate" autocomplete="cc-exp" pattern="[0-9]{2}/[0-9]{2}"
             maxlength="5" aria-describedby="expiryDateText" onkeypress="formatDate()">
     </div>
     <div class="sgds col form-group mb-3">
         <label for="cvv" class="form-label">CVV</label>
         <div id="cvvText" class="form-text">The 3-digit number at the back of the card</div>
         <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" class="form-control" id="cvv"
-            autocomplete="on" aria-describedby="cvvText" onkeypress="return onlyNumberKey(event)">
+            autocomplete="cc-csc" aria-describedby="cvvText" onkeypress="return onlyNumberKey(event)">
     </div>
 </div>
 {% endcapture %}
@@ -56,12 +56,14 @@ toc: true
             <li>Make sure that you support all characters that users may need to enter, including symbols and numbers
             </li>
             <li>Make it clear that you are asking for the user's name on their card</li>
+            <li>Set the <code>autocomplete</code> attribute to <code>name</code> so that browsers can fill in their name if they have entered in previously</li>
         </ul>
         </p>
         <p>
             <strong>Card number field</strong>
         <ul>
             <li>Your text field should accommodate only numbers and 16 characters</li>
+            <li>Set the <code>autocomplete</code> attribute to <code>cc-number</code> so that browsers can fill in their card number if they have entered in previously</li>
         </ul>
         </p>
         <p>
@@ -69,6 +71,7 @@ toc: true
         <ul>
             <li>Your text field should accommodate only numbers and 4 characters</li>
             <li>Give an example of how the date should be filled in (e.g. MM/YY)</li>
+            <li>Set the <code>autocomplete</code> attribute to <code>cc-exp</code> so that browsers can fill in their expiry date if they have entered in previously</li>
         </ul>
         </p>
         <p>
@@ -76,6 +79,7 @@ toc: true
         <ul>
             <li>Your text field should accommodate only 3 digit numbers</li>
             <li>Explain to user what CVV is</li>
+            <li>Set the <code>autocomplete</code> attribute to <code>cc-csc</code> so that browsers can fill in their CVV if they have entered in previously</li>
         </ul>
         </p>
     </section>
@@ -99,6 +103,9 @@ toc: true
     }
 
     function creditCardFormatter( event ) {
+        if (event.inputType == 'deleteContentBackward') {
+            return event.target.value.trim()
+        }
         const value = event.target.value
         const formattedValue = value.replace( /\W/gi, '' ).replace( /(.{4})/g, '$1 ' )
         if ( value.length === 19 ) {
