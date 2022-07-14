@@ -19,7 +19,7 @@
   beta: true
   has-collection: false
 - title: get started
-  url: '/#/'
-  has-collection: false
+  url: '/get-started/'
+  has-collection: true
 
 

@@ -29,15 +29,21 @@ collections:
     category: components
     order:
       - masthead.html
-
+      - main-navigation.html
+      - side-navigation.html
+      - footer.html
   patterns:
     permalink: /:collection/:name
     output: true
     category: patterns
   templates:
-    permalink: /:collection/:name/
+    permalink: /:collection/:name
     output: true
     category: templates
+  getStarted:
+    permalink: /:collection/:name
+    output: true
+    category: getStarted
 
 # set all patterns collection to use certain layouts
 defaults:
@@ -61,6 +67,13 @@ defaults:
     values:
       layout: "layout-sidenav"
       pageCategory: "templates"
+      toc: true
+  -
+    scope:
+      type: "getStarted" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "getStarted"
       toc: true
       
 exclude:
