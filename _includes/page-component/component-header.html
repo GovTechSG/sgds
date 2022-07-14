@@ -14,6 +14,8 @@
             <div>
                 {% if page.category == 'mandatory' %}
                 <span class="sgds badge badge-light bg-danger">{{page.category | capitalize}}</span>
+                {% elsif page.category == 'required' %}
+                <span class="sgds badge badge-light bg-success">{{page.category | capitalize}}</span>
                 {% else %}
                 <span class="sgds badge badge-light bg-primary">{{page.category | capitalize}}</span>
                 {% endif %}

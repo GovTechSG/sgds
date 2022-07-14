@@ -1,13 +1,15 @@
 <div class="wrapper-fluid">
     <header class="header-overview">
+      {% include breadcrumb.html %}
       <h1 class="title">{{page.title}}</h1>
       <p>{{page.description}}</p>
 
-      
+      {% if site.search %}
       <div class="sgds form-control-group mt-4">
           <input type="text" class="form-control" id="filterItems" aria-describedby="filterItems" placeholder="Filter {{page.title | replace: 'Overview' , ''}}">
           <i class="bi bi-funnel form-control-icon"></i>
       </div>
+      {% endif %}
       
 
     </header>
@@ -38,6 +40,8 @@
               <p class="card-text">{{item.description | truncate: 100}}</p>
               {% if item.category == 'mandatory' %}
               <span class="sgds badge badge-light bg-danger">{{item.category | capitalize}}</span>
+              {% elsif item.category == 'required' %}
+              <span class="sgds badge badge-light bg-success">{{item.category | capitalize}}</span>
               {% else %}
               <span class="sgds badge badge-light bg-primary">{{item.category | capitalize}}</span>
               {% endif %}
