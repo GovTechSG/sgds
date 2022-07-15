@@ -1,6 +1,6 @@
 section.wrapper{
     &.home{
-        width: 1440px;
+        width: initial;
         max-width: 1440px;
         section{
             padding-top: calc(#{$spacer} * 3);
