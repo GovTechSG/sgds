@@ -1,7 +1,5 @@
 .wrapper{
     &.about{
-       
-            max-width: 90ch;
         section + section{
             margin-top: calc(#{$spacer} * 2);
         }

@@ -20,7 +20,7 @@ plugins:
   - jekyll-redirect-from
   - jekyll-toc
   - jekyll-get-json
-  
+
 collections_dir: collections
 collections:
   components:
@@ -29,15 +29,25 @@ collections:
     category: components
     order:
       - masthead.html
-
+      - main-navigation.html
+      - side-navigation.html
+      - footer.html
   patterns:
     permalink: /:collection/:name
     output: true
     category: patterns
   templates:
-    permalink: /:collection/:name/
+    permalink: /:collection/:name
     output: true
     category: templates
+  get-started:
+    permalink: /:collection/:name
+    output: true
+    category: get-started
+    order:
+      - installation.html
+      - customise-with-sass.html
+      - ui-kit.html
 
 # set all patterns collection to use certain layouts
 defaults:
@@ -47,6 +57,7 @@ defaults:
     values:
       layout: "layout-sidenav"
       pageCategory: "patterns"
+      source-grid: true
       toc: true
   -
     scope:
@@ -54,6 +65,7 @@ defaults:
     values:
       layout: "layout-sidenav"
       pageCategory: "components"
+      source-grid: true
       toc: true
   -
     scope:
@@ -61,6 +73,15 @@ defaults:
     values:
       layout: "layout-sidenav"
       pageCategory: "templates"
+      source-grid: false
+      toc: true
+  -
+    scope:
+      type: "get-started" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "get-started"
+      source-grid: false
       toc: true
       
 exclude:
@@ -71,7 +92,6 @@ exclude:
   - Dockerfile
   - Gemfile*
   - package*.json
-  - README.md
   - webpack.config.js
   - Gruntfile.js
   - amplify.yml

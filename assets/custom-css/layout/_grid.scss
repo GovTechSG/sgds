@@ -1,17 +1,24 @@
 .wrapper{
     display: grid;
+    padding: 1rem 2rem 2rem;
     &.layout{
         &-single{
-            max-width: 1440px;
-            margin: 0 auto;
+            width: 45vw;
+            margin:0 auto;
+            header{
+                margin-bottom: 3.5rem;
+            }
+            @include media-breakpoint-down(xxl){
+                width: 100%;
+                padding-left: calc(#{$spacer} * 1);
+                padding-right: calc(#{$spacer} * 1);
+            }
         }
-
+        
         &-sidenav{
-            display: grid;
             gap: 3rem;
             grid-template-columns: 15rem minmax(25rem, 1fr);
             max-width: 100%;
-            padding: 1rem 2rem 2rem;
             @include media-breakpoint-down(lg){
                 display:block;
                 aside{
@@ -25,7 +32,6 @@
         }
     }
     &-fluid{
-        max-width: 100%;
         header{
             &.header-overview{
                 margin-bottom: calc(#{$spacer} * 2);

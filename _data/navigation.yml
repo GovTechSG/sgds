@@ -14,12 +14,11 @@
 - title: theme customiser
   url: 'https://customiser.designsystem.gov.sg'
   target: '_blank'
+  has-collection: false
 - title: FAQs
   url: /faqs/ 
   beta: true
   has-collection: false
-- title: get started
-  url: '/#/'
-  has-collection: false
-
-
+- title: get-started
+  url: /get-started/
+  has-collection: true

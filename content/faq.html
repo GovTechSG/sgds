@@ -1,17 +1,20 @@
 ---
-title: Frequently Asked Questions
+title: FAQs
 permalink: /faqs/
-layout: layout-default
+layout: layout-single
 ---
 
 <section class="page-faqs">
 
     <header>
-        <h1 class="text-center"><strong>How can we help you?</strong></h1>
+        {% include breadcrumb.html %}
+        <h1 class="fw-bold">How can we help you?</h1>
+        {% if site.search %}
         <div class="sgds form-group">
             <label for="search" class="form-label">Search:</label>
             <input type="text" class="js-shuffle-search form-control" id="search">
         </div>
+        {% endif %}
     </header>
 
     <!--  -->

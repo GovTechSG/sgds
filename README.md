@@ -1,12 +1,20 @@
-# Singapore Government Design System
+---
+title: Get Started
+permalink: /get-started
+layout: layout-single
+---
 
-[![npm](https://img.shields.io/npm/v/sgds-govtech.svg)](https://www.npmjs.com/package/sgds-govtech)
 
-[SGDS](https://www.designsystem.gov.sg) is a frontend framework that aims to provide a beautiful common visual language and user experience for visitors of Singapore Government websites. It provides designers and developers with customisable components to help them easily implement the Singapore Government's [Digital Service Standards](https://www.tech.gov.sg/digital-service-standards/).
 
-## Installation
+## Singapore Government Design System
+[![npm](https://img.shields.io/npm/v/@govtechsg/sgds.svg)](https://www.npmjs.com/package/@govtechsg/sgds)
 
-### Browsers
+The Singapore Government Design System was developed to empower teams in creating fast, accessible and mobile-friendly digital services.
+<hr>
+
+### Installation
+
+#### Browsers
 
 #### CSS
 
@@ -15,7 +23,7 @@
     ...
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/sgds-govtech@{{site.version}}/css/sgds.css"
+        href="https://cdn.jsdelivr.net/npm/@govtechsg/sgds/css/sgds.css"
     />
     ...
 </head>
@@ -23,49 +31,44 @@
 
 #### JavaScript
 
-[Certain components](#javascript-components) of SGDS makes use of `sgds.js`, with jQuery as an external dependency. If you only need the visual parts of SGDS, or if you are [using frontend frameworks like React](#frontend-frameworks), you do not need to import this.
+SGDS components makes use of [bootstrap v5.1.3 js library](https://getbootstrap.com/docs/5.1/getting-started/javascript/) as an external dependency. If you only need the visual parts of SGDS, or if you are [using frontend frameworks like React](https://www.designsystem.tech.gov.sg/react/), you do not need to import this.
 
 ```html
 <body>
     ...
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sgds-govtech@{{site.version}}/js/sgds.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     ...
 </body>
 ```
 
-##### JavaScript components
+For more information, please refer to the [components documentation](https://www.designsystem.tech.gov.sg/components).
 
-- Mandatory
-    - Main Nav
-    - Side Nav
-- General
-    - Accordions
-    - Dropdowns
-    - Tabs
-
-For more information, please refer to the [documentation](https://www.designsystem.gov.sg/docs).
-
-### NPM
+#### NPM
 
 ```sh
-$ npm i sgds-govtech
+$ npm i @govtechsg/sgds
 ```
 
 #### Webpack
 
-```javascript
-import "sgds-govtech/css/sgds.css";
-import "sgds-govtech/js/sgds"; // Do not use with other web frameworks*
+```css 
+//importing css
+import "@govtechsg/sgds/css/sgds.css";
+
+//importing sass
+import "@govtechsg/sgds/sass/sgds.scss";
 ```
 
-##### Frontend frameworks
+```js
+import '@popperjs/core';
+import * as bootstrap from 'bootstrap';
+```
 
-Usage with frameworks such as React, Vue or Angular is discouraged since they manipulate the DOM in their own environments. Framework-specific implementations are in early development and can be found at [sgds-govtech-react](https://github.com/govtechsg/sgds-govtech-react) and [sgds-govtech-vue](https://github.com/govtechsg/sgds-govtech-vue).
+#### Frontend frameworks
 
-## Usage
+Usage with frameworks such as React, Vue or Angular is discouraged since they manipulate the DOM in their own environments. Framework-specific implementations are in early development and can be found at [sgds-react](https://github.com/govtechsg/sgds-react)
 
-See [docs](https://www.designsystem.gov.sg).
+<hr>
 
 ## Development
 
@@ -76,17 +79,9 @@ See [docs](https://www.designsystem.gov.sg).
 
 To spin up a live-reloading Jekyll + Webpack development server it is recommended that you use **two separate terminal sessions** so that you can kill any of them easily:
 
-```bash
-# Terminal 1
-$ npm run dev:static
-```
-
 ``` bash
-# Terminal 2
-$ npm run dev:jekyll # Access from localhost:4000
+$ npm run dev # Access from localhost:4000
 ```
-
-### Development Build  [![Build Status](https://travis-ci.org/GovTechSG/sgds.svg?branch=dev)](https://travis-ci.org/GovTechSG/sgds)
 
 Test out the latest development build:
 
@@ -95,13 +90,14 @@ Test out the latest development build:
 <link rel="stylesheet" href="https://dev.designsystem.gov.sg/css/sgds.css"/>
 
 <!-- JS in <body> -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://dev.designsystem.gov.sg/js/sgds.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 ```
 
-### Release
+<hr>
 
-#### Promotion to master
+## Release
+
+### Promotion to master
 
 1. Use dev branch
 2. Change all references in documentation from previous version to new version, e.g. inside the `_config.yml` and `readme.md` files.
@@ -134,6 +130,8 @@ git push origin v[new version]
 2. Push to 2.0.0-dev branch. It will trigger github action to run .github/workflows/publish-alpha.yml
 
 **NOTE** It is intended that the runner will fail to publish when version is not change. Until version-check allows check for pre-releases version changes.
+
+<hr>
 
 ## Patch Notes
 
