@@ -1,0 +1,135 @@
+---
+title: Footer
+layout: layout-sidenav
+description: Insert description
+category: mandatory
+react-link: ?path=/docs/components-footer--default-story
+github-link: true
+toc: true
+---
+
+{% capture default-footer %}
+<div class="bg-dark text-light p-4">
+    <h3>Singapore Government Design System</h3>
+    <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum illo delectus laborum libero id ratione quibusdam tempora assumenda quas, pariatur cum minus, aliquid molestiae et nisi dolorem vitae molestias! Voluptate commodi aliquid iusto sequi sit eligendi, quod numquam nihil consectetur eaque error earum laudantium! Temporibus accusamus pariatur quod totam quia.</p>
+    <div class="row">
+        <div class="col">
+            <h4>Column 1</h4>
+            <ul class="list-unstyled">
+                <li><a href="" class="text-decoration-none text-muted">About Us</a></li>
+                <li><a href="" class="text-decoration-none text-muted">This is a super long link</a></li>
+                <li><a href="" class="text-decoration-none text-muted">Test</a></li>
+                <li><a href="" class="text-decoration-none text-muted">Test</a></li>
+            </ul>
+        </div>
+        <div class="col">
+            <h4>Column 2</h4>
+            <ul class="list-unstyled">
+                <li><a href="" class="text-decoration-none text-muted">About Us</a></li>
+                <li><a href="" class="text-decoration-none text-muted">This is a super long link</a></li>
+                <li><a href="" class="text-decoration-none text-muted">Test</a></li>
+                <li><a href="" class="text-decoration-none text-muted">Test</a></li>
+            </ul>
+        </div>
+        <div class="col">
+            <h4>Column 3</h4>
+            <ul class="list-unstyled">
+                <li><a href="" class="text-decoration-none text-muted">About Us</a></li>
+                <li><a href="" class="text-decoration-none text-muted">This is a super long link</a></li>
+                <li><a href="" class="text-decoration-none text-muted">Test</a></li>
+                <li><a href="" class="text-decoration-none text-muted">Test</a></li>
+            </ul>
+        </div>
+        <div class="col">
+            <h4>Column 4</h4>
+            <ul class="list-unstyled">
+                <li><a href="" class="text-decoration-none text-muted">About Us</a></li>
+                <li><a href="" class="text-decoration-none text-muted">This is a super long link</a></li>
+                <li><a href="" class="text-decoration-none text-muted">Test</a></li>
+                <li><a href="" class="text-decoration-none text-muted">Test</a></li>
+            </ul>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a href="" class="text-decoration-none text-muted">Contact</a>&nbsp;&nbsp;
+            <a href="" class="text-decoration-none text-muted">Feedback</a>&nbsp;&nbsp;
+            <a href="" target="_blank" class="text-decoration-none text-muted">Reach.gov.sg</a>
+        </div>
+        <div>
+            <a href="" target="_blank" class="text-decoration-none text-muted">Report Vulnerability</a>&nbsp;&nbsp;
+            <a href="" class="text-decoration-none text-muted">Privacy</a>&nbsp;&nbsp;
+            <a href="" class="text-decoration-none text-muted">Terms of use</a>
+        </div>
+        <div class="d-flex justify-content-end">
+            © 2022 Government of Singapore. Last Updated 08 Feb 2022
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+              {% include page-component/component-code-snippet.html compTitle="Default Footer" compName="default-footer" code=default-footer %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+          <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+          <div class="section-sub">
+              <div class="sgds-example-image-container">
+                  <div class="sgds-example-image-grid">
+                      <img src="{{site.baseurl}}/assets/img/component/tooltip/anatomy-footer-1.svg" alt="Footer Anatomy">
+                  </div>
+              </div>
+              <ol>
+                  <li>
+                      <b>Title:</b> Text
+                  </li>
+              </ol>
+          </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/tooltip/spacing-footer-1.svg" alt="Footer Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-footer">Title</h3>
+                <p>Text</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Footer should be used:</p>
+            <ul>
+                <li>Text</li>
+            </ul>
+            <p class="fw-bold mb-0">Footer should not be used:</p>
+            <ol>
+                <li>Text</li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Title</b><br>
+                Text
+            </p>
+        </section>
+</div>
