@@ -9,8 +9,9 @@
         {% if page.ready == false %}
         {% assign class = 'text-danger' %}
         {% endif %}
+        {% if page.description %}
         <p class="header-component-description {{class}}">{{page.description}}</p>
-
+        {% endif %}
         {% if page.source-grid %}
         <div class="component-source-grid">
 
