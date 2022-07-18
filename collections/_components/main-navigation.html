@@ -10,7 +10,129 @@ toc: true
 
 {% capture default-main-navigation %}
 <nav class="sgds navbar navbar-expand-lg">
-    <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+        <img src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg" alt="Home">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="">Link</a>
+            </li>
+            <li class="nav-item sgds dropdown">
+                <a class="nav-link sgds dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown<i class="bi bi-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="">Action</a></li>
+                    <li><a class="dropdown-item" href="">Another Action</a></li>
+                    <li><a class="dropdown-item" href="">Something</a></li>
+                    <div class="dropdown-divider"></div>
+                    <li><a class="dropdown-item" href="">Seperated Link</a></li>
+                </ul>
+            </li>
+            <li class="nav-item sgds dropdown">
+                <a class="nav-link sgds dropdown-toggle" href="#" id="megamenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Megamenu<i class="bi bi-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu p-3" aria-labelledby="megamenu">
+                    <div class="d-flex justify-content-start">
+                        <div>
+                            <b>Co-create innovative digital solutions with the Government</b>
+                            <p>Discover events, blogs, open-source technologies and other collaboration opportunities</p>
+                        </div>
+                        <div>
+                            <a class="dropdown-item" href="">Features</a>
+                            <a class="dropdown-item" href="">Features</a>
+                            <a class="dropdown-item" href="">Features</a>
+                        </div>
+                        <div>
+                            <a class="dropdown-item" href="#">Features</a>
+                            <a class="dropdown-item" href="#">Features</a>
+                            <a class="dropdown-item" href="#">Features</a>
+                        </div>
+                        <div>
+                            <a class="dropdown-item" href="#">Features</a>
+                            <a class="dropdown-item" href="#">Features</a>
+                            <a class="dropdown-item" href="#">Features</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% endcapture %}
+
+{% capture collapsed-main-navigation %}
+<nav class="sgds navbar">
+    <a class="navbar-brand" href="#">
+        <img src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg" alt="Home">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="">Link</a>
+            </li>
+            <li class="nav-item sgds dropdown">
+                <a class="nav-link sgds dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown<i class="bi bi-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="">Action</a></li>
+                    <li><a class="dropdown-item" href="">Another Action</a></li>
+                    <li><a class="dropdown-item" href="">Something</a></li>
+                    <div class="dropdown-divider"></div>
+                    <li><a class="dropdown-item" href="">Seperated Link</a></li>
+                </ul>
+            </li>
+            <li class="nav-item sgds dropdown">
+                <a class="nav-link sgds dropdown-toggle" href="#" id="megamenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Megamenu<i class="bi bi-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu p-3" aria-labelledby="megamenu">
+                    <div class="d-flex justify-content-start">
+                        <div>
+                            <b>Co-create innovative digital solutions with the Government</b>
+                            <p>Discover events, blogs, open-source technologies and other collaboration opportunities</p>
+                        </div>
+                        <div>
+                            <a class="dropdown-item" href="">Features</a>
+                            <a class="dropdown-item" href="">Features</a>
+                            <a class="dropdown-item" href="">Features</a>
+                        </div>
+                        <div>
+                            <a class="dropdown-item" href="#">Features</a>
+                            <a class="dropdown-item" href="#">Features</a>
+                            <a class="dropdown-item" href="#">Features</a>
+                        </div>
+                        <div>
+                            <a class="dropdown-item" href="#">Features</a>
+                            <a class="dropdown-item" href="#">Features</a>
+                            <a class="dropdown-item" href="#">Features</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% endcapture %}
+
+{% capture sticky-main-navigation %}
+<div style="height: 300px" class="overflow-auto">
+    <nav class="sgds navbar navbar-expand-lg sticky-top">
         <a class="navbar-brand" href="#">
             <img src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg" alt="Home">
         </a>
@@ -19,39 +141,61 @@ toc: true
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Components</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Patterns</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Templates</a>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
-            <li class="nav-item sgds dropdown">
-                <a class="nav-link sgds dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Theme customiser<i class="bi bi-chevron-down"></i>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Option 1</a></li>
-                <li><a class="dropdown-item active" href="#">Option 2</a></li>
-                <li><a class="dropdown-item" href="#">Option 3</a></li>
-                <li><a class="dropdown-item" href="#">Option 4</a></li>
-                </ul>
-            </li>
-            <li class="nav-item align-self-center d-none d-lg-block">
-                <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
-            </li>
-            <li class="nav-item align-self-center d-none d-lg-block">
-                <a class="nav-link" href="#"><i class="bi bi-grid-3x3-gap-fill"></i></a>
-            </li>
-        </ul>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="">Link</a>
+                </li>
+                <li class="nav-item sgds dropdown">
+                    <a class="nav-link sgds dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown<i class="bi bi-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="">Action</a></li>
+                        <li><a class="dropdown-item" href="">Another Action</a></li>
+                        <li><a class="dropdown-item" href="">Something</a></li>
+                        <div class="dropdown-divider"></div>
+                        <li><a class="dropdown-item" href="">Seperated Link</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item sgds dropdown">
+                    <a class="nav-link sgds dropdown-toggle" href="#" id="megamenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Megamenu<i class="bi bi-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu p-3" aria-labelledby="megamenu">
+                        <div class="d-flex justify-content-start">
+                            <div>
+                                <b>Co-create innovative digital solutions with the Government</b>
+                                <p>Discover events, blogs, open-source technologies and other collaboration opportunities</p>
+                            </div>
+                            <div>
+                                <a class="dropdown-item" href="">Features</a>
+                                <a class="dropdown-item" href="">Features</a>
+                                <a class="dropdown-item" href="">Features</a>
+                            </div>
+                            <div>
+                                <a class="dropdown-item" href="#">Features</a>
+                                <a class="dropdown-item" href="#">Features</a>
+                                <a class="dropdown-item" href="#">Features</a>
+                            </div>
+                            <div>
+                                <a class="dropdown-item" href="#">Features</a>
+                                <a class="dropdown-item" href="#">Features</a>
+                                <a class="dropdown-item" href="#">Features</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
+    </nav>
+    <div class="p-3">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc sed augue lacus viverra vitae congue eu. Aliquet enim tortor at auctor urna nunc id cursus. Aliquam id diam maecenas ultricies. Tempus iaculis urna id volutpat lacus laoreet non. Mauris ultrices eros in cursus turpis massa. Magna etiam tempor orci eu lobortis elementum. Semper quis lectus nulla at volutpat diam ut venenatis. Elit eget gravida cum sociis. Erat velit scelerisque in dictum non. Ipsum consequat nisl vel pretium lectus quam id. Diam sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Accumsan sit amet nulla facilisi morbi tempus iaculis urna id. Interdum velit euismod in pellentesque massa.</p>
+        <p>Et pharetra pharetra massa massa ultricies mi quis. Velit scelerisque in dictum non consectetur a erat. Tellus molestie nunc non blandit massa enim. Sit amet nisl suscipit adipiscing bibendum est ultricies integer. Cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Tristique senectus et netus et malesuada fames ac turpis. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. A diam sollicitudin tempor id eu nisl nunc. Lorem ipsum dolor sit amet consectetur. Morbi quis commodo odio aenean. Et ultrices neque ornare aenean euismod elementum nisi quis. Cras pulvinar mattis nunc sed blandit. Ut faucibus pulvinar elementum integer enim neque volutpat. Amet nisl purus in mollis nunc sed id semper. Nulla porttitor massa id neque aliquam vestibulum morbi blandit cursus. Eget gravida cum sociis natoque penatibus et. Netus et malesuada fames ac turpis egestas maecenas pharetra convallis. Elit sed vulputate mi sit. In hac habitasse platea dictumst. Nec dui nunc mattis enim ut tellus.</p>
+        <p>Viverra nibh cras pulvinar mattis nunc sed blandit libero. Gravida arcu ac tortor dignissim convallis aenean et tortor at. Accumsan sit amet nulla facilisi morbi tempus iaculis. In ante metus dictum at tempor commodo ullamcorper a. Pharetra et ultrices neque ornare. Sit amet facilisis magna etiam tempor orci eu. Malesuada proin libero nunc consequat interdum. Magna fermentum iaculis eu non diam phasellus vestibulum. Nisi est sit amet facilisis magna etiam tempor orci. Duis ut diam quam nulla porttitor. Commodo viverra maecenas accumsan lacus vel facilisis. Nibh venenatis cras sed felis eget velit aliquet sagittis. Magna fermentum iaculis eu non diam phasellus vestibulum lorem. Diam vel quam elementum pulvinar etiam. Vitae nunc sed velit dignissim sodales ut.</p>
     </div>
-</nav>
+</div>
 {% endcapture %}
 
 {% capture main-navigation-design-tokens %}
@@ -93,7 +237,13 @@ $navbar-toggler-transition: box-shadow .15s ease-in-out !default;
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Example</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compName="default-main-navigation" code=default-main-navigation %}
+                {% include page-component/component-code-snippet.html compTitle="Default Main Navigation" compName="default-main-navigation" code=default-main-navigation %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Collapsed Main Navigation" compName="collapsed-main-navigation" code=collapsed-main-navigation %}
+            </div>
+            <div class="section-sub">
+                {% include page-component/component-code-snippet.html compTitle="Sticky Main Navigation" compName="sticky-main-navigation" code=sticky-main-navigation %}
             </div>
         </section>
 
