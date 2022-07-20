@@ -10,15 +10,19 @@ toc: true
 
 {% capture default-combo-box %}
 <div class="sgds form-group mb-2">
-    <label for="defaultCombobox" class="form-label">Select a fruit</label>
+    <label for="defaultCombobox" class="form-label">Label</label>
+    <div class="form-text">This is the hint text</div>
     <div class="sgds combobox" >
-        <input type="text" class="form-control dropdown-toggle" id="defaultCombobox" data-bs-toggle="dropdown" aria-expanded="false" aria-describedby="defaultCombobox">
-        <i class="bi bi-search form-control-icon"></i>
-        <ul class="dropdown-menu my-2" aria-labelledby="defaultCombobox">
-            <li><a class="dropdown-item" href="#">Apple</a></li>
-            <li><a class="dropdown-item" href="#">Orange</a></li>
-            <li><a class="dropdown-item" href="#">Banana</a></li>
-        </ul>
+        <input type="text" class="form-control dropdown-toggle" placeholder="Text goes here" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="">Option 1</a>
+            <a class="dropdown-item" href="">Option 2</a>
+            <a class="dropdown-item" href="">Option 3</a>
+            <a class="dropdown-item" href="">Option 4</a>
+        </div>
+        <div class="form-control-icon">
+            <i class="bi bi-chevron-down"></i>
+        </div>
     </div>
 </div>
 {% endcapture %}
