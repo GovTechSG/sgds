@@ -10,7 +10,7 @@ npm install @govtechsg/sgds-react
 npm install @govtechsg/sgds-govtech bootstrap-icons
 {% endcapture %}
 {% capture using-node %}
-npm i @govtechsg/sgds bootstrap@5.1.3 bootstrap-icons
+npm i @govtechsg/sgds bootstrap-icons
 {% endcapture %}
 
 {% capture webpack %}
@@ -36,6 +36,15 @@ import * as bootstrap from 'bootstrap';
 <div class="page-component">
   {% include page-component/component-header.html %}
 
+  <section name="section-notification">
+    <div class="sgds toast show w-100" role="alert" aria-live="assertive" aria-atomic="true">
+      
+      <div class="toast-body pt-3">
+        <a href="/components/">SGDS components</a> makes use of <a href="https://getbootstrap.com/docs/5.1/getting-started/javascript/" target="_blank">bootstrap v{{site.bootstrap-version}} js library</a>as an external dependency.<br>If you only need the visual parts of SGDS, or if you are [using frontend frameworks like <a href="{{site.react-storybook}}">ReactJS</a>, you do not need to import this.
+      </div>
+    </div>
+  </section>
+
   <section name="section-reactJS">
     <h2 class="title fw-bold" id="react-js">For React JS</h2>
     <div class="section-sub">
@@ -50,7 +59,7 @@ import * as bootstrap from 'bootstrap';
         href="https://icons.getbootstrap.com/#install" target="_blank">bootstrap-icons</a> for usage instructions.
     </p>
     <p>
-      Visit the <a href="{{site.react-storybook}}" target="_blank">SGDS React storybook</a> for more details.
+      Visit the <a href="{{site.react-storybook}}" target="_blank">SGDS React storybook</a> for detail installation guide.
     </p>
     
   </section>
