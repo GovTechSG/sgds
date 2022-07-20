@@ -1,3 +1,14 @@
+---
+title: Footer
+layout: layout-sidenav
+description: Insert description
+category: mandatory
+react-link: ?path=/docs/components-footer--default-story
+github-link: true
+toc: true
+---
+
+{% capture default-footer %}
 <footer class="sgds footer">
     <section class="footer-top">
         <div class="container-fluid">
@@ -115,3 +126,72 @@
         </div>
     </section>
 </footer>
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+              {% include page-component/component-code-snippet.html compTitle="Default Footer" compName="default-footer" code=default-footer %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+          <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+          <div class="section-sub">
+              <div class="sgds-example-image-container">
+                  <div class="sgds-example-image-grid">
+                      <img src="{{site.baseurl}}/assets/img/component/tooltip/anatomy-footer-1.svg" alt="Footer Anatomy">
+                  </div>
+              </div>
+              <ol>
+                  <li>
+                      <b>Title:</b> Text
+                  </li>
+              </ol>
+          </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/tooltip/spacing-footer-1.svg" alt="Footer Spacing">
+                    </div>
+                </div>
+                <h3 class="subtitle fw-bold" id="within-the-footer">Title</h3>
+                <p>Text</p>
+            </div>
+        </section>
+
+        <!-- Usage guidelines Section -->
+        <section name="section-usage-guidelines">
+            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Footer should be used:</p>
+            <ul>
+                <li>Text</li>
+            </ul>
+            <p class="fw-bold mb-0">Footer should not be used:</p>
+            <ol>
+                <li>Text</li>
+            </ol>
+        </section>
+
+        <!-- Usability guidelines Section -->
+        <section name="section-usability-guidelines">
+            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+            <p>
+                <b>Title</b><br>
+                Text
+            </p>
+        </section>
+</div>
