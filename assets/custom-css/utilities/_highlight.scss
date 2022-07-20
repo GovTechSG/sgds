@@ -1,12 +1,18 @@
 .highlight{
     // max-width: 60vw;
+    line-height: 1.5;
     pre{
         white-space: pre-wrap;
         margin:0;
-        padding: 0.5rem 1rem;
+        padding: 1rem;
         // word-break: break-word;
+        code{
+            color :white;
+            font-size: var(--sgds-body-font-size);
+        }
     }
 }
+
 .highlight pre { background-color: #272822; }
 .highlight .hll { background-color: #272822; }
 .highlight .c { color: #75715e } /* Comment */
