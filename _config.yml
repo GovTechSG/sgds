@@ -4,6 +4,7 @@ description: >-
   Design System unites Singapore Government digital services around a common visual language 
   and user experience
 logo: /assets/img/logo_sgds.png
+url: https://www.designsystem.tech.gov.sg
 
 # Site data
 sgds-version: 1.3.22
@@ -14,6 +15,8 @@ request-component: "https://form.gov.sg/6136ea11658bea0012fc9e80"
 search_placeholder: "What are you looking for?"
 react-storybook: https://1-0-0-dev.dg2jutx9gylat.amplifyapp.com/
 github-link: https://github.com/GovTechSG/sgds/tree/2.0.0-dev
+bootstrap-version: 5.1.3
+
 
 plugins:
   - jekyll-seo-tag
