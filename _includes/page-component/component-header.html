@@ -1,6 +1,7 @@
 {% include breadcrumb.html %}
 <!-- Section Component header -->
 <section name="section-component-header">
+
     {% assign pageHeader = page.title | downcase %}
     <header class="header-component">
         <h1 class="fw-bold" id="{{pageHeader}}-component">{{page.title}}</h1>
@@ -8,17 +9,20 @@
         {% if page.ready == false %}
         {% assign class = 'text-danger' %}
         {% endif %}
+        {% if page.description %}
         <p class="header-component-description {{class}}">{{page.description}}</p>
+        {% endif %}
+        {% if page.source-grid %}
         <div class="component-source-grid">
-            <div>
-                
-                {% if page.category == 'mandatory' %}
-                <span class="sgds badge badge-light bg-danger">{{page.category | capitalize}}</span>
-                {% else %}
-                <span class="sgds badge badge-light bg-primary">{{page.category | capitalize}}</span>
-                {% endif %}
-                
-            </div>
+
+            {% if page.category == 'mandatory' %}
+            <div><span class="sgds badge badge-light bg-danger">{{page.category | capitalize}}</span></div>
+            {% elsif page.category == 'required' %}
+            <div><span class="sgds badge badge-light bg-success">{{page.category | capitalize}}</span></div>
+            {% elsif page.category == 'general' %}
+            <div><span class="sgds badge badge-light bg-primary">{{page.category | capitalize}}</span></div>
+            {% endif %}
+
             {% if page.github-link %}
             <div>
                 <i class="bi bi-github"></i> <a href="{{site.github-link}}" target="_blank">View it on Github</a>
@@ -26,14 +30,18 @@
             {% endif %}
             {% if page.react-link %}
             <div>
-                <img src="{{site.baseurl}}/assets/img/component/storybook-icon.svg" alt=""> <a href="{{site.react-storybook | append: page.react-link}}" target="_blank">View it on React Storybook</a>
+                <img src="{{site.baseurl}}/assets/img/component/storybook-icon.svg" alt=""> <a
+                    href="{{site.react-storybook | append: page.react-link}}" target="_blank">View it on React
+                    Storybook</a>
             </div>
             {% endif %}
             {% if page.vue-link %}
             <div>
-                <img src="{{site.baseurl}}/assets/img/component/storybook-icon.svg" alt=""> <a href="{{page.react-link}}" target="_blank">View it on Vue Storybook</a>
+                <img src="{{site.baseurl}}/assets/img/component/storybook-icon.svg" alt=""> <a
+                    href="{{page.react-link}}" target="_blank">View it on Vue Storybook</a>
             </div>
             {% endif %}
         </div>
+        {% endif %}
     </header>
 </section>

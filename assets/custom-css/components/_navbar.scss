@@ -1,6 +1,8 @@
 .sgds{
     &.navbar{
-    background-color: rgba(255,255,255,0);
+        background-color: rgba(255,255,255, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(var(--sgds-body-color-rgb),0.2);
         .navbar-nav{
             gap:1rem;
         }
@@ -9,6 +11,11 @@
             display: flex;
             height: 100%;
             gap: 1rem;
+        }
+        .navbar-toggler{
+            &:focus{
+                box-shadow: none;
+            }
         }
     }
 

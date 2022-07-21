@@ -1,1 +1,1 @@
-import "../sgds/sgds.scss";
+import "../sass/sgds.scss";
