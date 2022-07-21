@@ -50,7 +50,7 @@ toc: true
     <!-- Usage Guidelines Section -->
     <section name="section-usage-guidelines">
         <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-        <strong>When to use the date pattern</strong>
+        <strong>Date pattern should be used:</strong>
         <ul>
             <li>When you require users to fill in dates for your services
             
@@ -66,10 +66,10 @@ toc: true
                 </ul>
             </li>
         </ul>
-        <strong>When not to use the date pattern</strong>
+        <strong>Date pattern should not be used:</strong>
         <ul>
             <li>
-                If you need users to select from a few specific dates, we recommend that you use the <a href="/components/radio-button/">radio button</a> component to allow them to choose easily.
+                If you need users to select from a few specific dates, we recommend that you use the <a href="/components/radio-button/">radio button</a> component to allow them to choose easily. Alternatively, you may use the date picker component for users to select dates.
             </li>
         </ul>
 
@@ -80,11 +80,19 @@ toc: true
         <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
         <p>
             <strong>When asking for official document dates</strong><br>
-            Ensure that the format matches that of the document date that you are requesting for. E.g DD/MMM/YYYY or DD/MM/YY. Do also indicate in the hint text the format of the date, this will help reduce mistakes when filling up the form.
+            Ensure that the format matches that of the document date that you are requesting for. E.g DD/MMM/YYYY or DD/MM/YY. Do also indicate in the hint text the format of the date, this will help reduce mistakes when filling up the form
+        </p>
+        <p>
+            <strong>Helping users pick a date</strong><br>
+            You can use the date picker component to help users pick a date for an appointment for example. However, do use this only if:
+            <ul>
+                <li>Users need to pick a date in the near future or past. E.g. do not use the date picker component when asking for birthdays, this adds complexity to the task. Do use the single form field date pattern instead</li>
+                <li>Users need to see other dates in relation to the date they want</li>
+            </ul>
         </p>
         <p>
             <strong>Default to current date and month</strong><br>
-            Do default the date picker component to the current date and month so that users have a starting point when selecting a date.
+            Do default the date picker component to the current date and month so that users have a starting point when selecting a date
         </p>
     </section>
 </div>
