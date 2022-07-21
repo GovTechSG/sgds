@@ -446,9 +446,6 @@ $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
   <section name="section-spacing">
     <h2 class="title fw-bold" id="spacing">Spacing</h2>
     <div class="section-sub">
-      <h3 class="subtitle fw-bold" id="within-the-modal">
-        Within the modal
-      </h3>
       <div class="sgds-example-image-container">
         <div class="sgds-example-image-grid">
           <img
@@ -458,7 +455,7 @@ $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
           />
         </div>
       </div>
-      <p>
+      <p><b>Within the modal</b><br />
         Ensure that there is at least 24px of spacing within the modal and
         between content elements
       </p>
@@ -469,7 +466,7 @@ $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
   <section name="section-usage-guidelines">
     <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
     <p class="fw-bold mb-0">Modals should be used:</p>
-    <ol>
+    <ul>
       <li>
         When you want to interrupt a user’s current task to direct the user’s
         attention to something important. For example, confirming when a user
@@ -477,16 +474,16 @@ $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
         important event with an infographic upon entering your website
       </li>
       <li>When you want to highlight something</li>
-    </ol>
-    <p class="fw-bold mb-0">Badges should not be used:</p>
-    <ol>
+    </ul>
+    <p class="fw-bold mb-0">Modals should not be used:</p>
+    <ul>
       <li>
         When you need to present simple notifications to the user. It should
         always accompany something actionable by the user such as confirming or
         filling in a form. If you need to notifiy the user, use something less
         intrusive such as the notification component instead
       </li>
-    </ol>
+    </ul>
   </section>
 
   <!-- Usability guidelines Section -->
@@ -495,21 +492,16 @@ $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
       Usability guidelines
     </h2>
     <p>
-      <b>Avoid long sentences</b><br />
-      Minimize badge text length to one- to three-words. Content should be clear
-      and concise, and easy to identify
+      <b>User triggered</b><br />
+      Modals should always appear as a result of a action that a user has taken like when submitting a application. Modals should not be automatically displayed to the user. Some exceptions to the rule would be if you need to inform users that their session is about to time out or if they have to accept cookies before proceeding
     </p>
     <p>
-      <b>Users may confuse badges as buttons</b><br />
-      Avoid triggering interaction with a badge as they may be confused as small
-      buttons
+      <b>Clear heading labels and CTAs</b><br />
+      Ensure that the heading and CTAs are clear to the user. This avoids confusion and indicates what action needs to be taken
     </p>
     <p>
-      <b
-        >Badges should include tooltips, where necessary, to enhance user
-        understanding</b
-      ><br />
-      For example, a badge is used in conjunction with an icon
+      <b>Try to avoid long content with scrolling</b><br />
+      Long content with scrolling limits a user's ability to view the entire message due to the limited space
     </p>
   </section>
 
