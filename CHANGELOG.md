@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.4.0]
 
+## 🗓️ 21-07-2022
+- Update sgds-masthead web component documentation
 ## 🗓️ 04-07-2022
 
 - Change package name to ```@govtechsg/sgds```

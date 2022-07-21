@@ -6,92 +6,29 @@ icon: masthead
 order: 1
 ---
 
-{% capture default_masthead %}
-<section class="sgds-masthead">
-    <div class="sgds-container">
-        <div class="row is-multiline is-vcentered masthead-layout-container">
-            <div class="col is-9-desktop is-12-touch has-text-centered-touch">
-                <div class="masthead-layout">
-                    <span class="sgds-icon sgds-icon-sg-crest" style="color:red"></span>
-                    <span style="display: table-cell; vertical-align: middle">
-                        <span class="banner-text-layout">
-                            <span class="is-text">
-                                A Singapore Government Agency Website&ensp;
-                            </span>
-                            <span class="sgds-masthead-button" id="sgds-masthead-identify">
-                                <span class="is-text sgds-masthead-button-text">
-                                    How to identify
-                                </span>
-                                <span class="sgds-icon sgds-icon-chevron-down" id="sgds-masthead-identify-icon"></span>
-                            </span>
-                        </span>
-                    </span>
-                </div>
-                <div class="masthead-divider is-hidden" id="sgds-masthead-divider"
-                    style="padding-left: -12px; padding-right:-12px;">
-                </div>
-            </div>
-            <div class="col banner-content-layout is-hidden" id="sgds-masthead-content">
-                <div class="banner-content">
-                    <img src="https://d33wubrfki0l68.cloudfront.net/2ec2122b2010672b9cbb6efb5138048d8aff4a09/5d1ab/assets/img/government_building.svg"
-                        class="banner-icon">
-                    <div class="banner-content-text-container">
-                        <strong class="banner-content-title">Official website links end with .gov.sg</strong>
-                        <p>
-                            Government agencies communicate via
-                            <strong> .gov.sg </strong>
-                            websites <span class="avoidwrap">(e.g. go.gov.sg/open)</span>.
-                            <a href="https://go.gov.sg/trusted-sites"
-                                class="banner-content-text sgds-masthead-button-link sgds-masthead-button-text"
-                                target="_blank" rel="noreferrer">
-                                Trusted website<text style="letter-spacing: -3px">s</text>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-                <div class="banner-content">
-                    <img src="https://d33wubrfki0l68.cloudfront.net/aecdf1b88c0edfa72e7fef099f28e93b80c8336a/8c6a1/assets/img/lock.svg"
-                        class="banner-icon">
-                    <div class="banner-content-text-container">
-                        <strong class="banner-content-title">Secure websites use HTTPS</strong>
-                        <p>
-                            Look for a
-                            <strong> lock </strong>(<img
-                                src="https://d33wubrfki0l68.cloudfront.net/aecdf1b88c0edfa72e7fef099f28e93b80c8336a/8c6a1/assets/img/lock.svg"
-                                class="inline-banner-icon">)
-                            or https:// as an added precaution. Share sensitive information only on official, secure
-                            websites.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{% capture default_masthead_code %}
+<head>
+    ...
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-masthead/dist/sgds-masthead/sgds-masthead.css">
+    <script
+        type="module"
+        src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-masthead/dist/sgds-masthead/sgds-masthead.js">
+    </script>
+    ...
+</head>
 
-<script>
-    const identify = document.getElementById("sgds-masthead-identify");
-    const identifyIcon = document.getElementById("sgds-masthead-identify-icon");
-    const mastheadContent = document.getElementById("sgds-masthead-content");
-    const mastheadDivider = document.getElementById("sgds-masthead-divider");
-
-    identify.setAttribute("aria-expanded", false);
-    identify.addEventListener("click", () => {
-        const ariaExpanded = identify.getAttribute("aria-expanded");
-        if (ariaExpanded === "true") {
-
-            identify.setAttribute("aria-expanded", false);
-        }
-        else {
-            identify.setAttribute("aria-expanded", true);
-        }
-        identifyIcon.classList.toggle("sgds-icon-chevron-up");
-        mastheadContent.classList.toggle("is-hidden");
-        mastheadDivider.classList.toggle("is-hidden");
-
-    });
-</script>
+<body>
+    ...
+    <sgds-masthead></sgds-masthead>
+    ...
+</body>
 {% endcapture %}
+
+{% capture default_masthead %}
+<sgds-masthead></sgds-masthead> 
+{% endcapture %}
+
+
 
 {% capture lang_selector_masthead %}
 <div class="sgds-masthead">
@@ -126,13 +63,16 @@ order: 1
     All <b>.gov.sg</b> digital services shall implement the Official Government Banner
     (containing the Singapore Government Online Logo) across all pages.
 </p>
+<p>
+    
+</p>
 
 <hr />
 
 <h3>Types</h3>
 <h4>1) Default Masthead</h4>
 <div class="sgds-example-others masthead">{{default_masthead}}</div>
-{%- highlight html -%}{{default_masthead}}{%- endhighlight -%}
+{%- highlight html -%}{{default_masthead_code}}{%- endhighlight -%}
 <button class="sgds-button clipboard-btn is-primary is-outlined" data-clipboard-target=".language-html">
     Copy Snippet
 </button>
