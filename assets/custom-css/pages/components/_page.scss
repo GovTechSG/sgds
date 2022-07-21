@@ -23,20 +23,19 @@
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
                 border-top: 0;
-                .btn-copy{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 0;
-                    width: 4rem;
-                    height: 4rem;
-                    color: var(--sgds-primary);
-        
-                }
+                
             }
             .accordion-body{
-                padding: 1rem 0.5rem;
+                padding: 1rem 2rem 1rem 1rem;
                 background-color: #272822;
+                position: relative;
+                .btn-copy{
+                    position: absolute;
+                    right: 0.5rem;
+                }
+                figure.highlight{
+                    margin-bottom: 0;
+                }
             }
 
             + .desc-bottom{
