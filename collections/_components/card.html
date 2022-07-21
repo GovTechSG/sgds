@@ -9,14 +9,19 @@ toc: true
 ---
 
 {% capture base-card %}
-<div class="card sgds" style="width: 20rem;"><img class="card-img-top" alt="img alternate text goes here"
-        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
-    <div class="card-body">
-        <h3 class="card-title">Card Title</h3>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p><a class="card-link" href="#">Go somewhere</a>
+<div class="row">
+    <div class="col col-xxl-4 ">
+        <div class="card sgds"><img class="card-img-top" alt="img alternate text goes here"
+            src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+        <div class="card-body">
+            <h3 class="card-title">Card Title</h3>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p><a class="card-link" href="#">Go somewhere</a>
+        </div>
+    </div>
     </div>
 </div>
+
 {% endcapture %}
 
 {% capture card-with-cta %}
@@ -120,42 +125,50 @@ toc: true
 {% endcapture %}
 
 {% capture card-action %}
-<div class="sgds card" variant="card-action">
-    <div class="card-body">
-      <div>
-        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Checkbox action card</h6>
-        <h5 class="card-title fw-bold">Checkbox card</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-input">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-      </div>
+<div class="row">
+    <div class="col">
+        <div class="sgds card" variant="card-action">
+            <div class="card-body">
+              <div>
+                <h5 class="card-title"><i class="bi bi-box"></i> Checkbox action card</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+              <div class="card-input">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="sgds card" variant="card-action">
+            <div class="card-body">
+              <div>
+                <h5 class="card-title"><i class="bi bi-box"></i> Radio button action card</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+              <div class="card-input">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="sgds card" variant="card-action">
+            <div class="card-body">
+              <div>
+                <h5 class="card-title"><i class="bi bi-box"></i> Switch button action card</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+              <div class="card-input form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+              </div>
+            </div>
+        </div>
     </div>
 </div>
-<div class="sgds card" variant="card-action">
-    <div class="card-body">
-      <div>
-        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Radio button action card</h6>
-        <h5 class="card-title fw-bold">Radio button card</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-input">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-      </div>
-    </div>
-</div>
-<div class="sgds card" variant="card-action">
-    <div class="card-body">
-      <div>
-        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Switch button action card</h6>
-        <h5 class="card-title fw-bold">Switch button card</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-input form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-      </div>
-    </div>
-</div>
+
+
+
 
 
 {% endcapture %}

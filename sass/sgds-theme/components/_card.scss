@@ -10,7 +10,7 @@
             transition-timing-function: $card-transition-timing-function;
             .card-body {
                 display: flex;
-                flex-direction: column;
+                justify-content: space-between;
                 gap: 1rem;
                 i {
                     font-size: 1.5rem;
