@@ -4,11 +4,10 @@ permalink: /get-started
 layout: layout-single
 ---
 
-
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-
 ## Singapore Government Design System
 [![npm](https://img.shields.io/npm/v/@govtechsg/sgds.svg)](https://www.npmjs.com/package/@govtechsg/sgds)
+
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 The Singapore Government Design System was developed to empower teams in creating fast, accessible and mobile-friendly digital services.
 <hr>
