@@ -27,90 +27,65 @@ $toast-header-border-color: rgba($black, .05) !default;
 {% endcapture %}
 
 {% capture toast-default %}
-<div class="row mt-4">
-    <div class="col">
-      <div class="sgds toast show is-warning" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <i class="bi bi-exclamation-triangle me-2"></i>
-          <strong class="me-auto">Warning</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-          This is a warning message
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="sgds toast show is-success" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <i class="bi bi-check-circle me-2"></i>
-          <strong class="me-auto">Success</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            This is a success message
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="sgds toast show is-danger" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <i class="bi bi-exclamation-circle me-2"></i>
-          <strong class="me-auto">Danger</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            This is a error message
-        </div>
-      </div>
-    </div>
+<div class="sgds toast show ">
+  <div class="toast-header">
+      <i class="bi bi-check-circle me-2"></i>
+    <strong class="me-auto">Title</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
   </div>
+  <div class="toast-body">
+    This is a toast message
+  </div>
+</div>
 {% endcapture %}
 
-{% capture toast-action %}
-<div class="row mt-4">
-    <div class="col">
-      <div class="sgds toast show is-warning" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
+{% capture toast-variants %}
+<div>
+    <div class="sgds toast show is-warning mb-2" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
           <i class="bi bi-exclamation-triangle me-2"></i>
-          <strong class="me-auto">Warning</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-          This is a warning message
-          <br>
-            <button type="button" class="btn btn-outline-dark btn-sm sgds">Proceed</button>
-        </div>
+        <strong class="me-auto">Warning</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        This is a warning message
       </div>
     </div>
-    <div class="col">
-      <div class="sgds toast show is-success" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <i class="bi bi-check-circle me-2"></i>
-          <strong class="me-auto">Success</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            This is a success message <br>
-            <button type="button" class="btn btn-outline-dark btn-sm sgds">Done</button>
-        </div>
+    <div class="sgds toast show is-success mb-2" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <i class="bi bi-check-circle me-2"></i>
+        <strong class="me-auto">Success</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+          This is a success message
       </div>
     </div>
-    <div class="col">
-      <div class="sgds toast show is-danger" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <i class="bi bi-exclamation-circle me-2"></i>
-          <strong class="me-auto">Danger</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            This is a error message
-            <br>
-            <button type="button" class="btn btn-outline-dark btn-sm sgds">Try again</button>
-        </div>
+    <div class="sgds toast show is-danger" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <i class="bi bi-exclamation-circle me-2"></i>
+        <strong class="me-auto">Danger</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+          This is a error message
       </div>
     </div>
+</div>
+{% endcapture %}
+
+{% capture toast-complex %}
+<div class="sgds toast show is-danger">
+  <div class="toast-header">
+      <i class="bi bi-exclamation-circle me-2"></i>
+    <strong class="me-auto">Launch Failed</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
   </div>
+  <div class="toast-body">
+    Request limit exceeded.<br />
+    <button class="btn btn-sm btn-outline-dark">Try again</button>
+  </div>
+</div>
 {% endcapture %}
 
 <div class="page-component">
@@ -118,20 +93,27 @@ $toast-header-border-color: rgba($black, .05) !default;
     <section name="section-examples">
         <h2 class="title fw-bold" id="example">Example</h2>
         <div class="section-sub">
-            {% 
-                include page-component/component-code-snippet.html 
-                compTitle="Default Toast" 
-                compName="toast-default" 
-                code=toast-default
-            %}
+          {% 
+              include page-component/component-code-snippet.html 
+              compTitle="Default toast" 
+              compName="toast-default" 
+              code=toast-default
+          %}
         </div>
-
         <div class="section-sub">
             {% 
                 include page-component/component-code-snippet.html 
-                compTitle="Action toast" 
-                compName="toast-action" 
-                code=toast-action
+                compTitle="Variants" 
+                compName="toast-variants" 
+                code=toast-variants
+            %}
+        </div>
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Complex toast" 
+                compName="toast-complex" 
+                code=toast-complex
             %}
         </div>
         <!-- Add addtional section-sub for more variants -->
@@ -170,14 +152,14 @@ $toast-header-border-color: rgba($black, .05) !default;
     <section name="section-spacing">
         <h2 class="title fw-bold" id="spacing">Spacing</h2>
         <div class="section-sub">
-            <h3 class="subtitle fw-bold" id="within-the-toast">Within the toast</h3>
             <div class="sgds-example-image-container">
                 <div class="sgds-example-image-grid">
                     <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/toast/spacing-toast-1.svg"
                         alt="Toast Spacing">
                 </div>
             </div>
-            <p>Ensure that there is a min of 16px spacing within the toast notification and 32px spacing between content and CTA</p>
+            <p><b>Within the toast</b><br />
+            Ensure that there is a min of 16px spacing within the toast notification and 32px spacing between content and CTA</p>
         </div>
     </section>
 
@@ -186,16 +168,16 @@ $toast-header-border-color: rgba($black, .05) !default;
 <section name="section-usage-guidelines">
     <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
     <p class="fw-bold mb-0">Toasts should be used:</p>
-    <ol>
+    <ul>
         <li>When you want to present quick snippets of information to users. 
             Such as when users have submitted a form sucessfully or when a system error occurs</li>
-    </ol>
+    </ul>
     <p class="fw-bold mb-0">Toasts should not be used:</p>
-    <ol>
+    <ul>
         <li>
             When conveying important alerts. E.g If your system is going down for maintenance
         </li>
-    </ol>
+    </ul>
 </section>
 
 <!-- Usability guidelines Section -->
