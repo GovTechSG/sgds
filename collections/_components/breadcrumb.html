@@ -1,7 +1,7 @@
 ---
 title: Breadcrumb
 layout: layout-sidenav
-description: Indicate the current page's location within a navigational hierarchy that automatically adds separators
+description: Breadcrumbs help users to navigate and understand where they are on the current website or service.
 category: general
 react-link: ?path=/docs/components-breadcrumb--default-story
 github-link: true
@@ -52,12 +52,18 @@ $breadcrumb-border-radius: null !default;
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/tab/anatomy-breadcrumb-1.svg" alt="Breadcrumb Anatomy">
+                        <img src="{{site.baseurl}}/assets/img/component/breadcrumb/anatomy-breadcrumb.svg" alt="Breadcrumb Anatomy">
                     </div>
                 </div>
                 <ol>
                     <li>
-                        <b>Label: </b> Text
+                        <b>Homel:</b> Always the first item in the breadcrumb
+                    </li>
+                    <li>
+                        <b>Seperator:</b> To give distinction between the breadcrumb items
+                    </li>
+                    <li>
+                        <b>Item:</b> Title of the pages which let’s users know the path they took to reach the current page. Should always be linked
                     </li>
                 </ol>
             </div>
@@ -69,11 +75,11 @@ $breadcrumb-border-radius: null !default;
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/tab/spacing-breadcrumb.svg" alt="Breadcrumb Spacing">
+                        <img src="{{site.baseurl}}/assets/img/component/breadcrumb/spacing-breadcrumb.svg" alt="Breadcrumb Spacing">
                     </div>
                 </div>
-                <h3 class="subtitle fw-bold" id="within-the-breadcrumb">Title</h3>
-                <p>Text</p>
+                <p><b>Within the breadcrumb</b><br>
+                Ensure that there is a min of 16px horizontal spacing between the breadcrumb items</p>
             </div>
         </section>
 
@@ -81,12 +87,14 @@ $breadcrumb-border-radius: null !default;
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
             <p class="fw-bold mb-0">Breadcrumb should be used:</p>
-            <ul>
-                <li>Text</li>
-            </ul>
+            <ol>
+                <li>When you want to enable users to understand their current position on the website.</li>
+                <li>When you want to help users to move between different levels.</li>
+            </ol>
             <p class="fw-bold mb-0">Breadcrumb should not be used:</p>
             <ol>
-                <li>Text</li>
+                <li>As a replacement for your primary navigation.</li>
+                <li>For displaying progress such as when completing a transaction. In this case use the <a href="/progress-bar/">progress bar</a> component</li>
             </ol>
         </section>
 
@@ -94,8 +102,12 @@ $breadcrumb-border-radius: null !default;
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>Title</b><br>
-                Text
+                <b>Use complete page titles</b><br>
+                The wording in the breadcrumb text should be the same as in the page title.
+            </p>
+            <p>
+                <b>Consider the size</b><br>
+                Generally the text for breadcrumbs are smaller, do ensure it is not too small to select.
             </p>
         </section>
 
