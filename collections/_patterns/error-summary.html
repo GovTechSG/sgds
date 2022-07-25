@@ -5,13 +5,13 @@ toc: true
 ---
 
 {% capture error-summary %}
-<div role="alert" class="sgds alert alert-danger border border-2 border-danger">
-    <h3 class="text-dark">There is a problem with your submission</h3>
-    <a class="alert-link" href="#">The date format entered is wrong</a>
+<div class="sgds alert alert-danger">
+    <h3>There is a problem with your submission</h3>
+    <a class="alert-link text-danger" href="#">The date format entered is wrong</a>
     <br />
-    <a class="alert-link" href="#">Address must be filled in</a>
+    <a class="alert-link text-danger" href="#">Address must be filled in</a>
     <br />
-    <a class="alert-link" href="#">Email address is not valid</a>
+    <a class="alert-link text-danger" href="#">Email address is not valid</a>
 </div>
 {% endcapture %}
 
@@ -32,14 +32,14 @@ toc: true
     <!-- Usage Guidelines Section -->
     <section name="section-usage-guidelines">
         <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-        <strong>When to use the error summary pattern</strong>
+        <strong>Error summary pattern should be used:</strong>
         <ul>
             <li>When you need to show users a summary of errors that they have made, usually upon submission of aa form</li>
             <li>When you want to be able to link to the specific error on a page</li>
         </ul>
-        <strong>When not to use the error summary pattern</strong>
+        <strong>Error summary pattern should not be used:</strong>
         <ul>
-            <li>It should never be used as a standalone for error messaging. If you require the error summary, it should always be used together with inline validation</li>
+            <li>As a standalone for error messaging. If you require the error summary, it should always be used together with inline validation.</li>
         </ul>
 
     </section>

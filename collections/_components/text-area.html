@@ -9,16 +9,43 @@ toc: true
 ---
 
 {% capture textarea-default %}
-<div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label">Name</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write something"></textarea>
+<div class="sgds form-group">
+    <div class="d-flex justify-content-between">
+        <div for="exampleFormControlTextarea1" class="form-label">Label</div>
+        <div class="form-text">0/200</div>
+    </div>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="This is text that has been filled in"></textarea>
+</div>
+{% endcapture %}
+
+{% capture textarea-hover %}
+<div class="sgds form-group">
+    <div class="d-flex justify-content-between">
+        <div for="exampleFormControlTextarea1" class="form-label">Label</div>
+        <div class="form-text">0/200</div>
+    </div>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="This is text that has been filled in" autofocus></textarea>
+</div>
+{% endcapture %}
+
+{% capture textarea-error %}
+<div class="sgds form-group was-validated">
+    <div class="d-flex justify-content-between">
+        <div for="exampleFormControlTextarea1" class="form-label">Label</div>
+        <div class="form-text">0/200</div>
+    </div>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="This is text that has been filled in" required></textarea>
+    <div class="invalid-feedback">Error message</div>
 </div>
 {% endcapture %}
 
 {% capture textarea-disabled %}
-<div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label">Name</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="This is disabled" disabled></textarea>
+<div class="sgds form-group">
+    <div class="d-flex justify-content-between">
+        <div for="exampleFormControlTextarea1" class="form-label">Label</div>
+        <div class="form-text">0/200</div>
+    </div>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="This is text that has been filled in" disabled></textarea>
 </div>
 {% endcapture %}
 
@@ -29,23 +56,37 @@ toc: true
         <div class="section-sub">
             {% 
                 include page-component/component-code-snippet.html 
-                compTitle="Text area" 
+                compTitle="Default text area" 
                 compName="textarea-default" 
                 code=textarea-default
                 compDescTop="To add more rows to the text area, increase the number in the <code>row</code> class"
             %}
         </div>
-
         <div class="section-sub">
             {% 
                 include page-component/component-code-snippet.html 
-                compTitle="Disabled text area" 
+                compTitle="Hover" 
+                compName="textarea-hover" 
+                code=textarea-hover
+            %}
+        </div>
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Error" 
+                compName="textarea-error" 
+                code=textarea-error
+            %}
+        </div>
+        <div class="section-sub">
+            {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Disabled" 
                 compName="textarea-disabled" 
                 code=textarea-disabled
                 compDescTop="Add in the <code>disabled</code> class if you want to disable the text area"
             %}
         </div>
-        <!-- Add addtional section-sub for more variants -->
     </section>
 
     <!-- Anatomy Section -->   
@@ -73,14 +114,14 @@ toc: true
     <section name="section-spacing">
         <h2 class="title fw-bold" id="spacing">Spacing</h2>
         <div class="section-sub">
-            <h3 class="subtitle fw-bold" id="within-the-text-area">Within the text area</h3>
             <div class="sgds-example-image-container">
                 <div class="sgds-example-image-grid">
                     <img class="img-fluid" src="{{site.baseurl}}/assets/img/component/textarea/spacing-textarea.svg"
                         alt="Text Area Spacing">
                 </div>
             </div>
-            <p>Ensure that there is a min of 16px horizontal spacing and 8px vertical spacing within the text area</p>
+            <p><b>Within the text area</b><br />
+            Ensure that there is a min of 16px horizontal spacing and 8px vertical spacing within the text area</p>
         </div>
     </section>
 
@@ -88,17 +129,17 @@ toc: true
 <section name="section-usage-guidelines">
     <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
     <p class="fw-bold mb-0">Text area should be used:</p>
-    <ol>
+    <ul>
         <li>When users are required to enter more than a line of text</li>
-    </ol>
+    </ul>
     <p class="fw-bold mb-0">Text area should not be used:</p>
-    <ol>
+    <ul>
         <li>
             When have complex or too many open-ended answers.
             We recommend that you break your questions up into a series of simpler questions instead. 
             For example, consider using the checkbox component if you want users to give multiple answers from a predetermined set of options.
         </li>
-    </ol>
+    </ul>
 </section>
 
 <!-- Usability guidelines Section -->
