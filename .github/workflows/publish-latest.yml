@@ -1,9 +1,9 @@
-name: Publish Alpha Releases
+name: Publish Latest Releases
 
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   publish:    
