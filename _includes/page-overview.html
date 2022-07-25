@@ -28,8 +28,10 @@
           {% assign react = 'react' %}
           {% endif %}
           <div class="sgds card" data-groups="['{{item.category}}', '{{react}}']" data-title="{{item.title}}">
-            <img src="/assets/img/{{page.pageCategory}}-overview/{{item.title | downcase | replace: ' ', '-'}}.png"
+            {% if page.img == noImg %}
+              <img src="/assets/img/{{page.pageCategory}}-overview/{{item.title | downcase | replace: ' ', '-'}}.png"
               class="card-img-top" alt="{{item.title | append: ' image' }}">
+            {% endif %}
             <div class="card-body">
               <a class="stretched-link link-primary" href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}">
                 <div class="h5 text-primary card-title">{{item.title}}</div>
