@@ -43,6 +43,10 @@ collections:
     permalink: /:collection/:name
     output: true
     category: templates
+    order:
+      - landing-page.html
+      - single-page-form.html
+      - multi-page-form.html
   get-started:
     permalink: /:collection/:name
     output: true
