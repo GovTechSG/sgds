@@ -3,7 +3,7 @@
     padding: 1rem 2rem 2rem;
     &.layout{
         &-single{
-            width: 45vw;
+            width: 60vw;
             margin:0 auto;
             header{
                 margin-bottom: 3.5rem;
@@ -12,6 +12,10 @@
                 width: 100%;
                 padding-left: calc(#{$spacer} * 1);
                 padding-right: calc(#{$spacer} * 1);
+            }
+
+            section + section{
+                margin-top: calc(#{$spacer} * 2);
             }
         }
         

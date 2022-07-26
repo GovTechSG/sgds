@@ -1,7 +1,0 @@
-.wrapper{
-    &.about{
-        section + section{
-            margin-top: calc(#{$spacer} * 2);
-        }
-    }
-}
