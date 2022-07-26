@@ -15,9 +15,9 @@
             {%- if page.url contains item.title -%} 
                 {%- assign class = 'active' -%} 
             {%- endif -%}
-            {%- if item.title == "get started" -%}
+            {%- if item.title == "get-started" -%}
             <li class="nav-item align-self-center">
-                <a class="sgds btn btn-primary btn-sm" aria-current="page" href="{{item.url}}">{{item.title | capitalize}}</a>
+                <a class="sgds btn btn-primary btn-sm" aria-current="page" href="{{item.url}}">{{item.title | capitalize | replace: '-', ' '}}</a>
               </li>
               {%- else -%}
             <li class="nav-item">

@@ -22,13 +22,6 @@
       >
         See Code
       </button>
-      <a
-        href="https://www.google.com"
-        class="sgds btn btn-link btn-sm btn-copy"
-        type="button"
-        aria-label="Copy code"
-        ><i class="bi bi-clipboard"></i
-      ></a>
     </h2>
     <div
       id="collapse-{{include.compName}}"
@@ -36,7 +29,8 @@
       aria-labelledby="heading-{{include.compName}}"
       data-bs-parent="#example-{{include.compName}}"
     >
-      <div class="accordion-body">
+      <div class="accordion-body accordion-body-codesnippet">
+        <button class="sgds btn btn-outline-light btn-sm btn-copy">Copy</button>
         {%- highlight html -%}{{include.code}}{%- endhighlight -%}
       </div>
     </div>

@@ -1,9 +1,7 @@
 section.wrapper{
     &.home{
-        @include media-breakpoint-down(lg){
-            padding-left: calc(#{$spacer} * 1);
-            padding-right: calc(#{$spacer} * 1);
-        }
+        width: initial;
+        max-width: 1440px;
         section{
             padding-top: calc(#{$spacer} * 3);
             padding-bottom: calc(#{$spacer} * 3);
