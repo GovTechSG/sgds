@@ -28,7 +28,7 @@
           {% assign react = 'react' %}
           {% endif %}
           <div class="sgds card" data-groups="['{{item.category}}', '{{react}}']" data-title="{{item.title}}">
-            {% if page.img == noImg %}
+            {% if include.img != 'noImg' %}
               <img src="/assets/img/{{page.pageCategory}}-overview/{{item.title | downcase | replace: ' ', '-'}}.png"
               class="card-img-top" alt="{{item.title | append: ' image' }}">
             {% endif %}
