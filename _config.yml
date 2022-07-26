@@ -18,7 +18,6 @@ github-link: https://github.com/GovTechSG/sgds/tree/2.0.0-dev
 bootstrap-version: 5.1.3
 description: The Singapore Government Design System was developed to empower teams in creating fast, accessible and mobile-friendly digital services.
 
-
 plugins:
   - jekyll-seo-tag
   - jekyll-redirect-from
@@ -44,6 +43,10 @@ collections:
     permalink: /:collection/:name
     output: true
     category: templates
+    order:
+      - landing-page.html
+      - single-page-form.html
+      - multi-page-form.html
   get-started:
     permalink: /:collection/:name
     output: true
