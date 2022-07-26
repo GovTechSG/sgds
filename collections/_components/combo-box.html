@@ -10,15 +10,19 @@ toc: true
 
 {% capture default-combo-box %}
 <div class="sgds form-group mb-2">
-    <label for="defaultCombobox" class="form-label">Select a fruit</label>
+    <label for="defaultCombobox" class="form-label">Label</label>
+    <div class="form-text">This is the hint text</div>
     <div class="sgds combobox" >
-        <input type="text" class="form-control dropdown-toggle" id="defaultCombobox" data-bs-toggle="dropdown" aria-expanded="false" aria-describedby="defaultCombobox">
-        <i class="bi bi-search form-control-icon"></i>
-        <ul class="dropdown-menu my-2" aria-labelledby="defaultCombobox">
-            <li><a class="dropdown-item" href="#">Apple</a></li>
-            <li><a class="dropdown-item" href="#">Orange</a></li>
-            <li><a class="dropdown-item" href="#">Banana</a></li>
-        </ul>
+        <input type="text" class="form-control dropdown-toggle" placeholder="Text goes here" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="">Option 1</a>
+            <a class="dropdown-item" href="">Option 2</a>
+            <a class="dropdown-item" href="">Option 3</a>
+            <a class="dropdown-item" href="">Option 4</a>
+        </div>
+        <div class="form-control-icon">
+            <i class="bi bi-chevron-down"></i>
+        </div>
     </div>
 </div>
 {% endcapture %}
@@ -48,16 +52,16 @@ toc: true
                 </div>
                 <ol>
                     <li>
-                        <b>Text label:</b> Inform users of what data should be put into the field, labels must always be outside of the text field
+                        <b>Text label:</b> Inform users of what data should be put into the field, labels must always be outside of the text field.
                     </li>
                     <li>
-                        <b>Hint text:</b> Serve to guide to the user, helping to inform users as to what kind of data they are required to enter
+                        <b>Hint text:</b> Serve to guide to the user, helping to inform users as to what kind of data they are required to enter.
                     </li>
                     <li>
-                        <b>Option text:</b> Options on what you want users to select
+                        <b>Option text:</b> Options on what you want users to select.
                     </li>
                     <li>
-                        <b>Dropdown icon:</b> A combo box has a chevron-down icon to the right of the text label to indicate that it will toggle content
+                        <b>Dropdown icon:</b> A combo box has a chevron-down icon to the right of the text label to indicate that it will toggle content.
                     </li>
                 </ol>
             </div>
@@ -72,22 +76,22 @@ toc: true
                         <img src="{{site.baseurl}}/assets/img/component/combo-box/spacing-combo-box-1.svg" alt="Combo Box Spacing">
                     </div>
                 </div>
-                <h3 class="subtitle fw-bold" id="within-the-combo-box">Within the combo box</h3>
-                <p>Ensure that there is a min of 8px vertical spacing and 16px horizontal spacing on the left and right</p>
+                <p><b>Within the combo box</b><br />
+                Ensure that there is a min of 8px vertical spacing and 16px horizontal spacing on the left and right.</p>
             </div>
         </section>
 
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Combo box should be used when:</p>
+            <p class="fw-bold mb-0">Combo box should be used:</p>
             <ul>
-                <li>Displaying multiple related options with a common parent context</li>
-                <li>You have a large list of choices and need to save space in your interface</li>
+                <li>When displaying multiple related options with a common parent context.</li>
+                <li>When you have a large list of choices and need to save space in your interface.</li>
             </ul>
-            <p class="fw-bold mb-0">Combo box should not be used when:</p>
+            <p class="fw-bold mb-0">Combo box should not be used:</p>
             <ul>
-                <li>Displaying a 'yes' or 'no' selection. Instead, use <a href="{{site.baseurl}}/components/radio-button/">radio buttons</a>.</li>
+                <li>When displaying a 'yes' or 'no' selection. Instead, use <a href="{{site.baseurl}}/components/radio-button/">radio buttons</a>.</li>
             </ul>
         </section>
 

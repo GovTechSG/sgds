@@ -41,22 +41,30 @@ toc: true
         </div>
     </section>
 
-    <!-- Guidelines Section -->
-    <section name="section-guidelines">
-        <h2 class="title fw-bold" id="guidelines">Guidelines</h2>
+    <!-- Usage Guidelines Section -->
+    <section name="section-usage-guidelines">
+        <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+        <strong>Address lookup should be used:</strong>
         <ul>
-            <li>Use a manual option such as multiple text inputes or a textarea when you are collecting mostly or only international addresses.</li>
+            <li>When you're asking users for a Singapore address</li>
+        </ul>
+        <strong>Address lookup should not be used:</strong>
+        <ul>
+            <li>If you have users outside of Singapore and require them to key in their address. Instead, use a manual option such as multiple text inputs or a textarea when you are collecting mostly or only international addresses</li>
         </ul>
     </section>
 
-    <!-- Accessibility Section -->
-    <section name="section-accessibility">
-        <h2 class="title fw-bold" id="accessibility">Accessibility</h2>
-        <strong>For manually-entered addresses</strong>
-        <ul>
-            <li>The fields should always have the <code>autocomplete</code> attribute to help your users complete it quickly. Use <code>postal-code</code> and <code>street-address</code> to bring convenience to your users.</li>
-            <li>You will need to include the autocomplete attribute to meet <strong>WCAG 2.1 AA</strong> for production.</li>
-        </ul>
+    <!-- Usability Guidelines Section -->
+    <section name="section-usability-guidelines">
+        <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+        <p>
+            <strong>Avoid changing the default order of address fields</strong><br>
+            Do ensure that the postal code field is on top as the address lookup can simplify the process of filling out the address field
+        </p>
+        <p>
+            <strong>Default to current date and month</strong><br>
+            Auto-filling helps users fill forms faster, but don't forget to leave these fields available for editing to give users control
+        </p>
     </section>
 </div>
 
