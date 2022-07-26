@@ -57,7 +57,7 @@ toc: true
                         <li><a href="">Test</a></li>
                     </ul>
                 </div>
-              <div class="col-xxl-2 col-md-4 mb-3">
+                <div class="col-xxl-2 col-md-4 mb-3">
                     <div class="title">
                         Column 4
                     </div>
@@ -68,7 +68,7 @@ toc: true
                         <li><a href="">Test</a></li>
                     </ul>
                 </div>
-              <div class="col-xxl-2 col-md-4 mb-3">
+                <div class="col-xxl-2 col-md-4 mb-3">
                     <div class="title">
                         Column 5
                     </div>
@@ -79,7 +79,7 @@ toc: true
                         <li><a href="">Test</a></li>
                     </ul>
                 </div>
-              <div class="col-xxl-2 col-md-4 mb-3">
+                <div class="col-xxl-2 col-md-4 mb-3">
                     <div class="title">
                         Column 6
                     </div>
@@ -97,20 +97,21 @@ toc: true
                         <ul>
                             <li><a href="">Contact</a></li>
                             <li><a href="">Feedback</a></li>
-                            <li><a href="https://www.reach.gov.sg/" target="_blank" rel="noopener noreferrer">Reach.gov.sg</a></li>
+                            <li><a href="https://www.reach.gov.sg/" target="_blank"
+                                    rel="noopener noreferrer">Reach.gov.sg</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <section class="footer-bottom">
         <div class="container-fluid">
             <div class="row footer-mandatory-links">
                 <div class="col">
                     <ul>
-                        <li><a href="https://tech.gov.sg/report_vulnerability" target="_blank" rel="noopener noreferrer">Report Vulnerability</a></li>
+                        <li><a href="https://tech.gov.sg/report_vulnerability" target="_blank"
+                                rel="noopener noreferrer">Report Vulnerability</a></li>
                         <li><a href="">Privacy</a></li>
                         <li><a href="">Terms of use</a></li>
                     </ul>
@@ -130,61 +131,69 @@ toc: true
 
 <!-- Page starts here -->
 <div class="page-component">
-        
-        <!-- Generated header from front end matters -->
-        {% include page-component/component-header.html %}
 
-        <!-- Example Section -->
-        <section name="section-examples">
-            <h2 class="title fw-bold" id="example">Example</h2>
-            <div class="section-sub">
-              {% include page-component/component-code-snippet.html compTitle="Default Footer" compName="default-footer" code=default-footer %}
-            </div>
-        </section>
+    <!-- Generated header from front end matters -->
+    {% include page-component/component-header.html %}
 
-        <!-- Anatomy Section -->
-        <section name="section-anatomy">
-          <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
-          <div class="section-sub">
-              <div class="sgds-example-image-container">
-                  <div class="sgds-example-image-grid">
-                      <img src="{{site.baseurl}}/assets/img/component/footer/anatomy-footer.svg" alt="Footer Anatomy">
-                  </div>
-              </div>
-              <ol>
-                  <li>
-                      <b>Name:</b> Serves to inform the user of the name of your portal/digital service.
-                  </li>
-                  <li>
-                    <b>Description (situational):</b> Serves to give users more information outside of the about page. E.g a snippet of the about us page.
-                </li>
-                <li>
-                    <b>Links (situational):</b> Serves as a secondary navigation for users to navigate to different parts of your portal/digital service. Can also be used to house associated links. E.g sister portals/digital services.
-                </li>
-                <li>
-                    <b>Report vulnerability, Priviacy and Terms of use:</b> Serves to link users to the respective pages to find out more.
-                </li>
-                <li>
-                    <b>Contact, Feednack and link to REACH:</b> Serves to link users to the respective pages to find out more.
-                </li>
-                <li>
-                    <b>Copyright and last updated:</b> Serves to inform users when the portal/digital service was updated.
-                </li>
-              </ol>
-          </div>
-        </section>
+    <!-- Example Section -->
+    <section name="section-examples">
+        <h2 class="title fw-bold" id="example">Example</h2>
+        <div class="section-sub">
+            {% include page-component/component-code-snippet.html compTitle="Default Footer" compName="default-footer"
+            code=default-footer %}
+        </div>
+    </section>
 
-        <!-- Spacing Section -->
-        <section name="section-spacing">
-            <h2 class="title fw-bold" id="spacing">Spacing</h2>
-            <div class="section-sub">
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/footer/spacing-footer.svg" alt="Footer Spacing">
-                    </div>
+    <!-- Anatomy Section -->
+    <section name="section-anatomy">
+        <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+        <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/footer/anatomy-footer.svg" alt="Footer Anatomy">
                 </div>
-                <p><b>Within the footer</b><br/>
-                    Ensure that there is at least 32px spacing around the footer, at least 16px spacing between main elements and 48px spacing between the top and bottom half of the footer.</p>
             </div>
-        </section>
+            <ol>
+                <li>
+                    <b>Name:</b> Serves to inform the user of the name of your portal/digital service.
+                </li>
+                <li>
+                    <b>Description (situational):</b> Serves to give users more information outside of the about page.
+                    E.g a snippet of the about us page.
+                </li>
+                <li>
+                    <b>Links (situational):</b> Serves as a secondary navigation for users to navigate to different
+                    parts of your portal/digital service. Can also be used to house associated links. E.g sister
+                    portals/digital services.
+                </li>
+                <li>
+                    <b>Report vulnerability, Priviacy and Terms of use:</b> Serves to link users to the respective pages
+                    to find out more.
+                </li>
+                <li>
+                    <b>Contact, Feednack and link to REACH:</b> Serves to link users to the respective pages to find out
+                    more.
+                </li>
+                <li>
+                    <b>Copyright and last updated:</b> Serves to inform users when the portal/digital service was
+                    updated.
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Spacing Section -->
+    <section name="section-spacing">
+        <h2 class="title fw-bold" id="spacing">Spacing</h2>
+        <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/footer/spacing-footer.svg" alt="Footer Spacing">
+                </div>
+            </div>
+            <p><b>Within the footer</b><br />
+                Ensure that there is at least 32px spacing around the footer, at least 16px spacing between main
+                elements and 48px spacing between the top and bottom half of the footer.</p>
+        </div>
+    </section>
 </div>
