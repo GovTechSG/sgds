@@ -1,33 +1,128 @@
 ---
 title: Customise with SASS
 layout: layout-sidenav
-description: A dropdown mechanism that allow users to either show or hide related content.
+description: Use <a href="https://sass-lang.com/" target="_blank" rel="noopener noreferrer">Sass</a> to customise how SGDS looks and behaves in your project
 ---
+{% capture sass-folder-structure %}
+site-folder/
+├── scss
+│   └── custom.scss
+└── node_modules/
+    └── @govtechsg/sgds/sass/
+        └── bootstrap/
+        └── sgds-theme/
+        └── sgds.scss
+{% endcapture %}
+
+{% capture include-all-parts %}
+// Custom.scss
+// Option A: Include all of SGDS theme
+
+// Include any default variable overrides here
+
+@import "../node_modules/@govtechsg/sgds/sass/sgds.scss";
+
+// Then add additional custom code here
+{% endcapture %}
+
+{% capture include-parts %}
+// Custom.scss
+// Option B: Include parts of SGDS theme
+
+// Include any default variable overrides here
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../node_modules/@govtechsg/sgds/sass/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+
+// 3. Include remainder of required SGDS stylesheets
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/sgds-variables";
+
+// 4. Optionally include any other parts as needed
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/accordion";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/alert";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/badge";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/breadcrumb";
+
+// Then add additional custom code here
+{% endcapture %}
+{% capture webpack-sass %}
+@import "~@govtechsg/sgds/sass/sgds-theme/components/accordion";
+{% endcapture %}
+
+{% capture sgds-variable %}
+node_modules/
+  └── @govtechsg/sgds/sass/
+      └── bootstrap/
+      └── sgds-theme/
+          └── _sgds-variables.scss
+{% endcapture %}
+
+{% capture sgds-variable-example %}
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+
+// Default variable overrides
+$body-bg: #000;
+$body-color: #111;
+
+// Required
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/sgds-variables";
+
+
+// Optional components here
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/accordion";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/alert";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/badge";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/breadcrumb";
+// etc
+{% endcapture %}
 
 <div class="page-component">
     {% include page-component/component-header.html %}
     
-    
-    <section name="section-resources">
-        <h2 class="title fw-bold" id="anatomy">Design Resources</h2>
+    <section name="section-source-file">
+        <h2 class="title fw-bold" id="anatomy">Working with SGDS's source files</h2>
         <div class="section-sub">
-            <div class="sgds card mb-3" style="max-width: 50rem;">
-                <div class="row g-0">
-                  <div class="col-md-3">
-                    <img src="/assets/img/figmalogo.png" class="img-fluid" alt="Figma logo">
-                  </div>
-                  <div class="col-md-9">
-                    <div class="card-body">
-                      <h5 class="card-title">Figma UI Kit</h5>
-                      <a class="card-text"><small class="text-muted">Last updated 3 mins ago</small></a>
-                    </div>
-                  </div>
+            <p>The Sass source files for sgds can be found in the folder<br><code>node_modules/@govtechsg/sgds/sass</code></p>
+            {% highlight bash %}{{sass-folder-structure}}{% endhighlight %}
+            
+              <div class="sgds toast show w-100" role="alert" aria-live="assertive" aria-atomic="true">
+                
+                <div class="toast-body pt-3">
+                  Whenever possible, avoid modifying the core sass files in <code>bootstrap</code> and <code>sgds-theme</code>
                 </div>
               </div>
+            
         </div>
     </section>
-    <section name="section-dss">
-        <h2 class="title fw-bold" id="anatomy">Digital Service Standards</h2>
-        <p>To complement the visual style, we highly recommend going through the Digital Service Standards (DSS), to ensure that you adhere to the policies/clauses stated. Even though our components are built and designed with the clauses in place where applicable, there are instances where they can’t be designed or coded.</p>
+    <section name="section-importing">
+      <div class="section-sub">
+        <h2 class="title fw-bold" id="anatomy">Importing</h2>
+        <p>In your <code>custom.scss</code>, you can choose to include all <code>sgds-theme</code> files or pick the components you need. However do note that are some requirements and dependencies across the components.</p>
+      </div>
+      <div class="section-sub">
+        <h3 class="title fw-bold" id="anatomy">Include all parts</h3>
+        {% highlight css %}{{include-all-parts}}{% endhighlight %}
+      </div>
+      <div class="section-sub">
+        <h3 class="title fw-bold" id="anatomy">Include parts of SGDS</h3>
+        {% highlight css %}{{include-parts}}{% endhighlight %}
+
+        <p>If you are using Webpack, u can omit the <code>node_modules</code> directory</p>
+        {% highlight css %}{{webpack-sass}}{% endhighlight %}
+      </div>
+    </section>
+    <section name="section-design-tokens">
+      <h2 class="title fw-bold" id="anatomy">Variables</h2>
+      <p>
+        You can find the complete list of <code>sgds-theme</code> variables inside <code>sass/sgds-theme/_sgds-variables.scss</code> or go to our github page <a href="{{site.sgds-variables-github}}" target="_blank" rel="noopener noreferrer">here</a>
+      </p>
+      
+      
+      <div class="section-sub">
+        <p>Here's an example that changes the background-color and color for the <body> when importing and compiling <code>sgds-theme</code> via npm:</p>
+        {% highlight scss %}{{sgds-variable-example}}{% endhighlight %}
+      </div>
     </section>
 </div>
