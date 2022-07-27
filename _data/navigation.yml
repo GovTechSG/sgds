@@ -11,10 +11,6 @@
 - title: templates
   url: /templates/
   has-collection: true
-- title: theme customiser
-  url: 'https://customiser.designsystem.gov.sg'
-  target: '_blank'
-  has-collection: false
 - title: FAQs
   url: /faqs/ 
   beta: true
