@@ -18,7 +18,7 @@ layout: layout-single
     </header>
 
 
-    <div class="sgds accordion" id="accordionExample">
+    <div class="sgds accordion">
         <div class="accordion-item">
             <h2 class="accordion-header" id="faq1">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -30,16 +30,12 @@ layout: layout-single
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     It is not mandatory to use the icons in the Design System, but we do encourage users to adopt them
-                    for consistency.
-                    We are constantly expanding our icons library, should you need a particular that is not available in
-                    the documentation,
-                    feel free to reach out to use and we can include them for future updates.
-
+                    for consistency. 
                 </div>
             </div>
         </div>
     </div>
-    <div class="sgds accordion" id="accordionExample">
+    <div class="sgds accordion">
         <div class="accordion-item">
             <h2 class="accordion-header" id="faq2">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -59,7 +55,7 @@ layout: layout-single
         </div>
     </div>
     <!--  -->
-    <div class="sgds accordion" id="accordionExample">
+    <div class="sgds accordion">
         <div class="accordion-item">
             <h2 class="accordion-header" id="faq3">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -73,7 +69,7 @@ layout: layout-single
                     Yes it is mandatory to place the GOV.SG logo with the text “A Singapore Government Agency Website”
                     on the top of your site.
                     (E.g <a
-                        href="https://www.designsystem.gov.sg/docs/masthead/">https://www.designsystem.gov.sg/docs/masthead/</a>)
+                        href="/components/masthead/">https://www.designsystem.tech.gov.sg/components/masthead/</a>)
                     <br>For REACH, you may place it in the main navigation menu or anywhere in the content, except in
                     the gov.sg masthead.<br>
 
@@ -82,7 +78,7 @@ layout: layout-single
         </div>
     </div>
     <!--  -->
-    <div class="sgds accordion" id="accordionExample">
+    <div class="sgds accordion">
         <div class="accordion-item">
             <h2 class="accordion-header" id="faq4">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -93,31 +89,15 @@ layout: layout-single
             <div id="collapseFaq4" class="accordion-collapse collapse" aria-labelledby="faq4"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    You can consider using the mega menu component for level 3 navigation.
+                    You can consider using the mega menu component for level 3 navigation. An example can be found <a href="/components/main-navigation">here</a>
                 </div>
             </div>
         </div>
     </div>
     <!--  -->
-    <div class="sgds accordion" id="accordionExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="faq5">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFaq5" aria-expanded="false" aria-controls="collapseFaq5">
-                    How can we use the sgds-section in a transactional service website?
-                </button>
-            </h2>
-            <div id="collapseFaq5" class="accordion-collapse collapse" aria-labelledby="faq5"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    sgds-section is solely for layout purpose and it is not mandatory to include in your websites. Users
-                    can either use the sticky or fixed navigation bar.
-                </div>
-            </div>
-        </div>
-    </div>
+    
         <!--  -->
-        <div class="sgds accordion" id="accordionExample">
+        <div class="sgds accordion">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="faq7">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -129,17 +109,14 @@ layout: layout-single
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         SGDS components are DSS compliant and adheres to the WCAG 2.1 standard if used straight out from
-                        the
-                        box.
-                        <br>Users should conduct accessibility check regularly if they amendments and/or styling has
-                        been
-                        made to the components.<br>
+                        the box.
+                        <br>Users should conduct accessibility check regularly if they amendments and/or styling has been made to the components.
                     </div>
                 </div>
             </div>
         </div>
         <!--  -->
-        <div class="sgds accordion" id="accordionExample">
+        <div class="sgds accordion">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="faq8">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -151,14 +128,14 @@ layout: layout-single
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         SGDS are built to ensure minimum conflicts and any reduction of performance when stack with
-                        other frameworks,for your case will be bootstrap.<br>
+                        other frameworks.<br>
 
                         <br>To further minimise the conflict, these are some important points you need to take note when
-                        using both SGDS and Bootstrap framework:<br>
+                        using both SGDS and other css framework:<br>
                         <ol>
-                            <li>Always include the SGDS.css after Bootstrap.css in the
+                            <li>Always include the SGDS.css after other css framework in the
 
-                                <head> tag. This is to ensure the SGDS stylesheet takes priority over bootstrap for the
+                                <code>head</code> tag. This is to ensure the SGDS stylesheet takes priority over bootstrap for the
                                     mandatory
                                     components styles (masthead, main navigation, side navigation & footer).
                             </li>
@@ -167,8 +144,7 @@ layout: layout-single
                                 they may be updated if there is amendment to the DSS.
                             </li>
                             <li>
-                                Use only SGDS flexbox grid system. In order to do this, you need to use the SASS import
-                                method.
+                                We leverage on Bootstrap's v5 grid system and is built into the SGDS framework.
                             </li>
                         </ol>
 
@@ -176,7 +152,7 @@ layout: layout-single
                             You can also read up on the documentation on how to use SASS import here:
                         <ul>
                             <li>
-                                <a href="https://www.designsystem.gov.sg/docs/customise-sgds">Customise SGDS with
+                                <a href="https://www.designsystem.tech.gov.sg/get-started/customise-with-sass">Customise with
                                     Sass</a>
                             </li>
                             <li>
@@ -188,18 +164,9 @@ layout: layout-single
                         <p>
                             This method can also be used to remove unused components and can reduce the file size and
                             loading time for both CSS.
-                            Spacing (paddings and margins) and typography(font sizes) for the components are different
-                            in
-                            both frameworks. You might need to tweak the styling according to your site design.
                         </p>
-
-
-
-
-
                     </div>
                 </div>
             </div>
         </div>
-
 </section>
