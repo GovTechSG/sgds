@@ -72,7 +72,8 @@ layout: layout-single
                 <div class="accordion-body">
                     Yes it is mandatory to place the GOV.SG logo with the text “A Singapore Government Agency Website”
                     on the top of your site.
-                    (E.g <a href="https://www.designsystem.gov.sg/docs/masthead/">https://www.designsystem.gov.sg/docs/masthead/</a>)
+                    (E.g <a
+                        href="https://www.designsystem.gov.sg/docs/masthead/">https://www.designsystem.gov.sg/docs/masthead/</a>)
                     <br>For REACH, you may place it in the main navigation menu or anywhere in the content, except in
                     the gov.sg masthead.<br>
 
@@ -111,82 +112,94 @@ layout: layout-single
                 <div class="accordion-body">
                     sgds-section is solely for layout purpose and it is not mandatory to include in your websites. Users
                     can either use the sticky or fixed navigation bar.
-            </div>
-        </div>
-    </div>
-    <!--  -->
-    <div class="sgds accordion" id="accordionExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="faq7">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFaq7" aria-expanded="false" aria-controls="collapseFaq7">
-                    Does SG Design System (SGDS) adheres to Level A and Level AA of WCAG 2.1?
-                </button>
-            </h2>
-            <div id="collapseFaq7" class="accordion-collapse collapse" aria-labelledby="faq7"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    SGDS components are DSS compliant and adheres to the WCAG 2.1 standard if used straight out from the
-                    box.
-                    <br>Users should conduct accessibility check regularly if they amendments and/or styling has been
-                    made to the components.<br>
                 </div>
             </div>
         </div>
     </div>
-    <!--  -->
-    <div class="sgds accordion" id="accordionExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="faq8">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFaq8" aria-expanded="false" aria-controls="collapseFaq8">
-                    Will there be any performance issue if the system adopts SGDS style?
-                </button>
-            </h2>
-            <div id="collapseFaq8" class="accordion-collapse collapse" aria-labelledby="faq8"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    SGDS are built to ensure minimum conflicts and any reduction of performance when stack with
-                    other frameworks,for your case will be bootstrap.<br>
+        <!--  -->
+        <div class="sgds accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq7">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFaq7" aria-expanded="false" aria-controls="collapseFaq7">
+                        Does SG Design System (SGDS) adheres to Level A and Level AA of WCAG 2.1?
+                    </button>
+                </h2>
+                <div id="collapseFaq7" class="accordion-collapse collapse" aria-labelledby="faq7"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        SGDS components are DSS compliant and adheres to the WCAG 2.1 standard if used straight out from
+                        the
+                        box.
+                        <br>Users should conduct accessibility check regularly if they amendments and/or styling has
+                        been
+                        made to the components.<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div class="sgds accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq8">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFaq8" aria-expanded="false" aria-controls="collapseFaq8">
+                        Will there be any performance issue if the system adopts SGDS style?
+                    </button>
+                </h2>
+                <div id="collapseFaq8" class="accordion-collapse collapse" aria-labelledby="faq8"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        SGDS are built to ensure minimum conflicts and any reduction of performance when stack with
+                        other frameworks,for your case will be bootstrap.<br>
 
-                    <br>To further minimise the conflict, these are some important points you need to take note when
-                    using both SGDS and Bootstrap framework:<br>
-                    <ol>
-                        <li>Always include the SGDS.css after Bootstrap.css in the <head> tag. This is to ensure the SGDS stylesheet takes priority over bootstrap for the mandatory
-                            components styles (masthead, main navigation, side navigation & footer).</li>
-                        <li>
-                            As much as possible, try to keep the same html structure to the mandatory components as they may be updated if there is amendment to the DSS.
-                        </li>
-                        <li>
-                            Use only SGDS flexbox grid system. In order to do this, you need to use the SASS import method.
-                        </li>
-                    </ol>
-                        
+                        <br>To further minimise the conflict, these are some important points you need to take note when
+                        using both SGDS and Bootstrap framework:<br>
+                        <ol>
+                            <li>Always include the SGDS.css after Bootstrap.css in the
+
+                                <head> tag. This is to ensure the SGDS stylesheet takes priority over bootstrap for the
+                                    mandatory
+                                    components styles (masthead, main navigation, side navigation & footer).
+                            </li>
+                            <li>
+                                As much as possible, try to keep the same html structure to the mandatory components as
+                                they may be updated if there is amendment to the DSS.
+                            </li>
+                            <li>
+                                Use only SGDS flexbox grid system. In order to do this, you need to use the SASS import
+                                method.
+                            </li>
+                        </ol>
+
                         <p>
                             You can also read up on the documentation on how to use SASS import here:
-                            <ul>
-                                <li>
-                                    <a href="https://www.designsystem.gov.sg/docs/customise-sgds">Customise SGDS with Sass</a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="https://getbootstrap.com/docs/5.1/customize/sass/">Bootstrap Sass customisation</a>
-                                </li>
-                            </ul>
+                        <ul>
+                            <li>
+                                <a href="https://www.designsystem.gov.sg/docs/customise-sgds">Customise SGDS with
+                                    Sass</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://getbootstrap.com/docs/5.1/customize/sass/">Bootstrap
+                                    Sass customisation</a>
+                            </li>
+                        </ul>
                         </p>
                         <p>
                             This method can also be used to remove unused components and can reduce the file size and
                             loading time for both CSS.
-                            Spacing (paddings and margins) and typography(font sizes) for the components are different in
+                            Spacing (paddings and margins) and typography(font sizes) for the components are different
+                            in
                             both frameworks. You might need to tweak the styling according to your site design.
                         </p>
-                        
-                        
-                        
-                        
 
+
+
+
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 </section>
