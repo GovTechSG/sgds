@@ -6,6 +6,7 @@ category: general
 react-link: ?path=/docs/components-form-input-group--example
 github-link: true
 toc: true
+published: false
 ---
 
 {% capture input-group-examples %}
@@ -52,7 +53,13 @@ toc: true
 <div>
     <label for="dropdownAddon" class="form-label">Dropdown Add-on</label>
     <div class="sgds input-group dropdown">
-        <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Dropdown <i class="bi bi-chevron-down"></i></button>
+        <button
+            class="btn btn-outline-secondary dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+        >
+            Dropdown <i class="bi bi-chevron-down"></i>
+        </button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another Action</a></li>
@@ -61,87 +68,94 @@ toc: true
         <input type="text" class="form-control" id="dropdownAddon" />
     </div>
 </div>
-{% endcapture %}
-
-{% capture input-group-design-tokens %}
+{% endcapture %} {% capture input-group-design-tokens %}
 $input-group-addon-padding-y: $input-padding-y !default;
 $input-group-addon-padding-x: $input-padding-x !default;
 $input-group-addon-font-weight: $input-font-weight !default;
-$input-group-addon-color: $input-color !default;
-$input-group-addon-bg: $gray-200 !default;
-$input-group-addon-border-color: $input-border-color !default;
-{% endcapture %}
+$input-group-addon-color: $input-color !default; $input-group-addon-bg:
+$gray-200 !default; $input-group-addon-border-color: $input-border-color
+!default; {% endcapture %}
 
 <!-- Page starts here -->
 <div class="page-component">
-        
-        <!-- Generated header from front end matters -->
-        {% include page-component/component-header.html %}
+    <!-- Generated header from front end matters -->
+    {% include page-component/component-header.html %}
 
-        <!-- Example Section -->
-        <section name="section-examples">
-            <h2 class="title fw-bold" id="example">Example</h2>
-            <div class="section-sub">
-                {% include page-component/component-code-snippet.html compName="input-group-examples" code=input-group-examples %}
-            </div>
-        </section>
+    <!-- Example Section -->
+    <section name="section-examples">
+        <h2 class="title fw-bold" id="example">Example</h2>
+        <div class="section-sub">
+            {% include page-component/component-code-snippet.html
+            compName="input-group-examples" code=input-group-examples %}
+        </div>
+    </section>
 
-        <!-- Anatomy Section -->
-        <section name="section-anatomy">
-            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
-            <div class="section-sub">
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/input-group/anatomy-input-group-1.svg" alt="Input Group Anatomy">
-                    </div>
+    <!-- Anatomy Section -->
+    <section name="section-anatomy">
+        <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+        <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img
+                        src="{{site.baseurl}}/assets/img/component/input-group/anatomy-input-group-1.svg"
+                        alt="Input Group Anatomy"
+                    />
                 </div>
-                <ol>
-                    <li>
-                        <b>Label:</b> Text
-                    </li>
-                </ol>
             </div>
-        </section>
-
-        <!-- Spacing Section -->
-        <section name="section-spacing">
-            <h2 class="title fw-bold" id="spacing">Spacing</h2>
-            <div class="section-sub">
-                <div class="sgds-example-image-container">
-                    <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/input-group/spacing-input-group-1.svg" alt="Input Group Spacing">
-                    </div>
-                </div>
-                <h3 class="subtitle fw-bold" id="within-the-input-group">Within the input group</h3>
-                <p>Text</p>
-            </div>
-        </section>
-
-        <!-- Usage guidelines Section -->
-        <section name="section-usage-guidelines">
-            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Input group should be used when:</p>
-            <ul>
-                <li>Text</li>
-            </ul>
-            <p class="fw-bold mb-0">Input group should not be used when:</p>
             <ol>
-                <li>Text</li>
+                <li><b>Label:</b> Text</li>
             </ol>
-        </section>
+        </div>
+    </section>
 
-        <!-- Usability guidelines Section -->
-        <section name="section-usability-guidelines">
-            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-            <p>
-                <b>Title</b><br>
-                Text
-            </p>
-        </section>
+    <!-- Spacing Section -->
+    <section name="section-spacing">
+        <h2 class="title fw-bold" id="spacing">Spacing</h2>
+        <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img
+                        src="{{site.baseurl}}/assets/img/component/input-group/spacing-input-group-1.svg"
+                        alt="Input Group Spacing"
+                    />
+                </div>
+            </div>
+            <h3 class="subtitle fw-bold" id="within-the-input-group">
+                Within the input group
+            </h3>
+            <p>Text</p>
+        </div>
+    </section>
 
-        <!-- Design token Section -->
-        <section name="section-design-tokens">
-            <h2 class="title fw-bold" id="design-tokens">Input group design tokens</h2>
-            {%- highlight sass -%}{{input-group-design-tokens}}{%- endhighlight -%}
-        </section>
+    <!-- Usage guidelines Section -->
+    <section name="section-usage-guidelines">
+        <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+        <p class="fw-bold mb-0">Input group should be used when:</p>
+        <ul>
+            <li>Text</li>
+        </ul>
+        <p class="fw-bold mb-0">Input group should not be used when:</p>
+        <ol>
+            <li>Text</li>
+        </ol>
+    </section>
+
+    <!-- Usability guidelines Section -->
+    <section name="section-usability-guidelines">
+        <h2 class="title fw-bold" id="usability-guidelines">
+            Usability guidelines
+        </h2>
+        <p>
+            <b>Title</b><br />
+            Text
+        </p>
+    </section>
+
+    <!-- Design token Section -->
+    <section name="section-design-tokens">
+        <h2 class="title fw-bold" id="design-tokens">
+            Input group design tokens
+        </h2>
+        {%- highlight sass -%}{{input-group-design-tokens}}{%- endhighlight -%}
+    </section>
 </div>
