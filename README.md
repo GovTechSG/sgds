@@ -7,7 +7,9 @@ layout: layout-single
 ## Singapore Government Design System
 [![npm](https://img.shields.io/npm/v/@govtechsg/sgds.svg)](https://www.npmjs.com/package/@govtechsg/sgds)
 
-The Singapore Government Design System was developed to empower teams in creating fast, accessible and mobile-friendly digital services.
+The [Singapore Government Design System](https://www.designsystem.tech.gov.sg) was developed to empower teams in creating fast, accessible and mobile-friendly digital services.
+
+Visit our [SGDS React storybook](https://react.designsystem.tech.gov.sg)
 <hr>
 
 ### Installation
