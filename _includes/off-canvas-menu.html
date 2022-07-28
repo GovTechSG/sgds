@@ -47,13 +47,17 @@
                 {% endfor %}
             </li>
             {% endfor %}
-
+            <li class="sidenav-item">
+                <a type="button" class="sgds btn" href="{{site.github-link}}">
+                    <i class="bi bi-github h3 mb-0"></i>
+                </a>
+            </li>
         </nav>
     </div>
     <hr>
     <div class="offcanvas-body">
         <small class="fw-bold d-block">Previous version</small>
         {% assign prevVersion = site.data.npm-data-prev-ver.objects[0].package.version %}
-        <a class="small" href="" target="_blank" rel="noopener noreferrer">{{prevVersion}}</a>
+        <a class="small" href="{{site.npm-link}}" target="_blank" rel="noopener noreferrer">{{prevVersion}}</a>
     </div>
 </div>
