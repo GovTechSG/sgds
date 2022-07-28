@@ -3,10 +3,10 @@
 
 
 // Configuration
-@import "./sass/bootstrap/functions";
+@import "./node_modules/bootstrap/scss/functions";
 @import "./sass/sgds-theme/variables";
-@import "./sass/bootstrap/mixins";
-@import "./sass/bootstrap/utilities";
+@import "./node_modules/bootstrap/scss/mixins";
+@import "./node_modules/bootstrap/scss/utilities";
 
 @import "base/all";
 @import "layout/all";
