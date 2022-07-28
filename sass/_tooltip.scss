@@ -1,0 +1,10 @@
+@import "./node_modules/bootstrap/scss/tooltip";
+.sgds{
+    &.tooltip{
+        .tooltip-inner{
+            display: flex;
+            gap: 2rem;
+            text-align: left;
+        }
+    }
+}
