@@ -1,4 +1,4 @@
-@import "../../bootstrap/alert";
+@import "~bootstrap/scss/alert";
 
 @each $state, $value in $theme-colors-set {
     
