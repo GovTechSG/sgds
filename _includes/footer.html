@@ -2,48 +2,31 @@
     <section class="footer-top">
         <div class="container-fluid">
             <div class="row footer-header">
-                <div class="col col-lg-6">
+                <div class="col col-lg-6 col-md-12">
                     <div class="title">Singapore Government Design System</div>
                     <div class="description">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum illo delectus laborum libero id
-                        ratione quibusdam tempora assumenda quas, pariatur cum minus, aliquid molestiae et nisi dolorem
-                        vitae molestias! Voluptate commodi aliquid iusto sequi sit eligendi, quod numquam nihil
-                        consectetur eaque error earum laudantium! Temporibus accusamus pariatur quod totam quia.
+                        {{site.description}}
                     </div>
                 </div>
             </div>
             <div class="row footer-items">
-                <div class="col-lg-3">
-                    <div class="title">
-                        Column 1
-                    </div>
+                <div class="col-xxl-2 col-md-4 mb-3">
                     <ul class="links">
-                        <li><a href="">About Us</a></li>
-                        <li><a href="">This is a super long link</a></li>
-                        <li><a href="">Test</a></li>
-                        <li><a href="">Test</a></li>
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/components/">Components</a></li>
+                        <li><a href="/patterns/">Patterns</a></li>
+                        <li><a href="/templates/">Templates</a></li>
+                        <li><a href="https://customiser.designsystem.gov.sg/">Theme customiser</a></li>
+                        <li><a href="/faqs/">FAQs</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3">
-                    <div class="title">
-                        Category 1
-                    </div>
+                
+                <div class="col-xxl-2 col-md-4 mb-3">
                     <ul class="links">
-                        <li><a href="">About Us</a></li>
-                        <li><a href="">This is a super long link</a></li>
-                        <li><a href="">Test</a></li>
-                        <li><a href="">Test</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3">
-                    <div class="title">
-                        Category 1
-                    </div>
-                    <ul class="links">
-                        <li><a href="">About Us</a></li>
-                        <li><a href="">This is a super long link</a></li>
-                        <li><a href="">Test</a></li>
-                        <li><a href="">Test</a></li>
+                        <li><a href="{{site.github-link}}" target="_blank" rel="noopener noreferrer">SGDS Github Repo</a></li>
+                        <li><a href="{{site.react-storybook}}" target="_blank" rel="noopener noreferrer">SGDS React Storybook</a></li>
+                        <li><a href="https://www.developer.tech.gov.sg" target="_blank" rel="noopener noreferrer">Singapore Government Developer Portal</a></li>
+                        <li><a href="https://www.isomer.gov.sg" target="_blank" rel="noopener noreferrer">Isomer</a></li>
                     </ul>
                 </div>
             </div>
@@ -51,9 +34,10 @@
                 <div class="col">
                     <div class="d-flex justify-content-lg-end">
                         <ul>
-                            <li><a href="">Contact</a></li>
-                            <li><a href="">Feedback</a></li>
-                            <li><a href="https://www.reach.gov.sg/" target="_blank" rel="noopener noreferrer">Reach.gov.sg</a></li>
+                            <li><a href="{{site.contact-us}}" target="_blank" rel="noopener noreferrer">Contact</a></li>
+                            <li><a href="{{site.feedback-form}}" target="_blank" rel="noopener noreferrer">Feedback</a></li>
+                            <li><a href="https://www.reach.gov.sg/" target="_blank"
+                                    rel="noopener noreferrer">Reach.gov.sg</a></li>
                         </ul>
                     </div>
                 </div>
@@ -66,16 +50,17 @@
             <div class="row footer-mandatory-links">
                 <div class="col">
                     <ul>
-                        <li><a href="https://tech.gov.sg/report_vulnerability" target="_blank" rel="noopener noreferrer">Report Vulnerability</a></li>
-                        <li><a href="">Privacy</a></li>
-                        <li><a href="">Terms of use</a></li>
+                        <li><a href="https://tech.gov.sg/report_vulnerability" target="_blank"
+                                rel="noopener noreferrer">Report Vulnerability</a></li>
+                        <li><a href="/privacy/">Privacy Statement</a></li>
+                        <li><a href="/terms-of-use/">Terms of use</a></li>
                     </ul>
                 </div>
             </div>
             <div class="row footer-copyrights">
                 <div class="col">
                     <div class="d-flex justify-content-lg-end">
-                        © 2022 Government of Singapore. Last Updated 08 Feb 2022
+                        © 2022 Government of Singapore. Last Updated {{site.time | date_to_string -}}
                     </div>
                 </div>
             </div>

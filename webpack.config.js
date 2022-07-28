@@ -49,7 +49,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './sgds/sgds.css'
+      filename: './css/sgds.css'
     }),
     new CopyPlugin({
       patterns: [

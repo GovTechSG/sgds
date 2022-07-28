@@ -1,0 +1,7 @@
+.page-faqs{
+    .sgds.accordion{
+        + .sgds.accordion{
+            margin-top: 0.5rem;
+        }
+    }
+}

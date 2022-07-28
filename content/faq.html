@@ -1,0 +1,151 @@
+---
+title: FAQs
+permalink: /faqs/
+layout: layout-single
+---
+
+<section class="page-faqs">
+
+    <header>
+        {% include breadcrumb.html %}
+        <h1 class="fw-bold">How can we help you?</h1>
+        {% if site.search %}
+        <div class="sgds form-group">
+            <label for="search" class="form-label">Search:</label>
+            <input type="text" class="js-shuffle-search form-control" id="search">
+        </div>
+        {% endif %}
+    </header>
+
+    <div class="sgds accordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFaq2" aria-expanded="false" aria-controls="collapseFaq2">
+                    Are there limitations on the number of sub-categories for the footer?
+                </button>
+            </h2>
+            <div id="collapseFaq2" class="accordion-collapse collapse" aria-labelledby="faq2"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    There aren’t any limitations of sub-categories for the footer, however you may want to limit for
+                    better user experience.
+                    We would suggest to include links for pages with higher page views and utiltise a sitemap to display
+                    all the links in your site.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="sgds accordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFaq3" aria-expanded="false" aria-controls="collapseFaq3">
+                    Is it mandatory to link to REACH and GOV.SG?
+                </button>
+            </h2>
+            <div id="collapseFaq3" class="accordion-collapse collapse" aria-labelledby="faq3"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Yes it is mandatory to place the GOV.SG logo with the text “A Singapore Government Agency Website”
+                    on the top of your site.
+                    (E.g <a
+                        href="/components/masthead/">https://www.designsystem.tech.gov.sg/components/masthead/</a>)
+                    <br>For REACH, SGDS places the link on the footer next to the contact and feedback<br>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="sgds accordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFaq4" aria-expanded="false" aria-controls="collapseFaq4">
+                    Which component to use if Main Nav requires multiple dropdown?
+                </button>
+            </h2>
+            <div id="collapseFaq4" class="accordion-collapse collapse" aria-labelledby="faq4"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    You can consider using the mega menu component for level 3 navigation. An example can be found <a href="/components/main-navigation">here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    
+    <!--  -->
+    <div class="sgds accordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq7">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFaq7" aria-expanded="false" aria-controls="collapseFaq7">
+                    Does SG Design System (SGDS) adheres to Level A and Level AA of WCAG 2.1?
+                </button>
+            </h2>
+            <div id="collapseFaq7" class="accordion-collapse collapse" aria-labelledby="faq7"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    SGDS components are DSS compliant (where applicable) and adheres to the WCAG 2.1 standard if used straight out from
+                    the box.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sgds accordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq8">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFaq8" aria-expanded="false" aria-controls="collapseFaq8">
+                    Will there be any performance issue if the system adopts SGDS style?
+                </button>
+            </h2>
+            <div id="collapseFaq8" class="accordion-collapse collapse" aria-labelledby="faq8"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    SGDS are built to ensure minimum conflicts and any reduction of performance when stack with
+                    other frameworks.<br>
+
+                    <br>To further minimise the conflict, these are some important points you need to take note when
+                    using both SGDS and other css framework:<br>
+                    <ol>
+                        <li>Always include the SGDS.css after other css framework in the
+
+                            <code>head</code> tag. This is to ensure the SGDS stylesheet takes priority over bootstrap for the
+                                mandatory
+                                components styles (masthead, main navigation, side navigation & footer).
+                        </li>
+                        <li>
+                            As much as possible, try to keep the same html structure to the mandatory components as
+                            they may be updated if there is amendment to the DSS.
+                        </li>
+                        <li>
+                            We leverage on Bootstrap's v5 grid system and is built into the SGDS framework.
+                        </li>
+                    </ol>
+
+                    <p>
+                        You can also read up on the documentation on how to use SASS import here:
+                    <ul>
+                        <li>
+                            <a href="https://www.designsystem.tech.gov.sg/get-started/customise-with-sass">Customise with
+                                Sass</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://getbootstrap.com/docs/5.1/customize/sass/">Bootstrap
+                                Sass customisation</a>
+                        </li>
+                    </ul>
+                    </p>
+                    <p>
+                        This method can also be used to remove unused components and can reduce the file size and
+                        loading time for both CSS.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

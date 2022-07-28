@@ -12,7 +12,7 @@ toc: true
 <div class="sgds form-group mb-2">
     <label for="defaultWith" class="form-label">Default</label>
     <div id="defaultWithHelp" class="form-text">This is the hint text</div>
-    <div class="sgds input-group" variant="has-icon">
+    <div class="sgds form-control-group">
         <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Text goes here">
         <i class="bi bi-search form-control-icon"></i>
     </div>
@@ -20,7 +20,7 @@ toc: true
 <div class="sgds form-group mb-2">
     <label for="hoverWith" class="form-label">Hover</label>
     <div id="hoverWithHelp" class="form-text">This is the hint text</div>
-    <div class="sgds input-group" variant="has-icon">
+    <div class="sgds form-control-group">
         <input type="text" class="form-control" id="hoverWith" aria-describedby="hoverWithHelp" placeholder="Text goes here" autofocus />
         <i class="bi bi-search form-control-icon"></i>
     </div>
@@ -28,7 +28,7 @@ toc: true
 <div class="sgds form-group mb-2 was-validated">
     <label for="errorWith" class="form-label">Error</label>
     <div id="errorWithHelp" class="form-text">This is the hint text</div>
-    <div class="sgds input-group" variant="has-icon">
+    <div class="sgds form-control-group">
         <input type="text" class="form-control" id="errorWith" aria-describedby="errorWithHelp errorWithInvalid" placeholder="Text goes here" required />
         <i class="bi bi-search form-control-icon"></i>
         <div id="errorWithInvalid" class="invalid-feedback">Error message</div>
@@ -37,7 +37,7 @@ toc: true
 <div class="sgds form-group has-feedback mb-2">
     <label for="disabledWith" class="form-label">Disabled</label>
     <div id="disabledWithHelp" class="form-text">This is the hint text</div>
-    <div class="sgds input-group" variant="has-icon">
+    <div class="sgds form-control-group">
         <input type="text" class="form-control" id="disabledWith" aria-describedby="disabledWithHelp" placeholder="Text goes here" disabled />
         <i class="bi bi-search form-control-icon"></i>
     </div>
@@ -154,19 +154,19 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
                 </div>
                 <ol>
                     <li>
-                        <b>Text label:</b> Inform users of what data should be put into the field, labels must always be outside of the text field
+                        <b>Text label:</b> Inform users of what data should be put into the field, labels must always be outside of the text field.
                     </li>
                     <li>
-                        <b>Hint text:</b> Serve as a guide to the user, helping to inform users as to what kind of data they are required to enter
+                        <b>Hint text:</b> Serve as a guide to the user, helping to inform users as to what kind of data they are required to enter.
                     </li>
                     <li>
-                        <b>Icon (situational):</b> Helps to make the input more specific or convey the functionality of the text input. E.g Search, dropdown, type of currency
+                        <b>Icon (situational):</b> Helps to make the input more specific or convey the functionality of the text input. E.g Search, dropdown, type of currency.
                     </li>
                     <li>
-                        <b>Error message:</b> Serves to convey information on the error and allows the user to make the necessary correction
+                        <b>Error message:</b> Serves to convey information on the error and allows the user to make the necessary correction.
                     </li>
                     <li>
-                        <b>Spacing:</b> Spacing between label, hint text and error/warning messaging will inherit the line height of the text used
+                        <b>Spacing:</b> Spacing between label, hint text and error/warning messaging will inherit the line height of the text used.
                     </li>
                 </ol>
             </div>
@@ -181,8 +181,8 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
                         <img src="{{site.baseurl}}/assets/img/component/text-input/spacing-text-input-1.svg" alt="Text Input Spacing">
                     </div>
                 </div>
-                <h3 class="subtitle fw-bold" id="within-the-text-input">Within the text input</h3>
-                <p>Ensure that there is a min of 8px vertical spacing and 16px horizontal spacing on the left and right.</p>
+                <p><b>Within the text input</b><br>
+                    Ensure that there is a min of 8px vertical spacing and 16px horizontal spacing on the left and right.</p>
             </div>
         </section>
 
@@ -193,7 +193,7 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
             <ul>
                 <li>When you need users to enter text that is only a single line.</li>
                 <li>When you need freeform answers.</li>
-                <li>When you need input simplicity. E.g Entering a date is easier than selecting from a date picker or calender</li>
+                <li>When you need input simplicity. E.g Entering a date is easier than selecting from a date picker or calender.</li>
             </ul>
             <p class="fw-bold mb-0">Text input should not be used when:</p>
             <ol>

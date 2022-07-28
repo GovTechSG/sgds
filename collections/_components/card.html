@@ -8,13 +8,113 @@ github-link: true
 toc: true
 ---
 
-{% capture card-with-image %}
-<div class="card sgds" style="width: 20rem;"><img class="card-img-top"
+{% capture base-card %}
+<div class="card sgds" style="width: 20rem;"><img class="card-img-top" alt="img alternate text goes here"
         src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
     <div class="card-body">
-        <h2 class="card-title">Card Title</h2>
+        <h3 class="card-title">Card Title</h3>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
             content.</p><a class="card-link" href="#">Go somewhere</a>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture card-with-cta %}
+<div class="row">
+    <div class="col-md-auto">
+        <div class="card sgds" style="width: 20rem;"><img class="card-img-top" alt="img alternate text goes here"
+                src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+            <div class="card-body">
+                <h3 class="card-title" href="#">Card Title</h3>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a class="card-link" href="#">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-auto">
+        <div class="card sgds" style="width: 20rem;">
+            <img class="card-img-top" alt="img alternate text goes here"
+                src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+            <div class="card-body"><a class="card-link" href="#">
+                    <h3 class="card-title">Card Title</h3>
+                </a>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture informational-card %}
+<div class="card sgds" style="width: 20rem;"><img class="card-img-top" alt="img alternate text goes here"
+        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+    <div class="card-body">
+        <h3 class="card-title">Card Title</h3>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+    </div>
+</div>{% endcapture %}
+
+{% capture customise-card %}
+<div class="row">
+        <div class="col-md-auto">
+        <div class="card sgds" style="width: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title">Card Title</h5><a class="card-text">Some quick example text to build on the card title
+                    and make up the bulk of the card's content.</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-auto">
+        <div class="card sgds" style="width: 20rem;">
+            <div class="card-body">
+                <h1 class="card-title">Card Title</h1><strong class="card-text">Some quick example text to build on the card
+                    title and make up the bulk of the card's content.</strong>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture stretched-link-card %}
+<div class="card sgds" style="width: 20rem;"><img class="card-img-top" alt="img alternate text goes here"
+        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+    <div class="card-body"><a class="card-link stretched-link" href="#">
+            <h3 class="card-title">Card Title</h3>
+        </a>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+    </div>
+</div>
+{% endcapture %}
+
+{% capture card-group %}
+<div class="card-group">
+    <div class="card sgds"><img class="card-img-top" alt="img alternate text goes here"
+            src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+        <div class="card-body">
+            <h3 class="card-title">Card Title</h3>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p><a class="card-link" href="#">Go somewhere</a>
+        </div>
+    </div>
+    <div class="card sgds"><img class="card-img-top" alt="img alternate text goes here"
+            src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+        <div class="card-body">
+            <h3 class="card-title">Card Title</h3>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p><a class="card-link" href="#">Go somewhere</a>
+        </div>
+    </div>
+    <div class="card sgds"><img class="card-img-top" alt="img alternate text goes here"
+            src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80">
+        <div class="card-body">
+            <h3 class="card-title">Card Title</h3>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p><a class="card-link" href="#">Go somewhere</a>
+        </div>
     </div>
 </div>
 {% endcapture %}
@@ -22,34 +122,42 @@ toc: true
 {% capture card-action %}
 <div class="sgds card" variant="card-action">
     <div class="card-body">
-        <h6 class="card-subtitle text-muted">
-            <div><i class="bi bi-box"></i>Checkbox Action Card</div>
-            <div class="card-input"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div>
-        </h6>
-        <h5 class="card-title fw-bold">Checkbox Card</h5>
+      <div>
+        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Checkbox action card</h6>
+        <h5 class="card-title fw-bold">Checkbox card</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <div class="card-input">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      </div>
     </div>
 </div>
 <div class="sgds card" variant="card-action">
     <div class="card-body">
-        <h6 class="card-subtitle text-muted">
-            <div><i class="bi bi-box"></i>Radio Button Action Card</div>
-            <div class="card-input"><input type="radio" name="flexRadioDefault" id="flexRadioDefault1" class="form-check-input"></div>
-        </h6>
-        <h5 class="card-title fw-bold">Radio Button Card</h5>
+      <div>
+        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Radio button action card</h6>
+        <h5 class="card-title fw-bold">Radio button card</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <div class="card-input">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+      </div>
     </div>
 </div>
 <div class="sgds card" variant="card-action">
     <div class="card-body">
-        <h6 class="card-subtitle text-muted">
-            <div><i class="bi bi-box"></i>Switch Button Action Card</div>
-            <div class="card-input form-check form-switch"><input type="checkbox" role="switch" id="flexSwitchCheckDefault" class="form-check-input"></div>
-        </h6>
-        <h5 class="card-title fw-bold">Switch Button Card</h5>
+      <div>
+        <h6 class="card-subtitle text-muted"><i class="bi bi-box"></i> Switch button action card</h6>
+        <h5 class="card-title fw-bold">Switch button card</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <div class="card-input form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      </div>
     </div>
 </div>
+
+
 {% endcapture %}
 
 {% capture card-quantity %}
@@ -110,11 +218,62 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
             <div class="section-sub">
                 {% 
                     include page-component/component-code-snippet.html 
+                    compTitle="Base card" 
+                    compName="base-card" 
+                    code=base-card 
+                %}
+            </div>
+           <!--  <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
                     compTitle="Card with image" 
                     compName="card-with-image" 
                     code=card-with-image 
                 %}
+            </div> -->
+            <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Card with Call To Action (CTA)" 
+                    compName="card-with-cta" 
+                    code=card-with-cta 
+                %}
             </div>
+            <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Informational card" 
+                    compName="informational-card" 
+                    code=informational-card 
+                %}
+            </div>
+            <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Customise card sub-components' HTML Elements" 
+                    compName="customise-card" 
+                    code=customise-card 
+                %}
+            </div>
+
+            <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Stretched link" 
+                    compName="stretched-link-card" 
+                    code=stretched-link-card 
+                %}
+            </div>
+
+            <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Card group" 
+                    compName="card-group" 
+                    code=card-group 
+                %}
+            </div>
+
             <div class="section-sub">
                 {% include page-component/component-code-snippet.html compTitle="Action card" compName="card-action" code=card-action %}
             </div>
@@ -127,89 +286,128 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
         <section name="section-anatomy">
             <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
             <div class="section-sub">
+                <h3 class="subtitle fw-bold" id="default-card">Default card</h3>
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-1.svg" alt="Card Anatomy 1">
-                        <div class="sgds-example-image-subgrid">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-2.svg" alt="Card Anatomy 2">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-3.svg" alt="Card Anatomy 3">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-4.svg" alt="Card Anatomy 4">
-                        </div>
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-1.svg" alt="">
                     </div>
                 </div>
                 <ol>
                     <li>
-                        <b>Title:</b> Serves to let the user know exactly what the card is about, ideal to keep this short and to the point
+                        <b>Image (situational):</b> Gives context to the user as to what the card is about.
                     </li>
                     <li>
-                        <b>Description:</b>  Serves to give users information on the card
+                        <b>Title:</b> Serves to let the user know exactly what the card is about, ideal to keep this short and
+                        to the point.
                     </li>
                     <li>
-                        <b>Call to action (situational):</b> When you need users to take a action, this can be omitted if the card is meant to display only information
+                        <b>Description:</b> Serves to give users information on the card.
                     </li>
                     <li>
-                        <b>Image:</b> Gives context to the user as to what the card is about
+                        <b>CTA (situational):</b> When you need users to take a action, this can be omitted if the card is meant
+                        to display only information. Text link can be replaced by a button if needed if the situation calls for
+                        it.
                     </li>
+        
+                </ol>
+            </div>
+        </section>
+        <section name="section-anatomy">
+            <h3 class="subtitle fw-bold" id="action-card">Action card</h3>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-2.svg" alt="">
+                    </div>
+                </div>
+                <ol>
                     <li>
-                        <b>Icon:</b> Serves to support the nature of the card. Gives more context to the user about what the card is about. E.g category
-                    </li>
+                        <b>Icon:</b> Gives more context to what the card is about.
                     <li>
-                        <b>Selector:</b> Allows users to select one or more cards
+                        <b>Selector:</b> Allows users to select one or more cards.
                     </li>
                 </ol>
             </div>
         </section>
+            
+            <section name="section-anatomy">
+                <h3 class="subtitle fw-bold" id="action-qty-card">Action card with quantity toggle</h3>
+            
+                <div class="section-sub">
+                    <div class="sgds-example-image-container">
+                        <div class="sgds-example-image-grid">
+                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-3.svg" alt="">
+                        </div>
+                    </div>
+                    <p>Used mainly for situations with subscriptions or when you require users to select a amount for a given item.
+                        This allows users to select a item and decide on the quantity they want.</p>
+                    <ol>
+                        <li>
+                            <b>Quantity toggle:</b> Allows users to select the amount they require.
+                        <li>
+                            <b>Price (situational):</b> Displays the amount of a single item. Can be used to show total based on
+                            amount selected. Pricing can be omitted if you do not require it.
+                        </li>
+                    </ol>
+                </div>
+            
+            </section>
 
         <!-- Spacing Section -->
         <section name="section-spacing">
             <h2 class="title fw-bold" id="spacing">Spacing</h2>
             <div class="section-sub">
-                <h3 class="subtitle fw-bold" id="within-the-card">Within the card</h3>
-                <p>Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p>
+                <h3 class="subtitle fw-bold" id="default-card-spacing">Default card</h3>
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-1.svg" alt="Card Spacing Within 1">
-                        <div class="sgds-example-image-subgrid">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-2.svg" alt="Card Spacing Within 2">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-3.svg" alt="Card Spacing Within 3">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-4.svg" alt="Card Spacing Within 4">
-                        </div>
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-1.svg" alt="">
                     </div>
                 </div>
-            </div>
+            </div> 
+            <p><b>Within the default</b><br/>
+                Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content.</p> 
+        </section>
+
+        <section name="section-spacing">
+            <h3 class="subtitle fw-bold" id="action-card-spacing">Action card</h3>
             <div class="section-sub">
-                <h3 class="subtitle fw-bold" id="outside-the-card">Outside the card</h3>
-                <p>Ensure that there is a min 32px spacing vertically and horizontally between cards</p>
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-1.svg" alt="">
-                        <div class="sgds-example-image-subgrid">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-2.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-3.svg" alt="">
-                            <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/anatomy-card-4.svg" alt="">
-                        </div>
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-2.svg" alt="">
                     </div>
                 </div>
             </div>
+            <p><b>Within the action card</b><br/>
+                Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p>  
+        </section>
+
+        <section name="section-spacing">
+            <h3 class="subtitle fw-bold" id="action-qty-card-spacing">Action card with quantity toggle</h3>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/{{page.title | downcase}}/spacing-within-3.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <p><b>Within the action card with quantity toggle</b><br/>
+                Ensure that there is a min 24px spacing inside of the card and 16px vertical spacing between content. </p>  
         </section>
 
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers. Users may also ignore important information if it is hidden in an accordion.</p>
-            <p class="fw-bold mb-0">When to use the accordion component:</p>
+            <p class="fw-bold mb-0">Cards should be used:</p>
             <ol>
-                <li>There is insufficient space within the page to display the necessary information.</li>
-                <li>Users require an overview of specific content that's related to one another.</li>
+                <li>When you need to display similar content and actions on a topic inside a container.</li>
+                <li>When you need to visually separate specific parts of content in a view.</li>
             </ol>
-            <p class="fw-bold mb-0">When not to use the accordion component:</p>
+            <p class="fw-bold mb-0">Cards should not be used:</p>
             <ol>
-                <li>
-                    There is insufficient space within the page to display the necessary information.
-                    <ul>
-                        <li>Accordions hide content, and there may be users who may miss the content or not understand how accordions work.</li>
-                        <li>If users need to see all information in a single page, you can consider reducing your content, splitting them into smaller sections, or use well-formatted text (e.g. headers, contents, section)</li>
-                    </ul>
+                <li>When you need to inform user about important changes. Use Alerts component instead.</li>
+                <li>If the information contained within the card is not related.</li>
+
+                        
                 </li>
             </ol>
         </section>
@@ -218,14 +416,15 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>Do ensure that the entire heading is clickable to the user.</b><br>
-                A larger target will make it easier for users to manipulate
-            </p>
+                <b>Keep card title brief and clear</b><br>
+                Be brief and keep it to a single line by utilizing a sentence fragment. Avoid using punctuation as much as possible.</p>
             <p>
-                <b>Ensure enough space between content and headings</b><br>
-                This is to prevent the user from accidentally closing the accordion
-            </p>
-        </section>
+                <b>Use consistent elements when cards are arranged in a group</b><br>
+                For groups of cards, ensure the components used are consistent from card to card. Eg. Use the same height and width for each card on the page.</p>
+                <p>
+                    <b>Card content should be summarised and easy to digest</b><br>
+                    Don't overwhelm the space with excessive content. The content should be easily accessed and explored so that it is easier for users to find what they are interested in.</p>
+                </section>
 
         <!-- Design token Section -->
         <section name="section-design-tokens">

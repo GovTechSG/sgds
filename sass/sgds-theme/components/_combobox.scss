@@ -1,0 +1,16 @@
+
+.sgds{
+    &.combobox {
+        @extend .form-control-group;
+        justify-content: flex-end;
+
+        > .form-control {
+            padding-left: $input-btn-padding-x;
+            padding-right: 3rem;
+        }
+
+        > .dropdown-menu {
+            min-width: 100%;
+        }
+    }
+}

@@ -1,0 +1,188 @@
+---
+title: Landing Page
+description: A landing page is a standalone page distinct from any other pages including homepage, which serves a specific purpose or action.
+toc: true
+---
+
+{% capture landing-page %}
+<div style="background-color: white">
+  <!-- Masthead -->
+  <sgds-masthead fluid></sgds-masthead>
+  <!-- Main Nav component -->
+  <nav class="mt-4 sgds navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img
+          src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg"
+          alt="Home"
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Components</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Patterns</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Templates</a>
+          </li>
+          <li class="nav-item sgds dropdown">
+            <a
+              class="nav-link sgds dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Theme customiser<i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Option 1</a></li>
+              <li><a class="dropdown-item active" href="#">Option 2</a></li>
+              <li><a class="dropdown-item" href="#">Option 3</a></li>
+              <li><a class="dropdown-item" href="#">Option 4</a></li>
+            </ul>
+          </li>
+          <li class="nav-item align-self-center d-none d-lg-block">
+            <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
+          </li>
+          <li class="nav-item align-self-center d-none d-lg-block">
+            <a class="nav-link" href="#"
+              ><i class="bi bi-grid-3x3-gap-fill"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Content section -->
+  <section class="m-8">
+    <h4>Place your content here</h4>
+  </section>
+  <!-- Footer component -->
+  <footer class="sgds footer">
+    <section class="footer-top">
+      <div class="container-fluid">
+        <div class="row footer-header">
+          <div class="col col-lg-6">
+            <div class="title">Singapore Government Design System</div>
+            <div class="description">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum
+              illo delectus laborum libero id ratione quibusdam tempora
+              assumenda quas, pariatur cum minus, aliquid molestiae et nisi
+              dolorem vitae molestias! Voluptate commodi aliquid iusto sequi sit
+              eligendi, quod numquam nihil consectetur eaque error earum
+              laudantium! Temporibus accusamus pariatur quod totam quia.
+            </div>
+          </div>
+        </div>
+        <div class="row footer-items">
+          <div class="col-lg-3">
+            <div class="title">Column 1</div>
+            <ul class="links">
+              <li><a href="">About Us</a></li>
+              <li><a href="">This is a super long link</a></li>
+              <li><a href="">Test</a></li>
+              <li><a href="">Test</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3">
+            <div class="title">Category 1</div>
+            <ul class="links">
+              <li><a href="">About Us</a></li>
+              <li><a href="">This is a super long link</a></li>
+              <li><a href="">Test</a></li>
+              <li><a href="">Test</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3">
+            <div class="title">Category 1</div>
+            <ul class="links">
+              <li><a href="">About Us</a></li>
+              <li><a href="">This is a super long link</a></li>
+              <li><a href="">Test</a></li>
+              <li><a href="">Test</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row footer-contact-links">
+          <div class="col">
+            <div class="d-flex justify-content-lg-end">
+              <ul>
+                <li><a href="">Contact</a></li>
+                <li><a href="">Feedback</a></li>
+                <li>
+                  <a
+                    href="https://www.reach.gov.sg/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Reach.gov.sg</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="footer-bottom">
+      <div class="container-fluid">
+        <div class="row footer-mandatory-links">
+          <div class="col">
+            <ul>
+              <li>
+                <a
+                  href="https://tech.gov.sg/report_vulnerability"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Report Vulnerability</a
+                >
+              </li>
+              <li><a href="">Privacy</a></li>
+              <li><a href="">Terms of use</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row footer-copyrights">
+          <div class="col">
+            <div class="d-flex justify-content-lg-end">
+              © 2022 Government of Singapore. Last Updated 08 Feb 2022
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+</div>
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component mb-5">
+  <!-- Generated header from front end matters -->
+  {% include page-component/component-header.html %}
+
+  <!-- Template Section -->
+  <section name="section-templates">
+    <h2 class="title fw-bold" id="example">Example</h2>
+    <div class="section-sub">
+      {% include page-component/component-code-snippet.html code=landing-page %}
+    </div>
+  </section>
+</div>

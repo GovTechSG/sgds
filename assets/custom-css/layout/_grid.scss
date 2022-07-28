@@ -1,31 +1,54 @@
 .wrapper{
     display: grid;
-    max-width: 1440px;
-    margin: 0 auto;
-    &-sidenav{
-        display: grid;
-        gap: 3rem;
-        grid-template-columns: 15rem minmax(25rem, 1fr);
-        max-width: 100%;
-        padding: 1rem 2rem;
-        @include media-breakpoint-down(lg){
-            display:block;
-            aside{
-                display:none;
+    padding: 1rem 2rem 2rem;
+    &.layout{
+        &-single{
+            width: 60vw;
+            margin:0 auto;
+            header{
+                margin-bottom: 3.5rem;
             }
-            padding: 1rem;
+            @include media-breakpoint-down(xxl){
+                width: 100%;
+                padding-left: calc(#{$spacer} * 1);
+                padding-right: calc(#{$spacer} * 1);
+            }
+
+            section + section{
+                margin-top: calc(#{$spacer} * 2);
+            }
         }
-        &.with-toc{
-            grid-template-columns: 15rem minmax(25rem, 1fr)  15rem;
+        
+        &-sidenav{
+            gap: 3rem;
+            grid-template-columns: 15rem minmax(25rem, 1fr);
+            max-width: 100%;
+            @include media-breakpoint-down(lg){
+                display:block;
+                aside{
+                    display:none;
+                }
+                padding: 1rem;
+            }
+            &.with-toc{
+                grid-template-columns: 15rem minmax(25rem, 1fr) 15rem;
+            }
         }
     }
     &-fluid{
-        max-width: 100%;
+        header{
+            &.header-overview{
+                margin-bottom: calc(#{$spacer} * 2);
+                input{
+                    width: 30rem;
+                    @include media-breakpoint-down(lg){
+                        width: 100%;
+                    }
+                }
+            }
+        }
     }
-    
 }
-
-
 $columns: 2, 3, 4;
 
 @each $column in $columns{
@@ -39,6 +62,4 @@ $columns: 2, 3, 4;
     padding: 2rem;
 }
 
-header + article{
-    margin-top: 2rem;
-}
+

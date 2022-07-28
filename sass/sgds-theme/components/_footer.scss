@@ -1,0 +1,121 @@
+.footer-list-styling {
+  ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      list-style-type: none;
+      line-height: 1.5;
+      font-size: 1rem;
+
+      &+li {
+        margin-top: 1rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: $footer-link-color;
+
+        &:hover {
+          color: $footer-link-hover-color;
+        }
+      }
+    }
+  }
+}
+
+.sgds {
+  &.footer {
+    height: auto;
+    color: $footer-color;
+
+    .footer {
+      &-top {
+        padding: $footer-top-padding;
+        background-color: $footer-top-bg-color;
+      }
+
+      &-header {
+        .title {
+          @extend #{$footer-title-header};
+          margin-bottom: $spacer;
+        }
+
+        .description {
+          color: $footer-description-color;
+        }
+
+        margin-bottom: calc(#{$spacer} * 1.5);
+      }
+
+      &-items {
+        @include media-breakpoint-down(sm) {
+          >div[class*="col"] {
+            +div[class*="col"] {
+              margin-top: calc(#{$spacer} * 2);
+            }
+          }
+        }
+
+        .title {
+          font-weight: $font-weight-bold;
+        }
+
+        .links {
+          margin-top: 1rem;
+        }
+
+        @extend .footer-list-styling;
+      }
+
+      &-contact-links {
+        @extend .footer-list-styling;
+        margin-top: calc(#{$spacer} * 2);
+
+        ul {
+          li {
+            @include media-breakpoint-up(lg) {
+              display: inline-block;
+            }
+
+            +li {
+              @include media-breakpoint-up(lg) {
+                margin-left: $spacer;
+              }
+            }
+          }
+        }
+      }
+
+      &-bottom {
+        background-color: $footer-bottom-bg-color;
+        border-top: $footer-bottom-border-width solid $footer-bottom-border-color;
+        padding: $footer-bottom-padding;
+      }
+
+      &-mandatory-links {
+        @extend .footer-list-styling;
+
+        ul {
+          li {
+            @include media-breakpoint-up(lg) {
+              display: inline-block;
+            }
+
+            +li {
+              @include media-breakpoint-up(lg) {
+                margin-left: $spacer;
+              }
+            }
+          }
+        }
+      }
+
+      &-copyrights {
+        @include media-breakpoint-down(lg) {
+          margin-top: $spacer;
+        }
+      }
+    }
+  }
+}

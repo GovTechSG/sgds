@@ -1,9 +1,9 @@
-name: Publish
+name: Publish Alpha Releases
 
 on:
   push:
-    branches:
-      - 2.0.0-dev
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+'
 
 jobs:
   publish:    
@@ -23,10 +23,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - run: npm run build:lib
-      # - name: Version Check
-      #   uses: EndBug/version-check@v2.1.0
-      #   id: check
       - run: npm publish --tag alpha --access public
-        # if: steps.check.outputs.changed == 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

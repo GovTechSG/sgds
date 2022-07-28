@@ -1,7 +1,7 @@
 ---
 title: Tooltip
 layout: layout-sidenav
-description: Insert description
+description: Tooltips display more information when users hover over, focus on, or interact with an element.
 category: general
 react-link: ?path=/docs/components-tooltip--default-story
 github-link: true
@@ -76,15 +76,15 @@ $tooltip-arrow-color: $tooltip-bg !default;
           <div class="section-sub">
               <div class="sgds-example-image-container">
                   <div class="sgds-example-image-grid">
-                      <img src="{{site.baseurl}}/assets/img/component/tooltip/anatomy-tooltip-1.svg" alt="Tooltip Anatomy">
+                      <img src="{{site.baseurl}}/assets/img/component/tooltip/anatomy-tooltip.svg" alt="Tooltip Anatomy">
                   </div>
               </div>
               <ol>
                   <li>
-                      <b>Container:</b> Serves to house information and depending on situation where you want the tooltip to appear
+                      <b>Container:</b> Serves to house information and depending on situation where you want the tooltip to appear.
                   </li>
                   <li>
-                    <b>Text:</b> Serves to tell users what the tooltip is about
+                    <b>Text:</b> Serves to tell users what the tooltip is about.
                   </li>
               </ol>
           </div>
@@ -96,11 +96,11 @@ $tooltip-arrow-color: $tooltip-bg !default;
             <div class="section-sub">
                 <div class="sgds-example-image-container">
                     <div class="sgds-example-image-grid">
-                        <img src="{{site.baseurl}}/assets/img/component/tooltip/spacing-tooltip-1.svg" alt="Tooltip Spacing">
+                        <img src="{{site.baseurl}}/assets/img/component/tooltip/spacing-tooltip.svg" alt="Tooltip Spacing">
                     </div>
                 </div>
-                <h3 class="subtitle fw-bold" id="within-the-tooltip">Within the tooltip</h3>
-                <p>Ensure that there is a min of 16px spacing within the tooltip.</p>
+                <p><b>Within the tooltip</b><br>
+                  Ensure that there is a min of 16px spacing within the tooltip.</p>
             </div>
         </section>
 
@@ -108,12 +108,12 @@ $tooltip-arrow-color: $tooltip-bg !default;
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
             <p class="fw-bold mb-0">Tooltip should be used:</p>
-            <ul>
-                <li>Text</li>
-            </ul>
+            <ol>
+                <li>When you want to provide additional explanation for a form field that may be unfamiliar.</li>
+            </ol>
             <p class="fw-bold mb-0">Tooltip should not be used:</p>
             <ol>
-                <li>Text</li>
+                <li>When information is vital to task completion.</li>
             </ol>
         </section>
 
@@ -121,9 +121,17 @@ $tooltip-arrow-color: $tooltip-bg !default;
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>Title</b><br>
-                Text
+                <b>Position tooltips so they don’t block content</b><br>
+                When choosing the place to display the tooltip, make sure you don’t cover important content.
             </p>
+            <p>
+              <b>Tooltips should be consistent in style and design</b><br>
+              This is so that it is more intuitive to users.
+          </p>
+          <p>
+            <b>Provide sufficient contrasts </b><br>
+            A moderate contrast is important to ensure the tooltips are more visible to users.
+        </p>
         </section>
 
         <!-- Design token Section -->

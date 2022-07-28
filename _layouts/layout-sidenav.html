@@ -2,41 +2,45 @@
 layout: layout-default
 ---
 
-{% if page.toc == true %}
- {% assign class = 'with-toc' %}
+{% if page.toc %}
+{% assign class = 'with-toc' %}
 {% endif %}
-<section class="wrapper-sidenav {{class}}">
+<section class="wrapper layout-sidenav {{class}}">
     <aside aria-label="Side Navigation Container">
         <nav class="sgds sidenav" aria-label="Side Navigation">
-            <ul class="list-unstyled">
-            {% assign collections = site.collections | sort: 'order' %}
-            {% for collection in collections %}
+            <ul class="list-unstyled mb-0">
+                {% assign collections = site.collections | sort: 'order' %}
+                {% for collection in collections %}
                 {% if collection.category == page.pageCategory %}
-                    {% assign name = collection.label %}
-                    {% for item in site[collection.label] %}
-                    {%- assign class = 'inactive' -%}
-                    {%- assign title = item.title  -%}
-                    {%- if page.title == title -%}
-                        {%- assign class = 'active' -%} 
-                    {%- endif -%}
-                        <li class="sidenav-item">
-                            <a type="button" class="sgds btn {{class}}" href="{{item.url}}">{{item.title}}</a>
-                        </li>                  
-                    {% endfor %}
+                {% assign name = collection.label %}
+                {% for item in site[collection.label] %}
+                {%- assign class = 'inactive' -%}
+                {%- assign title = item.title -%}
+                {%- if page.title == title -%}
+                {%- assign class = 'active' -%}
+                {%- endif -%}
+                <li class="sidenav-item">
+                    <a type="button" class="sgds btn {{class}}" href="{{item.url}}">{{item.title}}</a>
+                </li>
+                {% endfor %}
                 {% endif %}
-            {% endfor %}
+                {% endfor %}
             </ul>
         </nav>
     </aside>
-    
-    {{content}}
+    <article>
+        {{content}}
+    </article>
+
 
     {% if page.overview == null %}
     <aside class="toc-container" aria-label="Table of Content">
-        <div class="toc-wrapper">
-            <div class="h4">On this page</div>
-            {% toc %}
-        </div>
+        
+            <div class="toc-wrapper">
+                <div class="h4">On this page</div>
+                {% toc %}
+            </div>
+        
     </aside>
     {% endif %}
 </section>

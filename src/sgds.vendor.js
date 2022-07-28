@@ -1,19 +1,5 @@
-import { gsap } from 'gsap';
-import {ScrollTrigger} from 'gsap/dist/ScrollTrigger';
-
-// import Shuffle from 'shufflejs';
-
-gsap.registerPlugin(ScrollTrigger);
-gsap.to(".sgds.navbar",{
-    scrollTrigger: {
-        trigger: ".sgds.navbar",
-        start: "10px top",
-        scrub: 1
-    },
-    backgroundColor: "rgba(244, 246, 250, 0.6)",
-    backdropFilter: "blur(10px)",
-    duration: 0.35
-});
+import ClipboardJS from 'clipboard';
+import _ from 'lodash';
 
 const navbarToggler = document.querySelector(".navbar-toggler");
 const navbarCollapse = document.querySelector(".navbar-collapse");
@@ -26,3 +12,16 @@ document.addEventListener("devConsoleWidgetToggle", function (event) {
     }
 });
 
+const clipboard = new ClipboardJS('.btn-copy', {
+    target: trigger => trigger.closest('.code-snippet').querySelector('.highlight')
+});
+
+clipboard.on('success', function(e) {
+    const copyBtn = e.trigger;
+    const originalText = copyBtn.innerText;
+    copyBtn.innerText = "Copied";
+    _.delay(function(){
+        copyBtn.innerText = originalText;
+    },2000);
+    e.clearSelection();
+});
