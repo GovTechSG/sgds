@@ -1,9 +1,11 @@
-.sgds{
-    &.input-group{
-      .input-group-text{
-       .form-check-input{
+@import '~bootstrap/scss/forms/input-group';
+
+.sgds {
+  &.input-group {
+    .input-group-text {
+      .form-check-input {
         margin-top: 0;
-       }
       }
     }
-   }
+  }
+}
