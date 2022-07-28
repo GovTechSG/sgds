@@ -11,7 +11,7 @@ site-folder/
     └── @govtechsg/sgds/sass/
         └── bootstrap/
         └── sgds-theme/
-        └── sgds.scss
+            └── sgds.scss
 {% endcapture %}
 
 {% capture include-all-parts %}
@@ -52,10 +52,10 @@ site-folder/
 
 {% capture sgds-variable %}
 node_modules/
-  └── @govtechsg/sgds/sass/
-      └── bootstrap/
-      └── sgds-theme/
-          └── _sgds-variables.scss
+    └── @govtechsg/sgds/sass/
+        └── bootstrap/
+        └── sgds-theme/
+            └── _sgds-variables.scss
 {% endcapture %}
 
 {% capture sgds-variable-example %}
@@ -118,7 +118,8 @@ $body-color: #111;
 --sgds-black-rgb: 0, 0, 0;
 --sgds-body-color-rgb: 29, 41, 57;
 --sgds-body-bg-rgb: 255, 255, 255;
---sgds-font-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+--sgds-font-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+"Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 --sgds-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 --sgds-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 --sgds-body-font-family: var(--sgds-font-sans-serif);
@@ -130,35 +131,34 @@ $body-color: #111;
 {% endcapture %}
 
 <div class="page-component">
-    {% include page-component/component-header.html %}
-    
-    <section name="section-source-file">
-        <h2 class="title fw-bold" id="anatomy">Working with SGDS's source files</h2>
-        <div class="section-sub">
-            <p>The Sass source files for sgds can be found in the folder<br><code>node_modules/@govtechsg/sgds/sass</code></p>
-            {% highlight bash %}{{sass-folder-structure}}{% endhighlight %}
-            
-              <div class="sgds toast show w-100 is-warning" role="alert" aria-live="assertive" aria-atomic="true">
-                
-                <div class="toast-body pt-3">
-                  Whenever possible, avoid modifying the core sass files in <code>/bootstrap</code> and <code>/sgds-theme</code>
-                </div>
-              </div>
-            
+  {% include page-component/component-header.html %}
+
+  <section name="section-source-file">
+    <h2 class="title fw-bold" id="anatomy">Working with SGDS's source files</h2>
+    <div class="section-sub">
+      <p>The Sass source files for sgds can be found in the folder<br><code>node_modules/@govtechsg/sgds/sass</code></p>
+      {% highlight bash %}{{sass-folder-structure}}{% endhighlight %}
+      <div role="alert" class="fade d-flex align-items-center alert alert-info show sgds">
+        <div>
+          <i class="bi bi-exclamation-circle me-2"></i>
+          Whenever possible, avoid modifying the core sass files in <code>/bootstrap</code> and <code>/sgds-theme</code>
         </div>
-    </section>
-    <section name="section-importing">
-      <div class="section-sub">
-        <h2 class="title fw-bold" id="anatomy">Importing</h2>
-        <p>In your <code>custom.scss</code>, you can choose to include all <code>sgds-theme</code> files or pick the components you need. However do note that are some requirements and dependencies across the components.</p>
       </div>
-      <div class="section-sub">
-        <h3 class="title fw-bold" id="anatomy">Include all parts</h3>
-        {% highlight css %}{{include-all-parts}}{% endhighlight %}
-      </div>
-      <div class="section-sub">
-        <h3 class="title fw-bold" id="anatomy">Include parts of SGDS</h3>
-        {% highlight css %}{{include-parts}}{% endhighlight %}
+    </div>
+  </section>
+  <section name="section-importing">
+    <div class="section-sub">
+      <h2 class="title fw-bold" id="anatomy">Importing</h2>
+      <p>In your <code>custom.scss</code>, you can choose to include all <code>sgds-theme</code> files or pick the
+        components you need. However do note that are some requirements and dependencies across the components.</p>
+    </div>
+    <div class="section-sub">
+      <h3 class="title fw-bold" id="anatomy">Include all parts</h3>
+      {% highlight css %}{{include-all-parts}}{% endhighlight %}
+    </div>
+    <div class="section-sub">
+      <h3 class="title fw-bold" id="anatomy">Include parts of SGDS</h3>
+      {% highlight css %}{{include-parts}}{% endhighlight %}
 
         <p>If you are using Webpack, u can omit the <code>node_modules</code> directory</p>
         {% highlight css %}{{webpack-sass}}{% endhighlight %}
@@ -172,5 +172,5 @@ $body-color: #111;
       <p>Here's an example that changes the <code>background-color</code> and color for the <code>body</code> when importing and compiling <code>sgds-theme</code> via npm:</p>
         {% highlight scss %}{{sgds-variable-example}}{% endhighlight %}
 
-    </section>
+  </section>
 </div>
