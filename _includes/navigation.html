@@ -22,7 +22,11 @@
               {%- else -%}
             <li class="nav-item">
                 <a class="nav-link {{class}}" aria-current="page" href="{{item.url}}">
+                    {% if item.title == 'FAQs' %}
+                    {{item.title}}
+                    {% else %}
                     {{item.title | capitalize}}
+                    {% endif %}
                 </a>
             </li>
             {%- endif -%}

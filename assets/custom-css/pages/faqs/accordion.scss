@@ -1,11 +1,7 @@
-.faqs{
-
-    .sgds{
-        &.accordion{
-            margin-bottom: 1rem;
+.page-faqs{
+    .sgds.accordion{
+        + .sgds.accordion{
+            margin-top: 0.5rem;
         }
     }
 }
-
-
-// .sgds.accordion .accordion-header
