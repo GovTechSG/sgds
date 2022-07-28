@@ -23,12 +23,6 @@ $utilities: map-merge(
         ),
       ),
     ),
-  )
-);
-
-$utilities: map-merge(
-  $utilities,
-  (
     "background-color": map-merge(
       map-get($utilities, "background-color"),
       (
@@ -40,7 +34,7 @@ $utilities: map-merge(
         ),
       ),
     ),
-  )
+  ),
 );
 
 
