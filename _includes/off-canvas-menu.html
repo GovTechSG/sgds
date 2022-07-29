@@ -16,7 +16,7 @@
 
             <li class="sidenav-item">
                 {% if item.has-collection == false %}
-                <a type="button" class="sgds btn {{class}}" href="{{item.url}}">
+                <a role="button" class="sgds btn {{class}}" href="{{item.url}}">
                     {{item.title | capitalize}}
                 </a>
                 {% endif %}
@@ -48,7 +48,7 @@
             </li>
             {% endfor %}
             <li class="sidenav-item">
-                <a type="button" class="sgds btn" href="{{site.github-link}}">
+                <a role="button" class="sgds btn" href="{{site.github-link}}">
                     <i class="bi bi-github h3 mb-0"></i>
                 </a>
             </li>
