@@ -18,6 +18,7 @@ react-storybook: https://react.designsystem.tech.gov.sg
 github-link: https://github.com/GovTechSG/sgds/tree/v2
 github-sgds-variables: https://github.com/GovTechSG/sgds/blob/v2/sass/sgds-theme/_variables.scss
 github-changelog: https://github.com/GovTechSG/sgds/blob/v2/CHANGELOG.md
+github-release-note: https://github.com/GovTechSG/sgds/releases
 
 #footer links
 report-vulnerability: "https://tech.gov.sg/report_vulnerability"
@@ -41,10 +42,10 @@ collections:
     output: true
     category: components
     order:
-      - masthead.html
+      - official-government-banner.html
+      - footer.html
       - main-navigation.html
       - side-navigation.html
-      - footer.html
   patterns:
     permalink: /:collection/:name
     output: true

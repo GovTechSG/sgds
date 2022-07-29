@@ -1,22 +1,14 @@
----
-title: Get Started
-permalink: /get-started
-layout: layout-single
----
-
-## Singapore Government Design System
+# Singapore Government Design System
 [![npm](https://img.shields.io/npm/v/@govtechsg/sgds.svg)](https://www.npmjs.com/package/@govtechsg/sgds)
 
 The [Singapore Government Design System](https://www.designsystem.tech.gov.sg) was developed to empower teams in creating fast, accessible and mobile-friendly digital services.
 
 Visit our [SGDS React storybook](https://react.designsystem.tech.gov.sg)
-<hr>
 
-### Installation
+***
 
-#### Browsers
-
-#### CSS
+## Installation
+### CSS
 
 ```html
 <head>
@@ -29,47 +21,53 @@ Visit our [SGDS React storybook](https://react.designsystem.tech.gov.sg)
 </head>
 ```
 
-#### JavaScript
+### Vanilla JavaScript
 
-SGDS components makes use of [bootstrap v5.1.3 js library](https://getbootstrap.com/docs/5.1/getting-started/javascript/) as an external dependency. If you only need the visual parts of SGDS, or if you are [using frontend frameworks like React](https://www.designsystem.tech.gov.sg/react/), you do not need to import this.
+SGDS components makes use of [bootstrap v5.1.3 js library](https://getbootstrap.com/docs/5.1/getting-started/javascript/) as an external dependency. If you only need the visual parts of SGDS, or if you are [using frontend frameworks like React](https://react.designsystem.tech.gov.sg), you do not need to import this.
+
+
+>`@govtechsg/sgds` uses `bootstrap-icons` for certain components like Form but it is not ship with it. Install `bootstrap-icons` or use CDN if you need it. Please refer to [bootstrap-icons](bootstrap-icons) for usage instructions.
 
 ```html
+<head>
+  ...
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@govtechsg/sgds/css/sgds.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  ...
+</head>
+
 <body>
-    ...
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    ...
+  ...
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
 </body>
 ```
 
 For more information, please refer to the [components documentation](https://www.designsystem.tech.gov.sg/components).
 
-#### NPM
+### Via NPM
 
 ```sh
-$ npm i @govtechsg/sgds
+$ npm i @govtechsg/sgds bootstrap-icons
 ```
 
-#### Webpack
+### For Webpack
 
-```css 
+```js
 //importing css
 import "@govtechsg/sgds/css/sgds.css";
 
-//importing sass
-import "@govtechsg/sgds/sass/sgds.scss";
-```
-
-```js
 import '@popperjs/core';
 import * as bootstrap from 'bootstrap';
 ```
 
-#### Frontend frameworks
+***
+## Frontend frameworks
 
-Usage with frameworks such as React, Vue or Angular is discouraged since they manipulate the DOM in their own environments. Framework-specific implementations are in early development and can be found at [sgds-react](https://github.com/govtechsg/sgds-react)
+Usage with frameworks such as React, Vue or Angular is discouraged since they manipulate the DOM in their own environments. Framework-specific implementations are in early development and can be found at [sgds-react](https://github.com/GovTechSG/sgds-govtech-react)
 
 <hr>
 
 ## Patch Notes
 
-See [Changelog](https://github.com/GovTechSG/sgds/blob/master/CHANGELOG.md)
+See [Changelog](./CHANGELOG.md)

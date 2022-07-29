@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [2.0.0]
+## 🗓️ 29-07-2022
+
+We've  changed our base CSS framework from Bulma to Bootstrap v5.1+ with:
+
+- New [redesigned portal](https://www.designsystem.tech.gov.sg)
+- More [components and variants](https://www.designsystem.tech.gov.sg/components)
+- [React storybook](https://react.designsystem.tech.gov.sg)
+- Updated Figma kit
+
+We will be pushing up additional components and features in the upcoming months. Do keep a lookout!
 
 ## [1.3.22]
 ## 🗓️ 15-10-2021
