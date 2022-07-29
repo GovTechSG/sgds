@@ -1,4 +1,4 @@
-@import "./node_modules/bootstrap/scss/alert";
+@import "bootstrap/scss/alert";
 
 @each $state, $value in $theme-colors-set {
     
