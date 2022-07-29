@@ -39,10 +39,10 @@ collections:
     output: true
     category: components
     order:
-      - masthead.html
+      - official-government-banner.html
+      - footer.html
       - main-navigation.html
       - side-navigation.html
-      - footer.html
   patterns:
     permalink: /:collection/:name
     output: true
