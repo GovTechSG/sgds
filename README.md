@@ -67,4 +67,4 @@ Usage with frameworks such as React, Vue or Angular is discouraged since they ma
 
 ## Patch Notes
 
-See [Changelog](https://github.com/GovTechSG/sgds/blob/v2/CHANGELOG.md)
+See [Changelog](./CHANGELOG.md)
