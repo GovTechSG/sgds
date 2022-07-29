@@ -29,7 +29,8 @@
             aria-labelledby="heading-{{include.compName}}"
             data-bs-parent="#example-{{include.compName}}"
         >
-            <div class="accordion-body">
+            <div class="accordion-body accordion-body-codesnippet">
+                <button class="sgds btn btn-outline-light btn-sm btn-copy">Copy</button>
                 {%- highlight html -%} {% if include.code-react %}
                 {{include.code-react}} {% elsif include.code %} {{include.code}}
                 {% endif %} {%- endhighlight -%}
