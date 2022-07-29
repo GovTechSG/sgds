@@ -65,7 +65,7 @@ Usage with frameworks such as React, Vue or Angular is discouraged since they ma
 
 ## Usage
 
-See [docs](https://www.designsystem.gov.sg).
+See [docs](https://v1.designsystem.tech.gov.sg/docs/).
 
 ## Development
 
@@ -133,4 +133,4 @@ npm publish
 
 ## Patch Notes
 
-See [Changelog](https://github.com/GovTechSG/sgds/blob/master/CHANGELOG.md)
+See [Changelog](./CHANGELOG.md)
