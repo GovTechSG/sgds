@@ -37,12 +37,20 @@
     > .btn{
         margin: 0.25rem;
     }
-    .sgds.card{
+
+    // Card specific
+    > .sgds.card{
         width: 20rem;
+        @media (max-width: 576px){
+            width: 100%;
+        }
     }
 
     .card-group{
         width: 40rem;
+        @media (max-width: 1350px){
+            width: 100%;
+        }
     }
 
     &-card-grid{
