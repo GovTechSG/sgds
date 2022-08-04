@@ -37,7 +37,18 @@
     > .btn{
         margin: 0.25rem;
     }
-}   
+    .sgds.card{
+        width: 20rem;
+    }
+
+    &-card-grid{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+
+
 
 .sgds-example-image{
     &-container{
