@@ -39,22 +39,16 @@
     }
 
     // Card specific
-    .sgds.card{
+    .sgds.card {
         width: 20rem;
         @media (max-width: 36rem) {
             width: 100%;
         }
-        &[variant="card-action-quantity-toggle"]{
+        &[variant="card-action-quantity-toggle"] {
             width: 30rem;
             @media (max-width: 75rem) {
                 width: 100%;
             }
-        }
-    }
-
-    .card-group {
-        @media (max-width: 84rem) {
-            width: 100%;
         }
     }
 
