@@ -1,13 +1,13 @@
-.sgds-example{
+.sgds-example {
     border: 1px solid var(--sgds-gray-400);
     padding: 2rem;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     background-color: var(--sgds-gray-100);
-    &:last-child{
-        border-top:none;
+    &:last-child {
+        border-top: none;
     }
-    &.grid-auto-column{
+    &.grid-auto-column {
         display: grid;
         gap: 2rem;
         grid-auto-flow: column;
@@ -15,55 +15,52 @@
     }
 }
 
-[class*='sgds-example']{
+[class*="sgds-example"] {
     margin-top: 1rem;
 }
 
-// compopnent-specific 
-.sgds-example{
-    &.highlight{
-        padding:0;
+// compopnent-specific
+.sgds-example {
+    &.highlight {
+        padding: 0;
         figure {
             margin-bottom: 0;
-            pre{
+            pre {
                 padding: 1rem 2rem;
                 margin: 0;
-                code{
+                code {
                     color: inherit;
                 }
             }
         }
     }
-    > .btn{
+    > .btn {
         margin: 0.25rem;
     }
 
     // Card specific
-    > .sgds.card{
+    > .sgds.card {
         width: 20rem;
-        @media (max-width: 576px){
+        @media (max-width: 576px) {
             width: 100%;
         }
     }
 
-    .card-group{
-        width: 40rem;
-        @media (max-width: 1350px){
+    .card-group {
+        @media (max-width: 1350px) {
             width: 100%;
         }
     }
 
-    &-card-grid{
+    &-card-grid {
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
     }
 }
 
-
-
-.sgds-example-image{
-    &-container{
+.sgds-example-image {
+    &-container {
         overflow-x: auto;
         display: grid;
         padding: 2rem;
@@ -71,26 +68,26 @@
         place-items: center;
         margin-bottom: 1rem;
         border-radius: $border-radius;
-        
     }
-    &-grid{
+    &-grid {
         display: grid;
         // grid-template-columns: repeat(2, 1fr);
         grid-auto-flow: column;
         grid-auto-columns: max-content;
         gap: 1rem;
         place-items: center;
-        img,svg{
+        img,
+        svg {
             max-width: 100%;
             height: auto;
             background: transparent;
             padding: 0;
         }
-        @include media-breakpoint-down(lg){
+        @include media-breakpoint-down(lg) {
             grid-auto-flow: row;
         }
     }
-    &-subgrid{
+    &-subgrid {
         display: grid;
         grid-auto-flow: row;
         grid-auto-rows: max-content;
