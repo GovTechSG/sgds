@@ -4,6 +4,7 @@
 .sgds {
     &.navbar {
         padding: 0 calc(#{$spacer * 2}) 0;
+        overflow-x: auto;
         @include media-breakpoint-down(lg){
             padding: 0 $navbar-mobile-padding-y 0;
         }
