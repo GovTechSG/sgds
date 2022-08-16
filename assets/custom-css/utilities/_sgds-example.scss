@@ -1,6 +1,5 @@
 .sgds-example {
     border: 1px solid var(--sgds-gray-400);
-    padding: 2rem;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     background-color: var(--sgds-gray-100);
@@ -13,6 +12,13 @@
         grid-auto-flow: column;
         grid-auto-columns: 1fr;
     }
+    @include media-breakpoint-down(sm) {
+        padding: 0.25rem;
+    }
+    @include media-breakpoint-up(sm) {
+        padding: 2rem;
+    }
+
 }
 
 [class*="sgds-example"] {
