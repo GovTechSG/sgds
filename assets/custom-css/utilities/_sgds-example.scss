@@ -2,6 +2,7 @@
     border: 1px solid var(--sgds-gray-400);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    padding: 2rem;
     background-color: var(--sgds-gray-100);
     &:last-child {
         border-top: none;
@@ -15,10 +16,6 @@
     @include media-breakpoint-down(sm) {
         padding: 0.25rem;
     }
-    @include media-breakpoint-up(sm) {
-        padding: 2rem;
-    }
-
 }
 
 [class*="sgds-example"] {
