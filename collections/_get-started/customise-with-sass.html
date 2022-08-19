@@ -8,8 +8,10 @@ site-folder/
 ├── scss
 │   └── custom.scss
 └── node_modules/
-    └── {{site.sgds-package-name}}/sass/
-        └── sgds.scss
+    └── @govtechsg/sgds/sass/
+        └── bootstrap/
+        └── sgds-theme/
+            └── sgds.scss
 {% endcapture %}
 
 {% capture include-all-parts %}
@@ -18,71 +20,61 @@ site-folder/
 
 // Include any default variable overrides here
 
-@import "../node_modules/{{site.sgds-package-name}}/sass/sgds.scss";
+@import "../node_modules/@govtechsg/sgds/sass/sgds.scss";
 
 // Then add additional custom code here
 {% endcapture %}
 
 {% capture include-parts %}
-/// Custom.scss
-// Option B: Include parts of SGDS
+// Custom.scss
+// Option B: Include parts of SGDS theme
 
+// Include any default variable overrides here
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
-@import "../node_modules/{{site.sgds-package-name}}/sass/functions";
+@import "../node_modules/@govtechsg/sgds/sass/bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
 
 // 3. Include remainder of required SGDS stylesheets
-@import "../node_modules/{{site.sgds-package-name}}/sass/variables";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/sgds-variables";
 
-// 4. Include any default map overrides here
+// 4. Optionally include any other parts as needed
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/accordion";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/alert";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/badge";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/breadcrumb";
 
-// 5. Include remainder of required parts
-
-@import "../node_modules/{{site.sgds-package-name}}/sass/mixins";
-@import "../node_modules/{{site.sgds-package-name}}/sass/root";
-
-// 6. Optionally include any other parts as needed
-@import "../node_modules/{{site.sgds-package-name}}/sass/utilities";
-@import "../node_modules/{{site.sgds-package-name}}/sass/reboot";
-@import "../node_modules/{{site.sgds-package-name}}/sass/type";
-@import "../node_modules/{{site.sgds-package-name}}/sass/images";
-@import "../node_modules/{{site.sgds-package-name}}/sass/containers";
-@import "../node_modules/{{site.sgds-package-name}}/sass/grid";
-@import "../node_modules/{{site.sgds-package-name}}/sass/helpers";
-
-// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
-@import "../node_modules/{{site.sgds-package-name}}/sass/utilities/api";
-
-// 8. Add additional custom code here
+// Then add additional custom code here
 {% endcapture %}
 {% capture webpack-sass %}
-@import "~{{site.sgds-package-name}}/sass/accordion";
+@import "~@govtechsg/sgds/sass/sgds-theme/components/accordion";
 {% endcapture %}
 
 {% capture sgds-variable %}
 node_modules/
-    └── {{site.sgds-package-name}}/sass/
-        └── _variables.scss
+    └── @govtechsg/sgds/sass/
+        └── bootstrap/
+        └── sgds-theme/
+            └── _sgds-variables.scss
 {% endcapture %}
 
 {% capture sgds-variable-example %}
 // Required
-@import "../node_modules/{{site.sgds-package-name}}/sass/functions";
+@import "../node_modules/bootstrap/scss/functions";
 
 // Default variable overrides
 $body-bg: #000;
 $body-color: #111;
 
 // Required
-@import "../node_modules/{{site.sgds-package-name}}/sass/sgds-variables";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/sgds-variables";
 
 
 // Optional components here
-@import "../node_modules/{{site.sgds-package-name}}/sass/accordion";
-@import "../node_modules/{{site.sgds-package-name}}/sass/alert";
-@import "../node_modules/{{site.sgds-package-name}}/sass/badge";
-@import "../node_modules/{{site.sgds-package-name}}/sass/breadcrumb";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/accordion";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/alert";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/badge";
+@import "../node_modules/@govtechsg/sgds/sass/sgds-theme/components/breadcrumb";
 // etc
 {% endcapture %}
 
@@ -144,12 +136,12 @@ $body-color: #111;
   <section name="section-source-file">
     <h2 class="title fw-bold" id="anatomy">Working with SGDS's source files</h2>
     <div class="section-sub">
-      <p>The Sass source files for sgds can be found in the folder<br><code>node_modules/{{site.sgds-package-name}}/sass</code></p>
+      <p>The Sass source files for sgds can be found in the folder<br><code>node_modules/@govtechsg/sgds/sass</code></p>
       {% highlight bash %}{{sass-folder-structure}}{% endhighlight %}
       <div role="alert" class="fade d-flex align-items-center alert alert-info show sgds">
         <div>
           <i class="bi bi-exclamation-circle me-2"></i>
-          Whenever possible, avoid modifying the core sass files in <code>{{site.sgds-package-name}}/sass/</code>
+          Whenever possible, avoid modifying the core sass files in <code>/bootstrap</code> and <code>/sgds-theme</code>
         </div>
       </div>
     </div>
@@ -175,7 +167,7 @@ $body-color: #111;
     <section name="section-design-tokens">
       <h2 class="title fw-bold" id="anatomy">Variables</h2>
       <p>
-        You can find the complete list of  variables inside <code>{{site.sgds-package-name}}/sass/_variables.scss</code> or in our <a href="{{site.github-sgds-variables}}" target="_blank" rel="noopener noreferrer">SGDS github repo</a>
+        You can find the complete list of <code>sgds-theme</code> variables inside <code>sass/sgds-theme/_sgds-variables.scss</code> or in our <a href="{{site.github-sgds-variables}}" target="_blank" rel="noopener noreferrer">SGDS github repo</a>
       </p>
       <p>Here's an example that changes the <code>background-color</code> and color for the <code>body</code> when importing and compiling <code>sgds-theme</code> via npm:</p>
         {% highlight scss %}{{sgds-variable-example}}{% endhighlight %}
