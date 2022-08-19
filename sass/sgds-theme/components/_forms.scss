@@ -1,0 +1,24 @@
+@import "../../bootstrap/forms";
+
+
+.form-label {
+  margin-bottom: 0;
+}
+
+.form-text {
+  @extend .d-block;
+  font-weight: $font-weight-light;
+  font-size: $h6-font-size;
+}
+
+.sgds {
+  &.input-group {
+    &[variant="quantity-toggle"] {
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+}
