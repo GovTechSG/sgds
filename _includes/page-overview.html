@@ -1,58 +1,100 @@
-
+<div class="wrapper-fluid">
     <header class="header-overview">
-      {% include breadcrumb.html %}
-      <h1 class="title">{{page.title}}</h1>
-      <p>{{page.description}}</p>
-      {% if site.search %}
-      <div class="sgds form-control-group mt-4">
-          <input type="text" class="form-control" id="filterItems" aria-describedby="filterItems" placeholder="Filter {{page.title | replace: 'Overview' , ''}}">
-          <i class="bi bi-funnel form-control-icon"></i>
-      </div>
-      {% endif %}
-    </header>
-    
-    <section class="page-component-overview">
-      <article>
-        <div id="grid" class="page-component-item-wrapper picture-item">
-          {% assign collections = site.collections %}
-          {% for collection in collections %}
-          {% if collection.category == page.pageCategory %}
-          {% assign name = collection.label %}
-          {% for item in site[collection.label] %}
-          {%- assign class = nil -%}
-          {%- if page.url contains item.title -%}
-          {%- assign class = 'active' -%}
-          {%- endif -%}
-          {% assign react = nil %}
-          {% if item.react %}
-          {% assign react = 'react' %}
-          {% endif %}
-          <div class="sgds card" data-groups="['{{item.category}}', '{{react}}']" data-title="{{item.title}}">
-            {% if include.img != 'noImg' %}
-              <img src="/assets/img/{{page.pageCategory}}-overview/{{item.title | downcase | replace: ' ', '-'}}.png"
-              class="card-img-top" alt="{{item.title | append: ' image' }}">
-            {% endif %}
-            <div class="card-body">
-              <a class="stretched-link link-primary" href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}">
-                <div class="h5 text-primary card-title">{{item.title}}</div>
-              </a>
-              <p class="card-text">{{item.description}}</p>
-              {% if item.category == 'mandatory' %}
-              <span class="sgds badge badge-light bg-danger">{{item.category | capitalize}}</span>
-              {% elsif item.category == 'required' %}
-              <span class="sgds badge badge-light bg-success">{{item.category | capitalize}}</span>
-              {% else %}
-              <span class="sgds badge badge-light bg-primary">{{item.category | capitalize}}</span>
-              {% endif %}
-              
-              {% if item.react %}
-              <span class="sgds badge badge-light bg-success">ReactJS</span>
-              {% endif %}
-            </div>
-          </div>
-          {% endfor %}
-          {% endif %}
-          {% endfor %}
+        {% include breadcrumb.html %}
+        <h1 class="title">{{page.title}}</h1>
+        <p>{{page.description}}</p>
+
+        <div class="sgds form-control-group mt-4">
+            <input
+                type="text"
+                class="form-control"
+                id="filterItems"
+                onkeyup="searchItem()"
+                aria-describedby="filterItems"
+                placeholder="Filter {{page.title | replace: 'Overview' , ''}}"
+            />
+            <i class="bi bi-funnel form-control-icon"></i>
         </div>
-      </article>
+    </header>
+
+    <section class="page-component-overview">
+        <article>
+            <div id="grid" class="page-component-item-wrapper picture-item">
+                {% assign collections = site.collections %} {% for collection in
+                collections %} {% if collection.category == page.pageCategory %}
+                {% assign name = collection.label %} {% for item in
+                site[collection.label] %} {%- assign class = nil -%} {%- if
+                page.url contains item.title -%} {%- assign class = 'active' -%}
+                {%- endif -%} {% assign react = nil %} {% if item.react %} {%
+                assign react = 'react' %} {% endif %}
+                <div
+                    class="sgds card"
+                    data-groups="['{{item.category}}', '{{react}}']"
+                    data-title="{{item.title}}"
+                >
+                    {% if include.img != 'noImg' %}
+                    <img
+                        src="/assets/img/{{page.pageCategory}}-overview/{{item.title | downcase | replace: ' ', '-'}}.png"
+                        class="card-img-top"
+                        alt="{{item.title | append: ' image' }}"
+                    />
+                    {% endif %}
+                    <div class="card-body">
+                        <a
+                            class="stretched-link link-primary"
+                            href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}"
+                        >
+                            <div class="h5 text-primary card-title">
+                                {{item.title}}
+                            </div>
+                        </a>
+                        <p class="card-text">{{item.description}}</p>
+                        {% if item.category == 'mandatory' %}
+                        <span class="sgds badge badge-light bg-danger"
+                            >{{item.category | capitalize}}</span
+                        >
+                        {% elsif item.category == 'required' %}
+                        <span class="sgds badge badge-light bg-success"
+                            >{{item.category | capitalize}}</span
+                        >
+                        {% else %}
+                        <span class="sgds badge badge-light bg-primary"
+                            >{{item.category | capitalize}}</span
+                        >
+                        {% endif %} {% if item.react %}
+                        <span class="sgds badge badge-light bg-success"
+                            >ReactJS</span
+                        >
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %} {% endif %} {% endfor %}
+            </div>
+        </article>
     </section>
+</div>
+
+<script>
+    function searchItem() {
+        const input = document.getElementById("filterItems").value.toUpperCase();
+        console.log(input);
+
+        const cardContainer = document.getElementById("grid");
+        // console.log(cardContainer);
+
+        const cards = cardContainer.getElementsByClassName("card");
+        // console.log(cards);
+
+        for (let i = 0; i < cards.length; i++) {
+            let title = cards[i].querySelector(".card-body a div.card-title");
+            let description = cards[i].querySelector(".card-text");
+            let textTitle = title.textContent || title.innerText;
+            let textDescription = description.textContent || description.innerText;
+            if (textTitle.toUpperCase().indexOf(input) > -1 || textDescription.toUpperCase().indexOf(input) > -1 ) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+</script>
