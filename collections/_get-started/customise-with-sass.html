@@ -18,7 +18,7 @@ site-folder/
 
 // Include any default variable overrides here
 
-@import "../node_modules/{{site.sgds-package-name}}/sass/sgds.scss";
+@import "~{{site.sgds-package-name}}/sass/sgds.scss";
 
 // Then add additional custom code here
 {% endcapture %}
@@ -28,31 +28,31 @@ site-folder/
 // Option B: Include parts of SGDS
 
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
-@import "../node_modules/{{site.sgds-package-name}}/sass/functions";
+@import "~{{site.sgds-package-name}}/sass/functions";
 
 // 2. Include any default variable overrides here
 
 // 3. Include remainder of required SGDS stylesheets
-@import "../node_modules/{{site.sgds-package-name}}/sass/variables";
+@import "~{{site.sgds-package-name}}/sass/variables";
 
 // 4. Include any default map overrides here
 
 // 5. Include remainder of required parts
 
-@import "../node_modules/{{site.sgds-package-name}}/sass/mixins";
-@import "../node_modules/{{site.sgds-package-name}}/sass/root";
+@import "~{{site.sgds-package-name}}/sass/mixins";
+@import "~{{site.sgds-package-name}}/sass/root";
 
 // 6. Optionally include any other parts as needed
-@import "../node_modules/{{site.sgds-package-name}}/sass/utilities";
-@import "../node_modules/{{site.sgds-package-name}}/sass/reboot";
-@import "../node_modules/{{site.sgds-package-name}}/sass/type";
-@import "../node_modules/{{site.sgds-package-name}}/sass/images";
-@import "../node_modules/{{site.sgds-package-name}}/sass/containers";
-@import "../node_modules/{{site.sgds-package-name}}/sass/grid";
-@import "../node_modules/{{site.sgds-package-name}}/sass/helpers";
+@import "~{{site.sgds-package-name}}/sass/utilities";
+@import "~{{site.sgds-package-name}}/sass/reboot";
+@import "~{{site.sgds-package-name}}/sass/type";
+@import "~{{site.sgds-package-name}}/sass/images";
+@import "~{{site.sgds-package-name}}/sass/containers";
+@import "~{{site.sgds-package-name}}/sass/grid";
+@import "~{{site.sgds-package-name}}/sass/helpers";
 
 // 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
-@import "../node_modules/{{site.sgds-package-name}}/sass/utilities/api";
+@import "~{{site.sgds-package-name}}/sass/utilities/api";
 
 // 8. Add additional custom code here
 {% endcapture %}
@@ -68,21 +68,21 @@ node_modules/
 
 {% capture sgds-variable-example %}
 // Required
-@import "../node_modules/{{site.sgds-package-name}}/sass/functions";
+@import "~{{site.sgds-package-name}}/sass/functions";
 
 // Default variable overrides
 $body-bg: #000;
 $body-color: #111;
 
 // Required
-@import "../node_modules/{{site.sgds-package-name}}/sass/sgds-variables";
+@import "~{{site.sgds-package-name}}/sass/sgds-variables";
 
 
 // Optional components here
-@import "../node_modules/{{site.sgds-package-name}}/sass/accordion";
-@import "../node_modules/{{site.sgds-package-name}}/sass/alert";
-@import "../node_modules/{{site.sgds-package-name}}/sass/badge";
-@import "../node_modules/{{site.sgds-package-name}}/sass/breadcrumb";
+@import "~{{site.sgds-package-name}}/sass/accordion";
+@import "~{{site.sgds-package-name}}/sass/alert";
+@import "~{{site.sgds-package-name}}/sass/badge";
+@import "~{{site.sgds-package-name}}/sass/breadcrumb";
 // etc
 {% endcapture %}
 
