@@ -1,0 +1,43 @@
+@import "~bootstrap/scss/modal";
+.sgds{
+    &.modal{
+        .modal-footer{
+            padding-top:0;
+        }
+
+        button.btn-close {
+            // TODO: overall font size not set yet.
+            font-size: 0.75rem;
+        }
+
+        &[variant="centered-align-icon"]{
+            .modal-content{
+                text-align: center;
+            }
+            .modal-header{
+                // @extend .border-bottom-0;
+                // @extend .pb-0;
+                // @extend .align-items-start;
+                border-bottom: 0;
+                padding-bottom: 0;
+                align-items: flex-start;
+                
+            }
+            .modal-title{
+                // @extend .flex-grow-1;
+                // @extend .d-flex;
+                // @extend .flex-column;
+                // @extend .justify-content-center;
+                display: flex;
+                flex-grow: 1;
+                flex-flow: column;
+                justify-content: center;
+                
+            }
+            .modal-footer{
+                @extend .justify-content-center;
+                justify-content: center;
+            }
+        }
+    }
+}
