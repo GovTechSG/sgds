@@ -1,18 +1,11 @@
-## Unreleased
-
-### Refactor
-
-- *****: add ~ to import paths, fix bootstrap version to 5.1.3 strict
-- **navbar**: shift overflow-x to media query down lg
-
-### Feat
-
-- **filter**: added filter search functionality for overview pages
-- **filter**: added filter search functionality for overview pages
+## v2.1.0 (2022-09-01)
 
 ### Fix
 
+- **card**: quantity toggle mobile responsiveness
+- **customise imports**: fix customise imports and update documentation
 - **main nav**: allow x scrolling for expanded main nav when not in hamburger mode
+- **card**: quantity toggle mobile responsiveness
 - **masthead**: update cdn link to fetch latest
 - **card**: added mobile responsiveness for card variants
 - **card docs**: removed wrapper from single cards,removed sgds-example card group class
@@ -25,6 +18,21 @@
 - **card documentation**: update card group responsive
 - **card documentation**: update card example responsive
 - **card**: added mobile responsiveness for card variants
+
+### BREAKING CHANGE
+
+- Previous instructions for import paths for customise imports will break. Please
+update accordingly to the new documentation
+
+### Refactor
+
+- *****: add ~ to import paths, fix bootstrap version to 5.1.3 strict
+- **navbar**: shift overflow-x to media query down lg
+
+### Feat
+
+- **filter**: added filter search functionality for overview pages
+- **filter**: added filter search functionality for overview pages
 
 ## v2.0.0-beta.1 (2022-07-29)
 
