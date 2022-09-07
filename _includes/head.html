@@ -10,5 +10,9 @@
     <script type="module" src="https://assets.developer.tech.gov.sg/bundled-scripts/dev-console-widget.bundle.js"></script>
     <link rel="stylesheet" href="/css/sgds.css">
     <link rel="stylesheet" href="/assets/custom-css/style.css">
-    
+    {% if jekyll.environment == "production" %}
+    <script src="https://assets.wogaa.sg/scripts/wogaa.js"></script>
+    {% else %}
+    <script src="https://assets.dcube.cloud/scripts/wogaa.js"></script>
+    {% endif %}
 </head>
