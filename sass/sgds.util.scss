@@ -5,8 +5,10 @@
 @import "variables";
 @import "mixins";
 @import "utilities";
-
+//layouts
+@import "containers";
+@import "grid";
 //Helpers
 @import "helpers";
-@import "containers";
-@import "grid";  
+//Utilities
+@import "utilities/api";

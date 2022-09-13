@@ -6,10 +6,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: {
     "sgds": './src/sgds.js',
-    "sgds.helpers": './src/sgds.helpers.js',
-    "sgds.containers": './src/sgds.containers.js',
-    "sgds.grid": './src/sgds.grid.js',
-    "sgds.positions": './src/sgds.positions.js',
+    "sgds.util": './src/sgds.util.js',
     "assets/js/bundle": './src/sgds.bundle.js',
     "assets/js/vendor": './src/sgds.vendor.js'
   },
