@@ -1,0 +1,18 @@
+@import "~bootstrap/scss/accordion";
+
+.sgds{
+    &.accordion{
+        .accordion-button{
+            line-height: 2rem;
+        }
+        .accordion-button:not(.collapsed){
+            font-weight: $font-weight-bold;
+            box-shadow: none;
+        }
+        .accordion-body{
+            padding-bottom: 1.5rem;
+            padding-top: 0;
+            line-height: 2rem;
+        }
+    }
+}

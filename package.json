@@ -1,6 +1,6 @@
 {
   "name": "@govtechsg/sgds",
-  "version": "2.0.0",
+  "version": "2.1.0-beta.1",
   "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "css"
   ],
   "scripts": {
-    "build": "npm run packagedownloads && npm run build:site && bundle exec jekyll build",
+    "build": "npm run build:site && bundle exec jekyll build",
     "build:lib": "rm -rf ./css && webpack --mode=production",
     "build:site": "npm run build:lib",
     "dev": "concurrently npm:dev:static npm:dev:jekyll",
@@ -31,6 +31,8 @@
     "@babel/preset-env": "^7.11.5",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
+    "@govtechsg/sgds-masthead": "^0.0.9",
+    "@popperjs/core": "^2.11.5",
     "clipboard": "^2.0.10",
     "concurrently": "^7.0.0",
     "copy-webpack-plugin": "^10.2.4",
@@ -49,11 +51,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@govtechsg/sgds-masthead": "^0.0.9",
-    "@popperjs/core": "^2.11.5",
-    "bootstrap": "^5.1.3",
-    "gsap": "^3.9.1",
-    "shufflejs": "^6.0.0"
+    "bootstrap": "5.1.3"
   },
   "config": {
     "commitizen": {

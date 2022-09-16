@@ -1,8 +1,8 @@
 .sgds-example {
     border: 1px solid var(--sgds-gray-400);
-    padding: 2rem;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    padding: 2rem;
     background-color: var(--sgds-gray-100);
     &:last-child {
         border-top: none;
@@ -12,6 +12,9 @@
         gap: 2rem;
         grid-auto-flow: column;
         grid-auto-columns: 1fr;
+    }
+    @include media-breakpoint-down(sm) {
+        padding: 0.25rem;
     }
 }
 

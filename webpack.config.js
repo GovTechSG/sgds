@@ -5,7 +5,8 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    "assets/sgds": './src/sgds.js',
+    "sgds": './src/sgds.js',
+    "sgds.util": './src/sgds.util.js',
     "assets/js/bundle": './src/sgds.bundle.js',
     "assets/js/vendor": './src/sgds.vendor.js'
   },
@@ -49,7 +50,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './css/sgds.css'
+      filename: './css/[name].css'
     }),
     new CopyPlugin({
       patterns: [

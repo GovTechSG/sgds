@@ -1,0 +1,40 @@
+@import "~bootstrap/scss/badge";
+
+.sgds {
+  &.badge {
+    // Set max badge to expand until h3 size
+    font-size: min($badge-font-size, $badge-font-size-max);
+    line-height: $badge-line-height;
+    padding: $badge-padding-y $badge-padding-x;
+
+    i {
+      &.left {
+        padding-right: $badge-icon-padding;
+      }
+
+      &.right {
+        padding-left: $badge-icon-padding;
+      }
+    }
+  }
+
+  &.badge-light {
+
+    @each $color,
+    $value in $theme-colors {
+      &.bg-#{$color} {
+        --sgds-bg-opacity: 0.1;
+
+        @if $color=="light" {
+          color: var(--sgds-gray-500);
+          border: 1px solid var(--sgds-gray-500);
+        }
+
+        @else {
+          color: var(--sgds-#{$color});
+          border: 1px solid var(--sgds-#{$color});
+        }
+      }
+    }
+  }
+}
