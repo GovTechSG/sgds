@@ -20,8 +20,10 @@ node_modules
 /fonts
 /js
 /contents/testing
-assets/js/*.js
-assets/js/*.js.map
-assets/sgds.js
-assets/sgds.js.map
+/assets/js/*.js
+/assets/js/*.js.map
+/assets/*.js
+/assets/*.js.map
 /css
+/*.js
+/*.js.map
