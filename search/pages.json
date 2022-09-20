@@ -1,0 +1,50 @@
+---
+---
+
+{
+    "pages": [
+        {%- for page in site.pages -%}
+            {%- if page.name contains '.html' and page.title != blank %}
+                {%- unless page.url contains '/search' or page.url contains '404.html' -%}
+                    {%- assign sizeIndicator = page.url | split: "/" -%}
+                    {%- if 2 >= sizeIndicator.size -%}
+                        {
+                            "title": "{{ page.title | remove: '"' }}",
+                            "category": "{{ page.category }}",
+                            "content": {{ page.content | strip_html | strip_newlines | strip | jsonify }},
+                            "url": "{{ page.url }}",
+                            "directory": "{{ page.url | replace: '/index.html', '' | replace: '/index.md', '' | replace: '/', '>' | remove_first: ">"}}",
+                            "meta": "page"
+                        },
+                    {%- endif -%}
+                {%- endunless -%}
+                {%- if forloop.last -%}{}{%- endif -%}
+            {%- else -%}
+                {%- if forloop.last -%}{}{%- endif -%}
+            {%- endif -%}
+        {%- endfor -%}
+
+        {%- if site.documents.size > 0 -%},{%- endif -%}
+        {%- for document in site.documents -%}
+            {
+                "title": "{{ document.title | remove: '"' }}",
+                "category": "{{ document.category }}",
+                "content": {{ document.content | strip_html | strip_newlines | strip | jsonify }},
+                "url": "{{ document.url }}",
+                "directory": "{{ document.url | replace: '/index', '' | replace: '/overview', '' | replace: '.html', '' | replace: '/', ' > ' | remove_first: " > " | capitalise }}",
+                "meta": "document",
+                {%- if document.url contains '/components/'-%}
+                "sub_collection": "components"
+                {%- elsif document.url contains '/patterns/'-%}
+                "sub_collection": "patterns"
+                {%- elsif document.url contains '/templates/'-%}
+                "sub_collection": "templates"
+                {%- elsif document.url contains '/get-started/'-%}
+                "sub_collection": "get-started"
+                {%- else -%}
+                "sub_collection": "others"
+                {%- endif -%}
+                }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+    ]
+}

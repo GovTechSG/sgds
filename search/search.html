@@ -1,0 +1,46 @@
+---
+layout: layout-single
+title: Search
+permalink: /search/
+---
+
+<section class="sgds-section breadcrumb-title-section has-background-general">
+    <div class="wave-gfx"></div>
+    <div class="sgds-container">
+        <h1 class="has-text-white">
+            <b
+                >{{ page.title }} results for: "<span id="search-title"></span
+                >"</b
+            >
+        </h1>
+    </div>
+    <div class="sgds-container is-hidden-desktop">
+        <form action="/search/" method="get">
+            <div class="row padding--bottom--sm">
+                <div class="col">
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input
+                                id="search-full-site-dedicated-search-bar"
+                                class="input"
+                                type="text"
+                                placeholder="{{ site.search_placeholder }}"
+                                name="query"
+                            />
+                        </div>
+                        <div class="control">
+                            <button class="sgds-button">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<section class="sgds-section">
+    <div class="sgds-container content has-default-header-styles">
+        <div id="search-app-full-site"></div>
+    </div>
+</section>
+
+<script src="/vue-search-app-full-site.js"></script>

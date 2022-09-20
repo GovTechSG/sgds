@@ -1,0 +1,8 @@
+.is-borderless {
+    border: 0;
+}
+
+#searchBox:focus {
+    outline: none;
+    box-shadow: none;
+}
