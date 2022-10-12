@@ -76,6 +76,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   jekyll (~> 4.0)
@@ -83,6 +84,7 @@ DEPENDENCIES
   jekyll-redirect-from (~> 0.16)
   jekyll-seo-tag (~> 2.6)
   jekyll-toc
+  nokogiri
   rouge
   tzinfo-data
   webrick (~> 1.7)
