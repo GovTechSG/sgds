@@ -4,7 +4,7 @@ description: >-
   The Singapore Government Design System was developed to empower teams in creating fast, accessible and mobile-friendly digital services.
 logo: /assets/img/logo_sgds.png
 url: https://www.designsystem.tech.gov.sg
-
+  
 # Site data
 sgds-version: 2.0.0
 sgds-package-name: >- 
@@ -34,6 +34,7 @@ plugins:
   - jekyll-redirect-from
   - jekyll-toc
   - jekyll-get-json
+  - jekyll-sitemap
 
 collections_dir: collections
 collections:
