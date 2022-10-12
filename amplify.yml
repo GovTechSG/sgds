@@ -6,7 +6,6 @@ frontend:
         - rvm use 2.6.3
         - gem install bundler
         - bundle update --bundler
-        - bundle lock --add-platform x86_64-linux
         - bundle install
         - npm ci
     build:
