@@ -24,70 +24,70 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
 {% capture default-alert %}
 <div role="alert" class="sgds alert alert-primary fade d-flex align-items-center show">
     <div>
-        <i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!
+        <i class="bi bi-exclamation-circle me-2 align-self-start"></i>This is a primary alert—check it out!
     </div>
 </div>
 {% endcapture %}
 
 {% capture icon-alert %}
 <div role="alert" class="fade d-flex align-items-center alert alert-primary show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+    <div><i class="bi bi-exclamation-circle me-2 align-self-start"></i>This is a primary alert—check it out!</div>
 </div>
 <div role="alert" class="fade d-flex align-items-center alert alert-secondary show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+    <div><i class="bi bi-exclamation-circle me-2 align-self-start"></i>This is a primary alert—check it out!</div>
 </div>
 <div role="alert" class="fade d-flex align-items-center alert alert-success show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+    <div><i class="bi bi-exclamation-circle me-2 align-self-start"></i>This is a primary alert—check it out!</div>
 </div>
 <div role="alert" class="fade d-flex align-items-center alert alert-danger show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+    <div><i class="bi bi-exclamation-circle me-2 align-self-start"></i>This is a primary alert—check it out!</div>
 </div>
 <div role="alert" class="fade d-flex align-items-center alert alert-warning show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+    <div><i class="bi bi-exclamation-circle me-2 align-self-start"></i>This is a primary alert—check it out!</div>
 </div>
 <div role="alert" class="fade d-flex align-items-center alert alert-info show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+    <div><i class="bi bi-exclamation-circle me-2 align-self-start"></i>This is a primary alert—check it out!</div>
 </div>
 <div role="alert" class="fade d-flex align-items-center alert alert-light show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+    <div><i class="bi bi-exclamation-circle me-2 align-self-start"></i>This is a primary alert—check it out!</div>
 </div>
 <div role="alert" class="fade d-flex align-items-center alert alert-dark show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
+    <div><i class="bi bi-exclamation-circle me-2 align-self-start"></i>This is a primary alert—check it out!</div>
 </div>
 {% endcapture %}
 
 {% capture link-alert %}
 <div role="alert" class="fade d-flex align-items-center alert alert-primary show sgds">
     <div>
-        <i class="bi bi-exclamation-circle me-2"></i>
+        <i class="bi bi-exclamation-circle me-2 align-self-start"></i>
         This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
         it a click if you like.
     </div>
 </div>
 <div role="alert" class="fade d-flex align-items-center alert alert-secondary show sgds">
     <div>
-        <i class="bi bi-exclamation-circle me-2"></i>
+        <i class="bi bi-exclamation-circle me-2 align-self-start"></i>
         This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
         it a click if you like.
     </div>
 </div>
 <div role="alert" class="fade d-flex align-items-center alert alert-success show sgds">
     <div>
-        <i class="bi bi-exclamation-circle me-2"></i>
+        <i class="bi bi-exclamation-circle me-2 align-self-start"></i>
         This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
         it a click if you like.
     </div>
 </div>
 <div role="alert" class="fade d-flex align-items-center alert alert-danger show sgds">
     <div>
-        <i class="bi bi-exclamation-circle me-2"></i>
+        <i class="bi bi-exclamation-circle me-2 align-self-start"></i>
         This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
         it a click if you like.
     </div>
 </div>
 <div role="alert" class="fade d-flex align-items-center alert alert-warning show sgds">
     <div>
-        <i class="bi bi-exclamation-circle me-2"></i>
+        <i class="bi bi-exclamation-circle me-2 align-self-start"></i>
         This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
         it a click if you like.
     </div>
@@ -96,7 +96,7 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
 
 {% capture additional-alert %}
 <div role="alert" class="fade d-flex align-items-center alert alert-success show sgds">
-    <i class="bi bi-exclamation-circle me-4"></i>
+    <i class="bi bi-exclamation-circle me-4 align-self-start"></i>
     <div>
         <div class="alert-heading h4">Hey, nice to see you</div>
         <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer
@@ -110,7 +110,7 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
 {% capture dismissable-alert %}
 <div role="alert" class="fade d-flex align-items-center alert alert-primary alert-dismissible show sgds">
     <button type="button" class="btn-close btn-sm" aria-label="Close alert"></button>
-    <i class="bi bi-exclamation-circle me-4"></i>
+    <i class="bi bi-exclamation-circle me-4 align-self-start"></i>
     <div>
         <div class="alert-heading h4">Oh snap! You got an error!</div>
         <p class="mb-0">Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
