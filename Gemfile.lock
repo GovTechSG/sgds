@@ -84,7 +84,6 @@ DEPENDENCIES
   jekyll-redirect-from (~> 0.16)
   jekyll-seo-tag (~> 2.6)
   jekyll-toc
-  nokogiri
   rouge
   tzinfo-data
   webrick (~> 1.7)
