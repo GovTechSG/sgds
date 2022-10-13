@@ -4,7 +4,7 @@ frontend:
     preBuild:
       commands:
         - rvm use 2.6.3
-        - gem install bundler
+        - gem install bundler -v '=2.3.13'
         - bundle update --bundler
         - bundle install
         - npm ci
