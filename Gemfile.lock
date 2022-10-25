@@ -39,6 +39,8 @@ GEM
       sassc (> 2.0.1, < 3.0)
     jekyll-seo-tag (2.7.1)
       jekyll (>= 3.8, < 5.0)
+    jekyll-sitemap (1.4.0)
+      jekyll (>= 3.7, < 5.0)
     jekyll-toc (0.17.1)
       jekyll (>= 3.9)
       nokogiri (~> 1.11)
@@ -82,6 +84,7 @@ DEPENDENCIES
   jekyll-get-json (~> 1.0)
   jekyll-redirect-from (~> 0.16)
   jekyll-seo-tag (~> 2.6)
+  jekyll-sitemap
   jekyll-toc
   rouge
   tzinfo-data
