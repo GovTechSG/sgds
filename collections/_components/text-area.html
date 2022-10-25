@@ -9,44 +9,44 @@ toc: true
 ---
 
 {% capture textarea-default %}
-<div class="sgds form-group">
+
     <div class="d-flex justify-content-between">
         <div for="exampleFormControlTextarea1" class="form-label">Label</div>
         <div class="form-text">0/200</div>
     </div>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="This is text that has been filled in"></textarea>
-</div>
+
 {% endcapture %}
 
 {% capture textarea-hover %}
-<div class="sgds form-group">
+
     <div class="d-flex justify-content-between">
         <div for="exampleFormControlTextarea1" class="form-label">Label</div>
         <div class="form-text">0/200</div>
     </div>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="This is text that has been filled in" autofocus></textarea>
-</div>
+
 {% endcapture %}
 
 {% capture textarea-error %}
-<div class="sgds form-group was-validated">
+<form class="was-validated">
     <div class="d-flex justify-content-between">
         <div for="exampleFormControlTextarea1" class="form-label">Label</div>
         <div class="form-text">0/200</div>
     </div>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="This is text that has been filled in" required></textarea>
     <div class="invalid-feedback">Error message</div>
-</div>
+</form>
 {% endcapture %}
 
 {% capture textarea-disabled %}
-<div class="sgds form-group">
+
     <div class="d-flex justify-content-between">
         <div for="exampleFormControlTextarea1" class="form-label">Label</div>
         <div class="form-text">0/200</div>
     </div>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="This is text that has been filled in" disabled></textarea>
-</div>
+
 {% endcapture %}
 
 <div class="page-component">
