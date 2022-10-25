@@ -27,3 +27,4 @@ node_modules
 /css
 /*.js
 /*.js.map
+.DS_Store

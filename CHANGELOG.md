@@ -1,5 +1,11 @@
 ## Unreleased
 
+## v2.1.0-beta.2 (2022-09-30)
+
+### Feat
+
+- **section**: add section helper class for page styling
+
 ## v2.1.0-beta.1 (2022-09-16)
 
 ### Feat
