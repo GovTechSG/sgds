@@ -6,7 +6,7 @@ logo: /assets/img/logo_sgds.png
 url: https://www.designsystem.tech.gov.sg
   
 # Site data
-sgds-version: 2.0.0
+sgds-version: 2.1.0
 sgds-package-name: >- 
   @govtechsg/sgds
 bootstrap-version: 5.1.3
