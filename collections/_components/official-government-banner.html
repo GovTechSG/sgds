@@ -9,25 +9,30 @@ toc: true
 
 {% capture masthead %}
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-masthead/dist/sgds-masthead/sgds-masthead.css">
     <script
         type="module"
-        src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-masthead/dist/sgds-masthead/sgds-masthead.js">
+        src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component/Masthead/index.js">
     </script>
 </head>
 <body>
     <sgds-masthead></sgds-masthead>
+    <!-- Add fluid attribute for full width banner -->
+    <!-- 
+        <sgds-masthead fluid></sgds-masthead> 
+    -->
 </body>
 {% endcapture %}
 
 {% capture masthead-design-tokens %}
---sgds-masthead-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
---sgds-masthead-link-color: #4372d6;
---sgds-masthead-link-hover-color: #3a79ff;
-<!-- Font size for tablet view 1024px -->
---sgds-masthead-tablet-font-size: 0.75rem
-<!-- Left and right padding for tablet view 1024px -->
---sgds-masthead-tablet-padding-x: 1.25rem;
+<!-- Sets font family for masthead -->
+--masthead-font-family
+
+<!-- Sets the padding left and right for viewport width 1024px and below -->
+--masthead-mobile-padding-x	  
+
+<!-- Sets the font size for viewport width 1024px and below -->
+--masthead-mobile-font-size	    
+
 {% endcapture %}
 
 <!-- Page starts here -->
