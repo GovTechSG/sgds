@@ -1,8 +1,14 @@
+## v2.1.1 (2022-11-23)
+
+### Fix
+
+- **function.scss**: fix deprecated sass 1.56.0
+
 ## v2.1.0 (2022-10-25)
 
 ### Fix
 
-- **offcanvas button**: add accessbility name
+- **offcnvas button**: add accessbility name
 
 ### Refactor
 
@@ -66,6 +72,7 @@ update accordingly to the new documentation
 
 ### Fix
 
+- merge v2dev to current br
 - **embed**: added embedded react typeahead with alert notification
 - **installation page**: remove square bracket
 - **installation page**: update npm install command. fix #342
