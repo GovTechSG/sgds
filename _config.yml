@@ -67,6 +67,10 @@ collections:
       - installation.html
       - customise-with-sass.html
       - ui-kit.html
+  foundations:
+    permalink: /:collection/:name
+    output: true
+    category: foundations
 
 # set all patterns collection to use certain layouts
 defaults:
@@ -102,7 +106,15 @@ defaults:
       pageCategory: "get-started"
       source-grid: false
       toc: true
-      
+  -
+    scope:
+      type: "foundations" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "foundations"
+      source-grid: true
+      toc: true  
+  
 exclude:
   - src
   - node_modules
