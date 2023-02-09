@@ -30,6 +30,10 @@ layout: layout-default
     </aside>
     <article>
         {{content}}
+        {% if page.overview == null %}
+            <hr>
+            <small><i>Last updated {{ page.last_modified_at | date: '%d %B %Y' }}</i></small>
+        {% endif %}
     </article>
 
 
