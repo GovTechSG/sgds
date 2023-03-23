@@ -4,17 +4,16 @@ permalink: /product-sites/new-list/
 layout: layout-default
 ---
 
-<div class="directory-list p-4">
+<div class="directory-list">
+    <ul>
     {% for agency in site.data.product-sites %}
-    <div class="sgds card mb-2">
-        <h4>{{agency.agency}}</h4>
-        <ul>
+        
             {% for sites in agency.sites %}
             <li>
                 <a href="{{sites.url}}" class="external">{{sites.url}}</a>
             </li>
             {% endfor %}
-        </ul>
-    </div>
+        
     {% endfor %}
+    </ul>
 </div>
