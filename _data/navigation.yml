@@ -2,6 +2,9 @@
 - title: about
   url: /about/
   has-collection: false
+- title: foundations
+  url: /foundations/
+  has-collection: true
 - title: components
   url: /components/
   has-collection: true

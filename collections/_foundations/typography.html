@@ -1,0 +1,113 @@
+---
+title: Typography
+layout: layout-sidenav
+description: A consistent set of text sizes and styles are to be used across all touch points.
+toc: true
+---
+
+{% capture default-spacing %}
+
+{% endcapture %}
+
+
+
+<!-- Page starts here -->
+<div class="page-component">
+
+  <!-- Generated header from front end matters -->
+  {% include page-component/component-header.html %}
+
+  <!-- Foundations Section -->
+  <section name="section-foundations">
+    <h2 class="title fw-bold" id="example">Font family</h2>
+    <p>
+      SGDS users Inter regular 400 and bold 700 as the main font family which can be found <a
+        href="https://fonts.google.com/specimen/Inter?query=inter" target="_blank">here</a>.<p>
+  </section>
+  <section name="section-foundations">
+    <h2 class="title fw-bold" id="example">Font size and weight</h2>
+    <p>SGDS uses increments of 8px for font sizing with the exception of H4 and small text, and in 2 weights. Base
+      color is using Grey/600.</p>
+  </section>
+
+
+  <!-- Content Section -->
+  <section name="section-foundations">
+    <div class="table-responsive-lg">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Example</th>
+            <th scope="col">Font weight</th>
+            <th scope="col">Font size</th>
+            <th scope="col">Line height</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <th scope="row">
+              <div class="h1">H1</div>
+            </th>
+            <th scope="row">Bold</th>
+            <td>40px (2.5rem)</td>
+            <td>48px</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <div class="h2">H2</div>
+            </th>
+            <th scope="row">Bold</th>
+            <td>32px (2rem)</td>
+            <td>40px</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <div class="h3">H3</div>
+            </th>
+            <th scope="row">Bold</th>
+            <td>24px (1.5rem)</td>
+            <td>32px</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <div class="h4">H4</div>
+            </th>
+            <th scope="row">Bold</th>
+            <td>18px (1.125rem)</td>
+            <td>32px</td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="p">paragraph</div>
+            </td>
+            <td>Regular</td>
+            <td>16px (1rem)</td>
+            <td>32px</td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-size: 14px;">small text</div>
+            </td>
+            <td>Regular</td>
+            <td>14px (0.875rem)</td>
+            <td>28px</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+
+
+
+
+  <!-- Design token Section -->
+  <!--<section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{table-design-tokens}}{%- endhighlight -%}
+        </section>-->
+</div>
