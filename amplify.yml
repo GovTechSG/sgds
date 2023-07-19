@@ -3,6 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
+        - rvm install "ruby-2.6.6"
         - rvm use 2.6.6
         - bundle install
     build:
