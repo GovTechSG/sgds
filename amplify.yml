@@ -3,8 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
-        - rvm install "ruby-2.6.6"
-        - rvm use 2.6.6
+        - rvm install "ruby-2.6.3"
+        - rvm use 2.6.3
         - bundle install
     build:
       commands:
@@ -15,4 +15,3 @@ frontend:
       - '**/*'
   cache:
     paths: []
-
