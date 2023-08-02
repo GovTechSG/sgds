@@ -3,8 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
-        - rvm install "ruby-2.6.3"
-        - rvm use 2.6.3
+        - rvm install "ruby-2.6.10"
+        - rvm use 2.6.10
         - bundle install
     build:
       commands:
