@@ -3,7 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - rvm use 2.6.3
+        - rvm use 2.6.10
         - gem install bundler -v '=2.3.13'
         - bundle update --bundler
         - bundle install
