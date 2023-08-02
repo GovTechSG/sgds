@@ -3,8 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
-        - eval "$(/root/.rbenv/bin/rbenv init - bash)"
-        - rbenv global 2.6.10
+        - rvm install "ruby-3.0.0"
+        - rvm use 3.0.0
         - gem install bundler -v '=2.3.13'
         - bundle update --bundler
         - bundle install
