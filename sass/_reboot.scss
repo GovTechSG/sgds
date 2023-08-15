@@ -1,7 +1,6 @@
 @import '~bootstrap/scss/reboot';
 
 h1 {
-  
   @include header-line-height($h1-line-height);
 }
 
