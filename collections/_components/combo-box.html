@@ -8,7 +8,7 @@ github-link: true
 toc: true
 ---
 
-{% capture default-combo-box %}
+{% capture default-combo-box-code %}
 <iframe
   src="https://react.designsystem.tech.gov.sg/iframe.html?singleStory=true&args=&id=components-combobox--default-story&viewMode=story&full=1&shortcuts=false&singleStory=true"
   width="100%"
@@ -17,7 +17,7 @@ toc: true
 ></iframe>
 {% endcapture %}
 
-{% capture default-combo-box-code %}
+{% capture default-combo-box-code-react-display %}
 import {
     Combobox,
     ComboboxProps,
@@ -27,7 +27,28 @@ export const ComboboxComponent = () => {
     const menuList = ['apple', 'orange', 'banana'];
     return <Combobox menuList={menuList} id="typeaheadExample" icon={<i className="bi bi-search"></i> } />;
   };
-  {% endcapture %}
+{% endcapture %}
+
+{% capture default-combo-box-code-wc-display %}
+<sgds-combo-box
+  menuList='["apple", "orange", "banana"]'
+  label="Select a country"
+>
+  <svg
+      slot="icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-search"
+      viewBox="0 0 16 16"
+  >
+      <path
+      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+      />
+  </svg>
+</sgds-combo-box>
+{% endcapture %}
 
 
 <!-- Page starts here -->
@@ -51,9 +72,12 @@ export const ComboboxComponent = () => {
   <section name="section-examples">
     <h2 class="title fw-bold" id="example">Example</h2>
     <div class="section-sub">
-      {% include page-component/component-code-snippet.html
-      compName="default-combo-box" compTitle="Default combo box"
-      code=default-combo-box code-react=default-combo-box-code %}
+      {% include page-component/component-example.html
+            compName="default-combo-box" compTitle="Default combo box"
+            code-react=default-combo-box-code 
+            code-react-display=default-combo-box-code-react-display
+            code-wc=default-combo-box-code
+            code-wc-display=default-combo-box-code-wc-display  %}
     </div>
   </section>
 
