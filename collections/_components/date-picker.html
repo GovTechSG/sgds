@@ -7,6 +7,27 @@ react-link: ?path=/docs/components-datepicker--default-story
 github-link: true
 toc: true
 ---
+
+{% capture default-date-picker %}
+<iframe
+  src="https://v1-0-0-rc.d1yxrtldqtp3a0.amplifyapp.com/iframe.html?args=&id=components-datepicker--basic&viewMode=story"
+  width="100%"
+  height="400"
+  bgColor="transparent"
+></iframe>
+{% endcapture %}
+
+{% capture default-date-picker-code %}
+<head>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component@rc">
+    </script>
+</head>
+<body>
+    <sgds-datepicker mindate="undefined" maxdate="undefined" dateformat="DD/MM/YYYY" mode="single">
+    </sgds-datepicker>
+</body>
+  {% endcapture %}
+
 <div class="page-component">
     {% include page-component/component-header.html %}
 
@@ -14,7 +35,9 @@ toc: true
     <section name="section-examples">
         <h2 class="title fw-bold" id="example">Examples</h2>
         <div class="section-sub">
-            {% include page-component/component-code-snippet.html compName="checkbox-examples" code=checkbox-examples %}
+            {% include page-component/component-code-snippet.html 
+            compName="default-date-picker" compTitle="Default date picker"
+            code=default-date-picker code-react=default-date-picker-code %}
         </div>
     </section>
 
