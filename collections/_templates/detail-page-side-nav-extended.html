@@ -8,226 +8,143 @@ toc: true
 <div style="background-color: white" class="overflow-auto">
     <!-- Masthead -->
     <sgds-masthead fluid></sgds-masthead>
-    <!--Main Nav Component-->
-    <nav class="mt-4 sgds navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img
-                    src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg"
-                    alt="Home"
-                />
-            </a>
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <i class="bi bi-list"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#"
-                            >About</a
-                        >
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Components</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Patterns</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Templates</a>
-                    </li>
-                    <li class="nav-item sgds dropdown">
-                        <a
-                            class="nav-link sgds dropdown-toggle"
-                            href="#"
-                            id="navbarDropdown"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
-                            Theme customiser<i class="bi bi-chevron-down"></i>
-                        </a>
-                        <ul
-                            class="dropdown-menu"
-                            aria-labelledby="navbarDropdown"
-                        >
-                            <li>
-                                <a class="dropdown-item" href="#">Option 1</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item active" href="#"
-                                    >Option 2</a
-                                >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Option 3</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Option 4</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item align-self-center d-none d-lg-block">
-                        <a class="nav-link" href="#"
-                            ><i class="bi bi-search"></i
-                        ></a>
-                    </li>
-                    <li class="nav-item align-self-center d-none d-lg-block">
-                        <a class="nav-link" href="#"
-                            ><i class="bi bi-grid-3x3-gap-fill"></i
-                        ></a>
-                    </li>
-                </ul>
-            </div>
+    <!-- Main Nav component -->
+    <nav class="sgds navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">
+            <img src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg" alt="Home" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-list"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Components</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Patterns</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Templates</a>
+                </li>
+                <li class="nav-item sgds dropdown">
+                    <a class="nav-link sgds dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Theme customiser<i class="bi bi-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Option 1</a></li>
+                        <li><a class="dropdown-item active" href="#">Option 2</a></li>
+                        <li><a class="dropdown-item" href="#">Option 3</a></li>
+                        <li><a class="dropdown-item" href="#">Option 4</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item align-self-center d-none d-lg-block">
+                    <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
+                </li>
+                <li class="nav-item align-self-center d-none d-lg-block">
+                    <a class="nav-link" href="#"><i class="bi bi-grid-3x3-gap-fill"></i></a>
+                </li>
+            </ul>
         </div>
     </nav>
-    <div class="row m-8">
-        <!-- Side Nav component -->
-        <div class="col-lg-3 d-none d-lg-block">
+    <sgds-template-grid class="with-toc">
+        <sgds-aside-area>
+            <!-- Side Nav component -->
             <nav class="sidenav sgds list-unstyled open2">
                 <li class="sidenav-item">
-                    <button
-                        class="sgds btn collapsed active"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseExampleD"
-                        aria-expanded="false"
-                        aria-controls="collapseExampleD"
-                    >
+                    <button class="sgds btn collapsed active" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExampleD" aria-expanded="false" aria-controls="collapseExampleD">
                         Sub menu
                         <i class="bi bi-chevron-down"></i>
                     </button>
-                    <div
-                        class="collapse show"
-                        id="collapseExampleD"
-                        data-bs-parent=".open2"
-                    >
+                    <div class="collapse show" id="collapseExampleD" data-bs-parent=".open2">
                         <ul class="list-unstyled">
-                            <li>
-                                <a href="#" class="nav-link">Sub menu item</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link active"
-                                    >Sub menu item</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link">Sub menu item</a>
-                            </li>
+                            <li><a href="#" class="nav-link">Sub menu item</a></li>
+                            <li><a href="#" class="nav-link active">Sub menu item</a></li>
+                            <li><a href="#" class="nav-link">Sub menu item</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="sidenav-item">
-                    <button
-                        class="sgds btn collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseExampleE"
-                        aria-expanded="false"
-                        aria-controls="collapseExampleE"
-                    >
+                    <button class="sgds btn collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExampleE" aria-expanded="false" aria-controls="collapseExampleE">
                         Sub menu
                         <i class="bi bi-chevron-down"></i>
                     </button>
-                    <div
-                        class="collapse"
-                        id="collapseExampleE"
-                        data-bs-parent=".open2"
-                    >
+                    <div class="collapse" id="collapseExampleE" data-bs-parent=".open2">
                         <ul class="list-unstyled">
-                            <li>
-                                <a href="#" class="nav-link">Sub menu item</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link">Sub menu item</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link">Sub menu item</a>
-                            </li>
+                            <li><a href="#" class="nav-link">Sub menu item</a></li>
+                            <li><a href="#" class="nav-link">Sub menu item</a></li>
+                            <li><a href="#" class="nav-link">Sub menu item</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="sidenav-item">
-                    <button
-                        class="sgds btn collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseExampleF"
-                        aria-expanded="false"
-                        aria-controls="collapseExampleF"
-                    >
+                    <button class="sgds btn collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExampleF" aria-expanded="false" aria-controls="collapseExampleF">
                         Sub menu
                         <i class="bi bi-chevron-down"></i>
                     </button>
-                    <div
-                        class="collapse"
-                        id="collapseExampleF"
-                        data-bs-parent=".open2"
-                    >
+                    <div class="collapse" id="collapseExampleF" data-bs-parent=".open2">
                         <ul class="list-unstyled">
-                            <li>
-                                <a href="#" class="nav-link">Sub menu item</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link">Sub menu item</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link">Sub menu item</a>
-                            </li>
+                            <li><a href="#" class="nav-link">Sub menu item</a></li>
+                            <li><a href="#" class="nav-link">Sub menu item</a></li>
+                            <li><a href="#" class="nav-link">Sub menu item</a></li>
                         </ul>
                     </div>
                 </li>
             </nav>
-        </div>
-        <div class="col-lg-7">
-            <!--Breadcrumb component-->
-            <nav class="sgds" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        Data
-                    </li>
-                </ol>
-            </nav>
-            <!--Content section-->
-            <h2>Page heading</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <h4>Overview</h4>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.
-            </p>
-        </div>
+        </sgds-aside-area>
+        <sgds-article-area>
+                <sgds-breadcrumb-area>
+                    <!-- Breadcrumb component -->
+                    <nav class="sgds" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Library</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Data</li>
+                        </ol>
+                    </nav>
+                </sgds-breadcrumb-area>
+                <sgds-article-header-top>
+                    <!-- Content section -->
+                    <h2>Page heading</h2>
+                </sgds-article-header-top>
+                <sgds-article-body>
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                        <h4>Overview</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                            velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
+                    </div>
+                </sgds-article-body>
+
+        </sgds-article-area>
+
         <!--Table of Contents section-->
-        <div class="col-lg-2 d-none d-lg-block">
+        <sgds-toc-area>
             <aside aria-label="Table of Content">
                 <h4>On this page</h4>
-                <ul style="list-style: none">
+                <ul style="list-style: none;border-left: 1px solid var(--sgds-gray-300);
+            ">
                     <li>
-                        <a href="#" style="text-decoration: none"
-                            >Page heading</a
-                        >
+                        <a href="#" style="text-decoration: none">Page heading</a>
                         <ul>
                             <li style="list-style: none">
-                                <a href="#" style="text-decoration: none"
-                                    >Overview</a
-                                >
+                                <a href="#" style="text-decoration: none">Overview</a>
                             </li>
                         </ul>
                     </li>
@@ -236,26 +153,23 @@ toc: true
                     </li>
                 </ul>
             </aside>
-        </div>
-    </div>
+        </sgds-toc-area>
+    </sgds-template-grid>
+    <!-- </div> -->
     <!-- Footer component -->
     <footer class="sgds footer">
         <section class="footer-top">
             <div class="container-fluid">
                 <div class="row footer-header">
                     <div class="col col-lg-6">
-                        <div class="title">
-                            Singapore Government Design System
-                        </div>
+                        <div class="title">Singapore Government Design System</div>
                         <div class="description">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Earum illo delectus laborum libero id ratione
-                            quibusdam tempora assumenda quas, pariatur cum
-                            minus, aliquid molestiae et nisi dolorem vitae
-                            molestias! Voluptate commodi aliquid iusto sequi sit
-                            eligendi, quod numquam nihil consectetur eaque error
-                            earum laudantium! Temporibus accusamus pariatur quod
-                            totam quia.
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum
+                            illo delectus laborum libero id ratione quibusdam tempora
+                            assumenda quas, pariatur cum minus, aliquid molestiae et nisi
+                            dolorem vitae molestias! Voluptate commodi aliquid iusto sequi sit
+                            eligendi, quod numquam nihil consectetur eaque error earum
+                            laudantium! Temporibus accusamus pariatur quod totam quia.
                         </div>
                     </div>
                 </div>
@@ -295,12 +209,8 @@ toc: true
                                 <li><a href="">Contact</a></li>
                                 <li><a href="">Feedback</a></li>
                                 <li>
-                                    <a
-                                        href="https://www.reach.gov.sg/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        >Reach.gov.sg</a
-                                    >
+                                    <a href="https://www.reach.gov.sg/" target="_blank"
+                                        rel="noopener noreferrer">Reach.gov.sg</a>
                                 </li>
                             </ul>
                         </div>
@@ -314,12 +224,9 @@ toc: true
                     <div class="col">
                         <ul>
                             <li>
-                                <a
-                                    href="https://tech.gov.sg/report_vulnerability"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    >Report Vulnerability</a
-                                >
+                                <a href="https://tech.gov.sg/report_vulnerability" target="_blank"
+                                    rel="noopener noreferrer">Report
+                                    Vulnerability</a>
                             </li>
                             <li><a href="">Privacy</a></li>
                             <li><a href="">Terms of use</a></li>
@@ -329,8 +236,7 @@ toc: true
                 <div class="row footer-copyrights">
                     <div class="col">
                         <div class="d-flex justify-content-lg-end">
-                            © 2022 Government of Singapore. Last Updated 08 Feb
-                            2022
+                            © 2022 Government of Singapore. Last Updated 08 Feb 2022
                         </div>
                     </div>
                 </div>
