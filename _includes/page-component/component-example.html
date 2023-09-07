@@ -1,0 +1,25 @@
+<ul class="sgds nav nav-tabs" id="examples-tab-{{include.compName}}" role="tablist" variant="tabs-basic-toggle">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="react-example-tab-{{include.compName}}" data-bs-toggle="tab" data-bs-target="#react-example-{{include.compName}}"
+            type="button" role="tab" aria-controls="home" aria-selected="true">React JS</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="wc-example-tab-{{include.compName}}" data-bs-toggle="tab" data-bs-target="#wc-example-{{include.compName}}" type="button" role="tab"
+            aria-controls="profile" aria-selected="false">
+            Web Components
+        </button>
+    </li>
+</ul>
+
+<div class="sgds tab-content" id="examples-tab-content-{{include.compName}}">
+    <div class="tab-pane fade show active" id="react-example-{{include.compName}}" role="tabpanel" aria-labelledby="react-example-tab">
+        {% include page-component/component-code-snippet.html
+        compName=include.compName compTitle=include.compTitle
+        code=include.code-react code-display=include.code-react-display %}
+    </div>
+    <div class="tab-pane fade" id="wc-example-{{include.compName}}" role="tabpanel" aria-labelledby="wc-example-tab">
+        {% include page-component/component-code-snippet.html
+            compName=include.compName compTitle=include.compTitle
+            code=include.code-wc code-display=include.code-wc-display %}
+    </div>
+</div>
