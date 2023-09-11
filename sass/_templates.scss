@@ -2,16 +2,23 @@ sgds-template-grid {
     display: grid;
     grid-template-columns: 12.6% 87.4%;
     background: #fafafa;
+    @include media-breakpoint-down(lg){
+        display:block;
+        sgds-aside-area{
+            display:none;
+        }
+        padding: 1rem;
+    }
     &.with-toc {
         grid-template-columns: 12.6% 74.8% 12.6%;
     }
 }
 
 sgds-aside-area {
-    box-shadow: 3px 0px 6px 0px #d0d5dd80;
-    background: #ffffff;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    // box-shadow: 3px 0px 6px 0px #d0d5dd80;
+    // background: #ffffff;
+    // padding-top: 1.5rem;
+    // padding-bottom: 1.5rem;
     z-index: 10;
 }
 

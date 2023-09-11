@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     "sgds": './src/sgds.js',
     "sgds.util": './src/sgds.util.js',
-    "sgds.templates": './src/sgds.templates.js',
+    // "sgds.templates": './src/sgds.templates.js',
     "assets/js/bundle": './src/sgds.bundle.js',
     "assets/js/vendor": './src/sgds.vendor.js'
   },
