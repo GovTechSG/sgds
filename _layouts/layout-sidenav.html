@@ -5,48 +5,7 @@ layout: layout-default
 {% if page.toc %}
 {% assign class = 'with-toc' %}
 {% endif %}
-<sgds-template-grid class="{{class}}">
-    <sgds-aside-area aria-label="Side Navigation Container">
-        <nav class="sgds sidenav" aria-label="Side Navigation">
-            <ul class="list-unstyled mb-0">
-                {% assign collections = site.collections | sort: 'order' %}
-                {% for collection in collections %}
-                {% if collection.category == page.pageCategory %}
-                {% assign name = collection.label %}
-                {% for item in site[collection.label] %}
-                {%- assign class = 'inactive' -%}
-                {%- assign title = item.title -%}
-                {%- if page.title == title -%}
-                {%- assign class = 'active' -%}
-                {%- endif -%}
-                <li class="sidenav-item">
-                    <a role="button" class="sgds btn {{class}}" href="{{item.url}}">{{item.title}}</a>
-                </li>
-                {% endfor %}
-                {% endif %}
-                {% endfor %}
-            </ul>
-        </nav>
-    </sgds-aside-area>
-    <sgds-article-area>
-        {{content}}
-        {% if page.overview == null %}
-        <hr>
-        <small><i>Last updated {{ page.last_modified_at | date: '%d %B %Y' }}</i></small>
-        {% endif %}
-    </sgds-article-area>
-    {% if page.overview == null %}
-    <sgds-toc-area>
-        <aside class="toc-container" aria-label="Table of Content">
-            <div class="toc-wrapper">
-                <div class="h4">On this page</div>
-                {% toc %}
-            </div>
-        </aside>
-    </sgds-toc-area>
-    {% endif %}
-</sgds-template-grid>
-<!-- <section class="wrapper layout-sidenav {{class}}">
+<section class="wrapper layout-sidenav {{class}}">
     <aside aria-label="Side Navigation Container">
         <nav class="sgds sidenav" aria-label="Side Navigation">
             <ul class="list-unstyled mb-0">
@@ -72,20 +31,20 @@ layout: layout-default
     <article>
         {{content}}
         {% if page.overview == null %}
-        <hr>
-        <small><i>Last updated {{ page.last_modified_at | date: '%d %B %Y' }}</i></small>
+            <hr>
+            <small><i>Last updated {{ page.last_modified_at | date: '%d %B %Y' }}</i></small>
         {% endif %}
     </article>
 
 
     {% if page.overview == null %}
     <aside class="toc-container" aria-label="Table of Content">
-
-        <div class="toc-wrapper">
-            <div class="h4">On this page</div>
-            {% toc %}
-        </div>
-
+        
+            <div class="toc-wrapper">
+                <div class="h4">On this page</div>
+                {% toc %}
+            </div>
+        
     </aside>
     {% endif %}
-</section> -->
+</section>

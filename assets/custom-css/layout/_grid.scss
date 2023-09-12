@@ -1,17 +1,6 @@
-sgds-template-grid {
-    padding: 1rem 2rem 2rem;
-    gap: 3rem;
-    grid-template-columns: 15rem minmax(25rem, 1fr);
-    &.with-toc {
-        grid-template-columns: 15rem minmax(25rem, 1fr) 15rem;
-    }
-}
-sgds-article-area {
-    padding: 0;
-}
 .wrapper{
-    // display: grid;
-    // padding: 1rem 2rem 2rem;
+    display: grid;
+    padding: 1rem 2rem 2rem;
     &.layout{
         &-single{
             width: 60vw;
@@ -29,22 +18,22 @@ sgds-article-area {
                 margin-top: calc(#{$spacer} * 2);
             }
         }
-
-    //     &-sidenav{
-    //         gap: 3rem;
-    //         grid-template-columns: 15rem minmax(25rem, 1fr);
-    //         max-width: 100%;
-    //         @include media-breakpoint-down(lg){
-    //             display:block;
-    //             aside{
-    //                 display:none;
-    //             }
-    //             padding: 1rem;
-    //         }
-    //         &.with-toc{
-    //             grid-template-columns: 15rem minmax(25rem, 1fr) 15rem;
-    //         }
-    //     }
+        
+        &-sidenav{
+            gap: 3rem;
+            grid-template-columns: 15rem minmax(25rem, 1fr);
+            max-width: 100%;
+            @include media-breakpoint-down(lg){
+                display:block;
+                aside{
+                    display:none;
+                }
+                padding: 1rem;
+            }
+            &.with-toc{
+                grid-template-columns: 15rem minmax(25rem, 1fr) 15rem;
+            }
+        }
     }
     &-fluid{
         header{
@@ -62,13 +51,15 @@ sgds-article-area {
 }
 $columns: 2, 3, 4;
 
-@each $column in $columns {
-    .grid-column-#{$column} {
+@each $column in $columns{
+    .grid-column-#{$column}{
         grid-template-columns: repeat(#{$column}, 1fr);
     }
 }
 
-.grid-wrapper {
+.grid-wrapper{
     display: grid;
     padding: 2rem;
 }
+
+
