@@ -72,41 +72,41 @@ toc: true
       </div>
     </div>
   </nav>
-  <!--Breadcrumb component-->
-  <section class="m-8">
-    <nav class="sgds" aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Library</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data</li>
-      </ol>
-    </nav>
-  </section>
-  <!--Content section-->
-  <section class="m-8">
-    <div class="row">
-      <div class="col">
-        <h2>Page heading</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h4>Overview</h4>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
-        </p>
-      </div>
-    </div>
-  </section>
+  <sgds-template-grid>
+    <sgds-article-area>
+            <sgds-breadcrumb-area>
+                <!-- Breadcrumb component -->
+                <nav class="sgds" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Library</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    </ol>
+                </nav>
+            </sgds-breadcrumb-area>
+            <sgds-article-header-top>
+                <!-- Content section -->
+                <h2>Page heading</h2>
+            </sgds-article-header-top>
+            <sgds-article-body>
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <h4>Overview</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                        velit esse cillum dolore eu fugiat nulla pariatur.
+                    </p>
+                </div>
+            </sgds-article-body>
+
+    </sgds-article-area>
+</sgds-template-grid>
   <!-- Footer component -->
   <footer class="sgds footer">
     <section class="footer-top">

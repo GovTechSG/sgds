@@ -1,125 +1,76 @@
 ---
-title: Multi Page Form
-description: A base collection of field components rendered on a multi page layout.
+title: Overview Page with Search Bar
+description: A base collection of field components with a searchbar layout
 toc: true
 ---
 
-{% capture multi-page-form %}
+{% capture overview-page-with-search-bar %}
 <div style="background-color: white">
   <!-- Masthead -->
   <sgds-masthead fluid></sgds-masthead>
+    <!-- Main Nav component -->
+    <nav class="sgds navbar navbar-expand-lg">
+      <a class="navbar-brand" href="#">
+        <img src="https://www.developer.tech.gov.sg/assets/img/logo_color.svg" alt="Home" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Components</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Patterns</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Templates</a>
+          </li>
+          <li class="nav-item sgds dropdown">
+            <a class="nav-link sgds dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Theme customiser<i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Option 1</a></li>
+              <li><a class="dropdown-item active" href="#">Option 2</a></li>
+              <li><a class="dropdown-item" href="#">Option 3</a></li>
+              <li><a class="dropdown-item" href="#">Option 4</a></li>
+            </ul>
+          </li>
+          <li class="nav-item align-self-center d-none d-lg-block">
+            <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
+          </li>
+          <li class="nav-item align-self-center d-none d-lg-block">
+            <a class="nav-link" href="#"><i class="bi bi-grid-3x3-gap-fill"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   <!-- Header section -->
   <sgds-template-grid>
     <sgds-article-area>
-      <sgds-breadcrumb-area>
-        <nav class="sgds" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">HOME</a></li>
-            <li class="breadcrumb-item active" aria-current="page">SIGN-UP</li>
-          </ol>
-        </nav>
-      </sgds-breadcrumb-area>
       <sgds-article-header-top>
-        <h1>Sign-up</h1>
-        <div>
-          <a href="#" class="me-4">cancel</a>
-        <button type="button" class="me-4 btn btn-outline-dark sgds">
-          Save as draft
-        </button>
-        <button type="button" class="btn btn-secondary sgds">Next</button>
-        </div>
+        <h1>Title Of Page</h1>
+        <button class="btn btn-secondary">  <i class="bi bi-plus-circle me-2"></i>Create new project</button>
       </sgds-article-header-top>
-          <!-- Stepper component -->
-  <div class="sgds stepper">
-    <div class="stepper-item is-active">
-      <div class="stepper-marker">1</div>
-      <div class="stepper-detail">
-        <p><b>Marker title</b></p>
-      </div>
-    </div>
-    <div class="stepper-item step-2">
-      <div class="stepper-marker">2</div>
-      <div class="stepper-detail">
-        <p><b>Marker title</b></p>
-      </div>
-    </div>
-    <div class="stepper-item step-3">
-      <div class="stepper-marker">3</div>
-      <div class="stepper-detail">
-        <p><b>Marker title</b></p>
-      </div>
-    </div>
-    <div class="stepper-item step-4">
-      <div class="stepper-marker">4</div>
-      <div class="stepper-detail">
-        <p><b>Marker title</b></p>
-      </div>
-    </div>
-    <div class="stepper-item step-5">
-      <div class="stepper-marker">5</div>
-      <div class="stepper-detail">
-        <p><b>Marker title</b></p>
-      </div>
-    </div>
-  </div>
+      <sgds-article-header-bottom>
+        <div class="search-container">
+            <label for="exampleFormControlInput1" class="form-label">Search</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <button class="btn btn-outline-dark">   <i class="bi bi-sliders me-2"></i>
+              Refine search</button>
+      </sgds-article-header-bottom> 
     <!-- Content section -->
     <section class="shadow rounded p-5 bg-white">
-      <form>
-        <div class="col-sm-8">
-          <div class="row">
-            <div class="mb-3 col-md-6 col-12">
-              <label class="form-label" for="formSinglePageInput1">Label</label
-              ><input
-                placeholder="Text goes here"
-                type="text"
-                id="formSinglePageInput1"
-                class="form-control"
-              />
-            </div>
-            <div class="mb-3 col-md-6 col-12">
-              <label class="form-label" for="formSinglePageInput2">Label</label
-              ><input
-                placeholder="Text goes here"
-                type="text"
-                id="formSinglePageInput2"
-                class="form-control"
-              />
-            </div>
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="formSinglePageInput3">Label</label>
-            <div class="mb-3 input-group sgds">
-              <input
-                placeholder="Text goes here"
-                aria-label="Dollar amount (with dot and two decimal places)"
-                id="formSinglePageInput3"
-                class="form-control"
-              /><span class="input-group-text">@something</span>
-            </div>
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="formSinglePageInput4">Label</label
-            ><input
-              placeholder="Text goes here"
-              type="text"
-              id="formSinglePageInput4"
-              class="form-control"
-            />
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="formSinglePageSelect1">Label</label
-            ><select class="form-select" id="formSinglePageSelect1">
-              <option>Text goes here</option>
-              <option>Text goes here</option>
-              <option>Text goes here</option>
-            </select>
-          </div>
-        </div>
-      </form>
+      <h1>Section One</h1>
     </section>
-    <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-secondary sgds">Next</button>
-    </div>
     </sgds-article-area>
   </sgds-template-grid>
   <!-- Footer component -->
@@ -227,7 +178,7 @@ toc: true
       <h2 class="title fw-bold" id="example">Example</h2>
       <div class="section-sub">
         {% include page-component/component-code-snippet.html
-        compName="multi-page-form" code=multi-page-form %}
+        compName="overview-page-with-search-bar" code=overview-page-with-search-bar %}
       </div>
     </section>
   </div>

@@ -1,9 +1,20 @@
 sgds-template-grid {
     display: grid;
-    grid-template-columns: 12.6% 87.4%;
     background: #fafafa;
-    &.with-toc {
-        grid-template-columns: 12.6% 74.8% 12.6%;
+
+    &.with-sidenav {
+        grid-template-columns: 15rem minmax(min-content, 1fr);
+
+        &.with-toc {
+            grid-template-columns: 15rem minmax(min-content, 1fr) 15rem;
+        }
+    }
+    @include media-breakpoint-down(lg) {
+        display: block;
+        sgds-aside-area,
+        aside {
+            display: none;
+        }
     }
 }
 
@@ -30,6 +41,7 @@ sgds-article-area {
         "body";
     padding: 2rem;
     row-gap: 2rem;
+    max-width: 100%;
 }
 
 sgds-breadcrumb-area {
@@ -60,12 +72,3 @@ sgds-article-body {
     flex-direction: column;
     gap: 2rem;
 }
-
-// body-section-one {
-//     display: block;
-//     box-shadow: 0px 0px 25px 0px #161a1d12;
-//     box-shadow: 0px 8px 16px 0px #161a1d08;
-//     padding: 2rem;
-//     background-color: white;
-//     border-radius: 5px;
-// }
