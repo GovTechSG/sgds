@@ -45,11 +45,11 @@ sgds-article-area {
 }
 
 sgds-breadcrumb-area {
-    grid-area: "breadcrumb";
+    grid-area: breadcrumb;
 }
 
 sgds-article-header-top {
-    grid-area: "header-top";
+    grid-area: header-top;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -57,7 +57,7 @@ sgds-article-header-top {
 }
 
 sgds-article-header-bottom {
-    grid-area: "header-bottom";
+    grid-area: header-bottom;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -67,7 +67,7 @@ sgds-article-header-bottom {
 }
 
 sgds-article-body {
-    grid-area: "body";
+    grid-area: body;
     display: flex;
     flex-direction: column;
     gap: 2rem;
