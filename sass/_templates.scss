@@ -1,8 +1,8 @@
 sgds-template-grid {
-    display: grid;
     background: #fafafa;
 
     &.with-sidenav {
+        display: grid;
         grid-template-columns: 15rem minmax(min-content, 1fr);
 
         &.with-toc {
