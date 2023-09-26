@@ -58,11 +58,15 @@ sgds-content-header-top {
 
 sgds-content-header-bottom {
     grid-area: header-bottom;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    .search-container {
-        width: 26.4%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: end;
+    :first-child.search-container {
+        grid-column: 1 / 5;
+    }
+    :last-child {
+        grid-column: 12 / 13;
+        white-space: nowrap;
     }
 }
 
