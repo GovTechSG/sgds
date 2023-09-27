@@ -6,7 +6,7 @@ logo: /assets/img/logo_sgds.png
 url: https://www.designsystem.tech.gov.sg
   
 # Site data
-sgds-version: 2.1.0
+sgds-version: 2.2.0-beta.0
 sgds-package-name: >- 
   @govtechsg/sgds
 bootstrap-version: 5.1.3
@@ -146,6 +146,8 @@ toc:
 jekyll_get_json: 
   - data: npm-data-prev-ver
     json: 'https://registry.npmjs.org/-/v1/search?text=@govtechsg/sgds'
+  - data: package-json
+    json: './package.json'
 
 # Optional. The default date format, used if none is specified in the tag.
 last-modified-at:

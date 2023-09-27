@@ -6,7 +6,8 @@ permalink: /
 
 <section class="home-hero">
     <div class="home-hero-content">
-        <span class="badge bg-secondary">sgds v2.1.0</span>
+        {% assign currentVersion = site.data.package-json.version %}
+        <span class="badge bg-secondary">sgds {{currentVersion}}</span>
         <h1><strong>Build your next best digital experience for Singapore</strong></h1>
         <p>{{site.description}}</p>
         <a role="button" href="/get-started" class="sgds btn btn-primary">Get started</a>
