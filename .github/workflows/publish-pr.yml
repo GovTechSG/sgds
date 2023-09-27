@@ -11,12 +11,12 @@ jobs:
   publish:    
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
       - name: Set Tag env
         run: echo "NPM_TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: '3.0'
       - run: |
           gem install bundler
           bundle install
