@@ -8,248 +8,106 @@ toc: true
 <div style="background-color: white">
   <!-- Masthead -->
   <sgds-masthead fluid></sgds-masthead>
-  <!-- Header section -->
-  <section class="my-8 mx-md-8">
-    <nav class="sgds" aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">HOME</a></li>
-        <li class="breadcrumb-item active" aria-current="page">SIGN-UP</li>
-      </ol>
-    </nav>
-    <div class="row">
-      <div class="col-md-6 col-12">
-        <h1>Sign-up</h1>
-        <p class="text-muted">
-          Already a member? <a href="#" style="text-decoration: none">Log in</a>
-        </p>
-      </div>
-      <div
-        class="d-flex justify-content-end align-items-center col-md-6 col-12"
-      >
-        <a href="#" class="me-4">cancel</a>
-        <button type="button" class="me-4 btn btn-outline-dark sgds">
-          Save as draft
-        </button>
-        <button type="button" class="btn btn-secondary sgds">Next</button>
-      </div>
-    </div>
-  </section>
-  <!-- Content section -->
-  <section class="shadow rounded p-5 my-8 mx-md-8">
-    <form>
-      <div class="col-sm-8">
-        <div class="row">
-          <div class="mb-3 col-md-6 col-12">
-            <label class="form-label" for="formSinglePageInput1">Label</label
-            ><input
-              placeholder="Text goes here"
-              type="text"
-              id="formSinglePageInput1"
-              class="form-control"
-            />
-          </div>
-          <div class="mb-3 col-md-6 col-12">
-            <label class="form-label" for="formSinglePageInput2">Label</label
-            ><input
-              placeholder="Text goes here"
-              type="text"
-              id="formSinglePageInput2"
-              class="form-control"
-            />
-          </div>
+  <sgds-template-grid>
+    <sgds-content-area>
+      <!-- Header section -->
+      <nav class="sgds" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">HOME</a></li>
+          <li class="breadcrumb-item active" aria-current="page">SIGN-UP</li>
+        </ol>
+      </nav>
+      <sgds-content-header-top>
+        <div>
+          <h1>Sign-up</h1>
+          <p class="text-muted">
+            Already a member? <a href="#" style="text-decoration: none">Log in</a>
+          </p>
         </div>
-        <div class="mb-3">
-          <label class="form-label" for="formSinglePageInput3">Label</label>
-          <div class="mb-3 input-group sgds">
-            <input
-              placeholder="Text goes here"
-              aria-label="Dollar amount (with dot and two decimal places)"
-              id="formSinglePageInput3"
-              class="form-control"
-            /><span class="input-group-text">@something</span>
-          </div>
+        <div>
+          <a href="#" class="me-4">cancel</a>
+          <button type="button" class="me-4 btn btn-outline-dark sgds">
+            Save as draft
+          </button>
+          <button type="button" class="btn btn-secondary sgds">Next</button>
         </div>
-        <div class="mb-3">
-          <label class="form-label" for="formSinglePageInput4">Label</label
-          ><input
-            placeholder="Text goes here"
-            type="text"
-            id="formSinglePageInput4"
-            class="form-control"
-          />
+      </sgds-content-header-top>
+
+      <sgds-content-body>
+        <!-- Content section -->
+        <section class="shadow rounded p-5">
+          <form>
+            <div class="col-sm-8">
+              <div class="row">
+                <div class="mb-3 col-md-6 col-12">
+                  <label class="form-label" for="formSinglePageInput1">Label</label><input placeholder="Text goes here"
+                    type="text" id="formSinglePageInput1" class="form-control" />
+                </div>
+                <div class="mb-3 col-md-6 col-12">
+                  <label class="form-label" for="formSinglePageInput2">Label</label><input placeholder="Text goes here"
+                    type="text" id="formSinglePageInput2" class="form-control" />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="formSinglePageInput3">Label</label>
+                <div class="mb-3 input-group sgds">
+                  <input placeholder="Text goes here" aria-label="Dollar amount (with dot and two decimal places)"
+                    id="formSinglePageInput3" class="form-control" /><span class="input-group-text">@something</span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="formSinglePageInput4">Label</label><input placeholder="Text goes here"
+                  type="text" id="formSinglePageInput4" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="formSinglePageSelect1">Label</label><select class="form-select"
+                  id="formSinglePageSelect1">
+                  <option>Text goes here</option>
+                  <option>Text goes here</option>
+                  <option>Text goes here</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="formSinglePageRadio1">Label</label>
+                <div class="form-check">
+                  <input name="radioGroup1" type="radio" id="formSinglePageRadio1" class="form-check-input" /><label
+                    title="" for="formSinglePageRadio1" class="form-check-label">Input 1</label>
+                </div>
+                <div class="form-check">
+                  <input name="radioGroup1" type="radio" id="formSinglePageRadio1" class="form-check-input" /><label
+                    title="" for="formSinglePageRadio1" class="form-check-label">Input 2</label>
+                </div>
+                <div class="form-check">
+                  <input name="radioGroup1" type="radio" id="formSinglePageRadio1" class="form-check-input" /><label
+                    title="" for="formSinglePageRadio1" class="form-check-label">Input 3</label>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="formSinglePageInput5">Label</label><textarea rows="5"
+                  placeholder="This is the text that has been filled in" type="text" id="formSinglePageInput5"
+                  class="form-control"></textarea>
+              </div>
+              <div class="mb-3">
+                <div class="form-check">
+                  <input type="checkbox" id="formBasicCheckbox1" class="form-check-input" /><label title=""
+                    for="formBasicCheckbox1" class="form-check-label">I agree to the terms of the Subscriber Agreement
+                    and the
+                    Privacy
+                    Policy</label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </section>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-secondary sgds">Submit</button>
         </div>
-        <div class="mb-3">
-          <label class="form-label" for="formSinglePageSelect1">Label</label
-          ><select class="form-select" id="formSinglePageSelect1">
-            <option>Text goes here</option>
-            <option>Text goes here</option>
-            <option>Text goes here</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="formSinglePageRadio1">Label</label>
-          <div class="form-check">
-            <input
-              name="radioGroup1"
-              type="radio"
-              id="formSinglePageRadio1"
-              class="form-check-input"
-            /><label
-              title=""
-              for="formSinglePageRadio1"
-              class="form-check-label"
-              >Input 1</label
-            >
-          </div>
-          <div class="form-check">
-            <input
-              name="radioGroup1"
-              type="radio"
-              id="formSinglePageRadio1"
-              class="form-check-input"
-            /><label
-              title=""
-              for="formSinglePageRadio1"
-              class="form-check-label"
-              >Input 2</label
-            >
-          </div>
-          <div class="form-check">
-            <input
-              name="radioGroup1"
-              type="radio"
-              id="formSinglePageRadio1"
-              class="form-check-input"
-            /><label
-              title=""
-              for="formSinglePageRadio1"
-              class="form-check-label"
-              >Input 3</label
-            >
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="formSinglePageInput5">Label</label
-          ><textarea
-            rows="5"
-            placeholder="This is the text that has been filled in"
-            type="text"
-            id="formSinglePageInput5"
-            class="form-control"
-          ></textarea>
-        </div>
-        <div class="mb-3">
-          <div class="form-check">
-            <input
-              type="checkbox"
-              id="formBasicCheckbox1"
-              class="form-check-input"
-            /><label title="" for="formBasicCheckbox1" class="form-check-label"
-              >I agree to the terms of the Subscriber Agreement and the Privacy
-              Policy</label
-            >
-          </div>
-        </div>
-      </div>
-    </form>
-  </section>
-  <div class="d-flex justify-content-end my-8 mx-md-8">
-    <button type="submit" class="btn btn-secondary sgds">Submit</button>
-  </div>
+      </sgds-content-body>
+    </sgds-content-area>
+  </sgds-template-grid>
   <!-- Footer section -->
-  <footer class="sgds footer">
-    <section class="footer-top">
-      <div class="container-fluid">
-        <div class="row footer-header">
-          <div class="col col-lg-6">
-            <div class="title">Singapore Government Design System</div>
-            <div class="description">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum
-              illo delectus laborum libero id ratione quibusdam tempora
-              assumenda quas, pariatur cum minus, aliquid molestiae et nisi
-              dolorem vitae molestias! Voluptate commodi aliquid iusto sequi sit
-              eligendi, quod numquam nihil consectetur eaque error earum
-              laudantium! Temporibus accusamus pariatur quod totam quia.
-            </div>
-          </div>
-        </div>
-        <div class="row footer-items">
-          <div class="col-lg-3">
-            <div class="title">Column 1</div>
-            <ul class="links">
-              <li><a href="">About Us</a></li>
-              <li><a href="">This is a super long link</a></li>
-              <li><a href="">Test</a></li>
-              <li><a href="">Test</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3">
-            <div class="title">Category 1</div>
-            <ul class="links">
-              <li><a href="">About Us</a></li>
-              <li><a href="">This is a super long link</a></li>
-              <li><a href="">Test</a></li>
-              <li><a href="">Test</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3">
-            <div class="title">Category 1</div>
-            <ul class="links">
-              <li><a href="">About Us</a></li>
-              <li><a href="">This is a super long link</a></li>
-              <li><a href="">Test</a></li>
-              <li><a href="">Test</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="row footer-contact-links">
-          <div class="col">
-            <div class="d-flex justify-content-lg-end">
-              <ul>
-                <li><a href="">Contact</a></li>
-                <li><a href="">Feedback</a></li>
-                <li>
-                  <a
-                    href="https://www.reach.gov.sg/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >Reach.gov.sg</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="footer-bottom">
-      <div class="container-fluid">
-        <div class="row footer-mandatory-links">
-          <div class="col">
-            <ul>
-              <li>
-                <a
-                  href="https://tech.gov.sg/report_vulnerability"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Report Vulnerability</a
-                >
-              </li>
-              <li><a href="">Privacy</a></li>
-              <li><a href="">Terms of use</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="row footer-copyrights">
-          <div class="col">
-            <div class="d-flex justify-content-lg-end">
-              © 2022 Government of Singapore. Last Updated 08 Feb 2022
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </footer>
+  {% include templates/footer.html %}
+
 </div>
 {% endcapture %}
 
