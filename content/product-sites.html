@@ -6,14 +6,10 @@ layout: layout-default
 
 <div class="directory-list">
     <ul>
-    {% for agency in site.data.product-sites %}
-        
-            {% for sites in agency.sites %}
-            <li>
-                <a href="{{sites.url}}" class="external">{{sites.url}}</a>
-            </li>
-            {% endfor %}
-        
-    {% endfor %}
+        {% for sites in site.data.product-sites %}
+        <li>
+            <a href="{{sites.url}}" class="external">{{sites.url}}</a>
+        </li>
+        {% endfor %}
     </ul>
 </div>
