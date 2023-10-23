@@ -36,11 +36,21 @@
                 figure.highlight{
                     margin-bottom: 0;
                 }
+                ul.sgds.nav-tabs {
+                    li.nav-item {
+                        button.nav-link {
+                            color: var(--sgds-gray-100);
+                        }
+                    }
+                }
+                
             }
 
             + .desc-bottom{
                 margin-top: $spacer;
             }
+
+            
         }
                 
     }

@@ -3,7 +3,6 @@ title: Accordion
 layout: layout-sidenav
 description: A dropdown mechanism that allow users to either show or hide related content.
 category: general
-react-link: ?path=/docs/components-accordion--basic
 github-link: true
 toc: true
 ---
@@ -104,8 +103,86 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
 </div>
 {% endcapture %}
 
-<div class="page-component">
+{% capture default-react-accordion %}
+<Accordion defaultActiveKey="0">
+    <AccordionItem eventKey="0">
+      <AccordionHeader>
+        Accordion Item #1
+      </AccordionHeader>
+      <AccordionBody>
+            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
+            plugin adds the appropriate classes that we use to style each element. These classes control the overall
+            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+            custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
+            within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </AccordionBody>
+    </AccordionItem>
+    <AccordionItem eventKey="1">
+      <AccordionHeader>
+        Accordion Item #2
+      </AccordionHeader>
+      <AccordionBody>
+            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
+            plugin adds the appropriate classes that we use to style each element. These classes control the overall
+            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+            custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
+            within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </AccordionBody>
+    </AccordionItem>
+    <AccordionItem eventKey="2">
+        <AccordionHeader>
+          Accordion Item #3
+        </AccordionHeader>
+        <AccordionBody>
+            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse
+            plugin adds the appropriate classes that we use to style each element. These classes control the overall
+            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+            custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
+            within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </AccordionBody>
+      </AccordionItem>
+  </Accordion>
+{% endcapture %}
 
+{% capture default-spider-accordion %}
+  <sgds-accordion>
+    <sgds-accordion-item>
+      <p class="m-0" slot="accordion-header">Accordion Item #1</p>
+      <span slot="accordion-content">
+        <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse
+            plugin adds the appropriate classes that we use to style each element. These classes control the overall
+            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+            custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
+            within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </AccordionBody>
+      </span>
+    </sgds-accordion-item>
+    <sgds-accordion-item>
+      <p class="m-0" slot="accordion-header">Accordion Item #2</p>
+      <span slot="accordion-content">
+        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
+            plugin adds the appropriate classes that we use to style each element. These classes control the overall
+            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+            custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
+            within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </AccordionBody>
+      </span>
+    </sgds-accordion-item>
+    <sgds-accordion-item open="">
+      <p class="m-0" slot="accordion-header">Accordion Item #3</p>
+      <span slot="accordion-content">
+        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse
+        plugin adds the appropriate classes that we use to style each element. These classes control the overall
+        appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+        custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
+        within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </span>
+    </sgds-accordion-item>
+  </sgds-accordion>
+{% endcapture %}
+
+
+<div class="page-component">
     {% include page-component/component-header.html %}
     <!-- Code Example Section -->
     <section name="section-examples">
@@ -116,6 +193,8 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
             compTitle="Default Accordion"
             compName="default-accordion"
             code=default-accordion
+            link-react="www.google.com"
+            link-spider=default-spider-accordion
             %}
         </div>
     </section>

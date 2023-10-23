@@ -6,34 +6,55 @@
 <div class="desc-top">{{include.compDescTop}}</div>
 {% endif %}
 <div class="sgds-example">{{include.code}}</div>
-<div
-    class="sgds accordion code-snippet no-toc-section"
-    id="example-{{include.compName}}"
->
+<div class="sgds accordion code-snippet no-toc-section" id="example-{{include.compName}}">
     <div class="accordion-item">
         <h2 class="accordion-header" id="heading-{{include.compName}}">
-            <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapse-{{include.compName}}"
-                aria-expanded="false"
-                aria-controls="collapse-{{include.compName}}"
-            >
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-{{include.compName}}" aria-expanded="false"
+                aria-controls="collapse-{{include.compName}}">
                 See Code
             </button>
         </h2>
-        <div
-            id="collapse-{{include.compName}}"
-            class="accordion-collapse collapse"
-            aria-labelledby="heading-{{include.compName}}"
-            data-bs-parent="#example-{{include.compName}}"
-        >
+        <div id="collapse-{{include.compName}}" class="accordion-collapse collapse"
+            aria-labelledby="heading-{{include.compName}}" data-bs-parent="#example-{{include.compName}}">
             <div class="accordion-body accordion-body-codesnippet">
                 <button class="sgds btn btn-outline-light btn-sm btn-copy">Copy</button>
-                {%- highlight html -%} {% if include.code-react %}
+                <ul class="sgds nav nav-tabs" id="codeTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="html-tab" data-bs-toggle="tab" data-bs-target="#html"
+                            type="button" role="tab" aria-controls="html" aria-selected="true">HTML</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="react-tab" data-bs-toggle="tab" data-bs-target="#react"
+                            type="button" role="tab" aria-controls="react" aria-selected="false">React</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="spider-tab" data-bs-toggle="tab" data-bs-target="#spider"
+                            type="button" role="tab" aria-controls="spider" aria-selected="false">Web Compoonent</button>
+                    </li>
+                </ul>
+                <div class="sgds tab-content" id="codeContent">
+                    
+                    <div class="tab-pane fade show active" id="html" role="tabpanel" aria-labelledby="html-tab">
+                        
+                        <div class="code-html">
+                            {%- highlight html -%}{{include.code}}{%- endhighlight -%}
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="react" role="tabpanel" aria-labelledby="react-tab">
+                        <div class="code-react">
+                           <a href="{{site.react-storybook}}/?path=/story/components-{{page.title | downcase}}" target="_blank">View it on React storybook</a>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="spider" role="tabpanel" aria-labelledby="spider-tab">
+                        <div class="code-spider">
+                            <a href="{{site.spider-storybook}}/?path=/story/components-{{page.title | downcase}}" target="_blank">View it on Web component storybook</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- {%- highlight html -%} {% if include.code-react %}
                 {{include.code-react}} {% elsif include.code %} {{include.code}}
-                {% endif %} {%- endhighlight -%}
+                {% endif %} {%- endhighlight -%} -->
             </div>
         </div>
     </div>
