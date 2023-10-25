@@ -8,9 +8,10 @@
     <meta property="og:description" content="The Singapore Government Design System was developed to empower teams in creating fast, accessible and mobile-friendly digital services.">
     <meta property="og:url" content="https://www.designsystem.tech.gov.sg">
     <title>SGDS | {{page.title}}</title>
+    {% assign latestVersion = site.data.npm-sgds-web-component-latest-metadata.objects[0].package.version %}
     <script 
     type="module" 
-    src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component/Masthead/index.js">
+    src="{{site.web-component-cdn}}@{{latestVersion}}/Masthead/index.js">
     </script>
     <script type="module" src="https://assets.developer.tech.gov.sg/bundled-scripts/dev-console-widget.bundle.js"></script>
     <link rel="stylesheet" href="/css/sgds.css">
