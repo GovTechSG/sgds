@@ -19,39 +19,58 @@
             aria-labelledby="heading-{{include.compName}}" data-bs-parent="#example-{{include.compName}}">
             <div class="accordion-body accordion-body-codesnippet">
                 <button class="sgds btn btn-outline-light btn-sm btn-copy">Copy</button>
-                <ul class="sgds nav nav-tabs" id="codeTabs" role="tablist">
+                <sgds-tab-group bodyclasses="undefined" tabsclasses="text-white">
+                    <sgds-tab slot="nav" panel="html">
+                        <span class="tab-label">HTML</span>
+                    </sgds-tab>
+                    <sgds-tab slot="nav" panel="react" active="">
+                        <span class="tab-label">React</span>
+                    </sgds-tab>
+                    <sgds-tab slot="nav" panel="spider">
+                        <span class="tab-label">Web Component</span>
+                    </sgds-tab>
+                    <sgds-tab-panel name="html">
+                        {%- highlight html -%}{{include.code}}{%- endhighlight -%}
+                    </sgds-tab-panel>
+                    <sgds-tab-panel name="react">
+                        <a class="code-others" href="{{site.react-storybook}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">View it on React storybook</a>
+                    </sgds-tab-panel>
+                    <sgds-tab-panel name="spider">
+                        <a class="code-others" href="{{site.react-storybook}}/?path=/story/components-{{include.storybook-spider | downcase}}" target="_blank">View it on Web component storybook</a>
+                    </sgds-tab-panel>
+                </sgds-tab-group>
+                <!-- <ul class="sgds nav nav-tabs" id="codeTabs-{{include.compName}}" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="html-tab" data-bs-toggle="tab" data-bs-target="#html"
-                            type="button" role="tab" aria-controls="html" aria-selected="true">HTML</button>
+                        <button class="nav-link active" id="html-{{include.compName}}" data-bs-toggle="tab" data-bs-target="#html-{{include.compName}}"
+                            type="button" role="tab" aria-controls="html-{{include.compName}}" aria-selected="true">HTML</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="react-tab" data-bs-toggle="tab" data-bs-target="#react"
-                            type="button" role="tab" aria-controls="react" aria-selected="false">React</button>
+                        <button class="nav-link" id="react-{{include.compName}}" data-bs-toggle="tab" data-bs-target="#react-{{include.compName}}"
+                            type="button" role="tab" aria-controls="react-{{include.compName}}" aria-selected="false">React</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="spider-tab" data-bs-toggle="tab" data-bs-target="#spider"
-                            type="button" role="tab" aria-controls="spider" aria-selected="false">Web Compoonent</button>
+                        <button class="nav-link" id="spider-{{include.compName}}" data-bs-toggle="tab" data-bs-target="#spider-{{include.compName}}"
+                            type="button" role="tab" aria-controls="spider-{{include.compName}}" aria-selected="false">Web Compoonent</button>
                     </li>
                 </ul>
                 <div class="sgds tab-content" id="codeContent">
                     
-                    <div class="tab-pane fade show active" id="html" role="tabpanel" aria-labelledby="html-tab">
-                        
+                    <div class="tab-pane fade show active" id="html-{{include.compName}}" role="tabpanel" aria-labelledby="html-{{include.compName}}">
                         <div class="code-html">
                             {%- highlight html -%}{{include.code}}{%- endhighlight -%}
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="react" role="tabpanel" aria-labelledby="react-tab">
+                    <div class="tab-pane fade" id="react-{{include.compName}}" role="tabpanel" aria-labelledby="react-{{include.compName}}">
                         <div class="code-react">
-                           <a href="{{site.react-storybook}}/?path=/story/components-{{page.title | downcase}}" target="_blank">View it on React storybook</a>
+                           <a href="{{site.react-storybook}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">View it on React storybook</a>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="spider" role="tabpanel" aria-labelledby="spider-tab">
+                    <div class="tab-pane fade" id="spider-{{include.compName}}" role="tabpanel" aria-labelledby="spider-{{include.compName}}">
                         <div class="code-spider">
-                            <a href="{{site.spider-storybook}}/?path=/story/components-{{page.title | downcase}}" target="_blank">View it on Web component storybook</a>
+                            <a href="{{site.spider-storybook}}/?path=/story/components-{{include.storybook-spider | downcase}}" target="_blank">View it on Web component storybook</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- {%- highlight html -%} {% if include.code-react %}
                 {{include.code-react}} {% elsif include.code %} {{include.code}}
                 {% endif %} {%- endhighlight -%} -->
