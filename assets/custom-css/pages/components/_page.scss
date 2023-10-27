@@ -52,6 +52,25 @@
 
             
         }
+
+        sgds{
+            &-tab{
+                --tab-theme-color: var(--sgds-primary-400);
+            }
+            &-tab-panel{
+                --tab-panel-padding-y: 0;
+            }
+        }
+        
+        .tab-label{
+             color: white !important;
+             font-weight: 400;
+        }
+        
+        
+        a.code-others{
+            color: var(--sgds-info-400)
+        }
                 
     }
 }
