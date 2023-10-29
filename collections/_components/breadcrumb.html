@@ -42,7 +42,12 @@ $breadcrumb-border-radius: null !default;
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Example</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compName="default-breadcrumb" code=default-breadcrumb %}
+                {% include page-component/component-code-snippet.html 
+                    compName="default-breadcrumb" 
+                    code=default-breadcrumb
+                    storybook-react="breadcrumb"
+                    storybook-spider="breadcrumb"
+                %}
             </div>
         </section>
 
