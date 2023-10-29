@@ -23,7 +23,8 @@ github-release-note: https://github.com/GovTechSG/sgds/releases
 #footer links
 report-vulnerability: "https://tech.gov.sg/report_vulnerability"
 contact-us: "https://form.gov.sg/forms/govtech/5bc440ac507956000fdbae91"
-feedback-form: "https://form.gov.sg/#!/forms/govtech/5bd12c6668dbe7000fff9ace"
+feedback-form: "https://form.gov.sg/5bd12c6668dbe7000fff9ace"
+
 bootstrap-version: 5.1.3
 
 #offcanvas link
