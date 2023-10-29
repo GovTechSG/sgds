@@ -3,7 +3,7 @@ title: Main Navigation
 layout: layout-sidenav
 description: This component is the primary means that your users will use to navigate through your portal. It includes horizontal navigation and branding to identify your site.
 category: required
-react-link: ?path=/docs/components-navigation-navbar--default-story
+react-link: ?path=/docs/components-navigation-navbar
 github-link: true
 toc: true
 ---
@@ -384,13 +384,22 @@ $navbar-toggler-transition: box-shadow .15s ease-in-out !default;
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Example</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Default main navigation" compName="default-main-navigation" code=default-main-navigation %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Default main navigation" 
+                    compName="default-main-navigation" 
+                    code=default-main-navigation 
+                    storybook-react="navigation-navbar"
+                    storybook-spider="mainnav"
+                %}
             </div>
             <div class="section-sub">
                 {% include page-component/component-code-snippet.html
                     compTitle="Always expanded"
                     compName="expanded-main-navigation"
                     code=expanded-main-navigation
+                    storybook-react="navigation-navbar--always-expanded"
+                    storybook-spider="mainnav"
                     compDescTop="For navbars that never collapse, add the <code>.navbar-expand</code> class on the navbar."
                 %}
             </div>
@@ -399,6 +408,8 @@ $navbar-toggler-transition: box-shadow .15s ease-in-out !default;
                     compTitle="Always collapsed"
                     compName="collapsed-main-navigation"
                     code=collapsed-main-navigation
+                    storybook-react="navigation-navbar--always-collapsed"
+                    storybook-spider="mainnav"
                     compDescTop="For navbars that always collapse, don't add any <code>.navbar-expand</code> class."
                 %}
             </div>
@@ -407,11 +418,20 @@ $navbar-toggler-transition: box-shadow .15s ease-in-out !default;
                     compTitle="Responsive behaviors"
                     compName="breakpoint-sm"
                     code=breakpoint-sm
+                    storybook-react="navigation-navbar--breakpoint-sm"
+                    storybook-spider="mainnav"
                     compDescTop="Navbars can use <code>.navbar-expand{-sm|-md|-lg|-xl|-xxl}</code> classes to determine when their content collapses behind a button."
                 %}
             </div>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Sticky top" compName="sticky-main-navigation" code=sticky-main-navigation %}
+                {% 
+                    include page-component/component-code-snippet.html
+                    compTitle="Sticky top"
+                    compName="sticky-main-navigation"
+                    code=sticky-main-navigation
+                    storybook-react="navigation-navbar--sticky-nav"
+                    storybook-spider="mainnav"
+                %}
             </div>
         </section>
 

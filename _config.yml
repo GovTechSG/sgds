@@ -14,7 +14,7 @@ request-component: "https://form.gov.sg/6136ea11658bea0012fc9e80"
 search_placeholder: "What are you looking for?"
 react-storybook-local: http://localhost:6006
 react-storybook: https://react.designsystem.tech.gov.sg
-spider-storybook: https://webcomponent.designsystem.tech.gov.sg
+spider-storybook: https://www.webcomponent.designsystem.tech.gov.sg
 
 #github links
 github-link: https://github.com/GovTechSG/sgds/tree/v2

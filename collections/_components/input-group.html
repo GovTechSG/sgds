@@ -3,7 +3,7 @@ title: Input Group
 layout: layout-sidenav
 description: Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs and custom select.
 category: general
-react-link: ?path=/docs/components-form-input-group--example
+react-link: ?path=/docs/components-form-input-group
 github-link: true
 toc: true
 published: false
@@ -83,7 +83,13 @@ $input-group-addon-border-color: $input-border-color !default;
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Example</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compName="input-group-examples" code=input-group-examples %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compName="input-group-examples" 
+                    code=input-group-examples 
+                    storybook-react="fileupload--basic"
+                    storybook-spider="fileupload"
+                %}
             </div>
         </section>
 

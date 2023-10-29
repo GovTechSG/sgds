@@ -3,8 +3,7 @@ title: File Upload
 layout: layout-sidenav
 description: Allows users to upload files of various sizes and formats
 category: general
-react-link: ?path=/docs/components-file-upload--default-story
-github-link: true
+react-link: ?path=/docs/components-file-upload
 toc: true
 ---
 
@@ -72,8 +71,14 @@ toc: true
   <section name="section-examples">
     <h2 class="title fw-bold" id="example">Example</h2>
     <div class="section-sub">
-      {% include page-component/component-code-snippet.html compTitle="Default"
-      compName="fileupload" code=fileupload %}
+      {%
+        include page-component/component-code-snippet.html
+        compTitle="Default"
+        compName="fileupload"
+        code=fileupload
+        storybook-react="fileupload--basic"
+        storybook-spider="fileupload"
+      %}
     </div>
     <!-- Add addtional section-sub for more variants -->
   </section>
