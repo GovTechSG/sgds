@@ -1,0 +1,95 @@
+---
+title: Spacing
+layout: layout-sidenav
+description: SGDS components follow an 8px spacing system. This allows us to create consistency across the user interface while decreasing design complexity. 
+toc: true
+---
+
+{% capture default-spacing %}
+
+{% endcapture %}
+
+
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Foundations Section -->
+        <section name="section-foundations">
+          <h2 class="title fw-bold" id="example">Spacing system</h2>
+          <div class="table-responsive-lg">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Example</th>
+                  <th scope="col">Spacing size</th>
+                  <th scope="col">Difference</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><div style="background-color: #ffc4e5; width: 8px; height: 32px;"></div></th>
+                  <td>8px</td>
+                  <td>+8px</td>
+                </tr>
+                <tr>
+                  <th scope="row"><div style="background-color: #ffc4e5; width: 16px; height: 32px;"></div></th>
+                  <td>16px</td>
+                  <td>+8px</td>
+                </tr>
+                <tr>
+                  <th scope="row"><div style="background-color: #ffc4e5; width: 24px; height: 32px;"></div></th>
+                  <td>24px</td>
+                  <td>+8px</td>
+                </tr>
+                <tr>
+                  <th scope="row"><div style="background-color: #ffc4e5; width: 32px; height: 32px;"></div></th>
+                  <td>32px</td>
+                  <td>+8px</td>
+                </tr>
+                <tr>
+                  <th scope="row"><div style="background-color: #ffc4e5; width: 40px; height: 32px;"></div></th>
+                  <td>40px</td>
+                  <td>+8px</td>
+                </tr>
+                <tr>
+                  <th scope="row"><div style="background-color: #ffc4e5; width: 48px; height: 32px;"></div></th>
+                  <td>48px</td>
+                  <td>+8px</td>
+                </tr>
+                <tr>
+                  <th scope="row"><div style="background-color: #ffc4e5; width: 56px; height: 32px;"></div></th>
+                  <td>56px</td>
+                  <td>+8px</td>
+                </tr>
+                <tr>
+                  <th scope="row"><div style="background-color: #ffc4e5; width: 64px; height: 32px;"></div></th>
+                  <td>64px</td>
+                  <td>+8px</td>
+                </tr>
+              </tbody>
+           </table>
+          </div>
+
+        </section>
+
+        <!-- Usability Guidelines Section -->
+    <section name="section-usability-guidelines">
+      <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+      <p>
+          <strong>Consistency</strong><br>
+          Keep spacing consistent throughout the website to create a clean and organized look. </p>
+      <p>
+          <strong>Spacing guide</strong><br>
+          Use less space within a component or components that are related, and more space to separate unrelated components.    </p>
+  </section>
+
+       <!-- Design token Section -->
+        <!--<section name="section-design-tokens">
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{table-design-tokens}}{%- endhighlight -%}
+        </section>-->
+</div>
