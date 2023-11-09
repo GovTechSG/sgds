@@ -1,6 +1,5 @@
 sgds-template-grid {
     background: #fafafa;
-
     &.with-sidenav {
         display: grid;
         grid-template-columns: 15rem minmax(min-content, 1fr);
@@ -8,14 +7,15 @@ sgds-template-grid {
         &.with-toc {
             grid-template-columns: 15rem minmax(min-content, 1fr) 15rem;
         }
-    }
-    @include media-breakpoint-down(lg) {
-        display: block;
-        sgds-aside-area,
-        aside {
-            display: none;
+        @include media-breakpoint-down(lg) {
+            display: block;
+            sgds-aside-area,
+            aside {
+                display: none;
+            }
         }
     }
+
 }
 
 sgds-aside-area {
