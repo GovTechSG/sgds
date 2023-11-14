@@ -34,13 +34,13 @@
                     </sgds-tab-panel>
                     <sgds-tab-panel name="react">
                         {% if jekyll.environment == "production" %}
-                            <a class="code-others" href="{{site.react-storybook}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">View it on React storybook</a>
+                            <a class="btn btn-primary" href="{{site.react-storybook}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">View it on React storybook</a>
                         {% else %}
-                            <a class="code-others" href="{{site.react-storybook-local}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">[**DEV**]View it on React storybook</a>
+                            <a class="btn btn-primary" href="{{site.react-storybook-local}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">[**DEV**]View it on React storybook</a>
                         {% endif %}
                     </sgds-tab-panel>
                     <sgds-tab-panel name="spider">
-                        <a class="code-others" href="{{site.spider-storybook}}/?path=/story/components-{{include.storybook-spider | downcase}}" target="_blank">View it on Web component storybook</a>
+                        <a class="btn btn-primary" href="{{site.spider-storybook}}/?path=/story/components-{{include.storybook-spider | downcase}}" target="_blank">View it on Web component storybook</a>
                     </sgds-tab-panel>
                 </sgds-tab-group>
             </div>
