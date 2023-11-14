@@ -3,6 +3,18 @@
 
 Thank you so much for contributing to @govtechsg/sgds. Please read this guideline before starting your development works. 
 
+## Contributing workflow 
+
+To contribute, please start off at the Issue section of our github repository. 
+
+1) Checkout our Issue section to search for similar bugs/issues/feature request that you encounter. Someone else might have already raised a similar issue.
+2) If your issue is not found, open an issue !
+3) Follow the instructions of the issue request form and answer them 
+4) Describe your bug / new feature request as detailed as possible. For new feature request, let us know your motivation behind your proposal and how you intend to build the feature. For bug fixes, let us know how you intend to fix the bug. 
+5) A SGDS admin will pick up on the discussion and notify you if the proposal is accepted 
+6) Once accepted, you can fork the repository and start working away !
+7) Raise a PR, tagging the issue number, and request a review from one of our admins. 
+
 ## Development
 
 ### Requirements
@@ -30,13 +42,13 @@ Test out the latest development build:
 
 ### Writing
 
-Stylings are written in scss only. To make changes to sgds stylings, edit files in `<rootDir>/sass/sgds-theme`. DO NOT edit files in `<rootDir>/sass/bootstrap` folder
+Stylings are written in scss only. To make changes to sgds stylings, edit files in `<rootDir>/sass`.
 
 ## Commit standard 
 
 This is a commitizen friendly repo. Adhere to the commit conventions of cz. 
 
-## Prepare for Release
+## Prepare for Release (for admin only)
 
 ##### Promotion to master
 
