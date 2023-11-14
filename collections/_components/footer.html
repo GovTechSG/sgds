@@ -3,7 +3,7 @@ title: Footer
 layout: layout-sidenav
 description: The footer contains supporting information for your service at the bottom of your website.<br>All .gov.sg digital services shall contain a Global Footer Bar across all pages.<br>The Global Footer Bar should include the name of the digital service, contact information, a privacy statement and the terms of use.
 category: mandatory
-react-link: ?path=/docs/components-footer--default-story
+react-link: ?path=/docs/components-footer
 github-link: true
 toc: true
 ---
@@ -140,8 +140,14 @@ toc: true
     <section name="section-examples">
         <h2 class="title fw-bold" id="example">Example</h2>
         <div class="section-sub">
-            {% include page-component/component-code-snippet.html compTitle="Default Footer" compName="default-footer"
-            code=default-footer %}
+            {%
+                include page-component/component-code-snippet.html
+                compTitle="Default Footer"
+                compName="default-footer"
+                code=default-footer 
+                storybook-react="footer--basic"
+                storybook-spider="footer"
+            %}
         </div>
     </section>
 

@@ -42,7 +42,12 @@ $breadcrumb-border-radius: null !default;
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Example</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compName="default-breadcrumb" code=default-breadcrumb %}
+                {% include page-component/component-code-snippet.html 
+                    compName="default-breadcrumb" 
+                    code=default-breadcrumb
+                    storybook-react="breadcrumb"
+                    storybook-spider="breadcrumb"
+                %}
             </div>
         </section>
 
@@ -63,7 +68,7 @@ $breadcrumb-border-radius: null !default;
                         <b>Seperator:</b> To give distinction between the breadcrumb items.
                     </li>
                     <li>
-                        <b>Item:</b> Title of the pages which let’s users know the path they took to reach the current page. Should always be linked.
+                        <b>Item:</b> Title of the pages which let's users know the path they took to reach the current page. Should always be linked.
                     </li>
                 </ol>
             </div>

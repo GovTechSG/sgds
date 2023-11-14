@@ -177,13 +177,34 @@ $nav-sgds-tabs-icon-padding: $spacer !default;
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Example</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Default tabs" compName="default-tabs" code=default-tabs %}
+              {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Default tabs" 
+                compName="default-tabs" 
+                code=default-tabs
+                storybook-react="tabs"
+                storybook-spider="tab" 
+              %}
             </div>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Basic toggle tabs" compName="basic-toggle-tabs" code=basic-toggle-tabs %}
+              {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Basic toggle tabs" 
+                compName="basic-toggle-tabs" 
+                code=basic-toggle-tabs
+                storybook-react="tabs--basic-toggle"
+                storybook-spider="tab" 
+              %}
             </div>
             <div class="section-sub">
-              {% include page-component/component-code-snippet.html compTitle="Info toggle tabs" compName="info-toggle-tabs" code=info-toggle-tabs %}
+              {% 
+                include page-component/component-code-snippet.html 
+                compTitle="Info toggle tabs" 
+                compName="info-toggle-tabs" 
+                code=info-toggle-tabs
+                storybook-react="tabs--info-toggle"
+                storybook-spider="tab" 
+              %}
           </div>
         </section>
 

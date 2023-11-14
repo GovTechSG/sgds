@@ -271,48 +271,35 @@ $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
           TLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id
           egestas libero. Proin sed erat sed lectus efficitur rutrum condimentum
           ac orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-          ut vehicula diam. Cras placerat placerat aliquam. Cras semper risus
-          sed libero feugiat, at luctus ipsum pellentesque. Vivamus posuere leo
-          dolor, vel ornare justo convallis quis. Quisque volutpat aliquet
-          maximus. Nulla nibh nibh, malesuada non cursus eu, mollis a tellus.
-          Etiam ante purus, tincidunt sed quam porta, semper tincidunt diam. In
-          hac habitasse platea dictumst. Proin auctor feugiat mollis. Quisque
-          sit amet sem elementum, pulvinar quam sit amet, tristique metus.
-          Suspendisse potenti. Aliquam blandit et diam vitae pulvinar. Sed
-          vestibulum eget sapien sit amet vestibulum. Lorem ipsum dolor sit
-          amet, consectetur adipiscing elit. Vivamus semper porta enim, sed
-          viverra eros auctor ac. Nulla consequat maximus lorem, condimentum
-          consequat mi. Maecenas malesuada volutpat consequat. Praesent tempor
-          in risus ut commodo. Proin ut velit blandit, tincidunt velit id,
-          finibus urna. Vestibulum a ligula tortor. Etiam id felis odio. Nunc
-          interdum placerat ante ut fermentum. Morbi vitae nisi a tellus
-          hendrerit imperdiet vel in elit. Nam eget enim ultricies urna
-          tristique vehicula. Pellentesque tempor nunc eu diam elementum, eget
-          egestas odio viverra. Integer in sapien urna. Cras rhoncus, neque eget
-          auctor ultricies, tortor tortor pharetra purus, vitae ullamcorper
-          tellus sem a justo. Ut egestas, felis quis vestibulum elementum, velit
-          purus varius massa, ac dignissim nibh libero at massa. Donec non
-          maximus est, a facilisis nulla. Phasellus a tortor dignissim, auctor
-          lorem eget, tristique urna. Aenean efficitur nunc sed sodales
-          scelerisque. Praesent maximus pharetra nisi, dignissim elementum
-          ligula volutpat ut. Vivamus sagittis tincidunt augue, vitae sagittis
-          ligula dictum eu. Vestibulum aliquam augue arcu, eget bibendum urna
-          posuere sed. Fusce vulputate velit sit amet enim tempor aliquam sed eu
-          ante. Nam sit amet dui ipsum. Etiam ac arcu lectus. Praesent pretium
-          neque erat, at placerat augue cursus id. Integer cursus erat sit amet
-          lectus tristique vehicula. Ut id justo quis leo malesuada porta non
-          vel ante. Maecenas eget nisl tellus. Vivamus porttitor in nisl
-          vulputate blandit. Suspendisse id imperdiet neque. Integer et
-          convallis eros. Mauris tellus ligula, placerat efficitur porttitor ut,
-          sagittis at enim. Sed pulvinar ipsum purus. Nullam eleifend
-          scelerisque mauris, vitae consequat enim eleifend non. Aliquam
-          suscipit egestas tellus nec aliquet. Morbi a bibendum lorem. Vivamus
-          magna sapien, viverra quis maximus sed, finibus vitae est. Donec
-          mollis pretium arcu, at sodales nisi pretium vel. Quisque a imperdiet
-          enim. Suspendisse feugiat sagittis quam, vitae feugiat lorem aliquam
-          sit amet. Duis convallis consequat elit sed bibendum. Sed aliquam
-          vehicula dolor vitae gravida. Nulla ut diam in nibh pharetra commodo
-          at in purus.
+          ut vehicula diam. Cras placerat placerat aliquam. 
+        </p>
+
+        <p>
+          TLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id
+          egestas libero. Proin sed erat sed lectus efficitur rutrum condimentum
+          ac orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+          ut vehicula diam. Cras placerat placerat aliquam. 
+        </p>
+
+        <p>
+          TLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id
+          egestas libero. Proin sed erat sed lectus efficitur rutrum condimentum
+          ac orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+          ut vehicula diam. Cras placerat placerat aliquam. 
+        </p>
+
+        <p>
+          TLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id
+          egestas libero. Proin sed erat sed lectus efficitur rutrum condimentum
+          ac orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+          ut vehicula diam. Cras placerat placerat aliquam. 
+        </p>
+
+        <p>
+          TLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id
+          egestas libero. Proin sed erat sed lectus efficitur rutrum condimentum
+          ac orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+          ut vehicula diam. Cras placerat placerat aliquam. 
         </p>
       </div>
       <div class="modal-footer">
@@ -383,28 +370,58 @@ $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
   <section name="section-examples">
     <h2 class="title fw-bold" id="example">Example</h2>
     <div class="section-sub">
-      {% include page-component/component-code-snippet.html compTitle="Default
-      Modal" compName="modal-default" code=modal-default %}
+      {% 
+        include page-component/component-code-snippet.html 
+        compTitle="Default Modal" 
+        compName="modal-default" 
+        code=modal-default 
+        storybook-react="modal"
+        storybook-spider="modal"
+      %}
     </div>
 
     <div class="section-sub">
-      {% include page-component/component-code-snippet.html compTitle="Default
-      modal demo" compName="modal-default-demo" code=modal-default-demo %}
+      {% 
+        include page-component/component-code-snippet.html 
+        compTitle="Launch modal" 
+        compName="modal-default-demo" 
+        code=modal-default-demo
+        storybook-react="modal"
+        storybook-spider="modal" 
+      %}
     </div>
 
     <div class="section-sub">
-      {% include page-component/component-code-snippet.html compTitle="Size"
-      compName="size-demo" code=size-demo %}
+      {% 
+        include page-component/component-code-snippet.html
+        compTitle="Size"
+        compName="size-demo"
+        code=size-demo 
+        storybook-react="modal--size-small"
+        storybook-spider="modal"
+      %}
     </div>
 
     <div class="section-sub">
-      {% include page-component/component-code-snippet.html
-      compTitle="Scrollable" compName="scrollable-demo" code=scrollable-demo %}
+      {% 
+        include page-component/component-code-snippet.html
+        compTitle="Scrollable" 
+        compName="scrollable-demo" 
+        code=scrollable-demo
+        storybook-react="modal--scroll"
+        storybook-spider="modal" 
+      %}
     </div>
 
     <div class="section-sub">
-      {% include page-component/component-code-snippet.html
-      compTitle="Fullscreen" compName="fullscreen-demo" code=fullscreen-demo %}
+      {% 
+        include page-component/component-code-snippet.html
+        compTitle="Fullscreen" 
+        compName="fullscreen-demo" 
+        code=fullscreen-demo 
+        storybook-react="modal--fullscreen"
+        storybook-spider="modal"
+      %}
     </div>
 
     <!-- Add addtional section-sub for more variants -->
@@ -468,7 +485,7 @@ $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
     <p class="fw-bold mb-0">Modals should be used:</p>
     <ul>
       <li>
-        When you want to interrupt a user’s current task to direct the user’s
+        When you want to interrupt a user's current task to direct the user's
         attention to something important. For example, confirming when a user
         wants to submit a form, user sign up and login, or highlighting an
         important event with an infographic upon entering your website.

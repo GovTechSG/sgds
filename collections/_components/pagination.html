@@ -100,13 +100,34 @@ $pagination-border-radius-lg: $border-radius-lg !default;
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Example</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="With texts and arrows" compName="with-texts-arrows" code=with-texts-arrows %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="With texts and arrows" 
+                    compName="with-texts-arrows" 
+                    code=with-texts-arrows
+                    storybook-react="pagination"
+                    storybook-spider="pagination"
+                %}
             </div>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="With texts only" compName="with-texts" code=with-texts %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="With texts only" 
+                    compName="with-texts" 
+                    code=with-texts
+                    storybook-react="pagination--direction-variant-text"
+                    storybook-spider="pagination"
+                %}
             </div>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="With arrows only" compName="with-arrows" code=with-arrows %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="With arrows only" 
+                    compName="with-arrows" 
+                    code=with-arrows 
+                    storybook-react="pagination--direction-variant-icon"
+                    storybook-spider="pagination"
+                %}
             </div>
         </section>
 

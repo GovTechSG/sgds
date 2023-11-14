@@ -67,17 +67,21 @@ $badge-border-radius: $border-radius !default;
         <div class="section-sub">
             {% 
                 include page-component/component-code-snippet.html 
-                compTitle="Default Badge" 
-                compName="badge-default" 
-                code=badge-default
+                compTitle="Wrapper Badge" 
+                compName="badge-wrapper" 
+                code=badge-wrapper
+                storybook-react="badge"
+                storybook-spider="badge"
             %}
         </div>
         <div class="section-sub">
             {% 
                 include page-component/component-code-snippet.html 
-                compTitle="Wrapper Badge" 
-                compName="badge-wrapper" 
-                code=badge-wrapper
+                compTitle="Default Badge" 
+                compName="badge-default" 
+                code=badge-default
+                storybook-react="badge--contextual-variations"
+                storybook-spider="badge"
             %}
         </div>
         <div class="section-sub">
@@ -86,6 +90,8 @@ $badge-border-radius: $border-radius !default;
                 compTitle="Button Badge" 
                 compName="badge-button" 
                 code=badge-button
+                storybook-react="badge--text-indicator"
+                storybook-spider="badge"
             %}
         </div>
         <!-- Add addtional section-sub for more variants -->

@@ -3,7 +3,8 @@ title: Alert
 layout: layout-sidenav
 description: Alerts provide short, timely, and relevant information for your users.
 category: general
-react-link: ?path=/docs/components-alert--default-story
+react-link: alert
+spider-link: alert
 github-link: true
 toc: true
 ---
@@ -129,6 +130,8 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
             compTitle="Default alert"
             compName="default-alert"
             code=default-alert
+            storybook-react="alert"
+            storybook-spider="alert"
             %}
         </div>
         <div class="section-sub">
@@ -137,6 +140,8 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
             compTitle="With link"
             compName="link-alert"
             code=link-alert
+            storybook-react="alert--links"
+            storybook-spider="alert"
             %}
         </div>
 
@@ -146,6 +151,8 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
             compTitle="Additional content"
             compName="additional-alert"
             code=additional-alert
+            storybook-react="alert--additional-content"
+            storybook-spider="alert"
             %}
         </div>
 
@@ -155,6 +162,8 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
             compTitle="Dismissable"
             compName="dismissable-alert"
             code=dismissable-alert
+            storybook-react="alert--dismissible"
+            storybook-spider="alert"
             %}
         </div>
         <!-- Add addtional section-sub for more variants -->
@@ -239,7 +248,7 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
         </p>
         <p>
             <b>Proper context</b><br>
-            Do not use alerts that are not related to a user’s goal.
+            Do not use alerts that are not related to a user's goal.
         </p>
     </section>
 
