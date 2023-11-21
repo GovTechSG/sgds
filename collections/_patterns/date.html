@@ -6,24 +6,24 @@ toc: true
 ---
 
 {% capture single-date-input %}
-<div class="sgds form-group">
+
     <label class="form-label" for="dateInput">Date of Birth</label>
     <span class="form-text">E.g 01 June 1980</span>
     <input class="form-control" type="text" id="dateInput" autocomplete="on" />
-</div>
+
 {% endcapture %}
 
 {% capture isolated-date-input %}
 <div class="sgds row">
-    <div class="col form-group">
+    <div class="col">
       <label class="form-label" for="day">DD</label>
       <input class="form-control" type="text" inputmode="numeric" pattern="[0-9]*" id="day" autocomplete="on" maxlength="2" onkeypress="return onlyNumberKey(event)" />
     </div>
-    <div class="col form-group">
+    <div class="col">
       <label class="form-label" for="month">MM</label>
       <input class="form-control" type="text" inputmode="numeric" pattern="[0-9]*" id="month" autocomplete="on" maxlength="2" onkeypress="return onlyNumberKey(event)"/>
     </div>
-     <div class="col form-group">
+     <div class="col">
       <label class="form-label" for="year">YYYY</label>
       <input class="form-control" type="text" inputmode="numeric" pattern="[0-9]*" id="year" autocomplete="on" maxlength="4" onkeypress="return onlyNumberKey(event)"/>
     </div>
