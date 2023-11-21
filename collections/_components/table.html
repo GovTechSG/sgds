@@ -1,10 +1,9 @@
 ---
 title: Table
 layout: layout-sidenav
-description: The use of a table is to organise a collections of data into readable rows 
+description: The use of a table is to organise a collections of data into readable rows
 category: general
-react-link: ?path=/docs/components-table--default-story
-github-link: true
+react-link: ?path=/docs/components-table
 toc: true
 ---
 
@@ -38,7 +37,7 @@ toc: true
         <td>@twitter</td>
       </tr>
     </tbody>
- </table>
+  </table>
 </div>
 {% endcapture %}
 
@@ -72,7 +71,7 @@ toc: true
         <td>@twitter</td>
       </tr>
     </tbody>
- </table>
+  </table>
 </div>
 {% endcapture %}
 
@@ -106,7 +105,7 @@ toc: true
         <td>@twitter</td>
       </tr>
     </tbody>
- </table>
+  </table>
 </div>
 {% endcapture %}
 
@@ -140,7 +139,7 @@ toc: true
         <td>@twitter</td>
       </tr>
     </tbody>
- </table>
+  </table>
 </div>
 {% endcapture %}
 
@@ -174,7 +173,7 @@ toc: true
         <td>@twitter</td>
       </tr>
     </tbody>
- </table>
+  </table>
 </div>
 {% endcapture %}
 
@@ -208,7 +207,7 @@ toc: true
         <td>@twitter</td>
       </tr>
     </tbody>
- </table>
+  </table>
 </div>
 {% endcapture %}
 
@@ -242,7 +241,7 @@ toc: true
         <td>@twitter</td>
       </tr>
     </tbody>
- </table>
+  </table>
 </div>
 {% endcapture %}
 
@@ -308,7 +307,7 @@ toc: true
         <td>@twitter</td>
       </tr>
     </tbody>
- </table>
+  </table>
 </div>
 {% endcapture %}
 
@@ -339,97 +338,152 @@ $table-group-separator-color: currentColor !default;
 $table-caption-color: $text-muted !default;
 $table-bg-scale: 100% !default;
 $table-variants: ("primary": shift-color($primary, $table-bg-scale),
-  "secondary": shift-color($secondary, $table-bg-scale),
-  "success": shift-color($success, $table-bg-scale),
-  "info": shift-color($info, $table-bg-scale),
-  "warning": shift-color($warning, $table-bg-scale),
-  "danger": shift-color($danger, $table-bg-scale),
-  "light": $light,
-  "dark": $dark,
+"secondary": shift-color($secondary, $table-bg-scale),
+"success": shift-color($success, $table-bg-scale),
+"info": shift-color($info, $table-bg-scale),
+"warning": shift-color($warning, $table-bg-scale),
+"danger": shift-color($danger, $table-bg-scale),
+"light": $light,
+"dark": $dark,
 ) !default;
 {% endcapture %}
 
 <!-- Page starts here -->
 <div class="page-component">
-        
-        <!-- Generated header from front end matters -->
-        {% include page-component/component-header.html %}
 
-        <!-- Example Section -->
-        <section name="section-examples">
-            <h2 class="title fw-bold" id="example">Example</h2>
-            <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Default table" compName="default-table" code=default-table %}
-            </div>
-            <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Small table" compName="small-table" code=small-table %}
-            </div>
-            <div class="section-sub">
-              {% include page-component/component-code-snippet.html compTitle="Striped body" compName="striped-table" code=striped-table %}
-            </div>
-            <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Bordered body" compName="bordered-table" code=bordered-table %}
-            </div>
-            <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Borderless body" compName="borderless-table" code=borderless-table %}
-            </div>
-            <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Hoverable body" compName="hoverable-table" code=hoverable-table %}
-            </div>
-            <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Dark table" compName="dark-table" code=dark-table %}
-            </div>
-            <div class="section-sub">
-              {% include page-component/component-code-snippet.html
-                compTitle="Responsive table"
-                compName="responsive-table"
-                code=responsive-table
-                compDescTop="Across every breakpoint, use <code>.table-responsive</code> for horizontally scrolling tables. Use <code>.table-responsive{-sm|-md|-lg|-xl|-xxl}</code> as needed to create responsive tables up to a particular breakpoint."
-              %}
-          </div>
-        </section>
+  <!-- Generated header from front end matters -->
+  {% include page-component/component-header.html %}
 
-        <!-- Usage guidelines Section -->
-        <section name="section-usage-guidelines">
-            <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Table should be used:</p>
-            <ul>
-                <li>When you want to show tabular information, such as statistics.</li>
-                <li>For displaying directories where content of similar nature and structure are grouped together.</li>
-            </ul>
-            <p class="fw-bold mb-0">Table should not be used:</p>
-            <ul>
-                <li>
-                    For complex data visualisation, you may want to use inforgraphics or bars and charts.
-                </li>
-                <li>
-                  For dashboard displays. Table data should follow a consistant structure with logical headers, rows and columns.
-              </li>
-            </ul>
-        </section>
+  <!-- Example Section -->
+  <section name="section-examples">
+    <h2 class="title fw-bold" id="example">Example</h2>
+    <div class="section-sub">
+      {%
+        include page-component/component-code-snippet.html
+        compTitle="Default table" 
+        compName="default-table"
+        code=default-table
+        storybook-react="table"
+        storybook-spider="table"
+      %}
+    </div>
+    <div class="section-sub">
+      {%
+        include page-component/component-code-snippet.html 
+        compTitle="Small table" 
+        compName="small-table" 
+        code=small-table
+        storybook-react="table--small-table"
+        storybook-spider="table"
+      %}
+    </div>
+    <div class="section-sub">
+      {%
+        include page-component/component-code-snippet.html 
+        compTitle="Striped body" 
+        compName="striped-table"
+        code=striped-table
+        storybook-react="table--striped-body"
+        storybook-spider="table"
+      %}
+    </div>
+    <div class="section-sub">
+      {% 
+        include page-component/component-code-snippet.html 
+        compTitle="Bordered body" 
+        compName="bordered-table"
+        code=bordered-table
+        storybook-react="table--bordered-body"
+        storybook-spider="table"
+      %}
+    </div>
+    <div class="section-sub">
+      {% 
+        include page-component/component-code-snippet.html 
+        compTitle="Borderless body" 
+        compName="borderless-table"
+        code=borderless-table
+        storybook-react="table--borderless-body"
+        storybook-spider="table"
+      %}
+    </div>
+    <div class="section-sub">
+      {% 
+        include page-component/component-code-snippet.html 
+        compTitle="Hoverable body" 
+        compName="hoverable-table"
+        code=hoverable-table
+        storybook-react="table--hovered-body"
+        storybook-spider="table"
+      %}
+    </div>
+    <div class="section-sub">
+      {% 
+        include page-component/component-code-snippet.html 
+        compTitle="Dark table" 
+        compName="dark-table" 
+        code=dark-table
+        storybook-react="table--dark-mode"
+        storybook-spider="table"
+      %}
+    </div>
+    <div class="section-sub">
+      {% 
+        include page-component/component-code-snippet.html
+        compTitle="Responsive table"
+        compName="responsive-table"
+        code=responsive-table
+        storybook-react="table--responsive"
+        storybook-spider="table"
+        compDescTop="Across every breakpoint, use <code>.table-responsive</code> for horizontally scrolling tables. Use
+        <code>.table-responsive{-sm|-md|-lg|-xl|-xxl}</code> as needed to create responsive tables up to a particular
+        breakpoint."
+      %}
+    </div>
+  </section>
 
-        <!-- Usability guidelines Section -->
-        <section name="section-usability-guidelines">
-            <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-            <p>
-                <b>Keep tables simple</b><br>
-                Tables are useful when displaying data and complex information. Try to use minimal visual styling to surface information easily.
-            </p>
+  <!-- Usage guidelines Section -->
+  <section name="section-usage-guidelines">
+    <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+    <p class="fw-bold mb-0">Table should be used:</p>
+    <ul>
+      <li>When you want to show tabular information, such as statistics.</li>
+      <li>For displaying directories where content of similar nature and structure are grouped together.</li>
+    </ul>
+    <p class="fw-bold mb-0">Table should not be used:</p>
+    <ul>
+      <li>
+        For complex data visualisation, you may want to use inforgraphics or bars and charts.
+      </li>
+      <li>
+        For dashboard displays. Table data should follow a consistant structure with logical headers, rows and columns.
+      </li>
+    </ul>
+  </section>
 
-            <p>
-              <b>Consider mobile applications</b><br>
-              As table rows can be long in nature, do consider if your content requires to be in a table.
-          </p>
+  <!-- Usability guidelines Section -->
+  <section name="section-usability-guidelines">
+    <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+    <p>
+      <b>Keep tables simple</b><br>
+      Tables are useful when displaying data and complex information. Try to use minimal visual styling to surface
+      information easily.
+    </p>
 
-          <p>
-            <b>Enable sorting</b><br>
-            Do enable sorting where applicable as this will help users move through content within the table.
-        </p>
-        </section>
+    <p>
+      <b>Consider mobile applications</b><br>
+      As table rows can be long in nature, do consider if your content requires to be in a table.
+    </p>
 
-        <!-- Design token Section -->
-        <section name="section-design-tokens">
-            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
-            {%- highlight sass -%}{{table-design-tokens}}{%- endhighlight -%}
-        </section>
+    <p>
+      <b>Enable sorting</b><br>
+      Do enable sorting where applicable as this will help users move through content within the table.
+    </p>
+  </section>
+
+  <!-- Design token Section -->
+  <section name="section-design-tokens">
+    <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+    {%- highlight sass -%}{{table-design-tokens}}{%- endhighlight -%}
+  </section>
 </div>

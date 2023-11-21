@@ -221,23 +221,19 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
                     include page-component/component-code-snippet.html 
                     compTitle="Base card" 
                     compName="base-card" 
-                    code=base-card 
+                    code=base-card
+                    storybook-react="card-informational-card--basic"
+                    storybook-spider="card" 
                 %}
             </div>
-           <!--  <div class="section-sub">
-                {% 
-                    include page-component/component-code-snippet.html 
-                    compTitle="Card with image" 
-                    compName="card-with-image" 
-                    code=card-with-image 
-                %}
-            </div> -->
             <div class="section-sub">
                 {% 
                     include page-component/component-code-snippet.html 
                     compTitle="Card with Call To Action (CTA)" 
                     compName="card-with-cta" 
-                    code=card-with-cta 
+                    code=card-with-cta
+                    storybook-react="card-informational-card--call-to-action"
+                    storybook-spider="card" 
                 %}
             </div>
             <div class="section-sub">
@@ -245,7 +241,9 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
                     include page-component/component-code-snippet.html 
                     compTitle="Informational card" 
                     compName="informational-card" 
-                    code=informational-card 
+                    code=informational-card
+                    storybook-react="card-informational-card--informational"
+                    storybook-spider="badge"
                 %}
             </div>
             <div class="section-sub">
@@ -253,7 +251,9 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
                     include page-component/component-code-snippet.html 
                     compTitle="Customise card sub-components' HTML Elements" 
                     compName="customise-card" 
-                    code=customise-card 
+                    code=customise-card
+                    storybook-react="card-informational-card--customise-sub-components-html-elements"
+                    storybook-spider="card" 
                 %}
             </div>
 
@@ -262,7 +262,9 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
                     include page-component/component-code-snippet.html 
                     compTitle="Stretched link" 
                     compName="stretched-link-card" 
-                    code=stretched-link-card 
+                    code=stretched-link-card
+                    storybook-react="card-informational-card--stretched-link"
+                    storybook-spider="card" 
                 %}
             </div>
 
@@ -271,15 +273,31 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
                     include page-component/component-code-snippet.html 
                     compTitle="Card group" 
                     compName="card-group" 
-                    code=card-group 
+                    code=card-group
+                    storybook-react="card-informational-card--grouped-cards"
+                    storybook-spider="card" 
                 %}
             </div>
 
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Action card" compName="card-action" code=card-action %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Action card" 
+                    compName="card-action" 
+                    code=card-action 
+                    storybook-react="card-action-card-selectable--default-selectable-card"
+                    storybook-spider="card" 
+                %}
             </div>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Quantity toggle card" compName="card-quantity" code=card-quantity %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Quantity toggle card" 
+                    compName="card-quantity" 
+                    code=card-quantity 
+                    storybook-react="card-action-card-customize--quantity-toggle-card-using-variant"
+                    storybook-spider="card" 
+                %}
             </div>
         </section>
 

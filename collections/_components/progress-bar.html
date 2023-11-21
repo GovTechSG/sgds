@@ -86,19 +86,54 @@ $progress-bar-transition: width .6s ease !default;
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Example</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Default progress bar" compName="default-progress-bar" code=default-progress-bar %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Default progress bar" 
+                    compName="default-progress-bar" 
+                    code=default-progress-bar 
+                    storybook-react="progress-bar"
+                    storybook-spider="progress"
+                %}
             </div>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="With label" compName="with-label" code=with-label %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="With label" 
+                    compName="with-label" 
+                    code=with-label 
+                    storybook-react="progress-bar--with-label"
+                    storybook-spider="progress"
+                %}
             </div>
             <div class="section-sub">
-              {% include page-component/component-code-snippet.html compTitle="Striped progress bar" compName="striped-progress-bar" code=striped-progress-bar %}
+              {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Striped progress bar" 
+                    compName="striped-progress-bar" 
+                    code=striped-progress-bar 
+                    storybook-react="progress-bar--striped"
+                    storybook-spider="progress"
+            %}
             </div>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Animated progress bar" compName="animated-progress-bar" code=animated-progress-bar %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Animated progress bar" 
+                    compName="animated-progress-bar" 
+                    code=animated-progress-bar
+                    storybook-react="progress-bar--animated"
+                    storybook-spider="progress"
+                    %}
               </div>
               <div class="section-sub">
-                {% include page-component/component-code-snippet.html compTitle="Stacked progress bar" compName="stacked-progress-bar" code=stacked-progress-bar %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compTitle="Stacked progress bar" 
+                    compName="stacked-progress-bar"
+                    code=stacked-progress-bar 
+                    storybook-react="progress-bar--stacked"
+                    storybook-spider="progress"
+                %}
               </div>
         </section>
 

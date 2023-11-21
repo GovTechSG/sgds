@@ -50,7 +50,13 @@ $steps-divider-height: .25rem !default;
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Examples</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compName="stepper-examples" code=stepper-examples %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compName="stepper-examples" 
+                    code=stepper-examples 
+                    storybook-react="stepper"
+                    storybook-spider="stepper"
+                %}
             </div>
         </section>
 
