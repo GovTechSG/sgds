@@ -9,21 +9,15 @@ toc: true
 ---
 
 {% capture default-date-picker %}
-
-<sgds-datepicker></sgds-datepicker>
-{% endcapture %}
-
-{% capture default-date-picker-code %}
 {% assign latestVersion = site.data.npm-sgds-web-component-latest-metadata.objects[0].package.version %}
 <head>
     <script type="module" src="{{site.web-component-cdn}}@{{latestVersion}}/components/Datepicker/index.umd.js">
     </script>
 </head>
 <body>
-    <sgds-datepicker>
-    </sgds-datepicker>
+<sgds-datepicker></sgds-datepicker>
 </body>
-  {% endcapture %}
+{% endcapture %}
 
 <div class="page-component">
     {% include page-component/component-header.html %}
