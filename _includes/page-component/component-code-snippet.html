@@ -24,25 +24,34 @@
                     <sgds-tab slot="nav" panel="html">
                         <span class="tab-label">HTML</span>
                     </sgds-tab>
-                    <sgds-tab slot="nav" panel="react" active="">
+                    {% if include.storybook-react != empty %}
+                    <sgds-tab slot="nav" panel="react">
                         <span class="tab-label">React</span>
                     </sgds-tab>
+                    {% endif %}
+                    {% if include.storybook-spider != empty %}
                     <sgds-tab slot="nav" panel="spider">
                         <span class="tab-label">Web Component</span>
                     </sgds-tab>
+                    {% endif %}
                     <sgds-tab-panel name="html">
                         {%- highlight html -%}{{include.code}}{%- endhighlight -%}
                     </sgds-tab-panel>
+
+                    {% if include.storybook-react != empty %}
                     <sgds-tab-panel name="react">
                         {% if jekyll.environment == "production" %}
-                            <a class="btn btn-primary" href="{{site.react-storybook}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">View it on React storybook</a>
+                            <a class="btn btn-primary" href="{{site.react-storybook}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">View on React storybook</a>
                         {% else %}
-                            <a class="btn btn-primary" href="{{site.react-storybook-local}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">[**DEV**]View it on React storybook</a>
+                            <a class="btn btn-primary" href="{{site.react-storybook-local}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">[**DEV**]View on React storybook</a>
                         {% endif %}
                     </sgds-tab-panel>
+                    {% endif %}
+                    {% if include.storybook-spider != empty %}
                     <sgds-tab-panel name="spider">
-                        <a class="btn btn-primary" href="{{site.spider-storybook}}/?path=/story/components-{{include.storybook-spider | downcase}}" target="_blank">View it on Web component storybook</a>
+                        <a class="btn btn-primary" href="{{site.spider-storybook}}/?path=/story/components-{{include.storybook-spider | downcase}}" target="_blank">View on Web component storybook</a>
                     </sgds-tab-panel>
+                    {% endif %}
                 </sgds-tab-group>
                 {% else %}
                 {%- highlight html -%}{{include.code}}{%- endhighlight -%}
