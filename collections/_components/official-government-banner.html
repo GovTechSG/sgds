@@ -3,15 +3,16 @@ title: Official Government Banner
 layout: layout-sidenav
 description: All .gov.sg digital services shall adopt The Official Government Banner for every page in the digital service and be placed at the top of the page.
 category: mandatory
-github-link: true
+github: sgds-web-component
 toc: true
 ---
 
 {% capture masthead %}
 <head>
-    <script
-        type="module"
-        src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component/Masthead/index.js">
+    {% assign latestVersion = site.data.npm-sgds-web-component-latest-metadata.objects[0].package.version %}
+    <script 
+    type="module" 
+    src="{{site.web-component-cdn}}@{{latestVersion}}/components/Masthead/index.umd.js">
     </script>
 </head>
 <body>
