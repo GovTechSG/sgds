@@ -9,6 +9,7 @@ _site
 dist
 .DS_Store
 node_modules
+js
 
 /scripts
 /apps/build
@@ -28,3 +29,6 @@ node_modules
 /*.js
 /*.js.map
 .DS_Store
+
+/portal/css
+/portal/assets/img

@@ -1,0 +1,14 @@
+{
+  "name": "portal",
+  "version": "2.0.0",
+  "description": "Singapore Government Design System portal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tey Liang Tai",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}
