@@ -1,4 +1,7 @@
 {% include breadcrumb.html %}
+{% if page.notice %}
+{% include notice.html %}
+{% endif %}
 <!-- Section Component header -->
 <section name="section-component-header">
 
@@ -26,7 +29,8 @@
             {% case page.github %}
             {% when 'sgds-web-component' %}
             <div>
-                <i class="bi bi-github"></i> <a href="{{site.github-web-component}}" target="_blank">View it on Github</a>
+                <i class="bi bi-github"></i> <a href="{{site.github-web-component}}" target="_blank">View it on
+                    Github</a>
             </div>
             {% when 'sgds' %}
             <div>
