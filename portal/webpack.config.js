@@ -5,7 +5,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    "assets/js/tooltip.bundle": './js/tooltip.js',
+    "assets/js/portal-polyfills.bundle": './js/portal-polyfills.js',
   },
   devtool: 'source-map',
   mode: "development",
