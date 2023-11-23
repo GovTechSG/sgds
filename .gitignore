@@ -21,3 +21,4 @@ node_modules
 /portal/css
 /portal/assets/js/**/*.js
 /portal/assets/js/**/*.js.map
+/portal/sass

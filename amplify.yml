@@ -3,6 +3,10 @@ frontend:
   phases:
     preBuild:
       commands:
+        - npm ci
+        - npm run install
+        - (cd lib && npm run build)
+        - cd portal
         - rvm get stable && rvm install 3.0.0
         - rvm use 3.0.0
         - gem install bundler -v '=2.3.13'
@@ -20,7 +24,7 @@ frontend:
           fi
 
   artifacts:
-    baseDirectory: _site
+    baseDirectory: portal/_site
     files:
       - '**/*'
   cache:
