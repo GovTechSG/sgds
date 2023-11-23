@@ -4,7 +4,7 @@
   "description": "Singapore Government Design System portal",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "bundle exec jekyll serve"
   },
   "author": "Tey Liang Tai",
   "license": "MIT",

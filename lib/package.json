@@ -17,7 +17,7 @@
     "build": "npm run build:site && bundle exec jekyll build",
     "build:lib": "rm -rf ./css && webpack --mode=production",
     "build:site": "npm run build:lib",
-    "dev": "concurrently npm:dev:static npm:dev:jekyll",
+    "dev": "webpack --watch",
     "dev:jekyll": "bundle exec jekyll serve",
     "dev:static": "webpack --watch",
     "packagedownloads": "./build/packagedownloads.sh",
