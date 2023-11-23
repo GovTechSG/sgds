@@ -7,12 +7,6 @@ frontend:
         - npm run install
         - (cd lib && npm run build)
         - cd portal
-        - rvm get stable && rvm install 3.0.0
-        - rvm use 3.0.0
-        - gem install bundler -v '=2.3.13'
-        - bundle update --bundler
-        - bundle install
-        - npm ci
     build:
       commands:
         - |
