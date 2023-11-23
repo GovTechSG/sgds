@@ -4,30 +4,17 @@ _site
 .jekyll-metadata
 .idea
 .vscode
-.images/
 *.tar.gz
-dist
 .DS_Store
 node_modules
-js
 
-/scripts
-/apps/build
+
 # Dont commit compressed images
-/assets/img
 
 # /css, /fonts and /js are distribution files
 
-/fonts
-/js
-/contents/testing
-/assets/js/*.js
-/assets/js/*.js.map
-/assets/*.js
-/assets/*.js.map
-/css
-/*.js
-/*.js.map
+/lib/*.js
+/lib/*.js.map
 .DS_Store
 
 /portal/css
