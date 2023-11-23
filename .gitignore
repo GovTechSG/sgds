@@ -13,9 +13,11 @@ node_modules
 
 # /css, /fonts and /js are distribution files
 
-/lib/*.js
-/lib/*.js.map
+/lib/**/*.js
+/lib/**/*.js.map
+/lib/css/
 .DS_Store
 
 /portal/css
-/lib/css/
+/portal/assets/js/**/*.js
+/portal/assets/js/**/*.js.map

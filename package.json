@@ -13,7 +13,7 @@
       "prepare": "husky install",
       "portal:install": "cd portal && npm i && bundle install",
       "lib:install": "cd lib && npm i",
-      "install": "concurrently \"npm run lib:install\" \"npm run portal:install\""
+      " ": "concurrently \"npm run lib:install\" \"npm run portal:install\""
     },
     "devDependencies": {
       "@commitlint/cli": "^17.0.3",

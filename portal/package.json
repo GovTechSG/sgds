@@ -4,8 +4,10 @@
   "description": "Singapore Government Design System portal",
   "main": "index.js",
   "scripts": {
-    "dev": "bundle exec jekyll serve",
-    "build": "bundle exec jekyll build"
+    "dev": "webpack && bundle exec jekyll serve",
+    "build:jekyll": "bundle exec jekyll build",
+    "build:js": "webpack --mode=production",
+    "build": "npm run build:js && npm run build:jekyll"
   },
   "author": "Tey Liang Tai",
   "license": "MIT",
