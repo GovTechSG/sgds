@@ -3,10 +3,10 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
-        - npm run install
-        - (cd lib && npm run build)
+        - (cd lib && npm ci && npm run build)
         - cd portal
+        - npm ci 
+        - bundle install
     build:
       commands:
         - |
