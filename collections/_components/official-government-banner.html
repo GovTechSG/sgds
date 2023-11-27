@@ -46,7 +46,13 @@ toc: true
         <section name="section-examples">
             <h2 class="title fw-bold" id="example">Example</h2>
             <div class="section-sub">
-                {% include page-component/component-code-snippet.html compName="masthead" code=masthead %}
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compName="masthead" 
+                    code=masthead 
+                    storybook-react=""
+                    storybook-spider="masthead"
+                %}
             </div>
         </section>
 
