@@ -9,12 +9,35 @@ toc: true
 ---
 
 {% capture default-combo-box %}
-<iframe
-  src="https://react.designsystem.tech.gov.sg/iframe.html?singleStory=true&args=&id=components-combobox--default-story&viewMode=story&full=1&shortcuts=false&singleStory=true"
-  width="100%"
-  height="400"
-  bgColor="transparent"
-></iframe>
+<head>
+  {% assign latestVersion = site.data.npm-sgds-web-component-latest-metadata.objects[0].package.version %}
+  <script 
+  type="module" 
+  src="{{site.web-component-cdn}}@{{latestVersion}}/components/ComboBox/index.umd.js">
+  </script>
+</head>
+<body>
+  <div style="height:100px;">
+    <sgds-combo-box 
+      label="Items" 
+      hinttext="" 
+      name="undefined" 
+      placeholder="ComboBox" 
+      value="" 
+      close="default"
+      menulist="[
+      &quot;Apple&quot;,
+      &quot;Pear&quot;,
+      &quot;Durian&quot;]"
+    >
+    </sgds-combo-box>
+  </div>
+  <!-- Add fluid attribute for full width banner -->
+  <!-- 
+      <sgds-masthead fluid></sgds-masthead> 
+  -->
+</body>
+
 {% endcapture %}
 
 {% capture default-combo-box-code %}
@@ -56,7 +79,8 @@ export const ComboboxComponent = () => {
         compName="default-combo-box" 
         compTitle="Default combo box"
         code=default-combo-box 
-        code-react=default-combo-box-code 
+        storybook-react="combobox"
+        storybook-spider="combobox"
 %}
     </div>
   </section>
