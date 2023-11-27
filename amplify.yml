@@ -12,12 +12,12 @@ frontend:
         - cd ../portal
         - pwd
         - npm ci
-        - bundle update --bundler
-        - bundle install
     build:
       commands:
         - cd ../lib && npm run build
         - cd ../portal
+        - bundle update --bundler
+        - bundle install
         - ls -a
         - pwd
         - |
