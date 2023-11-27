@@ -1,31 +1,45 @@
-version: 1.0
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - rvm get stable && rvm install 3.0.0
-        - rvm use 3.0.0
-        - gem install bundler -v '=2.3.13'
-        - npm ci 
-        - npm run install
-    build:
-      commands:
-        - cd lib 
-        - npm run build 
-        - pwd
-        - cd ../portal
-        - pwd
-        - |
-          if [ "${AWS_BRANCH}" = "v2" ]
-          then 
-            JEKYLL_ENV=production npm run build
-          else
-            npm run build 
-          fi
+version: 1
+applications:
+  - appRoot: lib
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm ci 
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        files:
+            - '**/*'
+        baseDirectory: /
+      cache:
+        paths: []
 
-  artifacts:
-    baseDirectory: portal/_site
-    files:
-      - '**/*'
-  cache:
-    paths: [] 
+  - appRoot: portal
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - rvm get stable && rvm install 3.0.0
+            - rvm use 3.0.0
+            - gem install bundler -v '=2.3.13'
+            - bundle update --bundler
+            - bundle install
+            - npm ci
+        build:
+          commands:
+            - |
+              if [ "${AWS_BRANCH}" = "v2" ]
+              then 
+                JEKYLL_ENV=production npm run build
+              else
+                npm run build 
+              fi
+              
+      artifacts:
+        files:
+            - '**/*'
+        baseDirectory: /
+      cache:
+        paths: []
