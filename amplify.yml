@@ -8,12 +8,12 @@ frontend:
         - npm ci 
         - cd ../portal
         - pwd
+        - npm ci
         - rvm get stable && rvm install 3.0.0
         - rvm use 3.0.0
         - gem install bundler -v '=2.3.13'
         - bundle update --bundler
         - bundle install
-        - npm ci
     build:
       commands:
         - cd ../lib && npm run build
