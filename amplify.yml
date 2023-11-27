@@ -9,17 +9,17 @@ frontend:
         - cd ../portal
         - pwd
         - npm ci
+    build:
+      commands:
+        - cd ../lib && npm run build
+        - cd ../portal
         - rvm get stable && rvm install 3.0.0
         - rvm use 3.0.0
         - gem install bundler -v '=2.3.13'
         - bundle update --bundler
         - bundle install
-    build:
-      commands:
-        - cd ../lib && npm run build
-        - cd ../portal
-        - ls -a
         - pwd
+        - ls -a
         - |
           if [ "${AWS_BRANCH}" = "v2" ]
           then 
