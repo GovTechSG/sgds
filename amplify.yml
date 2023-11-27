@@ -9,9 +9,11 @@ frontend:
         - pwd
     build:
       commands:
-        - (cd lib && npm run build)
+        - cd lib
         - pwd
-        - cd portal
+        - npm run build
+        - pwd
+        - cd ../portal
         - pwd
         - |
           if [ "${AWS_BRANCH}" = "v2" ]
