@@ -3,20 +3,22 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd lib 
-        - npm ci  
-        - npm run build
-        - cd ../portal
-        - npm ci 
-        - bundle install
+        - (cd lib && npm ci)
+        - pwd
+        - (cd portal && npm ci && bundle install)
+        - pwd
     build:
       commands:
+        - (cd lib && npm run build)
+        - pwd
+        - cd portal
+        - pwd
         - |
           if [ "${AWS_BRANCH}" = "v2" ]
           then 
             JEKYLL_ENV=production npm run build
           else
-            npm run build
+            npm run build 
           fi
 
   artifacts:
