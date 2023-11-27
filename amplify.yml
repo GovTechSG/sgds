@@ -3,23 +3,23 @@ frontend:
   phases:
     preBuild:
       commands:
+        - rvm get stable && rvm install 3.0.0
+        - rvm use 3.0.0
+        - gem install bundler -v '=2.3.13'
         - cd lib 
         - pwd
         - npm ci 
         - cd ../portal
         - pwd
         - npm ci
+        - bundle update --bundler
+        - bundle install
     build:
       commands:
         - cd ../lib && npm run build
         - cd ../portal
-        - rvm get stable && rvm install 3.0.0
-        - rvm use 3.0.0
-        - gem install bundler -v '=2.3.13'
-        - bundle update --bundler
-        - bundle install
-        - pwd
         - ls -a
+        - pwd
         - |
           if [ "${AWS_BRANCH}" = "v2" ]
           then 
