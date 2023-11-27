@@ -6,9 +6,7 @@ frontend:
         # - rvm get stable && rvm install 3.0.0
         # - rvm use 3.0.0
         # - gem install bundler -v '=2.3.13'
-        - cd lib 
-        - pwd
-        - npm ci 
+        - npm run lib:install
         # - cd ../portal
         # - pwd
         # - npm ci
@@ -20,6 +18,7 @@ frontend:
         # - bundle install
         # - ls -a
         # - pwd
+        - cd lib
         - |
           if [ "${AWS_BRANCH}" = "v2" ]
           then 
@@ -30,7 +29,7 @@ frontend:
         - ls -a
 
   artifacts:
-    baseDirectory: portal/_site
+    baseDirectory: lib
     files:
       - '**/*'
   cache:
