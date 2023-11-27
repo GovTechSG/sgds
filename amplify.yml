@@ -5,20 +5,12 @@ frontend:
       commands:
         - (cd lib && npm ci)
         - pwd
-        - cd portal 
-        - npm ci
-        - rvm get stable && rvm install 3.0.0
-        - rvm use 3.0.0
-        - gem install bundler -v '=2.3.13'
-        - bundle install
-        - pwd
+        - (cd portal && npm ci)
     build:
       commands:
-        - cd ../lib
+        - (cd lib && npm run build)
         - pwd
-        - npm run build
-        - pwd
-        - cd ../portal
+        - cd /portal
         - pwd
         - |
           if [ "${AWS_BRANCH}" = "v2" ]
