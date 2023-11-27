@@ -3,11 +3,12 @@ applications:
   - appRoot: lib
     frontend:
       phases:
-        preBuild:
-          commands:
-            - npm ci 
+        # preBuild:
+        #   commands:
+        #     - npm ci 
         build:
           commands:
+            - npm ci --verbose
             - npm run build
       artifacts:
         files:
@@ -19,16 +20,17 @@ applications:
   - appRoot: portal
     frontend:
       phases:
-        preBuild:
-          commands:
-            - rvm get stable && rvm install 3.0.0
-            - rvm use 3.0.0
-            - gem install bundler -v '=2.3.13'
-            - bundle update --bundler
-            - bundle install
-            - npm ci
+        # preBuild:
+        #   commands:
+        #     - rvm get stable && rvm install 3.0.0
+        #     - rvm use 3.0.0
+        #     - gem install bundler -v '=2.3.13'
+        #     - bundle update --bundler
+        #     - bundle install
+        #     - npm ci
         build:
           commands:
+            - npm ci --verbose
             - |
               if [ "${AWS_BRANCH}" = "v2" ]
               then 
