@@ -6,14 +6,14 @@ frontend:
         # - rvm get stable && rvm install 3.0.0
         # - rvm use 3.0.0
         # - gem install bundler -v '=2.3.13'
-        - cd lib && npm ci
+        # - cd lib && npm ci
         # - cd ../portal
         # - pwd
-        # - npm ci
+        - npm ci
     build:
       commands:
         # - cd ../lib && npm run build
-        # - cd ../portal
+        - npm run build
         # - bundle update --bundler
         # - bundle install
         # - ls -a

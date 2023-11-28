@@ -25,7 +25,8 @@
     "mini-css-extract-plugin": "^2.6.0",
     "sass": "~1.49.9",
     "sass-loader": "^12.6.0",
-    "webpack": "^5.70.0"
+    "webpack": "^5.70.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "bootstrap": "5.1.3"
