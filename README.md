@@ -62,9 +62,6 @@ import * as bootstrap from 'bootstrap';
 ```
 
 ***
-## Frontend frameworks
-
-Usage with frameworks such as React, Vue or Angular is discouraged since they manipulate the DOM in their own environments. Framework-specific implementations are in early development and can be found at [sgds-react](https://github.com/GovTechSG/sgds-govtech-react)
 
 <hr>
 
