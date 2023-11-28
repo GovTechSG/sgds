@@ -16,7 +16,8 @@
       "install": "concurrently \"npm run lib:install\" \"npm run portal:install\"",
       "lib:build": "cd lib && npm run build",
       "portal:build": "cd portal && npm run build",
-      "build": "npm run lib:build && npm run portal:build"
+      "build": "npm run lib:build && npm run portal:build",
+      "portal:dev": "cd portal && npm run dev"
     },
     "devDependencies": {
       "@commitlint/cli": "^17.0.3",
