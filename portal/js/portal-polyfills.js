@@ -1,5 +1,11 @@
 import _ from 'lodash';
+import * as bootstrap from 'bootstrap';
 
+// For Components Tooltip page , required to trigger tooltip
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+// For Portal navbar, code snippet copy button and tabs
 const navbarToggler = document.querySelector(".navbar-toggler");
 const navbarCollapse = document.querySelector(".navbar-collapse");
 document.addEventListener("devConsoleWidgetToggle", function (event) {
