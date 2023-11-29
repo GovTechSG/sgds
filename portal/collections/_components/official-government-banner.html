@@ -1,0 +1,100 @@
+---
+title: Official Government Banner
+layout: layout-sidenav
+description: All .gov.sg digital services shall adopt The Official Government Banner for every page in the digital service and be placed at the top of the page.
+category: mandatory
+github: sgds-web-component
+toc: true
+---
+
+{% capture masthead %}
+<head>
+    {% assign latestVersion = site.data.npm-sgds-web-component-latest-metadata.objects[0].package.version %}
+    <script 
+    type="module" 
+    src="{{site.web-component-cdn}}@{{latestVersion}}/components/Masthead/index.umd.js">
+    </script>
+</head>
+<body>
+    <sgds-masthead></sgds-masthead>
+    <!-- Add fluid attribute for full width banner -->
+    <!-- 
+        <sgds-masthead fluid></sgds-masthead> 
+    -->
+</body>
+{% endcapture %}
+
+{% capture masthead-design-tokens %}
+<!-- Sets font family for masthead -->
+--masthead-font-family
+
+<!-- Sets the padding left and right for viewport width 1024px and below -->
+--masthead-mobile-padding-x	  
+
+<!-- Sets the font size for viewport width 1024px and below -->
+--masthead-mobile-font-size	    
+
+{% endcapture %}
+
+<!-- Page starts here -->
+<div class="page-component">
+        
+        <!-- Generated header from front end matters -->
+        {% include page-component/component-header.html %}
+
+        <!-- Example Section -->
+        <section name="section-examples">
+            <h2 class="title fw-bold" id="example">Example</h2>
+            <div class="section-sub">
+                {% 
+                    include page-component/component-code-snippet.html 
+                    compName="masthead" 
+                    code=masthead 
+                    storybook-react=""
+                    storybook-spider="masthead"
+                %}
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section name="section-anatomy">
+            <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/official-government-banner/anatomy-masthead.svg" alt="Masthead Anatomy">
+                    </div>
+                </div>
+                <ol>
+                    <li>
+                        <b>Container:</b> Takes on the length of the browser.
+                    </li>
+                    <li>
+                        <b>Text:</b> Serves to inform the user that the website is a official Singapore Government website. The wording should not be edited in anyway.
+                    </li>
+                    <li>
+                        <b>Dropdown:</b> Serves to inform the user on how to identify official Singapore Government websites.
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section name="section-spacing">
+            <h2 class="title fw-bold" id="spacing">Spacing</h2>
+            <div class="section-sub">
+                <div class="sgds-example-image-container">
+                    <div class="sgds-example-image-grid">
+                        <img src="{{site.baseurl}}/assets/img/component/official-government-banner/spacing-masthead.svg" alt="Masthead Spacing">
+                    </div>
+                </div>
+                <p><b>Within the masthead</b><br>
+                    Ensure that there is 4px horizontal spacing. Base height of 28px.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
+            {%- highlight sass -%}{{masthead-design-tokens}}{%- endhighlight -%}
+        </section>
+</div>

@@ -3,14 +3,10 @@ frontend:
   phases:
     preBuild:
       commands:
-        - rvm get stable && rvm install 3.0.0
-        - rvm use 3.0.0
-        - gem install bundler -v '=2.3.13'
-        - bundle update --bundler
-        - bundle install
         - npm ci
     build:
       commands:
+        - npm run build
         - |
           if [ "${AWS_BRANCH}" = "v2" ]
           then 
@@ -18,9 +14,10 @@ frontend:
           else
             npm run build
           fi
+        - ls -a
 
   artifacts:
-    baseDirectory: _site
+    baseDirectory: portal/_site
     files:
       - '**/*'
   cache:

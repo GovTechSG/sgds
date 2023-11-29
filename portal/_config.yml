@@ -1,0 +1,158 @@
+# For Jekyll SEO
+title: Singapore Government Design System
+description: >-
+  The Singapore Government Design System was developed to empower teams in creating fast, accessible and mobile-friendly digital services.
+logo: /assets/img/logo_sgds.png
+url: https://www.designsystem.tech.gov.sg
+  
+# Site data
+sgds-version: 2.1.0
+sgds-package-name: >- 
+  @govtechsg/sgds
+bootstrap-version: 5.1.3
+request-component: "https://form.gov.sg/6136ea11658bea0012fc9e80"
+search_placeholder: "What are you looking for?"
+react-storybook-local: http://localhost:6006
+react-storybook: https://react.designsystem.tech.gov.sg
+web-component-cdn: https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component
+spider-storybook: https://www.webcomponent.designsystem.tech.gov.sg
+
+#github links
+github-link: https://github.com/GovTechSG/sgds/tree/v2
+github-web-component: https://github.com/GovTechSG/sgds-web-component/tree/master
+github-sgds-variables: https://github.com/GovTechSG/sgds/blob/v2/sass/sgds-theme/_variables.scss
+github-changelog: https://github.com/GovTechSG/sgds/blob/v2/CHANGELOG.md
+github-release-note: https://github.com/GovTechSG/sgds/releases
+
+#footer links
+report-vulnerability: "https://tech.gov.sg/report_vulnerability"
+contact-us: "https://go.gov.sg/sgds-building-digital-service"
+feedback-form: "https://go.gov.sg/sgds-feedback-form"
+
+#offcanvas link
+npm-link: https://www.npmjs.com/package/@govtechsg/sgds
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-redirect-from
+  - jekyll-toc
+  - jekyll-get-json
+  - jekyll-sitemap
+  - jekyll-last-modified-at
+
+collections_dir: collections
+collections:
+  components:
+    permalink: /:collection/:name
+    output: true
+    category: components
+    order:
+      - official-government-banner.html
+      - footer.html
+      - main-navigation.html
+      - side-navigation.html
+  patterns:
+    permalink: /:collection/:name
+    output: true
+    category: patterns
+  templates:
+    permalink: /:collection/:name
+    output: true
+    category: templates
+    order:
+      - landing-page.html
+      - single-page-form.html
+      - multi-page-form.html
+  get-started:
+    permalink: /:collection/:name
+    output: true
+    category: get-started
+    order:
+      - installation.html
+      - customise-with-sass.html
+      - ui-kit.html
+  foundations:
+    permalink: /:collection/:name
+    output: true
+    category: foundations
+
+# set all patterns collection to use certain layouts
+defaults:
+  -
+    scope:
+      type: "patterns" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "patterns"
+      source-grid: true
+      toc: true
+  -
+    scope:
+      type: "components" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "components"
+      source-grid: true
+      toc: true
+  -
+    scope:
+      type: "templates" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "templates"
+      source-grid: false
+      toc: true
+      notice: Template stylings used here are still in beta testing. `npm install @govtechsg/sgds@beta` to try it.
+  -
+    scope:
+      type: "get-started" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "get-started"
+      source-grid: false
+      toc: true
+  -
+    scope:
+      type: "foundations" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "foundations"
+      source-grid: true
+      toc: true  
+  
+exclude:
+  - src
+  - node_modules
+  - build
+  - scripts
+  - Dockerfile
+  - Gemfile*
+  - package*.json
+  - webpack.config.js
+  - Gruntfile.js
+  - amplify.yml
+  - sgds/sgds.scss
+  - sgds/sass
+
+sass:
+  sass_dir: assets/custom-css
+
+toc:
+  list_id: toc # Default: "toc"
+  list_class: toc # Default: "section-nav"
+  no_toc_section_class: 
+    - sgds-example
+    - code-snippet
+  sublist_class: toc-sublist # Default: no class for sublists
+  item_class: toc-item # Default: "toc-entry"
+  item_prefix: item- # Default: "toc-":
+    
+jekyll_get_json: 
+  - data: npm-sgds-latest-metadata
+    json: 'https://registry.npmjs.org/-/v1/search?text=@govtechsg/sgds'
+  - data: npm-sgds-web-component-latest-metadata
+    json: 'https://registry.npmjs.org/-/v1/search?text=@govtechsg/sgds-web-component'
+
+# Optional. The default date format, used if none is specified in the tag.
+last-modified-at:
+    date-format: '%d-%b-%y'

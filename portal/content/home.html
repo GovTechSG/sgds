@@ -1,0 +1,116 @@
+---
+title: home
+layout: layout-single
+permalink: /
+---
+
+<section class="home-hero">
+    <div class="home-hero-content">
+        {% assign currentVersion = site.data.npm-sgds-latest-metadata.objects[0].package.version %}
+        <span class="badge bg-secondary">sgds {{currentVersion}}</span>
+        <h1><strong>Build your next best digital experience for Singapore</strong></h1>
+        <p>{{site.description}}</p>
+        <a role="button" href="/get-started" class="sgds btn btn-primary">Get started</a>
+        <a role="button" href="/get-started/installation" class="sgds btn btn-outline-dark">Install SGDS</a>
+        
+    </div>
+    <div class="home-hero-content">
+        <div class="image-stack image-grid">
+            <img class="img-fluid" src="assets/img/landing-hero/sgds.png" alt="">
+            <img class="img-fluid" src="assets/img/landing-hero/fundamental icons.png" alt="">
+        </div>
+    </div>
+</section>
+<section class="home-get-started">
+    <div class="home-get-started-content">
+        <div class="h3"><strong>Get started with Singapore Government Design System</strong></div>
+        <p>Here's everything you need to get started. Check out our latest updates or start installing our design
+            system and start building.</p>
+    </div>
+    <div class="home-get-started-content-grid">
+        <div class="grid left">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-eyebrow">What's new</div>
+                    <div class="h4 card-title fw-bold">SGDS v2.1.0</div>
+                    <p class="card-text">Updates to components, patches and fixes can be found here in our release notes
+                    </p>
+                    <a href="{{site.github-release-note}}">See release note</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-eyebrow">Get started</div>
+                    <div class="h4 card-title fw-bold">Installation</div>
+                    <p class="card-text">Browse all components and use them as building blocks as you develop new
+                        products and features</p>
+                    <a href="/get-started/installation">Read installation docs</a>
+                </div>
+            </div>
+        </div>
+        <div class="grid right">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-eyebrow">Documentation</div>
+                    <div class="h4 card-title fw-bold">Components</div>
+                    <p class="card-text">Browse all components and use them as building blocks as you develop new
+                        products and features</p>
+                    <a href="/components/">Browse components</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-eyebrow">Guides</div>
+                    <div class="h4 card-title fw-bold">Page templates</div>
+                    <p class="card-text">Browse ready made patterns that can be used as is or tweaked to suit your needs
+                    </p>
+                    <a href="/patterns/">Browse patterns</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="home-part-of-change">
+
+    <img class="img-fluid" src="assets/img/landing-hero/part-of-change-1.png" alt="">
+    <div class="content">
+        <p class="text-primary"><strong>Save time with our plug-n-play components</strong></p>
+        <div class="h3"><strong>Faster prototyping with reusable patterns & components, so you can focus on user
+                experience</strong></div>
+        <p>Eliminate the hassle of recreating basic components and patterns for every new product. SGDS houses a
+            comprehensive collection of components, patterns and templates that can be used as is or customise to your
+            needs</p>
+    </div>
+
+</section>
+
+<section class="home-part-of-change">
+    <img class="img-fluid order-lg-1" src="assets/img/landing-hero/part-of-change-2.png" alt="">
+    <div class="content">
+        <p class="text-primary"><strong>Common design elements for consistency</strong></p>
+        <div class="h3"><strong>Boost user confidence with our recognisable design patterns</strong></div>
+        <p>By using standard text styles, icons and interface elements, consistency is achieved. This strengthens users'
+            intuition when interacting with different digital services.</p>
+    </div>
+</section>
+
+
+<section class="home-part-of-change">
+    <img class="img-fluid" src="assets/img/landing-hero/part-of-change-3.png" alt="">
+    <div class="content">
+        <p class="text-primary"><strong>Accessible & inclusive</strong></p>
+        <div class="h3"><strong>Perceivable, operable, understandable & robust</strong></div>
+        <p>Our components comply with the Digital Services Standards (DSS) where applicable and WCAG.</p>
+    </div>
+</section>
+
+<section class="home-part-of-change">
+    <div class="content">
+        <div class="h3"><strong>Be Part of the Change</strong></div>
+        <p><strong>SGDS is open source</strong>. If you are a developer, designer or content writer, you can help us
+            build a trusted, ever-evolving ecosystem together.</p>
+        <a role="button" href="{{site.feedback-form}}" class="sgds btn btn-primary">Help us improve</a>
+        <a role="button" href="{{site.github-link}}" class="sgds btn btn-outline-dark">Find us on Github</a>
+    </div>
+    <img class="img-fluid" src="assets/img/landing-hero/part-of-change.png" alt="">
+</section>

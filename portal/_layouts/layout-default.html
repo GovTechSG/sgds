@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html %}
+<body>
+    {% if page.title == 'home' %}
+    <div class="position-absolute hero-bg"></div>
+    {% endif %}
+    <div class="sticky-top">
+        {% include masthead.html %}
+        {% include navigation.html %}
+    </div>
+    <main aria-label="Main Content">
+        {{content}}
+    </main>
+    {% include footer.html %}
+    {% include off-canvas-menu.html %}
+</body>
+</html>

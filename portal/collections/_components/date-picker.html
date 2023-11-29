@@ -1,0 +1,103 @@
+---
+title: Date Picker
+description: Allows users to select a single date or a range of dates depending on the use case.
+layout: layout-sidenav
+category: general
+react-link: ?path=/docs/components-datepicker--default-story
+github-link: true
+toc: true
+---
+
+{% capture default-date-picker %}
+{% assign latestVersion = site.data.npm-sgds-web-component-latest-metadata.objects[0].package.version %}
+<head>
+    <script type="module" src="{{site.web-component-cdn}}@{{latestVersion}}/components/Datepicker/index.umd.js">
+    </script>
+</head>
+<body>
+<sgds-datepicker></sgds-datepicker>
+</body>
+{% endcapture %}
+
+<div class="page-component">
+    {% include page-component/component-header.html %}
+
+    <!-- Example Section -->
+    <section name="section-examples">
+        <h2 class="title fw-bold" id="example">Examples</h2>
+        <div class="section-sub">
+            {% include page-component/component-code-snippet.html 
+            compName="default-date-picker" compTitle="Default date picker"
+            code=default-date-picker code-react=default-date-picker-code storybook-react="datepicker" storybook-spider="" %}
+        </div>
+    </section>
+
+           <!-- Anatomy Section -->
+    <section name="section-anatomy">
+        <h2 class="title fw-bold" id="anatomy">Anatomy</h2>
+        <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/date-picker/anatomy-datepicker.svg" alt="Date Picker Anatomy">
+                </div> 
+            </div>
+            <ol>
+                <li>
+                    <b>Month:</b> Allows the user to select the month.
+                </li>
+                <li>
+                    <b>Year:</b> Allows the user to select the year.
+                </li>
+                <li>
+                    <b>Forward/backward chevrons:</b> Allows the user to move forward or backwards by month within the selected year.
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Spacing Section -->
+    <section name="section-spacing">
+        <h2 class="title fw-bold" id="spacing">Spacing</h2>
+        <div class="section-sub">
+            <div class="sgds-example-image-container">
+                <div class="sgds-example-image-grid">
+                    <img src="{{site.baseurl}}/assets/img/component/date-picker/spacing-datepicker.svg" alt="Date Picker Spacing">
+                </div>
+            </div>
+            <p><b>Within the calendar</b><br>
+                Ensure that there is a minimum of 24px vertical and horizontal spacing.</p>
+        </div>
+    </section>
+
+    <!-- Usage guidelines Section -->
+    <section name="section-usage-guidelines">
+        <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+        <p class="fw-bold mb-0">Date Picker should be used:</p>
+        <ul>
+            <li>
+                When you want users to select a single date or a range of dates.
+            </li>
+        </ul>
+        <p class="fw-bold mb-0">Date Picker should not be used:</p>
+        <ul>
+            <li>
+                where the context of the calendar is not important.
+            </li>
+        </ul>
+    </section>
+
+<!-- Usability guidelines Section -->
+<section name="section-usability-guidelines">
+<h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
+<p>
+    <b>Be relevant and clear</b><br>
+    Date pickers can display past, present or future dates, display as relevant to the task as possible. Clearly indicate important dates as well; current and selected dates.
+</p>
+<p>
+    <b>Target touch size </b><br>
+    Ensure that the target touch size is big enough, at least 32 x 32dp, This will reduce the chance of users hitting the wrong target that potentially cause they to complete the action wrongly without realising.
+</p>
+</section>
+</div>
+
+

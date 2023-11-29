@@ -11,22 +11,14 @@ jobs:
   publish:    
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set Tag env
-        run: echo "NPM_TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: '2.6'
-      - run: |
-          gem install bundler
-          bundle install
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm run build:lib
+      - run: npm lib:install
+      - run: npm run lib:build
+      - run: cd lib
       - run: npm publish --tag alpha --access public
         if: contains(env.NPM_TAG, 'alpha')
       - run: npm publish --tag beta --access public

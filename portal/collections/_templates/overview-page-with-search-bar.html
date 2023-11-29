@@ -1,0 +1,57 @@
+---
+title: Overview Page with Search Bar
+description: A base collection of field components with a searchbar layout
+---
+
+{% capture overview-page-with-search-bar %}
+<div style="background-color: white" class="overflow-auto">
+  <!-- Masthead -->
+  <sgds-masthead fluid></sgds-masthead>
+  <!-- Main Nav component -->
+  {% include templates/navbar.html %}
+  <!-- Header section -->
+  <sgds-template-grid>
+    <sgds-content-area>
+      <sgds-content-header-top>
+        <h1>Title Of Page</h1>
+        <button class="btn btn-secondary"> <i class="bi bi-plus-circle me-2"></i>Create new project</button>
+      </sgds-content-header-top>
+      <sgds-content-header-bottom>
+        <div class="search-container">
+          <label for="exampleFormControlInput1" class="form-label">Search</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div>
+        <span></span>
+        <span></span>
+        <button class="btn btn-outline-dark"> <i class="bi bi-sliders me-2"></i>
+          Refine search</button>
+      </sgds-content-header-bottom>
+      <!-- Content section -->
+      <sgds-content-body>
+        <section class="shadow rounded p-5 bg-white">
+          <h2>Section One</h2>
+        </section>
+        <section class="shadow rounded p-5 bg-white">
+          <h2>Section Two</h2>
+        </section>
+      </sgds-content-body>
+    </sgds-content-area>
+  </sgds-template-grid>
+  <!-- Footer component -->
+  {% include templates/footer.html %}
+  {% endcapture %}
+
+  <!-- Page starts here -->
+  <div class="page-component mb-5">
+    <!-- Generated header from front end matters -->
+    {% include page-component/component-header.html %}
+
+    <section name="section-examples">
+      <h2 class="title fw-bold" id="example">Example</h2>
+      <div class="section-sub">
+        {% include page-component/component-code-snippet.html
+        compName="overview-page-with-search-bar" code=overview-page-with-search-bar %}
+      </div>
+    </section>
+  </div>
+</div>
