@@ -18,7 +18,7 @@
         <div id="collapse-{{include.compName}}" class="accordion-collapse collapse"
             aria-labelledby="heading-{{include.compName}}" data-bs-parent="#example-{{include.compName}}">
             <div class="accordion-body accordion-body-codesnippet">
-                <button class="sgds btn btn-outline-light btn-sm btn-copy">Copy</button>
+               
                 {% if page.url contains "components" %}
                 <sgds-tab-group bodyclasses="undefined" tabsclasses="text-white">
                     <sgds-tab slot="nav" panel="html">
@@ -35,9 +35,9 @@
                     </sgds-tab>
                     {% endif %}
                     <sgds-tab-panel name="html">
+                        <button class="sgds btn btn-outline-light btn-sm btn-copy">Copy</button>
                         {%- highlight html -%}{{include.code}}{%- endhighlight -%}
                     </sgds-tab-panel>
-
                     {% if include.storybook-react != empty %}
                     <sgds-tab-panel name="react">
                         {% if jekyll.environment == "production" %}
