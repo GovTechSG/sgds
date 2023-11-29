@@ -15,34 +15,48 @@ To contribute, please start off at the Issue section of our github repository.
 6) Once accepted, you can fork the repository and start working away !
 7) Raise a PR, tagging the issue number, and request a review from one of our admins. 
 
-## Development
+## Setup for development
 
-### Requirements
+### General Pre-requisites 
 
--   Ruby & Bundler. Install Jekyll and dependencies through `bundle install`
--   Nodejs & NPM. Install webpack and dependencies through `npm install`
+1. Install ruby version manager. Either [rvm](https://rvm.io/) or [rb-env](https://github.com/rbenv/rbenv)
 
-To spin up a live-reloading Jekyll + Webpack development server it is recommended that you use **two separate terminal sessions** so that you can kill any of them easily:
+2. Check that your ruby version in use is the same as `/portal/.ruby-version` file 
 
+```bash
+# rbenv
+(cd portal && rbenv local)
+
+# rvm 
+(cd portal && rvm use)
+```
+
+3. In root, run 
+
+```bash
+nvm use 
+npm install
+```
+ This will install packages for root and ./lib, ./portal folders.
+
+### Lib and Portal Setup
+
+4. Start live-reloading Jekyll + Webpack development server. When using portal, it is likely that you will need a live reload of any code changes in `lib` folder. This is all handled by the command below 
+
+In root, run
 ``` bash
-$ npm run dev # Access from localhost:4000
+$ npm run portal:dev # Access from localhost:4000
 ```
 
-Test out the latest development build:
+## Writing
 
-```html
-<!-- CSS in <head> -->
-<link rel="stylesheet" href="https://dev.designsystem.gov.sg/css/sgds.css"/>
+### Lib
 
-<!-- JS in <body> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-```
+Stylings are written in scss only. To make changes to sgds stylings, edit files in `<rootDir>/lib/sass`.
 
-<hr>
+### Portal 
 
-### Writing
-
-Stylings are written in scss only. To make changes to sgds stylings, edit files in `<rootDir>/sass`.
+Portal changes goes into /portal folder
 
 ## Commit standard 
 
@@ -52,7 +66,7 @@ This is a commitizen friendly repo. Adhere to the commit conventions of cz.
 
 ##### Promotion to master
 
-1. Use dev branch
+1. Use default branch 
 2. Change all references in documentation from previous version to new version, e.g. inside the `_config.yml` and `readme.md` files.
 3. Update and tag new version using npm.
 
