@@ -1,11 +1,25 @@
 {
-  "name": "sgds-x-react-select",
-  "private": true,
+  "name": "@govtechsg/sgds-x-react-select",
   "version": "0.0.0",
-  "type": "module",
+  "description": "SGDS-X-React-Select offers SGDS-compliant styles for react-select components, ensuring design alignment with Singapore Government digital services.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/govtechsg/sgds.git"
+  },
+  "license": "MIT",
   "files": [
     "src/sgds-x-react-select.scss",
     "dist/sgds-x-react-select.css"
+  ],
+  "keywords": [
+    "combobox",
+    "form",
+    "input",
+    "multiselect",
+    "react",
+    "react-component",
+    "select",
+    "ui"
   ],
   "scripts": {
     "dev": "vite",
