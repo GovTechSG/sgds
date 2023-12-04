@@ -1,25 +1,27 @@
-# @govtechsg/sgds-x-react-select
+# @govtechsg/sgds-x-family (Work In Progress)
 
-`@govtechsg/sgds-x-react-select` is a stylesheet package powered by [Singapore Government Design System](https://www.designsystem.gov.sg) to maintain design consistency for the `react-select` library. It provides SGDS-compliant styling for `react-select` components, ensuring a cohesive and familiar user experience within SGDS-based projects.
+`@govtechsg/sgds-x-family` is a stylesheet package powered by [Singapore Government Design System](https://www.designsystem.gov.sg) to provide SGDS-compliant styling for third party packages, ensuring a cohesive and familiar user experience within SGDS-based projects.
 
 ## Installation
 
-Install the `@govtechsg/sgds-x-react-select` package via npm:
+Install the `@govtechsg/sgds-x-family` package via npm:
 
 ```sh
-npm install @govtechsg/sgds-x-react-select
+npm install @govtechsg/sgds-x-family
 ```
 
 ## Usage
 
-To integrate `@govtechsg/sgds-x-react-select` styles into your React application with `react-select` components, follow these steps:
+### React-Select
+
+To integrate `@govtechsg/sgds-x-family` styles into your React application with `react-select` components, follow these steps:
 
 1. Import the `Select` component from `react-select` along with the required styles:
 
 ```js
 import Select, { components } from 'react-select';
 import '@govtechsg/sgds/css/sgds.css';
-import '@govtechsg/sgds-x-react-select/dist/sgds-x-react-select.css';
+import '@govtechsg/sgds-x-family/react-select/index.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 ```
 
@@ -56,3 +58,5 @@ export default App;
 ```
 
 **Note:** Ensure that the `className` prop is set to `"sgds-x-react-select-container"` and `classNamePrefix` prop is set to `"sgds-x-react-select"` for your `Select` component to acquire the SGDS styling. Following these exact class names is essential to apply the SGDS styles correctly.
+
+**This package is still work in progress and not published yet**
