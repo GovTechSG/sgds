@@ -1,0 +1,43 @@
+/* Refer to https://react-select.com/styles */
+
+.sgds-x-react-select-container {
+  .sgds-x-react-select__control {
+    border: 1px solid #98a2b3;
+  }
+
+  .sgds-x-react-select__control--is-focused {
+    box-shadow: none;
+  }
+}
+
+.sgds-x-react-select__menu {
+  .sgds-x-react-select__option--is-focused {
+    background-color: var(--sgds-gray-200);
+  }
+
+  .sgds-x-react-select__option--is-selected {
+    background-color: var(--sgds-primary);
+  }
+
+  .sgds-x-react-select__option:active {
+    background-color: var(--sgds-gray-300);
+  }
+}
+
+.sgds-x-react-select__value-container {
+  .sgds-x-react-select__multi-value {
+    background-color: var(--sgds-primary);
+    color: var(--sgds-white);
+  }
+}
+
+.sgds-x-react-select__multi-value {
+  .sgds-x-react-select__multi-value__label {
+    color: var(--sgds-white);
+  }
+
+  .sgds-x-react-select__multi-value__remove:hover {
+    background-color: var(--sgds-primary);
+    color: var(--sgds-white);
+  }
+}

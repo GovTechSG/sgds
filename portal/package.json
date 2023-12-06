@@ -4,7 +4,7 @@
   "description": "Singapore Government Design System portal",
   "main": "",
   "scripts": {
-    "dev:lib": "cd ../lib && npm run dev",
+    "dev:lib": "cd ../lib/sgds && npm run dev",
     "dev": "concurrently \"npm run dev:lib\" \" webpack && bundle exec jekyll serve\"",
     "build:jekyll": "bundle exec jekyll build",
     "build:js": "webpack --mode=production",
