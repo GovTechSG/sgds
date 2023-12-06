@@ -12,9 +12,9 @@
     "scripts": {
       "prepare": "husky install",
       "portal:install": "cd portal && npm i && bundle install",
-      "lib:install": "cd lib && npm i",
+      "lib:install": "cd lib/sgds && npm i",
       "install": "concurrently \"npm run lib:install\" \"npm run portal:install\"",
-      "lib:build": "cd lib && npm run build",
+      "lib:build": "cd lib/sgds && npm run build",
       "portal:build": "cd portal && npm run build",
       "build": "npm run lib:build && npm run portal:build",
       "portal:dev": "cd portal && npm run dev"
