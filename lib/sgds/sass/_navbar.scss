@@ -6,7 +6,6 @@
         padding: 0 calc(#{$spacer * 2}) 0;
         @include media-breakpoint-down(lg){
             padding: 0 $navbar-mobile-padding-y 0;
-            overflow-x: scroll;
         }
         min-height: 80px;
         align-items: stretch;
