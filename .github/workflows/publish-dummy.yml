@@ -1,0 +1,22 @@
+name: Publish Dummy
+
+on:
+  push:
+    tags:
+      - 'sgds/**'
+
+jobs:
+  publish:    
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm lib:install
+      - run: npm run lib:build
+      - run: cd lib
+      # - run: npm publish --tag latest --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
