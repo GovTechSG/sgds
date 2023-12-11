@@ -3,7 +3,7 @@ name: Publish Dummy
 on:
   push:
     tags:
-      - 'sgds/v2.1.2-dummy.1'
+      - 'dummy/*'
 
 jobs:
   publish:    
