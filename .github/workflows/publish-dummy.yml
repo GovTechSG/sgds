@@ -2,8 +2,8 @@ name: Publish Dummy
 
 on:
   push:
-    branches:
-      - 'th/ci-test'
+    tags:
+      - 'sgds/v2.1.2-dummy.1'
 
 jobs:
   publish:    
@@ -14,9 +14,9 @@ jobs:
         with:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
-      - run: npm lib:install
+      - run: npm run lib:install
       - run: npm run lib:build
-      - run: cd lib
+      - run: cd lib/sgds-x-family
       # - run: npm publish --tag latest --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
