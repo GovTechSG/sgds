@@ -2,8 +2,8 @@ name: Publish Dummy
 
 on:
   push:
-    branches:
-      - 'th/ci-test'
+    tags:
+      - 'dummy/*'
 
 jobs:
   publish:    
