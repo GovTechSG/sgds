@@ -2,8 +2,8 @@ name: Publish Dummy
 
 on:
   push:
-    tags:
-      - 'sgds/**'
+    branches:
+      - 'th/ci-test'
 
 jobs:
   publish:    
