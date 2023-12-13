@@ -80,13 +80,9 @@ Library publication is performed in workflow by github actions. When ready for p
 ##### Bump version
 
 1. run `cd lib/sgds` to navigate to the sgds library folder
-2. run `npm version <major|minor|patch> --tag-version-prefix=sgds/v`
+2. run `npm version <major|minor|patch>`
    or for alpha releases
-   `npm version <version-name> --tag-version-prefix=sgds/v`
-
-   ***Example:*** 
-   - Running `npm version patch --tag-version-prefix=sgds/v` will create `sgds/v2.x.x` tag
-   - Running `npm version 2.0.1-alpha.0 --tag-version-prefix=sgds/v` will create `sgds/v2.0.1-alpha.0` tag
+   `npm version <version-name>`
 
    \*\*version number should observe SEMVER
 
