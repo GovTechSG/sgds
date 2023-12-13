@@ -79,21 +79,26 @@ Library publication is performed in workflow by github actions. When ready for p
 
 ##### Bump version
 
-1. run `npm version <major|minor|path> `
+1. run `cd lib/sgds` to navigate to the sgds library folder
+2. run `npm version <major|minor|patch> --tag-version-prefix=sgds/v`
    or for alpha releases
-   `npm version <version-name>`
+   `npm version <version-name> --tag-version-prefix=sgds/v`
+
+   ***Example:*** 
+   - Running `npm version patch --tag-version-prefix=sgds/v` will create `sgds/v2.x.x` tag
+   - Running `npm version 2.0.1-alpha.0 --tag-version-prefix=sgds/v` will create `sgds/v2.0.1-alpha.0` tag
 
    \*\*version number should observe SEMVER
 
    \*\*this step will auto-generate a git tag on your local
 
-2. `git push ` the changes
+3. `git push` the changes
 
 ##### Generate Changelog
 
 3. run `cz changelog` to update CHANGELOG.md file (ensure that you have set up [cz-cli](https://github.com/commitizen/cz-cli) globally)
 
-\*\*`cz changelog` updates based on your local git tags
+   \*\*`cz changelog` updates based on your local git tags
 
 4. Push the changes
 
@@ -101,7 +106,7 @@ Library publication is performed in workflow by github actions. When ready for p
 
 5. run `git tag` to check the newly generated git tag on local
 
-6. `npm push origin <newly-created-tag> `
+6. `git push origin <newly-created-tag>`
 
 \*\* this triggers gh action workflow to publish the library to npm
 
