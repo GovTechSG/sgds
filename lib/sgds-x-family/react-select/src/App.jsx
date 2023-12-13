@@ -1,5 +1,5 @@
 import Select, { components } from 'react-select';
-import './sgds-x-react-select.scss';
+import '../index.scss';
 import '@govtechsg/sgds/css/sgds.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 

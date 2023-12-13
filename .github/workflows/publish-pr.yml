@@ -3,12 +3,14 @@ name: Publish Pre-releases
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+'
-      - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
-
+      - 'sgds/v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+'
+      - 'sgds/v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
+      - 'sgds-x-family/v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+'
+      - 'sgds-x-family/v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
 
 jobs:
-  publish:    
+  publish-sgds:
+    if: startsWith(github.ref, 'refs/tags/sgds/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,9 +18,27 @@ jobs:
         with:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
-      - run: npm lib:install
+      - run: npm run lib:install
       - run: npm run lib:build
-      - run: cd lib
+      - run: cd lib/sgds
+      - run: npm publish --tag alpha --access public
+        if: contains(env.NPM_TAG, 'alpha')
+      - run: npm publish --tag beta --access public
+        if: contains(env.NPM_TAG, 'beta')
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  publish-sgds-x-family:
+    if: startsWith(github.ref, 'refs/tags/sgds-x-family/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm run sgds-x-family:install
+      - run: npm run sgds-x-family:build
+      - run: cd lib/sgds-x-family
       - run: npm publish --tag alpha --access public
         if: contains(env.NPM_TAG, 'alpha')
       - run: npm publish --tag beta --access public
