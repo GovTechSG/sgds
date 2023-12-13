@@ -31,4 +31,9 @@ jobs:
         with:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
+      - run: npm run sgds-x-family:install
+      - run: npm run sgds-x-family:build
       - run: cd lib/sgds-x-family
+      - run: npm publish --tag latest --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
