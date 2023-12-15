@@ -1,0 +1,219 @@
+---
+title: Content Area
+layout: layout-sidenav
+description: Content Area is the child of Template Grid and is positioned at the center of the page. It is a flexbox and accepts multiple children.
+---
+
+{% capture example-use-with-subcomp-display %}
+<img src="{{site.baseurl}}/assets/img/layout/content-area/example-use-with-subcomp.svg"
+    alt="Usage with sgds-content-area-top, sgds-content-area-bottom, sgds-content-body">
+{% endcapture %}
+
+{% capture example-use-with-subcomp-code %}
+<sgds-template-grid>
+    <sgds-content-area>
+        <sgds-content-header-top>
+            ...
+        </sgds-content-header-top>
+        <sgds-content-header-bottom>
+               <div class="search-container">
+                <-- input search -->
+            </div>
+            ...
+        </sgds-content-header-bottom>
+        <sgds-content-body>
+            ...
+        </sgds-content-body>
+    </sgds-content-area>
+<sgds-template-grid>
+{% endcapture %}
+
+{% capture example-use-with-breadcrumb-display %}
+<img src="{{site.baseurl}}/assets/img/layout/content-area/example-use-with-breadcrumb.svg"
+    alt="Using other components with sgds-content-area">
+{% endcapture %}
+
+{% capture example-use-with-breadcrumb-code %}
+<sgds-template-grid>
+    <sgds-content-area>
+        <-- Breadcrumb component -->
+        <nav class="sgds" aria-label="breadcrumb">
+            ...
+         </nav>
+        <sgds-content-header-top>
+            ...
+        </sgds-content-header-top>
+        <sgds-content-body>
+            ...
+        </sgds-content-body>
+    </sgds-content-area>
+<sgds-template-grid>
+{% endcapture %}
+
+{% capture example-content-header-top-display %}
+<img src="{{site.baseurl}}/assets/img/layout/content-area/example-content-header-top.svg"
+    alt="Example for Content Header Top">
+{% endcapture %}
+
+{% capture example-content-header-top-code %}
+<sgds-template-grid>
+    <sgds-content-area>
+        <sgds-content-header-top>
+            <h1>... </h1>
+            <div>...</div>
+        </sgds-content-header-top>
+<sgds-template-grid>
+{% endcapture %}
+
+{% capture example-content-header-bottom-display %}
+<img src="{{site.baseurl}}/assets/img/layout/content-area/example-content-header-bottom.svg"
+    alt="Example for Content Header Bottom">
+{% endcapture %}
+
+{% capture example-content-header-bottom-code %}
+<sgds-template-grid>
+    <sgds-content-area>
+        <sgds-content-header-top>
+            ...
+        </sgds-content-header-top>
+        <sgds-content-header-bottom>
+            <div class="search-container">...</div>
+            <button>Refine Search</button>
+        </sgds-content-header-bottom>
+ <sgds-template-grid>
+{% endcapture %}
+
+{% capture example-content-body-display %}
+<img src="{{site.baseurl}}/assets/img/layout/content-area/example-content-body.svg"
+    alt="Example for Content Body">
+{% endcapture %}
+
+{% capture example-content-body-code %}
+<sgds-content-body>
+    <sgds-accordion></sgds-accordion>
+    <div> <button>...</button> </div>
+</sgds-content-body>
+{% endcapture %}
+
+<div class="page-component">
+    {% include page-component/component-header.html %}
+
+    <div class="sgds-example-image-container">
+        <div class="sgds-example-image-grid">
+            <img src="{{site.baseurl}}/assets/img/layout/content-area/anatomy.svg" alt="Template Grid Anatomy">
+        </div>
+    </div>
+    <p>
+        <span class="sgds-code-font">sgds-content-area</span> is a flexbox of direction column and it's direct children
+        will have a gap of 2rem apart from each other. We have designed 3 children containers for <span
+            class="sgds-code-font">sgds-content-area</span> based on our figma common layouts:
+    </p>
+
+    <ol>
+        <li>
+            <span class="sgds-code-font">sgds-content-area-top</span>
+        </li>
+        <li>
+            <span class="sgds-code-font">sgds-content-area-bottom</span>
+        </li>
+        <li>
+            <span class="sgds-code-font">sgds-content-body</span>
+        </li>
+    </ol>
+
+    <p>Depending on your UI design, you can also include any components of choice.</p>
+
+    <section name="section-example">
+        <h2 class="title fw-bold" id="example">Example</h2>
+
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="use-with-subcomp">Usage with <span class="sgds-code-font">sgds-content-area-top</span>, <span
+                    class="sgds-code-font">sgds-content-area-bottom</span> & <span
+                    class="sgds-code-font">sgds-content-body</span></h4>
+            {%
+            include layouts/layout-code-snippet.html
+            name="example-use-with-subcomp"
+            display=example-use-with-subcomp-display
+            code=example-use-with-subcomp-code
+            %}
+        </div>
+
+
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="use-with-breadcrumb">Using other components (breadcrumb component) with <span class="sgds-code-font">sgds-content-body</span>
+            </h4>
+            {%
+            include layouts/layout-code-snippet.html
+            name="example-use-with-breadcrumb"
+            display=example-use-with-breadcrumb-display
+            code=example-use-with-breadcrumb-code
+            %}
+        </div>
+    </section>
+
+    <section name="section-content-header-top">
+        <h2 class="title fw-bold" id="content-header-top">Content Header Top</h2>
+
+        <p><span class="sgds-code-font">sgds-content-header-top</span> is a flexbox of direction row which should
+            only accept up to 2 direct children.
+        </p>
+
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="example-content-header-top">Example</h4>
+
+            {%
+            include layouts/layout-code-snippet.html
+            name="example-content-header-top"
+            display=example-content-header-top-display
+            code=example-content-header-top-code
+            %}
+        </div>
+    </section>
+
+    <section name="section-content-header-bottom">
+        <h2 class="title fw-bold" id="content-header-bottom">Content Header Bottom</h2>
+
+        <p><span class="sgds-code-font">sgds-content-header-bottom</span> is a grid divided into 12 equal parts.</p>
+
+        <ol>
+            <li>The first child with a <span class="sgds-code-font">class=”search-container”</span> will be take up grid columns 1/5.</li>
+            <li>The last child will take up the last grid column with <span class="sgds-code-font">whitespace: nowrap</span>.</li>
+            <li>Any other child of this grid, aside from those two describe above, will follow the default grid style of <span class="sgds-code-font">sgds-content-header-bottom</span>.</li>
+        </ol>
+
+        <p>The use case is rather specific to engineering services portal designs that have a search bar and button at the very end.</p>
+
+        <p>Depending on your design, decide if you need to use this container. </p>
+
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="example-content-header-bottom">Example</h4>
+
+            {%
+            include layouts/layout-code-snippet.html
+            name="example-content-header-bottom"
+            display=example-content-header-bottom-display
+            code=example-content-header-bottom-code
+            %}
+        </div>
+    </section>
+
+    <section name="section-content-body">
+        <h2 class="title fw-bold" id="content-body">Content Body</h2>
+
+        <p><span class="sgds-code-font">sgds-content-body</span> is a flexbox of direction column. Its direct children have gap 2rem apart. 
+            Its styles are very similar to <span class="sgds-code-font">sgds-content-area</span>. It helps to compartmentalise the html code in an organised
+            manner. It can have n numbers of child(ren).
+        </p>
+
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="example-content-body">Example</h4>
+
+            {%
+            include layouts/layout-code-snippet.html
+            name="example-content-body"
+            display=example-content-body-display
+            code=example-content-body-code
+            %}
+        </div>
+    </section>
+</div>

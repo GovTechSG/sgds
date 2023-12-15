@@ -1,0 +1,45 @@
+---
+title: Side Navigation Area
+layout: layout-sidenav
+description: Side Navigation Area is the child of Template Grid and positioned at the left-most of the page. It is a container with stylings meant for a single side navigation component.
+---
+
+{% capture example-display %}
+<img src="{{site.baseurl}}/assets/img/layout/side-navigation-area/example.svg" alt="Only content required">
+{% endcapture %}
+
+{% capture example-code %}
+<sgds-template-grid>
+    <sgds-aside-area>
+        <-- your sidenav component -->
+    </sgds-aside-area>
+    ...
+<sgds-template-grid>
+{% endcapture %}
+
+<div class="page-component">
+    {% include page-component/component-header.html %}
+
+    <div class="sgds-example-image-container">
+        <div class="sgds-example-image-grid">
+            <img src="{{site.baseurl}}/assets/img/layout/side-navigation-area/anatomy.svg" alt="Template Grid Anatomy">
+        </div>
+    </div>
+    <p>
+        <span class="sgds-code-font">sgds-aside-area</span> is a container with stylings meant for a side navigation
+        component. It is designed to accept only 1 direct child.
+    </p>
+
+    <section name="section-example">
+        <h2 class="title fw-bold" id="example">Example</h2>
+        
+        <div class="section-sub">
+            {%
+            include layouts/layout-code-snippet.html
+            name="example"
+            display=example-display
+            code=example-code
+            %}
+        </div>
+    </section>
+</div>

@@ -5,6 +5,9 @@
 - title: foundations
   url: /foundations/
   has-collection: true
+- title: layouts
+  url: /layouts/
+  has-collection: true
 - title: components
   url: /components/
   has-collection: true
