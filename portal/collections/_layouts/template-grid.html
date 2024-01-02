@@ -5,7 +5,7 @@ description: "A CSS grid for the standard web application page layouts. It accep
 ---
 
 {% capture example-only-content-display %}
-<img src="{{site.baseurl}}/assets/img/layout/template-grid/example-only-content.svg" alt="Only content required">
+<img src="{{site.baseurl}}/assets/img/layout/template-grid/example-only-content.png" alt="Only content required">
 {% endcapture %}
 
 {% capture example-only-content-code %}
@@ -17,7 +17,7 @@ description: "A CSS grid for the standard web application page layouts. It accep
 {% endcapture %}
 
 {% capture example-content-with-sidenav-display %}
-<img src="{{site.baseurl}}/assets/img/layout/template-grid/example-content-with-sidenav.svg" alt="Content with side navigation">
+<img src="{{site.baseurl}}/assets/img/layout/template-grid/example-content-with-sidenav.png" alt="Content with side navigation">
 {% endcapture %}
 
 {% capture example-content-with-sidenav-code %}
@@ -32,17 +32,16 @@ description: "A CSS grid for the standard web application page layouts. It accep
 {% endcapture %}
 
 {% capture example-content-with-sidenav-and-toc-display %}
-<img src="{{site.baseurl}}/assets/img/layout/template-grid/example-content-with-sidenav-and-toc.svg"
+<img src="{{site.baseurl}}/assets/img/layout/template-grid/example-content-with-sidenav-and-toc.png"
     alt="Example">
 {% endcapture %}
 
 ---
 {% capture example-content-with-sidenav-and-toc-code %}
-<sgds-template-grid>
-    ...
-    <sgds-toc-area>
-    ...
-    </sgds-toc-area>
+<sgds-template-grid class="with-sidenav with-toc">
+    <sgds-aside-area>...</sgds-aside-area>
+    <sgds-content-area>...</sgds-content-area>
+    <sgds-toc-area>...</sgds-toc-area>
 <sgds-template-grid>
 {% endcapture %}
 
@@ -51,7 +50,7 @@ description: "A CSS grid for the standard web application page layouts. It accep
 
     <div class="sgds-example-image-container">
         <div class="sgds-example-image-grid">
-            <img src="{{site.baseurl}}/assets/img/layout/template-grid/anatomy.svg" alt="Template Grid Anatomy">
+            <img src="{{site.baseurl}}/assets/img/layout/template-grid/anatomy.png" alt="Template Grid Anatomy">
         </div>
     </div>
     <p>
