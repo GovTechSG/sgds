@@ -1,50 +1,15 @@
 {
-  "name": "@govtechsg/sgds-x-react-select",
+  "name": "@govtechsg/sgds-x-family/react-select",
   "version": "0.0.0",
-  "description": "SGDS-X-React-Select offers SGDS-compliant styles for react-select components, ensuring design alignment with Singapore Government digital services.",
   "repository": {
     "type": "git",
     "url": "https://github.com/govtechsg/sgds.git"
   },
   "license": "MIT",
-  "files": [
-    "src/sgds-x-react-select.scss",
-    "dist/sgds-x-react-select.css"
-  ],
-  "keywords": [
-    "combobox",
-    "form",
-    "input",
-    "multiselect",
-    "react",
-    "react-component",
-    "select",
-    "ui"
-  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "@vitejs/plugin-react": "^4.2.0",
-    "eslint": "^8.53.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup": "^4.5.2",
-    "rollup-plugin-scss": "^4.0.0",
-    "sass": "^1.69.5",
-    "vite": "^5.0.5"
-  },
-  "peerDependencies": {
-    "react-select": "^5.4.0",
-    "@govtechsg/sgds": "^2.1.1",
-    "bootstrap-icons": "^1.11.2"
   }
 }
