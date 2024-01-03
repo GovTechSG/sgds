@@ -3,33 +3,32 @@
     "version": "1.0.0",
     "description": "",
     "repository": {
-      "type": "git",
-      "url": "https://github.com/govtechsg/sgds.git"
+        "type": "git",
+        "url": "https://github.com/govtechsg/sgds.git"
     },
     "license": "MIT",
     "author": "Tey Liang Tai",
     "main": "",
     "scripts": {
-      "prepare": "husky install",
-      "portal:install": "cd portal && npm i && bundle install",
-      "lib:install": "cd lib/sgds && npm i",
-      "install": "concurrently \"npm run lib:install\" \"npm run portal:install\"",
-      "lib:build": "cd lib/sgds && npm run build",
-      "portal:build": "cd portal && npm run build",
-      "build": "npm run lib:build && npm run portal:build",
-      "portal:dev": "cd portal && npm run dev"
+        "prepare": "husky install",
+        "portal:install": "cd portal && npm i && bundle install",
+        "lib:install": "cd lib/sgds && npm i",
+        "install": "concurrently \"npm run lib:install\" \"npm run portal:install\"",
+        "lib:build": "cd lib/sgds && npm run build",
+        "portal:build": "cd portal && npm run build",
+        "build": "npm run lib:build && npm run portal:build",
+        "portal:dev": "cd portal && npm run dev"
     },
     "devDependencies": {
-      "@commitlint/cli": "^17.0.3",
-      "@commitlint/config-conventional": "^17.0.3",
-      "concurrently": "^7.0.0",
-      "cz-conventional-changelog": "^3.3.0",
-      "husky": "^8.0.1"
+        "@commitlint/cli": "^17.0.3",
+        "@commitlint/config-conventional": "^17.0.3",
+        "concurrently": "^7.0.0",
+        "cz-conventional-changelog": "^3.3.0",
+        "husky": "^8.0.1"
     },
     "config": {
-      "commitizen": {
-        "path": "./node_modules/cz-conventional-changelog"
-      }
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
     }
-  }
-  
+}
