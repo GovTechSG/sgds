@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.4.0]
 
+## 🗓️ 04-01-2024
+- Replace twitter icon with X. No change to icon class name and unicode
 ## 🗓️ 21-07-2022
 - Update sgds-masthead web component documentation
 ## 🗓️ 04-07-2022
