@@ -18,12 +18,13 @@ jobs:
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
+      - run: npm i husky
       - run: npm run lib:install   
       - run: npm run lib:build
       - run: cd lib/sgds
-      - run: npm publish --tag alpha --access public --ignore-scripts   
+      - run: npm publish --tag alpha --access public   
         if: contains(env.NPM_TAG, 'alpha')
-      - run: npm publish --tag beta --access public --ignore-scripts   
+      - run: npm publish --tag beta --access public
         if: contains(env.NPM_TAG, 'beta')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
