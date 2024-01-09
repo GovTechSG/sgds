@@ -21,7 +21,7 @@ jobs:
       - run: npm run lib:install   
       - run: npm run lib:build
       - run: cd lib/sgds && npm publish --tag alpha --access public 
-        if: contains(env.NPM_TAG, 'alpha')
+        # if: contains(env.NPM_TAG, 'alpha')
       - run: cd lib/sgds && npm publish --tag beta --access public
         if: contains(env.NPM_TAG, 'beta')
         env:
