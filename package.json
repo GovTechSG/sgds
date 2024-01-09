@@ -14,7 +14,7 @@
       "portal:install": "cd portal && npm i && bundle install",
       "lib:install": "cd lib/sgds && npm i",
       "sgds-x-family:install": "cd lib/sgds-x-family && npm i",
-      "install": "concurrently \"npm run lib:install\" \"npm run portal:install\" \"npm run sgds-x-family:install\"",
+      "install": "concurrently \"npm i\" \"npm run lib:install\" \"npm run portal:install\" \"npm run sgds-x-family:install\"",
       "lib:build": "cd lib/sgds && npm run build",
       "portal:build": "cd portal && npm run build",
       "build": "npm run lib:build && npm run portal:build",
