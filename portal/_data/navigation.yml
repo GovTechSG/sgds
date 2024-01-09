@@ -11,6 +11,9 @@
 - title: patterns
   url: /patterns/
   has-collection: true
+- title: layouts
+  url: /layouts/
+  has-collection: true
 - title: templates
   url: /templates/
   has-collection: true

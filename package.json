@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "description": "",
     "repository": {
-      "type": "git",
-      "url": "https://github.com/govtechsg/sgds.git"
+        "type": "git",
+        "url": "https://github.com/govtechsg/sgds.git"
     },
     "license": "MIT",
     "author": "Tey Liang Tai",
@@ -23,16 +23,15 @@
       "react-select:dev": "cd lib/sgds-x-family && npm run react-select:dev"
     },
     "devDependencies": {
-      "@commitlint/cli": "^17.0.3",
-      "@commitlint/config-conventional": "^17.0.3",
-      "concurrently": "^7.0.0",
-      "cz-conventional-changelog": "^3.3.0",
-      "husky": "^8.0.1"
+        "@commitlint/cli": "^17.0.3",
+        "@commitlint/config-conventional": "^17.0.3",
+        "concurrently": "^7.0.0",
+        "cz-conventional-changelog": "^3.3.0",
+        "husky": "^8.0.1"
     },
     "config": {
-      "commitizen": {
-        "path": "./node_modules/cz-conventional-changelog"
-      }
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
     }
-  }
-  
+}

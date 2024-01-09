@@ -1,4 +1,5 @@
 .sgds-example {
+    overflow-x: auto;
     border: 1px solid var(--sgds-gray-400);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -73,12 +74,12 @@
         border-radius: $border-radius;
     }
     &-grid {
-        display: grid;
+        // display: grid;
         // grid-template-columns: repeat(2, 1fr);
-        grid-auto-flow: column;
-        grid-auto-columns: max-content;
-        gap: 1rem;
-        place-items: center;
+        // grid-auto-flow: column;
+        // grid-auto-columns: max-content;
+        // gap: 1rem;
+        // place-items: center; 
         img,
         svg {
             max-width: 100%;

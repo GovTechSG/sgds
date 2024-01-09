@@ -1,0 +1,47 @@
+---
+title: Table of Content Area
+layout: layout-sidenav
+description: Table of Content Area is the child of Template Grid and is positioned at the right-most of the page. It is container with stylings meant for a single table of content component.
+---
+
+{% capture example-display %}
+<div class="sgds-example-image-grid">
+<img src="{{site.baseurl}}/assets/img/layout/table-of-content-area/example.png" alt="Only content required">
+</div>
+{% endcapture %}
+
+{% capture example-code %}
+<sgds-template-grid class="with-sidenav with-toc">
+    ...
+    <sgds-toc-area>
+    ...
+    </sgds-toc-area>
+<sgds-template-grid>
+{% endcapture %}
+
+<div class="page-component">
+    {% include page-component/component-header.html %}
+
+    <div class="sgds-example-image-container">
+        <div class="sgds-example-image-grid">
+            <img src="{{site.baseurl}}/assets/img/layout/table-of-content-area/anatomy.png" alt="Table-of-content area anatomy">
+        </div>
+    </div>
+    <p>
+        <span class="sgds-code-font">sgds-toc-area</span> is a container with stylings meant for a toc component. It is
+        design to accept only 1 direct child.
+    </p>
+
+    <section name="section-example">
+        <h2 class="title fw-bold" id="example">Example</h2>
+        
+        <div class="section-sub">
+            {%
+            include layouts/layout-code-snippet.html
+            name="example"
+            display=example-display
+            code=example-code
+            %}
+        </div>
+    </section>
+</div>

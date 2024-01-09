@@ -1,0 +1,20 @@
+<div class="sgds-example">
+    {{include.display}}
+</div>
+<div class="sgds accordion code-snippet no-toc-section" id="example-{{include.name}}">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading-{{include.name}}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-{{include.name}}" aria-expanded="false"
+                aria-controls="collapse-{{include.name}}">
+                See Code
+            </button>
+        </h2>
+        <div id="collapse-{{include.name}}" class="accordion-collapse collapse"
+            aria-labelledby="heading-{{include.name}}" data-bs-parent="#example-{{include.name}}">
+            <div class="accordion-body accordion-body-codesnippet">
+                {%- highlight html -%}{{include.code}}{%- endhighlight -%}
+            </div>
+        </div>
+    </div>
+</div>

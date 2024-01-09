@@ -42,6 +42,15 @@ plugins:
 
 collections_dir: collections
 collections:
+  layouts:
+    permalink: /:collection/:name
+    output: true
+    category: layouts
+    order:
+      - template-grid.html
+      - side-navigation-area.html
+      - content-area.html
+      - table-of-content-area.html
   components:
     permalink: /:collection/:name
     output: true
@@ -78,6 +87,14 @@ collections:
 
 # set all patterns collection to use certain layouts
 defaults:
+  -
+    scope:
+      type: "layouts" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "layouts"
+      source-grid: false
+      toc: true
   -
     scope:
       type: "patterns" 
