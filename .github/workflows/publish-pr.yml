@@ -19,7 +19,6 @@ jobs:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
-      - run: npm run lib:install
       - run: npm run lib:build
       - run: cd lib/sgds
       - run: npm publish --tag alpha --access public
@@ -38,7 +37,6 @@ jobs:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
-      - run: npm run sgds-x-family:install
       - run: npm run sgds-x-family:build
       - run: cd lib/sgds-x-family
       - run: npm publish --tag alpha --access public
