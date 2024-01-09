@@ -18,12 +18,12 @@ jobs:
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
+      - run: npm run lib:install   
       - run: npm run lib:build
       - run: cd lib/sgds
-      - run: npm publish --tag alpha --access public
+      - run: npm publish --tag alpha --access public --ignore-scripts   
         if: contains(env.NPM_TAG, 'alpha')
-      - run: npm publish --tag beta --access public
+      - run: npm publish --tag beta --access public --ignore-scripts   
         if: contains(env.NPM_TAG, 'beta')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
