@@ -11,25 +11,24 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/sgds/')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
       - run: npm run lib:install
       - run: npm run lib:build
-      - run: cd lib/sgds
-      - run: npm publish --tag latest --access public
+      - run: npm publish ./lib/sgds --tag latest --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   publish-sgds-x-family:
     if: startsWith(github.ref, 'refs/tags/sgds-x-family/')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
       - run: npm run sgds-x-family:install
       - run: npm run sgds-x-family:build
