@@ -1,3 +1,5 @@
+# @format
+
 name: Publish Latest Releases
 
 on:
@@ -16,6 +18,7 @@ jobs:
         with:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
       - run: npm run lib:install
       - run: npm run lib:build
       - run: cd lib/sgds
@@ -31,6 +34,7 @@ jobs:
         with:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
       - run: npm run sgds-x-family:install
       - run: npm run sgds-x-family:build
       - run: cd lib/sgds-x-family
