@@ -77,6 +77,19 @@ This is a commitizen friendly repo. Adhere to the commit conventions of cz.
 
 Library publication is performed in workflow by github actions. When ready for publishing, perform the following steps
 
+### Pre-requisites
+
+Ensure that you have a .git folder in the each of the sgds library directory. For more info on the issue: [GitHub Issue: npm/npm#9111](https://github.com/npm/npm/issues/9111)
+
+```bash
+cd lib/sgds ## or cd lib/sgds-x-familyq
+ls -a 
+
+## if you don't see a .git directory, then run:
+mkdir .git
+```
+
+
 ##### Bump version
 
 1. run `cd lib/sgds` to navigate to the sgds library folder
