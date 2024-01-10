@@ -67,4 +67,4 @@ import * as bootstrap from 'bootstrap';
 
 ## Patch Notes
 
-See [Changelog](./lib/sgds/CHANGELOG.md)
+See [Changelog](./CHANGELOG.md)

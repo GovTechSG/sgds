@@ -8,11 +8,13 @@ This repository contains the styling libraries of SGDS and portal documentation
 
 * [@govtechsg/sgds](/lib/sgds/README.md)
 * [@govtechsg/sgds-x-family](/lib/sgds-x-family/README.md) (WORK-IN-PROGRESS) 
-* [SGDS Portal](/portal/sgds/README.md)
+* [SGDS Portal](/portal/README.md)
 
 ## Contribute
-To Contribute, please read [CONTRIBUTING.md](/CONTRIBUTING.md)
+
+To Contribute and  for repository setup, please read [CONTRIBUTING.md](/CONTRIBUTING.md)
 
 ## Others
+
 * [SGDS React Component Library](https://github.com/GovTechSG/sgds-govtech-react)
 * [SGDS Web Component Library](https://github.com/GovTechSG/sgds-web-component)
