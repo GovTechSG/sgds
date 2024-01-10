@@ -4,7 +4,8 @@
 
 The [Singapore Government Design System](https://www.designsystem.tech.gov.sg) was developed to empower teams in creating fast, accessible and mobile-friendly digital services.
 
-Visit our [SGDS React storybook](https://react.designsystem.tech.gov.sg)
+Visit our [React storybook](https://react.designsystem.tech.gov.sg)
+Visit our [Web Component storybook](https://webcomponent.designsystem.tech.gov.sg)
 
 ***
 
@@ -66,4 +67,4 @@ import * as bootstrap from 'bootstrap';
 
 ## Patch Notes
 
-See [Changelog](./lib/sgds/CHANGELOG.md)
+See [Changelog](./CHANGELOG.md)
