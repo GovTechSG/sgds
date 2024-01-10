@@ -8,7 +8,7 @@ This repository contains the styling libraries of SGDS and portal documentation
 
 * [@govtechsg/sgds](/lib/sgds/README.md)
 * [@govtechsg/sgds-x-family](/lib/sgds-x-family/README.md) (WORK-IN-PROGRESS) 
-* [SGDS Portal](/portal/sgds/README.md)
+* [SGDS Portal](/portal/README.md)
 
 ## Contribute
 To Contribute, please read [CONTRIBUTING.md](/CONTRIBUTING.md)
