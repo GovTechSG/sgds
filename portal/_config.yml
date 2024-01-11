@@ -119,7 +119,6 @@ defaults:
       pageCategory: "templates"
       source-grid: false
       toc: true
-      notice: Template stylings used here are still in beta testing. `npm install @govtechsg/sgds@beta` to try it.
   -
     scope:
       type: "get-started" 
