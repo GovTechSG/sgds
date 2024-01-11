@@ -2,7 +2,12 @@
 title: home
 layout: layout-single
 permalink: /
+notice: 👋🏻 Hey there!<br>We wanted to give you a heads up that our portal will be undergoing some maintenance on Friday, January 12th 2024 at 5 PM.<br>Don't worry though, the installation of SGDS libraries won't be affected, so you can still keep working on your projects. Thanks for your understanding!</p>
 ---
+
+{% if page.notice %}
+{% include notice.html %}
+{% endif %}
 
 <section class="home-hero">
     <div class="home-hero-content">
