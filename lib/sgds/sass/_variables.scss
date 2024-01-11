@@ -7,15 +7,15 @@
 
 // scss-docs-start gray-color-variables
 $white: #fff !default;
-$gray-100: #F7F7F9 !default;
-$gray-200: #E4E7EC !default;
-$gray-300: #D0D5DD !default;
-$gray-400: #98A2B3 !default;
-$gray-500: #667085 !default;
-$gray-600: #344054 !default;
-$gray-700: #1D2939 !default;
-$gray-800: #000 !default;
-$gray-900: #000 !default;
+$gray-100: #F0F2F5 !default;
+$gray-200: #DFE3E9 !default;
+$gray-300: #BEC6D3 !default;
+$gray-400: #9CA9BC !default;
+$gray-500: #6D809C !default;
+$gray-600: #475569 !default;
+$gray-700: #343F4E !default;
+$gray-800: #222932 !default;
+$gray-900: #0F1217 !default;
 $black: #000 !default;
 // scss-docs-end gray-color-variables
 
@@ -29,37 +29,32 @@ $grays: ("100": $gray-100,
   "600": $gray-600,
   "700": $gray-700,
   "800": $gray-800,
-  "900": $gray-900) !default;
+  "900": $gray-900
+) !default;
 // scss-docs-end gray-colors-map
 // fusv-enable
 
 // scss-docs-start color-variables
-$blue: #1f69ff !default; //secondary
-$indigo: #6610f2 !default;
 $purple: #5925DC !default;
-$pink: #d63384 !default;
-$red: #D7260F !default;
-$orange: #fd7e14 !default;
-$yellow: #F79009 !default;
-$green: #0A8217 !default;
-$teal: #20c997 !default;
+$blue: #1f69ff !default;
+$green: #096F14 !default;
+$red: #B7200D !default;
+$yellow: #9F5E05 !default;
 $cyan: #0F71BB !default; //link
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
-$colors: ("blue": $blue,
-  // "indigo": $indigo,
+$colors: (
+  "blue": $blue,
   "purple": $purple,
-  "pink": $pink,
   "red": $red,
-  // "orange": $orange,
   "yellow": $yellow,
   "green": $green,
-  // "teal": $teal,
   "cyan": $cyan,
   "white": $white,
   "gray": $gray-600,
-  "gray-dark": $gray-800) !default;
+  "gray-dark": $gray-800
+) !default;
 // scss-docs-end colors-map
 
 // scss-docs-start theme-color-variables
@@ -89,113 +84,73 @@ $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value") !default;
 
 // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
 // See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
-$min-contrast-ratio: 4.5 !default;
+$min-contrast-ratio: 4.51 !default;
 
 // Customize the light and dark text colors for use in our color contrast function.
 $color-contrast-dark: $black !default;
 $color-contrast-light: $white !default;
 
 // fusv-disable secondary
-$blue-100: #EBF1FF !default;
-$blue-200: #D3E2FF !default;
-$blue-300: #99BBFF !default;
-$blue-400: #70A0FF !default;
-$blue-500: $blue !default; //hsl(220, 100%, 56%)
-$blue-600: #004FF0 !default;
-$blue-700: #0040C2 !default;
-$blue-800: #003194 !default;
-$blue-900: #002266 !default;
-
-// $indigo-100: tint-color($indigo, 80%) !default;
-// $indigo-200: tint-color($indigo, 60%) !default;
-// $indigo-300: tint-color($indigo, 40%) !default;
-// $indigo-400: tint-color($indigo, 20%) !default;
-// $indigo-500: $indigo !default;
-// $indigo-600: shade-color($indigo, 20%) !default;
-// $indigo-700: shade-color($indigo, 40%) !default;
-// $indigo-800: shade-color($indigo, 60%) !default;
-// $indigo-900: shade-color($indigo, 80%) !default;
-
 //Primary
-$purple-100: #ECE6FB !default;
-$purple-200: #C7B6F3 !default;
-$purple-300: #A386EC !default;
-$purple-400: #7E55E4 !default;
-$purple-500: $purple !default;
-$purple-600: #491DB6 !default;
-$purple-700: #39178E !default;
-$purple-800: #291167 !default;
-$purple-900: #190A3F !default;
+$purple-100: #F0EBFC !default;
+$purple-200: #D1C3F5 !default;
+$purple-300: #B39CEF !default;
+$purple-400: #9574E9 !default;
+$purple-500: #774de2 !default;
+$purple-600: $purple !default;
+$purple-700: #451CAD !default;
+$purple-800: #32147D !default;
+$purple-900: #1F0C4C !default;
 
-// $pink-100: tint-color($pink, 80%) !default;
-// $pink-200: tint-color($pink, 60%) !default;
-// $pink-300: tint-color($pink, 40%) !default;
-// $pink-400: tint-color($pink, 20%) !default;
-// $pink-500: $pink !default;
-// $pink-600: shade-color($pink, 20%) !default;
-// $pink-700: shade-color($pink, 40%) !default;
-// $pink-800: shade-color($pink, 60%) !default;
-// $pink-900: shade-color($pink, 80%) !default;
+$blue-100: #EDF2FF !default;
+$blue-200: #AEC9FF !default;
+$blue-300: #8AB1FF !default;
+$blue-400: #6699FF !default;
+$blue-500: #4381FF !default;
+$blue-600: $blue !default;
+$blue-700: #0047D7 !default;
+$blue-800: #002F8F !default;
+$blue-900: #001848 !default;
 
-$red-100: #FFF4F3 !default;
-$red-200: #FFCFC8 !default;
-$red-300: #FC9C90 !default;
-$red-400: #FB7463 !default;
-$red-500: #FA5741 !default;
+$red-100: #FFFAFA !default;
+$red-200: #FFFAFA !default;
+$red-300: #F58577 !default;
+$red-400: #F25643 !default;
+$red-500: #EB2911 !default;
 $red-600: $red !default;
-$red-700: #F8331C !default;
-$red-800: shade-color($red, 60%) !default;
-$red-900: shade-color($red, 80%) !default;
+$red-700: #87180A !default;
+$red-800: #87180A !default;
+$red-900: #280703 !default;
 
-// $orange-100: tint-color($orange, 80%) !default;
-// $orange-200: tint-color($orange, 60%) !default;
-// $orange-300: tint-color($orange, 40%) !default;
-// $orange-400: tint-color($orange, 20%) !default;
-// $orange-500: $orange !default;
-// $orange-600: shade-color($orange, 20%) !default;
-// $orange-700: shade-color($orange, 40%) !default;
-// $orange-800: shade-color($orange, 60%) !default;
-// $orange-900: shade-color($orange, 80%) !default;
-
-$yellow-100: #FFFAEB !default;
-$yellow-200: #FEF0C7 !default;
-$yellow-300: #FEDF89 !default;
-$yellow-400: #FEC84B !default;
-$yellow-500: #FDB022 !default;
+$yellow-100: #FFFCF9 !default;
+$yellow-200: #FCD298 !default;
+$yellow-300: #FAB658 !default;
+$yellow-400: #F89A17 !default;
+$yellow-500: #C77606 !default;
 $yellow-600: $yellow !default;
-$yellow-700: #DC6803 !default;
-$yellow-800: shade-color($yellow, 60%) !default;
-$yellow-900: shade-color($yellow, 80%) !default;
+$yellow-700: #643C03 !default;
+$yellow-800: #422702 !default;
+$yellow-900: #422702 !default;
 
-$green-100: #E7F6E9 !default;
-$green-200: #C4E8C8 !default;
-$green-300: #9DD9A3 !default;
-$green-400: #58BE62 !default;
-$green-500: #3BB346 !default;
+$green-100: #F6FEF7 !default;
+$green-200: #8CF697 !default;
+$green-300: #4EF160 !default;
+$green-400: #13EA2A !default;
+$green-500: #0EAC1F !default;
 $green-600: $green !default;
-$green-700: #2DA337 !default;
-$green-800: shade-color($green, 60%) !default;
-$green-900: shade-color($green, 80%) !default;
+$green-700: #075710 !default;
+$green-800: #05400B !default;
+$green-900: #032807 !default;
 
-// $teal-100: tint-color($teal, 80%) !default;
-// $teal-200: tint-color($teal, 60%) !default;
-// $teal-300: tint-color($teal, 40%) !default;
-// $teal-400: tint-color($teal, 20%) !default;
-// $teal-500: $teal !default;
-// $teal-600: shade-color($teal, 20%) !default;
-// $teal-700: shade-color($teal, 40%) !default;
-// $teal-800: shade-color($teal, 60%) !default;
-// $teal-900: shade-color($teal, 80%) !default;
-
-$cyan-100: #e2eff8 !default;
-$cyan-200: #b9d8ee  !default;
-$cyan-300: #90c1e4  !default;
-$cyan-400: #58A1D4 !default;
-$cyan-500: #59a1d4 !default;
+$cyan-100: #E6F3FD !default;
+$cyan-200: #9FD1F7  !default;
+$cyan-300: #70BBF3  !default;
+$cyan-400: #40A4F0 !default;
+$cyan-500: #138EEA !default;
 $cyan-600: $cyan !default;
-$cyan-700: #0c5b97!default;
-$cyan-800: #0a4776 !default;
-$cyan-900: #08395e !default;
+$cyan-700: #0B5287!default;
+$cyan-800: #073253 !default;
+$cyan-900: #03131F !default;
 
 // scss-docs-start gray-colors-map
 $primarys: ("primary-100": $purple-100,
@@ -285,18 +240,8 @@ $darks: ("dark-100": $gray-100,
   "warning": $warnings,
   "danger": $dangers,
   "light": $lights,
-  "dark": $darks) !default;
-
-
-// $indigos: ("indigo-100": $indigo-100,
-//   "indigo-200": $indigo-200,
-//   "indigo-300": $indigo-300,
-//   "indigo-400": $indigo-400,
-//   "indigo-500": $indigo-500,
-//   "indigo-600": $indigo-600,
-//   "indigo-700": $indigo-700,
-//   "indigo-800": $indigo-800,
-//   "indigo-900": $indigo-900) !default;
+  "dark": $darks
+  ) !default;
 
 $purples: ("purple-100": $purple-100,
   "purple-200": $purple-200,
@@ -308,16 +253,6 @@ $purples: ("purple-100": $purple-100,
   "purple-800": $purple-800,
   "purple-900": $purple-900) !default;
 
-// $pinks: ("pink-100": $pink-100,
-//   "pink-200": $pink-200,
-//   "pink-300": $pink-300,
-//   "pink-400": $pink-400,
-//   "pink-500": $pink-500,
-//   "pink-600": $pink-600,
-//   "pink-700": $pink-700,
-//   "pink-800": $pink-800,
-//   "pink-900": $pink-900) !default;
-
 $reds: ("red-100": $red-100,
   "red-200": $red-200,
   "red-300": $red-300,
@@ -327,16 +262,6 @@ $reds: ("red-100": $red-100,
   "red-700": $red-700,
   "red-800": $red-800,
   "red-900": $red-900) !default;
-
-// $oranges: ("orange-100": $orange-100,
-//   "orange-200": $orange-200,
-//   "orange-300": $orange-300,
-//   "orange-400": $orange-400,
-//   "orange-500": $orange-500,
-//   "orange-600": $orange-600,
-//   "orange-700": $orange-700,
-//   "orange-800": $orange-800,
-//   "orange-900": $orange-900) !default;
 
 $yellows: ("yellow-100": $yellow-100,
   "yellow-200": $yellow-200,
@@ -357,16 +282,6 @@ $greens: ("green-100": $green-100,
   "green-700": $green-700,
   "green-800": $green-800,
   "green-900": $green-900) !default;
-
-// $teals: ("teal-100": $teal-100,
-//   "teal-200": $teal-200,
-//   "teal-300": $teal-300,
-//   "teal-400": $teal-400,
-//   "teal-500": $teal-500,
-//   "teal-600": $teal-600,
-//   "teal-700": $teal-700,
-//   "teal-800": $teal-800,
-//   "teal-900": $teal-900) !default;
 
 $cyans: ("cyan-100": $cyan-100,
   "cyan-200": $cyan-200,
@@ -547,12 +462,10 @@ $container-max-widths: (sm: 540px,
 $grid-columns: 12 !default;
 $grid-gutter-width: 1.5rem !default;
 $grid-row-columns: 6 !default;
-
 $gutters: $spacers !default;
 
 // Container padding
 $container-padding-x: $grid-gutter-width * .5 !default;
-
 
 // Components
 //
@@ -1759,7 +1672,7 @@ $offcanvas-backdrop-opacity: $modal-backdrop-opacity !default;
 // Code
 
 $code-font-size: $small-font-size !default;
-$code-color: $pink !default;
+$code-color: $red !default;
 
 $kbd-padding-y: .2rem !default;
 $kbd-padding-x: .4rem !default;
