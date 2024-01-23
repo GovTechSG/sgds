@@ -1,24 +1,22 @@
 @import "~bootstrap/scss/alert";
 
-@each $state, $value in $theme-colors-set {
-    
-    $alert-background: map-get($map: $value , $key: #{$state}-100);
-    $alert-border: map-get($map: $value , $key: #{$state}-400);
-    $alert-color: $gray-600;
-
+$color-mode-type: data;
+@include color-mode(dark) {
+  // CSS variable overrides here...
+    @each $state in map-keys($theme-colors) {
     .alert-#{$state} {
-      @include alert-variant($alert-background, $alert-border, $alert-color);
-
-      i{
-        color: map-get($map: $value , $key: #{$state}-600)
-      }
+      --#{$prefix}alert-color: var(--#{$prefix}#{$state}-text-emphasis);
+      --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-bg-subtle);
+      --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-border-subtle);
+      --#{$prefix}alert-link-color: var(--#{$prefix}#{$state}-text-emphasis);
     }
   }
+}
 
 .sgds{
-  &.alert{
-    > i{
-      @extend .align-self-start;
-    }
+&.alert{
+  > i{
+    @extend .align-self-start;
   }
+}
 }
