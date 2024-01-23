@@ -7,6 +7,10 @@
 
 body{
     color: var(--sgds-gray-600);
+    [data-bs-theme="dark"] & {
+        color: $body-color-dark;
+        // border-color: var(--sgds-gray-400);
+    }
 }
 
 .title{
@@ -14,7 +18,11 @@ body{
 }
 
 p,li{
-    color: var(--sgds-gray-600)
+    color: var(--sgds-gray-600);
+    [data-bs-theme="dark"] & {
+        color: $body-color-dark;
+        // border-color: var(--sgds-gray-400);
+    }
 }
 
 h1{
@@ -27,5 +35,9 @@ sgds-masthead{
 
 .subtitle{
     color: var(--sgds-gray-600);
+    [data-bs-theme="dark"] & {
+        color: $body-color-dark;
+        // border-color: var(--sgds-gray-400);
+    }
 }
 

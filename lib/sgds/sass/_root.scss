@@ -12,3 +12,21 @@
 //         --section-padding-xl: 18rem 1.5rem;
 //     }
 // }
+@if $enable-dark-mode {
+    @include color-mode(dark, true) {
+        color-scheme: dark;
+        @each $color, $value in $theme-colors-dark {
+            --#{$prefix}#{$color}-bg-dark: #{$value};
+            --#{$prefix}#{$color}-bg-dark-rgb: #{to-rgb($value)};
+        }
+
+        @each $color, $value in $theme-colors-hover-dark {
+            --#{$prefix}#{$color}-bg-hover-dark: #{$value};
+        }
+
+        @each $color, $value in $theme-colors-outline-dark {
+            --#{$prefix}#{$color}-outline-dark: #{$value};
+            --#{$prefix}#{$color}-outline-dark-rgb: #{to-rgb($value)};
+        }
+    }
+}

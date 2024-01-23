@@ -7,11 +7,14 @@
             .sgds.card{
                 transition: $transition-base;
                 overflow: hidden;
-                background: rgba(246,247,251,1);
+                // background: rgba(246,247,251,1);
                 .card-body{
                     z-index: 1;
-                    background: var(--sgds-white);
+                    // background: var(--sgds-white);
                     background: linear-gradient(0deg, rgba(255,255,255,1) 74%, rgba(246,247,251,1) 100%);
+                    [data-bs-theme="dark"] & {
+                        background: linear-gradient(0deg, rgb(0, 0, 0) 74%, rgb(41, 41, 41) 100%);
+                    }
                 }
                 img{
                     transition: transform 0.2s ease-in-out;

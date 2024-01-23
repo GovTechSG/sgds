@@ -9,35 +9,36 @@
 @import "utilities";
 
 
-// $all-colors: map-merge-multiple($primarys, $secondarys, $purples, $reds, $yellows, $greens, $cyans, $darks, $lights);
 
-// $utilities: map-merge(
-//   $utilities,
-//   (
-//     "color": map-merge(
-//       map-get($utilities, "color"),
-//       (
-//         values: map-merge(
-//           map-get(map-get($utilities, "color"), "values"),
-//           (
-//             $all-colors
-//           ),
-//         ),
-//       ),
-//     ),
-//     "background-color": map-merge(
-//       map-get($utilities, "background-color"),
-//       (
-//         values: map-merge(
-//           map-get(map-get($utilities, "background-color"), "values"),
-//           (
-//             $all-colors
-//           ),
-//         ),
-//       ),
-//     ),
-//   ),
-// );
+$all-colors: map-merge-multiple($purples, $reds, $yellows, $greens, $cyans, $darks, $lights);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "color": map-merge(
+      map-get($utilities, "color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "color"), "values"),
+          (
+            $all-colors
+          ),
+        ),
+      ),
+    ),
+    "background-color": map-merge(
+      map-get($utilities, "background-color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "background-color"), "values"),
+          (
+            $all-colors
+          ),
+        ),
+      ),
+    ),
+  ),
+);
 
 
 // Layout & components

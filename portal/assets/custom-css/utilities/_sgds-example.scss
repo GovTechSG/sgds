@@ -5,6 +5,10 @@
     border-top-right-radius: 5px;
     padding: 2rem;
     background-color: var(--sgds-gray-100);
+    [data-bs-theme="dark"] &{
+        background-color: $black;
+        border-color: $border-color-dark;
+    }
     &:last-child {
         border-top: none;
     }
@@ -72,6 +76,9 @@
         place-items: center;
         margin-bottom: 1rem;
         border-radius: $border-radius;
+        [data-bs-theme="dark"] &{
+            background-color: $black;
+        }
     }
     &-grid {
         // display: grid;

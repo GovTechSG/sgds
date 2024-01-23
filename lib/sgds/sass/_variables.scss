@@ -38,15 +38,12 @@ $grays: ("100": $gray-100,
 $blue:    #1f69ff !default;
 $indigo:  #6610f2 !default;
 $purple:  #5925DC !default;
-
 $pink:    #d63384 !default;
 $red:     #B7200D !default;
 $orange:  #fd7e14 !default;
 $yellow:  #9F5E05 !default;
 $green:   #096F14 !default;
 $teal:    #20c997 !default;
-
-
 $cyan:    #0F71BB !default;
 // scss-docs-end color-variables
 
@@ -116,7 +113,7 @@ $yellow-500: #C77606 !default;
 $yellow-600: $yellow !default;
 $yellow-700: #643C03 !default;
 $yellow-800: #422702 !default;
-$yellow-900: #422702 !default;
+$yellow-900: #1F1301 !default;
 
 $green-100: #F6FEF7 !default;
 $green-200: #8CF697 !default;
@@ -149,6 +146,7 @@ $cyan-900: #03131F !default;
     "blue-800": $blue-800,
     "blue-900": $blue-900
   ) !default;
+  
   
   // $indigos: (
   //   "indigo-100": $indigo-100,
@@ -271,18 +269,17 @@ $dark: $gray-900 !default;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  "primary":    $primary,
-  "secondary":  $secondary,
-  "success":    $success,
-  "info":       $info,
-  "warning":    $warning,
-  "danger":     $danger,
+  "primary":    $purple,
+  "secondary":  $blue,
+  "success":    $green,
+  "info":       $cyan,
+  "warning":    $yellow,
+  "danger":     $red,
   "light":      $light,
   "dark":       $dark
 ) !default;
-// scss-docs-end theme-colors-map
 
-// scss-docs-start gray-colors-map
+// scss-docs-end theme-colors-map
 $primarys: ("primary-100": $purple-100,
   "primary-200": $purple-200,
   "primary-300": $purple-300,
@@ -342,7 +339,6 @@ $dangers: ("danger-100": $red-100,
   "danger-700": $red-700,
   "danger-800": $red-800,
   "danger-900": $red-900) !default;
-
 $lights: ("light-100": $gray-100,
   "light-200": $gray-200,
   "light-300": $gray-300,
@@ -363,44 +359,45 @@ $darks: ("dark-100": $gray-100,
   "dark-800": $gray-800,
   "dark-900": $gray-900) !default;
 
-  $theme-colors-set: ("primary": $primarys,
-  "secondary": $secondarys,
-  "success": $successs,
-  "info": $infos,
-  "warning": $warnings,
-  "danger": $dangers,
+$theme-colors-set: (
+  "primary": $purples,
+  "secondary": $blues,
+  "success": $greens,
+  "info": $cyans,
+  "warning": $yellows,
+  "danger": $reds,
   "light": $lights,
   "dark": $darks) !default;
 
 // scss-docs-start theme-text-variables
-$primary-text-emphasis:   shade-color($primary, 60%) !default;
-$secondary-text-emphasis: shade-color($secondary, 60%) !default;
-$success-text-emphasis:   shade-color($success, 60%) !default;
-$info-text-emphasis:      shade-color($info, 60%) !default;
-$warning-text-emphasis:   shade-color($warning, 60%) !default;
-$danger-text-emphasis:    shade-color($danger, 60%) !default;
-$light-text-emphasis:     $gray-700 !default;
-$dark-text-emphasis:      $gray-700 !default;
+$primary-text-emphasis:   $purple-600 !default;
+$secondary-text-emphasis: $blue-600 !default;
+$success-text-emphasis:   $green-600 !default;
+$info-text-emphasis:      $cyan-600 !default;
+$warning-text-emphasis:   $yellow-600 !default;
+$danger-text-emphasis:    $red-600 !default;
+$light-text-emphasis:     $gray-600 !default;
+$dark-text-emphasis:      $gray-600 !default;
 // scss-docs-end theme-text-variables
 
 // scss-docs-start theme-bg-subtle-variables
-$primary-bg-subtle:       tint-color($primary, 80%) !default;
-$secondary-bg-subtle:     tint-color($secondary, 80%) !default;
-$success-bg-subtle:       tint-color($success, 80%) !default;
-$info-bg-subtle:          tint-color($info, 80%) !default;
-$warning-bg-subtle:       tint-color($warning, 80%) !default;
-$danger-bg-subtle:        tint-color($danger, 80%) !default;
-$light-bg-subtle:         mix($gray-100, $white) !default;
+$primary-bg-subtle:       $purple-100 !default;
+$secondary-bg-subtle:     $blue-100 !default;
+$success-bg-subtle:       $green-100 !default;
+$info-bg-subtle:          $cyan-100 !default;
+$warning-bg-subtle:       $yellow-100 !default;
+$danger-bg-subtle:        $red-100 !default;
+$light-bg-subtle:         $gray-100 !default;
 $dark-bg-subtle:          $gray-400 !default;
 // scss-docs-end theme-bg-subtle-variables
 
 // scss-docs-start theme-border-subtle-variables
-$primary-border-subtle:   tint-color($primary, 60%) !default;
-$secondary-border-subtle: tint-color($secondary, 60%) !default;
-$success-border-subtle:   tint-color($success, 60%) !default;
-$info-border-subtle:      tint-color($info, 60%) !default;
-$warning-border-subtle:   tint-color($warning, 60%) !default;
-$danger-border-subtle:    tint-color($danger, 60%) !default;
+$primary-border-subtle:   $purple-600 !default;
+$secondary-border-subtle: $blue-600 !default;
+$success-border-subtle:   $green-600 !default;
+$info-border-subtle:      $cyan-600 !default;
+$warning-border-subtle:   $yellow-600 !default;
+$danger-border-subtle:    $red-600 !default;
 $light-border-subtle:     $gray-200 !default;
 $dark-border-subtle:      $gray-500 !default;
 // scss-docs-end theme-border-subtle-variables
@@ -432,7 +429,7 @@ $enable-button-pointers: true !default;
 $enable-rfs: true !default;
 $enable-validation-icons: true !default;
 $enable-negative-margins: false !default;
-$enable-deprecation-messages: true !default;
+$enable-deprecation-messages: false !default;
 $enable-important-utilities: true !default;
 $enable-dark-mode:            true !default;
 $color-mode-type:             data !default; // `data` or `media-query`
@@ -910,7 +907,7 @@ $input-btn-border-width: $border-width !default;
 // For each of Bootstrap's buttons, define text, background, and border color.
 
 // scss-docs-start btn-variables
-$btn-color:                   var(--#{$prefix}body-color) !default;
+$btn-color: var(--#{$prefix}body-color) !default;
 $btn-padding-y: $input-btn-padding-y !default;
 $btn-padding-x: $input-btn-padding-x !default;
 $btn-font-family: $input-btn-font-family !default;

@@ -29,3 +29,14 @@ copyBtn.addEventListener('click', () => {
         },2000);
     })
 });
+
+const modeToggler = document.querySelector('.mode-toggle');
+modeToggler.addEventListener('click',()=>{
+    console.log("clicked")
+    if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+        document.documentElement.setAttribute('data-bs-theme','light')
+    }
+    else {
+        document.documentElement.setAttribute('data-bs-theme','dark')
+    }
+})

@@ -6,6 +6,10 @@ aside{
     .sgds.sidenav{
         padding: 1rem;
         background-color: var(--sgds-gray-100);
+        [data-bs-theme="dark"] & {
+            background-color: var(--sgds-gray-800);
+            // border-color: var(--sgds-gray-400);
+        }
        
         a{
             text-decoration: none;
