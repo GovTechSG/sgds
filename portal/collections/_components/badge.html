@@ -18,28 +18,28 @@ $badge-border-radius: $border-radius !default;
 {% endcapture %}
 
 {% capture badge-default %}
-<span class="sgds badge bg-primary"><i class="bi bi-qr-code left"></i>With icon<i class="bi bi-qr-code right"></i></span>
-<span class="sgds badge bg-primary">Primary</span>
-<span class="sgds badge bg-secondary">Secondary</span>
-<span class="sgds badge bg-success">Success</span>
-<span class="sgds badge bg-danger">Danger</span>
-<span class="sgds badge bg-warning text-dark">Warning</span>
-<span class="sgds badge bg-info text-dark">Info</span>
-<span class="sgds badge bg-light text-dark">Light</span>
-<span class="sgds badge bg-dark">Dark</span>
+<span class="sgds badge text-bg-primary"><i class="bi bi-qr-code left"></i>With icon<i class="bi bi-qr-code right"></i></span>
+<span class="sgds badge text-bg-primary">Primary</span>
+<span class="sgds badge text-bg-secondary">Secondary</span>
+<span class="sgds badge text-bg-success">Success</span>
+<span class="sgds badge text-bg-danger">Danger</span>
+<span class="sgds badge text-bg-warning">Warning</span>
+<span class="sgds badge text-bg-info">Info</span>
+<span class="sgds badge text-bg-light">Light</span>
+<span class="sgds badge text-bg-dark">Dark</span>
 {% endcapture %}
 
 {% capture badge-wrapper %}
 <h1 class="d-flex align-items-center">H1 Header <span class="ms-4 sgds badge bg-dark"><i class="bi bi-qr-code left"></i>Dark<i class="bi bi-qr-code right"></i></span></h1>
-<h2>H2 Header <span class="sgds badge bg-dark">Dark</span></h2>
-<h3>H3 Header <span class="sgds badge bg-dark">Dark</span></h3>
-<h4>H4 Header <span class="sgds badge bg-dark">Dark</span></h4>
-<p>Paragraph <span class="sgds badge bg-secondary">Dev</span></p>
+<h2>H2 Header <span class="sgds badge text-bg-dark">Dark</span></h2>
+<h3>H3 Header <span class="sgds badge text-bg-dark">Dark</span></h3>
+<h4>H4 Header <span class="sgds badge text-bg-dark">Dark</span></h4>
+<p>Paragraph <span class="sgds badge text-bg-secondary">Dev</span></p>
 {% endcapture %}
 
 {% capture badge-button %}
-<div class="sgds btn btn-primary">Testing <span class="sgds badge bg-light text-dark">99</span></div>
-<div class="sgds btn btn-primary btn-lg">Testing <span class="sgds badge bg-light text-dark">99</span></div>
+<div class="sgds btn btn-primary">Testing <span class="sgds badge text-bg-light">99</span></div>
+<div class="sgds btn btn-primary btn-lg">Testing <span class="sgds badge text-bg-light">99</span></div>
 <button type="button" class="sgds btn btn-primary position-relative">
     Inbox
     <span class="sgds position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -49,12 +49,12 @@ $badge-border-radius: $border-radius !default;
   </button>
   <button type="button" class="sgds btn btn-primary position-relative">
     Profile
-    <span class="sgds position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+    <span class="sgds position-absolute top-0 start-100 translate-middle p-2 bg-danger rounded-circle">
       <span class="visually-hidden">New alerts</span>
     </span>
   </button>
   <i class="bi bi-bell position-relative fs-4">
-    <span class="sgds position-absolute top-0 start-100 translate-middle p-2 bg-warning border border-light rounded-circle">
+    <span class="sgds position-absolute top-0 start-100 translate-middle p-2 bg-warning rounded-circle">
       <span class="visually-hidden">New alerts</span>
     </span>
   </i>
