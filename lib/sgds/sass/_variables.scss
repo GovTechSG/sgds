@@ -35,7 +35,7 @@ $grays: ("100": $gray-100,
 // fusv-enable
 
 // scss-docs-start color-variables
-$blue:    #1f69ff !default;
+$blue:    #0A5BFF !default;
 $indigo:  #6610f2 !default;
 $purple:  #5925DC !default;
 $pink:    #d63384 !default;
@@ -76,14 +76,14 @@ $color-contrast-light: $white !default;
 
 // fusv-disable
 $blue-100: #EDF2FF !default;
-$blue-200: #AEC9FF !default;
-$blue-300: #8AB1FF !default;
-$blue-400: #6699FF !default;
-$blue-500: #4381FF !default;
+$blue-200: #C2D6FF !default;
+$blue-300: #94B7FF !default;
+$blue-400: #6698FF !default;
+$blue-500: #387AFF !default;
 $blue-600: $blue !default;
-$blue-700: #0047D7 !default;
-$blue-800: #002F8F !default;
-$blue-900: #001848 !default;
+$blue-700: #0042C7 !default;
+$blue-800: #002C84 !default;
+$blue-900: #001642 !default;
 
 $purple-100: #F0EBFC !default;
 $purple-200: #D1C3F5 !default;
@@ -98,11 +98,11 @@ $purple-900: #1F0C4C !default;
 $red-100: #FFFAFA !default;
 $red-200: #F9B4AB !default;
 $red-300: #F58577 !default;
-$red-400: #F25643 !default;
-$red-500: #EB2911 !default;
+$red-400: #EB5C4A !default;
+$red-500: #DB3521 !default;
 $red-600: $red !default;
 $red-700: #87180A !default;
-$red-800: #87180A !default;
+$red-800: #580F06 !default;
 $red-900: #280703 !default;
 
 $yellow-100: #FFFCF9 !default;
@@ -115,15 +115,15 @@ $yellow-700: #643C03 !default;
 $yellow-800: #422702 !default;
 $yellow-900: #1F1301 !default;
 
-$green-100: #F6FEF7 !default;
-$green-200: #8CF697 !default;
-$green-300: #4EF160 !default;
-$green-400: #13EA2A !default;
+$green-100: #EBFAEC !default;
+$green-200: #9BE6A3 !default;
+$green-300: #66D972 !default;
+$green-400: #3EBF4C !default;
 $green-500: #0EAC1F !default;
 $green-600: $green !default;
-$green-700: #075710 !default;
-$green-800: #05400B !default;
-$green-900: #032807 !default;
+$green-700: #07530F !default;
+$green-800: #04360A !default;
+$green-900: #021A05 !default;
 
 $cyan-100: #E6F3FD !default;
 $cyan-200: #9FD1F7  !default;

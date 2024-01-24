@@ -3,6 +3,14 @@
 
 .sgds {
     &.navbar {
+        [data-bs-theme="dark"] &{
+            --#{$prefix}navbar-bg-color: $body-bg;
+            --#{$prefix}navbar-color: $gray-100;
+            --#{$prefix}navbar-hover-color: $purple-400;
+            --#{$prefix}navbar-disabled-color: rgba(var(--#{$prefix}emphasis-color-rgb), 0.3);
+            --#{$prefix}navbar-active-color: rgba(var(--#{$prefix}emphasis-color-rgb), 0.9);
+        }
+        background-color: var(--#{$prefix}navbar-bg-color);
         padding: 0 calc(#{$spacer * 2}) 0;
         @include media-breakpoint-down(lg){
             padding: 0 $navbar-mobile-padding-y 0;
@@ -26,7 +34,7 @@
             }
 
             a.nav-link {
-                color: #344054;
+                color: var(--#{$prefix}navbar-color);
                 border-bottom: $navbar-border-bottom-height solid transparent;
                 min-height: 100%;
                 display: flex;
@@ -34,8 +42,8 @@
 
                 &.active,
                 &:hover {
-                    color: $primary;
-                    border-color: $primary;
+                    color: var(--#{$prefix}navbar-hover-color);
+                    border-color: var(--#{$prefix}navbar-hover-color);
                 }
 
                 &.dropdown-toggle {

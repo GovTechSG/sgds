@@ -61,13 +61,25 @@ $mark-bg-dark:                      $yellow-800 !default;
 // component color
 
 // Component color set
+
+$theme-colors-text-dark: (
+  "primary":    $purple-200,
+  "secondary":  $blue-200,
+  "success":    $green-200,
+  "info":       $cyan-200,
+  "warning":    $yellow-200,
+  "danger":     $red-200,
+  "light":      $gray-400,
+  "dark":       $gray-800
+) !default;
+
 $theme-colors-dark: (
-  "primary":    $purple-600,
-  "secondary":  $blue-600,
-  "success":    $green-600,
-  "info":       $cyan-600,
-  "warning":    $yellow-600,
-  "danger":     $red-600,
+  "primary":    $purple-700,
+  "secondary":  $blue-700,
+  "success":    $green-700,
+  "info":       $cyan-700,
+  "warning":    $yellow-700,
+  "danger":     $red-700,
   "light":      $gray-400,
   "dark":       $gray-800
 ) !default;
@@ -84,12 +96,12 @@ $theme-colors-hover-dark: (
 ) !default;
 
 $theme-colors-outline-dark: (
-  "primary":    $purple-500,
-  "secondary":  $blue-500,
-  "success":    $green-500,
-  "info":       $cyan-500,
-  "warning":    $yellow-500,
-  "danger":     $red-500,
+  "primary":    $purple-300,
+  "secondary":  $blue-300,
+  "success":    $green-300,
+  "info":       $cyan-300,
+  "warning":    $yellow-300,
+  "danger":     $red-300,
   "light":      $gray-500,
   "dark":       $gray-700
 ) !default;

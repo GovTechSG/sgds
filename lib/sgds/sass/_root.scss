@@ -15,6 +15,7 @@
 @if $enable-dark-mode {
     @include color-mode(dark, true) {
         color-scheme: dark;
+
         @each $color, $value in $theme-colors-dark {
             --#{$prefix}#{$color}-bg-dark: #{$value};
             --#{$prefix}#{$color}-bg-dark-rgb: #{to-rgb($value)};

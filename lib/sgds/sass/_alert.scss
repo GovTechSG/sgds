@@ -1,6 +1,6 @@
 @import "~bootstrap/scss/alert";
 
-$color-mode-type: data;
+
 @include color-mode(dark) {
   // CSS variable overrides here...
     @each $state in map-keys($theme-colors) {

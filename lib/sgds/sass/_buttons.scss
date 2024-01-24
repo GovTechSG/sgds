@@ -11,40 +11,40 @@
 // }
 
 @include color-mode(dark) {
-    @each $state in map-keys($theme-colors) {
-        .btn-#{$state} {
-          --#{$prefix}btn-color: #fff;
-          --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-bg-dark);
-          --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-bg-dark);
-          --#{$prefix}btn-link-color: var(--#{$prefix}#{$state}-text-emphasis);
-          --#{$prefix}btn-hover-color: #fff;
-          --#{$prefix}btn-hover-bg: var(--#{$prefix}#{$state}-bg-hover-dark);
-          --#{$prefix}btn-hover-border-color: var(--#{$prefix}#{$state}-bg-hover-dark);
-          --#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}#{$state}-bg-dark-rgb);
-          --#{$prefix}btn-active-color: #fff;
-          --#{$prefix}btn-active-bg: var(--#{$prefix}#{$state}-bg-dark);
-          --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$state}-bg-dark);
-          --#{$prefix}btn-active-shadow: none;
-          --#{$prefix}btn-disabled-color: #fff;
-          --#{$prefix}btn-disabled-bg: var(--#{$prefix}#{$state}-bg-dark);
-          --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-bg-dark);
-        }
-
-        .btn-outline-#{$state} {
-            --#{$prefix}btn-color: var(--#{$prefix}#{$state}-text-emphasis);
-            --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-bg-subtle);
-            --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-outline-dark);
-            --#{$prefix}btn-hover-color: #fff;
-            --#{$prefix}btn-hover-bg:  var(--#{$prefix}#{$state}-outline-dark);
-            --#{$prefix}btn-hover-border-color:  var(--#{$prefix}#{$state}-outline-dark);
-            --#{$prefix}btn-focus-shadow-rgb: 89, 37, 220;
-            --#{$prefix}btn-active-color: #fff;
-            --#{$prefix}btn-active-bg:  var(--#{$prefix}#{$state}-outline-dark);
-            --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$state}-outline-dark);
-            --#{$prefix}btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-            --#{$prefix}btn-disabled-color: var(--#{$prefix}#{$state}-outline-dark);
-            --#{$prefix}btn-disabled-bg: transparent;
-            --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-outline-dark);
-          }
+  @each $state in map-keys($theme-colors) {
+    .btn-#{$state} {
+      --#{$prefix}btn-color: #fff;
+      --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-bg-dark);
+      --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-bg-dark);
+      --#{$prefix}btn-link-color: var(--#{$prefix}#{$state}-text-emphasis);
+      --#{$prefix}btn-hover-color: #fff;
+      --#{$prefix}btn-hover-bg: var(--#{$prefix}#{$state}-bg-hover-dark);
+      --#{$prefix}btn-hover-border-color: var(--#{$prefix}#{$state}-bg-hover-dark);
+      --#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}#{$state}-bg-dark-rgb);
+      --#{$prefix}btn-active-color: #fff;
+      --#{$prefix}btn-active-bg: var(--#{$prefix}#{$state}-bg-dark);
+      --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$state}-bg-dark);
+      --#{$prefix}btn-active-shadow: none;
+      --#{$prefix}btn-disabled-color: #fff;
+      --#{$prefix}btn-disabled-bg: var(--#{$prefix}#{$state}-bg-dark);
+      --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-bg-dark);
     }
+
+    .btn-outline-#{$state} {
+      --#{$prefix}btn-color: var(--#{$prefix}#{$state}-text-emphasis);
+      --#{$prefix}btn-bg:var(--#{$prefix}#{$state}-bg-subtle);
+      --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-border-subtle);
+      --#{$prefix}btn-hover-color: #fff;
+      --#{$prefix}btn-hover-bg:  var(--#{$prefix}#{$state}-bg-dark);
+      --#{$prefix}btn-hover-border-color:  var(--#{$prefix}#{$state}-bg-dark);
+      --#{$prefix}btn-focus-shadow-rgb: 89, 37, 220;
+      --#{$prefix}btn-active-color: #fff;
+      --#{$prefix}btn-active-bg:  var(--#{$prefix}#{$state}-outline-dark);
+      --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$state}-outline-dark);
+      --#{$prefix}btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+      --#{$prefix}btn-disabled-color: var(--#{$prefix}#{$state}-outline-dark);
+      --#{$prefix}btn-disabled-bg: transparent;
+      --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-outline-dark);
+    }
+  }
 }
