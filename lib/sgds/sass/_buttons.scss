@@ -13,7 +13,7 @@
 @include color-mode(dark) {
   @each $state in map-keys($theme-colors) {
     .btn-#{$state} {
-      --#{$prefix}btn-color: #fff;
+      --#{$prefix}btn-color: var(--#{$prefix}body-bg);
       --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-bg-dark);
       --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-bg-dark);
       --#{$prefix}btn-link-color: var(--#{$prefix}#{$state}-text-emphasis);
@@ -31,7 +31,7 @@
     }
 
     .btn-outline-#{$state} {
-      --#{$prefix}btn-color: var(--#{$prefix}#{$state}-text-emphasis);
+      --#{$prefix}btn-color: var(--#{$prefix}#{$state}-bg-dark);
       --#{$prefix}btn-bg:var(--#{$prefix}#{$state}-bg-subtle);
       --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-border-subtle);
       --#{$prefix}btn-hover-color: #fff;
