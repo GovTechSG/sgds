@@ -7,7 +7,7 @@
 @import "utilities";
 
 
-$all-colors: map-merge-multiple($primarys, $secondarys, $purples, $reds, $yellows, $greens, $cyans, $darks, $lights);
+$all-colors: map-merge-multiple($primarys, $secondarys, $purples, $blues, $reds, $yellows, $greens, $cyans, $lights);
 
 $utilities: map-merge(
   $utilities,
