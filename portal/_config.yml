@@ -42,6 +42,15 @@ plugins:
 
 collections_dir: collections
 collections:
+  layouts:
+    permalink: /:collection/:name
+    output: true
+    category: layouts
+    order:
+      - template-grid.html
+      - side-navigation-area.html
+      - content-area.html
+      - table-of-content-area.html
   components:
     permalink: /:collection/:name
     output: true
@@ -80,6 +89,14 @@ collections:
 defaults:
   -
     scope:
+      type: "layouts" 
+    values:
+      layout: "layout-sidenav"
+      pageCategory: "layouts"
+      source-grid: false
+      toc: true
+  -
+    scope:
       type: "patterns" 
     values:
       layout: "layout-sidenav"
@@ -102,7 +119,6 @@ defaults:
       pageCategory: "templates"
       source-grid: false
       toc: true
-      notice: Template stylings used here are still in beta testing. `npm install @govtechsg/sgds@beta` to try it.
   -
     scope:
       type: "get-started" 

@@ -1,3 +1,48 @@
+## v2.2.0 (2023-01-09)
+
+### Feat
+
+- **layouts page**: create layouts page
+- **lib**: implementation for sgds-x-react-select with vite
+- **templates**: incorporate template styles to existing template
+- **template**: rename selectors and apply to template examples
+- **templates**: add sgds template css and apply to detail page side-nav
+- **section**: added colour page
+- **section**: added typography page
+- **section**: added foundations section & spacing page
+
+### Fix
+
+- **navbar**: remove navbar overflow styling to fix dropdown visibility
+- **template-img**: remove transparency
+- **layout-code-snippet**: fix image overflow in layout-code-snippet
+- **navigation**: update order of navigation tabs
+- **datepicker**: add missing datepicker storybook link
+- **copybtn**: place copy button into HTML tab panel
+- **portal**: copy button bug
+- **portal**: fix custom styles
+- **\***: change conditional rendering of tabs from head to component-code-snippet
+- **template**: shift media query into .with-sidenav selector
+- **templates**: move display grid to with-sidenav selector
+- **template**: rename sgds-article* to sgds-content*
+- **templates**: remove quotation marks on grid-area names
+- **footer**: update from url
+- **section**: add thumbnail imgs
+- **section**: fixed responsiveness in colour page, added thumbnails in foundation overview
+- **section**: removed spacing
+- **section**: added full stop
+- **function.scss**: fix deprecated sass 1.56.0
+
+### Refactor
+
+- **tooltip**: move tooltip trigger script from lib to portal
+- **template**: incorporate template css to single-page-form
+- **templates**: incorporate to collapsible-page-form
+- **templates**: convert content area to flexbox
+- **template**: change content-header-bottom to grid
+- **templates**: make footer reusable
+- **templates**: make navigation reusable
+
 ## v2.1.1 (2022-11-23)
 
 ### Fix
@@ -25,7 +70,7 @@
 ### BREAKING CHANGE
 
 - Previous instructions for import paths for customise imports will break. Please
-update accordingly to the new documentation
+  update accordingly to the new documentation
 
 ### Feat
 
@@ -52,7 +97,7 @@ update accordingly to the new documentation
 
 ### Refactor
 
-- *****: add ~ to import paths, fix bootstrap version to 5.1.3 strict
+- **\***: add ~ to import paths, fix bootstrap version to 5.1.3 strict
 - **navbar**: shift overflow-x to media query down lg
 
 ## v2.0.0 (2022-07-29)
@@ -81,11 +126,11 @@ update accordingly to the new documentation
 - **navigation**: title with spacing not showing in offcanvas
 - **color**: missing black rgb
 - **pattern-overview**: rename images to lowercase
-- *****: add backslash for img path
+- **\***: add backslash for img path
 - **overview page**: remove previous img path, remove backslash for card links
 - **gitignore**: untrack sgds.css, came up after fixing merge conflicts
 - merge conflicts:
-- *****: update build:lib folder, ignore css/sgds.css
+- **\***: update build:lib folder, ignore css/sgds.css
 - **navigation**: update templates has-collection true
 - **about page**: remove target blank
 - **patterns**: isolated date input text with numeric inputmode:
@@ -94,7 +139,7 @@ update accordingly to the new documentation
 - merge conflicts
 - **quantity-toggle**: add sgds selector to make webkit spinner disappear
 - **input-group**: revert changes in has-icon variant
-- *****: merge conflict
+- **\***: merge conflict
 - **patterns**: format credit card, change postal code attributes
 - **docs portal widget**: update cdn link
 - **forms**: rm default webkit spin buttons when aria-describedby cvv and credit card number
@@ -107,7 +152,7 @@ update accordingly to the new documentation
 
 ### Refactor
 
-- *****: remove ./node_modules import statement for bootstrap imports
+- **\***: remove ./node_modules import statement for bootstrap imports
 - **sass**: move all files to sass root folder
 - **sgds**: remove bootstrap folder
 - **sgds.scss**: combine map-merge

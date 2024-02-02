@@ -4,10 +4,12 @@
 
 ## Installation
 
+`@govtechsg/sgds-x-family` is not shipped with any included CSS. Apply `@govtechsg/sgds@latest` styles by installing the module or using CDN.
+
 Install the `@govtechsg/sgds-x-family` package via npm:
 
 ```sh
-npm install @govtechsg/sgds-x-family
+$ npm i @govtechsg/sgds-x-family @govtechsg/sgds
 ```
 
 ## Usage
@@ -16,7 +18,13 @@ npm install @govtechsg/sgds-x-family
 
 To integrate `@govtechsg/sgds-x-family` styles into your React application with `react-select` components, follow these steps:
 
-1. Import the `Select` component from `react-select` along with the required styles:
+1. `@govtechsg/sgds-x-family/react-select` uses `bootstrap-icons` but does not ship with it. Install `bootstrap-icons` or use CDN.
+
+```sh
+$ npm i bootstrap-icons
+```
+
+2. Import the `Select` component from `react-select` along with the required styles:
 
 ```js
 import Select, { components } from 'react-select';
@@ -25,7 +33,7 @@ import '@govtechsg/sgds-x-family/react-select/index.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 ```
 
-2. Utilize the provided Select component within your application, ensuring the use of specific class names for SGDS styles:
+3. Utilize the provided Select component within your application, ensuring the use of specific class names for SGDS styles:
 
 ```js
 const OPTIONS = [

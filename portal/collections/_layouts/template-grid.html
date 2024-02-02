@@ -1,0 +1,112 @@
+---
+title: Template Grid
+layout: layout-sidenav
+description: "A CSS grid for the standard web application page layouts. It accepts three children: Side Navigation, Content Area and Table of Content Area."
+---
+
+{% capture example-only-content-display %}
+<div class="sgds-example-image-grid">
+<img src="{{site.baseurl}}/assets/img/layout/template-grid/example-only-content.png" alt="Only content required">
+</div>
+{% endcapture %}
+
+{% capture example-only-content-code %}
+<sgds-template-grid>
+    <sgds-content-area>
+        ...
+    </sgds-content-area>
+<sgds-template-grid>
+{% endcapture %}
+
+{% capture example-content-with-sidenav-display %}
+<div class="sgds-example-image-grid">
+<img src="{{site.baseurl}}/assets/img/layout/template-grid/example-content-with-sidenav.png" alt="Content with side navigation">
+</div>
+{% endcapture %}
+
+{% capture example-content-with-sidenav-code %}
+<sgds-template-grid class="with-sidenav">
+    <sgds-aside-area>
+    ...
+    </sgds-aside-area>
+    <sgds-content-area>
+        ...
+    </sgds-content-area>
+<sgds-template-grid>
+{% endcapture %}
+
+{% capture example-content-with-sidenav-and-toc-display %}
+<div class="sgds-example-image-grid">
+<img src="{{site.baseurl}}/assets/img/layout/template-grid/example-content-with-sidenav-and-toc.png"
+    alt="Example">
+</div>
+{% endcapture %}
+
+{% capture example-content-with-sidenav-and-toc-code %}
+<sgds-template-grid class="with-sidenav with-toc">
+    <sgds-aside-area>...</sgds-aside-area>
+    <sgds-content-area>...</sgds-content-area>
+    <sgds-toc-area>...</sgds-toc-area>
+<sgds-template-grid>
+{% endcapture %}
+
+<div class="page-component">
+    {% include page-component/component-header.html %}
+    <div class="sgds-example-image-container">
+        <div class="sgds-example-image-grid">
+            <img src="{{site.baseurl}}/assets/img/layout/template-grid/anatomy.png" alt="Template Grid Anatomy">
+        </div>
+    </div>
+    <p>
+        <span class="sgds-code-font">sgds-template-grid</span> accepts 3 direct children:
+    </p>
+    <ol>
+        <li>
+            <span class="sgds-code-font">sgds-aside-area</span> : <a class="link-primary" href="/layouts/side-navigation-area">Side navigation area</a>
+        </li>
+        <li>
+            <span class="sgds-code-font">sgds-content-area</span> : <a class="link-primary" href="/layouts/content-area">Content area</a>
+        </li>
+        <li>
+            <span class="sgds-code-font">sgds-toc-area</span> : <a class="link-primary" href="/layouts/table-of-content-area">Table of content area</a>
+        </li>
+    </ol>
+    <p>
+        There are several permutations to use <span class="sgds-code-font">sgds-template-grid</span> as not all of the 3
+        children are mandatory to use at the same time.
+    </p>
+
+    <section name="section-example">
+        <h2 class="title fw-bold" id="example">Example</h2>
+
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="only-content">Only content required</h4>
+            {%
+            include layouts/layout-code-snippet.html
+            name="example-only-content"
+            display=example-only-content-display
+            code=example-only-content-code
+            %}
+        </div>
+
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="content-with-sidenav">Content with side-navigation</h4>
+            {%
+            include layouts/layout-code-snippet.html
+            name="example-content-with-sidenav"
+            display=example-content-with-sidenav-display
+            code=example-content-with-sidenav-code
+            %}
+        </div>
+
+        <div class="section-sub">
+            <h4 class="subtitle fw-bold" id="content-with-sidenav">Content with side-navigation and table-of-content</h4>
+            {%
+            include layouts/layout-code-snippet.html
+            name="example-content-with-sidenav-and-toc"
+            display=example-content-with-sidenav-and-toc-display
+            code=example-content-with-sidenav-and-toc-code
+            %}
+        </div>
+    </section>
+</div>
