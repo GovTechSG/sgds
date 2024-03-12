@@ -27,7 +27,7 @@
             }
             .accordion-body{
                 padding: 1rem 2rem 1rem 1rem;
-                background-color: #272822;
+                background-color: var(--sgds-body-bg);
                 position: relative;
                 .btn-copy{
                     position: absolute;
@@ -63,7 +63,7 @@
         }
         
         .tab-label{
-             color: white !important;
+             color: var(--sgds-body-color);
              font-weight: 400;
         }
         

@@ -27,6 +27,15 @@ $badge-border-radius: $border-radius !default;
 <span class="sgds badge text-bg-info">Info</span>
 <span class="sgds badge text-bg-light">Light</span>
 <span class="sgds badge text-bg-dark">Dark</span>
+
+<span class="sgds badge badge-light text-bg-primary">Primary</span>
+<span class="sgds badge badge-light text-bg-secondary">Secondary</span>
+<span class="sgds badge badge-light text-bg-success">Success</span>
+<span class="sgds badge badge-light text-bg-danger">Danger</span>
+<span class="sgds badge badge-light text-bg-warning">Warning</span>
+<span class="sgds badge badge-light text-bg-info">Info</span>
+<span class="sgds badge badge-light text-bg-light">Light</span>
+<span class="sgds badge badge-light text-bg-dark">Dark</span>
 {% endcapture %}
 
 {% capture badge-wrapper %}
@@ -40,9 +49,9 @@ $badge-border-radius: $border-radius !default;
 {% capture badge-button %}
 <div class="sgds btn btn-primary">Testing <span class="sgds badge text-bg-light">99</span></div>
 <div class="sgds btn btn-primary btn-lg">Testing <span class="sgds badge text-bg-light">99</span></div>
-<button type="button" class="sgds btn btn-primary position-relative">
+<button type="button" class="btn btn-primary position-relative">
     Inbox
-    <span class="sgds position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
       99+
       <span class="visually-hidden">unread messages</span>
     </span>
