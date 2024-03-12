@@ -1,41 +1,37 @@
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/button-group";
 
-// @include color-mode(dark) {
-//     @each $state, $key in $all-colors {
-//         @debug $state;
-//         .btn-#{$state}{
-//             --sgds-bg-color: #000;
-//         }
-//     }
-// }
-
 @include color-mode(dark) {
   @each $state in map-keys($theme-colors) {
-    .btn-#{$state} {
+    .btn-#{$state}{
       --#{$prefix}btn-color: var(--#{$prefix}body-bg);
       --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-bg-dark);
       --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-bg-dark);
-      --#{$prefix}btn-link-color: var(--#{$prefix}#{$state}-text-emphasis);
-      --#{$prefix}btn-hover-color: #fff;
+      --#{$prefix}btn-link-color: var(--#{$prefix}#{$state}-body-color);
+      --#{$prefix}btn-hover-color: var(--#{$prefix}body-bg);
       --#{$prefix}btn-hover-bg: var(--#{$prefix}#{$state}-bg-hover-dark);
       --#{$prefix}btn-hover-border-color: var(--#{$prefix}#{$state}-bg-hover-dark);
       --#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}#{$state}-bg-dark-rgb);
-      --#{$prefix}btn-active-color: #fff;
-      --#{$prefix}btn-active-bg: var(--#{$prefix}#{$state}-bg-dark);
-      --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$state}-bg-dark);
+      --#{$prefix}btn-active-color:  var(--#{$prefix}body-bg);
+      --#{$prefix}btn-active-bg: var(--#{$prefix}#{$state}-bg-hover-dark);
+      --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$state}-bg-hover-dark);
       --#{$prefix}btn-active-shadow: none;
-      --#{$prefix}btn-disabled-color: #fff;
+      --#{$prefix}btn-disabled-color: var(--#{$prefix}body-bg);
       --#{$prefix}btn-disabled-bg: var(--#{$prefix}#{$state}-bg-dark);
       --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-bg-dark);
+      @if $state == "dark" {
+        --#{$prefix}btn-color: var(--#{$prefix}#{$state}-text-emphasis);
+        --#{$prefix}btn-hover-color: var(--#{$prefix}#{$state}-text-emphasis);
+      }
     }
 
     .btn-outline-#{$state} {
-      --#{$prefix}btn-color: var(--#{$prefix}#{$state}-bg-dark);
-      --#{$prefix}btn-bg:var(--#{$prefix}#{$state}-bg-subtle);
-      --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-border-subtle);
-      --#{$prefix}btn-hover-color: #fff;
-      --#{$prefix}btn-hover-bg:  var(--#{$prefix}#{$state}-bg-dark);
+      // --sgds-primary-text-emphasis
+      --#{$prefix}btn-color: var(--#{$prefix}#{$state}-text-emphasis);
+      --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-bg-subtle);
+      --#{$prefix}btn-border-color:var(--#{$prefix}#{$state}-border-subtle);
+      --#{$prefix}btn-hover-color: var(--#{$prefix}body-bg);
+      --#{$prefix}btn-hover-bg:  var(--#{$prefix}#{$state}-bg-hover-dark);
       --#{$prefix}btn-hover-border-color:  var(--#{$prefix}#{$state}-bg-dark);
       --#{$prefix}btn-focus-shadow-rgb: 89, 37, 220;
       --#{$prefix}btn-active-color: #fff;
@@ -45,6 +41,9 @@
       --#{$prefix}btn-disabled-color: var(--#{$prefix}#{$state}-outline-dark);
       --#{$prefix}btn-disabled-bg: transparent;
       --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-outline-dark);
+      @if $state == "dark" {
+        --#{$prefix}btn-hover-color: var(--#{$prefix}#{$state}-text-emphasis);
+      }
     }
   }
 }

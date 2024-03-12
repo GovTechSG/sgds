@@ -5,10 +5,10 @@
   // CSS variable overrides here...
     @each $state in map-keys($theme-colors) {
     .alert-#{$state} {
-      --#{$prefix}alert-color: var(--#{$prefix}#{$state}-text-emphasis);
-      --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-bg-subtle);
-      --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-border-subtle);
-      --#{$prefix}alert-link-color: var(--#{$prefix}#{$state}-text-emphasis);
+      // --#{$prefix}alert-color: var(--#{$prefix}#{$state}-text-emphasis);
+      // --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-bg-subtle);
+      // --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-border-subtle);
+      // --#{$prefix}alert-link-color: var(--#{$prefix}#{$state}-text-emphasis);
     }
   }
 }

@@ -26,22 +26,22 @@ $success-bg-subtle-dark:          $green-900 !default;
 $info-bg-subtle-dark:             $cyan-900 !default;
 $warning-bg-subtle-dark:          $yellow-900 !default;
 $danger-bg-subtle-dark:           $red-900 !default;
-$light-bg-subtle-dark:            $gray-800 !default;
-$dark-bg-subtle-dark:             mix($gray-800, $black) !default;
+$light-bg-subtle-dark:            $gray-200 !default;
+$dark-bg-subtle-dark:             $gray-800 !default;
 // scss-docs-end theme-bg-subtle-dark-variables
 
 // scss-docs-start theme-border-subtle-dark-variables
-$primary-border-subtle-dark:       $purple-400 !default;
-$secondary-border-subtle-dark:     $blue-400 !default;
-$success-border-subtle-dark:       $green-400 !default;
-$info-border-subtle-dark:          $cyan-400 !default;
-$warning-border-subtle-dark:       $yellow-400 !default;
-$danger-border-subtle-dark:        $red-400 !default;
-$light-border-subtle-dark:         $gray-700 !default;
+$primary-border-subtle-dark:       $purple-300 !default;
+$secondary-border-subtle-dark:     $blue-300 !default;
+$success-border-subtle-dark:       $green-300 !default;
+$info-border-subtle-dark:          $cyan-300 !default;
+$warning-border-subtle-dark:       $yellow-300 !default;
+$danger-border-subtle-dark:        $red-300 !default;
+$light-border-subtle-dark:         $gray-300 !default;
 $dark-border-subtle-dark:          $gray-800 !default;
 // scss-docs-end theme-border-subtle-dark-variables
 
-$body-color-dark:                   $gray-200 !default;
+$body-color-dark:                   $gray-300 !default;
 $body-bg-dark:                      $gray-900 !default;
 $body-secondary-color-dark:         rgba($body-color-dark, .75) !default;
 $body-secondary-bg-dark:            $gray-800 !default;
@@ -62,17 +62,6 @@ $mark-bg-dark:                      $yellow-800 !default;
 
 // Component color set
 
-$theme-colors-text-dark: (
-  "primary":    $purple-900,
-  "secondary":  $blue-900,
-  "success":    $green-900,
-  "info":       $cyan-900,
-  "warning":    $yellow-900,
-  "danger":     $red-900,
-  "light":      $gray-400,
-  "dark":       $gray-800
-) !default;
-
 $theme-colors-dark: (
   "primary":    $purple-400,
   "secondary":  $blue-400,
@@ -85,24 +74,13 @@ $theme-colors-dark: (
 ) !default;
 
 $theme-colors-hover-dark: (
-  "primary":    $purple-500,
-  "secondary":  $blue-500,
-  "success":    $green-500,
-  "info":       $cyan-500,
-  "warning":    $yellow-500,
-  "danger":     $red-500,
-  "light":      $gray-500,
-  "dark":       $gray-700
-) !default;
-
-$theme-colors-outline-dark: (
   "primary":    $purple-300,
   "secondary":  $blue-300,
   "success":    $green-300,
   "info":       $cyan-300,
   "warning":    $yellow-300,
   "danger":     $red-300,
-  "light":      $gray-500,
+  "light":      $gray-300,
   "dark":       $gray-700
 ) !default;
 
