@@ -1,0 +1,23 @@
+.notify-banner{
+    text-align: center;
+    color: white;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    padding: 0.875rem 1rem;
+
+    background: linear-gradient(90deg, $secondary, $danger,  #5925DC);
+	background-size: 1500% 10%;
+	animation: AnimationName 15s ease infinite;
+    a{
+        color: $blue-200;
+        &:hover{
+            color: $blue-300;
+        }
+    }
+}
+
+@keyframes AnimationName {
+    0%{background-position:96% 0%}
+    50%{background-position:5% 100%}
+    100%{background-position:96% 0%}
+}
