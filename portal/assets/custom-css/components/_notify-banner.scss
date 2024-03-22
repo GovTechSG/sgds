@@ -5,9 +5,9 @@
     line-height: 1.2;
     padding: 0.875rem 1rem;
 
-    background: linear-gradient(-45deg, #5925DC, $secondary, $danger);
-	background-size: 1000% 10%;
-	animation: AnimationName 6s ease infinite;
+    background: linear-gradient(90deg, $secondary, $danger,  #5925DC);
+	background-size: 1500% 10%;
+	animation: AnimationName 15s ease infinite;
     a{
         color: $blue-200;
         &:hover{
