@@ -1,160 +1,109 @@
 {
-    "$primary": {
-        "name": "$primary",
-        "value": "#6037b3 ",
-        "type": "colours",
-        "state": "primary"
-    },
-    "$secondary": {
-        "name": "$secondary",
-        "value": "#3e69be",
-        "type": "colours",
-        "state": "secondary"
-    },
-    "$yellow": {
-        "name": "$yellow",
-        "value": "#f5a623",
-        "type": "colours",
-        "state": "warning"
-    },
-    "$green": {
-        "name": "$green",
-        "value": "#008649",
-        "type": "colours",
-        "state": "success"
-    },
-    "$cyan": {
-        "name": "$cyan",
-        "value": "#008196",
-        "type": "colours",
-        "state": "info"
-    },
-    "$blue": {
-        "name": "$blue",
-        "value": "#0070F2",
-        "type": "colours",
-        "state": "link"
-    },
-    "$red": {
-        "name": "$red",
-        "value": "#d0021b",
-        "type": "colours",
-        "state": "danger"
-    },
-    "$family-sans-serif": {
-        "name": "$family-sans-serif",
-        "value": "\"Lato\", BlinkMacSystemFont, -apple-system, \"Segoe UI\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif",
-        "type": "Typography"
-    },
-    
-    "$size-0": {
-        "name": "$size-0",
-        "value": "5.25rem",
-        "type": "Typography"
-    },
-    "$size-1": {
-        "name": "$size-1",
-        "value": "3.375rem",
-        "type": "Typography"
-    },
-    "$size-2": {
-        "name": "$size-2",
-        "value": "2.75rem",
-        "type": "Typography"
-    },
-    "$size-3": {
-        "name": "$size-3",
-        "value": "2.8125rem",
-        "type": "Typography"
-    },
-    "$size-4": {
-        "name": "$size-4",
-        "value": "1.625rem",
-        "type": "Typography"
-    },
-    "$size-5": {
-        "name": "$size-5",
-        "value": "1.375rem",
-        "type": "Typography"
-    },
-    "$size-6": {
-        "name": "$size-6",
-        "value": "1.3rem",
-        "type": "Typography"
-    },
-    "$size-7": {
-        "name": "$size-7",
-        "value": "1.25rem",
-        "type": "Typography"
-    },
-    "$size-8": {
-        "name": "$size-8",
-        "value": "1rem",
-        "type": "Typography"
-    },
-    "$size-8": {
-        "name": "$size-8",
-        "value": "1rem",
-        "type": "Typography"
-    },
-    "$weight-light": {
-        "name": "$weight-light",
-        "value": "300",
-        "type": "Typography"
-    },
-    "$weight-normal": {
-        "name": "$weight-normal",
-        "value": "400",
-        "type": "Typography"
-    },
-    "$weight-medium": {
-        "name": "$weight-medium",
-        "value": "500",
-        "type": "Typography"
-    },
-    "$weight-semibold": {
-        "name": "$weight-semibold",
-        "value": "600",
-        "type": "Typography"
-    },
-    "$weight-bold": {
-        "name": "$weight-bold",
-        "value": "700",
-        "type": "Typography"
-    },
-    "$weight-extrabold": {
-        "name": "$weight-extrabold",
-        "value": "800",
-        "type": "Typography"
-    },
-    "$weight-black": {
-        "name": "$weight-black",
-        "value": "900",
-        "type": "Typography"
-    },
-    "$gap": {
-        "name": "$gap",
-        "value": "32px",
-        "type": "Responsiveness"
-    },
-    "$tablet": {
-        "name": "$tablet",
-        "value": "769px",
-        "type": "Responsiveness"
-    },
-    "$desktop": {
-        "name": "$desktop",
-        "value": "960px + 2 * <b>$gap</b>",
-        "type": "Responsiveness"
-    },
-    "$widescreen": {
-        "name": "$widescreen",
-        "value": "1152px + 2 * <b>$gap</b>",
-        "type": "Responsiveness"
-    },
-    "$fullhd": {
-        "name": "$fullhd",
-        "value": "1344px + 2 * <b>$gap</b>",
-        "type": "Responsiveness"
-    }
+    "colors":[
+        {
+            "name":"purple",
+            "state": "primary",
+            "weight": {
+                "100": "#F0EBFC",
+                "200": "#D1C3F5",
+                "300": "#B39CEF",
+                "400": "#9574E9",
+                "500": "#774de2",
+                "600": "#5925DC",
+                "700": "#451CAD",
+                "800": "#32147D",
+                "900": "#1F0C4C"
+            }
+        },
+        {
+            "name":"blue",
+            "state": "secondary",
+            "weight": {
+                "100": "#EDF2FF",
+                "200": "#C2D6FF",
+                "300": "#94B7FF",
+                "400": "#6698FF",
+                "500": "#387AFF",
+                "600": "#1f69ff",
+                "700": "#0042C7",
+                "800": "#002C84",
+                "900": "#001642"
+            }
+        },
+        {
+            "name": "red",
+            "state": "danger",
+            "weight": {
+                "100": "#FFFAFA",
+                "200": "#F9B4AB",
+                "300": "#F58577",
+                "400": "#EB5C4A",
+                "500": "#DB3521",
+                "600": "#D7260F",          
+                "700": "#87180A",
+                "800": "#580F06",
+                "900": "#280703"
+            }
+        },
+        {
+            "name": "green",
+            "state": "success",
+            "weight":{
+                "100": "#EBFAEC",
+                "200": "#9BE6A3",
+                "300": "#66D972",
+                "400": "#3EBF4C",
+                "500": "#0EAC1F",
+                "600": "#0A8217",
+                "700": "#07530F",
+                "800": "#04360A",
+                "900": "#021A05"
+            }
+        },
+        {
+            "name": "yellow",
+            "state": "warning",
+            "weight":{
+                "100": "#FFFCF9",
+                "200": "#FCD298",
+                "300": "#FAB658",
+                "400": "#F89A17",
+                "500": "#C77606",
+                "600": "#9F5E05",
+                "700": "#643C03",
+                "800": "#422702",
+                "900": "#1F1301"
+            }
+        },
+        {
+            "name": "cyan",
+            "state": "info",
+            "weight":{
+                "100": "#E6F3FD",
+                "200": "#9FD1F7",
+                "300": "#70BBF3",
+                "400": "#40A4F0",
+                "500": "#138EEA",
+                "600": "#0F71BB",
+                "700": "#0B5287",
+                "800": "#073253",
+                "900": "#03131F"
+            }
+        },
+        {
+            "name": "light",
+            "state": "light",
+            "weight":{
+                "100": "#F0F2F5",
+                "200": "#DFE3E9",
+                "300": "#BEC6D3",
+                "400": "#9CA9BC",
+                "500": "#6D809C",
+                "600": "#475569",
+                "700": "#343F4E",
+                "800": "#222932",
+                "900": "#0F1217"
+            }
+        }
+    ]
 }

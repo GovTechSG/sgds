@@ -15,9 +15,8 @@
         {% if page.description %}
         <p class="header-component-description {{class}}">{{page.description}}</p>
         {% endif %}
-        {% if page.source-grid %}
+        {% if page.category %}
         <div class="component-source-grid">
-
             {% if page.category == 'mandatory' %}
             <div><span class="sgds badge badge-light bg-danger">{{page.category | capitalize}}</span></div>
             {% elsif page.category == 'required' %}
