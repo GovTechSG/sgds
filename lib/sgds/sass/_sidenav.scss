@@ -85,7 +85,7 @@
       }
     }
     &.sticky {
-      --#{$prefix}sidenav-sticky-top: calc(108px + 1.5rem);
+      --#{$prefix}sidenav-sticky-top: 0rem;
       position: sticky;
       max-height: calc(100vh - var(--#{$prefix}sidenav-sticky-top));
       top: var(--#{$prefix}sidenav-sticky-top);
