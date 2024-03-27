@@ -1,6 +1,6 @@
 {
   "name": "@govtechsg/sgds",
-  "version": "2.2.0",
+  "version": "2.3.0-alpha.0",
   "description": "Design System unites Singapore Government digital services around a common visual language and user experience",
   "repository": {
     "type": "git",
