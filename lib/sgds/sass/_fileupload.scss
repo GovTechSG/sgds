@@ -20,7 +20,7 @@
             }
 
             .filename {
-                color: $link-color;
+                color: var(--#{$prefix}link-color);
                 text-decoration: $link-decoration;
                 text-underline-offset: $link-underline-offset;
             }
