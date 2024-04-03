@@ -1,5 +1,42 @@
 @import '~bootstrap/scss/root';
 
+:root {
+    @each $color, $value in $grays {
+        // --#{$prefix}#{$color}: #{$value};
+        --#{$prefix}gray-#{$color}-rgb: #{to-rgb($value)};
+    }
+
+    @each $color, $value in $primarys {
+        --#{$prefix}#{$color}: #{$value};
+        --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
+    }
+
+    @each $color, $value in $secondarys {
+        --#{$prefix}#{$color}: #{$value};
+        --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
+    }
+
+    @each $color, $value in $successs {
+        --#{$prefix}#{$color}: #{$value};
+        --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
+    }
+
+    @each $color, $value in $infos {
+        --#{$prefix}#{$color}: #{$value};
+        --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
+    }
+
+    @each $color, $value in $warnings {
+        --#{$prefix}#{$color}: #{$value};
+        --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
+    }
+
+    @each $color, $value in $dangers {
+        --#{$prefix}#{$color}: #{$value};
+        --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
+    }
+}
+
 @if $enable-dark-mode {
     @include color-mode(dark, true) {
         color-scheme: dark;
