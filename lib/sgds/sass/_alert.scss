@@ -2,21 +2,44 @@
 
 
 @include color-mode(dark) {
-  // CSS variable overrides here...
-    @each $state in map-keys($theme-colors) {
+  @each $state in map-keys($theme-colors) {
     .alert-#{$state} {
-      // --#{$prefix}alert-color: var(--#{$prefix}#{$state}-text-emphasis);
-      // --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-bg-subtle);
-      // --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-border-subtle);
-      // --#{$prefix}alert-link-color: var(--#{$prefix}#{$state}-text-emphasis);
+      @if $state == "light" {
+        --#{$prefix}alert-color: var(--#{$prefix}gray-600);
+        --#{$prefix}alert-bg: var(--#{$prefix}gray-100);
+        --#{$prefix}alert-border-color: var(--#{$prefix}light);
+        --#{$prefix}alert-link-color: var(--#{$prefix}body-bg);
+      } @else if $state == "dark" {
+        --#{$prefix}alert-color: var(--#{$prefix}white);
+        --#{$prefix}alert-bg: var(--#{$prefix}gray-700);
+        --#{$prefix}alert-border-color: var(--#{$prefix}dark);
+      } @else {
+        --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-800);
+        --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-500);
+      }
     }
   }
 }
 
-.sgds{
-&.alert{
-  > i{
-    @extend .align-self-start;
+@each $state in map-keys($theme-colors) {
+  .alert-#{$state} {
+    --#{$prefix}alert-color: var(--#{$prefix}body-color);
+    --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-bg-subtle);
+    @if $state == "light" {
+      --#{$prefix}alert-border-color: var(--#{$prefix}light);
+    } @else if $state == "dark" {
+      --#{$prefix}alert-border-color: var(--#{$prefix}dark);
+    } @else {
+      --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-400);
+    }
+    // --#{$prefix}alert-link-color: var(--#{$prefix}#{$state}-text-emphasis);
   }
 }
+
+.sgds{
+  &.alert{
+    > i{
+      @extend .align-self-start;
+    }
+  }
 }
