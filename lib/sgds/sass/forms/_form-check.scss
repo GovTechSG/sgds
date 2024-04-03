@@ -1,1 +1,8 @@
 @import '~bootstrap/scss/forms/form-check';
+
+@include color-mode(dark) {
+  .form-check-input:checked{
+      background-color: $link-color-dark;
+      border-color: $link-color-dark;
+  }
+}
