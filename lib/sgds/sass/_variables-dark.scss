@@ -6,13 +6,21 @@
 // Global colors
 //
 
+$primary: $purple-400;
+$secondary: $cyan-400;
+$success: $green-400;
+$info: $blue-400;
+$warning: $yellow-400;
+$danger: $red-400;
+$light: $gray-400;
+$dark: $gray-800;
 
 // scss-docs-start sass-dark-mode-vars
 // scss-docs-start theme-text-dark-variables
 $primary-text-emphasis-dark:        $purple-300 !default;
-$secondary-text-emphasis-dark:      $blue-300 !default;
+$secondary-text-emphasis-dark:      $cyan-300 !default;
 $success-text-emphasis-dark:        $green-300 !default;
-$info-text-emphasis-dark:           $cyan-300 !default;
+$info-text-emphasis-dark:           $blue-300 !default;
 $warning-text-emphasis-dark:        $yellow-300 !default;
 $danger-text-emphasis-dark:         $red-300 !default;
 $light-text-emphasis-dark:          $gray-100 !default;
@@ -21,9 +29,9 @@ $dark-text-emphasis-dark:           $gray-300 !default;
 
 // scss-docs-start theme-bg-subtle-dark-variables
 $primary-bg-subtle-dark:          $purple-900 !default;
-$secondary-bg-subtle-dark:        $blue-900 !default;
+$secondary-bg-subtle-dark:        $cyan-900 !default;
 $success-bg-subtle-dark:          $green-900 !default;
-$info-bg-subtle-dark:             $cyan-900 !default;
+$info-bg-subtle-dark:             $blue-900 !default;
 $warning-bg-subtle-dark:          $yellow-900 !default;
 $danger-bg-subtle-dark:           $red-900 !default;
 $light-bg-subtle-dark:            $gray-200 !default;
@@ -32,16 +40,16 @@ $dark-bg-subtle-dark:             $gray-800 !default;
 
 // scss-docs-start theme-border-subtle-dark-variables
 $primary-border-subtle-dark:       $purple-300 !default;
-$secondary-border-subtle-dark:     $blue-300 !default;
+$secondary-border-subtle-dark:     $cyan-300 !default;
 $success-border-subtle-dark:       $green-300 !default;
-$info-border-subtle-dark:          $cyan-300 !default;
+$info-border-subtle-dark:          $blue-300 !default;
 $warning-border-subtle-dark:       $yellow-300 !default;
 $danger-border-subtle-dark:        $red-300 !default;
 $light-border-subtle-dark:         $gray-300 !default;
 $dark-border-subtle-dark:          $gray-800 !default;
 // scss-docs-end theme-border-subtle-dark-variables
 
-$body-color-dark:                   $gray-300 !default;
+$body-color-dark:                   $gray-200 !default;
 $body-bg-dark:                      $gray-900 !default;
 $body-secondary-color-dark:         rgba($body-color-dark, .75) !default;
 $body-secondary-bg-dark:            $gray-800 !default;
@@ -51,8 +59,8 @@ $body-emphasis-color-dark:          $white !default;
 $border-color-dark:                 $gray-400 !default;
 $border-color-translucent-dark:     rgba($white, .15) !default;
 $headings-color-dark:               inherit !default;
-$link-color-dark:                   $cyan-300 !default;
-$link-hover-color-dark:             $cyan-200 !default;
+$link-color-dark:                   $blue-400 !default;
+$link-hover-color-dark:             $blue-300 !default;
 $code-color-dark:                   tint-color($code-color, 40%) !default;
 $mark-color-dark:                   $body-color-dark !default;
 $mark-bg-dark:                      $yellow-800 !default;
@@ -63,21 +71,21 @@ $mark-bg-dark:                      $yellow-800 !default;
 // Component color set
 
 $theme-colors-dark: (
-  "primary":    $purple-400,
-  "secondary":  $blue-400,
-  "success":    $green-400,
-  "info":       $cyan-400,
-  "warning":    $yellow-400,
-  "danger":     $red-400,
-  "light":      $gray-400,
-  "dark":       $gray-800
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
 ) !default;
 
 $theme-colors-hover-dark: (
   "primary":    $purple-300,
-  "secondary":  $blue-300,
+  "secondary":  $cyan-300,
   "success":    $green-300,
-  "info":       $cyan-300,
+  "info":       $blue-300,
   "warning":    $yellow-300,
   "danger":     $red-300,
   "light":      $gray-300,
@@ -106,8 +114,8 @@ $form-invalid-border-color-dark:    $red-300 !default;
 // Accordion
 //
 
-$accordion-icon-color-dark:         $primary-text-emphasis-dark !default;
-$accordion-icon-active-color-dark:  $primary-text-emphasis-dark !default;
+$accordion-icon-color-dark:         $body-color-dark !default;
+$accordion-icon-active-color-dark:  $body-color-dark !default;
 
 $accordion-button-icon-dark:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color-dark}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
 $accordion-button-active-icon-dark:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color-dark}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;

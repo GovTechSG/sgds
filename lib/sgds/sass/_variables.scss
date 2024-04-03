@@ -7,15 +7,15 @@
 
 // scss-docs-start gray-color-variables
 $white: #fff !default;
-$gray-100: #F0F2F5 !default;
-$gray-200: #DFE3E9 !default;
-$gray-300: #BEC6D3 !default;
-$gray-400: #9CA9BC !default;
-$gray-500: #6D809C !default;
-$gray-600: #475569 !default;
-$gray-700: #343F4E !default;
-$gray-800: #222932 !default;
-$gray-900: #0F1217 !default;
+$gray-100: #F7F7F7 !default;
+$gray-200: #D6D6D6 !default;
+$gray-300: #B1B1B1 !default;
+$gray-400: #909090 !default;
+$gray-500: #757575 !default;
+$gray-600: #5D5D5D !default;
+$gray-700: #3F3F3F !default;
+$gray-800: #252525 !default;
+$gray-900: #111111 !default;
 $black: #000 !default;
 // scss-docs-end gray-color-variables
 
@@ -35,16 +35,16 @@ $grays: (
 // fusv-enable
 
 // scss-docs-start color-variables
-$blue: #0A5BFF !default;
-$indigo: #6610f2 !default;
-$purple: #5925DC !default;
-$pink: #d63384 !default;
-$red: #B7200D !default;
-$orange: #fd7e14 !default;
-$yellow: #9F5E05 !default;
-$green: #096F14 !default;
-$teal: #20c997 !default;
-$cyan: #0F71BB !default;
+$blue:    #0950DF !default;
+$indigo:  #6610f2 !default;
+$purple:  #5942DB !default;
+$pink:    #d63384 !default;
+$red:     #B6220D !default;
+$orange:  #fd7e14 !default;
+$yellow:  #88500D !default;
+$green:   #066E0E !default;
+$teal:    #20c997 !default;
+$cyan:    #0A6679 !default;
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
@@ -74,65 +74,65 @@ $color-contrast-dark: $black !default;
 $color-contrast-light: $white !default;
 
 // fusv-disable
-$blue-100: #EDF2FF !default;
-$blue-200: #C2D6FF !default;
-$blue-300: #94B7FF !default;
-$blue-400: #6698FF !default;
-$blue-500: #387AFF !default;
+$blue-100: #F4F7FF !default;
+$blue-200: #C3D7FF !default;
+$blue-300: #8AB1FF !default;
+$blue-400: #538CFF !default;
+$blue-500: #216BFF !default;
 $blue-600: $blue !default;
-$blue-700: #0042C7 !default;
-$blue-800: #002C84 !default;
-$blue-900: #001642 !default;
+$blue-700: #06379A !default;
+$blue-800: #04215C !default;
+$blue-900: #02102E !default;
 
-$purple-100: #F0EBFC !default;
-$purple-200: #D1C3F5 !default;
-$purple-300: #B39CEF !default;
-$purple-400: #9574E9 !default;
-$purple-500: #774de2 !default;
+$purple-100: #F8F7FD !default;
+$purple-200: #D7D1F6 !default;
+$purple-300: #B3A8EF !default;
+$purple-400: #9182E8 !default;
+$purple-500: #7562E2 !default;
 $purple-600: $purple !default;
-$purple-700: #451CAD !default;
-$purple-800: #32147D !default;
-$purple-900: #1F0C4C !default;
+$purple-700: #3D2D97 !default;
+$purple-800: #241B5A !default;
+$purple-900: #120D2B !default;
 
-$red-100: #FFFAFA !default;
-$red-200: #F9B4AB !default;
-$red-300: #F58577 !default;
-$red-400: #EB5C4A !default;
-$red-500: #DB3521 !default;
+$red-100: #FFF5F2 !default;
+$red-200: #FECABD !default;
+$red-300: #FD957B !default;
+$red-400: #EF6447 !default;
+$red-500: #DD361C !default;
 $red-600: $red !default;
-$red-700: #87180A !default;
-$red-800: #580F06 !default;
-$red-900: #280703 !default;
+$red-700: #7E1809 !default;
+$red-800: #4C0E05 !default;
+$red-900: #270703 !default;
 
-$yellow-100: #FFFCF9 !default;
-$yellow-200: #FCD298 !default;
-$yellow-300: #FAB658 !default;
-$yellow-400: #F89A17 !default;
-$yellow-500: #C77606 !default;
+$yellow-100: #FAF7F3 !default;
+$yellow-200: #E5D3BD !default;
+$yellow-300: #CDAC83 !default;
+$yellow-400: #B7874C !default;
+$yellow-500: #A5681F !default;
 $yellow-600: $yellow !default;
-$yellow-700: #643C03 !default;
-$yellow-800: #422702 !default;
-$yellow-900: #1F1301 !default;
+$yellow-700: #5D3709 !default;
+$yellow-800: #372005 !default;
+$yellow-900: #1A1002 !default;
 
-$green-100: #EBFAEC !default;
-$green-200: #9BE6A3 !default;
-$green-300: #66D972 !default;
-$green-400: #3EBF4C !default;
-$green-500: #0EAC1F !default;
+$green-100: #EFFAF0 !default;
+$green-200: #A8E4AD !default;
+$green-300: #52C85B !default;
+$green-400: #09A716 !default;
+$green-500: #088912 !default;
 $green-600: $green !default;
-$green-700: #07530F !default;
-$green-800: #04360A !default;
-$green-900: #021A05 !default;
+$green-700: #044B0A !default;
+$green-800: #022C06 !default;
+$green-900: #011603 !default;
 
-$cyan-100: #E6F3FD !default;
-$cyan-200: #9FD1F7 !default;
-$cyan-300: #70BBF3 !default;
-$cyan-400: #40A4F0 !default;
-$cyan-500: #138EEA !default;
+$cyan-100: #EDFBFB !default;
+$cyan-200: #85E6E6 !default;
+$cyan-300: #5FC0C5 !default;
+$cyan-400: #3D9DA7 !default;
+$cyan-500: #228190 !default;
 $cyan-600: $cyan !default;
-$cyan-700: #0B5287 !default;
-$cyan-800: #073253 !default;
-$cyan-900: #03131F !default;
+$cyan-700: #074753 !default;
+$cyan-800: #042931 !default;
+$cyan-900: #021418 !default;
 
 $blues: (
   "blue-100": $blue-100,
@@ -251,21 +251,21 @@ $cyans: (
 // fusv-enable
 // scss-docs-start theme-color-variables
 $primary: $purple !default;
-$secondary: $blue !default;
+$secondary: $cyan !default;
 $success: $green !default;
-$info: $cyan !default;
+$info: $blue !default;
 $warning: $yellow !default;
 $danger: $red !default;
-$light: $gray-100 !default;
-$dark: $gray-900 !default;
+$light: $gray-300 !default;
+$dark: $gray-800 !default;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
   "primary": $purple,
-  "secondary": $blue,
+  "secondary": $cyan,
   "success": $green,
-  "info": $cyan,
+  "info": $blue,
   "warning": $yellow,
   "danger": $red,
   "light": $light,
@@ -284,15 +284,15 @@ $primarys: (
   "primary-900": $purple-900) !default;
 
 $secondarys: (
-  "secondary-100": $blue-100,
-  "secondary-200": $blue-200,
-  "secondary-300": $blue-300,
-  "secondary-400": $blue-400,
-  "secondary-500": $blue-500,
-  "secondary-600": $blue-600,
-  "secondary-700": $blue-700,
-  "secondary-800": $blue-800,
-  "secondary-900": $blue-900) !default;
+  "secondary-100": $cyan-100,
+  "secondary-200": $cyan-200,
+  "secondary-300": $cyan-300,
+  "secondary-400": $cyan-400,
+  "secondary-500": $cyan-500,
+  "secondary-600": $cyan-600,
+  "secondary-700": $cyan-700,
+  "secondary-800": $cyan-800,
+  "secondary-900": $cyan-900) !default;
 
 $successs: (
   "success-100": $green-100,
@@ -306,15 +306,15 @@ $successs: (
   "success-900": $green-900) !default;
 
 $infos: (
-  "info-100": $cyan-100,
-  "info-200": $cyan-200,
-  "info-300": $cyan-300,
-  "info-400": $cyan-400,
-  "info-500": $cyan-500,
-  "info-600": $cyan-600,
-  "info-700": $cyan-700,
-  "info-800": $cyan-800,
-  "info-900": $cyan-900) !default;
+  "info-100": $blue-100,
+  "info-200": $blue-200,
+  "info-300": $blue-300,
+  "info-400": $blue-400,
+  "info-500": $blue-500,
+  "info-600": $blue-600,
+  "info-700": $blue-700,
+  "info-800": $blue-800,
+  "info-900": $blue-900) !default;
 
 $warnings: (
   "warning-100": $yellow-100,
@@ -361,9 +361,9 @@ $darks: (
 
 $theme-colors-set: (
   "primary": $purples,
-  "secondary": $blues,
+  "secondary": $cyans,
   "success": $greens,
-  "info": $cyans,
+  "info": $blues,
   "warning": $yellows,
   "danger": $reds,
   "light": $lights,
@@ -371,9 +371,9 @@ $theme-colors-set: (
 
 // scss-docs-start theme-text-variables
 $primary-text-emphasis: $purple-600 !default;
-$secondary-text-emphasis: $blue-600 !default;
+$secondary-text-emphasis: $cyan-600 !default;
 $success-text-emphasis: $green-600 !default;
-$info-text-emphasis: $cyan-600 !default;
+$info-text-emphasis: $blue-600 !default;
 $warning-text-emphasis: $yellow-600 !default;
 $danger-text-emphasis: $red-600 !default;
 $light-text-emphasis: $gray-900 !default;
@@ -382,9 +382,9 @@ $dark-text-emphasis: $gray-900 !default;
 
 // scss-docs-start theme-bg-subtle-variables
 $primary-bg-subtle: $purple-100 !default;
-$secondary-bg-subtle: $blue-100 !default;
+$secondary-bg-subtle: $cyan-100 !default;
 $success-bg-subtle: $green-100 !default;
-$info-bg-subtle: $cyan-100 !default;
+$info-bg-subtle: $blue-100 !default;
 $warning-bg-subtle: $yellow-100 !default;
 $danger-bg-subtle: $red-100 !default;
 $light-bg-subtle: $gray-100 !default;
@@ -393,9 +393,9 @@ $dark-bg-subtle: $gray-300 !default;
 
 // scss-docs-start theme-border-subtle-variables
 $primary-border-subtle: $purple-600 !default;
-$secondary-border-subtle: $blue-600 !default;
+$secondary-border-subtle: $cyan-600 !default;
 $success-border-subtle: $green-600 !default;
-$info-border-subtle: $cyan-600 !default;
+$info-border-subtle: $blue-600 !default;
 $warning-border-subtle: $yellow-600 !default;
 $danger-border-subtle: $red-600 !default;
 $light-border-subtle: $gray-400 !default;
@@ -486,7 +486,7 @@ $position-values: (
 
 $body-text-align: null !default;
 $body-bg: $white !default;
-$body-color: $gray-700 !default;
+$body-color: $gray-800 !default;
 
 $body-secondary-color: rgba($body-color, .75) !default;
 $body-secondary-bg: $gray-200 !default;
@@ -500,7 +500,7 @@ $body-emphasis-color: $black !default;
 //
 // Style anchor elements.
 
-$link-color: $cyan-600 !default;
+$link-color: $blue-600 !default;
 $link-decoration: underline !default;
 $link-shade-percentage: 20% !default;
 $link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
@@ -614,7 +614,7 @@ $box-shadow-inset: inset 0 1px 2px rgba($black, .075) !default;
 // scss-docs-end box-shadow-variables
 
 $component-active-color: $white !default;
-$component-active-bg: $cyan-600 !default;
+$component-active-bg: $blue-500 !default;
 // scss-docs-start focus-ring-variables
 $focus-ring-width: .25rem !default;
 $focus-ring-opacity: .25 !default;
