@@ -4,7 +4,7 @@
 @include color-mode(dark) {
   @each $state in map-keys($theme-colors) {
     .btn-#{$state}{
-      --#{$prefix}btn-color: var(--#{$prefix}body-bg);
+      --#{$prefix}btn-color: var(--#{$prefix}white);
       --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-bg-dark);
       --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-bg-dark);
       --#{$prefix}btn-link-color: var(--#{$prefix}#{$state}-body-color);
@@ -19,8 +19,11 @@
       --#{$prefix}btn-disabled-color: var(--#{$prefix}body-bg);
       --#{$prefix}btn-disabled-bg: var(--#{$prefix}#{$state}-bg-dark);
       --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-bg-dark);
+      @if $state == "light" {
+        --#{$prefix}btn-bg: var(--#{$prefix}#{$state});
+      }
       @if $state == "dark" {
-        --#{$prefix}btn-color: var(--#{$prefix}#{$state}-text-emphasis);
+        // --#{$prefix}btn-color: var(--#{$prefix}#{$state}-text-emphasis);
         --#{$prefix}btn-hover-color: var(--#{$prefix}#{$state}-text-emphasis);
       }
     }
@@ -44,6 +47,21 @@
       @if $state == "dark" {
         --#{$prefix}btn-hover-color: var(--#{$prefix}#{$state}-text-emphasis);
       }
+    }
+  }
+}
+
+@each $state in map-keys($theme-colors) {
+  .btn-#{$state} {
+    @if $state == "light" {
+      --#{$prefix}btn-bg: var(--#{$prefix}gray-100);
+      --#{$prefix}btn-border-color: var(--#{$prefix}gray-100);
+    }
+  }
+
+  .btn-outline-#{$state} {
+    @if $state == "light" {
+      --#{$prefix}btn-color: var(--#{$prefix}gray-400);
     }
   }
 }
