@@ -27,6 +27,8 @@
         --#{$prefix}btn-active-bg: var(--#{$prefix}gray-900);
         --#{$prefix}btn-active-border-color: var(--#{$prefix}gray-900);
       } @else {
+        --#{$prefix}btn-hover-bg: var(--#{$prefix}#{$state}-400);
+        --#{$prefix}btn-hover-border-color: var(--#{$prefix}btn-hover-bg);
         // --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-500);
         // --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-500);
         // --#{$prefix}btn-disabled-bg: var(--#{$prefix}#{$state}-500);
@@ -94,13 +96,8 @@
     } @else {
       --#{$prefix}btn-bg: var(--#{$prefix}#{$color});
       --#{$prefix}btn-border-color: var(--#{$prefix}btn-bg);
-      $color-contrast: color-contrast($value);
-      @if $color-contrast == $color-contrast-light {
-        --#{$prefix}btn-hover-bg: color-mix(in srgb, var(--#{$prefix}#{$color}), black #{$btn-hover-bg-shade-amount});
-      } @else {
-        --#{$prefix}btn-hover-bg: color-mix(in srgb, var(--#{$prefix}#{$color}), white #{$btn-hover-bg-tint-amount});
-      }
-      --#{$prefix}-btn-hover-border-color: var(--#{$prefix}btn-hover-bg);
+      --#{$prefix}btn-hover-bg: var(--#{$prefix}#{$color}-700);
+      --#{$prefix}btn-hover-border-color: var(--#{$prefix}btn-hover-bg);
       // --#{$prefix}btn-active-bg: var(--#{$prefix}#{$color}-600);
       // --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$color}-600);
     }

@@ -1,11 +1,24 @@
 @import "~bootstrap/scss/alert";
 
+@include color-mode(dark) {
+  @each $state in map-keys($theme-colors) {
+    .alert-#{$state} {
+      @if $state != "light" and $state != "dark" {
+        --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-800);
+        --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-500);
+      }
+    }
+  }
+}
+
 @each $state in map-keys($theme-colors) {
   .alert-#{$state} {
     @if $state == "light" or $state == "dark" {
       --#{$prefix}alert-color: var(--#{$prefix}#{$state}-text-emphasis);
     } @else {
       --#{$prefix}alert-color: var(--#{$prefix}body-color);
+      --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-100);
+      --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-400);
     }
   }
 }

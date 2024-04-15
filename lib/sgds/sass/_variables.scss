@@ -35,16 +35,16 @@ $grays: (
 // fusv-enable
 
 // scss-docs-start color-variables
-$blue:    #0950DF !default;
+$purple:  #7562E2 !default;
+$cyan:    #228190 !default;
+$blue:    #216BFF !default;
+$red:     #DD361C !default;
+$yellow:  #A5681F !default;
+$green:   #088912 !default;
 $indigo:  #6610f2 !default;
-$purple:  #5942DB !default;
 $pink:    #d63384 !default;
-$red:     #B6220D !default;
 $orange:  #fd7e14 !default;
-$yellow:  #88500D !default;
-$green:   #066E0E !default;
 $teal:    #20c997 !default;
-$cyan:    #0A6679 !default;
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
@@ -74,32 +74,42 @@ $color-contrast-dark: $black !default;
 $color-contrast-light: $white !default;
 
 // fusv-disable
-$blue-100: #F4F7FF !default;
-$blue-200: #C3D7FF !default;
-$blue-300: #8AB1FF !default;
-$blue-400: #538CFF !default;
-$blue-500: #216BFF !default;
-$blue-600: $blue !default;
-$blue-700: #06379A !default;
-$blue-800: #04215C !default;
-$blue-900: #02102E !default;
-
 $purple-100: #F8F7FD !default;
 $purple-200: #D7D1F6 !default;
 $purple-300: #B3A8EF !default;
 $purple-400: #9182E8 !default;
-$purple-500: #7562E2 !default;
-$purple-600: $purple !default;
+$purple-500: $purple !default;
+$purple-600: #5942DB !default;
 $purple-700: #3D2D97 !default;
 $purple-800: #241B5A !default;
 $purple-900: #120D2B !default;
+
+$cyan-100: #EDFBFB !default;
+$cyan-200: #85E6E6 !default;
+$cyan-300: #5FC0C5 !default;
+$cyan-400: #3D9DA7 !default;
+$cyan-500: $cyan !default;
+$cyan-600: #0A6679 !default;
+$cyan-700: #074753 !default;
+$cyan-800: #042931 !default;
+$cyan-900: #021418 !default;
+
+$blue-100: #F4F7FF !default;
+$blue-200: #C3D7FF !default;
+$blue-300: #8AB1FF !default;
+$blue-400: #538CFF !default;
+$blue-500: $blue !default;
+$blue-600: #0950DF !default;
+$blue-700: #06379A !default;
+$blue-800: #04215C !default;
+$blue-900: #02102E !default;
 
 $red-100: #FFF5F2 !default;
 $red-200: #FECABD !default;
 $red-300: #FD957B !default;
 $red-400: #EF6447 !default;
-$red-500: #DD361C !default;
-$red-600: $red !default;
+$red-500: $red !default;
+$red-600: #B6220D !default;
 $red-700: #7E1809 !default;
 $red-800: #4C0E05 !default;
 $red-900: #270703 !default;
@@ -108,8 +118,8 @@ $yellow-100: #FAF7F3 !default;
 $yellow-200: #E5D3BD !default;
 $yellow-300: #CDAC83 !default;
 $yellow-400: #B7874C !default;
-$yellow-500: #A5681F !default;
-$yellow-600: $yellow !default;
+$yellow-500: $yellow !default;
+$yellow-600: #88500D !default;
 $yellow-700: #5D3709 !default;
 $yellow-800: #372005 !default;
 $yellow-900: #1A1002 !default;
@@ -118,45 +128,11 @@ $green-100: #EFFAF0 !default;
 $green-200: #A8E4AD !default;
 $green-300: #52C85B !default;
 $green-400: #09A716 !default;
-$green-500: #088912 !default;
-$green-600: $green !default;
+$green-500: $green !default;
+$green-600: #066E0E !default;
 $green-700: #044B0A !default;
 $green-800: #022C06 !default;
 $green-900: #011603 !default;
-
-$cyan-100: #EDFBFB !default;
-$cyan-200: #85E6E6 !default;
-$cyan-300: #5FC0C5 !default;
-$cyan-400: #3D9DA7 !default;
-$cyan-500: #228190 !default;
-$cyan-600: $cyan !default;
-$cyan-700: #074753 !default;
-$cyan-800: #042931 !default;
-$cyan-900: #021418 !default;
-
-$blues: (
-  "blue-100": $blue-100,
-  "blue-200": $blue-200,
-  "blue-300": $blue-300,
-  "blue-400": $blue-400,
-  "blue-500": $blue-500,
-  "blue-600": $blue-600,
-  "blue-700": $blue-700,
-  "blue-800": $blue-800,
-  "blue-900": $blue-900 ) !default;
-
-
-// $indigos: (
-//   "indigo-100": $indigo-100,
-//   "indigo-200": $indigo-200,
-//   "indigo-300": $indigo-300,
-//   "indigo-400": $indigo-400,
-//   "indigo-500": $indigo-500,
-//   "indigo-600": $indigo-600,
-//   "indigo-700": $indigo-700,
-//   "indigo-800": $indigo-800,
-//   "indigo-900": $indigo-900
-// ) !default;
 
 $purples: (
   "purple-100": $purple-100,
@@ -169,17 +145,27 @@ $purples: (
   "purple-800": $purple-800,
   "purple-900": $purple-900 ) !default;
 
-// $pinks: (
-//   "pink-100": $pink-100,
-//   "pink-200": $pink-200,
-//   "pink-300": $pink-300,
-//   "pink-400": $pink-400,
-//   "pink-500": $pink-500,
-//   "pink-600": $pink-600,
-//   "pink-700": $pink-700,
-//   "pink-800": $pink-800,
-//   "pink-900": $pink-900
-// ) !default;
+$cyans: (
+  "cyan-100": $cyan-100,
+  "cyan-200": $cyan-200,
+  "cyan-300": $cyan-300,
+  "cyan-400": $cyan-400,
+  "cyan-500": $cyan-500,
+  "cyan-600": $cyan-600,
+  "cyan-700": $cyan-700,
+  "cyan-800": $cyan-800,
+  "cyan-900": $cyan-900 ) !default;
+
+$blues: (
+  "blue-100": $blue-100,
+  "blue-200": $blue-200,
+  "blue-300": $blue-300,
+  "blue-400": $blue-400,
+  "blue-500": $blue-500,
+  "blue-600": $blue-600,
+  "blue-700": $blue-700,
+  "blue-800": $blue-800,
+  "blue-900": $blue-900 ) !default;
 
 $reds: (
   "red-100": $red-100,
@@ -191,18 +177,6 @@ $reds: (
   "red-700": $red-700,
   "red-800": $red-800,
   "red-900": $red-900 ) !default;
-
-// $oranges: (
-//   "orange-100": $orange-100,
-//   "orange-200": $orange-200,
-//   "orange-300": $orange-300,
-//   "orange-400": $orange-400,
-//   "orange-500": $orange-500,
-//   "orange-600": $orange-600,
-//   "orange-700": $orange-700,
-//   "orange-800": $orange-800,
-//   "orange-900": $orange-900
-// ) !default;
 
 $yellows: (
   "yellow-100": $yellow-100,
@@ -226,6 +200,42 @@ $greens: (
   "green-800": $green-800,
   "green-900": $green-900 ) !default;
 
+// $indigos: (
+//   "indigo-100": $indigo-100,
+//   "indigo-200": $indigo-200,
+//   "indigo-300": $indigo-300,
+//   "indigo-400": $indigo-400,
+//   "indigo-500": $indigo-500,
+//   "indigo-600": $indigo-600,
+//   "indigo-700": $indigo-700,
+//   "indigo-800": $indigo-800,
+//   "indigo-900": $indigo-900
+// ) !default;
+
+// $pinks: (
+//   "pink-100": $pink-100,
+//   "pink-200": $pink-200,
+//   "pink-300": $pink-300,
+//   "pink-400": $pink-400,
+//   "pink-500": $pink-500,
+//   "pink-600": $pink-600,
+//   "pink-700": $pink-700,
+//   "pink-800": $pink-800,
+//   "pink-900": $pink-900
+// ) !default;
+
+// $oranges: (
+//   "orange-100": $orange-100,
+//   "orange-200": $orange-200,
+//   "orange-300": $orange-300,
+//   "orange-400": $orange-400,
+//   "orange-500": $orange-500,
+//   "orange-600": $orange-600,
+//   "orange-700": $orange-700,
+//   "orange-800": $orange-800,
+//   "orange-900": $orange-900
+// ) !default;
+
 // $teals: (
 //   "teal-100": $teal-100,
 //   "teal-200": $teal-200,
@@ -238,16 +248,6 @@ $greens: (
 //   "teal-900": $teal-900
 // ) !default;
 
-$cyans: (
-  "cyan-100": $cyan-100,
-  "cyan-200": $cyan-200,
-  "cyan-300": $cyan-300,
-  "cyan-400": $cyan-400,
-  "cyan-500": $cyan-500,
-  "cyan-600": $cyan-600,
-  "cyan-700": $cyan-700,
-  "cyan-800": $cyan-800,
-  "cyan-900": $cyan-900 ) !default;
 // fusv-enable
 // scss-docs-start theme-color-variables
 $primary: $purple !default;
