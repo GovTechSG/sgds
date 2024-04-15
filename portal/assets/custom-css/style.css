@@ -738,6 +738,11 @@ section.wrapper.home section.home-part-of-change + .part-of-change {
   margin-top: 2rem;
 }
 
+.header-overview .sgds.card {
+  border-radius: 1rem;
+  background-color: red;
+}
+
 .color-palette td {
   height: 5rem;
 }
