@@ -7,14 +7,10 @@
       $value in $theme-colors {
         &.text-bg-#{$color} {
           @if $color=="light" {
-            color: var(--#{$prefix}gray-600) !important;
-          }
-
-          @else if $color=="dark" {
-            --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-500-rgb);
-          }
-
-          @else {
+            --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-600-rgb);
+          } @else if $color=="dark" {
+            --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-800-rgb);
+          } @else {
             --#{$prefix}#{$color}-rgb: var(--#{$prefix}#{$color}-500-rgb);
           }
         }
@@ -26,18 +22,12 @@
       $value in $theme-colors {
         &.text-bg-#{$color} {
           @if $color=="light" {
-            color: var(--#{$prefix}gray-600) !important;
-          }
-
-          @else if $color=="dark" {
-            color: var(--#{$prefix}gray-200) !important;
-            border: 1px solid var(--#{$prefix}gray-500);
-            --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-800-rgb);
-          }
-
-          @else {
+            --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-600-rgb);
+          } @else if $color=="dark" {
+            color: var(--#{$prefix}body-color) !important;
+            --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-900-rgb);
+          } @else {
             color: var(--#{$prefix}#{$color}-200) !important;
-            border: 1px solid var(--#{$prefix}#{$color}-500);
             --#{$prefix}#{$color}-rgb: var(--#{$prefix}#{$color}-800-rgb);
           }
         }
@@ -68,8 +58,10 @@
     $value in $theme-colors {
       &.text-bg-#{$color} {
         @if $color=="light" {
-          color: var(--#{$prefix}gray-600) !important;
+          color: var(--#{$prefix}#{$color}-text-emphasis) !important;
           --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-100-rgb);
+        } @else if $color=="dark" {
+          --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-900-rgb);
         }
       }
     }
@@ -95,21 +87,14 @@
     @each $color,
     $value in $theme-colors {
       &.text-bg-#{$color} {
+        border: 1px solid var(--#{$prefix}#{$color}-border-subtle);
         @if $color=="light" {
-          color: var(--#{$prefix}gray-600) !important;
-          border: 1px solid var(--#{$prefix}light);
+          color: var(--#{$prefix}#{$color}-text-emphasis) !important;
           --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-100-rgb);
-        }
-
-        @else if $color=="dark" {
-          color: var(--#{$prefix}gray-600) !important;
-          border: 1px solid var(--#{$prefix}gray-400);
-          --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-100-rgb);
-        }
-
-        @else {
-          color: var(--#{$prefix}#{$color}-600) !important;
-          border: 1px solid var(--#{$prefix}#{$color}-400);
+        } @else if $color=="dark" {
+          --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-800-rgb);
+        } @else {
+          color: var(--#{$prefix}#{$color}-text-emphasis) !important;
           --#{$prefix}#{$color}-rgb: var(--#{$prefix}#{$color}-100-rgb);
         }
       }

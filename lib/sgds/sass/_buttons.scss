@@ -4,64 +4,124 @@
 @include color-mode(dark) {
   @each $state in map-keys($theme-colors) {
     .btn-#{$state}{
-      --#{$prefix}btn-color: var(--#{$prefix}white);
-      --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-bg-dark);
-      --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-bg-dark);
-      --#{$prefix}btn-link-color: var(--#{$prefix}#{$state}-body-color);
-      --#{$prefix}btn-hover-color: var(--#{$prefix}body-bg);
-      --#{$prefix}btn-hover-bg: var(--#{$prefix}#{$state}-bg-hover-dark);
-      --#{$prefix}btn-hover-border-color: var(--#{$prefix}#{$state}-bg-hover-dark);
-      --#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}#{$state}-bg-dark-rgb);
-      --#{$prefix}btn-active-color:  var(--#{$prefix}body-bg);
-      --#{$prefix}btn-active-bg: var(--#{$prefix}#{$state}-bg-hover-dark);
-      --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$state}-bg-hover-dark);
-      --#{$prefix}btn-active-shadow: none;
-      --#{$prefix}btn-disabled-color: var(--#{$prefix}body-bg);
-      --#{$prefix}btn-disabled-bg: var(--#{$prefix}#{$state}-bg-dark);
-      --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-bg-dark);
+      // --#{$prefix}btn-color: var(--#{$prefix}white);
+      // --#{$prefix}btn-hover-bg: var(--#{$prefix}#{$state}-bg-hover-dark);
+      // --#{$prefix}btn-hover-border-color: var(--#{$prefix}#{$state}-bg-hover-dark);
+      // --#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}#{$state}-500-rgb);
+      // --#{$prefix}btn-active-shadow: none;
+      // --#{$prefix}btn-disabled-color: var(--#{$prefix}body-bg);
       @if $state == "light" {
-        --#{$prefix}btn-bg: var(--#{$prefix}#{$state});
-      }
-      @if $state == "dark" {
-        // --#{$prefix}btn-color: var(--#{$prefix}#{$state}-text-emphasis);
-        --#{$prefix}btn-hover-color: var(--#{$prefix}#{$state}-text-emphasis);
+        --#{$prefix}btn-bg: var(--#{$prefix}gray-600);
+        --#{$prefix}btn-border-color: var(--#{$prefix}gray-600);
+        --#{$prefix}btn-disabled-bg: var(--#{$prefix}#{$state}-600);
+        --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-600);
+        --#{$prefix}btn-hover-color: var(--#{$prefix}white);
+        --#{$prefix}btn-active-color:  var(--#{$prefix}white);
+        --#{$prefix}btn-active-bg: var(--#{$prefix}gray-700);
+        --#{$prefix}btn-active-border-color: var(--#{$prefix}gray-700);
+      } @else if $state == "dark" {
+        --#{$prefix}btn-bg: var(--#{$prefix}gray-800);
+        --#{$prefix}btn-border-color: var(--#{$prefix}gray-800);
+        --#{$prefix}btn-disabled-bg: var(--#{$prefix}#{$state}-800);
+        --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-800);
+        --#{$prefix}btn-active-bg: var(--#{$prefix}gray-900);
+        --#{$prefix}btn-active-border-color: var(--#{$prefix}gray-900);
+      } @else {
+        // --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-500);
+        // --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-500);
+        // --#{$prefix}btn-disabled-bg: var(--#{$prefix}#{$state}-500);
+        // --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-500);
+        // --#{$prefix}btn-active-bg: var(--#{$prefix}#{$state}-500);
+        // --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$state}-500);
       }
     }
 
     .btn-outline-#{$state} {
-      // --sgds-primary-text-emphasis
-      --#{$prefix}btn-color: var(--#{$prefix}#{$state}-text-emphasis);
-      --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-bg-subtle);
-      --#{$prefix}btn-border-color:var(--#{$prefix}#{$state}-border-subtle);
-      --#{$prefix}btn-hover-color: var(--#{$prefix}body-bg);
-      --#{$prefix}btn-hover-bg:  var(--#{$prefix}#{$state}-bg-hover-dark);
-      --#{$prefix}btn-hover-border-color:  var(--#{$prefix}#{$state}-bg-dark);
+      --#{$prefix}btn-bg: transparent;
       --#{$prefix}btn-focus-shadow-rgb: 89, 37, 220;
-      --#{$prefix}btn-active-color: #fff;
-      --#{$prefix}btn-active-bg:  var(--#{$prefix}#{$state}-outline-dark);
-      --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$state}-outline-dark);
       --#{$prefix}btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
       --#{$prefix}btn-disabled-color: var(--#{$prefix}#{$state}-outline-dark);
       --#{$prefix}btn-disabled-bg: transparent;
       --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$state}-outline-dark);
-      @if $state == "dark" {
-        --#{$prefix}btn-hover-color: var(--#{$prefix}#{$state}-text-emphasis);
+      @if $state == "light" {
+        --#{$prefix}btn-color: var(--#{$prefix}gray-200);
+        --#{$prefix}btn-border-color: var(--#{$prefix}gray-200);
+        --#{$prefix}btn-hover-color: var(--#{$prefix}white);
+        --#{$prefix}btn-active-color: var(--#{$prefix}white);
+        --#{$prefix}btn-hover-bg: var(--#{$prefix}gray-600);
+        --#{$prefix}btn-hover-border-color: var(--#{$prefix}gray-600);
+        --#{$prefix}btn-active-bg: var(--#{$prefix}gray-700);
+        --#{$prefix}btn-active-border-color: var(--#{$prefix}gray-700);
+      } @else if $state == "dark" {
+        --#{$prefix}btn-color: var(--#{$prefix}gray-400);
+        --#{$prefix}btn-border-color: var(--#{$prefix}gray-800);
+        --#{$prefix}btn-hover-color: var(--#{$prefix}gray-200);
+        --#{$prefix}btn-active-color: var(--#{$prefix}gray-200);
+        --#{$prefix}btn-hover-bg: var(--#{$prefix}gray-800);
+        --#{$prefix}btn-hover-border-color: var(--#{$prefix}gray-800);
+        --#{$prefix}btn-active-bg: var(--#{$prefix}gray-900);
+        --#{$prefix}btn-active-border-color: var(--#{$prefix}gray-900);
+      } @else {
+        --#{$prefix}btn-color: var(--#{$prefix}#{$state}-text-emphasis);
+        --#{$prefix}btn-border-color: var(--#{$prefix}#{$state}-border-subtle);
+        --#{$prefix}btn-hover-color: var(--#{$prefix}white);
+        --#{$prefix}btn-hover-bg: var(--#{$prefix}#{$state}-500);
+        --#{$prefix}btn-hover-border-color: var(--#{$prefix}#{$state}-500);
       }
     }
   }
 }
 
-@each $state in map-keys($theme-colors) {
-  .btn-#{$state} {
-    @if $state == "light" {
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @if $color == "light" {
+      --#{$prefix}btn-color: var(--#{$prefix}gray-800);
       --#{$prefix}btn-bg: var(--#{$prefix}gray-100);
       --#{$prefix}btn-border-color: var(--#{$prefix}gray-100);
+      --#{$prefix}btn-hover-color: var(--#{$prefix}gray-800);
+      --#{$prefix}btn-hover-bg: var(--#{$prefix}gray-200);
+      --#{$prefix}btn-hover-border-color: var(--#{$prefix}gray-200);
+      --#{$prefix}btn-active-color: var(--#{$prefix}gray-800);
+      --#{$prefix}btn-active-bg: var(--#{$prefix}gray-100);
+      --#{$prefix}btn-active-border-color: var(--#{$prefix}gray-100);
+    } @else if $color == "dark" {
+      --#{$prefix}btn-bg: var(--#{$prefix}gray-900);
+      --#{$prefix}btn-border-color: var(--#{$prefix}gray-900);
+      --#{$prefix}btn-hover-bg: var(--#{$prefix}gray-800);
+      --#{$prefix}btn-hover-border-color: var(--#{$prefix}gray-800);
+      --#{$prefix}btn-active-bg: var(--#{$prefix}gray-900);
+      --#{$prefix}btn-active-border-color: var(--#{$prefix}gray-900);
+    } @else {
+      --#{$prefix}btn-bg: var(--#{$prefix}#{$color});
+      --#{$prefix}btn-border-color: var(--#{$prefix}btn-bg);
+      $color-contrast: color-contrast($value);
+      @if $color-contrast == $color-contrast-light {
+        --#{$prefix}btn-hover-bg: color-mix(in srgb, var(--#{$prefix}#{$color}), black #{$btn-hover-bg-shade-amount});
+      } @else {
+        --#{$prefix}btn-hover-bg: color-mix(in srgb, var(--#{$prefix}#{$color}), white #{$btn-hover-bg-tint-amount});
+      }
+      --#{$prefix}-btn-hover-border-color: var(--#{$prefix}btn-hover-bg);
+      // --#{$prefix}btn-active-bg: var(--#{$prefix}#{$color}-600);
+      // --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$color}-600);
     }
   }
 
-  .btn-outline-#{$state} {
-    @if $state == "light" {
-      --#{$prefix}btn-color: var(--#{$prefix}gray-400);
+  .btn-outline-#{$color} {
+    @if $color == "light" {
+      --#{$prefix}btn-color: var(--#{$prefix}gray-500);
+      --#{$prefix}btn-border-color: var(--#{$prefix}gray-500);
+      --#{$prefix}btn-hover-color: var(--#{$prefix}white);
+      --#{$prefix}btn-hover-bg: var(--#{$prefix}gray-500);
+      --#{$prefix}btn-hover-border-color: var(--#{$prefix}gray-500);
+      --#{$prefix}btn-active-color: var(--#{$prefix}white);
+      --#{$prefix}btn-active-bg: var(--#{$prefix}gray-400);
+      --#{$prefix}btn-active-border-color: var(--#{$prefix}gray-400);
+    } @else if $color == "dark" {
+      --#{$prefix}btn-active-bg: var(--#{$prefix}gray-700);
+      --#{$prefix}btn-active-border-color: var(--#{$prefix}gray-700);
+    } @else {
+      --#{$prefix}btn-active-bg: var(--#{$prefix}#{$color}-500);
+      --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$color}-500);
     }
   }
 }

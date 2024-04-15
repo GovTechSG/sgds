@@ -42,12 +42,7 @@
         color-scheme: dark;
 
         @each $color, $value in $theme-colors-dark {
-            --#{$prefix}#{$color}-bg-dark: #{$value};
-            --#{$prefix}#{$color}-bg-dark-rgb: #{to-rgb($value)};
-        }
-
-        @each $color, $value in $theme-colors-hover-dark {
-            --#{$prefix}#{$color}-bg-hover-dark: #{$value};
+            --#{$prefix}#{$color}: #{$value};
         }
     }
 }
