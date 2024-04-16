@@ -1,48 +1,21 @@
-<div class="">
-    <div class="d-flex flex-column">
-        <strong class="pb-2">Implementations</strong>
-        <div class="p-0 d-flex gap-3 justify-content-evenly">
+<div class="d-flex flex-column">
+    <strong class="pb-2">Implementations</strong>
+    <div class="p-0 row row-cols-lg-4 row-cols-sm-1">
+        {% for i in page.implementations %}
+        <div class="col mb-3">
             <div class="card sgds bg-light implementations-card border-0 w-100">
-                <div class="card-body d-flex gap-3">
-                    <img src="/assets/img/{{page.pageCategory}}-overview/html-css.png" height="52px" width="52px" />
+                <div class="card-body d-flex gap-3 flex-wrap">
+                    <img src="/assets/img/{{page.pageCategory}}-overview/{{i.imageName}}.png" height="52px"
+                        width="52px" />
                     <div class="d-flex flex-column">
-                        <strong class="card-text lh-sm">HTML/CSS</strong>
-                        <a href="/get-started/installation" class="lh-sm link-primary text-decoration-none"><small>Learn
-                                more</small></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card sgds bg-light implementations-card border-0 w-100">
-                <div class="card-body d-flex gap-3">
-                    <img src="/assets/img/{{page.pageCategory}}-overview/react.png" height="52px" width="52px" />
-                    <div class="d-flex flex-column">
-                        <strong class="card-text lh-sm">React</strong>
-                        <a href="{{site.react-storybook}}" target="_blank"
-                            class="lh-sm link-primary text-decoration-none"><small>Learn more</small></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card sgds bg-light implementations-card border-0 w-100">
-                <div class="card-body d-flex gap-3">
-                    <img src="/assets/img/{{page.pageCategory}}-overview/webcomponent.png" height="52px" width="52px" />
-                    <div class="d-flex flex-column">
-                        <strong class="card-text lh-sm">Web Component</strong>
-                        <a href="{{site.spider-storybook}}" target="_blank"
-                            class="lh-sm link-primary text-decoration-none"><small>Learn more</small></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card sgds bg-light implementations-card border-0 w-100">
-                <div class="card-body d-flex gap-3">
-                    <img src="/assets/img/{{page.pageCategory}}-overview/sass.png" height="52px" width="52px" />
-                    <div class="d-flex flex-column">
-                        <strong class="card-text lh-sm">SASS</strong>
-                        <a href="/get-started/customise-with-sass"
-                            class="lh-sm link-primary text-decoration-none"><small>Learn
+                        <strong class="card-text lh-sm">{{i.name}}</strong>
+                        <a href="{{i.href}}" class="lh-sm link-primary text-decoration-none"
+                            target="{{i.target}}"><small>Learn
                                 more</small></a>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
