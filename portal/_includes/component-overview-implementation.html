@@ -1,10 +1,10 @@
 <div class="d-flex flex-column">
     <strong class="pb-2">Implementations</strong>
-    <div class="p-0 row row-cols-lg-4 row-cols-sm-1">
+    <div class="p-0 grid">
         {% for i in page.implementations %}
-        <div class="col mb-3">
-            <div class="card sgds bg-light implementations-card border-0 w-100">
-                <div class="card-body d-flex gap-3 flex-wrap">
+        <div class="g-col-lg-3 g-col-12">
+            <div class="card sgds bg-light implementations-card border-0 w-100 h-100">
+                <div class="card-body d-flex gap-3 flex-wrap flex-xxl-row flex-lg-column flex-xs-row">
                     <img src="/assets/img/{{page.pageCategory}}-overview/{{i.imageName}}.png" height="52px"
                         width="52px" />
                     <div class="d-flex flex-column">
