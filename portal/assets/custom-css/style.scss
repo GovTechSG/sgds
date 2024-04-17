@@ -1,7 +1,10 @@
 // Configuration
-@import "./node_modules/bootstrap/scss/functions";
-@import "../../../lib/sgds/sass/variables";
-@import "./node_modules/bootstrap/scss/mixins";
+// @import "./node_modules/bootstrap/scss/functions";
+@import "../../../lib/sgds/sass/sgds.scss";
+
+$enable-cssgrid: true;
+
+// @import "./node_modules/bootstrap/scss/mixins";
 
 @import "base/all";
 @import "layout/all";
