@@ -150,8 +150,10 @@ exclude:
   - sgds/sgds.scss
   - sgds/sass
 
+
+
 sass:
-  sass_dir: assets/custom-css
+  sass_dir: assets/custom-css/
 
 toc:
   list_id: toc # Default: "toc"
