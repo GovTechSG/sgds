@@ -7,15 +7,15 @@
 
 // scss-docs-start gray-color-variables
 $white: #fff !default;
-$gray-100: #F7F7F7 !default;
-$gray-200: #D6D6D6 !default;
-$gray-300: #B1B1B1 !default;
-$gray-400: #909090 !default;
+$gray-100: #EAEAEA !default;
+$gray-200: #D2D2D2 !default;
+$gray-300: #B2B2B2 !default;
+$gray-400: #939393 !default;
 $gray-500: #757575 !default;
-$gray-600: #5D5D5D !default;
-$gray-700: #3F3F3F !default;
+$gray-600: #595959 !default;
+$gray-700: #3E3E3E !default;
 $gray-800: #252525 !default;
-$gray-900: #111111 !default;
+$gray-900: #0E0E0E !default;
 $black: #000 !default;
 // scss-docs-end gray-color-variables
 
@@ -74,65 +74,65 @@ $color-contrast-dark: $black !default;
 $color-contrast-light: $white !default;
 
 // fusv-disable
-$purple-100: #F8F7FD !default;
-$purple-200: #D7D1F6 !default;
-$purple-300: #B3A8EF !default;
-$purple-400: #9182E8 !default;
+$purple-100: #EAE8FF !default;
+$purple-200: #D1CEFF !default;
+$purple-300: #B1ACFF !default;
+$purple-400: #9288F0 !default;
 $purple-500: $purple !default;
-$purple-600: #5942DB !default;
-$purple-700: #3D2D97 !default;
-$purple-800: #241B5A !default;
-$purple-900: #120D2B !default;
+$purple-600: #5A42C0 !default;
+$purple-700: #42209F !default;
+$purple-800: #2D007E !default;
+$purple-900: #1C005E !default;
 
-$cyan-100: #EDFBFB !default;
-$cyan-200: #85E6E6 !default;
-$cyan-300: #5FC0C5 !default;
-$cyan-400: #3D9DA7 !default;
+$cyan-100: #C8F1F9 !default;
+$cyan-200: #ABD9E2 !default;
+$cyan-300: #85BBC5 !default;
+$cyan-400: #5B9DA9 !default;
 $cyan-500: $cyan !default;
-$cyan-600: #0A6679 !default;
-$cyan-700: #074753 !default;
-$cyan-800: #042931 !default;
-$cyan-900: #021418 !default;
+$cyan-600: #006472 !default;
+$cyan-700: #004755 !default;
+$cyan-800: #002C3A !default;
+$cyan-900: #001321 !default;
 
-$blue-100: #F4F7FF !default;
-$blue-200: #C3D7FF !default;
-$blue-300: #8AB1FF !default;
-$blue-400: #538CFF !default;
+$blue-100: #C5F0FF !default;
+$blue-200: #A7D6FF !default;
+$blue-300: #7FB5FF !default;
+$blue-400: #5592FF !default;
 $blue-500: $blue !default;
-$blue-600: #0950DF !default;
-$blue-700: #06379A !default;
-$blue-800: #04215C !default;
-$blue-900: #02102E !default;
+$blue-600: #0049DC !default;
+$blue-700: #0022B9 !default;
+$blue-800: #000097 !default;
+$blue-900: #130075 !default;
 
-$red-100: #FFF5F2 !default;
-$red-200: #FECABD !default;
-$red-300: #FD957B !default;
-$red-400: #EF6447 !default;
+$red-100: #FFDAC8 !default;
+$red-200: #FFBDAA !default;
+$red-300: #FF9782 !default;
+$red-400: #F06E57 !default;
 $red-500: $red !default;
-$red-600: #B6220D !default;
-$red-700: #7E1809 !default;
-$red-800: #4C0E05 !default;
-$red-900: #270703 !default;
+$red-600: #B90000 !default;
+$red-700: #950000 !default;
+$red-800: #720000 !default;
+$red-900: #4F0000 !default;
 
-$yellow-100: #FAF7F3 !default;
-$yellow-200: #E5D3BD !default;
-$yellow-300: #CDAC83 !default;
-$yellow-400: #B7874C !default;
+$yellow-100: #FFE6C6 !default;
+$yellow-200: #F3CDA8 !default;
+$yellow-300: #D7AB81 !default;
+$yellow-400: #BC8A57 !default;
 $yellow-500: $yellow !default;
-$yellow-600: #88500D !default;
-$yellow-700: #5D3709 !default;
-$yellow-800: #372005 !default;
-$yellow-900: #1A1002 !default;
+$yellow-600: #864B00 !default;
+$yellow-700: #672F00 !default;
+$yellow-800: #491200 !default;
+$yellow-900: #2D0000 !default;
 
-$green-100: #EFFAF0 !default;
-$green-200: #A8E4AD !default;
-$green-300: #52C85B !default;
-$green-400: #09A716 !default;
+$green-100: #C2F5BF !default;
+$green-200: #A5DFA1 !default;
+$green-300: #7EC17A !default;
+$green-400: #53A450 !default;
 $green-500: $green !default;
-$green-600: #066E0E !default;
-$green-700: #044B0A !default;
-$green-800: #022C06 !default;
-$green-900: #011603 !default;
+$green-600: #006B00 !default;
+$green-700: #004D00 !default;
+$green-800: #003100 !default;
+$green-900: #001600 !default;
 
 $purples: (
   "purple-100": $purple-100,
