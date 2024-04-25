@@ -51,19 +51,19 @@
                         </a>
                         <p class="card-text">{{item.description}}</p>
                         {% if item.category == 'mandatory' %}
-                        <span class="sgds badge badge-light bg-danger"
+                        <span class="sgds badge badge-outline-danger"
                             >{{item.category | capitalize}}</span
                         >
                         {% elsif item.category == 'required' %}
-                        <span class="sgds badge badge-light bg-success"
+                        <span class="sgds badge badge-outline-success"
                             >{{item.category | capitalize}}</span
                         >
                         {% else %}
-                        <span class="sgds badge badge-light bg-primary"
+                        <span class="sgds badge badge-outline-primary"
                             >{{item.category | capitalize}}</span
                         >
                         {% endif %} {% if item.react %}
-                        <span class="sgds badge badge-light bg-success"
+                        <span class="sgds badge badge-outline-success"
                             >ReactJS</span
                         >
                         {% endif %}
