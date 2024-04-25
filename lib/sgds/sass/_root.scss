@@ -1,136 +1,37 @@
 @import '~bootstrap/scss/root';
 
 :root {
-    --sgds-primary-100: color-mix(in srgb, var(--sgds-primary), white 50%);
-    --sgds-primary-200: color-mix(in srgb, var(--sgds-primary), white 40%);
-    --sgds-primary-300: color-mix(in srgb, var(--sgds-primary), white 30%);
-    --sgds-primary-400: color-mix(in srgb, var(--sgds-primary), white 20%);
-    --sgds-primary-500: var(--sgds-primary);
-    --sgds-primary-600: color-mix(in srgb, var(--sgds-primary), black 20%);
-    --sgds-primary-700: color-mix(in srgb, var(--sgds-primary), black 30%);
-    --sgds-primary-800: color-mix(in srgb, var(--sgds-primary), black 40%);
-    --sgds-primary-900: color-mix(in srgb, var(--sgds-primary), black 50%);
+    @each $color, $value in $primarys {
+        --#{$prefix}#{$color}: #{$value};
+    }
 
-    --sgds-secondary-100: color-mix(in srgb, var(--sgds-secondary), white 50%);
-    --sgds-secondary-200: color-mix(in srgb, var(--sgds-secondary), white 40%);
-    --sgds-secondary-300: color-mix(in srgb, var(--sgds-secondary), white 30%);
-    --sgds-secondary-400: color-mix(in srgb, var(--sgds-secondary), white 20%);
-    --sgds-secondary-500: var(--sgds-secondary);
-    --sgds-secondary-600: color-mix(in srgb, var(--sgds-secondary), black 20%);
-    --sgds-secondary-700: color-mix(in srgb, var(--sgds-secondary), black 30%);
-    --sgds-secondary-800: color-mix(in srgb, var(--sgds-secondary), black 40%);
-    --sgds-secondary-900: color-mix(in srgb, var(--sgds-secondary), black 50%);
+    @each $color, $value in $secondarys {
+        --#{$prefix}#{$color}: #{$value};
+    }
 
-    --sgds-success-100: color-mix(in srgb, var(--sgds-success), white 50%);
-    --sgds-success-200: color-mix(in srgb, var(--sgds-success), white 40%);
-    --sgds-success-300: color-mix(in srgb, var(--sgds-success), white 30%);
-    --sgds-success-400: color-mix(in srgb, var(--sgds-success), white 20%);
-    --sgds-success-500: var(--sgds-success);
-    --sgds-success-600: color-mix(in srgb, var(--sgds-success), black 20%);
-    --sgds-success-700: color-mix(in srgb, var(--sgds-success), black 30%);
-    --sgds-success-800: color-mix(in srgb, var(--sgds-success), black 40%);
-    --sgds-success-900: color-mix(in srgb, var(--sgds-success), black 50%);
+    @each $color, $value in $successs {
+        --#{$prefix}#{$color}: #{$value};
+    }
 
-    --sgds-info-100: color-mix(in srgb, var(--sgds-info), white 50%);
-    --sgds-info-200: color-mix(in srgb, var(--sgds-info), white 40%);
-    --sgds-info-300: color-mix(in srgb, var(--sgds-info), white 30%);
-    --sgds-info-400: color-mix(in srgb, var(--sgds-info), white 20%);
-    --sgds-info-500: var(--sgds-info);
-    --sgds-info-600: color-mix(in srgb, var(--sgds-info), black 20%);
-    --sgds-info-700: color-mix(in srgb, var(--sgds-info), black 30%);
-    --sgds-info-800: color-mix(in srgb, var(--sgds-info), black 40%);
-    --sgds-info-900: color-mix(in srgb, var(--sgds-info), black 50%);
+    @each $color, $value in $infos {
+        --#{$prefix}#{$color}: #{$value};
+    }
 
-    --sgds-warning-100: color-mix(in srgb, var(--sgds-warning), white 50%);
-    --sgds-warning-200: color-mix(in srgb, var(--sgds-warning), white 40%);
-    --sgds-warning-300: color-mix(in srgb, var(--sgds-warning), white 30%);
-    --sgds-warning-400: color-mix(in srgb, var(--sgds-warning), white 20%);
-    --sgds-warning-500: var(--sgds-warning);
-    --sgds-warning-600: color-mix(in srgb, var(--sgds-warning), black 20%);
-    --sgds-warning-700: color-mix(in srgb, var(--sgds-warning), black 30%);
-    --sgds-warning-800: color-mix(in srgb, var(--sgds-warning), black 40%);
-    --sgds-warning-900: color-mix(in srgb, var(--sgds-warning), black 50%);
+    @each $color, $value in $warnings {
+        --#{$prefix}#{$color}: #{$value};
+    }
 
-    --sgds-danger-100: color-mix(in srgb, var(--sgds-danger), white 50%);
-    --sgds-danger-200: color-mix(in srgb, var(--sgds-danger), white 40%);
-    --sgds-danger-300: color-mix(in srgb, var(--sgds-danger), white 30%);
-    --sgds-danger-400: color-mix(in srgb, var(--sgds-danger), white 20%);
-    --sgds-danger-500: var(--sgds-danger);
-    --sgds-danger-600: color-mix(in srgb, var(--sgds-danger), black 20%);
-    --sgds-danger-700: color-mix(in srgb, var(--sgds-danger), black 30%);
-    --sgds-danger-800: color-mix(in srgb, var(--sgds-danger), black 40%);
-    --sgds-danger-900: color-mix(in srgb, var(--sgds-danger), black 50%);
-
-    --sgds-light: var(--sgds-gray-300);
-    --sgds-light-100: color-mix(in srgb, var(--sgds-light), white 50%);
-    --sgds-light-200: color-mix(in srgb, var(--sgds-light), white 40%);
-    --sgds-light-300: color-mix(in srgb, var(--sgds-light), white 30%);
-    --sgds-light-400: color-mix(in srgb, var(--sgds-light), white 20%);
-    --sgds-light-500: var(--sgds-light);
-    --sgds-light-600: color-mix(in srgb, var(--sgds-light), black 20%);
-    --sgds-light-700: color-mix(in srgb, var(--sgds-light), black 30%);
-    --sgds-light-800: color-mix(in srgb, var(--sgds-light), black 40%);
-    --sgds-light-900: color-mix(in srgb, var(--sgds-light), black 50%);
-
-    --sgds-dark: var(--sgds-gray-800);
-    --sgds-dark-100: color-mix(in srgb, var(--sgds-dark), white 50%);
-    --sgds-dark-200: color-mix(in srgb, var(--sgds-dark), white 40%);
-    --sgds-dark-300: color-mix(in srgb, var(--sgds-dark), white 30%);
-    --sgds-dark-400: color-mix(in srgb, var(--sgds-dark), white 20%);
-    --sgds-dark-500: var(--sgds-dark);
-    --sgds-dark-600: color-mix(in srgb, var(--sgds-dark), black 20%);
-    --sgds-dark-700: color-mix(in srgb, var(--sgds-dark), black 30%);
-    --sgds-dark-800: color-mix(in srgb, var(--sgds-dark), black 40%);
-    --sgds-dark-900: color-mix(in srgb, var(--sgds-dark), black 50%);
+    @each $color, $value in $dangers {
+        --#{$prefix}#{$color}: #{$value};
+    }
 }
 
-[data-bs-theme="dark"]{
-    --sgds-light: var(--sgds-gray-400);
+@if $enable-dark-mode {
+    @include color-mode(dark, true) {
+        color-scheme: dark;
+
+        @each $color, $value in $theme-colors-dark {
+            --#{$prefix}#{$color}: #{$value};
+        }
+    }
 }
-
-// :root {
-//     @each $color, $value in $grays {
-//         // --#{$prefix}#{$color}: #{$value};
-//         --#{$prefix}gray-#{$color}-rgb: #{to-rgb($value)};
-//     }
-
-//     @each $color, $value in $primarys {
-//         --#{$prefix}#{$color}: //#{$value};
-//         --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
-//     }
-
-//     @each $color, $value in $secondarys {
-//         --#{$prefix}#{$color}: #{$value};
-//         --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
-//     }
-
-//     @each $color, $value in $successs {
-//         --#{$prefix}#{$color}: #{$value};
-//         --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
-//     }
-
-//     @each $color, $value in $infos {
-//         --#{$prefix}#{$color}: #{$value};
-//         --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
-//     }
-
-//     @each $color, $value in $warnings {
-//         --#{$prefix}#{$color}: #{$value};
-//         --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
-//     }
-
-//     @each $color, $value in $dangers {
-//         --#{$prefix}#{$color}: #{$value};
-//         --#{$prefix}#{$color}-rgb: #{to-rgb($value)};
-//     }
-// }
-
-// @if $enable-dark-mode {
-//     @include color-mode(dark, true) {
-//         color-scheme: dark;
-
-//         @each $color, $value in $theme-colors-dark {
-//             --#{$prefix}#{$color}: #{$value};
-//         }
-//     }
-// }
