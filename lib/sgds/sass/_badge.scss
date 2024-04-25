@@ -3,32 +3,27 @@
 @include color-mode(dark) {
   // .sgds {
     .badge {
-      @each $color,
-      $value in $theme-colors {
-        &.text-bg-#{$color} {
-          @if $color=="light" {
-            --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-600-rgb);
-          } @else if $color=="dark" {
-            --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-800-rgb);
+      @each $state in map-keys($theme-colors) {
+        &.badge-#{$state} {
+          @if $state=="light" {
+            --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-600);
+          } @else if $state=="dark" {
+            --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-800);
           } @else {
-            --#{$prefix}#{$color}-rgb: var(--#{$prefix}#{$color}-500-rgb);
+            --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-500);
           }
         }
       }
-    }
 
-    .badge-outline {
-      @each $color,
-      $value in $theme-colors {
-        &.text-bg-#{$color} {
-          @if $color=="light" {
-            --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-600-rgb);
-          } @else if $color=="dark" {
-            color: var(--#{$prefix}body-color) !important;
-            --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-900-rgb);
+      @each $state in map-keys($theme-colors) {
+        &.badge-outline-#{$state} {
+          @if $state=="light" {
+            --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-600);
+          } @else if $state=="dark" {
+            --#{$prefix}badge-color: var(--#{$prefix}gray-200);
+            --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-900);
           } @else {
-            color: var(--#{$prefix}#{$color}-200) !important;
-            --#{$prefix}#{$color}-rgb: var(--#{$prefix}#{$color}-800-rgb);
+            --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-800);
           }
         }
       }
@@ -37,7 +32,44 @@
 }
 
 // .sgds {
-  .badge, .badge-outline {
+  .badge {
+    // Set max badge to expand until h3 size
+    font-size: min($badge-font-size, $badge-font-size-max);
+    line-height: $badge-line-height;
+    padding: $badge-padding-y $badge-padding-x;
+    @each $state in map-keys($theme-colors) {
+      &.badge-#{$state} {
+        @if $state=="light" {
+          --#{$prefix}badge-color: var(--#{$prefix}#{$state}-text-emphasis);
+          --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-100);
+        } @else if $state=="dark" {
+          --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-900);
+        } @else {
+          --#{$prefix}badge-color: #fff;
+          --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-600);
+        }
+        background-color: var(--#{$prefix}#{$state}-bg);
+      }
+    }
+
+    @each $state in map-keys($theme-colors) {
+      &.badge-outline-#{$state} {
+        border: 1px solid var(--#{$prefix}#{$state}-border-subtle);
+        @if $state != "dark" {
+          --#{$prefix}badge-color: var(--#{$prefix}#{$state}-text-emphasis);
+        }
+
+        @if $state=="light" {
+          --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-100);
+        } @else if $state=="dark" {
+          --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-800);
+        } @else {
+          --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-100);
+        }
+        background-color: var(--#{$prefix}#{$state}-bg);
+      }
+    }
+
     i {
       &.left {
         padding-right: $badge-icon-padding;
@@ -45,58 +77,6 @@
 
       &.right {
         padding-left: $badge-icon-padding;
-      }
-    }
-  }
-
-  .badge {
-    // Set max badge to expand until h3 size
-    font-size: min($badge-font-size, $badge-font-size-max);
-    line-height: $badge-line-height;
-    padding: $badge-padding-y $badge-padding-x;
-    @each $color,
-    $value in $theme-colors {
-      &.text-bg-#{$color} {
-        @if $color=="light" {
-          color: var(--#{$prefix}#{$color}-text-emphasis) !important;
-          --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-100-rgb);
-        } @else if $color=="dark" {
-          --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-900-rgb);
-        }
-      }
-    }
-  }
-
-  .badge-outline {
-    --#{$prefix}badge-padding-x: #{$badge-padding-x};
-    --#{$prefix}badge-padding-y: #{$badge-padding-y};
-    @include rfs($badge-font-size, --#{$prefix}badge-font-size);
-    --#{$prefix}badge-font-weight: #{$badge-font-weight};
-    --#{$prefix}badge-color: #{$badge-color};
-    --#{$prefix}badge-border-radius: #{$badge-border-radius};
-    display: inline-block;
-    font-size: min($badge-font-size, $badge-font-size-max);
-    font-weight: var(--#{$prefix}badge-font-weight);
-    line-height: $badge-line-height;
-    padding: var(--#{$prefix}badge-padding-y) var(--#{$prefix}badge-padding-x);
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: var(--#{$prefix}badge-border-radius);
-    
-    @each $color,
-    $value in $theme-colors {
-      &.text-bg-#{$color} {
-        border: 1px solid var(--#{$prefix}#{$color}-border-subtle);
-        @if $color=="light" {
-          color: var(--#{$prefix}#{$color}-text-emphasis) !important;
-          --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-100-rgb);
-        } @else if $color=="dark" {
-          --#{$prefix}#{$color}-rgb: var(--#{$prefix}gray-800-rgb);
-        } @else {
-          color: var(--#{$prefix}#{$color}-text-emphasis) !important;
-          --#{$prefix}#{$color}-rgb: var(--#{$prefix}#{$color}-100-rgb);
-        }
       }
     }
   }
