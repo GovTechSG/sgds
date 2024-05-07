@@ -24,6 +24,7 @@
             --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-900);
           } @else {
             --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-800);
+            --#{$prefix}badge-color: var(--#{$prefix}#{$state}-200);
           }
         }
       }
@@ -55,16 +56,15 @@
     @each $state in map-keys($theme-colors) {
       &.badge-outline-#{$state} {
         border: 1px solid var(--#{$prefix}#{$state}-border-subtle);
-        @if $state != "dark" {
-          --#{$prefix}badge-color: var(--#{$prefix}#{$state}-text-emphasis);
-        }
 
         @if $state=="light" {
           --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-100);
+          --#{$prefix}badge-color: var(--#{$prefix}#{$state}-text-emphasis);
         } @else if $state=="dark" {
           --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-800);
         } @else {
           --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-100);
+          --#{$prefix}badge-color: var(--#{$prefix}#{$state}-600);
         }
         background-color: var(--#{$prefix}#{$state}-bg);
       }

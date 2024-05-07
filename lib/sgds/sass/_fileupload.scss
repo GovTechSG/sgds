@@ -1,3 +1,21 @@
+@include color-mode(dark) {
+    .sgds {
+        &.fileupload-list {
+            .fileupload-list-item {
+                i {
+                    &:first-child {
+                        color: var(--#{$prefix}success-400);
+                    }
+    
+                    &:last-child {
+                        color: var(--#{$prefix}danger-400);
+                    }
+                }
+            }
+        }
+    }
+  }
+
 .sgds {
     &.fileupload-list {
         margin-top: $fileupload-list-margin-top;
@@ -11,11 +29,11 @@
 
             i {
                 &:first-child {
-                    color: $success;
+                    color: var(--#{$prefix}success-600);
                 }
 
                 &:last-child {
-                    color: $danger;
+                    color: var(--#{$prefix}danger-600);
                 }
             }
 

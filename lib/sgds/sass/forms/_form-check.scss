@@ -1,8 +1,21 @@
 @import '~bootstrap/scss/forms/form-check';
 
 @include color-mode(dark) {
-  .form-check-input:checked{
-      background-color: $link-color-dark;
-      border-color: $link-color-dark;
+  .form-check-input:checked {
+    --#{$prefix}form-check-bg: var(--#{$prefix}info-500);
   }
+
+  .form-check-input:disabled {
+    --#{$prefix}form-check-bg: var(--#{$prefix}gray-800);
+  }
+}
+
+.form-check-input:checked {
+  --#{$prefix}form-check-bg: var(--#{$prefix}info-600);
+  background-color: var(--#{$prefix}form-check-bg);
+  border-color: var(--#{$prefix}form-check-bg);
+}
+
+.form-check-input:disabled {
+  --#{$prefix}form-check-bg: var(--#{$prefix}gray-200);
 }

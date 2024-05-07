@@ -1,1 +1,9 @@
 @import "~bootstrap/scss/breadcrumb";
+
+.breadcrumb-item.active {
+  font-weight: 700;
+}
+
+.breadcrumb-item.active::before {
+  font-weight: var(--#{$prefix}body-font-weight);
+}
