@@ -1,37 +1,5 @@
 @import "~bootstrap/scss/badge";
 
-@include color-mode(dark) {
-  .sgds {
-    &.badge {
-      @each $state in map-keys($theme-colors) {
-        &.badge-#{$state} {
-          @if $state== "light" {
-            --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-600);
-          } @else if $state== "dark" {
-            --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-800);
-          } @else {
-            --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-500);
-          }
-        }
-      }
-
-      @each $state in map-keys($theme-colors) {
-        &.badge-outline-#{$state} {
-          @if $state== "light" {
-            --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-600);
-          } @else if $state== "dark" {
-            --#{$prefix}badge-color: var(--#{$prefix}gray-200);
-            --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-900);
-          } @else {
-            --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-800);
-            --#{$prefix}badge-color: var(--#{$prefix}#{$state}-200);
-          }
-        }
-      }
-    }
-  }
-}
-
 .sgds {
   &.badge {
     // Set max badge to expand until h3 size
@@ -41,18 +9,18 @@
     @each $state in map-keys($theme-colors) {
       &.badge-#{$state} {
         @if $state== "light" {
-          --#{$prefix}badge-color: var(--#{$prefix}-dark);
+          --#{$prefix}badge-color: var(--#{$prefix}dark);
         }
         --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-filled);
         background-color: var(--#{$prefix}#{$state}-bg);
-        border: var(--#{$prefix}#{$state}-bg);
+        border: 1px solid var(--#{$prefix}#{$state}-bg);
       }
     }
 
     @each $state in map-keys($theme-colors) {
       &.badge-outline-#{$state} {
+        --#{$prefix}badge-color: var(--#{$prefix}#{$state}-text-emphasis);
         border: 1px solid var(--#{$prefix}#{$state}-border-subtle);
-        color: var(--#{$prefix}#{$state}-text-emphasis);
         background-color: var(--#{$prefix}#{$state}-bg-subtle);
       }
     }
