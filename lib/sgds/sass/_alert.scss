@@ -1,39 +1,5 @@
 @import "~bootstrap/scss/alert";
 
-@include color-mode(dark) {
-  @each $state in map-keys($theme-colors) {
-    .alert-#{$state} {
-      @if $state != "light" and $state != "dark" {
-        --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-800);
-        --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-500);
-      }
-
-      i {
-        @if $state != "light" and $state != "dark" {
-          --#{$prefix}alert-icon-color: var(--#{$prefix}#{$state}-200);
-        }
-      }
-    }
-  }
-}
-
-@each $state in map-keys($theme-colors) {
-  .alert-#{$state} {
-    @if $state != "light" and $state != "dark" {
-      --#{$prefix}alert-color: var(--#{$prefix}body-color);
-      --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-100);
-      --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-400);
-    }
-
-    i {
-      @if $state != "light" and $state != "dark" {
-        --#{$prefix}alert-icon-color: var(--#{$prefix}#{$state}-600);
-        color: var(--#{$prefix}alert-icon-color);
-      }
-    }
-  }
-}
-
 .sgds{
   &.alert{
     > i{
