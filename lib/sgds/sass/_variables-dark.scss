@@ -17,14 +17,14 @@ $dark: $gray-800;
 
 // scss-docs-start sass-dark-mode-vars
 // scss-docs-start theme-text-dark-variables
-$primary-text-emphasis-dark:        $purple-400 !default;
-$secondary-text-emphasis-dark:      $cyan-400 !default;
-$success-text-emphasis-dark:        $green-400 !default;
-$info-text-emphasis-dark:           $blue-400 !default;
-$warning-text-emphasis-dark:        $yellow-400 !default;
-$danger-text-emphasis-dark:         $red-400 !default;
-$light-text-emphasis-dark:          $white !default;
-$dark-text-emphasis-dark:           $gray-200 !default;
+$primary-text-emphasis-dark:        $purple-200 !default;
+$secondary-text-emphasis-dark:      $cyan-200 !default;
+$success-text-emphasis-dark:        $green-200 !default;
+$info-text-emphasis-dark:           $blue-200 !default;
+$warning-text-emphasis-dark:        $yellow-200 !default;
+$danger-text-emphasis-dark:         $red-200 !default;
+$light-text-emphasis-dark:          $gray-600 !default;
+$dark-text-emphasis-dark:           $white !default;
 // scss-docs-end theme-text-dark-variables
 
 // scss-docs-start theme-bg-subtle-dark-variables
@@ -34,8 +34,8 @@ $success-bg-subtle-dark:          $green-800 !default;
 $info-bg-subtle-dark:             $blue-800 !default;
 $warning-bg-subtle-dark:          $yellow-800 !default;
 $danger-bg-subtle-dark:           $red-800 !default;
-$light-bg-subtle-dark:            $gray-600 !default;
-$dark-bg-subtle-dark:             $gray-900 !default;
+$light-bg-subtle-dark:            $gray-400 !default;
+$dark-bg-subtle-dark:             $gray-800 !default;
 // scss-docs-end theme-bg-subtle-dark-variables
 
 // scss-docs-start theme-border-subtle-dark-variables
@@ -45,7 +45,7 @@ $success-border-subtle-dark:       $green-500 !default;
 $info-border-subtle-dark:          $blue-500 !default;
 $warning-border-subtle-dark:       $yellow-500 !default;
 $danger-border-subtle-dark:        $red-500 !default;
-$light-border-subtle-dark:         $gray-500 !default;
+$light-border-subtle-dark:         $gray-400 !default;
 $dark-border-subtle-dark:          $gray-500 !default;
 // scss-docs-end theme-border-subtle-dark-variables
 
