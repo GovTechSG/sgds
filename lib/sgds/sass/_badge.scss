@@ -1,13 +1,13 @@
 @import "~bootstrap/scss/badge";
 
 @include color-mode(dark) {
-  // .sgds {
-    .badge {
+  .sgds {
+    &.badge {
       @each $state in map-keys($theme-colors) {
         &.badge-#{$state} {
-          @if $state=="light" {
+          @if $state== "light" {
             --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-600);
-          } @else if $state=="dark" {
+          } @else if $state== "dark" {
             --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-800);
           } @else {
             --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-500);
@@ -17,9 +17,9 @@
 
       @each $state in map-keys($theme-colors) {
         &.badge-outline-#{$state} {
-          @if $state=="light" {
+          @if $state== "light" {
             --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-600);
-          } @else if $state=="dark" {
+          } @else if $state== "dark" {
             --#{$prefix}badge-color: var(--#{$prefix}gray-200);
             --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-900);
           } @else {
@@ -29,44 +29,31 @@
         }
       }
     }
-  // }
+  }
 }
 
-// .sgds {
-  .badge {
+.sgds {
+  &.badge {
     // Set max badge to expand until h3 size
     font-size: min($badge-font-size, $badge-font-size-max);
     line-height: $badge-line-height;
     padding: $badge-padding-y $badge-padding-x;
     @each $state in map-keys($theme-colors) {
       &.badge-#{$state} {
-        @if $state=="light" {
-          --#{$prefix}badge-color: var(--#{$prefix}#{$state}-text-emphasis);
-          --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-100);
-        } @else if $state=="dark" {
-          --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-900);
-        } @else {
-          --#{$prefix}badge-color: #fff;
-          --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-600);
+        @if $state== "light" {
+          --#{$prefix}badge-color: var(--#{$prefix}-dark);
         }
+        --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-filled);
         background-color: var(--#{$prefix}#{$state}-bg);
+        border: var(--#{$prefix}#{$state}-bg);
       }
     }
 
     @each $state in map-keys($theme-colors) {
       &.badge-outline-#{$state} {
         border: 1px solid var(--#{$prefix}#{$state}-border-subtle);
-
-        @if $state=="light" {
-          --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-100);
-          --#{$prefix}badge-color: var(--#{$prefix}#{$state}-text-emphasis);
-        } @else if $state=="dark" {
-          --#{$prefix}#{$state}-bg: var(--#{$prefix}gray-800);
-        } @else {
-          --#{$prefix}#{$state}-bg: var(--#{$prefix}#{$state}-100);
-          --#{$prefix}badge-color: var(--#{$prefix}#{$state}-600);
-        }
-        background-color: var(--#{$prefix}#{$state}-bg);
+        color: var(--#{$prefix}#{$state}-text-emphasis);
+        background-color: var(--#{$prefix}#{$state}-bg-subtle);
       }
     }
 
@@ -80,4 +67,4 @@
       }
     }
   }
-// }
+}

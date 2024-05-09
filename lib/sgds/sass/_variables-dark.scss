@@ -17,106 +17,114 @@ $dark: $gray-800;
 
 // scss-docs-start sass-dark-mode-vars
 // scss-docs-start theme-text-dark-variables
-$primary-text-emphasis-dark:        $purple-200 !default;
-$secondary-text-emphasis-dark:      $cyan-200 !default;
-$success-text-emphasis-dark:        $green-200 !default;
-$info-text-emphasis-dark:           $blue-200 !default;
-$warning-text-emphasis-dark:        $yellow-200 !default;
-$danger-text-emphasis-dark:         $red-200 !default;
-$light-text-emphasis-dark:          $gray-600 !default;
-$dark-text-emphasis-dark:           $white !default;
+$primary-text-emphasis-dark: $purple-200 !default;
+$secondary-text-emphasis-dark: $cyan-200 !default;
+$success-text-emphasis-dark: $green-200 !default;
+$info-text-emphasis-dark: $blue-200 !default;
+$warning-text-emphasis-dark: $yellow-200 !default;
+$danger-text-emphasis-dark: $red-200 !default;
+$light-text-emphasis-dark: $gray-600 !default;
+$dark-text-emphasis-dark: $white !default;
 // scss-docs-end theme-text-dark-variables
 
 // scss-docs-start theme-bg-subtle-dark-variables
-$primary-bg-subtle-dark:          $purple-800 !default;
-$secondary-bg-subtle-dark:        $cyan-800 !default;
-$success-bg-subtle-dark:          $green-800 !default;
-$info-bg-subtle-dark:             $blue-800 !default;
-$warning-bg-subtle-dark:          $yellow-800 !default;
-$danger-bg-subtle-dark:           $red-800 !default;
-$light-bg-subtle-dark:            $gray-400 !default;
-$dark-bg-subtle-dark:             $gray-800 !default;
+$primary-bg-subtle-dark: $purple-800 !default;
+$secondary-bg-subtle-dark: $cyan-800 !default;
+$success-bg-subtle-dark: $green-800 !default;
+$info-bg-subtle-dark: $blue-800 !default;
+$warning-bg-subtle-dark: $yellow-800 !default;
+$danger-bg-subtle-dark: $red-800 !default;
+$light-bg-subtle-dark: $gray-400 !default;
+$dark-bg-subtle-dark: $gray-800 !default;
 // scss-docs-end theme-bg-subtle-dark-variables
 
 // scss-docs-start theme-border-subtle-dark-variables
-$primary-border-subtle-dark:       $purple-500 !default;
-$secondary-border-subtle-dark:     $cyan-500 !default;
-$success-border-subtle-dark:       $green-500 !default;
-$info-border-subtle-dark:          $blue-500 !default;
-$warning-border-subtle-dark:       $yellow-500 !default;
-$danger-border-subtle-dark:        $red-500 !default;
-$light-border-subtle-dark:         $gray-400 !default;
-$dark-border-subtle-dark:          $gray-500 !default;
+$primary-border-subtle-dark: $purple-500 !default;
+$secondary-border-subtle-dark: $cyan-500 !default;
+$success-border-subtle-dark: $green-500 !default;
+$info-border-subtle-dark: $blue-500 !default;
+$warning-border-subtle-dark: $yellow-500 !default;
+$danger-border-subtle-dark: $red-500 !default;
+$light-border-subtle-dark: $gray-400 !default;
+$dark-border-subtle-dark: $gray-500 !default;
 // scss-docs-end theme-border-subtle-dark-variables
 
-$body-color-dark:                   $gray-200 !default;
-$body-bg-dark:                      $gray-900 !default;
-$body-secondary-color-dark:         rgba($body-color-dark, .75) !default;
-$body-secondary-bg-dark:            $gray-800 !default;
-$body-tertiary-color-dark:          rgba($body-color-dark, .5) !default;
-$body-tertiary-bg-dark:             mix($gray-800, $gray-900, 50%) !default;
-$body-emphasis-color-dark:          $white !default;
-$border-color-dark:                 $gray-500 !default;
-$border-color-translucent-dark:     rgba($white, .15) !default;
-$headings-color-dark:               inherit !default;
-$link-color-dark:                   $blue-400 !default;
-$link-hover-color-dark:             $blue-300 !default;
-$code-color-dark:                   tint-color($code-color, 40%) !default;
-$mark-color-dark:                   $body-color-dark !default;
-$mark-bg-dark:                      $yellow-800 !default;
-
+$body-color-dark: $gray-200 !default;
+$body-bg-dark: $gray-900 !default;
+$body-secondary-color-dark: rgba($body-color-dark, 0.75) !default;
+$body-secondary-bg-dark: $gray-800 !default;
+$body-tertiary-color-dark: rgba($body-color-dark, 0.5) !default;
+$body-tertiary-bg-dark: mix($gray-800, $gray-900, 50%) !default;
+$body-emphasis-color-dark: $white !default;
+$border-color-dark: $gray-500 !default;
+$border-color-translucent-dark: rgba($white, 0.15) !default;
+$headings-color-dark: inherit !default;
+$link-color-dark: $blue-400 !default;
+$link-hover-color-dark: $blue-300 !default;
+$code-color-dark: tint-color($code-color, 40%) !default;
+$mark-color-dark: $body-color-dark !default;
+$mark-bg-dark: $yellow-800 !default;
 
 // component color
 
 // Component color set
 
 $theme-colors-dark: (
-  "primary":    $primary,
-  "secondary":  $secondary,
-  "success":    $success,
-  "info":       $info,
-  "warning":    $warning,
-  "danger":     $danger,
-  "light":      $light,
-  "dark":       $dark
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
 ) !default;
 
 $theme-colors-hover-dark: (
-  "primary":    $purple-400,
-  "secondary":  $cyan-400,
-  "success":    $green-400,
-  "info":       $blue-400,
-  "warning":    $yellow-400,
-  "danger":     $red-400,
-  "light":      $gray-400,
-  "dark":       $gray-700
+  "primary": $purple-400,
+  "secondary": $cyan-400,
+  "success": $green-400,
+  "info": $blue-400,
+  "warning": $yellow-400,
+  "danger": $red-400,
+  "light": $gray-400,
+  "dark": $gray-700,
 ) !default;
 
+$filled-colors-dark: (
+  "primary": $purple-500,
+  "secondary": $cyan-500,
+  "success": $green-500,
+  "info": $blue-500,
+  "warning": $yellow-500,
+  "danger": $red-500,
+  "light": $gray-400,
+  "dark": $gray-800,
+) !default;
 //
 // Forms
 //
 
-$form-select-indicator-color-dark:  $body-color-dark !default;
-$form-select-indicator-dark:        url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !default;
+$form-select-indicator-color-dark: $body-color-dark !default;
+$form-select-indicator-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !default;
 
-$form-switch-color-dark:            rgba($white, .25) !default;
-$form-switch-bg-image-dark:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$form-switch-color-dark}'/></svg>") !default;
+$form-switch-color-dark: rgba($white, 0.25) !default;
+$form-switch-bg-image-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$form-switch-color-dark}'/></svg>") !default;
 
 // scss-docs-start form-validation-colors-dark
-$form-valid-color-dark:             $green-300 !default;
-$form-valid-border-color-dark:      $green-300 !default;
-$form-invalid-color-dark:           $red-300 !default;
-$form-invalid-border-color-dark:    $red-300 !default;
+$form-valid-color-dark: $green-300 !default;
+$form-valid-border-color-dark: $green-300 !default;
+$form-invalid-color-dark: $red-300 !default;
+$form-invalid-border-color-dark: $red-300 !default;
 // scss-docs-end form-validation-colors-dark
-
 
 //
 // Accordion
 //
 
-$accordion-icon-color-dark:         $body-color-dark !default;
-$accordion-icon-active-color-dark:  $body-color-dark !default;
+$accordion-icon-color-dark: $body-color-dark !default;
+$accordion-icon-active-color-dark: $body-color-dark !default;
 
-$accordion-button-icon-dark:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color-dark}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
-$accordion-button-active-icon-dark:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color-dark}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$accordion-button-icon-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color-dark}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$accordion-button-active-icon-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color-dark}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
 // scss-docs-end sass-dark-mode-vars

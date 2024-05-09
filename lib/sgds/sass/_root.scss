@@ -1,37 +1,45 @@
-@import '~bootstrap/scss/root';
+@import "~bootstrap/scss/root";
 
 :root {
-    @each $color, $value in $primarys {
-        --#{$prefix}#{$color}: #{$value};
-    }
+  @each $color, $value in $primarys {
+    --#{$prefix}#{$color}: #{$value};
+  }
 
-    @each $color, $value in $secondarys {
-        --#{$prefix}#{$color}: #{$value};
-    }
+  @each $color, $value in $secondarys {
+    --#{$prefix}#{$color}: #{$value};
+  }
 
-    @each $color, $value in $successs {
-        --#{$prefix}#{$color}: #{$value};
-    }
+  @each $color, $value in $successs {
+    --#{$prefix}#{$color}: #{$value};
+  }
 
-    @each $color, $value in $infos {
-        --#{$prefix}#{$color}: #{$value};
-    }
+  @each $color, $value in $infos {
+    --#{$prefix}#{$color}: #{$value};
+  }
 
-    @each $color, $value in $warnings {
-        --#{$prefix}#{$color}: #{$value};
-    }
+  @each $color, $value in $warnings {
+    --#{$prefix}#{$color}: #{$value};
+  }
 
-    @each $color, $value in $dangers {
-        --#{$prefix}#{$color}: #{$value};
-    }
+  @each $color, $value in $dangers {
+    --#{$prefix}#{$color}: #{$value};
+  }
+
+  @each $color, $value in $filled-colors {
+    --#{$prefix}#{$color}-filled: #{$value};
+  }
 }
 
 @if $enable-dark-mode {
-    @include color-mode(dark, true) {
-        color-scheme: dark;
+  @include color-mode(dark, true) {
+    color-scheme: dark;
 
-        @each $color, $value in $theme-colors-dark {
-            --#{$prefix}#{$color}: #{$value};
-        }
+    @each $color, $value in $theme-colors-dark {
+      --#{$prefix}#{$color}: #{$value};
     }
+
+    @each $color, $value in $filled-colors-dark {
+      --#{$prefix}#{$color}-filled: #{$value};
+    }
+  }
 }
