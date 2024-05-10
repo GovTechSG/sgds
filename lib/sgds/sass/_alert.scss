@@ -1,5 +1,24 @@
 @import "~bootstrap/scss/alert";
 
+@each $state in map-keys($theme-colors) {
+  .alert-#{$state} {
+    @if $state== "light" {
+      --#{$prefix}alert-color: var(--#{$prefix}dark);
+    } @else {
+      --#{$prefix}alert-color: var(--#{$prefix}white);
+    }
+    --#{$prefix}alert-link-color: var(--#{$prefix}alert-color);
+    --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-filled);
+    --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-filled);
+  }
+
+  .alert-outline-#{$state} {
+    --#{$prefix}alert-color: var(--#{$prefix}#{$state}-text-emphasis);
+    --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-border-subtle);
+    --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-bg-subtle);
+  }
+}
+
 .sgds{
   &.alert{
     > i{
