@@ -3,17 +3,14 @@
         {% include breadcrumb.html %}
         <h1 class="title">{{page.title}}</h1>
         <p>{{page.description}}</p>
-        {{include.description}}
+
+        {% if page.hasAlert %}
+        {% include component-overview-implementation.html %}
+        {% endif %}
 
         <div class="sgds form-control-group mt-4">
-            <input
-                type="text"
-                class="form-control"
-                id="filterItems"
-                onkeyup="searchItem()"
-                aria-describedby="filterItems"
-                placeholder="Filter {{page.title | replace: 'Overview' , ''}}"
-            />
+            <input type="text" class="form-control" id="filterItems" onkeyup="searchItem()"
+                aria-describedby="filterItems" placeholder="Filter {{page.title | replace: 'Overview' , ''}}" />
             <i class="bi bi-funnel form-control-icon"></i>
         </div>
     </header>
@@ -28,44 +25,27 @@
                 page.url contains item.title -%} {%- assign class = 'active' -%}
                 {%- endif -%} {% assign react = nil %} {% if item.react %} {%
                 assign react = 'react' %} {% endif %}
-                <div
-                    class="sgds card"
-                    data-groups="['{{item.category}}', '{{react}}']"
-                    data-title="{{item.title}}"
-                >
+                <div class="sgds card" data-groups="['{{item.category}}', '{{react}}']" data-title="{{item.title}}">
                     {% if include.img != 'noImg' %}
-                    <img
-                        src="/assets/img/{{page.pageCategory}}-overview/{{item.title | downcase | replace: ' ', '-'}}.png"
-                        class="card-img-top"
-                        alt="{{item.title | append: ' image' }}"
-                    />
+                    <img src="/assets/img/{{page.pageCategory}}-overview/{{item.title | downcase | replace: ' ', '-'}}.png"
+                        class="card-img-top" alt="{{item.title | append: ' image' }}" />
                     {% endif %}
                     <div class="card-body">
-                        <a
-                            class="stretched-link link-primary"
-                            href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}"
-                        >
+                        <a class="stretched-link link-primary"
+                            href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}">
                             <div class="h5 text-primary card-title">
                                 {{item.title}}
                             </div>
                         </a>
                         <p class="card-text">{{item.description}}</p>
                         {% if item.category == 'mandatory' %}
-                        <span class="sgds badge badge-light bg-danger"
-                            >{{item.category | capitalize}}</span
-                        >
+                        <span class="sgds badge badge-light bg-danger">{{item.category | capitalize}}</span>
                         {% elsif item.category == 'required' %}
-                        <span class="sgds badge badge-light bg-success"
-                            >{{item.category | capitalize}}</span
-                        >
+                        <span class="sgds badge badge-light bg-success">{{item.category | capitalize}}</span>
                         {% else %}
-                        <span class="sgds badge badge-light bg-primary"
-                            >{{item.category | capitalize}}</span
-                        >
+                        <span class="sgds badge badge-light bg-primary">{{item.category | capitalize}}</span>
                         {% endif %} {% if item.react %}
-                        <span class="sgds badge badge-light bg-success"
-                            >ReactJS</span
-                        >
+                        <span class="sgds badge badge-light bg-success">ReactJS</span>
                         {% endif %}
                     </div>
                 </div>
@@ -78,27 +58,27 @@
 <script>
     function searchItem() {
         const input = document
-            .getElementById("filterItems")
+            .getElementById( "filterItems" )
             .value.toUpperCase();
-        console.log(input);
+        console.log( input );
 
-        const cardContainer = document.getElementById("grid");
+        const cardContainer = document.getElementById( "grid" );
 
-        const cards = cardContainer.getElementsByClassName("card");
+        const cards = cardContainer.getElementsByClassName( "card" );
 
-        for (let i = 0; i < cards.length; i++) {
-            let title = cards[i].querySelector(".card-body a div.card-title");
-            let description = cards[i].querySelector(".card-text");
+        for ( let i = 0; i < cards.length; i++ ) {
+            let title = cards[ i ].querySelector( ".card-body a div.card-title" );
+            let description = cards[ i ].querySelector( ".card-text" );
             let textTitle = title.textContent || title.innerText;
             let textDescription =
                 description.textContent || description.innerText;
             if (
-                textTitle.toUpperCase().indexOf(input) > -1 ||
-                textDescription.toUpperCase().indexOf(input) > -1
+                textTitle.toUpperCase().indexOf( input ) > -1 ||
+                textDescription.toUpperCase().indexOf( input ) > -1
             ) {
-                cards[i].style.display = "";
+                cards[ i ].style.display = "";
             } else {
-                cards[i].style.display = "none";
+                cards[ i ].style.display = "none";
             }
         }
     }

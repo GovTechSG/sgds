@@ -48,13 +48,21 @@
             </li>
             {% endfor %}
             <li class="sidenav-item">
-                <a role="button" class="sgds btn" href="{{site.github-link}}">
-                    <i class="bi bi-github h3 mb-0"></i> Github
+                <a role="button" class="sgds btn collapsed" data-bs-toggle="collapse"
+                data-bs-target="#github-off-canvas-collapse" aria-expanded="false" aria-controls="github-off-canvas-collapse">
+                    <i class="bi bi-github h3 mb-0"></i> Github <i class="bi bi-chevron-down"></i>
                 </a>
-                
+                <div class="collapse" id="github-off-canvas-collapse" data-bs-parent=".open2">
+                    <ul class="list-unstyled">
+                        <li><a class="nav-link" href="{{site.github-link}}">SGDS HTML/CSS Github</a></li>
+                        <li><a class="nav-link" href="{{site.github-react}}">SGDS React Github</a></li>
+                        <li><a class="nav-link" href="{{site.github-web-component}}">SGDS Web Component Github</a></li>
+                    </ul>
+                </div>
             </li>
             <li class="sidenav-item">
-                <a role="button" class="sgds btn" href="{{site.react-storybook}}">
+                <a role="button" class="sgds btn collapsed" data-bs-toggle="collapse"
+                data-bs-target="#storybook-off-canvas-collapse" aria-expanded="false" aria-controls="storybook-off-canvas-collapse">
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="24" viewBox="0 0 13 16" fill="none">
                         <mask id="mask0_1438_4436" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="13" height="16">
                         <path d="M0.49517 14.7122L0.000574853 1.53345C-0.0157597 1.09821 0.317968 0.729349 0.752668 0.70218L11.9621 0.0015905C12.4046 -0.026064 12.7857 0.310212 12.8133 0.752685C12.8144 0.769356 12.8149 0.786055 12.8149 0.802758V15.1633C12.8149 15.6067 12.4555 15.966 12.0122 15.966C12.0002 15.966 11.9882 15.9658 11.9762 15.9652L1.26132 15.484C0.844019 15.4653 0.510836 15.1296 0.49517 14.7122Z" fill="white"/>
@@ -63,10 +71,15 @@
                         <path d="M0.49517 14.7122L0.000574853 1.53345C-0.0157597 1.09821 0.317968 0.729349 0.752668 0.70218L11.9621 0.0015905C12.4046 -0.026064 12.7857 0.310212 12.8133 0.752685C12.8144 0.769356 12.8149 0.786055 12.8149 0.802758V15.1633C12.8149 15.6067 12.4555 15.966 12.0122 15.966C12.0002 15.966 11.9882 15.9658 11.9762 15.9652L1.26132 15.484C0.844019 15.4653 0.510836 15.1296 0.49517 14.7122Z" fill="var(--sgds-gray-300)"/>
                         <path d="M9.4632 1.96248L9.53977 0.120952L11.0792 0L11.1455 1.89911C11.1478 1.9652 11.0961 2.02065 11.03 2.02296C11.0017 2.02395 10.9739 2.01487 10.9517 1.99735L10.3581 1.5297L9.65521 2.06286C9.60252 2.10283 9.52741 2.09251 9.48744 2.03982C9.47061 2.01765 9.46204 1.9903 9.4632 1.96248ZM7.49446 6.01782C7.49446 6.33013 9.59814 6.18045 9.88054 5.96107C9.88054 3.83432 8.73937 2.71675 6.64971 2.71675C4.56004 2.71675 3.38923 3.85171 3.38923 5.55415C3.38923 8.51924 7.39072 8.57599 7.39072 10.1933C7.39072 10.6473 7.16842 10.9169 6.67935 10.9169C6.04207 10.9169 5.79013 10.5914 5.81977 9.4848C5.81977 9.24474 3.38923 9.1699 3.31513 9.4848C3.12644 12.1665 4.79716 12.94 6.70899 12.94C8.56153 12.94 10.0139 11.9525 10.0139 10.1649C10.0139 6.98704 5.95315 7.07217 5.95315 5.49741C5.95315 4.85899 6.4274 4.77387 6.70899 4.77387C7.00539 4.77387 7.53892 4.82611 7.49446 6.01782Z" fill="var(--sgds-primary)"/>
                         </g>
-                        </svg>
-                        Storybook
+                    </svg>
+                    Storybook <i class="bi bi-chevron-down"></i>
                 </a>
-                
+                <div class="collapse" id="storybook-off-canvas-collapse" data-bs-parent=".open2">
+                    <ul class="list-unstyled">
+                        <li><a class="nav-link" href="{{site.react-storybook}}">SGDS React Storybook</a></li>
+                        <li><a class="nav-link" href="{{site.web-component-storybook}}">SGDS Web Component Storybook</a></li>
+                    </ul>
+                </div>
             </li>
         </nav>
     </div>

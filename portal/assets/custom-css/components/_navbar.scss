@@ -1,20 +1,31 @@
-.sgds{
-    &.navbar{
+.sgds {
+    &.navbar {
         background-color: rgba(255,255,255, 0.8);
 
         border-bottom: 1px solid rgba(var(--sgds-body-color-rgb),0.2);
-        .navbar-nav{
+        .navbar-nav {
             gap:1rem;
         }
 
-        .navbar-mobile-widget{
+        .navbar-mobile-widget {
             display: flex;
             height: 100%;
             gap: 1rem;
         }
-        .navbar-toggler{
-            &:focus{
+        .navbar-toggler {
+            &:focus {
                 box-shadow: none;
+            }
+        }
+        
+        .nav-item {
+            &.dropdown {
+                .dropdown-item-heading {
+                    font-weight: 700;
+                    font-size: 14px;
+                    color: var(--sgds-gray-700);
+                    padding: 0.25rem 1rem;
+                }
             }
         }
     }

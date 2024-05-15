@@ -41,7 +41,7 @@
     "rollup": "^4.5.2",
     "rollup-plugin-scss": "^4.0.0",
     "sass": "^1.69.5",
-    "vite": "^5.0.12",
+    "vite": "^5.0.13",
     "@govtechsg/sgds": "^2.1.1",
     "bootstrap-icons": "^1.11.2",
     "react-select": "^5.4.0"

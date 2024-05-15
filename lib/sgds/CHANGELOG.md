@@ -1,3 +1,22 @@
+## Unreleased
+
+## v2.3.0 (2024-05-02)
+
+### Feat
+
+- **sidenav**: add sticky and small refactor to mimick 5.3 [skip-cd] (#480)
+
+### Fix
+
+- **portal**: rename home page grid css selector
+- *****: update gem and bundle and fixing custom-style WIP
+- **docs**: typo in footer (#474)
+- **docs**: typo in footer
+
+### Refactor
+
+- **home**: make npm version dynamic in home page
+
 ## v2.2.0 (2023-01-09)
 
 ### Feat

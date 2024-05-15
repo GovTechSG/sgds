@@ -34,15 +34,34 @@
             <li class="nav-item">
                 <div class="vr h-100"></div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{site.github-link}}">
+            <li class="nav-item sgds dropdown">
+                <a 
+                    class="nav-link" 
+                    href="#"
+                    id="github-dropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
                     <i class="bi bi-github h3 mb-0"></i>
                     <span class="visually-hidden-focusable">SGDS Github repo</span>
                 </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="github-dropdown">
+                    <li><span class="dropdown-item-heading">Github</span></li>
+                    <li><a class="dropdown-item" href="{{site.github-link}}">SGDS</a></li>
+                    <li><a class="dropdown-item" href="{{site.github-react}}">React</a></li>
+                    <li><a class="dropdown-item" href="{{site.github-web-component}}">Web Component</a></li>
+                </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{site.react-storybook}}">
-                    <span class="visually-hidden-focusable">SGDS React storybook</span>
+            <li class="nav-item sgds dropdown">
+                <a 
+                    class="nav-link"
+                    href="#"
+                    id="storybook-dropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <span class="visually-hidden-focusable">SGDS storybook</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="24" viewBox="0 0 13 16" fill="none">
                         <mask id="mask0_1438_4436" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="13" height="16">
                         <path d="M0.49517 14.7122L0.000574853 1.53345C-0.0157597 1.09821 0.317968 0.729349 0.752668 0.70218L11.9621 0.0015905C12.4046 -0.026064 12.7857 0.310212 12.8133 0.752685C12.8144 0.769356 12.8149 0.786055 12.8149 0.802758V15.1633C12.8149 15.6067 12.4555 15.966 12.0122 15.966C12.0002 15.966 11.9882 15.9658 11.9762 15.9652L1.26132 15.484C0.844019 15.4653 0.510836 15.1296 0.49517 14.7122Z" fill="white"/>
@@ -53,6 +72,11 @@
                         </g>
                         </svg>
                 </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="storybook-dropdown">
+                    <li><span class="dropdown-item-heading">Storybook</span></li>
+                    <li><a class="dropdown-item" href="{{site.react-storybook}}">React</a></li>
+                    <li><a class="dropdown-item" href="{{site.web-component-storybook}}">Web Component</a></li>
+                </ul>
             </li>
             
             <li class="nav-item align-self-center d-none d-lg-block" style="margin-top:-5px">

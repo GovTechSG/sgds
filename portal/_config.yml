@@ -14,11 +14,13 @@ request-component: "https://form.gov.sg/6136ea11658bea0012fc9e80"
 search_placeholder: "What are you looking for?"
 react-storybook-local: http://localhost:6006
 react-storybook: https://react.designsystem.tech.gov.sg
+web-component-storybook: https://www.webcomponent.designsystem.tech.gov.sg
 web-component-cdn: https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component
 spider-storybook: https://www.webcomponent.designsystem.tech.gov.sg
 
 #github links
 github-link: https://github.com/GovTechSG/sgds/tree/v2
+github-react: https://github.com/GovTechSG/sgds-govtech-react/tree/v2
 github-web-component: https://github.com/GovTechSG/sgds-web-component/tree/master
 github-sgds-variables: https://github.com/GovTechSG/sgds/blob/v2/sass/sgds-theme/_variables.scss
 github-changelog: https://github.com/GovTechSG/sgds/blob/v2/CHANGELOG.md
