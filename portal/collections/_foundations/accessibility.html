@@ -1,0 +1,529 @@
+---
+title: Accessibility
+layout: layout-sidenav
+description: As we continue to build and develop products for Singapore, we want to ensure that no one is left behind. Whether it means including video captions to help people with hearing difficulties, ensuring legibility of content through high-contrast text, or even presenting information in an understandable manner. Designing for accessibility means your digital products can be used and enjoyed by the majority.
+toc: true
+---
+
+<!-- Page starts here -->
+<div class="page-component">
+
+  <!-- Generated header from front end matters -->
+  {% include page-component/component-header.html %}
+
+  <!-- Implementing Accessible Design Section -->
+  <section name="section-implementing-accessible-design">
+    <h2 class="title fw-bold" id="implementing-accessible-design">Implementing accessible design</h2>
+    <p class="mt-3">There are many ways for you and your agency to achieve accessibility, without impacting the overall look and feel of your digital services. Here's a basic web accessibility checklist that you can use to ensure that your website is accessible to all users, including those with disabilities</p>
+    
+    <section style="background-color: #F6F7FB;" class="d-flex flex-column gap-4 p-5 rounded-1">
+      <div class="d-flex align-items-center gap-2">
+        <span class="title mb-0" style="font-size: 1.25rem">📌 Basic Web Accessibility Checklist</span>
+        <h3 class="invisible" style="width: 0; height: 0;" id="basic-web-accessibility-checklist">Basic web accessibility checklist</h3>
+      </div>
+
+      <div class="d-flex flex-column gap-2">
+        <div class="p-4 bg-white rounded-1">
+          <div class="form-check" style="padding-left: 1.15em;">
+            <input class="form-check-input" type="checkbox" id="headingAndLabels" style="margin-left: -1.15em;" />
+            <label class="form-check-label ps-4" for="headingAndLabels">
+                <strong>Headings and Labels</strong>
+                <p class="mb-0">Use proper heading structure and labels for form inputs to aid in navigation and understanding</p>
+            </label>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white rounded-1">
+          <div class="form-check" style="padding-left: 1.15em;">
+            <input class="form-check-input" type="checkbox" id="colourAndContrast" style="margin-left: -1.15em;" />
+            <label class="form-check-label ps-4" for="colourAndContrast">
+                <strong>Colour and Contrast</strong>
+                <p class="mb-0">Use sufficient colour contrast between text and background to make content readable</p>
+            </label>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white rounded-1">
+          <div class="form-check" style="padding-left: 1.15em;">
+            <input class="form-check-input" type="checkbox" id="errorIdentification" style="margin-left: -1.15em;" />
+            <label class="form-check-label ps-4" for="errorIdentification">
+                <strong>Error Identification</strong>
+                <p class="mb-0">Provide clear error messages and suggestions for form validation</p>
+            </label>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white rounded-1">
+          <div class="form-check" style="padding-left: 1.15em;">
+            <input class="form-check-input" type="checkbox" id="textAlternatives" style="margin-left: -1.15em;" />
+            <label class="form-check-label ps-4" for="textAlternatives">
+                <strong>Text Alternatives</strong>
+                <p class="mb-0">Provide text alternatives for non-text content such as images, videos, and audio</p>
+            </label>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white rounded-1">
+          <div class="form-check" style="padding-left: 1.15em;">
+            <input class="form-check-input" type="checkbox" id="descriptiveLinks" style="margin-left: -1.15em;" />
+            <label class="form-check-label ps-4" for="descriptiveLinks">
+                <strong>Descriptive Links</strong>
+                <p class="mb-0">Use descriptive text for links to provide context for screen reader users</p>
+            </label>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white rounded-1">
+          <div class="form-check" style="padding-left: 1.15em;">
+            <input class="form-check-input" type="checkbox" id="keyboardAccessibility" style="margin-left: -1.15em;" />
+            <label class="form-check-label ps-4" for="keyboardAccessibility">
+                <strong>Keyboard Accessibility</strong>
+                <p class="mb-0">Ensure that all functionality is available using a keyboard</p>
+            </label>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white rounded-1">
+          <div class="form-check" style="padding-left: 1.15em;">
+            <input class="form-check-input" type="checkbox" id="focusIndicators" style="margin-left: -1.15em;" />
+            <label class="form-check-label ps-4" for="focusIndicators">
+                <strong>Focus Indicators</strong>
+                <p class="mb-0">Ensure that there is a visible focus indicator for interactive elements</p>
+            </label>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white rounded-1">
+          <div class="form-check" style="padding-left: 1.15em;">
+            <input class="form-check-input" type="checkbox" id="responsiveDesign" style="margin-left: -1.15em;" />
+            <label class="form-check-label ps-4" for="responsiveDesign">
+                <strong>Responsive Design</strong>
+                <p class="mb-0">Ensure that the website is responsive and works well on different devices and screen sizes</p>
+            </label>
+          </div>
+        </div>
+        
+        <div class="p-4 bg-white rounded-1">
+          <div class="form-check" style="padding-left: 1.15em;">
+            <input class="form-check-input" type="checkbox" id="testingAndValidation" style="margin-left: -1.15em;" />
+            <label class="form-check-label ps-4" for="testingAndValidation">
+                <strong>Testing and Validation</strong>
+                <p class="mb-0">Test the website with screen readers and other assistive technologies to ensure compatibility</p>
+            </label>
+          </div>
+        </div>
+      </div>
+      <span class="small">Remember, this is just a basic checklist. For a more comprehensive evaluation, you may want to refer to the <a href="https://www.developer.tech.gov.sg/guidelines/standards-and-best-practices/wcag-2-1.html">Web Content Accessibility Guidelines (WCAG) 2.1</a>, which provides detailed guidelines for web accessibility.</span>
+    </section>
+  </section>
+
+  <!-- Headings and Labels Section -->
+  <section name="section-headings-and-labels">
+    <h3 class="title fw-bold" id="headings-and-labels">Headings and labels</h3>
+    <hr />
+    <div class="my-5">
+      <p class="title fs-4 mb-0">Headings are used for providing structure and hierarchy to content on a web page</p>
+      <p class="mt-0">They help organise information and make it easier for users to understand the layout and relationships between different sections. Screen reader users depend on headings for efficient navigation and comprehension, and well-structured headings help them grasp content relationships, so using semantic HTML heading tags is essential for accessibility.</p>
+    </div>
+    <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));">
+      <div class="card sgds">
+        <img class="card-img-top" alt="Headings Do" src="/assets/img/foundation/accessibility/headings-do.png">
+        <div class="card-body">
+          <span class="sgds badge bg-success"><i class="bi bi-check2 left"></i>Do</span>
+           <p class="card-text mt-3 mb-0">Use semantic HTML heading tags (e.g., &lt;h1>, &lt;h2>, &lt;h3>, etc.) appropriately</p>
+        </div>
+     </div>
+      <div class="card sgds">
+        <img class="card-img-top" alt="Headings Don't" src="/assets/img/foundation/accessibility/headings-dont.png">
+        <div class="card-body">
+          <span class="sgds badge bg-danger"><i class="bi bi-x-lg left"></i>Don't</span>
+           <p class="card-text mt-3 mb-0">Don't use headings out of numerical order (eg. &lt;h1>, &lt;h4>, &lt;h2>, then &lt;h4>)</p>
+        </div>
+     </div>
+    </div>
+    
+    <div class="my-5">
+      <p class="title fs-4 mb-0">Labels are used for providing context and improve navigation</p>
+      <p class="mt-0">Labels are essential for form fields and interactive elements, providing descriptive text that explains their purpose or expected input. Screen reader users rely on labels to understand these elements' context and function, enhancing usability and accessibility.</p>
+    </div>
+    <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));">
+      <div class="card sgds">
+        <img class="card-img-top" alt="Labels Do" src="/assets/img/foundation/accessibility/labels-do.png">
+        <div class="card-body">
+          <span class="sgds badge bg-success"><i class="bi bi-check2 left"></i>Do</span>
+           <p class="card-text mt-3 mb-0">Use labels that are always visible</p>
+        </div>
+     </div>
+      <div class="card sgds">
+        <img class="card-img-top" alt="Labels Don't" src="/assets/img/foundation/accessibility/labels-dont.png">
+        <div class="card-body">
+          <span class="sgds badge bg-danger"><i class="bi bi-x-lg left"></i>Don't</span>
+           <p class="card-text mt-3 mb-0">Don't use placeholder text as it disappears as soon as the user starts typing. It is also not read out by most screen readers</p>
+        </div>
+     </div>
+    </div>
+  </section>
+
+  <!-- Colour and Contrast Section -->
+  <section name="section-colour-and-contrast">
+    <h3 class="title fw-bold" id="colour-and-contrast">Colour and contrast</h3>
+    <hr />
+    <p class="title fs-4 mt-5">Non-text contrast should be at least AA 3:1</p>
+    
+    <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));">
+      <div class="card sgds">
+        <img class="card-img-top" alt="Non-text Contrast Do" src="/assets/img/foundation/accessibility/non-text-contrast-do.png">
+        <div class="card-body">
+          <span class="sgds badge bg-success"><i class="bi bi-check2 left"></i>Do</span>
+           <p class="card-text mt-3 mb-0">Ensure <u>button colour</u> against <u>background</u> is at least 3:1</p>
+        </div>
+     </div>
+      <div class="card sgds">
+        <img class="card-img-top" alt="Non-text Contrast Don't" src="/assets/img/foundation/accessibility/non-text-contrast-dont.png">
+        <div class="card-body">
+          <span class="sgds badge bg-danger"><i class="bi bi-x-lg left"></i>Don't</span>
+           <p class="card-text mt-3 mb-0">Avoid low contrast, eg. <u>button colour</u> against <u>background</u> is below 3:1</p>
+        </div>
+     </div>
+    </div>
+    
+    <p class="title fs-4 mt-8">Text contrast should be at least AA 3:1 for large text, 4.5:1 for normal text</p>
+    <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));">
+      <div class="card sgds">
+        <img class="card-img-top" alt="Text Contrast Do" src="/assets/img/foundation/accessibility/text-contrast-do.png">
+        <div class="card-body">
+          <span class="sgds badge bg-success"><i class="bi bi-check2 left"></i>Do</span>
+           <p class="card-text mt-3 mb-0">Ensure <u>button text</u> against <u>button background</u> is at least 4.5:1</p>
+        </div>
+     </div>
+      <div class="card sgds">
+        <img class="card-img-top" alt="Text Contrast Don't" src="/assets/img/foundation/accessibility/text-contrast-dont.png">
+        <div class="card-body">
+          <span class="sgds badge bg-danger"><i class="bi bi-x-lg left"></i>Don't</span>
+           <p class="card-text mt-3 mb-0">Avoid low contrast, eg. <u>button text</u> against <u>button background</u> is below 4.5:1</p>
+        </div>
+     </div>
+    </div>
+
+    <p class="my-8">Here's a simple colour contrast cheat sheet for accessibility, showing the minimum contrast ratios recommended by the Web Content Accessibility Guidelines (WCAG) for text and images (non texts)</p>
+    <section style="background-color: #F6F7FB;" class="d-flex flex-column gap-3 p-5 rounded-1 text-center">
+      <div>
+        <p class="title mb-1" style="font-size: 1.25rem">Colour Contrast Guide</p>
+        <span class="small">WCAG 2.1 Level AA, minimum</span>
+      </div>
+
+      <div class="table-responsive border rounded-1">
+        <table class="table mb-0">
+          <thead class="bg-white">
+            <tr>
+              <th class="w-75"></th>
+              <th>AA</th>
+              <th>AAA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-white">
+              <th class="text-start">Non-texts contrast <i class="bi bi-info-circle small ps-1"></i></th>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr style="background-color: rgba(255, 255, 255, 0.50);">
+              <td class="text-start">User Interface Components & Graphical Objects eg. Icons, Graphics, Border</td>
+              <td>3:1</td>
+              <td></td>
+            </tr>
+            <tr class="bg-white">
+              <th class="text-start">Texts contrast <i class="bi bi-info-circle small ps-1"></i></th>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr style="background-color: rgba(255, 255, 255, 0.50);">
+              <td class="text-start">Large text >24px, Bold text >19px+</td>
+              <td>3:1</td>
+              <td>4.5:1</td>
+            </tr>
+            <tr style="background-color: rgba(255, 255, 255, 0.50);">
+              <td class="text-start border-bottom-0">Normal text</td>
+              <td class="border-bottom-0">4.5:1</td>
+              <td class="border-bottom-0">7:1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <span class="small">To check your colour contrast ratio, <a href="https://www.figma.com/community/widget/1123669584321839030/contrast-checker" target="_blank">Launch Colour Contrast Checker Widget</a></span>
+    </section>
+  </section>
+
+  <!-- Error Identification Section -->
+  <section name="section-error-identification">
+    <h3 class="title fw-bold" id="error-identification">Error identification</h3>
+    <hr />
+    <p class="my-5">Error identification in web forms refers to the process of highlighting and describing errors that occur when a user submits a form with incorrect or incomplete information. This helps users understand what went wrong and how to correct it, improving the overall user experience.</p>
+    
+    <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));">
+      <div class="card sgds">
+        <img class="card-img-top" alt="Error Identification Do" src="/assets/img/foundation/accessibility/error-identification-do.png">
+        <div class="card-body">
+          <span class="sgds badge bg-success"><i class="bi bi-check2 left"></i>Do</span>
+           <p class="card-text mt-3 mb-0">Use clear and informative error messages to guide users on how to correct their mistakes</p>
+        </div>
+     </div>
+      <div class="card sgds">
+        <img class="card-img-top" alt="Error Identification Don't" src="/assets/img/foundation/accessibility/error-identification-dont.png">
+        <div class="card-body">
+          <span class="sgds badge bg-danger"><i class="bi bi-x-lg left"></i>Don't</span>
+           <p class="card-text mt-3 mb-0">Don't use only colour to indicate an error as it would not be detectable to users with visual impairments</p>
+        </div>
+     </div>
+    </div>
+  </section>
+
+  <!-- Text Alternative Section -->
+  <section name="section-text-alternative">
+    <h3 class="title fw-bold" id="text-alternative">Text alternative</h3>
+    <hr />
+    <div class="my-5">
+      <p>Providing text alternatives for non-text content such as images, videos, and audio is important for web accessibility because it ensures that individuals who cannot perceive the non-text content (e.g., those who are blind or have low vision) can still access and understand the information.</p>
+      <p class="mb-0">Text alternatives can include</p>
+      <ul>
+        <li>Alternative text for images</li>
+        <li>Descriptions for audio</li>
+        <li>Transcripts or captions for videos</li>
+      </ul>
+    </div>
+    
+    <p class="title fs-4 mt-8">Alternative text for images</p>
+    <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));">
+      <div class="card sgds">
+        <img class="card-img-top" alt="Image Alternative Text Do" src="/assets/img/foundation/accessibility/image-alt-text-do.png">
+        <div class="card-body">
+          <span class="sgds badge bg-success"><i class="bi bi-check2 left"></i>Do</span>
+           <p class="card-text mt-3 mb-0">Include concise alternative text to describe or provide context to the image</p>
+        </div>
+     </div>
+      <div class="card sgds">
+        <img class="card-img-top" alt="Image Alternative Text Don't" src="/assets/img/foundation/accessibility/image-alt-text-dont.png">
+        <div class="card-body">
+          <span class="sgds badge bg-danger"><i class="bi bi-x-lg left"></i>Don't</span>
+           <p class="card-text mt-3 mb-0">Avoid alternative text that is irrelevant to the information. Avoid alternative text for decorative images</p>
+        </div>
+     </div>
+    </div>
+
+    <p class="title fs-4 mt-8 mb-0">Description for audio</p>
+    <p class="mt-0">Audio description narrates visual information in videos or live performances describing key visual elements like actions, settings, costumes, and facial expressions that are not communicated through dialogue or sound effects.</p>
+
+    <p class="title fs-4 mt-8 mb-0">Transcripts or captions for videos</p>
+    <p class="mt-0">Transcripts provide a textual version of the entire spoken content in a video, while captions provide a synchronized text display of the spoken words in the video. Both are important for accessibility and can improve the user experience for a wide range of viewers.</p>
+    <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));">
+      <div class="card sgds">
+        <img class="card-img-top" alt="Video Transcripts or Captions Do" src="/assets/img/foundation/accessibility/video-transcripts-do.png">
+        <div class="card-body">
+          <span class="sgds badge bg-success"><i class="bi bi-check2 left"></i>Do</span>
+           <p class="card-text mt-3 mb-0">Add captions and appear at a pace that allows viewers to comfortably read and understand the content</p>
+        </div>
+     </div>
+      <div class="card sgds">
+        <img class="card-img-top" alt="Video Transcripts or Captions Don't" src="/assets/img/foundation/accessibility/video-transcripts-dont.png">
+        <div class="card-body">
+          <span class="sgds badge bg-danger"><i class="bi bi-x-lg left"></i>Don't</span>
+           <p class="card-text mt-3 mb-0">Don't use poorly formatted, inconsistent text size, colour, or placement that hinder readability and accessibility</p>
+        </div>
+     </div>
+    </div>
+  </section>
+
+  <!-- Descriptive Links Section -->
+  <section name="section-descriptive-links">
+    <h3 class="title fw-bold" id="descriptive-links">Descriptive links</h3>
+    <hr />
+    <p class="my-5">The purpose of descriptive links is to provide users with the proper context of where clicking the link will take them. It should include keywords or phrases that accurately describe the linked content, making it easier for users to understand where the link will take them.</p>
+    
+    <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));">
+      <div class="card sgds">
+        <img class="card-img-top" alt="Descriptive Links Do" src="/assets/img/foundation/accessibility/descriptive-links-do.png">
+        <div class="card-body">
+          <span class="sgds badge bg-success"><i class="bi bi-check2 left"></i>Do</span>
+           <p class="card-text mt-3 mb-0">Make links descriptive to ensure they convey meaning on their own</p>
+        </div>
+     </div>
+      <div class="card sgds">
+        <img class="card-img-top" alt="Descriptive Links Don't" src="/assets/img/foundation/accessibility/descriptive-links-dont.png">
+        <div class="card-body">
+          <span class="sgds badge bg-danger"><i class="bi bi-x-lg left"></i>Don't</span>
+           <p class="card-text mt-3 mb-0">Don't use full URLs or generic phrases such as “click here” and “learn more”</p>
+        </div>
+     </div>
+    </div>
+  </section>
+
+  <!-- Keyboard Accessibility Section -->
+  <section name="section-keyboard-acccessibility">
+    <h3 class="title fw-bold" id="keyboard-acccessibility">Keyboard acccessibility</h3>
+    <hr />
+    <p class="my-5">Keyboard accessibility refers to the design and implementation of digital content, to ensure that users can fully navigate, interact with, and operate the content using only the keyboard, without relying on a mouse or other pointing device. This includes enabling users to access all interactive elements, navigate through content, activate links and buttons, and submit forms solely through keyboard inputs.</p>
+    
+    <section style="background-color: #F6F7FB;" class="d-flex flex-column gap-3 p-5 rounded-1 text-center">
+      <div>
+        <p class="title mb-1" style="font-size: 1.25rem">Guide to Navigating with the Keyboard</p>
+        <span class="small">This table includes common online interactions and the typical key inputs associated with each interaction</span>
+      </div>
+
+      <div class="table-responsive border rounded-1">
+        <table class="table mb-0 bg-white text-start">
+          <thead class="bg-white">
+            <tr>
+              <th style="width: 40%;">Interaction</th>
+              <th>Key inputs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Navigating through elements (eg. menu, button, link)</td>
+              <td>
+                <div class="d-flex flex-column gap-2">
+                  <span>
+                    <span class="sgds-code-font">Tab</span> - move focus forward
+                  </span>
+                  <span>
+                    <span class="sgds-code-font">Shift</span> + <span class="sgds-code-font">Tab</span> - move focus backward
+                  </span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Navigating through lists of options (eg. radio button, dropdown list)</td>
+              <td>
+                <div class="d-flex flex-column gap-2">
+                  <span>
+                    <span class="sgds-code-font">↑</span> , <span class="sgds-code-font">↓</span> - move vertically
+                  </span>
+                  <span>
+                    <span class="sgds-code-font">←</span> , <span class="sgds-code-font">→</span> - move horizontally
+                  </span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Scroll</td>
+              <td>
+                <div class="d-flex flex-column gap-2">
+                  <span>
+                    <span class="sgds-code-font">↑</span> , <span class="sgds-code-font">↓</span> - scroll vertically
+                  </span>
+                  <span>
+                    <span class="sgds-code-font">←</span> , <span class="sgds-code-font">→</span> - scroll horizontally
+                  </span>
+                  <span>
+                    <span class="sgds-code-font">Space</span> / <span class="sgds-code-font">Shift</span> + <span class="sgds-code-font">Space</span> - scroll by page
+                  </span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Button and link</td>
+              <td>
+                <span class="sgds-code-font">Enter</span> - activate
+              </td>
+            </tr>
+            <tr>
+              <td>Checkbox, radio button, dropdown</td>
+              <td>
+                <span class="sgds-code-font">Space</span> - select or unselect while focused
+              </td>
+            </tr>
+            <tr>
+              <td class="border-bottom-0">Modal</td>
+              <td class="border-bottom-0"><span class="sgds-code-font">Esc</span> - close</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <span class="small">For a more detailed guidelines on keyboard accessibility, you may want to refer to <a href="https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/" target="_blank">Developing a Keyboard Interface</a></span>
+    </section>
+  </section>
+
+  <!-- Focus Indicator Section -->
+  <section name="section-focus-indicator">
+    <h3 class="title fw-bold" id="focus-indicator">Focus indicator</h3>
+    <hr />
+    <p class="my-5">A focus indicator serves as a visual signal that highlights the element currently in focus on a web page or application. This feature is essential for users who depend on keyboard navigation or assistive technologies to engage with digital content.</p>
+    
+    <div class="d-grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));">
+      <div class="card sgds">
+        <img class="card-img-top" alt="Focus Indicator Do" src="/assets/img/foundation/accessibility/focus-indicator-do.png">
+        <div class="card-body">
+          <span class="sgds badge bg-success"><i class="bi bi-check2 left"></i>Do</span>
+           <p class="card-text mt-3 mb-0">Highlight focused element such as links, buttons, form fields, and interactive components</p>
+        </div>
+     </div>
+      <div class="card sgds">
+        <img class="card-img-top" alt="Focus Indicator Don't" src="/assets/img/foundation/accessibility/focus-indicator-dont.png">
+        <div class="card-body">
+          <span class="sgds badge bg-danger"><i class="bi bi-x-lg left"></i>Don't</span>
+           <p class="card-text mt-3 mb-0">Don't remove or disable default focus styles provided by browsers or operating systems without providing an adequate replacement</p>
+        </div>
+     </div>
+    </div>
+  </section>
+
+  <!-- Responsive Design Section -->
+  <section name="section-responsive-design">
+    <h3 class="title fw-bold" id="responsive-design">Responsive design</h3>
+    <hr />
+    <div class="my-5">
+      <p>Responsive web design provides a seamless and consistent user experience across devices as the pages automatically adjusts its layout, font sizes, and images to fit the screen size, making it easier for users to navigate, read content, and interact with the site.</p>
+      <p>The <a href="/components">components</a>, <a href="/patterns">patterns</a> and <a href="/templates">templates</a> provided by SGDS are designed to adapt to the different screen sizes,  providing a positive user experience across devices</p>
+    </div>
+    
+    
+    <div class="card sgds">
+      <img class="card-img-top" alt="Responsive Design Example" src="/assets/img/foundation/accessibility/responsive-design-example.png">
+      <div class="card-body">
+        <span class="sgds badge bg-secondary">Example</span>
+         <p class="card-text mt-3 mb-0">Our form and fields adjust their layout and sizes according to the screen size</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testing and Validation Section -->
+  <section name="section-testing-and-validation">
+    <h3 class="title fw-bold" id="testing-and-validation">Testing and validation</h3>
+    <hr />
+    <div class="my-5">
+      <p>You can use automated accessibility testing tools to scan your website for common accessibility issues. These tools can identify issues such as missing alt text, low colour contrast, and missing form labels. Here is a <a href="https://www.w3.org/WAI/test-evaluate/tools/list/">Web Accessibility Evaluation Tools List</a> that you can consider using.</p>
+      <p>Ideally, you should also conduct user testing with people with disabilities to gather more accurate feedback and identify any accessibility barriers that may exist on your website. For guidance on how to conduct user testing, we will soon have templates available under our UX design resources, expected to be released in Q3 2024. Stay tuned!</p>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section name="section-resources">
+    <h2 class="title fw-bold" id="resources">Resources</h2>
+
+    <br />
+    <h3 id="understanding-wcag">Understanding WCAG 2.1</h3>
+    <hr />
+    <p>Web Content Accessibility Guidelines (WCAG) 2.1 defines how to make Web content more accessible to people with disabilities.</p>
+    <p class="mb-0">For an introduction to WCAG, see the</p>
+    <ul>
+      <li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/">Web Content Accessibility Guidelines (WCAG) Overview.</a></li>
+    </ul>
+    
+    <br />
+    <h3 id="screen-reader">Screen readers</h3>
+    <hr />
+    <p>A screen reader is an assistive technology, primarily used by people with vision impairments. It converts text, buttons, images and other screen elements into speech or braille.</p>
+    <p class="mb-0">Examples of screen readers for computers:</p>
+    <ul>
+      <li><a href="https://assistivlabs.com/assistive-tech/screen-readers/nvda">NVDA (Windows)</a></li>
+      <li><a href="https://support.freedomscientific.com/Downloads/JAWS">JAWS (Windows)</a></li>
+      <li><a href="https://support.apple.com/en-sg/guide/voiceover/vo4be8816d70/10/mac/14.0">VoiceOver (Mac)</a></li>
+    </ul>
+    <p class="mb-0">Examples of screen readers for mobile devices:</p>
+    <ul>
+      <li><a href="https://support.apple.com/en-gb/guide/iphone/iph3e2e2281/ios">VoiceOver (iOS)</a></li>
+      <li><a href="https://support.google.com/accessibility/android/answer/6007100?hl=en#:~:text=TalkBack%20is%20an%20accessibility%20feature,what%20is%20on%20the%20screen">TalkBack for Android (Android)</a></li>
+      <li><a href="https://support.google.com/assistant/answer/7172657?hl=en&co=GENIE.Platform%3DAndroid#:~:text=On%20your%20device%2C%20touch%20and,question%20or%20say%20a%20command">Voice Assistant (Android)</a></li>
+    </ul>
+  </section>
+</div>

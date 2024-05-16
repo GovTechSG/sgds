@@ -15962,9 +15962,10 @@ section.wrapper.home section.home-part-of-change + .part-of-change {
 .sgds-code-font {
   font-family: "Courier New", Courier, monospace;
   font-weight: 400;
+  font-size: 14px;
   border: 1px solid var(--sgds-gray-300);
   background-color: var(--sgds-gray-100);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 6px 8px 6px 8px;
 }
 
