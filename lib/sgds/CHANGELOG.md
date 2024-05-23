@@ -1,4 +1,8 @@
-## Unreleased
+## v2.3.1 (2024-05-23)
+
+### Fix
+
+- **variables**: mistake in enable cssgrid to true by accident (#491)
 
 ## v2.3.0 (2024-05-02)
 
@@ -85,11 +89,6 @@
 - **section**: add section helper classes
 
 ## v2.1.0-beta.1 (2022-09-16)
-
-### BREAKING CHANGE
-
-- Previous instructions for import paths for customise imports will break. Please
-  update accordingly to the new documentation
 
 ### Feat
 
