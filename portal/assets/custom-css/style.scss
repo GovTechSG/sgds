@@ -1,8 +1,85 @@
 // Configuration
-// @import "./node_modules/bootstrap/scss/functions";
-@import "../../../lib/sgds/sass/sgds.scss";
 
+@import "./node_modules/@govtechsg/sgds/sass/functions";
+@import "./node_modules/@govtechsg/sgds/sass/variables";
 $enable-cssgrid: true;
+@import "./node_modules/@govtechsg/sgds/sass/mixins";
+@import "./node_modules/@govtechsg/sgds/sass/utilities";
+
+$all-colors: map-merge-multiple($primarys, $secondarys, $purples, $reds, $yellows, $greens, $cyans, $darks, $lights);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "color": map-merge(
+      map-get($utilities, "color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "color"), "values"),
+          (
+            $all-colors
+          ),
+        ),
+      ),
+    ),
+    "background-color": map-merge(
+      map-get($utilities, "background-color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "background-color"), "values"),
+          (
+            $all-colors
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+
+@import "./node_modules/@govtechsg/sgds/sass/root";
+@import "./node_modules/@govtechsg/sgds/sass/reboot";
+@import "./node_modules/@govtechsg/sgds/sass/type";
+@import "./node_modules/@govtechsg/sgds/sass/images";
+@import "./node_modules/@govtechsg/sgds/sass/containers";
+@import "./node_modules/@govtechsg/sgds/sass/grid";
+@import "./node_modules/@govtechsg/sgds/sass/table";
+@import "./node_modules/@govtechsg/sgds/sass/forms";
+@import "./node_modules/@govtechsg/sgds/sass/footer";
+@import "./node_modules/@govtechsg/sgds/sass/buttons";
+@import "./node_modules/@govtechsg/sgds/sass/transitions";
+@import "./node_modules/@govtechsg/sgds/sass/datepicker";
+@import "./node_modules/@govtechsg/sgds/sass/dropdown";
+@import "./node_modules/@govtechsg/sgds/sass/fileupload";
+@import "./node_modules/@govtechsg/sgds/sass/navbar";
+@import "./node_modules/@govtechsg/sgds/sass/card";
+@import "./node_modules/@govtechsg/sgds/sass/accordion";
+@import "./node_modules/@govtechsg/sgds/sass/breadcrumb";
+@import "./node_modules/@govtechsg/sgds/sass/pagination";
+@import "./node_modules/@govtechsg/sgds/sass/list-group";
+@import "./node_modules/@govtechsg/sgds/sass/badge";
+@import "./node_modules/@govtechsg/sgds/sass/alert";
+@import "./node_modules/@govtechsg/sgds/sass/progress";
+@import "./node_modules/@govtechsg/sgds/sass/close";
+@import "./node_modules/@govtechsg/sgds/sass/sidenav";
+@import "./node_modules/@govtechsg/sgds/sass/stepper";
+@import "./node_modules/@govtechsg/sgds/sass/toasts";
+@import "./node_modules/@govtechsg/sgds/sass/modal";
+@import "./node_modules/@govtechsg/sgds/sass/tabs";
+@import "./node_modules/@govtechsg/sgds/sass/tooltip";
+@import "./node_modules/@govtechsg/sgds/sass/popover";
+@import "./node_modules/@govtechsg/sgds/sass/carousel";
+@import "./node_modules/@govtechsg/sgds/sass/spinners";
+@import "./node_modules/@govtechsg/sgds/sass/offcanvas";
+@import "./node_modules/@govtechsg/sgds/sass/placeholders";
+@import "./node_modules/@govtechsg/sgds/sass/combobox";
+//Helpers
+@import "./node_modules/@govtechsg/sgds/sass/helpers";
+//Utilites
+@import "./node_modules/@govtechsg/sgds/sass/utilities/api";
+
+@import "./node_modules/@govtechsg/sgds/sass/templates";
+
+// @import "../../../lib/sgds/sass/sgds.scss";
 
 // @import "./node_modules/bootstrap/scss/mixins";
 
