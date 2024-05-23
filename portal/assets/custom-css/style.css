@@ -665,25 +665,6 @@ a[target=_blank]:after {
   color: #344054;
 }
 
-.section {
-  padding: var(--section-padding);
-}
-.section-xs {
-  padding: var(--section-padding-xs);
-}
-.section-sm {
-  padding: var(--section-padding-sm);
-}
-.section-md {
-  padding: var(--section-padding);
-}
-.section-lg {
-  padding: var(--section-padding-lg);
-}
-.section-xl {
-  padding: var(--section-padding-xl);
-}
-
 .container,
 .container-fluid,
 .container-xxl,
