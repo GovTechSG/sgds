@@ -11,6 +11,16 @@
         content="The Singapore Government Design System was developed to empower teams in creating fast, accessible and mobile-friendly digital services.">
     <meta property="og:url" content="https://www.designsystem.tech.gov.sg">
     <title>SGDS | {{page.title}}</title>
+    {% if jekyll.environment == "production" %}
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-T6NDG85M');
+    </script>
+    <!-- End Google Tag Manager -->
+    {% endif %}
     <!-- this polyfill is required for web component cdn to prevent clash of custom element registration -->
     <script src="https://cdn.jsdelivr.net/npm/@webcomponents/scoped-custom-element-registry"></script>
     {% assign latestVersion = site.data.npm-sgds-web-component-latest-metadata.objects[0].package.version %}
