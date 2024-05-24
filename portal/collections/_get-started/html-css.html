@@ -1,0 +1,69 @@
+---
+title: HTML / CSS
+layout: layout-sidenav
+permalink: get-started/develop/html-css
+description: SGDS library is built on Bootstrap 5, it offers CSS styles directly applied to HTML elements and CSS tokens for modular customisation.
+parent: develop
+---
+{% capture using-node %}
+npm i @govtechsg/sgds bootstrap-icons
+{% endcapture %}
+
+{% capture webpack %}
+import "@govtechsg/sgds/css/sgds.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+{% endcapture %}
+
+{% capture bootstrap %}
+import * as bootstrap from 'bootstrap';
+{% endcapture %}
+
+{% capture cdn-css %}
+<head>
+  ...
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@govtechsg/sgds@2.2.0/css/sgds.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  ...
+</head>
+
+<body>
+  ...
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+</body>
+{% endcapture %}
+
+<div class="page-component">
+  {% include page-component/component-header.html %}
+
+  <section name="section-install-sgds-library">
+    <h2 class="title fw-bold" id="install-sgds-library">Step 1: Install SGDS library</h2>
+    <p class="mt-4">@govtechsg/sgds uses bootstrap-icons for certain components like Form but it is not ship with it. Install bootstrap-icons or use CDN if you need it. Please refer to <a href="https://icons.getbootstrap.com/#install">bootstrap-icons</a> for usage instructions.</p>
+    
+    <h3 id="local-installation">Method 1: Local installation</h3>
+    <div class="mt-4 bash">
+      {% highlight bash %}{{using-node}}{% endhighlight %}
+    </div>
+    <p>Import SGDS style library and bootstrap icons in your entry point</p>
+    <div class="mt-4 bash">
+      {% highlight bash %}{{webpack}}{% endhighlight %}
+    </div>
+    <p>If you plan to use components that require interactions e.g. accordion and tooltips, you would need to import the javascript file from bootstrap library, as shown below, on top of the SGDS style library.</p>
+    <div class="mt-4 bash">
+      {% highlight bash %}{{bootstrap}}{% endhighlight %}
+    </div>
+    
+    <h3 class="mt-5" id="using-cdn">Method 2: Using CDN</h3>
+    <p>Include this code into your applications index.html to load the SGDS style library and the javascript file</p>
+    <div class="mt-4 bash">
+      {% highlight bash %}{{cdn-css}}{% endhighlight %}
+    </div>
+  </section>
+
+  <section name="section-build-your-application">
+    <h2 class="title fw-bold" id="build-your-application">Step 2: Start building your application</h2>
+    <p class="mt-4">
+      There are ready made components, patterns, layouts and templates to use. You may refer to the <a href="/components">components page</a>, <a href="/patterns">patterns page</a>, <a href="/layouts">layouts page</a> or <a href="/templates">templates page</a> to copy the relevant HTML / CSS code.
+    </p>
+  </section>
+</div>

@@ -19,9 +19,37 @@ layout: layout-default
                 {%- if page.title == title -%}
                 {%- assign class = 'active' -%}
                 {%- endif -%}
-                <li class="sidenav-item">
-                    <a role="button" class="sgds btn {{class}}" href="{{item.url}}">{{item.title}}</a>
-                </li>
+                {% if item.has_child %}
+                    {% assign id = item.title | downcase | append: '-sidenav-collapse' %}
+                    <li class="sidenav-item">
+                        <button type="button" class="sgds btn {{class}}" aria-expanded="true" aria-controls="{{id}}">
+                            <a role="button" href="{{item.url}}">{{item.title}} </a> <i class="bi bi-chevron-down" data-bs-toggle="collapse" data-bs-target="#{{id}}"></i>
+                        </button>
+                        <ul class="collapse show" id="{{id}}">
+                            {% for child_item in site[collection.label] %}
+                                {% assign parent = item.title | downcase %}
+                                {% if child_item.parent == parent %}
+                                    {% if page.title == child_item.title -%}
+                                        {% assign child_class = 'active' %}
+                                    {% else %}
+                                        {% assign child_class = 'inactive' %}
+                                    {% endif %}
+                                    <li class="sidenav-item {{child_class}}">
+                                        {% if child_item.href != null %}
+                                            <a role="button" class="sgds btn {{child_class}}" href="{{child_item.href}}" target="{{child_item.target}}">{{child_item.title}}</a>
+                                        {% else %}
+                                            <a role="button" class="sgds btn {{child_class}}" href="{{child_item.url}}">{{child_item.title}}</a>
+                                        {% endif %}
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% elsif item.parent == null %}
+                    <li class="sidenav-item">
+                        <a role="button" class="sgds btn {{class}}" href="{{item.url}}">{{item.title}}</a>
+                    </li>
+                {% endif %}
                 {% endfor %}
                 {% endif %}
                 {% endfor %}

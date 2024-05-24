@@ -9,15 +9,66 @@ aside{
        
         a{
             text-decoration: none;
-            color: var(--sgds-gray-500);
+            color: var(--sgds-gray-600);
             &:hover{
-                color: var(--sgds-gray-700);
+                color: var(--sgds-primary);
             }
         }
 
-        .sidenav-item + .sidenav-item{
-            margin-top: 0;
+        .btn.active {
+            a {
+                color: var(--sgds-primary);
+            }
         }
 
+        .btn:hover {
+            a {
+                color: var(--sgds-primary);
+            }
+        }
+        
+        .sidenav-item {
+            .btn.active, .btn.inactive {
+                i.bi-chevron-down  {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        .sidenav-item {
+            .btn.active, .btn.inactive {
+                i.bi-chevron-down  {
+                    &.collapsed {
+                        transform: rotate(0deg);
+                    }
+                }
+            }
+        }
+
+        .sidenav-item > ul {
+            list-style: none;
+            padding-left: 0;
+            &.collapse, &.collapse.show, &.collapsing {
+                margin-top: 0;
+            }
+
+            li.active {
+                color: var(--sgds-primary);
+                border-left: 0.125rem solid var(--sgds-primary);
+                font-weight: 700;
+            }
+
+            li {
+                .sgds.btn {
+                    border-left: 0;
+                    padding-left: 2rem;
+                    gap: 0;
+                }
+            }
+        }
+
+        .sidenav-item + .sidenav-item {
+            margin-top: 0;
+        }
     }
 }

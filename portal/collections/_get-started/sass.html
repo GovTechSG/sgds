@@ -1,8 +1,14 @@
 ---
-title: Customise with SASS
+title: SASS
 layout: layout-sidenav
-description: Use <a href="https://sass-lang.com/" target="_blank" rel="noopener noreferrer">Sass</a> to customise how SGDS looks and behaves in your project
+permalink: get-started/develop/sass
+description: Like Bootstrap 5, SGDS provides style customisation through SASS source files. For advanced use of variables, maps, mixins and functions, please refer to <a href="https://getbootstrap.com/docs/5.3/customize/sass/">Bootstrap's documentation</a>.
+parent: develop
 ---
+{% capture using-node %}
+npm i @govtechsg/sgds
+{% endcapture %}
+
 {% capture sass-folder-structure %}
 site-folder/
 ├── scss
@@ -56,6 +62,7 @@ site-folder/
 
 // 8. Add additional custom code here
 {% endcapture %}
+
 {% capture webpack-sass %}
 @import "~{{site.sgds-package-name}}/sass/accordion";
 {% endcapture %}
@@ -141,44 +148,50 @@ $body-color: #111;
 <div class="page-component">
   {% include page-component/component-header.html %}
 
-  <section name="section-source-file">
-    <h2 class="title fw-bold" id="anatomy">Working with SGDS's source files</h2>
-    <div class="section-sub">
-      <p>The Sass source files for sgds can be found in the folder<br><code>node_modules/{{site.sgds-package-name}}/sass</code></p>
-      {% highlight bash %}{{sass-folder-structure}}{% endhighlight %}
-      <div role="alert" class="fade d-flex align-items-center alert alert-info show sgds">
-        <div>
-          <i class="bi bi-exclamation-circle me-2"></i>
-          Whenever possible, avoid modifying the core sass files in <code>{{site.sgds-package-name}}/sass/</code>
-        </div>
-      </div>
+  <section name="section-pre-requisites">
+    <h2 class="title fw-bold" id="pre-requisites">Pre-requisites</h2>
+    <p class="mt-4">You would need to install SASS. Use <a href="https://sass-lang.com/"></a>SASS to customise how SGDS looks and behaves in your project.</p>
+  </section>
+
+  <section name="section-local-installation">
+    <h2 class="title fw-bold" id="local-installation">Step 1: Local installation</h2>
+    <div class="mt-4 bash">
+      {% highlight bash %}{{using-node}}{% endhighlight %}
     </div>
   </section>
-  <section name="section-importing">
-    <div class="section-sub">
-      <h2 class="title fw-bold" id="anatomy">Importing</h2>
-      <p>In your <code>custom.scss</code>, you can choose to include all <code>sgds-theme</code> files or pick the
-        components you need. However do note that are some requirements and dependencies across the components.</p>
-    </div>
-    <div class="section-sub">
-      <h3 class="title fw-bold" id="anatomy">Include all parts</h3>
+
+  <section name="section-import-components">
+    <h2 class="title fw-bold" id="import-components">Step 2: Import components</h2>
+    <p class="mt-4">In your custom.scss, you can choose to include all sgds-theme files or pick the components you need. However do note that are some requirements and dependencies across the components as shown in the code snippet in method 2.</p>
+    
+    <h3 id="import-sass-library">Method 1: Import whole SASS library</h3>
+    <p>Code snippet to import the entire SASS library.</p>
+    <div class="mt-4 bash">
       {% highlight css %}{{include-all-parts}}{% endhighlight %}
     </div>
-    <div class="section-sub">
-      <h3 class="title fw-bold" id="anatomy">Include parts of SGDS</h3>
+    
+    <h3 id="import-individual-sass">Method 2: Import individual SASS component styling file</h3>
+    <p>Below is an example of how you can include parts of SGDS</p>
+    <div class="mt-4 bash">
       {% highlight css %}{{include-parts}}{% endhighlight %}
+    </div>
+    <p>If you are using Webpack, u can omit the node_modules directory</p>
+    <div class="mt-4 bash">
+      {% highlight css %}{{webpack-sass}}{% endhighlight %}
+    </div>
+  </section>
 
-        <p>If you are using Webpack, u can omit the <code>node_modules</code> directory</p>
-        {% highlight css %}{{webpack-sass}}{% endhighlight %}
-      </div>
-    </section>
-    <section name="section-design-tokens">
-      <h2 class="title fw-bold" id="anatomy">Variables</h2>
-      <p>
-        You can find the complete list of  variables inside <code>{{site.sgds-package-name}}/sass/_variables.scss</code> or in our <a href="{{site.github-sgds-variables}}" target="_blank" rel="noopener noreferrer">SGDS github repo</a>
-      </p>
-      <p>Here's an example that changes the <code>background-color</code> and color for the <code>body</code> when importing and compiling <code>sgds-theme</code> via npm:</p>
-        {% highlight scss %}{{sgds-variable-example}}{% endhighlight %}
+  <section name="section-build-your-application">
+    <h2 class="title fw-bold" id="build-your-application">Step 3: Start building your application</h2>
+    <p class="mt-4">There are ready made components, patterns, layouts and templates to use. You may refer to the <a href="/components">components page</a>, <a href="/patterns">patterns page</a>, <a href="/layouts">layouts page</a> or <a href="/templates">templates page</a> to copy the relevant HTML / CSS code.</p>
+  </section>
 
+  <section name="section-customisation">
+    <h2 class="title fw-bold" id="customisation">Customisation (optional)</h2>
+    <p class="mt-4">You can find the complete list of variables inside @govtechsg/sgds/sass/_variables.scss or in our <a href="https://github.com/GovTechSG/sgds/blob/v2/lib/sgds/sass/_variables.scss">SGDS github repo</a></p>
+    <p>Here's an example that changes the background-color and color for the body when importing and compiling sgds-theme via npm:</p>
+    <div class="my-4 bash">
+      {% highlight css %}{{sgds-variable-example}}{% endhighlight %}
+    </div>
   </section>
 </div>

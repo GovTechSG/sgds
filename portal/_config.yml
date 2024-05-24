@@ -79,9 +79,12 @@ collections:
     output: true
     category: get-started
     order:
-      - installation.html
-      - customise-with-sass.html
-      - ui-kit.html
+      - design.html
+      - develop.html
+      - html-css.html
+      - sass.html
+      - react.html
+      - webcomponent.html
   foundations:
     permalink: /:collection/:name
     output: true

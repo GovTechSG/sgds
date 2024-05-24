@@ -79,3 +79,19 @@
 .highlight .gu { color: #75715e; } /* Generic.Subheading & Diff Unified/Comment? */
 .highlight .gd { color: #ff77a7; } /* Generic.Deleted & Diff Deleted */
 .highlight .gi { color: #a6e22e; } /* Generic.Inserted & Diff Inserted */
+
+.bash {
+    .highlight {
+        pre {
+            background-color: var(--sgds-gray-100);
+            border: 1px solid var(--sgds-gray-400);
+            code, code > span {
+                color: var(--sgds-secondary);
+            }
+        }
+        
+        .err {
+            background-color: var(--sgds-gray-100);
+        }
+    }
+}

@@ -55,27 +55,26 @@ section.wrapper{
                 .home-get-started-content-grid{
                     display: grid;
                     grid-template-columns: repeat(2,1fr);
-                    gap: 3rem;
+                    gap: 2rem;
                     @include media-breakpoint-down(lg){
                         grid-template-columns: 1fr;
                         gap: 1rem;
                     }
                     .home-grid{
                         display:grid;
-                        grid-template-rows: repeat(2,1fr);
-                        gap: 3rem;
+                        gap: 2rem;
                         @include media-breakpoint-down(lg){
                             gap: 1rem;
                         }
                         justify-content: stretch;
                         &.left{
-                            padding-bottom: 3rem;
+                            padding-bottom: 2rem;
                             @include media-breakpoint-down(lg){
                                 padding: 0;
                             }
                         }
                         &.right{
-                            padding-top: 3rem;
+                            padding-top: 2rem;
                             @include media-breakpoint-down(lg){
                                 padding: 0;
                             }
@@ -84,13 +83,14 @@ section.wrapper{
                         .card{
                             background: hsl(228, 38%, 97%);
                             border: none;
+                            border-radius: 1.5rem;
                             &-eyebrow{
                                 color: var(--sgds-primary);
                                 margin-bottom: 4px;
                                 font-weight: bold;
                             }
                             &-body{
-                                padding: 30px 50px;
+                                padding: 2rem 3.125rem;
                                 color: var(--sgds-gray-600);
                                 a{
                                     color: var(--sgds-primary);
@@ -99,7 +99,6 @@ section.wrapper{
                             }
                         }
                     }
-                    
                 }
             }
             &.home-part-of-change{
@@ -125,8 +124,6 @@ section.wrapper{
             }
         }
     }
-    
-    
 }
 
 .image-stack{

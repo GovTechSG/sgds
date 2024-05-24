@@ -1,0 +1,67 @@
+---
+title: Develop
+layout: layout-sidenav
+description: List of resources and tools related to the Singapore Government Design System that we consider useful and valuable to developers. More of this are coming up, you can also <a href="https://go.gov.sg/sgds-feedback-form">leave us feedback</a> on what you would like to see.
+overview: true
+toc: false
+has_child: true
+implementations:
+  - name: "HTML / CSS"
+    imageName: "html-css"
+    description: "SGDS library is built on Bootstrap 5, it offers CSS styles directly applied to HTML elements and CSS tokens for modular customisation."
+    href: "/get-started/develop/html-css"
+    target: "_self"
+    link_text: "Learn more"
+  - name: "SASS"
+    imageName: "sass"
+    description: "SGDS provides style customisation through SASS source files."
+    href: "/get-started/develop/sass"
+    target: "_self"
+    link_text: "Learn more"
+  - name: "React"
+    imageName: "react"
+    description: "The react implementation of Bootstrap Javascript for SGDS components"
+    href: "https://react.designsystem.tech.gov.sg"
+    target: "_blank"
+    link_text: "React Storybook"
+  - name: "Web Component"
+    imageName: "webcomponent"
+    description: "The framework agnostic implementation of SGDS components. Compatible with modern frameworks like React, Vue, Angular etc."
+    href: "https://www.webcomponent.designsystem.tech.gov.sg"
+    target: "_blank"
+    link_text: "Web Component Storybook"
+---
+
+<div class="page-component">
+  {% include page-component/component-header.html %}
+
+  <section class="mt-5">
+    <h3>Implementations</h3>
+    <div class="mt-4 get-started-content-grid">
+      {% for i in page.implementations %}
+        <div class="card">
+          <div class="card-body">
+            <img src="/assets/img/components-overview/{{i.imageName}}.png" width="52" height="52" />
+            <div class="h4 card-title fw-bold mt-3 mb-1">{{i.name}}</div>
+            <p class="card-text mb-3">{{i.description}}</p>
+            <a href="{{i.href}}" target="{{i.target}}" class="small text-decoration-none">{{i.link_text}}</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="mt-4">
+    <h3>Third-Party Library</h3>
+    <div class="mt-4 get-started-content-grid">
+      <div class="card disabled">
+        <div class="card-body">
+          <img src="/assets/img/components-overview/react.png" width="52" height="52" />
+          <div class="h4 card-title fw-bold mt-3 mb-1">React-select</div>
+          <p class="card-text mb-3">SASS/CSS library that provides a layer of styles for pre-existing popular third-party library</p>
+          <span class="small">Coming up in Q3 2024</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
