@@ -7,7 +7,12 @@ layout: layout-default
 {% endif %}
 <section class="wrapper layout-sidenav {{class}}">
     <aside aria-label="Side Navigation Container">
-        <nav class="sgds sidenav" aria-label="Side Navigation">
+        <nav class="sgds sidenav sticky" aria-label="Side Navigation">
+            {% for item in site.data.navigation %}
+            {%- if page.url contains item.title -%}
+                <h4>{{item.title | capitalize | replace: '-', ' '}}</h4>
+            {%- endif -%}
+            {% endfor %}
             <ul class="list-unstyled mb-0">
                 {% assign collections = site.collections | sort: 'order' %}
                 {% for collection in collections %}
@@ -21,6 +26,13 @@ layout: layout-default
                 {%- endif -%}
                 {% if item.has_child %}
                     {% assign id = item.title | downcase | append: '-sidenav-collapse' %}
+                    {% assign page_url_segments = page.url | split: '/' %}
+                    {% assign page_second_segment = page_url_segments[2] %}
+                    {% assign item_url_segments = item.url | split: '/' %}
+                    {% assign item_second_segment = item_url_segments[2] %}
+                    {% if page_second_segment == item_second_segment %}
+                        {% assign class = 'active' %}
+                    {% endif %}
                     <li class="sidenav-item">
                         <button type="button" class="sgds btn {{class}}" aria-expanded="true" aria-controls="{{id}}">
                             <a role="button" href="{{item.url}}">{{item.title}} </a> <i class="bi bi-chevron-down" data-bs-toggle="collapse" data-bs-target="#{{id}}"></i>

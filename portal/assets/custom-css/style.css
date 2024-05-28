@@ -6595,8 +6595,9 @@ textarea.form-control-lg {
 }
 .sgds.sidenav.sticky {
   --sgds-sidenav-sticky-top: 0rem;
+  position: -webkit-sticky;
   position: sticky;
-  max-height: calc(100vh - var(--sgds-sidenav-sticky-top));
+  max-height: calc(100dvh - var(--sgds-sidenav-sticky-top));
   top: var(--sgds-sidenav-sticky-top);
   overflow-y: auto;
 }
@@ -14789,7 +14790,7 @@ body {
 
 .toc-wrapper {
   position: sticky;
-  top: calc(111px + 1rem);
+  top: calc(154.8px + 1rem);
 }
 
 .w-75ch {
@@ -14990,9 +14991,16 @@ sgds-masthead {
   font-weight: bold;
 }
 
+aside:not(.toc-container) {
+  background-color: var(--sgds-gray-100);
+  margin: -1rem 0rem -2rem -2rem;
+}
 aside .sgds.sidenav {
   padding: 1rem;
-  background-color: var(--sgds-gray-100);
+}
+aside .sgds.sidenav h4, aside .sgds.sidenav .h4 {
+  margin-bottom: 0;
+  padding: 0rem 0.5rem 0.5rem;
 }
 aside .sgds.sidenav a {
   text-decoration: none;
@@ -15022,7 +15030,6 @@ aside .sgds.sidenav .sidenav-item > ul.collapse, aside .sgds.sidenav .sidenav-it
 }
 aside .sgds.sidenav .sidenav-item > ul li.active {
   color: var(--sgds-primary);
-  border-left: 0.125rem solid var(--sgds-primary);
   font-weight: 700;
 }
 aside .sgds.sidenav .sidenav-item > ul li .sgds.btn {
@@ -15032,6 +15039,9 @@ aside .sgds.sidenav .sidenav-item > ul li .sgds.btn {
 }
 aside .sgds.sidenav .sidenav-item + .sidenav-item {
   margin-top: 0;
+}
+aside .sgds.sidenav.sticky {
+  --sgds-sidenav-sticky-top: 154.8px;
 }
 
 .sidebar {
@@ -16024,17 +16034,6 @@ section.wrapper.home section.home-part-of-change + .part-of-change {
 }
 
 /* Generic.Inserted & Diff Inserted */
-.bash .highlight pre {
-  background-color: var(--sgds-gray-100);
-  border: 1px solid var(--sgds-gray-400);
-}
-.bash .highlight pre code, .bash .highlight pre code > span {
-  color: var(--sgds-secondary);
-}
-.bash .highlight .err {
-  background-color: var(--sgds-gray-100);
-}
-
 .sgds-code-font {
   font-family: "Courier New", Courier, monospace;
   font-weight: 400;

@@ -1,11 +1,16 @@
-aside{
-     
-     &:not(.toc-container){
-
+aside{   
+    &:not(.toc-container){
+        background-color: var(--sgds-gray-100);
+        margin: -1rem 0rem -2rem -2rem;
     }
+
     .sgds.sidenav{
         padding: 1rem;
-        background-color: var(--sgds-gray-100);
+
+        h4 {
+            margin-bottom: 0;
+            padding: 0rem 0.5rem 0.5rem;
+        }
        
         a{
             text-decoration: none;
@@ -54,7 +59,6 @@ aside{
 
             li.active {
                 color: var(--sgds-primary);
-                border-left: 0.125rem solid var(--sgds-primary);
                 font-weight: 700;
             }
 
@@ -69,6 +73,10 @@ aside{
 
         .sidenav-item + .sidenav-item {
             margin-top: 0;
+        }
+
+        &.sticky {
+            --#{$prefix}sidenav-sticky-top: 154.8px;
         }
     }
 }

@@ -13,7 +13,11 @@
         {% assign class = 'text-danger' %}
         {% endif %}
         {% if page.description %}
-        <p class="header-component-description {{class}}">{{page.description}}</p>
+            {% if page.toc == false %}
+                <p class="{{class}}">{{page.description}}</p>
+            {% else %}
+                <p class="header-component-description {{class}}">{{page.description}}</p>
+            {% endif %}
         {% endif %}
         {% if page.source-grid %}
         <div class="component-source-grid">
