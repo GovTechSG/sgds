@@ -39,7 +39,11 @@
                         {% if page.title == component.title %}
                         {% assign componentClass = 'active pe-none' %}
                         {%- endif -%}
-                        <li><a href="{{component.url}}" class="nav-link {{componentClass}}">{{component.title}}</a></li>
+                        {% if component.href != null %}
+                            <li><a href="{{component.href}}" target="{{component.target}}" class="nav-link {{componentClass}}">{{component.title}}</a></li>
+                        {% else %}
+                            <li><a href="{{component.url}}" class="nav-link {{componentClass}}">{{component.title}}</a></li>
+                        {% endif %}
                         {% endfor%}
                     </ul>
                 </div>
