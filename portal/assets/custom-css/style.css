@@ -1,17 +1,13 @@
 /*!***********************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./assets/custom-css/style.scss ***!
   \***********************************************************************************************************************/
-@import url(https://cdn.jsdelivr.net/npm/@govtechsg/sgds-masthead/dist/sgds-masthead/sgds-masthead.css);
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&display=swap);
 /*!***************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./assets/custom-css/style.scss (1) ***!
   \***************************************************************************************************************************/
-@import url(https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&display=swap);
-/*!***************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./assets/custom-css/style.scss (2) ***!
-  \***************************************************************************************************************************/
 @import url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css);
 /*!***************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./assets/custom-css/style.scss (3) ***!
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./assets/custom-css/style.scss (2) ***!
   \***************************************************************************************************************************/
 @charset "UTF-8";
 :root {

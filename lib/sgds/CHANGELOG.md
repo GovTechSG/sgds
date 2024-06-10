@@ -1,3 +1,17 @@
+## Unreleased
+
+## v2.3.3 (2024-05-31)
+
+### Refactor
+
+- **sidenav**: top defaults to the height of masthead and navbar
+
+## v2.3.2 (2024-05-30)
+
+### Fix
+
+- *****: remove Helvetica & Helvetica Neue font
+
 ## v2.3.1 (2024-05-23)
 
 ### Fix

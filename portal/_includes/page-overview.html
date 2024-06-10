@@ -20,40 +20,7 @@
     {% if page.pageCategory != 'get-started' %}
         <section class="page-component-overview">
             <article>
-                <div id="grid" class="page-component-item-wrapper picture-item">
-                    {% assign collections = site.collections %} {% for collection in
-                    collections %} {% if collection.category == page.pageCategory %}
-                    {% assign name = collection.label %} {% for item in
-                    site[collection.label] %} {%- assign class = nil -%} {%- if
-                    page.url contains item.title -%} {%- assign class = 'active' -%}
-                    {%- endif -%} {% assign react = nil %} {% if item.react %} {%
-                    assign react = 'react' %} {% endif %}
-                    <div class="sgds card" data-groups="['{{item.category}}', '{{react}}']" data-title="{{item.title}}">
-                        {% if include.img != 'noImg' %}
-                        <img src="/assets/img/{{page.pageCategory}}-overview/{{item.title | downcase | replace: ' ', '-'}}.png"
-                            class="card-img-top" alt="{{item.title | append: ' image' }}" />
-                        {% endif %}
-                        <div class="card-body">
-                            <a class="stretched-link link-primary"
-                                href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}">
-                                <div class="h5 text-primary card-title">
-                                    {{item.title}}
-                                </div>
-                            </a>
-                            <p class="card-text">{{item.description}}</p>
-                            {% if item.category == 'mandatory' %}
-                            <span class="sgds badge badge-light bg-danger">{{item.category | capitalize}}</span>
-                            {% elsif item.category == 'required' %}
-                            <span class="sgds badge badge-light bg-success">{{item.category | capitalize}}</span>
-                            {% else %}
-                            <span class="sgds badge badge-light bg-primary">{{item.category | capitalize}}</span>
-                            {% endif %} {% if item.react %}
-                            <span class="sgds badge badge-light bg-success">ReactJS</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endfor %} {% endif %} {% endfor %}
-                </div>
+               {% include overview/card.html %}
             </article>
         </section>
     {% endif %}

@@ -1,0 +1,37 @@
+<div id="grid" class="page-component-item-wrapper picture-item">
+    {% assign collections = site.collections %} {% for collection in
+    collections %} {% if collection.category == page.pageCategory %}
+    {% assign name = collection.label %} {% for item in
+    site[collection.label] %} 
+    <div class="sgds card" data-groups="['{{item.category}}', '{{react}}']" data-title="{{item.title}}">
+        <img src="/assets/img/{{page.pageCategory}}-overview/{{item.title | downcase | replace: ' ', '-'}}.png"
+            class="card-img-top" alt="{{item.title | append: ' image' }}" />
+        <div class="card-body">
+            <a class="stretched-link link-primary"
+                href="/{{page.pageCategory}}/{{item.title | replace: ' ', '-' | downcase}}">
+                <div class="h5 text-primary card-title">
+                    {{item.title}}
+                </div>
+            </a>
+            <p class="card-text">{{item.description}}</p>
+            {% if item.category != nil %}
+            {% assign badgeBackground = 'bg-primary' %}
+            {% if item.category == 'mandatory' %}
+            {% assign badgeBackground = 'bg-danger' %}
+            {% elsif item.category == 'required' %}
+            {% assign badgeBackground = 'bg-success' %}
+            {% elsif item.category == 'SGDS Layouts' %}
+            {% assign badgeBackground = 'bg-info' %}
+            {% endif %} 
+            <span class="sgds badge badge-light {{badgeBackground}}">
+                {% if item.category == 'SGDS Layouts'%}
+                {{item.category}}
+                {% else %}
+                {{item.category | capitalize}}
+                {% endif %}
+            </span>
+           {% endif %}
+        </div>
+    </div>
+    {% endfor %} {% endif %} {% endfor %}
+</div>
