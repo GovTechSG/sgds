@@ -1,7 +1,7 @@
 .sgds {
   &.sidenav {
     --#{$prefix}sidenav-width: #{$sidenav-width};
-    --#{$prefix}sidenav-font-size : #{$sidenav-fontsize};
+    --#{$prefix}sidenav-font-size: #{$sidenav-fontsize};
     width: var(--#{$prefix}sidenav-width);
     font-size: var(--#{$prefix}sidenav-font-size);
 
@@ -85,7 +85,9 @@
       }
     }
     &.sticky {
-      --#{$prefix}sidenav-sticky-top: 0rem;
+      --#{$prefix}sidenav-sticky-top: calc(
+        #{$navbar-min-height} + #{$masthead-height}
+      );
       position: -webkit-sticky;
       position: sticky;
       max-height: calc(100dvh - var(--#{$prefix}sidenav-sticky-top));

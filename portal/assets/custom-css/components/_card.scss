@@ -1,5 +1,28 @@
-.card{
-    &-title{
+.card {
+    &-title {
         font-weight: bold;
+    }
+}
+
+.portal-borderless-card {
+    @extend .sgds, .card;
+    @extend .border-0;
+    @extend .w-100;
+    @extend .h-100;
+    background-color: #f6f7fb;
+    &-body {
+        @extend .card-body;
+        color: var(--sgds-gray-600);
+        display: flex;
+        flex-direction: column;
+        a {
+            @extend .mt-auto;
+            @extend .text-decoration-none;
+            @extend .lh-sm;
+            @extend .small;
+            color: var(--sgds-primary);
+            font-weight: bold;
+            width: fit-content;
+        }
     }
 }

@@ -1201,6 +1201,7 @@ $nav-pills-link-active-bg: $component-active-bg !default;
 $navbar-padding-y: $spacer * 2 !default;
 $navbar-mobile-padding-y: $spacer !default;
 $navbar-padding-x: null !default;
+$navbar-min-height: 80px;
 
 $navbar-nav-link-padding-x: .5rem !default;
 $navbar-border-bottom-height: .125rem !default;
@@ -1241,7 +1242,8 @@ $navbar-dark-brand-color: $navbar-dark-active-color !default;
 $navbar-dark-brand-hover-color: $navbar-dark-active-color !default;
 // scss-docs-end navbar-theme-variables
 
-
+$masthead-height: 28px;
+$notify-banner-height: 46.8px;
 
 // Dropdowns
 //

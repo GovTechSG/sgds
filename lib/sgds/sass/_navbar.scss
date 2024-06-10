@@ -7,7 +7,7 @@
         @include media-breakpoint-down(lg){
             padding: 0 $navbar-mobile-padding-y 0;
         }
-        min-height: 80px;
+        min-height: $navbar-min-height;
         align-items: stretch;
 
         a.navbar-brand {

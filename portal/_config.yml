@@ -49,6 +49,7 @@ collections:
     output: true
     category: layouts
     order:
+      - bootstrap-grid-system.html
       - template-grid.html
       - side-navigation-area.html
       - content-area.html

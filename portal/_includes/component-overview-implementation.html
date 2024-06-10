@@ -3,13 +3,13 @@
     <div class="p-0 grid">
         {% for i in page.implementations %}
         <div class="g-col-lg-3 g-col-12">
-            <div class="card sgds bg-light implementations-card border-0 w-100 h-100">
-                <div class="card-body d-flex gap-3 flex-wrap flex-xxl-row flex-lg-column flex-xs-row">
+            <div class="portal-borderless-card">
+                <div class="portal-borderless-card-body gap-3 flex-wrap flex-xxl-row flex-lg-column flex-xs-row">
                     <img src="/assets/img/{{page.pageCategory}}-overview/{{i.imageName}}.png" height="52px"
                         width="52px" />
                     <div class="d-flex flex-column">
                         <strong class="card-text lh-sm">{{i.name}}</strong>
-                        <a href="{{i.href}}" class="lh-sm link-primary text-decoration-none"
+                        <a href="{{i.href}}" class=""
                             target="{{i.target}}"><small>Learn
                                 more</small></a>
                     </div>

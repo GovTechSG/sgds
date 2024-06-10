@@ -1,0 +1,64 @@
+---
+title: Bootstrap Grid System
+layout: layout-sidenav
+toc: false
+description: SGDS leverages on <a href="https://getbootstrap.com/docs/5.1/layout/grid/" target="_blank">Bootstrap’s grid system</a> that enables developers to design dynamic and visually appealing interfaces that will captivate users and enhance their overall experience.
+cards:
+    - name: "Breakpoints"
+      description: "Breakpoints are customizable widths that determine how your responsive layout behaves across device or
+      viewport sizes in Bootstrap."
+      href: "https://getbootstrap.com/docs/5.1/layout/breakpoints/"
+      target: "_blank"
+    - name: "Containers"
+      description: "Containers are a fundamental building block of Bootstrap that contain, pad, and align your content within
+      a given device or viewport sizes in Bootstrap."
+      href: "https://getbootstrap.com/docs/5.1/layout/containers/"
+      target: "_blank"
+    - name: "Flexbox grid"
+      description: "Use our powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a twelve
+      column system, six default responsive tiers, Sass variables and mixins, and dozens of predefined classes."
+      href: "https://getbootstrap.com/docs/5.1/layout/grid/"
+      target: "_blank"
+    - name: "Columns"
+      description: "Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to
+      our flexbox grid system. Plus, see how to use column classes to manage widths of non-grid elements."
+      href: "https://getbootstrap.com/docs/5.1/layout/columns/"
+      target: "_blank"
+    - name: "Gutters"
+      description: "Gutters are the padding between your columns, used to responsively space and align content in the Bootstrap grid system."
+      href: "https://getbootstrap.com/docs/5.1/layout/gutters/"
+      target: "_blank"
+    - name: "Utilities"
+      description: "For faster mobile-friendly and responsive development, Bootstrap includes dozens of utility classes for showing, hiding, aligning, and spacing content."
+      href: "https://getbootstrap.com/docs/5.1/layout/utilities/"
+      target: "_blank"
+    - name: "CSS Grid"
+      description: "Learn how to enable, use, and customize our alternate layout system built on CSS Grid with examples and code snippets."
+      href: "#"
+      target: "_self"
+---
+
+
+<div class="page-component">
+    {% include page-component/component-header.html %}
+    <div role="alert" class="sgds alert alert-info fade d-flex align-items-center show">
+        <div>
+            New to or unfamiliar with flexbox? <a target="_blank"
+                href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-background"> Read this CSS Tricks
+                flexbox guide</a> for
+            background, terminology, guidelines, and code snippets.
+        </div>
+    </div>
+    <div class="grid">
+        {% for i in page.cards %}
+        <div class="portal-borderless-card g-col-lg-4 g-col-12">
+            <div class="portal-borderless-card-body">
+                <div class="h4 card-title">{{ i.name }}</div>
+                <p class="card-text">{{ i.description }}</p>
+                <a href="{{i.href}}" target="{{i.target}}">Learn more</a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>

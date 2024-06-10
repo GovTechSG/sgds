@@ -1,4 +1,4 @@
 %aside-sticky{
     position: sticky;
-    top: calc(154.8px + 1rem);
+    top: calc(#{$navbar-min-height} + #{$masthead-height} + #{$notify-banner-height} + 1rem);
 }

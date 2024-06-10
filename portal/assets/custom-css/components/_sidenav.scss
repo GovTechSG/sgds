@@ -76,7 +76,7 @@ aside{
         }
 
         &.sticky {
-            --#{$prefix}sidenav-sticky-top: 154.8px;
+            --#{$prefix}sidenav-sticky-top: calc(#{$navbar-min-height} + #{$masthead-height} + #{$notify-banner-height});
         }
     }
 }

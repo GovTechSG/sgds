@@ -4,6 +4,41 @@ layout: layout-sidenav
 description: List of resources and tools related to the Singapore Government Design System that we consider useful and valuable to designers. More of this are coming up, you can also <a href="https://go.gov.sg/sgds-feedback-form">leave us feedback</a> on what you would like to see.
 overview: true
 toc: false
+foundations:
+    - name: "Accessibility"
+      description: "Guidelines to ensure that no one is left behind"
+      href: "/foundations/accessibility"
+      target: "_self"
+      img: "/assets/img/get-started/accessibility.png"
+    - name: "Content Design"
+      description: "Improve digital inclusivity through content"
+      href: "/foundations/content"
+      target: "_self"
+      img: "/assets/img/get-started/content-design.png"
+    - name: "Typography"
+      description: "Set of text sizes and styles to be used across all touch points"
+      href: "/foundations/typography"
+      target: "_self"
+      img: "/assets/img/get-started/typography.png"
+resources:
+    - name: "Figma UI Kit"
+      description: "Ways to design consistent user interfaces"
+      href: "https://www.designsystem.tech.gov.sg/assets/downloads/sgds-2.0.0.fig"
+      target: "_self"
+      img: "/assets/img/get-started/figma-ui-kit.png"
+      atext: "Download figma file"
+    - name: "Inter Font Family"
+      description: "Set of text sizes and styles to be used across all touch points"
+      href: "https://fonts.google.com/specimen/Inter?query=inter"
+      target: "_blank"
+      img: "/assets/img/get-started/inter-font-family.png"
+      atext: "View in Google Fonts"
+    - name: "Colour contrast Checker"
+      description: "Determine the contrast ratio between two colours"
+      href: "https://marijohannessen.github.io/color-contrast-checker/"
+      target: "_blank"
+      img: "/assets/img/get-started/colour-contrast-checker.png"
+      atext: "Launch widget"
 ---
 
 <div class="page-component">
@@ -12,65 +47,37 @@ toc: false
   <section class="mt-5">
     <h3>Foundations</h3>
     <div class="mt-4 get-started-content-grid">
+      {% for f in page.foundations %}
       <div class="card">
-        <div class="card-body">
-          <img src="/assets/img/get-started/accessibility.png" width="52" height="52" />
-          <div class="h4 card-title fw-bold mt-3 mb-1">Accessibility</div>
-          <p class="card-text mb-3">Guidelines to ensure that no one is left behind</p>
-          <a href="/foundations/accessibility" class="small text-decoration-none">Learn more about Accessibility</a>
+        <div class="portal-borderless-card-body">
+          <img src="{{f.img}}" width="52" height="52" />
+          <div class="h4 card-title mt-3 mb-1">{{f.name}}</div>
+          <p class="card-text mb-3">{{f.description}}</p>
+          <a href="{{f.href}}">Learn more about {{f.name}}</a>
         </div>
       </div>
-      <div class="card">
-        <div class="card-body">
-          <img src="/assets/img/get-started/content-design.png" width="52" height="52" />
-          <div class="h4 card-title fw-bold mt-3 mb-1">Content Design</div>
-          <p class="card-text mb-3">Improve digital inclusivity through content</p>
-          <a href="/foundations/content" class="small text-decoration-none">Learn more about Content Design</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <img src="/assets/img/get-started/typography.png" width="52" height="52" />
-          <div class="h4 card-title fw-bold mt-3 mb-1">Typography</div>
-          <p class="card-text mb-3">Set of text sizes and styles to be used across all touch points</p>
-          <a href="/foundations/typography" class="small text-decoration-none">Learn more about Typography</a>
-        </div>
-      </div>
-    </div>
+      {% endfor %}
   </section>
 
   <section class="mt-4">
     <h3>Resources</h3>
     <div role="alert" class="fade d-flex align-items-center mt-4 alert alert-primary show sgds">
-      <div><i class="bi bi-exclamation-circle me-2"></i>Our Figma UI Kit is currently being reworked to be published onto the Figma community. Stay tuned!</div>
+      <div><i class="bi bi-exclamation-circle me-2"></i>Our Figma UI Kit is currently being reworked to be published
+        onto the Figma community. Stay tuned!</div>
     </div>
     <div class="mt-4 get-started-content-grid">
+      {% for r in page.resources %}
       <div class="card">
-        <div class="card-body">
-          <img src="/assets/img/get-started/figma-ui-kit.png" width="52" height="52" />
-          <div class="h4 card-title fw-bold mt-3 mb-1">Figma UI Kit</div>
-          <p class="card-text mb-3">Ways to design consistent user interfaces</p>
-          <a href="https://www.designsystem.tech.gov.sg/assets/downloads/sgds-2.0.0.fig" class="small text-decoration-none" download>Download figma file <i class="bi bi-download"></i></a>
+        <div class="portal-borderless-card-body">
+          <img src="{{r.img}}" width="52" height="52" />
+          <div class="h4 card-title mt-3 mb-1">{{r.name}}</div>
+          <p class="card-text mb-3">{{r.description}}</p>
+          <a href="{{r.href}}">{{r.atext}}</a>
         </div>
       </div>
-      <div class="card">
-        <div class="card-body">
-          <img src="/assets/img/get-started/inter-font-family.png" width="52" height="52" />
-          <div class="h4 card-title fw-bold mt-3 mb-1">Inter Font Family</div>
-          <p class="card-text mb-3">Set of text sizes and styles to be used across all touch points</p>
-          <a href="https://fonts.google.com/specimen/Inter?query=inter" target="_blank" class="small text-decoration-none">View in Google Fonts</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <img src="/assets/img/get-started/colour-contrast-checker.png" width="52" height="52" />
-          <div class="h4 card-title fw-bold mt-3 mb-1">Colour contrast Checker</div>
-          <p class="card-text mb-3">Determine the contrast ratio between two colours</p>
-          <a href="https://marijohannessen.github.io/color-contrast-checker/" target="_blank" class="small text-decoration-none">Launch widget</a>
-        </div>
-      </div>
+      {% endfor %}
       <div class="card disabled">
-        <div class="card-body">
+        <div class="portal-borderless-card-body">
           <img src="/assets/img/get-started/ux-resources.png" width="52" height="52" />
           <div class="h4 card-title fw-bold mt-3 mb-1">UX Resources</div>
           <p class="card-text mb-3">Templates to guide your design process</p>

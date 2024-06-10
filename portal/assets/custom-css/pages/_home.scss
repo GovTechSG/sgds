@@ -81,21 +81,11 @@ section.wrapper{
                         }
         
                         .card{
-                            background: hsl(228, 38%, 97%);
-                            border: none;
+                            @extend .portal-borderless-card;
                             border-radius: 1.5rem;
-                            &-eyebrow{
-                                color: var(--sgds-primary);
-                                margin-bottom: 4px;
-                                font-weight: bold;
-                            }
                             &-body{
+                                @extend .portal-borderless-card-body;
                                 padding: 2rem 3.125rem;
-                                color: var(--sgds-gray-600);
-                                a{
-                                    color: var(--sgds-primary);
-                                    font-weight: bold;
-                                }
                             }
                         }
                     }
