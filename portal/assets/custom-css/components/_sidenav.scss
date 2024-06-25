@@ -74,9 +74,5 @@ aside{
         .sidenav-item + .sidenav-item {
             margin-top: 0;
         }
-
-        &.sticky {
-            --#{$prefix}sidenav-sticky-top: calc(#{$navbar-min-height} + #{$masthead-height} + #{$notify-banner-height});
-        }
     }
 }
