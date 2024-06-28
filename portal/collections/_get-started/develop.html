@@ -21,15 +21,22 @@ implementations:
   - name: "React"
     imageName: "react"
     description: "The react implementation of Bootstrap Javascript for SGDS components"
-    href: "https://react.designsystem.tech.gov.sg"
+    href: "https://ut.react.designsystem.tech.gov.sg"
     target: "_blank"
     link_text: "React Storybook"
   - name: "Web Component"
     imageName: "webcomponent"
     description: "The framework agnostic implementation of SGDS components. Compatible with modern frameworks like React, Vue, Angular etc."
-    href: "https://www.webcomponent.designsystem.tech.gov.sg"
+    href: "https://ut.webcomponent.designsystem.tech.gov.sg"
     target: "_blank"
     link_text: "Web Component Storybook"
+third-party:
+  - name: "React-select"
+    imageName: "react"
+    description: "A collection of stylesheets powered by SGDS to provide compliant styling for third party packages"
+    href: "/get-started/develop/react-select"
+    target: "_self"
+    link_text: "Learn more"
 ---
 
 <div class="page-component">
@@ -54,14 +61,16 @@ implementations:
   <section class="mt-4">
     <h3>Third-Party Library</h3>
     <div class="mt-4 get-started-content-grid">
-      <div class="card disabled">
-        <div class="card-body">
-          <img src="/assets/img/components-overview/react.png" width="52" height="52" />
-          <div class="h4 card-title fw-bold mt-3 mb-1">React-select</div>
-          <p class="card-text mb-3">SASS/CSS library that provides a layer of styles for pre-existing popular third-party library</p>
-          <span class="small">Coming up in Q3 2024</span>
+      {% for i in page.third-party %}
+        <div class="card">
+          <div class="card-body">
+            <img src="/assets/img/components-overview/{{i.imageName}}.png" width="52" height="52" />
+            <div class="h4 card-title fw-bold mt-3 mb-1">{{i.name}}</div>
+            <p class="card-text mb-3">{{i.description}}</p>
+            <a href="{{i.href}}" target="{{i.target}}" class="small text-decoration-none">{{i.link_text}}</a>
+          </div>
         </div>
-      </div>
+      {% endfor %}
     </div>
   </section>
 </div>

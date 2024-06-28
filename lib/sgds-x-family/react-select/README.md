@@ -1,12 +1,12 @@
-# @govtechsg/sgds-x-family (Work In Progress)
+# React-select
 
-This is a collection of stylesheets powered by [Singapore Government Design System](https://www.designsystem.gov.sg) to provide SGDS-compliant styling for third party packages, ensuring a cohesive and familiar user experience within SGDS-based projects. We do this to reuse libraries in the open source community and reduce maintenance overhead. 
+This is a collection of stylesheets powered by [Singapore Government Design System](https://www.designsystem.gov.sg) to provide SGDS-compliant styling for third party packages, ensuring a cohesive and familiar user experience within SGDS-based projects. We do this to reuse libraries in the open source community and reduce maintenance overhead.
 
 ## Installation
 
 Install the following packages via npm:
 
-```sh 
+```sh
 $ npm i @govtechsg/sgds bootstrap-icons react-select
 ```
 
@@ -54,19 +54,19 @@ To integrate sgds styles into your React application with `react-select` compone
 2. Import the `Select` component from `react-select` along with the required styles:
 
 ```js
-import Select, { components } from 'react-select';
-import '@govtechsg/sgds/css/sgds.css';
-import './sgds-x-react-select.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import Select, { components } from "react-select";
+import "@govtechsg/sgds/css/sgds.css";
+import "./sgds-x-react-select.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 ```
 
 3. Utilize the provided Select component within your application, ensuring the use of specific class names for SGDS styles:
 
 ```js
 const OPTIONS = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
 ];
 
 const DropdownIndicator = (props) => {
@@ -93,4 +93,3 @@ export default App;
 ```
 
 **Note:** Ensure that the `className` prop is set to `"sgds-x-react-select-container"` and `classNamePrefix` prop is set to `"sgds-x-react-select"` for your `Select` component to acquire the SGDS styling. Following these exact class names is essential to apply the SGDS styles correctly.
-
