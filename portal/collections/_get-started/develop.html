@@ -21,13 +21,13 @@ implementations:
   - name: "React"
     imageName: "react"
     description: "The react implementation of Bootstrap Javascript for SGDS components"
-    href: "https://ut.react.designsystem.tech.gov.sg"
+    href: "https://react.designsystem.tech.gov.sg"
     target: "_blank"
     link_text: "React Storybook"
   - name: "Web Component"
     imageName: "webcomponent"
     description: "The framework agnostic implementation of SGDS components. Compatible with modern frameworks like React, Vue, Angular etc."
-    href: "https://ut.webcomponent.designsystem.tech.gov.sg"
+    href: "https://webcomponent.designsystem.tech.gov.sg"
     target: "_blank"
     link_text: "Web Component Storybook"
 third-party:
@@ -63,7 +63,7 @@ third-party:
     <div class="mt-4 get-started-content-grid">
       {% for i in page.third-party %}
         <div class="card">
-          <div class="card-body">
+          <div class="portal-borderless-card-body">
             <img src="/assets/img/components-overview/{{i.imageName}}.png" width="52" height="52" />
             <div class="h4 card-title fw-bold mt-3 mb-1">{{i.name}}</div>
             <p class="card-text mb-3">{{i.description}}</p>

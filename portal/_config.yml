@@ -13,10 +13,10 @@ bootstrap-version: 5.1.3
 request-component: "https://form.gov.sg/6136ea11658bea0012fc9e80"
 search_placeholder: "What are you looking for?"
 react-storybook-local: http://localhost:6006
-react-storybook: https://ut.react.designsystem.tech.gov.sg
-web-component-storybook: https://ut.webcomponent.designsystem.tech.gov.sg
+react-storybook: https://react.designsystem.tech.gov.sg
+web-component-storybook: https://webcomponent.designsystem.tech.gov.sg
 web-component-cdn: https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component
-spider-storybook: https://ut.webcomponent.designsystem.tech.gov.sg
+spider-storybook: https://webcomponent.designsystem.tech.gov.sg
 
 #github links
 github-link: https://github.com/GovTechSG/sgds/tree/v2
