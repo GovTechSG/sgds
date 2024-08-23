@@ -1245,6 +1245,14 @@ $navbar-dark-brand-hover-color: $navbar-dark-active-color !default;
 $masthead-height: 28px;
 $notify-banner-height: 46.8px;
 
+// ComboBox
+//
+// ComboBox menu container and contents.
+
+// scss-docs-start combobox-variables
+$combobox-menu-min-width: 100% !default;
+$combobox-scroll-menu-max-height: 480px !default;
+
 // Dropdowns
 //
 // Dropdown menu container and contents.

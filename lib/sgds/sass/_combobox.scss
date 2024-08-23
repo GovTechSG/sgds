@@ -10,7 +10,14 @@
         }
 
         > .dropdown-menu {
-            min-width: 100%;
+            min-width: $combobox-menu-min-width;
+        }
+        &.scrollable {
+            > .dropdown-menu {
+                max-height: $combobox-scroll-menu-max-height;
+                overflow: auto;
+            }
+           
         }
     }
 }
