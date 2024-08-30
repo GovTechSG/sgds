@@ -4280,6 +4280,11 @@ section.wrapper.home section.home-get-started .home-get-started-content-grid .ho
   border-top-right-radius: 0;
 }
 
+.sgds.btn.disabled, .btn.disabled.portal-borderless-card, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .btn.disabled.card, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .btn.disabled.portal-borderless-card, .get-started-content-grid .btn.disabled.card, .sgds.btn:disabled, .btn.portal-borderless-card:disabled, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .btn.card:disabled, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .btn.portal-borderless-card:disabled, .get-started-content-grid .btn.card:disabled {
+  pointer-events: auto;
+  cursor: not-allowed;
+}
+
 .fade {
   transition: opacity 0.15s linear;
 }
@@ -7411,7 +7416,7 @@ section.wrapper.home section.home-get-started .home-get-started-content-grid .ho
 }
 
 .tooltip-inner {
-  max-width: 200px;
+  max-width: 320px;
   padding: 0.5rem 1rem;
   color: #fff;
   text-align: center;
@@ -7966,6 +7971,10 @@ section.wrapper.home section.home-get-started .home-get-started-content-grid .ho
 }
 .sgds.combobox > .dropdown-menu, .combobox.portal-borderless-card > .dropdown-menu, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .combobox.card > .dropdown-menu, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .combobox.portal-borderless-card > .dropdown-menu, .get-started-content-grid .combobox.card > .dropdown-menu, .get-started-content-grid .combobox.portal-borderless-card > .dropdown-menu, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .get-started-content-grid .combobox.card > .dropdown-menu, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .get-started-content-grid .combobox.portal-borderless-card > .dropdown-menu {
   min-width: 100%;
+}
+.sgds.combobox.scrollable > .dropdown-menu, .combobox.scrollable.portal-borderless-card > .dropdown-menu, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .combobox.scrollable.card > .dropdown-menu, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .combobox.scrollable.portal-borderless-card > .dropdown-menu, .get-started-content-grid .combobox.scrollable.card > .dropdown-menu, .get-started-content-grid .combobox.scrollable.portal-borderless-card > .dropdown-menu, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .get-started-content-grid .combobox.scrollable.card > .dropdown-menu, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .get-started-content-grid .combobox.scrollable.portal-borderless-card > .dropdown-menu {
+  max-height: 480px;
+  overflow: auto;
 }
 
 .clearfix::after {

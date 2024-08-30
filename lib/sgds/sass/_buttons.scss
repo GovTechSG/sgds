@@ -1,2 +1,9 @@
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/button-group";
+
+.sgds.btn {
+    &.disabled, &:disabled {
+        pointer-events: auto;
+        cursor: not-allowed;
+    }
+}

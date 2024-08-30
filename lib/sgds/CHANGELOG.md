@@ -1,4 +1,20 @@
-## Unreleased
+## v2.3.4 (2024-08-30)
+
+### Feat
+
+- **combobox**: implement scrollable combobox
+- **tooltip**: set default max-width of tooltip by sass instead
+- **tooltip**: increase max-width of tooltip inner
+- **get started**: collapse sidenav second level menu unless one of it is active
+- **sidenav**: update sidenav on portal to support 2 levels
+
+### Fix
+
+- **button**: disabled button to have cursor not allowed instead of pointer-events
+
+### Refactor
+
+- **portal**: make borderless card design resuable
 
 ## v2.3.3 (2024-05-31)
 
