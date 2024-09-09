@@ -399,6 +399,7 @@ $enable-transitions: true !default;
 $enable-reduced-motion: true !default;
 $enable-smooth-scroll: true !default;
 $enable-grid-classes: true !default;
+$enable-container-classes: true !default;
 $enable-cssgrid: false !default;
 $enable-button-pointers: true !default;
 $enable-rfs: true !default;
@@ -566,13 +567,17 @@ $border-widths: (1: 1px,
   4: 4px,
   5: 5px) !default;
 
+$border-style: solid !default;
 $border-color: $gray-400 !default;
+$border-color-translucent:    rgba($black, .175) !default;
 // scss-docs-end border-variables
 
 // scss-docs-start border-radius-variables
 $border-radius: .3125rem !default;
 $border-radius-sm: .2rem !default;
 $border-radius-lg: .3rem !default;
+$border-radius-xl: 1rem !default;
+$border-radius-2xl: 2rem !default;
 $border-radius-pill: 50rem !default;
 // scss-docs-end border-radius-variables
 
@@ -653,6 +658,7 @@ $font-size-lg: $font-size-base * 1.25 !default;
 $font-weight-lighter: lighter !default;
 $font-weight-light: 300 !default;
 $font-weight-normal: 400 !default;
+$font-weight-semibold: 600 !default;
 $font-weight-bold: 700 !default;
 $font-weight-bolder: bolder !default;
 
@@ -710,6 +716,8 @@ $display-font-sizes: (
   6: $h6-font-size
 ) !default;
 
+$display-font-family: null !default;
+$display-font-style:  null !default;
 $display-font-weight: $font-weight-bold !default;
 $display-line-height: $headings-line-height !default;
 // scss-docs-end display-headings
@@ -733,7 +741,11 @@ $blockquote-footer-font-size: $small-font-size !default;
 
 $hr-margin-y: $spacer !default;
 $hr-color: inherit !default;
+$hr-bg-color: null !default; // Deprecated in v5.2.0
 $hr-height: $border-width !default;
+$hr-border-color: null !default; // Allows for inherited colors
+$hr-border-width: $border-width !default;
+
 $hr-opacity: .25 !default;
 
 $legend-margin-bottom: .5rem !default;
@@ -799,6 +811,7 @@ $table-border-width: $border-width !default;
 $table-border-color: $gray-400 !default;
 
 $table-striped-order: odd !default;
+$table-striped-columns-order: even !default;
 
 $table-group-separator-color: currentColor !default;
 
@@ -939,6 +952,7 @@ $input-padding-x-lg: $input-btn-padding-x-lg !default;
 $input-font-size-lg: $input-btn-font-size-lg !default;
 
 $input-bg: $body-bg !default;
+$input-disabled-color: null !default;
 $input-disabled-bg: $gray-200 !default;
 $input-disabled-border-color: null !default;
 
@@ -1161,6 +1175,8 @@ $zindex-modal-backdrop: 1050 !default;
 $zindex-modal: 1055 !default;
 $zindex-popover: 1070 !default;
 $zindex-tooltip: 1080 !default;
+$zindex-toast: 1090 !default;
+
 // scss-docs-end zindex-stack
 
 
@@ -1286,7 +1302,9 @@ $dropdown-item-padding-y: $spacer * .25 !default;
 $dropdown-item-padding-x: $spacer !default;
 
 $dropdown-header-color: $gray-600 !default;
-$dropdown-header-padding: $dropdown-padding-y $dropdown-item-padding-x !default;
+$dropdown-header-padding-x: $dropdown-item-padding-x !default;
+$dropdown-header-padding-y: $dropdown-padding-y !default;
+$dropdown-header-padding: $dropdown-header-padding-y $dropdown-header-padding-x !default;
 // scss-docs-end dropdown-variables
 
 // scss-docs-start dropdown-dark-variables
@@ -1314,6 +1332,9 @@ $pagination-padding-y-sm: .25rem !default;
 $pagination-padding-x-sm: .5rem !default;
 $pagination-padding-y-lg: .75rem !default;
 $pagination-padding-x-lg: 1.5rem !default;
+
+$pagination-font-size: $font-size-base !default;
+
 
 $pagination-color: $link-color !default;
 $pagination-bg: $white !default;
@@ -1460,6 +1481,7 @@ $popover-border-radius: $border-radius-lg !default;
 $popover-inner-border-radius: subtract($popover-border-radius, $popover-border-width) !default;
 $popover-box-shadow: $box-shadow !default;
 
+$popover-header-font-size: $font-size-base !default;
 $popover-header-bg: shade-color($popover-bg, 6%) !default;
 $popover-header-color: $headings-color !default;
 $popover-header-padding-y: .5rem !default;
@@ -1548,12 +1570,14 @@ $modal-content-box-shadow-sm-up: $box-shadow !default;
 $modal-backdrop-bg: $black !default;
 $modal-backdrop-opacity: .5 !default;
 $modal-header-border-color: $border-color !default;
-$modal-footer-border-color: transparent !default;
 $modal-header-border-width: $modal-content-border-width !default;
-$modal-footer-border-width: $modal-header-border-width !default;
 $modal-header-padding-y: $modal-inner-padding !default;
 $modal-header-padding-x: $modal-inner-padding !default;
 $modal-header-padding: $modal-header-padding-y $modal-header-padding-x !default; // Keep this for backwards compatibility
+
+$modal-footer-bg: null !default;
+$modal-footer-border-color: transparent !default;
+$modal-footer-border-width: $modal-header-border-width !default;
 
 $modal-sm: 300px !default;
 $modal-md: 500px !default;
