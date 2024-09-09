@@ -41,15 +41,17 @@ site-folder/
 
 // 3. Include remainder of required SGDS stylesheets
 @import "~{{site.sgds-package-name}}/sass/variables";
+// 4. Since v2.4.0, a new import of _maps.scss is required
+@import "~{{site.sgds-package-name}}/sass/maps";
 
-// 4. Include any default map overrides here
+// 5. Include any default map overrides here
 
-// 5. Include remainder of required parts
+// 6. Include remainder of required parts
 
 @import "~{{site.sgds-package-name}}/sass/mixins";
 @import "~{{site.sgds-package-name}}/sass/root";
 
-// 6. Optionally include any other parts as needed
+// 7. Optionally include any other parts as needed
 @import "~{{site.sgds-package-name}}/sass/utilities";
 @import "~{{site.sgds-package-name}}/sass/reboot";
 @import "~{{site.sgds-package-name}}/sass/type";
@@ -58,10 +60,10 @@ site-folder/
 @import "~{{site.sgds-package-name}}/sass/grid";
 @import "~{{site.sgds-package-name}}/sass/helpers";
 
-// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+// 8. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 @import "~{{site.sgds-package-name}}/sass/utilities/api";
 
-// 8. Add additional custom code here
+// 9. Add additional custom code here
 {% endcapture %}
 
 {% capture webpack-sass %}
@@ -84,6 +86,7 @@ $body-color: #111;
 
 // Required
 @import "~{{site.sgds-package-name}}/sass/variables";
+@import "~{{site.sgds-package-name}}/sass/maps";
 
 
 // Optional components here
