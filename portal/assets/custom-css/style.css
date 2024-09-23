@@ -671,7 +671,7 @@ a[target=_blank]:after {
 .container-lg,
 .container-md,
 .container-sm {
-  --sgds-gutter-x: 0.75rem;
+  --sgds-gutter-x: 3rem;
   --sgds-gutter-y: 0;
   width: 100%;
   padding-right: calc(var(--sgds-gutter-x) * 0.5);
@@ -6869,7 +6869,7 @@ section.wrapper.home section.home-get-started .home-get-started-content-grid .ho
   --sgds-toast-zindex: 1090;
   --sgds-toast-padding-x: 0.75rem;
   --sgds-toast-padding-y: 0.5rem;
-  --sgds-toast-spacing: 0.75rem;
+  --sgds-toast-spacing: 3rem;
   --sgds-toast-max-width: 350px;
   --sgds-toast-font-size: 1rem;
   --sgds-toast-color: ;

@@ -552,7 +552,7 @@ $grid-row-columns: 6 !default;
 $gutters: $spacers !default;
 
 // Container padding
-$container-padding-x: $grid-gutter-width * .5 !default;
+$container-padding-x: $grid-gutter-width / .5 !default;
 
 
 // Components
