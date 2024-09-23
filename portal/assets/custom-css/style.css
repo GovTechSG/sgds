@@ -7492,6 +7492,9 @@ section.wrapper.home section.home-get-started .home-get-started-content-grid .ho
   border-radius: var(--sgds-tooltip-border-radius);
 }
 
+.sgds.tooltip, .tooltip.portal-borderless-card, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .tooltip.card, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .tooltip.portal-borderless-card, .get-started-content-grid .tooltip.card {
+  position: absolute;
+}
 .sgds.tooltip .tooltip-inner, .tooltip.portal-borderless-card .tooltip-inner, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .tooltip.card .tooltip-inner, section.wrapper.home section.home-get-started .home-get-started-content-grid .home-grid .tooltip.portal-borderless-card .tooltip-inner, .get-started-content-grid .tooltip.card .tooltip-inner {
   display: flex;
   gap: 2rem;
