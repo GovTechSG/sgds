@@ -24,6 +24,7 @@
     <!-- this polyfill is required for web component cdn to prevent clash of custom element registration -->
     <script src="https://cdn.jsdelivr.net/npm/@webcomponents/scoped-custom-element-registry"></script>
     {% assign latestVersion = site.data.npm-sgds-web-component-latest-metadata.objects[0].package.version %}
+    <link href='{{site.web-component-cdn}}@{{latestVersion}}/themes/day.css' rel='stylesheet' type='text/css' />
     <script type="module" src="{{site.web-component-cdn}}@{{latestVersion}}">
     </script>
     <script type="module"
