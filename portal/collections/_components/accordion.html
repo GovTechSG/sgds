@@ -280,15 +280,14 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
         </ol>
         <p class="fw-bold mb-0">When not to use the accordion component:</p>
         <ol>
-            <li>
-                There is insufficient space within the page to display the necessary information.
-                <ul>
-                    <li>Accordions hide content, and there may be users who may miss the content or not understand how
-                        accordions work.</li>
-                    <li>If users need to see all information in a single page, you can consider reducing your content,
+                    <li>If each section only contains a small amount of text or a few elements, an accordion can unnecessarily complicate the layout. Simple lists or headings might work better.</li>
+                    <li>If the user needs to see all information in a single page, you can consider reducing your content,
                         splitting them into smaller sections, or use well-formatted text (e.g. headers, contents,
                         section).</li>
-                </ul>
+                        <li>If the user needs to repeatedly access certain information or actions, it might be frustrating for them to constantly expand sections.
+
+                        </li>
+                </ol>
             </li>
         </ol>
     </section>
@@ -306,6 +305,47 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
         </p>
     </section>
 
+
+    <!-- Accessibility guidelines Section -->
+    <section name="section-accessibility-guidelines">
+        <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+        <p class="fw-bold mb-0">Aria attributes</p>
+        <ol>
+            <li>
+                The accordion header has a role of <code>&lt;button&gt;</code>, with an aria-expanded attribute set to "true" or "false".
+            </li>
+            <li>
+                The button has an aria-controls property set to the unique id of the panel it controls.
+            </li>
+        </ol>
+       
+        <p class="fw-bold mb-0">Keyboard accessibility</p>
+        Ensure that the accordion can be navigated and operated using the keyboard
+         <ol>
+            <li>
+                <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to navigate between accordion headers
+            </li>
+            <li>
+                <span class="sgds-code-font">Enter</span> or <span class="sgds-code-font">Space</span> to expand or collapse sections
+            </li>
+         </ol>
+         <p class="fw-bold mb-0">Focus indicator</p>
+         <ol>
+             <li>
+                Focus indicator should be clearly visible when a header is focused
+            </li>
+             <li>
+                Move focus to the accordion content when it is expanded, if necessary
+            </li>
+            <li>
+                Ensure that focusable elements within the accordion panel can be navigated using the keyboard
+            </li>
+         </ol>
+    </section>
+
+    <br>
+    
+      <!-- Design token Section -->
     <section>
         <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
         {%- highlight sass -%}{{accordion-design-tokens}}{%- endhighlight -%}
