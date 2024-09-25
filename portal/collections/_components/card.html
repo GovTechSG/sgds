@@ -416,36 +416,74 @@ $card-active-border: inset 0px 0px 0px 2.1px $link-color !default;
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Cards should be used:</p>
+            <p class="fw-bold mb-0">Best practices:</p>
             <ol>
-                <li>When you need to display similar content and actions on a topic inside a container.</li>
-                <li>When you need to visually separate specific parts of content in a view.</li>
+                <li>Cards can be displayed together in a grid, vertical list, or carousel.</li>
+                <li>Don’t scroll within a card to reveal information.</li>
             </ol>
-            <p class="fw-bold mb-0">Cards should not be used:</p>
+            <p class="fw-bold mb-0">Cards should be used when:</p>
             <ol>
-                <li>When you need to inform user about important changes. Use Alerts component instead.</li>
-                <li>If the information contained within the card is not related.</li>
-
-                        
-                </li>
+                <li>You need to display similar content and actions on a topic inside a container.</li>
+                <li>You need to visually separate specific parts of content in a view.</li>
+            </ol>
+            <p class="fw-bold mb-0">Cards should not be used when:</p>
+            <ol>
+                <li>You need to inform user about important changes. Use Alerts component instead.</li>
+                <li>The information contained within the card is not related.</li>
             </ol>
         </section>
 
         <!-- Usability guidelines Section -->
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-            <p>
-                <b>Keep card title brief and clear</b><br>
-                Be brief and keep it to a single line by utilizing a sentence fragment. Avoid using punctuation as much as possible.</p>
-            <p>
-                <b>Use consistent elements when cards are arranged in a group</b><br>
+            <p class="fw-bold mb-0">Keep card title brief and clear</p>
+                Be brief and keep it to a single line by utilising a sentence fragment. Avoid using punctuation as much as possible.</p>
+                <p class="fw-bold mb-0">Use consistent elements when cards are arranged in a group</p>
                 For groups of cards, ensure the components used are consistent from card to card. Eg. Use the same height and width for each card on the page.</p>
-                <p>
-                    <b>Card content should be summarised and easy to digest</b><br>
+                <p class="fw-bold mb-0">Card content should be summarised and easy to digest</p>
                     Don't overwhelm the space with excessive content. The content should be easily accessed and explored so that it is easier for users to find what they are interested in.</p>
-                </section>
+                    <p class="fw-bold mb-0">Behaviour</p>
+                    The hover state should provide a visual cue to the user that the element is interactive. When tabbed, a focus indicator should appear to provide a visual cue to the user that the destination is now selected and action can be taken.     </section>
 
-        <!-- Design token Section -->
+        <!-- Accessibility guidelines Section -->
+    <section name="section-accessibility-guidelines">
+        <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+        
+        <p class="fw-bold mb-0">Keyboard accessibility</p>
+        Informational card:
+         <ol>
+            <li>
+                Not applicable.
+            </li>
+         </ol>
+         Action card:
+         <ol>
+            <li>
+                The only interactive elements are HTML button and hyperlink elements, and all their keyboard functionality is provided by browsers.
+            </li>
+            <li>
+                <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to navigate between cards or interactive elements within the card.
+            </li>
+            <li>
+                <span class="sgds-code-font">Enter</span> to activate and select actions within card.
+            </li>
+         </ol>
+         <p class="fw-bold mb-0">Focus indicator</p>
+         <ol>
+             <li>
+                Ensure that interactive elements within the card are included in the natural tab order of the page and can be focused using the Tab key.
+            </li>
+             <li>
+                Provide a clear visual indication of focus for interactive elements within the card, such as using the focus state when focused.
+            </li>
+            <li>
+                If the card contains a focusable element that opens a modal or a popover, ensure that focus is trapped within the modal or popover until it is closed, and then returned to the last focused element within the card.
+            </li>
+         </ol>
+    </section>
+    <br>
+
+      <!-- Design token Section -->
         <section name="section-design-tokens">
             <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
             {%- highlight sass -%}{{card-design-tokens}}{%- endhighlight -%}
