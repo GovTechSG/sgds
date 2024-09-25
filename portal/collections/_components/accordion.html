@@ -271,20 +271,22 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
     <!-- Usage guidelines Section -->
     <section name="section-usage-guidelines">
         <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-        <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers.
-            Users may also ignore important information if it is hidden in an accordion.</p>
-        <p class="fw-bold mb-0">When to use the accordion component:</p>
+        <p class="fw-bold mb-0">Best practices:</p>
+        <ol>
+            <li>Accordion labels should not link to a page; labels and buttons should open the same thing. (e.g. your label should not link to another page, and your icon opens the accordion)</li>
+        </ol>
+        <p class="fw-bold mb-0">Accordion should be used when:</p>
         <ol>
             <li>There is insufficient space within the page to display the necessary information.</li>
             <li>Users require an overview of specific content that's related to one another.</li>
         </ol>
-        <p class="fw-bold mb-0">When not to use the accordion component:</p>
+        <p class="fw-bold mb-0">Accordion should not be used when:</p>
         <ol>
-                    <li>If each section only contains a small amount of text or a few elements, an accordion can unnecessarily complicate the layout. Simple lists or headings might work better.</li>
-                    <li>If the user needs to see all information in a single page, you can consider reducing your content,
+                    <li>Each section only contains a small amount of text or a few elements, an accordion can unnecessarily complicate the layout. Simple lists or headings might work better.</li>
+                    <li>User needs to see all information in a single page, you can consider reducing your content,
                         splitting them into smaller sections, or use well-formatted text (e.g. headers, contents,
                         section).</li>
-                        <li>If the user needs to repeatedly access certain information or actions, it might be frustrating for them to constantly expand sections.
+                        <li>User needs to repeatedly access certain information or actions, it might be frustrating for them to constantly expand sections.
 
                         </li>
                 </ol>
@@ -295,14 +297,10 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
     <!-- Usability guidelines Section -->
     <section name="section-usability-guidelines">
         <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-        <p>
-            <b>Do ensure that the entire heading is clickable to the user.</b><br>
-            A larger target will make it easier for users to manipulate.
-        </p>
-        <p>
-            <b>Ensure enough space between content and headings</b><br>
-            This is to prevent the user from accidentally closing the accordion.
-        </p>
+        <p class="fw-bold mb-0">Do ensure that the entire heading is clickable to the user.</p>
+        A larger target will make it easier for users to manipulate.
+        <p class="fw-bold mb-0">Ensure enough space between content and headings</p>
+        This is to prevent the user from accidentally closing the accordion.
     </section>
 
 
@@ -342,9 +340,8 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
             </li>
          </ol>
     </section>
-
     <br>
-    
+
       <!-- Design token Section -->
     <section>
         <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
