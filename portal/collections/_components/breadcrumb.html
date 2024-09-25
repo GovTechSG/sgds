@@ -96,15 +96,15 @@ $breadcrumb-border-radius: null !default;
                 <li>Breadcrumbs are placed in the top left portion of the page. They sit underneath the header and navigation, but above the page title.</li>
                 <li>When a ‘truncationWidth’ is specified, long item names will truncate and a tooltip containing the full item name will appear on hover. If unspecified, truncation will only occur when an item cannot fit alone on a line.</li>
             </ol>
-            <p class="fw-bold mb-0">Breadcrumb should be used:</p>
+            <p class="fw-bold mb-0">Breadcrumb should be used when:</p>
             <ol>
-                <li>When you want to enable users to understand their current position on the website.</li>
-                <li>When you want to help users to move between different levels.</li>
+                <li>You want to enable users to understand their current position on the website.</li>
+                <li>You want to help users to move between different levels.</li>
             </ol>
-            <p class="fw-bold mb-0">Breadcrumb should not be used:</p>
+            <p class="fw-bold mb-0">Breadcrumb should not be used when:</p>
             <ol>
-                <li>As a replacement for your primary navigation.</li>
-                <li>For displaying progress such as when completing a transaction. In this case use the <a href="/progress-bar/">progress bar</a> component.</li>
+                <li>The hierarchy is unclear: Breadcrumbs rely on a clear, linear structure. If your content doesn’t follow a well-defined hierarchy or has multiple access points, breadcrumbs can confuse users.</li>
+                <li>Your site has a shallow navigation structure, breadcrumbs are unnecessary and may clutter the UI.</li>
             </ol>
         </section>
 
@@ -137,27 +137,27 @@ $breadcrumb-border-radius: null !default;
             </ol>
         
             <p class="fw-bold mb-0">Keyboard accessibility</p>
-            Users should be able to navigate between breadcrumb links using standard keyboard controls
+            Users should be able to navigate between breadcrumb links using standard keyboard controls:
             <ol>
                 <li>
                     <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to move between
-                    breadcrumb links
+                    breadcrumb links.
                 </li>
                 <li>
-                    <span class="sgds-code-font">Enter</span> to activate the focused breadcrumb link
+                    <span class="sgds-code-font">Enter</span> to activate the focused breadcrumb link.
                 </li>
             </ol>
             <p class="fw-bold mb-0">Focus indicator</p>
             <ol>
                 <li>
-                    Ensure the breadcrumbs are in a logical tab order within the page content
+                    Ensure the breadcrumbs are in a logical tab order within the page content.
                 </li>
                 <li>
                     Use a different colour to clearly indicate focus. eg. other interactive breadcrumb links should be of a
-                    different colour from the current page
+                    different colour from the current page.
                 </li>
                 <li>
-                    Use aria-label on the navigation element to describe the type of navigation to screen readers
+                    Use aria-label on the navigation element to describe the type of navigation to screen readers.
                 </li>
             </ol>
         </section>
