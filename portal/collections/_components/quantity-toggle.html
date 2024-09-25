@@ -125,11 +125,16 @@ toc: true
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Quantity toggle should be used:</p>
+            <p class="fw-bold mb-0">Best practices:</p>
+            <ol>
+                <li>When setting limits on number entry, immediately provide feedback by changing the button's state to disabled, rather than allowing users to encounter limits through an error message.</li>
+            </ol>
+            <p class="fw-bold mb-0">Quantity toggle should be used when:</p>
             <ol>
                 <li>When the numeric field needs to be adjusted by a small amount that can be done with only a few clicks.</li>
+                <li>When users may not know exact values and only want to change the values that are relative to its current state.</li>
             </ol>
-            <p class="fw-bold mb-0">Quantity toggle should not be used:</p>
+            <p class="fw-bold mb-0">Quantity toggle should not be used when:</p>
             <ol>
                 <li>The numeric field can take a large range of values.</li>
             </ol>
@@ -139,14 +144,56 @@ toc: true
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>Ensure that a default value is shown within the field.</b><br>
+                <b>Ensure that a default value is shown within the field</b><br>
                 List the current value of the input so that user is able to know how much the value should increase/decrease upon clicking on up/down button.
             </p>
             <p>
-                <b>Enable the user to also choose to type a number in the field.</b><br>
+                <b>Enable the user to also choose to type a number in the field</b><br>
                 User may prefer to type the value instead of clicking on the buttons, so such options should remain enabled.
             </p>
+            <p>
+                <b>Behaviour</b><br>
+                The quantity toggle should have a series of states for when user tabs or clicks/interacts with on the quantity toggle; hover, focus, enabled and disabled.
+            </p>
         </section>
+
+         <!-- Accessibility guidelines Section -->
+    <section name="section-accessibility-guidelines">
+        <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+        <p class="fw-bold mb-0">Aria attributes</p>
+        <ol>
+            <li>
+                The button <code>aria-label</code> values should be plain text and they should include context of what they affect when activated (typically the label for the input). e.g. Increase Quantity, Add Quantity.
+            </li>
+        </ol>
+        <p class="fw-bold mb-0">Keyboard accessibility</p>
+         <ol>
+            <li>
+                <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to focus on quantity toggle's input element.
+            </li>
+            <li>
+                <span class="sgds-code-font">↑</span> or <span class="sgds-code-font">↓</span> to change value of the input.
+            </li>
+         </ol>
+         <p class="fw-bold mb-0">Focus indicator</p>
+         <ol>
+             <li>
+                Provide clear visual indicators for focused elements to help users identify the active element.
+            </li>
+             <li>
+                Ensure a logical and intuitive focus order (decrease button, input field, increase button) for seamless navigation.
+            </li>
+            <li>
+                When the quantity value is updated, ensure the focus remains on the active element (button or input field) to avoid disrupting the user experience.
+            </li>
+            <li>
+                Disable buttons when limits are reached (e.g., quantity cannot go below 1 or above a maximum value).
+            </li>
+            <li>
+                Ensure disabled buttons are not focusable.
+            </li>
+         </ol>
+    </section>
 </div>
 
 <script>
