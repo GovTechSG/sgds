@@ -111,13 +111,16 @@ $breadcrumb-border-radius: null !default;
         <!-- Usability guidelines Section -->
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-                <p class="fw-bold mb-0">Use complete page titles</p>
+            <p><b>Use complete page titles</b><br>
                 The wording in the breadcrumb text should be the same as in the page title.   
-                <p class="fw-bold mb-0">Consider the size</p>
+                </p>
+                <p><b>Consider the size</b><br>
                 Generally the text for breadcrumbs are smaller, do ensure it is not too small to select.
-                <p class="fw-bold mb-0">Behaviour</p>
+                </p>
+                <p><b>Behaviour</b><br>
                 All the pages in the breadcrumb component should be interactive (except the current page) and link to their respective pages.
-        </section>
+        </p>
+    </section>
 
         <!-- Accessibility guidelines Section -->
         <section name="section-accessibility-guidelines">
@@ -128,11 +131,11 @@ $breadcrumb-border-radius: null !default;
                     Breadcrumb trail is contained within a navigation landmark region.
                 </li>
                 <li>
-                    The landmark region is labelled via aria-label or aria-labelledby.
+                    The landmark region is labelled via <code>aria-label</code> or <code>aria-labelledby</code>.
                 </li>
                 <li>
-                    The link to the current page has aria-current="page". If the element representing the current page is not a
-                    link, aria-current is optional.
+                    The link to the current page has <code>aria-current="page"</code>. If the element representing the current page is not a
+                    link, <code>aria-current</code> is optional.
                 </li>
             </ol>
         
