@@ -142,16 +142,24 @@ $badge-border-radius: $border-radius !default;
 <!-- Usage guidelines Section -->
 <section name="section-usage-guidelines">
     <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-    <p class="fw-bold mb-0">Badges should be used:</p>
+    <p class="fw-bold mb-0">Best practices:</p>
     <ol>
-        <li>To give a status update on a piece of information or action.</li>
-        <li>When you want to highlight something.</li>
+        <li>Use badges in conjunction with an icon or tooltip, to avoid ambiguity and enhance user understanding.</li>
+        <li>Do not mix different sizes of badges within the same content.</li>
     </ol>
-    <p class="fw-bold mb-0">Badges should not be used:</p>
+    <p class="fw-bold mb-0">Badges should be used when:</p>
+    <ol>
+        <li>You want to give a status update on a piece of information or action.</li>
+        <li>You want to highlight something.</li>
+    </ol>
+    <p class="fw-bold mb-0">Badges should not be used when:</p>
     <ol>
         <li>
-            When users are likely to confuse a badge with a small button,
+            Users are likely to confuse a badge with a small button,
             badges should not be clickable especially when they appear in the same area of the page as buttons.
+        </li>
+        <li>
+            Detailed information need to be conveyed.
         </li>
     </ol>
 </section>
@@ -159,18 +167,12 @@ $badge-border-radius: $border-radius !default;
 <!-- Usability guidelines Section -->
 <section name="section-usability-guidelines">
     <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-    <p>
-        <b>Avoid long sentences</b><br>
+    <p class="fw-bold mb-0">Avoid long sentences</p>
         Minimize badge text length to one- to three-words. Content should be clear and concise, and easy to identify.
-    </p>
-    <p>
-        <b>Users may confuse badges as buttons</b><br>
-        Avoid triggering interaction with a badge as they may be confused as small buttons
-    </p>
-    <p>
-        <b>Badges should include tooltips, where necessary, to enhance user understanding.</b><br>
+    <p class="fw-bold mb-0">Users may confuse badges as buttons</p>
+        Avoid triggering interaction with a badge as they may be confused as small buttons.
+    <p class="fw-bold mb-0">Badges should include tooltips, where necessary, to enhance user understanding</p>
         For example, a badge is used in conjunction with an icon.
-    </p>
 </section>
 
 <!-- Accessibility guidelines Section -->
@@ -179,12 +181,13 @@ $badge-border-radius: $border-radius !default;
     <p class="fw-bold mb-0">Keyboard accessibility</p>
      <ol>
         <li>
-            Informational badges are not in the tab order, are not interactive, and do not receive focus.          </li>
+            Informational badges are not in the tab order, are not interactive, and do not receive focus.
+        </li>
      </ol>
      <p class="fw-bold mb-0">Focus indicator</p>
      <ol>
          <li>
-            Ensure that focus is on the close icon for dismissible badges
+            Ensure that focus is on the close icon for dismissible badges.
         </li>
      </ol>
 </section>
