@@ -221,24 +221,20 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
             <li>Alert banner should come back into view at the next possible occasion if the user dismisses it without resolving it.</li>
             <li>Be clear and concise. If possible, include an in-line action for a user to take so that they can address the issue explained in the message. </li>
         </ol>
-        <p class="fw-bold mb-0">Alerts should be used:</p>
+        <p class="fw-bold mb-0">Alerts should be used when:</p>
         <ol>
-            <li>When you need system status messaging - The alert may be in the form of a notification that keeps users
+            <li>You need system status messaging - The alert may be in the form of a notification that keeps users
                 informed of the status of a system. This may or may not require the user to take action and/or respond.
                 Some examples of this can be in the form of errors, warnings or generic updates for the users.</li>
         </ol>
-        <p class="fw-bold mb-0">Alerts should not be used:</p>
+        <p class="fw-bold mb-0">Alerts should not be used when:</p>
         <ol>
             <li>
-                For validation errors - Alerts should not be used for validation errors, these should be displayed on
-                the component that the user is on.
+                You need to display validation errors, these should be displayed on the component that the user is on.
             </li>
             <li>
-                Multiple alerts - There should not be multiple alerts on a single page. E.g A notification alert and a
+                There are multiple alerts on a single page. E.g A notification alert and a
                 error/warning alert. Use the one that is most important to the user.
-            </li>
-            <li>
-                For long messages - because alerts are timed and will disappear automatically making it difficult for users to capture the message.
             </li>
         </ol>
     </section>
@@ -275,9 +271,9 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
          <p class="fw-bold mb-0">Focus indicator</p>
          <ol>
              <li>
-                Ensure that focus is moved to the alert when it appears to ensure screen reader users are aware of it
+                Ensure that focus is moved to the alert when it appears to ensure screen reader users are aware of it.
              <li>
-                Ensure interactive elements within the alert (like a close button) are accessible via the keyboard
+                Ensure interactive elements within the alert (like a close button) are accessible via the keyboard.
             </li>
          </ol>
     </section>
