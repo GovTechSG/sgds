@@ -167,15 +167,28 @@ $toast-header-border-color: rgba($black, .05) !default;
 <!-- Usage guidelines Section -->
 <section name="section-usage-guidelines">
     <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-    <p class="fw-bold mb-0">Toasts should be used:</p>
-    <ol>
-        <li>When you want to present quick snippets of information to users. 
-            Such as when users have submitted a form sucessfully or when a system error occurs.</li>
-    </ol>
-    <p class="fw-bold mb-0">Toasts should not be used:</p>
+    <p class="fw-bold mb-0">Best practices:</p>
     <ol>
         <li>
-            When conveying important alerts. E.g If your system is going down for maintenance.
+            Titles should not stretch beyond two lines.
+        </li>
+        <li>
+        Avoid technical jargon.
+        </li>
+    </ol>
+    <p class="fw-bold mb-0">Toasts should be used when:</p>
+    <ol>
+        <li>
+            You want to present quick snippets of information to users. Such as when users have submitted a form successfully or when a system error occurs.
+        </li>
+        <li>
+       Showing non-critical messages that do not require immediate user action and interaction.
+        </li>
+    </ol>
+    <p class="fw-bold mb-0">Toasts should not be used when:</p>
+    <ol>
+        <li>
+            Conveying important alerts. E.g If your system is going down for maintenance.
         </li>
     </ol>
 </section>
@@ -197,11 +210,43 @@ $toast-header-border-color: rgba($black, .05) !default;
         Toasts convey quick snippets of information and therefore should not contain more than 2-3 lines of text. 
         The content should make sense with as little words as possible. E.g Message sent vs Your message has been sent.
     </p>
+    <p></p>
+        <b>Behaviour</b><br>
+        Provide sufficient time for users to read and interact with the toast. If the toast disappears automatically, ensure it does not disappear too quickly or consider allowing users to dismiss it on their own with a close button.
+    </p>
 </section>
 
+ <!-- Accessibility guidelines Section -->
+ <section name="section-accessibility-guidelines">
+    <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+    <p class="fw-bold mb-0">Aria attributes</p>
+    <ol>
+        <li>
+            Use <code>role="alert"</code> to define a live region and force screen readers to announce the content of the toast.
+        </li>
+        <li>
+            Setting <code>role="alert"</code> is equivalent to setting <code>aria-live="assertive"</code> and <code>aria-atomic="true"</code>.
+        </li>
+    </ol>
+   
+   
+     <p class="fw-bold mb-0">Focus indicator</p>
+     <ol>
+         <li>
+            When a toast notification appears, ensure it does not automatically steal focus from the current task. Instead, use ARIA live regions to announce the toast content.
+        </li>
+         <li>
+            If interaction is required (e.g., buttons within the toast), provide a mechanism for users to move focus to the toast using the keyboard.
+        </li>
+        <li>
+            If a toast notification requires user interaction (like dismissing or performing an action), use focus trapping to keep the keyboard focus within the toast until the interaction is complete.
+        </li>
+     </ol>
+</section>
+<br>
+      <!-- Design token Section -->
 <section>
     <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
     {%- highlight sass -%}{{toast-design-tokens}}{%- endhighlight -%}
 </section>
-
 </div>
