@@ -107,13 +107,18 @@ $tooltip-arrow-color: $tooltip-bg !default;
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Tooltip should be used:</p>
+            <p class="fw-bold mb-0">Best practices:</p>
             <ol>
-                <li>When you want to provide additional explanation for a form field that may be unfamiliar.</li>
+                <li>Avoid long delays for tooltips to appear or disappear. They should be responsive enough to be useful without being annoying.</li>
+                <li>Do not overuse tooltips. Too many tooltips can clutter the interface and overwhelm the user.</li>
             </ol>
-            <p class="fw-bold mb-0">Tooltip should not be used:</p>
+            <p class="fw-bold mb-0">Tooltip should be used when:</p>
             <ol>
-                <li>When information is vital to task completion.</li>
+                <li>You want to provide additional explanation for a form field that may be unfamiliar.</li>
+            </ol>
+            <p class="fw-bold mb-0">Tooltip should not be used when:</p>
+            <ol>
+                <li>Information is vital to task completion.</li>
             </ol>
         </section>
 
@@ -132,9 +137,53 @@ $tooltip-arrow-color: $tooltip-bg !default;
             <b>Provide sufficient contrasts </b><br>
             A moderate contrast is important to ensure the tooltips are more visible to users.
         </p>
+        <p>
+          <b>Behaviour</b><br>
+          Tooltips should dynamically adjust their position to ensure they remain within the viewport and are fully visible, even if the triggering element is near the edge of the screen. Tooltips should also disappear when the user moves the mouse away from the element.
+      </p>
         </section>
 
-        <!-- Design token Section -->
+ <!-- Accessibility guidelines Section -->
+ <section name="section-accessibility-guidelines">
+  <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+  <p class="fw-bold mb-0">Aria attributes</p>
+  <ol>
+      <li>
+        The element that serves as the tooltip container has <code>role="tooltip"</code>.
+      </li>
+      <li>
+        The element that triggers the tooltip references the tooltip element with <code>aria-describedby</code>.
+      </li>
+  </ol>
+ 
+  <p class="fw-bold mb-0">Keyboard accessibility</p>
+  Hoverable tooltips:     <ol>
+      <li>
+          <span class="sgds-code-font">Tab</span> will open the tooltip when focusing on the tooltip's target element. Shifting focus away from tooltip's target element dismisses the tooltip.
+      </li>
+      </ol>
+      Manually triggered tooltips:
+      <ol>
+      <li>
+          <span class="sgds-code-font">Enter</span> opens the tooltip when tooltip's target element is focused. The focus remains on the target element.
+      </li>
+   </ol>
+   <p class="fw-bold mb-0">Focus indicator</p>
+   <ol>
+       <li>
+          Focus indicator should be clearly visible when a header is focused.
+      </li>
+       <li>
+          Move focus to the accordion content when it is expanded, if necessary.
+      </li>
+      <li>
+          Ensure that focusable elements within the accordion panel can be navigated using the keyboard.
+      </li>
+   </ol>
+</section>
+<br>
+
+<!-- Design token Section -->
         <section name="section-design-tokens">
             <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
             {%- highlight sass -%}{{tooltip-design-tokens}}{%- endhighlight -%}
