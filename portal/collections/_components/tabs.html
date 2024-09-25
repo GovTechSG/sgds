@@ -319,17 +319,22 @@ $nav-sgds-tabs-icon-padding: $spacer !default;
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Tabs should be used:</p>
+            <p class="fw-bold mb-0">Best practices:</p>
             <ol>
-                <li>When you want to expose simliar but seperate content.</li>
-                <li>When you can seperate the content into clearly labelled sections.</li>
-                <li>When you want to expose simliar but seperate content.</li>
+                <li>As a general rule, the first label for the tabs should align with the grid and the text below. If tabs are within another component, such as a card, follow the grid that you are using inside the component and align the label with text in the component.</li>
+                <li>As tabs hide content, it is best to use them sparingly although they do help to save space. Do consider if the content can be displayed upfront instead of being in a tab. In some cases, having too may tabs on a page may cause it to load slowly.</li>
             </ol>
-            <p class="fw-bold mb-0">Tabs should not be used:</p>
+            <p class="fw-bold mb-0">Tabs should be used when:</p>
             <ol>
-                <li>When you want to display critical information to the user, content like this should always be displayed upfront.</li>
-                <li>When you require users to read the content in a specific order, e.g a step by step guide.</li>
-                <li>When users will need to compare information in the different tabs.</li>
+                <li>You want to expose simliar but separate content.</li>
+                <li>You can separate the content into clearly labelled sections.</li>
+                <li>You want to expose simliar but separate content.</li>
+            </ol>
+            <p class="fw-bold mb-0">Tabs should not be used when:</p>
+            <ol>
+                <li>You want to display critical information to the user, content like this should always be displayed upfront.</li>
+                <li>You require users to read the content in a specific order, e.g a step by step guide.</li>
+                <li>Users will need to compare information in the different tabs.</li>
             </ol>
         </section>
 
@@ -337,23 +342,80 @@ $nav-sgds-tabs-icon-padding: $spacer !default;
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>Keep labels short</b><br>
-                As there will be multiple tabs, it is best to keep labels as short and to the point as possible.
+                <b>Keep labels concise</b><br>
+                As there will be multiple tabs, it is best to keep labels as short and to the point as possible. This is particularly helpful for users of assistive technologies so they have the necessary information to efficiently navigate the content.
             </p>
 
             <p>
-              <b>Use sparingly</b><br>
-              As tabs hide content, it is best to use them sparingly although they do help to save space. Do consider if the content can be displayed upfront instead of being in a tab. 
-              In some cases, having too may tabs on a page may cause it to load slowly.
+              <b>Behaviour</b><br>
+              To differentiate an active tab from an inactive tab, apply an underline and colour change to the active tab’s text and icon. Tab behaviour during standard, focus, hover, and active states are important because it lets users know where they are in the experience.
           </p>
 
-          <p>
-            <b>Do not use as a form of page navigation</b><br>
-            Tabs should exclusively be used as a form of content navigation within a given page.
-        </p>
+        
         </section>
 
-        <!-- Design token Section -->
+ <!-- Accessibility guidelines Section -->
+ <section name="section-accessibility-guidelines">
+  <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+  <p class="fw-bold mb-0">Aria attributes</p>
+  <ol>
+      <li>
+        The element that serves as the container for the set of tabs has <code>role="tablist"</code>.
+      </li>
+      <li>
+        Each element that serves as a tab has <code>role="tab"</code> and is contained within the element with <code>role="tablist"</code>.
+      </li>
+      <li>
+        Each element that contains the content panel for a <code>tab</code> has <code>role="tabpanel"</code>.
+      </li>
+      <li>
+        If the tab list has a visible label, the element with <code>role="tablist"</code> has <code>aria-labelledby</code> set to a value that refers to the labelling element. Otherwise, the <code>tablist</code> element has a label provided by <code>aria-label</code>.
+      </li>
+      <li>
+        Each element with role <code>tab</code> has the property <code>aria-controls</code> referring to its associated <code>tabpanel</code> element.
+      </li>
+      <li>
+        The active <code>tab</code> element has the state <code>aria-selected="true"</code> and all other <code>tab</code> elements have it set to <code>false</code>.
+      </li>
+      <li>
+        Each element with <code>role="tabpanel"</code> has the property <code>aria-labelledby</code> referring to its associated <code>tab</code> element.
+  </ol>
+ 
+  <p class="fw-bold mb-0">Keyboard accessibility</p>
+  For the tab list
+     <ol>
+      <li>
+          <span class="sgds-code-font">Tab</span> when focus moves into the tab list, places focus on the first tab element.
+      </li>
+   </ol>
+   When focus is on a tab element
+      <ol>
+    <li>
+        <span class="sgds-code-font">←</span>,  <span class="sgds-code-font">↑</span> moves focus to the previous tab. If focus is on the first tab, moves focus to the last tab. This also activates the newly focused tab.
+    </li>
+    <li>
+      <span class="sgds-code-font">←</span> moves focus to the next tab. If focus is on the last tab element, moves focus to the first tab. This also activates the newly focused tab.
+ </ol>
+ 
+   <p class="fw-bold mb-0">Focus indicator</p>
+   <ol>
+       <li>
+        Ensure all tab elements (the tabs and the tab panels) can receive keyboard focus.
+      </li>
+       <li>
+        Provide a clear focus indicator such as using different font or background colours for the focused tab.
+      </li>
+      <li>
+        Move focus to the active tab when it is selected.
+      </li>
+      <li>
+        Ensure screen readers announce the active tab and the associated panel.
+      </li>
+   </ol>
+</section>
+<br>
+
+<!-- Design token Section -->
         <section name="section-design-tokens">
             <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
             {%- highlight sass -%}{{tabs-design-tokens}}{%- endhighlight -%}
