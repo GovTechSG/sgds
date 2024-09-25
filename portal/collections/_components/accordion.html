@@ -295,11 +295,15 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
     <!-- Usability guidelines Section -->
     <section name="section-usability-guidelines">
         <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-        <p class="fw-bold mb-0">Do ensure that the entire heading is clickable to the user.</p>
+        <p>
+        <b>Do ensure that the entire heading is clickable to the user</b><br>
         A larger target will make it easier for users to manipulate.
-        <p class="fw-bold mb-0">Ensure enough space between content and headings</p>
+       </p>
+       <p>
+        <b>Ensure enough space between content and headings</b><br>
         This is to prevent the user from accidentally closing the accordion.
-        <p class="fw-bold mb-0">Behaviour</p>
+        <p>
+        <b>Behaviour</b><br>
         In addition to the collapse and expanded states, accordions should also have interactive state for focus. User should be able to trigger a state change by clicking anywhere in the header area.
     </section>
 
@@ -310,10 +314,10 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
         <p class="fw-bold mb-0">Aria attributes</p>
         <ol>
             <li>
-                The accordion header has a role of <code>&lt;button&gt;</code>, with an aria-expanded attribute set to "true" or "false".
+                The accordion header has a role of <code>&lt;button&gt;</code>, with an <code>aria-expanded</code> attribute set to <code>"true"</code> or <code>"false"</code>.
             </li>
             <li>
-                The button has an aria-controls property set to the unique id of the panel it controls.
+                The button has an <code>aria-controls</code> property set to the unique <code>id</code> of the panel it controls.
             </li>
         </ol>
        
