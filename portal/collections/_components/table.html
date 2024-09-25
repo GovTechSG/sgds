@@ -445,18 +445,23 @@ $table-variants: ("primary": shift-color($primary, $table-bg-scale),
   <!-- Usage guidelines Section -->
   <section name="section-usage-guidelines">
     <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-    <p class="fw-bold mb-0">Table should be used:</p>
+    <p class="fw-bold mb-0">Best practices:</p>
     <ol>
-      <li>When you want to show tabular information, such as statistics.</li>
-      <li>For displaying directories where content of similar nature and structure are grouped together.</li>
+      <li>Information should be organised in a meaningful way, such as hierarchy or in alphabetical order.</li>
+      <li>Tables should allow user interaction so that a data display is customisable and interactive.</li>
+      <li>Tables should be easy to use, with a logical structure that makes content easy to understand.</li>
+      <li>Table total page count usually reduce after filter data, which by default return to first page in case current page is out of filtered results.</li>
     </ol>
-    <p class="fw-bold mb-0">Table should not be used:</p>
+    <p class="fw-bold mb-0">Table should be used when:</p>
+    <ol>
+      <li>You want to show tabular information, such as statistics.</li>
+      <li>Displaying directories where content of similar nature and structure are grouped together.</li>
+      <li>Users are required to sort, search, paginate and filter data.</li>
+    </ol>
+    <p class="fw-bold mb-0">Table should not be used when:</p>
     <ol>
       <li>
-        For complex data visualisation, you may want to use inforgraphics or bars and charts.
-      </li>
-      <li>
-        For dashboard displays. Table data should follow a consistant structure with logical headers, rows and columns.
+        There is complex data visualisation, you may want to use inforgraphics or bars and charts.
       </li>
     </ol>
   </section>
@@ -464,22 +469,44 @@ $table-variants: ("primary": shift-color($primary, $table-bg-scale),
   <!-- Usability guidelines Section -->
   <section name="section-usability-guidelines">
     <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-    <p>
-      <b>Keep tables simple</b><br>
+    <p class="fw-bold mb-0">Keep tables simple</p>
       Tables are useful when displaying data and complex information. Try to use minimal visual styling to surface
       information easily.
-    </p>
-
-    <p>
-      <b>Consider mobile applications</b><br>
+      <p class="fw-bold mb-0">Consider mobile applications</p>
       As table rows can be long in nature, do consider if your content requires to be in a table.
-    </p>
-
-    <p>
-      <b>Enable sorting</b><br>
+      <p class="fw-bold mb-0">Enable sorting</p>
       Do enable sorting where applicable as this will help users move through content within the table.
-    </p>
+    <p class="fw-bold mb-0">Behaviour</p>
+<ol><li>Row hover - row displays a background colour when user hovers over a row</li>
+<li>Column hover - if sorting is enabled, an arrow icon can appear next to the column header.</li></ol>  
   </section>
+
+  <!-- Accessibility guidelines Section -->
+  <section name="section-accessibility-guidelines">
+    <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+    <p class="fw-bold mb-0">Aria attributes</p>
+    <ol>
+        <li>
+          If there is an element in the user interface that serves as a label for the table, <code>aria-labelledby</code> is set on the table element with a value that refers to the labelling element. Otherwise, a label is specified for the table element using <code>aria-label</code>.
+        </li>
+        <li>
+          If the table has a caption or description, <ßcode>aria-describedby</code> is set on the table element with a value referring to the element containing the description.
+        </li>
+    </ol>
+   
+    <p class="fw-bold mb-0">Keyboard accessibility</p>
+    If the table is purely informational and has no interactive elements, it does not need to be keyboard focusable or operable. If there are interactive elements such as text links or sorting arrows, users should be able to navigate using standard keyboard controls.
+     <p class="fw-bold mb-0">Focus indicator</p>
+     <ol>
+         <li>
+          Ensure that any interactive element within the table is highly visible and distinct, making it stand out against the rest of the table content.
+        </li>
+         <li>
+          When an interactive element in the table is focused, provide a clear visual indication of focus.
+        </li>
+     </ol>
+</section>
+<br>
 
   <!-- Design token Section -->
   <section name="section-design-tokens">
