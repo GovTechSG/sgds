@@ -101,6 +101,10 @@ $steps-divider-height: .25rem !default;
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Best practices:</p>
+            <ol>
+                <li>Steppers often contain forms and form controls. If validation errors inside of a stepper's form prevents users from moving to another step, make sure that your form controls communicate error messages to assistive technology. This helps the user know why they can't advance to another step.</li>
+            </ol>
             <p class="fw-bold mb-0">Steppers should be used when:</p>
             <ol>
                 <li>There are multiple steps in a form where content can be divided into logical steps.</li>
@@ -128,9 +132,50 @@ $steps-divider-height: .25rem !default;
                 <b>Indicate the current step</b><br>
                 Inform user of their current step within the process. This helps the user to know where they are in relation to where they have beem, and what sections are to follow. Use validation to confirm that a previous step has been completed.
             </p>
+            <p>
+                <b>Behaviour</b><br>
+                The value should change by a defined step amount (e.g., 1) with each button press. 
+            </p>
         </section>
 
-        <!-- Design token Section -->
+       <!-- Accessibility guidelines Section -->
+    <section name="section-accessibility-guidelines">
+        <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+        <p class="fw-bold mb-0">Aria attributes</p>
+        <ol>
+            <li>
+                Set <code>aria-current="step"</code> to indicate the currently selected step.
+            </li>
+            <li>
+                Set <code>aria-disabled="true"</code> when the step is disabled.
+            </li>
+        </ol>
+       
+        <p class="fw-bold mb-0">Keyboard accessibility</p>
+         <ol>
+            <li>
+                <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to move focus forward and backwards between steps.
+            </li>
+            <li>
+                <span class="sgds-code-font">Enter</span> to navigate to the focused step. Only completed steps can be navigated to.
+            </li>
+         </ol>
+         <p class="fw-bold mb-0">Focus indicator</p>
+         <ol>
+             <li>
+                Ensure that focus indicators are highly visible and distinct when any interactive element within the stepper (e.g., increment/decrement buttons or the input field) is focused.
+            </li>
+             <li>
+                Ensure a logical and intuitive focus order, usually moving from the decrement button to the input field and then to the increment button.
+            </li>
+            <li>
+                When the value is updated, maintain focus on the active element to avoid disrupting the user experience.
+            </li>
+         </ol>
+    </section>
+    <br>
+
+      <!-- Design token Section -->
         <section name="section-design-tokens">
             <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
             {%- highlight sass -%}{{stepper-design-tokens}}{%- endhighlight -%}
