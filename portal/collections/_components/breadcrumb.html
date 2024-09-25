@@ -91,6 +91,11 @@ $breadcrumb-border-radius: null !default;
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Best practices:</p>
+            <ol>
+                <li>Breadcrumbs are placed in the top left portion of the page. They sit underneath the header and navigation, but above the page title.</li>
+                <li>When a ‘truncationWidth’ is specified, long item names will truncate and a tooltip containing the full item name will appear on hover. If unspecified, truncation will only occur when an item cannot fit alone on a line.</li>
+            </ol>
             <p class="fw-bold mb-0">Breadcrumb should be used:</p>
             <ol>
                 <li>When you want to enable users to understand their current position on the website.</li>
@@ -106,17 +111,60 @@ $breadcrumb-border-radius: null !default;
         <!-- Usability guidelines Section -->
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-            <p>
-                <b>Use complete page titles</b><br>
-                The wording in the breadcrumb text should be the same as in the page title.
-            </p>
-            <p>
-                <b>Consider the size</b><br>
+                <p class="fw-bold mb-0">Use complete page titles</p>
+                The wording in the breadcrumb text should be the same as in the page title.   
+                <p class="fw-bold mb-0">Consider the size</p>
                 Generally the text for breadcrumbs are smaller, do ensure it is not too small to select.
-            </p>
+                <p class="fw-bold mb-0">Behaviour</p>
+                All the pages in the breadcrumb component should be interactive (except the current page) and link to their respective pages.
         </section>
 
-        <!-- Design token Section -->
+        <!-- Accessibility guidelines Section -->
+        <section name="section-accessibility-guidelines">
+            <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+            <p class="fw-bold mb-0">Aria attributes</p>
+            <ol>
+                <li>
+                    Breadcrumb trail is contained within a navigation landmark region.
+                </li>
+                <li>
+                    The landmark region is labelled via aria-label or aria-labelledby.
+                </li>
+                <li>
+                    The link to the current page has aria-current="page". If the element representing the current page is not a
+                    link, aria-current is optional.
+                </li>
+            </ol>
+        
+            <p class="fw-bold mb-0">Keyboard accessibility</p>
+            Users should be able to navigate between breadcrumb links using standard keyboard controls
+            <ol>
+                <li>
+                    <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to move between
+                    breadcrumb links
+                </li>
+                <li>
+                    <span class="sgds-code-font">Enter</span> to activate the focused breadcrumb link
+                </li>
+            </ol>
+            <p class="fw-bold mb-0">Focus indicator</p>
+            <ol>
+                <li>
+                    Ensure the breadcrumbs are in a logical tab order within the page content
+                </li>
+                <li>
+                    Use a different colour to clearly indicate focus. eg. other interactive breadcrumb links should be of a
+                    different colour from the current page
+                </li>
+                <li>
+                    Use aria-label on the navigation element to describe the type of navigation to screen readers
+                </li>
+            </ol>
+        </section>
+
+<br>
+
+  <!-- Design token Section -->
         <section name="section-design-tokens">
             <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
             {%- highlight sass -%}{{breadcrumb-design-tokens}}{%- endhighlight -%}
