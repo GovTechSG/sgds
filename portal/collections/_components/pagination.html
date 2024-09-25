@@ -171,9 +171,14 @@ $pagination-border-radius-lg: $border-radius-lg !default;
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Best practices:</p>
+            <ol>
+                <li>Provide context on how many pages are there in total. </li>
+            </ol>
             <p class="fw-bold mb-0">Pagination should be used when:</p>
             <ol>
                 <li>Long content can be separated into multiple pages that can be navigated sequentially or by selecting a specific page within the pagination set.</li>
+                <li>Providing various option for navigating, when previous and next links are most useful way for the user to move forward and backward through pages of data.</li>
             </ol>
             <p class="fw-bold mb-0">Pagination should not be used when:</p>
             <ol>
@@ -186,21 +191,54 @@ $pagination-border-radius-lg: $border-radius-lg !default;
         <!-- Usability guidelines Section -->
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-            <p>
-                <b>Show the total number of pages in the pagination set whenever possible</b><br>
+            <p class="fw-bold mb-0">Show the total number of pages in the pagination set whenever possible</p>
                 Users should know the total number of pages or items. Truncation can be used when the number of pages exceeds the pagination display limit.
-            </p>
-            <p>
-                <b>Highlight the current page</b><br>
+                <p class="fw-bold mb-0">Highlight the current page</p>
                 Pagination should highlight the page the user is currently on.
-            </p>
-            <p>
-                <b>Place pagination at the bottom of the set of results</b><br>
+                <p class="fw-bold mb-0">Place pagination at the bottom of the set of results</p>
                 Do place pagination at the bottom of page so that users are able to navigate between pages.
-            </p>
+                <p class="fw-bold mb-0">Behaviour</p>
+                Clearly identify the pagination different states so that users will know which page they are on. Selected, hover, disabled and enabled. 
         </section>
 
-        <!-- Design token Section -->
+ <!-- Accessibility guidelines Section -->
+ <section name="section-accessibility-guidelines">
+    <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+    <p class="fw-bold mb-0">Aria attributes</p>
+    <ol>
+        <li>
+            Pagination links should be wrapped in a <code>&lt;nav&gt;</code> element and add <code>aria-label</code> to the nav element to make it clearer to users that this navigation landmark is intended for the pagination.
+        </li>
+    </ol>
+   
+    <p class="fw-bold mb-0">Keyboard accessibility</p>
+     <ol>
+        <li>
+            <span class="sgds-code-font">Tab</span> to iterate forward to the next page number
+        </li>
+        <li>
+            <span class="sgds-code-font">Shift-Tab</span> to iterate backwards to the previous page number.
+        </li>
+        <li>
+            <span class="sgds-code-font">Space</span> or <span class="sgds-code-font">Enter</span> to select interactive pagination link
+        </li>
+     </ol>
+     <p class="fw-bold mb-0">Focus indicator</p>
+     <ol>
+         <li>
+            Focus indicator should be clearly visible when a header is focused.
+        </li>
+         <li>
+            Move focus to the accordion content when it is expanded, if necessary.
+        </li>
+        <li>
+            Ensure that focusable elements within the accordion panel can be navigated using the keyboard.
+        </li>
+     </ol>
+</section>
+<br>
+
+  <!-- Design token Section -->
         <section name="section-design-tokens">
             <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
             {%- highlight sass -%}{{pagination-design-tokens}}{%- endhighlight -%}
