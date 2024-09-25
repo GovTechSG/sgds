@@ -128,17 +128,32 @@ toc: true
 <!-- Usage guidelines Section -->
 <section name="section-usage-guidelines">
     <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-    <p class="fw-bold mb-0">Text area should be used:</p>
-    <ol>
-        <li>When users are required to enter more than a line of text.</li>
-    </ol>
-    <p class="fw-bold mb-0">Text area should not be used:</p>
+    <p class="fw-bold mb-0">Best practices:</p>
     <ol>
         <li>
-            When have complex or too many open-ended answers.
-            We recommend that you break your questions up into a series of simpler questions instead. 
-            For example, consider using the checkbox component if you want users to give multiple answers from a predetermined set of options.
+            Provide additional instructions or hint text to guide users on what to enter.
         </li>
+        <li>
+            If the hint text is insufficient to guide users, you can use placeholder text to provide examples of the expected input. However, placeholders should not replace labels.
+        </li>
+        <li>
+            Ensure the placeholder text has sufficient colour contrast to be readable.
+        </li>
+        <li>
+            If there is a character limit, do inform users about it.
+        </li>
+        <li>
+            Use a readable font size and line height to enhance legibility.
+        </li>
+    </ol>
+    <p class="fw-bold mb-0">Text area should be used when:</p>
+    <ol>
+        <li>Users are required to enter more than a line of text.</li>
+    </ol>
+    <p class="fw-bold mb-0">Text area should not be used when:</p>
+    <ol>
+        <li>
+           Questions are too complex. We recommend that you break your questions up into a series of simpler questions instead. For example, consider using the checkbox component if you want users to give multiple answers from a predetermined set of options. </li>
     </ol>
 </section>
 
@@ -146,18 +161,51 @@ toc: true
 <section name="section-usability-guidelines">
     <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
     <p>
-        <b>Use word count</b><br>
-        Do use word count if you want to limit a users answers.
+        <b>Use character count</b><br>
+        If there is a character limit, inform users about it.
     </p>
     <p>
-        <b>Labels are outside of the text field</b><br>
-        Labels should be above or next to the text field. This makes it clear that the user is able to input a answer.
+        <b>Labels should be placed outside of the text field</b><br>
+        Labels should be above or next to the text field. This ensures a clear association between the label and the input field, and is also crucial for screen readers and other assistive technologies.
     </p>
     <p>
-        <b>Avoid placeholder text</b><br>
-        Placeholder text disappears when a text input is filled in. If the placeholder text is not visible, 
-        users will no longer have the text when they need to review their entries. Use hint text instead of placeholder text.
+        <b>Do not rely solely on placeholder text to convey critical information</b><br>
+        Placeholder text disappears when a text input is filled in, which can make it easy for users to forget the guidance or format instructions, leading to errors or confusion. 
+    </p>
+    <p>
+        <b>Behaviour</b><br>
+        Users should be able to click anywhere within the text area to focus. On focus, users can type directly into the text area. Any placeholder text in the field will be replaced when the user begins typing.
     </p>
 </section>
+ <!-- Accessibility guidelines Section -->
+ <section name="section-accessibility-guidelines">
+    <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+    <p class="fw-bold mb-0">Aria attributes</p>
+    <ol>
+        <li>
+            Use the <code>label</code> element to associate text with form elements explicitly. 
+        </li>
+        <li>
+            The <code>for</code> attribute of the label must exactly match the <code>id</code> of the form control.
+        </li>
+    </ol>
+   
+    <p class="fw-bold mb-0">Keyboard accessibility</p>
+     <ol>
+        <li>
+            <span class="sgds-code-font">Tab</span> to bring focus to the text area.
+        </li>
+        
+     </ol>
+     <p class="fw-bold mb-0">Focus indicator</p>
+     <ol>
+         <li>
+            Ensure the focus indicator is highly visible. Use a distinct colour that contrasts well with the surrounding elements. Avoid relying on colour alone; consider adding a border or shadow to enhance visibility so that it is accessible to all users, including those with visual impairments.
+         <li>
+            The focus indicator should encompass the entire text area without altering its size or shape. It should be clear that the focus is on the text area, not another part of the UI.
+        </li>
+     </ol>
+</section>
+<br>
 
 </div>
