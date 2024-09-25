@@ -72,31 +72,225 @@ toc: true
     <!-- Usage guidelines Section -->
     <section name="section-usage-guidelines">
         <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-        <p class="fw-bold mb-0">Date Picker should be used:</p>
-        <ul>
+        <p class="fw-bold mb-0">Date picker should be used when:</p>
+        <ol>
             <li>
-                When you want users to select a single date or a range of dates.
+                You want users need to select a range of dates (e.g., start and end dates), a date picker can facilitate this with clear visual representation.
             </li>
-        </ul>
-        <p class="fw-bold mb-0">Date Picker should not be used:</p>
-        <ul>
+        </ol>
+        <p class="fw-bold mb-0">Date picker should not be used when:</p>
+        <ol>
             <li>
-                where the context of the calendar is not important.
+                Users only need to input dates in a simple text format without complex selections, a text input field may be more appropriate.
             </li>
-        </ul>
+        </ol>
     </section>
 
 <!-- Usability guidelines Section -->
 <section name="section-usability-guidelines">
 <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-<p>
-    <b>Be relevant and clear</b><br>
+<p class="fw-bold mb-0">Be relevant and clear</p>
     Date pickers can display past, present or future dates, display as relevant to the task as possible. Clearly indicate important dates as well; current and selected dates.
-</p>
-<p>
-    <b>Target touch size </b><br>
-    Ensure that the target touch size is big enough, at least 32 x 32dp, This will reduce the chance of users hitting the wrong target that potentially cause they to complete the action wrongly without realising.
-</p>
+    <p class="fw-bold mb-0">Target touch size </p>
+    Ensure that the target touch size is big enough, this will reduce the chance of users hitting the wrong target that potentially cause them to complete the action wrongly without realising.
+    <p class="fw-bold mb-0">Behaviour</p>
+    Selecting the relevant dates should close the date picker and populate the input field with the chosen dates. Clicking or tapping outside the date picker should close it.
+</section>
+
+ <!-- Accessibility guidelines Section -->
+ <section name="section-accessibility-guidelines">
+    <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+    <p class="fw-bold mb-0">Aria attributes</p>
+    Date input field:
+    <ol>
+        <li>
+            The date input field has a visible label referenced by <code>aria-labelledby</code>, or has a label specified with <code>aria-label</code> or has a label specified with for attribute which points to the date input field's id attribute.
+        </li>
+        <li>
+            The <code>aria-invalid</code> attribute should be used to reflect the current validity state of the date input, allowing users to know whether the entered value is valid or invalid.
+        </li>
+        <li>
+            The <code>aria-describedby</code> attribute can link the date input field to explanatory, instructional or feedback text, improving comprehension for all users.
+        </li>
+    </ol>
+
+    Choose date button:
+    <ol>
+        <li>
+            The button that opens the date picker should have an <code>aria-label</code> to convey its function, making it clear that it triggers a calendar or date selection interface.
+        </li>
+        <li>
+            The <code>aria-expanded</code> attribute on the choose date button should indicate whether the date selection panel is currently visible or hidden, helping users understand the state of the component.
+        </li>
+        <li>
+            The <code>aria-haspopup</code> attribute is useful for indicating that the choose date button opens a popup or dropdown, such as a calendar, which can aid users in navigating the interface.
+        </li>
+        <li>
+            The <code>aria-controls</code> attribute on the choose date button should reference the id of the date picker dropdown, establishing a clear relationship between the control and the date picker.
+        </li>
+    </ol>
+
+    Clear date button:
+    <ol>
+        <li>
+            The button to reset the date picker should have an <code>aria-label</code> that explains its function, to ensure users are aware of its purpose.
+        </li>
+    </ol>
+
+    Date picker dialog:
+    <ol>
+        <li>
+            The date picker dialog should have a role of dialog to inform assistive technologies that it is a standalone, interactive element requiring user attention.
+        </li>
+        <li>
+            The <code>aria-modal</code> attribute should be set to true on the dialog to indicate that the background content is inactive and to keep the focus within the dialog until it is closed.
+        </li>
+        <li>
+            A descriptive <code>aria-label</code>, should be assigned to the dialog to provide a meaningful name that describes its purpose and function.
+        </li>
+    </ol>
+
+    Date picker dialog: Calendar navigation buttons:
+    <ol>
+        <li>
+            Navigation buttons for changing months and years within the date picker should have <code>aria-label</code>, to specify their actions clearly.
+        </li>
+        <li>
+            The currently displayed month and year should have <code>aria-live="polite"</code> to notify users of the updated month, year or year range without interrupting their workflow.
+        </li>
+        <li>
+            The attribute <code>aria-disabled="false"</code> is used on buttons to indicate they are clickable, whereas <code>aria-disabled="true"</code> signifies that the buttons are not interactive and are disabled.
+        </li>
+    </ol>
+
+    Date picker dialog: Date grid:
+    <ol>
+        <li>
+            The date picker table should have <code>role="grid"</code> to define its structure and enhance accessibility for screen readers.
+        </li>
+        <li>
+            The date buttons within the calendar should be marked with <code>role="button"</code> to indicate their interactive nature and have <code>aria-label</code> that describe each date fully, such as "Monday, January 1, 2024".
+        </li>
+        <li>
+            The current date should have <code>aria-current="date"</code> to identify it as the selected or today's date, enhancing orientation for users.
+    </ol>
+
+    Date picker dialog: Month grid
+    <ol>
+        <li>
+            The month buttons within the calendar should have <code>aria-label</code> that describe each month, such as "January 2024".
+        </li>
+        <li>
+            For the current month, the <code>aria-label</code> includes the phrase "Current month," followed by the month and year, to highlight its importance and provide additional context, helping users easily identify the current month.
+        </li>
+        <li>
+            The <code>aria-selected</code> attribute is used to denote the selection state of each month button. For example, <code>aria-selected="true"</code> signifies that the month is currently selected, while <code>aria-selected="false"</code> means it is not selected.
+    </ol>
+
+    Date picker dialog: Year grid
+    <ol>
+        <li>
+            For the current year, the <code>aria-label</code> includes the phrase "Current year," followed by the year, to highlight its importance and provide additional context, helping users easily identify the current month.
+        </li>
+        <li>
+            The aria-selected attribute is used to denote the selection state of each month button. For example, <code>aria-selected="true"</code> signifies that the month is currently selected, while <code>aria-selected="false"</code> means it is not selected.
+        </li>
+         </ol>
+   
+    <p class="fw-bold mb-0">Keyboard accessibility</p>
+    Before the date picker is opened:     
+    <ol>
+        <li>
+            <span class="sgds-code-font">Enter</span> or <span class="sgds-code-font">Space</span> to open date picker on focus.
+        </li>
+     </ol>
+     When date picker is opened:     
+     <ol>
+         <li>
+             <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to navigate between date input field, choose date button and clear date button.
+         </li>
+      </ol>
+      Choose date button:     
+     <ol>
+         <li>
+             <span class="sgds-code-font">Enter</span> or <span class="sgds-code-font">Space</span> to open the date picker dialog, if there is selected date, move focus to the selected date or the end date of the date range, i.e., the date displayed in the date input text field. If no date has been selected, place focus on the current date.
+         </li>
+         <li>
+            <span class="sgds-code-font">Esc</span> to close the date picker dialog and return focus to the date input field.
+        </li>
+      </ol>
+      Clear date button:     
+      <ol>
+          <li>
+              <span class="sgds-code-font">Enter</span> or <span class="sgds-code-font">Space</span> to clear the selected date.
+          </li>
+       </ol>
+       Date picker dialog:     
+       <ol>
+           <li>
+               <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to move focus between the elements in the date picker dialog.
+           </li>
+           <li>
+            <span class="sgds-code-font">Enter</span> or <span class="sgds-code-font">Space</span> to trigger the focused element.
+        </li>
+        </ol>
+        Date picker dialog: Date grid:    
+       <ol>
+           <li>
+               <span class="sgds-code-font">↑</span> to move focus to the same day of week of the past week.
+           </li>
+           <li>
+            <span class="sgds-code-font">↓</span> to move focus to the same day of week of the next week.
+        </li>
+        <li>
+            <span class="sgds-code-font">←</span> to move focus to the previous day.
+        </li>
+        <li>
+            <span class="sgds-code-font">→</span> to move focus to the next day.
+        </li>
+        </ol>
+        Date picker dialog: Month grid:
+               <ol>
+           <li>
+               <span class="sgds-code-font">↑</span> to move focus to the past 3 months.
+           </li>
+           <li>
+            <span class="sgds-code-font">↓</span> to move focus to the next 3 months.
+        </li>
+        <li>
+            <span class="sgds-code-font">←</span> to move focus to the previous month.
+        </li>
+        <li>
+            <span class="sgds-code-font">→</span> to move focus to the next month.
+        </li>
+        </ol>
+        Date picker dialog: Year grid:
+                       <ol>
+           <li>
+               <span class="sgds-code-font">↑</span> to move focus to the past 3 years.
+           </li>
+           <li>
+            <span class="sgds-code-font">↓</span> to move focus to the next 3 years.
+        </li>
+        <li>
+            <span class="sgds-code-font">←</span> to move focus to the previous year.
+        </li>
+        <li>
+            <span class="sgds-code-font">→</span> to move focus to the next year.
+        </li>
+        </ol>
+     <p class="fw-bold mb-0">Focus indicator</p>
+     <ol>
+         <li>
+            Ensure that there are visual differences between the different states such as hover, on focus, disabled, selected.
+        </li>
+         <li>
+            The focus indicator should move smoothly and visibly as the user navigates through the date picker.
+        </li>
+        <li>
+            Mouse interactions should also provide a visual focus indicator, so users can see which date or control is currently focused.
+        </li>
+     </ol>
 </section>
 </div>
 
