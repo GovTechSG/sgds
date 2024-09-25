@@ -252,6 +252,35 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
         </p>
     </section>
 
+     <!-- Accessibility guidelines Section -->
+     <section name="section-accessibility-guidelines">
+        <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+        <p class="fw-bold mb-0">Aria attributes</p>
+        <ol> 
+            <li>
+                The widget has a role="alert".
+            </li>
+        </ol>
+       
+        <p class="fw-bold mb-0">Keyboard accessibility</p>
+         <ol>
+            <li>
+                The only interactive elements are HTML button and hyperlink elements, and all the keyboard functionality is provided by browsers.       
+             </li>
+         </ol>
+         <p class="fw-bold mb-0">Focus indicator</p>
+         <ol>
+             <li>
+                Ensure that focus is moved to the alert when it appears to ensure screen reader users are aware of it
+             <li>
+                Ensure interactive elements within the alert (like a close button) are accessible via the keyboard
+            </li>
+         </ol>
+    </section>
+
+    <br>
+    
+      <!-- Design token Section -->
     <section>
         <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
         {%- highlight sass -%}{{alert-design-tokens}}{%- endhighlight -%}
