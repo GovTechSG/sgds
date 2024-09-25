@@ -236,19 +236,27 @@ $btn-active-border-tint-amount:   10% !default;
         <!-- Usage guidelines Section -->
     <section name="section-usage-guidelines">
         <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-        <p class="fw-bold mb-0">Buttons should be used:</p>
+        <p class="fw-bold mb-0">Best practices:</p>
         <ol>
             <li>
-                For important actions that you want your users to take. For example submission of a form or editing a page.
+                Fluid components like button never exist in isolation. They are always part of another component, like modal or form.
+            </li>
+            <li>
+                Use a visual hierarchy to differentiate between primary actions (e.g., "Submit"), secondary actions (e.g., "Cancel"), and tertiary actions (e.g., "Learn more").
+            </li>
+        </ol><p class="fw-bold mb-0">Buttons should be used when:</p>
+        <ol>
+            <li>
+                Initiating an action: Use buttons for actions such as submitting a form, saving data, or navigating to another page. Buttons signal that user interaction is required to complete a task.
             </li>
         </ol>
-        <p class="fw-bold mb-0">Buttons should not be used:</p>
+        <p class="fw-bold mb-0">Buttons should not be used when:</p>
         <ol>
             <li>
-                When linking pages in a site.
+                The purpose is purely to navigate to another page or section, use a hyperlink instead of a button. Links are better suited for navigation, while buttons are for actions.
             </li>
             <li>
-                For less important actions. For those types of actions, consider using text links.
+                There are too many buttons on the screen, it can overwhelm users. 
             </li>
         </ol>
     </section>
@@ -256,30 +264,61 @@ $btn-active-border-tint-amount:   10% !default;
     <!-- Usability guidelines Section -->
     <section name="section-usability-guidelines">
         <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-        <p>
-            <b>Use primary buttons for actions that go to the next step or for submission</b><br>
+        <p class="fw-bold mb-0">Use primary buttons for actions that go to the next step or for submission</p>
             This makes it clear to the user that a action will happen when they click on the button.
-        </p>
-        <p>
-            <b>Use outline or secondary buttons for secondary actions</b><br>
+            <p class="fw-bold mb-0">Use outline or secondary buttons for secondary actions</p>
             This will help differentiate it from primary action buttons.
-        </p>
-        <p>
-            <b>Ensure buttons look clickable</b><br>
+            <p class="fw-bold mb-0">Ensure buttons look clickable</p>
             Do ensure that hover and active states are clear to the user from its static state.
-        </p>
-        <p>
-            <b>Avoid using too many buttons</b><br>
+            <p class="fw-bold mb-0">Avoid using too many buttons</p>
             Buttons should be reserved mainly primary actions the users is supposed to take within a page. 
             E.g on a form you may use 3 buttons, 1 primary and 2 secondary but text links for actions within the page.
-        </p>
-        <p>
-            <b>Keep text within button short</b><br>
+            <p class="fw-bold mb-0">Keep text within button short</p>
             Text should be as short as possible and with action text to allow the user to easily understand what will happen when the button is clicked. 
             E.g Submit, Next or Download.
-        </p>
+            <p class="fw-bold mb-0">Behaviour</p>
+            Ensure button’s hover, active and disabled states are clear to the user from its default state.
     </section>
+ 
+    <!-- Accessibility guidelines Section -->
+ <section name="section-accessibility-guidelines">
+    <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+    <p class="fw-bold mb-0">Aria attributes</p>
+    <ol>
+        <li>
+            The button has an accessible label. By default, the accessible name is computed from any text content inside the button element. However, it can also be provided with aria-labelledby or aria-label.
+        </li>
+        <li>
+            If a description of the button's function is present, the button element has aria-describedby set to the ID of the element containing the description.
+        </li>
+    </ol>
+   
+    <p class="fw-bold mb-0">Keyboard accessibility</p>
+    Users should be able to navigate between buttons using standard keyboard controls:
+     <ol>
+        <li>
+            <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to navigate between buttons.
+        </li>
+        <li>
+            <span class="sgds-code-font">Enter</span> or <span class="sgds-code-font">Space</span> to activate button.
+        </li>
+     </ol>
+     <p class="fw-bold mb-0">Focus indicator</p>
+     <ol>
+         <li>
+            Provide a clear visual indication when the button is focused, such as using the focused state.
+        </li>
+         <li>
+            Ensure that the button receives focus when the page loads or when it becomes visible.
+        </li>
+        <li>
+            Button is to be included in the natural tab order of the page and can be focused using the keyboard.
+        </li>
+     </ol>
+</section>
+<br>
 
+  <!-- Design token Section -->
 <section name="section-design-tokens">
     <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
     {%- highlight sass -%}{{button-design-tokens}}{%- endhighlight -%}
