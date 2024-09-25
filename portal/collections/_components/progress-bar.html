@@ -158,15 +158,23 @@ $progress-bar-transition: width .6s ease !default;
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Progress bar should be used:</p>
+            <p class="fw-bold mb-0">Best practices:</p>
             <ol>
-                <li>When you want to show users where they are in a process.</li>
-                <li>When you want to amount completed, e.g when a user uploads a document.</li>
+                <li>Only hide the label when it is absolute clear to the user which process the progress bar represents. Note that you are still required to pass an appropriate label which will be read by screen readers.</li>
             </ol>
-            <p class="fw-bold mb-0">Progress bar should not be used:</p>
+            <p class="fw-bold mb-0">Progress bar should be used when:</p>
+            <ol>
+                <li>You want to show users where they are in a process.</li>
+                <li>You want to display the progress of an operation, e.g when a user uploads a document.</li>
+                <li>The progess can be described with quantitative information, such as a percentage.</li>
+            </ol>
+            <p class="fw-bold mb-0">Progress bar should not be used when:</p>
             <ol>
                 <li>
-                    As a indicator when users are navigating from page to page.
+                    Manual user actions are required to progress, use a stepper instead.
+                </li>
+                <li>
+                    The progress is determined by user actions such as tutorials completed, or storage space, rather than system actions.
                 </li>
             </ol>
         </section>
@@ -174,18 +182,51 @@ $progress-bar-transition: width .6s ease !default;
         <!-- Usability guidelines Section -->
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-            <p>
-                <b>Keeps progress bars moving</b><br>
-                This allows users to know that their task is progressing. Users may associate a stationary indicator as a stalled process.
-            </p>
-
-            <p>
-                <b>Use consistent progress bars</b><br>
+                <p class="fw-bold mb-0">Use consistent progress bars</p>
                 Do use one type of indicator bar style and not switch between as this may cause confusion to the user.
-            </p>
+                <p class="fw-bold mb-0">Behaviour</p>
+                Keep progress bar moving to allow users to know their task is progressing. Users may associate a stationary indicator as a stalled process.
         </section>
 
-        <!-- Design token Section -->
+        <!-- Accessibility guidelines Section -->
+    <section name="section-accessibility-guidelines">
+        <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+        <p class="fw-bold mb-0">Aria attributes</p>
+        <ol>
+            <li>
+                Give an <code>aria-label</code> with the title of the progress bar when there is not a visible title.
+            </li>
+            <li>
+                Set <code>role="progressbar"</code>.
+            </li>
+            <li>
+                If the progress bar is describing another region of the page, use <code>aria-describedby="progressbar-id"</code> to connect the two elements.
+            </li>
+            <li>
+                Set <code>aria-valuemin</code> and <code>aria-valuemax</code> to indicate the minimum and maximum progress indicator values. Otherwise, their implicit values follow the same rules as <code>&lt;input-type="range"&gt;</code> in HTML:
+<ol type="a">
+    <li>If <code>aria-valuemin</code> is missing or not a number, it defaults to 0 (zero).</li>
+<li>If <code>aria-valuemax</code> is missing or not a number, it defaults to 100.</li>
+</ol>
+            </li>
+            <li>
+                Supply a value for <code> aria-valuenow</code>  unless the value is indeterminate, in which case, omit the <code> aria-valuenow</code>  attribute. Update this value when the visual progress indicator is updated.
+            </li>
+            <li>
+                 If the progress bar is describing the loading progress of a particular region of a page, use <code> aria-describedby</code>  to reference the progress bar status, and set the <code>aria-busy</code> attribute to <code>true</code> on the region until it is finished loading.
+            </li>
+
+        </ol>
+       
+        <p class="fw-bold mb-0">Keyboard accessibility</p>
+        If the progress bar is meant to be purely informational, it does not need to be keyboard focusable or operable.
+        
+         <p class="fw-bold mb-0">Focus indicator</p>
+         An informational progress bar generally doesn't need to be focusable.
+    </section>
+    <br>
+
+      <!-- Design token Section -->
         <section name="section-design-tokens">
             <h2 class="title fw-bold" id="design-tokens">Progress bar design tokens</h2>
             {%- highlight sass -%}{{progress-bar-design-tokens}}{%- endhighlight -%}
