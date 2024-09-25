@@ -147,16 +147,21 @@ $form-check-inline-margin-end: 1rem !default;
         <!-- Usability guidelines Section -->
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-            <p class="fw-bold mb-0">List available options vertically</p>
+            <p><b>List available options vertically</b><br>
                 It is recommended to list options vertically as horizontal listings may confuse users and make it difficult to tell which label belongs to which option.
-                <p class="fw-bold mb-0">Use logical labels</p>
+            </p>
+                <p><b>Use logical labels</b><br>
                 Ensure that labels for checkboxes and groups are clear to the user.
-                <p class="fw-bold mb-0">Logical ordering</p>
+            </p>
+                <p><b>Logical ordering</b><br>
                 Ensure that options provided are organised in a meaningful way as this would help users to find the options easily.
-                <p class="fw-bold mb-0">Ensure there is enough spacing</p>
+            </p>
+                <p><b>Ensure there is enough spacing</b><br>
                 Space options out and ensure there is adequate space for touch devices or mobile screens.
-                <p class="fw-bold mb-0">Behaviour</p>
+            </p>
+                <p><b>Behaviour</b><br>
                 In hover and keyboard focus states, a border should display. Selected checkbox fills should be the same as button border colour. In the disabled state, border and text colour should display as the disabled colour.
+            </p>
         </section>
 
         <!-- Accessibility guidelines Section -->
@@ -165,10 +170,10 @@ $form-check-inline-margin-end: 1rem !default;
         <p class="fw-bold mb-0">Aria attributes</p>
         <ol>
             <li>
-                Use the label element to associate text with form elements explicitly. The for attribute of the label must exactly match the id of the form control.
+                Use the <code>label</code> element to associate text with form elements explicitly. The <code>for</code> attribute of the label must exactly match the <code>id</code> of the form control.
             </li>
             <li>
-                The button has an aria-controls property set to the unique id of the panel it controls.
+                The button has an <code>aria-controls</code> property set to the unique <code>id</code> of the panel it controls.
             </li>
         </ol>
        
