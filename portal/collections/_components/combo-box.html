@@ -167,14 +167,14 @@ export const ComboboxComponent = () => {
     <h2 class="title fw-bold" id="usability-guidelines">
       Usability guidelines
     </h2>
-    <p class="fw-bold mb-0">Ensure that the labels are clear</p>
+    <p><b>Ensure that the labels are clear</b><br>
       This will allow users to understand the purpose of the selection.
-      Labels should also be placed outside the combobox to remain visible at all times.
-      <p class="fw-bold mb-0">Use a default option whenever possible</p>
+      Labels should also be placed outside the combobox to remain visible at all times. </p>
+      <p><b>Use a default option whenever possible</b><br>
       This could be an option such as "Any". Only use the empty selection if a
-      default option does not make sense.
-      <p class="fw-bold mb-0">Behaviour</p>
-      Make use of hint texts or tooltips if your user is highly unfamiliar with the content in the combo box, or if the data is especially complex.
+      default option does not make sense. </p>
+      <p><b>Behaviour</b><br>
+      Make use of hint texts or tooltips if your user is highly unfamiliar with the content in the combo box, or if the data is especially complex. </p>
   </section>
 
  <!-- Accessibility guidelines Section -->
@@ -186,7 +186,7 @@ export const ComboboxComponent = () => {
         When a combobox receives focus, DOM focus is placed on the combobox element.
       </li>
       <li>
-        If the combobox has a visible label and the combobox element is an HTML element that can be labelled using the HTML label element (e.g., the input element), it is labeled using the label element. Otherwise, if it has a visible label, the combobox element has aria-labelledby set to a value that refers to the labelling element. Otherwise, the combobox element has a label provided by aria-label.
+        If the combobox has a visible label and the combobox element is an HTML element that can be labelled using the HTML <code>label</code> element (e.g., the <code>input</code> element), it is labeled using the <code>label</code> element. Otherwise, if it has a visible label, the combobox element has <code>aria-labelledby</code> set to a value that refers to the labelling element. Otherwise, the combobox element has a label provided by <code>aria-label</code>.
       </li>
   </ol>
  
