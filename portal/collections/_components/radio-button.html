@@ -117,21 +117,26 @@ $form-check-inline-margin-end: 1rem !default;
                     </div>
                 </div>
                 <p><b>Within the radio button</b><br>
-                    Ensure that there is at least 16px of horizontal spacing between the radio button and the label.</p>
+                    Ensure that there is at least 8px of horizontal spacing between the radio button and the label.</p>
             </div>
         </section>
 
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Best practices:</p>
+            <ol>
+                <li>The list of options should be structured in a logical order, such as from the simplest operation to most complex, or least risk to most.</li>
+                <li>Avoid nesting radio buttons with other radio buttons or checkboxes.</li>
+            </ol>
             <p class="fw-bold mb-0">Radio buttons should be used when:</p>
-            <ul>
-                <li>When you want users to only select obe item from a list of options.</li>
-            </ul>
+            <ol>
+                <li>You want users to only select one item from a list of options.</li>
+            </ol>
             <p class="fw-bold mb-0">Radio buttons should not be used when:</p>
             <ol>
                 <li>
-                    When you want users to select multiple options. Using the checkbox component would be more appropriate.
+                    You want users to select multiple options. Using the checkbox component would be more appropriate.
                 </li>
             </ol>
         </section>
@@ -140,9 +145,8 @@ $form-check-inline-margin-end: 1rem !default;
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>List available options verically</b><br>
-                It is recommended to list options vertically as horizontal listings may confuse users and make it difficult to tell which label belongs to which option.
-            </p>
+                <b>List available options vertically</b><br>
+                It is advisable to display options in a vertical list, as horizontal arrangements can confuse users and make it harder to identify which label corresponds to each option.            </p>
             <p>
                 <b>Use logical labels</b><br>
                 Ensure that labels for radio buttons and groups are clear to the user.
@@ -155,9 +159,55 @@ $form-check-inline-margin-end: 1rem !default;
                 <b>Ensure there is enough spacing</b><br>
                 Space options out and ensure there is adequate space for touch devices or mobile screens.
             </p>
+            <p>
+                <b>Behaviour</b><br>
+                Space options out and ensure there is adequate space for touch devices or mobile screens.
+            </p>
         </section>
 
-        <!-- Design token Section -->
+ <!-- Accessibility guidelines Section -->
+ <section name="section-accessibility-guidelines">
+    <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+    <p class="fw-bold mb-0">Aria attributes</p>
+    <ol>
+        <li>
+            Each radio element is labelled by its content, has a visible label referenced by <code>aria-labelledby</code>, or has a label specified with <code>aria-label</code> or has a label specified with for attribute which points to the radio element's id attribute.
+        </li>
+        <li>
+            If elements providing additional information about either the radio group or each radio button are present, those elements are referenced by the <code>radiogroup</code> element or <code>radio</code> elements with the <code>aria-describedby</code> property.
+        </li>
+    </ol>
+   
+    <p class="fw-bold mb-0">Keyboard accessibility</p>  
+     <ol>
+        <li>
+            <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to move focus into and out of the radio group. When focus moves into a radio group:
+            <ol type="a">
+                <li>If a radio button is checked, focus is set on the checked button.</li>
+                <li>If none of the radio buttons are checked, focus is set on the first</li>
+            </ol>
+        </li>
+        <li>
+            <span class="sgds-code-font">Space</span> checks the focused radio button if it is not already checked.
+        </li>
+        <li>
+            <span class="sgds-code-font">↓</span>, <span class="sgds-code-font">→</span> move focus to the next radio button in the group, uncheck the previously focused button, and check the newly focused button. If focus is on the last button, focus moves to the first button.
+        </li>
+        <li>
+            <span class="sgds-code-font">↑</span>, <span class="sgds-code-font">←</span> move focus to the previous radio button in the group, uncheck the previously focused button, and check the newly focused button. If focus is on the first button, focus moves to the last button.
+        </li>
+     </ol>
+     <p class="fw-bold mb-0">Focus indicator</p>
+     <ol>
+         <li>
+            Ensure that radio buttons have a clear, visible focus indicator to help users identify which element is currently focused.        </li>
+         <li>
+            Group radio buttons within a fieldset and provide a legend to describe the group contextually. Ensure logical focus order within the group.        </li>
+     </ol>
+</section>
+<br>
+
+  <!-- Design token Section -->
         <section name="section-design-tokens">
             <h2 class="title fw-bold" id="design-tokens">Radio button design tokens</h2>
             {%- highlight sass -%}{{radio-button-design-tokens}}{%- endhighlight -%}

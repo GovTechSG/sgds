@@ -165,9 +165,7 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
                     <li>
                         <b>Error message:</b> Serves to convey information on the error and allows the user to make the necessary correction.
                     </li>
-                    <li>
-                        <b>Spacing:</b> Spacing between label, hint text and error/warning messaging will inherit the line height of the text used.
-                    </li>
+                    
                 </ol>
             </div>
         </section>
@@ -189,16 +187,22 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
+            <p class="fw-bold mb-0">Best practices:</p>
+            <ol>
+                <li>Ensure that the labels are short and concise, so it’s obvious to the user what they should enter into the field.</li>
+                <li>Make sure your text inputs are far enough apart, so your user doesn’t click on the wrong one by mistake.</li>
+                <li>Make use of hint text to guide the user as to the format required. This removes uncertainty and will help reduce mistakes when filling in the text input.</li>
+            </ol>
             <p class="fw-bold mb-0">Text input should be used when:</p>
-            <ul>
-                <li>When you need users to enter text that is only a single line.</li>
-                <li>When you need freeform answers.</li>
-                <li>When you need input simplicity. E.g Entering a date is easier than selecting from a date picker or calender.</li>
-            </ul>
+            <ol>
+                <li>You need users to enter text that is only a single line.</li>
+                <li>You need freeform answers.</li>
+                <li>You need input simplicity. E.g Entering a date is easier than selecting from a date picker or calender.</li>
+            </ol>
             <p class="fw-bold mb-0">Text input should not be used when:</p>
             <ol>
                 <li>
-                    When you require users to enter text and/or long answers that span multiple lines.
+                    You require users to enter text and/or long answers that span multiple lines.
                     <ol type="a">
                         <li>Using the <a href="{{site.baseurl}}/components/text-area/">text area</a> component would be more appropriate.</li>
                     </ol>
@@ -216,28 +220,54 @@ $form-validation-states: ("valid": ("color": $form-feedback-valid-color, "icon":
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
             <p>
-                <b>Ensure that the labels are short and concise</b><br>
-                This will allow users to understand what needs to be entered quickly.
+                <b>Labels should be placed outside of the text field</b><br>
+                Labels should be above or next to the text field. This ensures a clear association between the label and the input field, and is also crucial for screen readers and other assistive technologies.
             </p>
             <p>
-                <b>Labels are outside of the text field</b><br>
-                Labels should be above or next to the text field. This maes it clear that the user is able to input a answer.
+                <b>Do not rely solely on placeholder text to convey critical information</b><br>
+                Placeholder text disappears when a text input is filled in, which can make it easy for users to forget the guidance or format instructions, leading to errors or confusion. 
             </p>
             <p>
                 <b>Text fields of the appropriate length</b><br>
                 The length of the text input should correspond to the length of the expected answer. This will give the user an idea of how much they need to fill in.
             </p>
             <p>
-                <b>Use hint text</b><br>
-                Make use of hint text to guide the user as to the format required. This removes uncertainty and will help reduce mistakes when filling in the text input.
+                <b>Behaviour</b><br>
+                Users should be able to click anywhere within the text area to focus. On focus, users can type directly into the text area. Any placeholder text in the field will be replaced when the user begins typing.
             </p>
-            <p>
-                <b>Avoid placeholder text</b><br>
-                Placeholder text disappears when a text input is filled in. If the placeholder text is not visible, users will no longer have the text when they need to review their entries. Use hint text instead of placeholder text.
-            </p>
+           
         </section>
 
-        <!-- Design token Section -->
+ <!-- Accessibility guidelines Section -->
+ <section name="section-accessibility-guidelines">
+    <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+    <p class="fw-bold mb-0">Aria attributes</p>
+    <ol>
+        <li>
+            Use the <code>label</code> element to associate text with form elements explicitly. The <code>for</code> attribute of the label must exactly match the <code>id</code> of the form control.
+        </li>
+    </ol>
+   
+    <p class="fw-bold mb-0">Keyboard accessibility</p>
+    Ensure that the accordion can be navigated and operated using the keyboard:
+     <ol>
+        <li>
+            <span class="sgds-code-font">Tab</span> to bring focus to the text input.
+        </li>
+     </ol>
+     <p class="fw-bold mb-0">Focus indicator</p>
+     <ol>
+         <li>
+            Ensure the focus indicator is highly visible. Use a distinct colour that contrasts well with the surrounding elements. Avoid relying on colour alone; consider adding a border or shadow to enhance visibility so that it is accessible to all users, including those with visual impairments.
+        </li>
+         <li>
+            The focus indicator should encompass the entire text input without altering its size or shape. It should be clear that the focus is on the text input, not another part of the UI.
+        </li>
+     </ol>
+</section>
+<br>
+
+  <!-- Design token Section -->
         <section name="section-design-tokens">
             <h2 class="title fw-bold" id="design-tokens">Text input design tokens</h2>
             {%- highlight sass -%}{{text-input-design-tokens}}{%- endhighlight -%}

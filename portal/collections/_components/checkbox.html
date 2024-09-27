@@ -117,48 +117,94 @@ $form-check-inline-margin-end: 1rem !default;
                     </div>
                 </div>
                 <p><b>Within the checkbox</b><br>
-                    Ensure that there is at least 16px of horizontal spacing between the checkbox and the label.</p>
+                    Ensure that there is at least 8px of horizontal spacing between the checkbox and the label.</p>
             </div>
         </section>
 
         <!-- Usage guidelines Section -->
         <section name="section-usage-guidelines">
             <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-            <p class="fw-bold mb-0">Checkboxes should be used:</p>
-            <ul>
-                <li>When you want users to select multiple items from a predetermined list of items.</li>
-                <li>When your users need to see all available options at once.</li>
-            </ul>
-            <p class="fw-bold mb-0">Checkboxes should not be used:</p>
-            <ul>
+            <p class="fw-bold mb-0">Best practices:</p>
+            <ol>
+                <li>Checkboxes and radio buttons are not interchangeable. A set of checkboxes should be used to select as many options as desired (or none). A set of radio buttons should be used to select only a single option from a list of mutually exclusive options.</li>
+                <li>Users should be able to select either the text label or the checkbox to select an option.</li>
+                <li>Standalone checkboxes should only be used in situations where the context is clear without an associated text label. </li>
+            </ol>
+            <p class="fw-bold mb-0">Checkboxes should be used when:</p>
+            <ol>
+                <li>You want users to select multiple items from a predetermined list of items.</li>
+                <li>Users need to see all available options at once.</li>
+                <li>Turning checkbox input on or off to indicate whether you agree to the terms.</li>
+            </ol>
+            <p class="fw-bold mb-0">Checkboxes should not be used when:</p>
+            <ol>
                 <li>
-                    When selecting 1 option from a predetermined list of items. Using radio buttons would be more appropriate.
+                    It is for selecting one option from a predetermined list of items. Using radio buttons would be more appropriate.
                 </li>
-            </ul>
+            </ol>
         </section>
 
         <!-- Usability guidelines Section -->
         <section name="section-usability-guidelines">
             <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
-            <p>
-                <b>List available options vertically</b><br>
+            <p><b>List available options vertically</b><br>
                 It is recommended to list options vertically as horizontal listings may confuse users and make it difficult to tell which label belongs to which option.
             </p>
-            <p>
-                <b>Use logical labels</b><br>
+                <p><b>Use logical labels</b><br>
                 Ensure that labels for checkboxes and groups are clear to the user.
             </p>
-            <p>
-                <b>Logical ordering</b><br>
+                <p><b>Logical ordering</b><br>
                 Ensure that options provided are organised in a meaningful way as this would help users to find the options easily.
             </p>
-            <p>
-                <b>Ensure there is enough spacing</b><br>
+                <p><b>Ensure there is enough spacing</b><br>
                 Space options out and ensure there is adequate space for touch devices or mobile screens.
+            </p>
+                <p><b>Behaviour</b><br>
+                In hover and keyboard focus states, a border should display. Selected checkbox fills should be the same as button border colour. In the disabled state, border and text colour should display as the disabled colour.
             </p>
         </section>
 
-        <!-- Design token Section -->
+        <!-- Accessibility guidelines Section -->
+    <section name="section-accessibility-guidelines">
+        <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+        <p class="fw-bold mb-0">Aria attributes</p>
+        <ol>
+            <li>
+                Use the <code>label</code> element to associate text with form elements explicitly. The <code>for</code> attribute of the label must exactly match the <code>id</code> of the form control.
+            </li>
+            <li>
+                The button has an <code>aria-controls</code> property set to the unique <code>id</code> of the panel it controls.
+            </li>
+        </ol>
+       
+        <p class="fw-bold mb-0">Keyboard accessibility</p>
+         <ol>
+            <li>
+                <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to navigate between checkboxes.
+            </li>
+            <li>
+                <span class="sgds-code-font">Space</span> to trigger a state change while checkbox input has focus.
+            </li>
+         </ol>
+         <p class="fw-bold mb-0">Focus indicator</p>
+         <ol>
+             <li>
+                Ensure that checkboxes are included in the natural tab order of the page and can be focused using the Tab key.
+            </li>
+             <li>
+                Provide a clear visual indication of focus for checkboxes. This can include an outline, border, or background colour change.
+            </li>
+            <li>
+                When multiple checkboxes are present, ensure that users can navigate between checkboxes using the Tab key and that the focus indicator clearly indicates which checkbox is currently focused.
+            </li>
+            <li>
+                Tab order should follow a logical sequence that is consistent with the visual layout of the checkboxes.
+            </li>
+         </ol>
+    </section>
+    <br>
+
+      <!-- Design token Section -->
         <section name="section-design-tokens">
             <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
             {%- highlight sass -%}{{checkbox-design-tokens}}{%- endhighlight -%}
