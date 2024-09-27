@@ -271,24 +271,23 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
     <!-- Usage guidelines Section -->
     <section name="section-usage-guidelines">
         <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-        <p>Accordions increases the cognitive load for users, as decisions have to be made when clicking on the headers.
-            Users may also ignore important information if it is hidden in an accordion.</p>
-        <p class="fw-bold mb-0">When to use the accordion component:</p>
+        <p class="fw-bold mb-0">Best practices:</p>
+        <ol>
+            <li>Accordion labels should not link to a page; labels and buttons should open the same thing. (e.g. your label should not link to another page, and your icon opens the accordion).</li>
+        </ol>
+        <p class="fw-bold mb-0">Accordion should be used when:</p>
         <ol>
             <li>There is insufficient space within the page to display the necessary information.</li>
             <li>Users require an overview of specific content that's related to one another.</li>
         </ol>
-        <p class="fw-bold mb-0">When not to use the accordion component:</p>
+        <p class="fw-bold mb-0">Accordion should not be used when:</p>
         <ol>
-            <li>
-                There is insufficient space within the page to display the necessary information.
-                <ul>
-                    <li>Accordions hide content, and there may be users who may miss the content or not understand how
-                        accordions work.</li>
-                    <li>If users need to see all information in a single page, you can consider reducing your content,
-                        splitting them into smaller sections, or use well-formatted text (e.g. headers, contents,
-                        section).</li>
-                </ul>
+                    <li>Each section only contains a small amount of text or a few elements, an accordion can unnecessarily complicate the layout. Simple lists or headings might work better.</li>
+                    <li>User needs to see all information in a single page.
+                        <li>The user wants to compare information in a single layout.
+
+                        </li>
+                </ol>
             </li>
         </ol>
     </section>
@@ -297,15 +296,57 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
     <section name="section-usability-guidelines">
         <h2 class="title fw-bold" id="usability-guidelines">Usability guidelines</h2>
         <p>
-            <b>Do ensure that the entire heading is clickable to the user.</b><br>
-            A larger target will make it easier for users to manipulate.
-        </p>
+        <b>Do ensure that the entire heading is clickable to the user</b><br>
+        A larger target will make it easier for users to manipulate.
+       </p>
+       <p>
+        <b>Ensure enough space between content and headings</b><br>
+        This is to prevent the user from accidentally closing the accordion.
         <p>
-            <b>Ensure enough space between content and headings</b><br>
-            This is to prevent the user from accidentally closing the accordion.
-        </p>
+        <b>Behaviour</b><br>
+        In addition to the collapse and expanded states, accordions should also have interactive state for focus. User should be able to trigger a state change by clicking anywhere in the header area.
     </section>
 
+
+    <!-- Accessibility guidelines Section -->
+    <section name="section-accessibility-guidelines">
+        <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+        <p class="fw-bold mb-0">Aria attributes</p>
+        <ol>
+            <li>
+                The accordion header has a role of <code>&lt;button&gt;</code>, with an <code>aria-expanded</code> attribute set to <code>"true"</code> or <code>"false"</code>.
+            </li>
+            <li>
+                The button has an <code>aria-controls</code> property set to the unique <code>id</code> of the panel it controls.
+            </li>
+        </ol>
+       
+        <p class="fw-bold mb-0">Keyboard accessibility</p>
+        Ensure that the accordion can be navigated and operated using the keyboard:
+         <ol>
+            <li>
+                <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to navigate between accordion headers.
+            </li>
+            <li>
+                <span class="sgds-code-font">Enter</span> or <span class="sgds-code-font">Space</span> to expand or collapse sections.
+            </li>
+         </ol>
+         <p class="fw-bold mb-0">Focus indicator</p>
+         <ol>
+             <li>
+                Focus indicator should be clearly visible when a header is focused.
+            </li>
+             <li>
+                Move focus to the accordion content when it is expanded, if necessary.
+            </li>
+            <li>
+                Ensure that focusable elements within the accordion panel can be navigated using the keyboard.
+            </li>
+         </ol>
+    </section>
+    <br>
+
+      <!-- Design token Section -->
     <section>
         <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
         {%- highlight sass -%}{{accordion-design-tokens}}{%- endhighlight -%}

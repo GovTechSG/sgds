@@ -1,3 +1,13 @@
+## v2.3.5 (2024-09-23)
+
+### Feat
+
+- *****: update to bootstrap 5.2 and patch missing variables
+
+### Fix
+
+- **tooltip**: add positoin absolute removed by upstream bootstrap dep
+
 ## v2.3.4 (2024-08-30)
 
 ### Feat

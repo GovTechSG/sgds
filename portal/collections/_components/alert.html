@@ -216,20 +216,24 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
     <!-- Usage guidelines Section -->
     <section name="section-usage-guidelines">
         <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-        <p class="fw-bold mb-0">Alerts should be used:</p>
+        <p class="fw-bold mb-0">Best practices:</p>
         <ol>
-            <li>When you need system status messaging - The alert may be in the form of a notification that keeps users
+            <li>Alert banner should come back into view at the next possible occasion if the user dismisses it without resolving it.</li>
+            <li>Be clear and concise. If possible, include an in-line action for a user to take so that they can address the issue explained in the message. </li>
+        </ol>
+        <p class="fw-bold mb-0">Alerts should be used when:</p>
+        <ol>
+            <li>You need system status messaging - The alert may be in the form of a notification that keeps users
                 informed of the status of a system. This may or may not require the user to take action and/or respond.
                 Some examples of this can be in the form of errors, warnings or generic updates for the users.</li>
         </ol>
-        <p class="fw-bold mb-0">Alerts should not be used:</p>
+        <p class="fw-bold mb-0">Alerts should not be used when:</p>
         <ol>
             <li>
-                For validation errors - Alerts should not be used for validation errors, these should be displayed on
-                the component that the user is on.
+                You need to display validation errors, these should be displayed on the component that the user is on.
             </li>
             <li>
-                Multiple alerts - There should not be multiple alerts on a single page. E.g A notification alert and a
+                There are multiple alerts on a single page. E.g A notification alert and a
                 error/warning alert. Use the one that is most important to the user.
             </li>
         </ol>
@@ -241,17 +245,50 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
         <p>
             <b>Do not use multiple notifications on a page</b><br>
             This may overwhelm or annoy users and may result in them ignoring the notification altogether.
-        </p>
-        <p>
-            <b>Dismissable alerts</b><br>
+            </p>
+            <p>
+                <b>Dismissable alerts</b><br>
             Avoid triggering interaction with a badge as they may be confused as small buttons.
         </p>
         <p>
-            <b>Proper context</b><br>
+                <b>Proper context</b><br>
             Do not use alerts that are not related to a user's goal.
+        </p> 
+        <p>
+                <b>Behaviour</b><br>
+            Users should be able to close a dismissible notification by clicking the close x. Alerts can include high and low contrast to differentiate critical messaging. low contrast will be less visually disruptive for users.
         </p>
+        </section>
+
+     <!-- Accessibility guidelines Section -->
+     <section name="section-accessibility-guidelines">
+        <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+        <p class="fw-bold mb-0">Aria attributes</p>
+        <ol> 
+            <li>
+                The widget has a <code>role="alert"</code>.
+            </li>
+        </ol>
+       
+        <p class="fw-bold mb-0">Keyboard accessibility</p>
+         <ol>
+            <li>
+                The only interactive elements are HTML button and hyperlink elements, and all the keyboard functionality is provided by browsers.       
+             </li>
+         </ol>
+         <p class="fw-bold mb-0">Focus indicator</p>
+         <ol>
+             <li>
+                Ensure that focus is moved to the alert when it appears to ensure screen reader users are aware of it.
+             <li>
+                Ensure interactive elements within the alert (like a close button) are accessible via the keyboard.
+            </li>
+         </ol>
     </section>
 
+    <br>
+    
+      <!-- Design token Section -->
     <section>
         <h2 class="title fw-bold" id="design-tokens">{{page.title}} design tokens</h2>
         {%- highlight sass -%}{{alert-design-tokens}}{%- endhighlight -%}

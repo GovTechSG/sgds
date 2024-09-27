@@ -98,17 +98,16 @@ toc: true
 
       <ol>
         <li>
-          <b>Icon (situational):</b> Serves to give a visual queue to the upload
+          <b>Icon (situational):</b> Serves to give a visual cue to the upload
           button.
         </li>
         <li><b>Button:</b> Button component is used.</li>
         <li>
-          <b>Uploaded content:</b> Displayed to show users what has been
-          uploaded.
+          <b>Uploaded content:</b> To show users what has been uploaded.
         </li>
         <li>
           <b>Validation and remove:</b> Serves to inform users if a file has
-          been sucessfully uploaded and allow them to remove if necessary.
+          been sucessfully uploaded and allow them to remove if needed.
         </li>
       </ol>
     </div>
@@ -137,16 +136,28 @@ toc: true
   <!-- Usage guidelines Section -->
   <section name="section-usage-guidelines">
     <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-    <p class="fw-bold mb-0">File upload should be used:</p>
+    <p class="fw-bold mb-0">Best practices:</p>
     <ol>
       <li>
-        When you require users to upload mandatory documents. E.g proof of
+        Show the progress of uploading.
+      </li>
+      <li>
+        Error messages about file uploads must be exposed to assistive technology.
+      </li>
+      <li>
+        The delete button needs to have the uploaded file name associated with it programmatically, so the user understands which file will be removed.
+      </li>
+    </ol>
+    <p class="fw-bold mb-0">File upload should be used when:</p>
+    <ol>
+      <li>
+        You require users to upload mandatory documents. E.g proof of
         signature.
       </li>
     </ol>
-    <p class="fw-bold mb-0">File upload should not be used:</p>
+    <p class="fw-bold mb-0">File upload should not be used when:</p>
     <ol>
-      <li>Documents are optional.</li>
+      <li>Documents are optional and a text input field or text area may be more suitable.</li>
       <li>When you require users to upload large files.</li>
     </ol>
   </section>
@@ -156,20 +167,44 @@ toc: true
     <h2 class="title fw-bold" id="usability-guidelines">
       Usability guidelines
     </h2>
-    <p>
-      <b>State the format of the file(s)</b><br />
-      This will prevent users from uploading invalid formats and encountering
-      errors.
-    </p>
-    <p>
-      <b>State the maximum file size</b><br />
-      This is to prevent users from uploading files sizes that are too large and
-      encountering errors.
-    </p>
-    <p>
-      <b>Have clear labelling and use hint text</b><br />
-      Ensure you label the file upload clearly as well as hint text when
-      necessaryso users know what exactly they have to upload.
-    </p>
+    <p><b>State the file specifications clearly</b><br>
+      Stating the file specifications clearly will prevent users from uploading invalid formats, exceeding file size and encountering errors.
+      </p>
+      <p><b>Have clear labelling and use hint text</b><br>
+      Ensure you label the file upload clearly as well as hint text when necessary so users know what exactly they have to upload.
+      </p>
+      <p><b>Behaviour</b><br>
+      A file that is being uploaded should have three distinct states—loading, success, and uploaded.
+      </p>
   </section>
+
+   <!-- Accessibility guidelines Section -->
+   <section name="section-accessibility-guidelines">
+    <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+    <p class="fw-bold mb-0">Keyboard accessibility</p>
+     <ol>
+        <li>
+            <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to navigate between file upload button and the remove file button of the uploaded file.
+        </li>
+        <li>
+          <span class="sgds-code-font">Enter</span> or <span class="sgds-code-font">Space</span> on the upload button to open file upload dialog.
+      </li>
+      <li>
+        <span class="sgds-code-font">Enter</span> or <span class="sgds-code-font">Space</span> on the remove file button to remove the file.
+    </li>
+     </ol>
+     <p class="fw-bold mb-0">Focus indicator</p>
+     <ol>
+         <li>
+          Use a clear and distinct focus indicator to help users identify when the file upload input is focused.
+        </li>
+         <li>
+          Ensure the focus indicator is highly visible against different backgrounds and contrasts well with the surrounding elements.
+        </li>
+        <li>
+          Offer visual and auditory feedback when the file is successfully uploaded or when there is an error.
+        </li>
+     </ol>
+</section>
+
 </div>

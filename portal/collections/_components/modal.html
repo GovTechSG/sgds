@@ -459,7 +459,7 @@ $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
           <b>Content:</b> Serves to explain what the model is about. For e.g
           error messaging or confirmation messaging.
         </li>
-        <li><b>CTA buttons:</b> Serves to let users take a action or cancel.</li>
+        <li><b>CTA buttons:</b> Serves to let users take an action or cancel.</li>
       </ol>
     </div>
   </section>
@@ -487,25 +487,25 @@ $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
   <!-- Usage guidelines Section -->
   <section name="section-usage-guidelines">
     <h2 class="title fw-bold" id="usage-guidelines">Usage guidelines</h2>
-    <p class="fw-bold mb-0">Modals should be used:</p>
-    <ul>
+    <p class="fw-bold mb-0">Modals should be used when:</p>
+    <ol>
       <li>
-        When you want to interrupt a user's current task to direct the user's
+       You want to interrupt a user's current task to direct the user's
         attention to something important. For example, confirming when a user
         wants to submit a form, user sign up and login, or highlighting an
         important event with an infographic upon entering your website.
       </li>
-      <li>When you want to highlight something.</li>
-    </ul>
-    <p class="fw-bold mb-0">Modals should not be used:</p>
-    <ul>
+      <li>You want to highlight something.</li>
+    </ol>
+    <p class="fw-bold mb-0">Modals should not be used when:</p>
+    <ol>
       <li>
-        When you need to present simple notifications to the user. It should
+        You need to present simple notifications to the user. It should
         always accompany something actionable by the user such as confirming or
         filling in a form. If you need to notifiy the user, use something less
         intrusive such as the notification component instead.
       </li>
-    </ul>
+    </ol>
   </section>
 
   <!-- Usability guidelines Section -->
@@ -514,19 +514,67 @@ $modal-show-transform: none !default; $modal-transition: transform .3s ease-out
       Usability guidelines
     </h2>
     <p>
-      <b>User triggered</b><br />
+      <b>User triggered</b><br>
       Modals should always appear as a result of a action that a user has taken like when submitting a application. Modals should not be automatically displayed to the user. Some exceptions to the rule would be if you need to inform users that their session is about to time out or if they have to accept cookies before proceeding.
-    </p>
-    <p>
-      <b>Clear heading labels and CTAs</b><br />
+      </p>
+      <p>
+        <b>Clear heading labels and CTAs</b><br>
       Ensure that the heading and CTAs are clear to the user. This avoids confusion and indicates what action needs to be taken.
-    </p>
-    <p>
-      <b>Try to avoid long content with scrolling</b><br />
+      </p>
+      <p>
+        <b>Try to avoid long content with scrolling</b><br>
       Long content with scrolling limits a user's ability to view the entire message due to the limited space.
-    </p>
+      </p>
+      <p>
+        <b>Behaviour</b><br>
+      Allow users to close the modal by clicking the backdrop (the area outside the modal) and by pressing the Esc key.
+      </p>
   </section>
 
+   <!-- Accessibility guidelines Section -->
+   <section name="section-accessibility-guidelines">
+    <h2 class="title fw-bold" id="accessibility-guidelines">Accessibility guidelines</h2>
+    <p class="fw-bold mb-0">Aria attributes</p>
+    <ol>
+        <li>
+          The element that serves as the dialog container has a <code>role="dialog"</code>.
+        </li>
+        <li>
+          All elements required to operate the dialog are descendants of the element that has <code>role="dialog"</code>.
+        </li>
+        <li>
+          The dialog container element has <code>aria-modal="true"</code>.
+        </li>
+    </ol>
+   
+    <p class="fw-bold mb-0">Keyboard accessibility</p>
+     <ol>
+        <li>
+            <span class="sgds-code-font">Tab</span> or <span class="sgds-code-font">Shift-Tab</span> to move the focus between elements within the modal.
+        </li>
+        <li>
+            <span class="sgds-code-font">Enter</span> or <span class="sgds-code-font">Space</span> to select action buttons or interactive elements.
+        </li>
+        <li>
+          <span class="sgds-code-font">Esc</span> to close the modal.
+      </li>
+     </ol>
+     <p class="fw-bold mb-0">Focus indicator</p>
+     <ol>
+         <li>
+          When the modal opens, move focus to the first interactive element within the modal. When the modal closes, return focus to the element that triggered the modal.
+        </li>
+         <li>
+          Ensure all interactive elements within the modal are keyboard navigable. Trap focus within the modal so that tabbing does not navigate to elements outside the modal.
+        </li>
+        <li>
+          Include a close button and ensure it is keyboard accessible and properly labeled using <code>aria-label</code>.
+        </li>
+     </ol>
+</section>
+<br>
+
+      <!-- Design token Section -->
   <section>
     <h2 class="title fw-bold" id="design-tokens">
       {{page.title}} design tokens
