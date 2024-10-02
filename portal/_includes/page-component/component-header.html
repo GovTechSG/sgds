@@ -43,20 +43,19 @@
 
             {% if page.github-link %}
             <div>
-                <i class="bi bi-github"></i> <a href="{{site.github-link}}" target="_blank">View it on Github</a>
+                <i class="bi bi-github"></i> <a href="{{site.github-link}}" target="_blank">Github</a>
             </div>
             {% endif %}
             {% if page.react-link %}
             <div>
                 <img src="{{site.baseurl}}/assets/img/component/storybook-icon.svg" alt=""> <a
-                    href="{{site.react-storybook | append: page.react-link}}" target="_blank">View it on React
-                    Storybook</a>
+                    href="{{site.react-storybook | append: page.react-link}}" target="_blank">React</a>
             </div>
             {% endif %}
-            {% if page.vue-link %}
+            {% if page.web-component-link %}
             <div>
                 <img src="{{site.baseurl}}/assets/img/component/storybook-icon.svg" alt=""> <a
-                    href="{{page.react-link}}" target="_blank">View it on Vue Storybook</a>
+                    href="{{site.web-component-storybook | append: page.web-component-link}}" target="_blank">Web Component</a>
             </div>
             {% endif %}
         </div>
