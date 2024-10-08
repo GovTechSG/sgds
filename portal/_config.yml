@@ -124,7 +124,7 @@ defaults:
     values:
       layout: "layout-sidenav"
       pageCategory: "templates"
-      source-grid: false
+      source-grid: true
       toc: true
   -
     scope:
