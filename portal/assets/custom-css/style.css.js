@@ -54,11 +54,15 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!*********************!*\
   !*** ./js/style.js ***!
   \*********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_custom_css_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/custom-css/style.scss */ "./assets/custom-css/style.scss");
+
+})();
 
 /******/ })()
 ;
