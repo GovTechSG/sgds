@@ -81,19 +81,22 @@ node_modules/
 @import "~{{site.sgds-package-name}}/sass/functions";
 
 // Default variable overrides
-$body-bg: #000;
-$body-color: #111;
+$primary: #3fb247;
+$primarys: (
+  'primary-100': #52e85c,
+  'primary-200': #4dd956,
+  'primary-300': #39a340,
+  'primary-400': #3ba442,
+  'primary-500': #3fb247,
+  'primary-600': #308636,
+  'primary-700': #1b4a1e,
+  'primary-800': #0f2b11,
+  'primary-900': #020502,
+);
 
 // Required
-@import "~{{site.sgds-package-name}}/sass/variables";
-@import "~{{site.sgds-package-name}}/sass/maps";
+@import "~{{site.sgds-package-name}}/sass/sgds";
 
-
-// Optional components here
-@import "~{{site.sgds-package-name}}/sass/accordion";
-@import "~{{site.sgds-package-name}}/sass/alert";
-@import "~{{site.sgds-package-name}}/sass/badge";
-@import "~{{site.sgds-package-name}}/sass/breadcrumb";
 // etc
 {% endcapture %}
 
