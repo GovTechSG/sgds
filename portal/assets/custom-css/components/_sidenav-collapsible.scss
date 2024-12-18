@@ -8,7 +8,7 @@ $paragraph-font-size: 1rem;
   left: 0;
   height: 100%;
   width: 300px;
-  background: hsl(0,0,90%);
+  background: hsl(0,0%,90%);
   z-index: 100;
   transition: all 0.3s ease;
   &.close{
@@ -172,7 +172,7 @@ $paragraph-font-size: 1rem;
   opacity: 0;
   
   &::before{
-    background-color: hsl(207,100,42);
+    background-color: hsl(207,100%,42%);
     border-radius: 9999px;
     font-weight: bold;
     padding: 1px;
