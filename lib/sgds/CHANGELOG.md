@@ -1,5 +1,11 @@
 ## Unreleased
 
+## v2.3.7 (2024-12-18)
+
+### Fix
+
+- *****: test with sass version 14.2.1 and fix deprecation
+
 ## v2.3.6 (2024-11-13)
 
 ### Fix
