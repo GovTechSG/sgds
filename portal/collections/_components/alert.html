@@ -23,76 +23,40 @@ $alert-dismissible-padding-r: $alert-padding-x * 3 !default; // 3x covers width 
 {% endcapture %}
 
 {% capture default-alert %}
-<div role="alert" class="sgds alert alert-primary fade d-flex align-items-center show">
-    <div>
-        <i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!
-    </div>
-</div>
+<sgds-alert title="Title" dismissible variant="info" show><sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
+      <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+    </sgds-alert>
 {% endcapture %}
 
 {% capture icon-alert %}
-<div role="alert" class="fade d-flex align-items-center alert alert-primary show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
-</div>
-<div role="alert" class="fade d-flex align-items-center alert alert-secondary show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
-</div>
-<div role="alert" class="fade d-flex align-items-center alert alert-success show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
-</div>
-<div role="alert" class="fade d-flex align-items-center alert alert-danger show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
-</div>
-<div role="alert" class="fade d-flex align-items-center alert alert-warning show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
-</div>
-<div role="alert" class="fade d-flex align-items-center alert alert-info show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
-</div>
-<div role="alert" class="fade d-flex align-items-center alert alert-light show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
-</div>
-<div role="alert" class="fade d-flex align-items-center alert alert-dark show sgds">
-    <div><i class="bi bi-exclamation-circle me-2"></i>This is a primary alert—check it out!</div>
-</div>
+
 {% endcapture %}
 
 {% capture link-alert %}
-<div role="alert" class="fade d-flex align-items-center alert alert-primary show sgds">
-    <div>
-        <i class="bi bi-exclamation-circle me-2"></i>
-        This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
-        it a click if you like.
-    </div>
-</div>
-<div role="alert" class="fade d-flex align-items-center alert alert-secondary show sgds">
-    <div>
-        <i class="bi bi-exclamation-circle me-2"></i>
-        This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
-        it a click if you like.
-    </div>
-</div>
-<div role="alert" class="fade d-flex align-items-center alert alert-success show sgds">
-    <div>
-        <i class="bi bi-exclamation-circle me-2"></i>
-        This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
-        it a click if you like.
-    </div>
-</div>
-<div role="alert" class="fade d-flex align-items-center alert alert-danger show sgds">
-    <div>
-        <i class="bi bi-exclamation-circle me-2"></i>
-        This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
-        it a click if you like.
-    </div>
-</div>
-<div role="alert" class="fade d-flex align-items-center alert alert-warning show sgds">
-    <div>
-        <i class="bi bi-exclamation-circle me-2"></i>
-        This is a primary alert with <a class="alert-link" href="#" role="button" tabindex="0">an example link</a>. Give
-        it a click if you like.
-    </div>
-</div>
+<sgds-alert show="" variant="info" title="Info alert">
+    <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+    <div> Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+  </sgds-alert>
+  
+  <sgds-alert show="" variant="success" title="Success alert">
+    <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
+    <div> Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+  </sgds-alert>
+  
+  <sgds-alert show="" variant="danger" title="Danger alert">
+    <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
+    <div> Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+  </sgds-alert>
+  
+  <sgds-alert show="" variant="warning" title="Warning alert">
+    <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
+    <div> Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+  </sgds-alert>
+  
+  <sgds-alert show="" variant="neutral" title="Neutral alert">
+    <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+    <div> Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+  </sgds-alert>
 {% endcapture %}
 
 {% capture additional-alert %}

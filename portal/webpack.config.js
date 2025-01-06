@@ -7,6 +7,7 @@ module.exports = (env, argv) => ({
     entry: {
         "assets/custom-css/style.css": "./js/style.js",
         "assets/js/portal-polyfills.bundle": "./js/portal-polyfills.js",
+        "assets/js/my-element.bundle": "./js/my-element.js",
     },
     devtool: "source-map",
     output: {
