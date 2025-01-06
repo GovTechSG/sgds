@@ -43,7 +43,7 @@
                         {% if jekyll.environment == "production" %}
                             <a class="btn btn-primary" href="{{site.react-storybook}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">View on React storybook</a>
                         {% else %}
-                            <a class="btn btn-primary" href="{{site.react-storybook-local}}/?path=/story/components-{{include.storybook-react | downcase}}" target="_blank">[**DEV**]View on React storybook</a>
+                        {%- highlight jsx -%}{{include.reactCode}}{%- endhighlight -%}
                         {% endif %}
                     </sgds-tab-panel>
                     {% endif %}

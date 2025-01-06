@@ -10,26 +10,24 @@ toc: true
 ---
 
 {% capture stepper-examples %}
-<div class="sgds stepper">
-    <div class="stepper-item is-completed">
-        <div class="stepper-marker">1</div>
-        <div class="stepper-detail">
-            <p><b>Marker title</b></p>
-        </div>
-    </div>
-    <div class="stepper-item is-active">
-        <div class="stepper-marker">2</div>
-        <div class="stepper-detail">
-            <p><b>Marker title</b></p>
-        </div>
-    </div>
-    <div class="stepper-item">
-        <div class="stepper-marker">3</div>
-        <div class="stepper-detail">
-            <p><b>Marker title</b></p>
-        </div>
-    </div>
-</div>
+<sgds-stepper activeStep="1" steps='[{"stepHeader":"Personal Details","component":"1 test"},{"stepHeader":"Address and Contact Information","component":"2 test"},{"stepHeader":"Review","component":"3 test"}]'>
+</sgds-stepper>
+
+<sgds-stepper id="test-stepper">
+</sgds-stepper>
+
+<script>
+    const testStepper = document.querySelector("#test-stepper")
+    testStepper.steps = [
+        { stepHeader: "First form", component: "First form content"},
+        { stepHeader: "Second form", component: "Second form content"},
+        { stepHeader: "Third form", component: "Third form content"}
+        ]
+</script>
+{% endcapture %}
+
+{% capture react-stepper %}
+{% include react-snippet/stepper.jsx %}
 {% endcapture %}
 
 {% capture stepper-design-tokens %}
@@ -55,6 +53,7 @@ $steps-divider-height: .25rem !default;
                     include page-component/component-code-snippet.html 
                     compName="stepper-examples" 
                     code=stepper-examples 
+                    reactCode=react-stepper
                     storybook-react="stepper"
                     storybook-spider="stepper"
                 %}
