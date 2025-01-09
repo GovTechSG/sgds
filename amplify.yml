@@ -12,7 +12,7 @@ frontend:
           then 
             JEKYLL_ENV=production npm run build
           else
-            npm run build
+            npm run build:dev
           fi
         - ls -a
 
