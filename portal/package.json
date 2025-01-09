@@ -6,7 +6,7 @@
   "scripts": {
     "dev:lib": "cd ../lib/sgds && npm run dev",
     "dev": "concurrently \"npm run dev:lib\" \" webpack --mode=development && bundle exec jekyll serve\"",
-    "build:jekyll": "bundle exec jekyll build --config.yml",
+    "build:jekyll": "bundle exec jekyll build --config _config.yml",
     "build:jekyll:dev": "bundle exec jekyll build --config _config_dev.yml",
     "build:js": "webpack --mode=production",
     "build": "npm run build:js && npm run build:jekyll",
