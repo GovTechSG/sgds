@@ -156,8 +156,6 @@ exclude:
   - amplify.yml
   - sgds/sgds.scss
   - sgds/sass
-  - content/product-sites.html
-  
 
 sass:
   sass_dir: assets/custom-css
