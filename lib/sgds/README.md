@@ -40,7 +40,7 @@ SGDS components makes use of [bootstrap v5.1.3 js library](https://getbootstrap.
 
 <body>
   ...
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
 </body>
 ```
