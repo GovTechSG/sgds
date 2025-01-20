@@ -22,14 +22,15 @@ import * as bootstrap from 'bootstrap';
 {% capture cdn-css %}
 <head>
   ...
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@govtechsg/sgds@2.2.0/css/sgds.css" />
+  {% assign currentVersion = site.data.npm-sgds-latest-metadata.objects[0].package.version %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@govtechsg/sgds@{{currentVersion}}/css/sgds.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   ...
 </head>
 
 <body>
   ...
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
 </body>
 {% endcapture %}
