@@ -26,7 +26,9 @@ function creditCardFormatter( event ) {
 
 const cardNumberInput = document.getElementById("cardNumber")
 cardNumberInput.addEventListener('keypress', (e) => onlyNumberKey(e))
-
+cardNumberInput.addEventListener('input', (e) => {
+    cardNumberInput.value = creditCardFormatter(e)
+})
 const expiryDateInput = document.getElementById("expiryDate")
 expiryDateInput.addEventListener('keypress', (e) => formatDate(e))
 
