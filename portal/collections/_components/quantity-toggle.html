@@ -13,13 +13,13 @@ toc: true
 <div class="sgds input-group" variant="quantity-toggle">
     <button type="button" class="btn btn-primary btn-sm sgds" disabled><i class="bi bi-dash"></i></button>
     <input id="quantityLeftDisabled" type="number" class="form-control text-center" value="0">
-    <button type="button" class="btn btn-primary btn-sm sgds" onclick="increment('LeftDisabled')"><i class="bi bi-plus"></i></button>
+    <button type="button" class="btn btn-primary btn-sm sgds" id="right-btn-left-disabled"><i class="bi bi-plus"></i></button>
 </div>
 {% endcapture %}
 
 {% capture quantity-toggle-right-disabled %}
 <div class="sgds input-group" variant="quantity-toggle">
-    <button type="button" class="btn btn-primary btn-sm sgds" onclick="decrement('RightDisabled')"><i class="bi bi-dash"></i></button>
+    <button type="button" class="btn btn-primary btn-sm sgds" id="left-btn-right-disabled"><i class="bi bi-dash"></i></button>
     <input id="quantityRightDisabled" type="number" class="form-control text-center" value="1">
     <button type="button" class="btn btn-primary btn-sm sgds" disabled><i class="bi bi-plus"></i></button>
 </div>
@@ -35,9 +35,9 @@ toc: true
 
 {% capture quantity-toggle-enabled %}
 <div class="sgds input-group" variant="quantity-toggle">
-    <button type="button" class="btn btn-primary btn-sm sgds" onclick="decrement('Enabled')"><i class="bi bi-dash"></i></button>
+    <button type="button" class="btn btn-primary btn-sm sgds" id="left-btn"><i class="bi bi-dash"></i></button>
     <input id="quantityEnabled" type="number" class="form-control text-center" value="3">
-    <button type="button" class="btn btn-primary btn-sm sgds" onclick="increment('Enabled')"><i class="bi bi-plus"></i></button>
+    <button type="button" class="btn btn-primary btn-sm sgds" id="right-btn"><i class="bi bi-plus"></i></button>
 </div>
 {% endcapture %}
 
@@ -197,14 +197,4 @@ toc: true
     </section>
 </div>
 
-<script>
-    function decrement(val) {
-        let input = document.getElementById("quantity" + val)
-        input.value = parseInt(input.value) - 1
-    }
-
-    function increment(val) {
-        let input = document.getElementById("quantity" + val)
-        input.value = parseInt(input.value) + 1
-    }
-</script>
+<script src="/assets/js/quantity-toggle.bundle.js"></script>

@@ -8,6 +8,12 @@ module.exports = (env, argv) => ({
         "assets/custom-css/style.css": "./js/style.js",
         "assets/js/portal-polyfills.bundle": "./js/portal-polyfills.js",
         "assets/js/google-tag-manager.bundle": "./js/google-tag-manager.js",
+        "assets/js/search-item.bundle": "./js/search-item.js",
+        "assets/js/quantity-toggle.bundle": "./js/quantity-toggle.js",
+        "assets/js/pattern-address.bundle": "./js/pattern-address.js",
+        "assets/js/pattern-date.bundle": "./js/pattern-date.js",
+        "assets/js/pattern-email.bundle": "./js/pattern-email.js",
+        "assets/js/pattern-payment.bundle": "./js/pattern-payment.js",
     },
     devtool: "source-map",
     output: {

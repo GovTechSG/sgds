@@ -9,7 +9,7 @@ toc: true
 
     <label class="form-label" for="email">Email Address</label>
     <span class="form-text">Your email will only be used for updates</span>
-    <input class="form-control" type="email" id="email" autocomplete="email" spellcheck="false" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="256" placeholder="Enter email" oninput="setValidation()" />
+    <input class="form-control" type="email" id="email" autocomplete="email" spellcheck="false" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="256" placeholder="Enter email" />
 
 {% endcapture %}
 
@@ -70,15 +70,5 @@ toc: true
     </section>
 </div>
 
-<script>
-    function setValidation() {
-        let ele = document.getElementById("email")
-        if (/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(ele.value)) {
-            ele.classList.remove("is-invalid")
-            ele.classList.add("is-valid")
-        } else {
-            ele.classList.remove("is-valid")
-            ele.classList.add("is-invalid")
-        }
-    }
+<script src="/assets/js/pattern-email.bundle.js">
 </script>
