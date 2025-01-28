@@ -14,21 +14,20 @@ published: false
     <label for="cardNumber" class="form-label">Card Number</label>
     <div id="cardNumberText" class="form-text">Enter the 16-digit number on the card</div>
     <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="19" class="form-control" id="cardNumber"
-        autocomplete="cc-number" aria-describedby="cardNumberText" onkeypress="return onlyNumberKey(event)"
-        oninput="this.value = creditCardFormatter(event)">
+        autocomplete="cc-number" aria-describedby="cardNumberText">
 </div>
 <div class="row">
     <div class="sgds col form-group mb-3">
         <label for="expiryDate" class="form-label">Expiry Date</label>
         <div id="expiryDateText" class="form-text">MM/YY</div>
         <input type="text" class="form-control" id="expiryDate" autocomplete="cc-exp" pattern="[0-9]{2}/[0-9]{2}"
-            maxlength="5" aria-describedby="expiryDateText" onkeypress="formatDate()">
+            maxlength="5" aria-describedby="expiryDateText">
     </div>
     <div class="sgds col form-group mb-3">
         <label for="cvv" class="form-label">CVV</label>
         <div id="cvvText" class="form-text">The 3-digit number at the back of the card</div>
         <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" class="form-control" id="cvv"
-            autocomplete="cc-csc" aria-describedby="cvvText" onkeypress="return onlyNumberKey(event)">
+            autocomplete="cc-csc" aria-describedby="cvvText">
     </div>
 </div>
 {% endcapture %}
@@ -86,31 +85,4 @@ published: false
 
 </div>
 
-<script>
-    function formatDate() {
-        let dateVal = document.getElementById( "expiryDate" )
-        let key = event.key
-        if ( ( key != "Backspace" ) && dateVal.value.length == 2 ) {
-            dateVal.value = dateVal.value + "/"
-        }
-    }
-    function onlyNumberKey( evt ) {
-        // Only ASCII character in that range allowed
-        var ASCIICode = ( evt.which ) ? evt.which : evt.keyCode
-        if ( ASCIICode > 31 && ( ASCIICode < 48 || ASCIICode > 57 ) )
-            return false;
-        return true;
-    }
-
-    function creditCardFormatter( event ) {
-        if (event.inputType == 'deleteContentBackward') {
-            return event.target.value.trim()
-        }
-        const value = event.target.value
-        const formattedValue = value.replace( /\W/gi, '' ).replace( /(.{4})/g, '$1 ' )
-        if ( value.length === 19 ) {
-            return formattedValue.trim()
-        } else return formattedValue
-    }
-
-</script>
+<script src="/assets/js/pattern-payment.bundle.js"></script>
