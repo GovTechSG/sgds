@@ -1,11 +1,11 @@
-<nav class="sgds navbar navbar-expand-lg" aria-label="Main Navigation">
+<nav class="sgds navbar navbar-expand-xl" aria-label="Main Navigation">
     <a class="navbar-brand" href="/"><img src="/assets/img/logo-sgds.svg" alt="Home" height="60"></a>
-    <div class="d-lg-none d-flex align-items-center">
+    <div class="d-xl-none d-flex align-items-center">
   
-        <dev-console-widget class="navbar-mobile-widget" iconColor="black" iconWidth="24px" iconHeight="24px"></dev-console-widget>
+        <dev-console-widget class="navbar-mobile-widget me-2" iconColor="black" iconWidth="24px" iconHeight="24px"></dev-console-widget>
 
-        <button class="navbar-toggler pb-0 pt-0 ps-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-labelledby="offcanvas">
-            <i class="bi bi-list h1"></i>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-labelledby="offcanvas">
+            <i class="bi bi-list fs-2"></i>
         </button>
     </div>
     <div class="collapse navbar-collapse navbarNavDropdown">
@@ -33,6 +33,9 @@
             {% endfor %}
             <li class="nav-item">
                 <div class="vr h-100"></div>
+            </li>
+            <li class="nav-item align-self-center">
+                <carbon-emission-tool align="right"></carbon-emission-tool>
             </li>
             <li class="nav-item sgds dropdown">
                 <a 
@@ -79,7 +82,7 @@
                 </ul>
             </li>
             
-            <li class="nav-item align-self-center d-none d-lg-block" style="margin-top:-5px">
+            <li class="nav-item align-self-center d-none d-xl-block" style="margin-top:-5px">
                 <div class="nav-link">
                     <dev-console-widget iconColor="black" iconWidth="24px" iconHeight="24px"></dev-console-widget>
                 </div>
