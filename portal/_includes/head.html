@@ -22,13 +22,13 @@
     <!-- this polyfill is required for web component cdn to prevent clash of custom element registration -->
     <script src="https://cdn.jsdelivr.net/npm/@webcomponents/scoped-custom-element-registry"></script>
     {% assign latestVersion = site.data.npm-sgds-web-component-latest-metadata.objects[0].package.version %}
-    <!-- <link href='{{site.web-component-cdn}}@{{latestVersion}}/themes/day.css' rel='stylesheet' type='text/css' /> -->
-    <!-- <script defer type="module" src="{{site.web-component-cdn}}@{{latestVersion}}"> -->
+    <link href='{{site.web-component-cdn}}@{{latestVersion}}/themes/day.css' rel='stylesheet' type='text/css' />
+    <script defer type="module" src="{{site.web-component-cdn}}@{{latestVersion}}">
     </script>
     <script defer type="module"
         src="https://assets.developer.tech.gov.sg/bundled-scripts/dev-console-widget.bundle.js"></script>
     <link rel="stylesheet" href="/assets/custom-css/style.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/js/bootstrap.bundle.min.js"
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script defer type="module" src="/assets/js/portal-polyfills.bundle.js"></script>
     {% if jekyll.environment == "production" %}
@@ -37,9 +37,4 @@
     <script defer src="https://assets.dcube.cloud/scripts/wogaa.js"></script>
     {% endif %}
     <script type="module" src="https://eco-mode.s3.ap-southeast-1.amazonaws.com/web-component/dist/index.js"></script>
-    <link rel="stylesheet" href="sgds-masthead/day.css">
-    <script
-        type="module"
-        src="/sgds-masthead/index.umd.js" async>
-    </script>
 </head>
