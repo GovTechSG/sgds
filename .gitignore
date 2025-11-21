@@ -1,25 +1,6 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-.idea
 .vscode
 *.tar.gz
 .DS_Store
 node_modules
-
-
-# Dont commit compressed images
-
-# /css, /fonts and /js are distribution files
-
-/lib/sgds/*.js
-/lib/**/*.js.map
-!/lib/**/*.config.js
-/lib/*/css/
-.DS_Store
-
-/portal/css
-/portal/assets/js/**/*.js
-/portal/assets/js/**/*.js.map
-/portal/sass
+docs/.vitepress/dist
+docs/.vitepress/cache

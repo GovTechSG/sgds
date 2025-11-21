@@ -1,39 +1,17 @@
 {
-    "name": "sgds",
-    "version": "0.0.0",
-    "description": "SGDS styling libraries monorepo",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/govtechsg/sgds.git"
-    },
-    "license": "MIT",
-    "author": "Tey Liang Tai",
-    "main": "",
-    "scripts": {
-        "prepare": "husky install",
-        "portal:install": "cd portal && npm i && bundle install",
-        "lib:install": "cd lib/sgds && npm i",
-        "sgds-x-family:install": "cd lib/sgds-x-family && npm i",
-        "install": "concurrently \"npm run lib:install\" \"npm run portal:install\" \"npm run sgds-x-family:install\"",
-        "lib:build": "cd lib/sgds && npm run build",
-        "portal:build": "cd portal && npm run build",
-        "portal:build:dev": "cd portal && npm run build:dev",
-        "build": "npm run lib:build && npm run portal:build",
-        "build:dev": "npm run lib:build && npm run portal:build:dev",
-        "sgds-x-family:build": "cd lib/sgds-x-family && npm run build",
-        "portal:dev": "cd portal && npm run dev",
-        "react-select:dev": "cd lib/sgds-x-family && npm run react-select:dev"
-    },
-    "devDependencies": {
-        "@commitlint/cli": "^17.0.3",
-        "@commitlint/config-conventional": "^17.0.3",
-        "concurrently": "^7.0.0",
-        "cz-conventional-changelog": "^3.3.0",
-        "husky": "^8.0.1"
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
-    }
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitepress": "2.0.0-alpha.12",
+    "vitepress-sidebar": "^1.33.0",
+    "vue": "^3.5.24"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "@govtechsg/sgds-web-component": "^3.5.6",
+    "gsap": "^3.13.0"
+  }
 }
