@@ -1,15 +1,14 @@
 ---
 layout: page
 title: Foundations
-description: Foundations are the core building blocks of a design system, covering essentials like color, typography, spacing, and tokens to ensure consistency and scalability across products.
+description: Foundations are the core building blocks of a design system, covering essentials like colour, typography, spacing, and tokens to ensure consistency and scalability across products.
 ---
 
 <script setup>
-import "@govtechsg/sgds-web-component/components/Icon/index.js";
 import { foundations } from '../.vitepress/data/foundations';
 import PortalImageCard from "../.vitepress/components/PortalImageCard.vue";
 
-const currentPhase = 1
+const currentPhase = 99
 </script>
 
 <div :class="$style.container" class="sgds-grid">

@@ -1,4 +1,4 @@
 ---
 layout: docs
-title: Best Practices
+title: Best practices
 ---

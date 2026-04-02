@@ -12,7 +12,7 @@ const title = "Unifying Government through Design and Code."
 const buttons: Button = [
   {
     label: "Get started",
-    link: "/foundations/",
+    link: "/get-started/",
     variant: "primary",
     tone: "neutral"
   }
@@ -21,7 +21,7 @@ const buttons: Button = [
 const featureFoundations: FoundationItems[] = [
   {
     id: "colour-system",
-    title: "Colour System",
+    title: "Colour system",
     url: "/foundations/colour/colour-system",
     image: "/landing/colour_system.png",
     phase: 1,
@@ -29,7 +29,7 @@ const featureFoundations: FoundationItems[] = [
   },
   {
     id: "icon-library",
-    title: "Icon Library",
+    title: "Icon library",
     url: "/foundations/colour/using-colour",
     image: "/landing/icon_library.png",
     phase: 1,
@@ -37,7 +37,7 @@ const featureFoundations: FoundationItems[] = [
   },
   {
     id: "design-tokens",
-    title: "Design Tokens",
+    title: "Design tokens",
     url: "/foundations/colour/best-practices",
     image: "/landing/design_token.png",
     phase: 1,
@@ -120,7 +120,7 @@ const currentPhase = 1;
         :class="$style['description-container']"
         class="sgds-col-4 sgds-col-sm-3 sgds-col-lg-5"
       >
-        <p :class="$style.description">With a common foundation of color, typography, and components, our design system helps teams create consistent, accessible, and reliable services across government.</p>
+        <p :class="$style.description">With a common foundation of colour, typography, and components, our design system helps teams create consistent, accessible, and reliable services across government.</p>
         <img
           src="/landing/placeholder7.png"
           alt="Placeholder 7"

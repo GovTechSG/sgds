@@ -10,11 +10,22 @@ const { frontmatter } = useData()
 </script>
 
 <template>
-  <Mainnav />
-  <div class="sgds-container">
-    <DefaultLayout v-if="frontmatter.layout === 'default'" />
-    <DocsLayout v-if="frontmatter.layout === 'docs'" />
-    <PageLayout v-if="frontmatter.layout === 'page'" />
+  <div :class="$style.shell">
+    <Mainnav />
+    <div class="sgds-container">
+      <DefaultLayout v-if="frontmatter.layout === 'default'" />
+      <DocsLayout v-if="frontmatter.layout === 'docs'" />
+      <PageLayout v-if="frontmatter.layout === 'page'" />
+    </div>
   </div>
   <Footer />
 </template>
+
+<style module>
+  .shell {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sgds-layout-gap-xl);
+    margin-bottom: var(--sgds-dimension-128);
+  }
+</style>

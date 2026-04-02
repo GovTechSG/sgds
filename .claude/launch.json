@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sgds-portal",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["docs:dev", "--port", "5180"],
+      "port": 5180
+    }
+  ]
+}

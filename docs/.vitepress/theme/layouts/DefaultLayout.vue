@@ -10,6 +10,6 @@ import { Content } from "vitepress";
 
 <style module>
   .layout-container {
-    margin: var(--sgds-margin-xl) var(--sgds-margin-none);
+    margin: var(--sgds-margin-none) var(--sgds-margin-none) var(--sgds-margin-xl);
   }
 </style>

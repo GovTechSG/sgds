@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { useData } from "vitepress";
-import "@govtechsg/sgds-web-component/components/Footer/index.js";
-import "@govtechsg/sgds-web-component/components/Icon/index.js";
 
 const { site } = useData()
 </script>

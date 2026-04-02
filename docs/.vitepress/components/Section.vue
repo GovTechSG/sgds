@@ -10,7 +10,9 @@ const { title, description } = defineProps<Section>();
       :title="title"
       :description="description"
     />
-    <slot></slot>
+    <div :class="$style.content">
+      <slot></slot>
+    </div>
   </section>
 </template>
 
@@ -18,6 +20,11 @@ const { title, description } = defineProps<Section>();
   .container {
     display: flex;
     flex-direction: column;
-    gap: var(--sgds-gap-3-xl);
+    gap: var(--sgds-layout-gap-md);
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
   }
 </style>

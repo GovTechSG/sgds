@@ -2,10 +2,10 @@
 import { Content, withBase } from "vitepress";
 import { computed } from 'vue';
 import { useData } from 'vitepress';
-import "@govtechsg/sgds-web-component/components/Sidenav/index.js";
 import PageHeader from "../../components/PageHeader.vue";
 import DocFooter from "../../components/DocFooter.vue";
 import { isDraft } from "../../utils/page-status";
+import { getComponentDoc } from "../../data/component-docs";
 
 const { theme, page } = useData()
 const currentPath = computed(() => `/${page.value.relativePath.replace(/\.md$/, '')}`)
@@ -15,7 +15,28 @@ const currentSection = computed(() => {
   return rel.split("/")[0] || "" // e.g. "foundations"
 })
 
-const header = computed(() => currentSection.value.charAt(0).toUpperCase() + currentSection.value.slice(1))
+const currentComponentKey = computed(() => {
+  if (currentSection.value !== "components") return "";
+  const [, componentKey] = (page.value?.relativePath || "").split("/");
+  return componentKey?.replace(/\.md$/, "") || "";
+})
+
+const currentComponentDoc = computed(() => {
+  if (!currentComponentKey.value) return null;
+  return getComponentDoc(currentComponentKey.value);
+})
+
+const sectionLabels: Record<string, string> = {
+  ai: "AI",
+}
+
+const header = computed(() => {
+  const section = currentSection.value
+  if (!section) return ""
+  return sectionLabels[section] || (section.charAt(0).toUpperCase() + section.slice(1))
+})
+
+const showHeaderBadge = computed(() => currentSection.value === "ai")
 
 const currentSidebar = computed(() => {
   const sidebars = theme.value?.sidebar || {}
@@ -47,6 +68,52 @@ const isSideNavGroupActive = (base: string, text: string[], current: string) => 
   return current.startsWith(getDerivedGroupBase(base, text));
 }
 
+const acronymMap: Record<string, string> = {
+  ai: "AI",
+  api: "API",
+  mcp: "MCP",
+  sgds: "SGDS",
+}
+
+const formatSidebarLabel = (text?: string) => {
+  if (!text) return ""
+
+  const trimmed = text.trim()
+  if (!trimmed) return ""
+
+  const words = trimmed.split(/\s+/)
+
+  return words
+    .map((word, index) => {
+      const lowerWord = word.toLowerCase()
+      if (acronymMap[lowerWord]) return acronymMap[lowerWord]
+      if (index === 0) return lowerWord.charAt(0).toUpperCase() + lowerWord.slice(1)
+      return lowerWord
+    })
+    .join(" ")
+}
+
+const pageMetadata = computed(() => {
+  if (currentSection.value === "components" && currentComponentDoc.value) {
+    const { metadataStatus } = currentComponentDoc.value;
+    return [
+      { label: "Figma", status: metadataStatus.figma },
+      // Keep responsive status data in place, but hide it in the UI for now.
+      // We may bring this back once component responsiveness has been fully reviewed.
+      null,
+      { label: "Storybook", status: metadataStatus.storybook },
+    ].filter(Boolean);
+  }
+
+  const items = [
+    page.value.frontmatter.figma ? { label: "Figma", status: "available" as const } : null,
+    page.value.frontmatter.responsive ? { label: "Responsive", status: "available" as const } : null,
+    page.value.frontmatter.storybook ? { label: "Storybook", status: "available" as const } : null,
+  ].filter(Boolean);
+
+  return items;
+})
+
 </script>
 
 <template>
@@ -58,47 +125,50 @@ const isSideNavGroupActive = (base: string, text: string[], current: string) => 
         v-if="currentSidebar.items.length"
       >
         <div>
-          <h5 :class="$style.header">{{ header }}</h5>
+          <div :class="$style.headerRow">
+            <h5 :class="$style.header">{{ header }}</h5>
+            <sgds-badge v-if="showHeaderBadge" variant="accent" outlined>NEW</sgds-badge>
+          </div>
           <sgds-sidenav>
             <template
               v-for="group in currentSidebar.items"
               :key="group.text"
             >
               <sgds-sidenav-item v-if="group.items && group.items.length" :active="isSideNavGroupActive(currentSection, [group.text], currentPath)">
-                <span slot="title">{{ group.text }}</span>
+                <span slot="title">{{ formatSidebarLabel(group.text) }}</span>
                 <template
                   v-for="item in group.items"
                   :key="item.link"
                 >
                   <sgds-sidenav-item v-if="item.items && item.items.length" :active="isSideNavGroupActive(currentSection, [group.text, item.text], currentPath)">
-                    <span slot="title">{{ item.text }}</span>
+                    <span slot="title">{{ formatSidebarLabel(item.text) }}</span>
                     <template
                       v-for="secondLevelItem in item.items"
                       :key="secondLevelItem.link"
                     >
-                    <sgds-sidenav-link :active="currentPath === withBase(`/${currentSection}/${secondLevelItem.link}`)">
+                    <sgds-sidenav-link :active="currentPath === secondLevelItem.link">
                       <a
-                        :href="isDraft(group.text) ? 'javascript:void(0)' : withBase(`/${currentSection}/${secondLevelItem.link}`)"
+                        :href="isDraft(group.text) ? 'javascript:void(0)' : withBase(secondLevelItem.link)"
                         :class="isDraft(group.text) ? $style.disabled : ''"
                       >
-                      {{ secondLevelItem.text }}
+                      {{ formatSidebarLabel(secondLevelItem.text) }}
                     </a>
                     </sgds-sidenav-link>
                     </template>
                   </sgds-sidenav-item>
-                  <sgds-sidenav-link v-else :active="currentPath === withBase(`/${currentSection}/${item.link}`)">
+                  <sgds-sidenav-link v-else :active="currentPath === item.link">
                     <a
-                      :href="isDraft(group.text) ? 'javascript:void(0)' : withBase(`/${currentSection}/${item.link}`)"
+                      :href="isDraft(group.text) ? 'javascript:void(0)' : withBase(item.link)"
                       :class="isDraft(group.text) ? $style.disabled : ''"
                     >
-                    {{ item.text }}
+                    {{ formatSidebarLabel(item.text) }}
                   </a>
                   </sgds-sidenav-link>
                 </template>
               </sgds-sidenav-item>
-              <sgds-sidenav-item v-else>
-                <a :href="group.link">{{ group.text }}</a>
-              </sgds-sidenav-item>
+              <sgds-sidenav-link v-else :active="currentPath === withBase(group.link)">
+                <a :href="withBase(group.link)">{{ formatSidebarLabel(group.text) }}</a>
+              </sgds-sidenav-link>
             </template>
           </sgds-sidenav>
         </div>
@@ -107,9 +177,7 @@ const isSideNavGroupActive = (base: string, text: string[], current: string) => 
         <PageHeader
           :title="page.title"
           :description="page.description"
-          :figma="page.frontmatter.figma"
-          :responsive="page.frontmatter.figma"
-          :storybook="page.frontmatter.storybook"
+          :metadata="pageMetadata"
         />
         <div :class="$style['content-container']">
           <div :class="$style['content']">
@@ -124,7 +192,7 @@ const isSideNavGroupActive = (base: string, text: string[], current: string) => 
 
 <style module>
   .layout-container {
-    margin: var(--sgds-margin-xl) var(--sgds-margin-none);
+    margin: var(--sgds-margin-none) var(--sgds-margin-none) var(--sgds-margin-xl);
   }
 
   .aside {
@@ -139,16 +207,22 @@ const isSideNavGroupActive = (base: string, text: string[], current: string) => 
     margin-bottom: var(--sgds-margin-none);
   }
 
+  .headerRow {
+    align-items: center;
+    display: inline-flex;
+    gap: var(--sgds-gap-xs);
+    margin-bottom: var(--sgds-margin-sm);
+  }
+
   .content-container {
     display: flex;
     flex-direction: column;
-    gap: var(--sgds-spacer-11);
+    gap: var(--sgds-layout-gap-xl);
   }
 
-  .content > * > * {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sgds-spacer-11);
-    margin-top: var(--sgds-margin-2-xl);
+  .content > * > * + h2,
+  .content > * > * + h3,
+  .content > * > * + h4 {
+    margin-top: var(--sgds-layout-gap-md);
   }
 </style>

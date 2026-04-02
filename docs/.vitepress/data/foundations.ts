@@ -85,7 +85,7 @@ export const foundations: FoundationItem[] = [
     title: "Logo",
     url: "/foundations/colour/our-colours",
     image: "",
-    phase: 4,
+    phase: 3,
     status: "draft",
   },
   {
@@ -93,7 +93,7 @@ export const foundations: FoundationItem[] = [
     title: "Voice of tone",
     url: "/foundations/colour/our-colours",
     image: "",
-    phase: 4,
+    phase: 3,
     status: "draft",
   },
   {
@@ -101,7 +101,7 @@ export const foundations: FoundationItem[] = [
     title: "Photography",
     url: "/foundations/colour/our-colours",
     image: "",
-    phase: 4,
+    phase: 3,
     status: "draft",
   },
   {
@@ -109,7 +109,7 @@ export const foundations: FoundationItem[] = [
     title: "Illustration",
     url: "/foundations/colour/our-colours",
     image: "",
-    phase: 4,
+    phase: 3,
     status: "draft",
   },
   {
@@ -125,7 +125,7 @@ export const foundations: FoundationItem[] = [
     title: "Data visualisation",
     url: "/foundations/colour/our-colours",
     image: "",
-    phase: 3,
+    phase: 2,
     status: "draft",
   },
 ];

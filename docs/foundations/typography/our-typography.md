@@ -1,4 +1,4 @@
 ---
 layout: docs
-title: Our Typography
+title: Our typography
 ---

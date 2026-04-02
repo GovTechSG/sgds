@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import "@govtechsg/sgds-web-component/components/Button/index.js";
 import gsap from "gsap";
 import { onMounted } from "vue";
 
@@ -101,6 +100,7 @@ onMounted(() => {
       <h1 :class="$style.title">{{ title }}</h1>
       <div
         v-for="button in buttons"
+        :key="button.label"
         :class="$style['button-group']"
       >
         <sgds-button

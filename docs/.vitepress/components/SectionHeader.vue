@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import "@govtechsg/sgds-web-component/components/IconButton/index.js";
-
 export type Section = {
   title: string;
   description?: string;
@@ -11,7 +9,12 @@ const { title, description } = defineProps<Section>();
 <template>
   <div :class="$style['section-header']">
     <div :class="$style['title-container']">
-      <h2 :class="$style.title">{{ title }}</h2>
+      <h2
+        :class="$style.title"
+        class="sgds:text-6 sgds:font-bold sgds:leading-40 sgds:tracking-tighter"
+      >
+        {{ title }}
+      </h2>
       <sgds-icon-button name="link" variant="ghost" tone="neutral" size="xs" />
     </div>
     <p v-if="description" :class="$style.description">{{ description }}</p>
@@ -36,6 +39,12 @@ const { title, description } = defineProps<Section>();
   }
 
   .description {
+    color: var(--sgds-body-color-subtle);
+    font-size: var(--sgds-font-size-2);
+    font-weight: var(--sgds-font-weight-regular);
+    line-height: var(--sgds-line-height-24);
+    letter-spacing: var(--sgds-letter-spacing-normal);
+    max-width: 864px;
     margin-bottom: var(--sgds-margin-none);
   }
 </style>

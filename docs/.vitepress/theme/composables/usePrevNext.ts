@@ -7,9 +7,10 @@ function flattenSidebarItems(items: any[], base = "") {
 
   items.forEach((item) => {
     if (item.link && !isDraft(item.text)) {
+      const resolvedLink = item.link.startsWith("/") ? item.link : `${base}${item.link}`;
       result.push({
         text: item.text,
-        link: base + item.link,
+        link: resolvedLink,
       });
     }
 

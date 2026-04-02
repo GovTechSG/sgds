@@ -11,6 +11,8 @@ const { frontmatter } = useData()
     <PageHeader
       :title="frontmatter.title"
       :description="frontmatter.description"
+      :title-class="frontmatter.pageTitleClass"
+      :description-class="frontmatter.pageDescriptionClass"
     />
     <div :class="$style['content-container']">
       <Content />
@@ -20,7 +22,7 @@ const { frontmatter } = useData()
 
 <style module>
   .layout-container {
-    margin: var(--sgds-margin-xl) var(--sgds-margin-none);
+    margin: var(--sgds-margin-none) var(--sgds-margin-none) var(--sgds-margin-xl);
     display: flex;
     flex-direction: column;
     gap: var(--sgds-spacer-10);

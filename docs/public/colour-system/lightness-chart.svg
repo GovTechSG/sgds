@@ -1,0 +1,17 @@
+<svg width="976" height="480" viewBox="0 0 976 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" preserveAspectRatio="xMidYMid meet">
+  <title id="title">Lightness curve chart</title>
+  <desc id="desc">A chart showing the SGDS gray lightness curve from gray-100 to gray-1000.</desc>
+
+  <rect x="0.5" y="0.5" width="975" height="479" rx="23.5" fill="rgba(243,243,243,0.5)" stroke="#DFDFDF"/>
+  <rect x="185.5" y="114.5" width="623" height="251" fill="white" stroke="#D4D4D4"/>
+  <rect x="185.5" y="114.5" width="623" height="125" fill="white" stroke="#D4D4D4"/>
+
+  <text x="169" y="116" fill="#525252" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="end">100%</text>
+  <text x="169" y="242" fill="#525252" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="end">50%</text>
+  <text x="169" y="368" fill="#525252" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="end">0%</text>
+
+  <text x="185" y="392" fill="#525252" font-size="16" font-family="Arial, Helvetica, sans-serif">gray-100</text>
+  <text x="727" y="392" fill="#525252" font-size="16" font-family="Arial, Helvetica, sans-serif">gray-1000</text>
+
+  <image href="https://www.figma.com/api/mcp/asset/f97ffa96-3a76-4799-800a-527eeab11a54" x="184.5" y="125" width="624.5" height="218.5" preserveAspectRatio="none"/>
+</svg>

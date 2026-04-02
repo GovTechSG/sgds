@@ -10,5 +10,8 @@ export const fileSort: Record<string, string[]> = {
     "using-colour.md",
     "best-practices.md",
   ],
-  // components: ["data-display", "accordion"],
+  patterns: ["index.md"],
+  guidelines: ["index.md"],
+  resources: ["index.md"],
+  ai: ["overview.md", "mcp-server.md", "prompt-tips.md"],
 };
