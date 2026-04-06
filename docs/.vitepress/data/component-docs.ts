@@ -888,6 +888,20 @@ const componentDocs: Record<string, ComponentDoc> = {
     group: "feedback",
     summary:
       "Alerts provide short, timely, and relevant information for your users. It can be a simple text message or customised HTML content with paragraphs, headings and links.",
+    purposeCards: [
+      {
+        title: "Timely information",
+        description: "Alerts surface messages that are relevant to what a user is currently doing — not after they've moved on.",
+      },
+      {
+        title: "Communicate severity",
+        description: "Contextual tones — info, success, warning, danger — tell users at a glance how urgently they need to act.",
+      },
+      {
+        title: "Stay in the flow",
+        description: "Inline alerts don't interrupt or redirect — they sit within the page so users stay oriented while being informed.",
+      },
+    ],
     anatomyMarkup: `<sgds-alert class="portal-alert-anatomy-demo" show dismissible variant="info" title="Scheduled maintenance">
       <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
       <span class="portal-alert-description">Maintenance starts at 10pm tonight.</span>
@@ -1078,6 +1092,20 @@ Adding of title is optional.`,
     group: "feedback",
     summary:
       "Badges can be used to highlight important bits of information such as labels, notifications & status.",
+    purposeCards: [
+      {
+        title: "Label at a glance",
+        description: "Badges attach short labels to content — a status, a count, a category — without breaking the reading flow.",
+      },
+      {
+        title: "Signal without words",
+        description: "Colour-coded tones communicate meaning quickly, so users can scan a list and immediately understand state.",
+      },
+      {
+        title: "Complement, don't crowd",
+        description: "Badges are deliberately small and quiet — they annotate content rather than compete with it.",
+      },
+    ],
     anatomyParts: [
       { title: "Container" },
       defaultPartTitleMap.default,
@@ -1102,6 +1130,20 @@ Adding of title is optional.`,
     group: "navigation",
     summary:
       "Breadcrumbs help users to navigate and understand where they are on the current website or service.",
+    purposeCards: [
+      {
+        title: "Show where you are",
+        description: "Breadcrumbs give users a clear read of their current position in a multi-level structure without hunting through the navigation.",
+      },
+      {
+        title: "Step back easily",
+        description: "Each crumb is a direct link, so users can jump back to any ancestor level with a single click.",
+      },
+      {
+        title: "Reduce disorientation",
+        description: "On deep or complex sites, breadcrumbs prevent users from losing track of where they came from and how to get back.",
+      },
+    ],
     anatomyParts: [
       { title: "Container" },
       { title: "Breadcrumb item" },
@@ -1126,6 +1168,20 @@ Adding of title is optional.`,
     group: "form",
     summary:
       "Custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.",
+    purposeCards: [
+      {
+        title: "Trigger actions clearly",
+        description: "Buttons signal to users that something will happen when they click — whether that's submitting a form, opening a modal, or confirming a choice.",
+      },
+      {
+        title: "Communicate intent with variants",
+        description: "Primary, secondary, outline, and ghost variants let you express hierarchy — guiding users toward the most important action without overloading the page.",
+      },
+      {
+        title: "Support every state",
+        description: "Built-in loading, disabled, and focus states keep interactions predictable and accessible across all devices and input methods.",
+      },
+    ],
     anatomyParts: [
       { title: "Container" },
       { title: "Label" },
@@ -1151,6 +1207,20 @@ Adding of title is optional.`,
     group: "data display",
     summary:
       "Cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.",
+    purposeCards: [
+      {
+        title: "Group related content",
+        description: "Cards visually bundle a piece of information — a title, description, media, and action — into a single scannable unit.",
+      },
+      {
+        title: "Enable comparison",
+        description: "When cards share a consistent layout, users can quickly read across a grid and weigh options without extra effort.",
+      },
+      {
+        title: "Flexible by design",
+        description: "Cards work across many contexts — content listings, dashboards, product summaries — because the structure adapts to what you put inside.",
+      },
+    ],
     anatomyParts: [
       { title: "Container" },
       defaultPartTitleMap.title,
@@ -1178,6 +1248,20 @@ Adding of title is optional.`,
     group: "form",
     summary:
       "Checkbox component is used when you require users to select multiple items from a list.",
+    purposeCards: [
+      {
+        title: "Allow multiple selections",
+        description: "Checkboxes let users select any combination of options from a list — ideal when more than one answer is valid.",
+      },
+      {
+        title: "Make selections visible",
+        description: "Checked and unchecked states are immediately visible, so users can review their choices at a glance before submitting.",
+      },
+      {
+        title: "Support grouped choices",
+        description: "Group related checkboxes under a shared label to help users understand what they're selecting within a broader category.",
+      },
+    ],
     anatomyParts: [
       { title: "Group container" },
       { title: "Checkbox control" },
@@ -1201,6 +1285,20 @@ Adding of title is optional.`,
     tag: "sgds-close-button",
     group: "labels",
     summary: "Close button for closing actions. Used in Modal, Drawer, Alert and Toast.",
+    purposeCards: [
+      {
+        title: "Dismiss with confidence",
+        description: "A visible, accessible close affordance tells users they can exit a surface — modal, drawer, or alert — without uncertainty.",
+      },
+      {
+        title: "Universal recognition",
+        description: "The × pattern is immediately understood across contexts, reducing the need for text labels in tight spaces.",
+      },
+      {
+        title: "Keyboard and pointer ready",
+        description: "Built-in focus and hover states ensure the button is reachable and operable for all users, regardless of input method.",
+      },
+    ],
     anatomyParts: [{ title: "Button container" }, { title: "Close icon" }],
     demos: [
       demo(
@@ -1217,6 +1315,20 @@ Adding of title is optional.`,
     group: "form",
     summary:
       "ComboBox component is used for users to make one or more selections from a list through user input, keyboard or mouse actions",
+    purposeCards: [
+      {
+        title: "Search within a list",
+        description: "When a dropdown has many options, a combo box lets users type to filter — saving them from scrolling through long lists.",
+      },
+      {
+        title: "Balance flexibility and constraint",
+        description: "Users can narrow down options by typing, but selections are still constrained to valid values — reducing input errors.",
+      },
+      {
+        title: "Useful for large datasets",
+        description: "Combo boxes are best when the full list is too long to browse comfortably but the user knows roughly what they're looking for.",
+      },
+    ],
     anatomyParts: [
       { title: "Input field" },
       { title: "Listbox" },
@@ -1241,6 +1353,20 @@ Adding of title is optional.`,
     group: "form",
     summary:
       "The `DatePicker` Component is built using `Dropdown`, `Input` and `Button` components. By default, the Calendar points to today's date and input has no value. Users can either pick dates from the calendar or type dates through the input",
+    purposeCards: [
+      {
+        title: "Pick dates with precision",
+        description: "The calendar view helps users select dates in context — seeing the day of the week and surrounding dates reduces scheduling mistakes.",
+      },
+      {
+        title: "Type or click",
+        description: "Users can either type a date directly into the input or use the calendar interface, accommodating both keyboard-first and pointer users.",
+      },
+      {
+        title: "Consistent date format",
+        description: "A shared date picker ensures all products in your service collect and display dates in the same format, reducing ambiguity.",
+      },
+    ],
     anatomyParts: [{ title: "Input field" }, { title: "Calendar trigger" }, { title: "Calendar panel" }],
     demos: [
       demo(
@@ -1256,7 +1382,21 @@ Adding of title is optional.`,
     tag: "sgds-description-list",
     group: "list",
     summary:
-      "Description Lists are used with description list group as list components. A description list (often referred to as a “definition list”) is a type of list used in web design and documentation to pair terms with their corresponding descriptions or values.",
+      "Description lists pair terms with their corresponding descriptions or values. Use them to display structured content like key-value data, summaries, and definitions.",
+    purposeCards: [
+      {
+        title: "Pair labels with values",
+        description: "Description lists present key-value information clearly — names paired with values, terms paired with definitions, attributes paired with data.",
+      },
+      {
+        title: "Review before submission",
+        description: "Use description lists on confirmation or summary pages to show users exactly what they've entered before they commit.",
+      },
+      {
+        title: "Detail without clutter",
+        description: "The structured layout keeps dense information readable — labels and values are visually distinct without needing a full table.",
+      },
+    ],
     anatomyParts: [{ title: "Container" }, { title: "Label" }, { title: "Value" }],
     demos: [
       demo(
@@ -1282,6 +1422,20 @@ Adding of title is optional.`,
     group: "layout",
     summary:
       "A divider is a thin line that groups content in lists and layouts. They bring clarity to a layout by grouping and dividing content in close proximity.",
+    purposeCards: [
+      {
+        title: "Create visual breathing room",
+        description: "Dividers introduce a pause between content sections, helping users mentally separate one topic from the next.",
+      },
+      {
+        title: "Group without boxing",
+        description: "A line is lighter than a card border — use dividers when you want to separate content without enclosing it.",
+      },
+      {
+        title: "Works horizontally and vertically",
+        description: "Orientation options let dividers separate both stacked sections and side-by-side elements consistently across layouts.",
+      },
+    ],
     anatomyParts: [{ title: "Rule" }, { title: "Orientation" }],
     demos: [
       demo(
@@ -1305,6 +1459,20 @@ Adding of title is optional.`,
     group: "feedback",
     summary:
       "Drawers slide in from a container to expose additional options and information.",
+    purposeCards: [
+      {
+        title: "Expand context on demand",
+        description: "Drawers reveal additional information or actions in a panel anchored to the edge of the screen, without replacing the current view.",
+      },
+      {
+        title: "Keep the page visible",
+        description: "Unlike a modal, a drawer sits alongside the main content — users can reference what's behind it while working in the panel.",
+      },
+      {
+        title: "Useful for secondary tasks",
+        description: "Use drawers for settings, filters, or detail panels where the content supports — but doesn't replace — what's already on screen.",
+      },
+    ],
     anatomyParts: [
       { title: "Panel" },
       defaultPartTitleMap.title,
@@ -1337,6 +1505,20 @@ Adding of title is optional.`,
     group: "navigation",
     summary:
       "Dropdowns reveal a list of contextual actions or links from a single trigger.",
+    purposeCards: [
+      {
+        title: "Reveal actions on demand",
+        description: "Dropdowns keep secondary actions hidden until needed, reducing visual clutter without making options hard to reach.",
+      },
+      {
+        title: "Anchor to a trigger",
+        description: "The dropdown always opens relative to its trigger — users know exactly where it came from and where to dismiss it.",
+      },
+      {
+        title: "Flexible content inside",
+        description: "Dropdown menus can contain plain links, actions, icons, or dividers — composing a list that fits the context.",
+      },
+    ],
     anatomyParts: [
       { title: "Toggler" },
       { title: "Menu" },
@@ -1361,6 +1543,20 @@ Adding of title is optional.`,
     tag: "sgds-file-upload",
     group: "form",
     summary: "Allows users to upload files of various sizes and formats",
+    purposeCards: [
+      {
+        title: "Attach files to a task",
+        description: "File upload gives users a clear, accessible way to attach documents, images, or other files as part of completing a form or workflow.",
+      },
+      {
+        title: "Show what's been added",
+        description: "Once a file is selected, the component confirms the filename and size so users know their upload was received before submitting.",
+      },
+      {
+        title: "Constrain accepted types",
+        description: "File type and size restrictions can be communicated upfront, reducing failed uploads and back-and-forth with users.",
+      },
+    ],
     anatomyParts: [{ title: "Upload button" }, { title: "Selected file list" }, { title: "Feedback area" }],
     demos: [
       demo(
@@ -1377,6 +1573,20 @@ Adding of title is optional.`,
     group: "navigation",
     summary:
       "The footer contains supporting information for your service at the bottom of your website. All .gov.sg digital services shall contain a Global Footer Bar across all pages. The Global Footer Bar should include the name of the digital service, contact information, a privacy statement and the terms of use.",
+    purposeCards: [
+      {
+        title: "Required for .gov.sg services",
+        description: "All government digital services are required to include a footer with service name, contact information, privacy statement, and terms of use.",
+      },
+      {
+        title: "Persistent across pages",
+        description: "The footer provides a consistent anchor at the bottom of every page — users know where to find legal and contact information regardless of where they are.",
+      },
+      {
+        title: "Supports trust and compliance",
+        description: "A standardised footer reinforces the official identity of a government service and helps users verify they're on an authentic .gov.sg site.",
+      },
+    ],
     anatomyParts: [
       { title: "Container" },
       defaultPartTitleMap.title,
@@ -1407,6 +1617,20 @@ Adding of title is optional.`,
     group: "labels",
     summary:
       "Icons offer a form of visual shorthand that we are all familiar with. They can label, inform and aid navigation quickly and effectively in minimal space. Icons must first and foremost communicate meaning. By default, the icon component renders icons from `SgdsIcon` library set",
+    purposeCards: [
+      {
+        title: "Communicate at a glance",
+        description: "Icons convey meaning quickly in spaces where text would be too long — labels, buttons, status indicators, and navigation all benefit from visual shorthand.",
+      },
+      {
+        title: "Support text, not replace it",
+        description: "Icons work best alongside text, not instead of it. When used alone, always pair them with an accessible label so meaning is never ambiguous.",
+      },
+      {
+        title: "Consistent library",
+        description: "All icons are drawn from the SgdsIcon set, ensuring visual consistency across every product built on SGDS.",
+      },
+    ],
     anatomyParts: [{ title: "Icon glyph" }, { title: "Size variant" }],
     demos: [
       demo(
@@ -1427,6 +1651,20 @@ Adding of title is optional.`,
     group: "navigation",
     summary:
       "An icon button is a user interface element that combines an icon and a button, serving as a clickable or tabbable component.",
+    purposeCards: [
+      {
+        title: "Action in minimal space",
+        description: "Icon buttons let you place interactive controls in tight areas — toolbars, table rows, compact headers — without needing a text label.",
+      },
+      {
+        title: "Always label for accessibility",
+        description: "Because there's no visible text, icon buttons require an accessible aria-label so screen reader users understand the action.",
+      },
+      {
+        title: "Consistent visual weight",
+        description: "Using the icon button component keeps icon-only actions styled and sized consistently across your product.",
+      },
+    ],
     anatomyParts: [{ title: "Button container" }, { title: "Icon" }, { title: "Interactive state" }],
     demos: [
       demo(
@@ -1446,6 +1684,20 @@ Adding of title is optional.`,
     group: "data display",
     summary:
       "Icon cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.",
+    purposeCards: [
+      {
+        title: "Lead with a visual cue",
+        description: "The icon draws attention to the card's topic before users read the text, helping them navigate a grid of options more quickly.",
+      },
+      {
+        title: "Describe features or categories",
+        description: "Icon cards work well for presenting a set of features, services, or categories where a small visual anchors each item.",
+      },
+      {
+        title: "Uniform across a grid",
+        description: "The consistent structure — icon, title, description — means a row of icon cards stays balanced and easy to scan.",
+      },
+    ],
     anatomyParts: [
       { title: "Container" },
       defaultPartTitleMap.icon,
@@ -1471,6 +1723,20 @@ Adding of title is optional.`,
     group: "list",
     summary:
       "A IconList can be used to display content related to the same topic. Each list item begins an icon.",
+    purposeCards: [
+      {
+        title: "Pair icons with text rows",
+        description: "Icon lists give each list item a visual marker, making it easier to scan and find specific entries in longer sets.",
+      },
+      {
+        title: "Communicate type or status",
+        description: "Icons can signal category, priority, or state at a glance — users don't need to read every label to understand the list.",
+      },
+      {
+        title: "More expressive than plain lists",
+        description: "When plain bullet points feel flat, icon lists add visual structure without adding layout complexity.",
+      },
+    ],
     anatomyParts: [{ title: "List container" }, { title: "List item" }, { title: "Leading icon" }],
     demos: [
       demo(
@@ -1496,6 +1762,20 @@ Adding of title is optional.`,
     group: "data display",
     summary:
       "Image cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.",
+    purposeCards: [
+      {
+        title: "Lead with a visual",
+        description: "The image sets immediate context — users understand the content of the card before reading a single word.",
+      },
+      {
+        title: "Present editorial or catalogue content",
+        description: "Image cards work well for articles, projects, products, or resources where a thumbnail helps users decide what to open.",
+      },
+      {
+        title: "Consistent layout at scale",
+        description: "A grid of image cards maintains visual rhythm because every card shares the same proportions and content structure.",
+      },
+    ],
     anatomyParts: [
       { title: "Container" },
       defaultPartTitleMap.image,
@@ -1525,6 +1805,20 @@ Adding of title is optional.`,
     group: "form",
     summary:
       "Text inputs allow your users to enter letters, numbers and symbols on a single line.",
+    purposeCards: [
+      {
+        title: "Collect free-form text",
+        description: "Text inputs are the default choice for any information that users need to type out — names, references, search terms, addresses.",
+      },
+      {
+        title: "Built-in validation states",
+        description: "Error, warning, and success states are part of the component — validation feedback integrates naturally without custom styling.",
+      },
+      {
+        title: "Label and helper text included",
+        description: "The label and helper text slots keep form questions and guidance close to their field, reducing the cognitive load on users.",
+      },
+    ],
     anatomyParts: [
       { title: "Input field" },
       defaultPartTitleMap.icon,
@@ -1547,6 +1841,20 @@ Adding of title is optional.`,
     tag: "sgds-link",
     group: "labels",
     summary: "Link allows users to click and navigate their way from page to page",
+    purposeCards: [
+      {
+        title: "Navigate within content",
+        description: "Inline links let users move to related pages or resources without leaving the natural reading flow of a paragraph or list.",
+      },
+      {
+        title: "Visually distinct from text",
+        description: "The link style is consistently underlined and coloured so users can immediately tell what's interactive and what isn't.",
+      },
+      {
+        title: "Multiple size options",
+        description: "Link sizes let you match the surrounding text — whether it's body copy, a caption, or a heading — without breaking the typographic hierarchy.",
+      },
+    ],
     anatomyParts: [{ title: "Link wrapper" }, { title: "Anchor content" }],
     demos: [
       demo(
@@ -1563,6 +1871,20 @@ Adding of title is optional.`,
     group: "navigation",
     summary:
       "This component is the primary means that your users will use to navigate through your portal. It includes horizontal navigation and branding to identify your site.",
+    purposeCards: [
+      {
+        title: "Primary site navigation",
+        description: "The mainnav is the top-level wayfinding component — it gives users a clear view of the site's main sections from any page.",
+      },
+      {
+        title: "Includes brand identity",
+        description: "The logo slot ties navigation to the service brand, so users always know which product they're in, even when they navigate deep into the site.",
+      },
+      {
+        title: "Responsive and accessible",
+        description: "The navigation collapses into a mobile-friendly menu at smaller breakpoints, and keyboard navigation is fully supported out of the box.",
+      },
+    ],
     anatomyParts: [
       { title: "Container" },
       defaultPartTitleMap.brand,
@@ -1600,6 +1922,20 @@ Adding of title is optional.`,
     group: "navigation",
     summary:
       "All .gov.sg digital services shall adopt The Official Government Banner for every page in the digital service and be placed at the top of the page.",
+    purposeCards: [
+      {
+        title: "Mandatory for .gov.sg services",
+        description: "Every .gov.sg digital service is required to display the official government banner so users can verify they're on an authentic government website.",
+      },
+      {
+        title: "Establishes trust immediately",
+        description: "The masthead is the first thing users see — its standardised design signals official authenticity before users interact with any content.",
+      },
+      {
+        title: "Consistent across government",
+        description: "Using the same masthead across all .gov.sg services creates a unified experience that reinforces trust in the broader Singapore government digital ecosystem.",
+      },
+    ],
     anatomyParts: [{ title: "Government banner" }, { title: "Expandable details" }],
     demos: [
       demo(
@@ -1616,6 +1952,20 @@ Adding of title is optional.`,
     group: "feedback",
     summary:
       "The modal component inform users about a specific task and may contain critical information which users then have to make a decision.",
+    purposeCards: [
+      {
+        title: "Demand focused attention",
+        description: "Modals block the background to ensure users engage with critical information or complete a required action before continuing.",
+      },
+      {
+        title: "Confirm before consequences",
+        description: "Use modals to confirm destructive or irreversible actions — deleting a record, submitting a form — so users don't act by accident.",
+      },
+      {
+        title: "Self-contained interactions",
+        description: "A modal should contain everything needed to complete its task — title, body, and clear actions — so users don't need to leave it to find context.",
+      },
+    ],
     anatomyMarkup: `<div class="portal-modal-preview">
       <div class="portal-modal-panel">
         <div class="portal-modal-header">
@@ -1673,6 +2023,20 @@ Adding of title is optional.`,
     group: "navigation",
     summary:
       "An overflow menu is a UI element, often represented by three dots (⋮ or …), that opens a menu with additional actions or options.",
+    purposeCards: [
+      {
+        title: "Tuck away secondary actions",
+        description: "Overflow menus keep infrequently used or contextual actions out of the main UI, surfacing them only when the user asks.",
+      },
+      {
+        title: "Avoid crowding the interface",
+        description: "When a row, card, or list item has many possible actions, the overflow menu keeps the layout clean without hiding important primary actions.",
+      },
+      {
+        title: "Consistent trigger pattern",
+        description: "The three-dot icon is a well-established pattern — users know tapping it reveals more options without needing any instruction.",
+      },
+    ],
     anatomyParts: [{ title: "Trigger button" }, { title: "Menu" }, { title: "Menu item" }],
     demos: [
       demo(
@@ -1693,6 +2057,20 @@ Adding of title is optional.`,
     group: "table",
     summary:
       "The Pagination component enables the user to select a specific page from a range of pages",
+    purposeCards: [
+      {
+        title: "Navigate large datasets",
+        description: "Pagination breaks a long list of results into discrete pages, so users don't have to load or scroll through everything at once.",
+      },
+      {
+        title: "Show position in the set",
+        description: "The current page is always highlighted and the total page count is visible — users know exactly where they are in a long result set.",
+      },
+      {
+        title: "Control how much you see",
+        description: "When paired with a page-size selector, pagination lets users decide how densely they want to browse — fewer items for focus, more for efficiency.",
+      },
+    ],
     anatomyParts: [{ title: "Page controls" }, { title: "Current page" }, { title: "Next and previous actions" }],
     demos: [
       demo(
@@ -1709,6 +2087,20 @@ Adding of title is optional.`,
     group: "feedback",
     summary:
       "Provide up-to-date feedback on the progress of a workflow or action with simple yet flexible progress bars.",
+    purposeCards: [
+      {
+        title: "Show ongoing progress",
+        description: "A progress bar communicates that work is happening and gives users a sense of how far along it is — reducing anxiety during longer operations.",
+      },
+      {
+        title: "Make completeness visible",
+        description: "When a process has a known endpoint — uploading a file, completing a profile — a progress bar shows how much is done versus how much remains.",
+      },
+      {
+        title: "Prevent unnecessary interruptions",
+        description: "When users can see progress, they're less likely to abort a task or re-trigger it by clicking again.",
+      },
+    ],
     anatomyParts: [{ title: "Track" }, { title: "Progress indicator" }, { title: "Label" }],
     demos: [
       demo(
@@ -1725,6 +2117,20 @@ Adding of title is optional.`,
     group: "form",
     summary:
       "The quantity toggle component is used to increase or decrease an incremental venue,  best used when the user needs to enter or adjust the quantity of a selected item.",
+    purposeCards: [
+      {
+        title: "Adjust counts without a keyboard",
+        description: "The increment and decrement buttons let users change a quantity directly — no need to clear and retype a number.",
+      },
+      {
+        title: "Prevent invalid values",
+        description: "Min and max constraints are built in, so users can't accidentally enter a quantity outside the allowed range.",
+      },
+      {
+        title: "Fits naturally in transactional flows",
+        description: "Use quantity toggles in booking or order screens where users need to set a number as part of completing a task.",
+      },
+    ],
     anatomyParts: [{ title: "Decrement action" }, { title: "Input value" }, { title: "Increment action" }],
     demos: [
       demo(
@@ -1741,6 +2147,20 @@ Adding of title is optional.`,
     group: "form",
     summary:
       "Radio allows the user to select one option from a set while seeing all available options.",
+    purposeCards: [
+      {
+        title: "Mutually exclusive choices",
+        description: "Radio buttons enforce a single selection — users pick one option from a defined set, and changing their selection automatically deselects the previous one.",
+      },
+      {
+        title: "All options visible upfront",
+        description: "Unlike a select, all radio options are shown at once — better when the number of choices is small and comparison matters.",
+      },
+      {
+        title: "Clear confirmation of selection",
+        description: "The selected state is visually distinct and persistent, so users always know what they've chosen before submitting.",
+      },
+    ],
     anatomyParts: [{ title: "Group" }, { title: "Radio control" }, { title: "Label" }],
     demos: [
       demo(
@@ -1761,6 +2181,20 @@ Adding of title is optional.`,
     group: "form",
     summary:
       "Select is used to make one selection from a list through keyboard or mouse actions",
+    purposeCards: [
+      {
+        title: "Choose from a defined list",
+        description: "Select is the right choice when users must pick one option from a known set — especially when the list is too long to show as radio buttons.",
+      },
+      {
+        title: "Compact for long lists",
+        description: "A select dropdown collapses a list of options into a single row, keeping the form layout tight when there are many choices.",
+      },
+      {
+        title: "Familiar and accessible",
+        description: "Select uses the native browser control as a fallback, ensuring it works reliably across platforms and is fully operable by keyboard and assistive technologies.",
+      },
+    ],
     anatomyParts: [{ title: "Trigger field" }, { title: "Listbox" }, { title: "Option" }],
     demos: [
       demo(
@@ -1781,6 +2215,20 @@ Adding of title is optional.`,
     group: "navigation",
     summary:
       "The side navigation is used to display a list of links to move between pages within a related category.",
+    purposeCards: [
+      {
+        title: "Navigate a section in depth",
+        description: "Side navigation is designed for pages with many sub-sections — it keeps all the links in view so users can jump between them without hunting.",
+      },
+      {
+        title: "Always visible while reading",
+        description: "Unlike a header nav, a sidenav stays on screen as users scroll, so the navigation is always reachable without scrolling back to the top.",
+      },
+      {
+        title: "Highlights current location",
+        description: "The active state on the current page gives users a constant read of where they are within a section — useful on content-heavy sites.",
+      },
+    ],
     anatomyParts: [{ title: "Navigation container" }, { title: "Section item" }, { title: "Link" }],
     demos: [
       demo(
@@ -1810,6 +2258,20 @@ Adding of title is optional.`,
     group: "feedback",
     summary:
       "A skeleton is a low-fidelity visual placeholder that represents the loading of interface elements",
+    purposeCards: [
+      {
+        title: "Signal content is coming",
+        description: "Skeleton screens replace blank states with a low-fidelity layout preview, so users see the page structure before the data arrives.",
+      },
+      {
+        title: "Reduce perceived load time",
+        description: "When users see a skeleton that matches the shape of the incoming content, the wait feels shorter and the transition feels smoother.",
+      },
+      {
+        title: "Avoid layout shift",
+        description: "Placeholders sized to the actual content prevent the page from jumping around when data loads in, keeping the experience stable.",
+      },
+    ],
     anatomyParts: [{ title: "Placeholder surface" }, { title: "Loading animation" }],
     demos: [
       demo(
@@ -1827,6 +2289,20 @@ Adding of title is optional.`,
     tag: "sgds-spinner",
     group: "feedback",
     summary: "Spinners notify the users that their request is being processed.",
+    purposeCards: [
+      {
+        title: "Acknowledge the request",
+        description: "A spinner immediately confirms to the user that their action was received and something is being processed — preventing repeat clicks.",
+      },
+      {
+        title: "Use for indeterminate waits",
+        description: "Spinners are best when you can't predict how long an operation will take — they signal ongoing activity without implying a specific duration.",
+      },
+      {
+        title: "Keep it in context",
+        description: "Position the spinner near the element that triggered the action so users can see that the specific thing they asked for is being handled.",
+      },
+    ],
     anatomyParts: [{ title: "Spinner glyph" }, { title: "Motion state" }],
     demos: [
       demo(
@@ -1843,6 +2319,20 @@ Adding of title is optional.`,
     group: "navigation",
     summary:
       "Steppers are used to inform users which step they are at in a form or a process",
+    purposeCards: [
+      {
+        title: "Track multi-step progress",
+        description: "Steppers show users how many stages a process has and which one they're currently on — reducing uncertainty in long workflows.",
+      },
+      {
+        title: "Allow review and return",
+        description: "Completed steps remain accessible, so users can navigate back to correct earlier inputs without losing later progress.",
+      },
+      {
+        title: "Set expectations upfront",
+        description: "Seeing all steps at the start lets users understand the scope of a form or process before they begin — reducing drop-off from unexpected length.",
+      },
+    ],
     anatomyParts: [{ title: "Step marker" }, { title: "Step label" }, { title: "Step content" }],
     demos: [
       demo(
@@ -1861,6 +2351,20 @@ Adding of title is optional.`,
     group: "navigation",
     summary:
       "This component provides secondary navigation within a specific section or page. It typically appears below the main navigation and offers context-specific links or actions to help users explore related content.",
+    purposeCards: [
+      {
+        title: "Navigate within a section",
+        description: "Subnavigation provides a secondary layer of navigation for a specific section — letting users move between closely related pages without using the main nav.",
+      },
+      {
+        title: "Shows what's available",
+        description: "All sub-sections are visible at once, so users know what's in the current section and can move freely between them.",
+      },
+      {
+        title: "Indicates the active page",
+        description: "The active indicator keeps users oriented within the sub-section — they know where they are without having to check the URL.",
+      },
+    ],
     anatomyParts: [
       { title: "Container" },
       defaultPartTitleMap.header,
@@ -1890,6 +2394,20 @@ Adding of title is optional.`,
     group: "form",
     summary:
       "Switch component is used to toggle on and off or yes or no action.",
+    purposeCards: [
+      {
+        title: "Toggle a setting on or off",
+        description: "Switches represent a binary state — enabled or disabled, on or off — and apply the change immediately without requiring a submit action.",
+      },
+      {
+        title: "Immediate effect",
+        description: "Unlike a checkbox in a form, a switch takes effect the moment it's toggled — use it when the action should happen right away.",
+      },
+      {
+        title: "Visible state at all times",
+        description: "The switch's visual position and colour make the current state obvious without needing to read a label.",
+      },
+    ],
     anatomyParts: [{ title: "Switch track" }, { title: "Thumb" }, { title: "Label" }],
     demos: [
       demo(
@@ -1906,6 +2424,20 @@ Adding of title is optional.`,
     group: "feedback",
     summary:
       "The system banner component for displaying important messages to users at the application level.",
+    purposeCards: [
+      {
+        title: "Broadcast site-wide messages",
+        description: "System banners are designed for announcements that affect the entire service — planned maintenance, urgent alerts, or important policy updates.",
+      },
+      {
+        title: "Persistent and hard to miss",
+        description: "Unlike a toast, the system banner stays on screen until dismissed, ensuring important messages aren't lost when users navigate between pages.",
+      },
+      {
+        title: "Supports multiple announcements",
+        description: "When there's more than one message to convey, items cycle automatically — users can page through all announcements without the interface becoming crowded.",
+      },
+    ],
     anatomyMarkup: `<sgds-system-banner show dismissible fluid noClampAction>
       <sgds-system-banner-item>
         <sgds-icon slot="icon" name="info-circle-fill" size="md"></sgds-icon>
@@ -1944,6 +2476,20 @@ Adding of title is optional.`,
     tag: "sgds-tab-group",
     group: "navigation",
     summary: "Tabs are used within tab group to activate the tab panels",
+    purposeCards: [
+      {
+        title: "Switch between related views",
+        description: "Tabs let users navigate between content sections that share a context — different aspects of the same object, or different states of the same data.",
+      },
+      {
+        title: "Keep all options reachable",
+        description: "All tab labels are visible at once, so users can see what sections exist and switch between them without a back button.",
+      },
+      {
+        title: "Preserve state between switches",
+        description: "Switching tabs doesn't reload the page — users can move back and forth between panels without losing scroll position or entered data.",
+      },
+    ],
     anatomyParts: [{ title: "Tab list" }, { title: "Tab" }, { title: "Tab panel" }],
     demos: [
       demo(
@@ -1967,6 +2513,20 @@ Adding of title is optional.`,
     group: "table",
     summary:
       "Table is used for displaying collections of data in organized rows and columns.",
+    purposeCards: [
+      {
+        title: "Compare data across rows",
+        description: "Tables are built for information that has a consistent structure across many entries — users can scan columns to compare values at a glance.",
+      },
+      {
+        title: "Handles dense information well",
+        description: "When there are many attributes and many records, a table gives each one a fixed position — making even complex datasets navigable.",
+      },
+      {
+        title: "Supports further interaction",
+        description: "Tables can incorporate sorting, filtering, selection, and actions per row, turning a static display into an operational interface.",
+      },
+    ],
     anatomyParts: [{ title: "Table container" }, { title: "Header cells" }, { title: "Data cells" }],
     demos: [
       demo(
@@ -1988,6 +2548,20 @@ Adding of title is optional.`,
     group: "table",
     summary:
       "Tables of contents provide a page overview and direct access to specific sections.",
+    purposeCards: [
+      {
+        title: "Navigate long pages without scrolling",
+        description: "A table of contents gives users direct links to every section on the page, so they can jump to what's relevant without reading from the top.",
+      },
+      {
+        title: "Understand the page at a glance",
+        description: "Seeing all the headings together helps users assess whether a page is relevant to them before they commit to reading it.",
+      },
+      {
+        title: "Stays anchored while scrolling",
+        description: "A sticky table of contents keeps navigation within reach as users move through content — especially useful on documentation or policy pages.",
+      },
+    ],
     anatomyParts: [{ title: "Container" }, { title: "Header" }, { title: "Contents list" }],
     demos: [
       demo(
@@ -2013,6 +2587,20 @@ Adding of title is optional.`,
     group: "form",
     summary:
       "Text areas allow for the collection of input longer than a single line.",
+    purposeCards: [
+      {
+        title: "Capture longer text input",
+        description: "Textareas are designed for open-ended responses — feedback, notes, descriptions — where a single line isn't enough room.",
+      },
+      {
+        title: "Resize to fit the content",
+        description: "The textarea grows to accommodate longer entries, so users aren't constrained to a tiny box when they have more to say.",
+      },
+      {
+        title: "Same validation patterns as input",
+        description: "Error, warning, and success states follow the same conventions as the standard input, so validation feedback is consistent across the form.",
+      },
+    ],
     anatomyParts: [{ title: "Textarea field" }, { title: "Hint and feedback" }],
     demos: [
       demo(
@@ -2029,6 +2617,20 @@ Adding of title is optional.`,
     group: "data display",
     summary:
       "Thumbnail cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.",
+    purposeCards: [
+      {
+        title: "Preview before clicking",
+        description: "A thumbnail gives users a visual cue about the content behind the card — reducing the chance they click through to something irrelevant.",
+      },
+      {
+        title: "Compact content listing",
+        description: "Thumbnail cards pack image, title, and description into a tight format — useful in sidebars, grids, or anywhere dense content needs to be browseable.",
+      },
+      {
+        title: "Consistent proportions across a grid",
+        description: "Shared aspect ratios across thumbnail cards keep a grid visually stable, even when the underlying images vary in composition.",
+      },
+    ],
     anatomyParts: [
       { title: "Container" },
       defaultPartTitleMap.thumbnail,
@@ -2058,6 +2660,20 @@ Adding of title is optional.`,
     tag: "sgds-toast",
     group: "feedback",
     summary: "Toast allows you to convey quick messaging notifications to the user.",
+    purposeCards: [
+      {
+        title: "Confirm actions without interrupting",
+        description: "Toasts appear briefly to acknowledge that something worked — a save, a deletion, a form submission — without stopping the user mid-task.",
+      },
+      {
+        title: "Disappear automatically",
+        description: "Toasts dismiss themselves after a few seconds, so users don't have to manually close them to continue working.",
+      },
+      {
+        title: "Non-blocking by design",
+        description: "Unlike a modal, a toast doesn't prevent interaction with the page — users can keep working while the notification is visible.",
+      },
+    ],
     anatomyParts: [{ title: "Toast surface" }, { title: "Title" }, { title: "Body content" }, { title: "Action" }],
     demos: [
       demo(
@@ -2077,6 +2693,20 @@ Adding of title is optional.`,
     group: "feedback",
     summary:
       "Tooltips display more information when users hover over, focus on, or interact with an element.",
+    purposeCards: [
+      {
+        title: "Surface context without cluttering the UI",
+        description: "Tooltips reveal supporting information — descriptions, keyboard shortcuts, clarifications — on demand, keeping the interface clean until users ask for more.",
+      },
+      {
+        title: "Supplement, not replace, labels",
+        description: "Tooltips are supplementary — they add detail to elements that already have a visible label or icon, not a substitute for accessible labelling.",
+      },
+      {
+        title: "Triggered by attention, not action",
+        description: "Because tooltips appear on hover or focus rather than a click, they feel ambient — users encounter them naturally as they explore the interface.",
+      },
+    ],
     anatomyParts: [{ title: "Target element" }, { title: "Tooltip bubble" }, { title: "Supporting text" }],
     demos: [
       demo(

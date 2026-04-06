@@ -3,6 +3,7 @@ import "@govtechsg/sgds-web-component";
 import Layout from "./Layout.vue";
 import SkillsTable from "../components/SkillsTable.vue";
 import CopyCommand from "../components/CopyCommand.vue";
+import PromptBox from "../components/PromptBox.vue";
 import AiWorkflowPaths from "../components/AiWorkflowPaths.vue";
 import PatternDesignPage from "../components/PatternDesignPage.vue";
 import type { Theme } from "vitepress";
@@ -14,6 +15,7 @@ export default {
   enhanceApp({ app }) {
     app.component("SkillsTable", SkillsTable);
     app.component("CopyCommand", CopyCommand);
+    app.component("PromptBox", PromptBox);
     app.component("AiWorkflowPaths", AiWorkflowPaths);
     app.component("PatternDesignPage", PatternDesignPage);
     if (typeof window !== "undefined") {

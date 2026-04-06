@@ -15,6 +15,6 @@ Developers can use AI to:
 
 ## Recommended pages
 
-- [Setup instructions](/ai/setup-instructions)
+- [Agent skills](/ai/agent-skills)
 - [Prompt tips](/ai/prompt-tips)
-- [MCP server setup](/ai/mcp-server-setup)
+- [MCP server](/ai/mcp-server)

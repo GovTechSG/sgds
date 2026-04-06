@@ -3,7 +3,7 @@ import CodeToken from "./CodeToken.vue";
 </script>
 
 <template>
-  <sgds-table tableBorder headerBackground>
+  <sgds-table tableBorder headerBackground responsive="always">
     <sgds-table-row>
       <sgds-table-head>Skill</sgds-table-head>
       <sgds-table-head>What it covers</sgds-table-head>

@@ -37,6 +37,7 @@ const header = computed(() => {
 })
 
 const showHeaderBadge = computed(() => currentSection.value === "ai")
+const pageHeaderBottomGapClass = computed(() => "bottomGapXl")
 
 const currentSidebar = computed(() => {
   const sidebars = theme.value?.sidebar || {}
@@ -80,6 +81,8 @@ const formatSidebarLabel = (text?: string) => {
 
   const trimmed = text.trim()
   if (!trimmed) return ""
+
+  if (/[.]/.test(trimmed)) return trimmed
 
   const words = trimmed.split(/\s+/)
 
@@ -178,9 +181,11 @@ const pageMetadata = computed(() => {
           :title="page.title"
           :description="page.description"
           :metadata="pageMetadata"
+          :bottom-gap-class="pageHeaderBottomGapClass"
+          :header-alert="page.frontmatter.headerAlert"
         />
         <div :class="$style['content-container']">
-          <div :class="$style['content']">
+          <div :class="[$style.content, currentSection === 'ai' && $style.contentAi]">
             <Content />
           </div>
           <DocFooter />
@@ -224,5 +229,11 @@ const pageMetadata = computed(() => {
   .content > * > * + h3,
   .content > * > * + h4 {
     margin-top: var(--sgds-layout-gap-md);
+  }
+
+  .contentAi > * > * + h2,
+  .contentAi > * > * + h3,
+  .contentAi > * > * + h4 {
+    margin-top: var(--sgds-layout-gap-lg);
   }
 </style>

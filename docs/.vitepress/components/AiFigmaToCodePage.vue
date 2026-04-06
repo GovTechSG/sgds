@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AiInstructionStepper from "./AiInstructionStepper.vue";
 import CodeToken from "./CodeToken.vue";
-import { ref } from "vue";
+import PromptBox from "./PromptBox.vue";
 
 const figmaToCodeSteps = [
   { number: 1, title: "Go to your Figma screen" },
@@ -17,15 +17,6 @@ const codeToFigmaSteps = [
   { number: 4, title: "Tidy the Figma file for reuse" },
 ];
 
-const copiedPrompt = ref<string | null>(null);
-
-const copyPrompt = async (id: string, text: string) => {
-  await navigator.clipboard.writeText(text);
-  copiedPrompt.value = id;
-  window.setTimeout(() => {
-    if (copiedPrompt.value === id) copiedPrompt.value = null;
-  }, 2000);
-};
 </script>
 
 <template>
@@ -91,21 +82,7 @@ const copyPrompt = async (id: string, text: string) => {
                 <p class="sgds:text-label-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   Be explicit that you want SGDS-aligned output.
                 </p>
-                <div :class="$style.promptCard">
-                  <div :class="$style.promptCardHeader">
-                    <span class="sgds:text-label-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">PROMPT</span>
-                    <button
-                      :class="$style.promptCopyButton"
-                      :aria-label="copiedPrompt === 'figma-to-code' ? 'Copied!' : 'Copy prompt'"
-                      @click="copyPrompt('figma-to-code', 'Use this Figma frame and implement it with SGDS components and patterns. Map the layout to SGDS as closely as possible and flag anything that does not have a direct SGDS match.')"
-                    >
-                      <sgds-icon :name="copiedPrompt === 'figma-to-code' ? 'check' : 'copy'" size="md"></sgds-icon>
-                    </button>
-                  </div>
-                  <p :class="$style.promptText">
-                    Use this Figma frame and implement it with SGDS components and patterns. Map the layout to SGDS as closely as possible and flag anything that does not have a direct SGDS match.
-                  </p>
-                </div>
+                <PromptBox prompt="Use this Figma frame and implement it with SGDS components and patterns. Map the layout to SGDS as closely as possible and flag anything that does not have a direct SGDS match." />
               </template>
 
               <template #step-4>
@@ -139,21 +116,7 @@ const copyPrompt = async (id: string, text: string) => {
                 <p class="sgds:text-label-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   Ask the AI to capture or recreate the coded screen in Figma.
                 </p>
-                <div :class="$style.promptCard">
-                  <div :class="$style.promptCardHeader">
-                    <span class="sgds:text-label-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">PROMPT</span>
-                    <button
-                      :class="$style.promptCopyButton"
-                      :aria-label="copiedPrompt === 'code-to-figma' ? 'Copied!' : 'Copy prompt'"
-                      @click="copyPrompt('code-to-figma', 'Take this coded page and create a Figma screen that matches it using the design system where possible.')"
-                    >
-                      <sgds-icon :name="copiedPrompt === 'code-to-figma' ? 'check' : 'copy'" size="md"></sgds-icon>
-                    </button>
-                  </div>
-                  <p :class="$style.promptText">
-                    Take this coded page and create a Figma screen that matches it using the design system where possible.
-                  </p>
-                </div>
+                <PromptBox prompt="Take this coded page and create a Figma screen that matches it using the design system where possible." />
               </template>
 
               <template #step-3>
@@ -248,57 +211,4 @@ const copyPrompt = async (id: string, text: string) => {
   margin: 0;
 }
 
-.promptCard {
-  background: var(--sgds-surface-default);
-  border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-xl);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sgds-gap-2-xs);
-  min-width: 0;
-  max-width: 100%;
-  padding: var(--sgds-padding-md) var(--sgds-component-padding-xs);
-  width: 100%;
-}
-
-.promptCardHeader {
-  align-items: center;
-  color: var(--sgds-body-color-subtle);
-  display: flex;
-  justify-content: space-between;
-  gap: var(--sgds-gap-md);
-  min-width: 0;
-}
-
-.promptCopyButton {
-  align-items: center;
-  background: none;
-  border: none;
-  border-radius: 4px;
-  color: var(--sgds-color-default);
-  cursor: pointer;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: center;
-  padding: 4px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.promptCopyButton:hover {
-  background-color: var(--sgds-border-color-muted);
-}
-
-.promptText {
-  color: var(--sgds-body-color-default);
-  font-size: var(--sgds-font-size-body-md);
-  font-weight: var(--sgds-font-weight-regular);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-24);
-  margin: 0;
-  min-width: 0;
-  overflow-wrap: anywhere;
-  white-space: normal;
-  width: 100%;
-}
 </style>

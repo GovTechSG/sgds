@@ -55,6 +55,36 @@ After upgrading `@govtechsg/sgds-web-component`, run this to keep your AI's know
 <CopyCommand command="npx skills update" />
 
 <style>
+h2,
+p,
+ul,
+li {
+  margin: 0;
+}
+
+h2 {
+  margin-top: var(--sgds-layout-gap-lg);
+}
+
+h2:first-of-type {
+  margin-top: 0;
+}
+
+h2 + p {
+  margin-top: var(--sgds-text-gap-sm);
+}
+
+p + p,
+p + ul,
+ul + p,
+p + .example-prompts,
+p + copy-command,
+p + skills-table,
+p + ai-workflow-paths,
+.example-prompts + p {
+  margin-top: var(--sgds-text-gap-sm);
+}
+
 .example-prompts {
   display: flex;
   flex-direction: column;

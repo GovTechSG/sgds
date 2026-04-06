@@ -16,7 +16,7 @@ function copy() {
   <div :class="$style.wrapper">
     <CodeToken :label="command" :surface="false" :class="$style.command" />
     <button
-      :class="$style.btn"
+      :class="[$style.btn, copied && $style.btnCopied]"
       :aria-label="copied ? 'Copied!' : 'Copy to clipboard'"
       @click="copy"
     >
@@ -57,5 +57,9 @@ function copy() {
 
 .btn:hover {
   background-color: var(--sgds-border-color-muted);
+}
+
+.btnCopied {
+  color: var(--sgds-success-color-default);
 }
 </style>

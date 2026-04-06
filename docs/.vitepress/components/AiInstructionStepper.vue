@@ -35,7 +35,7 @@ defineProps<{
 
 <style module>
 .block {
-  margin: 0;
+  margin: var(--sgds-layout-gap-xs) 0 0;
 }
 
 .stepper {
