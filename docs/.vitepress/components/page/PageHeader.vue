@@ -12,12 +12,30 @@ export type Page = {
   metadata?: MetadataItem[];
   titleClass?: string;
   descriptionClass?: string;
+  bottomGapClass?: string;
+  headerAlert?: {
+    title: string;
+    description: string;
+    variant?: string;
+    outlined?: boolean;
+    icon?: string;
+  };
 }
-const { title, description, metadata, titleClass, descriptionClass } = defineProps<Page>();
+const { title, description, metadata, titleClass, descriptionClass, bottomGapClass, headerAlert } = defineProps<Page>();
 </script>
 
 <template>
-  <div class="sgds:flex sgds:flex-col sgds:gap-layout-md sgds:mb-layout-md">
+  <div :class="['sgds:flex sgds:flex-col sgds:gap-layout-md', bottomGapClass || 'sgds:mb-layout-md']">
+    <sgds-alert
+      v-if="headerAlert"
+      show
+      :variant="headerAlert.variant || 'danger'"
+      :outlined="headerAlert.outlined ?? true"
+      :title="headerAlert.title"
+    >
+      <sgds-icon v-if="headerAlert.icon" slot="icon" :name="headerAlert.icon"></sgds-icon>
+      <span>{{ headerAlert.description }}</span>
+    </sgds-alert>
     <h1 :class="[titleClass || 'sgds:text-display-md sgds:font-bold sgds:leading-2-xl sgds:tracking-tighter', 'sgds:mb-0']">{{ title }}</h1>
     <p
       v-if="description"

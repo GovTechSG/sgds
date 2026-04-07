@@ -4,7 +4,7 @@ title: What AI can do
 description: See how AI can support designers, developers, and product managers when SGDS is the source of truth.
 ---
 
-## For designers
+<h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">For designers</h3>
 
 <div class="ai-role-card">
   <p class="ai-role-title">Use AI to:</p>
@@ -19,7 +19,7 @@ description: See how AI can support designers, developers, and product managers 
   <p class="ai-example-copy">“Review this screen and list missing states using SGDS patterns.”</p>
 </div>
 
-## For developers
+<h2 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">For developers</h2>
 
 <div class="ai-role-card">
   <p class="ai-role-title">Use AI to:</p>
@@ -34,7 +34,7 @@ description: See how AI can support designers, developers, and product managers 
   <p class="ai-example-copy">“Using SGDS form patterns, generate a registration form with validation and error states.”</p>
 </div>
 
-## For product managers
+<h2 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">For product managers</h2>
 
 <div class="ai-role-card">
   <p class="ai-role-title">Use AI to:</p>
@@ -49,7 +49,7 @@ description: See how AI can support designers, developers, and product managers 
   <p class="ai-example-copy">“Create a user flow for onboarding using SGDS components and include edge cases.”</p>
 </div>
 
-## What changes when you use SGDS with AI
+<h2 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">What changes when you use SGDS with AI</h2>
 
 <div class="ai-compare-grid">
   <div class="ai-compare-card">
@@ -69,7 +69,7 @@ description: See how AI can support designers, developers, and product managers 
   </div>
 </div>
 
-## Example output
+<h2 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Example output</h2>
 
 <div class="ai-example-block">
 
@@ -85,26 +85,62 @@ Screen review notes
 
 </div>
 
-## When to use AI
+<h2 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">When to use AI</h2>
 
-Use AI when you need to:
+<p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use AI when you need to:</p>
 
-- Generate a first draft quickly
-- Explore options
-- Translate ideas into something structured
-- Reduce repetitive work
+<ul class="ai-list">
+  <li>Generate a first draft quickly</li>
+  <li>Explore options</li>
+  <li>Translate ideas into something structured</li>
+  <li>Reduce repetitive work</li>
+</ul>
 
-## Important
+<h2 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Important</h2>
 
-AI helps you move faster, but it does not replace judgment.
+<p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">AI helps you move faster, but it does not replace judgment.</p>
 
-Always review outputs for:
+<p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Always review outputs for:</p>
 
-- Accessibility
-- Business logic
-- Product requirements
+<ul class="ai-list">
+  <li>Accessibility</li>
+  <li>Business logic</li>
+  <li>Product requirements</li>
+</ul>
 
 <style>
+h2,
+h3,
+p,
+ul,
+li {
+  margin: 0;
+}
+
+h2,
+h3 {
+  margin-top: var(--sgds-layout-gap-lg);
+}
+
+h3:first-of-type {
+  margin-top: 0;
+}
+
+h2 + p,
+h3 + p,
+h2 + .ai-role-card,
+h2 + .ai-compare-grid,
+h2 + .ai-example-block,
+h3 + .ai-role-card {
+  margin-top: var(--sgds-text-gap-sm);
+}
+
+p + p,
+p + ul,
+ul + p {
+  margin-top: var(--sgds-text-gap-sm);
+}
+
 .ai-role-card,
 .ai-compare-card,
 .ai-example-block {
@@ -135,14 +171,23 @@ Always review outputs for:
   color: var(--sgds-body-color-subtle);
   display: flex;
   flex-direction: column;
-  gap: var(--sgds-gap-xs);
+  gap: var(--sgds-text-gap-xs);
   margin: 0;
   padding-left: var(--sgds-padding-lg);
 }
 
 .ai-example-copy {
   color: var(--sgds-body-color-subtle);
+  font-size: var(--sgds-font-size-body-md);
+  font-weight: var(--sgds-font-weight-regular);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-24);
   margin: 0;
+}
+
+p,
+li {
+  color: var(--sgds-body-color-subtle);
 }
 
 .ai-compare-grid {

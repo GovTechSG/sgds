@@ -205,26 +205,12 @@ config.themeConfig.sidebar["/ai/"] = {
       ],
     },
     {
-      text: "Getting started",
+      text: "Setup & workflows",
       items: [
-        { text: "Setup instructions", link: "/ai/setup-instructions" },
+        { text: "LLMs.txt", link: "/ai/llm-txt" },
+        { text: "Agent skills", link: "/ai/agent-skills" },
+        { text: "MCP server", link: "/ai/mcp-server" },
         { text: "Prompt tips", link: "/ai/prompt-tips" },
-      ],
-    },
-    {
-      text: "MCP & integrations",
-      items: [
-        { text: "What is MCP?", link: "/ai/what-is-mcp" },
-        { text: "MCP server setup", link: "/ai/mcp-server-setup" },
-        { text: "Figma to code", link: "/ai/figma-to-code" },
-      ],
-    },
-    {
-      text: "By role",
-      items: [
-        { text: "Designers", link: "/ai/designers" },
-        { text: "Developers", link: "/ai/developers" },
-        { text: "Others", link: "/ai/others" },
       ],
     },
   ],

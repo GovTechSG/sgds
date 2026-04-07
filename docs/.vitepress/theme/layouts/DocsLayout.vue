@@ -37,6 +37,7 @@ const header = computed(() => {
 })
 
 const showHeaderBadge = computed(() => currentSection.value === "ai")
+const pageHeaderBottomGapClass = computed(() => "sgds:mb-layout-xl")
 
 const currentSidebar = computed(() => {
   const sidebars = theme.value?.sidebar || {}
@@ -80,6 +81,8 @@ const formatSidebarLabel = (text?: string) => {
 
   const trimmed = text.trim()
   if (!trimmed) return ""
+
+  if (/[.]/.test(trimmed)) return trimmed
 
   const words = trimmed.split(/\s+/)
 
@@ -177,9 +180,11 @@ const pageMetadata = computed(() => {
           :title="page.title"
           :description="page.description"
           :metadata="pageMetadata"
+          :bottom-gap-class="pageHeaderBottomGapClass"
+          :header-alert="page.frontmatter.headerAlert"
         />
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
-          <div class="docs-layout-content">
+          <div :class="currentSection === 'ai' ? 'docs-layout-content-ai' : 'docs-layout-content'">
             <Content />
           </div>
           <DocFooter />
@@ -195,5 +200,12 @@ const pageMetadata = computed(() => {
 .docs-layout-content > * > * + h3,
 .docs-layout-content > * > * + h4 {
   margin-top: var(--sgds-layout-gap-md);
+}
+
+/* AI section uses wider heading spacing */
+.docs-layout-content-ai > * > * + h2,
+.docs-layout-content-ai > * > * + h3,
+.docs-layout-content-ai > * > * + h4 {
+  margin-top: var(--sgds-layout-gap-lg);
 }
 </style>

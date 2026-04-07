@@ -1,18 +1,8 @@
 <script setup lang="ts">
 import AiInstructionStepper from "./AiInstructionStepper.vue";
 import CodeToken from "../ui/CodeToken.vue";
-import { ref } from "vue";
+import PromptBox from "../ui/PromptBox.vue";
 import { figmaToCodeSteps, codeToFigmaSteps } from "../../data/ai-workflow-data";
-
-const copiedPrompt = ref<string | null>(null);
-
-const copyPrompt = async (id: string, text: string) => {
-  await navigator.clipboard.writeText(text);
-  copiedPrompt.value = id;
-  window.setTimeout(() => {
-    if (copiedPrompt.value === id) copiedPrompt.value = null;
-  }, 2000);
-};
 </script>
 
 <template>
@@ -78,21 +68,7 @@ const copyPrompt = async (id: string, text: string) => {
                 <p class="sgds:text-label-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   Be explicit that you want SGDS-aligned output.
                 </p>
-                <div class="sgds:bg-surface-default sgds:border sgds:border-muted sgds:rounded-xl sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-2-xs)] sgds:min-w-0 sgds:max-w-full sgds:py-[var(--sgds-padding-md)] sgds:px-[var(--sgds-component-padding-xs)] sgds:w-full">
-                  <div class="sgds:flex sgds:items-center sgds:justify-between sgds:gap-[var(--sgds-gap-md)] sgds:text-subtle sgds:min-w-0">
-                    <span class="sgds:text-label-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">PROMPT</span>
-                    <button
-                      class="sgds:inline-flex sgds:items-center sgds:justify-center sgds:bg-transparent sgds:border-0 sgds:rounded sgds:text-default sgds:cursor-pointer sgds:flex-none sgds:p-1 sgds:transition sgds:duration-200 sgds:ease-in-out sgds:hover:bg-[var(--sgds-border-color-muted)]"
-                      :aria-label="copiedPrompt === 'figma-to-code' ? 'Copied!' : 'Copy prompt'"
-                      @click="copyPrompt('figma-to-code', 'Use this Figma frame and implement it with SGDS components and patterns. Map the layout to SGDS as closely as possible and flag anything that does not have a direct SGDS match.')"
-                    >
-                      <sgds-icon :name="copiedPrompt === 'figma-to-code' ? 'check' : 'copy'" size="md"></sgds-icon>
-                    </button>
-                  </div>
-                  <p class="sgds:text-default sgds:text-body-md sgds:font-regular sgds:tracking-normal sgds:leading-xs sgds:m-0 sgds:min-w-0 sgds:break-words sgds:w-full">
-                    Use this Figma frame and implement it with SGDS components and patterns. Map the layout to SGDS as closely as possible and flag anything that does not have a direct SGDS match.
-                  </p>
-                </div>
+                <PromptBox prompt="Use this Figma frame and implement it with SGDS components and patterns. Map the layout to SGDS as closely as possible and flag anything that does not have a direct SGDS match." />
               </template>
 
               <template #step-4>
@@ -126,21 +102,7 @@ const copyPrompt = async (id: string, text: string) => {
                 <p class="sgds:text-label-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   Ask the AI to capture or recreate the coded screen in Figma.
                 </p>
-                <div class="sgds:bg-surface-default sgds:border sgds:border-muted sgds:rounded-xl sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-2-xs)] sgds:min-w-0 sgds:max-w-full sgds:py-[var(--sgds-padding-md)] sgds:px-[var(--sgds-component-padding-xs)] sgds:w-full">
-                  <div class="sgds:flex sgds:items-center sgds:justify-between sgds:gap-[var(--sgds-gap-md)] sgds:text-subtle sgds:min-w-0">
-                    <span class="sgds:text-label-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">PROMPT</span>
-                    <button
-                      class="sgds:inline-flex sgds:items-center sgds:justify-center sgds:bg-transparent sgds:border-0 sgds:rounded sgds:text-default sgds:cursor-pointer sgds:flex-none sgds:p-1 sgds:transition sgds:duration-200 sgds:ease-in-out sgds:hover:bg-[var(--sgds-border-color-muted)]"
-                      :aria-label="copiedPrompt === 'code-to-figma' ? 'Copied!' : 'Copy prompt'"
-                      @click="copyPrompt('code-to-figma', 'Take this coded page and create a Figma screen that matches it using the design system where possible.')"
-                    >
-                      <sgds-icon :name="copiedPrompt === 'code-to-figma' ? 'check' : 'copy'" size="md"></sgds-icon>
-                    </button>
-                  </div>
-                  <p class="sgds:text-default sgds:text-body-md sgds:font-regular sgds:tracking-normal sgds:leading-xs sgds:m-0 sgds:min-w-0 sgds:break-words sgds:w-full">
-                    Take this coded page and create a Figma screen that matches it using the design system where possible.
-                  </p>
-                </div>
+                <PromptBox prompt="Take this coded page and create a Figma screen that matches it using the design system where possible." />
               </template>
 
               <template #step-3>
