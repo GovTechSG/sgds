@@ -5,9 +5,9 @@ description: SGDS skills are knowledge packs that teach AI assistants how to use
 ---
 
 <script setup>
-import AiSkillsSetupSteps from "../.vitepress/components/AiSkillsSetupSteps.vue";
-import SkillsTable from "../.vitepress/components/SkillsTable.vue";
-import AiWorkflowPaths from "../.vitepress/components/AiWorkflowPaths.vue";
+import AiSkillsSetupSteps from "../.vitepress/components/ai/AiSkillsSetupSteps.vue";
+import SkillsTable from "../.vitepress/components/ui/SkillsTable.vue";
+import AiWorkflowPaths from "../.vitepress/components/ai/AiWorkflowPaths.vue";
 </script>
 
 ## Setup instructions

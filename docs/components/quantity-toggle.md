@@ -6,7 +6,7 @@ storybook: true
 ---
 
 <script setup>
-import ComponentDesignPage from "../.vitepress/components/ComponentDesignPage.vue";
+import ComponentDesignPage from "../.vitepress/components/components/ComponentDesignPage.vue";
 </script>
 
 <ComponentDesignPage component-key="quantity-toggle" />

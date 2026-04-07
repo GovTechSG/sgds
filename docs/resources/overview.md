@@ -5,7 +5,7 @@ description: Resources provide supporting materials, references, and downloadabl
 ---
 
 <script setup>
-import ResourceDesignPage from "../.vitepress/components/ResourceDesignPage.vue";
+import DesignPageWrapper from "../.vitepress/components/components/DesignPageWrapper.vue";
 </script>
 
-<ResourceDesignPage resource-key="overview" />
+<DesignPageWrapper doc-type="resource" doc-key="overview" />

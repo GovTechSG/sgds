@@ -1,3 +1,11 @@
+export const categoryColorClass: Record<string, string> = {
+  Component: "sgds:text-primary-default",
+  Foundation: "sgds:text-success-default",
+  Pattern: "sgds:text-warning-default",
+  Guideline: "sgds:text-purple-default",
+  AI: "sgds:text-cyan-default",
+};
+
 export interface SearchItem {
   title: string;
   category: string;

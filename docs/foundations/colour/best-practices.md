@@ -5,7 +5,7 @@ description: Guidelines to help you apply colour effectively and consistently. T
 ---
 
 <script setup>
-import Section from "../../.vitepress/components/Section.vue";
+import Section from "../../.vitepress/components/foundations/Section.vue";
 </script>
 
 <Section

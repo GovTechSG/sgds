@@ -1,10 +1,10 @@
 // https://vitepress.dev/guide/custom-theme
 import "@govtechsg/sgds-web-component";
 import Layout from "./Layout.vue";
-import SkillsTable from "../components/SkillsTable.vue";
-import CopyCommand from "../components/CopyCommand.vue";
-import AiWorkflowPaths from "../components/AiWorkflowPaths.vue";
-import PatternDesignPage from "../components/PatternDesignPage.vue";
+import SkillsTable from "../components/ui/SkillsTable.vue";
+import CopyCommand from "../components/ui/CopyCommand.vue";
+import AiWorkflowPaths from "../components/ai/AiWorkflowPaths.vue";
+import DesignPageWrapper from "../components/components/DesignPageWrapper.vue";
 import type { Theme } from "vitepress";
 import "./style.css";
 import { initializeTheme } from "./composables/sgds-theming";
@@ -15,7 +15,7 @@ export default {
     app.component("SkillsTable", SkillsTable);
     app.component("CopyCommand", CopyCommand);
     app.component("AiWorkflowPaths", AiWorkflowPaths);
-    app.component("PatternDesignPage", PatternDesignPage);
+    app.component("DesignPageWrapper", DesignPageWrapper);
     if (typeof window !== "undefined") {
       if (!document.querySelector('script[data-figma-capture="true"]')) {
         const captureScript = document.createElement("script");

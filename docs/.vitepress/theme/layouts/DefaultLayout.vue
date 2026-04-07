@@ -3,13 +3,7 @@ import { Content } from "vitepress";
 </script>
 
 <template>
-  <div :class="$style['layout-container']">
+  <div class="sgds:mb-[var(--sgds-margin-xl)]">
     <Content />
   </div>
 </template>
-
-<style module>
-  .layout-container {
-    margin: var(--sgds-margin-none) var(--sgds-margin-none) var(--sgds-margin-xl);
-  }
-</style>

@@ -6,7 +6,7 @@ description: Guidelines explain how to apply SGDS foundations, components, and p
 
 <script setup>
 import { guidelines } from "../.vitepress/data/guidelines";
-import PortalImageCard from "../.vitepress/components/PortalImageCard.vue";
+import PortalImageCard from "../.vitepress/components/landing/PortalImageCard.vue";
 
 const currentPhase = 99;
 </script>

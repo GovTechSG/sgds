@@ -8,7 +8,7 @@ prev:
 ---
 
 <script setup>
-import OurColoursPage from "../../.vitepress/components/OurColoursPage.vue";
+import OurColoursPage from "../../.vitepress/components/foundations/OurColoursPage.vue";
 </script>
 
 <OurColoursPage />

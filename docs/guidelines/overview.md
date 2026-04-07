@@ -5,7 +5,7 @@ description: Guidelines explain how to apply SGDS foundations, components, and p
 ---
 
 <script setup>
-import GuidelineDesignPage from "../.vitepress/components/GuidelineDesignPage.vue";
+import DesignPageWrapper from "../.vitepress/components/components/DesignPageWrapper.vue";
 </script>
 
-<GuidelineDesignPage guideline-key="overview" />
+<DesignPageWrapper doc-type="guideline" doc-key="overview" />

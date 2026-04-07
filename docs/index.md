@@ -3,8 +3,8 @@ layout: default
 ---
 
 <script setup lang="ts">
-import Hero, { Button } from "./.vitepress/components/Hero.vue";
-import PortalImageCard from "./.vitepress/components/PortalImageCard.vue";
+import Hero, { Button } from "./.vitepress/components/landing/Hero.vue";
+import PortalImageCard from "./.vitepress/components/landing/PortalImageCard.vue";
 import { FoundationItem } from "./.vitepress/data/foundations";
 
 const title = "Unifying Government through Design and Code."

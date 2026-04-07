@@ -6,7 +6,7 @@ description: Resources provide supporting materials, references, and downloadabl
 
 <script setup>
 import { resources } from "../.vitepress/data/resources";
-import PortalImageCard from "../.vitepress/components/PortalImageCard.vue";
+import PortalImageCard from "../.vitepress/components/landing/PortalImageCard.vue";
 
 const currentPhase = 99;
 </script>

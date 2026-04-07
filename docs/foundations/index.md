@@ -6,7 +6,7 @@ description: Foundations are the core building blocks of a design system, coveri
 
 <script setup>
 import { foundations } from '../.vitepress/data/foundations';
-import PortalImageCard from "../.vitepress/components/PortalImageCard.vue";
+import PortalImageCard from "../.vitepress/components/landing/PortalImageCard.vue";
 
 const currentPhase = 99
 </script>

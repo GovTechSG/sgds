@@ -5,7 +5,7 @@ description: SGDS colour system establishes a shared foundation for how colour i
 ---
 
 <script setup>
-import ColorSystemPage from "../../.vitepress/components/ColorSystemPage.vue";
+import ColorSystemPage from "../../.vitepress/components/foundations/ColorSystemPage.vue";
 </script>
 
 <ColorSystemPage />

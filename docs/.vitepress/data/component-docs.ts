@@ -19,12 +19,12 @@ type PurposeCardInput = {
   description: string;
 };
 
-type AnatomyInput = {
+export type AnatomyInput = {
   title: string;
   note?: string;
 };
 
-type AnatomyCallout = {
+export type AnatomyCallout = {
   number: number;
   direction: "left" | "right" | "top" | "bottom";
   targetSelector: string;
@@ -34,54 +34,54 @@ type AnatomyCallout = {
   stemLengthToken?: string;
 };
 
-type ThemedImageAsset = {
+export type ThemedImageAsset = {
   lightSrc: string;
   darkSrc: string;
   alt: string;
 };
 
-type MeasurementAsset = ThemedImageAsset & {
+export type MeasurementAsset = ThemedImageAsset & {
   title: string;
   description: string;
 };
 
-type UsageGuidance = {
+export type UsageGuidance = {
   title: string;
   tone: "do" | "dont";
   items: string[];
 };
 
-type UsageBehaviour = ComponentDemo & {
+export type UsageBehaviour = ComponentDemo & {
   surface?: "default" | "flush";
 };
 
-type UsageContentSection = {
+export type UsageContentSection = {
   title: string;
   items: string[];
 };
 
-type MotionSpec = {
+export type MotionSpec = {
   element: string;
   value: string;
   duration: string;
   easing: string;
 };
 
-type BestPractice = {
+export type BestPractice = {
   title: string;
   description: string;
   tone: "do" | "dont";
   markup: string;
 };
 
-type ComponentProp = {
+export type ComponentProp = {
   name: string;
   type: string;
   defaultValue: string;
   description: string;
 };
 
-type AccessibilitySection = {
+export type AccessibilitySection = {
   title: string;
   description?: string[];
   items: string[];
@@ -93,12 +93,12 @@ type AccessibilitySection = {
   }>;
 };
 
-type AccessibilityKeyboardRow = {
+export type AccessibilityKeyboardRow = {
   key: string;
   description: string;
 };
 
-type AccessibilityContent = {
+export type AccessibilityContent = {
   sections?: AccessibilitySection[];
   keyboardInteractions?: AccessibilityKeyboardRow[];
 };
@@ -113,13 +113,13 @@ export type ComponentMetadataStatus = {
   storybook: AvailabilityStatus;
 };
 
-type UpdatesSectionTable = {
+export type UpdatesSectionTable = {
   title: string;
   columns: string[];
   rows: UpdatesRow[];
 };
 
-type UpdatesLinkBlock = {
+export type UpdatesLinkBlock = {
   title: string;
   heading: string;
   prefix: string;
@@ -127,7 +127,7 @@ type UpdatesLinkBlock = {
   href: string;
 };
 
-type UpdatesContent = {
+export type UpdatesContent = {
   updates: UpdatesSectionTable;
   roadmap: UpdatesSectionTable;
   feedback: UpdatesLinkBlock;
@@ -151,7 +151,7 @@ export type ComponentDoc = {
   summary: string;
   tag: string;
   group: ComponentGroup;
-  demos: ComponentDemo[];
+  demos: UsageBehaviour[];
   purposeCards?: PurposeCardInput[];
   anatomyMarkup?: string;
   anatomyAsset?: ThemedImageAsset;
@@ -340,10 +340,11 @@ const componentDocs: Record<string, ComponentDoc> = {
       { title: "Badge", note: "(optional)" },
     ],
     demos: [
-      demo(
-        "Density",
-        "The accordion offers two density options—default and compact—to adapt to different contexts.",
-        `<div class="portal-demo-stack">
+      {
+        ...demo(
+          "Density",
+          "The accordion offers two density options—default and compact—to adapt to different contexts.",
+          `<div class="portal-demo-stack">
           <sgds-accordion density="compact">
             <sgds-accordion-item>
               <span slot="header">Compact</span>
@@ -357,7 +358,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             </sgds-accordion-item>
           </sgds-accordion>
         </div>`,
-      ),
+        ),
+        surface: "flush" as const,
+      },
       demo(
         "Border",
         "Provides separation from the background or surrounding content.",
@@ -2244,32 +2247,14 @@ const buildResolvedAccessibility = (doc: ComponentDoc): AccessibilityContent => 
 });
 
 const buildResolvedUpdates = (doc: ComponentDoc): UpdatesContent => {
-  const generatedRows =
-    generatedComponentUpdates[doc.key as keyof typeof generatedComponentUpdates]?.rows ?? [];
-
-  if (doc.updates) {
-    return {
-      ...doc.updates,
-      updates: {
-        ...doc.updates.updates,
-        rows: generatedRows.length ? generatedRows : doc.updates.updates.rows,
-      },
-    };
-  }
+  if (doc.updates) return doc.updates;
 
   return {
     updates: {
       title: "Updates",
       columns: ["Date", "Version", "Description"],
-      rows: generatedRows.length
-        ? generatedRows
-        : [
-            {
-              Date: "TBD",
-              Version: "TBD",
-              Description: `Recent component updates will appear automatically from the SGDS repository history.`,
-            },
-          ],
+      // Rows are populated at runtime by useComponentUpdates (GitHub Releases API)
+      rows: [],
     },
     roadmap: {
       title: "Roadmap",
@@ -2368,4 +2353,3 @@ export const getComponentDoc = (key: string): ResolvedComponentDoc | null => {
 export const componentDocSummaries = Object.fromEntries(
   Object.values(componentDocs).map((doc) => [doc.key, doc.summary]),
 );
-import generatedComponentUpdates from "./generated-component-updates.json";

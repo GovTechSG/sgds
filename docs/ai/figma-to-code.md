@@ -5,7 +5,7 @@ description: Use Figma MCP to move between design and code with SGDS as your sou
 ---
 
 <script setup>
-import AiFigmaToCodePage from "../.vitepress/components/AiFigmaToCodePage.vue";
+import AiFigmaToCodePage from "../.vitepress/components/ai/AiFigmaToCodePage.vue";
 </script>
 
 <AiFigmaToCodePage />

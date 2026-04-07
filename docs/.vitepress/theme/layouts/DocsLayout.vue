@@ -2,8 +2,8 @@
 import { Content, withBase } from "vitepress";
 import { computed } from 'vue';
 import { useData } from 'vitepress';
-import PageHeader from "../../components/PageHeader.vue";
-import DocFooter from "../../components/DocFooter.vue";
+import PageHeader from "../../components/page/PageHeader.vue";
+import DocFooter from "../../components/page/DocFooter.vue";
 import { isDraft } from "../../utils/page-status";
 import { getComponentDoc } from "../../data/component-docs";
 
@@ -42,7 +42,7 @@ const currentSidebar = computed(() => {
   const sidebars = theme.value?.sidebar || {}
   const section = currentSection.value
   if (!section) return []
-  
+
   const entry = sidebars[`/${section}/`]
   if (!entry) return []
 
@@ -117,16 +117,15 @@ const pageMetadata = computed(() => {
 </script>
 
 <template>
-  <div :class="$style['layout-container']">
+  <div class="sgds:mb-[var(--sgds-margin-xl)]">
     <div class="sgds-grid">
       <aside
-        :class="$style.aside"
-        class="sgds-col-4 sgds-col-lg-3"
+        class="sgds-col-4 sgds-col-lg-3 sgds:pt-[var(--sgds-padding-xs)] sgds:pr-[var(--sgds-padding-2-xl)] sgds:pb-0 sgds:pl-0"
         v-if="currentSidebar.items.length"
       >
         <div>
-          <div :class="$style.headerRow">
-            <h5 :class="$style.header">{{ header }}</h5>
+          <div class="sgds:inline-flex sgds:items-center sgds:gap-[var(--sgds-gap-xs)] sgds:mb-[var(--sgds-margin-sm)]">
+            <h5 class="sgds:mb-0">{{ header }}</h5>
             <sgds-badge v-if="showHeaderBadge" variant="accent" outlined>NEW</sgds-badge>
           </div>
           <sgds-sidenav>
@@ -148,8 +147,8 @@ const pageMetadata = computed(() => {
                     >
                     <sgds-sidenav-link :active="currentPath === secondLevelItem.link">
                       <a
-                        :href="isDraft(group.text) ? 'javascript:void(0)' : withBase(secondLevelItem.link)"
-                        :class="isDraft(group.text) ? $style.disabled : ''"
+                        :href="isDraft(group.text) ? undefined : withBase(secondLevelItem.link)"
+                        :class="isDraft(group.text) ? 'sgds:cursor-not-allowed' : ''"
                       >
                       {{ formatSidebarLabel(secondLevelItem.text) }}
                     </a>
@@ -158,8 +157,8 @@ const pageMetadata = computed(() => {
                   </sgds-sidenav-item>
                   <sgds-sidenav-link v-else :active="currentPath === item.link">
                     <a
-                      :href="isDraft(group.text) ? 'javascript:void(0)' : withBase(item.link)"
-                      :class="isDraft(group.text) ? $style.disabled : ''"
+                      :href="isDraft(group.text) ? undefined : withBase(item.link)"
+                      :class="isDraft(group.text) ? 'sgds:cursor-not-allowed' : ''"
                     >
                     {{ formatSidebarLabel(item.text) }}
                   </a>
@@ -179,8 +178,8 @@ const pageMetadata = computed(() => {
           :description="page.description"
           :metadata="pageMetadata"
         />
-        <div :class="$style['content-container']">
-          <div :class="$style['content']">
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+          <div class="docs-layout-content">
             <Content />
           </div>
           <DocFooter />
@@ -190,39 +189,11 @@ const pageMetadata = computed(() => {
   </div>
 </template>
 
-<style module>
-  .layout-container {
-    margin: var(--sgds-margin-none) var(--sgds-margin-none) var(--sgds-margin-xl);
-  }
-
-  .aside {
-    padding: var(--sgds-padding-xs) var(--sgds-padding-2-xl) var(--sgds-padding-none) var(--sgds-padding-none);
-  }
-
-  .disabled {
-    cursor: not-allowed;
-  }
-
-  .header {
-    margin-bottom: var(--sgds-margin-none);
-  }
-
-  .headerRow {
-    align-items: center;
-    display: inline-flex;
-    gap: var(--sgds-gap-xs);
-    margin-bottom: var(--sgds-margin-sm);
-  }
-
-  .content-container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sgds-layout-gap-xl);
-  }
-
-  .content > * > * + h2,
-  .content > * > * + h3,
-  .content > * > * + h4 {
-    margin-top: var(--sgds-layout-gap-md);
-  }
+<style>
+/* Heading spacing for markdown-rendered content — requires descendant combinator */
+.docs-layout-content > * > * + h2,
+.docs-layout-content > * > * + h3,
+.docs-layout-content > * > * + h4 {
+  margin-top: var(--sgds-layout-gap-md);
+}
 </style>

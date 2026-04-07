@@ -6,7 +6,7 @@ figma: true
 ---
 
 <script setup>
-import PatternDesignPage from "../../.vitepress/components/PatternDesignPage.vue";
+import DesignPageWrapper from "../../.vitepress/components/components/DesignPageWrapper.vue";
 </script>
 
-<PatternDesignPage pattern-key="hero" />
+<DesignPageWrapper doc-type="pattern" doc-key="hero" />

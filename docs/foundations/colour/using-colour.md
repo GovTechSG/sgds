@@ -5,7 +5,7 @@ description: Colour should be used purposefully to convey meaning and support us
 ---
 
 <script setup>
-import Section from "../../.vitepress/components/Section.vue";
+import Section from "../../.vitepress/components/foundations/Section.vue";
 </script>
 
 <div :class="$style.sections">

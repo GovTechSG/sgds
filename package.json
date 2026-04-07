@@ -8,10 +8,9 @@
     "vue": "^3.5.24"
   },
   "scripts": {
-    "generate:component-updates": "node scripts/generate-component-updates.mjs",
-    "docs:dev": "node scripts/generate-component-updates.mjs && vitepress dev docs",
-    "docs:build": "node scripts/generate-component-updates.mjs && vitepress build docs",
-    "docs:preview": "node scripts/generate-component-updates.mjs && vitepress preview docs"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@govtechsg/sgds-web-component": "^3.15.0",
