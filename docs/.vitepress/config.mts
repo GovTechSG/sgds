@@ -153,6 +153,195 @@ config.themeConfig.sidebar["/components/"] = {
     },
   ],
 };
+config.themeConfig.sidebar["/foundations/"] = {
+  base: "/foundations/",
+  items: [
+    {
+      text: "Accessibility",
+      items: [
+        { text: "Accessibility", link: "/foundations/accessibility/accessibility" },
+      ],
+    },
+    {
+      text: "Border",
+      items: [
+        {
+          text: "Border principles",
+          items: [
+            { text: "Border", link: "/foundations/border" },
+          ],
+        },
+        {
+          text: "Border tokens",
+          items: [
+            { text: "Border width", link: "/foundations/border/border-width-tokens" },
+            { text: "Border radius", link: "/foundations/border/border-radius-tokens" },
+          ],
+        },
+        {
+          text: "Border utilities",
+          items: [
+            { text: "Border colour", link: "/foundations/border/border-colour" },
+            { text: "Border radius", link: "/foundations/border/border-radius" },
+            { text: "Border width", link: "/foundations/border/border-width" },
+          ],
+        },
+      ],
+    },
+    {
+      text: "Colour",
+      items: [
+        {
+          text: "Colour principles",
+          items: [
+            { text: "Our colours", link: "/foundations/colour/our-colours" },
+            { text: "Colour system", link: "/foundations/colour/colour-system" },
+            { text: "Using colour", link: "/foundations/colour/using-colour" },
+            { text: "Best practices", link: "/foundations/colour/best-practices" },
+          ],
+        },
+        {
+          text: "Colour tokens",
+          items: [
+            { text: "Product colour", link: "/foundations/colour/product-colour" },
+            { text: "Semantic colour", link: "/foundations/colour/semantic-colour" },
+            { text: "Primitive colour", link: "/foundations/colour/primitive-colour" },
+          ],
+        },
+        {
+          text: "Colour utilities",
+          items: [
+            { text: "Background colour", link: "/foundations/colour/background-colour" },
+            { text: "Text colour", link: "/foundations/colour/text-colour" },
+          ],
+        },
+      ],
+    },
+    {
+      text: "Elevation",
+      items: [
+        {
+          text: "Elevation principles",
+          items: [
+            { text: "Elevation principle", link: "/foundations/elevation/elevation-principle" },
+          ],
+        },
+        {
+          text: "Elevation tokens",
+          items: [
+            { text: "Surface elevation", link: "/foundations/elevation/surface-elevation" },
+            { text: "Edge elevation", link: "/foundations/elevation/edge-elevation" },
+          ],
+        },
+        {
+          text: "Elevation utilities",
+          items: [
+            { text: "Surface elevation", link: "/foundations/elevation/surface-elevation-utilities" },
+            { text: "Edge elevation", link: "/foundations/elevation/edge-elevation-utilities" },
+          ],
+        },
+      ],
+    },
+    {
+      text: "Iconography",
+      items: [
+        {
+          text: "Iconography principles",
+          items: [
+            { text: "Iconography principles", link: "/foundations/iconography/iconography-principles" },
+            { text: "Iconography characteristics", link: "/foundations/iconography/iconography-characteristics" },
+          ],
+        },
+        {
+          text: "Iconography assets",
+          items: [
+            { text: "Icon library", link: "/foundations/iconography/icon-library" },
+          ],
+        },
+        {
+          text: "Icon tokens",
+          items: [
+            { text: "Icon tokens", link: "/foundations/iconography/icon-tokens" },
+          ],
+        },
+      ],
+    },
+    {
+      text: "Typography",
+      items: [
+        {
+          text: "Typography principles",
+          items: [
+            { text: "Our typography", link: "/foundations/typography/our-typography" },
+            { text: "Typeface", link: "/foundations/typography/typeface" },
+            { text: "Type system", link: "/foundations/typography/type-system" },
+            { text: "Type pairing", link: "/foundations/typography/type-pairing" },
+          ],
+        },
+        {
+          text: "Typography styles",
+          items: [
+            { text: "Introduction", link: "/foundations/typography/typography-style" },
+            { text: "Display", link: "/foundations/typography/display" },
+            { text: "Heading", link: "/foundations/typography/heading" },
+            { text: "Subtitle", link: "/foundations/typography/subtitle" },
+            { text: "Paragraph body", link: "/foundations/typography/paragraph-body" },
+            { text: "Caption", link: "/foundations/typography/caption" },
+            { text: "Label", link: "/foundations/typography/label" },
+            { text: "Link", link: "/foundations/typography/link" },
+            { text: "List", link: "/foundations/typography/list" },
+            { text: "Overline", link: "/foundations/typography/overline" },
+          ],
+        },
+        {
+          text: "Typography utilities",
+          items: [
+            { text: "Font size", link: "/foundations/typography/font-size" },
+            { text: "Font weight", link: "/foundations/typography/font-weight" },
+            { text: "Letter spacing", link: "/foundations/typography/letter-spacing" },
+            { text: "Line height", link: "/foundations/typography/line-height" },
+            { text: "Text colour", link: "/foundations/typography/text-colour" },
+          ],
+        },
+      ],
+    },
+    {
+      text: "Layout",
+      items: [
+        {
+          text: "Layout principles",
+          items: [
+            { text: "Layout principle", link: "/foundations/layout/layout-principle" },
+          ],
+        },
+        {
+          text: "Layout system",
+          items: [
+            { text: "Breakpoint", link: "/foundations/layout/breakpoint" },
+            { text: "Responsive grid", link: "/foundations/layout/responsive-grid" },
+          ],
+        },
+      ],
+    },
+    {
+      text: "Spacing",
+      items: [
+        {
+          text: "Spacing principles",
+          items: [
+            { text: "Spacing principle", link: "/foundations/spacing" },
+          ],
+        },
+        {
+          text: "Spacing tokens and utilities",
+          items: [
+            { text: "Spacing token", link: "/foundations/spacing/spacing-tokens" },
+          ],
+        },
+      ],
+    },
+  ],
+};
 config.themeConfig.sidebar["/patterns/"] = {
   base: "/patterns/",
   items: [

@@ -25,29 +25,29 @@ const iconSizeTokens = [
 
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head :class="$style.tableColumn">Token name</sgds-table-head>
-              <sgds-table-head :class="$style.tableColumn">Value (px/rem)</sgds-table-head>
-              <sgds-table-head :class="$style.tableColumn">Example</sgds-table-head>
+              <sgds-table-head class="icon-token-table-col">Token name</sgds-table-head>
+              <sgds-table-head class="icon-token-table-col">Value (px/rem)</sgds-table-head>
+              <sgds-table-head class="icon-token-table-col">Example</sgds-table-head>
             </sgds-table-row>
 
             <sgds-table-row
               v-for="row in iconSizeTokens"
               :key="row.token"
-              :class="row.note ? $style.defaultRow : undefined"
+              :class="row.note ? 'icon-token-default-row' : undefined"
             >
-              <sgds-table-cell :class="$style.tableColumn">
-                <div :class="$style.tokenCell">
+              <sgds-table-cell class="icon-token-table-col">
+                <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
                   <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.note" variant="primary">{{ row.note }}</sgds-badge>
                 </div>
               </sgds-table-cell>
-              <sgds-table-cell :class="$style.tableColumn">
+              <sgds-table-cell class="icon-token-table-col">
                 <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.value }}</span>
               </sgds-table-cell>
-              <sgds-table-cell :class="$style.tableColumn">
-                <div :class="$style.previewCell">
+              <sgds-table-cell class="icon-token-table-col">
+                <div class="sgds:flex sgds:items-center icon-token-preview-cell">
                   <span
-                    :class="$style.iconPreview"
+                    class="icon-token-icon-preview"
                     :style="{ inlineSize: row.size, blockSize: row.size }"
                     aria-hidden="true"
                   />
@@ -61,27 +61,18 @@ const iconSizeTokens = [
   </TypographyPageTemplate>
 </template>
 
-<style module>
-.tableColumn {
+<style>
+.icon-token-table-col {
   box-sizing: border-box;
   inline-size: 33.333%;
   min-inline-size: 12rem;
 }
 
-.tokenCell {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sgds-gap-2-xs);
-}
-
-.previewCell {
-  align-items: center;
-  display: flex;
+.icon-token-preview-cell {
   min-block-size: var(--sgds-dimension-64);
 }
 
-.iconPreview {
+.icon-token-icon-preview {
   border: var(--sgds-border-width-1) dashed var(--sgds-border-color-emphasis);
   border-radius: var(--sgds-border-radius-circle);
   box-sizing: border-box;
@@ -89,7 +80,7 @@ const iconSizeTokens = [
   flex: none;
 }
 
-.defaultRow {
+.icon-token-default-row {
   background: var(--sgds-primary-surface-muted);
 }
 </style>

@@ -99,7 +99,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
           :class="{ 'st-base-row': row.isBase }"
         >
           <sgds-table-cell class="st-token-col">
-            <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
+            <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
               <CodeToken :label="`--sgds-spacer-${row.index}`" />
               <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
             </div>
@@ -156,7 +156,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
               :class="{ 'st-base-row': row.isBase }"
             >
               <sgds-table-cell class="st-token-col">
-                <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
+                <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
                   <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
@@ -191,7 +191,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
               :class="{ 'st-base-row': row.isBase }"
             >
               <sgds-table-cell class="st-token-col">
-                <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
+                <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
                   <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
@@ -226,7 +226,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
               :class="{ 'st-base-row': row.isBase }"
             >
               <sgds-table-cell class="st-token-col">
-                <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
+                <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
                   <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
@@ -277,7 +277,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
               :class="{ 'st-base-row': row.isBase }"
             >
               <sgds-table-cell class="st-token-col">
-                <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
+                <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
                   <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
@@ -312,7 +312,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
               :class="{ 'st-base-row': row.isBase }"
             >
               <sgds-table-cell class="st-token-col">
-                <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
+                <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
                   <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
@@ -334,8 +334,8 @@ const layoutPaddingRows: ResponsiveRow[] = [
 /* Column widths — clamp() cannot be expressed as SGDS utilities */
 .st-token-col {
   box-sizing: border-box;
-  inline-size: clamp(11rem, 20vw, 14rem);
-  min-inline-size: clamp(11rem, 20vw, 14rem);
+  inline-size: clamp(14rem, 24vw, 18rem);
+  min-inline-size: clamp(14rem, 24vw, 18rem);
 }
 
 .st-metric-col {
@@ -368,7 +368,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
 
 /* Base row highlight — applied to sgds-table-row host element */
 .st-base-row {
-  background: var(--sgds-bg-translucent-subtle);
+  background: var(--sgds-primary-surface-muted);
 }
 
 @media (max-width: 1023px) {

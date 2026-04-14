@@ -16,6 +16,87 @@ const swatches = [
   { name: "Black", color: "#0E0E0E", tone: "dark" },
 ] as const;
 
+const backgroundSwatches = [
+  { label: "0", color: "#FFFFFF", tone: "light", topCaption: "Default /\nFixed light", bottomCaption: "Fixed light", bordered: true },
+  { label: "100", color: "#F3F3F3", tone: "light", topCaption: "Alternate" },
+  { label: "200", color: "#DFDFDF", tone: "light" },
+  { label: "300", color: "#C6C6C6", tone: "light" },
+  { label: "400", color: "#A5A5A5", tone: "light" },
+  { label: "500", color: "#868686", tone: "light" },
+  { label: "600", color: "#6B6B6B", tone: "dark" },
+  { label: "700", color: "#525252", tone: "dark" },
+  { label: "800", color: "#3B3B3B", tone: "dark" },
+  { label: "900", color: "#2A2A2A", tone: "dark" },
+  { label: "1000", color: "#1A1A1A", tone: "dark", bottomCaption: "Alternate" },
+  { label: "1100", color: "#0E0E0E", tone: "dark", topCaption: "Fixed dark", bottomCaption: "Default /\nFixed dark" },
+] as const;
+
+const createSemanticSwatches = (
+  overrides: Partial<(typeof backgroundSwatches)[number]>[] = [],
+  options: { inheritCaptions?: boolean } = {}
+) =>
+  backgroundSwatches.map((swatch, index) => ({
+    ...swatch,
+    topCaption: options.inheritCaptions === false ? undefined : swatch.topCaption,
+    bottomCaption: options.inheritCaptions === false ? undefined : swatch.bottomCaption,
+    ...overrides[index],
+  }));
+
+const semanticScaleSections = [
+  { title: "Background", swatches: createSemanticSwatches() },
+  {
+    title: "Surfaces",
+    swatches: createSemanticSwatches([
+      { topCaption: "Default /\nFixed light", bottomCaption: "Inverse /\nFixed light" },
+      { topCaption: "Raised" },
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      { bottomCaption: "Raised" },
+      { topCaption: "Inverse /\nFixed dark", bottomCaption: "Default /\nFixed dark" },
+      {},
+      {},
+    ], { inheritCaptions: false }),
+  },
+  {
+    title: "Texts and icons",
+    swatches: createSemanticSwatches([
+      {},
+      { topCaption: "Inverse /\nFixed light", bottomCaption: "Default /\nFixed light" },
+      {},
+      { topCaption: "Muted" },
+      { bottomCaption: "Subtle" },
+      {},
+      {},
+      { topCaption: "Subtle" },
+      { bottomCaption: "Muted" },
+      {},
+      { topCaption: "Default /\nFixed dark", bottomCaption: "Inverse /\nFixed dark" },
+      {},
+    ], { inheritCaptions: false }),
+  },
+  {
+    title: "Borders",
+    swatches: createSemanticSwatches([
+      { topCaption: "Fixed light", bottomCaption: "Fixed light" },
+      {},
+      { topCaption: "Muted", bottomCaption: "Emphasis" },
+      {},
+      {},
+      { topCaption: "Default", bottomCaption: "Default" },
+      {},
+      {},
+      { topCaption: "Emphasis", bottomCaption: "Muted" },
+      {},
+      { topCaption: "Fixed dark", bottomCaption: "Fixed dark" },
+      {},
+    ], { inheritCaptions: false }),
+  },
+] as const;
+
 const topLevels = [
   { label: "3.28 A", left: 1, right: 5, offset: "0rem" },
   { label: "4.8 AA", left: 1, right: 6, offset: "1.5rem" },
@@ -72,50 +153,125 @@ const systemSections = [
   <div :class="$style.page">
     <div :class="$style.sectionStack">
       <div :class="$style.pageSection">
-        <div :class="$style.card">
-          <div :class="$style.scaleFrame">
-            <div
-              v-for="level in topLevels"
-              :key="level.label"
-              :class="[$style.connector, $style.connectorTop]"
-              :style="{
-                left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
-                right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
-                top: level.offset,
-              }"
-            >
-              <span :class="$style.connectorLabel">{{ level.label }}</span>
-            </div>
-
-            <div :class="$style.swatchRow" aria-label="Grayscale contrast scale">
+        <Section title="Grayscale">
+          <div :class="$style.card">
+            <div :class="$style.scaleFrame">
               <div
-                v-for="swatch in swatches"
-                :key="swatch.name ?? swatch.color"
-                :class="[
-                  $style.swatch,
-                  swatch.bordered ? $style.swatchBordered : '',
-                  swatch.tone === 'dark' ? $style.swatchDark : '',
-                ]"
-                :style="{ backgroundColor: swatch.color }"
+                v-for="level in topLevels"
+                :key="level.label"
+                :class="[$style.connector, $style.connectorTop]"
+                :style="{
+                  left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
+                  right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
+                  top: level.offset,
+                }"
               >
-                <span v-if="swatch.name" :class="$style.swatchLabel">{{ swatch.name }}</span>
+                <span :class="$style.connectorLabel">{{ level.label }}</span>
+              </div>
+
+              <div :class="$style.swatchRow" aria-label="Grayscale contrast scale">
+                <div
+                  v-for="swatch in swatches"
+                  :key="swatch.name ?? swatch.color"
+                  :class="[
+                    $style.swatch,
+                    swatch.bordered ? $style.swatchBordered : '',
+                    swatch.tone === 'dark' ? $style.swatchDark : '',
+                  ]"
+                  :style="{ backgroundColor: swatch.color }"
+                >
+                  <span v-if="swatch.name" :class="$style.swatchLabel">{{ swatch.name }}</span>
+                </div>
+              </div>
+
+              <div
+                v-for="level in bottomLevels"
+                :key="level.label"
+                :class="[$style.connector, $style.connectorBottom]"
+                :style="{
+                  left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
+                  right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
+                  bottom: level.offset,
+                }"
+              >
+                <span :class="$style.connectorLabel">{{ level.label }}</span>
               </div>
             </div>
+          </div>
+        </Section>
+      </div>
 
-            <div
-              v-for="level in bottomLevels"
-              :key="level.label"
-              :class="[$style.connector, $style.connectorBottom]"
-              :style="{
-                left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
-                right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
-                bottom: level.offset,
-              }"
-            >
-              <span :class="$style.connectorLabel">{{ level.label }}</span>
+      <div
+        v-for="section in semanticScaleSections"
+        :key="section.title"
+        :class="$style.pageSection"
+      >
+        <Section :title="section.title">
+          <div :class="$style.backgroundCard">
+            <div :class="$style.backgroundHalf">
+              <div :class="$style.backgroundTop"></div>
+              <div :class="$style.backgroundBottom"></div>
+            </div>
+            <div :class="$style.backgroundStage">
+              <div :class="$style.backgroundCaptionRail">
+                <div
+                  v-for="swatch in section.swatches"
+                  :key="`${section.title}-${swatch.label}-top`"
+                  :class="$style.backgroundCaptionSlot"
+                >
+                  <span
+                    :class="[
+                      $style.backgroundCaption,
+                      $style.backgroundCaptionTop,
+                      !swatch.topCaption ? $style.backgroundCaptionHidden : '',
+                      swatch.tone === 'dark' ? $style.backgroundCaptionDark : '',
+                      swatch.label === '1100' ? $style.backgroundCaptionFixedDark : '',
+                    ]"
+                  >
+                    {{ swatch.topCaption }}
+                  </span>
+                </div>
+              </div>
+              <div :class="$style.backgroundSwatchRail">
+                <div
+                  v-for="swatch in section.swatches"
+                  :key="`${section.title}-${swatch.label}`"
+                  :class="$style.backgroundSwatchSlot"
+                >
+                  <div
+                    :class="[
+                      $style.backgroundSwatch,
+                      swatch.bordered ? $style.backgroundSwatchBordered : '',
+                      swatch.tone === 'dark' ? $style.backgroundSwatchDark : '',
+                    ]"
+                    :style="{ backgroundColor: swatch.color }"
+                  >
+                    <span :class="$style.backgroundSwatchLabel">{{ swatch.label }}</span>
+                  </div>
+                </div>
+              </div>
+              <div :class="$style.backgroundCaptionRail">
+                <div
+                  v-for="swatch in section.swatches"
+                  :key="`${section.title}-${swatch.label}-bottom`"
+                  :class="$style.backgroundCaptionSlot"
+                >
+                  <span
+                    :class="[
+                      $style.backgroundCaption,
+                      $style.backgroundCaptionBottom,
+                      !swatch.bottomCaption ? $style.backgroundCaptionHidden : '',
+                      swatch.tone === 'dark' ? $style.backgroundCaptionDark : '',
+                      ['1000', '1100'].includes(swatch.label) ? $style.backgroundCaptionDark : '',
+                    ]"
+                  >
+                    {{ swatch.bottomCaption }}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </Section>
       </div>
 
       <div
@@ -186,7 +342,7 @@ const systemSections = [
 .sectionStack {
   display: flex;
   flex-direction: column;
-  gap: var(--sgds-layout-gap-lg);
+  gap: var(--sgds-layout-gap-xl);
 }
 
 .pageSection {
@@ -200,6 +356,136 @@ const systemSections = [
   border-radius: var(--sgds-border-radius-2-xl);
   overflow: hidden;
   padding: var(--sgds-padding-3-xl);
+}
+
+.backgroundCard {
+  background: var(--sgds-bg-color-default);
+  border: 1px solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-2-xl);
+  min-height: 25rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.backgroundHalf {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+  min-height: 25rem;
+}
+
+.backgroundStage {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-gap-sm);
+  inset: 0;
+  justify-content: center;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  position: absolute;
+}
+
+.backgroundTop {
+  background: #ffffff;
+  min-height: 0;
+  width: 100%;
+}
+
+.backgroundBottom {
+  background: #0e0e0e;
+  min-height: 0;
+  width: 100%;
+}
+
+.backgroundCaptionRail,
+.backgroundSwatchRail {
+  align-items: center;
+  box-sizing: border-box;
+  display: grid;
+  gap: var(--sgds-gap-xs);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  max-width: 61rem;
+  width: min(100%, 61rem);
+}
+
+.backgroundCaptionSlot,
+.backgroundSwatchSlot {
+  align-items: center;
+  display: flex;
+  flex: 1 1 0;
+  justify-content: center;
+  min-width: 0;
+}
+
+.backgroundSwatch {
+  align-items: center;
+  aspect-ratio: 1;
+  border-radius: var(--sgds-border-radius-xl);
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+  width: 100%;
+}
+
+.backgroundSwatchBordered {
+  border: 1px solid var(--sgds-border-color-muted);
+}
+
+.backgroundSwatchDark {
+  color: var(--sgds-color-fixed-light);
+}
+
+.backgroundSwatchLabel {
+  color: var(--sgds-color-fixed-dark);
+  font-size: var(--sgds-font-size-label-xs);
+  font-weight: var(--sgds-font-weight-regular);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-16);
+  text-align: center;
+}
+
+.backgroundSwatchDark .backgroundSwatchLabel {
+  color: var(--sgds-color-fixed-light);
+}
+
+.backgroundCaptionDark {
+  color: var(--sgds-color-fixed-light);
+}
+
+.backgroundCaptionFixedDark {
+  color: var(--sgds-color-fixed-dark);
+}
+
+.backgroundCaption {
+  align-items: center;
+  display: flex;
+  font-size: var(--sgds-font-size-label-xs);
+  font-weight: var(--sgds-font-weight-regular);
+  justify-content: center;
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-16);
+  text-align: center;
+  white-space: pre-line;
+  width: 100%;
+}
+
+.backgroundCaptionTop {
+  color: var(--sgds-body-color-default);
+  min-height: calc(var(--sgds-line-height-16) * 2);
+}
+
+.backgroundCaptionBottom {
+  color: var(--sgds-color-fixed-light);
+  min-height: calc(var(--sgds-line-height-16) * 2);
+}
+
+.backgroundCaptionHidden {
+  visibility: hidden;
+}
+
+.backgroundCaptionBottom.backgroundCaptionDark {
+  color: var(--sgds-color-fixed-light);
 }
 
 .chartCard {
@@ -375,6 +661,11 @@ const systemSections = [
     padding-inline: var(--sgds-component-padding-sm);
   }
 
+  .backgroundSwatchRail {
+    left: var(--sgds-component-padding-sm);
+    right: var(--sgds-component-padding-sm);
+  }
+
 
 }
 
@@ -398,6 +689,39 @@ const systemSections = [
 
   .swatch {
     border-radius: var(--sgds-border-radius-lg);
+  }
+
+  .backgroundCard {
+    border-radius: var(--sgds-border-radius-xl);
+    min-height: 22rem;
+  }
+
+  .backgroundHalf {
+    min-height: 22rem;
+  }
+
+  .backgroundSwatch {
+    border-radius: var(--sgds-border-radius-lg);
+  }
+
+  .backgroundStage {
+    box-sizing: border-box;
+    padding-inline: var(--sgds-component-padding-xs);
+  }
+
+  .backgroundSwatchLabel {
+    font-size: var(--sgds-font-size-label-xs);
+    line-height: var(--sgds-line-height-16);
+  }
+
+  .backgroundCaption {
+    font-size: var(--sgds-font-size-label-xs);
+    line-height: var(--sgds-line-height-16);
+  }
+
+  .backgroundCaptionTop,
+  .backgroundCaptionBottom {
+    min-height: calc(var(--sgds-line-height-16) * 2);
   }
 
   .connectorLabel {

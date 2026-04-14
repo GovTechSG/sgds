@@ -2,6 +2,15 @@
 import Section from "./Section.vue";
 import CodeToken from "../ui/CodeToken.vue";
 
+const props = withDefaults(
+  defineProps<{
+    section?: "all" | "surface" | "edge";
+  }>(),
+  {
+    section: "all",
+  },
+);
+
 type ElevationRow = {
   name: string;
   token: string;
@@ -81,6 +90,7 @@ const edgeRows: EdgeRow[] = [
   <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
     <!-- Surface elevation -->
+    <template v-if="props.section === 'all' || props.section === 'surface'">
     <Section
       title="Surface elevation"
       description="Surface shadows lift elements above the page. Use progressively higher levels as elements sit further from the base surface."
@@ -108,8 +118,10 @@ const edgeRows: EdgeRow[] = [
         </sgds-table-row>
       </sgds-table>
     </Section>
+    </template>
 
     <!-- Edge elevation -->
+    <template v-if="props.section === 'all' || props.section === 'edge'">
     <Section
       title="Edge elevation"
       description="Edge shadows are directional and indicate that an element is pinned to a viewport edge, casting a shadow toward the content beneath."
@@ -126,8 +138,8 @@ const edgeRows: EdgeRow[] = [
             <CodeToken :label="row.token" />
           </sgds-table-cell>
           <sgds-table-cell class="ev-preview-col" aria-hidden="true">
-            <div class="ev-edge-box">
-              <div class="ev-edge-bar" :class="[row.shadowClass, `ev-edge-bar--${row.direction}`]"></div>
+            <div class="ev-edge-preview-wrap">
+              <div class="ev-edge-shadow-box" :class="row.shadowClass"></div>
             </div>
           </sgds-table-cell>
           <sgds-table-cell class="ev-desc-col">
@@ -139,6 +151,7 @@ const edgeRows: EdgeRow[] = [
         </sgds-table-row>
       </sgds-table>
     </Section>
+    </template>
 
   </div>
 </template>
@@ -169,8 +182,8 @@ const edgeRows: EdgeRow[] = [
 
 .ev-token-col {
   box-sizing: border-box;
-  inline-size: clamp(13rem, 22vw, 16rem);
-  min-inline-size: clamp(13rem, 22vw, 16rem);
+  inline-size: clamp(16rem, 26vw, 20rem);
+  min-inline-size: clamp(16rem, 26vw, 20rem);
 }
 
 .ev-preview-col {
@@ -203,32 +216,25 @@ const edgeRows: EdgeRow[] = [
 /* Surface shadow swatch in the table */
 .ev-shadow-swatch {
   background: var(--sgds-surface-raised);
+  border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-lg);
-  height: 2.5rem;
-  width: 3.5rem;
+  height: 3rem;
+  width: 5rem;
 }
 
-/* Edge shadow preview — bar anchored to top or bottom of a bounded box */
-.ev-edge-box {
+/* Edge shadow preview — apply the elevation token directly to the sample box */
+.ev-edge-preview-wrap {
+  align-items: center;
+  display: flex;
+}
+
+.ev-edge-shadow-box {
   background: var(--sgds-surface-raised);
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-lg);
-  height: 3.5rem;
-  overflow: hidden;
-  position: relative;
-  width: 4rem;
+  height: 3rem;
+  width: 5rem;
 }
-
-.ev-edge-bar {
-  background: var(--sgds-bg-color-default);
-  height: 1.5rem;
-  left: 0;
-  position: absolute;
-  right: 0;
-}
-
-.ev-edge-bar--top    { top: 0; }
-.ev-edge-bar--bottom { bottom: 0; }
 
 @media (max-width: 1023px) {
   .ev-name-col,

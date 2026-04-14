@@ -215,7 +215,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
 }
 
 .defaultRow {
-  background: var(--sgds-bg-translucent-subtle);
+  background: var(--sgds-primary-surface-muted);
 }
 
 .tokenNameCell,

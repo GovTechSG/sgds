@@ -118,8 +118,8 @@
 .typography-page-template__table-token-column,
 .typography-page-template__table-utility-column {
   box-sizing: border-box;
-  inline-size: clamp(7.5rem, 15vw, 9rem);
-  min-inline-size: clamp(7.5rem, 15vw, 9rem);
+  inline-size: clamp(13rem, 22vw, 18rem);
+  min-inline-size: clamp(13rem, 22vw, 18rem);
 }
 
 .typography-page-template__table-metric-column {
@@ -149,7 +149,7 @@
 .typography-page-template__utility-copy {
   align-items: flex-start;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--sgds-gap-2-xs);
   min-width: 0;
 }

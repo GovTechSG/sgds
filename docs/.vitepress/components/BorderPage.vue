@@ -103,7 +103,7 @@ const radiusExamples: Example[] = [
 
     <section class="typography-page-template__section">
       <div class="typography-page-template__content-block">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Border width</h2>
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Border</h2>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
           SGDS border width is used to define structure and separation.
         </p>
@@ -245,10 +245,10 @@ const radiusExamples: Example[] = [
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card sgds:flex sgds:items-center sgds:justify-center sgds:gap-component-sm sgds:min-h-[20rem] sgds:p-layout-md">
               <sgds-badge variant="primary">Badge label</sgds-badge>
-              <div class="sgds:flex sgds:h-6 sgds:w-6 sgds:items-center sgds:justify-center sgds:rounded-[4px] sgds:border sgds:border-muted">
+              <div class="sgds:flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded sgds:border sgds:border-muted">
                 <sgds-icon name="three-dots" size="sm" class="sgds:text-muted"></sgds-icon>
               </div>
-              <div class="sgds:flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded-[4px] sgds:border sgds:border-muted">
+              <div class="sgds:flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded sgds:border sgds:border-muted">
                 <sgds-icon name="x-lg" size="sm" class="sgds:text-muted"></sgds-icon>
               </div>
             </div>

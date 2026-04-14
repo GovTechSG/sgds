@@ -10,7 +10,7 @@ const { title, description } = defineProps<Section>();
   <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
     <div class="sgds:flex sgds:gap-2 sgds:items-center">
       <h2
-        class="sgds:text-6 sgds:font-bold sgds:leading-40 sgds:tracking-tighter sgds:mb-0"
+        class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:mb-0"
       >
         {{ title }}
       </h2>

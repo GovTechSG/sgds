@@ -13,6 +13,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
+    "@adobe/leonardo-contrast-colors": "^1.1.0",
     "@govtechsg/sgds-web-component": "^3.16.0",
     "gsap": "^3.13.0"
   }

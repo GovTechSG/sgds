@@ -96,6 +96,41 @@ const formatSidebarLabel = (text?: string) => {
     .join(" ")
 }
 
+// Walk the sidebar tree to build a breadcrumb trail for the current page.
+// Returns an array of label strings (section → group → sub-group), excluding
+// the current page title (which PageHeader already renders as the h1).
+const breadcrumbs = computed<string[]>(() => {
+  const sidebar = currentSidebar.value as any
+  if (!sidebar?.items?.length) return []
+
+  const path = currentPath.value
+  const sectionLabel = header.value
+
+  for (const group of sidebar.items) {
+    if (!group.items?.length) {
+      // Flat top-level leaf
+      if (group.link === path) return [sectionLabel]
+      continue
+    }
+
+    for (const item of group.items) {
+      if (!item.items?.length) {
+        // 2-level: section → group → leaf
+        if (item.link === path) return [sectionLabel, formatSidebarLabel(group.text)]
+      } else {
+        // 3-level: section → group → sub-group → leaf
+        for (const subItem of item.items) {
+          if (subItem.link === path) {
+            return [sectionLabel, formatSidebarLabel(group.text), formatSidebarLabel(item.text)]
+          }
+        }
+      }
+    }
+  }
+
+  return [sectionLabel]
+})
+
 const pageMetadata = computed(() => {
   if (currentSection.value === "components" && currentComponentDoc.value) {
     const { metadataStatus } = currentComponentDoc.value;
@@ -176,13 +211,23 @@ const pageMetadata = computed(() => {
         </div>
       </aside>
       <div class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-9">
-        <PageHeader
-          :title="page.title"
-          :description="page.description"
-          :metadata="pageMetadata"
-          :bottom-gap-class="pageHeaderBottomGapClass"
-          :header-alert="page.frontmatter.headerAlert"
-        />
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+          <sgds-breadcrumb v-if="breadcrumbs.length">
+            <sgds-breadcrumb-item v-for="(crumb, index) in breadcrumbs" :key="index">
+              <a>{{ crumb }}</a>
+            </sgds-breadcrumb-item>
+            <sgds-breadcrumb-item>
+              <a>{{ page.title }}</a>
+            </sgds-breadcrumb-item>
+          </sgds-breadcrumb>
+          <PageHeader
+            :title="page.title"
+            :description="page.description"
+            :metadata="pageMetadata"
+            :bottom-gap-class="pageHeaderBottomGapClass"
+            :header-alert="page.frontmatter.headerAlert"
+          />
+        </div>
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
           <div :class="currentSection === 'ai' ? 'docs-layout-content-ai' : 'docs-layout-content'">
             <Content />
