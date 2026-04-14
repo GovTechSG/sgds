@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from "vue";
-import { Color, BackgroundColor, Theme } from "@adobe/leonardo-contrast-colors";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
 import {
@@ -52,9 +51,10 @@ const pickerCanvasRef = ref<HTMLElement | null>(null);
 const pickerDragging = ref(false);
 const shadeKeys = ["100", "200", "300", "400", "500", "600", "700", "800", "900"] as const;
 
-// Contrast ratios against white that define each shade step.
-// 600 targets WCAG AA for normal text (4.5:1); lighter/darker shades scale from there.
+// Contrast ratios against white that define the default shade curve.
+// 600 is treated as the brand input; lighter/darker shades scale around it.
 const SHADE_RATIOS = [1.1, 1.3, 1.6, 2.2, 3.0, 4.5, 7.0, 10.0, 14.0] as const;
+const BRAND_SHADE_INDEX = shadeKeys.indexOf("600");
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
@@ -235,6 +235,82 @@ function hslToRgb(h: number, s: number, l: number): { r: number; g: number; b: n
   };
 }
 
+function wcagContrastNumber(foregroundHex: string, backgroundHex: string): number {
+  return Number(wcagContrastRatio(foregroundHex, backgroundHex));
+}
+
+function mixRgb(startHex: string, endHex: string, ratio: number): string {
+  const start = hexToRgb(startHex);
+  const end = hexToRgb(endHex);
+  const t = clamp(ratio, 0, 1);
+
+  return rgbToHex(
+    start.r + (end.r - start.r) * t,
+    start.g + (end.g - start.g) * t,
+    start.b + (end.b - start.b) * t,
+  );
+}
+
+function remapRatio(value: number, sourceMin: number, sourceMax: number, targetMin: number, targetMax: number): number {
+  if (sourceMax === sourceMin) return targetMin;
+  const progress = clamp((value - sourceMin) / (sourceMax - sourceMin), 0, 1);
+  return targetMin + (targetMax - targetMin) * progress;
+}
+
+function findColorOnContrastSegment(startHex: string, endHex: string, targetRatio: number): string {
+  const startRatio = wcagContrastNumber(startHex, contrastLightBackground);
+  const endRatio = wcagContrastNumber(endHex, contrastLightBackground);
+  const minRatio = Math.min(startRatio, endRatio);
+  const maxRatio = Math.max(startRatio, endRatio);
+  const target = clamp(targetRatio, minRatio, maxRatio);
+  const increasing = endRatio >= startRatio;
+  let low = 0;
+  let high = 1;
+
+  for (let i = 0; i < 24; i += 1) {
+    const mid = (low + high) / 2;
+    const candidate = mixRgb(startHex, endHex, mid);
+    const contrast = wcagContrastNumber(candidate, contrastLightBackground);
+
+    if (increasing ? contrast < target : contrast > target) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+
+  return mixRgb(startHex, endHex, high);
+}
+
+function targetRatioForShade(index: number, seedContrast: number): number {
+  const seedTarget = SHADE_RATIOS[BRAND_SHADE_INDEX];
+  const defaultTarget = SHADE_RATIOS[index];
+
+  if (index === BRAND_SHADE_INDEX) return seedContrast;
+
+  if (index < BRAND_SHADE_INDEX) {
+    const lightestTarget = Math.min(seedContrast, SHADE_RATIOS[0]);
+    return remapRatio(
+      defaultTarget,
+      SHADE_RATIOS[0],
+      seedTarget,
+      lightestTarget,
+      seedContrast,
+    );
+  }
+
+  const darkestTarget = seedContrast >= SHADE_RATIOS[shadeKeys.length - 1]
+    ? 21
+    : SHADE_RATIOS[shadeKeys.length - 1];
+  return remapRatio(
+    defaultTarget,
+    seedTarget,
+    SHADE_RATIOS[shadeKeys.length - 1],
+    seedContrast,
+    darkestTarget,
+  );
+}
+
 function createProductPrimaryRows(shades: Record<string, string>): ProductPrimaryRow[] {
   return (Object.entries(shades) as [string, string][]).map(([shade, hex]) => {
     const bg = parseInt(shade, 10) <= 500 ? contrastDarkBackground : contrastLightBackground;
@@ -249,49 +325,20 @@ function createProductPrimaryRows(shades: Record<string, string>): ProductPrimar
   });
 }
 
-// ─── Leonardo palette generation ─────────────────────────────────────────────
-// Uses @adobe/leonardo-contrast-colors to build a perceptually-balanced 9-shade
-// ramp from any single brand colour. Ratios are measured against white (#FFFFFF);
-// the 600 slot targets WCAG AA (4.5:1) for normal text.
-
 function generateCustomPalette(hex: string): Record<string, string> {
-  try {
-    const white = new BackgroundColor({
-      name: "background",
-      colorKeys: ["#FFFFFF"],
-      ratios: [],
-    });
+  const seed = hex.toUpperCase();
+  const seedContrast = wcagContrastNumber(seed, contrastLightBackground);
 
-    const brand = new Color({
-      name: "brand",
-      colorKeys: [hex],
-      ratios: [...SHADE_RATIOS],
-    });
+  return Object.fromEntries(
+    shadeKeys.map((shade, index) => {
+      if (index === BRAND_SHADE_INDEX) return [shade, seed];
 
-    const theme = new Theme({
-      colors: [brand],
-      backgroundColor: white,
-      lightness: 100,
-      contrast: 1,
-    });
-
-    // contrastColors[0] = { background: "#ffffff" }
-    // contrastColors[1] = { name: "brand", values: [...] }
-    const brandEntry = theme.contrastColors[1] as {
-      name: string;
-      values: Array<{ name: string; contrast: number; value: string }>;
-    };
-
-    const result: Record<string, string> = {};
-    brandEntry.values.forEach((v, i) => {
-      if (shadeKeys[i]) result[shadeKeys[i]] = v.value.toUpperCase();
-    });
-
-    return result;
-  } catch {
-    // Fallback: return all slots as the input hex
-    return Object.fromEntries(shadeKeys.map((k) => [k, hex.toUpperCase()]));
-  }
+      const targetRatio = targetRatioForShade(index, seedContrast);
+      const segmentStart = index < BRAND_SHADE_INDEX ? contrastLightBackground : seed;
+      const segmentEnd = index < BRAND_SHADE_INDEX ? seed : "#000000";
+      return [shade, findColorOnContrastSegment(segmentStart, segmentEnd, targetRatio).toUpperCase()];
+    }),
+  );
 }
 
 const currentColours = computed<ProductPrimaryRow[]>(() => {
@@ -763,7 +810,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
             </div>
 
             <div v-if="productPrimaryMode === 'govtech-brand'" class="cp-source-panel__control sgds:flex sgds:flex-col sgds:gap-text-sm">
-              <sgds-tab-group variant="underlined" @sgds-tab-show="onTabShow">
+              <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onTabShow">
                 <sgds-tab
                   v-for="palette in brandPalettes"
                   :key="palette.id"
@@ -902,7 +949,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
             </p>
           </div>
 
-          <sgds-tab-group variant="underlined" @sgds-tab-show="onPrimitiveTabShow">
+          <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onPrimitiveTabShow">
             <sgds-tab
               v-for="family in primitiveColourFamilies"
               :key="family.id"
@@ -981,7 +1028,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group variant="underlined" @sgds-tab-show="onBgTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onBgTabShow">
               <sgds-tab
                 v-for="group in semanticColourGroups"
                 :key="group.id"
@@ -1036,7 +1083,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group variant="underlined" @sgds-tab-show="onSemanticTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onSemanticTabShow">
               <sgds-tab
                 v-for="group in semanticColourGroups"
                 :key="group.id"
@@ -1091,7 +1138,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group variant="underlined" @sgds-tab-show="onSurfaceTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onSurfaceTabShow">
               <sgds-tab
                 v-for="group in semanticColourGroups"
                 :key="group.id"
@@ -1146,7 +1193,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group variant="underlined" @sgds-tab-show="onBorderTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onBorderTabShow">
               <sgds-tab
                 v-for="group in semanticColourGroups"
                 :key="group.id"
@@ -1201,7 +1248,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group variant="underlined" @sgds-tab-show="onTextTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onTextTabShow">
               <sgds-tab slot="nav" panel="text-display" :active="activeTextColourTabId === 'text-display' || null">Display</sgds-tab>
               <sgds-tab slot="nav" panel="text-heading" :active="activeTextColourTabId === 'text-heading' || null">Heading</sgds-tab>
               <sgds-tab slot="nav" panel="text-body" :active="activeTextColourTabId === 'text-body' || null">Body</sgds-tab>
@@ -1256,7 +1303,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group variant="underlined" @sgds-tab-show="onFormTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onFormTabShow">
               <sgds-tab
                 v-for="group in formColourGroups"
                 :key="group.id"
@@ -1307,25 +1354,6 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
 <style>
 /* ─── Product primary / Primitive shared styles ────────────────────────────── */
 
-.typography-page-template sgds-tab-group[variant="underlined"] {
-  display: block;
-  overflow: hidden;
-  width: 100%;
-}
-
-.typography-page-template sgds-tab-group[variant="underlined"] sgds-tab[slot="nav"]:last-of-type {
-  position: relative;
-}
-
-.typography-page-template sgds-tab-group[variant="underlined"] sgds-tab[slot="nav"]:last-of-type::after {
-  border-bottom: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
-  bottom: 0;
-  content: "";
-  inline-size: 100vw;
-  inset-inline-start: 100%;
-  pointer-events: none;
-  position: absolute;
-}
 
 .cp-token-column {
   box-sizing: border-box;

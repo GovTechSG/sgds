@@ -69,6 +69,7 @@ config.themeConfig.sidebar["/components/"] = {
       text: "Data display",
       items: [
         { text: "Accordion", link: "/components/accordion" },
+        { text: "Accordion v2", link: "/components/accordion-v2" },
         { text: "Card", link: "/components/card" },
         { text: "Icon card", link: "/components/icon-card" },
         { text: "Image card", link: "/components/image-card" },
@@ -181,7 +182,6 @@ config.themeConfig.sidebar["/foundations/"] = {
         {
           text: "Border utilities",
           items: [
-            { text: "Border colour", link: "/foundations/border/border-colour" },
             { text: "Border radius", link: "/foundations/border/border-radius" },
             { text: "Border width", link: "/foundations/border/border-width" },
           ],
@@ -212,6 +212,7 @@ config.themeConfig.sidebar["/foundations/"] = {
           text: "Colour utilities",
           items: [
             { text: "Background colour", link: "/foundations/colour/background-colour" },
+            { text: "Border colour", link: "/foundations/colour/border-colour" },
             { text: "Text colour", link: "/foundations/colour/text-colour" },
           ],
         },
@@ -259,9 +260,9 @@ config.themeConfig.sidebar["/foundations/"] = {
           ],
         },
         {
-          text: "Icon tokens",
+          text: "Icon size",
           items: [
-            { text: "Icon tokens", link: "/foundations/iconography/icon-tokens" },
+            { text: "Icon size", link: "/foundations/iconography/icon-tokens" },
           ],
         },
       ],
@@ -294,13 +295,26 @@ config.themeConfig.sidebar["/foundations/"] = {
           ],
         },
         {
+          text: "Typography tokens",
+          items: [
+            { text: "Font family", link: "/foundations/typography/font-family" },
+            { text: "Font size", link: "/foundations/typography/typography-tokens" },
+            { text: "Font weight", link: "/foundations/typography/font-weight-tokens" },
+            { text: "Letter spacing", link: "/foundations/typography/letter-spacing-tokens" },
+            { text: "Line height", link: "/foundations/typography/line-height-tokens" },
+            { text: "Paragraph spacing", link: "/foundations/typography/paragraph-spacing" },
+            { text: "Text decoration", link: "/foundations/typography/text-decoration" },
+            { text: "Text transform", link: "/foundations/typography/text-transform" },
+            { text: "Responsive", link: "/foundations/typography/responsive" },
+          ],
+        },
+        {
           text: "Typography utilities",
           items: [
             { text: "Font size", link: "/foundations/typography/font-size" },
             { text: "Font weight", link: "/foundations/typography/font-weight" },
             { text: "Letter spacing", link: "/foundations/typography/letter-spacing" },
             { text: "Line height", link: "/foundations/typography/line-height" },
-            { text: "Text colour", link: "/foundations/typography/text-colour" },
           ],
         },
       ],

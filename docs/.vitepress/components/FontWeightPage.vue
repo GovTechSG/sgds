@@ -24,7 +24,8 @@ const copyUtility = async (utilityClass: string) => {
 <template>
   <TypographyPageTemplate>
     <section class="typography-page-template__section">
-      <div class="typography-page-template__copy-block">
+      <div class="typography-page-template__content-block">
+        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Font weight utilities</h4>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
           Font weight utilities set the thickness of text strokes. SGDS provides four weights — light, regular, semibold, and bold — mapped to semantic tokens that pair consistently with the type scale.
         </p>

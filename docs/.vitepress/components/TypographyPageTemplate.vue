@@ -104,8 +104,13 @@
   width: 100%;
 }
 
+.typography-page-template__utility-table sgds-table-row {
+  height: auto;
+}
+
 .typography-page-template__utility-table sgds-table-head,
 .typography-page-template__utility-table sgds-table-cell {
+  block-size: auto;
   box-sizing: border-box;
   white-space: normal;
 }

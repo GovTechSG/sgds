@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Icon tokens
+title: Icon size
 description: Icon tokens provide consistent sizing and styling decisions so icons stay aligned with SGDS components and typography.
 ---
 

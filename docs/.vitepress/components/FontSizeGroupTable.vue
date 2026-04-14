@@ -20,6 +20,7 @@ type FontSizeGroup = {
 
 const props = defineProps<{
   group: FontSizeGroup;
+  showHeader?: boolean;
 }>();
 
 const copiedKey = ref<string | null>(null);
@@ -27,6 +28,44 @@ const copiedKey = ref<string | null>(null);
 const getRowKey = (sizeName: string) => `${props.group.key}-${sizeName}`;
 
 const getPreviewLabel = (sizeName: string) => `${props.group.label} ${sizeName}`;
+
+const getPreviewTextClasses = (size: FontSizeRow) => {
+  if (props.group.key === "display") {
+    const leadingClass = size.name === "Large" ? "sgds:leading-3-xl" : size.name === "Medium" ? "sgds:leading-2-xl" : "sgds:leading-xl";
+    return [size.utilityClass, "sgds:font-bold", leadingClass, "sgds:tracking-tighter"];
+  }
+
+  if (props.group.key === "heading") {
+    const leadingClass = size.name === "XL" ? "sgds:leading-xl" : size.name === "Large" ? "sgds:leading-lg" : size.name === "Medium" ? "sgds:leading-md" : "sgds:leading-sm";
+    const weightClass = size.name === "XL" || size.name === "Large" ? "sgds:font-bold" : "sgds:font-semibold";
+    return [size.utilityClass, weightClass, leadingClass, "sgds:tracking-tight"];
+  }
+
+  if (props.group.key === "subtitle") {
+    const leadingClass = size.name === "Medium" ? "sgds:leading-xs" : "sgds:leading-2-xs";
+    return [size.utilityClass, "sgds:font-semibold", leadingClass, "sgds:tracking-normal"];
+  }
+
+  if (props.group.key === "body") {
+    const leadingClass = size.name === "Large" ? "sgds:leading-md" : size.name === "Medium" ? "sgds:leading-xs" : "sgds:leading-2-xs";
+    return [size.utilityClass, "sgds:font-regular", leadingClass, "sgds:tracking-normal"];
+  }
+
+  if (props.group.key === "label") {
+    const leadingClass = size.name === "Large" ? "sgds:leading-md" : size.name === "Medium" ? "sgds:leading-xs" : size.name === "Small" ? "sgds:leading-2-xs" : "sgds:leading-3-xs";
+    return [size.utilityClass, "sgds:font-regular", leadingClass, "sgds:tracking-normal"];
+  }
+
+  if (props.group.key === "caption") {
+    return [size.utilityClass, "sgds:font-regular", "sgds:leading-2-xs", "sgds:tracking-normal"];
+  }
+
+  if (props.group.key === "overline") {
+    return [size.utilityClass, "sgds:font-regular", "sgds:leading-2-xs", "sgds:tracking-wide", "sgds:uppercase"];
+  }
+
+  return [size.utilityClass, "sgds:font-regular", "sgds:leading-xs", "sgds:tracking-normal"];
+};
 
 const getLinkSize = (sizeName: string) => {
   switch (sizeName) {
@@ -55,12 +94,12 @@ const copyUtility = async (sizeName: string, utilityClass: string) => {
 
 <template>
   <article :id="group.key" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-    <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
+    <div v-if="showHeader !== false" class="sgds:flex sgds:flex-col sgds:gap-text-sm">
       <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ group.label }}</h4>
       <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ group.description }}</p>
     </div>
 
-    <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+    <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table font-size-utility-table">
       <sgds-table-row>
         <sgds-table-head class="typography-page-template__table-utility-column">SGDS utility</sgds-table-head>
         <sgds-table-head class="typography-page-template__table-metric-column">Mobile</sgds-table-head>
@@ -98,7 +137,7 @@ const copyUtility = async (sizeName: string, utilityClass: string) => {
           <div class="font-size-preview-cell">
             <p
               v-if="group.key !== 'link'"
-              :class="['font-size-preview-text', 'sgds:m-0', size.utilityClass]"
+              :class="['font-size-preview-text', 'sgds:m-0', ...getPreviewTextClasses(size)]"
             >
               {{ getPreviewLabel(size.name) }}
             </p>
@@ -117,10 +156,26 @@ const copyUtility = async (sizeName: string, utilityClass: string) => {
 
 <style>
 .font-size-preview-cell {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   min-width: 0;
   width: 100%;
+}
+
+.font-size-utility-table sgds-table-row,
+.font-size-utility-table sgds-table-cell {
+  block-size: auto;
+  height: auto;
+}
+
+.font-size-utility-table .typography-page-template__table-utility-column {
+  inline-size: 12rem;
+  min-inline-size: 12rem;
+}
+
+.font-size-utility-table .typography-page-template__table-preview-column {
+  inline-size: clamp(18rem, 40vw, 28rem);
+  min-inline-size: clamp(18rem, 40vw, 28rem);
 }
 
 .font-size-preview-text {
@@ -129,5 +184,13 @@ const copyUtility = async (sizeName: string, utilityClass: string) => {
   max-inline-size: 100%;
   min-width: 0;
   overflow-wrap: anywhere;
+}
+
+@media (max-width: 1023px) {
+  .font-size-utility-table .typography-page-template__table-utility-column,
+  .font-size-utility-table .typography-page-template__table-preview-column {
+    inline-size: auto;
+    min-inline-size: 0;
+  }
 }
 </style>

@@ -348,7 +348,7 @@ const copyUtility = async (utilityClass: string) => {
 
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
         <article class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-          <sgds-tab-group variant="underlined" @sgds-tab-show="onBgTabShow">
+          <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onBgTabShow">
             <sgds-tab
               v-for="group in bgColorGroups"
               :key="group.id"
@@ -391,7 +391,7 @@ const copyUtility = async (utilityClass: string) => {
               </sgds-table-cell>
               <sgds-table-cell class="typography-page-template__table-preview-column colour-utilities-preview-column">
                 <div class="sgds:flex sgds:justify-center sgds:min-h-[5rem]">
-                  <div :class="['sgds:h-14 sgds:w-14 sgds:rounded-lg sgds:border sgds:border-default', item.previewClass]"></div>
+                  <div :class="['sgds:h-14 sgds:w-14 sgds:rounded-lg sgds:border sgds:border-muted', item.previewClass]"></div>
                 </div>
               </sgds-table-cell>
             </sgds-table-row>
@@ -411,7 +411,7 @@ const copyUtility = async (utilityClass: string) => {
       </div>
 
       <div class="typography-page-template__body typography-page-template__body--prose">
-        <sgds-tab-group variant="underlined" @sgds-tab-show="onTextTabShow">
+        <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onTextTabShow">
           <sgds-tab
             v-for="group in textColorGroups"
             :key="group.id"

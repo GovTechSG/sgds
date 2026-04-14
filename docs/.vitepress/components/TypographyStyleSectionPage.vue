@@ -148,11 +148,16 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
             />
           </div>
 
-          <sgds-table tableBorder headerBackground responsive="always" :class="$style.typeTokenTable">
+          <sgds-table
+            tableBorder
+            headerBackground
+            responsive="always"
+            :class="['typography-page-template__utility-table', $style.typeTokenTable]"
+          >
             <sgds-table-row>
-              <sgds-table-head>Token name</sgds-table-head>
+              <sgds-table-head>Figma style</sgds-table-head>
               <sgds-table-head>Example</sgds-table-head>
-              <sgds-table-head>SGDS utility</sgds-table-head>
+              <sgds-table-head>Alias token</sgds-table-head>
             </sgds-table-row>
 
             <sgds-table-row
@@ -162,12 +167,12 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
             >
               <sgds-table-cell>
                 <div :class="$style.tokenNameCell">
-                  <sgds-badge v-if="row.note" variant="primary">Default</sgds-badge>
                   <CodeToken
                     v-for="tokenName in row.tokenNames"
                     :key="tokenName"
-                    :label="tokenName"
+                    :label="tokenName.replace(/^sgds-/, '')"
                   />
+                  <sgds-badge v-if="row.note" variant="primary">Default</sgds-badge>
                 </div>
               </sgds-table-cell>
               <sgds-table-cell>
@@ -184,7 +189,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
                     placement="top"
                   >
                     <span :class="$style.utilityTooltipTarget" tabindex="0">
-                      <CodeToken :label="aliasToUtility(alias)" />
+                      <CodeToken :label="alias" />
                     </span>
                   </sgds-tooltip>
                 </div>
@@ -218,15 +223,17 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
   background: var(--sgds-primary-surface-muted);
 }
 
-.tokenNameCell,
+.tokenNameCell {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sgds-gap-2-xs);
+}
+
 .aliasList {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-}
-
-.tokenNameCell {
-  gap: var(--sgds-text-gap-xs);
 }
 
 .aliasList {
@@ -476,21 +483,21 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
 }
 
 .tokenExampleCaptionSemibold {
-  font-size: var(--sgds-font-size-caption);
+  font-size: var(--sgds-font-size-caption-md);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-3-xs);
 }
 
 .tokenExampleCaptionRegular {
-  font-size: var(--sgds-font-size-caption);
+  font-size: var(--sgds-font-size-caption-md);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-3-xs);
 }
 
 .tokenExampleOverlineSemibold {
-  font-size: var(--sgds-font-size-overline);
+  font-size: var(--sgds-font-size-overline-md);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-3-xs);
@@ -498,7 +505,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
 }
 
 .tokenExampleOverlineRegular {
-  font-size: var(--sgds-font-size-overline);
+  font-size: var(--sgds-font-size-overline-md);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-3-xs);

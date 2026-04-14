@@ -1,5 +1,11 @@
 ---
 layout: docs
-title: Typography tokens
-description: Typography token references have moved under font size in typography utilities.
+title: Font size
+description: Primitive font size design tokens used across the SGDS type scale.
 ---
+
+<script setup>
+import FontSizeTokensPage from "../../.vitepress/components/FontSizeTokensPage.vue";
+</script>
+
+<FontSizeTokensPage />

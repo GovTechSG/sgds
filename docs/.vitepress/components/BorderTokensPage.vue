@@ -59,7 +59,7 @@ const borderRadiusTokens: BorderToken[] = [
               :class="row.note ? 'border-token-default-row' : undefined"
             >
               <sgds-table-cell class="border-token-table-name-col">
-                <div class="sgds:flex sgds:flex-nowrap sgds:items-center sgds:gap-2-xs">
+                <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
                   <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.note" variant="primary">{{ row.note }}</sgds-badge>
                 </div>
@@ -97,7 +97,7 @@ const borderRadiusTokens: BorderToken[] = [
               :class="row.note ? 'border-token-default-row' : undefined"
             >
               <sgds-table-cell class="border-token-table-name-col">
-                <div class="sgds:flex sgds:flex-nowrap sgds:items-center sgds:gap-2-xs">
+                <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
                   <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.note" variant="primary">{{ row.note }}</sgds-badge>
                 </div>

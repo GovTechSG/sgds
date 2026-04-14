@@ -473,7 +473,7 @@ function onRadiusTabShow(e: Event) {
 
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
         <article class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-          <sgds-tab-group variant="underlined" @sgds-tab-show="onRadiusTabShow">
+          <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onRadiusTabShow">
             <sgds-tab slot="nav" panel="general" :active="activeRadiusGroupId === 'general' || null">General radius</sgds-tab>
             <sgds-tab slot="nav" panel="form" :active="activeRadiusGroupId === 'form' || null">Form radius</sgds-tab>
             <sgds-tab-panel name="general"></sgds-tab-panel>
@@ -606,7 +606,7 @@ function onRadiusTabShow(e: Event) {
             <h5 class="sgds-subtitle-md-semibold sgds:m-0">Border colour tokens</h5>
           </div>
 
-          <sgds-tab-group variant="underlined" @sgds-tab-show="onBorderColorTabShow">
+          <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onBorderColorTabShow">
             <sgds-tab
               v-for="group in borderColorGroups"
               :key="group.id"

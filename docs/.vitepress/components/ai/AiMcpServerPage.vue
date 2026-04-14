@@ -191,7 +191,7 @@ const openFigmaToCodeTab = (event: Event) => {
         Use the workflow that matches your starting point.
       </p>
 
-      <sgds-tab-group variant="underlined">
+      <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined">
         <sgds-tab ref="figmaToCodeTab" slot="nav" panel="figma-to-code" active>Figma to code</sgds-tab>
         <sgds-tab slot="nav" panel="code-to-figma">Code to Figma</sgds-tab>
 

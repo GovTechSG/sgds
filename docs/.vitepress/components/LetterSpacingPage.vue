@@ -25,7 +25,8 @@ const copyUtility = async (utilityClass: string) => {
 <template>
   <TypographyPageTemplate>
     <section class="typography-page-template__section">
-      <div class="typography-page-template__copy-block">
+      <div class="typography-page-template__content-block">
+        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Letter spacing utilities</h4>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
           Letter spacing (tracking) controls the horizontal space between characters. SGDS pairs specific tracking values with typographic roles — tighter for large display text, normal for body and UI text, and wider for overlines.
         </p>

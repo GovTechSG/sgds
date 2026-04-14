@@ -26,7 +26,7 @@ const migrationSteps = [
         Use the workflow that matches your starting point.
       </p>
 
-      <sgds-tab-group variant="underlined">
+      <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined">
         <sgds-tab slot="nav" panel="new-app" active>Starting a new application</sgds-tab>
         <sgds-tab slot="nav" panel="migrating-app">Migrating an existing app to SGDS v3</sgds-tab>
 
