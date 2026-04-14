@@ -37,7 +37,7 @@ const header = computed(() => {
 })
 
 const showHeaderBadge = computed(() => currentSection.value === "ai")
-const pageHeaderBottomGapClass = computed(() => "sgds:mb-layout-xl")
+const pageHeaderBottomGapClass = computed(() => "sgds:mb-layout-lg")
 
 const currentSidebar = computed(() => {
   const sidebars = theme.value?.sidebar || {}
@@ -136,19 +136,19 @@ const pageMetadata = computed(() => {
               v-for="group in currentSidebar.items"
               :key="group.text"
             >
-              <sgds-sidenav-item v-if="group.items && group.items.length" :active="isSideNavGroupActive(currentSection, [group.text], currentPath)">
+              <sgds-sidenav-item v-if="group.items && group.items.length" :active="isSideNavGroupActive(currentSection, [group.text], currentPath) || null">
                 <span slot="title">{{ formatSidebarLabel(group.text) }}</span>
                 <template
                   v-for="item in group.items"
                   :key="item.link"
                 >
-                  <sgds-sidenav-item v-if="item.items && item.items.length" :active="isSideNavGroupActive(currentSection, [group.text, item.text], currentPath)">
+                  <sgds-sidenav-item v-if="item.items && item.items.length" :active="isSideNavGroupActive(currentSection, [group.text, item.text], currentPath) || null">
                     <span slot="title">{{ formatSidebarLabel(item.text) }}</span>
                     <template
                       v-for="secondLevelItem in item.items"
                       :key="secondLevelItem.link"
                     >
-                    <sgds-sidenav-link :active="currentPath === secondLevelItem.link">
+                    <sgds-sidenav-link :active="(currentPath === secondLevelItem.link) || null">
                       <a
                         :href="isDraft(group.text) ? undefined : withBase(secondLevelItem.link)"
                         :class="isDraft(group.text) ? 'sgds:cursor-not-allowed' : ''"
@@ -158,7 +158,7 @@ const pageMetadata = computed(() => {
                     </sgds-sidenav-link>
                     </template>
                   </sgds-sidenav-item>
-                  <sgds-sidenav-link v-else :active="currentPath === item.link">
+                  <sgds-sidenav-link v-else :active="(currentPath === item.link) || null">
                     <a
                       :href="isDraft(group.text) ? undefined : withBase(item.link)"
                       :class="isDraft(group.text) ? 'sgds:cursor-not-allowed' : ''"
@@ -168,7 +168,7 @@ const pageMetadata = computed(() => {
                   </sgds-sidenav-link>
                 </template>
               </sgds-sidenav-item>
-              <sgds-sidenav-link v-else :active="currentPath === withBase(group.link)">
+              <sgds-sidenav-link v-else :active="(currentPath === withBase(group.link)) || null">
                 <a :href="withBase(group.link)">{{ formatSidebarLabel(group.text) }}</a>
               </sgds-sidenav-link>
             </template>

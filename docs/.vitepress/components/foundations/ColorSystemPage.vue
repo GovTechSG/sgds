@@ -1,92 +1,176 @@
 <script setup lang="ts">
 import Section from "./Section.vue";
-import lightnessSvg from "../../assets/lightness.svg?raw";
 
-const grayscaleContrastScale = "/colour-system/grayscale-contrast-scale.svg";
-const risingCurve = "https://www.figma.com/api/mcp/asset/2376eb16-dc72-4952-bbfc-66c175bd1a36";
+const swatches = [
+  { name: "White", color: "#FFFFFF", bordered: true, tone: "light" },
+  { color: "#F3F3F3" },
+  { color: "#DFDFDF" },
+  { color: "#C6C6C6" },
+  { color: "#A5A5A5" },
+  { color: "#868686" },
+  { color: "#6B6B6B" },
+  { color: "#525252" },
+  { color: "#3B3B3B" },
+  { color: "#2A2A2A" },
+  { color: "#1A1A1A" },
+  { name: "Black", color: "#0E0E0E", tone: "dark" },
+] as const;
 
-const chartSections = [
+const topLevels = [
+  { label: "3.28 A", left: 1, right: 5, offset: "0rem" },
+  { label: "4.8 AA", left: 1, right: 6, offset: "1.5rem" },
+  { label: "7.04 AAA", left: 1, right: 7, offset: "3rem" },
+] as const;
+
+const bottomLevels = [
+  { label: "7.06 AAA", left: 4, right: 10, offset: "0rem" },
+  { label: "4.78 AA", left: 5, right: 10, offset: "1.5rem" },
+  { label: "3.26 A", left: 6, right: 10, offset: "3rem" },
+] as const;
+
+const systemSections = [
   {
-    key: "lightness",
     title: "Lightness",
     description:
-      "SGDS's grays follow a perceptually curved progression of lightness. The outcome is a progression of gray color values that are optimal for SGDS's usage of gray. Each lightness value was converted into a target contrast ratio, which follow a polynomial curve.",
+      "SGDS’s greys follow a perceptually curved progression of lightness. The outcome is a progression of grey colour values that are optimal for SGDS’s usage of grey. Each lightness value was converted into a target contrast ratio, which follows a polynomial curve.",
+    yAxis: ["100%", "50%", "0%"],
+    xAxis: ["gray-100", "gray-1000"],
+    curve:
+      "M0.149465 0.988767C43.1495 7.48877 157.149 47.4888 246.149 87.5756C335.149 127.663 530.003 195.615 624.649 219.489",
   },
   {
-    key: "contrast",
     title: "Contrast",
-    description: "Grays include contrast ratios above and below a 1:1 contrast with the background.",
-    image: risingCurve,
-    yTop: "20",
-    yMid: "10",
-    yBottom: "0",
+    description:
+      "Greys include contrast ratios above and below a 1:1 contrast with the background.",
+    yAxis: ["20", "10", "0"],
+    xAxis: ["gray-100", "gray-1000"],
+    curve:
+      "M0.36441 204.479C31.3564 204.393 127.29 202.189 224.672 185.822C346.4 165.359 416.939 131.153 444.399 115.5C545.715 57.759 623.636 0.5 623.636 0.5",
   },
   {
-    key: "chromatic-luminance",
     title: "Chromatic luminance",
     description:
-      "As colors increase in saturation, they appear to have a brighter luminosity (also known as the Helmholtz–Kohlrausch effect). This affects SGDS colors that differ in saturation levels.",
-    image: risingCurve,
-    yTop: "20",
-    yMid: "10",
-    yBottom: "0",
+      "As colours increase in saturation, they appear to have a brighter luminosity (also known as the Helmholtz–Kohlrausch effect). This affects SGDS colours that differ in saturation levels.",
+    yAxis: ["20", "10", "0"],
+    xAxis: ["gray-100", "gray-1000"],
+    curve:
+      "M0.5 196.5C67.5 194.5 145.5 188.5 224.5 173.5C310.5 157.5 391.5 133.5 465.5 102.5C532.5 74.5 585.5 41.5 624.5 12.5",
   },
   {
-    key: "stevens-power-law",
     title: "Stevens' power law",
     description:
-      "This law is an observation in the rate of change in a given stimulus, and it affects lightness scales for color. Numerically even distributions of tints and shades (in a perceptually uniform color space) will not appear to be equally distributed.",
-    image: risingCurve,
-    yTop: "20",
-    yMid: "10",
-    yBottom: "0",
+      "This law is an observation in the rate of change in a given stimulus, and it affects lightness scales for colour. Numerically even distributions of tints and shades in a perceptually uniform colour space will not appear to be equally distributed.",
+    yAxis: ["100%", "50%", "0%"],
+    xAxis: ["gray-100", "gray-1000"],
+    curve:
+      "M0.5 6.5C41.5 12.5 120.5 34.5 207.5 63.5C290.5 91.5 392.5 131.5 486.5 171.5C542.5 195.5 590.5 214.5 624.5 220.5",
   },
-];
+] as const;
 </script>
 
 <template>
-  <div class="sgds:w-full">
-    <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-layout-padding-xl)]">
-      <div class="sgds:flex sgds:flex-col">
-        <div class="sgds:bg-surface-raised sgds:border sgds:border-muted sgds:overflow-hidden sgds:w-full sgds:rounded-[var(--sgds-border-radius-2-xl)] sgds:p-0">
-          <img
-            class="sgds:block sgds:h-auto sgds:w-full"
-            :src="grayscaleContrastScale"
-            alt="Grayscale contrast scale from white to black with contrast threshold labels"
-          />
+  <div :class="$style.page">
+    <div :class="$style.sectionStack">
+      <div :class="$style.pageSection">
+        <div :class="$style.card">
+          <div :class="$style.scaleFrame">
+            <div
+              v-for="level in topLevels"
+              :key="level.label"
+              :class="[$style.connector, $style.connectorTop]"
+              :style="{
+                left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
+                right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
+                top: level.offset,
+              }"
+            >
+              <span :class="$style.connectorLabel">{{ level.label }}</span>
+            </div>
+
+            <div :class="$style.swatchRow" aria-label="Grayscale contrast scale">
+              <div
+                v-for="swatch in swatches"
+                :key="swatch.name ?? swatch.color"
+                :class="[
+                  $style.swatch,
+                  swatch.bordered ? $style.swatchBordered : '',
+                  swatch.tone === 'dark' ? $style.swatchDark : '',
+                ]"
+                :style="{ backgroundColor: swatch.color }"
+              >
+                <span v-if="swatch.name" :class="$style.swatchLabel">{{ swatch.name }}</span>
+              </div>
+            </div>
+
+            <div
+              v-for="level in bottomLevels"
+              :key="level.label"
+              :class="[$style.connector, $style.connectorBottom]"
+              :style="{
+                left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
+                right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
+                bottom: level.offset,
+              }"
+            >
+              <span :class="$style.connectorLabel">{{ level.label }}</span>
+            </div>
+          </div>
         </div>
       </div>
 
       <div
-        v-for="section in chartSections"
+        v-for="section in systemSections"
         :key="section.title"
-        class="sgds:flex sgds:flex-col"
+        :class="$style.pageSection"
       >
-        <Section :title="section.title" :description="section.description">
-          <div class="colour-chart-card sgds:bg-surface-raised sgds:border sgds:border-muted sgds:overflow-hidden sgds:w-full sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-480)] sgds:p-0 sgds:max-lg:min-h-[auto]">
-            <div
-              v-if="section.key === 'lightness'"
-              class="colour-lightness-chart sgds:box-border sgds:p-component-md sgds:w-full"
-              role="img"
-              aria-label="Lightness chart from gray-100 to gray-1000 with 100 percent, 50 percent, and 0 percent markers"
-              v-html="lightnessSvg"
-            />
-            <div v-else class="colour-chart-frame sgds:h-[var(--sgds-dimension-480)] sgds:relative sgds:max-md:min-h-[var(--sgds-dimension-256)]">
-              <div class="colour-axis-label colour-axis-label-top sgds:text-[color:var(--sgds-label-color-subtle)] sgds:text-2 sgds:font-regular sgds:tracking-normal sgds:leading-[24px] sgds:absolute">{{ section.yTop }}</div>
-              <div class="colour-axis-label colour-axis-label-mid sgds:text-[color:var(--sgds-label-color-subtle)] sgds:text-2 sgds:font-regular sgds:tracking-normal sgds:leading-[24px] sgds:absolute">{{ section.yMid }}</div>
-              <div class="colour-axis-label colour-axis-label-bottom sgds:text-[color:var(--sgds-label-color-subtle)] sgds:text-2 sgds:font-regular sgds:tracking-normal sgds:leading-[24px] sgds:absolute">{{ section.yBottom }}</div>
-              <div class="colour-axis-label colour-axis-label-left-x sgds:text-[color:var(--sgds-label-color-subtle)] sgds:text-2 sgds:font-regular sgds:tracking-normal sgds:leading-[24px] sgds:absolute">gray-100</div>
-              <div class="colour-axis-label colour-axis-label-right-x sgds:text-[color:var(--sgds-label-color-subtle)] sgds:text-2 sgds:font-regular sgds:tracking-normal sgds:leading-[24px] sgds:absolute">gray-1000</div>
-              <img class="colour-chart-image sgds:h-[var(--sgds-dimension-256)] sgds:left-1/2 sgds:object-contain sgds:absolute sgds:top-1/2 sgds:-translate-x-1/2 sgds:-translate-y-1/2 sgds:w-[min(100%,var(--sgds-dimension-640))]" :src="section.image" alt="" />
+        <Section
+          :title="section.title"
+          :description="section.description"
+        >
+          <div :class="$style.chartCard">
+            <div :class="$style.chartFrame">
+              <div :class="$style.lightnessChart">
+                <div :class="$style.lightnessYAxis">
+                  <span
+                    v-for="label in section.yAxis"
+                    :key="`${section.title}-${label}`"
+                    :class="$style.lightnessLabel"
+                  >
+                    {{ label }}
+                  </span>
+                </div>
+                <div :class="$style.lightnessChartWrap">
+                  <div :class="$style.lightnessChartBox">
+                    <div :class="$style.lightnessChartHalf"></div>
+                    <svg
+                      :class="$style.lightnessCurve"
+                      preserveAspectRatio="none"
+                      viewBox="0 0 624.894 220.458"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        :d="section.curve"
+                        stroke="var(--sgds-body-color-subtle)"
+                        stroke-width="2"
+                        vector-effect="non-scaling-stroke"
+                        fill="none"
+                      />
+                    </svg>
+                  </div>
+                  <div :class="$style.lightnessXAxis">
+                    <span
+                      v-for="label in section.xAxis"
+                      :key="`${section.title}-${label}`"
+                      :class="$style.lightnessLabel"
+                    >
+                      {{ label }}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </Section>
-      </div>
-
-      <div class="sgds:flex sgds:flex-col">
-        <Section title="Resources">
-          <div class="sgds:flex sgds:items-center sgds:justify-center sgds:bg-surface-raised sgds:border sgds:border-muted sgds:overflow-hidden sgds:w-full sgds:rounded-[var(--sgds-border-radius-2-xl)] sgds:min-h-[var(--sgds-dimension-320)]">
-            <p class="sgds:text-default sgds:text-3 sgds:font-semibold sgds:leading-[24px] sgds:m-0 sgds:text-center">Best practices and articles</p>
           </div>
         </Section>
       </div>
@@ -94,90 +178,231 @@ const chartSections = [
   </div>
 </template>
 
-<style>
-/* Global selector targeting SVG rendered via v-html in lightness chart */
-.colour-lightness-chart svg {
-  display: block;
-  height: auto;
+<style module>
+.page {
   width: 100%;
 }
 
+.sectionStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-layout-gap-lg);
+}
+
+.pageSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  background: var(--sgds-bg-color-default);
+  border: 1px solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-2-xl);
+  overflow: hidden;
+  padding: var(--sgds-padding-3-xl);
+}
+
+.chartCard {
+  background: var(--sgds-surface-raised);
+  border: 1px solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-2-xl);
+  overflow: hidden;
+  padding-top: calc(var(--sgds-layout-padding-sm) + var(--sgds-padding-sm));
+  padding-bottom: var(--sgds-layout-padding-sm);
+  padding-inline: var(--sgds-component-padding-md);
+}
+
+.scaleFrame {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-layout-gap-lg);
+  margin: 0 auto;
+  max-width: 61rem;
+  padding-block: var(--sgds-padding-4-xl);
+  position: relative;
+}
+
+.chartFrame {
+  margin: 0 auto;
+  max-width: 84.5rem;
+  padding-block: var(--sgds-layout-gap-lg);
+  width: 100%;
+}
+
+.lightnessChart {
+  display: flex;
+  gap: var(--sgds-gap-xs);
+  margin: 0 auto;
+  max-width: 36rem;
+  width: 100%;
+}
+
+.lightnessYAxis {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  justify-content: space-between;
+  padding-bottom: calc(var(--sgds-line-height-24) + var(--sgds-gap-xs));
+  width: 2rem;
+}
+
+.lightnessLabel {
+  color: var(--sgds-label-color-subtle);
+  font-size: var(--sgds-font-size-2);
+  font-weight: var(--sgds-font-weight-regular);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-24);
+  white-space: nowrap;
+}
+
+.lightnessChartWrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.lightnessChartBox {
+  aspect-ratio: 624 / 252;
+  background: var(--sgds-surface-default);
+  border: 1px solid var(--sgds-border-color-muted);
+  position: relative;
+  width: 100%;
+}
+
+.lightnessChartHalf {
+  border-bottom: 1px solid var(--sgds-border-color-muted);
+  height: 50%;
+  width: 100%;
+}
+
+.lightnessCurve {
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.lightnessXAxis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--sgds-gap-xs);
+}
+
+.swatchRow {
+  align-items: center;
+  display: grid;
+  gap: var(--sgds-gap-xs);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  position: relative;
+  z-index: 2;
+}
+
+.swatch {
+  align-items: center;
+  aspect-ratio: 1;
+  border-radius: var(--sgds-border-radius-xl);
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.swatchBordered {
+  border: 1px solid var(--sgds-border-color-muted);
+}
+
+.swatchDark {
+  color: var(--sgds-body-color-fixed-light);
+}
+
+.swatchLabel {
+  color: inherit;
+  font-size: var(--sgds-font-size-label-xs);
+  font-weight: var(--sgds-font-weight-regular);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-16);
+  text-align: center;
+}
+
+.connector {
+  border-color: var(--sgds-border-color-muted);
+  border-style: solid;
+  border-width: 1px 1px 0;
+  border-top-left-radius: var(--sgds-border-radius-xl);
+  border-top-right-radius: var(--sgds-border-radius-xl);
+  height: clamp(1.5rem, 4vw, 4rem);
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.connectorBottom {
+  border-radius: 0 0 var(--sgds-border-radius-xl) var(--sgds-border-radius-xl);
+  border-width: 0 1px 1px;
+}
+
+.connectorLabel {
+  background: var(--sgds-surface-raised);
+  color: var(--sgds-body-color-default);
+  font-size: var(--sgds-font-size-label-xs);
+  font-weight: var(--sgds-font-weight-regular);
+  left: 50%;
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-16);
+  padding-inline: var(--sgds-padding-xs);
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.connectorTop .connectorLabel {
+  top: -0.5rem;
+}
+
+.connectorBottom .connectorLabel {
+  bottom: -0.5rem;
+}
+
 @media (max-width: 1023px) {
-  .colour-lightness-chart svg {
-    min-height: var(--sgds-dimension-256);
+  .card {
+    padding: var(--sgds-padding-2-xl);
   }
-}
 
-/* Axis label positions — require precise absolute positioning with CSS variables */
-.colour-axis-label-top {
-  left: var(--sgds-dimension-96);
-  top: var(--sgds-dimension-24);
-}
-
-.colour-axis-label-mid {
-  left: var(--sgds-dimension-112);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.colour-axis-label-bottom {
-  left: var(--sgds-dimension-128);
-  bottom: var(--sgds-dimension-24);
-}
-
-.colour-axis-label-left-x {
-  bottom: var(--sgds-dimension-24);
-  left: var(--sgds-dimension-160);
-}
-
-.colour-axis-label-right-x {
-  bottom: var(--sgds-dimension-24);
-  right: var(--sgds-dimension-160);
-}
-
-/* Chart image responsive width — requires calc() */
-.colour-chart-image {
-  width: min(100%, var(--sgds-dimension-640));
-}
-
-@media (max-width: 1023px) {
-  .colour-chart-image {
-    width: calc(100% - var(--sgds-dimension-96));
+  .chartCard {
+    padding-top: calc(var(--sgds-layout-padding-sm) + var(--sgds-padding-xs));
+    padding-bottom: var(--sgds-layout-padding-sm);
+    padding-inline: var(--sgds-component-padding-sm);
   }
+
+
 }
 
 @media (max-width: 767px) {
-  .colour-chart-image {
-    width: calc(100% - var(--sgds-dimension-32));
+  .card {
+    border-radius: var(--sgds-border-radius-xl);
+    padding: var(--sgds-padding-xl);
   }
 
-  .colour-axis-label {
-    font-size: var(--sgds-font-size-1);
-    line-height: var(--sgds-line-height-20);
+  .scaleFrame {
+    gap: var(--sgds-layout-gap-md);
+    padding-block: var(--sgds-padding-3-xl);
   }
 
-  .colour-axis-label-top {
-    left: var(--sgds-dimension-20);
-    top: var(--sgds-dimension-12);
+  .chartCard {
+    border-radius: var(--sgds-border-radius-xl);
+    padding-top: calc(var(--sgds-layout-padding-xs) + var(--sgds-padding-xs));
+    padding-bottom: var(--sgds-layout-padding-xs);
+    padding-inline: var(--sgds-component-padding-xs);
   }
 
-  .colour-axis-label-mid {
-    left: var(--sgds-dimension-28);
+  .swatch {
+    border-radius: var(--sgds-border-radius-lg);
   }
 
-  .colour-axis-label-bottom {
-    left: var(--sgds-dimension-36);
-    bottom: var(--sgds-dimension-12);
-  }
-
-  .colour-axis-label-left-x {
-    bottom: var(--sgds-dimension-12);
-    left: var(--sgds-dimension-40);
-  }
-
-  .colour-axis-label-right-x {
-    bottom: var(--sgds-dimension-12);
-    right: var(--sgds-dimension-24);
+  .connectorLabel {
+    font-size: var(--sgds-font-size-label-2-xs);
+    line-height: var(--sgds-line-height-16);
   }
 }
 </style>

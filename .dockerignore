@@ -1,0 +1,7 @@
+.gitignore
+.DS_Store
+node_modules
+docs/.vitepress/cache
+docs/.vitepress/dist
+portal/node_modules
+**/.DS_Store

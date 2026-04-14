@@ -2,6 +2,10 @@
 layout: docs
 title: What is MCP?
 description: MCP lets AI assistants connect to tools and external systems so they can work with richer, live context.
+headerAlert:
+  description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
+  variant: danger
+  icon: exclamation-circle-fill
 ---
 
 ## What is MCP?

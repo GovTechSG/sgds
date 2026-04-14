@@ -1109,10 +1109,16 @@ Adding of title is optional.`,
         description: "Badges are deliberately small and quiet — they annotate content rather than compete with it.",
       },
     ],
+    anatomyMarkup: `<div class="portal-demo-row"><sgds-badge class="portal-anatomy-badge"><sgds-icon slot="icon" name="star-fill"></sgds-icon>Badge label</sgds-badge></div>`,
     anatomyParts: [
       { title: "Container" },
       defaultPartTitleMap.default,
       defaultPartTitleMap.icon,
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: ".portal-anatomy-badge", targetX: "right", targetY: "center" },
+      { number: 2, direction: "bottom", targetSelector: ".portal-anatomy-badge", targetX: "center", targetY: "bottom" },
+      { number: 3, direction: "top", targetSelector: "sgds-icon[slot='icon']", targetX: "center", targetY: "top" },
     ],
     demos: [
       demo(
@@ -1147,10 +1153,16 @@ Adding of title is optional.`,
         description: "On deep or complex sites, breadcrumbs prevent users from losing track of where they came from and how to get back.",
       },
     ],
+    anatomyMarkup: `<sgds-breadcrumb><sgds-breadcrumb-item class="portal-anatomy-breadcrumb-item"><a href="#">Home</a></sgds-breadcrumb-item><sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item><sgds-breadcrumb-item class="portal-anatomy-breadcrumb-current"><a href="#">Payments</a></sgds-breadcrumb-item></sgds-breadcrumb>`,
     anatomyParts: [
       { title: "Container" },
       { title: "Breadcrumb item" },
       { title: "Current page" },
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-breadcrumb", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: ".portal-anatomy-breadcrumb-item", targetX: "center", targetY: "top" },
+      { number: 3, direction: "bottom", targetSelector: ".portal-anatomy-breadcrumb-current", targetX: "center", targetY: "bottom" },
     ],
     demos: [
       demo(
@@ -1185,11 +1197,18 @@ Adding of title is optional.`,
         description: "Built-in loading, disabled, and focus states keep interactions predictable and accessible across all devices and input methods.",
       },
     ],
+    anatomyMarkup: `<div class="portal-demo-row"><sgds-button class="portal-anatomy-button"><sgds-icon slot="leftIcon" name="house"></sgds-icon>Button label<sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon></sgds-button></div>`,
     anatomyParts: [
       { title: "Container" },
       { title: "Label" },
       defaultPartTitleMap.leftIcon,
       defaultPartTitleMap.rightIcon,
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: ".portal-anatomy-button", targetX: "right", targetY: "center" },
+      { number: 2, direction: "bottom", targetSelector: ".portal-anatomy-button", targetX: "center", targetY: "bottom" },
+      { number: 3, direction: "top", targetSelector: "sgds-icon[slot='leftIcon']", targetX: "center", targetY: "top" },
+      { number: 4, direction: "top", targetSelector: "sgds-icon[slot='rightIcon']", targetX: "center", targetY: "top" },
     ],
     demos: [
       demo(
@@ -1231,6 +1250,13 @@ Adding of title is optional.`,
       defaultPartTitleMap.default,
       defaultPartTitleMap.footer,
     ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-card", targetX: "right", targetY: "bottom" },
+      { number: 2, direction: "top", targetSelector: "[slot='title']", targetX: "center", targetY: "top" },
+      { number: 3, direction: "right", targetSelector: "[slot='description']", targetX: "right", targetY: "top" },
+      { number: 4, direction: "left", targetSelector: "sgds-card p", targetX: "left", targetY: "center" },
+      { number: 5, direction: "bottom", targetSelector: "[slot='footer']", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -1270,6 +1296,11 @@ Adding of title is optional.`,
       { title: "Checkbox control" },
       { title: "Label" },
     ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-checkbox-group", targetX: "right", targetY: "center" },
+      { number: 2, direction: "left", targetSelector: "sgds-checkbox", targetX: "left", targetY: "center" },
+      { number: 3, direction: "right", targetSelector: "sgds-checkbox", targetX: "right", targetY: "center" },
+    ],
     demos: [
       demo(
         "Group",
@@ -1303,6 +1334,10 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Button container" }, { title: "Close icon" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-close-button", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "sgds-close-button", targetX: "center", targetY: "top" },
+    ],
     demos: [
       demo(
         "Default",
@@ -1332,10 +1367,16 @@ Adding of title is optional.`,
         description: "Combo boxes are best when the full list is too long to browse comfortably but the user knows roughly what they're looking for.",
       },
     ],
+    anatomyMarkup: `<sgds-combo-box class="portal-anatomy-combobox" placeholder="Select a category" open><sgds-combo-box-option class="portal-anatomy-combobox-option" value="housing">Housing</sgds-combo-box-option><sgds-combo-box-option value="transport">Transport</sgds-combo-box-option><sgds-combo-box-option value="health">Health</sgds-combo-box-option></sgds-combo-box>`,
     anatomyParts: [
       { title: "Input field" },
       { title: "Listbox" },
       { title: "Option" },
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: ".portal-anatomy-combobox", targetX: "right", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
+      { number: 2, direction: "right", targetSelector: ".portal-anatomy-combobox", targetX: "right", targetY: "bottom", stemLengthToken: "--sgds-dimension-56" },
+      { number: 3, direction: "left", targetSelector: ".portal-anatomy-combobox-option", targetX: "left", targetY: "center" },
     ],
     demos: [
       demo(
@@ -1370,7 +1411,13 @@ Adding of title is optional.`,
         description: "A shared date picker ensures all products in your service collect and display dates in the same format, reducing ambiguity.",
       },
     ],
+    anatomyMarkup: `<sgds-datepicker class="portal-anatomy-datepicker" open placeholder="Select a date"></sgds-datepicker>`,
     anatomyParts: [{ title: "Input field" }, { title: "Calendar trigger" }, { title: "Calendar panel" }],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: ".portal-anatomy-datepicker", targetX: "left", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
+      { number: 2, direction: "top", targetSelector: ".portal-anatomy-datepicker", targetX: "right", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
+      { number: 3, direction: "right", targetSelector: ".portal-anatomy-datepicker", targetX: "right", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -1401,6 +1448,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Container" }, { title: "Label" }, { title: "Value" }],
+    anatomyCallouts: [
+      { number: 1, direction: "left", targetSelector: "sgds-description-list", targetX: "left", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "span[slot='default']", targetX: "center", targetY: "top" },
+      { number: 3, direction: "right", targetSelector: "span[slot='data']", targetX: "right", targetY: "center" },
+    ],
     demos: [
       demo(
         "Default",
@@ -1440,6 +1492,10 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Rule" }, { title: "Orientation" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-divider", targetX: "right", targetY: "center" },
+      { number: 2, direction: "right", targetSelector: "sgds-divider[orientation='vertical']", targetX: "right", targetY: "center" },
+    ],
     demos: [
       demo(
         "Orientation",
@@ -1483,6 +1539,13 @@ Adding of title is optional.`,
       defaultPartTitleMap.default,
       defaultPartTitleMap.footer,
     ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-drawer", targetX: "right", targetY: "bottom" },
+      { number: 2, direction: "top", targetSelector: "[slot='title']", targetX: "center", targetY: "top" },
+      { number: 3, direction: "right", targetSelector: "[slot='description']", targetX: "right", targetY: "center" },
+      { number: 4, direction: "left", targetSelector: "sgds-drawer p", targetX: "left", targetY: "center" },
+      { number: 5, direction: "bottom", targetSelector: "[slot='footer']", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Contained",
@@ -1522,10 +1585,16 @@ Adding of title is optional.`,
         description: "Dropdown menus can contain plain links, actions, icons, or dividers — composing a list that fits the context.",
       },
     ],
+    anatomyMarkup: `<div style="min-height: 160px;"><sgds-dropdown open><sgds-button slot="toggler" variant="outline">Actions</sgds-button><sgds-dropdown-item class="portal-anatomy-dropdown-item"><a href="#">Edit</a></sgds-dropdown-item><sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item><sgds-dropdown-item><a href="#">Archive</a></sgds-dropdown-item></sgds-dropdown></div>`,
     anatomyParts: [
       { title: "Toggler" },
       { title: "Menu" },
       { title: "Menu item" },
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: "[slot='toggler']", targetX: "center", targetY: "top" },
+      { number: 2, direction: "right", targetSelector: "sgds-dropdown", targetX: "right", targetY: "bottom", stemLengthToken: "--sgds-dimension-56" },
+      { number: 3, direction: "left", targetSelector: ".portal-anatomy-dropdown-item", targetX: "left", targetY: "center" },
     ],
     demos: [
       demo(
@@ -1561,6 +1630,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Upload button" }, { title: "Selected file list" }, { title: "Feedback area" }],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: "sgds-file-upload", targetX: "center", targetY: "top" },
+      { number: 2, direction: "right", targetSelector: "sgds-file-upload", targetX: "right", targetY: "center" },
+      { number: 3, direction: "bottom", targetSelector: "sgds-file-upload", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -1595,6 +1669,12 @@ Adding of title is optional.`,
       defaultPartTitleMap.title,
       defaultPartTitleMap.description,
       defaultPartTitleMap.items,
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-footer", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "[slot='title']", targetX: "center", targetY: "top" },
+      { number: 3, direction: "left", targetSelector: "[slot='description']", targetX: "left", targetY: "center" },
+      { number: 4, direction: "bottom", targetSelector: "sgds-footer", targetX: "center", targetY: "bottom" },
     ],
     demos: [
       demo(
@@ -1635,6 +1715,10 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Icon glyph" }, { title: "Size variant" }],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: "sgds-icon", targetX: "center", targetY: "top" },
+      { number: 2, direction: "right", targetSelector: "sgds-icon[size='lg']", targetX: "right", targetY: "center" },
+    ],
     demos: [
       demo(
         "Scale",
@@ -1669,6 +1753,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Button container" }, { title: "Icon" }, { title: "Interactive state" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-icon-button", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "sgds-icon-button", targetX: "center", targetY: "top" },
+      { number: 3, direction: "bottom", targetSelector: "sgds-icon-button[variant='outline']", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Variants",
@@ -1707,6 +1796,12 @@ Adding of title is optional.`,
       defaultPartTitleMap.title,
       defaultPartTitleMap.description,
     ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-icon-card", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "[slot='icon']", targetX: "center", targetY: "top" },
+      { number: 3, direction: "left", targetSelector: "[slot='title']", targetX: "left", targetY: "center" },
+      { number: 4, direction: "bottom", targetSelector: "[slot='description']", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -1741,6 +1836,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "List container" }, { title: "List item" }, { title: "Leading icon" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-icon-list", targetX: "right", targetY: "center" },
+      { number: 2, direction: "bottom", targetSelector: ".portal-demo-list-item", targetX: "center", targetY: "bottom" },
+      { number: 3, direction: "left", targetSelector: "sgds-icon", targetX: "left", targetY: "center" },
+    ],
     demos: [
       demo(
         "Default",
@@ -1785,6 +1885,12 @@ Adding of title is optional.`,
       defaultPartTitleMap.title,
       defaultPartTitleMap.description,
     ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-image-card", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "[slot='image']", targetX: "center", targetY: "top" },
+      { number: 3, direction: "left", targetSelector: "[slot='title']", targetX: "left", targetY: "center" },
+      { number: 4, direction: "bottom", targetSelector: "[slot='description']", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -1822,11 +1928,18 @@ Adding of title is optional.`,
         description: "The label and helper text slots keep form questions and guidance close to their field, reducing the cognitive load on users.",
       },
     ],
+    anatomyMarkup: `<sgds-input class="portal-anatomy-input" placeholder="Search services"><sgds-icon slot="icon" name="search"></sgds-icon><sgds-icon slot="trailing-icon" name="x-circle"></sgds-icon></sgds-input>`,
     anatomyParts: [
       { title: "Input field" },
       defaultPartTitleMap.icon,
       defaultPartTitleMap["trailing-icon"],
       defaultPartTitleMap.action,
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: ".portal-anatomy-input", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "sgds-icon[slot='icon']", targetX: "center", targetY: "top" },
+      { number: 3, direction: "top", targetSelector: "sgds-icon[slot='trailing-icon']", targetX: "center", targetY: "top" },
+      { number: 4, direction: "bottom", targetSelector: ".portal-anatomy-input", targetX: "right", targetY: "bottom" },
     ],
     demos: [
       demo(
@@ -1859,6 +1972,10 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Link wrapper" }, { title: "Anchor content" }],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: "sgds-link", targetX: "center", targetY: "top" },
+      { number: 2, direction: "bottom", targetSelector: "sgds-link a", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -1893,6 +2010,12 @@ Adding of title is optional.`,
       defaultPartTitleMap.brand,
       { title: "Navigation item" },
       defaultPartTitleMap.end,
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "bottom", targetSelector: "sgds-mainnav", targetX: "center", targetY: "bottom" },
+      { number: 2, direction: "top", targetSelector: "[slot='brand']", targetX: "center", targetY: "top" },
+      { number: 3, direction: "bottom", targetSelector: "sgds-mainnav-item[active]", targetX: "center", targetY: "bottom" },
+      { number: 4, direction: "top", targetSelector: "sgds-mainnav-dropdown[slot='end']", targetX: "center", targetY: "top" },
     ],
     demos: [
       demo(
@@ -1940,6 +2063,10 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Government banner" }, { title: "Expandable details" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-masthead", targetX: "right", targetY: "center" },
+      { number: 2, direction: "bottom", targetSelector: "sgds-masthead", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -1994,6 +2121,13 @@ Adding of title is optional.`,
       defaultPartTitleMap.default,
       defaultPartTitleMap.footer,
     ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: ".portal-modal-panel", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: ".portal-modal-title", targetX: "center", targetY: "top" },
+      { number: 3, direction: "right", targetSelector: ".portal-modal-description", targetX: "right", targetY: "center" },
+      { number: 4, direction: "left", targetSelector: ".portal-modal-body", targetX: "left", targetY: "center" },
+      { number: 5, direction: "bottom", targetSelector: ".portal-modal-footer", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -2040,7 +2174,13 @@ Adding of title is optional.`,
         description: "The three-dot icon is a well-established pattern — users know tapping it reveals more options without needing any instruction.",
       },
     ],
+    anatomyMarkup: `<div style="min-height: 140px;"><sgds-overflow-menu open><sgds-dropdown-item class="portal-anatomy-overflow-item"><a href="#">Edit</a></sgds-dropdown-item><sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item><sgds-dropdown-item><a href="#">Delete</a></sgds-dropdown-item></sgds-overflow-menu></div>`,
     anatomyParts: [{ title: "Trigger button" }, { title: "Menu" }, { title: "Menu item" }],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: "sgds-overflow-menu", targetX: "center", targetY: "top" },
+      { number: 2, direction: "right", targetSelector: "sgds-overflow-menu", targetX: "right", targetY: "bottom", stemLengthToken: "--sgds-dimension-56" },
+      { number: 3, direction: "left", targetSelector: ".portal-anatomy-overflow-item", targetX: "left", targetY: "center" },
+    ],
     demos: [
       demo(
         "Default",
@@ -2075,6 +2215,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Page controls" }, { title: "Current page" }, { title: "Next and previous actions" }],
+    anatomyCallouts: [
+      { number: 1, direction: "bottom", targetSelector: "sgds-pagination", targetX: "center", targetY: "bottom" },
+      { number: 2, direction: "top", targetSelector: "sgds-pagination", targetX: "center", targetY: "top" },
+      { number: 3, direction: "right", targetSelector: "sgds-pagination", targetX: "right", targetY: "center" },
+    ],
     demos: [
       demo(
         "Number",
@@ -2105,6 +2250,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Track" }, { title: "Progress indicator" }, { title: "Label" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-progress-bar", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "sgds-progress-bar", targetX: "left", targetY: "top" },
+      { number: 3, direction: "bottom", targetSelector: "sgds-progress-bar", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Label",
@@ -2135,6 +2285,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Decrement action" }, { title: "Input value" }, { title: "Increment action" }],
+    anatomyCallouts: [
+      { number: 1, direction: "left", targetSelector: "sgds-quantity-toggle", targetX: "left", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "sgds-quantity-toggle", targetX: "center", targetY: "top" },
+      { number: 3, direction: "right", targetSelector: "sgds-quantity-toggle", targetX: "right", targetY: "center" },
+    ],
     demos: [
       demo(
         "Default",
@@ -2165,6 +2320,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Group" }, { title: "Radio control" }, { title: "Label" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-radio-group", targetX: "right", targetY: "center" },
+      { number: 2, direction: "left", targetSelector: "sgds-radio", targetX: "left", targetY: "center" },
+      { number: 3, direction: "right", targetSelector: "sgds-radio", targetX: "right", targetY: "center" },
+    ],
     demos: [
       demo(
         "Group",
@@ -2198,7 +2358,13 @@ Adding of title is optional.`,
         description: "Select uses the native browser control as a fallback, ensuring it works reliably across platforms and is fully operable by keyboard and assistive technologies.",
       },
     ],
+    anatomyMarkup: `<div style="min-height: 180px;"><sgds-select class="portal-anatomy-select" placeholder="Choose a service" open><sgds-select-option class="portal-anatomy-select-option" value="passport">Passport</sgds-select-option><sgds-select-option value="licence">Licence</sgds-select-option><sgds-select-option value="benefits">Benefits</sgds-select-option></sgds-select></div>`,
     anatomyParts: [{ title: "Trigger field" }, { title: "Listbox" }, { title: "Option" }],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: ".portal-anatomy-select", targetX: "center", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
+      { number: 2, direction: "right", targetSelector: ".portal-anatomy-select", targetX: "right", targetY: "bottom", stemLengthToken: "--sgds-dimension-56" },
+      { number: 3, direction: "left", targetSelector: ".portal-anatomy-select-option", targetX: "left", targetY: "center" },
+    ],
     demos: [
       demo(
         "Default",
@@ -2233,6 +2399,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Navigation container" }, { title: "Section item" }, { title: "Link" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-sidenav", targetX: "right", targetY: "center" },
+      { number: 2, direction: "left", targetSelector: "sgds-sidenav-item[active]", targetX: "left", targetY: "center" },
+      { number: 3, direction: "bottom", targetSelector: "sgds-sidenav-link[active]", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -2276,6 +2447,10 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Placeholder surface" }, { title: "Loading animation" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-skeleton", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "sgds-skeleton", targetX: "center", targetY: "top" },
+    ],
     demos: [
       demo(
         "Rows",
@@ -2307,6 +2482,10 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Spinner glyph" }, { title: "Motion state" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-spinner", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "sgds-spinner", targetX: "center", targetY: "top" },
+    ],
     demos: [
       demo(
         "Default",
@@ -2337,6 +2516,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Step marker" }, { title: "Step label" }, { title: "Step content" }],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: "sgds-stepper", targetX: "left", targetY: "top" },
+      { number: 2, direction: "bottom", targetSelector: "sgds-stepper", targetX: "left", targetY: "bottom" },
+      { number: 3, direction: "right", targetSelector: "sgds-stepper", targetX: "right", targetY: "center" },
+    ],
     demos: [
       demo(
         "Horizontal",
@@ -2373,6 +2557,12 @@ Adding of title is optional.`,
       defaultPartTitleMap.header,
       { title: "Navigation item" },
       defaultPartTitleMap.action,
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-subnav", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "[slot='header']", targetX: "center", targetY: "top" },
+      { number: 3, direction: "bottom", targetSelector: "sgds-subnav-item[active]", targetX: "center", targetY: "bottom" },
+      { number: 4, direction: "top", targetSelector: "[slot='actions']", targetX: "center", targetY: "top" },
     ],
     demos: [
       demo(
@@ -2412,6 +2602,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Switch track" }, { title: "Thumb" }, { title: "Label" }],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: "sgds-switch", targetX: "left", targetY: "top" },
+      { number: 2, direction: "bottom", targetSelector: "sgds-switch", targetX: "left", targetY: "bottom" },
+      { number: 3, direction: "right", targetSelector: "sgds-switch", targetX: "right", targetY: "center" },
+    ],
     demos: [
       demo(
         "Checked state",
@@ -2460,6 +2655,13 @@ Adding of title is optional.`,
       defaultPartTitleMap.badge,
       defaultPartTitleMap.action,
     ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-system-banner", targetX: "right", targetY: "center" },
+      { number: 2, direction: "left", targetSelector: "sgds-system-banner-item", targetX: "left", targetY: "center" },
+      { number: 3, direction: "top", targetSelector: "sgds-icon[slot='icon']", targetX: "center", targetY: "top" },
+      { number: 4, direction: "bottom", targetSelector: "sgds-badge[slot='badge']", targetX: "center", targetY: "bottom" },
+      { number: 5, direction: "bottom", targetSelector: "sgds-system-banner", targetX: "right", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -2494,6 +2696,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Tab list" }, { title: "Tab" }, { title: "Tab panel" }],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: "sgds-tab-group", targetX: "center", targetY: "top" },
+      { number: 2, direction: "top", targetSelector: "sgds-tab[active]", targetX: "center", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
+      { number: 3, direction: "bottom", targetSelector: "sgds-tab-panel[name='overview']", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Underlined",
@@ -2531,6 +2738,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Table container" }, { title: "Header cells" }, { title: "Data cells" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-table", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "sgds-table", targetX: "center", targetY: "top" },
+      { number: 3, direction: "bottom", targetSelector: "sgds-table", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Structured data",
@@ -2566,6 +2778,11 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Container" }, { title: "Header" }, { title: "Contents list" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-table-of-contents", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "[slot='default']", targetX: "center", targetY: "top" },
+      { number: 3, direction: "bottom", targetSelector: "[slot='contents']", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -2605,6 +2822,10 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Textarea field" }, { title: "Hint and feedback" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-textarea", targetX: "right", targetY: "center" },
+      { number: 2, direction: "bottom", targetSelector: "sgds-textarea", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -2639,6 +2860,12 @@ Adding of title is optional.`,
       defaultPartTitleMap.thumbnail,
       defaultPartTitleMap.title,
       defaultPartTitleMap.description,
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-thumbnail-card", targetX: "right", targetY: "center" },
+      { number: 2, direction: "left", targetSelector: "[slot='thumbnail']", targetX: "left", targetY: "center" },
+      { number: 3, direction: "top", targetSelector: "[slot='title']", targetX: "center", targetY: "top" },
+      { number: 4, direction: "bottom", targetSelector: "[slot='description']", targetX: "center", targetY: "bottom" },
     ],
     demos: [
       demo(
@@ -2678,6 +2905,12 @@ Adding of title is optional.`,
       },
     ],
     anatomyParts: [{ title: "Toast surface" }, { title: "Title" }, { title: "Body content" }, { title: "Action" }],
+    anatomyCallouts: [
+      { number: 1, direction: "right", targetSelector: "sgds-toast", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "sgds-toast", targetX: "center", targetY: "top" },
+      { number: 3, direction: "left", targetSelector: "sgds-toast", targetX: "left", targetY: "center" },
+      { number: 4, direction: "bottom", targetSelector: "[slot='action']", targetX: "center", targetY: "bottom" },
+    ],
     demos: [
       demo(
         "Default",
@@ -2710,7 +2943,13 @@ Adding of title is optional.`,
         description: "Because tooltips appear on hover or focus rather than a click, they feel ambient — users encounter them naturally as they explore the interface.",
       },
     ],
+    anatomyMarkup: `<div style="padding: 80px 40px 20px;"><sgds-tooltip class="portal-anatomy-tooltip" content="More details about this action" open><sgds-button class="portal-anatomy-tooltip-target" variant="outline">Hover to view</sgds-button></sgds-tooltip></div>`,
     anatomyParts: [{ title: "Target element" }, { title: "Tooltip bubble" }, { title: "Supporting text" }],
+    anatomyCallouts: [
+      { number: 1, direction: "bottom", targetSelector: ".portal-anatomy-tooltip-target", targetX: "center", targetY: "bottom" },
+      { number: 2, direction: "top", targetSelector: ".portal-anatomy-tooltip", targetX: "center", targetY: "top" },
+      { number: 3, direction: "right", targetSelector: ".portal-anatomy-tooltip", targetX: "right", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
+    ],
     demos: [
       demo(
         "Hover and focus",

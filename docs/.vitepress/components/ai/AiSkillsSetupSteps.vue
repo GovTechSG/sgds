@@ -22,11 +22,11 @@ import { setupSteps as steps } from "../../data/ai-workflow-data";
 
     <template #step-3>
       <p class="sgds:text-label-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-        Run the following command to pull the latest skill updates:
+        After upgrading <CodeToken label="@govtechsg/sgds-web-component" />, refresh the SGDS skills from the source repository:
       </p>
-      <CopyCommand command="npx skills update" />
+      <CopyCommand command="npx skills add https://github.com/govtechsg/sgds-web-component.git -g -y" />
       <p class="sgds:text-label-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-        Skills follow the library version. After upgrading <CodeToken label="@govtechsg/sgds-web-component" />, update skills to ensure the AI agent's knowledge matches the installed version.
+        This keeps the installed SGDS skills aligned with the latest workflow, setup guidance, and component instructions.
       </p>
     </template>
   </AiInstructionStepper>

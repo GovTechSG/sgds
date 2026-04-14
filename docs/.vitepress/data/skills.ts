@@ -7,11 +7,11 @@ export type Skill = {
 export const skills: Skill[] = [
   {
     name: "sgds-workflow",
-    descriptionHtml: "Start here when unsure. Maps all SGDS skills and the order to use them.",
+    descriptionHtml: "Start here when unsure. Maps all SGDS skills, when to use them, and the order to read them in.",
   },
   {
     name: "sgds-getting-started",
-    descriptionHtml: "Technical setup: fonts, CSS imports, component registration, and app layout.",
+    descriptionHtml: "Mandatory first step for new apps: font setup, CSS import order, component registration, and app layout.",
   },
   {
     name: "sgds-components",
@@ -23,7 +23,7 @@ export const skills: Skill[] = [
   },
   {
     name: "sgds-theming",
-    descriptionHtml: "Brand colour overrides, dark mode setup, and font customisation.",
+    descriptionHtml: "Brand colour overrides, dark mode setup, and font customisation. Read alongside components and utilities when needed.",
   },
   {
     name: "sgds-forms",
@@ -31,7 +31,7 @@ export const skills: Skill[] = [
   },
   {
     name: "sgds-pattern-block-templates",
-    descriptionHtml: "App shell and self-contained UI blocks: filter sidebar, session detail, and more.",
+    descriptionHtml: "Application shell guidance and self-contained UI blocks: filter sidebar, session detail, and more.",
   },
   {
     name: "sgds-pattern-page-templates",

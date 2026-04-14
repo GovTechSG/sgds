@@ -2,6 +2,10 @@
 layout: docs
 title: Agent skills
 description: SGDS skills are knowledge packs that teach AI assistants how to use the design system correctly.
+headerAlert:
+  description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
+  variant: danger
+  icon: exclamation-circle-fill
 ---
 
 <script setup>
@@ -23,6 +27,10 @@ import SkillsTable from "../.vitepress/components/ui/SkillsTable.vue";
   Skills are markdown files that give your AI step-by-step instructions for working with SGDS — which components to reach for, which tokens and patterns to follow, and what good output looks like. You install them once into your project, and your AI reads them automatically from that point on.
 </p>
 
+<p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+  If you're unsure where to start, begin with <code>sgds-workflow</code>. It maps the skill set and points your AI to the right skill for the task.
+</p>
+
 <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight section-heading">Why skills matter</h4>
 
 <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -33,17 +41,21 @@ import SkillsTable from "../.vitepress/components/ui/SkillsTable.vue";
   Skills fix that. Once installed, your AI understands exactly how SGDS is structured without you having to explain it every time.
 </p>
 
+<p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+  For new applications, the workflow starts with <code>sgds-getting-started</code>. From there, your AI moves between components, utilities, theming, templates, and forms depending on the task.
+</p>
+
 <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight section-heading">How skills work</h4>
 
 <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
   Skills are plain markdown files structured for AI consumption. Each skill contains:
 </p>
 
-<ul class="example-prompts">
-  <li class="example-prompt"><strong>A quick decision guide</strong> — decision trees for choosing the right token or component variant</li>
-  <li class="example-prompt"><strong>An API summary</strong> — compact attribute and property tables</li>
-  <li class="example-prompt"><strong>Usage examples</strong> — idiomatic HTML the AI can produce and adapt</li>
-  <li class="example-prompt"><strong>A "For AI agents" section</strong> — explicit rules and common mistakes to avoid</li>
+<ul class="skills-list">
+  <li><strong>A quick decision guide</strong> — decision trees for choosing the right token or component variant</li>
+  <li><strong>An API summary</strong> — compact attribute and property tables</li>
+  <li><strong>Usage examples</strong> — idiomatic HTML the AI can produce and adapt</li>
+  <li><strong>A "For AI agents" section</strong> — explicit rules and common mistakes to avoid</li>
 </ul>
 
 <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -56,10 +68,10 @@ import SkillsTable from "../.vitepress/components/ui/SkillsTable.vue";
   Instead of wrestling with your AI to get correct output, you can simply describe what you want to build:
 </p>
 
-<ul class="example-prompts">
-  <li class="example-prompt">"Build a sidebar dashboard layout using SGDS"</li>
-  <li class="example-prompt">"What spacing utility class should I use between these cards?"</li>
-  <li class="example-prompt">"How do I prevent a modal from closing when clicking the background?"</li>
+<ul class="skills-list">
+  <li>"Build a sidebar dashboard layout using SGDS"</li>
+  <li>"What spacing utility class should I use between these cards?"</li>
+  <li>"How do I prevent a modal from closing when clicking the background?"</li>
 </ul>
 
 <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -107,12 +119,13 @@ import SkillsTable from "../.vitepress/components/ui/SkillsTable.vue";
     margin-top: var(--sgds-layout-gap-lg);
   }
 
-  .example-prompts {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sgds-text-gap-xs);
+  .skills-list {
     margin: var(--sgds-text-gap-md) 0;
     padding-left: var(--sgds-padding-lg);
+  }
+
+  .skills-list li + li {
+    margin-top: var(--sgds-text-gap-xs);
   }
 
   p + p {

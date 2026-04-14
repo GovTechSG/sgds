@@ -2,6 +2,10 @@
 layout: docs
 title: Designers
 description: Guidance for designers using AI together with SGDS, Figma, and design-to-code workflows.
+headerAlert:
+  description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
+  variant: danger
+  icon: exclamation-circle-fill
 ---
 
 ## Designers

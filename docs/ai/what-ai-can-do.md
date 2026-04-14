@@ -2,6 +2,10 @@
 layout: docs
 title: What AI can do
 description: See how AI can support designers, developers, and product managers when SGDS is the source of truth.
+headerAlert:
+  description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
+  variant: danger
+  icon: exclamation-circle-fill
 ---
 
 <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">For designers</h3>

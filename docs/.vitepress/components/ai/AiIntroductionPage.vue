@@ -45,10 +45,10 @@
     </section>
 
     <section class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)] sgds:w-full">
-      <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What this means for teams building with SGDS</h3>
+      <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What this means for teams building with us</h3>
       <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-md)] sgds:w-full">
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-          For teams using SGDS, this plays out in a practical way. SGDS provides a ready foundation already aligned to the Digital Service Standards and maintained centrally — so teams can focus on building. We've introduced AI support to keep pace with how teams are using AI. In practice, this means:
+          For teams using our design system, this plays out in a practical way. We provide a ready foundation already aligned to the Digital Service Standards and maintained centrally — so teams can focus on building. We've introduced AI support to keep pace with how teams are using AI. In practice, this means:
         </p>
         <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-xs)] sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
           <li><strong>More consistent outputs across your product</strong> — AI works from the same components and patterns, so what gets generated holds together across teams and touchpoints</li>
@@ -61,7 +61,7 @@
 
     <section class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)] sgds:w-full">
       <div class="sgds:flex sgds:items-center sgds:gap-[var(--sgds-gap-xs)] sgds:w-full">
-        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">How SGDS is evolving for AI</h3>
+        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">How we are evolving for AI</h3>
         <a href="#how-sgds-is-evolving-for-ai" class="sgds:inline-flex sgds:items-center sgds:justify-center sgds:text-subtle sgds:no-underline" aria-label="Link to section">
           <sgds-icon name="link-45deg" size="sm"></sgds-icon>
         </a>
@@ -74,7 +74,7 @@
           The role of a dedicated design system team becomes more consequential in this context. Keeping a shared system current is what allows product teams to build without having to resolve foundational questions themselves. When that maintenance slips, the consequences tend to surface quickly, particularly when AI is involved.
         </p>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-          SGDS is evolving with this shift. The work is ongoing and we're continuing to build a system that works for the way teams work now — so that when you reach for AI, what gets built back is consistent, considered, and worth shipping.
+          We are evolving with this shift. The work is ongoing and we're continuing to build a system that works for the way teams work now — so that when you reach for AI, what gets built back is consistent, considered, and worth shipping.
         </p>
       </div>
     </section>

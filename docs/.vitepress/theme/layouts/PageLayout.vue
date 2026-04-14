@@ -7,7 +7,7 @@ const { frontmatter } = useData()
 </script>
 
 <template>
-  <div class="sgds:mb-[var(--sgds-margin-xl)] sgds:flex sgds:flex-col sgds:gap-[var(--sgds-spacer-10)]">
+  <div class="sgds:mb-[var(--sgds-margin-xl)] sgds:flex sgds:flex-col sgds:gap-layout-lg">
     <PageHeader
       :title="frontmatter.title"
       :description="frontmatter.description"

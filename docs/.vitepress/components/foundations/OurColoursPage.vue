@@ -133,7 +133,7 @@ const paletteRows: PaletteRow[] = [
               v-for="color in brandColors"
               :key="color.name"
               :class="[
-                'our-colours-brand-card sgds:flex sgds:flex-col sgds:justify-between sgds:rounded-[var(--sgds-border-radius-2-xl)] sgds:min-h-[var(--sgds-dimension-288)] sgds:p-[var(--sgds-padding-2-xl)] sgds:overflow-hidden sgds:max-md:min-h-[15rem]',
+                'our-colours-brand-card sgds:flex sgds:flex-col sgds:justify-between sgds:rounded-[var(--sgds-border-radius-2-xl)] sgds:min-h-[var(--sgds-dimension-288)] sgds:max-md:min-h-[15rem] sgds:p-[var(--sgds-padding-2-xl)] sgds:overflow-hidden',
                 color.textTone === 'light' ? 'sgds:text-inverse' : '',
                 color.textTone === 'dark' ? 'sgds:text-default' : '',
                 color.textTone === 'fixed-light' ? 'sgds:text-fixed-light our-colours-brand-card-fixed-light' : '',
@@ -303,4 +303,5 @@ const paletteRows: PaletteRow[] = [
     transform: translateY(0) scale(1);
   }
 }
+
 </style>
