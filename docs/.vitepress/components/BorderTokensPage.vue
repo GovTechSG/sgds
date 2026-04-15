@@ -32,6 +32,7 @@ const borderRadiusTokens: BorderToken[] = [
   { token: "sgds-border-radius-lg", value: "12/0.75" },
   { token: "sgds-border-radius-xl", value: "16/1" },
   { token: "sgds-border-radius-2-xl", value: "24/1.5" },
+  { token: "sgds-border-radius-3-xl", value: "32/2" },
   { token: "sgds-border-radius-full", value: "999" },
 ];
 </script>
