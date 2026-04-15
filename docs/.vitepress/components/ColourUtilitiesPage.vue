@@ -301,12 +301,29 @@ const typographyRoleTokens = [
   { utilityClass: "sgds:text-label-default",   day: "#2a2a2a", night: "#f3f3f3", usage: "Form labels, table headers"        },
   { utilityClass: "sgds:text-link-default",    day: "#0269d0", night: "#60aaf4", usage: "Links at rest"                     },
   { utilityClass: "sgds:text-link-emphasis",   day: "#0151a0", night: "#96c7f7", usage: "Links on hover or focus"           },
-  { utilityClass: "sgds:text-accent-default",  day: "#0269d0", night: "#60aaf4", usage: "Informational — brand accent"      },
+] as const;
+
+const semanticTextTokens = [
+  { utilityClass: "sgds:text-accent-default",   day: "#0269d0", night: "#60aaf4", usage: "Informational text — brand accent, link-adjacent labels" },
+  { utilityClass: "sgds:text-accent-emphasis",  day: "#0151a0", night: "#96c7f7", usage: "Hover or active accent text"                             },
+  { utilityClass: "sgds:text-success-default",  day: "#0e7c3d", night: "#16bd5e", usage: "Positive state — confirmed, saved, valid"                },
+  { utilityClass: "sgds:text-success-emphasis", day: "#0b5e2f", night: "#62db96", usage: "Strong success emphasis"                                 },
+  { utilityClass: "sgds:text-danger-default",   day: "#cf2323", night: "#e98b8b", usage: "Error state — invalid, destructive, failed"              },
+  { utilityClass: "sgds:text-danger-emphasis",  day: "#a11b1b", night: "#f1b2b2", usage: "Critical error emphasis"                                 },
+  { utilityClass: "sgds:text-warning-default",  day: "#7e6917", night: "#e5bf29", usage: "Caution state — requires attention"                      },
+  { utilityClass: "sgds:text-warning-emphasis", day: "#605111", night: "#fcde63", usage: "Strong caution emphasis"                                 },
+  { utilityClass: "sgds:text-purple-default",   day: "#ac1cdb", night: "#d983f6", usage: "Supplementary brand color — visual differentiation"      },
+  { utilityClass: "sgds:text-purple-emphasis",  day: "#8516a9", night: "#e6adf9", usage: "Hover or active purple text"                             },
+  { utilityClass: "sgds:text-cyan-default",     day: "#00758d", night: "#00b4da", usage: "Supplementary brand color — visual differentiation"      },
+  { utilityClass: "sgds:text-cyan-emphasis",    day: "#005a6d", night: "#49d2ef", usage: "Hover or active cyan text"                               },
+  { utilityClass: "sgds:text-neutral-default",  day: "#6b6b6b", night: "#a5a5a5", usage: "Non-semantic grey — tags, badges, disabled states"       },
+  { utilityClass: "sgds:text-neutral-emphasis", day: "#525252", night: "#c6c6c6", usage: "Stronger neutral text emphasis"                          },
 ] as const;
 
 const textColorGroups: TextColorGroup[] = [
-  { id: "general-purpose", label: "General purpose", rows: baseTokens },
+  { id: "general-purpose",  label: "General purpose",  rows: baseTokens },
   { id: "typography-roles", label: "Typography roles", rows: typographyRoleTokens },
+  { id: "semantic",         label: "Semantic",         rows: semanticTextTokens },
 ];
 
 const activeTextGroupId = ref("general-purpose");
