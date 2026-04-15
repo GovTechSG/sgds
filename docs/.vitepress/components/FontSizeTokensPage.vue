@@ -74,19 +74,22 @@ const fontSizeTokens: FontSizeToken[] = [
 <style>
 .font-size-token-col-name {
   box-sizing: border-box;
-  inline-size: 45%;
-  min-inline-size: 14rem;
+  inline-size: max-content;
+  max-inline-size: 18rem;
+  min-inline-size: 13rem;
 }
 
 .font-size-token-col-value {
   box-sizing: border-box;
-  inline-size: 20%;
+  inline-size: max-content;
+  max-inline-size: 10rem;
   min-inline-size: 7rem;
 }
 
 .font-size-token-col-preview {
   box-sizing: border-box;
-  inline-size: 35%;
+  inline-size: max-content;
+  max-inline-size: 10rem;
   min-inline-size: 8rem;
 }
 

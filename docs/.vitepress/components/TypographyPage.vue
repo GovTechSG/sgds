@@ -1,71 +1,52 @@
 <script setup lang="ts">
+import FoundationPrinciplesList from "./foundations/FoundationPrinciplesList.vue";
+import FoundationPrincipleTemplate from "./foundations/FoundationPrincipleTemplate.vue";
+import Section from "./foundations/Section.vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+
+const principles = [
+  {
+    title: "Legibility",
+    body: "The ease with which one letterform can be distinguished from the next. It feeds into, but is not the same as, readability.",
+  },
+  {
+    title: "Readability",
+    body: "Readability refers to the ease with which a block of text can be scanned by eye.",
+  },
+  {
+    title: "Scannability",
+    body: "Scannability is the aggregate effect of writing and formatting techniques.",
+  },
+];
+
+const rules = [
+  {
+    title: "Create contrast, skip one",
+    body: "Contrast creates visual order, emphasis, and clarity. It should also be harmoniously different, different enough to create visual interest, but not compete with each other. To achieve that, skip at least one size, weight, and/or colour.",
+  },
+  {
+    title: "Leading & tracking",
+    body: "The larger and bolder the type, the smaller the tracking. Vice versa!",
+  },
+  {
+    title: "Line length",
+    body: "Line length is how many characters are on a single line of text. For longer body text, the ideal length is between 40 and 60 characters. For shorter lines of text, the ideal length is 20 to 40 characters.",
+  },
+  {
+    title: "Alignment",
+    body: "Left-aligned text is the most common setting for left-to-right languages such as English. The F-alignment describes the most common user eye-scanning pattern when it comes to blocks of content.",
+  },
+];
 </script>
 
 <template>
   <TypographyPageTemplate>
-    <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Principle</h2>
-      <div class="typography-page-template__body typography-page-template__body--prose">
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Legibility</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            The ease with which one letterform can be distinguished from the next. It feeds into, but is not the same as, readability.
-          </p>
-        </div>
+    <FoundationPrincipleTemplate>
+      <FoundationPrinciplesList :principles="principles" />
+      <FoundationPrinciplesList title="Rules and Guide" :principles="rules" />
 
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Readability</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            Readability refers to the ease with which a block of text can be scanned by eye.
-          </p>
-        </div>
-
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Scannability</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            Scannability is the aggregate effect of writing and formatting techniques.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Rules and Guide</h2>
-      <div class="typography-page-template__body typography-page-template__body--prose">
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Create contrast, skip one</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            Contrast creates visual order, emphasis, and clarity. It should also be harmoniously different, different enough to create visual interest, but not compete with each other. To achieve that, skip at least one size, weight, and/or colour.
-          </p>
-        </div>
-
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Leading &amp; tracking</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            The larger and bolder the type, the smaller the tracking. Vice versa!
-          </p>
-        </div>
-
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Line length</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            Line length is how many characters are on a single line of text. For longer body text, the ideal length is between 40 and 60 characters. For shorter lines of text, the ideal length is 20 to 40 characters.
-          </p>
-        </div>
-
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Alignment</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            Left-aligned text is the most common setting for left-to-right languages such as English. The F-alignment describes the most common user eye-scanning pattern when it comes to blocks of content.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Responsive typography system</h2>
+    <Section title="Responsive typography system">
       <div class="typography-page-template__body typography-page-template__body--prose">
         <div class="typography-page-template__copy-block">
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -112,10 +93,9 @@ import CodeToken from "./ui/CodeToken.vue";
           </div>
         </div>
       </div>
-    </section>
+    </Section>
 
-    <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Typography variables</h2>
+    <Section title="Typography variables">
       <div class="typography-page-template__body typography-page-template__body--prose">
         <div class="typography-page-template__copy-block">
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -164,10 +144,9 @@ import CodeToken from "./ui/CodeToken.vue";
           </ul>
         </div>
       </div>
-    </section>
+    </Section>
 
-    <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">How responsive typography works</h2>
+    <Section title="How responsive typography works">
       <div class="typography-page-template__body typography-page-template__body--prose">
         <div class="typography-page-template__copy-block">
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -175,6 +154,7 @@ import CodeToken from "./ui/CodeToken.vue";
           </p>
         </div>
       </div>
-    </section>
+    </Section>
+    </FoundationPrincipleTemplate>
   </TypographyPageTemplate>
 </template>

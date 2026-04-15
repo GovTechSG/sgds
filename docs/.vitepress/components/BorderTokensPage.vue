@@ -125,19 +125,22 @@ const borderRadiusTokens: BorderToken[] = [
 <style>
 .border-token-table-name-col {
   box-sizing: border-box;
-  inline-size: 45%;
-  min-inline-size: 18rem;
+  inline-size: max-content;
+  max-inline-size: 18rem;
+  min-inline-size: 14rem;
 }
 
 .border-token-table-value-col {
   box-sizing: border-box;
-  inline-size: 20%;
+  inline-size: max-content;
+  max-inline-size: 10rem;
   min-inline-size: 8rem;
 }
 
 .border-token-table-example-col {
   box-sizing: border-box;
-  inline-size: 35%;
+  inline-size: max-content;
+  max-inline-size: 12rem;
   min-inline-size: 10rem;
 }
 

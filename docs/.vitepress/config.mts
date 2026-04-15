@@ -168,9 +168,7 @@ config.themeConfig.sidebar["/foundations/"] = {
       items: [
         {
           text: "Border principles",
-          items: [
-            { text: "Border", link: "/foundations/border" },
-          ],
+          link: "/foundations/border",
         },
         {
           text: "Border tokens",
@@ -193,12 +191,7 @@ config.themeConfig.sidebar["/foundations/"] = {
       items: [
         {
           text: "Colour principles",
-          items: [
-            { text: "Our colours", link: "/foundations/colour/our-colours" },
-            { text: "Colour system", link: "/foundations/colour/colour-system" },
-            { text: "Using colour", link: "/foundations/colour/using-colour" },
-            { text: "Best practices", link: "/foundations/colour/best-practices" },
-          ],
+          link: "/foundations/colour/our-colours",
         },
         {
           text: "Colour tokens",
@@ -223,9 +216,7 @@ config.themeConfig.sidebar["/foundations/"] = {
       items: [
         {
           text: "Elevation principles",
-          items: [
-            { text: "Elevation principle", link: "/foundations/elevation/elevation-principle" },
-          ],
+          link: "/foundations/elevation/elevation-principle",
         },
         {
           text: "Elevation tokens",
@@ -248,19 +239,14 @@ config.themeConfig.sidebar["/foundations/"] = {
       items: [
         {
           text: "Iconography principles",
-          items: [
-            { text: "Iconography principles", link: "/foundations/iconography/iconography-principles" },
-            { text: "Iconography characteristics", link: "/foundations/iconography/iconography-characteristics" },
-          ],
+          link: "/foundations/iconography/iconography-principles",
         },
         {
-          text: "Iconography assets",
-          items: [
-            { text: "Icon library", link: "/foundations/iconography/icon-library" },
-          ],
+          text: "Icon library",
+          link: "/foundations/iconography/icon-library",
         },
         {
-          text: "Icon size",
+          text: "Icon tokens",
           items: [
             { text: "Icon size", link: "/foundations/iconography/icon-tokens" },
           ],
@@ -272,12 +258,7 @@ config.themeConfig.sidebar["/foundations/"] = {
       items: [
         {
           text: "Typography principles",
-          items: [
-            { text: "Our typography", link: "/foundations/typography/our-typography" },
-            { text: "Typeface", link: "/foundations/typography/typeface" },
-            { text: "Type system", link: "/foundations/typography/type-system" },
-            { text: "Type pairing", link: "/foundations/typography/type-pairing" },
-          ],
+          link: "/foundations/typography/our-typography",
         },
         {
           text: "Typography styles",
@@ -324,12 +305,10 @@ config.themeConfig.sidebar["/foundations/"] = {
       items: [
         {
           text: "Layout principles",
-          items: [
-            { text: "Layout principle", link: "/foundations/layout/layout-principle" },
-          ],
+          link: "/foundations/layout/layout-principle",
         },
         {
-          text: "Layout system",
+          text: "Layout tokens",
           items: [
             { text: "Breakpoint", link: "/foundations/layout/breakpoint" },
             { text: "Responsive grid", link: "/foundations/layout/responsive-grid" },
@@ -342,14 +321,23 @@ config.themeConfig.sidebar["/foundations/"] = {
       items: [
         {
           text: "Spacing principles",
+          link: "/foundations/spacing",
+        },
+        {
+          text: "Spacing tokens",
           items: [
-            { text: "Spacing principle", link: "/foundations/spacing" },
+            { text: "Spacer scale", link: "/foundations/spacing/spacer-scale" },
+            { text: "Text gap", link: "/foundations/spacing/text-gap" },
+            { text: "Layout gap", link: "/foundations/spacing/layout-gap" },
+            { text: "Component gap", link: "/foundations/spacing/component-gap" },
+            { text: "Component padding", link: "/foundations/spacing/component-padding" },
+            { text: "Layout padding", link: "/foundations/spacing/layout-padding" },
           ],
         },
         {
-          text: "Spacing tokens and utilities",
+          text: "Spacing utilities",
           items: [
-            { text: "Spacing token", link: "/foundations/spacing/spacing-tokens" },
+            { text: "Spacing utilities", link: "/foundations/spacing/spacing-utilities" },
           ],
         },
       ],

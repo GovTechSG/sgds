@@ -221,20 +221,23 @@ const stickySidebarTokens = [
 <style module>
 .tokenColumn {
   box-sizing: border-box;
-  inline-size: clamp(12rem, 22vw, 16rem);
-  min-inline-size: clamp(12rem, 22vw, 16rem);
+  inline-size: max-content;
+  max-inline-size: clamp(12rem, 22vw, 16rem);
+  min-inline-size: 12rem;
 }
 
 .valueColumn {
   box-sizing: border-box;
-  inline-size: clamp(7.5rem, 14vw, 10rem);
-  min-inline-size: clamp(7.5rem, 14vw, 10rem);
+  inline-size: max-content;
+  max-inline-size: 11rem;
+  min-inline-size: 7.5rem;
 }
 
 .numericColumn {
   box-sizing: border-box;
-  inline-size: 5.5rem;
-  min-inline-size: 5.5rem;
+  inline-size: max-content;
+  max-inline-size: 6rem;
+  min-inline-size: 4.5rem;
 }
 
 @media (max-width: 1023px) {
@@ -242,6 +245,7 @@ const stickySidebarTokens = [
   .valueColumn,
   .numericColumn {
     inline-size: auto;
+    max-inline-size: none;
     min-inline-size: 0;
   }
 }

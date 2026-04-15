@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 import TypographyPageTemplate from "../TypographyPageTemplate.vue";
 import CodeToken from "../ui/CodeToken.vue";
+import CopyCodeToken from "../ui/CopyCodeToken.vue";
 
 const props = defineProps<{
   section: "surface" | "edge";
@@ -124,8 +125,8 @@ const copyUtility = async (utilityClass: string) => {
         <article class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="typography-page-template__table-utility-column elevation-utilities-utility-column">SGDS utility</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-token-column">Token</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-utility-column elevation-utilities-utility-column">SGDS Tailwind token</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
               <sgds-table-head
                 :class="[
@@ -152,7 +153,7 @@ const copyUtility = async (utilityClass: string) => {
                 </div>
               </sgds-table-cell>
               <sgds-table-cell class="typography-page-template__table-token-column">
-                <CodeToken :label="item.token" />
+                <CopyCodeToken :label="item.token" copy-label="Copy CSS variable" />
               </sgds-table-cell>
               <sgds-table-cell class="typography-page-template__table-usage-column">
                 <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.usage }}</span>
@@ -184,12 +185,14 @@ const copyUtility = async (utilityClass: string) => {
 
 <style>
 .elevation-utilities-preview-column--surface {
-  inline-size: 7.5rem;
-  min-inline-size: 7.5rem;
+  inline-size: max-content;
+  max-inline-size: 8rem;
+  min-inline-size: 6rem;
 }
 
 .elevation-utilities-utility-column {
-  inline-size: 16rem;
-  min-inline-size: 16rem;
+  inline-size: max-content;
+  max-inline-size: 16rem;
+  min-inline-size: 12rem;
 }
 </style>

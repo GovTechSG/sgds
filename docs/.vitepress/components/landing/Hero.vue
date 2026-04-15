@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import gsap from "gsap";
-import { onMounted } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 
 export type Button = {
   label: string;
@@ -15,87 +15,52 @@ export type Page = {
 }
 const { title, buttons } = defineProps<Page>();
 
+const heroRoot = ref<HTMLElement | null>(null);
+let animationContext: gsap.Context | undefined;
+
 onMounted(() => {
-  gsap.set("svg", { opacity: 1 });
-  
-  const tl = gsap.timeline();
-  
-  // Fade in the element
-  tl.fromTo(".image-container > *", { opacity: 0 }, { opacity: 1, duration: 1 });
-  
-  gsap.to(".code", {
-    x: -120,
-    duration: 1,
-    ease: "power1.inOut"
-  });
-  
-  gsap.to(".cursor", {
-    x: -80,
-    y: -80,
-    duration: 1,
-    ease: "power1.inOut"
-  });
-  gsap.to(".white-tile", {
-    x: 30,
-    y: -20,
-    duration: 1,
-    ease: "power1.inOut"
-  });
-  gsap.to(".black-tile", {
-    x: 30,
-    y: -20,
-    duration: 1,
-    ease: "power1.inOut"
-  });
-  gsap.to(".colour-wheel-picker", {
-    x: 100,
-    duration: 1,
-    ease: "power1.inOut",
-    transformOrigin: "center center",
-    rotate: 5
-  });
-  gsap.to(".yellow-image", {
-    x: 50,
-    duration: 1,
-    ease: "power1.inOut",
-    rotation: 90, // Rotates 360 degrees around the Y-axis
-    transformOrigin: "center center"
-  });
-  gsap.to(".black-cube", {
-    x: 65,
-    duration: 1,
-    ease: "power1.inOut",
-    rotation: 90, // Rotates 360 degrees around the Y-axis
-    transformOrigin: "center center"
-  });
-  gsap.to(".white-camera", {
-    x: 58,
-    y: 40,
-    duration: 1,
-    ease: "power1.inOut",
-    rotation: 90, // Rotates 360 degrees around the Y-axi
-    transformOrigin: "center center"
-  });
-  gsap.to(".black-disk", {
-    x: 40,
-    y: 45,
-    duration: 1,
-    ease: "power1.inOut",
-    rotation: 90, // Rotates 360 degrees around the Y-axis
-    transformOrigin: "center center"
-  });
-  gsap.to(".white-compass", {
-    x: 15,
-    duration: 1,
-    ease: "power1.inOut",
-    rotation: 90, // Rotates 360 degrees around the Y-axis
-    transformOrigin: "center center"
-  });
-})
+  animationContext = gsap.context(() => {
+    gsap.set("svg", { opacity: 1 });
+
+    const intro = gsap.timeline();
+    intro.fromTo(".image-container > *", { opacity: 0 }, { opacity: 1, duration: 1 });
+
+    const animateOut = gsap.timeline({
+      onComplete: () => {
+        gsap.to(".code", { y: "-=14", duration: 4.2, ease: "sine.inOut", repeat: -1, yoyo: true });
+        gsap.to(".cursor", { x: "-=12", y: "-=14", duration: 4.6, ease: "sine.inOut", repeat: -1, yoyo: true });
+        gsap.to(".white-tile", { y: "-=12", rotate: "+=3", duration: 4.8, ease: "sine.inOut", repeat: -1, yoyo: true, transformOrigin: "center center" });
+        gsap.to(".black-tile", { y: "-=12", rotate: "-=3", duration: 4.4, ease: "sine.inOut", repeat: -1, yoyo: true, transformOrigin: "center center" });
+        gsap.to(".colour-wheel-picker", { x: "+=14", y: "-=12", rotate: "+=3", duration: 5, ease: "sine.inOut", repeat: -1, yoyo: true, transformOrigin: "center center" });
+        gsap.to(".yellow-image", { x: "+=12", y: "-=12", rotation: "+=4", duration: 4.7, ease: "sine.inOut", repeat: -1, yoyo: true, transformOrigin: "center center" });
+        gsap.to(".black-cube", { x: "+=12", y: "-=14", rotation: "+=4", duration: 4.9, ease: "sine.inOut", repeat: -1, yoyo: true, transformOrigin: "center center" });
+        gsap.to(".white-camera", { x: "+=12", y: "+=12", rotation: "-=4", duration: 4.5, ease: "sine.inOut", repeat: -1, yoyo: true, transformOrigin: "center center" });
+        gsap.to(".black-disk", { x: "+=12", y: "+=14", rotation: "+=4", duration: 4.8, ease: "sine.inOut", repeat: -1, yoyo: true, transformOrigin: "center center" });
+        gsap.to(".white-compass", { x: "+=10", y: "-=12", rotation: "-=4", duration: 4.3, ease: "sine.inOut", repeat: -1, yoyo: true, transformOrigin: "center center" });
+      },
+    });
+
+    animateOut
+      .to(".code", { x: -120, duration: 1, ease: "power1.inOut" }, 0)
+      .to(".cursor", { x: -80, y: -80, duration: 1, ease: "power1.inOut" }, 0)
+      .to(".white-tile", { x: 30, y: -20, duration: 1, ease: "power1.inOut" }, 0)
+      .to(".black-tile", { x: 30, y: -20, duration: 1, ease: "power1.inOut" }, 0)
+      .to(".colour-wheel-picker", { x: 100, duration: 1, ease: "power1.inOut", transformOrigin: "center center", rotate: 5 }, 0)
+      .to(".yellow-image", { x: 50, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0)
+      .to(".black-cube", { x: 65, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0)
+      .to(".white-camera", { x: 58, y: 40, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0)
+      .to(".black-disk", { x: 40, y: 45, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0)
+      .to(".white-compass", { x: 15, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0);
+  }, heroRoot.value ?? undefined);
+});
+
+onBeforeUnmount(() => {
+  animationContext?.revert();
+});
 </script>
 
 <template>
-  <div class="sgds:relative">
+  <div ref="heroRoot" class="sgds:relative">
     <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-spacer-10)] sgds:pt-[var(--sgds-padding-2-xl)] sgds:max-w-[var(--sgds-dimension-640)]">
       <h1 class="sgds:text-[5rem] sgds:leading-[100%] sgds:font-semibold sgds:mb-0">{{ title }}</h1>
       <div
@@ -113,8 +78,8 @@ onMounted(() => {
       </div>
     </div>
     <div class="sgds:absolute sgds:top-0 sgds:right-0 image-container">
-      <svg class="sgds:overflow-visible sgds:opacity-0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="756" height="744" viewBox="0 0 756 744" fill="none">
-        <path d="M345 34.0978C345 14.1602 328.82 -2.23543 309.092 0.249924C245.95 8.20511 186.83 36.9823 141.353 82.5857C87.3428 136.747 57 210.204 57 286.799C57 363.395 87.3428 436.852 141.353 491.013C186.83 536.617 245.95 565.394 309.092 573.349C328.82 575.834 345 559.439 345 539.501V34.0978Z" fill="#0E0E0E" />
+      <svg class="landing-hero-art sgds:overflow-visible sgds:opacity-0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="756" height="744" viewBox="0 0 756 744" fill="none">
+        <path d="M345 34.0978C345 14.1602 328.82 -2.23543 309.092 0.249924C245.95 8.20511 186.83 36.9823 141.353 82.5857C87.3428 136.747 57 210.204 57 286.799C57 363.395 87.3428 436.852 141.353 491.013C186.83 536.617 245.95 565.394 309.092 573.349C328.82 575.834 345 559.439 345 539.501V34.0978Z" fill="var(--landing-hero-dark-shape)" />
         <path d="M397 683.902C397 703.84 413.18 720.235 432.908 717.75C496.05 709.795 555.17 681.018 600.647 635.414C654.657 581.254 685 507.796 685 431.201C685 354.605 654.657 281.148 600.647 226.987C555.17 181.383 496.05 152.606 432.908 144.651C413.18 142.165 397 158.561 397 178.499L397 683.902Z" fill="#6B4FEB" />
         <mask id="mask0_512_628" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-40" y="-82" width="1412" height="737">
           <path d="M-40 -82H345V645H-40V-82Z" fill="#6B4FEB" />
@@ -124,13 +89,28 @@ onMounted(() => {
           <g class="cursor" filter="url(#filter0_dd_512_628)">
             <rect x="16" y="25" width="388" height="388" fill="url(#pattern0_512_628)" shape-rendering="crispEdges" />
           </g>
-          <g filter="url(#filter1_dd_512_628)" class="code">
-            <mask id="mask1_512_628" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="109" y="289" width="417" height="209">
-              <rect x="109" y="289" width="416.973" height="209" rx="10" fill="#D9D9D9" />
-            </mask>
-            <g mask="url(#mask1_512_628)">
-              <rect x="101.811" y="280.27" width="432.378" height="228.514" fill="url(#pattern1_512_628)" />
-            </g>
+          <g class="code" filter="url(#filter1_dd_512_628)">
+            <foreignObject x="109" y="289" width="417" height="209">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="sgds:h-[209px] sgds:w-[417px] sgds:overflow-hidden sgds:rounded-[10px] sgds:bg-[#161c24] sgds:font-mono sgds:text-[16px] sgds:leading-[1.55]">
+                <div class="sgds:flex sgds:h-[48px] sgds:items-center sgds:bg-[#252c35]">
+                  <div class="sgds:flex sgds:gap-[8px] sgds:px-[16px]">
+                    <span class="sgds:h-[13px] sgds:w-[13px] sgds:rounded-full sgds:bg-[#ff5f57]"></span>
+                    <span class="sgds:h-[13px] sgds:w-[13px] sgds:rounded-full sgds:bg-[#febc2e]"></span>
+                    <span class="sgds:h-[13px] sgds:w-[13px] sgds:rounded-full sgds:bg-[#28c840]"></span>
+                  </div>
+                  <div class="sgds:flex sgds:h-full sgds:items-center sgds:gap-[8px] sgds:rounded-t-[6px] sgds:bg-[#1b222b] sgds:px-[20px] sgds:text-[16px] sgds:font-semibold">
+                    <span class="sgds:text-[#ffd21e]">JS</span>
+                    <span class="sgds:text-[#c5cad3]">snippet.js</span>
+                  </div>
+                </div>
+                <pre aria-label="JavaScript snippet" class="sgds:m-0 sgds:h-[161px] sgds:w-full sgds:overflow-hidden sgds:bg-[#161c24] sgds:px-[20px] sgds:py-[18px] sgds:font-mono sgds:text-[12px] sgds:leading-[1.55] sgds:text-[#d4d4d4]"><code><span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span> <span class="sgds:text-[#9cdcfe]">label</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"Framework agnostic"</span> <span class="sgds:text-[#9cdcfe]">multiselect</span>
+    <span class="sgds:text-[#9cdcfe]">value</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"react;vue;svelte;angular;anything that runs on the browser"</span><span class="sgds:text-[#569cd6]">&gt;</span>
+  <span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span><span class="sgds:text-[#569cd6]">&gt;</span>
+
+  <span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">sgds-switch</span> <span class="sgds:text-[#9cdcfe]">checked</span> <span class="sgds:text-[#9cdcfe]">label</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"Stripped Tailwind of its defaults, rebuilt on our design tokens."</span><span class="sgds:text-[#569cd6]">&gt;</span>
+  <span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">sgds-switch</span><span class="sgds:text-[#569cd6]">&gt;</span></code></pre>
+              </div>
+            </foreignObject>
           </g>
         </g>
         <mask id="mask2_512_628" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="397" y="41" width="385" height="761">
@@ -330,3 +310,29 @@ onMounted(() => {
   </div>
 </template>
 
+<style>
+/* Local SVG colour bridge for the dark hero semicircle. It uses the SGDS darkest token in day mode and lifts one step in night mode. */
+.landing-hero-art {
+  --landing-hero-dark-shape: var(--sgds-gray-1100);
+}
+
+.sgds-night-theme .landing-hero-art {
+  --landing-hero-dark-shape: var(--sgds-gray-900);
+}
+
+/* Apply the same dark-shape token to the black-background floating elements above the right purple semicircle */
+.landing-hero-art .black-tile > rect,
+.landing-hero-art .black-cube > circle,
+.landing-hero-art .black-disk > circle {
+  fill: var(--landing-hero-dark-shape);
+}
+
+/* Hero title text colour — matches the dark semicircle token intentionally */
+.landing-hero-title {
+  color: var(--sgds-gray-1100);
+}
+
+.sgds-night-theme .landing-hero-title {
+  color: var(--sgds-gray-900);
+}
+</style>

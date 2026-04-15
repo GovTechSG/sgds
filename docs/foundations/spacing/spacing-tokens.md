@@ -1,11 +1,11 @@
 ---
 layout: docs
-title: Spacing token
-description: CSS tokens and utility classes for the SGDS spacing scale, gaps, and padding across all breakpoints.
+title: Spacer scale
+description: Primitive spacer tokens that define the base SGDS spacing scale.
 ---
 
 <script setup>
 import SpacingTokensPage from "../../.vitepress/components/SpacingTokensPage.vue";
 </script>
 
-<SpacingTokensPage />
+<SpacingTokensPage section="spacer-scale" />

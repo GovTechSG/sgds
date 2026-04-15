@@ -1,20 +1,37 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
 export type Section = {
   title: string;
   description?: string;
 }
 const { title, description } = defineProps<Section>();
+
+const sectionId = computed(() =>
+  title
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, ""),
+);
 </script>
 
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
     <div class="sgds:flex sgds:gap-2 sgds:items-center">
       <h2
+        :id="sectionId"
         class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:mb-0"
       >
         {{ title }}
       </h2>
-      <sgds-icon-button name="link" variant="ghost" tone="neutral" size="xs" />
+      <a
+        :href="`#${sectionId}`"
+        class="sgds:inline-flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded-sm sgds:text-subtle sgds:no-underline sgds:hover:text-default sgds:focus:text-default sgds:focus-visible:text-default sgds:focus-visible:outline sgds:focus-visible:outline-[var(--sgds-outline-focus)] sgds:focus-visible:outline-offset-[var(--sgds-outline-offset-focus)]"
+        :aria-label="`Link to ${title}`"
+      >
+        <sgds-icon name="link" size="sm" />
+      </a>
     </div>
     <p
       v-if="description"

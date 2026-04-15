@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import FoundationPrinciplesList from "./FoundationPrinciplesList.vue";
+import FoundationPrincipleTemplate from "./FoundationPrincipleTemplate.vue";
 import Section from "./Section.vue";
 
 const principles = [
@@ -14,25 +16,10 @@ const principles = [
 </script>
 
 <template>
-  <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+  <FoundationPrincipleTemplate>
 
     <!-- Principle -->
-    <Section title="Principle">
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
-        <div
-          v-for="principle in principles"
-          :key="principle.title"
-          class="sgds:flex sgds:flex-col sgds:gap-text-md"
-        >
-          <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
-            {{ principle.title }}
-          </h3>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-            {{ principle.body }}
-          </p>
-        </div>
-      </div>
-    </Section>
+    <FoundationPrinciplesList :principles="principles" />
 
     <!-- Surface -->
     <Section
@@ -78,7 +65,7 @@ const principles = [
       </div>
     </Section>
 
-  </div>
+  </FoundationPrincipleTemplate>
 </template>
 
 <style>

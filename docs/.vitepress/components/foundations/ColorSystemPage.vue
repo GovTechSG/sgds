@@ -62,7 +62,7 @@ const semanticScaleSections = [
     ], { inheritCaptions: false }),
   },
   {
-    title: "Texts and icons",
+    title: "Text and icons",
     swatches: createSemanticSwatches([
       {},
       { topCaption: "Inverse /\nFixed light", bottomCaption: "Default /\nFixed light" },
@@ -115,7 +115,7 @@ const systemSections = [
     description:
       "SGDS’s greys follow a perceptually curved progression of lightness. The outcome is a progression of grey colour values that are optimal for SGDS’s usage of grey. Each lightness value was converted into a target contrast ratio, which follows a polynomial curve.",
     yAxis: ["100%", "50%", "0%"],
-    xAxis: ["gray-100", "gray-1000"],
+    xAxis: ["grey-100", "grey-1000"],
     curve:
       "M0.149465 0.988767C43.1495 7.48877 157.149 47.4888 246.149 87.5756C335.149 127.663 530.003 195.615 624.649 219.489",
   },
@@ -124,7 +124,7 @@ const systemSections = [
     description:
       "Greys include contrast ratios above and below a 1:1 contrast with the background.",
     yAxis: ["20", "10", "0"],
-    xAxis: ["gray-100", "gray-1000"],
+    xAxis: ["grey-100", "grey-1000"],
     curve:
       "M0.36441 204.479C31.3564 204.393 127.29 202.189 224.672 185.822C346.4 165.359 416.939 131.153 444.399 115.5C545.715 57.759 623.636 0.5 623.636 0.5",
   },
@@ -133,7 +133,7 @@ const systemSections = [
     description:
       "As colours increase in saturation, they appear to have a brighter luminosity (also known as the Helmholtz–Kohlrausch effect). This affects SGDS colours that differ in saturation levels.",
     yAxis: ["20", "10", "0"],
-    xAxis: ["gray-100", "gray-1000"],
+    xAxis: ["grey-100", "grey-1000"],
     curve:
       "M0.5 196.5C67.5 194.5 145.5 188.5 224.5 173.5C310.5 157.5 391.5 133.5 465.5 102.5C532.5 74.5 585.5 41.5 624.5 12.5",
   },
@@ -142,7 +142,7 @@ const systemSections = [
     description:
       "This law is an observation in the rate of change in a given stimulus, and it affects lightness scales for colour. Numerically even distributions of tints and shades in a perceptually uniform colour space will not appear to be equally distributed.",
     yAxis: ["100%", "50%", "0%"],
-    xAxis: ["gray-100", "gray-1000"],
+    xAxis: ["grey-100", "grey-1000"],
     curve:
       "M0.5 6.5C41.5 12.5 120.5 34.5 207.5 63.5C290.5 91.5 392.5 131.5 486.5 171.5C542.5 195.5 590.5 214.5 624.5 220.5",
   },
@@ -153,7 +153,7 @@ const systemSections = [
   <div :class="$style.page">
     <div :class="$style.sectionStack">
       <div :class="$style.pageSection">
-        <Section title="Grayscale">
+        <Section title="Greyscale">
           <div :class="$style.card">
             <div :class="$style.scaleFrame">
               <div
@@ -169,7 +169,7 @@ const systemSections = [
                 <span :class="$style.connectorLabel">{{ level.label }}</span>
               </div>
 
-              <div :class="$style.swatchRow" aria-label="Grayscale contrast scale">
+              <div :class="$style.swatchRow" aria-label="Greyscale contrast scale">
                 <div
                   v-for="swatch in swatches"
                   :key="swatch.name ?? swatch.color"

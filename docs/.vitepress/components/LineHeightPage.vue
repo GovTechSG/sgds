@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import CopyCodeToken from "./ui/CopyCodeToken.vue";
 import { ref } from "vue";
 
 const lineHeights = [
@@ -89,7 +90,8 @@ const copyUtility = async (utilityClass: string) => {
           class="typography-page-template__utility-table"
         >
           <sgds-table-row>
-            <sgds-table-head class="typography-page-template__table-utility-column">SGDS utility</sgds-table-head>
+            <sgds-table-head class="typography-page-template__table-utility-column">SGDS Tailwind token</sgds-table-head>
+            <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-metric-column">Mobile</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-metric-column">Tablet</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-metric-column">Desktop</sgds-table-head>
@@ -111,6 +113,9 @@ const copyUtility = async (utilityClass: string) => {
                   <sgds-icon :name="copiedKey === lh.utilityClass ? 'check' : 'copy'" size="md" />
                 </button>
               </div>
+            </sgds-table-cell>
+            <sgds-table-cell class="typography-page-template__table-token-column">
+              <CopyCodeToken :label="lh.token" copy-label="Copy CSS variable" />
             </sgds-table-cell>
             <sgds-table-cell class="typography-page-template__table-metric-column">
               <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.mobile }}px</span>
@@ -135,7 +140,8 @@ const copyUtility = async (utilityClass: string) => {
           class="typography-page-template__utility-table"
         >
           <sgds-table-row>
-            <sgds-table-head class="typography-page-template__table-utility-column">SGDS utility</sgds-table-head>
+            <sgds-table-head class="typography-page-template__table-utility-column">SGDS Tailwind token</sgds-table-head>
+            <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-value-column">Value</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
           </sgds-table-row>
@@ -155,6 +161,9 @@ const copyUtility = async (utilityClass: string) => {
                   <sgds-icon :name="copiedKey === lh.utilityClass ? 'check' : 'copy'" size="md" />
                 </button>
               </div>
+            </sgds-table-cell>
+            <sgds-table-cell class="typography-page-template__table-token-column">
+              <CopyCodeToken :label="lh.token" copy-label="Copy CSS variable" />
             </sgds-table-cell>
             <sgds-table-cell class="typography-page-template__table-value-column">
               <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.value }}</span>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import CopyCodeToken from "./ui/CopyCodeToken.vue";
 import { ref } from "vue";
 
 const baseTokens = [
@@ -69,7 +70,8 @@ const copyUtility = async (utilityClass: string) => {
 
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
-            <sgds-table-head class="typography-page-template__table-utility-column">SGDS utility</sgds-table-head>
+            <sgds-table-head class="typography-page-template__table-utility-column">SGDS Tailwind token</sgds-table-head>
+            <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-value-column">Day</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-value-column">Night</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
@@ -90,6 +92,9 @@ const copyUtility = async (utilityClass: string) => {
                   <sgds-icon :name="copiedKey === t.utilityClass ? 'check' : 'copy'" size="md" />
                 </button>
               </div>
+            </sgds-table-cell>
+            <sgds-table-cell class="typography-page-template__table-token-column">
+              <CopyCodeToken :label="t.token" copy-label="Copy CSS variable" />
             </sgds-table-cell>
             <sgds-table-cell class="typography-page-template__table-value-column">
               <div class="text-colour-swatch-cell">
@@ -116,7 +121,8 @@ const copyUtility = async (utilityClass: string) => {
 
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
-            <sgds-table-head class="typography-page-template__table-utility-column">SGDS utility</sgds-table-head>
+            <sgds-table-head class="typography-page-template__table-utility-column">SGDS Tailwind token</sgds-table-head>
+            <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-value-column">Day</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-value-column">Night</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
@@ -137,6 +143,9 @@ const copyUtility = async (utilityClass: string) => {
                   <sgds-icon :name="copiedKey === t.utilityClass ? 'check' : 'copy'" size="md" />
                 </button>
               </div>
+            </sgds-table-cell>
+            <sgds-table-cell class="typography-page-template__table-token-column">
+              <CopyCodeToken :label="t.token" copy-label="Copy CSS variable" />
             </sgds-table-cell>
             <sgds-table-cell class="typography-page-template__table-value-column">
               <div class="text-colour-swatch-cell">

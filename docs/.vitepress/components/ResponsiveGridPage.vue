@@ -285,14 +285,16 @@ const gridStyle = (preset: GridPreset) => ({
 /* Table column widths — clamp() values cannot be expressed as SGDS utilities */
 .rg-name-col {
   box-sizing: border-box;
-  inline-size: clamp(11rem, 18vw, 14rem);
-  min-inline-size: clamp(11rem, 18vw, 14rem);
+  inline-size: max-content;
+  max-inline-size: 14rem;
+  min-inline-size: 11rem;
 }
 
 .rg-value-col {
   box-sizing: border-box;
-  inline-size: clamp(8rem, 14vw, 11rem);
-  min-inline-size: clamp(8rem, 14vw, 11rem);
+  inline-size: max-content;
+  max-inline-size: 11rem;
+  min-inline-size: 8rem;
 }
 
 /* Construction list — descendant combinator targeting li items */

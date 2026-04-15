@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from "vue";
+import { BackgroundColor, Color, Theme } from "@adobe/leonardo-contrast-colors";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
 import {
@@ -239,47 +240,10 @@ function wcagContrastNumber(foregroundHex: string, backgroundHex: string): numbe
   return Number(wcagContrastRatio(foregroundHex, backgroundHex));
 }
 
-function mixRgb(startHex: string, endHex: string, ratio: number): string {
-  const start = hexToRgb(startHex);
-  const end = hexToRgb(endHex);
-  const t = clamp(ratio, 0, 1);
-
-  return rgbToHex(
-    start.r + (end.r - start.r) * t,
-    start.g + (end.g - start.g) * t,
-    start.b + (end.b - start.b) * t,
-  );
-}
-
 function remapRatio(value: number, sourceMin: number, sourceMax: number, targetMin: number, targetMax: number): number {
   if (sourceMax === sourceMin) return targetMin;
   const progress = clamp((value - sourceMin) / (sourceMax - sourceMin), 0, 1);
   return targetMin + (targetMax - targetMin) * progress;
-}
-
-function findColorOnContrastSegment(startHex: string, endHex: string, targetRatio: number): string {
-  const startRatio = wcagContrastNumber(startHex, contrastLightBackground);
-  const endRatio = wcagContrastNumber(endHex, contrastLightBackground);
-  const minRatio = Math.min(startRatio, endRatio);
-  const maxRatio = Math.max(startRatio, endRatio);
-  const target = clamp(targetRatio, minRatio, maxRatio);
-  const increasing = endRatio >= startRatio;
-  let low = 0;
-  let high = 1;
-
-  for (let i = 0; i < 24; i += 1) {
-    const mid = (low + high) / 2;
-    const candidate = mixRgb(startHex, endHex, mid);
-    const contrast = wcagContrastNumber(candidate, contrastLightBackground);
-
-    if (increasing ? contrast < target : contrast > target) {
-      low = mid;
-    } else {
-      high = mid;
-    }
-  }
-
-  return mixRgb(startHex, endHex, high);
 }
 
 function targetRatioForShade(index: number, seedContrast: number): number {
@@ -328,16 +292,36 @@ function createProductPrimaryRows(shades: Record<string, string>): ProductPrimar
 function generateCustomPalette(hex: string): Record<string, string> {
   const seed = hex.toUpperCase();
   const seedContrast = wcagContrastNumber(seed, contrastLightBackground);
+  const ratios = Object.fromEntries(
+    shadeKeys.map((shade, index) => [shade, targetRatioForShade(index, seedContrast)]),
+  );
+  const backgroundColor = new BackgroundColor({
+    name: "background",
+    colorKeys: [contrastLightBackground],
+    ratios: [1],
+    output: "HEX",
+  });
+  const customBrandColor = new Color({
+    name: "primary",
+    colorKeys: [seed],
+    colorSpace: "LCH",
+    ratios,
+    output: "HEX",
+  });
+  const theme = new Theme({
+    colors: [backgroundColor, customBrandColor],
+    backgroundColor,
+    lightness: 100,
+    output: "HEX",
+  });
+  const primary = theme.contrastColors.find((colour) => "name" in colour && colour.name === "primary");
+
+  if (!primary || !("values" in primary)) {
+    return { "600": seed };
+  }
 
   return Object.fromEntries(
-    shadeKeys.map((shade, index) => {
-      if (index === BRAND_SHADE_INDEX) return [shade, seed];
-
-      const targetRatio = targetRatioForShade(index, seedContrast);
-      const segmentStart = index < BRAND_SHADE_INDEX ? contrastLightBackground : seed;
-      const segmentEnd = index < BRAND_SHADE_INDEX ? seed : "#000000";
-      return [shade, findColorOnContrastSegment(segmentStart, segmentEnd, targetRatio).toUpperCase()];
-    }),
+    primary.values.map((value) => [value.name, value.value.toUpperCase()]),
   );
 }
 
@@ -1357,32 +1341,37 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
 
 .cp-token-column {
   box-sizing: border-box;
-  inline-size: clamp(13rem, 28vw, 18rem);
-  min-inline-size: clamp(13rem, 28vw, 18rem);
+  inline-size: max-content;
+  max-inline-size: 18rem;
+  min-inline-size: 13rem;
 }
 
 .cp-hex-column {
   box-sizing: border-box;
-  inline-size: clamp(6rem, 10vw, 8rem);
-  min-inline-size: clamp(6rem, 10vw, 8rem);
+  inline-size: max-content;
+  max-inline-size: 8rem;
+  min-inline-size: 6rem;
 }
 
 .cp-value-column {
   box-sizing: border-box;
-  inline-size: clamp(8rem, 18vw, 12rem);
-  min-inline-size: clamp(8rem, 18vw, 12rem);
+  inline-size: max-content;
+  max-inline-size: 12rem;
+  min-inline-size: 8rem;
 }
 
 .cp-contrast-column {
   box-sizing: border-box;
-  inline-size: clamp(4rem, 6vw, 6rem);
-  min-inline-size: clamp(4rem, 6vw, 6rem);
+  inline-size: max-content;
+  max-inline-size: 6rem;
+  min-inline-size: 4rem;
 }
 
 .cp-example-column {
   box-sizing: border-box;
-  inline-size: clamp(10rem, 22vw, 16rem);
-  min-inline-size: clamp(10rem, 22vw, 16rem);
+  inline-size: max-content;
+  max-inline-size: 16rem;
+  min-inline-size: 10rem;
 }
 
 .cp-segmented-control {
@@ -1623,14 +1612,16 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
 
 .sc-token-column {
   box-sizing: border-box;
-  inline-size: clamp(11rem, 20vw, 14rem);
-  min-inline-size: clamp(11rem, 20vw, 14rem);
+  inline-size: max-content;
+  max-inline-size: 14rem;
+  min-inline-size: 11rem;
 }
 
 .sc-mode-column {
   box-sizing: border-box;
-  inline-size: clamp(7rem, 10vw, 11rem);
-  min-inline-size: clamp(7rem, 10vw, 11rem);
+  inline-size: max-content;
+  max-inline-size: 11rem;
+  min-inline-size: 7rem;
 }
 
 .sc-swatch {
@@ -1658,18 +1649,21 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
 }
 
 .sc-desc-column {
-  width: 100%;
+  inline-size: max-content;
+  max-inline-size: 24rem;
+  min-inline-size: 16rem;
+  width: auto;
 }
 
 /* Form colour table: widen description column, narrow token and mode columns */
 .sc-form-table .sc-token-column {
-  inline-size: clamp(14rem, 24vw, 18rem);
-  min-inline-size: clamp(14rem, 24vw, 18rem);
+  max-inline-size: 18rem;
+  min-inline-size: 14rem;
 }
 
 .sc-form-table .sc-mode-column {
-  inline-size: clamp(6rem, 8vw, 9rem);
-  min-inline-size: clamp(6rem, 8vw, 9rem);
+  max-inline-size: 9rem;
+  min-inline-size: 6rem;
 }
 
 @media (max-width: 1023px) {
@@ -1677,6 +1671,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
   .sc-desc-column,
   .sc-mode-column {
     inline-size: auto;
+    max-inline-size: none;
     min-inline-size: 0;
     width: auto;
   }

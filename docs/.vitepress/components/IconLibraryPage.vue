@@ -432,10 +432,10 @@ async function copyIconName(iconName: string) {
 
 /* ─── API table columns ─────────────────────────────────────────────────────── */
 
-.il-api-col--name   { inline-size: 10%; min-inline-size: 6rem; }
-.il-api-col--type   { inline-size: 30%; min-inline-size: 12rem; }
-.il-api-col--default { inline-size: 10%; min-inline-size: 5rem; }
-.il-api-col--desc   { inline-size: 50%; min-inline-size: 14rem; }
+.il-api-col--name   { inline-size: max-content; max-inline-size: 8rem; min-inline-size: 6rem; }
+.il-api-col--type   { inline-size: max-content; max-inline-size: 18rem; min-inline-size: 12rem; }
+.il-api-col--default { inline-size: max-content; max-inline-size: 7rem; min-inline-size: 5rem; }
+.il-api-col--desc   { inline-size: max-content; max-inline-size: 24rem; min-inline-size: 14rem; }
 
 @media (max-width: 639px) {
   .il-search-wrap {

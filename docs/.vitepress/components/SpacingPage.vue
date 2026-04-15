@@ -1,54 +1,33 @@
 <script setup lang="ts">
-import CodeToken from "./ui/CodeToken.vue";
+import FoundationPrinciplesList from "./foundations/FoundationPrinciplesList.vue";
+import FoundationPrincipleTemplate from "./foundations/FoundationPrincipleTemplate.vue";
+import Section from "./foundations/Section.vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 
-const spacingSteps = ["2", "4", "8", "12", "16", "20", "24", "32", "48", "64", "96", "128"];
-const spacingScaleRows = [
-  { multiplier: "1", token: "sgds:m-1", value: "4px" },
-  { multiplier: "2", token: "sgds:m-2", value: "8px" },
-  { multiplier: "3", token: "sgds:m-3", value: "12px" },
-  { multiplier: "4", token: "sgds:m-4", value: "16px" },
-  { multiplier: "5", token: "sgds:m-5", value: "20px" },
-  { multiplier: "6", token: "sgds:m-6", value: "24px" },
-  { multiplier: "8", token: "sgds:m-8", value: "32px" },
-  { multiplier: "12", token: "sgds:m-12", value: "48px" },
-  { multiplier: "16", token: "sgds:m-16", value: "64px" },
-  { multiplier: "24", token: "sgds:m-24", value: "96px" },
+const principles = [
+  {
+    title: "Alignment",
+    body: "Ensure proper alignment of elements with consistent spacing to create a clean and organised layout, reinforcing the overall structure and flow of the design.",
+  },
+  {
+    title: "Flexibility",
+    body: "Allow adaptable spacing to accommodate different screen sizes and contexts while maintaining a harmonious design, enabling the system to scale effectively across various devices.",
+  },
+  {
+    title: "Uniformity",
+    body: "Use a standardised spacing scale across the design system to ensure uniformity and coherence in layouts, making the interface predictable and easier to navigate.",
+  },
 ];
+
+const spacingSteps = ["2", "4", "8", "12", "16", "20", "24", "32", "48", "64", "96", "128"];
 </script>
 
 <template>
   <TypographyPageTemplate>
-    <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Principle</h2>
-      <div class="typography-page-template__body typography-page-template__body--prose">
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Alignment</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            Ensure proper alignment of elements with consistent spacing to create a clean and organised layout, reinforcing
-            the overall structure and flow of the design.
-          </p>
-        </div>
+    <FoundationPrincipleTemplate>
+      <FoundationPrinciplesList :principles="principles" />
 
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Flexibility</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            Allow adaptable spacing to accommodate different screen sizes and contexts while maintaining a harmonious
-            design, enabling the system to scale effectively across various devices.
-          </p>
-        </div>
-
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Uniformity</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            Use a standardised spacing scale across the design system to ensure uniformity and coherence in layouts, making
-            the interface predictable and easier to navigate.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="typography-page-template__section">
+    <Section title="Spacing foundation">
       <div class="spacing-page__body">
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
@@ -74,8 +53,8 @@ const spacingScaleRows = [
 
             <div class="typography-page-template__copy-block">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                SGDS combines arithmetic progression (AP) and geometric progression (GP) into 12 spacing sizes. The 28px
-                and 256px sizes are not included.
+                SGDS combines arithmetic progression (AP) and geometric progression (GP) into 12 spacing sizes. The 28 px
+                and 256 px sizes are not included.
               </p>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 <strong>Arithmetic progression (AP)</strong>: each step increases by 4.
@@ -118,7 +97,7 @@ const spacingScaleRows = [
 
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card spacing-page__demo-card spacing-page__progression-card">
-              <div class="spacing-page__chart" aria-label="Spacing progression from 2px to 128px">
+              <div class="spacing-page__chart" aria-label="Spacing progression from 2 px to 128 px">
                 <svg class="spacing-page__chart-line" viewBox="0 0 520 164" aria-hidden="true">
                   <path d="M16 142 C 96 124, 168 96, 232 72 S 392 22, 504 16" />
                 </svg>
@@ -136,73 +115,9 @@ const spacingScaleRows = [
           </div>
         </article>
       </div>
-    </section>
+    </Section>
 
-    <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Spacing system</h2>
-      <div class="typography-page-template__body typography-page-template__body--prose">
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Core concept</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            The SGDS spacing system is built on a base unit of <strong>4px</strong>. Every spacing token is a multiple
-            of this fundamental unit, creating a consistent and predictable spacing scale throughout your application.
-          </p>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            Every spacing value follows the same rule: <strong>value = multiplier × 4px</strong>.
-          </p>
-        </div>
-
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Spacing scale</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            The spacing system uses numeric multipliers where each unit equals 4px. Common utilities such as
-            <CodeToken label="sgds:m-4" /> or <CodeToken label="sgds:p-6" /> keep layouts on the same rhythm, and the
-            scale continues beyond the examples shown here.
-          </p>
-        </div>
-
-        <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
-          <sgds-table-row>
-            <sgds-table-head class="typography-page-template__table-metric-column">Multiplier</sgds-table-head>
-            <sgds-table-head class="typography-page-template__table-utility-column">Token</sgds-table-head>
-            <sgds-table-head class="typography-page-template__table-value-column">Value</sgds-table-head>
-          </sgds-table-row>
-
-          <sgds-table-row v-for="row in spacingScaleRows" :key="row.token">
-            <sgds-table-cell class="typography-page-template__table-metric-column">
-              {{ row.multiplier }}
-            </sgds-table-cell>
-            <sgds-table-cell class="typography-page-template__table-utility-column">
-              <CodeToken :label="row.token" />
-            </sgds-table-cell>
-            <sgds-table-cell class="typography-page-template__table-value-column">
-              {{ row.value }}
-            </sgds-table-cell>
-          </sgds-table-row>
-        </sgds-table>
-
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal spacing-page__table-note">
-          The scale continues indefinitely with any numeric multiplier, such as <CodeToken label="sgds:m-32" /> or
-          <CodeToken label="sgds:m-40" />.
-        </p>
-
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
-            Design considerations
-          </h4>
-          <h5 class="sgds:text-heading-xs sgds:font-semibold sgds:leading-xs sgds:tracking-tight">
-            Best practices
-          </h5>
-          <ul class="spacing-page__best-practices sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            <li><strong>Use a consistent scale:</strong> Stick to named tokens rather than arbitrary values.</li>
-            <li><strong>Layer spacing:</strong> Combine axis-specific utilities for semantic meaning.</li>
-            <li><strong>Maintain vertical rhythm:</strong> Use <CodeToken label="sgds:my-*" /> to keep vertical spacing consistent.</li>
-            <li><strong>Use component padding:</strong> Apply <CodeToken label="sgds:p-*" /> for internal component spacing.</li>
-            <li><strong>Set layout margins:</strong> Use <CodeToken label="sgds:m-*" />, <CodeToken label="sgds:mx-*" />, and <CodeToken label="sgds:my-*" /> for component spacing.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    </FoundationPrincipleTemplate>
   </TypographyPageTemplate>
 </template>
 
@@ -223,19 +138,6 @@ const spacingScaleRows = [
   align-items: center;
   display: flex;
   justify-content: center;
-}
-
-.spacing-page__table-note {
-  margin: 0;
-}
-
-.spacing-page__best-practices {
-  margin: 0;
-  padding-inline-start: var(--sgds-spacer-6);
-}
-
-.spacing-page__best-practices li + li {
-  margin-block-start: var(--sgds-text-gap-sm);
 }
 
 .spacing-page__progression-card {

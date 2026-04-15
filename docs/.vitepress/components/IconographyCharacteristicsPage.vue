@@ -1,16 +1,10 @@
-<script setup lang="ts">
-import TypographyPageTemplate from "./TypographyPageTemplate.vue";
-</script>
-
 <template>
-  <TypographyPageTemplate>
-    <section class="typography-page-template__section">
-      <div class="typography-page-template__body">
+  <div class="typography-page-template__body">
 
         <!-- 1. Line vs solid vs logo -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Line vs solid vs logo</h4>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Line, solid and logo variants</h4>
             <div class="icon-char-copy-list">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">SGDS icons (govicons) are available in line, solid and logo variants.</p>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Occasionally, only one style is available for aesthetic reasons.</p>
@@ -61,7 +55,7 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Base grid</h4>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Icons are drawn on a pixel based grid of 24 × 24px and scaled down linearly to different sizes. Use the grid as your basic guideline to snap the artwork in place.</p>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Icons are drawn on a pixel-based grid of 24 × 24 px and scaled down linearly to different sizes. Use the grid as your basic guideline to snap the artwork in place.</p>
           </div>
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card icon-char-demo-card">
@@ -70,16 +64,16 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
                   <span class="icon-char-scale-label">100% scale</span>
                   <div class="icon-char-annotated">
                     <div class="icon-char-box-1x"></div>
-                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">24px</span></div></div>
-                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">24px</span></div></div>
+                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">24 px</span></div></div>
+                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">24 px</span></div></div>
                   </div>
                 </div>
                 <div class="icon-char-scale-group">
                   <span class="icon-char-scale-label">1000% scale</span>
                   <div class="icon-char-annotated">
                     <div class="icon-char-grid-10x"></div>
-                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">24px</span></div></div>
-                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">24px</span></div></div>
+                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">24 px</span></div></div>
+                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">24 px</span></div></div>
                   </div>
                 </div>
               </div>
@@ -91,7 +85,7 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Padding</h4>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">The grid contains 2px padding and this ensures icons will retain their desired scale.</p>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">The grid contains 2 px padding, which helps icons retain their desired scale.</p>
           </div>
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card icon-char-demo-card">
@@ -99,15 +93,15 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
                 <div class="icon-char-scale-group">
                   <div class="icon-char-annotated">
                     <div class="icon-char-box-1x icon-char-box-pad"></div>
-                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">2px</span></div></div>
-                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">2px</span></div></div>
+                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">2 px</span></div></div>
+                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">2 px</span></div></div>
                   </div>
                 </div>
                 <div class="icon-char-scale-group">
                   <div class="icon-char-annotated">
                     <div class="icon-char-grid-10x icon-char-grid-pad"></div>
-                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">2px</span></div></div>
-                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">2px</span></div></div>
+                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">2 px</span></div></div>
+                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">2 px</span></div></div>
                   </div>
                 </div>
               </div>
@@ -119,7 +113,7 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Live area</h4>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">White space surrounding the 20 × 20px live area.</p>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">White space surrounding the 20 × 20 px live area.</p>
           </div>
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card icon-char-demo-card">
@@ -127,15 +121,15 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
                 <div class="icon-char-scale-group">
                   <div class="icon-char-annotated">
                     <div class="icon-char-box-1x icon-char-box-live"></div>
-                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">20px</span></div></div>
-                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">20px</span></div></div>
+                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">20 px</span></div></div>
+                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">20 px</span></div></div>
                   </div>
                 </div>
                 <div class="icon-char-scale-group">
                   <div class="icon-char-annotated">
                     <div class="icon-char-grid-10x icon-char-grid-live"></div>
-                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">20px</span></div></div>
-                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">2px</span></div></div>
+                    <div class="icon-char-vdim"><div class="icon-char-vdim-line"><span class="icon-char-dim-label">20 px</span></div></div>
+                    <div class="icon-char-hdim"><div class="icon-char-hdim-line"><span class="icon-char-dim-label">2 px</span></div></div>
                   </div>
                 </div>
               </div>
@@ -179,36 +173,36 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
           </div>
         </article>
 
-        <!-- 7. Corners radius -->
+        <!-- 7. Corner radius -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Corners radius</h4>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Corner radius</h4>
             <div class="icon-char-copy-list">
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Corner radius are 2px by default. Interior corners should be square if the radius are 1px.</p>
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">The 2px radius can be increased by 2px when necessary to make the icon's metaphor clear. Use an additional radius to make the metaphor reflect the real form of the object.</p>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Corner radius is 2 px by default. Interior corners should be square if the radius is 1 px.</p>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">The 2 px radius can be increased by 2 px when necessary to make the icon's metaphor clear. Use an additional radius to make the metaphor reflect the real form of the object.</p>
             </div>
           </div>
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card icon-char-demo-card">
               <div class="icon-char-radius-row">
                 <div class="icon-char-radius-item">
-                  <span class="icon-char-radius-label">1px</span>
+                  <span class="icon-char-radius-label">1 px</span>
                   <div class="icon-char-radius-box icon-char-radius-1"></div>
                 </div>
                 <div class="icon-char-radius-item">
-                  <span class="icon-char-radius-label">2px</span>
+                  <span class="icon-char-radius-label">2 px</span>
                   <div class="icon-char-radius-box icon-char-radius-2"></div>
                 </div>
                 <div class="icon-char-radius-item">
-                  <span class="icon-char-radius-label">4px</span>
+                  <span class="icon-char-radius-label">4 px</span>
                   <div class="icon-char-radius-box icon-char-radius-4"></div>
                 </div>
                 <div class="icon-char-radius-item">
-                  <span class="icon-char-radius-label">6px</span>
+                  <span class="icon-char-radius-label">6 px</span>
                   <div class="icon-char-radius-box icon-char-radius-6"></div>
                 </div>
                 <div class="icon-char-radius-item">
-                  <span class="icon-char-radius-label">8px</span>
+                  <span class="icon-char-radius-label">8 px</span>
                   <div class="icon-char-radius-box icon-char-radius-8"></div>
                 </div>
               </div>
@@ -221,8 +215,8 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
           <div class="typography-page-template__copy-pane">
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Stroke alignment</h4>
             <div class="icon-char-copy-list">
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Stroke placement affects an icon's overall appearance, depending on whether the stroke is placed on the inside, center, or outside of a shape. In most cases, the stroke is best aligned with the center of a shape.</p>
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use a consistent rounded stroke terminals.</p>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Stroke placement affects an icon's overall appearance, depending on whether the stroke is placed on the inside, centre, or outside of a shape. In most cases, the stroke is best aligned with the centre of a shape.</p>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use consistent rounded stroke terminals.</p>
             </div>
           </div>
           <div class="typography-page-template__demo-pane">
@@ -238,7 +232,7 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Stroke terminal</h4>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use a consistent rounded stroke terminals.</p>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use consistent rounded stroke terminals.</p>
           </div>
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card icon-char-demo-card">
@@ -255,7 +249,7 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Stroke size</h4>
             <div class="icon-char-copy-list">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use a consistent stroke width, including curves, angles, and both interior and exterior strokes.</p>
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">One icon should not look heavier or lighter than other icons of the same size. Maintain the same visual weight by using a <strong>1.25px stroke</strong> when designing all icons.</p>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">One icon should not look heavier or lighter than other icons of the same size. Maintain the same visual weight by using a <strong>1.25 px stroke</strong> when designing all icons.</p>
             </div>
           </div>
           <div class="typography-page-template__demo-pane">
@@ -266,7 +260,7 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
                 </div>
                 <div class="icon-char-grid-annotation">
                   <div class="icon-char-annotation-h-line"></div>
-                  <span class="icon-char-anno-label">1.25px</span>
+                  <span class="icon-char-anno-label">1.25 px</span>
                 </div>
               </div>
             </div>
@@ -309,11 +303,11 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
                 <div class="icon-char-complex-compare">
                   <div class="icon-char-complex-item">
                     <sgds-icon name="paperclip" size="md" />
-                    <span class="icon-char-compare-label">1.2px</span>
+                    <span class="icon-char-compare-label">1.2 px</span>
                   </div>
                   <div class="icon-char-complex-item">
                     <sgds-icon name="paperclip" size="md" />
-                    <span class="icon-char-compare-label">1px</span>
+                    <span class="icon-char-compare-label">1 px</span>
                   </div>
                 </div>
               </div>
@@ -325,7 +319,7 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Icon size with container</h4>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use the specific icon size within a container like Icon Button.</p>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use the right icon size within containers such as icon buttons.</p>
           </div>
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card icon-char-demo-card">
@@ -348,7 +342,7 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Pairing with text</h4>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Icons size are optimized to feel balanced when paired with Button, Text link, Body or actionable elements.</p>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Icon sizes are optimised to feel balanced when paired with buttons, text links, body copy or actionable elements.</p>
           </div>
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card icon-char-demo-card">
@@ -364,7 +358,7 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Counter space</h4>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">A minimum 2px counter space for each lines or shapes.</p>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Keep at least 2 px of counter space between lines or shapes.</p>
           </div>
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card icon-char-demo-card">
@@ -374,16 +368,14 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
                 </div>
                 <div class="icon-char-grid-annotation">
                   <div class="icon-char-annotation-h-line"></div>
-                  <span class="icon-char-anno-label">2px</span>
+                  <span class="icon-char-anno-label">2 px</span>
                 </div>
               </div>
             </div>
           </div>
         </article>
 
-      </div>
-    </section>
-  </TypographyPageTemplate>
+  </div>
 </template>
 
 <style>
@@ -674,7 +666,7 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 .icon-char-radius-6 { border-radius: 6px; }
 .icon-char-radius-8 { border-radius: 8px; }
 
-/* Blocks 8–12, 15 — icon centered on pixel grid */
+/* Blocks 8-12, 15 - icon centred on pixel grid */
 .icon-char-icon-grid {
   align-items: center;
   display: flex;

@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import CopyCodeToken from "./ui/CopyCodeToken.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -278,6 +279,41 @@ const currentBgRows = computed(
 const showBackgroundSection = computed(() => props.section === "all" || props.section === "background");
 const showTextSection = computed(() => props.section === "all" || props.section === "text");
 
+const bgUtilityToCssVariable = (utilityClass: string) => {
+  const tokenName = utilityClass.replace("sgds:bg-", "");
+  const semanticMap: Record<string, string> = {
+    default: "--sgds-bg-default",
+    alternate: "--sgds-bg-alternate",
+    overlay: "--sgds-bg-overlay",
+    "fixed-light": "--sgds-bg-fixed-light",
+    "fixed-dark": "--sgds-bg-fixed-dark",
+    translucent: "--sgds-bg-translucent",
+    "translucent-subtle": "--sgds-bg-translucent-subtle",
+    transparent: "--sgds-bg-transparent",
+    "surface-default": "--sgds-surface-default",
+    "surface-raised": "--sgds-surface-raised",
+    "surface-inverse": "--sgds-surface-inverse",
+    "surface-fixed-light": "--sgds-surface-fixed-light",
+    "surface-fixed-dark": "--sgds-surface-fixed-dark",
+  };
+  if (semanticMap[tokenName]) return semanticMap[tokenName];
+  return `--sgds-${tokenName.replace("-surface-", "-surface-").replace(/^(primary|accent|success|danger|warning|neutral|purple|cyan)-default$/, "$1-bg-default").replace(/^(primary|accent|success|danger|warning|neutral|purple|cyan)-muted$/, "$1-bg-muted")}`;
+};
+
+const textUtilityToCssVariable = (utilityClass: string) => {
+  const tokenName = utilityClass.replace("sgds:text-", "");
+  const semanticMap: Record<string, string> = {
+    default: "--sgds-color-default",
+    subtle: "--sgds-color-subtle",
+    muted: "--sgds-color-muted",
+    inverse: "--sgds-color-inverse",
+    "fixed-light": "--sgds-color-fixed-light",
+    "fixed-dark": "--sgds-color-fixed-dark",
+  };
+  if (semanticMap[tokenName]) return semanticMap[tokenName];
+  return `--sgds-${tokenName.replace("display-", "display-color-").replace("heading-", "heading-color-").replace("body-", "body-color-").replace("label-", "label-color-").replace("link-", "link-color-").replace("accent-", "accent-color-")}`;
+};
+
 function onBgTabShow(e: Event) {
   activeBgGroupId.value = (e as CustomEvent).detail.name as string;
 }
@@ -382,7 +418,8 @@ const copyUtility = async (utilityClass: string) => {
 
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="typography-page-template__table-utility-column colour-utilities-utility-column">SGDS utility</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-utility-column colour-utilities-utility-column">SGDS Tailwind token</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-preview-column colour-utilities-preview-column">Preview</sgds-table-head>
             </sgds-table-row>
@@ -402,6 +439,9 @@ const copyUtility = async (utilityClass: string) => {
                     <sgds-icon :name="copiedKey === item.utilityClass ? 'check' : 'copy'" size="md" />
                   </button>
                 </div>
+              </sgds-table-cell>
+              <sgds-table-cell class="typography-page-template__table-token-column">
+                <CopyCodeToken :label="bgUtilityToCssVariable(item.utilityClass)" copy-label="Copy CSS variable" />
               </sgds-table-cell>
               <sgds-table-cell class="typography-page-template__table-usage-column">
                 <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.usage }}</span>
@@ -445,7 +485,8 @@ const copyUtility = async (utilityClass: string) => {
 
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
-            <sgds-table-head class="typography-page-template__table-utility-column colour-utilities-utility-column">SGDS utility</sgds-table-head>
+            <sgds-table-head class="typography-page-template__table-utility-column colour-utilities-utility-column">SGDS Tailwind token</sgds-table-head>
+            <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-value-column">Day</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-value-column">Night</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
@@ -466,6 +507,9 @@ const copyUtility = async (utilityClass: string) => {
                   <sgds-icon :name="copiedKey === t.utilityClass ? 'check' : 'copy'" size="md" />
                 </button>
               </div>
+            </sgds-table-cell>
+            <sgds-table-cell class="typography-page-template__table-token-column">
+              <CopyCodeToken :label="textUtilityToCssVariable(t.utilityClass)" copy-label="Copy CSS variable" />
             </sgds-table-cell>
             <sgds-table-cell class="typography-page-template__table-value-column">
               <div class="colour-utilities-swatch-cell">
@@ -508,13 +552,14 @@ const copyUtility = async (utilityClass: string) => {
 }
 
 .colour-utilities-preview-column {
-  inline-size: 7.5rem;
-  min-inline-size: 7.5rem;
+  inline-size: max-content;
+  max-inline-size: 8rem;
+  min-inline-size: 6rem;
 }
 
 .colour-utilities-utility-column {
-  inline-size: 16rem;
+  inline-size: max-content;
   max-inline-size: 16rem;
-  min-inline-size: 16rem;
+  min-inline-size: 12rem;
 }
 </style>

@@ -58,7 +58,7 @@ function selectPalette(id: PaletteId) {
 <template>
   <div class="sgds:flex sgds:flex-col mainnav-container">
     <sgds-masthead fluid></sgds-masthead>
-    <sgds-mainnav fluid expand="lg" brandHref="/">
+    <sgds-mainnav expand="lg" brandHref="/">
       <span slot="brand" class="sgds:block sgds:text-default mainnav-brand-logo" v-html="logoSvg"></span>
 
       <sgds-mainnav-item
@@ -97,7 +97,7 @@ function selectPalette(id: PaletteId) {
         @click="toggleTheme"
       ></sgds-icon-button>
     </sgds-mainnav>
-    <sgds-system-banner show fluid dismissible>
+    <sgds-system-banner show dismissible>
       <sgds-system-banner-item>
         <sgds-icon slot="icon" name="info-circle-fill" size="md"></sgds-icon>
         <strong>This site is a work in progress as part of GovTech &#123;build&#125; hackathon.</strong> Content may be incomplete or subject to change.

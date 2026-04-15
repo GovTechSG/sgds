@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import CopyCodeToken from "./ui/CopyCodeToken.vue";
 
 const props = defineProps<{
   section: "width" | "radius" | "colour";
@@ -9,6 +10,7 @@ const props = defineProps<{
 
 type WidthUtility = {
   utilityClass: string;
+  cssVariables: string[];
   applies: string;
   usage: string;
   previewClass: string;
@@ -16,6 +18,7 @@ type WidthUtility = {
 
 type RadiusUtility = {
   utilityClass: string;
+  cssVariable: string;
   value?: string;
   usage: string;
   previewClass: string;
@@ -37,30 +40,35 @@ type BorderColorGroup = {
 const widthUtilities: WidthUtility[] = [
   {
     utilityClass: "sgds:border sgds:border-default",
+    cssVariables: ["--sgds-border-width-1", "--sgds-border-color-default"],
     applies: "1px all sides",
     usage: "Default structural border for cards, panels, and custom containers.",
     previewClass: "sgds:border sgds:border-default",
   },
   {
     utilityClass: "sgds:border-2 sgds:border-emphasis",
+    cssVariables: ["--sgds-border-width-2", "--sgds-border-color-emphasis"],
     applies: "2px all sides",
     usage: "Use when the border itself needs more presence, such as selected or focus-adjacent states.",
     previewClass: "sgds:border-2 sgds:border-emphasis",
   },
   {
     utilityClass: "sgds:border-b-4 sgds:border-default",
+    cssVariables: ["--sgds-border-width-4", "--sgds-border-color-default"],
     applies: "4px bottom only",
     usage: "Strong directional border for tabs and anchored section treatments.",
     previewClass: "sgds:border-b-4 sgds:border-default sgds:rounded-none",
   },
   {
     utilityClass: "sgds:border-x sgds:border-muted",
+    cssVariables: ["--sgds-border-width-1", "--sgds-border-color-muted"],
     applies: "1px left + right",
     usage: "Good for grouped content areas where only the side edges should be visible.",
     previewClass: "sgds:border-x sgds:border-muted sgds:rounded-none",
   },
   {
     utilityClass: "sgds:border-l-4 sgds:border-primary-default",
+    cssVariables: ["--sgds-border-width-4", "--sgds-primary-border-color-default"],
     applies: "4px left only",
     usage: "Useful for callouts and semantic accents without framing the full container.",
     previewClass: "sgds:border-l-4 sgds:border-primary-default sgds:rounded-none",
@@ -70,6 +78,7 @@ const widthUtilities: WidthUtility[] = [
 const generalRadiusUtilities: RadiusUtility[] = [
   {
     utilityClass: "sgds:rounded-none",
+    cssVariable: "--sgds-border-radius-none",
     value: "0px",
     usage: "Sharp corners for tables, strict layouts, and mechanical surfaces.",
     previewClass: "sgds:rounded-none",
@@ -77,6 +86,7 @@ const generalRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-xs",
+    cssVariable: "--sgds-border-radius-xs",
     value: "2px",
     usage: "Subtle rounding for small tags and restrained surface treatments.",
     previewClass: "sgds:rounded-xs",
@@ -84,6 +94,7 @@ const generalRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-sm",
+    cssVariable: "--sgds-border-radius-sm",
     value: "4px",
     usage: "Default small-component radius.",
     previewClass: "sgds:rounded-sm",
@@ -91,6 +102,7 @@ const generalRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-md",
+    cssVariable: "--sgds-border-radius-md",
     value: "8px",
     usage: "Balanced radius for panels and medium surfaces.",
     previewClass: "sgds:rounded-md",
@@ -98,6 +110,7 @@ const generalRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-lg",
+    cssVariable: "--sgds-border-radius-lg",
     value: "12px",
     usage: "Common for cards, menus, and larger surfaced components.",
     previewClass: "sgds:rounded-lg",
@@ -105,6 +118,7 @@ const generalRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-xl",
+    cssVariable: "--sgds-border-radius-xl",
     value: "16px",
     usage: "Featured surfaces and softer emphasis blocks.",
     previewClass: "sgds:rounded-xl",
@@ -112,6 +126,7 @@ const generalRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-2-xl",
+    cssVariable: "--sgds-border-radius-2-xl",
     value: "24px",
     usage: "Large containers and more expressive panels.",
     previewClass: "sgds:rounded-2-xl",
@@ -119,6 +134,7 @@ const generalRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-3-xl",
+    cssVariable: "--sgds-border-radius-3-xl",
     value: "32px",
     usage: "Hero and promotional surfaces with the softest corners.",
     previewClass: "sgds:rounded-3-xl",
@@ -126,6 +142,7 @@ const generalRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-full",
+    cssVariable: "--sgds-border-radius-full",
     value: "999px",
     usage: "Pills, badges, avatars, and circular icon treatments.",
     previewClass: "sgds:rounded-full",
@@ -136,6 +153,7 @@ const generalRadiusUtilities: RadiusUtility[] = [
 const formRadiusUtilities: RadiusUtility[] = [
   {
     utilityClass: "sgds:rounded-form-none",
+    cssVariable: "--sgds-form-border-radius-none",
     value: "0px",
     usage: "Square native form controls.",
     previewClass: "sgds:rounded-none",
@@ -143,6 +161,7 @@ const formRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-form-xs",
+    cssVariable: "--sgds-form-border-radius-xs",
     value: "2px",
     usage: "Very compact native inputs.",
     previewClass: "sgds:rounded-xs",
@@ -150,6 +169,7 @@ const formRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-form-sm",
+    cssVariable: "--sgds-form-border-radius-sm",
     value: "4px",
     usage: "Compact native inputs and dense control layouts.",
     previewClass: "sgds:rounded-sm",
@@ -157,6 +177,7 @@ const formRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-form-md",
+    cssVariable: "--sgds-form-border-radius-md",
     value: "8px",
     usage: "Default choice for native input, select, and textarea elements.",
     previewClass: "sgds:rounded-md",
@@ -164,6 +185,7 @@ const formRadiusUtilities: RadiusUtility[] = [
   },
   {
     utilityClass: "sgds:rounded-form-full",
+    cssVariable: "--sgds-form-border-radius-full",
     value: "999px",
     usage: "Pill-shaped search and filter inputs.",
     previewClass: "sgds:rounded-full",
@@ -381,6 +403,21 @@ const currentBorderColorRows = computed(
   () => borderColorGroups.find((group) => group.id === activeBorderColorGroupId.value)?.rows ?? foundationalBorderColors,
 );
 
+const borderColorUtilityToCssVariable = (utilityClass: string) => {
+  const tokenName = utilityClass.replace("sgds:border-", "");
+  const semanticMap: Record<string, string> = {
+    default: "--sgds-border-color-default",
+    emphasis: "--sgds-border-color-emphasis",
+    muted: "--sgds-border-color-muted",
+    translucent: "--sgds-border-color-translucent",
+    transparent: "--sgds-border-color-transparent",
+    "fixed-light": "--sgds-border-color-fixed-light",
+    "fixed-dark": "--sgds-border-color-fixed-dark",
+  };
+  if (semanticMap[tokenName]) return semanticMap[tokenName];
+  return `--sgds-${tokenName.replace("-", "-border-color-")}`;
+};
+
 function onBorderColorTabShow(e: Event) {
   activeBorderColorGroupId.value = (e as CustomEvent).detail.name as string;
 }
@@ -424,7 +461,8 @@ function onRadiusTabShow(e: Event) {
 
       <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
         <sgds-table-row>
-          <sgds-table-head class="typography-page-template__table-utility-column">SGDS utility</sgds-table-head>
+          <sgds-table-head class="typography-page-template__table-utility-column">SGDS Tailwind token</sgds-table-head>
+          <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
           <sgds-table-head class="typography-page-template__table-value-column">Applies</sgds-table-head>
           <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
           <sgds-table-head class="typography-page-template__table-preview-column">Preview</sgds-table-head>
@@ -444,6 +482,11 @@ function onRadiusTabShow(e: Event) {
               >
                 <sgds-icon :name="copiedKey === item.utilityClass ? 'check' : 'copy'" size="md" />
               </button>
+            </div>
+          </sgds-table-cell>
+          <sgds-table-cell class="typography-page-template__table-token-column">
+            <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-2-xs">
+              <CopyCodeToken v-for="token in item.cssVariables" :key="token" :label="token" copy-label="Copy CSS variable" />
             </div>
           </sgds-table-cell>
           <sgds-table-cell class="typography-page-template__table-value-column">
@@ -488,7 +531,8 @@ function onRadiusTabShow(e: Event) {
             class="typography-page-template__utility-table border-utilities-radius-table"
           >
             <sgds-table-row>
-              <sgds-table-head class="typography-page-template__table-utility-column">SGDS utility</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-utility-column">SGDS Tailwind token</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-value-column">Value</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-preview-column">Preview</sgds-table-head>
@@ -509,6 +553,9 @@ function onRadiusTabShow(e: Event) {
                     <sgds-icon :name="copiedKey === item.utilityClass ? 'check' : 'copy'" size="md" />
                   </button>
                 </div>
+              </sgds-table-cell>
+              <sgds-table-cell class="typography-page-template__table-token-column">
+                <CopyCodeToken :label="item.cssVariable" copy-label="Copy CSS variable" />
               </sgds-table-cell>
               <sgds-table-cell class="typography-page-template__table-value-column">
                 <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.value }}</span>
@@ -542,7 +589,8 @@ function onRadiusTabShow(e: Event) {
 
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table border-utilities-radius-table">
             <sgds-table-row>
-              <sgds-table-head class="typography-page-template__table-utility-column">SGDS utility</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-utility-column">SGDS Tailwind token</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-value-column">Value</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-preview-column">Preview</sgds-table-head>
@@ -563,6 +611,9 @@ function onRadiusTabShow(e: Event) {
                     <sgds-icon :name="copiedKey === item.utilityClass ? 'check' : 'copy'" size="md" />
                   </button>
                 </div>
+              </sgds-table-cell>
+              <sgds-table-cell class="typography-page-template__table-token-column">
+                <CopyCodeToken :label="item.cssVariable" copy-label="Copy CSS variable" />
               </sgds-table-cell>
               <sgds-table-cell class="typography-page-template__table-value-column">
                 <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.value }}</span>
@@ -623,7 +674,8 @@ function onRadiusTabShow(e: Event) {
 
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="typography-page-template__table-utility-column">SGDS utility</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-utility-column">SGDS Tailwind token</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-preview-column">Preview</sgds-table-head>
             </sgds-table-row>
@@ -644,6 +696,9 @@ function onRadiusTabShow(e: Event) {
                   </button>
                 </div>
               </sgds-table-cell>
+              <sgds-table-cell class="typography-page-template__table-token-column">
+                <CopyCodeToken :label="borderColorUtilityToCssVariable(item.utilityClass)" copy-label="Copy CSS variable" />
+              </sgds-table-cell>
               <sgds-table-cell class="typography-page-template__table-usage-column">
                 <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.usage }}</span>
               </sgds-table-cell>
@@ -663,12 +718,14 @@ function onRadiusTabShow(e: Event) {
 <style>
 /* Radius tables: wider utility column, narrower preview column */
 .border-utilities-radius-table .typography-page-template__table-utility-column {
-  inline-size: clamp(10rem, 20vw, 14rem);
-  min-inline-size: clamp(10rem, 20vw, 14rem);
+  inline-size: max-content;
+  max-inline-size: 14rem;
+  min-inline-size: 10rem;
 }
 
 .border-utilities-radius-table .typography-page-template__table-preview-column {
-  inline-size: clamp(9rem, 18vw, 12rem);
-  min-inline-size: clamp(9rem, 18vw, 12rem);
+  inline-size: max-content;
+  max-inline-size: 12rem;
+  min-inline-size: 9rem;
 }
 </style>

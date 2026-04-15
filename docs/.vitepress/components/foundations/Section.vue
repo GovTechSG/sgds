@@ -5,7 +5,7 @@ const { title, description } = defineProps<Section>();
 </script>
 
 <template>
-  <section class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+  <section class="sgds:flex sgds:flex-col sgds:gap-text-lg">
     <SectionHeader
       :title="title"
       :description="description"

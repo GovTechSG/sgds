@@ -64,6 +64,9 @@ const updateDisplayMdBoldToggle = (
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
             This gives products a predictable hierarchy while reducing the need for custom breakpoint logic in individual pages and components.
           </p>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+            Style names match Figma text styles and map directly to SGDS utility classes — designers and developers can reference the same page. Each style is a named combination of utility classes that must be applied together to reproduce the intended typography.
+          </p>
         </div>
 
         <div class="style-page__explainer">

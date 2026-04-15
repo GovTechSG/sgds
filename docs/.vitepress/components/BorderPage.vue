@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import FoundationPrinciplesList from "./foundations/FoundationPrinciplesList.vue";
+import FoundationPrincipleTemplate from "./foundations/FoundationPrincipleTemplate.vue";
+import Section from "./foundations/Section.vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 
 type Principle = {
@@ -25,17 +28,17 @@ const principles: Principle[] = [
 
 const borderWidthExamples: Example[] = [
   {
-    title: "Default - 1px",
+    title: "Default - 1 px",
     description:
       "The default border width is used to illustrate the boundary of components and divide content.",
   },
   {
-    title: "Medium - 2px",
+    title: "Medium - 2 px",
     description:
       "Medium borders are used to emphasise elements that primarily use borders for hover interaction, like input field.",
   },
   {
-    title: "Strong - 4px",
+    title: "Strong - 4 px",
     description:
       "Strong borders are used to emphasise elements that primarily use borders for their structure, like tabs.",
   },
@@ -43,37 +46,37 @@ const borderWidthExamples: Example[] = [
 
 const radiusExamples: Example[] = [
   {
-    title: "None & Minimal (0px, 2px)",
+    title: "None and minimal (0 px, 2 px)",
     description:
       "Used for sharp, structured designs with little to no rounding. Suitable for strict, grid-based layouts where clarity and precision are key.",
     bullets: [
-      "Data tables (0px for a rigid, structured look)",
-      "Dividers or separators (2px for subtle softness)",
+      "Data tables (0 px for a rigid, structured look)",
+      "Dividers or separators (2 px for subtle softness)",
     ],
   },
   {
-    title: "Compact (4px)",
+    title: "Compact (4 px)",
     description:
       "Provides slight rounding for a modern but understated look. Enhances usability while keeping a clean and structured appearance.",
-    bullets: ["Icon button 24px and 32px", "Tags, pills, or badges"],
+    bullets: ["Icon button 24 px and 32 px", "Tags, pills, or badges"],
   },
   {
-    title: "Standard (8px)",
+    title: "Standard (8 px)",
     description:
       "The default radius for most components, balancing smoothness and sharpness. Works well across both functional and decorative elements.",
     bullets: ["Cards and modals", "Tooltips and dropdowns", "Inputs"],
   },
   {
-    title: "Expressive (12px, 16px, 24px)",
+    title: "Expressive (12 px, 16 px, 24 px)",
     description:
       "Larger radius sizes that create a more distinct and friendly visual style. Used to emphasise key components and create a softer, more inviting look.",
     bullets: [
-      "Modal and large callout banners (12px, 16px)",
-      "Feature cards or promotional sections (24px)",
+      "Modal and large callout banners (12 px, 16 px)",
+      "Feature cards or promotional sections (24 px)",
     ],
   },
   {
-    title: "Fully Rounded (Full)",
+    title: "Fully rounded (full)",
     description:
       "Used for completely rounded shapes, ensuring a pill-like or circular appearance. Best for elements that need to stand out or convey a tactile feel.",
     bullets: ["Avatars and profile images", "Floating action buttons (FABs)"],
@@ -83,32 +86,13 @@ const radiusExamples: Example[] = [
 
 <template>
   <TypographyPageTemplate>
-    <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Principle</h2>
-      <div class="typography-page-template__body typography-page-template__body--prose">
-        <div
-          v-for="principle in principles"
-          :key="principle.title"
-          class="typography-page-template__content-block"
-        >
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
-            {{ principle.title }}
-          </h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            {{ principle.description }}
-          </p>
-        </div>
-      </div>
-    </section>
+    <FoundationPrincipleTemplate>
+      <FoundationPrinciplesList :principles="principles" />
 
-    <section class="typography-page-template__section">
-      <div class="typography-page-template__content-block">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Border</h2>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-          SGDS border width is used to define structure and separation.
-        </p>
-      </div>
-
+      <Section
+        title="Border"
+        description="SGDS border width is used to define structure and separation."
+      >
       <div class="typography-page-template__body">
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
@@ -177,16 +161,12 @@ const radiusExamples: Example[] = [
           </div>
         </article>
       </div>
-    </section>
+      </Section>
 
-    <section class="typography-page-template__section">
-      <div class="typography-page-template__content-block">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Radius</h2>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-          SGDS radius is used widely throughout our system. Each radius size is intentionally applied to select elements.
-        </p>
-      </div>
-
+      <Section
+        title="Radius"
+        description="SGDS radius is used widely throughout our system. Each radius size is intentionally applied to select elements."
+      >
       <div class="typography-page-template__body">
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
@@ -347,6 +327,7 @@ const radiusExamples: Example[] = [
           </div>
         </article>
       </div>
-    </section>
+      </Section>
+    </FoundationPrincipleTemplate>
   </TypographyPageTemplate>
 </template>

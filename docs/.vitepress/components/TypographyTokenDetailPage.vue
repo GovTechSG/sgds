@@ -127,53 +127,56 @@ const isResponsive = computed(() => doc.value?.rows.some((r) => r.mobile !== und
 .typography-token-table__value-column,
 .typography-token-table__example-column {
   box-sizing: border-box;
-  inline-size: 33.333%;
+  inline-size: max-content;
 }
 
 .typography-token-table__token-column {
-  min-inline-size: 16rem;
+  max-inline-size: 18rem;
+  min-inline-size: 14rem;
 }
 
 .typography-token-table--paragraph-spacing .typography-token-table__token-column {
-  inline-size: 45%;
-  min-inline-size: 21rem;
+  max-inline-size: 21rem;
+  min-inline-size: 18rem;
 }
 
 .typography-token-table--paragraph-spacing .typography-token-table__value-column {
-  inline-size: 20%;
+  max-inline-size: 8rem;
 }
 
 .typography-token-table--paragraph-spacing .typography-token-table__example-column {
-  inline-size: 35%;
+  max-inline-size: 24rem;
 }
 
 .typography-token-table--letter-spacing .typography-token-table__value-column {
-  inline-size: 12rem;
-  min-inline-size: 12rem;
+  max-inline-size: 12rem;
+  min-inline-size: 10rem;
 }
 
 .typography-token-table--letter-spacing .typography-token-table__example-column {
-  inline-size: 45%;
+  max-inline-size: 24rem;
   min-inline-size: 18rem;
 }
 
 .typography-token-table__value-column {
-  min-inline-size: 17rem;
+  max-inline-size: 18rem;
+  min-inline-size: 12rem;
 }
 
 .typography-token-table__breakpoint-column {
   box-sizing: border-box;
-  inline-size: 10%;
-  min-inline-size: 7rem;
+  inline-size: max-content;
+  max-inline-size: 8rem;
+  min-inline-size: 6rem;
 }
 
 .typography-token-table__example-column {
+  max-inline-size: 24rem;
   min-inline-size: 14rem;
 }
 
-.typography-token-table__token-cell,
-.typography-token-table__value-text {
-  white-space: nowrap;
+.typography-token-table__token-cell {
+  white-space: normal;
 }
 
 .typography-token-example-stack,

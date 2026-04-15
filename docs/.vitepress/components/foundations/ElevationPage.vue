@@ -159,12 +159,16 @@ const edgeRows: EdgeRow[] = [
 <style>
 /* Table shell */
 .elevation-utility-table {
-  width: 100%;
+  inline-size: max-content;
+  max-inline-size: 100%;
+  width: auto;
 }
 
 .elevation-utility-table sgds-table-head,
 .elevation-utility-table sgds-table-cell {
   box-sizing: border-box;
+  max-inline-size: 22rem;
+  overflow-wrap: anywhere;
   white-space: normal;
 }
 
@@ -176,32 +180,37 @@ const edgeRows: EdgeRow[] = [
 /* Column widths — clamp() cannot be expressed as sgds: utilities */
 .ev-name-col {
   box-sizing: border-box;
-  inline-size: clamp(5rem, 8vw, 6rem);
-  min-inline-size: clamp(5rem, 8vw, 6rem);
+  inline-size: max-content;
+  max-inline-size: 6rem;
+  min-inline-size: 5rem;
 }
 
 .ev-token-col {
   box-sizing: border-box;
-  inline-size: clamp(16rem, 26vw, 20rem);
-  min-inline-size: clamp(16rem, 26vw, 20rem);
+  inline-size: max-content;
+  max-inline-size: 20rem;
+  min-inline-size: 16rem;
 }
 
 .ev-preview-col {
   box-sizing: border-box;
-  inline-size: clamp(6rem, 10vw, 8rem);
-  min-inline-size: clamp(6rem, 10vw, 8rem);
+  inline-size: max-content;
+  max-inline-size: 8rem;
+  min-inline-size: 6rem;
 }
 
 .ev-desc-col {
   box-sizing: border-box;
-  inline-size: clamp(12rem, 22vw, 16rem);
-  min-inline-size: clamp(12rem, 22vw, 16rem);
+  inline-size: max-content;
+  max-inline-size: 18rem;
+  min-inline-size: 12rem;
 }
 
 .ev-usage-col {
   box-sizing: border-box;
-  inline-size: clamp(10rem, 20vw, 14rem);
-  min-inline-size: clamp(10rem, 20vw, 14rem);
+  inline-size: max-content;
+  max-inline-size: 18rem;
+  min-inline-size: 12rem;
 }
 
 /* Shadow tokens — applied via CSS variables, no sgds: utility equivalent exists */
@@ -243,6 +252,7 @@ const edgeRows: EdgeRow[] = [
   .ev-desc-col,
   .ev-usage-col {
     inline-size: auto;
+    max-inline-size: none;
     min-inline-size: 0;
   }
 }

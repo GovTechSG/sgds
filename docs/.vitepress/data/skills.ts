@@ -15,7 +15,7 @@ export const skills: Skill[] = [
   },
   {
     name: "sgds-components",
-    descriptionHtml: "All 46 <code class=\"portal-code-token\">&lt;sgds-*&gt;</code> web components — attributes, slots, events, and usage examples.",
+    descriptionHtml: "All 47 <code class=\"portal-code-token\">&lt;sgds-*&gt;</code> web components — attributes, slots, events, and framework integration (React 19+, React ≤18, Vue, Angular, Next.js).",
   },
   {
     name: "sgds-utilities",
@@ -31,11 +31,11 @@ export const skills: Skill[] = [
   },
   {
     name: "sgds-pattern-block-templates",
-    descriptionHtml: "Application shell guidance and self-contained UI blocks: filter sidebar, session detail, and more.",
+    descriptionHtml: "Application shell, page header, basic details card, filter sidebar, session detail, and table filter — self-contained UI blocks that slot into any page.",
   },
   {
     name: "sgds-pattern-page-templates",
-    descriptionHtml: "Full-page layouts: dashboard, login, list page, form page, settings.",
+    descriptionHtml: "Full-page layouts: dashboard, login, list page, form page, and about us.",
   },
   {
     name: "sgds-data-visualisation",

@@ -64,8 +64,9 @@ const iconSizeTokens = [
 <style>
 .icon-token-table-col {
   box-sizing: border-box;
-  inline-size: 33.333%;
-  min-inline-size: 12rem;
+  inline-size: max-content;
+  max-inline-size: 16rem;
+  min-inline-size: 7rem;
 }
 
 .icon-token-preview-cell {

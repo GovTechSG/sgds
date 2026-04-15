@@ -101,7 +101,9 @@
 }
 
 .typography-page-template__utility-table {
-  width: 100%;
+  inline-size: max-content;
+  max-inline-size: 100%;
+  width: auto;
 }
 
 .typography-page-template__utility-table sgds-table-row {
@@ -112,7 +114,10 @@
 .typography-page-template__utility-table sgds-table-cell {
   block-size: auto;
   box-sizing: border-box;
+  max-inline-size: 22rem;
+  overflow-wrap: anywhere;
   white-space: normal;
+  word-break: normal;
 }
 
 .typography-page-template__utility-table sgds-table-cell {
@@ -120,35 +125,52 @@
   vertical-align: top;
 }
 
+.typography-page-template__utility-table code {
+  max-inline-size: none;
+  white-space: nowrap;
+}
+
 .typography-page-template__table-token-column,
 .typography-page-template__table-utility-column {
   box-sizing: border-box;
-  inline-size: clamp(13rem, 22vw, 18rem);
-  min-inline-size: clamp(13rem, 22vw, 18rem);
+  inline-size: max-content;
+  max-inline-size: clamp(13rem, 22vw, 18rem);
+  min-inline-size: 12rem;
 }
 
 .typography-page-template__table-metric-column {
   box-sizing: border-box;
-  inline-size: 3.75rem;
+  inline-size: max-content;
+  max-inline-size: 5.5rem;
   min-inline-size: 3.75rem;
 }
 
 .typography-page-template__table-preview-column {
   box-sizing: border-box;
-  inline-size: clamp(14rem, 32vw, 18rem);
-  min-inline-size: clamp(14rem, 32vw, 18rem);
+  inline-size: max-content;
+  max-inline-size: clamp(14rem, 32vw, 18rem);
+  min-inline-size: 12rem;
 }
 
 .typography-page-template__table-value-column {
   box-sizing: border-box;
-  inline-size: clamp(5rem, 10vw, 7rem);
-  min-inline-size: clamp(5rem, 10vw, 7rem);
+  inline-size: max-content;
+  max-inline-size: 8rem;
+  min-inline-size: 5rem;
+}
+
+.typography-page-template__table-style-column {
+  box-sizing: border-box;
+  inline-size: max-content;
+  max-inline-size: clamp(14rem, 22vw, 18rem);
+  min-inline-size: 14rem;
 }
 
 .typography-page-template__table-usage-column {
   box-sizing: border-box;
-  inline-size: clamp(12rem, 28vw, 18rem);
-  min-inline-size: clamp(12rem, 28vw, 18rem);
+  inline-size: max-content;
+  max-inline-size: clamp(18rem, 30vw, 24rem);
+  min-inline-size: 16rem;
 }
 
 .typography-page-template__utility-copy {
@@ -156,6 +178,11 @@
   display: flex;
   flex-wrap: nowrap;
   gap: var(--sgds-gap-2-xs);
+  min-width: 0;
+}
+
+.typography-page-template__utility-copy code {
+  flex: 1;
   min-width: 0;
 }
 
@@ -182,9 +209,11 @@
   .typography-page-template__table-utility-column,
   .typography-page-template__table-metric-column,
   .typography-page-template__table-preview-column,
+  .typography-page-template__table-style-column,
   .typography-page-template__table-value-column,
   .typography-page-template__table-usage-column {
     inline-size: auto;
+    max-inline-size: none;
     min-inline-size: 0;
   }
 }

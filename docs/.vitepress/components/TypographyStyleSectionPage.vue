@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
 import { typographyStyleSections, aliasToUtility } from "../data/typography-style-tokens";
@@ -36,88 +37,17 @@ const sectionUsageHeadingLabel: Record<string, string> = {
   overline: "overline",
 };
 
-const fontSizeValues: Record<string, string> = {
-  "--sgds-font-size-display-lg": "40px / 52px / 56px",
-  "--sgds-font-size-display-md": "36px / 44px / 48px",
-  "--sgds-font-size-display-sm": "32px / 36px / 40px",
-  "--sgds-font-size-heading-xl": "32px / 36px / 40px",
-  "--sgds-font-size-heading-lg": "28px / 30px / 32px",
-  "--sgds-font-size-heading-md": "24px / 26px / 28px",
-  "--sgds-font-size-heading-sm": "20px / 22px / 24px",
-  "--sgds-font-size-subtitle-md": "18px / 20px / 20px",
-  "--sgds-font-size-subtitle-sm": "16px",
-  "--sgds-font-size-body-lg": "18px / 20px / 20px",
-  "--sgds-font-size-body-md": "16px",
-  "--sgds-font-size-body-sm": "14px",
-  "--sgds-font-size-label-lg": "18px / 20px / 20px",
-  "--sgds-font-size-label-md": "16px",
-  "--sgds-font-size-label-sm": "14px",
-  "--sgds-font-size-label-xs": "12px",
-  "--sgds-font-size-caption-md": "14px",
-  "--sgds-font-size-overline-md": "14px",
-  "--sgds-font-size-link-lg": "18px / 20px / 20px",
-  "--sgds-font-size-link-md": "16px",
-  "--sgds-font-size-link-sm": "14px",
-  "--sgds-font-size-link-xs": "12px",
-};
+const copiedSnippetKey = ref<string | null>(null);
 
-const fontWeightValues: Record<string, string> = {
-  "--sgds-font-weight-light": "300",
-  "--sgds-font-weight-regular": "400",
-  "--sgds-font-weight-semibold": "600",
-  "--sgds-font-weight-bold": "700",
-};
+const getCombinedUtilities = (aliases: readonly string[]) =>
+  aliases.map(aliasToUtility).join(" ");
 
-const lineHeightValues: Record<string, string> = {
-  "--sgds-line-height-3-xs": "16px",
-  "--sgds-line-height-2-xs": "20px",
-  "--sgds-line-height-xs": "24px",
-  "--sgds-line-height-sm": "24px / 28px / 28px",
-  "--sgds-line-height-md": "28px / 32px / 32px",
-  "--sgds-line-height-lg": "32px / 36px / 40px",
-  "--sgds-line-height-xl": "40px / 44px / 48px",
-  "--sgds-line-height-2-xl": "44px / 52px / 56px",
-  "--sgds-line-height-3-xl": "48px / 60px / 64px",
-};
-
-const letterSpacingValues: Record<string, string> = {
-  "--sgds-letter-spacing-tighter": "-1px",
-  "--sgds-letter-spacing-tight": "-0.4px",
-  "--sgds-letter-spacing-normal": "0px",
-  "--sgds-letter-spacing-wide": "1px",
-  "--sgds-letter-spacing-wider": "2px",
-};
-
-const getUtilityTooltipContent = (alias: string) => {
-  if (alias === "sgds:list-disc") {
-    return "List style: Bullet marker";
-  }
-
-  if (alias === "sgds:list-decimal") {
-    return "List style: Numbered marker";
-  }
-
-  if (alias === "sgds:list-none") {
-    return "List style: No marker";
-  }
-
-  if (alias.startsWith("--sgds-font-size-")) {
-    return `Font size: ${fontSizeValues[alias] ?? alias}`;
-  }
-
-  if (alias.startsWith("--sgds-font-weight-")) {
-    return `Font weight: ${fontWeightValues[alias] ?? alias}`;
-  }
-
-  if (alias.startsWith("--sgds-line-height-")) {
-    return `Line height: ${lineHeightValues[alias] ?? alias}`;
-  }
-
-  if (alias.startsWith("--sgds-letter-spacing-")) {
-    return `Letter spacing: ${letterSpacingValues[alias] ?? alias}`;
-  }
-
-  return "Utility: Applies one part of the typography style";
+const copySnippet = async (key: string, text: string) => {
+  await navigator.clipboard.writeText(text);
+  copiedSnippetKey.value = key;
+  setTimeout(() => {
+    if (copiedSnippetKey.value === key) copiedSnippetKey.value = null;
+  }, 2000);
 };
 
 const props = defineProps<{
@@ -135,9 +65,9 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
           v-for="section in sections"
           :key="section.key"
           :id="section.key"
-          :class="$style.styleSection"
+          class="ts-style-section"
         >
-          <div :class="$style.styleSectionCopy">
+          <div class="ts-style-section-copy">
             <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">
               When to use {{ sectionUsageHeadingLabel[section.key] }}
             </h2>
@@ -152,46 +82,76 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
             tableBorder
             headerBackground
             responsive="always"
-            :class="['typography-page-template__utility-table', $style.typeTokenTable]"
+            class="typography-page-template__utility-table ts-type-token-table"
           >
             <sgds-table-row>
-              <sgds-table-head>Figma style</sgds-table-head>
-              <sgds-table-head>Example</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-style-column">Style name</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-preview-column">Preview</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-usage-column">When to use</sgds-table-head>
               <sgds-table-head>Alias token</sgds-table-head>
+              <sgds-table-head>Implementation</sgds-table-head>
             </sgds-table-row>
 
             <sgds-table-row
               v-for="row in section.rows"
               :key="row.tokenNames.join('-')"
-              :class="{ [$style.defaultRow]: Boolean(row.note) }"
+              :class="{ 'ts-default-row': Boolean(row.note) }"
             >
-              <sgds-table-cell>
-                <div :class="$style.tokenNameCell">
-                  <CodeToken
-                    v-for="tokenName in row.tokenNames"
-                    :key="tokenName"
-                    :label="tokenName.replace(/^sgds-/, '')"
-                  />
-                  <sgds-badge v-if="row.note" variant="primary">Default</sgds-badge>
+              <sgds-table-cell class="typography-page-template__table-style-column">
+                <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-2-xs">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                    {{ row.example }}
+                  </span>
+                  <div
+                    v-if="row.note || row.headingLevel"
+                    class="sgds:flex sgds:flex-wrap sgds:gap-2-xs"
+                  >
+                    <sgds-badge v-if="row.note" variant="primary">Default</sgds-badge>
+                    <sgds-badge v-if="row.headingLevel" variant="neutral">{{ row.headingLevel }}</sgds-badge>
+                  </div>
                 </div>
               </sgds-table-cell>
-              <sgds-table-cell>
-                <p :class="[$style.tokenExample, ($style as Record<string, string>)[row.exampleClass]]">
+              <sgds-table-cell class="ts-preview-cell">
+                <p :class="['ts-token-example', 'ts-' + row.exampleClass]">
                   {{ row.example }}
                 </p>
               </sgds-table-cell>
+              <sgds-table-cell class="typography-page-template__table-usage-column">
+                <p class="sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle sgds:mb-0">
+                  {{ row.description }}
+                </p>
+              </sgds-table-cell>
               <sgds-table-cell>
-                <div :class="$style.aliasList">
-                  <sgds-tooltip
+                <div class="ts-alias-token-list">
+                  <CodeToken
                     v-for="alias in row.aliases"
-                    :key="`${row.tokenNames.join('-')}-${alias}-utility`"
-                    :content="getUtilityTooltipContent(alias)"
-                    placement="top"
-                  >
-                    <span :class="$style.utilityTooltipTarget" tabindex="0">
-                      <CodeToken :label="alias" />
-                    </span>
-                  </sgds-tooltip>
+                    :key="`${row.tokenNames.join('-')}-${alias}`"
+                    :label="alias"
+                  />
+                </div>
+              </sgds-table-cell>
+              <sgds-table-cell>
+                <div class="ts-alias-cell">
+                  <div class="ts-snippet-row">
+                    <code class="ts-snippet-code">
+                      <span
+                        v-for="utility in row.aliases.map(aliasToUtility)"
+                        :key="`${row.tokenNames.join('-')}-${utility}`"
+                      >
+                        {{ utility }}
+                      </span>
+                    </code>
+                    <button
+                      :class="[
+                        'ts-snippet-copy-btn',
+                        copiedSnippetKey === row.tokenNames.join('-') ? 'sgds:text-success-default' : 'sgds:text-default'
+                      ]"
+                      :aria-label="copiedSnippetKey === row.tokenNames.join('-') ? 'Copied!' : 'Copy all utility classes'"
+                      @click="copySnippet(row.tokenNames.join('-'), getCombinedUtilities(row.aliases))"
+                    >
+                      <sgds-icon :name="copiedSnippetKey === row.tokenNames.join('-') ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
                 </div>
               </sgds-table-cell>
             </sgds-table-row>
@@ -202,301 +162,354 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
   </TypographyPageTemplate>
 </template>
 
-<style module>
-.styleSection {
+<style>
+.ts-style-section {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-layout-gap-md);
 }
 
-.styleSectionCopy {
+.ts-style-section-copy {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-text-gap-sm);
 }
 
-.typeTokenTable {
-  width: 100%;
+.ts-type-token-table {
+  inline-size: max-content;
+  max-inline-size: 100%;
+  width: auto;
 }
 
-.defaultRow {
+.ts-default-row {
   background: var(--sgds-primary-surface-muted);
 }
 
-.tokenNameCell {
+.ts-token-name-cell {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: var(--sgds-gap-2-xs);
 }
 
-.aliasList {
+.ts-alias-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-gap-sm);
+}
+
+.ts-alias-token-list {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-}
-
-.aliasList {
   gap: var(--sgds-gap-xs);
+  min-width: 0;
 }
 
-.utilityTooltipTarget {
-  display: inline-block;
+.ts-alias-token-list code {
+  max-inline-size: none;
+  white-space: nowrap;
 }
 
-.utilityTooltipTarget:focus-visible {
+.ts-snippet-row {
+  align-items: flex-start;
+  background: var(--sgds-surface-raised);
+  border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-sm);
-  outline: var(--sgds-border-width-2) solid var(--sgds-focus-ring-color);
-  outline-offset: var(--sgds-focus-ring-offset);
+  display: flex;
+  gap: var(--sgds-gap-2-xs);
+  justify-content: space-between;
+  padding: 0.375rem var(--sgds-padding-sm);
 }
 
-.tokenExample {
+.ts-snippet-code {
+  color: var(--sgds-body-color-subtle);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-family: var(--sgds-font-family-mono, monospace);
+  font-size: var(--sgds-font-size-body-sm);
+  gap: var(--sgds-gap-2-xs);
+  line-height: var(--sgds-line-height-xs);
+  min-width: 0;
+  overflow: visible;
+  white-space: normal;
+}
+
+.ts-snippet-code span {
+  align-self: flex-start;
+  color: var(--sgds-body-color-default);
+  white-space: nowrap;
+}
+
+.ts-snippet-copy-btn {
+  background: transparent;
+  border: 0;
+  border-radius: var(--sgds-border-radius-sm);
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  padding: var(--sgds-spacer-1);
+}
+
+.ts-snippet-copy-btn:hover {
+  background: var(--sgds-bg-translucent-subtle);
+}
+
+.ts-preview-cell {
+  overflow: visible;
+}
+
+.ts-token-example {
   color: var(--sgds-body-color-default);
   font-family: var(--sgds-font-family-brand);
   letter-spacing: var(--sgds-letter-spacing-tighter);
   margin: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  word-break: break-word;
 }
 
-.tokenExampleDisplayLgBold {
+.ts-tokenExampleDisplayLgBold {
   font-size: var(--sgds-font-size-display-lg);
   font-weight: var(--sgds-font-weight-bold);
   line-height: var(--sgds-line-height-3-xl);
 }
 
-.tokenExampleDisplayLgLight {
+.ts-tokenExampleDisplayLgLight {
   font-size: var(--sgds-font-size-display-lg);
   font-weight: var(--sgds-font-weight-light);
   line-height: var(--sgds-line-height-3-xl);
 }
 
-.tokenExampleDisplayMdBold {
+.ts-tokenExampleDisplayMdBold {
   font-size: var(--sgds-font-size-display-md);
   font-weight: var(--sgds-font-weight-bold);
   line-height: var(--sgds-line-height-2-xl);
 }
 
-.tokenExampleDisplayMdLight {
+.ts-tokenExampleDisplayMdLight {
   font-size: var(--sgds-font-size-display-md);
   font-weight: var(--sgds-font-weight-light);
   line-height: var(--sgds-line-height-2-xl);
 }
 
-.tokenExampleDisplaySmBold {
+.ts-tokenExampleDisplaySmBold {
   font-size: var(--sgds-font-size-display-sm);
   font-weight: var(--sgds-font-weight-bold);
   line-height: var(--sgds-line-height-xl);
 }
 
-.tokenExampleDisplaySmLight {
+.ts-tokenExampleDisplaySmLight {
   font-size: var(--sgds-font-size-display-sm);
   font-weight: var(--sgds-font-weight-light);
   line-height: var(--sgds-line-height-xl);
 }
 
-.tokenExampleHeadingXlBold {
+.ts-tokenExampleHeadingXlBold {
   font-size: var(--sgds-font-size-heading-xl);
   font-weight: var(--sgds-font-weight-bold);
   letter-spacing: var(--sgds-letter-spacing-tight);
   line-height: var(--sgds-line-height-xl);
 }
 
-.tokenExampleHeadingXlLight {
+.ts-tokenExampleHeadingXlLight {
   font-size: var(--sgds-font-size-heading-xl);
   font-weight: var(--sgds-font-weight-light);
   letter-spacing: var(--sgds-letter-spacing-tight);
   line-height: var(--sgds-line-height-xl);
 }
 
-.tokenExampleHeadingLgBold {
+.ts-tokenExampleHeadingLgBold {
   font-size: var(--sgds-font-size-heading-lg);
   font-weight: var(--sgds-font-weight-bold);
   letter-spacing: var(--sgds-letter-spacing-tight);
   line-height: var(--sgds-line-height-lg);
 }
 
-.tokenExampleHeadingLgLight {
+.ts-tokenExampleHeadingLgLight {
   font-size: var(--sgds-font-size-heading-lg);
   font-weight: var(--sgds-font-weight-light);
   letter-spacing: var(--sgds-letter-spacing-tight);
   line-height: var(--sgds-line-height-lg);
 }
 
-.tokenExampleHeadingMdSemibold {
+.ts-tokenExampleHeadingMdSemibold {
   font-size: var(--sgds-font-size-heading-md);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-tight);
   line-height: var(--sgds-line-height-md);
 }
 
-.tokenExampleHeadingMdLight {
+.ts-tokenExampleHeadingMdLight {
   font-size: var(--sgds-font-size-heading-md);
   font-weight: var(--sgds-font-weight-light);
   letter-spacing: var(--sgds-letter-spacing-tight);
   line-height: var(--sgds-line-height-md);
 }
 
-.tokenExampleHeadingSmSemibold {
+.ts-tokenExampleHeadingSmSemibold {
   font-size: var(--sgds-font-size-heading-sm);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-tight);
   line-height: var(--sgds-line-height-sm);
 }
 
-.tokenExampleHeadingSmLight {
+.ts-tokenExampleHeadingSmLight {
   font-size: var(--sgds-font-size-heading-sm);
   font-weight: var(--sgds-font-weight-light);
   letter-spacing: var(--sgds-letter-spacing-tight);
   line-height: var(--sgds-line-height-sm);
 }
 
-.tokenExampleSubtitleMdSemibold {
+.ts-tokenExampleSubtitleMdSemibold {
   font-size: var(--sgds-font-size-subtitle-md);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-xs);
 }
 
-.tokenExampleSubtitleMdLight {
+.ts-tokenExampleSubtitleMdLight {
   font-size: var(--sgds-font-size-subtitle-md);
   font-weight: var(--sgds-font-weight-light);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-xs);
 }
 
-.tokenExampleSubtitleSmSemibold {
+.ts-tokenExampleSubtitleSmSemibold {
   font-size: var(--sgds-font-size-subtitle-sm);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-2-xs);
 }
 
-.tokenExampleSubtitleSmLight {
+.ts-tokenExampleSubtitleSmLight {
   font-size: var(--sgds-font-size-subtitle-sm);
   font-weight: var(--sgds-font-weight-light);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-2-xs);
 }
 
-.tokenExampleBodyLgSemibold {
+.ts-tokenExampleBodyLgSemibold {
   font-size: var(--sgds-font-size-body-lg);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-md);
 }
 
-.tokenExampleBodyLgRegular {
+.ts-tokenExampleBodyLgRegular {
   font-size: var(--sgds-font-size-body-lg);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-md);
 }
 
-.tokenExampleBodyMdSemibold {
+.ts-tokenExampleBodyMdSemibold {
   font-size: var(--sgds-font-size-body-md);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-xs);
 }
 
-.tokenExampleBodyMdRegular {
+.ts-tokenExampleBodyMdRegular {
   font-size: var(--sgds-font-size-body-md);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-xs);
 }
 
-.tokenExampleBodySmSemibold {
+.ts-tokenExampleBodySmSemibold {
   font-size: var(--sgds-font-size-body-sm);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-2-xs);
 }
 
-.tokenExampleBodySmRegular {
+.ts-tokenExampleBodySmRegular {
   font-size: var(--sgds-font-size-body-sm);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-2-xs);
 }
 
-.tokenExampleLabelLgSemibold {
+.ts-tokenExampleLabelLgSemibold {
   font-size: var(--sgds-font-size-label-lg);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-md);
 }
 
-.tokenExampleLabelLgRegular {
+.ts-tokenExampleLabelLgRegular {
   font-size: var(--sgds-font-size-label-lg);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-md);
 }
 
-.tokenExampleLabelMdSemibold {
+.ts-tokenExampleLabelMdSemibold {
   font-size: var(--sgds-font-size-label-md);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-xs);
 }
 
-.tokenExampleLabelMdRegular {
+.ts-tokenExampleLabelMdRegular {
   font-size: var(--sgds-font-size-label-md);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-xs);
 }
 
-.tokenExampleLabelMdLight {
+.ts-tokenExampleLabelMdLight {
   font-size: var(--sgds-font-size-label-md);
   font-weight: var(--sgds-font-weight-light);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-xs);
 }
 
-.tokenExampleLabelSmSemibold {
+.ts-tokenExampleLabelSmSemibold {
   font-size: var(--sgds-font-size-label-sm);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-2-xs);
 }
 
-.tokenExampleLabelSmRegular {
+.ts-tokenExampleLabelSmRegular {
   font-size: var(--sgds-font-size-label-sm);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-2-xs);
 }
 
-.tokenExampleLabelXsSemibold {
+.ts-tokenExampleLabelXsSemibold {
   font-size: var(--sgds-font-size-label-xs);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-3-xs);
 }
 
-.tokenExampleLabelXsRegular {
+.ts-tokenExampleLabelXsRegular {
   font-size: var(--sgds-font-size-label-xs);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-3-xs);
 }
 
-.tokenExampleCaptionSemibold {
+.ts-tokenExampleCaptionSemibold {
   font-size: var(--sgds-font-size-caption-md);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-3-xs);
 }
 
-.tokenExampleCaptionRegular {
+.ts-tokenExampleCaptionRegular {
   font-size: var(--sgds-font-size-caption-md);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-3-xs);
 }
 
-.tokenExampleOverlineSemibold {
+.ts-tokenExampleOverlineSemibold {
   font-size: var(--sgds-font-size-overline-md);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
@@ -504,7 +517,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
   text-transform: uppercase;
 }
 
-.tokenExampleOverlineRegular {
+.ts-tokenExampleOverlineRegular {
   font-size: var(--sgds-font-size-overline-md);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
@@ -512,37 +525,37 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
   text-transform: uppercase;
 }
 
-.tokenExampleLinkLgRegular {
+.ts-tokenExampleLinkLgRegular {
   font-size: var(--sgds-font-size-link-lg);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-md);
 }
 
-.tokenExampleLinkMdRegular {
+.ts-tokenExampleLinkMdRegular {
   font-size: var(--sgds-font-size-link-md);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-xs);
 }
 
-.tokenExampleLinkSmRegular {
+.ts-tokenExampleLinkSmRegular {
   font-size: var(--sgds-font-size-link-sm);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-2-xs);
 }
 
-.tokenExampleLinkXsRegular {
+.ts-tokenExampleLinkXsRegular {
   font-size: var(--sgds-font-size-link-xs);
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-3-xs);
 }
 
-.tokenExampleListUnordered,
-.tokenExampleListOrdered,
-.tokenExampleListUnstyled {
+.ts-tokenExampleListUnordered,
+.ts-tokenExampleListOrdered,
+.ts-tokenExampleListUnstyled {
   display: list-item;
   font-size: var(--sgds-font-size-body-md);
   font-weight: var(--sgds-font-weight-regular);
@@ -550,17 +563,17 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
   line-height: var(--sgds-line-height-xs);
 }
 
-.tokenExampleListUnordered {
+.ts-tokenExampleListUnordered {
   list-style-type: disc;
   margin-inline-start: var(--sgds-gap-lg);
 }
 
-.tokenExampleListOrdered {
+.ts-tokenExampleListOrdered {
   list-style-type: decimal;
   margin-inline-start: var(--sgds-gap-lg);
 }
 
-.tokenExampleListUnstyled {
+.ts-tokenExampleListUnstyled {
   list-style-type: none;
 }
 </style>

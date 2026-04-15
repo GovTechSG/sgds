@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import CodeToken from "./ui/CodeToken.vue";
+import CopyCodeToken from "./ui/CopyCodeToken.vue";
 
 type FontSizeRow = {
   name: string;
@@ -101,7 +102,8 @@ const copyUtility = async (sizeName: string, utilityClass: string) => {
 
     <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table font-size-utility-table">
       <sgds-table-row>
-        <sgds-table-head class="typography-page-template__table-utility-column">SGDS utility</sgds-table-head>
+        <sgds-table-head class="typography-page-template__table-utility-column">SGDS Tailwind token</sgds-table-head>
+        <sgds-table-head class="typography-page-template__table-token-column">CSS variables</sgds-table-head>
         <sgds-table-head class="typography-page-template__table-metric-column">Mobile</sgds-table-head>
         <sgds-table-head class="typography-page-template__table-metric-column">Tablet</sgds-table-head>
         <sgds-table-head class="typography-page-template__table-metric-column">Desktop</sgds-table-head>
@@ -123,6 +125,9 @@ const copyUtility = async (sizeName: string, utilityClass: string) => {
               <sgds-icon :name="copiedKey === getRowKey(size.name) ? 'check' : 'copy'" size="md" />
             </button>
           </div>
+        </sgds-table-cell>
+        <sgds-table-cell class="typography-page-template__table-token-column">
+          <CopyCodeToken :label="size.token" copy-label="Copy CSS variable" />
         </sgds-table-cell>
         <sgds-table-cell class="typography-page-template__table-metric-column">
           <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ size.mobile }}px</span>
@@ -169,13 +174,15 @@ const copyUtility = async (sizeName: string, utilityClass: string) => {
 }
 
 .font-size-utility-table .typography-page-template__table-utility-column {
-  inline-size: 12rem;
+  inline-size: max-content;
+  max-inline-size: 14rem;
   min-inline-size: 12rem;
 }
 
 .font-size-utility-table .typography-page-template__table-preview-column {
-  inline-size: clamp(18rem, 40vw, 28rem);
-  min-inline-size: clamp(18rem, 40vw, 28rem);
+  inline-size: max-content;
+  max-inline-size: clamp(18rem, 40vw, 28rem);
+  min-inline-size: 18rem;
 }
 
 .font-size-preview-text {
@@ -190,6 +197,7 @@ const copyUtility = async (sizeName: string, utilityClass: string) => {
   .font-size-utility-table .typography-page-template__table-utility-column,
   .font-size-utility-table .typography-page-template__table-preview-column {
     inline-size: auto;
+    max-inline-size: none;
     min-inline-size: 0;
   }
 }

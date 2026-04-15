@@ -2,6 +2,18 @@
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
 
+type SpacingTokenSection =
+  | "spacer-scale"
+  | "text-gap"
+  | "layout-gap"
+  | "component-gap"
+  | "component-padding"
+  | "layout-padding";
+
+const props = withDefaults(defineProps<{ section?: SpacingTokenSection }>(), {
+  section: "spacer-scale",
+});
+
 // ─── Spacer scale ────────────────────────────────────────────────────────────
 
 type SpacerRow = { index: number; rem: string; px: string; isBase?: boolean };
@@ -76,7 +88,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
   <TypographyPageTemplate>
 
     <!-- ── Spacer scale ──────────────────────────────────────────────────── -->
-    <section class="typography-page-template__section typography-page-template__section--spaced">
+    <section v-if="props.section === 'spacer-scale'" class="typography-page-template__section typography-page-template__section--spaced">
       <div class="typography-page-template__content-block">
         <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Spacer scale</h4>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -122,7 +134,10 @@ const layoutPaddingRows: ResponsiveRow[] = [
     </section>
 
     <!-- ── Gap tokens ────────────────────────────────────────────────────── -->
-    <section class="typography-page-template__section typography-page-template__section--spaced">
+    <section
+      v-if="props.section === 'text-gap' || props.section === 'layout-gap' || props.section === 'component-gap'"
+      class="typography-page-template__section typography-page-template__section--spaced"
+    >
       <div class="typography-page-template__content-block">
         <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Gap tokens</h4>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -135,7 +150,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
         <!-- Text gap -->
-        <article class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <article v-if="props.section === 'text-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
           <div class="typography-page-template__content-block">
             <h5 class="sgds-subtitle-md-semibold sgds:m-0">Text gap</h5>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -170,7 +185,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
         </article>
 
         <!-- Layout gap -->
-        <article class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <article v-if="props.section === 'layout-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
           <div class="typography-page-template__content-block">
             <h5 class="sgds-subtitle-md-semibold sgds:m-0">Layout gap</h5>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -205,7 +220,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
         </article>
 
         <!-- Component gap -->
-        <article class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <article v-if="props.section === 'component-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
           <div class="typography-page-template__content-block">
             <h5 class="sgds-subtitle-md-semibold sgds:m-0">Component gap</h5>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -242,7 +257,10 @@ const layoutPaddingRows: ResponsiveRow[] = [
     </section>
 
     <!-- ── Padding tokens ─────────────────────────────────────────────────── -->
-    <section class="typography-page-template__section typography-page-template__section--spaced">
+    <section
+      v-if="props.section === 'component-padding' || props.section === 'layout-padding'"
+      class="typography-page-template__section typography-page-template__section--spaced"
+    >
       <div class="typography-page-template__content-block">
         <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Padding tokens</h4>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -256,7 +274,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
         <!-- Component padding -->
-        <article class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <article v-if="props.section === 'component-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
           <div class="typography-page-template__content-block">
             <h5 class="sgds-subtitle-md-semibold sgds:m-0">Component padding</h5>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -291,7 +309,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
         </article>
 
         <!-- Layout padding -->
-        <article class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <article v-if="props.section === 'layout-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
           <div class="typography-page-template__content-block">
             <h5 class="sgds-subtitle-md-semibold sgds:m-0">Layout padding</h5>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -334,26 +352,30 @@ const layoutPaddingRows: ResponsiveRow[] = [
 /* Column widths — clamp() cannot be expressed as SGDS utilities */
 .st-token-col {
   box-sizing: border-box;
-  inline-size: clamp(14rem, 24vw, 18rem);
-  min-inline-size: clamp(14rem, 24vw, 18rem);
+  inline-size: max-content;
+  max-inline-size: clamp(14rem, 24vw, 18rem);
+  min-inline-size: 13rem;
 }
 
 .st-metric-col {
   box-sizing: border-box;
-  inline-size: clamp(6rem, 8vw, 7rem);
-  min-inline-size: clamp(6rem, 8vw, 7rem);
+  inline-size: max-content;
+  max-inline-size: 7.5rem;
+  min-inline-size: 5.5rem;
 }
 
 .st-swatch-col {
   box-sizing: border-box;
-  inline-size: clamp(6rem, 12vw, 9rem);
-  min-inline-size: clamp(6rem, 12vw, 9rem);
+  inline-size: max-content;
+  max-inline-size: 9rem;
+  min-inline-size: 6rem;
 }
 
 .st-usage-col {
   box-sizing: border-box;
-  inline-size: clamp(12rem, 28vw, 18rem);
-  min-inline-size: clamp(12rem, 28vw, 18rem);
+  inline-size: max-content;
+  max-inline-size: clamp(18rem, 30vw, 24rem);
+  min-inline-size: 16rem;
 }
 
 /* Spacer visual bar — width set dynamically via :style binding (CSS var per row) */
@@ -377,6 +399,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
   .st-swatch-col,
   .st-usage-col {
     inline-size: auto;
+    max-inline-size: none;
     min-inline-size: 0;
   }
 }
