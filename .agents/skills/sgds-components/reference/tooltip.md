@@ -4,6 +4,46 @@
 
 No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
 
+## Usage Guideline
+
+### When to use
+
+- To provide supplementary, non-critical contextual information about a UI element on hover or focus (e.g. explaining what an icon button does, providing a longer label for an abbreviated term).
+- When adding visible label text would clutter the interface — the tooltip surfacees the information only when needed.
+- For icon-only buttons where `<sgds-icon-button>` does not have a visible text label.
+
+### When NOT to use
+
+- For critical information users must see — tooltips are dismissible and not always triggered.
+- To display actionable content (e.g. links, buttons) — tooltip content is plain text only.
+- On touch-only experiences without a click fallback — hover is unavailable on touch devices.
+
+## Behaviour
+
+- Appears on hover and focus by default (`trigger="hover focus"`); also supports `click` and `focus`-only triggers.
+- Auto-repositions to avoid viewport overflow — the declared `placement` is the preferred position.
+- Content is plain text only — HTML is not rendered inside the tooltip.
+- `aria-describedby` is set automatically on the target element when `content` is populated — do not add it manually.
+
+## Advanced Considerations
+
+- **Plain text only**: the `content` attribute is rendered as plain text — HTML tags are escaped and displayed as literal text. For rich content (links, formatted text), use a popover or modal instead.
+- **`trigger` combinations**: `"hover focus"` (default) handles both mouse and keyboard users; `"click"` is useful for copy-to-clipboard feedback; `"focus"` alone is best for form field supplementary hints.
+- **Non-focusable targets**: elements like `<svg>`, `<div>`, `<span>` are not keyboard-focusable by default — add `tabindex="0"` to make the tooltip accessible to keyboard users.
+- **Disabled element workaround**: browsers do not fire pointer events on disabled elements — wrap a disabled element in a non-disabled `<span>` to allow the tooltip to trigger.
+- **Automatic repositioning**: the tooltip repositions itself to stay within the viewport; `placement` is the preferred direction, not a fixed constraint.
+- **Screen reader announcement**: the tooltip content is announced via `aria-describedby` — keep content concise and supplementary, not critical.
+- **`content` must be set**: an empty `content` attribute renders a tooltip with no text — always provide a meaningful content string.
+
+## Edge Cases
+
+- **Disabled elements**: tooltips won't trigger on disabled elements — wrap the disabled element in a non-disabled `<span>` to enable triggering.
+- **Non-focusable targets**: add `tabindex="0"` to SVG, div, or span targets so keyboard users can trigger the tooltip.
+- **Touch devices**: `trigger="hover"` has no effect — use `trigger="click"` as a fallback or consider inline hint text instead.
+- **Long content**: tooltip text should be short (1–2 lines max) — for longer content use a popover or modal instead.
+- **Scrolling containers**: tooltip positioning may break in scrolling parents — test placement or use a portal strategy.
+- **Screen readers**: the tooltip component handles `aria-describedby` automatically when content is set — do not add it manually.
+
 ## Quick Decision Guide
 
 **Placement?**

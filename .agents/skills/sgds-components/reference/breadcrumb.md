@@ -2,6 +2,52 @@
 
 `<sgds-breadcrumb>` renders a navigational trail showing the user's location within a page hierarchy. Each step is a `<sgds-breadcrumb-item>` wrapping a standard `<a>` tag.
 
+No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
+
+## Usage Guideline
+
+### When to use
+
+- On pages within a multi-level hierarchy (2 or more levels deep) to show the user's current location and provide quick navigation back to parent pages.
+- For content-heavy sites (documentation, product catalogues, portals) where users frequently navigate laterally or upward through the structure.
+- When users may arrive at a deep page directly (e.g. from search) and need wayfinding context.
+
+### When NOT to use
+- For flat structures with minimal hierarchy
+- As a primary navigation replacement
+- When the hierarchy is unclear, dynamic, or non-linear
+- In small, focused flows (e.g. forms, wizards — use stepper instead)
+
+## Behaviour
+
+- Displays items in left-to-right sequence, starting from the root (e.g. Home)
+- Each item represents a level in the hierarchy
+- All items except the last are clickable links
+- The last item represents the current page and is non-clickable
+- Middle items collapse into an overflow menu when 5 or more items are present
+- Separators visually distinguish levels and are non-interactive
+
+## Advanced Considerations
+
+**Responsive behaviour** — collapse middle items into an overflow (e.g. `...`) on smaller screens; this happens automatically at 5+ items
+
+**Dynamic breadcrumbs** — generate based on routing or IA structure
+
+**Accessibility** — use `aria-label` on the `<nav>` wrapper; mark current page with `aria-current="page"` (set automatically by the component)
+
+**SEO support** — use structured data (e.g. `schema.org BreadcrumbList`) for search engine visibility
+
+**Consistency** — align breadcrumb logic with global navigation patterns across your product
+
+## Edge Cases
+
+- **Very deep hierarchies (5+ levels)** — middle items collapse automatically into overflow
+- **Long labels** — apply truncation with tooltip for full text
+- **Duplicate names across levels** — ensure clarity through context or naming adjustments
+- **Non-hierarchical navigation paths** — avoid showing misleading breadcrumb trails
+- **Dynamic or filtered pages** — avoid including temporary states (e.g. filters) as breadcrumb items
+- **Localisation** — ensure translated labels remain concise and meaningful
+
 ## Quick Decision Guide
 
 **Always pass a single `<a>` tag** inside each `<sgds-breadcrumb-item>`.

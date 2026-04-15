@@ -121,3 +121,10 @@ Controls the corner roundness of form HTML elements. Use these instead of the ge
   placeholder="Search..."
 />
 ```
+
+## See Also
+
+- **[base.md](base.md)** — Base border color tokens (default, inverse, transparent, fixed)
+- **[semantic.md](semantic.md)** — Semantic border colors for validation states
+- **[border-width](../border-width.md)** — Border thickness utilities
+- **[background-color/form.md](../background-color/form.md)** — Form input background tokens

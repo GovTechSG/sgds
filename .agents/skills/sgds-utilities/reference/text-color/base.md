@@ -1,4 +1,4 @@
-# Text Color — Semantic Base Reference
+# Base Text Colors Reference
 
 Semantic base tokens provide a content hierarchy that adapts automatically to light/dark themes. Use these for general-purpose text when a specific role (heading, link, label) does not apply.
 
@@ -120,3 +120,9 @@ Text colors using theme-aware tokens update automatically:
 - Use `fixed` variants only when the background is also fixed and guaranteed.
 - Do not mix `fixed-light` text with a theme-aware background — contrast is not guaranteed.
 - Avoid `sgds:text-muted` for important content; it is intentionally low-contrast.
+
+## See Also
+
+- **[semantic.md](semantic.md)** — Semantic text colors (primary, accent, success, danger, warning, purple, cyan, neutral)
+- **[typography-roles.md](typography-roles.md)** — Role-based text tokens (heading, body, label, link)
+- **[color-semantics](../color-semantics.md)** — Modifier definitions

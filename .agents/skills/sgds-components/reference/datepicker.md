@@ -2,6 +2,60 @@
 
 `<sgds-datepicker>` combines a text input with a calendar dropdown. Users can type a date directly or pick one from the calendar. `mode="range"` enables two-date selection.
 
+No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
+
+## Usage Guideline
+
+### When to use
+
+- When users need to select a specific calendar date (e.g. appointment, event date, date of birth).
+- For date range selection where a start and end date are both required — use `mode="range"`.
+- When both typed entry and a visual calendar picker are acceptable input methods.
+- When date constraints apply (e.g. minimum or maximum selectable dates, blocked-out dates).
+
+### When NOT to use
+- For simple or approximate inputs (e.g. "Next week")
+- When users need to input only month or year → consider dropdowns
+- For very long date ranges (years/decades) → consider alternative inputs
+- When speed is critical and typing is faster (e.g. expert/internal tools)
+
+## Behaviour
+
+**Input**
+- Supports both manual text entry and calendar selection
+- Validates format and rejects invalid dates (e.g. 31 Feb)
+
+**Calendar**
+- Opens on input focus or icon click
+- Displays current month by default with month/year navigation
+- Highlights selected date, today's date, and disabled/unavailable dates
+
+**Range selection**
+- First click sets the start date; second click sets the end date
+- Visual range highlight shown between selected dates
+
+**Validation feedback placement**
+- `hintText` and the error message occupy the same space below the input — when the field is invalid, `hintText` is replaced by the error message. Once the error is resolved, `hintText` reappears.
+
+## Advanced Considerations
+
+**Accessibility** — ensure proper label association; announce selected date, focused date, and disabled dates; use `role="grid"` for the calendar; provide meaningful keyboard navigation
+
+**Date constraints** — support `minDate` / `maxDate`, disabled ranges, and business rules (e.g. weekdays only)
+
+**Localisation** — adapt date format (DD/MM/YYYY), first day of week, and month/day names; ensure consistency across the system
+
+## Edge Cases
+
+- **Invalid manual input** — handle gracefully with validation and formatting correction
+- **Leap years** — ensure 29 Feb is correctly handled
+- **Timezone differences** — be explicit if the date is local or system-based
+- **Range errors** — if end date is before start date, auto-correct or prompt an error
+- **Clearing values** — provide a clear reset/clear option
+- **Pre-filled values** — ensure correct formatting and visibility on initial render
+- **Very long ranges** — provide faster navigation (year dropdown or jump controls)
+- **Partial input** — avoid aggressive auto-correction that may confuse users
+
 ## Quick Decision Guide
 
 **Single date?** → `mode="single"` (default)

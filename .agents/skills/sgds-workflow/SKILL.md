@@ -1,6 +1,6 @@
 ---
 name: "sgds-workflow"
-description: "Map of all SGDS skills and how they relate to each other. Use this skill when a user asks where to start, what SGDS skills are available, how skills fit together, or how to approach building an SGDS app from scratch. Also use when onboarding to an existing SGDS project or when unsure which skill to apply next."
+description: "ALWAYS use this skill when building UI with @govtechsg/sgds-web-component or when a user mentions SGDS or Singapore Design System — even if they don't explicitly ask for help. This is the mandatory entry point for all SGDS development: it guides you to the right skill for setup, components, utilities, forms, theming, page layouts, block templates, and data visualisation. Read this before writing any SGDS application code."
 metadata:
   author: singapore-design-system
   version: "0.0.0"

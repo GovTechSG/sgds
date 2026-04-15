@@ -4,6 +4,68 @@
 
 No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
 
+## Usage Guideline
+
+### When to use
+
+- As the primary horizontal navigation bar for any Singapore Government digital service or web application.
+- When users need to navigate between top-level sections of a site from a persistent header.
+- When the site has a brand logo that should link back to the homepage.
+- When some nav items should expand into dropdown menus with sub-links.
+- When right-aligned items (e.g. login button, language toggle) are needed in the navigation bar.
+
+### When NOT to use
+
+- For secondary or section-level navigation — use `<sgds-subnav>` or `<sgds-sidenav>` instead.
+- For in-page navigation between sections — use `<sgds-table-of-contents>`.
+- As the sole navigation in a sidebar layout — use `<sgds-sidebar>` or `<sgds-sidenav>`.
+- When navigation is minimal and does not require a full header bar — consider a simpler standalone link structure.
+
+## Behaviour
+
+- Renders a horizontal navigation bar with a brand area, primary nav items, and optional right-aligned items.
+- Collapses into a hamburger menu at the breakpoint defined by `expand` (default `lg`); use `expand="always"` to never collapse or `expand="never"` to always show the hamburger.
+- `<sgds-mainnav-item>` renders a nav link; the default slot takes an `<a>` tag.
+- `<sgds-mainnav-dropdown>` renders a dropdown trigger with `<sgds-dropdown-item>` children; the `toggler` slot takes the trigger element.
+- Items in the `end` slot are right-aligned and also collapse into the hamburger menu on small screens.
+- Items in the `non-collapsible` slot remain visible at all screen sizes regardless of the `expand` setting.
+- `active` on `<sgds-mainnav-item>` highlights the current page link.
+- Fires `sgds-show`, `sgds-after-show`, `sgds-hide`, `sgds-after-hide` when the collapsed menu opens or closes (mobile only).
+
+## Component Composition
+
+**`brand` slot** — a single `<img>` with `alt`, `width`, and `src`. Set `brandHref` on `<sgds-mainnav>` to the homepage URL (`"/"`). Always provide brand content.
+
+**Default slot** — `<sgds-mainnav-item>` and `<sgds-mainnav-dropdown>` elements for primary navigation. Do not place other elements directly in the default slot.
+
+**Inside `<sgds-mainnav-item>`** — a single `<a href="...">Label</a>`. Set `active` on the item matching the current route.
+
+**Inside `<sgds-mainnav-dropdown>`** — a `toggler` slot element (typically `<span>` with the section label) and `<sgds-dropdown-item>` children with `<a>` tags for sub-navigation links.
+
+**`end` slot** — right-aligned secondary actions: login button (`<sgds-button>`), language toggle (`<sgds-mainnav-item>`), or similar. These also collapse into the hamburger menu on small screens.
+
+**`non-collapsible` slot** — items that stay visible at all screen sizes regardless of hamburger collapse state (e.g. a language icon, accessibility toggle).
+
+**Avoid placing inside mainnav:**
+- Form inputs or search bars in the default slot — use the `end` slot or a dedicated search component
+- More than 5–7 primary nav items — consolidate into dropdowns to prevent overflow at mid-size breakpoints
+
+## Advanced Considerations
+
+- **`non-collapsible` slot**: use for items that must always be visible (e.g. a language toggle icon) — these are not hidden when the nav collapses.
+- **`end` slot collapse behaviour**: items in `end` collapse into the hamburger menu alongside default slot items — if an item must stay visible on mobile, use `non-collapsible` instead.
+- **`<sgds-mainnav-dropdown>` API**: inherits `<sgds-dropdown>` properties — see [dropdown.md](dropdown.md) for `active`, `menuIsOpen`, `close`, and `drop` options.
+- **`fluid` layout**: by default the mainnav uses a fixed-width container; set `fluid` for full-width layouts (e.g. dashboards or edge-to-edge designs).
+- **Singapore Government requirement**: `<sgds-masthead>` must appear above `<sgds-mainnav>` on all Singapore Government digital services.
+
+## Edge Cases
+
+- **No brand slot content**: the brand area renders empty — always provide an `<img>` in the `brand` slot and set `brandHref`.
+- **No `active` item set**: no nav item is highlighted — set `active` on the item matching the current route; update it on route changes in SPAs.
+- **`expand="never"` on desktop**: the hamburger menu is always shown even on wide screens — only use `never` for contexts where a collapsed nav is always desired.
+- **Dropdown without `toggler` slot content**: the dropdown trigger renders with no label — always provide a `<span>` or button in the `toggler` slot.
+- **Many nav items**: the horizontal bar may overflow on mid-size screens — test at the `expand` breakpoint and consider consolidating items into a dropdown.
+
 ## Quick Decision Guide
 
 **When does the navbar collapse into hamburger?** → `expand="lg"` (default) — collapses below the `lg` breakpoint

@@ -154,7 +154,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 <sgds-masthead suppressHydrationWarning></sgds-masthead>
 ```
 
-**Step 4 — TypeScript support** — add a `types.d.ts` at the project root declaring each `sgds-*` tag in `JSX.IntrinsicElements` as `React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>`.
+**Step 4 — TypeScript support** — add a `types.d.ts` at the project root and reference the SGDS React type definitions. This gives full IntelliSense for props and typed `CustomEvent` detail payloads on all `sgds-*` elements:
+
+Use an ES import in any `.d.ts` file included by your `tsconfig`:
+
+```ts
+import "@govtechsg/sgds-web-component/types/react";
+```
 
 **Events in Next.js** — due to hydration timing, wire custom events via `useEffect` + `addEventListener` rather than declarative React props:
 
@@ -306,6 +312,8 @@ When a user reports unexpected component behaviour (wrong event, property not re
 | **Actions** | Icon Button | [→ reference/icon-button.md](reference/icon-button.md) |
 | **Actions** | Close Button | [→ reference/close-button.md](reference/close-button.md) |
 | **Actions** | Link | [→ reference/link.md](reference/link.md) |
+| **Actions** | Dropdown | [→ reference/dropdown.md](reference/dropdown.md) |
+| **Actions** | Overflow Menu | [→ reference/overflow-menu.md](reference/overflow-menu.md) |
 | **Navigation** | Masthead | [→ reference/masthead.md](reference/masthead.md) |
 | **Navigation** | Main Nav | [→ reference/mainnav.md](reference/mainnav.md) |
 | **Navigation** | Footer | [→ reference/footer.md](reference/footer.md) |
@@ -320,7 +328,6 @@ When a user reports unexpected component behaviour (wrong event, property not re
 | **Layout** | Divider | [→ reference/divider.md](reference/divider.md) |
 | **Layout** | Drawer | [→ reference/drawer.md](reference/drawer.md) |
 | **Layout** | Modal | [→ reference/modal.md](reference/modal.md) |
-| **Content** | Alert | [→ reference/alert.md](reference/alert.md) |
 | **Content** | Badge | [→ reference/badge.md](reference/badge.md) |
 | **Content** | Card | [→ reference/card.md](reference/card.md) |
 | **Content** | Icon Card | [→ reference/icon-card.md](reference/icon-card.md) |
@@ -329,6 +336,7 @@ When a user reports unexpected component behaviour (wrong event, property not re
 | **Content** | Description List | [→ reference/description-list.md](reference/description-list.md) |
 | **Content** | Icon | [→ reference/icon.md](reference/icon.md) |
 | **Content** | Icon List | [→ reference/icon-list.md](reference/icon-list.md) |
+| **Content** | Table | [→ reference/table.md](reference/table.md) |
 | **Content** | Tooltip | [→ reference/tooltip.md](reference/tooltip.md) |
 | **Forms** | Input | [→ reference/input.md](reference/input.md) |
 | **Forms** | Textarea | [→ reference/textarea.md](reference/textarea.md) |
@@ -341,11 +349,9 @@ When a user reports unexpected component behaviour (wrong event, property not re
 | **Forms** | Quantity Toggle | [→ reference/quantity-toggle.md](reference/quantity-toggle.md) |
 | **Forms** | Switch | [→ reference/switch.md](reference/switch.md) |
 | **Forms** | Stepper | [→ reference/stepper.md](reference/stepper.md) |
+| **Feedback** | Alert | [→ reference/alert.md](reference/alert.md) |
 | **Feedback** | Spinner | [→ reference/spinner.md](reference/spinner.md) |
 | **Feedback** | Skeleton | [→ reference/skeleton.md](reference/skeleton.md) |
 | **Feedback** | Progress Bar | [→ reference/progress-bar.md](reference/progress-bar.md) |
 | **Feedback** | Toast | [→ reference/toast.md](reference/toast.md) |
 | **Feedback** | System Banner | [→ reference/system-banner.md](reference/system-banner.md) |
-| **Data** | Table | [→ reference/table.md](reference/table.md) |
-| **Data** | Dropdown | [→ reference/dropdown.md](reference/dropdown.md) |
-| **Data** | Overflow Menu | [→ reference/overflow-menu.md](reference/overflow-menu.md) |

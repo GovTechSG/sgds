@@ -32,7 +32,7 @@ Three categories cover all text color needs:
 
 **1. Semantic base** — content hierarchy that adapts to theme (`text-default`, `text-subtle`, `text-muted`, `text-inverse`, `text-fixed-light`, `text-fixed-dark`)
 
-**2. Contextual** — named semantic colors for specific meanings (`primary`, `accent`, `success`, `danger`, `warning`, `purple`, `cyan`, `neutral` — each with `default`, `emphasis`, `fixed-light`, `fixed-dark`)
+**2. Semantic** — named semantic colors for specific meanings (`primary`, `accent`, `success`, `danger`, `warning`, `purple`, `cyan`, `neutral` — each with `default`, `emphasis`, `fixed-light`, `fixed-dark`)
 
 **3. Typography roles** — purpose-specific tokens for structured content (`display-default`, `heading-default`, `body-default`, `body-subtle`, `label-default`, `link-default`, `link-emphasis`)
 
@@ -41,9 +41,9 @@ Three categories cover all text color needs:
 | Topic | File |
 |---|---|
 | Semantic base colors (default, subtle, muted, inverse, fixed) | [text-color/base.md](text-color/base.md) |
-| Contextual colors (primary, success, danger, warning…) | [text-color/contextual.md](text-color/contextual.md) |
+| Semantic colors (primary, success, danger, warning…) | [text-color/semantic.md](text-color/semantic.md) |
 | Typography role tokens (display, heading, body, label, link) | [text-color/typography-roles.md](text-color/typography-roles.md) |
 
 ---
 
-**For AI agents**: When no specific color is requested, start with typography role tokens (`heading-default`, `body-default`, `label-default`, `link-default`) for structured content. Use semantic base tokens for generic text hierarchy. Reserve contextual colors for state or brand meaning. Prefer SGDS components (`<sgds-*>`) when available.
+**For AI agents**: When no specific color is requested, start with typography role tokens (`heading-default`, `body-default`, `label-default`, `link-default`) for structured content. Use semantic base tokens for generic text hierarchy. Reserve semantic colors for state or brand meaning. Prefer SGDS components (`<sgds-*>`) when available.

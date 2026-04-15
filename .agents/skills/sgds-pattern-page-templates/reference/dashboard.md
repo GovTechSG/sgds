@@ -63,35 +63,35 @@ Uses the **Sidebar App Layout** from the [Application Shell](../../sgds-pattern-
 
     <sgds-sidebar-section title="Analytics" name="analytics">
       <sgds-sidebar-item name="dashboard" title="Dashboard">
-        <sgds-icon name="grid-fill" slot="leadingIcon"></sgds-icon>
+        <sgds-icon name="grid-fill" slot="icon"></sgds-icon>
         <a href="/dashboard"></a>
       </sgds-sidebar-item>
       <!-- Root-level group: clicking opens a drawer overlay with children -->
       <sgds-sidebar-group name="submissions" title="Submissions">
-        <sgds-icon name="file-earmark-text" slot="leadingIcon"></sgds-icon>
+        <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
         <sgds-sidebar-item name="all-submissions" title="All submissions">
-          <sgds-icon name="files" slot="leadingIcon"></sgds-icon>
+          <sgds-icon name="files" slot="icon"></sgds-icon>
         </sgds-sidebar-item>
         <sgds-sidebar-item name="pending" title="Pending review">
-          <sgds-icon name="pending-circle" slot="leadingIcon"></sgds-icon>
+          <sgds-icon name="pending-circle" slot="icon"></sgds-icon>
         </sgds-sidebar-item>
         <sgds-sidebar-item name="approved" title="Approved">
-          <sgds-icon name="check-circle-fill" slot="leadingIcon"></sgds-icon>
+          <sgds-icon name="check-circle-fill" slot="icon"></sgds-icon>
         </sgds-sidebar-item>
       </sgds-sidebar-group>
       <sgds-sidebar-item name="reports" title="Reports">
-        <sgds-icon name="speedometer" slot="leadingIcon"></sgds-icon>
+        <sgds-icon name="speedometer" slot="icon"></sgds-icon>
         <a href="/reports"></a>
       </sgds-sidebar-item>
     </sgds-sidebar-section>
 
     <sgds-sidebar-section title="Manage" name="manage">
       <sgds-sidebar-item name="users" title="Users">
-        <sgds-icon name="users" slot="leadingIcon"></sgds-icon>
+        <sgds-icon name="users" slot="icon"></sgds-icon>
         <a href="/users"></a>
       </sgds-sidebar-item>
       <sgds-sidebar-item name="settings" title="Settings">
-        <sgds-icon name="gear" slot="leadingIcon"></sgds-icon>
+        <sgds-icon name="gear" slot="icon"></sgds-icon>
         <a href="/settings"></a>
       </sgds-sidebar-item>
     </sgds-sidebar-section>

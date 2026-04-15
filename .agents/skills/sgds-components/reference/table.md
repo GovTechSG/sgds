@@ -4,6 +4,49 @@
 
 No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
 
+## Usage Guideline
+
+### When to use
+
+- When presenting structured data with a clear relationship between rows and columns (e.g. records, reports, listings).
+- When users need to scan, compare, or reference multiple data points across multiple items.
+- For admin dashboards, data management interfaces, and any feature involving lists of records with multiple attributes per item.
+- When cells need to contain rich content like action buttons, status badges, or links alongside data.
+
+### When NOT to use
+
+- For layout purposes — use CSS grid or flexbox utilities instead.
+- When there is only one column of data — a simple list is more appropriate.
+- For displaying key–value pairs of a single item — use `<sgds-description-list>` instead.
+- When the data volume is very small (1–2 rows with 1–2 columns) — a plain prose format may be clearer.
+- **Inside a narrow grid column, or beside other elements sharing the same row** — a table must always span the full 12-column grid width. Placing it in a split layout (e.g. 6 + 6 columns) compresses columns and harms readability.
+
+## Behaviour
+
+- `<sgds-table>` is a container that wraps `<sgds-table-row>`, `<sgds-table-head>`, and `<sgds-table-cell>` sub-components.
+- The first `<sgds-table-row>` should contain `<sgds-table-head>` cells; all subsequent rows use `<sgds-table-cell>`.
+- `headerBackground` on `<sgds-table>` applies a background shade to all `<sgds-table-head>` cells automatically.
+- `tableBorder` on `<sgds-table>` renders visible borders on all cells.
+- `responsive` on `<sgds-table>` enables horizontal scrolling at the specified breakpoint (`sm`, `md`, `lg`, `xl`, or `always`).
+- `<sgds-table-cell>` accepts any HTML content — use for badges, buttons, links, or mixed content.
+- No custom events or public methods on any sub-component.
+
+## Advanced Considerations
+
+- **Always use slot-based sub-components**: the legacy array-based properties (`tableData`, `columnHeader`, `rowHeader`) exist on `<sgds-table>` but must never be used — use `<sgds-table-row>`, `<sgds-table-head>`, and `<sgds-table-cell>` exclusively.
+- **`headerBackground` and `tableBorder` cascade**: these attributes are set on `<sgds-table>` only and automatically affect all descendant header and cell elements — do not set them on individual sub-components.
+- **`responsive` breakpoint behaviour**: a table with `responsive="md"` scrolls horizontally only on viewports narrower than the `md` breakpoint; on wider viewports it renders normally.
+- **Rich cell content**: `<sgds-table-cell>` slots accept any HTML — placing interactive elements (buttons, links) inside cells is the supported pattern for action columns.
+- **No sorting or pagination built in**: `<sgds-table>` is a presentational component — implement sorting, filtering, and pagination logic in your application layer.
+
+## Edge Cases
+
+- **Empty table**: `<sgds-table>` with no rows renders an empty container — always include at least a header row.
+- **Missing header row**: without `<sgds-table-head>` cells, the table has no accessible column headers — always include a header row with `<sgds-table-head>` elements.
+- **Inconsistent column counts**: rows with fewer cells than the header row leave trailing empty columns — ensure all rows have the same number of cells.
+- **Very wide tables without `responsive`**: content overflows the container on narrow viewports — add `responsive` when the table has many columns.
+- **Complex content in cells on narrow viewports**: buttons or badges inside cells may wrap or overflow — test rich cell layouts at target breakpoints.
+
 ## Sub-components
 
 | Tag | Role |
@@ -104,3 +147,4 @@ None.
 3. `<sgds-table-cell>` accepts rich HTML — badges, buttons, links are fine inside cells.
 4. `headerBackground` and `tableBorder` are boolean attributes on `<sgds-table>` only — they cascade down to sub-components automatically.
 5. There are no custom events or public methods on this component.
+6. **`<sgds-table>` must always occupy the full 12-column grid width.** Never place it beside another element sharing the same grid row (e.g. do not put it in a 6-column half alongside a sidebar or form). Tables need the full width to display columns legibly — splitting them into a partial-width column makes them unreadable. If a filter panel or sidebar is needed, stack it above or below the table, not beside it.

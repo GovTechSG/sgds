@@ -4,6 +4,48 @@
 
 No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
 
+## Usage Guideline
+
+### When to use
+
+- When users must choose one option from a predefined list and the list is too long to display as radio buttons.
+- For 5 or more options where a dropdown is more space-efficient than a visible list of radios.
+- When built-in search filtering helps users find their option in a moderately sized list.
+- As a single-selection control in forms where the valid options are fixed and known upfront.
+
+### When NOT to use
+
+- When users need to enter free-form text not in the predefined options.
+- When there are too many options that would be hard to scroll through (built-in filtering helps, but very large lists are still unwieldy — consider `<sgds-combo-box>` with async loading).
+- When immediate action is needed without an extra click or tap.
+- When multi-selection is required — use `<sgds-combo-box multiSelect>` instead.
+
+## Behaviour
+
+- Opens a dropdown when clicked or focused.
+- Highlights hovered or keyboard-navigated options.
+- Supports keyboard navigation: `Tab` to focus, `Enter` to select, `Arrow Up`/`Down` to navigate options.
+- Closes the dropdown on outside click or pressing `Esc`.
+- Updates the value immediately upon selection.
+- Shows a loading spinner when `loading` is set.
+- `hintText` and the error message occupy the same space below the select — when the field is invalid, `hintText` is replaced by the error message. Once the error is resolved, `hintText` reappears.
+
+## Advanced Considerations
+
+- For very large option lists, consider async loading via `loading` and dynamically updating children.
+- For multi-select, use `<sgds-combo-box multiSelect>` — `<sgds-select>` is single-select only.
+- `hasFeedback` on `<sgds-select>` is a **boolean** (`hasFeedback` or `hasFeedback="false"`) — unlike `<sgds-input>` and `<sgds-textarea>` where it is a string enum (`"style" | "text" | "both"`). Always pair with `invalidFeedback` for the error message.
+- `readonly` makes the select non-interactable but the current value remains visible and is still submitted with the form — use when displaying a locked pre-selection that users cannot change.
+- Disabled options (via `disabled` on `<sgds-select-option>`) are render-only — they cannot be selected but remain visible in the dropdown as unavailable choices.
+- `<sgds-select>` does not support `hasFeedback="style"`, `"text"`, or `"both"` string values; passing a truthy string like `hasFeedback="both"` will be treated as boolean `true` — use simple boolean presence (`hasFeedback`) on this component.
+
+## Edge Cases
+
+- **Empty state**: If no `<sgds-select-option>` children are provided, the dropdown opens with no items.
+- **Duplicate values**: Avoid options with identical `value` attributes; `<sgds-select>` matches by value string.
+- **Long labels**: Options with very long text may overflow; keep labels concise since no CSS parts are exposed to customise overflow behaviour.
+- **Dynamic option changes**: Avoid mutating the option list while the dropdown is open to prevent focus and selection inconsistencies.
+
 ## Quick Decision Guide
 
 **Single selection only?** → `<sgds-select>` with `<sgds-select-option>` children
@@ -110,4 +152,5 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 1. Each option requires a `value` attribute — the `<sgds-select>` `value` attribute reflects the selected option's `value`.
 2. Use `sgds-select` event (not `sgds-change`) for detecting user selection; read `element.value` for the selected value.
 3. For multi-selection, use `<sgds-combo-box multiSelect>` — `<sgds-select>` is single-select only.
-4. There are no public methods on this component.
+4. `hasFeedback` on `<sgds-select>` is a boolean — not the string enum used by `<sgds-input>` and `<sgds-textarea>`. Use `hasFeedback` (presence) alongside `invalidFeedback` for the error message; do not pass `hasFeedback="both"`.
+5. There are no public methods on this component.

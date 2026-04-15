@@ -4,6 +4,42 @@
 
 No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
 
+## Usage Guideline
+
+### When to use
+
+- When the total duration or steps of a task are known and measurable.
+- For file uploads, data processing, form completion, or multi-step flows where progress can be quantified.
+
+### When NOT to use
+
+- When the duration is unknown and indeterminate — use `<sgds-spinner>` instead.
+- For step navigation in a multi-step wizard — use `<sgds-stepper>` instead.
+
+## Behaviour
+
+- Renders a filled horizontal bar whose width reflects `value` relative to the `ariamin`–`ariamax` range.
+- `value` is required; it should always fall within the `ariamin` to `ariamax` range.
+- `ariamin` and `ariamax` set the `aria-valuemin` and `aria-valuemax` ARIA attributes respectively.
+- `arialabel` sets the accessible label for screen readers — describe what is being measured (e.g. "File upload progress"), not the value itself.
+- `label` renders visible text inside the bar (e.g. `"60%"`, `"Step 3 of 5"`).
+- `variant` controls the bar colour: `primary` (default, brand colour) or `neutral` (grey).
+- The component has no events or public methods — progress updates must be driven by the host application by updating `value`.
+
+## Advanced Considerations
+
+- **Custom range**: `ariamin` and `ariamax` do not have to be `0` and `100` — use any range that reflects the task's natural units. The bar width is calculated proportionally.
+- **No animation**: the component does not animate bar transitions — update `value` incrementally for a smooth perceived experience rather than jumping to the final value.
+- **Throttle rapid updates**: updating `value` on every byte of a file upload can be expensive — throttle to a reasonable interval (e.g. every 1% or every 500ms).
+- **Completion state**: when `value === ariamax`, the bar is full but no completion UI is triggered — handle completion feedback in the host application.
+
+## Edge Cases
+
+- **`value` out of range**: values below `ariamin` may render as empty; values above `ariamax` may overflow — always clamp `value` within the valid range.
+- **Missing `ariamin` / `ariamax`**: screen readers cannot accurately announce progress without these attributes — always set both.
+- **Value regression** (decreasing `value`): the bar instantly snaps back to the lower value with no animation — implement smooth transitions externally if a decreasing animation is required.
+- **`value` at `ariamax`**: the bar appears full but no completion event is fired — always handle the completion state in the host application.
+
 ## Quick Decision Guide
 
 **Primary/brand coloured bar?** → `variant="primary"` (default)

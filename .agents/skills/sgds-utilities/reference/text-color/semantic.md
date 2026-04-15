@@ -1,6 +1,6 @@
-# Text Color — Contextual Colors Reference
+# Text Color — Semantic Colors Reference
 
-Contextual text color tokens carry semantic meaning (brand, status, feedback). Use them when color communicates a specific intent, not just for aesthetic variation.
+Semantic text color tokens carry meaning (brand, status, feedback). Use them when color communicates a specific intent, not just for aesthetic variation.
 
 ## Token Pattern
 
@@ -152,5 +152,12 @@ Non-semantic grey used for tags, badges, and disabled states.
 
 - Use `sgds:text-{variant}-default` for standard states; `emphasis` for hover or active states — not both simultaneously.
 - On colored or fixed-image backgrounds, use `text-fixed-light` or `text-fixed-dark` to guarantee contrast.
-- Do not use contextual colors purely for visual variety — each variant carries semantic meaning for assistive technology and users.
-- SGDS component library (`<sgds-*>`) handles validation colors internally; apply contextual tokens only when building custom components.
+- Do not use semantic colors purely for visual variety — each variant carries meaning for assistive technology and users.
+- SGDS component library (`<sgds-*>`) handles validation colors internally; apply these tokens only when building custom components.
+
+## See Also
+
+- **[base.md](base.md)** — Base text color tokens (default, muted, inverse, fixed)
+- **[typography-roles.md](typography-roles.md)** — Role-based text tokens (heading, body, label, link)
+- **[color-semantics](../color-semantics.md)** — Modifier definitions (default, emphasis, muted)
+- **[background-color/semantic.md](../background-color/semantic.md)** — Matching semantic background tokens

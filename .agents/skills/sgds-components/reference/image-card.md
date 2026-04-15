@@ -4,6 +4,73 @@
 
 No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
 
+## Usage Guideline
+
+### When to use
+
+- When a full-width photograph or illustration is the primary visual and leads the card hierarchy (e.g. event listings, news articles, programme cards).
+- When image overlays are needed — `image-badge` for status/category labels on the image, and `image-action` for quick actions (e.g. save, like) overlaid on the image.
+- For content grids where visual imagery is the key differentiator between items.
+- When the entire card should be a single clickable navigation target — use `stretchedLink`.
+
+### When NOT to use
+
+- When the card is icon-led rather than image-led — use `<sgds-icon-card>` instead.
+- When a small thumbnail beside text is the intended layout — use `<sgds-thumbnail-card>` instead.
+- For general mixed-content cards without a prominent photograph — use `<sgds-card>` instead.
+- When no image is available — `<sgds-image-card>` renders an empty image area; use a different card variant.
+
+## Behaviour
+
+- Renders a card with a full-width image as the primary visual, followed by subtitle, title, content, description, and footer.
+- `image-badge` renders a badge overlay at the top-left of the image; `image-action` renders a button overlay at the top-right.
+- `orientation` controls layout: `vertical` (image above content, default) or `horizontal` (image beside content).
+- `imagePosition` controls whether the image appears `before` (default) or `after` the body content.
+- `imageAdjustment` controls image sizing: `default`, `padding around`, or `aspect ratio`.
+- `stretchedLink` makes the entire card clickable; the link `href` is sourced from the `<a>` inside the `footer` slot.
+- `noPadding`, `disabled`, `hideBorder`, and `tinted` control padding, interactivity, border, and background.
+- No custom events or public methods.
+
+## Component Composition
+
+**`image` slot** — required; pass a single `<img>` with descriptive `alt` text and explicit `width`/`height`. This is the primary visual — always provide one.
+
+**`image-badge` slot** — `<sgds-badge>` overlaid at the top-left of the image for status or category labels (e.g. "LIVE", "SOLD OUT"). Only use when the `image` slot is populated.
+
+**`image-action` slot** — `<sgds-icon-button>` overlaid at the top-right of the image for quick actions (e.g. save, bookmark). Only use when the `image` slot is populated.
+
+**`subtitle` slot** — short category or type label in uppercase.
+
+**`title` slot** — concise card heading (1–6 words). Use plain text or `<span>`.
+
+**Default slot** — metadata between the title and description; `<sgds-icon-list>` is the standard pattern.
+
+**`description` slot** — 1–3 sentences of supporting text.
+
+**`lower` slot** — `<sgds-badge>` elements for tags below the description.
+
+**`footer` slot** — the card CTA; use `<sgds-link><a href="...">Label</a></sgds-link>`. The `link` slot is deprecated since v3.3.2.
+
+**Avoid placing inside an image card:**
+- Multiple images in the `image` slot — only a single element is supported
+- Overlay slots (`image-badge`, `image-action`) without a populated `image` slot
+
+## Advanced Considerations
+
+- **`image-badge` and `image-action` are unique to `<sgds-image-card>`**: these overlay slots are not available on `<sgds-card>`, `<sgds-icon-card>`, or `<sgds-thumbnail-card>` — this component is the correct choice whenever image overlays are required.
+- **`image` slot accepts only a single element**: never pass multiple images or wrap in a container; pass one `<img>` directly.
+- **`imageAdjustment` string values**: `"padding around"` and `"aspect ratio"` contain spaces — pass the exact string including the space.
+- **`stretchedLink` and `footer` slot**: the href is read from the `<a>` inside the `footer` slot — always include `<sgds-link><a href="...">` when using `stretchedLink`.
+- **`link` slot deprecation**: the `link` slot was deprecated in v3.3.2 — always use the `footer` slot with `<sgds-link>` for card CTAs.
+
+## Edge Cases
+
+- **No `image` slot content**: the image area renders empty — always provide an `<img>` in the `image` slot.
+- **No `footer` slot with `stretchedLink`**: the card is clickable but has no destination — always include `<sgds-link><a href="...">` in the `footer` slot when using `stretchedLink`.
+- **`image-badge` without `image`**: the badge overlay renders but has no image to overlay onto — only use overlay slots when the `image` slot is populated.
+- **Multiple elements in `image` slot**: only a single element is supported — passing multiple elements may produce unexpected layout.
+- **`disabled` with `stretchedLink`**: the card appears disabled but the stretched link may still be interactive — test the interaction state when combining both.
+
 ## Quick Decision Guide
 
 **Which card type?**

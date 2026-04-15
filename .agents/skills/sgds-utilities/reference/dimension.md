@@ -90,3 +90,4 @@ Always pair with `sgds:mx-auto` to centre the container horizontally.
 1. **`sgds:max-w-container-*` default is `md` (768px)** unless the design calls for a wider inner area.
 2. Pair both with `sgds:mx-auto` if needed to centre them.
 3. Do not apply both on the same element.
+4. **Never use raw `sgds:max-w-*` utilities** (`sgds:max-w-sm`, `sgds:max-w-lg`, `sgds:max-w-2xl`, etc.) for container sizing. These map to small Tailwind numeric values (e.g. `max-w-2xl` = 672px) that are not part of the SGDS design system and will produce undersized containers.

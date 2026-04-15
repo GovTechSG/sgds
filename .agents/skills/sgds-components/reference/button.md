@@ -2,6 +2,61 @@
 
 `<sgds-button>` is the standard action element for forms, dialogs, and navigation. Use it instead of a native `<button>` whenever SGDS styling and behaviour are needed.
 
+No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
+
+## Usage Guideline
+
+### When to use
+
+- For primary, secondary, or tertiary actions that trigger an immediate operation (submit a form, open a modal, confirm a decision).
+- When a clear, clickable action element is needed — always prefer `<sgds-button>` over a native `<button>` within SGDS applications.
+- Use `variant="primary"` for the main action, `variant="outline"` for alternatives, and `variant="ghost"` for low-emphasis actions.
+- Use `tone="danger"` for destructive or irreversible actions (e.g. delete, remove).
+
+### When NOT to use
+- For navigation between pages — use links instead
+- For inline text actions within paragraphs — use inline links
+- When no action is required — avoid decorative buttons
+- For passive information display
+
+## Behaviour
+
+- Buttons trigger actions immediately upon activation (click or keyboard)
+- Supports states: default, hover, active/pressed, focus, disabled, and loading (for async actions)
+- Hierarchy levels via `variant`: `primary` (main action), `outline` (secondary alternative), `ghost` (tertiary/low emphasis)
+- Semantic tone via `tone`: `brand` (default), `danger` (destructive actions), `neutral` (no brand emphasis), `fixed-light` (dark backgrounds)
+- Can include leading icons (for clarity) or trailing icons (for direction/continuation)
+- Supports full-width or inline layout depending on context
+
+## Advanced Considerations
+
+**Hierarchy strategy** — define clear rules for when to use `primary` vs `outline` vs `ghost` buttons across the system
+
+**Tone strategy** — use `tone="danger"` for destructive/irreversible actions across any variant; `tone="neutral"` for utility buttons without brand emphasis; `tone="fixed-light"` on dark or coloured backgrounds
+
+**Responsive behaviour** — full-width buttons on mobile; inline/grouped buttons on desktop
+
+**Icon usage** — avoid overuse of icons; ensure icons add meaning, not decoration
+
+**Accessibility** — ensure sufficient contrast ratios and provide screen reader support
+
+**Internationalisation** — account for longer text in other languages when sizing buttons
+
+**Destructive actions** — require confirmation or use danger styling
+
+**Button grouping** — maintain spacing and hierarchy within button groups
+
+## Edge Cases
+
+- **Long labels** — may wrap or truncate; ensure layout can handle it
+- **Multiple actions in tight spaces** — consider dropdown or overflow menu instead
+- **Disabled vs hidden** — decide when to disable vs remove actions entirely
+- **Loading delays** — show loading state if action exceeds ~300ms
+- **Icon-only buttons** — risk of ambiguity without proper labelling
+- **High-frequency actions** — ensure no accidental double submission
+- **Mobile constraints** — avoid placing buttons too close together
+- **Conflicting actions** — clearly separate destructive vs safe actions (e.g. Delete vs Cancel)
+
 ## Quick Decision Guide
 
 **Which `variant`?**

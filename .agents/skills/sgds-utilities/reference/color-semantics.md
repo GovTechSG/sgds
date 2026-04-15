@@ -131,6 +131,42 @@ Full-screen backdrop — never use on components.
 | `overlay` | Full-screen backdrop (bg only) | ✅ Yes |
 | `surface` | Component scope (bg only) | ✅ Yes |
 
+## Do & Don't
+
+**Do**
+- Use `danger` for errors, validation failures, and destructive actions
+- Use `accent` for informational content and links — it carries no urgency
+- Use `success` only for genuinely positive outcomes (saved, completed, verified)
+- Use `warning` for non-blocking caution states — not for errors
+- Use `purple` / `cyan` for visual variety and non-semantic categorisation
+- Use `neutral` when all items are equal and no color distinction is needed
+- Use `surface` in the token name when the target element is a component (card, badge, input)
+- Use `emphasis` to signal active, hover, or high-priority states
+- Use `muted` for secondary, inactive, or supporting elements
+
+**Don't**
+- Don't use `danger` for general alerts that are not errors
+- Don't use `success` / `warning` colors as purely decorative differentiation
+- Don't use `primary` for every colored element — reserve it for brand and identity
+- Don't mix `fixed-light` text with a theme-aware background — contrast is not guaranteed
+- Don't use `overlay` on components — it is for full-screen modal/drawer backdrops only
+- Don't omit `surface` for component-level background tokens — `bg-primary-default` targets a page section, not a card
+
+---
+
+## For AI Agents
+
+When choosing color tokens:
+
+1. **Pick the right category first** — `danger` for errors, `success` for completion, `accent` for info, `primary` for brand, `purple`/`cyan` for non-semantic variety, `neutral` for uniform equal-weight items.
+2. **Pick the right emphasis** — `default` for standard states, `emphasis` for active/hover/high-priority, `muted` for secondary or inactive.
+3. **Pick the right scope (background only)** — tokens with `surface` = component level; tokens without `surface` = page level. Never swap them.
+4. **Theme-aware by default** — use standard tokens unless the background is fixed (image, brand section). Only then use `fixed-light` or `fixed-dark`.
+5. **`transparent` preserves box model** — use it for outline-style components that need consistent sizing with filled variants.
+6. **Never invent modifiers** — only `default`, `emphasis`, `muted`, `fixed-light`, `fixed-dark`, `inverse`, `translucent`, `transparent`, `alternate`, `overlay`, `surface` are valid.
+
+---
+
 ## See Also
 
 - **[background-color](background-color.md)** — Background color utilities

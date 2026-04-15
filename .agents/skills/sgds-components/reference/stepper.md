@@ -4,6 +4,49 @@
 
 No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
 
+## Usage Guideline
+
+### When to use
+
+- For multi-step sequential workflows where each step must be completed before proceeding to the next (e.g. checkout flows, application forms, onboarding wizards).
+- When breaking a complex form into logical stages reduces cognitive load and helps users understand their progress.
+- When a visible progress indicator communicates how many steps remain and where the user currently is.
+
+### When NOT to use
+
+- For fewer than 2 steps — a single step does not benefit from a stepper; use a plain form instead.
+- When steps are not sequential or can be completed in any order — use tabs or a navigation menu instead.
+- When the total number of steps is very large (>7) — the step indicator becomes crowded; consider breaking into sub-flows.
+- When step content should all be visible at once — use a single-page form layout instead.
+
+## Behaviour
+
+- Steps are defined via the `steps` JS property (an array of `IStepMetaData` objects); it cannot be set as an HTML attribute.
+- `activeStep` is 0-indexed and controls which step indicator is highlighted as active.
+- Navigation is driven by calling `nextStep()`, `previousStep()`, `firstStep()`, `lastStep()`, or `reset()` — these are public methods, not attributes.
+- `reset()` returns to the first step and clears all step statuses.
+- Each method fires a corresponding event: `sgds-next-step`, `sgds-previous-step`, `sgds-last-step`, `sgds-first-step`, `sgds-reset`.
+- `sgds-arrived` fires after any navigation method completes — read `activeStep` in the handler to determine the new step.
+- `orientation` controls the layout direction: `horizontal` (default) or `vertical`.
+- `clickable` allows users to click a step indicator to jump directly to that step.
+- Each step's `iconName` is optional — the step indicator defaults to showing the step number if omitted.
+
+## Advanced Considerations
+
+- **Framework integration**: `component` in `IStepMetaData` is framework-agnostic — pass a Vue/React/Angular component reference, or a plain string identifier in vanilla JS. The stepper does not render step content itself.
+- **`clickable`**: enables jump navigation — ensure step content can handle being accessed non-linearly (e.g. validate prior steps or prefill data before allowing jumps).
+- **`firstStep()` / `lastStep()`**: useful for "Back to start" or "Skip to review" actions outside the standard Prev/Next flow.
+- **`iconName` per step**: optional; sourced from the SGDS icon set. Omit to show the default step number. Consistent use across all steps is recommended.
+- **`activeStep` as a property**: can be read at any time to determine the current step index; also writeable to jump programmatically without calling `nextStep()`/`previousStep()`.
+
+## Edge Cases
+
+- **Empty `steps` array**: the stepper renders with no indicators — always initialise `steps` before setting `activeStep`.
+- **`activeStep` out of range**: setting `activeStep` beyond the last index or below 0 may cause unexpected rendering — clamp the value within `0` to `steps.length - 1`.
+- **Single step**: a stepper with one step is technically valid but provides no navigation value — use a plain form section instead.
+- **`reset()` mid-flow**: calling `reset()` clears step statuses and returns to step 0 — ensure the content renderer also resets to the initial state via the `sgds-reset` event.
+- **`clickable` with validation**: if steps require prior completion before proceeding, disable `clickable` or implement a guard in the `sgds-arrived` handler to redirect invalid jumps.
+
 ## Quick Decision Guide
 
 **Horizontal steps (default)?** → `orientation="horizontal"`

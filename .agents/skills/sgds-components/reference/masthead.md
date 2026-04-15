@@ -4,6 +4,44 @@
 
 > **Mandatory usage**: All .gov.sg digital services must include this banner at the top of every page, as mandated by the Singapore Government Design System guidelines.
 
+No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
+
+## Usage Guideline
+
+### When to use
+
+- On **every page** of every .gov.sg digital service — this is a mandatory compliance requirement, not optional.
+- Always as the topmost element on the page, above all navigation and content.
+- Use `fluid` when the page uses a full-width layout to match the banner to the grid.
+
+### When NOT to use
+
+- Do not omit it on any page of a .gov.sg service — there are no valid exceptions.
+- Do not build a custom government identity banner — always use `<sgds-masthead>`.
+- Do not place it below navigation or inside a container — it must be the very first element.
+
+## Behaviour
+
+- Always renders the Singapore crest, "A Singapore Government Agency Website" identity text, and a "How to identify" toggle button.
+- The "How to identify" panel is hidden by default and expands when the toggle is activated — managed entirely by internal state.
+- All content (crest, text, identification panel) is rendered internally and is not customisable via slots.
+- `fluid` removes the max-width constraint so the banner stretches to full screen width.
+- The toggle uses `role="button"`, `tabindex="0"`, and `aria-expanded` — keyboard accessible via `Enter` and `Space`.
+- No public events or public methods.
+
+## Advanced Considerations
+
+- **Mandatory placement**: `<sgds-masthead>` must be the first rendered element in the page — above `<sgds-system-banner>`, `<sgds-mainnav>`, and all other content.
+- **`fluid` usage**: match `fluid` to the page grid — if the page uses a fluid container, add `fluid` to the masthead so the banner stretches consistently.
+- **No customisation**: all internal content (crest, identity text, identification panel) is fixed by the design system and cannot be modified via slots, CSS parts, or attributes.
+- **SSR / framework setup**: for import and loader configuration see the sgds-components SKILL.md.
+
+## Edge Cases
+
+- **Omitted from a page**: violates .gov.sg compliance requirements — always include on every page.
+- **Placed below navigation**: violates page layout requirements — the masthead must always be the topmost element.
+- **Missing `fluid` on full-width layouts**: the banner will be constrained to a max-width while the rest of the page is full-width — always match `fluid` to the page layout.
+
 ## Quick Decision Guide
 
 **Does content need to stretch full screen width?**
