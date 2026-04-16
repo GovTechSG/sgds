@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
     <div class="sgds:absolute sgds:top-0 sgds:right-0 image-container">
       <svg class="landing-hero-art sgds:overflow-visible sgds:opacity-0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="756" height="744" viewBox="0 0 756 744" fill="none">
         <path d="M345 34.0978C345 14.1602 328.82 -2.23543 309.092 0.249924C245.95 8.20511 186.83 36.9823 141.353 82.5857C87.3428 136.747 57 210.204 57 286.799C57 363.395 87.3428 436.852 141.353 491.013C186.83 536.617 245.95 565.394 309.092 573.349C328.82 575.834 345 559.439 345 539.501V34.0978Z" fill="var(--landing-hero-dark-shape)" />
-        <path d="M397 683.902C397 703.84 413.18 720.235 432.908 717.75C496.05 709.795 555.17 681.018 600.647 635.414C654.657 581.254 685 507.796 685 431.201C685 354.605 654.657 281.148 600.647 226.987C555.17 181.383 496.05 152.606 432.908 144.651C413.18 142.165 397 158.561 397 178.499L397 683.902Z" fill="#6B4FEB" />
+        <path class="landing-hero-primary-shape" d="M397 683.902C397 703.84 413.18 720.235 432.908 717.75C496.05 709.795 555.17 681.018 600.647 635.414C654.657 581.254 685 507.796 685 431.201C685 354.605 654.657 281.148 600.647 226.987C555.17 181.383 496.05 152.606 432.908 144.651C413.18 142.165 397 158.561 397 178.499L397 683.902Z" />
         <mask id="mask0_512_628" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-40" y="-82" width="1412" height="737">
           <path d="M-40 -82H345V645H-40V-82Z" fill="#6B4FEB" />
           <path d="M987 -72H1372V655H987V-72Z" fill="#6B4FEB" />
@@ -314,6 +314,19 @@ onBeforeUnmount(() => {
 /* Local SVG colour bridge for the dark hero semicircle. It uses the SGDS darkest token in day mode and lifts one step in night mode. */
 .landing-hero-art {
   --landing-hero-dark-shape: var(--sgds-gray-1100);
+}
+
+/* Right purple semicircle — 600 in day, 700 in night (intentionally inverted from the default bg token) */
+.landing-hero-art {
+  --landing-hero-primary-shape: var(--sgds-product-primary-600);
+}
+
+.sgds-night-theme .landing-hero-art {
+  --landing-hero-primary-shape: var(--sgds-product-primary-700);
+}
+
+.landing-hero-primary-shape {
+  fill: var(--landing-hero-primary-shape);
 }
 
 .sgds-night-theme .landing-hero-art {
