@@ -139,7 +139,7 @@ const roleRows = [
           <div :class="$style.demoCard">
             <div :class="$style.modesDemo">
               <span :class="$style.modeLabel">Live demo</span>
-              <sgds-icon-button name="brightness-high" variant="ghost" size="sm"></sgds-icon-button>
+              <sgds-icon-button name="moon" variant="ghost" size="sm"></sgds-icon-button>
             </div>
           </div>
         </Section>

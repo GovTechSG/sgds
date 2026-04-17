@@ -229,7 +229,7 @@ const radiusExamples: Example[] = [
                 <sgds-icon name="three-dots" size="sm" class="sgds:text-muted"></sgds-icon>
               </div>
               <div class="sgds:flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded sgds:border sgds:border-muted">
-                <sgds-icon name="x-lg" size="sm" class="sgds:text-muted"></sgds-icon>
+                <sgds-icon name="plus" size="sm" class="sgds:text-muted"></sgds-icon>
               </div>
             </div>
           </div>

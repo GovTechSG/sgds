@@ -241,7 +241,7 @@ const references = [
               </div>
               <div :class="$style.practiceDescription">
                 <sgds-icon
-                  :name="item.tone === 'do' ? 'check-circle-fill' : 'x-circle-fill'"
+                  :name="item.tone === 'do' ? 'check-circle-fill' : 'xcircle-fill'"
                   size="lg"
                   :class="item.tone === 'do' ? $style.doIcon : $style.dontIcon"
                 ></sgds-icon>

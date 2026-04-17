@@ -96,7 +96,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleGlobalKeydown));
             @click="$emit('close')"
             aria-label="Close search"
           >
-            <sgds-icon name="x-lg" size="md" />
+            <sgds-icon name="cross" size="md" />
           </button>
         </div>
 
@@ -149,7 +149,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleGlobalKeydown));
           v-else
           class="sgds:text-subtle sgds:p-layout-md sgds:flex sgds:items-center sgds:justify-center sgds:gap-component-sm sgds:text-center"
         >
-          <sgds-icon name="keyboard" size="md" class="sgds:opacity-50" />
+          <sgds-icon name="search" size="md" class="sgds:opacity-50" />
           <span class="sgds:text-caption-md">Type to search across all pages</span>
         </div>
 
