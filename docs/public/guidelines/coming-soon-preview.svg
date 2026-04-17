@@ -1,0 +1,92 @@
+<svg width="424" height="300" viewBox="0 0 424 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="28" y1="24" x2="384" y2="276" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF9ED"/>
+      <stop offset="1" stop-color="#F5F0FF"/>
+    </linearGradient>
+    <linearGradient id="card" x1="78" y1="72" x2="336" y2="234" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(132 110) rotate(48.2789) scale(112.349 104.965)">
+      <stop stop-color="#7C5CFC"/>
+      <stop offset="1" stop-color="#7C5CFC" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(292 210) rotate(48.2789) scale(112.349 104.965)">
+      <stop stop-color="#22C55E"/>
+      <stop offset="1" stop-color="#22C55E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="424" height="300" rx="32" fill="url(#bg)"/>
+  <ellipse cx="132" cy="110" rx="112" ry="86" fill="url(#glowA)" opacity="0.16"/>
+  <ellipse cx="292" cy="210" rx="112" ry="86" fill="url(#glowB)" opacity="0.14"/>
+
+  <rect x="52" y="42" width="320" height="216" rx="28" fill="url(#card)" stroke="#E7DCC9"/>
+  <rect x="76" y="66" width="272" height="18" rx="9" fill="#E8E0D2"/>
+  <rect x="76" y="96" width="164" height="10" rx="5" fill="#F0E8DA"/>
+  <rect x="76" y="114" width="214" height="10" rx="5" fill="#F3ECDF"/>
+
+  <g transform="translate(84 132)">
+    <rect width="120" height="88" rx="22" fill="#FFF7E7" stroke="#DCC9A6"/>
+    <g transform="translate(16 16)">
+      <path d="M0 28C11 9.33333 25.6667 0 44 0C62.3333 0 77 9.33333 88 28C77 46.6667 62.3333 56 44 56C25.6667 56 11 46.6667 0 28Z" fill="#FFFDF8" stroke="#5E4632" stroke-width="2.4"/>
+      <path d="M24 28C24 16.9543 32.9543 8 44 8C55.0457 8 64 16.9543 64 28C64 39.0457 55.0457 48 44 48C32.9543 48 24 39.0457 24 28Z" fill="#8A6141"/>
+      <path d="M33 28C33 21.3726 38.3726 16 45 16C51.6274 16 57 21.3726 57 28C57 34.6274 51.6274 40 45 40C38.3726 40 33 34.6274 33 28Z" fill="#2E221A">
+        <animate attributeName="cx" values="45;49;45;41;45" dur="5.2s" repeatCount="indefinite"/>
+      </path>
+      <circle cx="49" cy="23" r="4" fill="#FFF7E7"/>
+      <path d="M6 4L10 10" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M18 0L20 8" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M31 -2V6" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M44 -3L43 5" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M57 -1L54 7" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M70 2L65 10" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M82 8L75 14" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M6 52L10 46" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M18 56L20 48" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M31 58V50" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M44 59L43 51" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M57 57L54 49" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M70 54L65 46" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <path d="M82 48L75 42" stroke="#5E4632" stroke-width="2" stroke-linecap="round"/>
+      <rect x="0" y="0" width="88" height="56" rx="28" fill="#FFF7E7">
+        <animate attributeName="height" values="56;56;12;56;56" dur="5.2s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="0;0;22;0;0" dur="5.2s" repeatCount="indefinite"/>
+      </rect>
+      <path d="M0 28C11 9.33333 25.6667 0 44 0C62.3333 0 77 9.33333 88 28C77 46.6667 62.3333 56 44 56C25.6667 56 11 46.6667 0 28Z" fill="none" stroke="#5E4632" stroke-width="2.4"/>
+    </g>
+  </g>
+
+  <g transform="translate(218 132)">
+    <rect width="120" height="88" rx="22" fill="#F6F0FF" stroke="#C7B2F8"/>
+    <g transform="translate(16 16)">
+      <path d="M0 28C11 9.33333 25.6667 0 44 0C62.3333 0 77 9.33333 88 28C77 46.6667 62.3333 56 44 56C25.6667 56 11 46.6667 0 28Z" fill="#FFFDF8" stroke="#3E2C69" stroke-width="2.4"/>
+      <path d="M24 28C24 16.9543 32.9543 8 44 8C55.0457 8 64 16.9543 64 28C64 39.0457 55.0457 48 44 48C32.9543 48 24 39.0457 24 28Z" fill="#6B4CE6"/>
+      <path d="M33 28C33 21.3726 38.3726 16 45 16C51.6274 16 57 21.3726 57 28C57 34.6274 51.6274 40 45 40C38.3726 40 33 34.6274 33 28Z" fill="#25183E">
+        <animateTransform attributeName="transform" type="translate" values="0 0;-4 0;0 0;4 0;0 0" dur="4.6s" repeatCount="indefinite"/>
+      </path>
+      <circle cx="49" cy="23" r="4" fill="#FFF7E7"/>
+      <path d="M6 4L10 10" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M18 0L20 8" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M31 -2V6" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M44 -3L43 5" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M57 -1L54 7" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M70 2L65 10" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M82 8L75 14" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M6 52L10 46" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M18 56L20 48" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M31 58V50" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M44 59L43 51" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M57 57L54 49" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M70 54L65 46" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <path d="M82 48L75 42" stroke="#3E2C69" stroke-width="2" stroke-linecap="round"/>
+      <rect x="0" y="0" width="88" height="56" rx="28" fill="#F6F0FF">
+        <animate attributeName="height" values="56;56;18;56;56" dur="4.6s" begin="0.9s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="0;0;19;0;0" dur="4.6s" begin="0.9s" repeatCount="indefinite"/>
+      </rect>
+      <path d="M0 28C11 9.33333 25.6667 0 44 0C62.3333 0 77 9.33333 88 28C77 46.6667 62.3333 56 44 56C25.6667 56 11 46.6667 0 28Z" fill="none" stroke="#3E2C69" stroke-width="2.4"/>
+    </g>
+  </g>
+
+</svg>

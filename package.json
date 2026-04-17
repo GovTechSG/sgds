@@ -1,5 +1,12 @@
 {
+  "pnpm": {
+    "overrides": {
+      "mout": ">=1.2.4"
+    }
+  },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3",
     "vitepress": "2.0.0-alpha.12",
     "vitepress-sidebar": "^1.33.0",
@@ -11,7 +18,8 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "@govtechsg/sgds-web-component": "^3.5.6",
+    "@adobe/leonardo-contrast-colors": "^1.1.0",
+    "@govtechsg/sgds-web-component": "^3.16.0",
     "gsap": "^3.13.0"
   }
 }

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sgds-portal",
+      "runtimeExecutable": "/opt/homebrew/bin/pnpm",
+      "env": { "PATH": "/Users/petrine/.nvm/versions/node/v22.18.0/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" },
+      "runtimeArgs": ["docs:dev", "--port", "5180"],
+      "port": 5180
+    }
+  ]
+}

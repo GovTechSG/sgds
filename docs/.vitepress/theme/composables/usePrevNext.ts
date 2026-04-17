@@ -7,9 +7,12 @@ function flattenSidebarItems(items: any[], base = "") {
 
   items.forEach((item) => {
     if (item.link && !isDraft(item.text)) {
+      const resolvedLink = item.link.startsWith("/")
+        ? item.link
+        : `${base}${item.link}`;
       result.push({
         text: item.text,
-        link: base + item.link,
+        link: resolvedLink,
       });
     }
 
@@ -32,7 +35,7 @@ export function usePrevNext() {
     const currentPath = page.value.relativePath.replace(".md", "");
 
     const matchingSidebarKey = Object.keys(sidebar).find((base) =>
-      currentPath.startsWith(base.replace("/", ""))
+      currentPath.startsWith(base.replace("/", "")),
     );
 
     if (!matchingSidebarKey) return {};
@@ -44,7 +47,7 @@ export function usePrevNext() {
 
     // Find current index
     const currentIndex = flatList.findIndex(
-      (i) => i.link.replace(/^\//, "") === currentPath
+      (i) => i.link.replace(/^\//, "") === currentPath,
     );
 
     const prev = currentIndex > 0 ? flatList[currentIndex - 1] : null;

@@ -1,7 +1,89 @@
 @import "@govtechsg/sgds-web-component/themes/day.css";
+@import "@govtechsg/sgds-web-component/themes/night.css";
+@import "@govtechsg/sgds-web-component/themes/responsive.css";
 @import "@govtechsg/sgds-web-component/css/sgds.css";
+@import "@govtechsg/sgds-web-component/css/utility.css";
 
-html {
-  font-family: Arial, Helvetica;
+/* ─── Tab group: extend underline to full width ─────────────────────────── */
+
+sgds-tab-group[variant="underlined"] {
+  display: block;
+  overflow: hidden;
+  width: 100%;
 }
 
+sgds-tab-group[variant="underlined"] sgds-tab[slot="nav"]:last-of-type {
+  position: relative;
+}
+
+sgds-tab-group[variant="underlined"] sgds-tab[slot="nav"]:last-of-type::after {
+  border-bottom: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
+  bottom: 0;
+  content: "";
+  inline-size: 100vw;
+  inset-inline-start: 100%;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* ─── Docs markdown content — SGDS semantic token overrides ─── */
+
+/* Body text */
+.vp-doc p {
+  color: var(--sgds-body-color-default);
+  margin-top: 0;
+  margin-bottom: var(--sgds-text-gap-md);
+}
+
+/* Last paragraph in a block should not add extra space below */
+.vp-doc p:last-child {
+  margin-bottom: 0;
+}
+
+/* Lists */
+.vp-doc ul,
+.vp-doc ol {
+  margin-top: 0;
+  margin-bottom: var(--sgds-text-gap-md);
+  padding-left: var(--sgds-component-padding-xs);
+}
+
+.vp-doc li {
+  color: var(--sgds-body-color-default);
+  margin-bottom: var(--sgds-text-gap-xs);
+  line-height: var(--sgds-line-height-24);
+}
+
+.vp-doc li:last-child {
+  margin-bottom: 0;
+}
+
+/* Emphasis */
+.vp-doc strong {
+  color: var(--sgds-heading-color-default);
+  font-weight: var(--sgds-font-weight-semibold);
+}
+
+/* Blockquote */
+.vp-doc blockquote {
+  border-left: 3px solid var(--sgds-border-color-muted);
+  padding: var(--sgds-text-gap-xs) var(--sgds-component-padding-sm);
+  margin: var(--sgds-text-gap-md) 0;
+  color: var(--sgds-body-color-subtle);
+  background: var(--sgds-surface-raised);
+  border-radius: 0 var(--sgds-border-radius-sm) var(--sgds-border-radius-sm) 0;
+}
+
+.vp-doc blockquote p {
+  margin-bottom: 0;
+}
+
+/* Inline code */
+.vp-doc code:not(pre code) {
+  background: var(--sgds-surface-raised);
+  border: 1px solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-sm);
+  color: var(--sgds-body-color-default);
+  font-size: 0.875em;
+  padding: 1px 6px;
+}
