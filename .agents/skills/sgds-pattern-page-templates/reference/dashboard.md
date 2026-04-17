@@ -37,10 +37,6 @@ Uses the **Sidebar App Layout** from the [Application Shell](../../sgds-pattern-
 
 ## Complete Template
 
-> **Prerequisite**: `sgds-sidebar` is RC only — add this script **before** any other SGDS imports:
-> ```html
-> <script src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component@rc/components/Sidebar/index.umd.min.js"></script>
-> ```
 > See **[sgds-components-sidebar](../../sgds-components-sidebar/SKILL.md)** for the full API.
 
 ```html

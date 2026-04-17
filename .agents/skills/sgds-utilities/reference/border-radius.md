@@ -31,7 +31,7 @@ Use general tokens by default. Use form tokens only for native form controls.
 <div class="sgds:rounded-xl">16px</div>
 <div class="sgds:rounded-2-xl">24px</div>
 <div class="sgds:rounded-3-xl">32px</div>
-<div class="sgds:rounded-full">999px — pill / circle</div>
+<div class="sgds:rounded-full">9999px — pill / circle</div>
 ```
 
 ### Specific Sides
@@ -64,7 +64,7 @@ Use general tokens by default. Use form tokens only for native form controls.
 | `sgds:rounded-xl` | 16px | Featured cards |
 | `sgds:rounded-2-xl` | 24px | Large containers like panel |
 | `sgds:rounded-3-xl` | 32px | Huge radius Hero / feature sections |
-| `sgds:rounded-full` | 999px | Full radius like circle, Avatars, Radio |
+| `sgds:rounded-full` | 9999px | Full radius like circle, Avatars, Radio |
 
 ## Form Border Radius
 
@@ -84,7 +84,7 @@ Apply to native HTML form elements only: `<input>`, `<select>`, `<textarea>`, `<
 | `sgds:rounded-form-xs` | 2px | Very subtle rounding for small size input |
 | `sgds:rounded-form-sm` | 4px | Standard buttons, small components |
 | `sgds:rounded-form-md` | 8px | Cards, panels |
-| `sgds:rounded-form-full` | 999px | Badges, avatars, pill buttons |
+| `sgds:rounded-form-full` | 9999px | Badges, avatars, pill buttons |
 
 ## Form Patterns
 

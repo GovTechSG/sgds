@@ -4,7 +4,7 @@
     "sgds-components": {
       "source": "govtechsg/sgds-web-component",
       "sourceType": "github",
-      "computedHash": "ed76afc8c4107c0ba336c94865028b6b2341cef54acf576e7424d9d2651311ec"
+      "computedHash": "46f3169dee975670e64f4d31d396391bc50001cd2d0a1d97fac6bbdfd9aa15c8"
     },
     "sgds-data-visualisation": {
       "source": "govtechsg/sgds-web-component",
@@ -29,7 +29,7 @@
     "sgds-pattern-page-templates": {
       "source": "govtechsg/sgds-web-component",
       "sourceType": "github",
-      "computedHash": "83c1e653fed5c83340e7edad5289a099582e4f8c09a355ea24da8d6eca0da947"
+      "computedHash": "d83d3f0a6177f9db915ae1fbc0b8b8bbf789446d3cd2ea90dfed9654b05e9cf7"
     },
     "sgds-theming": {
       "source": "govtechsg/sgds-web-component",

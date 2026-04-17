@@ -33,6 +33,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 - **Default selection**: Use a preselected value when there is a recommended or most common option; avoid when neutrality is required — leave `value` unset.
 - **Layout**: Vertical alignment is the default and most accessible; horizontal layout is only appropriate for very short labels with few options.
 - **Conditional reveal**: Selecting an option may reveal additional inputs — ensure clear visual relationships between the radio and revealed content.
+- **Autofocus**: When `autofocus="true"` is set on the radio group, the currently checked radio automatically receives focus. This improves keyboard navigation and accessibility, especially in multi-step forms or when a selection triggers additional actions or form sections.
 - **Accessibility**: `<sgds-radio-group>` provides semantic grouping. If building a custom implementation, use `fieldset`/`legend` and appropriate ARIA roles.
 
 ## Edge Cases
@@ -108,6 +109,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `hasFeedback` | boolean | `false` | Enables validation feedback UI |
 | `invalidFeedback` | string | `""` | Error message when no option is selected |
 | `invalid` | boolean | `false` | Manually sets the invalid state |
+| `autofocus` | boolean | `false` | When true, the checked radio automatically receives focus (improves keyboard navigation) |
 
 ### `<sgds-radio>`
 

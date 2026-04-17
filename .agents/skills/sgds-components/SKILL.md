@@ -267,7 +267,7 @@ Angular supports web components natively via `CUSTOM_ELEMENTS_SCHEMA` — no SGD
 
 When a component behaves unexpectedly — wrong event fired, property not reflected, slot not rendering — read the compiled source directly. It contains full method bodies, event logic, internal defaults, and edge-case handling that no documentation captures.
 
-**Always check `node_modules` first** — if `node_modules/@govtechsg/sgds-web-component` exists, read from there:
+Read from `node_modules/@govtechsg/sgds-web-component` — this directory is present once the package is installed:
 
 ```
 node_modules/@govtechsg/sgds-web-component/components/Accordion/sgds-accordion.js
@@ -277,18 +277,7 @@ node_modules/@govtechsg/sgds-web-component/components/Accordion/sgds-accordion.d
 
 Replace `Accordion/sgds-accordion` with the relevant component folder and file name. The `.js` file contains the full implementation; the `.d.ts` file lists all properties, types, events, slots, and JSDoc descriptions.
 
-**Only if `node_modules` is absent (CDN users)** — browse the source for the exact version in use on the npm package page:
-
-```
-https://www.npmjs.com/package/@govtechsg/sgds-web-component/v/{version}?activeTab=code
-```
-
-Example for `v3.4.0-rc.4`:
-```
-https://www.npmjs.com/package/@govtechsg/sgds-web-component/v/3.4.0-rc.4?activeTab=code
-```
-
-Navigate into `components/{ComponentName}/` to find the same `.js` and `.d.ts` files. Ask the user for their version if unknown — it is visible in the CDN `<script>` or `<link>` tag URL they are using.
+**If `node_modules` is absent** — the package has not been installed. Ask the user to run their normal install step (`npm install` / `pnpm install`) before inspecting source files.
 
 ---
 
@@ -320,7 +309,7 @@ When a user reports unexpected component behaviour (wrong event, property not re
 | **Navigation** | Breadcrumb | [→ reference/breadcrumb.md](reference/breadcrumb.md) |
 | **Navigation** | Pagination | [→ reference/pagination.md](reference/pagination.md) |
 | **Navigation** | Sidenav | [→ reference/sidenav.md](reference/sidenav.md) |
-| **Navigation** | Sidebar (RC) | [→ reference/sidebar.md](reference/sidebar.md) |
+| **Navigation** | Sidebar | [→ reference/sidebar.md](reference/sidebar.md) |
 | **Navigation** | Subnav | [→ reference/subnav.md](reference/subnav.md) |
 | **Navigation** | Tab | [→ reference/tab.md](reference/tab.md) |
 | **Navigation** | Table of Contents | [→ reference/table-of-contents.md](reference/table-of-contents.md) |

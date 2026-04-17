@@ -2,12 +2,6 @@
 
 `<sgds-sidebar>` is a collapsible vertical navigation component with icon-only collapse mode, drawer overlays for root-level groups, and multi-level nesting (up to 3 levels). Use it for internal tools, admin dashboards, and any product with persistent left-rail navigation.
 
-> **RC status**: The Sidebar is not yet in the published npm package. Load it via CDN before any other SGDS imports:
-> ```html
-> <script src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component@rc/components/Sidebar/index.umd.min.js"></script>
-> ```
-> **Framework projects (React/Vue/Angular)**: Add a `<script>` tag in `index.html` (Vue/Angular) or `public/index.html` (CRA/Vite React) before your app bundle — do NOT import it via `import` in JS files, as the UMD bundle self-registers the custom element on load.
-
 ## Sub-components
 
 | Tag | Role |
@@ -29,8 +23,7 @@
 ### When NOT to use
 
 - For public-facing websites where a top navigation bar (`<sgds-mainnav>`) is more appropriate.
-- When navigation is shallow (1–2 levels with few items) — a `<sgds-sidenav>` or `<sgds-subnav>` is simpler and production-ready.
-- When you cannot add the RC CDN script — `<sgds-sidebar>` is not in the stable npm package; use `<sgds-sidenav>` as the stable alternative.
+- When navigation is shallow (1–2 levels with few items) — a `<sgds-sidenav>` or `<sgds-subnav>` is simpler.
 - For in-page section navigation — use `<sgds-table-of-contents>` instead.
 
 ## Behaviour
@@ -48,7 +41,6 @@
 ## Advanced Considerations
 
 - **`name` is required for active tracking**: every `<sgds-sidebar-item>` and `<sgds-sidebar-group>` must have a unique `name`; without it, `active` matching silently fails. `<sgds-sidebar-section>` `name` is for identification only and does not participate in `active` tracking.
-- **RC CDN loading order**: the CDN `<script>` must be loaded before any SGDS imports — in React/Vue/Angular projects, add it to the root HTML file (`index.html` or `public/index.html`), not via JS `import`.
 - **Drawer vs inline submenu**: root-level `<sgds-sidebar-group>` elements open as drawer overlays; nested groups open inline. Design your hierarchy with this distinction in mind — typically keep top-level groups broad.
 - **Sticky layout**: pair `<sgds-sidebar>` with `sgds:sticky`, a fixed height, and `sgds:overflow-y-auto` on the wrapper element to achieve a sticky left rail.
 - **`indicator` slot**: used to show notification counts or status indicators on items and groups — for example, the number of unread messages or pending actions. Use `<sgds-badge slot="indicator" outlined="" variant="white">3</sgds-badge>` as the standard pattern, or any custom element up to 24×24 px. The slot sits before the auto-appended chevron on groups.
@@ -58,7 +50,6 @@
 - **Missing `name` on items**: `active` tracking will not work — always provide a unique `name` on every item and group.
 - **Missing `icon` at levels 1–2**: breaks icon-only collapse mode — always supply an `icon` slot at these levels even if visually redundant.
 - **Unknown icon name**: if an icon name cannot be verified, use `name="placeholder"` as a safe fallback — do not omit the `icon` slot or leave the name empty.
-- **CDN not loaded**: the component silently fails to register — ensure the RC CDN `<script>` is present and loads before the app bundle.
 - **Nesting beyond level 3**: not officially supported — limit to 3 levels to avoid rendering issues.
 - **`sgds-sidebar-section` `collapsed` without `collapsible`**: the section renders collapsed but has no user control to expand — only use `collapsed` together with `collapsible`.
 - **`activeItem` name collision**: if two items share the same `name`, the sidebar highlights both — ensure all `name` values are unique across the entire sidebar tree.
@@ -84,9 +75,6 @@
 ## Basic Usage
 
 ```html
-<!-- CDN required — Sidebar is RC only -->
-<script src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component@rc/components/Sidebar/index.umd.min.js"></script>
-
 <sgds-sidebar active="dashboard">
   <sgds-sidebar-item name="dashboard" title="Dashboard">
     <sgds-icon name="grid-fill" slot="icon"></sgds-icon>
@@ -358,7 +346,6 @@ Floating sidebar panel for responsive layouts (mobile-first). Ideal for dashboar
 ```html
 <html>
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component@rc/components/Sidebar/index.umd.min.js"></script>
 </head>
 <body>
   <div class="app-header" style="padding: 12px 16px; border-bottom: 1px solid {{color-border}};">
@@ -538,4 +525,4 @@ See **[Application Shell](../../sgds-pattern-block-templates/reference/applicati
 
 ---
 
-**For AI agents**: Always include the CDN `<script>` tag — `sgds-sidebar` is not bundled in the stable npm package. Use `name` on every `sgds-sidebar-item` and `sgds-sidebar-group` — without it, `active` tracking will not work. `sgds-sidebar-section` accepts `name` for identification but its `name` does NOT participate in `active` tracking — only items and groups do. Top-level `sgds-sidebar-item` elements placed directly inside `sgds-sidebar` (outside any section) are valid. The `upper`, `lower`, and `indicator` slots accept any HTML — not just `sgds-icon`. Use `upper` for headers (brand names, logos), `lower` for footers (user menus, copyright info), and `indicator` for badges and indicators. At level 0, `sgds-sidebar-group` opens a drawer overlay (items slide in from the side); at level 1+, it toggles an inline submenu. Use `collapsible` (boolean attribute) on `sgds-sidebar-section` to let users collapse the section. **`icon` is compulsory on every `sgds-sidebar-item` and `sgds-sidebar-group` at level 1 and level 2 — this rule applies to both component types equally. Never omit it at these levels, even for groups that only serve as structural containers.** **Icon fallback rule**: when you are not certain that a specific `sgds-icon` name exists, always use `name="placeholder"` — never guess an icon name or omit the slot. Only use a named icon if you have seen it confirmed in existing playground or Storybook examples.
+**For AI agents**: Use `name` on every `sgds-sidebar-item` and `sgds-sidebar-group` — without it, `active` tracking will not work. `sgds-sidebar-section` accepts `name` for identification but its `name` does NOT participate in `active` tracking — only items and groups do. Top-level `sgds-sidebar-item` elements placed directly inside `sgds-sidebar` (outside any section) are valid. The `upper`, `lower`, and `indicator` slots accept any HTML — not just `sgds-icon`. Use `upper` for headers (brand names, logos), `lower` for footers (user menus, copyright info), and `indicator` for badges and indicators. At level 0, `sgds-sidebar-group` opens a drawer overlay (items slide in from the side); at level 1+, it toggles an inline submenu. Use `collapsible` (boolean attribute) on `sgds-sidebar-section` to let users collapse the section. **`icon` is compulsory on every `sgds-sidebar-item` and `sgds-sidebar-group` at level 1 and level 2 — this rule applies to both component types equally. Never omit it at these levels, even for groups that only serve as structural containers.** **Icon fallback rule**: when you are not certain that a specific `sgds-icon` name exists, always use `name="placeholder"` — never guess an icon name or omit the slot. Only use a named icon if you have seen it confirmed in existing playground or Storybook examples.
