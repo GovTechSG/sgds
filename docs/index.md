@@ -20,7 +20,7 @@ const buttons: Button = [
   }
 ]
 
-const featureFoundations: FoundationItems[] = [
+const featureFoundations: FoundationItem[] = [
   {
     id: "colour-system",
     title: "Colour system",
