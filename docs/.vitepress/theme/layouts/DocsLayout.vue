@@ -8,7 +8,9 @@ import { isDraft } from "../../utils/page-status";
 import { getComponentDoc } from "../../data/component-docs";
 
 const { theme, page } = useData()
-const currentPath = computed(() => `/${page.value.relativePath.replace(/\.md$/, '')}`)
+const currentPath = computed(() =>
+  `/${page.value.relativePath.replace(/\.md$/, '')}`
+)
 
 const currentSection = computed(() => {
   const rel = page.value?.relativePath || ""
@@ -50,23 +52,15 @@ const currentSidebar = computed(() => {
   return entry || []
 })
 
-const getDerivedGroupBase = (base: string, texts: string | string[]) => {
-  const segments = Array.isArray(texts) ? texts : [texts]
-  const path = segments
-    .map((text) =>
-      text
-        .trim()
-        .replace(/([a-z])([A-Z])/g, "$1-$2")
-        .replace(/\s+/g, "-")
-        .toLowerCase()
-    )
-    .join("/")
-
-  return `/${base}/${path}/`
-}
-
-const isSideNavGroupActive = (base: string, text: string[], current: string) => {
-  return current.startsWith(getDerivedGroupBase(base, text));
+// Returns true if the current path matches any leaf link within a sidebar item tree.
+// Walks recursively so active state is determined by actual link values, not derived URLs.
+const isSideNavGroupActive = (group: any, current: string): boolean => {
+  if (!group?.items?.length) return false
+  for (const item of group.items) {
+    if (item.link === current) return true
+    if (item.items?.length && isSideNavGroupActive(item, current)) return true
+  }
+  return false
 }
 
 const acronymMap: Record<string, string> = {
@@ -136,13 +130,13 @@ const pageMetadata = computed(() => {
               v-for="group in currentSidebar.items"
               :key="group.text"
             >
-              <sgds-sidenav-item v-if="group.items && group.items.length" :active="isSideNavGroupActive(currentSection, [group.text], currentPath) || null">
+              <sgds-sidenav-item v-if="group.items && group.items.length" :active="isSideNavGroupActive(group, currentPath) || null">
                 <span slot="title">{{ formatSidebarLabel(group.text) }}</span>
                 <template
                   v-for="item in group.items"
-                  :key="item.link"
+                  :key="item.link ?? item.text"
                 >
-                  <sgds-sidenav-item v-if="item.items && item.items.length" :active="isSideNavGroupActive(currentSection, [group.text, item.text], currentPath) || null">
+                  <sgds-sidenav-item v-if="item.items && item.items.length" :active="isSideNavGroupActive(item, currentPath) || null">
                     <span slot="title">{{ formatSidebarLabel(item.text) }}</span>
                     <template
                       v-for="secondLevelItem in item.items"
