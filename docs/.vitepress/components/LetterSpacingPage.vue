@@ -26,7 +26,7 @@ const copyTokenValue = async (key: string, text: string) => {
     <section class="typography-page-template__section">
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
         <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Letter spacing utilities</h4>
+          <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Letter spacing utilities</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
             Letter spacing (tracking) controls the horizontal space between characters. SGDS pairs specific tracking values with typographic roles — tighter for large display text, normal for body and UI text, and wider for overlines.
           </p>

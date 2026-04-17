@@ -152,7 +152,7 @@ const pageMetadata = computed(() => {
                     </sgds-sidenav-link>
                     </template>
                   </sgds-sidenav-item>
-                  <sgds-sidenav-link v-else :active="(currentPath === item.link) || null">
+                  <sgds-sidenav-link v-else-if="item.link" :active="(currentPath === item.link) || null">
                     <a
                       :href="isDraft(group.text) ? undefined : withBase(item.link)"
                       :class="isDraft(group.text) ? 'sgds:cursor-not-allowed' : ''"

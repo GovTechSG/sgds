@@ -67,6 +67,14 @@ export const foundations: FoundationItem[] = [
     status: "draft",
   },
   {
+    id: "layer",
+    title: "Layer",
+    url: getFoundationEntryUrl("layer"),
+    image: "",
+    phase: 1,
+    status: "stable",
+  },
+  {
     id: "motion",
     title: "Motion",
     url: "",

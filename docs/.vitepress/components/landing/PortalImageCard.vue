@@ -34,7 +34,16 @@ function handleDisabledClick(e: MouseEvent) {
       @click="item.status === 'draft' ? handleDisabledClick($event) : undefined"
     >
       <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-[32px]">
-        <ComingSoonAnimation v-if="isPlaceholder" :phase="item.phase" />
+        <div
+          v-if="isPlaceholder && item.status === 'stable'"
+          class="sgds:absolute sgds:inset-0 sgds:flex sgds:flex-col sgds:items-center sgds:justify-center sgds:gap-text-sm sgds:bg-surface-raised sgds:p-layout-md sgds:text-center"
+        >
+          <sgds-icon name="image" size="2-xl" class="sgds:text-subtle"></sgds-icon>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+            No image yet, but content is available
+          </p>
+        </div>
+        <ComingSoonAnimation v-else-if="isPlaceholder" :phase="item.phase" />
         <img
           v-else
           :src="item.image"

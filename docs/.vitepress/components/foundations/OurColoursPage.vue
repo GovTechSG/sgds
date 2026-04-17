@@ -26,7 +26,7 @@ const brandColors: BrandColor[] = [
     textTone: "light",
   },
   {
-    name: "GovTech Magenta",
+    name: "GovTech magenta",
     hex: "#BA2FA2",
     rgb: "186 / 47 / 162",
     cmyk: "0 / 75 / 13 / 27",
@@ -34,7 +34,7 @@ const brandColors: BrandColor[] = [
     textTone: "light",
   },
   {
-    name: "GovTech Cyan",
+    name: "GovTech cyan",
     hex: "#00C0F3",
     rgb: "0 / 192 / 243",
     cmyk: "100 / 21 / 0 / 5",
@@ -128,12 +128,12 @@ const paletteRows: PaletteRow[] = [
     <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
         <Section title="GovTech colour palette">
-          <div class="sgds:grid sgds:gap-[var(--sgds-gap-2-xl)] sgds:grid-cols-3 sgds:max-lg:grid-cols-2 sgds:max-md:grid-cols-1">
+          <div class="sgds-grid">
             <article
               v-for="color in brandColors"
               :key="color.name"
               :class="[
-                'our-colours-brand-card sgds:flex sgds:flex-col sgds:justify-between sgds:rounded-[var(--sgds-border-radius-2-xl)] sgds:min-h-[var(--sgds-dimension-288)] sgds:max-md:min-h-[15rem] sgds:p-[var(--sgds-padding-2-xl)] sgds:overflow-hidden',
+                'sgds-col-4 sgds-col-sm-4 sgds-col-lg-4 our-colours-brand-card sgds:flex sgds:flex-col sgds:justify-between sgds:rounded-[var(--sgds-border-radius-2-xl)] sgds:min-h-[var(--sgds-dimension-288)] sgds:max-md:min-h-[15rem] sgds:p-[var(--sgds-padding-2-xl)] sgds:overflow-hidden',
                 color.textTone === 'light' ? 'sgds:text-inverse' : '',
                 color.textTone === 'dark' ? 'sgds:text-default' : '',
                 color.textTone === 'fixed-light' ? 'sgds:text-fixed-light our-colours-brand-card-fixed-light' : '',
@@ -189,7 +189,7 @@ const paletteRows: PaletteRow[] = [
                 <span
                   v-for="color in accentSwatches"
                   :key="color"
-                  :class="['our-colours-palette-swatch sgds:rounded-xl sgds:block sgds:h-[clamp(2rem,5.3vw,4rem)] sgds:w-[clamp(2rem,5.3vw,4rem)]', color === '#FFFFFF' ? 'sgds:border sgds:border-muted' : '']"
+                  :class="['our-colours-palette-swatch sgds:rounded-[min(var(--sgds-border-radius-xl),30%)] sgds:block sgds:h-[clamp(2rem,5.3vw,4rem)] sgds:w-[clamp(2rem,5.3vw,4rem)]', color === '#FFFFFF' ? 'sgds:border sgds:border-muted' : '']"
                   :style="{ backgroundColor: color }"
                 ></span>
               </div>
@@ -202,7 +202,7 @@ const paletteRows: PaletteRow[] = [
                 <span
                   v-for="color in row.colors"
                   :key="`${row.label}-${color}`"
-                  :class="['our-colours-palette-swatch sgds:rounded-xl sgds:block sgds:h-[clamp(2rem,5.3vw,4rem)] sgds:w-[clamp(2rem,5.3vw,4rem)]', color === '#FFFFFF' ? 'sgds:border sgds:border-muted' : '']"
+                  :class="['our-colours-palette-swatch sgds:rounded-[min(var(--sgds-border-radius-xl),30%)] sgds:block sgds:h-[clamp(2rem,5.3vw,4rem)] sgds:w-[clamp(2rem,5.3vw,4rem)]', color === '#FFFFFF' ? 'sgds:border sgds:border-muted' : '']"
                   :style="{ backgroundColor: color }"
                 ></span>
               </div>

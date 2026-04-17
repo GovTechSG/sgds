@@ -64,7 +64,7 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
       <div class="spacing-page__body">
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Base size</h4>
+            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Base size</h5>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               SGDS follows a 4-point system. This allows us to create consistency across the user interface while decreasing
               design complexity.
@@ -82,7 +82,7 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
 
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Progression</h4>
+            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Progression</h5>
 
             <div class="typography-page-template__copy-block">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -98,7 +98,7 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
                 class="spacing-page__formula-block"
               >
                 <div class="spacing-page__formula-header">
-                  <h5 class="sgds:text-heading-xs sgds:font-semibold sgds:leading-xs sgds:tracking-tight">
+                  <h5 class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
                     {{ method.title }}
                   </h5>
                   <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -107,7 +107,7 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
                 </div>
 
                 <div class="spacing-page__formula-card">
-                  <h6 class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+                  <h6 class="sgds:text-label-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
                     {{ method.formulaTitle }}
                   </h6>
                   <div class="spacing-page__formula sgds:text-body-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal" :aria-label="method.ariaLabel">
@@ -122,12 +122,12 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
                     <span v-for="definition in method.definitions" :key="definition">{{ definition }}</span>
                   </p>
                   <div class="spacing-page__sample">
-                    <span class="spacing-page__sample-label sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Sample</span>
+                    <span class="spacing-page__sample-label sgds:text-label-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Sample</span>
                     <div class="spacing-page__sample-values">
                       <span
                         v-for="value in method.sample"
                         :key="`${method.title}-${value}`"
-                        class="spacing-page__sample-chip sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal"
+                        class="spacing-page__sample-chip sgds:text-body-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal"
                       >
                         {{ value }}
                       </span>

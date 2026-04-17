@@ -132,12 +132,13 @@ const gridStyle = (preset: GridPreset) => ({
 <template>
   <TypographyPageTemplate class="rg-page">
     <section class="typography-page-template__section typography-page-template__section--spaced">
-      <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Responsive grid presets</h4>
-      <div class="typography-page-template__body typography-page-template__body--prose">
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Responsive grid presets</h3>
+        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           SGDS have six main grid presets to consolidate margin and gutter adjustments across breakpoints.
         </p>
-
+      </div>
+      <div class="typography-page-template__body typography-page-template__body--prose">
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
             <sgds-table-head class="rg-name-col">Grid</sgds-table-head>
@@ -161,26 +162,15 @@ const gridStyle = (preset: GridPreset) => ({
           </sgds-table-row>
         </sgds-table>
 
-        <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
           <article v-for="preset in gridPresets" :key="preset.title" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-lg">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 {{ preset.title }} ({{ preset.screenSize }})
-              </h4>
+              </h5>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 {{ preset.usage }}
               </p>
-              <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-                <p class="sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">
-                  Construction
-                </p>
-                <ul class="rg-construction-list">
-                  <li>{{ preset.columnsLabel }}</li>
-                  <li>{{ preset.gutters }} gutters</li>
-                  <li>{{ preset.outerMargins }} margins</li>
-                  <li>{{ preset.containerWidth }} container width</li>
-                </ul>
-              </div>
             </div>
             <div class="rg-grid-demo" :style="gridStyle(preset)" aria-hidden="true">
               <div class="rg-grid-frame">
@@ -188,7 +178,24 @@ const gridStyle = (preset: GridPreset) => ({
                   <span v-for="column in preset.columns" :key="column" class="rg-grid-column" />
                 </div>
               </div>
-              <span class="rg-demo-label">{{ preset.columnsLabel }} · {{ preset.gutters }} gutters</span>
+              <dl class="rg-construction">
+                <div class="rg-construction__item">
+                  <dt class="rg-construction__label">Columns</dt>
+                  <dd class="rg-construction__value">{{ preset.columnsLabel }}</dd>
+                </div>
+                <div class="rg-construction__item">
+                  <dt class="rg-construction__label">Gutters</dt>
+                  <dd class="rg-construction__value">{{ preset.gutters }}</dd>
+                </div>
+                <div class="rg-construction__item">
+                  <dt class="rg-construction__label">Margins</dt>
+                  <dd class="rg-construction__value">{{ preset.outerMargins }}</dd>
+                </div>
+                <div class="rg-construction__item">
+                  <dt class="rg-construction__label">Container width</dt>
+                  <dd class="rg-construction__value">{{ preset.containerWidth }}</dd>
+                </div>
+              </dl>
             </div>
           </article>
         </div>
@@ -196,21 +203,22 @@ const gridStyle = (preset: GridPreset) => ({
     </section>
 
     <section class="typography-page-template__section typography-page-template__section--spaced">
-      <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
-        Responsive grid with sticky sidebar
-      </h4>
-      <div class="typography-page-template__body typography-page-template__body--prose">
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">
+          Responsive grid with sticky sidebar
+        </h3>
         <div class="typography-page-template__copy-block">
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
             A responsive grid with a sticky sidebar is a layout where the main content uses a flexible grid system,
             while the sidebar remains fixed within the viewport when scrolling.
           </p>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
             On mobile devices, the sidebar is hidden or repositioned to prioritise content visibility and improve
             usability.
           </p>
         </div>
-
+      </div>
+      <div class="typography-page-template__body typography-page-template__body--prose">
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
             <sgds-table-head class="rg-name-col">Grid</sgds-table-head>
@@ -236,27 +244,15 @@ const gridStyle = (preset: GridPreset) => ({
           </sgds-table-row>
         </sgds-table>
 
-        <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
           <article v-for="preset in stickySidebarPresets" :key="preset.title" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-lg">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 {{ preset.title }} ({{ preset.screenSize }})
-              </h4>
+              </h5>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 {{ preset.usage }}
               </p>
-              <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-                <p class="sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">
-                  Construction
-                </p>
-                <ul class="rg-construction-list">
-                  <li>{{ preset.columnsLabel }}</li>
-                  <li>{{ preset.gutters }} gutters</li>
-                  <li>{{ preset.outerMargins }} margins</li>
-                  <li>{{ preset.containerWidth }} container width</li>
-                  <li>{{ preset.sidebarWidth }} sidebar</li>
-                </ul>
-              </div>
             </div>
             <div class="rg-grid-demo" :style="gridStyle(preset)" aria-hidden="true">
               <div class="rg-grid-frame">
@@ -265,9 +261,28 @@ const gridStyle = (preset: GridPreset) => ({
                   <span v-for="column in preset.columns" :key="column" class="rg-grid-column" />
                 </div>
               </div>
-              <span class="rg-demo-label">
-                {{ preset.columnsLabel }} · {{ preset.sidebarWidth }}
-              </span>
+              <dl class="rg-construction">
+                <div class="rg-construction__item">
+                  <dt class="rg-construction__label">Columns</dt>
+                  <dd class="rg-construction__value">{{ preset.columnsLabel }}</dd>
+                </div>
+                <div class="rg-construction__item">
+                  <dt class="rg-construction__label">Gutters</dt>
+                  <dd class="rg-construction__value">{{ preset.gutters }}</dd>
+                </div>
+                <div class="rg-construction__item">
+                  <dt class="rg-construction__label">Margins</dt>
+                  <dd class="rg-construction__value">{{ preset.outerMargins }}</dd>
+                </div>
+                <div class="rg-construction__item">
+                  <dt class="rg-construction__label">Container width</dt>
+                  <dd class="rg-construction__value">{{ preset.containerWidth }}</dd>
+                </div>
+                <div class="rg-construction__item">
+                  <dt class="rg-construction__label">Sidebar</dt>
+                  <dd class="rg-construction__value">{{ preset.sidebarWidth }}</dd>
+                </div>
+              </dl>
             </div>
           </article>
         </div>
@@ -340,7 +355,7 @@ const gridStyle = (preset: GridPreset) => ({
   max-inline-size: 100%;
   min-block-size: 9rem;
   padding: var(--sgds-spacer-4);
-  width: min(100%, 42rem);
+  width: min(100%, 56rem);
 }
 
 /* Uses CSS custom properties set dynamically via :style binding */
@@ -375,6 +390,44 @@ const gridStyle = (preset: GridPreset) => ({
   text-align: center;
 }
 
+/* Construction stats row inside the demo box — grid keeps items evenly spaced */
+.rg-construction {
+  display: grid;
+  gap: var(--sgds-component-gap-md);
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  margin: 0;
+  margin-inline: auto;
+  width: min(100%, 56rem);
+}
+
+.rg-construction__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-text-gap-2-xs);
+  min-inline-size: 0;
+  text-align: center;
+}
+
+.rg-construction__label {
+  color: var(--sgds-body-color-muted);
+  font-size: var(--sgds-font-size-label-sm);
+  font-weight: var(--sgds-font-weight-regular);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-2-xs);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.rg-construction__value {
+  color: var(--sgds-body-color-default);
+  font-size: var(--sgds-font-size-body-md);
+  font-weight: var(--sgds-font-weight-semibold);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-xs);
+  margin: 0;
+}
+
 @media (max-width: 1023px) {
   .rg-name-col,
   .rg-value-col {
@@ -393,6 +446,11 @@ const gridStyle = (preset: GridPreset) => ({
 
   .rg-grid-columns {
     gap: var(--sgds-spacer-2);
+  }
+
+  .rg-construction {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>

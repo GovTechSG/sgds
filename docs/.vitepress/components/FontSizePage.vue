@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import FontSizeGroupTable from "./FontSizeGroupTable.vue";
-import { computed, ref } from "vue";
 
 const fontSizeGroups = [
   {
@@ -83,48 +82,23 @@ const fontSizeGroups = [
     ],
   },
 ] as const;
-
-const activeGroupKey = ref<(typeof fontSizeGroups)[number]["key"]>("display");
-
-const activeGroup = computed(
-  () => fontSizeGroups.find((group) => group.key === activeGroupKey.value) ?? fontSizeGroups[0],
-);
-
-const onFontSizeTabShow = (e: Event) => {
-  const nextGroup = (e as CustomEvent).detail.name as (typeof fontSizeGroups)[number]["key"];
-  if (fontSizeGroups.some((group) => group.key === nextGroup)) activeGroupKey.value = nextGroup;
-};
 </script>
 
 <template>
   <TypographyPageTemplate>
-    <section id="responsive-tokens" class="typography-page-template__section">
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-        <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Font size utilities</h4>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-            Semantic font size utility classes control text size using tokens mapped to the SGDS type scale. These sizes are responsive by default, automatically scaling at tablet (1024px) and desktop (1440px) breakpoints to ensure consistent and readable typography across devices.
-          </p>
-        </div>
-        <sgds-tab-group class="ts-token-tab-group" variant="underlined" @sgds-tab-show="onFontSizeTabShow">
-          <sgds-tab
-            v-for="group in fontSizeGroups"
-            :key="group.key"
-            slot="nav"
-            :panel="group.key"
-            :active="activeGroupKey === group.key || null"
-          >{{ group.label }}</sgds-tab>
-          <sgds-tab-panel
-            v-for="group in fontSizeGroups"
-            :key="`font-size-panel-${group.key}`"
-            :name="group.key"
-          ></sgds-tab-panel>
-        </sgds-tab-group>
+    <section id="responsive-tokens" class="typography-page-template__section typography-page-template__section--spaced">
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Font size utilities</h3>
+        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+          Semantic font size utility classes control text size using tokens mapped to the SGDS type scale. These sizes are responsive by default, automatically scaling at tablet (1024px) and desktop (1440px) breakpoints to ensure consistent and readable typography across devices.
+        </p>
+      </div>
 
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
         <FontSizeGroupTable
-          :key="activeGroup.key"
-          :group="activeGroup"
-          :show-header="false"
+          v-for="group in fontSizeGroups"
+          :key="group.key"
+          :group="group"
         />
       </div>
     </section>

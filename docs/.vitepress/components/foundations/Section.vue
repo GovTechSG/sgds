@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import SectionHeader, { Section } from './SectionHeader.vue';
 
-const { title, description } = defineProps<Section>();
+const { title, description, headingLevel } = defineProps<Section>();
 </script>
 
 <template>
-  <section class="sgds:flex sgds:flex-col sgds:gap-text-lg">
+  <section class="sgds:flex sgds:flex-col sgds:gap-text-sm">
     <SectionHeader
       :title="title"
       :description="description"
+      :heading-level="headingLevel"
     />
     <div class="sgds:flex sgds:flex-col">
       <slot></slot>

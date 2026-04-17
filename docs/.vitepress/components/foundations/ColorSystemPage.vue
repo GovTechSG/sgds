@@ -421,7 +421,7 @@ const systemSections = [
 .backgroundSwatch {
   align-items: center;
   aspect-ratio: 1;
-  border-radius: var(--sgds-border-radius-xl);
+  border-radius: min(var(--sgds-border-radius-xl), 30%);
   display: flex;
   justify-content: center;
   min-width: 0;
@@ -588,7 +588,7 @@ const systemSections = [
 .swatch {
   align-items: center;
   aspect-ratio: 1;
-  border-radius: var(--sgds-border-radius-xl);
+  border-radius: min(var(--sgds-border-radius-xl), 30%);
   display: flex;
   justify-content: center;
   min-width: 0;
@@ -687,9 +687,6 @@ const systemSections = [
     padding-inline: var(--sgds-component-padding-xs);
   }
 
-  .swatch {
-    border-radius: var(--sgds-border-radius-lg);
-  }
 
   .backgroundCard {
     border-radius: var(--sgds-border-radius-xl);
@@ -700,9 +697,6 @@ const systemSections = [
     min-height: 22rem;
   }
 
-  .backgroundSwatch {
-    border-radius: var(--sgds-border-radius-lg);
-  }
 
   .backgroundStage {
     box-sizing: border-box;

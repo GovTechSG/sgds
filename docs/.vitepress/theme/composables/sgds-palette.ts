@@ -62,7 +62,7 @@ export const brandPalettes: BrandPalette[] = [
   },
   {
     id: "cyan",
-    label: "GovTech Cyan",
+    label: "GovTech cyan",
     shortLabel: "Cyan",
     swatch: "#007493",
     shades: {
@@ -79,7 +79,7 @@ export const brandPalettes: BrandPalette[] = [
   },
   {
     id: "magenta",
-    label: "GovTech Magenta",
+    label: "GovTech magenta",
     shortLabel: "Magenta",
     swatch: "#B82EA0",
     shades: {

@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Border width tokens
+title: Border width
 description: Design tokens for border width across the SGDS system.
 ---
 

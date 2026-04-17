@@ -16,10 +16,12 @@ const principles = [
     body: "Giving elements a visual hierarchy.",
   },
 ];
+
 </script>
 
 <template>
   <FoundationPrincipleTemplate>
     <FoundationPrinciplesList :principles="principles" />
+
   </FoundationPrincipleTemplate>
 </template>

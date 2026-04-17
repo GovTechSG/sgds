@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Border radius tokens
+title: Border radius
 description: Design tokens for border radius across the SGDS system.
 ---
 

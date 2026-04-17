@@ -45,10 +45,7 @@ const rules = [
     <FoundationPrincipleTemplate>
       <FoundationPrinciplesList :principles="principles" />
       <FoundationPrinciplesList title="Rules and guide" :principles="rules" />
-      <Section
-        title="Characteristics"
-        description="Characteristics that define how SGDS icons look, behave, and work across interface contexts."
-      >
+      <Section title="Characteristics">
         <IconographyCharacteristicsPage />
       </Section>
     </FoundationPrincipleTemplate>

@@ -9,17 +9,10 @@ const tokenViewOptions = [
 ] as const;
 type TokenViewId = (typeof tokenViewOptions)[number]["id"];
 const activeTokenViewId = ref<TokenViewId>("css-variable");
-const copiedKey = ref<string | null>(null);
 
 const onTokenViewShow = (event: Event) => {
   const nextView = (event as CustomEvent<{ name?: string }>).detail?.name as TokenViewId | undefined;
   if (nextView && tokenViewOptions.some((o) => o.id === nextView)) activeTokenViewId.value = nextView;
-};
-
-const copyTokenValue = async (key: string, text: string) => {
-  await navigator.clipboard.writeText(text);
-  copiedKey.value = key;
-  setTimeout(() => { if (copiedKey.value === key) copiedKey.value = null; }, 2000);
 };
 
 // Tokens in this file always have the -- prefix
@@ -115,14 +108,15 @@ const layoutPaddingRows: ResponsiveRow[] = [
 
     <!-- ── Spacer scale ──────────────────────────────────────────────────── -->
     <section v-if="props.section === 'spacer-scale'" class="typography-page-template__section typography-page-template__section--spaced">
-      <div class="typography-page-template__content-block">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Spacer scale</h4>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Spacer scale tokens</h3>
+        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           The spacer scale is the primitive foundation of the SGDS spacing system. Semantic spacing tokens reference these
           values. Use the numbered spacer tokens only when no semantic token fits the context.
         </p>
       </div>
 
+      <div class="typography-page-template__body typography-page-template__body--prose">
       <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
         <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
         <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -143,18 +137,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
         >
           <sgds-table-cell class="st-token-col">
             <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-              <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(`--sgds-spacer-${row.index}`)" placement="top">
-                <CodeToken :label="getTokenValue(`--sgds-spacer-${row.index}`)" />
-              </sgds-tooltip>
-              <div v-else class="ts-snippet-row">
-                <code class="ts-snippet-code"><span>{{ getTokenValue(`--sgds-spacer-${row.index}`) }}</span></code>
-                <button
-                  :class="['ts-snippet-copy-btn', copiedKey === `spacer-${row.index}` ? 'sgds:text-success-default' : 'sgds:text-default']"
-                  @click="copyTokenValue(`spacer-${row.index}`, getTokenValue(`--sgds-spacer-${row.index}`))"
-                >
-                  <sgds-icon :name="copiedKey === `spacer-${row.index}` ? 'check' : 'copy'" size="sm" />
-                </button>
-              </div>
+              <CodeToken :label="getTokenValue(`--sgds-spacer-${row.index}`)" />
               <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
             </div>
           </sgds-table-cell>
@@ -173,6 +156,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
           </sgds-table-cell>
         </sgds-table-row>
       </sgds-table>
+      </div>
     </section>
 
     <!-- ── Gap tokens ────────────────────────────────────────────────────── -->
@@ -180,25 +164,17 @@ const layoutPaddingRows: ResponsiveRow[] = [
       v-if="props.section === 'text-gap' || props.section === 'layout-gap' || props.section === 'component-gap'"
       class="typography-page-template__section typography-page-template__section--spaced"
     >
-      <div class="typography-page-template__content-block">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Gap tokens</h4>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-          Gap tokens control spacing between flex and grid children. SGDS provides three semantic categories that scale
-          responsively across breakpoints: text gap for typography, layout gap for page structure, and component gap
-          for spacing inside components.
-        </p>
-      </div>
-
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
         <!-- Text gap -->
-        <article v-if="props.section === 'text-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-          <div class="typography-page-template__content-block">
-            <h5 class="sgds-subtitle-md-semibold sgds:m-0">Text gap</h5>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+        <article v-if="props.section === 'text-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Text gap tokens</h3>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Use for spacing between text elements and inline content. Utility: <CodeToken label="sgds:gap-text-{size}" />.
             </p>
           </div>
+          <div class="typography-page-template__body typography-page-template__body--prose">
           <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
             <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
             <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -218,18 +194,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                    <CodeToken :label="getTokenValue(row.token)" />
-                  </sgds-tooltip>
-                  <div v-else class="ts-snippet-row">
-                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                    <button
-                      :class="['ts-snippet-copy-btn', copiedKey === row.token ? 'sgds:text-success-default' : 'sgds:text-default']"
-                      @click="copyTokenValue(row.token, getTokenValue(row.token))"
-                    >
-                      <sgds-icon :name="copiedKey === row.token ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
+                  <CodeToken :label="getTokenValue(row.token)" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -239,16 +204,18 @@ const layoutPaddingRows: ResponsiveRow[] = [
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
+          </div>
         </article>
 
         <!-- Layout gap -->
-        <article v-if="props.section === 'layout-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-          <div class="typography-page-template__content-block">
-            <h5 class="sgds-subtitle-md-semibold sgds:m-0">Layout gap</h5>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+        <article v-if="props.section === 'layout-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Layout gap tokens</h3>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Use for spacing between page sections and major layout regions. Utility: <CodeToken label="sgds:gap-layout-{size}" />.
             </p>
           </div>
+          <div class="typography-page-template__body typography-page-template__body--prose">
           <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
             <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
             <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -268,18 +235,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                    <CodeToken :label="getTokenValue(row.token)" />
-                  </sgds-tooltip>
-                  <div v-else class="ts-snippet-row">
-                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                    <button
-                      :class="['ts-snippet-copy-btn', copiedKey === row.token ? 'sgds:text-success-default' : 'sgds:text-default']"
-                      @click="copyTokenValue(row.token, getTokenValue(row.token))"
-                    >
-                      <sgds-icon :name="copiedKey === row.token ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
+                  <CodeToken :label="getTokenValue(row.token)" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -289,16 +245,18 @@ const layoutPaddingRows: ResponsiveRow[] = [
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
+          </div>
         </article>
 
         <!-- Component gap -->
-        <article v-if="props.section === 'component-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-          <div class="typography-page-template__content-block">
-            <h5 class="sgds-subtitle-md-semibold sgds:m-0">Component gap</h5>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+        <article v-if="props.section === 'component-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Component gap tokens</h3>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Use for spacing between elements within a component. Utility: <CodeToken label="sgds:gap-component-{size}" />.
             </p>
           </div>
+          <div class="typography-page-template__body typography-page-template__body--prose">
           <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
             <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
             <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -318,18 +276,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                    <CodeToken :label="getTokenValue(row.token)" />
-                  </sgds-tooltip>
-                  <div v-else class="ts-snippet-row">
-                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                    <button
-                      :class="['ts-snippet-copy-btn', copiedKey === row.token ? 'sgds:text-success-default' : 'sgds:text-default']"
-                      @click="copyTokenValue(row.token, getTokenValue(row.token))"
-                    >
-                      <sgds-icon :name="copiedKey === row.token ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
+                  <CodeToken :label="getTokenValue(row.token)" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -339,6 +286,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
+          </div>
         </article>
       </div>
     </section>
@@ -348,26 +296,17 @@ const layoutPaddingRows: ResponsiveRow[] = [
       v-if="props.section === 'component-padding' || props.section === 'layout-padding'"
       class="typography-page-template__section typography-page-template__section--spaced"
     >
-      <div class="typography-page-template__content-block">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Padding tokens</h4>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-          Padding tokens define the internal spacing of components and layout regions. Like gap tokens, they scale
-          responsively across breakpoints. Apply them with shorthand utilities such as
-          <CodeToken label="sgds:p-component-md" />, <CodeToken label="sgds:px-component-sm" />,
-          or <CodeToken label="sgds:py-layout-lg" />.
-        </p>
-      </div>
-
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
         <!-- Component padding -->
-        <article v-if="props.section === 'component-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-          <div class="typography-page-template__content-block">
-            <h5 class="sgds-subtitle-md-semibold sgds:m-0">Component padding</h5>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+        <article v-if="props.section === 'component-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Component padding tokens</h3>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Internal padding for UI components. Utility: <CodeToken label="sgds:p-component-{size}" />.
             </p>
           </div>
+          <div class="typography-page-template__body typography-page-template__body--prose">
           <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
             <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
             <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -387,18 +326,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                    <CodeToken :label="getTokenValue(row.token)" />
-                  </sgds-tooltip>
-                  <div v-else class="ts-snippet-row">
-                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                    <button
-                      :class="['ts-snippet-copy-btn', copiedKey === row.token ? 'sgds:text-success-default' : 'sgds:text-default']"
-                      @click="copyTokenValue(row.token, getTokenValue(row.token))"
-                    >
-                      <sgds-icon :name="copiedKey === row.token ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
+                  <CodeToken :label="getTokenValue(row.token)" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -408,16 +336,18 @@ const layoutPaddingRows: ResponsiveRow[] = [
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
+          </div>
         </article>
 
         <!-- Layout padding -->
-        <article v-if="props.section === 'layout-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-          <div class="typography-page-template__content-block">
-            <h5 class="sgds-subtitle-md-semibold sgds:m-0">Layout padding</h5>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+        <article v-if="props.section === 'layout-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Layout padding tokens</h3>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Padding for page-level containers and layout regions. Utility: <CodeToken label="sgds:p-layout-{size}" />.
             </p>
           </div>
+          <div class="typography-page-template__body typography-page-template__body--prose">
           <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
             <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
             <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -437,18 +367,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                    <CodeToken :label="getTokenValue(row.token)" />
-                  </sgds-tooltip>
-                  <div v-else class="ts-snippet-row">
-                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                    <button
-                      :class="['ts-snippet-copy-btn', copiedKey === row.token ? 'sgds:text-success-default' : 'sgds:text-default']"
-                      @click="copyTokenValue(row.token, getTokenValue(row.token))"
-                    >
-                      <sgds-icon :name="copiedKey === row.token ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
+                  <CodeToken :label="getTokenValue(row.token)" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -458,6 +377,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
+          </div>
         </article>
       </div>
     </section>
@@ -508,6 +428,11 @@ const layoutPaddingRows: ResponsiveRow[] = [
 /* Base row highlight — applied to sgds-table-row host element */
 .st-base-row {
   background: var(--sgds-primary-surface-muted);
+}
+
+.st-base-row span,
+.st-base-row p {
+  color: var(--sgds-color-fixed-dark);
 }
 
 /* ─── Token snippet row (copy-to-clipboard) ──────────────────────────────── */

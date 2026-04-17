@@ -94,21 +94,24 @@ onBeforeUnmount(() => {
               <div xmlns="http://www.w3.org/1999/xhtml" class="sgds:h-[209px] sgds:w-[417px] sgds:overflow-hidden sgds:rounded-[10px] sgds:bg-[#161c24] sgds:font-mono sgds:text-[16px] sgds:leading-[1.55]">
                 <div class="sgds:flex sgds:h-[48px] sgds:items-center sgds:bg-[#252c35]">
                   <div class="sgds:flex sgds:gap-[8px] sgds:px-[16px]">
-                    <span class="sgds:h-[13px] sgds:w-[13px] sgds:rounded-full sgds:bg-[#ff5f57]"></span>
-                    <span class="sgds:h-[13px] sgds:w-[13px] sgds:rounded-full sgds:bg-[#febc2e]"></span>
-                    <span class="sgds:h-[13px] sgds:w-[13px] sgds:rounded-full sgds:bg-[#28c840]"></span>
+                    <span class="sgds:h-[12px] sgds:w-[12px] sgds:rounded-full sgds:bg-[#ff5f57]"></span>
+                    <span class="sgds:h-[12px] sgds:w-[12px] sgds:rounded-full sgds:bg-[#febc2e]"></span>
+                    <span class="sgds:h-[12px] sgds:w-[12px] sgds:rounded-full sgds:bg-[#28c840]"></span>
                   </div>
-                  <div class="sgds:flex sgds:h-full sgds:items-center sgds:gap-[8px] sgds:rounded-t-[6px] sgds:bg-[#1b222b] sgds:px-[20px] sgds:text-[16px] sgds:font-semibold">
+                  <div class="sgds:flex sgds:h-full sgds:items-center sgds:gap-[8px] sgds:rounded-t-[6px] sgds:bg-[#1b222b] sgds:px-[20px] sgds:text-[14px] sgds:font-semibold">
                     <span class="sgds:text-[#ffd21e]">JS</span>
                     <span class="sgds:text-[#c5cad3]">snippet.js</span>
                   </div>
                 </div>
-                <pre aria-label="JavaScript snippet" class="sgds:m-0 sgds:h-[161px] sgds:w-full sgds:overflow-hidden sgds:bg-[#161c24] sgds:px-[20px] sgds:py-[18px] sgds:font-mono sgds:text-[12px] sgds:leading-[1.55] sgds:text-[#d4d4d4]"><code><span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span> <span class="sgds:text-[#9cdcfe]">label</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"Framework agnostic"</span> <span class="sgds:text-[#9cdcfe]">multiselect</span>
-    <span class="sgds:text-[#9cdcfe]">value</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"react;vue;svelte;angular;anything that runs on the browser"</span><span class="sgds:text-[#569cd6]">&gt;</span>
-  <span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span><span class="sgds:text-[#569cd6]">&gt;</span>
+                <pre aria-label="JavaScript snippet" contenteditable="true" spellcheck="false" class="sgds:m-0 sgds:h-[161px] sgds:w-full sgds:overflow-auto sgds:bg-[#161c24] sgds:px-[20px] sgds:py-[18px] sgds:font-mono sgds:text-[12px] sgds:leading-[1.55] sgds:text-[#d4d4d4] focus:sgds:outline-none"><code><span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>Responsive Tokens<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>
+<span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">h6</span> <span class="sgds:text-[#9cdcfe]">class</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"sgds:text-subtitle-sm sgds:font-light ..."</span><span class="sgds:text-[#569cd6]">&gt;</span>
+  Stripped Tailwind of its defaults, rebuilt on our
+  design tokens
+<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">h6</span><span class="sgds:text-[#569cd6]">&gt;</span>
 
-  <span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">sgds-switch</span> <span class="sgds:text-[#9cdcfe]">checked</span> <span class="sgds:text-[#9cdcfe]">label</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"Stripped Tailwind of its defaults, rebuilt on our design tokens."</span><span class="sgds:text-[#569cd6]">&gt;</span>
-  <span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">sgds-switch</span><span class="sgds:text-[#569cd6]">&gt;</span></code></pre>
+<span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span> <span class="sgds:text-[#9cdcfe]">label</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"Framework agnostic"</span>
+    <span class="sgds:text-[#9cdcfe]">value</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"react;vue;angular;svelte;etc"</span> <span class="sgds:text-[#9cdcfe]">multiSelect</span><span class="sgds:text-[#569cd6]">&gt;</span>
+<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span><span class="sgds:text-[#569cd6]">&gt;</span></code></pre>
               </div>
             </foreignObject>
           </g>

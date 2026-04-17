@@ -15,15 +15,15 @@ const { principles, title = "Principles" } = defineProps<{
 
 <template>
   <Section :title="title">
-    <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+    <div class="sgds:flex sgds:flex-col sgds:gap-text-xl">
       <div
         v-for="principle in principles"
         :key="principle.title"
-        class="sgds:flex sgds:flex-col sgds:gap-text-sm"
+        class="sgds:flex sgds:flex-col sgds:gap-text-xs"
       >
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+        <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">
           {{ principle.title }}
-        </h4>
+        </h5>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
           {{ principle.body ?? principle.description }}
         </p>

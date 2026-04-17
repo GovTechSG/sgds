@@ -60,9 +60,23 @@ export const foundationsSidebar = {
               link: "/foundations/colour/product-colour",
             },
             {
-              text: "Semantic colour",
-              link: "/foundations/colour/semantic-colour",
+              text: "Background colour",
+              link: "/foundations/colour/semantic-background",
             },
+            {
+              text: "Foreground colour",
+              link: "/foundations/colour/semantic-foreground",
+            },
+            {
+              text: "Surface colour",
+              link: "/foundations/colour/semantic-surface",
+            },
+            {
+              text: "Border colour",
+              link: "/foundations/colour/semantic-border",
+            },
+            { text: "Text colour", link: "/foundations/colour/semantic-text" },
+            { text: "Form colour", link: "/foundations/colour/semantic-form" },
           ],
         },
         {
@@ -127,18 +141,25 @@ export const foundationsSidebar = {
       ],
     },
     {
+      text: "Layer",
+      items: [
+        { text: "Layer principles", link: "/foundations/layer" },
+        { text: "Layer tokens", link: "/foundations/layer/layer-tokens" },
+        { text: "Z-index utilities", link: "/foundations/layer/z-index-utilities" },
+      ],
+    },
+    {
       text: "Layout",
       items: [
         { text: "Layout principles", link: "/foundations/layout" },
         {
-          text: "Layout tokens",
-          items: [
-            { text: "Breakpoint", link: "/foundations/layout/breakpoint" },
-            {
-              text: "Responsive grid",
-              link: "/foundations/layout/responsive-grid",
-            },
-          ],
+          text: "Responsive grid",
+          link: "/foundations/layout/responsive-grid",
+        },
+        { text: "Breakpoint", link: "/foundations/layout/breakpoint" },
+        {
+          text: "Layout utilities",
+          items: [],
         },
       ],
     },
@@ -261,7 +282,7 @@ export const foundationsSidebar = {
 
 export function findSidebarTextByLink(
   items: Array<SidebarGroupItem | SidebarLinkItem>,
-  link: string,
+  link: string
 ): string | null {
   for (const item of items) {
     if ("link" in item && item.link === link) return item.text;
@@ -275,7 +296,7 @@ export function findSidebarTextByLink(
 }
 
 function findFirstLeafLink(
-  items: Array<SidebarGroupItem | SidebarLinkItem>,
+  items: Array<SidebarGroupItem | SidebarLinkItem>
 ): string | undefined {
   for (const item of items) {
     if ("link" in item) return item.link;
@@ -294,7 +315,7 @@ function findFirstLeafLink(
  */
 export function getFoundationEntryUrl(id: string): string {
   const section = foundationsSidebar.items.find(
-    (item) => item.text.toLowerCase() === id,
+    (item) => item.text.toLowerCase() === id
   );
   if (!section) return "";
   return findFirstLeafLink(section.items) ?? "";

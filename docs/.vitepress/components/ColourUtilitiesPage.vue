@@ -269,18 +269,8 @@ const bgColorGroups: BgColorGroup[] = [
   { id: "cyan",         label: "Cyan",         rows: cyanBgColors },
 ];
 
-const activeBgGroupId = ref("foundational");
-
-const currentBgRows = computed(
-  () => bgColorGroups.find((g) => g.id === activeBgGroupId.value)?.rows ?? foundationalBgColors,
-);
-
 const showBackgroundSection = computed(() => props.section === "all" || props.section === "background");
 const showTextSection = computed(() => props.section === "all" || props.section === "text");
-
-function onBgTabShow(e: Event) {
-  activeBgGroupId.value = (e as CustomEvent).detail.name as string;
-}
 
 // ─── Text colour data ─────────────────────────────────────────────────────────
 
@@ -326,16 +316,6 @@ const textColorGroups: TextColorGroup[] = [
   { id: "semantic",         label: "Semantic",         rows: semanticTextTokens },
 ];
 
-const activeTextGroupId = ref("general-purpose");
-
-const currentTextRows = computed(
-  () => textColorGroups.find((g) => g.id === activeTextGroupId.value)?.rows ?? baseTokens,
-);
-
-function onTextTabShow(e: Event) {
-  activeTextGroupId.value = (e as CustomEvent).detail.name as string;
-}
-
 // ─── Shared copy-to-clipboard ─────────────────────────────────────────────────
 
 const copiedKey = ref<string | null>(null);
@@ -354,126 +334,118 @@ const copyTokenValue = async (key: string, text: string) => {
 
     <!-- ── Background colour ────────────────────────────────────────────────── -->
     <section v-if="showBackgroundSection" class="typography-page-template__section typography-page-template__section--spaced">
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Background colour</h4>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-          Background colour utilities follow the pattern <CodeToken label="sgds:bg-{semantic}-{modifier}" />.
-          All tokens are theme-aware and automatically switch between day and night mode values unless a
-          <CodeToken label="fixed" :surface="false" /> variant is used.
-        </p>
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+        <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+          <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Background colour utilities</h3>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+            Background colour utilities follow the pattern <CodeToken label="sgds:bg-{semantic}-{modifier}" />.
+            All tokens are theme-aware and automatically switch between day and night mode values unless a
+            <CodeToken label="fixed" :surface="false" /> variant is used.
+          </p>
+        </div>
 
-        <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onBgTabShow">
-          <sgds-tab
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+          <div
             v-for="group in bgColorGroups"
             :key="group.id"
-            slot="nav"
-            :panel="group.id"
-            :active="activeBgGroupId === group.id || null"
-          >{{ group.label }}</sgds-tab>
-          <sgds-tab-panel
-            v-for="group in bgColorGroups"
-            :key="`bg-colour-panel-${group.id}`"
-            :name="group.id"
-          ></sgds-tab-panel>
-        </sgds-tab-group>
+            class="sgds:flex sgds:flex-col sgds:gap-layout-xs"
+          >
+            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
+            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+              <sgds-table-row>
+                <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-preview-column colour-utilities-preview-column">Preview</sgds-table-head>
+              </sgds-table-row>
 
-        <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
-          <sgds-table-row>
-            <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
-            <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
-            <sgds-table-head class="typography-page-template__table-preview-column colour-utilities-preview-column">Preview</sgds-table-head>
-          </sgds-table-row>
-
-          <sgds-table-row v-for="item in currentBgRows" :key="item.utilityClass">
-            <sgds-table-cell class="typography-page-template__table-utility-column">
-              <div class="ts-snippet-row">
-                <code class="ts-snippet-code">
-                  <span>{{ item.utilityClass }}</span>
-                </code>
-                <button
-                  class="ts-snippet-copy-btn"
-                  @click="copyTokenValue(item.utilityClass, item.utilityClass)"
-                >
-                  <sgds-icon :name="copiedKey === item.utilityClass ? 'check' : 'copy'" size="sm" />
-                </button>
-              </div>
-            </sgds-table-cell>
-            <sgds-table-cell class="typography-page-template__table-usage-column">
-              <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.usage }}</span>
-            </sgds-table-cell>
-            <sgds-table-cell class="typography-page-template__table-preview-column colour-utilities-preview-column">
-              <div class="sgds:flex sgds:justify-center sgds:min-h-[5rem]">
-                <div :class="['sgds:h-14 sgds:w-14 sgds:rounded-lg sgds:border sgds:border-muted', item.previewClass]"></div>
-              </div>
-            </sgds-table-cell>
-          </sgds-table-row>
-        </sgds-table>
+              <sgds-table-row v-for="item in group.rows" :key="item.utilityClass">
+                <sgds-table-cell class="typography-page-template__table-utility-column">
+                  <div class="ts-snippet-row">
+                    <code class="ts-snippet-code">
+                      <span>{{ item.utilityClass }}</span>
+                    </code>
+                    <button
+                      class="ts-snippet-copy-btn"
+                      @click="copyTokenValue(item.utilityClass, item.utilityClass)"
+                    >
+                      <sgds-icon :name="copiedKey === item.utilityClass ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-usage-column">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.usage }}</span>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-preview-column colour-utilities-preview-column">
+                  <div class="sgds:flex sgds:justify-center">
+                    <div :class="['sgds:h-14 sgds:w-14 sgds:rounded-lg sgds:border sgds:border-muted', item.previewClass]"></div>
+                  </div>
+                </sgds-table-cell>
+              </sgds-table-row>
+            </sgds-table>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ── Text colour ───────────────────────────────────────────────────────── -->
     <section v-if="showTextSection" class="typography-page-template__section typography-page-template__section--spaced">
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Text colour</h4>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-          Text colour utilities apply semantic colour tokens to text. All tokens are theme-aware and automatically
-          switch between day and night mode values — unless a <CodeToken label="fixed" :surface="false" /> variant is used.
-        </p>
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+        <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+          <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Text colour utilities</h3>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+            Text colour utilities apply semantic colour tokens to text. All tokens are theme-aware and automatically
+            switch between day and night mode values — unless a <CodeToken label="fixed" :surface="false" /> variant is used.
+          </p>
+        </div>
 
-        <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onTextTabShow">
-          <sgds-tab
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+          <div
             v-for="group in textColorGroups"
             :key="group.id"
-            slot="nav"
-            :panel="group.id"
-            :active="activeTextGroupId === group.id || null"
-          >{{ group.label }}</sgds-tab>
-          <sgds-tab-panel
-            v-for="group in textColorGroups"
-            :key="`text-colour-panel-${group.id}`"
-            :name="group.id"
-          ></sgds-tab-panel>
-        </sgds-tab-group>
+            class="sgds:flex sgds:flex-col sgds:gap-layout-xs"
+          >
+            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
+            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+              <sgds-table-row>
+                <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-value-column">Day</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-value-column">Night</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
+              </sgds-table-row>
 
-        <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
-          <sgds-table-row>
-            <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
-            <sgds-table-head class="typography-page-template__table-value-column">Day</sgds-table-head>
-            <sgds-table-head class="typography-page-template__table-value-column">Night</sgds-table-head>
-            <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
-          </sgds-table-row>
-
-          <sgds-table-row v-for="t in currentTextRows" :key="t.utilityClass">
-            <sgds-table-cell class="typography-page-template__table-utility-column">
-              <div class="ts-snippet-row">
-                <code class="ts-snippet-code">
-                  <span>{{ t.utilityClass }}</span>
-                </code>
-                <button
-                  class="ts-snippet-copy-btn"
-                  @click="copyTokenValue(t.utilityClass, t.utilityClass)"
-                >
-                  <sgds-icon :name="copiedKey === t.utilityClass ? 'check' : 'copy'" size="sm" />
-                </button>
-              </div>
-            </sgds-table-cell>
-            <sgds-table-cell class="typography-page-template__table-value-column">
-              <div class="colour-utilities-swatch-cell">
-                <span class="colour-utilities-swatch" :style="{ background: t.day }" />
-                <CodeToken :label="t.day" :surface="false" />
-              </div>
-            </sgds-table-cell>
-            <sgds-table-cell class="typography-page-template__table-value-column">
-              <div class="colour-utilities-swatch-cell">
-                <span class="colour-utilities-swatch" :style="{ background: t.night }" />
-                <CodeToken :label="t.night" :surface="false" />
-              </div>
-            </sgds-table-cell>
-            <sgds-table-cell class="typography-page-template__table-usage-column">
-              <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ t.usage }}</span>
-            </sgds-table-cell>
-          </sgds-table-row>
-        </sgds-table>
+              <sgds-table-row v-for="t in group.rows" :key="t.utilityClass">
+                <sgds-table-cell class="typography-page-template__table-utility-column">
+                  <div class="ts-snippet-row">
+                    <code class="ts-snippet-code">
+                      <span>{{ t.utilityClass }}</span>
+                    </code>
+                    <button
+                      class="ts-snippet-copy-btn"
+                      @click="copyTokenValue(t.utilityClass, t.utilityClass)"
+                    >
+                      <sgds-icon :name="copiedKey === t.utilityClass ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-value-column">
+                  <div class="colour-utilities-swatch-cell">
+                    <span class="colour-utilities-swatch" :style="{ background: t.day }" />
+                    <CodeToken :label="t.day" :surface="false" />
+                  </div>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-value-column">
+                  <div class="colour-utilities-swatch-cell">
+                    <span class="colour-utilities-swatch" :style="{ background: t.night }" />
+                    <CodeToken :label="t.night" :surface="false" />
+                  </div>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-usage-column">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ t.usage }}</span>
+                </sgds-table-cell>
+              </sgds-table-row>
+            </sgds-table>
+          </div>
+        </div>
       </div>
     </section>
 
