@@ -1,4 +1,9 @@
 {
+  "pnpm": {
+    "overrides": {
+      "mout": ">=1.2.4"
+    }
+  },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.2",
     "tailwindcss": "^4.2.2",
