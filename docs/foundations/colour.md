@@ -5,7 +5,7 @@ description: SGDS colours are designed to be clear, accessible and communicate h
 ---
 
 <script setup>
-import ColourPrinciplesPage from "../../.vitepress/components/ColourPrinciplesPage.vue";
+import ColourPrinciplesPage from "../.vitepress/components/ColourPrinciplesPage.vue";
 </script>
 
 <ColourPrinciplesPage />

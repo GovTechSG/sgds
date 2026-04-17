@@ -5,7 +5,7 @@ description: SGDS spacing helps create consistent rhythm, hierarchy, and alignme
 ---
 
 <script setup>
-import SpacingPage from "../../.vitepress/components/SpacingPage.vue";
+import SpacingPage from "../.vitepress/components/SpacingPage.vue";
 </script>
 
 <SpacingPage />

@@ -5,7 +5,7 @@ description: A good typography can capture the audience's attention and engage t
 ---
 
 <script setup>
-import TypographyPage from "../../.vitepress/components/TypographyPage.vue";
+import TypographyPage from "../.vitepress/components/TypographyPage.vue";
 </script>
 
 <TypographyPage />

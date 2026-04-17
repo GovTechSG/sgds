@@ -5,7 +5,7 @@ description: In SGDS, almost all components are rounded. Only specific component
 ---
 
 <script setup>
-import BorderPage from "../../.vitepress/components/BorderPage.vue";
+import BorderPage from "../.vitepress/components/BorderPage.vue";
 </script>
 
 <BorderPage />

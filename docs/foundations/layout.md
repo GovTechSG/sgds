@@ -5,7 +5,7 @@ description: SGDS layout principles help structure pages with consistent spacing
 ---
 
 <script setup>
-import LayoutPrinciplesPage from "../../.vitepress/components/LayoutPrinciplesPage.vue";
+import LayoutPrinciplesPage from "../.vitepress/components/LayoutPrinciplesPage.vue";
 </script>
 
 <LayoutPrinciplesPage />
