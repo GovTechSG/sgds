@@ -50,10 +50,18 @@ headerAlert:
     <li>Create clearer briefs for designers and developers</li>
   </ul>
   <p class="ai-example-label">Example</p>
-  <p class="ai-example-copy">“Create a user flow for onboarding using SGDS components and include edge cases.”</p>
+  <p class=”ai-example-copy”>”Create a user flow for onboarding using SGDS components and include edge cases.”</p>
 </div>
 
-<h2 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">What changes when you use SGDS with AI</h2>
+<h2 class=”sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight”>Find your workflow</h2>
+
+<p>Answer a few questions to get a suggested workflow for your situation — and see what else is possible.</p>
+
+<div class=”ai-workflow-finder-wrap”>
+  <AiWorkflowFinder />
+</div>
+
+<h2 class=”sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight”>What changes when you use SGDS with AI</h2>
 
 <div class="ai-compare-grid">
   <div class="ai-compare-card">
@@ -143,6 +151,17 @@ p + p,
 p + ul,
 ul + p {
   margin-top: var(--sgds-text-gap-sm);
+}
+
+/* Spacing from description paragraph to the AiWorkflowFinder component.
+   Uses text-gap-md (not text-gap-sm) for a comfortable label-to-section gap.
+   Note: .vp-doc p margin-bottom does not apply here — DocsLayout does not use a .vp-doc wrapper. */
+p + .ai-workflow-finder-wrap {
+  margin-top: var(--sgds-text-gap-md);
+}
+
+.ai-workflow-finder-wrap {
+  width: 100%;
 }
 
 .ai-role-card,

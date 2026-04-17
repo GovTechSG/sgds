@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AiWorkflowFinder from "./AiWorkflowFinder.vue";
 </script>
 
 <template>
@@ -81,19 +80,6 @@ import AiWorkflowFinder from "./AiWorkflowFinder.vue";
           We are evolving with this shift. The work is ongoing and we're continuing to build a system that works for the way teams work now — so that when you reach for AI, what gets built back is consistent, considered, and worth shipping.
         </p>
       </div>
-    </section>
-
-    <section class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)] sgds:w-full">
-      <div class="sgds:flex sgds:items-center sgds:gap-[var(--sgds-gap-xs)] sgds:w-full">
-        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Find your workflow</h3>
-        <a href="#find-your-workflow" class="sgds:inline-flex sgds:items-center sgds:justify-center sgds:text-subtle sgds:no-underline" aria-label="Link to section">
-          <sgds-icon name="link-45deg" size="sm"></sgds-icon>
-        </a>
-      </div>
-      <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-        Answer a few questions to get a suggested workflow for your situation — and see what else is possible.
-      </p>
-      <AiWorkflowFinder />
     </section>
   </div>
 </template>

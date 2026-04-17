@@ -30,6 +30,7 @@ interface WorkflowPath {
   starts: string[];
   steps: FlowStep[];
   note: string;
+  steps_guide: string[];
 }
 
 const workflowPaths: WorkflowPath[] = [
@@ -76,6 +77,13 @@ const workflowPaths: WorkflowPath[] = [
       },
     ],
     note: "Fluid loop — move back to Figma whenever visual editing is easier. Code Connect keeps components mapped. Once done, push back to code and continue.",
+    steps_guide: [
+      "Start designing your screens in Figma using SGDS components from the UI Kit",
+      "Prompt Claude Code to implement the design — it reads SGDS skills and generates aligned code",
+      "Continue building and iterating in the IDE as far as you can",
+      "When visual editing is easier, send your changes back to Figma via Code Connect",
+      "Once refined in Figma, push back to code and continue — repeat as needed",
+    ],
   },
   {
     id: "prompt-new",
@@ -116,6 +124,13 @@ const workflowPaths: WorkflowPath[] = [
       },
     ],
     note: "Good for PMs and anyone who lives in ideas — no need to open Figma to get started. Jump into Figma only when visual refinement is needed.",
+    steps_guide: [
+      "Describe what you want to build as a text prompt to Claude Code",
+      "Claude generates SGDS-aligned code using its built-in skills — no Figma needed to start",
+      "Review and iterate directly in the IDE; Claude handles the component details",
+      "Optionally send to Figma via Code Connect if visual refinement is needed",
+      "Return to code when ready to continue building",
+    ],
   },
   {
     id: "code-migrate",
@@ -152,6 +167,13 @@ const workflowPaths: WorkflowPath[] = [
       },
     ],
     note: 'Tell Claude: "Look at my existing codebase and migrate components to SGDS v3." Jump into Figma only when a visual check is easier than reading code.',
+    steps_guide: [
+      "Open your existing codebase in the IDE",
+      'Tell Claude: "Look at my codebase and migrate all components to SGDS v3"',
+      "Claude analyses and migrates your components — review each change and iterate with Claude",
+      "Whenever a visual check is easier than reading code, open the relevant screens in Figma",
+      "Return to code to finalise and ship",
+    ],
   },
   {
     id: "figma-migrate",
@@ -196,6 +218,13 @@ const workflowPaths: WorkflowPath[] = [
       },
     ],
     note: "Once converted to code with Code Connect, ask Figma to populate other screens using templates that have been sent back. Components stay mapped to your codebase throughout.",
+    steps_guide: [
+      "Open your old Figma file and convert components to use SGDS v3 from the UI Kit",
+      "Prompt Claude Code to implement the converted Figma design in code",
+      "Once in code, Code Connect maps the generated components back to your Figma file",
+      "Ask Figma to populate other screens using the templates that have been sent back from code",
+      "Your Figma file and codebase stay in sync — components remain mapped throughout",
+    ],
   },
 ];
 
@@ -545,7 +574,7 @@ const nodeClass: Record<NodeType, string> = {
 
       <!-- Question body -->
       <div
-        class="sgds:bg-surface-default sgds:p-component-lg sgds:flex sgds:flex-col sgds:gap-layout-sm"
+        class="sgds:bg-surface-default sgds:p-component-md sgds:flex sgds:flex-col sgds:gap-component-sm"
       >
         <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
           <p class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
@@ -639,29 +668,34 @@ const nodeClass: Record<NodeType, string> = {
           </div>
         </div>
 
-        <!-- Flow diagram -->
-        <div class="sgds:overflow-x-auto sgds:mt-lg sgds:pb-[4px]">
-          <div class="sgds:flex sgds:items-center sgds:min-w-max">
-            <template v-for="(step, idx) in primaryWorkflow.steps" :key="idx">
-              <div :class="['wf-node', nodeClass[step.node.type]]">
-                <span class="sgds:text-body-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">{{ step.node.label }}</span>
-                <span class="sgds:text-label-xs sgds:font-regular sgds:leading-2-xs sgds:tracking-normal wf-node-sublabel">{{ step.node.sublabel }}</span>
-              </div>
-              <div
-                v-if="step.connector"
-                class="sgds:flex sgds:items-center sgds:gap-[4px] sgds:px-[6px] sgds:flex-shrink-0"
-              >
-                <span class="sgds:text-label-xs sgds:font-regular sgds:leading-2-xs sgds:text-subtle sgds:whitespace-nowrap">{{ step.connector }}</span>
-                <sgds-icon name="arrow-right" size="xs" class="sgds:text-subtle"></sgds-icon>
-              </div>
-            </template>
-          </div>
+        <!-- Flow diagram — CSS grid: 5 nodes (1fr) + 4 auto connectors (arrow-only, uniform width) -->
+        <div class="wf-primary-flow">
+          <template v-for="(step, idx) in primaryWorkflow.steps" :key="idx">
+            <div :class="['wf-node', nodeClass[step.node.type]]">
+              <span class="sgds:text-body-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">{{ step.node.label }}</span>
+              <span class="sgds:text-label-xs sgds:font-regular sgds:leading-2-xs sgds:tracking-normal wf-node-sublabel">{{ step.node.sublabel }}</span>
+            </div>
+            <div v-if="step.connector" class="wf-connector">
+              <span class="sgds:text-label-xs sgds:font-regular sgds:leading-2-xs sgds:text-subtle sgds:text-center wf-connector-text">{{ step.connector }}</span>
+              <sgds-icon name="arrow-right" size="xs" class="sgds:text-subtle wf-connector-arrow-h"></sgds-icon>
+              <sgds-icon name="arrow-down" size="xs" class="sgds:text-subtle wf-connector-arrow-v"></sgds-icon>
+            </div>
+          </template>
         </div>
 
-        <!-- Note -->
-        <p class="sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle sgds:italic sgds:m-0 sgds:mt-md sgds:pt-md sgds:border-t sgds:border-default">
-          {{ primaryWorkflow.note }}
-        </p>
+        <!-- Step-by-step guide -->
+        <div class="sgds:mt-md sgds:pt-md sgds:border-t sgds:border-default sgds:flex sgds:flex-col sgds:gap-text-xs">
+          <p class="sgds:text-body-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">
+            How it works
+          </p>
+          <ol class="wf-step-list">
+            <li
+              v-for="(s, i) in primaryWorkflow.steps_guide"
+              :key="i"
+              class="sgds:text-body-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle"
+            >{{ s }}</li>
+          </ol>
+        </div>
       </div>
 
       <!-- Other paths -->
@@ -816,73 +850,97 @@ const nodeClass: Record<NodeType, string> = {
   background: var(--sgds-surface-default);
 }
 
-/* Workflow node */
+/* Primary flow: CSS grid with auto-width connector columns.
+   Connectors show arrow-only on desktop so nodes get maximum equal width
+   and no text wrapping occurs → all nodes the same height → uniform connector spacing. */
+.wf-primary-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: stretch;
+  gap: 4px;
+  margin-top: var(--sgds-layout-gap-lg);
+}
+.wf-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 6px;
+}
+/* Desktop: arrow-only (text hidden) → uniform connector width and consistent spacing */
+.wf-connector-text { display: none; }
+.wf-connector-arrow-v { display: none; }
+.wf-connector-arrow-h { display: inline-flex; }
+
+/* On narrow screens switch to vertical stack; restore connector text labels */
+@media (max-width: 560px) {
+  .wf-primary-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: var(--sgds-layout-gap-lg);
+  }
+  .wf-connector {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 2px 0 2px 10px;
+    gap: 4px;
+  }
+  .wf-connector-text { display: block; text-align: left; }
+  .wf-connector-arrow-h { display: none; }
+  .wf-connector-arrow-v { display: inline-flex; }
+}
+
+/* Workflow node — neutral surface + colored left-border accent.
+   --sgds-surface-raised adapts to day/night; heading-color-default is always high-contrast on it.
+   The muted surfaces (--sgds-{color}-surface-muted) are always the 100-level pastels in both themes,
+   so they cannot be used as backgrounds with theme-aware text tokens. */
 .wf-node {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 6px 10px;
-  border: 1px solid;
+  padding: 6px 10px 6px 10px;
+  background: var(--sgds-surface-raised);
+  border: 1px solid var(--sgds-border-color-muted);
+  border-left-width: 3px;
   border-radius: var(--sgds-border-radius-sm);
-  min-width: 88px;
+  color: var(--sgds-heading-color-default);
+  min-width: 0;
 }
 .wf-node--sm {
-  padding: 4px 8px;
-  min-width: 72px;
+  padding: 4px 8px 4px 8px;
 }
 .wf-node--full {
   width: 100%;
-  min-width: 0;
 }
 .wf-node-sublabel {
-  opacity: 0.75;
+  color: var(--sgds-body-color-subtle);
+}
+.wf-node--user  { border-left-color: var(--sgds-accent-border-color-default); }
+.wf-node--figma { border-left-color: var(--sgds-purple-border-color-default); }
+.wf-node--ai    { border-left-color: var(--sgds-warning-border-color-default); }
+.wf-node--code  { border-left-color: var(--sgds-success-border-color-default); }
+
+/* Step-by-step guide list — uses SGDS padding token for standard list indent */
+.wf-step-list {
+  margin: 0;
+  padding-left: var(--sgds-padding-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-text-gap-xs);
 }
 
-/* Node type colours — semantic surface/border/text tokens per actor type */
-.wf-node--user  {
-  background: var(--sgds-accent-surface-muted);
-  border-color: var(--sgds-accent-border-color-muted);
-  color: var(--sgds-accent-color-default);
-}
-.wf-node--figma {
-  background: var(--sgds-purple-surface-muted);
-  border-color: var(--sgds-purple-border-color-muted);
-  color: var(--sgds-purple-color-default);
-}
-.wf-node--ai {
-  background: var(--sgds-warning-surface-muted);
-  border-color: var(--sgds-warning-border-color-muted);
-  color: var(--sgds-warning-color-default);
-}
-.wf-node--code {
-  background: var(--sgds-success-surface-muted);
-  border-color: var(--sgds-success-border-color-muted);
-  color: var(--sgds-success-color-default);
-}
-
-/* Legend dots */
+/* Legend dots — solid fill using the same border-color tokens as the node left-borders */
 .wf-legend-dot {
   display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 2px;
-  border: 1px solid;
   flex-shrink: 0;
 }
-.wf-legend-dot--user  {
-  background: var(--sgds-accent-surface-muted);
-  border-color: var(--sgds-accent-border-color-muted);
-}
-.wf-legend-dot--figma {
-  background: var(--sgds-purple-surface-muted);
-  border-color: var(--sgds-purple-border-color-muted);
-}
-.wf-legend-dot--ai {
-  background: var(--sgds-warning-surface-muted);
-  border-color: var(--sgds-warning-border-color-muted);
-}
-.wf-legend-dot--code {
-  background: var(--sgds-success-surface-muted);
-  border-color: var(--sgds-success-border-color-muted);
-}
+.wf-legend-dot--user  { background: var(--sgds-accent-border-color-default); }
+.wf-legend-dot--figma { background: var(--sgds-purple-border-color-default); }
+.wf-legend-dot--ai    { background: var(--sgds-warning-border-color-default); }
+.wf-legend-dot--code  { background: var(--sgds-success-border-color-default); }
 </style>
