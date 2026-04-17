@@ -252,17 +252,6 @@ const references = [
         </Section>
       </div>
 
-      <div :class="$style.pageSection">
-        <Section title="Resources">
-          <div :class="$style.resourcesCard">
-            <ul :class="$style.resourceList">
-              <li v-for="reference in references" :key="reference.href">
-                <a :href="reference.href" :class="$style.resourceLink">{{ reference.label }}</a>
-              </li>
-            </ul>
-          </div>
-        </Section>
-      </div>
     </div>
   </div>
 </template>

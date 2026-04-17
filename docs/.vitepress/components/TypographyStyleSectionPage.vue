@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
-import CodeToken from "./ui/CodeToken.vue";
 import { typographyStyleSections, aliasToUtility } from "../data/typography-style-tokens";
 
 const sectionUsageCopy: Record<string, string> = {
@@ -39,8 +38,13 @@ const sectionUsageHeadingLabel: Record<string, string> = {
 
 const copiedSnippetKey = ref<string | null>(null);
 
-const getCombinedUtilities = (aliases: readonly string[]) =>
-  aliases.map(aliasToUtility).join(" ");
+const getUtilityValues = (row: { aliases: readonly string[] }) =>
+  row.aliases
+    .filter((alias) => alias.startsWith("--"))
+    .map(aliasToUtility);
+
+const getCombinedUtilityValues = (row: { aliases: readonly string[] }) =>
+  getUtilityValues(row).join(" ");
 
 const copySnippet = async (key: string, text: string) => {
   await navigator.clipboard.writeText(text);
@@ -88,8 +92,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
               <sgds-table-head class="typography-page-template__table-style-column">Style name</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-preview-column">Preview</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-usage-column">When to use</sgds-table-head>
-              <sgds-table-head>Alias token</sgds-table-head>
-              <sgds-table-head>Implementation</sgds-table-head>
+              <sgds-table-head>SGDS tailwind token</sgds-table-head>
             </sgds-table-row>
 
             <sgds-table-row
@@ -97,7 +100,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
               :key="row.tokenNames.join('-')"
               :class="{ 'ts-default-row': Boolean(row.note) }"
             >
-              <sgds-table-cell class="typography-page-template__table-style-column">
+              <sgds-table-cell :class="['typography-page-template__table-style-column', section.key === 'display' ? 'ts-style-name-cell--display' : '']">
                 <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-2-xs">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.example }}
@@ -111,34 +114,25 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
                   </div>
                 </div>
               </sgds-table-cell>
-              <sgds-table-cell class="ts-preview-cell">
+              <sgds-table-cell :class="['ts-preview-cell', section.key === 'display' ? 'ts-preview-cell--display' : '']">
                 <p :class="['ts-token-example', 'ts-' + row.exampleClass]">
                   {{ row.example }}
                 </p>
               </sgds-table-cell>
               <sgds-table-cell class="typography-page-template__table-usage-column">
-                <p class="sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle sgds:mb-0">
+                <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:mb-0">
                   {{ row.description }}
                 </p>
               </sgds-table-cell>
               <sgds-table-cell>
                 <div class="ts-alias-token-list">
-                  <CodeToken
-                    v-for="alias in row.aliases"
-                    :key="`${row.tokenNames.join('-')}-${alias}`"
-                    :label="alias"
-                  />
-                </div>
-              </sgds-table-cell>
-              <sgds-table-cell>
-                <div class="ts-alias-cell">
                   <div class="ts-snippet-row">
                     <code class="ts-snippet-code">
                       <span
-                        v-for="utility in row.aliases.map(aliasToUtility)"
-                        :key="`${row.tokenNames.join('-')}-${utility}`"
+                        v-for="token in getUtilityValues(row)"
+                        :key="`${row.tokenNames.join('-')}-snippet-${token}`"
                       >
-                        {{ utility }}
+                        {{ token }}
                       </span>
                     </code>
                     <button
@@ -146,8 +140,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
                         'ts-snippet-copy-btn',
                         copiedSnippetKey === row.tokenNames.join('-') ? 'sgds:text-success-default' : 'sgds:text-default'
                       ]"
-                      :aria-label="copiedSnippetKey === row.tokenNames.join('-') ? 'Copied!' : 'Copy all utility classes'"
-                      @click="copySnippet(row.tokenNames.join('-'), getCombinedUtilities(row.aliases))"
+                      @click="copySnippet(row.tokenNames.join('-'), getCombinedUtilityValues(row))"
                     >
                       <sgds-icon :name="copiedSnippetKey === row.tokenNames.join('-') ? 'check' : 'copy'" size="sm" />
                     </button>
@@ -258,6 +251,14 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
 
 .ts-preview-cell {
   overflow: visible;
+}
+
+.ts-preview-cell--display {
+  min-width: 16rem;
+}
+
+.ts-style-name-cell--display {
+  width: 13rem;
 }
 
 .ts-token-example {

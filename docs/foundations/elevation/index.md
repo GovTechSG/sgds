@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Elevation principle
+title: Elevation principles
 description: Complete reference of all elevation CSS tokens and their values.
 ---
 

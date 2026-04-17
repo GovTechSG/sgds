@@ -1,6 +1,31 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+
+const tokenViewOptions = [
+  { id: "css-variable", label: "CSS variable" },
+  { id: "figma", label: "Figma token" },
+] as const;
+type TokenViewId = (typeof tokenViewOptions)[number]["id"];
+const activeTokenViewId = ref<TokenViewId>("css-variable");
+const copiedKey = ref<string | null>(null);
+
+const onTokenViewShow = (event: Event) => {
+  const nextView = (event as CustomEvent<{ name?: string }>).detail?.name as TokenViewId | undefined;
+  if (nextView && tokenViewOptions.some((o) => o.id === nextView)) activeTokenViewId.value = nextView;
+};
+
+const getTokenValue = (token: string) => {
+  if (activeTokenViewId.value === "css-variable") return `--${token}`;
+  return token;
+};
+
+const copyTokenValue = async (key: string, text: string) => {
+  await navigator.clipboard.writeText(text);
+  copiedKey.value = key;
+  setTimeout(() => { if (copiedKey.value === key) copiedKey.value = null; }, 2000);
+};
 
 const breakpointTokens = [
   {
@@ -107,9 +132,15 @@ const stickySidebarTokens = [
     <section class="typography-page-template__section">
       <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Breakpoint tokens</h4>
       <div class="typography-page-template__body typography-page-template__body--prose">
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+          <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+          <sgds-tab-panel v-for="option in tokenViewOptions" :key="`tokens-${option.id}`" :name="option.id"></sgds-tab-panel>
+        </sgds-tab-group>
+
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
-            <sgds-table-head :class="$style.tokenColumn">Token name</sgds-table-head>
+            <sgds-table-head :class="$style.tokenColumn">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
             <sgds-table-head :class="$style.valueColumn">Screen size</sgds-table-head>
             <sgds-table-head :class="$style.valueColumn">Container width</sgds-table-head>
             <sgds-table-head :class="$style.numericColumn">Columns</sgds-table-head>
@@ -119,7 +150,19 @@ const stickySidebarTokens = [
 
           <sgds-table-row v-for="row in breakpointTokens" :key="row.token">
             <sgds-table-cell :class="$style.tokenColumn">
-              <CodeToken :label="row.token" />
+              <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                <CodeToken :label="getTokenValue(row.token)" />
+              </sgds-tooltip>
+              <div v-else class="ts-snippet-row">
+                <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                <button
+                  :class="['ts-snippet-copy-btn', copiedKey === `${row.token}-${activeTokenViewId}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                  :aria-label="copiedKey === `${row.token}-${activeTokenViewId}` ? 'Copied!' : 'Copy token'"
+                  @click="copyTokenValue(`${row.token}-${activeTokenViewId}`, getTokenValue(row.token))"
+                >
+                  <sgds-icon :name="copiedKey === `${row.token}-${activeTokenViewId}` ? 'check' : 'copy'" size="sm" />
+                </button>
+              </div>
             </sgds-table-cell>
             <sgds-table-cell :class="$style.valueColumn">
               <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -148,6 +191,7 @@ const stickySidebarTokens = [
             </sgds-table-cell>
           </sgds-table-row>
         </sgds-table>
+        </div>
       </div>
     </section>
 
@@ -156,9 +200,15 @@ const stickySidebarTokens = [
         Breakpoint tokens with sticky sidebar
       </h4>
       <div class="typography-page-template__body typography-page-template__body--prose">
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+          <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+          <sgds-tab-panel v-for="option in tokenViewOptions" :key="`tokens-${option.id}`" :name="option.id"></sgds-tab-panel>
+        </sgds-tab-group>
+
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
-            <sgds-table-head :class="$style.tokenColumn">Token name</sgds-table-head>
+            <sgds-table-head :class="$style.tokenColumn">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
             <sgds-table-head :class="$style.valueColumn">Screen size</sgds-table-head>
             <sgds-table-head :class="$style.valueColumn">Container width</sgds-table-head>
             <sgds-table-head :class="$style.numericColumn">Columns</sgds-table-head>
@@ -169,7 +219,19 @@ const stickySidebarTokens = [
 
           <sgds-table-row v-for="row in stickySidebarTokens" :key="row.token">
             <sgds-table-cell :class="$style.tokenColumn">
-              <CodeToken :label="row.token" />
+              <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                <CodeToken :label="getTokenValue(row.token)" />
+              </sgds-tooltip>
+              <div v-else class="ts-snippet-row">
+                <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                <button
+                  :class="['ts-snippet-copy-btn', copiedKey === `${row.token}-${activeTokenViewId}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                  :aria-label="copiedKey === `${row.token}-${activeTokenViewId}` ? 'Copied!' : 'Copy token'"
+                  @click="copyTokenValue(`${row.token}-${activeTokenViewId}`, getTokenValue(row.token))"
+                >
+                  <sgds-icon :name="copiedKey === `${row.token}-${activeTokenViewId}` ? 'check' : 'copy'" size="sm" />
+                </button>
+              </div>
             </sgds-table-cell>
             <sgds-table-cell :class="$style.valueColumn">
               <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -203,6 +265,7 @@ const stickySidebarTokens = [
             </sgds-table-cell>
           </sgds-table-row>
         </sgds-table>
+        </div>
       </div>
     </section>
 

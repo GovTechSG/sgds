@@ -24,7 +24,7 @@ const featureFoundations: FoundationItem[] = [
   {
     id: "colour-system",
     title: "Colour system",
-    url: "/foundations/colour/our-colours",
+    url: "/foundations/colour",
     image: "/landing/colour_system.png",
     phase: 1,
     status: "stable",

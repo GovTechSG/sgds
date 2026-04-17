@@ -328,7 +328,7 @@ onBeforeUnmount(() => {
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 /* Tablet (768px-1279px): side by side with a smaller illustration than desktop */

@@ -11,6 +11,31 @@ import {
 } from "../theme/composables/sgds-palette";
 import { semanticColourGroups, typographySemanticGroup, formColourGroups } from "../data/semantic-colours";
 
+const tokenViewOptions = [
+  { id: "css-variable", label: "CSS variable" },
+  { id: "figma", label: "Figma token" },
+] as const;
+type TokenViewId = (typeof tokenViewOptions)[number]["id"];
+const activeTokenViewId = ref<TokenViewId>("css-variable");
+const copiedKey = ref<string | null>(null);
+
+const onTokenViewShow = (event: Event) => {
+  const nextView = (event as CustomEvent<{ name?: string }>).detail?.name as TokenViewId | undefined;
+  if (nextView && tokenViewOptions.some((o) => o.id === nextView)) activeTokenViewId.value = nextView;
+};
+
+const copyTokenValue = async (key: string, text: string) => {
+  await navigator.clipboard.writeText(text);
+  copiedKey.value = key;
+  setTimeout(() => { if (copiedKey.value === key) copiedKey.value = null; }, 2000);
+};
+
+// Tokens in this file always have the -- prefix
+const getTokenValue = (token: string) => {
+  if (activeTokenViewId.value === "css-variable") return token;
+  return token.replace(/^--/, "");
+};
+
 const props = withDefaults(
   defineProps<{
     section?: "all" | "product" | "primitive" | "semantic";
@@ -794,7 +819,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
             </div>
 
             <div v-if="productPrimaryMode === 'govtech-brand'" class="cp-source-panel__control sgds:flex sgds:flex-col sgds:gap-text-sm">
-              <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onTabShow">
+              <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onTabShow">
                 <sgds-tab
                   v-for="palette in brandPalettes"
                   :key="palette.id"
@@ -867,9 +892,14 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
             </div>
           </div>
 
+          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+          </sgds-tab-group>
+
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="cp-token-column">Token name</sgds-table-head>
+              <sgds-table-head class="cp-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
               <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
               <sgds-table-head class="cp-contrast-column">Contrast</sgds-table-head>
@@ -878,7 +908,18 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
 
             <sgds-table-row v-for="row in activeProductRows" :key="`${productPrimaryMode}-${row.token}`">
               <sgds-table-cell class="cp-token-column">
-                <CodeToken :label="row.token" />
+                <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                  <CodeToken :label="getTokenValue(row.token)" />
+                </sgds-tooltip>
+                <div v-else class="ts-snippet-row">
+                  <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                  <button
+                    :class="['ts-snippet-copy-btn', copiedKey === `product-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                    @click="copyTokenValue(`product-${row.token}`, getTokenValue(row.token))"
+                  >
+                    <sgds-icon :name="copiedKey === `product-${row.token}` ? 'check' : 'copy'" size="sm" />
+                  </button>
+                </div>
               </sgds-table-cell>
               <sgds-table-cell class="cp-hex-column">
                 <CodeToken :label="row.hex" :surface="false" />
@@ -933,7 +974,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
             </p>
           </div>
 
-          <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onPrimitiveTabShow">
+          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onPrimitiveTabShow">
             <sgds-tab
               v-for="family in primitiveColourFamilies"
               :key="family.id"
@@ -948,9 +989,14 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
             ></sgds-tab-panel>
           </sgds-tab-group>
 
+          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+          </sgds-tab-group>
+
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="cp-token-column">Token name</sgds-table-head>
+              <sgds-table-head class="cp-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
               <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
               <sgds-table-head class="cp-contrast-column">Contrast</sgds-table-head>
@@ -959,7 +1005,18 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
 
             <sgds-table-row v-for="row in currentPrimitiveRows" :key="row.token">
               <sgds-table-cell class="cp-token-column">
-                <CodeToken :label="row.token" />
+                <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                  <CodeToken :label="getTokenValue(row.token)" />
+                </sgds-tooltip>
+                <div v-else class="ts-snippet-row">
+                  <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                  <button
+                    :class="['ts-snippet-copy-btn', copiedKey === `prim-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                    @click="copyTokenValue(`prim-${row.token}`, getTokenValue(row.token))"
+                  >
+                    <sgds-icon :name="copiedKey === `prim-${row.token}` ? 'check' : 'copy'" size="sm" />
+                  </button>
+                </div>
               </sgds-table-cell>
               <sgds-table-cell class="cp-hex-column">
                 <CodeToken :label="row.hex" :surface="false" />
@@ -1012,7 +1069,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onBgTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onBgTabShow">
               <sgds-tab
                 v-for="group in semanticColourGroups"
                 :key="group.id"
@@ -1027,15 +1084,33 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               ></sgds-tab-panel>
             </sgds-tab-group>
 
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+            </sgds-tab-group>
+
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="sc-token-column">Token name</sgds-table-head>
+                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
                 <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
               </sgds-table-row>
               <sgds-table-row v-for="row in currentBgRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column"><CodeToken :label="row.token" /></sgds-table-cell>
+                <sgds-table-cell class="sc-token-column">
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === `bg-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      @click="copyTokenValue(`bg-${row.token}`, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === `bg-${row.token}` ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
+                </sgds-table-cell>
                 <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
                 <sgds-table-cell class="sc-mode-column">
                   <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
@@ -1067,7 +1142,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onSemanticTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onSemanticTabShow">
               <sgds-tab
                 v-for="group in semanticColourGroups"
                 :key="group.id"
@@ -1082,15 +1157,33 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               ></sgds-tab-panel>
             </sgds-tab-group>
 
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+            </sgds-tab-group>
+
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="sc-token-column">Token name</sgds-table-head>
+                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
                 <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
               </sgds-table-row>
               <sgds-table-row v-for="row in currentSemanticRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column"><CodeToken :label="row.token" /></sgds-table-cell>
+                <sgds-table-cell class="sc-token-column">
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === `fg-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      @click="copyTokenValue(`fg-${row.token}`, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === `fg-${row.token}` ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
+                </sgds-table-cell>
                 <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
                 <sgds-table-cell class="sc-mode-column">
                   <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
@@ -1122,7 +1215,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onSurfaceTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onSurfaceTabShow">
               <sgds-tab
                 v-for="group in semanticColourGroups"
                 :key="group.id"
@@ -1137,15 +1230,33 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               ></sgds-tab-panel>
             </sgds-tab-group>
 
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+            </sgds-tab-group>
+
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="sc-token-column">Token name</sgds-table-head>
+                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
                 <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
               </sgds-table-row>
               <sgds-table-row v-for="row in currentSurfaceRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column"><CodeToken :label="row.token" /></sgds-table-cell>
+                <sgds-table-cell class="sc-token-column">
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === `surface-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      @click="copyTokenValue(`surface-${row.token}`, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === `surface-${row.token}` ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
+                </sgds-table-cell>
                 <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
                 <sgds-table-cell class="sc-mode-column">
                   <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
@@ -1177,7 +1288,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onBorderTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onBorderTabShow">
               <sgds-tab
                 v-for="group in semanticColourGroups"
                 :key="group.id"
@@ -1192,15 +1303,33 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               ></sgds-tab-panel>
             </sgds-tab-group>
 
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+            </sgds-tab-group>
+
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="sc-token-column">Token name</sgds-table-head>
+                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
                 <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
               </sgds-table-row>
               <sgds-table-row v-for="row in currentBorderRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column"><CodeToken :label="row.token" /></sgds-table-cell>
+                <sgds-table-cell class="sc-token-column">
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === `border-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      @click="copyTokenValue(`border-${row.token}`, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === `border-${row.token}` ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
+                </sgds-table-cell>
                 <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
                 <sgds-table-cell class="sc-mode-column">
                   <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
@@ -1232,7 +1361,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onTextTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onTextTabShow">
               <sgds-tab slot="nav" panel="text-display" :active="activeTextColourTabId === 'text-display' || null">Display</sgds-tab>
               <sgds-tab slot="nav" panel="text-heading" :active="activeTextColourTabId === 'text-heading' || null">Heading</sgds-tab>
               <sgds-tab slot="nav" panel="text-body" :active="activeTextColourTabId === 'text-body' || null">Body</sgds-tab>
@@ -1247,15 +1376,33 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               <sgds-tab-panel name="text-form"></sgds-tab-panel>
             </sgds-tab-group>
 
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+            </sgds-tab-group>
+
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="sc-token-column">Token name</sgds-table-head>
+                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
                 <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
               </sgds-table-row>
               <sgds-table-row v-for="row in currentTextColourRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column"><CodeToken :label="row.token" /></sgds-table-cell>
+                <sgds-table-cell class="sc-token-column">
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === `text-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      @click="copyTokenValue(`text-${row.token}`, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === `text-${row.token}` ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
+                </sgds-table-cell>
                 <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
                 <sgds-table-cell class="sc-mode-column">
                   <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
@@ -1287,7 +1434,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined" @sgds-tab-show="onFormTabShow">
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onFormTabShow">
               <sgds-tab
                 v-for="group in formColourGroups"
                 :key="group.id"
@@ -1302,15 +1449,33 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               ></sgds-tab-panel>
             </sgds-tab-group>
 
+            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+            </sgds-tab-group>
+
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table sc-form-table">
               <sgds-table-row>
-                <sgds-table-head class="sc-token-column">Token name</sgds-table-head>
+                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
                 <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                 <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
               </sgds-table-row>
               <sgds-table-row v-for="row in currentFormColourRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column"><CodeToken :label="row.token" /></sgds-table-cell>
+                <sgds-table-cell class="sc-token-column">
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === `form-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      @click="copyTokenValue(`form-${row.token}`, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === `form-${row.token}` ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
+                </sgds-table-cell>
                 <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
                 <sgds-table-cell class="sc-mode-column">
                   <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
@@ -1607,6 +1772,7 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
     width: 100%;
   }
 }
+
 
 /* ─── Semantic colours ─────────────────────────────────────────────────────── */
 

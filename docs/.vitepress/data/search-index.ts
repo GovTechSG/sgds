@@ -19,9 +19,9 @@ export interface SearchResult extends SearchItem {
 
 export const searchIndex: SearchItem[] = [
   // Foundations
-  { title: "Colour", category: "Foundation", url: "/foundations/colour/our-colours" },
+  { title: "Colour", category: "Foundation", url: "/foundations/colour" },
   { title: "Iconography", category: "Foundation", url: "/foundations/iconography" },
-  { title: "Typography", category: "Foundation", url: "/foundations/typography/our-typography" },
+  { title: "Typography", category: "Foundation", url: "/foundations/typography" },
   { title: "Layout", category: "Foundation", url: "/foundations/layout" },
   { title: "Border", category: "Foundation", url: "/foundations/border" },
   { title: "Spacing", category: "Foundation", url: "/foundations/spacing" },

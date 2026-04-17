@@ -211,13 +211,6 @@ const paletteRows: PaletteRow[] = [
         </Section>
       </div>
 
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
-        <Section title="Resources">
-          <div class="sgds:flex sgds:items-center sgds:justify-center sgds:bg-surface-default sgds:border sgds:border-muted sgds:rounded-[var(--sgds-border-radius-2-xl)] sgds:min-h-[12rem] sgds:p-layout-md">
-            <p class="sgds:text-default sgds:text-3 sgds:font-semibold sgds:leading-[24px] sgds:m-0 sgds:text-center">Best practices and articles</p>
-          </div>
-        </Section>
-      </div>
     </div>
   </div>
 </template>

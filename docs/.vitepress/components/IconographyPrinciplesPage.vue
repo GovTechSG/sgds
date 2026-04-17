@@ -3,6 +3,7 @@ import FoundationPrinciplesList from "./foundations/FoundationPrinciplesList.vue
 import FoundationPrincipleTemplate from "./foundations/FoundationPrincipleTemplate.vue";
 import Section from "./foundations/Section.vue";
 import IconographyCharacteristicsPage from "./IconographyCharacteristicsPage.vue";
+import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 
 const principles = [
   {
@@ -40,14 +41,16 @@ const rules = [
 </script>
 
 <template>
-  <FoundationPrincipleTemplate>
-    <FoundationPrinciplesList :principles="principles" />
-    <FoundationPrinciplesList title="Rules and guide" :principles="rules" />
-    <Section
-      title="Characteristics"
-      description="Characteristics that define how SGDS icons look, behave, and work across interface contexts."
-    >
-      <IconographyCharacteristicsPage />
-    </Section>
-  </FoundationPrincipleTemplate>
+  <TypographyPageTemplate stacked-examples>
+    <FoundationPrincipleTemplate>
+      <FoundationPrinciplesList :principles="principles" />
+      <FoundationPrinciplesList title="Rules and guide" :principles="rules" />
+      <Section
+        title="Characteristics"
+        description="Characteristics that define how SGDS icons look, behave, and work across interface contexts."
+      >
+        <IconographyCharacteristicsPage />
+      </Section>
+    </FoundationPrincipleTemplate>
+  </TypographyPageTemplate>
 </template>

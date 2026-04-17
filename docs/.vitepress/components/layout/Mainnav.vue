@@ -85,6 +85,7 @@ function selectPalette(id: PaletteId) {
         tone="neutral"
         ariaLabel="Change theme colour"
         title="Change theme colour"
+        class="mainnav-desktop-only"
         @click.stop="togglePalette"
       ></sgds-icon-button>
       <sgds-icon-button
@@ -94,6 +95,7 @@ function selectPalette(id: PaletteId) {
         tone="neutral"
         :ariaLabel="isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'"
         :title="isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'"
+        class="mainnav-desktop-only"
         @click="toggleTheme"
       ></sgds-icon-button>
     </sgds-mainnav>
@@ -168,6 +170,13 @@ function selectPalette(id: PaletteId) {
 </template>
 
 <style>
+/* Hide colour/theme controls on mobile — @media required, no SGDS responsive utilities exist */
+@media screen and (max-width: 1023px) {
+  .mainnav-desktop-only {
+    display: none !important;
+  }
+}
+
 /* Global selectors targeting web component internals — cannot be expressed as utility classes */
 .mainnav-container sgds-masthead,
 .mainnav-container sgds-mainnav {

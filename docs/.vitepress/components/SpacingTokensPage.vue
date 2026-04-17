@@ -1,6 +1,32 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+
+const tokenViewOptions = [
+  { id: "css-variable", label: "CSS variable" },
+  { id: "figma", label: "Figma token" },
+] as const;
+type TokenViewId = (typeof tokenViewOptions)[number]["id"];
+const activeTokenViewId = ref<TokenViewId>("css-variable");
+const copiedKey = ref<string | null>(null);
+
+const onTokenViewShow = (event: Event) => {
+  const nextView = (event as CustomEvent<{ name?: string }>).detail?.name as TokenViewId | undefined;
+  if (nextView && tokenViewOptions.some((o) => o.id === nextView)) activeTokenViewId.value = nextView;
+};
+
+const copyTokenValue = async (key: string, text: string) => {
+  await navigator.clipboard.writeText(text);
+  copiedKey.value = key;
+  setTimeout(() => { if (copiedKey.value === key) copiedKey.value = null; }, 2000);
+};
+
+// Tokens in this file always have the -- prefix
+const getTokenValue = (token: string) => {
+  if (activeTokenViewId.value === "css-variable") return token;
+  return token.replace(/^--/, "");
+};
 
 type SpacingTokenSection =
   | "spacer-scale"
@@ -97,9 +123,14 @@ const layoutPaddingRows: ResponsiveRow[] = [
         </p>
       </div>
 
+      <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+        <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+        <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+      </sgds-tab-group>
+
       <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
         <sgds-table-row>
-          <sgds-table-head class="st-token-col">Token</sgds-table-head>
+          <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
           <sgds-table-head class="st-metric-col">rem</sgds-table-head>
           <sgds-table-head class="st-metric-col">px</sgds-table-head>
           <sgds-table-head class="st-swatch-col">Visual</sgds-table-head>
@@ -112,7 +143,18 @@ const layoutPaddingRows: ResponsiveRow[] = [
         >
           <sgds-table-cell class="st-token-col">
             <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-              <CodeToken :label="`--sgds-spacer-${row.index}`" />
+              <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(`--sgds-spacer-${row.index}`)" placement="top">
+                <CodeToken :label="getTokenValue(`--sgds-spacer-${row.index}`)" />
+              </sgds-tooltip>
+              <div v-else class="ts-snippet-row">
+                <code class="ts-snippet-code"><span>{{ getTokenValue(`--sgds-spacer-${row.index}`) }}</span></code>
+                <button
+                  :class="['ts-snippet-copy-btn', copiedKey === `spacer-${row.index}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                  @click="copyTokenValue(`spacer-${row.index}`, getTokenValue(`--sgds-spacer-${row.index}`))"
+                >
+                  <sgds-icon :name="copiedKey === `spacer-${row.index}` ? 'check' : 'copy'" size="sm" />
+                </button>
+              </div>
               <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
             </div>
           </sgds-table-cell>
@@ -157,9 +199,13 @@ const layoutPaddingRows: ResponsiveRow[] = [
               Use for spacing between text elements and inline content. Utility: <CodeToken label="sgds:gap-text-{size}" />.
             </p>
           </div>
+          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+          </sgds-tab-group>
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">Token</sgds-table-head>
+              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -172,7 +218,18 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="row.token" />
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === row.token ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      @click="copyTokenValue(row.token, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === row.token ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -192,9 +249,13 @@ const layoutPaddingRows: ResponsiveRow[] = [
               Use for spacing between page sections and major layout regions. Utility: <CodeToken label="sgds:gap-layout-{size}" />.
             </p>
           </div>
+          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+          </sgds-tab-group>
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">Token</sgds-table-head>
+              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -207,7 +268,18 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="row.token" />
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === row.token ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      @click="copyTokenValue(row.token, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === row.token ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -227,9 +299,13 @@ const layoutPaddingRows: ResponsiveRow[] = [
               Use for spacing between elements within a component. Utility: <CodeToken label="sgds:gap-component-{size}" />.
             </p>
           </div>
+          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+          </sgds-tab-group>
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">Token</sgds-table-head>
+              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -242,7 +318,18 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="row.token" />
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === row.token ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      @click="copyTokenValue(row.token, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === row.token ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -281,9 +368,13 @@ const layoutPaddingRows: ResponsiveRow[] = [
               Internal padding for UI components. Utility: <CodeToken label="sgds:p-component-{size}" />.
             </p>
           </div>
+          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+          </sgds-tab-group>
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">Token</sgds-table-head>
+              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -296,7 +387,18 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="row.token" />
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === row.token ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      @click="copyTokenValue(row.token, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === row.token ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -316,9 +418,13 @@ const layoutPaddingRows: ResponsiveRow[] = [
               Padding for page-level containers and layout regions. Utility: <CodeToken label="sgds:p-layout-{size}" />.
             </p>
           </div>
+          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
+          </sgds-tab-group>
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">Token</sgds-table-head>
+              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -331,7 +437,18 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="row.token" />
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === row.token ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      @click="copyTokenValue(row.token, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === row.token ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -391,6 +508,46 @@ const layoutPaddingRows: ResponsiveRow[] = [
 /* Base row highlight — applied to sgds-table-row host element */
 .st-base-row {
   background: var(--sgds-primary-surface-muted);
+}
+
+/* ─── Token snippet row (copy-to-clipboard) ──────────────────────────────── */
+.ts-snippet-row {
+  align-items: center;
+  background: var(--sgds-bg-muted);
+  border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-md);
+  display: inline-flex;
+  gap: var(--sgds-gap-xs);
+  max-inline-size: 100%;
+  padding: var(--sgds-spacer-1) var(--sgds-spacer-3);
+}
+
+.ts-snippet-code {
+  color: var(--sgds-body-color-default);
+  font-family: var(--sgds-font-family-mono);
+  font-size: var(--sgds-font-size-13);
+  font-weight: var(--sgds-font-weight-regular);
+  line-height: var(--sgds-line-height-20);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ts-snippet-code span {
+  white-space: nowrap;
+}
+
+.ts-snippet-copy-btn {
+  appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex: none;
+  padding: 0;
+}
+
+.ts-snippet-copy-btn:hover {
+  opacity: 0.7;
 }
 
 @media (max-width: 1023px) {

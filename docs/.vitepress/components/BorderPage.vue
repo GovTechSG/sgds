@@ -85,7 +85,7 @@ const radiusExamples: Example[] = [
 </script>
 
 <template>
-  <TypographyPageTemplate>
+  <TypographyPageTemplate stacked-examples>
     <FoundationPrincipleTemplate>
       <FoundationPrinciplesList :principles="principles" />
 

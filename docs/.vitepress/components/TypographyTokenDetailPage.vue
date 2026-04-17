@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { typographyTokenDocs } from "../data/typography-token-docs";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
@@ -10,6 +10,30 @@ const props = defineProps<{
 
 const doc = computed(() => typographyTokenDocs[props.tokenKey]);
 const isResponsive = computed(() => doc.value?.rows.some((r) => r.mobile !== undefined) ?? false);
+
+const tokenViewOptions = [
+  { id: "css-variable", label: "CSS variable" },
+  { id: "figma", label: "Figma token" },
+] as const;
+type TokenViewId = (typeof tokenViewOptions)[number]["id"];
+const activeTokenViewId = ref<TokenViewId>("css-variable");
+const copiedKey = ref<string | null>(null);
+
+const onTokenViewShow = (event: Event) => {
+  const nextView = (event as CustomEvent<{ name?: string }>).detail?.name as TokenViewId | undefined;
+  if (nextView && tokenViewOptions.some((o) => o.id === nextView)) activeTokenViewId.value = nextView;
+};
+
+const getTokenValue = (token: string) => {
+  if (activeTokenViewId.value === "css-variable") return token;
+  return token.replace(/^--/, "");
+};
+
+const copyTokenValue = async (key: string, text: string) => {
+  await navigator.clipboard.writeText(text);
+  copiedKey.value = key;
+  setTimeout(() => { if (copiedKey.value === key) copiedKey.value = null; }, 2000);
+};
 </script>
 
 <template>
@@ -22,6 +46,9 @@ const isResponsive = computed(() => doc.value?.rows.some((r) => r.mobile !== und
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ doc.description }}</p>
           </div>
 
+          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+            <sgds-tab v-for="opt in tokenViewOptions" :key="opt.id" :name="opt.id" :label="opt.label" :active="opt.id === 'css-variable' ? true : undefined" />
+          </sgds-tab-group>
           <sgds-table
             tableBorder
             headerBackground
@@ -33,7 +60,7 @@ const isResponsive = computed(() => doc.value?.rows.some((r) => r.mobile !== und
             ]"
           >
             <sgds-table-row>
-              <sgds-table-head class="typography-token-table__token-column">Token</sgds-table-head>
+              <sgds-table-head class="typography-token-table__token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
               <template v-if="isResponsive">
                 <sgds-table-head class="typography-token-table__breakpoint-column">Mobile</sgds-table-head>
                 <sgds-table-head class="typography-token-table__breakpoint-column">Tablet</sgds-table-head>
@@ -52,7 +79,19 @@ const isResponsive = computed(() => doc.value?.rows.some((r) => r.mobile !== und
             >
               <sgds-table-cell class="typography-token-table__token-column">
                 <div class="typography-token-table__token-cell sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="row.token" />
+                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-tooltip>
+                  <div v-else class="ts-snippet-row">
+                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                    <button
+                      :class="['ts-snippet-copy-btn', copiedKey === `${row.token}-${activeTokenViewId}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                      :aria-label="copiedKey === `${row.token}-${activeTokenViewId}` ? 'Copied!' : 'Copy token'"
+                      @click="copyTokenValue(`${row.token}-${activeTokenViewId}`, getTokenValue(row.token))"
+                    >
+                      <sgds-icon :name="copiedKey === `${row.token}-${activeTokenViewId}` ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
                   <sgds-badge v-if="row.note" variant="primary">{{ row.note }}</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -191,5 +230,51 @@ const isResponsive = computed(() => doc.value?.rows.some((r) => r.mobile !== und
 
 .typography-token-example-stack .typography-token-example-text:last-child {
   margin-bottom: 0;
+}
+
+/* Snippet row for copy-able token values */
+.ts-snippet-row {
+  align-items: flex-start;
+  background: var(--sgds-surface-raised);
+  border: 1px solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-sm);
+  display: flex;
+  gap: var(--sgds-gap-2-xs);
+  justify-content: space-between;
+  padding: 0.375rem var(--sgds-padding-sm);
+}
+
+.ts-snippet-code {
+  color: var(--sgds-body-color-subtle);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-family: var(--sgds-font-family-mono, monospace);
+  font-size: var(--sgds-font-size-body-sm);
+  gap: var(--sgds-gap-2-xs);
+  line-height: var(--sgds-line-height-xs);
+  min-width: 0;
+  overflow: visible;
+  white-space: normal;
+}
+
+.ts-snippet-code span {
+  align-self: flex-start;
+  color: var(--sgds-body-color-default);
+  white-space: nowrap;
+}
+
+.ts-snippet-copy-btn {
+  background: transparent;
+  border: 0;
+  border-radius: var(--sgds-border-radius-sm);
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  padding: var(--sgds-spacer-1);
+}
+
+.ts-snippet-copy-btn:hover {
+  background: var(--sgds-bg-translucent-subtle);
 }
 </style>

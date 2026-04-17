@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import Section from "./Section.vue";
 import CodeToken from "../ui/CodeToken.vue";
 
@@ -10,6 +11,30 @@ const props = withDefaults(
     section: "all",
   },
 );
+
+const tokenViewOptions = [
+  { id: "css-variable", label: "CSS variable" },
+  { id: "figma", label: "Figma token" },
+] as const;
+type TokenViewId = (typeof tokenViewOptions)[number]["id"];
+const activeTokenViewId = ref<TokenViewId>("css-variable");
+const copiedKey = ref<string | null>(null);
+
+const onTokenViewShow = (event: Event) => {
+  const nextView = (event as CustomEvent<{ name?: string }>).detail?.name as TokenViewId | undefined;
+  if (nextView && tokenViewOptions.some((o) => o.id === nextView)) activeTokenViewId.value = nextView;
+};
+
+const getTokenValue = (token: string) => {
+  if (activeTokenViewId.value === "css-variable") return token;
+  return token.replace(/^--/, "");
+};
+
+const copyTokenValue = async (key: string, text: string) => {
+  await navigator.clipboard.writeText(text);
+  copiedKey.value = key;
+  setTimeout(() => { if (copiedKey.value === key) copiedKey.value = null; }, 2000);
+};
 
 type ElevationRow = {
   name: string;
@@ -95,28 +120,46 @@ const edgeRows: EdgeRow[] = [
       title="Surface elevation"
       description="Surface shadows lift elements above the page. Use progressively higher levels as elements sit further from the base surface."
     >
-      <sgds-table tableBorder headerBackground responsive="always" class="elevation-utility-table">
-        <sgds-table-row>
-          <sgds-table-head class="ev-token-col">Token</sgds-table-head>
-          <sgds-table-head class="ev-preview-col">Preview</sgds-table-head>
-          <sgds-table-head class="ev-desc-col">Description</sgds-table-head>
-          <sgds-table-head class="ev-usage-col">Usage</sgds-table-head>
-        </sgds-table-row>
-        <sgds-table-row v-for="row in surfaceRows" :key="row.token">
-          <sgds-table-cell class="ev-token-col">
-            <CodeToken :label="row.token" />
-          </sgds-table-cell>
-          <sgds-table-cell class="ev-preview-col" aria-hidden="true">
-            <div class="ev-shadow-swatch" :class="row.shadowClass"></div>
-          </sgds-table-cell>
-          <sgds-table-cell class="ev-desc-col">
-            <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.description }}</span>
-          </sgds-table-cell>
-          <sgds-table-cell class="ev-usage-col">
-            <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span>
-          </sgds-table-cell>
-        </sgds-table-row>
-      </sgds-table>
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+          <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+          <sgds-tab-panel v-for="option in tokenViewOptions" :key="`elevation-${option.id}`" :name="option.id"></sgds-tab-panel>
+        </sgds-tab-group>
+        <sgds-table tableBorder headerBackground responsive="always" class="elevation-utility-table">
+          <sgds-table-row>
+            <sgds-table-head class="ev-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+            <sgds-table-head class="ev-preview-col">Preview</sgds-table-head>
+            <sgds-table-head class="ev-desc-col">Description</sgds-table-head>
+            <sgds-table-head class="ev-usage-col">Usage</sgds-table-head>
+          </sgds-table-row>
+          <sgds-table-row v-for="row in surfaceRows" :key="row.token">
+            <sgds-table-cell class="ev-token-col">
+              <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+                <CodeToken :label="getTokenValue(row.token)" />
+              </sgds-tooltip>
+              <div v-else class="ts-snippet-row">
+                <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+                <button
+                  :class="['ts-snippet-copy-btn', copiedKey === `${row.token}-${activeTokenViewId}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                  :aria-label="copiedKey === `${row.token}-${activeTokenViewId}` ? 'Copied!' : 'Copy token'"
+                  @click="copyTokenValue(`${row.token}-${activeTokenViewId}`, getTokenValue(row.token))"
+                >
+                  <sgds-icon :name="copiedKey === `${row.token}-${activeTokenViewId}` ? 'check' : 'copy'" size="sm" />
+                </button>
+              </div>
+            </sgds-table-cell>
+            <sgds-table-cell class="ev-preview-col" aria-hidden="true">
+              <div class="ev-shadow-swatch" :class="row.shadowClass"></div>
+            </sgds-table-cell>
+            <sgds-table-cell class="ev-desc-col">
+              <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.description }}</span>
+            </sgds-table-cell>
+            <sgds-table-cell class="ev-usage-col">
+              <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span>
+            </sgds-table-cell>
+          </sgds-table-row>
+        </sgds-table>
+      </div>
     </Section>
     </template>
 
@@ -126,16 +169,33 @@ const edgeRows: EdgeRow[] = [
       title="Edge elevation"
       description="Edge shadows are directional and indicate that an element is pinned to a viewport edge, casting a shadow toward the content beneath."
     >
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
+          <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
+          <sgds-tab-panel v-for="option in tokenViewOptions" :key="`elevation-${option.id}`" :name="option.id"></sgds-tab-panel>
+        </sgds-tab-group>
       <sgds-table tableBorder headerBackground responsive="always" class="elevation-utility-table">
         <sgds-table-row>
-          <sgds-table-head class="ev-token-col">Token</sgds-table-head>
+          <sgds-table-head class="ev-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
           <sgds-table-head class="ev-preview-col">Preview</sgds-table-head>
           <sgds-table-head class="ev-desc-col">Description</sgds-table-head>
           <sgds-table-head class="ev-usage-col">Usage</sgds-table-head>
         </sgds-table-row>
         <sgds-table-row v-for="row in edgeRows" :key="row.token">
           <sgds-table-cell class="ev-token-col">
-            <CodeToken :label="row.token" />
+            <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+              <CodeToken :label="getTokenValue(row.token)" />
+            </sgds-tooltip>
+            <div v-else class="ts-snippet-row">
+              <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
+              <button
+                :class="['ts-snippet-copy-btn', copiedKey === `${row.token}-${activeTokenViewId}` ? 'sgds:text-success-default' : 'sgds:text-default']"
+                :aria-label="copiedKey === `${row.token}-${activeTokenViewId}` ? 'Copied!' : 'Copy token'"
+                @click="copyTokenValue(`${row.token}-${activeTokenViewId}`, getTokenValue(row.token))"
+              >
+                <sgds-icon :name="copiedKey === `${row.token}-${activeTokenViewId}` ? 'check' : 'copy'" size="sm" />
+              </button>
+            </div>
           </sgds-table-cell>
           <sgds-table-cell class="ev-preview-col" aria-hidden="true">
             <div class="ev-edge-preview-wrap">
@@ -150,6 +210,7 @@ const edgeRows: EdgeRow[] = [
           </sgds-table-cell>
         </sgds-table-row>
       </sgds-table>
+      </div>
     </Section>
     </template>
 
@@ -187,30 +248,21 @@ const edgeRows: EdgeRow[] = [
 
 .ev-token-col {
   box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: 20rem;
-  min-inline-size: 16rem;
+  width: 30%;
+  min-width: 10rem;
 }
 
 .ev-preview-col {
   box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: 8rem;
-  min-inline-size: 6rem;
+  width: 10%;
+  min-width: 5rem;
 }
 
-.ev-desc-col {
-  box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: 18rem;
-  min-inline-size: 12rem;
-}
-
+.ev-desc-col,
 .ev-usage-col {
   box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: 18rem;
-  min-inline-size: 12rem;
+  inline-size: auto;
+  min-width: 10rem;
 }
 
 /* Shadow tokens — applied via CSS variables, no sgds: utility equivalent exists */
@@ -255,5 +307,56 @@ const edgeRows: EdgeRow[] = [
     max-inline-size: none;
     min-inline-size: 0;
   }
+}
+
+/* Token tab group — removes default gap so tabs sit flush above the table */
+.ts-token-tab-group {
+  --sgds-gap-xl: 0;
+}
+
+/* Snippet row for copy-able token values */
+.ts-snippet-row {
+  align-items: flex-start;
+  background: var(--sgds-surface-raised);
+  border: 1px solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-sm);
+  display: flex;
+  gap: var(--sgds-gap-2-xs);
+  justify-content: space-between;
+  padding: 0.375rem var(--sgds-padding-sm);
+}
+
+.ts-snippet-code {
+  color: var(--sgds-body-color-subtle);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-family: var(--sgds-font-family-mono, monospace);
+  font-size: var(--sgds-font-size-body-sm);
+  gap: var(--sgds-gap-2-xs);
+  line-height: var(--sgds-line-height-xs);
+  min-width: 0;
+  overflow: visible;
+  white-space: normal;
+}
+
+.ts-snippet-code span {
+  align-self: flex-start;
+  color: var(--sgds-body-color-default);
+  white-space: nowrap;
+}
+
+.ts-snippet-copy-btn {
+  background: transparent;
+  border: 0;
+  border-radius: var(--sgds-border-radius-sm);
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  padding: var(--sgds-spacer-1);
+}
+
+.ts-snippet-copy-btn:hover {
+  background: var(--sgds-bg-translucent-subtle);
 }
 </style>

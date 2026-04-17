@@ -26,7 +26,7 @@ const principles = [
       title="Surface"
       description="Default elevation level that elevates navigation or information temporarily appearing in front of other surfaces, such as dropdown menu and tooltips. The elevation level is also applied to actionable elements after hovering over like cards and tiles."
     >
-      <div class="ep-demo-card">
+      <div class="ep-demo-card sgds:min-h-[18rem] sgds:max-md:min-h-[14rem]">
         <div class="ep-surface-row">
           <div class="ep-shadow-tile elevation-surface-1"></div>
           <div class="ep-shadow-tile elevation-surface-2"></div>
@@ -42,7 +42,7 @@ const principles = [
       title="Edge"
       description="A drop shadow on the edge of a top or bottom component, allowing surfaces to move behind when scrolled such as header and action bar."
     >
-      <div class="ep-demo-card">
+      <div class="ep-demo-card sgds:min-h-[18rem] sgds:max-md:min-h-[14rem]">
         <div class="ep-edge-row">
           <div class="ep-edge-tile elevation-edge-top"></div>
           <div class="ep-edge-tile elevation-edge-bottom"></div>
@@ -55,7 +55,7 @@ const principles = [
       title="Opacities"
       description="A opacity background can bring focus by increasing the visual contrast of a layered surface like modals and sheets."
     >
-      <div class="ep-demo-card ep-opacities-scene">
+      <div class="ep-demo-card ep-opacities-scene sgds:min-h-[18rem] sgds:max-md:min-h-[14rem]">
         <!-- Content card sitting on the base surface, behind the scrim -->
         <div class="ep-opacity-content-card elevation-surface-1"></div>
         <!-- Dark overlay scrim on top of the base and content card -->
@@ -78,7 +78,6 @@ const principles = [
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 16rem;
   overflow: hidden;
 }
 
@@ -86,7 +85,7 @@ const principles = [
 .ep-surface-row {
   align-items: center;
   display: flex;
-  gap: var(--sgds-gap-2-xl);
+  gap: var(--sgds-component-gap-md);
   padding: var(--sgds-component-padding-md);
 }
 
@@ -102,7 +101,7 @@ const principles = [
 .ep-edge-row {
   align-items: center;
   display: flex;
-  gap: var(--sgds-gap-2-xl);
+  gap: var(--sgds-component-gap-md);
   padding: var(--sgds-component-padding-md);
 }
 
@@ -165,17 +164,11 @@ const principles = [
 @media (max-width: 767px) {
   .ep-demo-card {
     border-radius: var(--sgds-border-radius-xl);
-    height: 12rem;
-  }
-
-  .ep-surface-row {
-    gap: var(--sgds-gap-xl);
   }
 
   .ep-shadow-tile {
     height: 3.5rem;
     width: 3.5rem;
   }
-
 }
 </style>

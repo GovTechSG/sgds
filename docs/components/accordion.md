@@ -6,7 +6,7 @@ figma: true
 storybook: true
 prev:
   text: "Our typography"
-  link: "/foundations/typography/our-typography"
+  link: "/foundations/typography"
 next:
   text: "Card"
   link: "/components/card"

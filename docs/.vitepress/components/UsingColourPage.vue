@@ -64,53 +64,6 @@ const roleRows = [
     <div :class="$style.sectionStack">
       <div :class="$style.pageSection">
         <Section
-          title="Colour pairing"
-          description="Pair colour combinations deliberately so content remains readable and hierarchy stays clear. Start with high-contrast pairings, then introduce stronger colour only where it adds meaning or focus."
-        >
-          <div :class="[$style.demoCard, $style.demoCardInset]">
-            <div :class="$style.pairingDemo">
-              <div :class="$style.pairingScene">
-                <div :class="$style.pairingShell">
-                  <div :class="$style.pairingSidebar">
-                    <div :class="$style.pairingAvatar"></div>
-                    <div :class="$style.pairingSidebarLine"></div>
-                    <div :class="$style.pairingSidebarLineShort"></div>
-                  </div>
-                  <div :class="$style.pairingMain">
-                    <div :class="$style.pairingTopRow">
-                      <div :class="$style.pairingTitleBlock">
-                        <div :class="$style.pairingEyebrow"></div>
-                        <div :class="$style.pairingTitle"></div>
-                        <div :class="$style.pairingBodyLine"></div>
-                      </div>
-                      <div :class="$style.pairingAccentChip">Primary action</div>
-                    </div>
-                    <div :class="$style.pairingCards">
-                      <div :class="$style.pairingCard">
-                        <div :class="$style.pairingCardTitle"></div>
-                        <div :class="$style.pairingCardBody"></div>
-                        <div :class="$style.pairingCardBodyShort"></div>
-                      </div>
-                      <div :class="$style.pairingCard">
-                        <div :class="$style.pairingCardTitle"></div>
-                        <div :class="$style.pairingCardBody"></div>
-                        <div :class="$style.pairingCardBodyShort"></div>
-                      </div>
-                    </div>
-                    <div :class="$style.pairingFooter">
-                      <div :class="$style.pairingMeta"></div>
-                      <div :class="$style.pairingCta">Continue</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Section>
-      </div>
-
-      <div :class="$style.pageSection">
-        <Section
           title="Semantic colour"
           description="Semantic colours should be reserved for meaning. Use them consistently for success, warning, danger, and information so users can recognise state and feedback quickly."
         >
@@ -191,14 +144,6 @@ const roleRows = [
           </div>
         </Section>
       </div>
-
-      <div :class="$style.pageSection">
-        <Section title="Resources">
-          <div :class="$style.resourcesCard">
-            <p :class="$style.resourcesText">Best practices and articles</p>
-          </div>
-        </Section>
-      </div>
     </div>
   </div>
 </template>
@@ -220,8 +165,7 @@ const roleRows = [
 }
 
 .demoCard,
-.roleDemoCard,
-.resourcesCard {
+.roleDemoCard {
   background: var(--sgds-surface-raised);
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-xl);
@@ -238,7 +182,6 @@ const roleRows = [
   padding: var(--sgds-component-padding-md);
 }
 
-.pairingDemo,
 .semanticDemo,
 .modesDemo {
   align-items: center;
@@ -246,182 +189,6 @@ const roleRows = [
   height: 100%;
   justify-content: center;
   position: relative;
-}
-
-.pairingScene {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.pairingShell {
-  background: var(--sgds-bg-color-default);
-  border: 1px solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-lg);
-  display: flex;
-  gap: var(--sgds-gap-lg);
-  overflow: hidden;
-  padding: var(--sgds-component-padding-sm);
-  width: min(100%, 34rem);
-}
-
-.pairingSidebar {
-  align-items: center;
-  background: var(--sgds-bg-color-alternate);
-  border-radius: var(--sgds-border-radius-md);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sgds-gap-sm);
-  justify-content: flex-start;
-  min-width: 4.5rem;
-  padding: var(--sgds-component-padding-sm) var(--sgds-padding-sm);
-}
-
-.pairingAvatar,
-.pairingSidebarLine,
-.pairingSidebarLineShort,
-.pairingEyebrow,
-.pairingTitle,
-.pairingBodyLine,
-.pairingCardTitle,
-.pairingCardBody,
-.pairingCardBodyShort,
-.pairingMeta {
-  border-radius: var(--sgds-border-radius-pill);
-}
-
-.pairingAvatar {
-  background: var(--sgds-primary-color-default);
-  height: 2.25rem;
-  width: 2.25rem;
-}
-
-.pairingSidebarLine {
-  background: var(--sgds-body-color-subtle);
-  height: 0.75rem;
-  opacity: 0.5;
-  width: 100%;
-}
-
-.pairingSidebarLineShort {
-  background: var(--sgds-body-color-subtle);
-  height: 0.75rem;
-  opacity: 0.35;
-  width: 70%;
-}
-
-.pairingMain {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: var(--sgds-gap-md);
-  min-width: 0;
-}
-
-.pairingTopRow,
-.pairingFooter {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  gap: var(--sgds-gap-md);
-}
-
-.pairingTitleBlock {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: var(--sgds-gap-sm);
-}
-
-.pairingEyebrow {
-  background: var(--sgds-border-color-muted);
-  height: 0.75rem;
-  width: 4.5rem;
-}
-
-.pairingTitle {
-  background: var(--sgds-body-color-default);
-  height: 1.5rem;
-  width: min(100%, 12rem);
-}
-
-.pairingBodyLine {
-  background: var(--sgds-body-color-subtle);
-  height: 0.875rem;
-  opacity: 0.55;
-  width: min(100%, 9rem);
-}
-
-.pairingAccentChip,
-.pairingCta {
-  align-items: center;
-  display: inline-flex;
-  font-size: var(--sgds-font-size-1);
-  font-weight: var(--sgds-font-weight-semibold);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-20);
-  white-space: nowrap;
-}
-
-.pairingAccentChip {
-  animation: pairingAccentPulse 2.8s ease-in-out infinite;
-  background: var(--sgds-primary-surface-muted);
-  border: 1px solid var(--sgds-primary-border-color-default);
-  border-radius: var(--sgds-border-radius-pill);
-  color: var(--sgds-primary-color-emphasis);
-  padding: var(--sgds-padding-2-xs) var(--sgds-padding-sm);
-}
-
-.pairingCards {
-  display: grid;
-  gap: var(--sgds-gap-sm);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.pairingCard {
-  background: var(--sgds-surface-default);
-  border: 1px solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-md);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sgds-gap-sm);
-  min-height: 6.5rem;
-  padding: var(--sgds-component-padding-sm);
-}
-
-.pairingCardTitle {
-  background: var(--sgds-body-color-default);
-  height: 1rem;
-  width: 60%;
-}
-
-.pairingCardBody {
-  background: var(--sgds-body-color-subtle);
-  height: 0.75rem;
-  opacity: 0.4;
-  width: 100%;
-}
-
-.pairingCardBodyShort {
-  background: var(--sgds-body-color-subtle);
-  height: 0.75rem;
-  opacity: 0.28;
-  width: 72%;
-}
-
-.pairingMeta {
-  background: var(--sgds-body-color-subtle);
-  height: 0.75rem;
-  opacity: 0.35;
-  width: 6rem;
-}
-
-.pairingCta {
-  animation: pairingCtaGlow 2.8s ease-in-out infinite;
-  background: var(--sgds-primary-color-default);
-  border-radius: var(--sgds-border-radius-pill);
-  color: var(--sgds-color-fixed-light);
-  padding: var(--sgds-padding-xs) var(--sgds-padding-md);
 }
 
 .semanticDemo {
@@ -458,7 +225,7 @@ const roleRows = [
 .roleRow {
   display: grid;
   gap: var(--sgds-layout-gap-lg);
-  grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .roleCopy {
@@ -578,50 +345,6 @@ const roleRows = [
   line-height: var(--sgds-line-height-24);
 }
 
-.resourcesCard {
-  min-height: var(--sgds-dimension-320);
-  padding: 0 0 0 var(--sgds-component-padding-md);
-  padding-top: var(--sgds-component-padding-md);
-}
-
-.resourcesText {
-  align-items: center;
-  color: var(--sgds-body-color-default);
-  display: flex;
-  font-size: var(--sgds-font-size-3);
-  font-weight: var(--sgds-font-weight-semibold);
-  height: 100%;
-  justify-content: center;
-  line-height: var(--sgds-line-height-24);
-  margin: 0;
-  min-height: calc(var(--sgds-dimension-320) - (var(--sgds-component-padding-md) * 2));
-  text-align: center;
-}
-
-@keyframes pairingAccentPulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--sgds-primary-color-default) 0%, transparent);
-    transform: translateY(0);
-  }
-
-  50% {
-    box-shadow: 0 0 0 0.375rem color-mix(in srgb, var(--sgds-primary-color-default) 18%, transparent);
-    transform: translateY(-0.125rem);
-  }
-}
-
-@keyframes pairingCtaGlow {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--sgds-primary-color-default) 0%, transparent);
-  }
-
-  50% {
-    box-shadow: 0 0 0 0.5rem color-mix(in srgb, var(--sgds-primary-color-default) 16%, transparent);
-  }
-}
-
 @media (max-width: 1023px) {
   .roleRow {
     grid-template-columns: minmax(0, 1fr);
@@ -630,8 +353,7 @@ const roleRows = [
 
 @media (max-width: 767px) {
   .demoCard,
-  .roleDemoCard,
-  .resourcesCard {
+  .roleDemoCard {
     border-radius: var(--sgds-border-radius-xl);
   }
 
@@ -641,21 +363,6 @@ const roleRows = [
 
   .semanticAlert {
     width: 100%;
-  }
-
-  .pairingShell {
-    flex-direction: column;
-  }
-
-  .pairingSidebar {
-    align-items: center;
-    flex-direction: row;
-    min-width: 0;
-    width: 100%;
-  }
-
-  .pairingCards {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .rolePage {

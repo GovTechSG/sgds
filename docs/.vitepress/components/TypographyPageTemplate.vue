@@ -1,5 +1,16 @@
+<script setup lang="ts">
+const { stackedExamples = false } = defineProps<{
+  stackedExamples?: boolean;
+}>();
+</script>
+
 <template>
-  <div class="typography-page-template">
+  <div
+    :class="[
+      'typography-page-template',
+      stackedExamples ? 'typography-page-template--stacked' : '',
+    ]"
+  >
     <slot />
   </div>
 </template>
@@ -66,13 +77,25 @@
 
 .typography-page-template__demo-pane > * {
   flex: 1;
-  min-height: 100%;
 }
 
 .typography-page-template__copy-pane {
   display: flex;
   flex-direction: column;
-  gap: var(--sgds-text-gap-sm);
+  gap: var(--sgds-text-gap-md);
+}
+
+.typography-page-template--stacked .typography-page-template__split-row {
+  gap: var(--sgds-layout-gap-xs);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.typography-page-template--stacked .typography-page-template__demo-pane {
+  inline-size: 100%;
+}
+
+.typography-page-template--stacked .typography-page-template__card {
+  min-block-size: 22rem;
 }
 
 .typography-page-template__card {
@@ -80,7 +103,7 @@
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-xl);
   box-sizing: border-box;
-  height: 100%;
+  min-block-size: 18rem;
   overflow: hidden;
   width: 100%;
 }
@@ -90,7 +113,12 @@
 .typography-page-template__section h4,
 .typography-page-template__section p,
 .typography-page-template__section ol,
-.typography-page-template__section li {
+.typography-page-template__section li,
+.typography-page-template__copy-pane h2,
+.typography-page-template__copy-pane h3,
+.typography-page-template__copy-pane h4,
+.typography-page-template__copy-pane h5,
+.typography-page-template__copy-pane p {
   margin: 0;
 }
 
@@ -101,9 +129,7 @@
 }
 
 .typography-page-template__utility-table {
-  inline-size: max-content;
-  max-inline-size: 100%;
-  width: auto;
+  inline-size: 100%;
 }
 
 .typography-page-template__utility-table sgds-table-row {
@@ -133,9 +159,8 @@
 .typography-page-template__table-token-column,
 .typography-page-template__table-utility-column {
   box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: clamp(13rem, 22vw, 18rem);
-  min-inline-size: 12rem;
+  width: 30%;
+  min-width: 10rem;
 }
 
 .typography-page-template__table-metric-column {
@@ -147,9 +172,8 @@
 
 .typography-page-template__table-preview-column {
   box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: clamp(14rem, 32vw, 18rem);
-  min-inline-size: 12rem;
+  width: 22%;
+  min-width: 10rem;
 }
 
 .typography-page-template__table-value-column {
@@ -168,9 +192,8 @@
 
 .typography-page-template__table-usage-column {
   box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: clamp(18rem, 30vw, 24rem);
-  min-inline-size: 16rem;
+  inline-size: auto;
+  min-inline-size: 14rem;
 }
 
 .typography-page-template__utility-copy {
@@ -216,5 +239,62 @@
     max-inline-size: none;
     min-inline-size: 0;
   }
+}
+
+/* Token-view tab group — collapses the empty content-slot gap inside
+ * sgds-tab-group when the panels are empty placeholders (the table
+ * lives outside the component). Shared by all typography pages that
+ * use a token-view switcher above their table. */
+.ts-token-tab-group {
+  --sgds-gap-xl: 0;
+}
+
+/* ── Copyable token snippet row ──────────────────────────────────────────────
+ * Shared by all utility and token tables. Shows a code token with a copy
+ * button. Defined here so every page that uses TypographyPageTemplate
+ * inherits it without duplicating the rules. */
+.ts-snippet-row {
+  align-items: flex-start;
+  background: var(--sgds-surface-raised);
+  border: 1px solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-sm);
+  display: flex;
+  gap: var(--sgds-gap-2-xs);
+  justify-content: space-between;
+  padding: 0.375rem var(--sgds-padding-sm);
+}
+
+.ts-snippet-code {
+  color: var(--sgds-body-color-subtle);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-family: var(--sgds-font-family-mono, monospace);
+  font-size: var(--sgds-font-size-body-sm);
+  gap: var(--sgds-gap-2-xs);
+  line-height: var(--sgds-line-height-xs);
+  min-width: 0;
+  overflow: visible;
+  white-space: normal;
+}
+
+.ts-snippet-code span {
+  align-self: flex-start;
+  color: var(--sgds-body-color-default);
+  white-space: nowrap;
+}
+
+.ts-snippet-copy-btn {
+  background: transparent;
+  border: 0;
+  border-radius: var(--sgds-border-radius-sm);
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  padding: var(--sgds-spacer-1);
+}
+
+.ts-snippet-copy-btn:hover {
+  background: var(--sgds-bg-translucent-subtle);
 }
 </style>

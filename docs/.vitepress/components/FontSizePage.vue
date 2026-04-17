@@ -98,18 +98,15 @@ const onFontSizeTabShow = (e: Event) => {
 
 <template>
   <TypographyPageTemplate>
-    <section class="typography-page-template__section">
-      <div class="typography-page-template__content-block">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Font size utilities</h4>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-          Semantic font size utility classes control text size using tokens mapped to the SGDS type scale. These sizes are responsive by default, automatically scaling at tablet (1024px) and desktop (1440px) breakpoints to ensure consistent and readable typography across devices.
-        </p>
-      </div>
-    </section>
-
     <section id="responsive-tokens" class="typography-page-template__section">
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-        <sgds-tab-group variant="underlined" @sgds-tab-show="onFontSizeTabShow">
+        <div class="typography-page-template__content-block">
+          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Font size utilities</h4>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+            Semantic font size utility classes control text size using tokens mapped to the SGDS type scale. These sizes are responsive by default, automatically scaling at tablet (1024px) and desktop (1440px) breakpoints to ensure consistent and readable typography across devices.
+          </p>
+        </div>
+        <sgds-tab-group class="ts-token-tab-group" variant="underlined" @sgds-tab-show="onFontSizeTabShow">
           <sgds-tab
             v-for="group in fontSizeGroups"
             :key="group.key"

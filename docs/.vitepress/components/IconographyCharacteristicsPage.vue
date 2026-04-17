@@ -327,11 +327,11 @@
                 <div class="icon-char-cd-bg">
                   <div class="icon-char-cd-safe"></div>
                   <div class="icon-char-cd-icon-area"></div>
-                </div>
-                <div class="icon-char-cd-labels">
-                  <div class="icon-char-cd-lbl"><div class="icon-char-annotation-h-line"></div><span class="icon-char-anno-label">Icon button background</span></div>
-                  <div class="icon-char-cd-lbl"><div class="icon-char-annotation-h-line"></div><span class="icon-char-anno-label">Icon size</span></div>
-                  <div class="icon-char-cd-lbl"><div class="icon-char-annotation-h-line"></div><span class="icon-char-anno-label">Safe area</span></div>
+                  <div class="icon-char-cd-labels">
+                    <div class="icon-char-cd-lbl"><div class="icon-char-annotation-h-line"></div><span class="icon-char-anno-label">Icon button background</span></div>
+                    <div class="icon-char-cd-lbl"><div class="icon-char-annotation-h-line"></div><span class="icon-char-anno-label">Icon size</span></div>
+                    <div class="icon-char-cd-lbl"><div class="icon-char-annotation-h-line"></div><span class="icon-char-anno-label">Safe area</span></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -386,6 +386,14 @@
   - Measurement line annotation brackets (border-based)
   - align-items: flex-end on icon size row (variant not available)
 */
+
+.typography-page-template__body {
+  --icon-char-danger-line: var(--sgds-danger-color-default);
+  --icon-char-danger-border: color-mix(in srgb, var(--sgds-danger-color-default) 40%, transparent);
+  --icon-char-danger-fill-soft: color-mix(in srgb, var(--sgds-danger-color-default) 15%, transparent);
+  --icon-char-danger-fill-mid: color-mix(in srgb, var(--sgds-danger-color-default) 20%, transparent);
+  --icon-char-danger-fill-strong: color-mix(in srgb, var(--sgds-danger-color-default) 50%, transparent);
+}
 
 .icon-char-demo-card {
   align-items: center;
@@ -488,11 +496,11 @@
 
 /* Padding overlay — 2px = 20px at 10× */
 .icon-char-box-pad {
-  box-shadow: inset 0 0 0 2px rgba(194, 47, 47, 0.5);
+  box-shadow: inset 0 0 0 2px var(--icon-char-danger-fill-strong);
 }
 
 .icon-char-grid-pad::before {
-  border: 20px solid rgba(194, 47, 47, 0.2);
+  border: 20px solid var(--icon-char-danger-fill-mid);
   bottom: 0;
   content: '';
   left: 0;
@@ -504,7 +512,7 @@
 
 /* Live area overlay — 20 × 20 = 200 × 200 at 10× (inside 20px = 2px padding) */
 .icon-char-box-live::before {
-  background: rgba(194, 47, 47, 0.15);
+  background: var(--icon-char-danger-fill-soft);
   bottom: 2px;
   content: '';
   left: 2px;
@@ -515,7 +523,7 @@
 }
 
 .icon-char-grid-live::before {
-  background: rgba(194, 47, 47, 0.15);
+  background: var(--icon-char-danger-fill-soft);
   bottom: 20px;
   content: '';
   left: 20px;
@@ -527,9 +535,9 @@
 
 /* Vertical dimension bracket (right side) */
 .icon-char-vdim-line {
-  border-bottom: 1px solid #c22f2f;
-  border-left: 1px solid #c22f2f;
-  border-top: 1px solid #c22f2f;
+  border-bottom: 1px solid var(--icon-char-danger-line);
+  border-left: 1px solid var(--icon-char-danger-line);
+  border-top: 1px solid var(--icon-char-danger-line);
   height: 100%;
   position: relative;
   width: 4px;
@@ -537,9 +545,9 @@
 
 /* Horizontal dimension bracket (bottom) */
 .icon-char-hdim-line {
-  border-bottom: 1px solid #c22f2f;
-  border-left: 1px solid #c22f2f;
-  border-right: 1px solid #c22f2f;
+  border-bottom: 1px solid var(--icon-char-danger-line);
+  border-left: 1px solid var(--icon-char-danger-line);
+  border-right: 1px solid var(--icon-char-danger-line);
   height: 4px;
   position: relative;
   width: 100%;
@@ -547,7 +555,7 @@
 
 /* Dimension labels */
 .icon-char-dim-label {
-  color: #c22f2f;
+  color: var(--icon-char-danger-line);
   font-family: var(--sgds-font-family-brand);
   font-size: 10px;
   font-weight: var(--sgds-font-weight-regular);
@@ -604,8 +612,8 @@
 .icon-char-kl-ci { border-radius: 50%; height: 88px; width: 88px; }
 
 .icon-char-kl-active {
-  background: rgba(194, 47, 47, 0.15);
-  border-color: #c22f2f;
+  background: var(--icon-char-danger-fill-soft);
+  border-color: var(--icon-char-danger-line);
 }
 
 .icon-char-keyline-thumbs {
@@ -689,14 +697,14 @@
 }
 
 .icon-char-annotation-h-line {
-  background: #c22f2f;
+  background: var(--icon-char-danger-line);
   flex-shrink: 0;
   height: 1px;
   width: 16px;
 }
 
 .icon-char-anno-label {
-  color: #c22f2f;
+  color: var(--icon-char-danger-line);
   font-family: var(--sgds-font-family-brand);
   font-size: 10px;
   font-weight: var(--sgds-font-weight-regular);
@@ -734,9 +742,8 @@
 
 /* Block 13 — icon size with container */
 .icon-char-container-wrapper {
-  align-items: center;
   display: flex;
-  gap: var(--sgds-gap-xl);
+  justify-content: center;
 }
 
 .icon-char-cd-bg {
@@ -749,7 +756,7 @@
 }
 
 .icon-char-cd-safe {
-  border: 1.5px dashed #c22f2f;
+  border: 1.5px dashed var(--icon-char-danger-line);
   border-radius: 50%;
   height: 160px;
   left: 20px;
@@ -759,8 +766,8 @@
 }
 
 .icon-char-cd-icon-area {
-  background: rgba(194, 47, 47, 0.15);
-  border: 1px solid rgba(194, 47, 47, 0.4);
+  background: var(--icon-char-danger-fill-soft);
+  border: 1px solid var(--icon-char-danger-border);
   height: 120px;
   left: 40px;
   position: absolute;
@@ -768,10 +775,16 @@
   width: 120px;
 }
 
+/* Labels float to the right of the bg box */
 .icon-char-cd-labels {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-gap-md);
+  justify-content: center;
+  left: calc(100% + var(--sgds-gap-xl));
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
 
 .icon-char-cd-lbl {
@@ -788,7 +801,7 @@
 }
 
 .icon-char-pairing-text {
-  background: rgba(194, 47, 47, 0.15);
+  background: var(--icon-char-danger-fill-soft);
   color: var(--sgds-body-color-default);
   font-family: var(--sgds-font-family-brand);
   font-size: var(--sgds-font-size-body-md);
@@ -807,6 +820,10 @@
     flex-wrap: wrap;
     gap: var(--sgds-gap-2-xl);
     justify-content: flex-start;
+  }
+
+  .icon-char-diagram-layout--focused {
+    display: flex;
   }
 
   .icon-char-grid-10x {

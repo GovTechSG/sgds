@@ -20,10 +20,43 @@ const principles = [
 ];
 
 const spacingSteps = ["2", "4", "8", "12", "16", "20", "24", "32", "48", "64", "96", "128"];
+const spacingStepHeights = [2, 4, 8, 12, 16, 20, 24, 32, 48, 64, 96, 128];
+const progressionMethods = [
+  {
+    title: "Arithmetic progression (AP)",
+    description: "Each step increases by 4.",
+    formulaTitle: "Formula arithmetic progression (AP)",
+    formula: "a_n = a_1 + (n - 1) * d",
+    definitions: [
+      "a_n = nth term",
+      "a_1 = first term",
+      "d = common difference",
+    ],
+    sample: ["4", "8", "12", "16"],
+    ariaLabel: "a n equals a one plus open bracket n minus one close bracket multiplied by d",
+  },
+  {
+    title: "Geometric progression (GP)",
+    description: "Each step doubles.",
+    formulaTitle: "Formula geometric progression (GP)",
+    formula: "a_n = a_1 * r^(n - 1)",
+    definitions: [
+      "a_n = nth term",
+      "a_1 = first term",
+      "r = common ratio",
+    ],
+    sample: ["2", "4", "8", "12"],
+    ariaLabel: "a n equals a one multiplied by r to the power of n minus one",
+  },
+];
+
+const chartWidth = 520;
+const chartHeight = 164;
+const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 108 400 86 C 444 66 480 38 504 12";
 </script>
 
 <template>
-  <TypographyPageTemplate>
+  <TypographyPageTemplate stacked-examples>
     <FoundationPrincipleTemplate>
       <FoundationPrinciplesList :principles="principles" />
 
@@ -39,8 +72,8 @@ const spacingSteps = ["2", "4", "8", "12", "16", "20", "24", "32", "48", "64", "
           </div>
 
           <div class="typography-page-template__demo-pane">
-            <div class="typography-page-template__card spacing-page__demo-card spacing-page__base-card">
-              <p class="sgds:text-default sgds:text-display-md sgds:font-bold sgds:leading-lg sgds:tracking-tight">
+            <div class="typography-page-template__card spacing-page__demo-card spacing-page__base-card sgds:min-h-[20rem] sgds:max-md:min-h-[14rem]">
+              <p class="sgds:text-default sgds:text-display-md sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">
                 4-point
               </p>
             </div>
@@ -56,50 +89,60 @@ const spacingSteps = ["2", "4", "8", "12", "16", "20", "24", "32", "48", "64", "
                 SGDS combines arithmetic progression (AP) and geometric progression (GP) into 12 spacing sizes. The 28 px
                 and 256 px sizes are not included.
               </p>
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                <strong>Arithmetic progression (AP)</strong>: each step increases by 4.
-              </p>
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                <strong>Geometric progression (GP)</strong>: each step doubles.
-              </p>
             </div>
 
             <div class="spacing-page__formula-group">
-              <div class="spacing-page__formula-block">
-                <h5 class="sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
-                  Formula arithmetic progression (AP)
-                </h5>
-                <div class="spacing-page__formula" aria-label="a n equals a one plus open bracket n minus one close bracket multiplied by d">
-                  a<sub>n</sub> = a<sub>1</sub> + (n - 1) * d
+              <div
+                v-for="method in progressionMethods"
+                :key="method.title"
+                class="spacing-page__formula-block"
+              >
+                <div class="spacing-page__formula-header">
+                  <h5 class="sgds:text-heading-xs sgds:font-semibold sgds:leading-xs sgds:tracking-tight">
+                    {{ method.title }}
+                  </h5>
+                  <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                    {{ method.description }}
+                  </p>
                 </div>
-                <p class="spacing-page__formula-definition sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                  <span>a<sub>n</sub> = nth term</span>
-                  <span>a<sub>1</sub> = first term</span>
-                  <span>d = common difference</span>
-                </p>
-              </div>
 
-              <div class="spacing-page__formula-block">
-                <h5 class="sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
-                  Formula geometric progression (GP)
-                </h5>
-                <div class="spacing-page__formula" aria-label="a n equals a one multiplied by r to the power of n minus one">
-                  a<sub>n</sub> = a<sub>1</sub> * r<sup>n - 1</sup>
+                <div class="spacing-page__formula-card">
+                  <h6 class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+                    {{ method.formulaTitle }}
+                  </h6>
+                  <div class="spacing-page__formula sgds:text-body-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal" :aria-label="method.ariaLabel">
+                    <span v-if="method.title.includes('Arithmetic')">
+                      a<sub>n</sub> = a<sub>1</sub> + (n - 1) * d
+                    </span>
+                    <span v-else>
+                      a<sub>n</sub> = a<sub>1</sub> * r<sup>n - 1</sup>
+                    </span>
+                  </div>
+                  <p class="spacing-page__formula-definition sgds:text-body-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                    <span v-for="definition in method.definitions" :key="definition">{{ definition }}</span>
+                  </p>
+                  <div class="spacing-page__sample">
+                    <span class="spacing-page__sample-label sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Sample</span>
+                    <div class="spacing-page__sample-values">
+                      <span
+                        v-for="value in method.sample"
+                        :key="`${method.title}-${value}`"
+                        class="spacing-page__sample-chip sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal"
+                      >
+                        {{ value }}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <p class="spacing-page__formula-definition sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                  <span>a<sub>n</sub> = nth term</span>
-                  <span>a<sub>1</sub> = first term</span>
-                  <span>r = common ratio</span>
-                </p>
               </div>
             </div>
           </div>
 
           <div class="typography-page-template__demo-pane">
-            <div class="typography-page-template__card spacing-page__demo-card spacing-page__progression-card">
+            <div class="typography-page-template__card spacing-page__demo-card spacing-page__progression-card sgds:min-h-[20rem] sgds:max-md:min-h-[14rem]">
               <div class="spacing-page__chart" aria-label="Spacing progression from 2 px to 128 px">
-                <svg class="spacing-page__chart-line" viewBox="0 0 520 164" aria-hidden="true">
-                  <path d="M16 142 C 96 124, 168 96, 232 72 S 392 22, 504 16" />
+                <svg class="spacing-page__chart-line" :viewBox="`0 0 ${chartWidth} ${chartHeight}`" aria-hidden="true">
+                  <path :d="progressionCurvePath" />
                 </svg>
 
                 <div class="spacing-page__bars">
@@ -130,7 +173,6 @@ const spacingSteps = ["2", "4", "8", "12", "16", "20", "24", "32", "48", "64", "
 }
 
 .spacing-page__demo-card {
-  min-block-size: 16rem;
   padding: var(--sgds-component-padding-md);
 }
 
@@ -143,15 +185,16 @@ const spacingSteps = ["2", "4", "8", "12", "16", "20", "24", "32", "48", "64", "
 .spacing-page__progression-card {
   align-items: center;
   display: flex;
+  justify-content: center;
 }
 
 .spacing-page__chart {
   box-sizing: border-box;
+  inline-size: fit-content;
   min-width: 0;
   overflow-x: auto;
   padding-block-start: var(--sgds-component-padding-sm);
   position: relative;
-  width: 100%;
 }
 
 .spacing-page__chart-line {
@@ -253,20 +296,35 @@ const spacingSteps = ["2", "4", "8", "12", "16", "20", "24", "32", "48", "64", "
 }
 
 .spacing-page__formula-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sgds-component-gap-sm);
+  display: grid;
+  gap: var(--sgds-layout-gap-md);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .spacing-page__formula-block {
   display: flex;
   flex-direction: column;
-  gap: var(--sgds-text-gap-xs);
+  gap: var(--sgds-gap-sm);
 }
 
+.spacing-page__formula-header,
+.spacing-page__formula-card,
 .spacing-page__formula-block h5,
+.spacing-page__formula-block h6,
 .spacing-page__formula-block p {
   margin: 0;
+}
+
+.spacing-page__formula-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-gap-2-xs);
+}
+
+.spacing-page__formula-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-gap-xs);
 }
 
 .spacing-page__formula {
@@ -275,9 +333,6 @@ const spacingSteps = ["2", "4", "8", "12", "16", "20", "24", "32", "48", "64", "
   color: var(--sgds-body-color-default);
   display: inline-flex;
   font-family: var(--sgds-font-family-mono);
-  font-size: var(--sgds-font-size-body-md);
-  font-weight: var(--sgds-font-weight-regular);
-  line-height: var(--sgds-line-height-xs);
   padding-block: var(--sgds-spacer-2);
   padding-inline: var(--sgds-spacer-3);
   width: fit-content;
@@ -288,6 +343,31 @@ const spacingSteps = ["2", "4", "8", "12", "16", "20", "24", "32", "48", "64", "
   display: flex;
   flex-direction: column;
   gap: 0;
+}
+
+.spacing-page__sample {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-gap-2-xs);
+}
+
+.spacing-page__sample-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sgds-gap-2-xs);
+}
+
+.spacing-page__sample-chip {
+  background: var(--sgds-bg-translucent-subtle);
+  border-radius: var(--sgds-border-radius-pill);
+  color: var(--sgds-body-color-default);
+  padding: var(--sgds-spacer-1) var(--sgds-spacer-3);
+}
+
+@media (max-width: 767px) {
+  .spacing-page__formula-group {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 </style>

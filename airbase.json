@@ -2,5 +2,5 @@
   "framework": "container",
   "handle": "sgds/sgdsv3",
   "port": 8080,
-  "size": "nano"
+  "instanceType": "nano"
 }
