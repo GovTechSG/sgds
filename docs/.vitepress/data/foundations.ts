@@ -1,3 +1,5 @@
+import { getFoundationEntryUrl } from "./foundations-sidebar";
+
 export interface FoundationItem {
   id: string;
   title: string;
@@ -11,7 +13,7 @@ export const foundations: FoundationItem[] = [
   {
     id: "colour",
     title: "Colour",
-    url: "/foundations/colour/our-colours",
+    url: getFoundationEntryUrl("colour"),
     image: "/foundations/colour.png",
     phase: 1,
     status: "stable",
@@ -19,7 +21,7 @@ export const foundations: FoundationItem[] = [
   {
     id: "iconography",
     title: "Iconography",
-    url: "/foundations/iconography/iconography-principles",
+    url: getFoundationEntryUrl("iconography"),
     image: "/foundations/iconography.png",
     phase: 1,
     status: "stable",
@@ -27,7 +29,7 @@ export const foundations: FoundationItem[] = [
   {
     id: "typography",
     title: "Typography",
-    url: "/foundations/typography/our-typography",
+    url: getFoundationEntryUrl("typography"),
     image: "/foundations/typography.png",
     phase: 1,
     status: "stable",
@@ -35,7 +37,7 @@ export const foundations: FoundationItem[] = [
   {
     id: "layout",
     title: "Layout",
-    url: "/foundations/layout/layout-principle",
+    url: getFoundationEntryUrl("layout"),
     image: "/foundations/layout.png",
     phase: 1,
     status: "stable",
@@ -43,7 +45,7 @@ export const foundations: FoundationItem[] = [
   {
     id: "border",
     title: "Border",
-    url: "/foundations/border",
+    url: getFoundationEntryUrl("border"),
     image: "",
     phase: 1,
     status: "stable",
@@ -51,7 +53,7 @@ export const foundations: FoundationItem[] = [
   {
     id: "spacing",
     title: "Spacing",
-    url: "/foundations/spacing",
+    url: getFoundationEntryUrl("spacing"),
     image: "",
     phase: 1,
     status: "stable",
@@ -59,7 +61,7 @@ export const foundations: FoundationItem[] = [
   {
     id: "accessibility",
     title: "Accessibility",
-    url: "/foundations/accessibility/accessibility",
+    url: getFoundationEntryUrl("accessibility"),
     image: "",
     phase: 2,
     status: "draft",

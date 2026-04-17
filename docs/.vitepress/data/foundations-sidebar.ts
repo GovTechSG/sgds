@@ -13,9 +13,7 @@ export const foundationsSidebar = {
   items: [
     {
       text: "Accessibility",
-      items: [
-        { text: "Accessibility", link: "/foundations/accessibility" },
-      ],
+      items: [{ text: "Accessibility", link: "/foundations/accessibility" }],
     },
     {
       text: "Border",
@@ -24,14 +22,23 @@ export const foundationsSidebar = {
         {
           text: "Border tokens",
           items: [
-            { text: "Border radius", link: "/foundations/border/border-radius-tokens" },
-            { text: "Border width", link: "/foundations/border/border-width-tokens" },
+            {
+              text: "Border radius",
+              link: "/foundations/border/border-radius-tokens",
+            },
+            {
+              text: "Border width",
+              link: "/foundations/border/border-width-tokens",
+            },
           ],
         },
         {
           text: "Border utilities",
           items: [
-            { text: "Border radius", link: "/foundations/border/border-radius" },
+            {
+              text: "Border radius",
+              link: "/foundations/border/border-radius",
+            },
             { text: "Border width", link: "/foundations/border/border-width" },
           ],
         },
@@ -44,16 +51,31 @@ export const foundationsSidebar = {
         {
           text: "Colour tokens",
           items: [
-            { text: "Primitive colour", link: "/foundations/colour/primitive-colour" },
-            { text: "Product colour", link: "/foundations/colour/product-colour" },
-            { text: "Semantic colour", link: "/foundations/colour/semantic-colour" },
+            {
+              text: "Primitive colour",
+              link: "/foundations/colour/primitive-colour",
+            },
+            {
+              text: "Product colour",
+              link: "/foundations/colour/product-colour",
+            },
+            {
+              text: "Semantic colour",
+              link: "/foundations/colour/semantic-colour",
+            },
           ],
         },
         {
           text: "Colour utilities",
           items: [
-            { text: "Background colour", link: "/foundations/colour/background-colour" },
-            { text: "Border colour", link: "/foundations/colour/border-colour" },
+            {
+              text: "Background colour",
+              link: "/foundations/colour/background-colour",
+            },
+            {
+              text: "Border colour",
+              link: "/foundations/colour/border-colour",
+            },
             { text: "Text colour", link: "/foundations/colour/text-colour" },
           ],
         },
@@ -66,15 +88,27 @@ export const foundationsSidebar = {
         {
           text: "Elevation tokens",
           items: [
-            { text: "Edge elevation", link: "/foundations/elevation/edge-elevation" },
-            { text: "Surface elevation", link: "/foundations/elevation/surface-elevation" },
+            {
+              text: "Edge elevation",
+              link: "/foundations/elevation/edge-elevation",
+            },
+            {
+              text: "Surface elevation",
+              link: "/foundations/elevation/surface-elevation",
+            },
           ],
         },
         {
           text: "Elevation utilities",
           items: [
-            { text: "Edge elevation", link: "/foundations/elevation/edge-elevation-utilities" },
-            { text: "Surface elevation", link: "/foundations/elevation/surface-elevation-utilities" },
+            {
+              text: "Edge elevation",
+              link: "/foundations/elevation/edge-elevation-utilities",
+            },
+            {
+              text: "Surface elevation",
+              link: "/foundations/elevation/surface-elevation-utilities",
+            },
           ],
         },
       ],
@@ -100,7 +134,10 @@ export const foundationsSidebar = {
           text: "Layout tokens",
           items: [
             { text: "Breakpoint", link: "/foundations/layout/breakpoint" },
-            { text: "Responsive grid", link: "/foundations/layout/responsive-grid" },
+            {
+              text: "Responsive grid",
+              link: "/foundations/layout/responsive-grid",
+            },
           ],
         },
       ],
@@ -112,10 +149,19 @@ export const foundationsSidebar = {
         {
           text: "Spacing tokens",
           items: [
-            { text: "Component gap", link: "/foundations/spacing/component-gap" },
-            { text: "Component padding", link: "/foundations/spacing/component-padding" },
+            {
+              text: "Component gap",
+              link: "/foundations/spacing/component-gap",
+            },
+            {
+              text: "Component padding",
+              link: "/foundations/spacing/component-padding",
+            },
             { text: "Layout gap", link: "/foundations/spacing/layout-gap" },
-            { text: "Layout padding", link: "/foundations/spacing/layout-padding" },
+            {
+              text: "Layout padding",
+              link: "/foundations/spacing/layout-padding",
+            },
             { text: "Spacer scale", link: "/foundations/spacing/spacer-scale" },
             { text: "Text gap", link: "/foundations/spacing/text-gap" },
           ],
@@ -123,7 +169,10 @@ export const foundationsSidebar = {
         {
           text: "Spacing utilities",
           items: [
-            { text: "Spacing utilities", link: "/foundations/spacing/spacing-utilities" },
+            {
+              text: "Spacing utilities",
+              link: "/foundations/spacing/spacing-utilities",
+            },
           ],
         },
       ],
@@ -138,7 +187,10 @@ export const foundationsSidebar = {
             { text: "Display", link: "/foundations/typography/display" },
             { text: "Headings", link: "/foundations/typography/heading" },
             { text: "Subtitles", link: "/foundations/typography/subtitle" },
-            { text: "Paragraph body", link: "/foundations/typography/paragraph-body" },
+            {
+              text: "Paragraph body",
+              link: "/foundations/typography/paragraph-body",
+            },
             { text: "Captions", link: "/foundations/typography/caption" },
             { text: "Labels", link: "/foundations/typography/label" },
             { text: "Links", link: "/foundations/typography/link" },
@@ -149,24 +201,57 @@ export const foundationsSidebar = {
         {
           text: "Typography tokens",
           items: [
-            { text: "Font family", link: "/foundations/typography/font-family" },
-            { text: "Font size", link: "/foundations/typography/typography-tokens" },
-            { text: "Font weight", link: "/foundations/typography/font-weight-tokens" },
-            { text: "Letter spacing", link: "/foundations/typography/letter-spacing-tokens" },
-            { text: "Line height", link: "/foundations/typography/line-height-tokens" },
-            { text: "Paragraph spacing", link: "/foundations/typography/paragraph-spacing" },
+            {
+              text: "Font family",
+              link: "/foundations/typography/font-family",
+            },
+            {
+              text: "Font size",
+              link: "/foundations/typography/typography-tokens",
+            },
+            {
+              text: "Font weight",
+              link: "/foundations/typography/font-weight-tokens",
+            },
+            {
+              text: "Letter spacing",
+              link: "/foundations/typography/letter-spacing-tokens",
+            },
+            {
+              text: "Line height",
+              link: "/foundations/typography/line-height-tokens",
+            },
+            {
+              text: "Paragraph spacing",
+              link: "/foundations/typography/paragraph-spacing",
+            },
             { text: "Responsive", link: "/foundations/typography/responsive" },
-            { text: "Text decoration", link: "/foundations/typography/text-decoration" },
-            { text: "Text transform", link: "/foundations/typography/text-transform" },
+            {
+              text: "Text decoration",
+              link: "/foundations/typography/text-decoration",
+            },
+            {
+              text: "Text transform",
+              link: "/foundations/typography/text-transform",
+            },
           ],
         },
         {
           text: "Typography utilities",
           items: [
             { text: "Font size", link: "/foundations/typography/font-size" },
-            { text: "Font weight", link: "/foundations/typography/font-weight" },
-            { text: "Letter spacing", link: "/foundations/typography/letter-spacing" },
-            { text: "Line height", link: "/foundations/typography/line-height" },
+            {
+              text: "Font weight",
+              link: "/foundations/typography/font-weight",
+            },
+            {
+              text: "Letter spacing",
+              link: "/foundations/typography/letter-spacing",
+            },
+            {
+              text: "Line height",
+              link: "/foundations/typography/line-height",
+            },
           ],
         },
       ],
@@ -176,7 +261,7 @@ export const foundationsSidebar = {
 
 export function findSidebarTextByLink(
   items: Array<SidebarGroupItem | SidebarLinkItem>,
-  link: string
+  link: string,
 ): string | null {
   for (const item of items) {
     if ("link" in item && item.link === link) return item.text;
@@ -187,4 +272,30 @@ export function findSidebarTextByLink(
   }
 
   return null;
+}
+
+function findFirstLeafLink(
+  items: Array<SidebarGroupItem | SidebarLinkItem>,
+): string | undefined {
+  for (const item of items) {
+    if ("link" in item) return item.link;
+    if ("items" in item) {
+      const found = findFirstLeafLink(item.items);
+      if (found) return found;
+    }
+  }
+  return undefined;
+}
+
+/**
+ * Returns the entry URL for a foundation section by its id (e.g. "colour", "typography").
+ * Derives the URL from the first leaf link in the matching sidebar section,
+ * so foundations.ts never needs to duplicate URLs already defined here.
+ */
+export function getFoundationEntryUrl(id: string): string {
+  const section = foundationsSidebar.items.find(
+    (item) => item.text.toLowerCase() === id,
+  );
+  if (!section) return "";
+  return findFirstLeafLink(section.items) ?? "";
 }
