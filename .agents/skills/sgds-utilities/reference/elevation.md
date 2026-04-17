@@ -8,10 +8,10 @@ SGDS provides two categories of elevation:
 
 | Category | Classes | Use on |
 |----------|---------|--------|
-| **Surface** | `sgds:shadow-{1–5}` | Cards, panels, modals, dialogs — elements that float above the page |
-| **Edge** | `sgds:shadow-edge-top`, `sgds:shadow-edge-bottom` | Sticky headers, sticky footers — elements anchored to a viewport edge |
+| **Surface** | `sgds:shadow-{1–5}` | Navigation or information temporarily appearing in front of other surfaces (e.g. dropdowns, tooltips), and actionable elements on hover (e.g. cards, tiles) |
+| **Edge** | `sgds:shadow-edge-top`, `sgds:shadow-edge-bottom` | Components anchored to the top or bottom of the viewport (e.g. header, action bar) — creates a shadow so other surfaces appear to scroll behind them |
 
-Surface elevation uses progressive depth (1 = subtle, 5 = maximum). Edge elevation uses directional shadows for scroll-aware UI.
+Surface elevation uses progressive depth (1 = lowest, 5 = highest). Edge elevation uses directional shadows for scroll-aware UI. Edge is not for footers.
 
 ## Surface Elevation
 
@@ -25,38 +25,39 @@ Surface elevation uses progressive depth (1 = subtle, 5 = maximum). Edge elevati
 
 ### Size Reference
 
-| Class | CSS Variable | Typical use |
-|-------|-------------|-------------|
-| `sgds:shadow-1` | `--sgds-elevation-surface-1` | Subtle depth — inputs, inline controls |
-| `sgds:shadow-2` | `--sgds-elevation-surface-2` | Cards, tiles, raised surfaces |
-| `sgds:shadow-3` | `--sgds-elevation-surface-3` | Active cards, expanded sections |
-| `sgds:shadow-4` | `--sgds-elevation-surface-4` | Modals, dialogs, popovers |
-| `sgds:shadow-5` | `--sgds-elevation-surface-5` | Top-level overlays, drawers |
+| Class | CSS Variable | Use for |
+|-------|-------------|--------|
+| `sgds:shadow-1` | `--sgds-elevation-surface-1` | Container surfaces — cards, panels, tiles |
+| `sgds:shadow-2` | `--sgds-elevation-surface-2` | Floating controls — dropdown menus, select menus, mega menus |
+| `sgds:shadow-3` | `--sgds-elevation-surface-3` | Contextual overlays — tooltips, toasts |
+| `sgds:shadow-4` | `--sgds-elevation-surface-4` | Blocking overlays — modals, drawers |
+| `sgds:shadow-5` | `--sgds-elevation-surface-5` | Interaction — hovering card state |
 
 ## Edge Elevation
 
 ```html
 <header class="sgds:shadow-edge-bottom sgds:sticky sgds:top-0">Sticky header</header>
-<footer class="sgds:shadow-edge-top sgds:sticky sgds:bottom-0">Sticky footer</footer>
+<div class="sgds:shadow-edge-top sgds:sticky sgds:bottom-0">Bottom action bar</div>
 ```
 
 ### Edge Reference
 
-| Class | CSS Variable | Typical use |
-|-------|-------------|-------------|
-| `sgds:shadow-edge-top` | `--sgds-elevation-edge-top` | Sticky footers — shadow cast upward |
-| `sgds:shadow-edge-bottom` | `--sgds-elevation-edge-bottom` | Sticky headers — shadow cast downward |
+| Class | CSS Variable | Use for |
+|-------|-------------|--------|
+| `sgds:shadow-edge-bottom` | `--sgds-elevation-edge-bottom` | Sticky headers, top navigation — shadow cast downward |
+| `sgds:shadow-edge-top` | `--sgds-elevation-edge-top` | Bottom action bars — shadow cast upward |
 
 ## Choosing an Elevation Level
 
 | Context | Recommended |
 |---------|-------------|
-| Resting card or tile | `sgds:shadow-2` |
-| Hovered or active card | `sgds:shadow-3` |
-| Modal or dialog | `sgds:shadow-4` |
-| Drawer or sheet overlay | `sgds:shadow-5` |
-| Sticky header | `sgds:shadow-edge-bottom` |
-| Sticky footer | `sgds:shadow-edge-top` |
+| Card, panel, tile | `sgds:shadow-1` |
+| Dropdown, select menu, mega menu | `sgds:shadow-2` |
+| Tooltip, toast | `sgds:shadow-3` |
+| Modal, drawer | `sgds:shadow-4` |
+| Hovering card (interaction state) | `sgds:shadow-5` |
+| Sticky header, top navigation | `sgds:shadow-edge-bottom` |
+| Bottom action bar | `sgds:shadow-edge-top` |
 | Flat / no elevation | Remove shadow class |
 
 ## Common Patterns
@@ -88,4 +89,46 @@ Surface elevation uses progressive depth (1 = subtle, 5 = maximum). Edge elevati
 
 ---
 
-**For AI Agents**: Recommend elevation by context — `shadow-2` for resting cards, `shadow-4` for modals, edge shadows for sticky elements. Always pair elevation with `sgds:bg-surface-raised` or another surface background for proper visual layering. Combine with `sgds:rounded-*` for polished surfaces. Use `hover:sgds:shadow-*` with `sgds:transition-shadow` for interactive lift effects.
+## Usage Guidelines
+
+**1. Use elevation to show hierarchy**
+- Higher elevation = closer to the user
+- Lower elevation = part of the layout
+
+**2. Avoid over-layering**
+- Do not stack too many elevation levels in one view
+- Prefer 2–3 levels per screen for clarity
+
+**3. Pair with interaction states**
+- Hover: increase elevation slightly (e.g. `shadow-1` → `shadow-2`)
+- Active: reduce elevation to simulate press
+
+**4. Use elevation only when needed**
+- Not all components need shadows
+- Use borders or background contrast when elevation is unnecessary
+
+---
+
+## Do & Don't
+
+**Do**
+- Use elevation consistently across components
+- Use subtle shadows for most UI
+- Increase elevation progressively
+
+**Don't**
+- Mix too many shadow styles in one view
+- Use strong shadows for small components
+- Rely only on elevation for hierarchy — combine with spacing and colour
+
+---
+
+## Accessibility Notes
+
+- Ensure sufficient contrast between elevated surfaces and the background
+- Avoid relying on shadows alone to convey meaning
+- Support dark mode: reduce shadow opacity or use surface overlays instead of deep shadows
+
+---
+
+**For AI Agents**: Apply elevation by semantic role — `shadow-1` for cards/panels/tiles, `shadow-2` for floating controls (dropdowns, selects, mega menus), `shadow-3` for contextual overlays (tooltips, toasts), `shadow-4` for blocking overlays (modals, drawers), `shadow-5` for interactive hover states on cards and tiles. Use `shadow-edge-bottom` for sticky headers and top navigation bars, `shadow-edge-top` for bottom action bars. Do not apply edge shadows to footers. Always pair elevation with `sgds:bg-surface-raised` or another surface background for proper visual layering. Use `hover:sgds:shadow-5` with `sgds:transition-shadow` for interactive card lift effects.

@@ -89,8 +89,8 @@ For internal tools, dashboards, admin portals, and transactional apps that need 
 <div class="sgds:flex sgds:flex-row">
 
   <!-- Sticky sidebar column -->
-  <div class="sgds:sticky sgds:h-[calc(100vh-108px)] sgds:overflow-y-scroll sgds:top-27 sgds:w-68 sgds:border-r sgds:border-muted">
-    <!-- Place <sgds-sidenav> or other sidebar content here -->
+  <div class="sgds:sticky sgds:h-[calc(100vh-108px)] sgds:overflow-y-scroll sgds:top-27 sgds:border-r sgds:border-muted">
+    <!-- Place <sgds-sidebar> or other sidebar content here -->
   </div>
 
   <!-- Main content column -->

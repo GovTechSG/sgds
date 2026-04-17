@@ -141,3 +141,10 @@
 <button class="sgds:border sgds:border-primary-default">Primary</button>
 <button class="sgds:border sgds:border-transparent">Ghost — same height</button>
 ```
+
+## See Also
+
+- **[semantic.md](semantic.md)** — Semantic border colors (primary, accent, success, danger, warning, purple, cyan, neutral)
+- **[form.md](form.md)** — Form input border tokens
+- **[border-width](../border-width.md)** — Border thickness utilities
+- **[border-radius](../border-radius.md)** — Rounded corner utilities

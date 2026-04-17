@@ -2,6 +2,47 @@
 
 `<sgds-description-list>` renders a single label–value row. `<sgds-description-list-group>` wraps multiple rows with an optional group title and description. Use this instead of raw `<dl>/<dt>/<dd>` elements for consistent SGDS styling.
 
+No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
+
+## Usage Guideline
+
+### When to use
+
+- Displaying a summary of structured data — names, statuses, references, dates, addresses.
+- Review or confirmation screens where form input is presented as read-only key–value pairs.
+- Detail panels, profile cards, or data tables with a label–value structure.
+- When multiple rows share a logical group — wrap them in `<sgds-description-list-group>` with a title.
+
+### When NOT to use
+
+- For editable form fields — use `<sgds-input>`, `<sgds-select>`, or other form components.
+- For tabular data with multiple columns — use `<sgds-table>` instead.
+- When no label is needed — use plain text or `<sgds-badge>` for single values.
+- For navigation or interactive lists — use `<sgds-icon-list>` or a nav component.
+
+## Behaviour
+
+- `<sgds-description-list>` renders one label (default slot) and one value (`data` slot) per row.
+- `<sgds-description-list-group>` wraps multiple rows and accepts an optional `title` and `description` slot.
+- `stacked` set on the group stacks each row's label above its value; it propagates automatically to all child rows — do not set it on individual rows.
+- `bordered` set on the group adds a bottom border to each row; it also propagates automatically — do not set it on individual rows.
+- Neither component has interactive states, events, or public methods — they are purely presentational.
+
+## Advanced Considerations
+
+- **Stacking propagation**: `stacked` on the group sets an internal property on each child `<sgds-description-list>` — setting it manually on individual rows has no visual effect beyond what the group already sets.
+- **Bordered propagation**: same as `stacked` — always control via the group.
+- **Responsive layout**: use `stacked` for compact or mobile-first layouts; switch to side-by-side (default) for wider containers.
+- **Rich value content**: the `data` slot accepts any inline HTML — `<sgds-badge>`, `<a>`, `<strong>`, and spans are all valid; avoid block-level elements.
+
+## Edge Cases
+
+- **Empty `data` slot**: renders an empty value cell — always provide a fallback string (e.g. "—") when data may be absent.
+- **`stacked` on individual row**: has no visible effect if the group does not also set `stacked` — always set on the group.
+- **Very long labels or values**: wrap within their cell; side-by-side layout may look unbalanced — switch to `stacked` for long content.
+- **Single row without group**: `<sgds-description-list>` works standalone; no `<sgds-description-list-group>` wrapper is required for a single row.
+- **Dynamic content in `data` slot**: updating slotted content reactively works normally — the component re-renders the slot content as the DOM updates.
+
 ## Quick Decision Guide
 
 **Single row or grouped?**

@@ -179,3 +179,9 @@ Combines all typography role tokens in a realistic page structure:
 - Prefer `sgds:text-body-subtle` over `sgds:text-muted` for secondary body copy: `subtle` is designed for readable supporting text while `muted` is for decorative / non-essential labels.
 - Always pair `text-link-default` with `hover:sgds:text-link-emphasis` to provide a clear interactive state.
 - SGDS components (`<sgds-*>`) apply typography role tokens internally — use these utilities only for custom HTML structures.
+
+## See Also
+
+- **[base.md](base.md)** — Base text color tokens (default, muted, inverse, fixed)
+- **[semantic.md](semantic.md)** — Semantic text colors for state and feedback
+- **[typography](../typography.md)** — Font size, weight, and leading utilities

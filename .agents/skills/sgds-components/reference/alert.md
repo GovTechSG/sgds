@@ -2,6 +2,90 @@
 
 `<sgds-alert>` displays short, contextual feedback messages — info, success, warnings, or errors. `<sgds-alert-link>` renders a styled inline link inside the alert body. Use this instead of building custom notification banners.
 
+No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
+
+## Usage Guideline
+
+### When to use
+
+- To provide contextual feedback about an action, event, or system state — success, warning, error, or informational.
+- When feedback is directly related to content on the current page and should appear inline near the relevant section.
+- For form-level validation summaries (e.g. "Please fix the errors below before submitting").
+- When a temporary or persistent message needs to be visible within the page layout without blocking the user.
+
+### When NOT to use
+- For interruptive or critical decisions → use modal/dialog
+- For passive or static information → use text
+- For global messaging across pages → use banner
+- For inline validation → use form field error
+
+## Behaviour
+
+**Visibility**
+- Appears inline within layout
+- Should be placed near relevant content or action
+
+**Dismissibility**
+- Optional dismiss button
+- User-initiated dismissal
+- Should not reappear unless re-triggered
+
+**Persistence**
+- Temporary → tied to session or action
+- Persistent → remains until resolved or dismissed
+
+**Stacking**
+- Multiple alerts stack vertically
+- Limit number to avoid overload
+- Prioritise by severity: Danger > Warning > Info > Success > Neutral
+
+## Component Composition
+
+**`icon` slot** — a single `<sgds-icon>` that matches the alert's semantic variant:
+- `info` → `<sgds-icon name="info-circle-fill">`
+- `success` → `<sgds-icon name="check-circle-fill">`
+- `danger` → `<sgds-icon name="exclamation-circle-fill">`
+- `warning` → `<sgds-icon name="exclamation-triangle-fill">`
+- Omit the slot entirely for a text-only (no icon) alert.
+
+**Default slot (body)** — paragraph text and `<sgds-alert-link>` elements for inline links. Basic HTML is permitted (`<strong>`, `<em>`, `<p>`). Avoid placing interactive components in the body — alerts are informational only.
+
+**`<sgds-alert-link>`** — use this instead of a plain `<a>` tag for any link inside the alert body; it applies the correct variant-matched link style automatically.
+
+**Avoid placing inside an alert:**
+- `<sgds-button>` elements — use `<sgds-alert-link>` for all in-alert call-to-action links
+- Form inputs or complex interactive components
+- Long multi-paragraph content — keep alerts concise; link out for details
+
+## Advanced Considerations
+
+**Variant Strategy**
+- Filled → high emphasis, critical or important messages
+- Outlined → lower emphasis, supportive messaging
+- Neutral → use when semantic meaning is not required
+
+**Alert vs Toast vs System Banner**
+
+| Component | Usage |
+|---|---|
+| Alert | Inline, persistent, contextual |
+| Toast | Temporary, overlay, passive |
+| System Banner | Global, page-level messaging |
+
+**Placement Strategy**
+- Place close to triggering action or relevant content
+- Avoid placing at unrelated sections of the page
+- For forms: top of form → summary errors; inline → contextual guidance
+
+## Edge Cases
+
+- **Multiple alerts** — risk of cognitive overload; prioritise and consolidate
+- **Long content** — reduces readability; keep concise or link out
+- **Missing actions** — user unsure what to do; always provide next step if needed
+- **Auto-dismiss behaviour** — may cause users to miss important info; avoid auto-dismiss for critical alerts
+- **Repeated alerts** — same alert appearing multiple times; deduplicate or persist state
+- **Accessibility gaps** — alerts not announced or not focusable; apply correct ARIA roles and keyboard support
+
 ## Quick Decision Guide
 
 **Which `variant`?**
@@ -9,7 +93,7 @@
 - Positive / completed → `success`
 - Error / destructive → `danger`
 - Caution → `warning`
-- Subdued / neutral → `neutral`
+- Neutral / subdued → `neutral`
 
 **Filled or outlined?**
 - Solid colored background (default) → omit `outlined`

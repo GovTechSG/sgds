@@ -47,7 +47,7 @@ Each semantic color has these variants:
 - `{color}-emphasis` — Strong, high-visibility
 - `{color}-muted` — Subtle presence
 
-See **[`primary.md`](border-color/primary.md)**, **[`accent.md`](border-color/accent.md)**, **[`success.md`](border-color/success.md)**, **[`danger.md`](border-color/danger.md)**, **[`warning.md`](border-color/warning.md)**, **[`purple.md`](border-color/purple.md)**, **[`cyan.md`](border-color/cyan.md)**, **[`neutral.md`](border-color/neutral.md)** for detailed usage.
+See **[`semantic.md`](border-color/semantic.md)** for all eight color variants with detailed examples.
 
 ### Form Borders
 
@@ -90,43 +90,11 @@ For detailed guidance on specific border color categories, see the following ref
 Covers: `border-default`, `border-emphasis`, `border-muted`, `border-fixed-light/dark`, `border-translucent`, `border-transparent`
 Use for: Cards, dividers, layout separators, row borders, invisible borders for spacing
 
-### Brand & Informational Colors
+### Semantic Colors
 
-**[`primary.md`](border-color/primary.md)** — Brand color borders
-Covers: `primary-default/emphasis/muted`
-Use for: Active/selected states, brand-accented components, focus indicators, CTA containers
-
-**[`accent.md`](border-color/accent.md)** — Informational borders
-Covers: `accent-default/emphasis/muted`
-Use for: Info callouts, link-adjacent borders, non-urgent indicators
-
-### State & Feedback Colors
-
-**[`success.md`](border-color/success.md)** — Positive feedback borders
-Covers: `success-default/emphasis/muted`
-Use for: Valid form fields, success alerts, completion indicators
-
-**[`danger.md`](border-color/danger.md)** — Error/negative feedback borders
-Covers: `danger-default/emphasis/muted`
-Use for: Invalid form fields, error alerts, destructive action borders
-
-**[`warning.md`](border-color/warning.md)** — Caution borders
-Covers: `warning-default/emphasis/muted`
-Use for: Warning alerts, fields requiring review, caution callouts
-
-### Additional Colors
-
-**[`purple.md`](border-color/purple.md)** — Visual variety (no semantic meaning)
-Covers: `purple-default/emphasis/muted`
-Use for: Non-semantic category borders, visual differentiation, alternating with cyan
-
-**[`cyan.md`](border-color/cyan.md)** — Visual variety (no semantic meaning)
-Covers: `cyan-default/emphasis/muted`
-Use for: Non-semantic category borders, visual differentiation, alternating with purple
-
-**[`neutral.md`](border-color/neutral.md)** — Equal importance borders
-Covers: `neutral-default/emphasis/muted`
-Use for: Tags with equal importance, non-semantic groupings, uniform appearance
+**[`semantic.md`](border-color/semantic.md)** — All semantic color borders in one file
+Covers: `primary`, `accent`, `success`, `danger`, `warning`, `purple`, `cyan`, `neutral` — each with `default`, `emphasis`, and `muted`/`subtle` variants
+Use for: Any component or container needing brand, state, or feedback color on its border
 
 ### Form Specific
 

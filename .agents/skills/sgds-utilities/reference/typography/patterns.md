@@ -121,32 +121,32 @@ Common HTML patterns combining SGDS typography utilities for real-world content 
 
 ```html
 <!-- sgds-body-lg-semibold -->
-<p class="sgds:text-body-lg sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:mb-xl">
+<p class="sgds:text-body-lg sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:mb-paragraph-xl">
   Body large semibold.
 </p>
 
 <!-- sgds-body-lg-regular -->
-<p class="sgds:text-body-lg sgds:font-regular sgds:leading-md sgds:tracking-normal sgds:mb-xl">
+<p class="sgds:text-body-lg sgds:font-regular sgds:leading-md sgds:tracking-normal sgds:mb-paragraph-xl">
   Body large regular.
 </p>
 
 <!-- sgds-body-md-semibold -->
-<p class="sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:mb-xl">
+<p class="sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:mb-paragraph-lg">
   Body medium semibold.
 </p>
 
 <!-- sgds-body-md-regular (Default) -->
-<p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:mb-xl">
+<p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:mb-paragraph-lg">
   Body medium regular.
 </p>
 
 <!-- sgds-body-sm-semibold -->
-<p class="sgds:text-body-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:mb-xl">
+<p class="sgds:text-body-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:mb-paragraph-lg">
   Body small semibold.
 </p>
 
 <!-- sgds-body-sm-regular -->
-<p class="sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:mb-xl">
+<p class="sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:mb-paragraph-lg">
   Body small regular.
 </p>
 ```
@@ -204,23 +204,23 @@ Common HTML patterns combining SGDS typography utilities for real-world content 
 
 ```html
 <!-- sgds-caption-semibold -->
-<div class="sgds:text-caption-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:mb-md">
+<div class="sgds:text-caption-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:mb-paragraph-md">
   Caption semibold
 </div>
 
 <!-- sgds-caption-regular (Default) -->
-<div class="sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:mb-md">
+<div class="sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:mb-paragraph-md">
   Caption regular
 </div>
 ```
 
-**When to use:** Long paragraphs, helper text, field error messages, footnotes, footer copy.
+**When to use:** Helper text, field error messages, footnotes, footer copy.
 
 ---
 
 ## Links
 
-Always use `<a>` with an `href`. All link tokens include underline.
+Always use `<a>` with an `href`. All link patterns include underline.
 
 ```html
 <!-- sgds-link-lg-regular -->
@@ -266,24 +266,45 @@ Always use `<div>` and `sgds:uppercase`. Use for key-value labels and data table
 
 ## Best Practices
 
-**Pair font size with appropriate line height:**
+**Pair font size with appropriate line height** (see [type-properties.md](type-properties.md) for full pairing table):
 
 | Context | Size | Leading |
 |---------|------|---------|
-| Display | 5-xl+ | tight / none |
-| Headings | 2-xl – 4-xl | snug |
-| Body | base – lg | relaxed |
-| Labels / captions | xs – sm | normal |
+| Display LG | `sgds:text-display-lg` | `sgds:leading-3-xl` |
+| Display MD | `sgds:text-display-md` | `sgds:leading-2-xl` |
+| Display SM | `sgds:text-display-sm` | `sgds:leading-xl` |
+| Heading XL | `sgds:text-heading-xl` | `sgds:leading-xl` |
+| Heading LG | `sgds:text-heading-lg` | `sgds:leading-lg` |
+| Heading MD | `sgds:text-heading-md` | `sgds:leading-md` |
+| Heading SM | `sgds:text-heading-sm` | `sgds:leading-sm` |
+| Subtitle MD | `sgds:text-subtitle-md` | `sgds:leading-xs` |
+| Subtitle SM | `sgds:text-subtitle-sm` | `sgds:leading-2-xs` |
+| Body LG | `sgds:text-body-lg` | `sgds:leading-md` |
+| Body MD | `sgds:text-body-md` | `sgds:leading-xs` |
+| Body SM | `sgds:text-body-sm` | `sgds:leading-2-xs` |
+| Label LG | `sgds:text-label-lg` | `sgds:leading-md` |
+| Label MD | `sgds:text-label-md` | `sgds:leading-xs` |
+| Label SM | `sgds:text-label-sm` | `sgds:leading-2-xs` |
+| Label XS | `sgds:text-label-xs` | `sgds:leading-3-xs` |
+| Caption | `sgds:text-caption-md` | `sgds:leading-2-xs` |
+| Link LG | `sgds:text-link-lg` | `sgds:leading-md` |
+| Link MD | `sgds:text-link-md` | `sgds:leading-xs` |
+| Link SM | `sgds:text-link-sm` | `sgds:leading-2-xs` |
+| Link XS | `sgds:text-link-xs` | `sgds:leading-3-xs` |
+| Overline | `sgds:text-overline-md` | `sgds:leading-2-xs` |
 
 **Font weight for hierarchy:**
-- Display / H1 → `bold`
-- H2 / H3 → `semibold`
-- Body → `normal` or `medium`
-- Labels → `medium`
+- Display / H1–H2 → `sgds:font-bold` or `sgds:font-light`
+- H3–H4 → `sgds:font-semibold` or `sgds:font-light`
+- Subtitles / Labels → `sgds:font-semibold` or `sgds:font-regular` 
+- Body → no class needed (regular is the reboot default)
 
-**Tighten tracking for large text, widen for small caps:**
-- `text-5-xl` and above → `tracking-tight`
-- `text-xs uppercase` → `tracking-wider` or `tracking-widest`
+**Tracking by text role:**
+- Display → `sgds:tracking-tighter`
+- Headings (H1–H4) → `sgds:tracking-tight`
+- Subtitles → `sgds:tracking-normal`
+- Overline → `sgds:tracking-wide`
+- Body, labels, captions → no tracking class needed (normal is the default)
 
 ## See Also
 

@@ -4,6 +4,51 @@
 
 No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
 
+## Usage Guideline
+
+### When to use
+
+- For hierarchical site or section navigation where content is organised into multiple levels (L1 → L2 → L3).
+- In dashboard or internal tool layouts where persistent vertical navigation is needed alongside main content — use with the sidebar app layout (`sgds-container-sidebar`).
+- When navigation has enough items that a horizontal nav bar would overflow or require a dropdown — a sidenav handles depth naturally.
+- When the current page context needs to be visually communicated within a collapsible navigation tree (via `active` on both item and link).
+
+### When NOT to use
+
+- For top-level site navigation — use `<sgds-mainnav>` instead.
+- For simple secondary navigation within a single page — use `<sgds-subnav>` or `<sgds-table-of-contents>`.
+- When navigation has only one or two levels with few items — horizontal navigation or a simple link list is sufficient.
+- On mobile-first layouts where vertical sidebar space is limited — consider a drawer-based navigation pattern instead.
+
+## Behaviour
+
+- `<sgds-sidenav-item>` operates in two modes:
+  - **Menu type**: use `<span slot="title">` with `<sgds-sidenav-link>` children — renders as a collapsible section.
+  - **Link type**: place `<a>` directly inside with no `title` slot — renders as a direct navigation link.
+- `active` on a menu-type `<sgds-sidenav-item>` automatically opens the section on initial render.
+- `active` on `<sgds-sidenav-link>` highlights the current page link.
+- `disabled` on `<sgds-sidenav-item>` or `<sgds-sidenav-link>` prevents interaction.
+- `sticky` on `<sgds-sidenav>` applies `position: sticky` — requires the parent to have sufficient height and `overflow: auto`.
+- Nesting supported up to L3 — a `<sgds-sidenav-item>` (menu type) can contain other `<sgds-sidenav-item>` elements.
+- Collapse/expand events (`sgds-toggle`, `sgds-show`, `sgds-after-show`, `sgds-hide`, `sgds-after-hide`) fire on menu-type items only.
+
+## Advanced Considerations
+
+- **`active` propagation**: setting `active` on the parent `<sgds-sidenav-item>` opens the section, but also set `active` on the specific `<sgds-sidenav-link>` to highlight the current page — the two are independent.
+- **`sticky` requirements**: for `sticky` to work, the sidenav's parent container must have a defined height and `overflow: auto` or `overflow: scroll`; stickiness silently fails if the parent collapses to fit its content.
+- **Event scope**: collapse/expand events only fire on menu-type `<sgds-sidenav-item>` elements — link-type items and `<sgds-sidenav-link>` do not emit events.
+- **L3 nesting**: place a `<sgds-sidenav-item>` (menu type) inside another `<sgds-sidenav-item>`'s default slot to create a nested section; avoid nesting deeper than L3.
+- **Route integration**: in SPAs, update `active` attributes on the correct item and link when the route changes — the component does not track navigation automatically.
+
+## Edge Cases
+
+- **Menu type without `title` slot**: the collapsible trigger has no label — always provide `<span slot="title">` for menu-type items.
+- **Link type with `title` slot**: placing both `<span slot="title">` and `<a>` in the default slot creates ambiguous behaviour — use one mode consistently per item.
+- **No `active` set**: all sections render collapsed and no link is highlighted — set `active` on the item and link matching the current page.
+- **`sticky` parent without height**: the sidenav scrolls with the page instead of sticking — ensure the layout parent has a defined height.
+- **Nesting beyond L3**: deeply nested items may render but are not officially supported — limit nesting to three levels.
+- **`disabled` on an `active` item**: the item appears active and disabled simultaneously — avoid combining these states.
+
 ## Quick Decision Guide
 
 **Sticky sidebar that scrolls with content?** → Add `sticky` on `<sgds-sidenav>`

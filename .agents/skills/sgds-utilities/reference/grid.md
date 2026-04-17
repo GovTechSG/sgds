@@ -46,6 +46,30 @@ Classes are mobile-first additive — define the XS span first, then override at
 
 ---
 
+## Layout Guidelines
+
+### Content Width Rules
+
+- Default content should not exceed 8 columns.
+- Use the full 12 columns only for:
+  - Data tables
+  - Dense card layouts (e.g. dashboards)
+
+### Column Behaviour
+
+| Grid | Layout type |
+|------|-------------|
+| 4-column (XS) | Flexible — fluid layout |
+| 8-column (SM/MD) | Flexible — fluid layout |
+| 12-column (LG+) | Fixed — structured layout |
+
+### Responsive Behaviour
+
+- Mobile layouts should stack by default (single column).
+- Exception: a 2 + 2 split is allowed for small, repeatable content (e.g. cards).
+
+---
+
 ## Containers
 
 ### `.sgds-container` — standard full-page layout
@@ -71,6 +95,16 @@ Use when content sits alongside a sticky sidebar (i.e. the Sidebar App Layout fr
 | LG (1024px+) | 840px |
 | XL (1280px+) | 888px |
 | 2-XL (1440px+) | 1024px |
+
+### Sidebar Behaviour
+
+The sidebar pushes the main content area by offsetting it horizontally. XS and SM screens are unaffected — the sidebar is not shown at those sizes.
+
+| Sidebar state | Offset applied |
+|---------------|----------------|
+| Collapsed | 72px |
+| Expanded | 288px |
+| XS / SM screens | No offset (sidebar hidden) |
 
 ---
 
@@ -111,6 +145,21 @@ Use when content sits alongside a sticky sidebar (i.e. the Sidebar App Layout fr
 ```
 .sgds-col-2-xl-1 through .sgds-col-2-xl-12
 ```
+
+---
+
+## Column Combinations (12-column grid)
+
+Use only structured, predictable splits. Avoid irregular or uneven layouts unless necessary.
+
+| Split | Typical use |
+|-------|-------------|
+| 3 + 9 / 9 + 3 | Narrow sidebar + wide content |
+| 4 + 8 / 8 + 4 | Standard sidebar + content |
+| 6 + 6 | Equal halves |
+| 4 + 4 + 4 | Three equal thirds |
+| 3 + 3 + 3 + 3 | Four equal quarters |
+| 2 + 2 + 2 + 2 + 2 + 2 | Six equal sixths |
 
 ---
 
@@ -264,12 +313,15 @@ Use `.sgds-container-sidebar` instead of `.sgds-container` to get the narrower s
 
 **For AI Agents**
 
-1. **Always use SGDS grid classes first** — `.sgds-container` + `.sgds-grid` + `.sgds-col-*` before any Tailwind `sgds:grid-cols-*` utilities.
-2. **Container choice is mandatory** — every `.sgds-grid` must be wrapped by either `.sgds-container` or `.sgds-container-sidebar`; never place `.sgds-grid` directly on `<body>` or a non-container wrapper.
-3. **One grid per layout region, not one grid per row** — all items in a section (whether they share a row or span full width) go inside a single `.sgds-grid`. CSS Grid handles row wrapping automatically based on column spans; do not create a new `.sgds-grid` for each visual row.
-4. **Mobile-first column definition**: start from XS then override upward. XS has 4 cols, SM/MD have 8, LG/XL/2-XL have 12.
-5. **Column spans must not exceed the current breakpoint's total** — at XS max is 4; at SM/MD max is 8; at LG+ max is 12.
-6. **Centred columns** only work for even spans (2, 4, 6, 8, 10) and only within the 12-column grid (LG+) or 8-column grid (SM/MD) as applicable.
-7. **Sidebar container** is narrower by design — use `.sgds-container-sidebar` only when content is rendered inside the sidebar app layout's main slot.
-8. **Do not nest `.sgds-container` inside `.sgds-container`** — one container per layout level.
-9. For content that does NOT need multiple columns (e.g., a full-width hero or page header), skip `.sgds-grid` entirely — put the element directly inside `.sgds-container`.
+1. **Always use SGDS grid first** — use `.sgds-container` → `.sgds-grid` → `.sgds-col-*` before reaching for any Tailwind utilities.
+2. **Container is required** — every layout must start with `.sgds-container` (default) or `.sgds-container-sidebar` (sidebar layout). Never place `.sgds-grid` without a container.
+3. **Use one grid per layout region** — do not create multiple `.sgds-grid` wrappers for rows. CSS Grid handles wrapping automatically.
+4. **Follow mobile-first approach** — define XS spans first, then override upward: XS → 4 columns, SM/MD → 8 columns, LG and above → 12 columns.
+5. **Respect column limits** — XS max is 4, SM/MD max is 8, LG+ max is 12. Never exceed the breakpoint's total.
+6. **Content width constraint** — default content should not exceed 8 columns. Use 12 columns only for data tables and dense card layouts.
+7. **Use structured layouts only** — follow predefined column combinations (e.g. 4+8, 6+6, 4+4+4). Avoid irregular or uneven splits.
+8. **Stack on mobile** — default to a single-column stack on XS. Exception: a 2-column layout is allowed for small, repeatable items (e.g. cards).
+9. **Centred columns** — only even spans are allowed (2, 4, 6, 8, 10). Works within 8-column (SM/MD) or 12-column (LG+) grids.
+10. **Sidebar awareness** — use `.sgds-container-sidebar` only when the sidebar is present. Apply correct content width constraints for the sidebar layout.
+11. **Do not nest containers** — one container per layout level. Never place `.sgds-container` inside another `.sgds-container`.
+12. **Skip grid if unnecessary** — for full-width content (e.g. hero, header), place the element directly inside the container without `.sgds-grid`.

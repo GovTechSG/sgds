@@ -2,10 +2,76 @@
 
 `<sgds-icon-card>` is a card variant where a large icon is the primary visual element. Use it for feature showcases, service listings, or any content where an icon leads the hierarchy.
 
+No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
+
+## Usage Guideline
+
+### When to use
+
+- When a large icon is the primary visual and leads the content hierarchy (e.g. service categories, feature highlights, topic listings).
+- For grids of equal-weight service or feature cards where each item is identified by an icon rather than a photograph.
+- When metadata (dates, locations, tags) alongside an icon needs to be presented in a consistent card layout.
+- When the entire card should be a single clickable navigation target — use `stretchedLink`.
+
+### When NOT to use
+
+- When the primary visual is a photograph or image — use `<sgds-image-card>` instead.
+- When a small thumbnail beside text is the intended layout — use `<sgds-thumbnail-card>` instead.
+- For general mixed-content cards without a prominent icon — use `<sgds-card>` instead.
+- When there is no meaningful icon to lead the card — the icon slot is integral to this component's hierarchy.
+
+## Behaviour
+
+- Renders a card with a large icon as the primary visual, followed by subtitle, title, content, description, and footer.
+- `orientation` controls layout: `vertical` (icon above content, default) or `horizontal` (icon beside content).
+- `stretchedLink` makes the entire card clickable; the link `href` is sourced from the `<a>` inside the `footer` slot.
+- `noPadding` removes internal card padding.
+- `disabled` applies disabled styling.
+- `tinted` applies a tinted background; `hideBorder` removes the card border.
+- No custom events or public methods.
+
+## Component Composition
+
+**`icon` slot** — required; use `<sgds-icon size="3-xl">` for the standard icon card hierarchy. This is the primary visual anchor — always provide one.
+
+**`upper` slot** — `<sgds-badge>` for a status or category label above the subtitle (e.g. "NEW", "FEATURED").
+
+**`subtitle` slot** — short category or type label in uppercase.
+
+**`title` slot** — concise card heading (1–6 words). Use plain text or `<span>`.
+
+**Default slot** — metadata between the title and description; `<sgds-icon-list>` is the standard pattern for date, location, or type metadata.
+
+**`description` slot** — 1–3 sentences of supporting text.
+
+**`lower` slot** — `<sgds-badge>` elements for category or status tags below the description.
+
+**`footer` slot** — the card CTA; use `<sgds-link><a href="...">Label</a></sgds-link>`. The `link` slot is deprecated since v3.3.2.
+
+**Avoid placing inside an icon card:**
+- Photographs or images in the `icon` slot — use `<sgds-image-card>` instead
+- Multiple CTAs — cards should have a single navigation target
+
+## Advanced Considerations
+
+- **Icon sizing**: always use `size="3-xl"` on `<sgds-icon>` in the `icon` slot for the standard icon card appearance — other sizes may visually break the card hierarchy.
+- **`stretchedLink` and `footer` slot**: the href is read from the `<a>` inside the `footer` slot — always include `<sgds-link><a href="...">` when using `stretchedLink`.
+- **`<sgds-icon-list>` in default slot**: the standard pattern for rendering metadata (dates, venues) between the title and description — place it in the default slot (not `description`).
+- **`lower` slot for tags**: use the `lower` slot for badge/tag rows below the description; do not place them in the `description` slot.
+- **`link` slot deprecation**: the `link` slot was deprecated in v3.3.2 — always use the `footer` slot with `<sgds-link>` for card CTAs.
+
+## Edge Cases
+
+- **No `icon` slot content**: renders a card with no primary visual — always provide an `<sgds-icon>` in the `icon` slot.
+- **No `footer` slot with `stretchedLink`**: the card is clickable but has no destination — always include a `<sgds-link><a href="...">` in the `footer` slot when using `stretchedLink`.
+- **`disabled` with `stretchedLink`**: the card appears disabled but the stretched link may still be interactive — test the interaction state when combining both.
+- **`noPadding` with rich content**: removing padding may cause content to visually collide with card edges — verify layout at target viewport sizes.
+- **No content slots**: renders an empty card frame — always provide at minimum a `title` slot.
+
 ## Quick Decision Guide
 
 **Which card type?**
-- Large prominant icon leads the card → `<sgds-icon-card>` (this component)
+- Large prominent icon leads the card → `<sgds-icon-card>` (this component)
 - Photograph or image leads the card → `<sgds-image-card>`
 - Small thumbnail beside content → `<sgds-thumbnail-card>`
 - General mixed content → `<sgds-card>`

@@ -2,6 +2,78 @@
 
 `<sgds-card>` is a general-purpose content card supporting images, icons, titles, descriptions, and a footer link area. For image-forward cards with overlays use `<sgds-image-card>`; for icon-led cards use `<sgds-icon-card>`; for thumbnail cards use `<sgds-thumbnail-card>`.
 
+No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
+
+## Usage Guideline
+
+### When to use
+
+- When presenting a discrete unit of content (article, service, resource) with a title, description, and a call-to-action link.
+- When content can be grouped into a grid or list of equal-weight items that users browse or scan.
+- When you need a flexible card that supports either an image or an icon in vertical or horizontal orientation.
+- When the entire card surface should be clickable as a single navigation target — use `stretchedLink`.
+
+### When NOT to use
+
+- When the primary visual is a large hero image with overlaid content — use `<sgds-image-card>` instead.
+- When the card is icon-led with a vertically centred layout — use `<sgds-icon-card>` instead.
+- When a small thumbnail image beside text is needed — use `<sgds-thumbnail-card>` instead.
+- For interactive actions beyond a single link (e.g. multiple buttons per card) — consider a custom layout.
+- As a layout container for unrelated content — cards represent a single cohesive content item.
+
+## Behaviour
+
+- Renders a content card with an optional image or icon area, subtitle, title, description, and footer.
+- `orientation` controls whether the image/icon is stacked above (`vertical`, default) or placed beside (`horizontal`) the content.
+- `stretchedLink` makes the entire card clickable; the link `href` is sourced from the `<a>` inside the `footer` slot.
+- `disabled` applies disabled styling and suppresses interaction.
+- `tinted` applies a tinted background to the card.
+- `hideBorder` removes the card border.
+- `imagePosition` controls whether the image appears `before` (default) or `after` the content in horizontal orientation.
+- `imageAdjustment` controls image sizing: `default`, `padding around`, or `aspect ratio`.
+- No custom events or public methods.
+
+## Component Composition
+
+**`image` slot** — a single `<img>` with descriptive `alt` text; set explicit `width` and `height` to prevent layout shift. Mutually exclusive with `icon` — use one per card.
+
+**`icon` slot** — a single `<sgds-icon size="3-xl">` when no image is available. Mutually exclusive with `image`.
+
+**`subtitle` slot** — short category or type label, typically in uppercase (e.g. `<span slot="subtitle">GUIDES</span>`).
+
+**`title` slot** — concise card heading (1–6 words). Use plain text or `<span>` — avoid heading tags; heading hierarchy is the consuming page's responsibility.
+
+**`description` slot** — 1–3 sentences of supporting text. Avoid bullet lists or nested rich content.
+
+**Default slot** — additional content below the title; `<sgds-icon-list>` is the standard pattern for file type, date, or location metadata.
+
+**`lower` slot** — `<sgds-badge>` elements for category or status tags below the description.
+
+**`footer` slot** — the card CTA; use `<sgds-link><a href="...">Label <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>`. The `link` slot is deprecated since v3.3.2 — always use `footer`.
+
+**`menu` slot** — `<sgds-overflow-menu>` for contextual actions on the card (top-right corner).
+
+**Avoid placing inside a card:**
+- Interactive form inputs — cards are display/navigation units, not form containers
+- Multiple CTA buttons — cards should have a single navigation target
+
+## Advanced Considerations
+
+- **Card type selection**: `<sgds-card>` is the general-purpose option — always evaluate `<sgds-image-card>`, `<sgds-icon-card>`, and `<sgds-thumbnail-card>` first to see if a specialised variant better fits the design intent.
+- **`stretchedLink` and `footer` slot**: the `href` for the stretched link is read from the `<a>` inside the `footer` slot — always include an `<a>` there when using `stretchedLink`.
+- **`image` vs `icon` slots**: these are mutually exclusive in layout — using both may produce unexpected results; choose one per card.
+- **`imageAdjustment` string values**: `"padding around"` and `"aspect ratio"` include spaces — pass the exact string including the space.
+- **`link` slot deprecation**: the `link` slot was deprecated in v3.3.2 — always use the `footer` slot with `<sgds-link>` for card CTAs.
+- **`upper` slot**: overrides the entire image/icon area — use only when full custom control of the upper section is required.
+
+## Edge Cases
+
+- **No `footer` slot with `stretchedLink`**: the card renders as clickable but has no link destination — always include a `<sgds-link><a href="...">` in the `footer` slot when using `stretchedLink`.
+- **Both `image` and `icon` slots provided**: behaviour is undefined — use only one per card.
+- **No content slots**: renders an empty card container — always provide at minimum a `title` slot.
+- **`disabled` with `stretchedLink`**: the card appears disabled but the stretched link may still be interactive in some browsers — test interaction state when combining both.
+- **`imageAdjustment` with no image**: the attribute has no effect when no `image` slot content is provided.
+
 ## Quick Decision Guide
 
 **Which card type?**
@@ -97,9 +169,9 @@
 | `menu` | Overflow/contextual menu (top-right corner) |
 | `subtitle` | Subtitle text |
 | `title` | Card title |
+| *(default)* | Additional content below the title (e.g. `<sgds-icon-list>`) |
 | `description` | Descriptive paragraph text |
-| *(default)* | Additional content below the description |
-| `lower` | Content below description (badges, metadata) |
+| `lower` | Below description; use for tags/badges |
 | `footer` | Footer area — place `<sgds-link>` here for the card CTA |
 | `link` | **Deprecated since 3.3.2** — use `footer` instead |
 

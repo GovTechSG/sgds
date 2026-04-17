@@ -42,6 +42,15 @@ SGDS validation is layered:
 
 Disabled components skip validation entirely.
 
+## `hintText` and Error Message Placement
+
+On most form components (`<sgds-input>`, `<sgds-textarea>`, `<sgds-select>`, `<sgds-combo-box>`, `<sgds-quantity-toggle>`, `<sgds-file-upload>`), `hintText` and the error message **share the same space** below the input container:
+
+- When the field is **invalid** (and `hasFeedback` is set), the error message replaces `hintText`.
+- When the error is **resolved**, `hintText` reappears.
+
+`<sgds-checkbox-group>` and `<sgds-radio-group>` behave differently — `hintText` is rendered in the label row above the options and remains visible at all times. The error message appears separately below the options.
+
 ## Activating Feedback Display
 
 Constraint validation runs regardless of `hasFeedback`, but the **visible error message only renders when `hasFeedback` is present**. The `hasFeedback` prop accepts:

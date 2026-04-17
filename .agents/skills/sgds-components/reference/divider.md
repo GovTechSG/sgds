@@ -2,6 +2,42 @@
 
 `<sgds-divider>` renders a separator line to visually group or divide adjacent content. Use it instead of a native `<hr>` whenever SGDS consistent styling is needed.
 
+No CSS styling modifications — custom properties and CSS parts are not exposed on this component.
+
+## Usage Guideline
+
+### When to use
+
+- To visually separate distinct content sections or groups within a layout.
+- Between list items, form sections, or card areas where a clear visual boundary between groups improves readability.
+- As a vertical separator between inline elements in a flex row (e.g. between toolbar items or nav links).
+
+### When NOT to use
+
+- As a decorative element with no semantic meaning — avoid overusing dividers simply to add visual interest.
+- To replace adequate whitespace or padding; prefer spacing over lines when content is already well-separated.
+- Inside tightly compact layouts where the divider reduces rather than improves readability.
+- Do not use a raw `<hr>` or border utility — always use `<sgds-divider>` for consistent SGDS styling.
+
+## Behaviour
+
+- Renders as a horizontal line by default (`orientation="horizontal"`).
+- Set `orientation="vertical"` for a vertical separator — requires a flex or grid parent with an explicit `height`, otherwise the divider collapses to zero height.
+- `thickness` controls the visual weight: `thin` (default), `thick`, or `thicker`.
+- `role="separator"` and `aria-orientation` are set automatically — do not add them manually.
+- The component has no interactive states, slots, events, or public methods.
+
+## Advanced Considerations
+
+- **Vertical divider height**: the divider has no intrinsic height when vertical — always ensure the parent has `display: flex` (or `display: grid`) and an explicit `height`.
+- **Thickness scale**: use `thin` (default) for subtle in-context separators, `thick` for moderate section boundaries, and `thicker` for strong top-level section breaks.
+
+## Edge Cases
+
+- **Vertical divider collapses**: if a `vertical` divider appears invisible, the parent container likely has no explicit `height` — add `height` to the parent or set it via flex/grid sizing.
+- **Nested dividers**: avoid nesting dividers or placing them inside components that already manage their own internal separation (e.g. inside table cells).
+- **Responsive layouts**: a vertical divider in a responsive column that wraps to a stacked layout will remain vertical — consider switching to horizontal via a conditional attribute if the layout changes orientation.
+
 ## Quick Decision Guide
 
 **Which `orientation`?**
