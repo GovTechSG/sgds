@@ -414,6 +414,7 @@ config.themeConfig.sidebar["/ai/"] = {
         { text: "Agent skills", link: "/ai/agent-skills" },
         { text: "MCP server", link: "/ai/mcp-server" },
         { text: "Prompt tips", link: "/ai/prompt-tips" },
+        { text: "User journey map", link: "/ai/user-journey" },
       ],
     },
   ],
