@@ -1,4 +1,4 @@
-<svg viewBox="52 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+<svg viewBox="52 50 640 260" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
 <!-- outer border removed -->
 <rect x="92.5" y="60.5" width="23" height="23" fill="var(--sgds-border-color-muted)" fill-opacity="0.25" stroke="var(--sgds-border-color-muted)"/>
 <rect x="93" y="61" width="22" height="22" stroke="var(--sgds-danger-color-default)" stroke-opacity="0.2" stroke-width="2"/>

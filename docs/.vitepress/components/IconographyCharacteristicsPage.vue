@@ -10,6 +10,10 @@ import cornerRadiusSvg from "./foundations/assets/icon-corner-radius.svg?raw";
 import strokeAlignmentSvg from "./foundations/assets/icon-strokealignment.svg?raw";
 import strokeTerminalSvg from "./foundations/assets/icon-stroketerminal.svg?raw";
 import strokeSizeSvg from "./foundations/assets/icon-strokesize.svg?raw";
+import complexSvg from "./foundations/assets/icon-complex.svg?raw";
+import iconSizeWithContainerSvg from "./foundations/assets/icon-size-with-container.svg?raw";
+import counterSpaceSvg from "./foundations/assets/icon-counter-space.svg?raw";
+import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
 </script>
 
 <template>
@@ -218,57 +222,12 @@ import strokeSizeSvg from "./foundations/assets/icon-strokesize.svg?raw";
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use 45 degree angles for even anti-aliasing whenever that angle is logical or use increments of 15 degree for all other angles. You can create harmony across the icon set by making angles sit on the same increments.</p>
           </div>
           <div class="typography-page-template__demo-pane">
-            <div class="typography-page-template__card icon-char-demo-card">
-              <div class="icon-char-grid-10x icon-char-angle-grid">
-                <svg
-                  class="icon-char-angle-svg"
-                  viewBox="0 0 241 241"
-                  aria-hidden="true"
-                  preserveAspectRatio="xMidYMid meet"
-                >
-                  <!-- Envelope body: rounded rectangle -->
-                  <rect
-                    x="26.5"
-                    y="46.5"
-                    width="188"
-                    height="148"
-                    rx="20"
-                    fill="none"
-                    stroke="#222222"
-                    stroke-width="12"
-                  />
-                  <!-- Envelope V-flap (black, 12px) with curved apex -->
-                  <path
-                    d="M25.5 77.5L110.708 125.934C116.787 129.39 124.229 129.419 130.336 126.013L215.5 78.5"
-                    fill="none"
-                    stroke="#222222"
-                    stroke-width="12"
-                  />
-                  <!-- Red angle trace line drawn on top of V-flap -->
-                  <path
-                    d="M214.5 79.0578L130.336 126.013C124.23 129.419 116.787 129.39 110.708 125.934L26.5001 78.0684"
-                    fill="none"
-                    stroke="#d80b16"
-                    stroke-width="1"
-                  />
-                  <!-- Red 120° semicircle arc above V-flap apex -->
-                  <path
-                    d="M140.5 120.5C140.5 109.454 131.546 100.5 120.5 100.5C109.454 100.5 100.5 109.454 100.5 120.5"
-                    fill="none"
-                    stroke="#d80b16"
-                    stroke-width="1"
-                  />
-                  <!-- 120° label above the arc -->
-                  <text
-                    x="108"
-                    y="90"
-                    fill="#d80b16"
-                    font-size="12"
-                    font-family="Inter, sans-serif"
-                  >120°</text>
-                </svg>
-              </div>
-            </div>
+            <div
+              class="typography-page-template__card icon-char-demo-card icon-char-angles-card"
+              role="img"
+              aria-label="Angles: an envelope icon with a 120° angle annotation showing the V-flap apex angle."
+              v-html="anglesSvg"
+            />
           </div>
         </article>
 
@@ -279,69 +238,12 @@ import strokeSizeSvg from "./foundations/assets/icon-strokesize.svg?raw";
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">If an icon requires complex details, subtle adjustments can be made to improve its legibility. These adjustments are referred to as optical corrections.</p>
           </div>
           <div class="typography-page-template__demo-pane">
-            <div class="typography-page-template__card icon-char-demo-card">
-              <div class="icon-char-complex-demo">
-                <div class="icon-char-grid-10x icon-char-complex-grid">
-                  <svg
-                    class="icon-char-complex-svg"
-                    viewBox="0 0 240 240"
-                    aria-hidden="true"
-                    preserveAspectRatio="xMidYMid meet"
-                  >
-                    <!-- Red outline (12px) — represents the "too thick" 1.2px stroke -->
-                    <path
-                      d="M149.243 74.992L90.15 132.831C82.853 140.09 82.853 151.859 90.15 159.118C97.447 166.377 109.278 166.377 116.575 159.118L183.076 92.962C197.669 78.445 197.669 54.906 183.076 40.388C168.482 25.8705 144.821 25.8705 130.227 40.388L54.918 115.306C33.027 137.083 33.027 172.39 54.918 194.167C76.809 215.944 112.3 215.944 134.191 194.167L201.5 127.249"
-                      fill="none"
-                      stroke="#FF0000"
-                      stroke-width="12"
-                      stroke-linecap="round"
-                    />
-                    <!-- Black stroke (10px) — the "correct" optically adjusted 1px stroke -->
-                    <path
-                      d="M149.243 74.992L90.15 132.831C82.853 140.09 82.853 151.859 90.15 159.118C97.447 166.377 109.278 166.377 116.575 159.118L183.076 92.962C197.669 78.445 197.669 54.906 183.076 40.388C168.482 25.8705 144.821 25.8705 130.227 40.388L54.918 115.306C33.027 137.083 33.027 172.39 54.918 194.167C76.809 215.944 112.3 215.944 134.191 194.167L201.5 127.249"
-                      fill="none"
-                      stroke="#222222"
-                      stroke-width="10"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                </div>
-                <div class="icon-char-complex-compare">
-                  <div class="icon-char-complex-item">
-                    <svg
-                      class="icon-char-complex-thumb"
-                      viewBox="477 285 13 14"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M484.95 288.999L481.01 292.855C480.524 293.339 480.524 294.124 481.01 294.608C481.496 295.092 482.285 295.092 482.772 294.608L487.205 290.198C488.178 289.23 488.178 287.66 487.205 286.693C486.232 285.725 484.655 285.725 483.682 286.693L478.661 291.687C477.202 293.139 477.202 295.493 478.661 296.944C480.121 298.396 482.487 298.396 483.946 296.944L488.433 292.483"
-                        fill="none"
-                        stroke="#222222"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                      />
-                    </svg>
-                    <span class="icon-char-compare-label">1.2 px</span>
-                  </div>
-                  <div class="icon-char-complex-item">
-                    <svg
-                      class="icon-char-complex-thumb"
-                      viewBox="516 285 13 14"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M523.95 288.999L520.01 292.855C519.524 293.339 519.524 294.124 520.01 294.608C520.496 295.092 521.285 295.092 521.772 294.608L526.205 290.198C527.178 289.23 527.178 287.66 526.205 286.693C525.232 285.725 523.655 285.725 522.682 286.693L517.661 291.687C516.202 293.139 516.202 295.493 517.661 296.944C519.121 298.396 521.487 298.396 522.946 296.944L527.433 292.483"
-                        fill="none"
-                        stroke="#222222"
-                        stroke-width="1"
-                        stroke-linecap="round"
-                      />
-                    </svg>
-                    <span class="icon-char-compare-label">1 px</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div
+              class="typography-page-template__card icon-char-demo-card icon-char-complex-card"
+              role="img"
+              aria-label="Complex icon shapes: a pretzel-like path shown with a 1.2 px optically-heavy stroke and a 1 px optically-adjusted stroke side by side."
+              v-html="complexSvg"
+            />
           </div>
         </article>
 
@@ -352,19 +254,12 @@ import strokeSizeSvg from "./foundations/assets/icon-strokesize.svg?raw";
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use the right icon size within containers such as icon buttons.</p>
           </div>
           <div class="typography-page-template__demo-pane">
-            <div class="typography-page-template__card icon-char-demo-card">
-              <div class="icon-char-container-wrapper">
-                <div class="icon-char-cd-bg">
-                  <div class="icon-char-cd-safe"></div>
-                  <div class="icon-char-cd-icon-area"></div>
-                  <div class="icon-char-cd-labels">
-                    <div class="icon-char-cd-lbl"><div class="icon-char-annotation-h-line"></div><span class="icon-char-anno-label">Icon button background</span></div>
-                    <div class="icon-char-cd-lbl"><div class="icon-char-annotation-h-line"></div><span class="icon-char-anno-label">Icon size</span></div>
-                    <div class="icon-char-cd-lbl"><div class="icon-char-annotation-h-line"></div><span class="icon-char-anno-label">Safe area</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div
+              class="typography-page-template__card icon-char-demo-card icon-char-size-container-card"
+              role="img"
+              aria-label="Icon size with container: icon button background, icon size, and safe area dimensions overlaid on the 24×24 grid."
+              v-html="iconSizeWithContainerSvg"
+            />
           </div>
         </article>
 
@@ -391,17 +286,12 @@ import strokeSizeSvg from "./foundations/assets/icon-strokesize.svg?raw";
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Keep at least 2 px of counter space between lines or shapes.</p>
           </div>
           <div class="typography-page-template__demo-pane">
-            <div class="typography-page-template__card icon-char-demo-card">
-              <div class="icon-char-annotated-grid">
-                <div class="icon-char-grid-10x icon-char-icon-grid">
-                  <sgds-icon name="trash" size="3-xl" />
-                </div>
-                <div class="icon-char-grid-annotation">
-                  <div class="icon-char-annotation-h-line"></div>
-                  <span class="icon-char-anno-label">2 px</span>
-                </div>
-              </div>
-            </div>
+            <div
+              class="typography-page-template__card icon-char-demo-card icon-char-counter-space-card"
+              role="img"
+              aria-label="Counter space: keep at least 2 px of counter space between lines or shapes in an icon."
+              v-html="counterSpaceSvg"
+            />
           </div>
         </article>
 
@@ -653,7 +543,11 @@ import strokeSizeSvg from "./foundations/assets/icon-strokesize.svg?raw";
 .icon-char-radius-card,
 .icon-char-stroke-alignment-card,
 .icon-char-stroke-terminal-card,
-.icon-char-stroke-size-card {
+.icon-char-stroke-size-card,
+.icon-char-complex-card,
+.icon-char-size-container-card,
+.icon-char-counter-space-card,
+.icon-char-angles-card {
   display: flex;
   justify-content: center;
   padding: var(--sgds-component-padding-md);
@@ -666,11 +560,22 @@ import strokeSizeSvg from "./foundations/assets/icon-strokesize.svg?raw";
 .icon-char-radius-card > svg,
 .icon-char-stroke-alignment-card > svg,
 .icon-char-stroke-terminal-card > svg,
-.icon-char-stroke-size-card > svg {
+.icon-char-stroke-size-card > svg,
+.icon-char-complex-card > svg,
+.icon-char-size-container-card > svg,
+.icon-char-counter-space-card > svg,
+.icon-char-angles-card > svg {
   block-size: auto;
   display: block;
   inline-size: 100%;
   max-inline-size: 40rem;
+}
+
+/* Icon size with container: zoom out so the outer icon-button rounded rect
+ * (339 units) renders at the same visual width as the 24×24 (240-unit) grid
+ * in the stroke-size card. */
+.icon-char-size-container-card > svg {
+  max-inline-size: 28.32rem;
 }
 
 /* Blocks 8-12, 15 - icon centred on pixel grid */
