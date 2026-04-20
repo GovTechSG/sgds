@@ -249,16 +249,6 @@ const edgeRows: EdgeRow[] = [
   width: 5rem;
 }
 
-@media (max-width: 1023px) {
-  .ev-name-col,
-  .ev-token-col,
-  .ev-preview-col,
-  .ev-value-col {
-    inline-size: auto;
-    max-inline-size: none;
-    min-inline-size: 0;
-  }
-}
 
 /* Token tab group — removes default gap so tabs sit flush above the table.
  * Margin-block compensates parent flex-gap so visible spacing above and below

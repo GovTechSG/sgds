@@ -146,7 +146,7 @@ const stickySidebarTokens = [
           (1440px) for development.
         </p>
 
-        <div class="sgds:w-full">
+        <div class="br-screen-size-diagram-wrap sgds:w-full">
           <div class="sgds:relative sgds:h-[18.5rem] sgds:w-full">
             <svg
               viewBox="0 0 1672 480"
@@ -342,6 +342,34 @@ const stickySidebarTokens = [
   </TypographyPageTemplate>
 </template>
 
+<style>
+/* Screen-size diagram: the underlying SVG scales with width, but the
+ * absolute-positioned breakpoint badges and numeric labels are rendered in
+ * normal DOM with fixed font sizes. On narrow viewports the badges/labels
+ * collide because the horizontal gaps between them shrink faster than the
+ * label text does. Scale the whole diagram down on smaller widths so the
+ * labels shrink in lockstep with the diagram and everything stays inside
+ * the demo card. transform-origin: top left keeps the left edge anchored so
+ * we can compensate the lost width with a larger container inline-size. */
+.br-screen-size-diagram-wrap {
+  transform-origin: top left;
+}
+
+@media (max-width: 48rem) {
+  .br-screen-size-diagram-wrap {
+    inline-size: calc(100% / 0.8);
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 32rem) {
+  .br-screen-size-diagram-wrap {
+    inline-size: calc(100% / 0.65);
+    transform: scale(0.65);
+  }
+}
+</style>
+
 <style module>
 .tokenColumn {
   box-sizing: border-box;
@@ -364,13 +392,4 @@ const stickySidebarTokens = [
   min-inline-size: 4.5rem;
 }
 
-@media (max-width: 1023px) {
-  .tokenColumn,
-  .valueColumn,
-  .numericColumn {
-    inline-size: auto;
-    max-inline-size: none;
-    min-inline-size: 0;
-  }
-}
 </style>

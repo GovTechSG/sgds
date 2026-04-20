@@ -922,7 +922,7 @@ const showSemanticForm = computed(
             </div>
           </div>
 
-          <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+          <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
           <div class="sgds:flex sgds:items-center sgds:justify-between sgds:gap-component-sm sgds:flex-wrap">
             <sgds-tab-group class="ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
               <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
@@ -1142,7 +1142,7 @@ const showSemanticForm = computed(
               </p>
             </div>
 
-            <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
             <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
               <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
               <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -1198,7 +1198,7 @@ const showSemanticForm = computed(
               </p>
             </div>
 
-            <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
             <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
               <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
               <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -1254,7 +1254,7 @@ const showSemanticForm = computed(
               </p>
             </div>
 
-            <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
             <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
               <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
               <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -1310,7 +1310,7 @@ const showSemanticForm = computed(
               </p>
             </div>
 
-            <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
             <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
               <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
               <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -1366,7 +1366,7 @@ const showSemanticForm = computed(
               </p>
             </div>
 
-            <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
             <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
               <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
               <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -1424,7 +1424,7 @@ const showSemanticForm = computed(
               </p>
             </div>
 
-            <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
             <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
               <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
               <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
@@ -1729,15 +1729,6 @@ const showSemanticForm = computed(
 }
 
 @media (max-width: 1023px) {
-  .cp-token-column,
-  .cp-hex-column,
-  .cp-value-column,
-  .cp-contrast-column,
-  .cp-example-column {
-    inline-size: auto;
-    min-inline-size: 0;
-  }
-
   .cp-segmented-control {
     inline-size: 100%;
   }
@@ -1812,14 +1803,4 @@ const showSemanticForm = computed(
   min-inline-size: 9rem;
 }
 
-@media (max-width: 1023px) {
-  .sc-token-column,
-  .sc-desc-column,
-  .sc-mode-column {
-    inline-size: auto;
-    max-inline-size: none;
-    min-inline-size: 0;
-    width: auto;
-  }
-}
 </style>

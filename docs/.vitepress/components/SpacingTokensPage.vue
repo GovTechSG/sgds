@@ -475,14 +475,4 @@ const layoutPaddingRows: ResponsiveRow[] = [
   opacity: 0.7;
 }
 
-@media (max-width: 1023px) {
-  .st-token-col,
-  .st-metric-col,
-  .st-swatch-col,
-  .st-usage-col {
-    inline-size: auto;
-    max-inline-size: none;
-    min-inline-size: 0;
-  }
-}
 </style>

@@ -176,24 +176,31 @@ const radiusExamples: Example[] = [
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[0]?.description }}
             </p>
-            <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-2-xs">
-              <li
-                v-for="bullet in radiusExamples[0]?.bullets"
-                :key="bullet"
-                class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal"
-              >
-                {{ bullet }}
-              </li>
+            <ul class="br-bullet-list sgds:list-disc sgds:pl-6 sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+              <li v-for="bullet in radiusExamples[0]?.bullets" :key="bullet">{{ bullet }}</li>
             </ul>
           </div>
 
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card sgds:flex sgds:items-center sgds:justify-center sgds:min-h-[20rem] sgds:p-layout-md">
-              <img
-                src="/foundations/border/wrap.svg"
-                alt="Border radius comparison showing how increasing radius values affect rounded corners."
-                class="sgds:block sgds:h-auto sgds:w-full sgds:max-w-[40rem]"
-              />
+              <!-- sgds-table illustrating 0-px radius — sharp corners match the
+                   "Data tables (0 px)" bullet on the left. -->
+              <div class="br-radius-table-wrap sgds:w-full sgds:max-w-[32rem] sgds:border sgds:border-b-0 sgds:border-muted sgds:rounded-none sgds:overflow-hidden">
+                <sgds-table tableBorder responsive="always" class="sgds:w-full">
+                  <sgds-table-row>
+                    <sgds-table-head>Header</sgds-table-head>
+                    <sgds-table-head>Header</sgds-table-head>
+                  </sgds-table-row>
+                  <sgds-table-row>
+                    <sgds-table-cell>Data</sgds-table-cell>
+                    <sgds-table-cell>Data</sgds-table-cell>
+                  </sgds-table-row>
+                  <sgds-table-row>
+                    <sgds-table-cell>Data</sgds-table-cell>
+                    <sgds-table-cell>Data</sgds-table-cell>
+                  </sgds-table-row>
+                </sgds-table>
+              </div>
             </div>
           </div>
         </article>
@@ -206,26 +213,24 @@ const radiusExamples: Example[] = [
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[1]?.description }}
             </p>
-            <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-2-xs">
-              <li
-                v-for="bullet in radiusExamples[1]?.bullets"
-                :key="bullet"
-                class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal"
-              >
-                {{ bullet }}
-              </li>
+            <ul class="br-bullet-list sgds:list-disc sgds:pl-6 sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+              <li v-for="bullet in radiusExamples[1]?.bullets" :key="bullet">{{ bullet }}</li>
             </ul>
           </div>
 
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card sgds:flex sgds:items-center sgds:justify-center sgds:gap-component-sm sgds:min-h-[20rem] sgds:p-layout-md">
               <sgds-badge variant="primary">Badge label</sgds-badge>
-              <div class="sgds:flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded sgds:border sgds:border-muted">
-                <sgds-icon name="three-dots" size="sm" class="sgds:text-muted"></sgds-icon>
-              </div>
-              <div class="sgds:flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded sgds:border sgds:border-muted">
-                <sgds-icon name="plus" size="sm" class="sgds:text-muted"></sgds-icon>
-              </div>
+              <!-- Wrapping each action in .br-hover-frozen applies the
+                   components' hover background colour to the host (the inner
+                   button is transparent by default), and pointer-events:none
+                   makes the demo non-interactive. -->
+              <span class="br-hover-frozen br-hover-frozen--close">
+                <sgds-close-button aria-hidden="true" tabindex="-1"></sgds-close-button>
+              </span>
+              <span class="br-hover-frozen br-hover-frozen--overflow">
+                <sgds-overflow-menu aria-hidden="true" tabindex="-1"></sgds-overflow-menu>
+              </span>
             </div>
           </div>
         </article>
@@ -238,14 +243,8 @@ const radiusExamples: Example[] = [
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[2]?.description }}
             </p>
-            <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-2-xs">
-              <li
-                v-for="bullet in radiusExamples[2]?.bullets"
-                :key="bullet"
-                class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal"
-              >
-                {{ bullet }}
-              </li>
+            <ul class="br-bullet-list sgds:list-disc sgds:pl-6 sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+              <li v-for="bullet in radiusExamples[2]?.bullets" :key="bullet">{{ bullet }}</li>
             </ul>
           </div>
 
@@ -272,22 +271,46 @@ const radiusExamples: Example[] = [
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[3]?.description }}
             </p>
-            <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-2-xs">
-              <li
-                v-for="bullet in radiusExamples[3]?.bullets"
-                :key="bullet"
-                class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal"
-              >
-                {{ bullet }}
-              </li>
+            <ul class="br-bullet-list sgds:list-disc sgds:pl-6 sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+              <li v-for="bullet in radiusExamples[3]?.bullets" :key="bullet">{{ bullet }}</li>
             </ul>
           </div>
 
           <div class="typography-page-template__demo-pane">
-            <div class="typography-page-template__card sgds:flex sgds:items-center sgds:justify-center sgds:gap-component-sm sgds:min-h-[20rem] sgds:p-layout-md">
-              <div class="sgds:h-20 sgds:w-24 sgds:rounded-[12px] sgds:border sgds:border-muted sgds:bg-surface-raised"></div>
-              <div class="sgds:h-24 sgds:w-32 sgds:rounded-[16px] sgds:border sgds:border-muted sgds:bg-surface-raised"></div>
-              <div class="sgds:h-28 sgds:w-40 sgds:rounded-[24px] sgds:border sgds:border-muted sgds:bg-surface-raised"></div>
+            <div class="typography-page-template__card sgds:flex sgds:flex-col sgds:items-stretch sgds:justify-center sgds:gap-component-md sgds:min-h-[20rem] sgds:p-layout-md">
+              <!-- Inline modal preview — same markup + classes the Modal
+                   component page (/components/modal) uses in its anatomy and
+                   default demo, with a backdrop added via .br-modal-backdrop
+                   so the panel sits on the same overlay tint the real
+                   <sgds-modal> renders behind its panel. -->
+              <div class="portal-modal-preview br-modal-backdrop">
+                <div class="portal-modal-panel">
+                  <div class="portal-modal-header">
+                    <div class="portal-modal-header-copy">
+                      <div class="portal-modal-title">Modal title</div>
+                      <div class="portal-modal-description">Modal description</div>
+                    </div>
+                    <sgds-close-button aria-hidden="true" tabindex="-1"></sgds-close-button>
+                  </div>
+                  <div class="portal-modal-footer">
+                    <sgds-button variant="outline" tabindex="-1">Button</sgds-button>
+                    <sgds-button variant="primary" tabindex="-1">Button</sgds-button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Large callout banner (12 px / 16 px radius) -->
+              <sgds-alert variant="info" dismissible>
+                <strong>Callout banner</strong> — a long-form informational message for users.
+              </sgds-alert>
+
+              <!-- Feature / promotional card (24 px radius) -->
+              <sgds-card>
+                <span slot="title">Feature card</span>
+                <span slot="description">
+                  Promotional sections use the largest expressive radius for a softer, friendlier look.
+                </span>
+              </sgds-card>
             </div>
           </div>
         </article>
@@ -300,23 +323,34 @@ const radiusExamples: Example[] = [
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[4]?.description }}
             </p>
-            <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-2-xs">
-              <li
-                v-for="bullet in radiusExamples[4]?.bullets"
-                :key="bullet"
-                class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal"
-              >
-                {{ bullet }}
-              </li>
+            <ul class="br-bullet-list sgds:list-disc sgds:pl-6 sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+              <li v-for="bullet in radiusExamples[4]?.bullets" :key="bullet">{{ bullet }}</li>
             </ul>
           </div>
 
           <div class="typography-page-template__demo-pane">
-            <div class="typography-page-template__card sgds:flex sgds:items-center sgds:justify-center sgds:gap-component-md sgds:min-h-[20rem] sgds:p-layout-md">
-              <div class="sgds:h-16 sgds:w-16 sgds:rounded-full sgds:bg-primary-surface-muted sgds:border sgds:border-primary-muted"></div>
-              <div class="sgds:h-16 sgds:w-16 sgds:rounded-full sgds:bg-accent-surface-muted sgds:border sgds:border-accent-muted"></div>
-              <div class="sgds:flex sgds:h-14 sgds:min-w-14 sgds:items-center sgds:justify-center sgds:rounded-full sgds:bg-primary-default sgds:px-component-sm">
-                <sgds-icon name="plus" class="sgds:text-fixed-light"></sgds-icon>
+            <div class="typography-page-template__card sgds:flex sgds:flex-col sgds:items-center sgds:justify-center sgds:gap-layout-sm sgds:min-h-[20rem] sgds:p-layout-md">
+              <div class="sgds:flex sgds:items-end sgds:gap-component-md">
+                <!-- Avatars -->
+                <div class="sgds:flex sgds:flex-col sgds:items-center sgds:gap-text-2-xs">
+                  <div class="sgds:h-16 sgds:w-16 sgds:rounded-full sgds:bg-primary-surface-muted sgds:border sgds:border-primary-muted sgds:flex sgds:items-center sgds:justify-center">
+                    <span class="sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-primary-default">AB</span>
+                  </div>
+                  <span class="sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle">Avatar</span>
+                </div>
+                <div class="sgds:flex sgds:flex-col sgds:items-center sgds:gap-text-2-xs">
+                  <div class="sgds:h-16 sgds:w-16 sgds:rounded-full sgds:bg-accent-surface-muted sgds:border sgds:border-accent-muted sgds:flex sgds:items-center sgds:justify-center">
+                    <sgds-icon name="person" size="xl" class="sgds:text-accent-default"></sgds-icon>
+                  </div>
+                  <span class="sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle">Avatar</span>
+                </div>
+                <!-- Floating action button -->
+                <div class="sgds:flex sgds:flex-col sgds:items-center sgds:gap-text-2-xs">
+                  <div class="sgds:flex sgds:h-14 sgds:w-14 sgds:items-center sgds:justify-center sgds:rounded-full sgds:bg-primary-default sgds:shadow-md">
+                    <sgds-icon name="plus" size="lg" class="sgds:text-fixed-light"></sgds-icon>
+                  </div>
+                  <span class="sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle">FAB</span>
+                </div>
               </div>
             </div>
           </div>
@@ -326,3 +360,51 @@ const radiusExamples: Example[] = [
     </FoundationPrincipleTemplate>
   </TypographyPageTemplate>
 </template>
+
+<style>
+/* Tight bullet list used inside .typography-page-template__copy-pane. Native
+ * <ul>/<li> preserves list-item bullet rendering (flex containers blockify
+ * children and lose markers) and gives a fine-grained, SGDS-token-based
+ * margin between items without adding a flex gap.
+ *
+ * The copy-pane sets a uniform `gap: text-gap-xs` (8px) between its children,
+ * which leaves the paragraph twice as far from the first bullet as bullets
+ * are from each other. Pulling the list up by the difference aligns the
+ * paragraph-to-list gap with the inter-item rhythm, so the description and
+ * its bullets read as one block. */
+.br-bullet-list {
+  display: block;
+  margin-block-start: calc(var(--sgds-text-gap-2-xs) - var(--sgds-text-gap-xs));
+}
+
+.br-bullet-list > li + li {
+  margin-block-start: var(--sgds-text-gap-2-xs);
+}
+
+
+/* Modal backdrop for the expressive-radius demo — mirrors the overlay the
+ * real <sgds-modal> renders behind its panel, using the same --sgds-bg-overlay
+ * token. Sits on top of the demo card's surface so the modal panel reads as
+ * the focused layer. */
+.br-modal-backdrop {
+  background-color: var(--sgds-bg-overlay);
+}
+
+/* Frozen hover state for the compact-radius demo — the inner close/overflow
+ * buttons render on a transparent background by default, so applying the
+ * component's hover background token on the host wrapper shows through.
+ * `pointer-events: none` makes them non-interactive in this demo context. */
+.br-hover-frozen {
+  border-radius: var(--sgds-border-radius-sm);
+  display: inline-flex;
+  pointer-events: none;
+}
+
+.br-hover-frozen--close {
+  background-color: var(--sgds-bg-translucent);
+}
+
+.br-hover-frozen--overflow {
+  background-color: var(--sgds-bg-translucent-subtle);
+}
+</style>
