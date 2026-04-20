@@ -189,14 +189,17 @@ const formattedCommand = computed(() => {
   if (/\b(import|from|export|const|let|var)\b/.test(raw)) return highlightJs(raw)
   return null // plain, no highlighting
 })
+
+const isMultiline = computed(() => props.command.includes('\n'))
+const escapedCommand = computed(() => escapeHtml(props.command))
 </script>
 
 <template>
-  <div class="sgds:flex sgds:items-center sgds:justify-between sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-md sgds:min-h-12 sgds:px-component-xs sgds:py-2 sgds:gap-component-xs">
+  <div class="sgds:flex sgds:items-start sgds:justify-between sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-md sgds:min-h-12 sgds:px-component-xs sgds:py-2 sgds:gap-component-xs">
     <code
-      v-if="formattedCommand"
+      v-if="formattedCommand || isMultiline"
       class="il-command-code sgds:text-default sgds:font-mono sgds:flex-1 sgds:min-w-0"
-      v-html="formattedCommand"
+      v-html="formattedCommand || escapedCommand"
     />
     <CodeToken v-else :label="command" :surface="false" class="sgds:flex-1 sgds:min-w-0" />
     <sgds-tooltip :content="copied ? 'Copied' : 'Copy to clipboard'" placement="top">
@@ -217,6 +220,9 @@ const formattedCommand = computed(() => {
 .il-command-code {
   font-size: 0.875em;
   line-height: 1.4;
+  white-space: pre;
+  overflow-x: auto;
+  padding-block: 0.125rem;
 }
 
 .il-tok-keyword { color: var(--sgds-primary-color-default); }

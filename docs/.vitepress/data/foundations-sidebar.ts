@@ -199,6 +199,10 @@ export const foundationsSidebar = {
       ],
     },
     {
+      text: "Theming",
+      items: [{ text: "Theming", link: "/foundations/theming" }],
+    },
+    {
       text: "Typography",
       items: [
         { text: "Typography principles", link: "/foundations/typography" },
