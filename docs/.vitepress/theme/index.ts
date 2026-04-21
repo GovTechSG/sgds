@@ -6,6 +6,7 @@ import CopyCommand from "../components/ui/CopyCommand.vue";
 import PromptBox from "../components/ui/PromptBox.vue";
 import AiWorkflowPaths from "../components/ai/AiWorkflowPaths.vue";
 import DesignPageWrapper from "../components/components/DesignPageWrapper.vue";
+import CodeBlock from "../components/ui/CodeBlock.vue";
 import type { Theme } from "vitepress";
 import "./style.css";
 import { initializeTheme } from "./composables/sgds-theming";
@@ -18,6 +19,7 @@ export default {
     app.component("PromptBox", PromptBox);
     app.component("AiWorkflowPaths", AiWorkflowPaths);
     app.component("DesignPageWrapper", DesignPageWrapper);
+    app.component("CodeBlock", CodeBlock);
     if (typeof window !== "undefined") {
       if (!document.querySelector('script[data-figma-capture="true"]')) {
         const captureScript = document.createElement("script");

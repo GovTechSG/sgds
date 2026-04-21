@@ -8,6 +8,7 @@ import BestPracticesSection from "./BestPracticesSection.vue";
 import AccessibilitySection from "./AccessibilitySection.vue";
 import AccordionV2ApiTable from "./AccordionV2ApiTable.vue";
 import AccordionV2TokenTable from "./AccordionV2TokenTable.vue";
+import CodeBlock from "../ui/CodeBlock.vue";
 import { accordionV2Data } from "../../data/accordion-v2";
 
 const tabGroupRef = ref<Element | null>(null);
@@ -167,7 +168,7 @@ onBeforeUnmount(() => {
               <article v-for="example in accordionV2Data.codeExamples" :key="example.title" class="sgds:flex sgds:flex-col sgds:gap-component-sm">
                 <h3 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ example.title }}</h3>
                 <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ example.description }}</p>
-                <pre class="sgds:m-0 sgds:overflow-x-auto sgds:rounded-xl sgds:border sgds:border-muted sgds:bg-surface-raised sgds:p-component-md"><code>{{ example.code }}</code></pre>
+                <CodeBlock :code="example.code" :lang="example.lang ?? 'html'" />
               </article>
             </div>
           </Section>

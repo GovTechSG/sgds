@@ -22,6 +22,7 @@ export type AccordionV2CodeExample = {
   title: string;
   description: string;
   code: string;
+  lang?: string;
 };
 
 export type AccordionV2ApiSection = {
@@ -350,6 +351,7 @@ const codeExamples: AccordionV2CodeExample[] = [
   {
     title: "Basic accordion",
     description: "Use the default single-open behaviour when one section should stay in focus at a time.",
+    lang: "html",
     code: `<sgds-accordion>
   <sgds-accordion-item open>
     <span slot="header">What is SGDS?</span>
@@ -364,6 +366,7 @@ const codeExamples: AccordionV2CodeExample[] = [
   {
     title: "Border variant with multiple open items",
     description: "Use the border shell and `allowMultiple` when users need stronger grouping and side-by-side comparison.",
+    lang: "html",
     code: `<sgds-accordion variant="border" allowMultiple>
   <sgds-accordion-item open>
     <span slot="header">Eligibility</span>
@@ -378,6 +381,7 @@ const codeExamples: AccordionV2CodeExample[] = [
   {
     title: "Imperative control",
     description: "Use item methods when the accordion needs to respond to external application state.",
+    lang: "js",
     code: `const item = document.querySelector("sgds-accordion-item");
 
 if (item) {
