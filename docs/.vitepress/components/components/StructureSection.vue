@@ -3241,6 +3241,36 @@ const getCollapsedCategory = (
 
     <div v-if="flattenedSemanticTokens.length" class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-sm)]">
       <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Semantic tokens</h3>
+      <div
+        v-for="group in props.globalTokenGroups"
+        :key="group.title"
+        class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-sm)]"
+      >
+        <h5 class="sgds:m-0 sgds:text-heading-xs sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ group.title }}</h5>
+        <sgds-table tableBorder headerBackground responsive="always">
+          <sgds-table-row>
+            <sgds-table-head>Category</sgds-table-head>
+            <sgds-table-head>Element</sgds-table-head>
+            <sgds-table-head>Semantic token</sgds-table-head>
+            <sgds-table-head>Value</sgds-table-head>
+          </sgds-table-row>
+          <sgds-table-row
+            v-for="row in group.tokens"
+            :key="`global-group-${group.title}-${row.property}-${row.designToken}`"
+            :class="isRowActive(row.mapKey || null) ? 'structure-row-active' : ''"
+            :data-structure-row-key="row.mapKey || null"
+            :data-structure-tone="getStructureTone(row.mapKey || null)"
+            tabindex="-1"
+            @mouseenter="row.mapKey && !isBackgroundOverlayKey(row.mapKey) ? (hoverKey = row.mapKey) : null"
+            @mouseleave="hoverKey = null"
+          >
+            <sgds-table-cell>{{ row.category }}</sgds-table-cell>
+            <sgds-table-cell>{{ row.element }}</sgds-table-cell>
+            <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
+            <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
+          </sgds-table-row>
+        </sgds-table>
+      </div>
       <sgds-table tableBorder headerBackground responsive="always">
         <sgds-table-row>
           <sgds-table-head>Category</sgds-table-head>
