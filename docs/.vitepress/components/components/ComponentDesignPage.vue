@@ -54,6 +54,11 @@ const configurationDemos = computed(() => {
   }));
 });
 
+const mergedBestPractices = computed(() => [
+  ...(doc.value?.usage?.contentGuidelines ?? []),
+  ...(doc.value?.usage?.bestPractices ?? []),
+]);
+
 const measurementExamples = computed(() => {
   if (!doc.value) return [];
   if (doc.value.measurements) return doc.value.measurements;
@@ -231,43 +236,35 @@ onBeforeUnmount(() => {
       <!-- Usage tab -->
       <sgds-tab-panel name="usage">
         <div v-if="doc.usage" class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-margin-5-xl)] sgds:pt-[var(--sgds-layout-gap-lg)]">
-          <Section v-if="doc.usage.guidance?.length" title="Usage">
-            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg sgds:max-w-[var(--sgds-container-max-width-md)]">
+          <Section v-if="doc.usage.guidance?.length" title="Usage" gap="sgds:gap-[var(--sgds-gap-xl)]">
+            <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xl)] sgds:max-w-[var(--sgds-container-max-width-md)]">
               <article
                 v-for="section in doc.usage.guidance"
                 :key="section.title"
-                class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-sm)]"
+                class="sgds:flex sgds:flex-col sgds:gap-text-xs"
               >
                 <div class="sgds:flex sgds:items-center sgds:gap-[var(--sgds-gap-2-xs)]">
                   <span :class="['sgds:self-start sgds:inline-flex sgds:items-center sgds:justify-center sgds:flex-none sgds:h-8 sgds:w-8', section.tone === 'do' ? 'sgds:text-success-default' : 'sgds:text-danger-default']">
                     <sgds-icon :name="section.tone === 'do' ? 'check-circle-fill' : 'xcircle-fill'" size="lg"></sgds-icon>
                   </span>
-                  <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ section.title }}</h3>
+                  <h4 class="sgds:m-0">{{ section.title }}</h4>
                 </div>
-                <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xs)] sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-                  <li v-for="item in section.items" :key="item">{{ item }}</li>
+                <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
+                  <li v-for="item in section.items" :key="item" class="sgds:mt-0">{{ item }}</li>
                 </ul>
               </article>
             </div>
           </Section>
 
-          <Section v-if="doc.usage.behaviours?.length" title="Behaviours">
-            <BehaviourSection :items="doc.usage.behaviours" />
-          </Section>
-
-          <Section v-if="doc.usage.content?.length" title="Content">
-            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg sgds:max-w-[var(--sgds-container-max-width-md)]">
-              <article
-                v-for="section in doc.usage.content"
-                :key="section.title"
-                class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-sm)]"
-              >
-                <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ section.title }}</h3>
-                <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xs)] sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-                  <li v-for="item in section.items" :key="item">{{ item }}</li>
-                </ul>
-              </article>
-            </div>
+          <Section v-if="mergedBestPractices.length" title="Best practices" gap="sgds:gap-[var(--sgds-gap-xl)]">
+            <BestPracticesSection
+              :best-practices="mergedBestPractices"
+              show-titles
+              icons-in-box
+              title-tag="h6"
+              compact-titles
+              compact-side-padding
+            />
           </Section>
 
           <Section v-if="doc.usage.motion" title="Motion">
@@ -275,10 +272,6 @@ onBeforeUnmount(() => {
               :preview-markup="doc.usage.motion.previewMarkup"
               :specs="doc.usage.motion.specs"
             />
-          </Section>
-
-          <Section v-if="doc.usage.bestPractices?.length" title="Best practices">
-            <BestPracticesSection :best-practices="doc.usage.bestPractices" />
           </Section>
         </div>
 

@@ -663,17 +663,17 @@ const componentDocs: Record<string, ComponentDoc> = {
           title: "When to use",
           tone: "do",
           items: [
-            "To organise related information.",
-            "To shorten pages and reduce scrolling when content is not crucial to read in full.",
-            "When space is at a premium and long content cannot be displayed all at once, like on a mobile interface or in a side panel.",
+            "Use to group related information.",
+            "Use to reduce scrolling when content does not need to be shown at once.",
+            "Use when space is limited, such as on mobile or in side panels.",
           ],
         },
         {
           title: "When not to use",
           tone: "dont",
           items: [
-            "When each section only contains a small amount of text or a few elements, a simple list or heading may work better.",
-            "Do not use accordions for content that is essential or required for users to see immediately.",
+            "Do not use when each section is short enough to show directly.",
+            "Do not hide essential information inside an accordion.",
           ],
         },
       ],
@@ -1597,6 +1597,15 @@ const componentDocs: Record<string, ComponentDoc> = {
       { mapKey: "title-gap", element: "", property: "title-gap", designToken: "sgds/gap/xs", rawValue: "8px" },
       { mapKey: "subtitle-gap", element: "", property: "subtitle-gap", designToken: "sgds/gap/2-xs", rawValue: "4px" },
       { mapKey: "slot-gap", element: "", property: "slot-gap", designToken: "sgds/gap/sm", rawValue: "12px" },
+    ],
+    globalTokens: [
+      { mapKey: "title-color", element: "Card title", property: "", designToken: "sgds/body-color-default", rawValue: "#1A1A1A" },
+      { mapKey: "subtitle-color", element: "Subtitle", property: "", designToken: "sgds/color-subtle", rawValue: "#525252" },
+      { mapKey: "description-color", element: "Description", property: "", designToken: "sgds/color-subtle", rawValue: "#525252" },
+      { mapKey: "secondary-text-color", element: "Secondary text", property: "", designToken: "sgds/body-color-default", rawValue: "#1A1A1A" },
+      { mapKey: "link-color", element: "Link", property: "", designToken: "sgds/link-color-default", rawValue: "#0269D0" },
+      { element: "", property: "", designToken: "sgds/link-color-emphasis", rawValue: "#0151A0" },
+      { mapKey: "tinted-bg", element: "Tinted", property: "", designToken: "sgds/bg-translucent-subtle", rawValue: "Translucent" },
     ],
     configurationDemos: [
       {
@@ -4645,24 +4654,612 @@ const componentDocs: Record<string, ComponentDoc> = {
   },
 };
 
-const buildUsageGuidance = (doc: ComponentDoc): UsageGuidance[] => [
-  {
-    title: "When to use",
-    tone: "do",
-    items: [
-      doc.summary,
-      `Use ${doc.title.toLowerCase()} when the built-in SGDS pattern fits the task and you want consistent states, spacing, and accessibility behaviour.`,
+type GeneratedUsagePattern = {
+  use: string[];
+  avoid: string[];
+  doTitle: string;
+  doDescription: string;
+  dontTitle: string;
+  dontDescription: string;
+};
+
+const defaultGeneratedUsagePatterns: Record<ComponentGroup, GeneratedUsagePattern> = {
+  "data display": {
+    use: [
+      "Use this component to group related information so users can scan it in smaller chunks.",
+      "Use it when the built-in SGDS structure helps you keep content consistent across the page.",
     ],
-  },
-  {
-    title: "When not to use",
-    tone: "dont",
-    items: [
-      "Do not use this component when a simpler SGDS pattern communicates the same information or action more clearly.",
-      "Avoid recreating the same interaction with custom markup when the SGDS component already matches the need.",
+    avoid: [
+      "Do not use this component when simpler page content or a plain heading would communicate the same information more clearly.",
+      "Do not overload it with competing content, controls, or visual treatments that weaken hierarchy.",
     ],
+    doTitle: "Keep the content focused",
+    doDescription: "Use one clear content pattern so users can scan and understand the component quickly.",
+    dontTitle: "Do not overload the component",
+    dontDescription: "Too many repeated instances or competing content blocks make the page harder to scan.",
   },
-];
+  feedback: {
+    use: [
+      "Use this component to communicate a clear system state, status, or next step at the right moment.",
+      "Use it when users need immediate feedback that is tied to a task, outcome, or page context.",
+    ],
+    avoid: [
+      "Do not use this component for routine body content that should stay in the normal page flow.",
+      "Do not stack multiple messages of the same priority when one clear message is enough.",
+    ],
+    doTitle: "Keep the message specific",
+    doDescription: "Use a clear message with one purpose so users can act or move on quickly.",
+    dontTitle: "Do not stack competing messages",
+    dontDescription: "Multiple repeated messages compete for attention and make it harder to see what matters.",
+  },
+  form: {
+    use: [
+      "Use this component to collect or change a specific piece of information in a predictable way.",
+      "Use it when the SGDS control matches the type of response users need to provide.",
+    ],
+    avoid: [
+      "Do not use this component when another SGDS control would reduce effort or make the choice clearer.",
+      "Do not ask for more information, options, or steps than users need at that point in the task.",
+    ],
+    doTitle: "Keep the input clear",
+    doDescription: "Use clear labels, predictable values, and a single obvious action for the control.",
+    dontTitle: "Do not increase input effort",
+    dontDescription: "Too many repeated controls or unclear prompts make form completion slower and less confident.",
+  },
+  labels: {
+    use: [
+      "Use this component as supporting text or visual context that strengthens nearby content.",
+      "Use it when a short label or reference helps users interpret the surrounding interface more quickly.",
+    ],
+    avoid: [
+      "Do not rely on this component as the only explanation for an important action, state, or instruction.",
+      "Do not use long or decorative content when a short, direct label is enough.",
+    ],
+    doTitle: "Keep the label concise",
+    doDescription: "Short labels are easier to scan and support the main content without competing with it.",
+    dontTitle: "Do not make the label carry everything",
+    dontDescription: "When the label becomes too long or too vague, it stops helping users orient themselves.",
+  },
+  layout: {
+    use: [
+      "Use this component to support page structure, separation, or containment without distracting from the content.",
+      "Use it when the SGDS layout treatment helps users understand how sections relate to one another.",
+    ],
+    avoid: [
+      "Do not use this component when spacing alone would create the same structure more cleanly.",
+      "Do not repeat the pattern so often that it starts to add visual noise instead of structure.",
+    ],
+    doTitle: "Use it to support structure",
+    doDescription: "A light layout treatment should help users read the page, not compete with the content.",
+    dontTitle: "Do not add visual noise",
+    dontDescription: "Repeated layout elements weaken hierarchy when spacing or simpler structure would do the job.",
+  },
+  table: {
+    use: [
+      "Use this component when users need to compare structured results or move through a long list in a predictable way.",
+      "Use it when the component reduces effort for scanning, comparison, or navigation across related records.",
+    ],
+    avoid: [
+      "Do not use this component when the content is short enough to show directly without extra controls.",
+      "Do not split simple information into more pages, rows, or controls than users need.",
+    ],
+    doTitle: "Match the structure to the task",
+    doDescription: "Use structured navigation or comparison only when it helps users move through results with less effort.",
+    dontTitle: "Do not add structure for its own sake",
+    dontDescription: "Extra pagination or tabular structure slows users down when the content could stay simple.",
+  },
+  navigation: {
+    use: [
+      "Use this component to help users understand where they are and move confidently to the next place.",
+      "Use it when the navigation pattern matches the scale of the journey and the relationship between destinations.",
+    ],
+    avoid: [
+      "Do not use this component when the page does not need another layer of navigation.",
+      "Do not add vague, repetitive, or competing labels that make the path harder to understand.",
+    ],
+    doTitle: "Keep destinations clear",
+    doDescription: "Short, specific labels and a clear current state help users move through the interface with confidence.",
+    dontTitle: "Do not compete with the page structure",
+    dontDescription: "Repeated or unnecessary navigation patterns make it harder to understand where to go next.",
+  },
+};
+
+const generatedUsagePatternOverrides: Partial<Record<string, GeneratedUsagePattern>> = {
+  accordion: {
+    use: [
+      "Use accordion to group related information that users may read selectively.",
+      "Use it when space is limited and users do not need to see every section at once.",
+    ],
+    avoid: [
+      "Do not use accordion when most users need to read all of the content straight through.",
+      "Do not hide essential information that users need to see immediately.",
+    ],
+    doTitle: "Keep sections easy to scan",
+    doDescription: "Short titles and clearly grouped content help users decide what to open.",
+    dontTitle: "Do not hide core information",
+    dontDescription: "Accordion adds interaction cost, so it should not conceal information users must see at once.",
+  },
+  alert: {
+    use: [
+      "Use alert for important inline feedback that affects the task or page the user is on.",
+      "Use the alert variant that matches the message severity and required response.",
+    ],
+    avoid: [
+      "Do not use alert for routine supporting text or content that belongs in the page body.",
+      "Do not show several alerts of equal priority when one clear message is enough.",
+    ],
+    doTitle: "Match the alert to the message",
+    doDescription: "A clear title, short body, and suitable variant help users understand what needs attention.",
+    dontTitle: "Do not flood the page with alerts",
+    dontDescription: "Too many alerts compete for attention and make it harder to spot the message that matters.",
+  },
+  badge: {
+    use: [
+      "Use badge for short supporting labels such as status, count, or category.",
+      "Use it when a small visual cue helps users interpret nearby content more quickly.",
+    ],
+    avoid: [
+      "Do not use badge as the main message or action on the page.",
+      "Do not put long sentences inside a badge.",
+    ],
+    doTitle: "Keep the badge short",
+    doDescription: "A short status or category label works best because users can read it at a glance.",
+    dontTitle: "Do not stretch the badge into body copy",
+    dontDescription: "Long badge text is harder to scan and starts behaving like regular content.",
+  },
+  breadcrumb: {
+    use: [
+      "Use breadcrumb on deeper pages when users need to understand their place in the service hierarchy.",
+      "Use it when the trail helps users move up a level without losing context.",
+    ],
+    avoid: [
+      "Do not use breadcrumb on shallow journeys where the page title and main navigation already provide enough context.",
+      "Do not use vague or repetitive labels in the trail.",
+    ],
+    doTitle: "Show a clear path",
+    doDescription: "Specific labels help users understand where they are and what each level represents.",
+    dontTitle: "Do not make the trail ambiguous",
+    dontDescription: "Vague breadcrumb labels weaken orientation instead of improving it.",
+  },
+  button: {
+    use: [
+      "Use button for a clear action that changes the page, saves progress, or moves the task forward.",
+      "Use the button variant that matches the importance of the action.",
+    ],
+    avoid: [
+      "Do not use button for navigation when a link would be clearer.",
+      "Do not use vague labels that force users to guess what happens next.",
+    ],
+    doTitle: "Use a clear action label",
+    doDescription: "Specific button labels help users understand the outcome before they act.",
+    dontTitle: "Do not use vague labels",
+    dontDescription: "Generic labels such as 'Click here' or 'Submit' without context slow users down.",
+  },
+  card: {
+    use: [
+      "Use card to group a related set of content and actions into a single scannable block.",
+      "Use it when users need to compare similar items quickly across a list or grid.",
+    ],
+    avoid: [
+      "Do not fill a card with too many competing text blocks, actions, or metadata.",
+      "Do not use a card when the content works better as a simple list or page section.",
+    ],
+    doTitle: "Keep the card focused",
+    doDescription: "A clear title, short description, and one obvious hierarchy make cards easier to compare.",
+    dontTitle: "Do not cram the card",
+    dontDescription: "Too much competing content makes the card harder to scan and weakens the primary action.",
+  },
+  datepicker: {
+    use: [
+      "Use datepicker when users need to choose a calendar date and seeing nearby dates helps reduce errors.",
+      "Use it for date selection, not for broad date instructions or timelines.",
+    ],
+    avoid: [
+      "Do not use datepicker when users need to enter a different kind of value, such as freeform text or a date range explanation.",
+      "Do not rely on placeholder text alone to explain the expected format.",
+    ],
+    doTitle: "Clarify the date input",
+    doDescription: "A clear prompt and a single expected date help users complete the field confidently.",
+    dontTitle: "Do not rely on the placeholder",
+    dontDescription: "Users should not have to guess the expected input from placeholder text alone.",
+  },
+  divider: {
+    use: [
+      "Use divider to separate related sections when spacing alone does not make the relationship clear enough.",
+      "Use it sparingly so it supports hierarchy instead of dominating it.",
+    ],
+    avoid: [
+      "Do not add dividers between every small block of content.",
+      "Do not use divider as the only signal that content has changed in meaning or priority.",
+    ],
+    doTitle: "Use the divider to support reading",
+    doDescription: "A divider should quietly separate content without becoming the main thing users notice.",
+    dontTitle: "Do not divide everything",
+    dontDescription: "Too many dividers add noise and make the page feel heavier than it needs to.",
+  },
+  drawer: {
+    use: [
+      "Use drawer for secondary tasks that need more space but should not interrupt the main page context.",
+      "Use it when users need to review or edit details without leaving the current screen.",
+    ],
+    avoid: [
+      "Do not use drawer for the primary task on the page.",
+      "Do not overload the drawer with multiple unrelated tasks.",
+    ],
+    doTitle: "Keep the drawer focused",
+    doDescription: "A drawer works best when it supports one related task and a clear next step.",
+    dontTitle: "Do not turn the drawer into a whole page",
+    dontDescription: "Too many unrelated tasks or messages make the drawer harder to complete and dismiss.",
+  },
+  footer: {
+    use: [
+      "Use footer for persistent supporting links and organisational information at the end of the page.",
+      "Use it for secondary actions and reference content, not primary task content.",
+    ],
+    avoid: [
+      "Do not move important task actions or critical page guidance into the footer.",
+      "Do not overload the footer with too many competing link groups.",
+    ],
+    doTitle: "Keep footer content secondary",
+    doDescription: "Supporting links and organisational details belong in the footer because they do not interrupt the main task.",
+    dontTitle: "Do not hide primary content in the footer",
+    dontDescription: "If users need the content to finish the task, it should not be buried at the end of the page.",
+  },
+  icon: {
+    use: [
+      "Use icon when it reinforces an action, status, or content type that users can already recognise from context.",
+      "Use it to support meaning, not to replace essential text.",
+    ],
+    avoid: [
+      "Do not rely on icon alone when the meaning may be unclear.",
+      "Do not mix too many icon styles or meanings in the same interface.",
+    ],
+    doTitle: "Pair the icon with clear context",
+    doDescription: "Icons work best when nearby text or structure already explains what they mean.",
+    dontTitle: "Do not rely on icon alone",
+    dontDescription: "Without enough context, users may interpret the same icon in different ways.",
+  },
+  input: {
+    use: [
+      "Use input for short, direct responses such as search terms, names, or reference values.",
+      "Use it when users know what they need to type and the expected value is brief.",
+    ],
+    avoid: [
+      "Do not use input for longer responses that need multiple lines.",
+      "Do not rely on placeholder text in place of a clear field label.",
+    ],
+    doTitle: "Keep the field purpose clear",
+    doDescription: "Users should understand what to enter before they start typing.",
+    dontTitle: "Do not make users guess",
+    dontDescription: "Placeholder-only instructions disappear and make the field harder to complete accurately.",
+  },
+  link: {
+    use: [
+      "Use link for navigation or related actions that take users to another page, view, or resource.",
+      "Use link text that tells users where they will go or what they will open.",
+    ],
+    avoid: [
+      "Do not use link when the interaction performs an in-place action that should be a button instead.",
+      "Do not use vague text such as 'Read more' or 'Click here' without context.",
+    ],
+    doTitle: "Make the destination clear",
+    doDescription: "Specific link text helps users decide whether it is worth following.",
+    dontTitle: "Do not hide the destination",
+    dontDescription: "Generic link labels make it harder to scan the page and predict what happens next.",
+  },
+  modal: {
+    use: [
+      "Use modal for short, high-priority tasks that need the user's full attention before they continue.",
+      "Use it when the interaction should block the page until users confirm, cancel, or complete one focused task.",
+    ],
+    avoid: [
+      "Do not use modal for long forms, dense reference content, or multiple unrelated decisions.",
+      "Do not trigger a modal when the same task can be completed in the page flow.",
+    ],
+    doTitle: "Keep the decision focused",
+    doDescription: "A modal should present one clear task with one clear next step.",
+    dontTitle: "Do not overload the modal",
+    dontDescription: "When a modal becomes too dense, users lose context and the interaction becomes harder to finish.",
+  },
+  pagination: {
+    use: [
+      "Use pagination when showing everything on one page would hurt performance or make results difficult to scan.",
+      "Use it when users need a predictable way to move through related pages of results.",
+    ],
+    avoid: [
+      "Do not use pagination when there is only one page of content.",
+      "Do not use it for step-by-step journeys where users should move forward with a button and back link instead.",
+    ],
+    doTitle: "Use pagination when the list is long enough",
+    doDescription: "Pagination works best when it reduces load and helps users move through many related results.",
+    dontTitle: "Do not paginate short content",
+    dontDescription: "Extra page controls add work when the content could stay on a single page.",
+  },
+  skeleton: {
+    use: [
+      "Use skeleton while content is loading and the final layout is already known.",
+      "Use it to preserve structure and reduce layout shift while data arrives.",
+    ],
+    avoid: [
+      "Do not use skeleton when the wait is too short to notice.",
+      "Do not leave skeleton visible after real content is ready.",
+    ],
+    doTitle: "Match the final layout",
+    doDescription: "Skeleton works best when it closely reflects the content that will replace it.",
+    dontTitle: "Do not let loading states linger",
+    dontDescription: "A loading placeholder should disappear as soon as real content is ready to read.",
+  },
+  spinner: {
+    use: [
+      "Use spinner for short indeterminate waits where users need to know that work is in progress.",
+      "Use it when you cannot accurately predict the remaining duration.",
+    ],
+    avoid: [
+      "Do not use spinner for long waits without any supporting context.",
+      "Do not leave users blocked without explaining what is happening next.",
+    ],
+    doTitle: "Use spinner for brief in-progress states",
+    doDescription: "A spinner works best when the wait is short and users only need confirmation that work has started.",
+    dontTitle: "Do not leave users waiting without context",
+    dontDescription: "Long waits need clearer status information than a spinner alone can provide.",
+  },
+  stepper: {
+    use: [
+      "Use stepper when users need to understand the stages of a multi-step process.",
+      "Use it when knowing the current step helps users judge progress and prepare for what comes next.",
+    ],
+    avoid: [
+      "Do not use stepper for short tasks that do not need explicit progress.",
+      "Do not add more steps than users need to understand the journey.",
+    ],
+    doTitle: "Show a clear journey",
+    doDescription: "A good stepper helps users see where they are, what is next, and how much remains.",
+    dontTitle: "Do not add steps for decoration",
+    dontDescription: "Extra or vague steps make the journey feel longer and less clear than it is.",
+  },
+  subnav: {
+    use: [
+      "Use subnav for secondary navigation inside a section that already has a primary navigation layer.",
+      "Use it when several related pages need a shared local navigation pattern.",
+    ],
+    avoid: [
+      "Do not use subnav when the section only has one destination.",
+      "Do not repeat the same links in multiple navigation components on the same page.",
+    ],
+    doTitle: "Keep section navigation focused",
+    doDescription: "A small set of clear local links helps users move around a section without losing context.",
+    dontTitle: "Do not duplicate navigation",
+    dontDescription: "Repeated navigation patterns make it harder to tell which links matter for the current task.",
+  },
+  table: {
+    use: [
+      "Use table when users need to compare values across rows and columns.",
+      "Use it for structured data where alignment helps users spot patterns or differences quickly.",
+    ],
+    avoid: [
+      "Do not use table for simple content that reads better as a list or card.",
+      "Do not crowd the table with columns that users do not need for the decision at hand.",
+    ],
+    doTitle: "Keep the table easy to compare",
+    doDescription: "Relevant columns and clear row content help users scan and compare results quickly.",
+    dontTitle: "Do not overload the table",
+    dontDescription: "Too many columns or repeated details make comparison slower and more error-prone.",
+  },
+  textarea: {
+    use: [
+      "Use textarea when users need to enter a longer freeform response.",
+      "Use it for content that may span several sentences or needs room to explain context.",
+    ],
+    avoid: [
+      "Do not use textarea for short structured values that belong in a smaller field.",
+      "Do not leave the prompt so vague that users do not know what level of detail to provide.",
+    ],
+    doTitle: "Set expectations for the response",
+    doDescription: "Users write better answers when they know what kind of detail the field is asking for.",
+    dontTitle: "Do not leave the prompt ambiguous",
+    dontDescription: "An unclear prompt makes responses less useful and harder to review later.",
+  },
+  toast: {
+    use: [
+      "Use toast for brief status updates that confirm an action or surface a timely non-blocking message.",
+      "Use it when users can continue their task without stopping to resolve the message immediately.",
+    ],
+    avoid: [
+      "Do not use toast for important content that must stay visible until the user reads it.",
+      "Do not show several toasts in quick succession for related updates.",
+    ],
+    doTitle: "Keep the toast brief",
+    doDescription: "A short message with one clear outcome helps users recognise what just happened.",
+    dontTitle: "Do not use toast for permanent guidance",
+    dontDescription: "If users need the content to stay visible, it should not disappear on its own.",
+  },
+  tooltip: {
+    use: [
+      "Use tooltip for short supplementary explanations on hover or focus.",
+      "Use it when the interface already works without the tooltip and the extra text simply adds context.",
+    ],
+    avoid: [
+      "Do not put essential instructions or long content inside a tooltip.",
+      "Do not rely on tooltip as the only way to explain a control.",
+    ],
+    doTitle: "Keep the tooltip brief",
+    doDescription: "Short supporting text works best because users should be able to read it at a glance.",
+    dontTitle: "Do not hide essential guidance",
+    dontDescription: "Important instructions should stay visible in the interface, not appear only on hover or focus.",
+  },
+};
+
+const getGeneratedUsagePattern = (doc: ComponentDoc): GeneratedUsagePattern =>
+  generatedUsagePatternOverrides[doc.key]
+  ?? defaultGeneratedUsagePatterns[doc.group]
+  ?? {
+    use: [
+      `Use ${doc.title.toLowerCase()} when it gives users a clearer, more consistent SGDS interaction for the task at hand.`,
+      "Use the built-in SGDS pattern when it helps users recognise the component quickly and act with confidence.",
+    ],
+    avoid: [
+      "Do not use this component when a simpler SGDS pattern would communicate the same thing more clearly.",
+      "Do not add repeated or decorative instances that compete with the main content.",
+    ],
+    doTitle: "Keep the pattern clear",
+    doDescription: "Use one clear, purposeful instance so users can understand the component quickly.",
+    dontTitle: "Do not add noise",
+    dontDescription: "Repeated or decorative instances make the interface harder to scan.",
+  };
+
+const getPrimaryUsageDemoMarkup = (doc: ComponentDoc): string =>
+  doc.configurationDemos?.find((demo) => demo.defaultValue)?.options.find((option) => option.value === doc.configurationDemos?.find((demo2) => demo2.defaultValue === demo.defaultValue)?.defaultValue)?.markup
+  || doc.configurationDemos?.[0]?.options.find((option) => option.value === doc.configurationDemos?.[0]?.defaultValue)?.markup
+  || doc.configurationDemos?.[0]?.options[0]?.markup
+  || doc.demos[0]?.markup
+  || doc.anatomyMarkup
+  || doc.codeExample
+  || `<${doc.tag}></${doc.tag}>`;
+
+const buildRepeatedMarkup = (markup: string) =>
+  `<div class="portal-demo-stack-sm">
+    ${markup}
+    ${markup}
+  </div>`;
+
+const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
+  const primaryMarkup = getPrimaryUsageDemoMarkup(doc);
+
+  switch (doc.key) {
+    case "badge":
+      return `<div class="portal-demo-row"><sgds-badge variant="neutral">This is a very long badge label that should be plain text instead</sgds-badge></div>`;
+    case "breadcrumb":
+      return `<sgds-breadcrumb>
+        <sgds-breadcrumb-item><a href="#">Page</a></sgds-breadcrumb-item>
+        <sgds-breadcrumb-item><a href="#">Page</a></sgds-breadcrumb-item>
+        <sgds-breadcrumb-item><a href="#">Page</a></sgds-breadcrumb-item>
+      </sgds-breadcrumb>`;
+    case "button":
+      return `<div class="portal-demo-row"><sgds-button>Click here</sgds-button></div>`;
+    case "card":
+      return `<sgds-card class="portal-demo-card">
+        <span slot="subtitle">General</span>
+        <span slot="title">This is a very long card title that makes the card harder to scan quickly</span>
+        <div class="portal-slot-example"><span>First block of content</span></div>
+        <span slot="description">Supporting description that repeats the title instead of adding useful context.</span>
+        <span slot="lower">Secondary text</span>
+        <sgds-button slot="footer" variant="outline">Action one</sgds-button>
+      </sgds-card>`;
+    case "checkbox":
+      return `<sgds-checkbox-group label="Choose">
+        <sgds-checkbox>Option 1</sgds-checkbox>
+        <sgds-checkbox>Option 2</sgds-checkbox>
+        <sgds-checkbox>Option 3</sgds-checkbox>
+        <sgds-checkbox>Option 4</sgds-checkbox>
+        <sgds-checkbox>Option 5</sgds-checkbox>
+      </sgds-checkbox-group>`;
+    case "datepicker":
+      return `<sgds-datepicker placeholder="Date"></sgds-datepicker>`;
+    case "divider":
+      return `<div class="portal-demo-stack-sm">
+        <sgds-divider></sgds-divider>
+        <sgds-divider></sgds-divider>
+        <sgds-divider></sgds-divider>
+      </div>`;
+    case "drawer":
+      return `<div class="portal-demo-overlay">
+        <sgds-drawer open contained size="sm">
+          <span slot="title">Task one</span>
+          <span slot="description">Task two and another decision in the same drawer.</span>
+          <p>Long content and multiple unrelated tasks make the drawer harder to complete.</p>
+          <div slot="footer" class="portal-demo-row">
+            <sgds-button>Continue</sgds-button>
+            <sgds-button variant="outline">Open something else</sgds-button>
+          </div>
+        </sgds-drawer>
+      </div>`;
+    case "dropdown":
+      return `<sgds-dropdown>
+        <sgds-button slot="toggler" variant="outline">More</sgds-button>
+        <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
+        <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
+        <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
+      </sgds-dropdown>`;
+    case "footer":
+      return buildRepeatedMarkup(primaryMarkup);
+    case "icon":
+      return `<div class="portal-demo-row sgds:gap-sm">
+        <sgds-icon name="info-circle-fill" size="lg"></sgds-icon>
+        <sgds-icon name="info-circle-fill" size="lg"></sgds-icon>
+        <sgds-icon name="info-circle-fill" size="lg"></sgds-icon>
+      </div>`;
+    case "input":
+      return `<sgds-input placeholder="Type here"></sgds-input>`;
+    case "link":
+      return `<sgds-link><a href="#">Click here</a></sgds-link>`;
+    case "mainnav":
+    case "masthead":
+    case "modal":
+      return buildRepeatedMarkup(primaryMarkup);
+    case "pagination":
+      return `<sgds-pagination currentPage="1" dataLength="10" itemsPerPage="10" variant="number"></sgds-pagination>`;
+    case "radio":
+      return `<sgds-radio-group label="Select one">
+        <sgds-radio value="1">Option 1</sgds-radio>
+        <sgds-radio value="2">Option 2</sgds-radio>
+        <sgds-radio value="3">Option 3</sgds-radio>
+      </sgds-radio-group>`;
+    case "select":
+      return `<sgds-select placeholder="Choose">
+        <sgds-select-option value="1">Option 1</sgds-select-option>
+        <sgds-select-option value="2">Option 2</sgds-select-option>
+        <sgds-select-option value="3">Option 3</sgds-select-option>
+      </sgds-select>`;
+    case "sidenav":
+      return `<div class="portal-demo-nav-sm">
+        <sgds-sidenav>
+          <sgds-sidenav-item active>
+            <span slot="title">Section</span>
+            <sgds-sidenav-link active><a href="#">Item</a></sgds-sidenav-link>
+            <sgds-sidenav-link><a href="#">Item</a></sgds-sidenav-link>
+          </sgds-sidenav-item>
+        </sgds-sidenav>
+      </div>`;
+    case "skeleton":
+    case "spinner":
+    case "stepper":
+    case "subnav":
+    case "switch":
+    case "tab":
+      return buildRepeatedMarkup(primaryMarkup);
+    case "table":
+      return `<sgds-table
+        rowHeader='["Name","Status","Owner","Notes","Updated"]'
+        tableData='[["Alpha","Active","Team A","Long repeated detail","Today"],["Beta","Pending","Team B","Long repeated detail","Today"],["Gamma","Closed","Team C","Long repeated detail","Today"]]'
+        headerBackground
+        tableBorder
+      ></sgds-table>`;
+    case "textarea":
+      return `<sgds-textarea rows="4" placeholder="Write here"></sgds-textarea>`;
+    case "toast":
+    case "tooltip":
+      return buildRepeatedMarkup(primaryMarkup);
+    default:
+      return buildRepeatedMarkup(primaryMarkup);
+  }
+};
+
+const buildUsageGuidance = (doc: ComponentDoc): UsageGuidance[] => {
+  const pattern = getGeneratedUsagePattern(doc);
+
+  return [
+    {
+      title: "When to use",
+      tone: "do",
+      items: pattern.use,
+    },
+    {
+      title: "When not to use",
+      tone: "dont",
+      items: pattern.avoid,
+    },
+  ];
+};
 
 const hasAnatomyPart = (doc: ComponentDoc, matcher: RegExp) =>
   buildAnatomyParts(doc.anatomyParts).some((part) => matcher.test(part.title));
@@ -4729,16 +5326,36 @@ const buildUsageBehaviours = (doc: ComponentDoc): UsageBehaviour[] =>
       ]
     : [];
 
+const buildGeneratedBestPractices = (doc: ComponentDoc): BestPractice[] => {
+  const pattern = getGeneratedUsagePattern(doc);
+
+  return [
+    {
+      title: pattern.doTitle,
+      description: pattern.doDescription,
+      tone: "do",
+      markup: getPrimaryUsageDemoMarkup(doc),
+    },
+    {
+      title: pattern.dontTitle,
+      description: pattern.dontDescription,
+      tone: "dont",
+      markup: buildAntiPatternMarkup(doc),
+    },
+  ];
+};
+
 const buildResolvedUsage = (doc: ComponentDoc): UsageContent => {
   const usage = doc.usage ?? {};
+  const generatedBestPractices = buildGeneratedBestPractices(doc);
 
   return {
     guidance: usage.guidance?.length ? usage.guidance : buildUsageGuidance(doc),
     content: usage.content?.length ? usage.content : buildUsageContentSections(doc),
-    contentGuidelines: usage.contentGuidelines,
+    contentGuidelines: usage.contentGuidelines ?? [],
     behaviours: usage.behaviours?.length ? usage.behaviours : buildUsageBehaviours(doc),
     motion: usage.motion,
-    bestPractices: usage.bestPractices,
+    bestPractices: usage.bestPractices?.length ? usage.bestPractices : generatedBestPractices,
   };
 };
 
