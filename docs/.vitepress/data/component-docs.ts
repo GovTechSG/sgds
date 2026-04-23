@@ -130,7 +130,7 @@ export type AccessibilitySection = {
   title: string;
   description?: string[];
   items: string[];
-  markup: string;
+  markup?: string;
   highlights?: Array<{
     key: string;
     selector: string;
@@ -146,6 +146,7 @@ export type AccessibilityKeyboardRow = {
 export type AccessibilityContent = {
   sections?: AccessibilitySection[];
   keyboardInteractions?: AccessibilityKeyboardRow[];
+  keyboardNotes?: string[];
 };
 
 type GeneratedAccessibilityProfile = {
@@ -157,6 +158,8 @@ type GeneratedAccessibilityProfile = {
   focusItems: string[];
   keyboardInteractions?: AccessibilityKeyboardRow[];
 };
+
+type AccessibilityDemoMarkups = Partial<Record<"builtIn" | "author" | "focus", string>>;
 
 type UpdatesRow = Record<string, string>;
 
@@ -904,7 +907,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         {
           title: "Built-in accessibility",
           description: [
-            "SGDS uses a real button for each accordion trigger and exposes expanded or collapsed state.",
+            "Each accordion trigger is a real button with expanded or collapsed state.",
             "The component applies built-in ARIA attributes to connect the trigger with its content region.",
           ],
           items: [
@@ -912,60 +915,27 @@ const componentDocs: Record<string, ComponentDoc> = {
             "The trigger exposes its expanded state and references the content it controls.",
             "The panel content is exposed as a region, so use accordions for grouped sections rather than for every small detail on a page.",
           ],
-          markup: `<sgds-accordion>
-            <sgds-accordion-item open>
-              <span slot="header">Expanded section</span>
-              <div slot="content">Visible content confirms the current state.</div>
-            </sgds-accordion-item>
-            <sgds-accordion-item>
-              <span slot="header">Collapsed section</span>
-              <div slot="content">Accordion content</div>
-            </sgds-accordion-item>
-          </sgds-accordion>`,
         },
         {
           title: "Labels and content",
           description: [
-            "SGDS uses the header slot content as the visible label for the accordion trigger.",
+            "The header slot content becomes the visible label for the accordion trigger.",
             "Write header text that is clear enough to stand on its own when announced as a button.",
           ],
           items: [
             "Use short, specific titles that describe the content inside each panel.",
             "If the accordion sits under a page heading structure, apply heading markup around it consistently in the surrounding page content.",
           ],
-          markup: `<sgds-accordion>
-            <sgds-accordion-item>
-              <span slot="header">Application eligibility</span>
-              <div slot="content">Check who can apply before you start.</div>
-            </sgds-accordion-item>
-            <sgds-accordion-item>
-              <span slot="header">Required documents</span>
-              <div slot="content">Prepare the documents you need to upload.</div>
-            </sgds-accordion-item>
-          </sgds-accordion>`,
         },
         {
           title: "Focus and interaction",
           description: [
-            "SGDS keeps the interaction on a real button and supports keyboard movement into interactive content inside an expanded panel.",
+            "Interaction stays on a real button, with keyboard movement into interactive content inside an expanded panel.",
           ],
           items: [
             "After opening a panel, users should be able to continue tabbing into links, buttons, and form fields in a logical order.",
             "Do not place essential actions in collapsed content if users need to reach them immediately.",
           ],
-          markup: `<sgds-accordion>
-            <sgds-accordion-item open>
-              <span slot="header">Review the details</span>
-              <div slot="content" class="portal-demo-stack-sm">
-                <p class="sgds:m-0">Read the guidance, then continue to the next step.</p>
-                <sgds-link><a href="#">Read the full guide</a></sgds-link>
-              </div>
-            </sgds-accordion-item>
-            <sgds-accordion-item>
-              <span slot="header">Next section</span>
-              <div slot="content">Accordion content</div>
-            </sgds-accordion-item>
-          </sgds-accordion>`,
         },
       ],
       keyboardInteractions: [
@@ -998,7 +968,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     accessibilityNotes: [
       "Use the built-in SGDS accordion item so the trigger remains a button with state and keyboard support.",
       "Write clear header labels and keep interactive content inside expanded panels reachable by keyboard.",
-      "SGDS supports Enter, Space, and arrow keys for opening and closing accordion items.",
+      "Enter, Space, and arrow keys open and close accordion items.",
     ],
     updates: {
       updates: {
@@ -5523,7 +5493,7 @@ const menuRows = (target: string): AccessibilityKeyboardRow[] => [
 const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAccessibilityProfile>> = {
   alert: {
     builtInDescription: [
-      "SGDS alerts expose their message as an alert region when they are shown.",
+      "Alerts expose their message as an alert region when they are shown.",
       "Dismissible alerts use the SGDS close button for the close action.",
     ],
     builtInItems: [
@@ -5541,7 +5511,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   badge: {
     builtInItems: [
-      "SGDS badge is a visual label for status, count, or category information.",
+      "Badges work as visual labels for status, count, or category information.",
       "The component does not add custom keyboard behaviour.",
     ],
     authorItems: [
@@ -5555,7 +5525,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   breadcrumb: {
     builtInItems: [
-      "SGDS breadcrumb items render links through the SGDS link component.",
+      "Breadcrumb items render links through the SGDS link component.",
       "The last item can be marked as the current location.",
     ],
     authorItems: [
@@ -5570,7 +5540,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   button: {
     builtInItems: [
-      "SGDS button renders a native button by default and an anchor when `href` is provided.",
+      "Buttons render as native buttons by default and anchors when `href` is provided.",
       "The component exposes disabled and loading states to assistive technology.",
     ],
     authorItems: [
@@ -5585,7 +5555,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   card: {
     builtInItems: [
-      "SGDS card provides structured slots for title, description, media, supporting content, and footer actions.",
+      "Cards provide structured slots for title, description, media, supporting content, and footer actions.",
       "Cards can become focusable when the stretched-link pattern is used.",
     ],
     authorItems: [
@@ -5599,7 +5569,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   checkbox: {
     builtInItems: [
-      "SGDS checkbox renders a native checkbox input and reflects checked, disabled, and invalid states.",
+      "Checkboxes render native checkbox inputs and reflect checked, disabled, and invalid states.",
       "Checkbox groups provide shared label, hint, and feedback areas.",
     ],
     authorItems: [
@@ -5614,7 +5584,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "close-button": {
     builtInItems: [
-      "SGDS close button renders a native button with a close icon.",
+      "Close buttons render native buttons with a close icon.",
       "The component includes a default accessible name for the close action.",
     ],
     authorItems: [
@@ -5629,7 +5599,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "combo-box": {
     builtInItems: [
-      "SGDS combo box combines an input with a selectable list of options.",
+      "Combo boxes combine an input with a selectable list of options.",
       "The component emits input, change, focus, blur, and select events for application state.",
     ],
     authorItems: [
@@ -5650,7 +5620,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   datepicker: {
     builtInItems: [
-      "SGDS datepicker combines an input, trigger button, and calendar dialog.",
+      "Datepickers combine an input, trigger button, and calendar dialog.",
       "The calendar dialog exposes its current view with an accessible dialog label.",
     ],
     authorItems: [
@@ -5670,7 +5640,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "description-list": {
     builtInItems: [
-      "SGDS description list presents terms and supporting details as paired content.",
+      "Description lists present terms and supporting details as paired content.",
       "The component does not add custom keyboard behaviour.",
     ],
     authorItems: [
@@ -5684,7 +5654,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   divider: {
     builtInItems: [
-      "SGDS divider separates sections visually.",
+      "Dividers separate sections visually.",
       "The component does not add custom keyboard behaviour.",
     ],
     authorItems: [
@@ -5698,7 +5668,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   drawer: {
     builtInItems: [
-      "SGDS drawer exposes its panel as a dialog with `aria-modal`.",
+      "Drawers expose their panel as a dialog with `aria-modal`.",
       "The component sets initial focus when it opens and restores focus to the trigger when it closes.",
     ],
     authorItems: [
@@ -5716,7 +5686,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   dropdown: {
     builtInItems: [
-      "SGDS dropdown exposes its menu with menu semantics.",
+      "Dropdowns expose their menu with menu semantics.",
       "Dropdown items are focusable menu items and support keyboard selection.",
     ],
     authorItems: [
@@ -5731,7 +5701,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "file-upload": {
     builtInItems: [
-      "SGDS file upload uses a native file input with SGDS button and close-button controls.",
+      "File upload uses a native file input with SGDS button and close-button controls.",
       "Selected files are rendered as a list with remove actions.",
     ],
     authorItems: [
@@ -5746,7 +5716,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   footer: {
     builtInItems: [
-      "SGDS footer provides structured areas for site links and supporting information.",
+      "Footers provide structured areas for site links and supporting information.",
       "Footer links keep native link behaviour.",
     ],
     authorItems: [
@@ -5761,7 +5731,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   icon: {
     builtInItems: [
-      "SGDS icon renders a visual symbol.",
+      "Icons render visual symbols.",
       "The component does not add custom keyboard behaviour.",
     ],
     authorItems: [
@@ -5775,7 +5745,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "icon-list": {
     builtInItems: [
-      "SGDS icon list structures repeated items with supporting icons.",
+      "Icon lists structure repeated items with supporting icons.",
       "The component does not add custom keyboard behaviour.",
     ],
     authorItems: [
@@ -5789,7 +5759,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "icon-button": {
     builtInItems: [
-      "SGDS icon button renders a native button by default and an anchor when `href` is provided.",
+      "Icon buttons render as native buttons by default and anchors when `href` is provided.",
       "The component supports an `ariaLabel` for the accessible name.",
     ],
     authorItems: [
@@ -5804,7 +5774,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "icon-card": {
     builtInItems: [
-      "SGDS icon card uses card structure with an icon slot and optional stretched-link behaviour.",
+      "Icon cards use card structure with an icon slot and optional stretched-link behaviour.",
       "The card becomes focusable only when it is configured as a stretched link.",
     ],
     authorItems: [
@@ -5818,7 +5788,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "image-card": {
     builtInItems: [
-      "SGDS image card uses card structure with an image slot and optional stretched-link behaviour.",
+      "Image cards use card structure with an image slot and optional stretched-link behaviour.",
       "The card becomes focusable only when it is configured as a stretched link.",
     ],
     authorItems: [
@@ -5832,7 +5802,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   input: {
     builtInItems: [
-      "SGDS input renders a native input and connects labels, hint text, and feedback to the control.",
+      "Inputs render native input controls and connect labels, hint text, and feedback to the control.",
       "The component supports disabled, read-only, required, invalid, and feedback states.",
     ],
     authorItems: [
@@ -5853,7 +5823,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   link: {
     builtInItems: [
-      "SGDS link renders an anchor and keeps native link behaviour.",
+      "Links render anchors and keep native link behaviour.",
       "Disabled links are removed from the tab order by the component.",
     ],
     authorItems: [
@@ -5868,7 +5838,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   mainnav: {
     builtInItems: [
-      "SGDS main navigation renders a navigation landmark and a responsive menu toggle.",
+      "Main navigation renders a navigation landmark and a responsive menu toggle.",
       "The mobile toggle exposes expanded state and the controlled menu.",
     ],
     authorItems: [
@@ -5883,7 +5853,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   masthead: {
     builtInItems: [
-      "SGDS masthead includes a disclosure control for the official government banner content.",
+      "The masthead includes a disclosure control for the official government banner content.",
       "The disclosure control supports keyboard activation.",
     ],
     authorItems: [
@@ -5898,7 +5868,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   modal: {
     builtInItems: [
-      "SGDS modal exposes its panel as a dialog with `aria-modal`.",
+      "Modals expose their panel as a dialog with `aria-modal`.",
       "The component moves focus to the modal heading when it opens and restores focus to the trigger when it closes.",
     ],
     authorItems: [
@@ -5916,7 +5886,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "overflow-menu": {
     builtInItems: [
-      "SGDS overflow menu uses the dropdown component internally.",
+      "Overflow menus use the dropdown component internally.",
       "Menu items support the same keyboard selection behaviour as dropdown items.",
     ],
     authorItems: [
@@ -5931,7 +5901,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   pagination: {
     builtInItems: [
-      "SGDS pagination renders a navigation region and page controls with current-page state.",
+      "Pagination renders a navigation region and page controls with current-page state.",
       "Page controls expose labels for their destination pages.",
     ],
     authorItems: [
@@ -5946,7 +5916,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "progress-bar": {
     builtInItems: [
-      "SGDS progress bar exposes progress semantics with `role=\"progressbar\"`.",
+      "Progress bars expose progress semantics with `role=\"progressbar\"`.",
       "The component supports accessible value attributes and an accessible label.",
     ],
     authorItems: [
@@ -5960,7 +5930,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "quantity-toggle": {
     builtInItems: [
-      "SGDS quantity toggle combines an input with increase and decrease icon buttons.",
+      "Quantity toggles combine an input with increase and decrease icon buttons.",
       "The input restricts unsupported keys and allows numeric editing keys.",
     ],
     authorItems: [
@@ -5989,7 +5959,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   radio: {
     builtInItems: [
-      "SGDS radio renders native radio inputs and reflects checked and disabled states.",
+      "Radio buttons render native radio inputs and reflect checked and disabled states.",
       "Radio groups manage selection across related radio options.",
     ],
     authorItems: [
@@ -6008,7 +5978,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   select: {
     builtInItems: [
-      "SGDS select combines an input-like trigger with a selectable option menu.",
+      "Select combines an input-like trigger with a selectable option menu.",
       "The menu supports keyboard opening, movement, and selection.",
     ],
     authorItems: [
@@ -6023,7 +5993,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   sidenav: {
     builtInItems: [
-      "SGDS side navigation provides structured navigation links and expandable sections.",
+      "Side navigation provides structured navigation links and expandable sections.",
       "Expandable side navigation items support keyboard opening and closing.",
     ],
     authorItems: [
@@ -6050,7 +6020,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   skeleton: {
     builtInItems: [
-      "SGDS skeleton is a loading placeholder.",
+      "Skeletons are loading placeholders.",
       "The component does not add custom keyboard behaviour.",
     ],
     authorItems: [
@@ -6064,7 +6034,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   spinner: {
     builtInItems: [
-      "SGDS spinner is a loading indicator.",
+      "Spinners are loading indicators.",
       "The component does not add custom keyboard behaviour.",
     ],
     authorItems: [
@@ -6078,7 +6048,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   stepper: {
     builtInItems: [
-      "SGDS stepper communicates progress through a sequence of steps.",
+      "Steppers communicate progress through a sequence of steps.",
       "Clickable stepper items support Enter when the component is configured as clickable.",
     ],
     authorItems: [
@@ -6096,7 +6066,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   subnav: {
     builtInItems: [
-      "SGDS sub-navigation supports expandable sections.",
+      "Sub-navigation supports expandable sections.",
       "Expandable sub-navigation items support Enter and Space for opening and closing.",
     ],
     authorItems: [
@@ -6111,7 +6081,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   switch: {
     builtInItems: [
-      "SGDS switch renders a native checkbox input with switch styling.",
+      "Switches render native checkbox inputs with switch styling.",
       "The component reflects checked and disabled states.",
     ],
     authorItems: [
@@ -6126,7 +6096,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "system-banner": {
     builtInItems: [
-      "SGDS system banner exposes application-level messages as an alert region.",
+      "System banners expose application-level messages as an alert region.",
       "Pagination and dismiss actions use SGDS icon button and close button controls.",
     ],
     authorItems: [
@@ -6141,7 +6111,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   tab: {
     builtInItems: [
-      "SGDS tabs expose tablist, tab, and panel relationships.",
+      "Tabs expose tablist, tab, and panel relationships.",
       "The tab group connects each tab with its controlled panel.",
     ],
     authorItems: [
@@ -6176,7 +6146,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   table: {
     builtInItems: [
-      "SGDS table renders table, row, header, and cell components for structured data.",
+      "Tables render table, row, header, and cell components for structured data.",
       "Responsive tables can receive focus so users can scroll the table area.",
     ],
     authorItems: [
@@ -6191,7 +6161,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "table-of-contents": {
     builtInItems: [
-      "SGDS table of contents provides a structured list of page links.",
+      "Tables of contents provide structured lists of page links.",
       "Links placed in the contents slot keep their native link behaviour.",
     ],
     authorItems: [
@@ -6206,7 +6176,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   textarea: {
     builtInItems: [
-      "SGDS textarea renders a native textarea and connects labels, hint text, and feedback to the control.",
+      "Textareas render native textarea controls and connect labels, hint text, and feedback to the control.",
       "The component supports disabled, read-only, required, invalid, and feedback states.",
     ],
     authorItems: [
@@ -6231,7 +6201,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   "thumbnail-card": {
     builtInItems: [
-      "SGDS thumbnail card uses card structure with a thumbnail slot and optional stretched-link behaviour.",
+      "Thumbnail cards use card structure with a thumbnail slot and optional stretched-link behaviour.",
       "The card becomes focusable only when it is configured as a stretched link.",
     ],
     authorItems: [
@@ -6245,7 +6215,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   toast: {
     builtInItems: [
-      "SGDS toast exposes its message as an assertive live alert when shown.",
+      "Toasts expose their message as an assertive live alert when shown.",
       "Dismissible toasts use the SGDS close button.",
     ],
     authorItems: [
@@ -6259,7 +6229,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   },
   tooltip: {
     builtInItems: [
-      "SGDS tooltip displays supporting text on hover and keyboard focus by default.",
+      "Tooltips display supporting text on hover and keyboard focus by default.",
       "The tooltip bubble uses `role=\"tooltip\"`.",
     ],
     authorItems: [
@@ -6278,24 +6248,17 @@ const getGeneratedAccessibilityProfile = (doc: ComponentDoc): GeneratedAccessibi
   const override = generatedAccessibilityProfileOverrides[doc.key] ?? {};
 
   return {
-    builtInDescription: override.builtInDescription ?? [
-      `SGDS provides the base structure and states for ${doc.title.toLowerCase()}.`,
-      "Use the component as provided so its built-in semantics and interaction behaviour stay intact.",
-    ],
+    builtInDescription: override.builtInDescription ?? [],
     builtInItems: override.builtInItems ?? [
       "Use the SGDS component instead of recreating the same pattern with custom markup.",
       "Keep component states such as disabled, invalid, active, or expanded in sync with the user interface.",
     ],
-    authorDescription: override.authorDescription ?? [
-      "Accessible use still depends on the content and surrounding page structure.",
-    ],
+    authorDescription: override.authorDescription ?? [],
     authorItems: override.authorItems ?? [
       "Use clear labels, headings, and supporting text.",
       "Do not rely on colour, position, or icon shape as the only way to communicate meaning.",
     ],
-    focusDescription: override.focusDescription ?? [
-      "Keyboard flow should match the order of the task.",
-    ],
+    focusDescription: override.focusDescription ?? [],
     focusItems: override.focusItems ?? [
       "Keep interactive content reachable in the normal tab order.",
       "Do not add custom keyboard handling unless the SGDS component does not already support the interaction.",
@@ -6304,12 +6267,689 @@ const getGeneratedAccessibilityProfile = (doc: ComponentDoc): GeneratedAccessibi
   };
 };
 
+const accessibilityDemoMarkupOverrides: Record<string, AccessibilityDemoMarkups> = {
+  accordion: {
+    builtIn: `<sgds-accordion>
+      <sgds-accordion-item open>
+        <span slot="header">Expanded section</span>
+        <div slot="content">Visible content confirms the current state.</div>
+      </sgds-accordion-item>
+      <sgds-accordion-item>
+        <span slot="header">Collapsed section</span>
+        <div slot="content">Accordion content</div>
+      </sgds-accordion-item>
+    </sgds-accordion>`,
+    author: `<sgds-accordion>
+      <sgds-accordion-item>
+        <span slot="header">Application eligibility</span>
+        <div slot="content">Check who can apply before you start.</div>
+      </sgds-accordion-item>
+      <sgds-accordion-item>
+        <span slot="header">Required documents</span>
+        <div slot="content">Prepare the documents you need to upload.</div>
+      </sgds-accordion-item>
+    </sgds-accordion>`,
+    focus: `<sgds-accordion>
+      <sgds-accordion-item open>
+        <span slot="header">Review the details</span>
+        <div slot="content" class="portal-demo-stack-sm">
+          <p class="sgds:m-0">Read the guidance, then continue to the next step.</p>
+          <sgds-link><a href="#">Read the full guide</a></sgds-link>
+        </div>
+      </sgds-accordion-item>
+      <sgds-accordion-item>
+        <span slot="header">Next section</span>
+        <div slot="content">Accordion content</div>
+      </sgds-accordion-item>
+    </sgds-accordion>`,
+  },
+  alert: {
+    builtIn: `<sgds-alert show variant="warning" title="Service unavailable">
+      The payment service is unavailable. Try again later.
+    </sgds-alert>`,
+    author: `<sgds-alert show variant="info" title="Application saved">
+      Your progress has been saved. <sgds-alert-link href="#">View draft</sgds-alert-link>
+    </sgds-alert>`,
+    focus: `<sgds-alert show dismissible variant="success" title="Changes saved">
+      You can continue editing this page.
+    </sgds-alert>`,
+  },
+  badge: {
+    builtIn: `<div class="portal-demo-row sgds:gap-sm">
+      <span>Application status</span>
+      <sgds-badge variant="success">Approved</sgds-badge>
+    </div>`,
+    author: `<div class="portal-demo-row sgds:gap-sm">
+      <sgds-badge variant="warning">Pending review</sgds-badge>
+      <span>Documents are being checked.</span>
+    </div>`,
+    focus: `<div class="portal-demo-row sgds:gap-sm">
+      <sgds-button variant="outline">View application <sgds-badge slot="rightIcon" variant="neutral">2</sgds-badge></sgds-button>
+    </div>`,
+  },
+  breadcrumb: {
+    builtIn: `<sgds-breadcrumb>
+      <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+      <sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item>
+      <sgds-breadcrumb-item active>Passport application</sgds-breadcrumb-item>
+    </sgds-breadcrumb>`,
+    author: `<sgds-breadcrumb>
+      <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+      <sgds-breadcrumb-item><a href="#">Housing grants</a></sgds-breadcrumb-item>
+      <sgds-breadcrumb-item active>Eligibility</sgds-breadcrumb-item>
+    </sgds-breadcrumb>`,
+    focus: `<sgds-breadcrumb>
+      <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+      <sgds-breadcrumb-item><a href="#">Profile</a></sgds-breadcrumb-item>
+      <sgds-breadcrumb-item active>Contact details</sgds-breadcrumb-item>
+    </sgds-breadcrumb>`,
+  },
+  button: {
+    builtIn: `<div class="portal-demo-row sgds:gap-sm">
+      <sgds-button>Submit application</sgds-button>
+      <sgds-button disabled>Submitting</sgds-button>
+    </div>`,
+    author: `<div class="portal-demo-row"><sgds-button>Pay application fee</sgds-button></div>`,
+    focus: `<div class="portal-demo-row sgds:gap-sm">
+      <sgds-button variant="outline">Back</sgds-button>
+      <sgds-button>Continue</sgds-button>
+    </div>`,
+  },
+  card: {
+    builtIn: `<sgds-card class="portal-demo-card">
+      <span slot="title">Renew your passport</span>
+      <span slot="description">Check the documents you need before applying.</span>
+      <sgds-button slot="footer" variant="outline">View details</sgds-button>
+    </sgds-card>`,
+    author: `<sgds-card class="portal-demo-card">
+      <span slot="title">Housing grant</span>
+      <span slot="description">Find out if your household is eligible.</span>
+      <sgds-button slot="footer">Check eligibility</sgds-button>
+    </sgds-card>`,
+    focus: `<sgds-card class="portal-demo-card">
+      <span slot="title">Application draft</span>
+      <span slot="description">Continue where you left off.</span>
+      <sgds-button slot="footer">Resume</sgds-button>
+    </sgds-card>`,
+  },
+  checkbox: {
+    builtIn: `<sgds-checkbox-group label="Delivery options">
+      <sgds-checkbox value="email">Email</sgds-checkbox>
+      <sgds-checkbox value="sms">SMS</sgds-checkbox>
+    </sgds-checkbox-group>`,
+    author: `<sgds-checkbox-group label="Select the documents you have">
+      <sgds-checkbox value="nric">NRIC</sgds-checkbox>
+      <sgds-checkbox value="proof">Proof of address</sgds-checkbox>
+    </sgds-checkbox-group>`,
+    focus: `<sgds-checkbox-group label="Notification preferences">
+      <sgds-checkbox value="email">Email updates</sgds-checkbox>
+      <sgds-checkbox value="sms">SMS updates</sgds-checkbox>
+    </sgds-checkbox-group>`,
+  },
+  "close-button": {
+    builtIn: `<div class="portal-demo-row sgds:gap-sm">
+      <span>Draft saved</span>
+      <sgds-close-button></sgds-close-button>
+    </div>`,
+    author: `<sgds-alert show dismissible variant="info" title="New message">
+      Read this update before continuing.
+    </sgds-alert>`,
+    focus: `<div class="portal-demo-row sgds:gap-sm">
+      <sgds-button variant="outline">Open panel</sgds-button>
+      <sgds-close-button></sgds-close-button>
+    </div>`,
+  },
+  "combo-box": {
+    builtIn: `<sgds-combo-box placeholder="Search service">
+      <sgds-combo-box-option value="housing">Housing</sgds-combo-box-option>
+      <sgds-combo-box-option value="transport">Transport</sgds-combo-box-option>
+      <sgds-combo-box-option value="health">Health</sgds-combo-box-option>
+    </sgds-combo-box>`,
+    author: `<sgds-combo-box placeholder="Search by service name">
+      <sgds-combo-box-option value="passport">Passport renewal</sgds-combo-box-option>
+      <sgds-combo-box-option value="licence">Driving licence</sgds-combo-box-option>
+    </sgds-combo-box>`,
+    focus: `<sgds-combo-box open placeholder="Search service">
+      <sgds-combo-box-option value="passport">Passport renewal</sgds-combo-box-option>
+      <sgds-combo-box-option value="tax">Tax filing</sgds-combo-box-option>
+    </sgds-combo-box>`,
+  },
+  datepicker: {
+    builtIn: `<sgds-datepicker open placeholder="Select appointment date"></sgds-datepicker>`,
+    author: `<div class="portal-demo-stack-sm">
+      <label for="appointment-date">Appointment date</label>
+      <sgds-datepicker id="appointment-date" placeholder="DD/MM/YYYY"></sgds-datepicker>
+      <span class="sgds:text-subtle">Use the format DD/MM/YYYY.</span>
+    </div>`,
+    focus: `<sgds-datepicker open placeholder="Select appointment date"></sgds-datepicker>`,
+  },
+  "description-list": {
+    builtIn: `<sgds-description-list-group>
+      <sgds-description-list term="Application ID">A1234567</sgds-description-list>
+      <sgds-description-list term="Status">Pending review</sgds-description-list>
+    </sgds-description-list-group>`,
+    author: `<sgds-description-list-group>
+      <sgds-description-list term="Submission date">23 Apr 2026</sgds-description-list>
+      <sgds-description-list term="Officer">Service team</sgds-description-list>
+    </sgds-description-list-group>`,
+    focus: `<sgds-description-list-group>
+      <sgds-description-list term="Reference"><sgds-link><a href="#">View application</a></sgds-link></sgds-description-list>
+    </sgds-description-list-group>`,
+  },
+  divider: {
+    builtIn: `<div class="portal-demo-stack-sm">
+      <h4 class="sgds:m-0">Personal details</h4>
+      <sgds-divider></sgds-divider>
+      <h4 class="sgds:m-0">Contact details</h4>
+    </div>`,
+    author: `<div class="portal-demo-stack-sm">
+      <p class="sgds:m-0">Group related content before separating the next section.</p>
+      <sgds-divider></sgds-divider>
+      <p class="sgds:m-0">Start the next section with a clear heading.</p>
+    </div>`,
+    focus: `<div class="portal-demo-stack-sm">
+      <sgds-link><a href="#">Previous section link</a></sgds-link>
+      <sgds-divider></sgds-divider>
+      <sgds-link><a href="#">Next section link</a></sgds-link>
+    </div>`,
+  },
+  drawer: {
+    builtIn: `<div class="portal-demo-overlay">
+      <sgds-drawer open contained size="sm">
+        <span slot="title">Edit contact details</span>
+        <span slot="description">Update your phone number and email address.</span>
+        <sgds-input placeholder="Email address"></sgds-input>
+      </sgds-drawer>
+    </div>`,
+    author: `<div class="portal-demo-overlay">
+      <sgds-drawer open contained size="sm">
+        <span slot="title">Update address</span>
+        <span slot="description">Make changes for this application only.</span>
+        <sgds-button slot="footer">Save changes</sgds-button>
+      </sgds-drawer>
+    </div>`,
+    focus: `<div class="portal-demo-overlay">
+      <sgds-drawer open contained size="sm">
+        <span slot="title">Review details</span>
+        <sgds-button slot="footer">Confirm</sgds-button>
+      </sgds-drawer>
+    </div>`,
+  },
+  dropdown: {
+    builtIn: `<sgds-dropdown>
+      <sgds-button slot="toggler" variant="outline">More actions</sgds-button>
+      <sgds-dropdown-item><button>Edit</button></sgds-dropdown-item>
+      <sgds-dropdown-item><button>Download</button></sgds-dropdown-item>
+    </sgds-dropdown>`,
+    author: `<sgds-dropdown>
+      <sgds-button slot="toggler" variant="outline">Application actions</sgds-button>
+      <sgds-dropdown-item><button>View details</button></sgds-dropdown-item>
+      <sgds-dropdown-item><button>Cancel application</button></sgds-dropdown-item>
+    </sgds-dropdown>`,
+    focus: `<sgds-dropdown open>
+      <sgds-button slot="toggler" variant="outline">More actions</sgds-button>
+      <sgds-dropdown-item><button>Edit</button></sgds-dropdown-item>
+      <sgds-dropdown-item><button>Download</button></sgds-dropdown-item>
+    </sgds-dropdown>`,
+  },
+  "file-upload": {
+    builtIn: `<sgds-file-upload accept=".pdf,.doc,.docx">Upload document</sgds-file-upload>`,
+    author: `<div class="portal-demo-stack-sm">
+      <p class="sgds:m-0">Upload a PDF, DOC, or DOCX file. Maximum size: 5 MB.</p>
+      <sgds-file-upload accept=".pdf,.doc,.docx">Upload supporting document</sgds-file-upload>
+    </div>`,
+    focus: `<sgds-file-upload accept=".pdf">Upload PDF</sgds-file-upload>`,
+  },
+  footer: {
+    builtIn: `<sgds-footer>
+      <sgds-footer-item slot="items"><a href="#">Contact us</a></sgds-footer-item>
+      <sgds-footer-item slot="items"><a href="#">Privacy statement</a></sgds-footer-item>
+    </sgds-footer>`,
+    author: `<sgds-footer>
+      <sgds-footer-item slot="items"><a href="#">Accessibility</a></sgds-footer-item>
+      <sgds-footer-item slot="items"><a href="#">Report vulnerability</a></sgds-footer-item>
+    </sgds-footer>`,
+    focus: `<sgds-footer>
+      <sgds-footer-item slot="items"><a href="#">Contact us</a></sgds-footer-item>
+      <sgds-footer-item slot="items"><a href="#">Terms of use</a></sgds-footer-item>
+    </sgds-footer>`,
+  },
+  icon: {
+    builtIn: `<div class="portal-demo-row sgds:gap-sm">
+      <sgds-icon name="info-circle-fill" size="lg"></sgds-icon>
+      <span>Information</span>
+    </div>`,
+    author: `<div class="portal-demo-row sgds:gap-sm">
+      <sgds-icon name="check-circle-fill" size="lg"></sgds-icon>
+      <span>Application approved</span>
+    </div>`,
+    focus: `<sgds-button><sgds-icon slot="leftIcon" name="search"></sgds-icon>Search</sgds-button>`,
+  },
+  "icon-list": {
+    builtIn: `<sgds-icon-list>
+      <div role="listitem" class="portal-demo-list-item"><sgds-icon name="check-circle-fill"></sgds-icon><span>Bring your NRIC</span></div>
+      <div role="listitem" class="portal-demo-list-item"><sgds-icon name="check-circle-fill"></sgds-icon><span>Prepare proof of address</span></div>
+    </sgds-icon-list>`,
+    author: `<sgds-icon-list>
+      <div role="listitem" class="portal-demo-list-item"><sgds-icon name="info-circle-fill"></sgds-icon><span>Each item remains clear without the icon.</span></div>
+    </sgds-icon-list>`,
+    focus: `<sgds-icon-list>
+      <div role="listitem" class="portal-demo-list-item"><sgds-icon name="link"></sgds-icon><sgds-link><a href="#">Read eligibility details</a></sgds-link></div>
+    </sgds-icon-list>`,
+  },
+  "icon-button": {
+    builtIn: `<div class="portal-demo-row sgds:gap-sm">
+      <sgds-icon-button name="search" ariaLabel="Search services"></sgds-icon-button>
+      <sgds-icon-button name="three-dots" ariaLabel="More actions"></sgds-icon-button>
+    </div>`,
+    author: `<sgds-icon-button name="trash" ariaLabel="Delete document"></sgds-icon-button>`,
+    focus: `<div class="portal-demo-row sgds:gap-sm">
+      <span>Document.pdf</span>
+      <sgds-icon-button name="trash" ariaLabel="Delete Document.pdf"></sgds-icon-button>
+    </div>`,
+  },
+  "icon-card": {
+    builtIn: `<sgds-icon-card class="portal-demo-card">
+      <sgds-icon slot="icon" name="house"></sgds-icon>
+      <span slot="title">Housing services</span>
+      <span slot="description">Find grants and eligibility guidance.</span>
+    </sgds-icon-card>`,
+    author: `<sgds-icon-card class="portal-demo-card">
+      <sgds-icon slot="icon" name="file-text"></sgds-icon>
+      <span slot="title">Application forms</span>
+      <span slot="description">Download the forms you need.</span>
+    </sgds-icon-card>`,
+    focus: `<sgds-icon-card class="portal-demo-card" href="#">
+      <sgds-icon slot="icon" name="arrow-right-circle"></sgds-icon>
+      <span slot="title">Continue application</span>
+    </sgds-icon-card>`,
+  },
+  "image-card": {
+    builtIn: `<sgds-image-card class="portal-demo-card">
+      <img slot="image" src="/landing/card-media-placement.svg" alt="">
+      <span slot="title">Community support</span>
+      <span slot="description">Find help available near you.</span>
+    </sgds-image-card>`,
+    author: `<sgds-image-card class="portal-demo-card">
+      <img slot="image" src="/landing/card-media-placement.svg" alt="">
+      <span slot="title">Apply for support</span>
+      <span slot="description">Check eligibility before applying.</span>
+    </sgds-image-card>`,
+    focus: `<sgds-image-card class="portal-demo-card" href="#">
+      <img slot="image" src="/landing/card-media-placement.svg" alt="">
+      <span slot="title">View support schemes</span>
+    </sgds-image-card>`,
+  },
+  input: {
+    builtIn: `<sgds-input placeholder="Search services"><sgds-icon slot="icon" name="search"></sgds-icon></sgds-input>`,
+    author: `<div class="portal-demo-stack-sm">
+      <label for="postal-code">Postal code</label>
+      <sgds-input id="postal-code" placeholder="For example, 123456"></sgds-input>
+      <span class="sgds:text-subtle">Enter a 6-digit postal code.</span>
+    </div>`,
+    focus: `<sgds-input placeholder="Search services"><sgds-icon slot="trailing-icon" name="x-circle"></sgds-icon></sgds-input>`,
+  },
+  link: {
+    builtIn: `<sgds-link><a href="#">Read eligibility guidance</a></sgds-link>`,
+    author: `<p class="sgds:m-0">Before applying, <sgds-link><a href="#">check the required documents</a></sgds-link>.</p>`,
+    focus: `<div class="portal-demo-stack-sm">
+      <sgds-link><a href="#">Previous step</a></sgds-link>
+      <sgds-link><a href="#">Continue application</a></sgds-link>
+    </div>`,
+  },
+  mainnav: {
+    builtIn: `<div class="portal-demo-nav">
+      <sgds-mainnav>
+        <sgds-mainnav-item><a href="#">Services</a></sgds-mainnav-item>
+        <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
+      </sgds-mainnav>
+    </div>`,
+    author: `<div class="portal-demo-nav">
+      <sgds-mainnav>
+        <sgds-mainnav-item><a href="#">Benefits</a></sgds-mainnav-item>
+        <sgds-mainnav-item><a href="#">Applications</a></sgds-mainnav-item>
+      </sgds-mainnav>
+    </div>`,
+    focus: `<div class="portal-demo-nav">
+      <sgds-mainnav>
+        <sgds-mainnav-item><a href="#">Home</a></sgds-mainnav-item>
+        <sgds-mainnav-item><a href="#">Services</a></sgds-mainnav-item>
+      </sgds-mainnav>
+    </div>`,
+  },
+  masthead: {
+    builtIn: `<div class="portal-demo-nav"><sgds-masthead fluid></sgds-masthead></div>`,
+    author: `<div class="portal-demo-nav"><sgds-masthead fluid></sgds-masthead></div>`,
+    focus: `<div class="portal-demo-nav"><sgds-masthead fluid></sgds-masthead></div>`,
+  },
+  modal: {
+    builtIn: `<div class="portal-modal-preview">
+      <sgds-modal open>
+        <span slot="title">Confirm submission</span>
+        <p>Check your details before submitting.</p>
+      </sgds-modal>
+    </div>`,
+    author: `<div class="portal-modal-preview">
+      <sgds-modal open>
+        <span slot="title">Delete draft?</span>
+        <p>This draft will be removed from your applications.</p>
+        <sgds-button slot="footer" variant="danger">Delete draft</sgds-button>
+      </sgds-modal>
+    </div>`,
+    focus: `<div class="portal-modal-preview">
+      <sgds-modal open>
+        <span slot="title">Review application</span>
+        <sgds-button slot="footer">Confirm</sgds-button>
+      </sgds-modal>
+    </div>`,
+  },
+  "overflow-menu": {
+    builtIn: `<sgds-overflow-menu>
+      <sgds-dropdown-item><button>Rename</button></sgds-dropdown-item>
+      <sgds-dropdown-item><button>Download</button></sgds-dropdown-item>
+    </sgds-overflow-menu>`,
+    author: `<sgds-overflow-menu>
+      <sgds-dropdown-item><button>View details</button></sgds-dropdown-item>
+      <sgds-dropdown-item><button>Cancel application</button></sgds-dropdown-item>
+    </sgds-overflow-menu>`,
+    focus: `<sgds-overflow-menu open>
+      <sgds-dropdown-item><button>Rename</button></sgds-dropdown-item>
+      <sgds-dropdown-item><button>Download</button></sgds-dropdown-item>
+    </sgds-overflow-menu>`,
+  },
+  pagination: {
+    builtIn: `<sgds-pagination currentPage="2" dataLength="120" itemsPerPage="10" variant="number"></sgds-pagination>`,
+    author: `<sgds-pagination currentPage="5" dataLength="120" itemsPerPage="10" variant="number"></sgds-pagination>`,
+    focus: `<sgds-pagination currentPage="2" dataLength="120" itemsPerPage="10" variant="number"></sgds-pagination>`,
+  },
+  "progress-bar": {
+    builtIn: `<sgds-progress-bar value="64" label="Submission progress"></sgds-progress-bar>`,
+    author: `<div class="portal-demo-stack-sm">
+      <sgds-progress-bar value="3" max="4" label="Step 3 of 4"></sgds-progress-bar>
+      <span class="sgds:text-subtle">Uploading supporting documents.</span>
+    </div>`,
+    focus: `<div class="portal-demo-stack-sm">
+      <sgds-progress-bar value="64" label="Submission progress"></sgds-progress-bar>
+      <sgds-link><a href="#">Cancel upload</a></sgds-link>
+    </div>`,
+  },
+  "quantity-toggle": {
+    builtIn: `<sgds-quantity-toggle value="2" min="0" max="5"></sgds-quantity-toggle>`,
+    author: `<div class="portal-demo-stack-sm">
+      <label for="ticket-count">Number of tickets</label>
+      <sgds-quantity-toggle id="ticket-count" value="2" min="0" max="5"></sgds-quantity-toggle>
+    </div>`,
+    focus: `<sgds-quantity-toggle value="2" min="0" max="5"></sgds-quantity-toggle>`,
+  },
+  radio: {
+    builtIn: `<sgds-radio-group label="Preferred contact method" value="email">
+      <sgds-radio value="email">Email</sgds-radio>
+      <sgds-radio value="sms">SMS</sgds-radio>
+    </sgds-radio-group>`,
+    author: `<sgds-radio-group label="Choose one delivery method" value="post">
+      <sgds-radio value="post">Postal mail</sgds-radio>
+      <sgds-radio value="pickup">Self collection</sgds-radio>
+    </sgds-radio-group>`,
+    focus: `<sgds-radio-group label="Preferred contact method" value="email">
+      <sgds-radio value="email">Email</sgds-radio>
+      <sgds-radio value="sms">SMS</sgds-radio>
+    </sgds-radio-group>`,
+  },
+  select: {
+    builtIn: `<sgds-select open placeholder="Choose a service">
+      <sgds-select-option value="passport">Passport</sgds-select-option>
+      <sgds-select-option value="licence">Driving licence</sgds-select-option>
+    </sgds-select>`,
+    author: `<sgds-select placeholder="Choose a service">
+      <sgds-select-option value="passport">Passport renewal</sgds-select-option>
+      <sgds-select-option value="licence">Driving licence</sgds-select-option>
+    </sgds-select>`,
+    focus: `<sgds-select open placeholder="Choose a service">
+      <sgds-select-option value="passport">Passport</sgds-select-option>
+      <sgds-select-option value="licence">Driving licence</sgds-select-option>
+    </sgds-select>`,
+  },
+  sidenav: {
+    builtIn: `<div class="portal-demo-nav-sm">
+      <sgds-sidenav>
+        <sgds-sidenav-item active>
+          <span slot="title">Applications</span>
+          <sgds-sidenav-link active><a href="#">Current applications</a></sgds-sidenav-link>
+          <sgds-sidenav-link><a href="#">Past applications</a></sgds-sidenav-link>
+        </sgds-sidenav-item>
+      </sgds-sidenav>
+    </div>`,
+    author: `<div class="portal-demo-nav-sm">
+      <sgds-sidenav>
+        <sgds-sidenav-link><a href="#">Dashboard</a></sgds-sidenav-link>
+        <sgds-sidenav-link active><a href="#">Profile</a></sgds-sidenav-link>
+      </sgds-sidenav>
+    </div>`,
+    focus: `<div class="portal-demo-nav-sm">
+      <sgds-sidenav>
+        <sgds-sidenav-item active>
+          <span slot="title">Services</span>
+          <sgds-sidenav-link><a href="#">Housing</a></sgds-sidenav-link>
+        </sgds-sidenav-item>
+      </sgds-sidenav>
+    </div>`,
+  },
+  skeleton: {
+    builtIn: `<div class="portal-demo-stack-sm">
+      <sgds-skeleton></sgds-skeleton>
+      <sgds-skeleton></sgds-skeleton>
+    </div>`,
+    author: `<div class="portal-demo-stack-sm">
+      <sgds-skeleton></sgds-skeleton>
+      <span class="sgds:text-subtle">Loading application details...</span>
+    </div>`,
+    focus: `<div class="portal-demo-stack-sm">
+      <sgds-skeleton></sgds-skeleton>
+      <sgds-button variant="outline">Cancel loading</sgds-button>
+    </div>`,
+  },
+  spinner: {
+    builtIn: `<div class="portal-demo-row sgds:gap-sm">
+      <sgds-spinner></sgds-spinner>
+      <span>Loading results</span>
+    </div>`,
+    author: `<div class="portal-demo-row sgds:gap-sm">
+      <sgds-spinner></sgds-spinner>
+      <span>Submitting your application...</span>
+    </div>`,
+    focus: `<div class="portal-demo-row sgds:gap-sm">
+      <sgds-spinner></sgds-spinner>
+      <sgds-button variant="outline">Cancel</sgds-button>
+    </div>`,
+  },
+  stepper: {
+    builtIn: `<div class="portal-demo-stepper">
+      <sgds-stepper activeStep="2">
+        <sgds-stepper-item stepHeader="Personal details"></sgds-stepper-item>
+        <sgds-stepper-item stepHeader="Upload documents"></sgds-stepper-item>
+        <sgds-stepper-item stepHeader="Review"></sgds-stepper-item>
+      </sgds-stepper>
+    </div>`,
+    author: `<div class="portal-demo-stepper">
+      <sgds-stepper activeStep="2">
+        <sgds-stepper-item stepHeader="Details"></sgds-stepper-item>
+        <sgds-stepper-item stepHeader="Documents"></sgds-stepper-item>
+        <sgds-stepper-item stepHeader="Submit"></sgds-stepper-item>
+      </sgds-stepper>
+    </div>`,
+    focus: `<div class="portal-demo-stepper">
+      <sgds-stepper activeStep="2">
+        <sgds-stepper-item stepHeader="Details"></sgds-stepper-item>
+        <sgds-stepper-item stepHeader="Documents"></sgds-stepper-item>
+      </sgds-stepper>
+    </div>`,
+  },
+  subnav: {
+    builtIn: `<div class="portal-demo-nav">
+      <sgds-subnav>
+        <sgds-subnav-item><a href="#">Overview</a></sgds-subnav-item>
+        <sgds-subnav-item><a href="#">Eligibility</a></sgds-subnav-item>
+      </sgds-subnav>
+    </div>`,
+    author: `<div class="portal-demo-nav">
+      <sgds-subnav>
+        <sgds-subnav-item><a href="#">Overview</a></sgds-subnav-item>
+        <sgds-subnav-item><a href="#">Required documents</a></sgds-subnav-item>
+      </sgds-subnav>
+    </div>`,
+    focus: `<div class="portal-demo-nav">
+      <sgds-subnav>
+        <sgds-subnav-item><a href="#">Overview</a></sgds-subnav-item>
+        <sgds-subnav-item><a href="#">Apply</a></sgds-subnav-item>
+      </sgds-subnav>
+    </div>`,
+  },
+  switch: {
+    builtIn: `<sgds-switch checked>Email notifications</sgds-switch>`,
+    author: `<sgds-switch checked>Send me SMS updates</sgds-switch>`,
+    focus: `<div class="portal-demo-stack-sm">
+      <sgds-switch checked>Email notifications</sgds-switch>
+      <span class="sgds:text-subtle">Changes take effect immediately.</span>
+    </div>`,
+  },
+  "system-banner": {
+    builtIn: `<sgds-system-banner show>
+      <span slot="title">Maintenance tonight</span>
+      <span slot="description">Some services may be unavailable from 11pm.</span>
+    </sgds-system-banner>`,
+    author: `<sgds-system-banner show>
+      <span slot="title">Service update</span>
+      <span slot="description">Submit applications before 10pm today.</span>
+    </sgds-system-banner>`,
+    focus: `<sgds-system-banner show dismissible>
+      <span slot="title">Maintenance tonight</span>
+      <span slot="description">Dismiss this message after reading.</span>
+    </sgds-system-banner>`,
+  },
+  tab: {
+    builtIn: `<sgds-tab-group variant="underlined">
+      <sgds-tab slot="nav" panel="overview" active>Overview</sgds-tab>
+      <sgds-tab slot="nav" panel="documents">Documents</sgds-tab>
+      <sgds-tab-panel name="overview">Overview content</sgds-tab-panel>
+      <sgds-tab-panel name="documents">Document content</sgds-tab-panel>
+    </sgds-tab-group>`,
+    author: `<sgds-tab-group variant="underlined">
+      <sgds-tab slot="nav" panel="summary" active>Summary</sgds-tab>
+      <sgds-tab slot="nav" panel="history">History</sgds-tab>
+      <sgds-tab-panel name="summary">Current application details</sgds-tab-panel>
+      <sgds-tab-panel name="history">Past updates</sgds-tab-panel>
+    </sgds-tab-group>`,
+    focus: `<sgds-tab-group variant="underlined">
+      <sgds-tab slot="nav" panel="one" active>Details</sgds-tab>
+      <sgds-tab slot="nav" panel="two">Documents</sgds-tab>
+      <sgds-tab-panel name="one"><sgds-link><a href="#">Edit details</a></sgds-link></sgds-tab-panel>
+      <sgds-tab-panel name="two">Document list</sgds-tab-panel>
+    </sgds-tab-group>`,
+  },
+  table: {
+    builtIn: `<sgds-table
+      rowHeader='["Name","Status"]'
+      tableData='[["Application A","Pending"],["Application B","Approved"]]'
+      headerBackground
+      tableBorder
+    ></sgds-table>`,
+    author: `<sgds-table
+      rowHeader='["Application","Status","Updated"]'
+      tableData='[["Passport renewal","Pending","23 Apr 2026"],["Grant application","Approved","22 Apr 2026"]]'
+      headerBackground
+      tableBorder
+    ></sgds-table>`,
+    focus: `<sgds-table
+      rowHeader='["Document","Action"]'
+      tableData='[["NRIC","View"],["Proof of address","Download"]]'
+      headerBackground
+      tableBorder
+      responsive="always"
+    ></sgds-table>`,
+  },
+  "table-of-contents": {
+    builtIn: `<sgds-table-of-contents>
+      <a href="#overview">Overview</a>
+      <a href="#eligibility">Eligibility</a>
+      <a href="#apply">Apply</a>
+    </sgds-table-of-contents>`,
+    author: `<sgds-table-of-contents>
+      <a href="#required-documents">Required documents</a>
+      <a href="#fees">Fees</a>
+      <a href="#processing-time">Processing time</a>
+    </sgds-table-of-contents>`,
+    focus: `<sgds-table-of-contents>
+      <a href="#overview">Overview</a>
+      <a href="#next-steps">Next steps</a>
+    </sgds-table-of-contents>`,
+  },
+  textarea: {
+    builtIn: `<sgds-textarea rows="4" placeholder="Add supporting details"></sgds-textarea>`,
+    author: `<div class="portal-demo-stack-sm">
+      <label for="reason">Reason for appeal</label>
+      <sgds-textarea id="reason" rows="4" placeholder="Explain what happened"></sgds-textarea>
+      <span class="sgds:text-subtle">Include dates, reference numbers, and supporting details.</span>
+    </div>`,
+    focus: `<sgds-textarea rows="4" placeholder="Add supporting details"></sgds-textarea>`,
+  },
+  "thumbnail-card": {
+    builtIn: `<sgds-thumbnail-card class="portal-demo-card">
+      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="">
+      <span slot="title">Required documents</span>
+      <span slot="description">Prepare files before starting.</span>
+    </sgds-thumbnail-card>`,
+    author: `<sgds-thumbnail-card class="portal-demo-card">
+      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="">
+      <span slot="title">Proof of address</span>
+      <span slot="description">Upload a recent utility bill or bank statement.</span>
+    </sgds-thumbnail-card>`,
+    focus: `<sgds-thumbnail-card class="portal-demo-card" href="#">
+      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="">
+      <span slot="title">View document guide</span>
+    </sgds-thumbnail-card>`,
+  },
+  toast: {
+    builtIn: `<sgds-toast show title="Saved" variant="success">
+      Your application has been saved.
+    </sgds-toast>`,
+    author: `<sgds-toast show title="Upload complete" variant="success">
+      Document.pdf has been uploaded.
+    </sgds-toast>`,
+    focus: `<sgds-toast show dismissible title="Saved" variant="success">
+      Continue editing your application.
+    </sgds-toast>`,
+  },
+  tooltip: {
+    builtIn: `<sgds-tooltip content="Your Singpass name will be used for this application." trigger="hover focus">
+      <sgds-button variant="outline">Why we need this</sgds-button>
+    </sgds-tooltip>`,
+    author: `<sgds-tooltip content="Maximum file size is 5 MB." trigger="hover focus">
+      <sgds-button variant="outline">File size</sgds-button>
+    </sgds-tooltip>`,
+    focus: `<sgds-tooltip content="More details about this action" trigger="hover focus">
+      <sgds-button variant="outline">More information</sgds-button>
+    </sgds-tooltip>`,
+  },
+};
+
 const buildAccessibilitySections = (doc: ComponentDoc): AccessibilitySection[] => {
+  const demoMarkups = accessibilityDemoMarkupOverrides[doc.key] ?? {};
+
   if (doc.accessibility && "sections" in doc.accessibility) {
-    return doc.accessibility.sections ?? [];
+    return (doc.accessibility.sections ?? []).map((section) => ({
+      ...section,
+      markup:
+        section.markup
+        ?? (section.title === "Built-in accessibility"
+          ? demoMarkups.builtIn
+          : section.title === "Labels and content"
+            ? demoMarkups.author
+            : section.title === "Focus and interaction"
+              ? demoMarkups.focus
+              : undefined),
+    }));
   }
 
-  const firstDemoMarkup = doc.demos[0]?.markup || `<${doc.tag}></${doc.tag}>`;
   const profile = getGeneratedAccessibilityProfile(doc);
 
   return [
@@ -6317,19 +6957,19 @@ const buildAccessibilitySections = (doc: ComponentDoc): AccessibilitySection[] =
       title: "Built-in accessibility",
       description: profile.builtInDescription,
       items: profile.builtInItems,
-      markup: firstDemoMarkup,
+      markup: demoMarkups.builtIn,
     },
     {
       title: "Labels and content",
       description: profile.authorDescription,
       items: profile.authorItems,
-      markup: firstDemoMarkup,
+      markup: demoMarkups.author,
     },
     {
       title: "Focus and interaction",
       description: profile.focusDescription,
       items: profile.focusItems,
-      markup: firstDemoMarkup,
+      markup: demoMarkups.focus,
     },
   ];
 };
@@ -6340,10 +6980,84 @@ const buildAccessibilityKeyboardRows = (doc: ComponentDoc): AccessibilityKeyboar
   return getGeneratedAccessibilityProfile(doc).keyboardInteractions ?? [];
 };
 
-const buildResolvedAccessibility = (doc: ComponentDoc): AccessibilityContent => ({
-  sections: buildAccessibilitySections(doc),
-  keyboardInteractions: buildAccessibilityKeyboardRows(doc),
-});
+const keyboardNoteOverrides: Record<string, string[]> = {
+  alert: [
+    "The alert container is a status region, not a keyboard control.",
+    "Links or close buttons inside an alert use their own native keyboard behaviour.",
+  ],
+  badge: [
+    "Badges are visual labels for status, count, or category information.",
+    "They should not receive focus unless they are part of another interactive control.",
+  ],
+  card: [
+    "Cards do not define a keyboard pattern on their own.",
+    "Keyboard behaviour depends on the links, buttons, or stretched-link pattern placed inside the card.",
+  ],
+  "description-list": [
+    "Description lists are structural content for term and detail pairs.",
+    "Keyboard interaction only applies to links, buttons, or controls placed inside a value.",
+  ],
+  divider: [
+    "Dividers are visual separators and should not receive focus.",
+    "Use headings or labels to communicate the structure that the divider separates.",
+  ],
+  icon: [
+    "Icons are visual symbols and should not receive focus on their own.",
+    "Keyboard behaviour belongs to the parent button, link, or control that contains the icon.",
+  ],
+  "icon-card": [
+    "Icon cards do not define a keyboard pattern on their own.",
+    "Keyboard behaviour depends on whether the card is configured as a link or contains interactive elements.",
+  ],
+  "icon-list": [
+    "Icon lists are structured content with supporting icons.",
+    "Keyboard interaction only applies when list items contain links or controls.",
+  ],
+  "image-card": [
+    "Image cards do not define a keyboard pattern on their own.",
+    "Keyboard behaviour depends on whether the card is configured as a link or contains interactive elements.",
+  ],
+  "progress-bar": [
+    "Progress bars communicate status and usually should not receive focus.",
+    "Keyboard interaction belongs to any related control, such as a cancel or retry button.",
+  ],
+  skeleton: [
+    "Skeletons are loading placeholders and should not receive focus.",
+    "If loading takes time, provide status text or a related control outside the skeleton.",
+  ],
+  spinner: [
+    "Spinners are loading indicators and should not receive focus.",
+    "Keyboard interaction belongs to any related control, such as a cancel or retry button.",
+  ],
+  "thumbnail-card": [
+    "Thumbnail cards do not define a keyboard pattern on their own.",
+    "Keyboard behaviour depends on whether the card is configured as a link or contains interactive elements.",
+  ],
+  toast: [
+    "Toast messages are status updates and should not take focus automatically.",
+    "Dismissible toasts use the close button's native keyboard behaviour.",
+  ],
+};
+
+const buildAccessibilityKeyboardNotes = (doc: ComponentDoc, keyboardInteractions: AccessibilityKeyboardRow[]): string[] => {
+  if (keyboardInteractions.length) return [];
+  if (doc.accessibility?.keyboardNotes?.length) return doc.accessibility.keyboardNotes;
+
+  return keyboardNoteOverrides[doc.key] ?? [
+    `${doc.title} does not define a separate keyboard pattern on its own.`,
+    "Keyboard interaction only applies to links, buttons, or controls placed inside the component.",
+  ];
+};
+
+const buildResolvedAccessibility = (doc: ComponentDoc): AccessibilityContent => {
+  const keyboardInteractions = buildAccessibilityKeyboardRows(doc);
+
+  return {
+    sections: buildAccessibilitySections(doc),
+    keyboardInteractions,
+    keyboardNotes: buildAccessibilityKeyboardNotes(doc, keyboardInteractions),
+  };
+};
 
 const buildResolvedUpdates = (doc: ComponentDoc): UpdatesContent => {
   if (doc.updates) return doc.updates;
