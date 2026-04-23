@@ -3,12 +3,16 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue"
 import Section from "../foundations/Section.vue";
 import AnatomySection from "./AnatomySection.vue";
 import BehaviourSection from "./BehaviourSection.vue";
+import InteractivePropertyDemo from "./InteractivePropertyDemo.vue";
 import MeasurementsSection from "./MeasurementsSection.vue";
+import StructureSection from "./StructureSection.vue";
 import BestPracticesSection from "./BestPracticesSection.vue";
 import MotionSection from "./MotionSection.vue";
 import AccessibilitySection from "./AccessibilitySection.vue";
 import UpdatesSection from "./UpdatesSection.vue";
+import CodeToken from "../ui/CodeToken.vue";
 import { getComponentDoc } from "../../data/component-docs";
+import { accordionV2Data } from "../../data/accordion-v2";
 
 const props = defineProps<{
   componentKey: string;
@@ -18,10 +22,52 @@ const props = defineProps<{
 const doc = computed(() => props.docOverride ?? getComponentDoc(props.componentKey));
 const currentPageKey = computed(() => doc.value?.key ?? props.componentKey);
 
+const toOptionValue = (label: string, index: number) => {
+  const normalised = label
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return normalised || `option-${index + 1}`;
+};
+
+// Configuration demos: prefer the doc's own configurationDemos; fall back to
+// accordion-v2's variantPropertyDemos for the accordion page until that data is
+// migrated into component-docs.ts. For all other components, wrap flat demos
+// into the same stacked InteractivePropertyDemo shell so the configuration
+// section matches the accordion page template.
+const configurationDemos = computed(() => {
+  if (doc.value?.configurationDemos?.length) return doc.value.configurationDemos;
+  if (currentPageKey.value === "accordion") return accordionV2Data.variantPropertyDemos;
+  return (doc.value?.demos ?? []).map((demo, index) => ({
+    title: demo.title,
+    description: demo.description,
+    controlLabel: `${doc.value?.title || "Component"} ${demo.title}`,
+    defaultValue: toOptionValue(demo.title, index),
+    options: [
+      {
+        label: demo.title,
+        value: toOptionValue(demo.title, index),
+        markup: demo.markup,
+      },
+    ],
+  }));
+});
+
 const measurementExamples = computed(() => {
   if (!doc.value) return [];
   if (doc.value.measurements) return doc.value.measurements;
   return doc.value.demos.slice(0, 2);
+});
+const measurementTokens = computed(() => doc.value?.measurementTokens ?? []);
+const measurementTokenGroups = computed(() => doc.value?.measurementTokenGroups ?? []);
+const globalTokens = computed(() => doc.value?.globalTokens ?? []);
+const hasElementColumn = (rows: { element?: string }[]) =>
+  rows.some((row) => Boolean(row.element?.trim()));
+const structurePreviewMarkup = computed(() => {
+  const first = measurementExamples.value[0];
+  if (first && "markup" in first && first.markup) return first.markup;
+  return "";
 });
 
 const anatomyPreviewMarkup = computed(() => {
@@ -33,11 +79,6 @@ const anatomyPreviewMarkup = computed(() => {
   return `<div class="portal-demo-stack">${doc.value.demos
     .map((example) => `<div class="portal-anatomy-demo-block">${example.markup}</div>`)
     .join("")}</div>`;
-});
-
-const codePreviewMarkup = computed(() => {
-  if (!doc.value) return "";
-  return doc.value.anatomyMarkup || doc.value.demos[0]?.markup || `<${doc.value.tag}></${doc.value.tag}>`;
 });
 
 const initSteppers = async () => {
@@ -54,8 +95,12 @@ const initSteppers = async () => {
   });
 };
 
-// Tab hash sync
-const TAB_PANELS = ["design", "usage", "code", "accessibility", "updates"];
+// Tab hash sync — universal 4-tab layout (design / usage / accessibility / updates).
+// The Code tab is intentionally hidden on every component page to mirror the
+// accordion v1 pattern; code snippets live in the Storybook/repo reference
+// instead.
+const TAB_PANELS = ["design", "usage", "accessibility", "updates"];
+const visibleTabPanels = computed(() => TAB_PANELS);
 const tabGroupRef = ref<Element | null>(null);
 
 const handleTabClick = (panel: string) => {
@@ -65,7 +110,7 @@ const handleTabClick = (panel: string) => {
 const activateTabFromHash = async () => {
   await nextTick();
   const hash = window.location.hash.slice(1).toLowerCase();
-  if (!TAB_PANELS.includes(hash) || hash === "design") return;
+  if (!visibleTabPanels.value.includes(hash) || hash === "design") return;
 
   // Wait for the Lit element to be defined and finish its first update cycle
   await customElements.whenDefined("sgds-tab-group");
@@ -93,23 +138,22 @@ onBeforeUnmount(() => {
     <sgds-tab-group ref="tabGroupRef" class="sgds:block sgds:w-full" variant="underlined">
       <sgds-tab slot="nav" panel="design" active @click="handleTabClick('design')">Design</sgds-tab>
       <sgds-tab slot="nav" panel="usage" @click="handleTabClick('usage')">Usage</sgds-tab>
-      <sgds-tab slot="nav" panel="code" @click="handleTabClick('code')">Code</sgds-tab>
       <sgds-tab slot="nav" panel="accessibility" @click="handleTabClick('accessibility')">Accessibility</sgds-tab>
       <sgds-tab slot="nav" panel="updates" @click="handleTabClick('updates')">Updates</sgds-tab>
 
       <!-- Design tab -->
       <sgds-tab-panel name="design">
         <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-margin-5-xl)] sgds:pt-[var(--sgds-layout-gap-lg)]">
-          <Section title="Purpose">
-            <div class="sgds:grid sgds:gap-layout-md sgds:grid-cols-3 sgds:max-lg:grid-cols-1">
-              <article v-for="card in doc.purposeCards" :key="card.title" class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-md)] sgds:min-w-0 sgds:p-0">
+          <Section title="Purpose" gap="sgds:gap-[var(--sgds-gap-xl)]">
+            <div class="sgds:grid sgds:gap-layout-md sgds:grid-cols-3 sgds:max-sm:grid-cols-1">
+              <article v-for="card in doc.purposeCards" :key="card.title" class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:min-w-0 sgds:p-0">
                 <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ card.title }}</h3>
                 <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ card.description }}</p>
               </article>
             </div>
           </Section>
 
-          <Section title="Anatomy">
+          <Section title="Anatomy" gap="sgds:gap-[var(--sgds-gap-xl)]">
             <AnatomySection
               :anatomy-asset="doc.anatomyAsset"
               :anatomy-preview-markup="anatomyPreviewMarkup"
@@ -118,12 +162,68 @@ onBeforeUnmount(() => {
             />
           </Section>
 
-          <Section title="Configuration">
-            <BehaviourSection :items="doc.demos" />
+          <Section title="Configuration" gap="sgds:gap-[var(--sgds-gap-xl)]">
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+              <InteractivePropertyDemo
+                v-for="demo in configurationDemos"
+                :key="demo.title"
+                :demo="demo"
+              />
+            </div>
           </Section>
 
-          <Section v-if="measurementExamples.length" title="Measurements">
-            <MeasurementsSection :examples="measurementExamples" />
+          <Section v-if="measurementExamples.length || measurementTokens.length || measurementTokenGroups.length || globalTokens.length" title="Structure">
+            <StructureSection
+              v-if="currentPageKey === 'accordion' || currentPageKey === 'card'"
+              :preview-markup="structurePreviewMarkup"
+              :tokens="measurementTokens"
+              :token-groups="measurementTokenGroups"
+              :global-tokens="globalTokens"
+            />
+            <div v-else class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+              <MeasurementsSection v-if="measurementExamples.length" :examples="measurementExamples" />
+              <sgds-table v-if="measurementTokens.length" tableBorder headerBackground responsive="always">
+                <sgds-table-row>
+                  <sgds-table-head v-if="hasElementColumn(measurementTokens)">Element</sgds-table-head>
+                  <sgds-table-head>Component token</sgds-table-head>
+                  <sgds-table-head>Semantic token</sgds-table-head>
+                  <sgds-table-head>Value</sgds-table-head>
+                </sgds-table-row>
+                <sgds-table-row
+                  v-for="row in measurementTokens"
+                  :key="`${row.element}-${row.property}-${row.designToken}`"
+                >
+                  <sgds-table-cell v-if="hasElementColumn(measurementTokens)">{{ row.element }}</sgds-table-cell>
+                  <sgds-table-cell>{{ row.property }}</sgds-table-cell>
+                  <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
+                  <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
+                </sgds-table-row>
+              </sgds-table>
+              <div
+                v-for="group in measurementTokenGroups"
+                :key="group.title"
+                class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-sm)]"
+              >
+                <h5 class="sgds:m-0 sgds:text-heading-xs sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ group.title }}</h5>
+                <sgds-table tableBorder headerBackground responsive="always">
+                  <sgds-table-row>
+                    <sgds-table-head v-if="hasElementColumn(group.tokens)">Element</sgds-table-head>
+                    <sgds-table-head>Component token</sgds-table-head>
+                    <sgds-table-head>Semantic token</sgds-table-head>
+                    <sgds-table-head>Value</sgds-table-head>
+                  </sgds-table-row>
+                  <sgds-table-row
+                    v-for="row in group.tokens"
+                    :key="`${group.title}-${row.element}-${row.property}-${row.designToken}`"
+                  >
+                    <sgds-table-cell v-if="hasElementColumn(group.tokens)">{{ row.element }}</sgds-table-cell>
+                    <sgds-table-cell>{{ row.property }}</sgds-table-cell>
+                    <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
+                    <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
+                  </sgds-table-row>
+                </sgds-table>
+              </div>
+            </div>
           </Section>
         </div>
       </sgds-tab-panel>
@@ -190,48 +290,14 @@ onBeforeUnmount(() => {
         </article>
       </sgds-tab-panel>
 
-      <!-- Code tab -->
-      <sgds-tab-panel name="code">
-        <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-margin-5-xl)] sgds:pt-[var(--sgds-layout-gap-lg)]">
-          <Section title="Live demo">
-            <article class="sgds:flex sgds:flex-col sgds:justify-start sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:gap-[var(--sgds-gap-md)] sgds:p-component-md">
-              <div class="sgds:flex sgds:items-center sgds:justify-center sgds:flex-1 sgds:relative sgds:w-full">
-                <div class="sgds:flex sgds:items-center sgds:justify-center sgds:flex-1 sgds:w-full">
-                  <div class="live-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="codePreviewMarkup"></div>
-                </div>
-              </div>
-            </article>
-          </Section>
-
-          <Section v-if="doc.props?.length" title="Props">
-            <sgds-table tableBorder headerBackground>
-              <sgds-table-row>
-                <sgds-table-head>Property</sgds-table-head>
-                <sgds-table-head>Type</sgds-table-head>
-                <sgds-table-head>Default</sgds-table-head>
-                <sgds-table-head>Description</sgds-table-head>
-              </sgds-table-row>
-              <sgds-table-row v-for="prop in doc.props || []" :key="prop.name">
-                <sgds-table-cell>{{ prop.name }}</sgds-table-cell>
-                <sgds-table-cell>{{ prop.type }}</sgds-table-cell>
-                <sgds-table-cell>{{ prop.defaultValue }}</sgds-table-cell>
-                <sgds-table-cell>{{ prop.description }}</sgds-table-cell>
-              </sgds-table-row>
-            </sgds-table>
-          </Section>
-        </div>
-      </sgds-tab-panel>
-
       <!-- Accessibility tab -->
       <sgds-tab-panel name="accessibility">
         <div v-if="doc.accessibility?.sections?.length || doc.accessibility?.keyboardInteractions?.length" class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-margin-5-xl)] sgds:pt-[var(--sgds-layout-gap-lg)]">
-          <Section title="Accessibility">
-            <AccessibilitySection :accessibility="doc.accessibility" />
-          </Section>
+          <AccessibilitySection :accessibility="doc.accessibility" />
         </div>
         <article v-else class="sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-md)] sgds:p-component-md">
           <h3 class="sgds:text-heading-default sgds:m-0">Accessibility notes</h3>
-          <ul v-if="doc.accessibilityNotes?.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xs)] sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
+          <ul v-if="doc.accessibilityNotes?.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
             <li v-for="note in doc.accessibilityNotes" :key="note">{{ note }}</li>
           </ul>
           <p v-else class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line">
@@ -249,22 +315,6 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
-/* Global selectors targeting slotted web component elements in v-html markup */
-.live-demo-markup > sgds-accordion {
-  background: var(--sgds-surface-default);
-  display: block;
-  width: 100%;
-}
-
-.live-demo-markup > sgds-alert {
-  display: block;
-  width: 100%;
-}
-
-.live-demo-markup sgds-alert-link {
-  vertical-align: baseline;
-}
-
 /* Global portal utility classes used in component markup strings */
 .portal-demo-row {
   align-items: center;
@@ -291,7 +341,9 @@ onBeforeUnmount(() => {
 }
 
 .portal-demo-card {
-  max-width: var(--sgds-dimension-320);
+  display: block;
+  max-width: var(--sgds-dimension-360);
+  margin-inline: auto;
   width: 100%;
 }
 
@@ -300,12 +352,12 @@ onBeforeUnmount(() => {
   background: var(--sgds-accent-surface-muted);
   border: var(--sgds-border-width-1) dashed var(--sgds-link-color-default);
   border-radius: var(--sgds-border-radius-none);
+  box-sizing: border-box;
   color: var(--sgds-link-color-default);
   display: flex;
   gap: var(--sgds-gap-sm);
   justify-content: flex-start;
   padding: var(--sgds-padding-md);
-  width: 100%;
 }
 
 .portal-slot-example span {
@@ -316,6 +368,35 @@ onBeforeUnmount(() => {
 .portal-slot-example sgds-icon {
   color: inherit;
   flex-shrink: 0;
+}
+
+.portal-card-title-h4 {
+  font-size: var(--sgds-font-size-heading-sm) !important;
+  font-weight: var(--sgds-font-weight-semibold) !important;
+  letter-spacing: var(--sgds-letter-spacing-tight) !important;
+  line-height: var(--sgds-line-height-heading-sm) !important;
+}
+
+.portal-card-title-h5 {
+  font-size: var(--sgds-font-size-subtitle-md) !important;
+  font-weight: var(--sgds-font-weight-semibold) !important;
+  letter-spacing: var(--sgds-letter-spacing-normal) !important;
+  line-height: var(--sgds-line-height-xs) !important;
+}
+
+.portal-card-footer-full-width {
+  display: block;
+  width: 100% !important;
+}
+
+/* Card titles are styled inside shadow DOM with the 24px title token.
+   Override that token per demo so the hierarchy examples can reflect SGDS H4/H5 typography. */
+.portal-card-title-h4-demo {
+  --sgds-font-size-24: var(--sgds-font-size-heading-sm);
+}
+
+.portal-card-title-h5-demo {
+  --sgds-font-size-24: var(--sgds-font-size-subtitle-md);
 }
 
 .portal-demo-overlay {
@@ -477,5 +558,335 @@ onBeforeUnmount(() => {
   .portal-accessibility-preview {
     min-height: var(--sgds-dimension-360);
   }
+}
+
+/* Accordion button measurement diagram — global classes for v-html markup */
+.accordion-m-bubble {
+  background: #6b4feb;
+  border-radius: 3.5px;
+  color: #fff;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+.accordion-m-bubble--w {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.accordion-m-outer {
+  --accordion-measure-fill: rgba(107, 79, 235, 0.05);
+  --accordion-measure-line: #6b4feb;
+  display: flex;
+  flex-direction: column;
+  max-width: 688px;
+  width: 100%;
+}
+.accordion-m-inspector {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-gap-lg);
+  width: 100%;
+}
+.accordion-m-preview {
+  max-width: 688px;
+  position: relative;
+  width: 100%;
+}
+.accordion-m-main {
+  align-items: flex-start;
+  display: flex;
+  gap: 8px;
+}
+.accordion-m-left {
+  align-items: center;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 64px;
+  margin-top: 32px;
+}
+.accordion-m-v-bracket {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: 100%;
+}
+.accordion-m-h-tick-h {
+  background: var(--accordion-measure-line);
+  height: 1px;
+  width: 6px;
+}
+.accordion-m-v-line-seg {
+  background: var(--accordion-measure-line);
+  flex: 1;
+  width: 1px;
+}
+.accordion-m-col {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+.accordion-m-anns {
+  display: flex;
+  height: 32px;
+}
+.accordion-m-a {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.accordion-m-stem {
+  background: var(--accordion-measure-line);
+  height: 6px;
+  width: 1px;
+}
+.accordion-m-p {
+  flex: 0 0 20px;
+}
+.accordion-m-i {
+  flex: 0 0 16px;
+}
+.accordion-m-g {
+  flex: 0 0 16px;
+}
+.accordion-m-t {
+  flex: 1;
+  min-width: 0;
+}
+.accordion-m-b {
+  flex: 0 0 64px;
+}
+.accordion-m-btn {
+  background: var(--sgds-surface-default);
+  height: 64px;
+  overflow: hidden;
+  position: relative;
+}
+.accordion-m-live {
+  background: var(--sgds-surface-default);
+  height: 100%;
+  width: 100%;
+}
+.accordion-m-live-border {
+  position: relative;
+}
+.accordion-m-live > sgds-accordion {
+  background: var(--sgds-surface-default);
+  display: block;
+  width: 100%;
+}
+.accordion-m-header-copy {
+  align-items: center;
+  color: var(--sgds-heading-color-default);
+  display: inline-flex;
+  font-size: var(--sgds-font-size-5);
+  font-weight: var(--sgds-font-weight-semibold);
+  gap: var(--sgds-gap-md);
+  line-height: var(--sgds-line-height-40);
+  min-width: 0;
+  position: relative;
+}
+.accordion-m-header-icon {
+  color: var(--sgds-color-subtle);
+  flex: 0 0 auto;
+}
+.accordion-m-hover-target {
+  inset: 0 auto auto 0;
+  height: 64px;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+}
+.accordion-m-gap-overlay {
+  height: 24px;
+  left: 44px;
+  position: absolute;
+  top: 20px;
+  width: 16px;
+  z-index: 3;
+}
+.accordion-m-title-target {
+  color: inherit;
+  display: inline-block;
+  font: inherit;
+  line-height: inherit;
+}
+.accordion-m-title-tooltip {
+  align-items: center;
+  color: inherit;
+  display: inline-flex;
+  font: inherit;
+  line-height: inherit;
+}
+.accordion-m-border-target {
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+.accordion-m-panel-target {
+  left: 20px;
+  position: absolute;
+  right: 20px;
+  z-index: 3;
+}
+.accordion-m-panel-target-x {
+  top: 0;
+  bottom: 0;
+}
+.accordion-m-panel-target-y {
+  top: 20px;
+  height: 44px;
+}
+.accordion-m-inspectable {
+  cursor: pointer;
+  font: inherit;
+  position: relative;
+}
+.accordion-m-content {
+  color: var(--sgds-body-color-default);
+}
+.accordion-m-content-copy {
+  display: inline-block;
+  font: inherit;
+}
+.accordion-m-inspectable:hover {
+  background: rgba(107, 79, 235, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(107, 79, 235, 0.28);
+}
+.accordion-m-border-target:hover {
+  background: rgba(107, 79, 235, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(107, 79, 235, 0.28);
+}
+.accordion-m-map {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-gap-md);
+  max-width: 688px;
+  width: 100%;
+}
+.accordion-m-map-section {
+  border: 1px solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-md);
+  overflow: hidden;
+}
+.accordion-m-map-heading {
+  background: var(--sgds-surface-raised);
+  color: var(--sgds-heading-color-default);
+  font-size: var(--sgds-font-size-3);
+  font-weight: var(--sgds-font-weight-semibold);
+  line-height: var(--sgds-line-height-24);
+  padding: var(--sgds-padding-md);
+}
+.accordion-m-map-row {
+  align-items: center;
+  border-top: 1px solid var(--sgds-border-color-muted);
+  display: grid;
+  gap: var(--sgds-gap-sm);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1.5fr) auto;
+  padding: var(--sgds-padding-md);
+}
+.accordion-m-map-name,
+.accordion-m-map-prop,
+.accordion-m-map-value {
+  color: var(--sgds-body-color-default);
+  font-size: var(--sgds-font-size-2);
+  font-weight: var(--sgds-font-weight-regular);
+  line-height: var(--sgds-line-height-24);
+}
+.accordion-m-map-token {
+  background: var(--sgds-surface-default);
+  border: 1px solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-sm);
+  color: var(--sgds-color-default);
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: var(--sgds-font-size-2);
+  line-height: var(--sgds-line-height-24);
+  padding: 4px 10px;
+  width: fit-content;
+}
+@media (max-width: 767px) {
+  .accordion-m-map-row {
+    grid-template-columns: 1fr;
+  }
+}
+.accordion-m-stage .accordion-m-token-row {
+  transition: background-color 120ms ease;
+}
+.accordion-m-stage .accordion-m-token-row[data-map="title-color"]:hover,
+.accordion-m-stage:has(.accordion-m-inspectable[data-map="title-color"]:hover) .accordion-m-token-row[data-map="title-color"],
+.accordion-m-stage:has(.accordion-m-token-row[data-map="title-color"]:hover) .accordion-m-inspectable[data-map="title-color"] {
+  background: rgba(107, 79, 235, 0.12);
+}
+.accordion-m-stage .accordion-m-token-row[data-map="border-color"]:hover,
+.accordion-m-stage:has(.accordion-m-inspectable[data-map="border-color"]:hover) .accordion-m-token-row[data-map="border-color"],
+.accordion-m-stage:has(.accordion-m-token-row[data-map="border-color"]:hover) .accordion-m-inspectable[data-map="border-color"],
+.accordion-m-stage:has(.accordion-m-token-row[data-map="border-color"]:hover) .accordion-m-border-target,
+.accordion-m-stage:has(.accordion-m-border-target:hover) .accordion-m-token-row[data-map="border-color"] {
+  background: rgba(107, 79, 235, 0.12);
+}
+.accordion-m-stage .accordion-m-token-row[data-map="padding-x-default"]:hover,
+.accordion-m-stage:has(.accordion-m-inspectable[data-map="padding-x-default"]:hover) .accordion-m-token-row[data-map="padding-x-default"],
+.accordion-m-stage:has(.accordion-m-token-row[data-map="padding-x-default"]:hover) .accordion-m-inspectable[data-map="padding-x-default"],
+.accordion-m-stage:has(.accordion-m-token-row[data-map="padding-x-default"]:hover) .accordion-m-panel-target-x,
+.accordion-m-stage:has(.accordion-m-panel-target-x:hover) .accordion-m-token-row[data-map="padding-x-default"] {
+  background: rgba(107, 79, 235, 0.12);
+}
+.accordion-m-stage .accordion-m-token-row[data-map="padding-y-default"]:hover,
+.accordion-m-stage:has(.accordion-m-inspectable[data-map="padding-y-default"]:hover) .accordion-m-token-row[data-map="padding-y-default"],
+.accordion-m-stage:has(.accordion-m-token-row[data-map="padding-y-default"]:hover) .accordion-m-inspectable[data-map="padding-y-default"],
+.accordion-m-stage:has(.accordion-m-token-row[data-map="padding-y-default"]:hover) .accordion-m-panel-target-y,
+.accordion-m-stage:has(.accordion-m-panel-target-y:hover) .accordion-m-token-row[data-map="padding-y-default"] {
+  background: rgba(107, 79, 235, 0.12);
+}
+.accordion-m-stage .accordion-m-token-row[data-map="content-padding"]:hover,
+.accordion-m-stage:has(.accordion-m-inspectable[data-map="content-padding"]:hover) .accordion-m-token-row[data-map="content-padding"],
+.accordion-m-stage:has(.accordion-m-token-row[data-map="content-padding"]:hover) .accordion-m-inspectable[data-map="content-padding"] {
+  background: rgba(107, 79, 235, 0.12);
+}
+.accordion-m-hl {
+  background: var(--accordion-measure-line);
+  flex: 1;
+  height: 1px;
+}
+.accordion-m-right {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 64px;
+  margin-top: 32px;
+  min-width: 36px;
+}
+.accordion-m-va {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+.accordion-m-vm {
+  flex: 1;
+}
+.accordion-m-vr {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 20px;
+}
+.accordion-m-ht {
+  background: var(--accordion-measure-line);
+  height: 1px;
+  width: 6px;
+}
+.accordion-m-vl {
+  background: var(--accordion-measure-line);
+  flex: 1;
+  width: 1px;
 }
 </style>
