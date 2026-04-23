@@ -4768,6 +4768,181 @@ const measureHotspots = async () => {
     return;
   }
 
+  if (structureKind.value === "generic") {
+    const component = root.firstElementChild as HTMLElement | null;
+    if (!component) return;
+
+    const surfaceRect = getRelativeRect(component, shell);
+    const childElements = Array.from(component.children).filter((child) => {
+      const rect = child.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0;
+    }) as HTMLElement[];
+    const contentRect = getUnionRect(childElements, shell);
+    const nextRects = Object.fromEntries(
+      Object.keys(inspectMeta.value).map((key) => {
+        const nextRect = isPaddingOverlayKey(key) && contentRect
+          ? {
+              ...surfaceRect,
+              insetLeft: Math.max(0, contentRect.left - surfaceRect.left),
+              insetTop: Math.max(0, contentRect.top - surfaceRect.top),
+              insetWidth: contentRect.width,
+              insetHeight: contentRect.height,
+            }
+          : surfaceRect;
+        return [key, nextRect];
+      }),
+    ) as Record<string, HotspotRect | null>;
+
+    hotspotRects.value = nextRects;
+    return;
+  }
+
+  if (structureKind.value === "button") {
+    const button = root.querySelector("sgds-button") as HTMLElement | null;
+    const buttonRoot = button?.shadowRoot;
+    const buttonSurface = buttonRoot?.querySelector(".btn") as HTMLElement | null;
+    const leftIconSlot = buttonRoot?.querySelector('slot[name="leftIcon"]') as HTMLSlotElement | null;
+    const rightIconSlot = buttonRoot?.querySelector('slot[name="rightIcon"]') as HTMLSlotElement | null;
+    const leftIcon = (leftIconSlot?.assignedElements?.()[0] ?? root.querySelector('[slot="leftIcon"]')) as HTMLElement | null;
+    const rightIcon = (rightIconSlot?.assignedElements?.()[0] ?? root.querySelector('[slot="rightIcon"]')) as HTMLElement | null;
+
+    const nextRects = Object.fromEntries(
+      Object.keys(inspectMeta.value).map((key) => [key, null]),
+    ) as Record<string, HotspotRect | null>;
+
+    if (buttonSurface) {
+      const surfaceRect = getRelativeRect(buttonSurface, shell);
+      nextRects["background"] = surfaceRect;
+      nextRects["hover-bg"] = surfaceRect;
+      nextRects["text-color"] = surfaceRect;
+      nextRects["border-width"] = surfaceRect;
+      nextRects["border-radius"] = surfaceRect;
+      nextRects["height"] = surfaceRect;
+      nextRects["min-width"] = surfaceRect;
+      nextRects["font-size"] = surfaceRect;
+      nextRects["line-height"] = surfaceRect;
+
+      // Compute inner content rect for padding-x and gap overlays
+      const innerElements = [leftIcon, rightIcon].filter(Boolean) as HTMLElement[];
+      if (innerElements.length) {
+        const innerRect = getUnionRect(innerElements, shell);
+        if (innerRect) {
+          nextRects["padding-x"] = {
+            ...surfaceRect,
+            insetLeft: Math.max(0, innerRect.left - surfaceRect.left),
+            insetTop: 0,
+            insetWidth: innerRect.width,
+            insetHeight: surfaceRect.height,
+          };
+        }
+      }
+    }
+
+    if (leftIcon && rightIcon && buttonSurface) {
+      const shellBounds = shell.getBoundingClientRect();
+      const leftBounds = leftIcon.getBoundingClientRect();
+      const rightBounds = rightIcon.getBoundingClientRect();
+      const surfaceBounds = buttonSurface.getBoundingClientRect();
+      nextRects.gap = {
+        left: leftBounds.right - shellBounds.left,
+        top: surfaceBounds.top - shellBounds.top,
+        width: Math.max(0, rightBounds.left - leftBounds.right),
+        height: surfaceBounds.height,
+      };
+    }
+
+    if (leftIcon) {
+      nextRects["leading-icon-color"] = getRelativeRect(leftIcon, shell);
+    }
+
+    if (rightIcon) {
+      nextRects["trailing-icon-color"] = getRelativeRect(rightIcon, shell);
+    }
+
+    hotspotRects.value = nextRects;
+    return;
+  }
+
+  if (structureKind.value === "alert") {
+    const alert = root.querySelector("sgds-alert") as HTMLElement | null;
+    const alertRoot = alert?.shadowRoot;
+    const alertSurface = alertRoot?.querySelector(".alert") as HTMLElement | null;
+    const alertContent = alertRoot?.querySelector(".alert-content") as HTMLElement | null;
+    const alertTitle = alertRoot?.querySelector(".alert-title") as HTMLElement | null;
+    const iconSlot = alertRoot?.querySelector('slot[name="icon"]') as HTMLSlotElement | null;
+    const descriptionSlot = alertRoot?.querySelector(".alert-content__description") as HTMLSlotElement | null;
+    const closeButton = alertRoot?.querySelector("sgds-close-button") as HTMLElement | null;
+    const icon = (iconSlot?.assignedElements?.()[0] ?? root.querySelector('[slot="icon"]')) as HTMLElement | null;
+    const description = (
+      descriptionSlot?.assignedElements?.()[0] ??
+      alert?.querySelector(':scope > div:not([slot])')
+    ) as HTMLElement | null;
+
+    const nextRects = Object.fromEntries(
+      Object.keys(inspectMeta.value).map((key) => [key, null]),
+    ) as Record<string, HotspotRect | null>;
+
+    if (alertSurface) {
+      const surfaceRect = getRelativeRect(alertSurface, shell);
+      nextRects["border-color"] = surfaceRect;
+      nextRects["border-width"] = surfaceRect;
+      nextRects["border-radius"] = surfaceRect;
+
+      const innerElements = [icon, alertContent, closeButton].filter(Boolean) as HTMLElement[];
+      const innerRect = getUnionRect(innerElements, shell);
+
+      if (innerRect) {
+        nextRects["padding-x"] = {
+          ...surfaceRect,
+          insetLeft: Math.max(0, innerRect.left - surfaceRect.left),
+          insetTop: Math.max(0, innerRect.top - surfaceRect.top),
+          insetWidth: innerRect.width,
+          insetHeight: innerRect.height,
+        };
+        nextRects["padding-y"] = {
+          ...surfaceRect,
+          insetLeft: Math.max(0, innerRect.left - surfaceRect.left),
+          insetTop: Math.max(0, innerRect.top - surfaceRect.top),
+          insetWidth: innerRect.width,
+          insetHeight: innerRect.height,
+        };
+      }
+    }
+
+    if (alertContent) {
+      const contentRect = getRelativeRect(alertContent, shell);
+      const contentInnerRect = getUnionRect([alertTitle, description].filter(Boolean) as HTMLElement[], shell);
+
+      if (contentInnerRect) {
+        const paddingRightLeft = contentInnerRect.left + contentInnerRect.width;
+        nextRects["content-padding-right"] = {
+          left: paddingRightLeft,
+          top: contentRect.top,
+          width: Math.max(0, contentRect.left + contentRect.width - paddingRightLeft),
+          height: contentRect.height,
+        };
+      }
+    }
+
+    if (icon && alertContent) {
+      const shellBounds = shell.getBoundingClientRect();
+      const iconBounds = icon.getBoundingClientRect();
+      const contentBounds = alertContent.getBoundingClientRect();
+      nextRects.gap = {
+        left: iconBounds.right - shellBounds.left,
+        top: contentBounds.top - shellBounds.top,
+        width: Math.max(0, contentBounds.left - iconBounds.right),
+        height: contentBounds.height,
+      };
+    }
+
+    nextRects["content-gap"] = getGapRect(alertContent, closeButton, shell);
+    nextRects["title-gap"] = getGapRect(alertTitle, description, shell);
+
+    hotspotRects.value = nextRects;
+    return;
+  }
+
   if (structureKind.value === "card") {
     const card = root.querySelector("sgds-card") as HTMLElement | null;
     const cardRoot = card?.shadowRoot;

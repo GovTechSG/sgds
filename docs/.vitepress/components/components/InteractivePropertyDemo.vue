@@ -350,6 +350,10 @@ watch(activeValue, () => {
   void setupSidebarDemos();
   void setupStepperDemos();
 });
+
+watch(activeValue, () => {
+  void applyStateEffects();
+});
 </script>
 
 <template>
