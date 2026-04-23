@@ -31,7 +31,18 @@ export type AnatomyCallout = {
   targetShadowSelector?: string;
   targetX?: "left" | "center" | "right";
   targetY?: "top" | "center" | "bottom";
+  /**
+   * Pixel offset applied to the anchor point after targetX is resolved.
+   * Positive values shift the anchor (and its callout stem + badge) to the right.
+   */
+  targetXOffset?: number;
+  /**
+   * Pixel offset applied to the anchor point after targetY is resolved.
+   * Positive values shift the anchor (and its callout stem + badge) downward.
+   */
+  targetYOffset?: number;
   stemLengthToken?: string;
+  alignBadgeWithCallout?: number;
 };
 
 export type ThemedImageAsset = {
@@ -43,6 +54,19 @@ export type ThemedImageAsset = {
 export type MeasurementAsset = ThemedImageAsset & {
   title: string;
   description: string;
+};
+
+export type MeasurementTokenRow = {
+  mapKey?: string;
+  element: string;
+  property: string;
+  designToken: string;
+  rawValue?: string;
+};
+
+export type MeasurementTokenGroup = {
+  title: string;
+  tokens: MeasurementTokenRow[];
 };
 
 export type UsageGuidance = {
@@ -79,6 +103,26 @@ export type ComponentProp = {
   type: string;
   defaultValue: string;
   description: string;
+};
+
+export type ConfigurationDemoOption = {
+  label: string;
+  value: string;
+  markup: string;
+  description?: string;
+  note?: string;
+  stateEffect?: "hover" | "focus";
+  selectedByDefault?: boolean;
+};
+
+export type ConfigurationDemo = {
+  title: string;
+  description: string;
+  titleTag?: "h3" | "h4" | "h5" | "h6";
+  controlLabel?: string;
+  defaultValue: string;
+  options: ConfigurationDemoOption[];
+  interactionMode?: "tabs" | "content-slots";
 };
 
 export type AccessibilitySection = {
@@ -137,6 +181,7 @@ export type UpdatesContent = {
 type UsageContent = {
   guidance?: UsageGuidance[];
   content?: UsageContentSection[];
+  contentGuidelines?: BestPractice[];
   behaviours?: UsageBehaviour[];
   motion?: {
     previewMarkup: string;
@@ -157,7 +202,11 @@ export type ComponentDoc = {
   anatomyAsset?: ThemedImageAsset;
   anatomyParts?: AnatomyInput[];
   anatomyCallouts?: AnatomyCallout[];
-  measurements?: MeasurementAsset[];
+  measurements?: (MeasurementAsset | ComponentDemo)[];
+  measurementTokens?: MeasurementTokenRow[];
+  measurementTokenGroups?: MeasurementTokenGroup[];
+  globalTokens?: MeasurementTokenRow[];
+  configurationDemos?: ConfigurationDemo[];
   usage?: UsageContent;
   accessibility?: AccessibilityContent;
   updates?: UpdatesContent;
@@ -326,11 +375,19 @@ const componentDocs: Record<string, ComponentDoc> = {
           "Expanded content stays grouped beneath its trigger so users can stay oriented while reading.",
       },
     ],
-    anatomyAsset: {
-      lightSrc: "/components/accordion-anatomy-light.svg",
-      darkSrc: "/components/accordion-anatomy-dark.svg",
-      alt: "Accordion anatomy diagram with numbered callouts",
-    },
+    anatomyMarkup: `<sgds-accordion variant="border" class="portal-anatomy-accordion">
+      <sgds-accordion-item class="portal-anatomy-accordion-item" open>
+        <sgds-icon slot="icon" class="portal-anatomy-accordion-icon" name="info-circle-fill"></sgds-icon>
+        <span slot="header" class="portal-anatomy-accordion-title">Accordion title</span>
+        <sgds-badge slot="badge" class="portal-anatomy-accordion-badge" variant="neutral" outlined>Badge</sgds-badge>
+        <div slot="content" class="portal-anatomy-accordion-content">Accordion content</div>
+      </sgds-accordion-item>
+      <sgds-accordion-item>
+        <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+        <span slot="header">Second section</span>
+        <div slot="content">Accordion content</div>
+      </sgds-accordion-item>
+    </sgds-accordion>`,
     anatomyParts: [
       { title: "Title" },
       { title: "Indicator", note: "(chevron)" },
@@ -338,6 +395,182 @@ const componentDocs: Record<string, ComponentDoc> = {
       { title: "Divider" },
       { title: "Leading icon", note: "(optional)" },
       { title: "Badge", note: "(optional)" },
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: ".portal-anatomy-accordion-title", targetX: "center", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
+      { number: 2, direction: "right", targetSelector: ".portal-anatomy-accordion-item", targetShadowSelector: ".accordion-header__trailing", targetX: "right", targetY: "center" },
+      { number: 3, direction: "left", targetSelector: ".portal-anatomy-accordion-content", targetX: "left", targetY: "center", stemLengthToken: "--sgds-dimension-64", alignBadgeWithCallout: 4 },
+      { number: 4, direction: "left", targetSelector: ".portal-anatomy-accordion-item", targetShadowSelector: ".accordion-item", targetX: "left", targetY: "bottom" },
+      { number: 5, direction: "top", targetSelector: ".portal-anatomy-accordion-icon", targetX: "center", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
+      { number: 6, direction: "top", targetSelector: ".portal-anatomy-accordion-badge", targetX: "center", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
+    ],
+    measurements: [
+      {
+        title: "",
+        description: "",
+        markup: `<sgds-accordion variant="border">
+          <sgds-accordion-item open>
+            <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+            <span slot="header">Accordion title</span>
+            <div slot="content">Accordion content</div>
+          </sgds-accordion-item>
+        </sgds-accordion>`,
+      },
+    ],
+    measurementTokens: [
+      {
+        mapKey: "hover-bg",
+        element: "Colour",
+        property: "hover-bg",
+        designToken: "sgds/bg-translucent-subtle",
+        rawValue: "Translucent",
+      },
+      {
+        mapKey: "title-color",
+        element: "",
+        property: "title-color",
+        designToken: "sgds/color-default",
+        rawValue: "#0E0E0E",
+      },
+      {
+        mapKey: "icon-color",
+        element: "",
+        property: "icon-color",
+        designToken: "sgds/color-subtle",
+        rawValue: "#525252",
+      },
+      {
+        mapKey: "gap",
+        element: "Gap",
+        property: "gap",
+        designToken: "sgds/gap/md",
+        rawValue: "16px",
+      },
+      {
+        mapKey: "border-color",
+        element: "Border",
+        property: "border-color",
+        designToken: "sgds/border-color-muted",
+        rawValue: "#DFDFDF",
+      },
+      {
+        mapKey: "border-width",
+        element: "",
+        property: "border-width",
+        designToken: "sgds/border-width/1",
+        rawValue: "1px",
+      },
+      {
+        mapKey: "border-radius",
+        element: "",
+        property: "border-radius",
+        designToken: "sgds/border-radius/md",
+        rawValue: "8px",
+      },
+    ],
+    measurementTokenGroups: [
+      {
+        title: "sgds/accordion/default",
+        tokens: [
+          {
+            element: "Padding",
+            property: "padding-x",
+            designToken: "sgds/padding/lg",
+            rawValue: "20px",
+          },
+          {
+            element: "",
+            property: "padding-y",
+            designToken: "sgds/padding/lg",
+            rawValue: "20px",
+          },
+          {
+            element: "Content padding",
+            property: "padding-top",
+            designToken: "sgds/padding/xs",
+            rawValue: "4px",
+          },
+          {
+            element: "",
+            property: "padding-bottom",
+            designToken: "sgds/padding/lg",
+            rawValue: "20px",
+          },
+        ],
+      },
+      {
+        title: "sgds/accordion/compact",
+        tokens: [
+          {
+            element: "Padding",
+            property: "padding-x",
+            designToken: "sgds/padding/md",
+            rawValue: "16px",
+          },
+          {
+            element: "",
+            property: "padding-y",
+            designToken: "sgds/padding/md",
+            rawValue: "16px",
+          },
+          {
+            element: "Content padding",
+            property: "padding-top",
+            designToken: "sgds/padding/xs",
+            rawValue: "4px",
+          },
+          {
+            element: "",
+            property: "padding-bottom",
+            designToken: "sgds/padding/md",
+            rawValue: "16px",
+          },
+        ],
+      },
+      {
+        title: "sgds/accordion/spacious",
+        tokens: [
+          {
+            element: "Padding",
+            property: "padding-x",
+            designToken: "sgds/padding/xl",
+            rawValue: "24px",
+          },
+          {
+            element: "",
+            property: "padding-y",
+            designToken: "sgds/padding/xl",
+            rawValue: "24px",
+          },
+          {
+            element: "Content padding",
+            property: "padding-top",
+            designToken: "sgds/padding/xs",
+            rawValue: "4px",
+          },
+          {
+            element: "",
+            property: "padding-bottom",
+            designToken: "sgds/padding/xl",
+            rawValue: "24px",
+          },
+        ],
+      },
+    ],
+    globalTokens: [
+      {
+        element: "Colour",
+        property: "",
+        designToken: "sgds/bg-transparent",
+        rawValue: "Transparent",
+      },
+      {
+        mapKey: "leading-icon-color",
+        element: "",
+        property: "",
+        designToken: "sgds/color-default",
+        rawValue: "#0E0E0E",
+      },
     ],
     demos: [
       {
@@ -380,24 +613,18 @@ const componentDocs: Record<string, ComponentDoc> = {
         "The start slot is an optional area placed before the accordion title. It is intended for identifiers or visual anchors that help users quickly recognize the type or context of the content.\n\nThis slot should remain visually balanced and not contain interactive elements.",
         `<sgds-accordion>
           <sgds-accordion-item>
-            <div slot="header" class="portal-demo-list-item">
-              <sgds-icon name="info-circle" size="sm"></sgds-icon>
-              <span>Accordion title</span>
-            </div>
+            <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+            <span slot="header">Accordion title</span>
             <div slot="content">Accordion content</div>
           </sgds-accordion-item>
           <sgds-accordion-item>
-            <div slot="header" class="portal-demo-list-item">
-              <sgds-icon name="info-circle" size="sm"></sgds-icon>
-              <span>Accordion title</span>
-            </div>
+            <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+            <span slot="header">Accordion title</span>
             <div slot="content">Accordion content</div>
           </sgds-accordion-item>
           <sgds-accordion-item>
-            <div slot="header" class="portal-demo-list-item">
-              <sgds-icon name="info-circle" size="sm"></sgds-icon>
-              <span>Accordion title</span>
-            </div>
+            <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+            <span slot="header">Accordion title</span>
             <div slot="content">Accordion content</div>
           </sgds-accordion-item>
         </sgds-accordion>`,
@@ -429,22 +656,6 @@ const componentDocs: Record<string, ComponentDoc> = {
           </sgds-accordion-item>
         </sgds-accordion>`,
       ),
-    ],
-    measurements: [
-      {
-        title: "Collapse",
-        description: "",
-        lightSrc: "/components/accordion-measurement-collapse-light.svg",
-        darkSrc: "/components/accordion-measurement-collapse-dark.svg",
-        alt: "Accordion collapse measurement diagram",
-      },
-      {
-        title: "Expand",
-        description: "",
-        lightSrc: "/components/accordion-measurement-expand-light.svg",
-        darkSrc: "/components/accordion-measurement-expand-dark.svg",
-        alt: "Accordion expand measurement diagram",
-      },
     ],
     usage: {
       guidance: [
@@ -552,74 +763,32 @@ const componentDocs: Record<string, ComponentDoc> = {
           </sgds-accordion>`,
         ),
       ],
-      content: [
+      contentGuidelines: [
         {
-          title: "Title",
-          items: [
-            "Use short, scannable titles so users can compare sections quickly.",
-            "Write titles in sentence case for readability.",
-          ],
+          title: "Use sentence case",
+          description: "This keeps titles easy to scan.",
+          tone: "do",
+          markup: `<sgds-accordion>
+            <sgds-accordion-item>
+              <span slot="header">What is your return policy?</span>
+              <div slot="content">Accordion content</div>
+            </sgds-accordion-item>
+          </sgds-accordion>`,
         },
         {
-          title: "Body",
-          items: [
-            "Keep content inside each panel concise and grouped by topic.",
-            "Break longer content into paragraphs, lists, or sub-headings when needed.",
-          ],
+          title: "Avoid all caps or mixed case",
+          description: "Inconsistent casing slows scanning.",
+          tone: "dont",
+          markup: `<sgds-accordion>
+            <sgds-accordion-item>
+              <span slot="header">WHAT IS YOUR RETURN POLICY?</span>
+              <div slot="content">Accordion content</div>
+            </sgds-accordion-item>
+          </sgds-accordion>`,
         },
         {
-          title: "Icon",
-          items: [
-            "Use start or end slot icons only when they add context or help users recognise the content type.",
-          ],
-        },
-        {
-          title: "Action",
-          items: [
-            "Avoid placing critical actions only inside collapsed content unless users are expected to review the section first.",
-          ],
-        },
-      ],
-      motion: {
-        previewMarkup: `<sgds-accordion>
-          <sgds-accordion-item>
-            <span slot="header">Accordion title 01</span>
-            <div slot="content">Accordion content</div>
-          </sgds-accordion-item>
-          <sgds-accordion-item open>
-            <span slot="header">Accordion title 02</span>
-            <div slot="content">Accordion content. Use the built-in SGDS interaction so the height transition and chevron rotation stay consistent.</div>
-          </sgds-accordion-item>
-          <sgds-accordion-item>
-            <span slot="header">Accordion title 03</span>
-            <div slot="content">Accordion content</div>
-          </sgds-accordion-item>
-        </sgds-accordion>`,
-        specs: [
-          {
-            element: "Accordion title",
-            value: "100% → 0%",
-            duration: "motion-duration-fast-2",
-            easing: "motion-easing-standard",
-          },
-          {
-            element: "Accordion body",
-            value: "0% → 100%",
-            duration: "motion-duration-fast-2",
-            easing: "motion-easing-standard",
-          },
-          {
-            element: "Chevron",
-            value: "0° → 180°",
-            duration: "motion-duration-fast-1",
-            easing: "-",
-          },
-        ],
-      },
-      bestPractices: [
-        {
-          title: "Keep titles concise",
-          description: "Write headers as short, clear phrases so users can scan and choose quickly.",
+          title: "Keep titles to one sentence",
+          description: "Short titles are easier to read at a glance.",
           tone: "do",
           markup: `<sgds-accordion>
             <sgds-accordion-item><span slot="header">Application eligibility</span><div slot="content">Accordion content</div></sgds-accordion-item>
@@ -627,16 +796,40 @@ const componentDocs: Record<string, ComponentDoc> = {
           </sgds-accordion>`,
         },
         {
-          title: "Avoid long titles",
-          description: "Long headers weaken hierarchy and make the accordion harder to scan.",
+          title: "Do not use long titles",
+          description: "Move supporting detail into the panel content.",
           tone: "dont",
           markup: `<sgds-accordion>
             <sgds-accordion-item><span slot="header">This is a very long accordion title that makes the list harder to scan and understand quickly</span><div slot="content">Accordion content</div></sgds-accordion-item>
           </sgds-accordion>`,
         },
         {
-          title: "Group related information",
-          description: "Use accordions when items belong together and benefit from progressive disclosure.",
+          title: "Match content to the title",
+          description: "Users should get what the heading promises.",
+          tone: "do",
+          markup: `<sgds-accordion>
+            <sgds-accordion-item open>
+              <span slot="header">What is your return policy?</span>
+              <div slot="content">Our return policy allows you to return items within 30 days of purchase for a full refund, provided they are unused and in their original packaging.</div>
+            </sgds-accordion-item>
+          </sgds-accordion>`,
+        },
+        {
+          title: "Avoid unrelated content",
+          description: "Off-topic panel content creates confusion.",
+          tone: "dont",
+          markup: `<sgds-accordion>
+            <sgds-accordion-item open>
+              <span slot="header">What is your return policy?</span>
+              <div slot="content">Our store accepts a variety of payment methods, including major credit cards like Visa and MasterCard, as well as digital wallets such as PayPal and Apple Pay.</div>
+            </sgds-accordion-item>
+          </sgds-accordion>`,
+        },
+      ],
+      bestPractices: [
+        {
+          title: "Group related items",
+          description: "Use accordions for content that belongs together.",
           tone: "do",
           markup: `<sgds-accordion>
             <sgds-accordion-item><span slot="header">Payment details</span><div slot="content">Accordion content</div></sgds-accordion-item>
@@ -646,7 +839,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not nest accordions",
-          description: "Multiple layers of accordions make scanning and orientation harder.",
+          description: "Multiple layers make navigation harder.",
           tone: "dont",
           markup: `<sgds-accordion>
             <sgds-accordion-item open>
@@ -659,38 +852,6 @@ const componentDocs: Record<string, ComponentDoc> = {
                   </sgds-accordion-item>
                 </sgds-accordion>
               </div>
-            </sgds-accordion-item>
-          </sgds-accordion>`,
-        },
-        {
-          title: "Provide clear feedback",
-          description: "Use the chevron and open state consistently so users know what changed.",
-          tone: "do",
-          markup: `<sgds-accordion>
-            <sgds-accordion-item open>
-              <span slot="header">Expanded state</span>
-              <div slot="content">Visible content confirms the current state.</div>
-            </sgds-accordion-item>
-            <sgds-accordion-item>
-              <span slot="header">Collapsed state</span>
-              <div slot="content">Accordion content</div>
-            </sgds-accordion-item>
-          </sgds-accordion>`,
-        },
-        {
-          title: "Avoid extra actions in the header",
-          description: "Unrelated controls in the clickable header create confusion and competing interactions.",
-          tone: "dont",
-          markup: `<sgds-accordion>
-            <sgds-accordion-item>
-              <div slot="header" style="align-items:center;display:flex;justify-content:space-between;width:100%;">
-                <span>Accordion title</span>
-                <div style="align-items:center;display:flex;gap:var(--sgds-gap-2-xs);">
-                  <sgds-icon-button name="pencil"></sgds-icon-button>
-                  <sgds-icon-button name="trash"></sgds-icon-button>
-                </div>
-              </div>
-              <div slot="content">Accordion content</div>
             </sgds-accordion-item>
           </sgds-accordion>`,
         },
@@ -707,101 +868,7 @@ const componentDocs: Record<string, ComponentDoc> = {
   </sgds-accordion-item>
 </sgds-accordion>`,
     accessibility: {
-      sections: [
-        {
-          title: "Keyboard support",
-          description: [
-            "Headers are focusable and navigate on Tab or Down Arrow to the next Shift + Tab or Up Arrow to the previous.",
-            "Expand container to display hidden content on Enter or Space.",
-          ],
-          markup: `<div class="portal-accessibility-preview">
-            <div class="portal-accessibility-frame">
-              <sgds-accordion class="portal-accessibility-accordion">
-                <sgds-accordion-item>
-                  <span slot="header">What is Design System?</span>
-                  <div slot="content">Accordion content</div>
-                </sgds-accordion-item>
-                <sgds-accordion-item open>
-                  <span slot="header">Why use a Design System?</span>
-                  <div slot="content">
-                    A design system promotes efficiency, consistency, and scalability, ensuring a unified user experience and streamlined development process across all platforms.
-                  </div>
-                </sgds-accordion-item>
-                <sgds-accordion-item>
-                  <span slot="header">What is Design Token?</span>
-                  <div slot="content">Accordion content</div>
-                </sgds-accordion-item>
-              </sgds-accordion>
-            </div>
-          </div>`,
-          items: [],
-        },
-        {
-          title: "Tab order",
-          items: [
-            "Initial focus",
-            "Navigate and expand/collapse",
-            "Access expanded content",
-            "Continue navigation",
-          ],
-          markup: `<div class="portal-accessibility-preview">
-            <div class="portal-accessibility-callout portal-accessibility-callout-1">
-              <span class="portal-accessibility-badge">1</span>
-            </div>
-            <div class="portal-accessibility-callout portal-accessibility-callout-2">
-              <span class="portal-accessibility-badge">2</span>
-            </div>
-            <div class="portal-accessibility-callout portal-accessibility-callout-3">
-              <span class="portal-accessibility-badge">3</span>
-            </div>
-            <div class="portal-accessibility-callout portal-accessibility-callout-4">
-              <span class="portal-accessibility-badge">4</span>
-            </div>
-            <div class="portal-accessibility-frame">
-              <sgds-accordion class="portal-accessibility-accordion">
-                <sgds-accordion-item class="portal-accessibility-item-1">
-                  <span slot="header">What is Design System?</span>
-                  <div slot="content">Accordion content</div>
-                </sgds-accordion-item>
-                <sgds-accordion-item class="portal-accessibility-item-2" open>
-                  <span slot="header">Why use a Design System?</span>
-                  <div slot="content">
-                    A design system promotes efficiency, consistency, and scalability, ensuring a unified user experience and streamlined development process across all platforms.
-                    <div class="portal-accessibility-link">
-                      <sgds-link class="portal-accessibility-link-target">
-                        <a href="#">Read more</a>
-                      </sgds-link>
-                    </div>
-                  </div>
-                </sgds-accordion-item>
-                <sgds-accordion-item class="portal-accessibility-item-3">
-                  <span slot="header">What is Design Token?</span>
-                  <div slot="content">Accordion content</div>
-                </sgds-accordion-item>
-              </sgds-accordion>
-            </div>
-          </div>`,
-          highlights: [
-            {
-              key: "1",
-              selector: ".portal-accessibility-item-1",
-            },
-            {
-              key: "2",
-              selector: ".portal-accessibility-item-2",
-              targetShadowSelector: ".accordion-btn",
-            },
-            {
-              key: "3",
-              selector: ".portal-accessibility-link-target",
-            },
-            {
-              key: "4",
-              selector: ".portal-accessibility-item-3",
-            },
-          ],
-        },
-      ],
+      sections: [],
       keyboardInteractions: [
         {
           key: "Tab",
@@ -923,40 +990,187 @@ const componentDocs: Record<string, ComponentDoc> = {
       { number: 4, direction: "bottom", targetSelector: ".portal-alert-description", targetX: "center", targetY: "bottom", stemLengthToken: "--sgds-dimension-64" },
       { number: 5, direction: "top", targetSelector: ".portal-alert-anatomy-demo", targetShadowSelector: "sgds-close-button", targetX: "center", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
     ],
+    configurationDemos: [
+      {
+        title: "Variant",
+        description: "The alert offers variants to convey a different level of importance.",
+        controlLabel: "Alert variant options",
+        defaultValue: "info",
+        options: [
+          {
+            label: "Info",
+            value: "info",
+            markup: `<sgds-alert show variant="info" title="Info alert">
+              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            </sgds-alert>`,
+            description: "Use to provide general context or neutral information, such as announcements or guidance that don't indicate a status outcome.",
+          },
+          {
+            label: "Success",
+            value: "success",
+            markup: `<sgds-alert show variant="success" title="Success alert">
+              <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
+              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            </sgds-alert>`,
+            description: "Use to confirm that an action or process has completed successfully. Reassures users that their input was accepted.",
+          },
+          {
+            label: "Danger",
+            value: "danger",
+            markup: `<sgds-alert show variant="danger" title="Danger alert">
+              <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
+              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            </sgds-alert>`,
+            description: "Use to communicate errors or critical failures that require immediate attention. Reserve for situations that could block the user.",
+          },
+          {
+            label: "Warning",
+            value: "warning",
+            markup: `<sgds-alert show variant="warning" title="Warning alert">
+              <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
+              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            </sgds-alert>`,
+            description: "Use to flag potential issues that may need attention. Cautions the user without blocking them from proceeding.",
+          },
+          {
+            label: "Neutral",
+            value: "neutral",
+            markup: `<sgds-alert show variant="neutral" title="Neutral alert">
+              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            </sgds-alert>`,
+            description: "Use when the message carries no particular status or urgency, such as simple notices or reminders.",
+          },
+        ],
+      },
+      {
+        title: "Style",
+        description: `The alert supports two styles—filled and outlined.\n\nFilled alerts are best for getting a user's attention. When in doubt, use the outlined alert.\n\nEvery variant has an outlined version. Outlined alerts are visually less disruptive for users.`,
+        controlLabel: "Alert style options",
+        defaultValue: "filled",
+        options: [
+          {
+            label: "Filled",
+            value: "filled",
+            markup: `<sgds-alert show variant="info" title="Filled alert">
+              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            </sgds-alert>`,
+            description: "Use when the alert needs to stand out and immediately capture the user's attention, such as for critical or high-priority messages.",
+          },
+          {
+            label: "Outlined",
+            value: "outlined",
+            markup: `<sgds-alert show variant="info" outlined title="Outlined alert">
+              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            </sgds-alert>`,
+            description: "Use for lower-priority messages that should remain visible without being visually disruptive. Recommended as the default when in doubt.",
+          },
+        ],
+      },
+      {
+        title: "Dismissible",
+        description: `The alert can be manually dismissed by the user.\n\nIt should only be used for non-critical messages.`,
+        controlLabel: "Alert dismissible options",
+        defaultValue: "non-dismissible",
+        options: [
+          {
+            label: "Non-dismissible",
+            value: "non-dismissible",
+            markup: `<sgds-alert show variant="info" title="A non-dismissible alert">
+              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            </sgds-alert>`,
+            description: "Use for persistent messages that must remain visible, such as system statuses or warnings the user needs to act on.",
+          },
+          {
+            label: "Dismissible",
+            value: "dismissible",
+            markup: `<sgds-alert show dismissible variant="info" title="A dismissible alert">
+              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            </sgds-alert>`,
+            description: "Use for non-critical messages the user can close after reading, such as informational banners or one-time notices.",
+          },
+        ],
+      },
+      {
+        title: "With icon",
+        description: `Alerts may include an icon to reinforce meaning. The icon should support, not replace, the message text.\n\nAdding of icon is optional.`,
+        controlLabel: "Alert icon options",
+        defaultValue: "no-icon",
+        options: [
+          {
+            label: "No icon",
+            value: "no-icon",
+            markup: `<sgds-alert show variant="info" title="Title">
+              <div>Alert with no icon</div>
+            </sgds-alert>`,
+            description: "Use when the message is self-explanatory or when a minimal, text-only appearance is preferred.",
+          },
+          {
+            label: "With icon",
+            value: "with-icon",
+            markup: `<sgds-alert show variant="info" title="Title">
+              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+              <div>Alert with icon</div>
+            </sgds-alert>`,
+            description: "Use to reinforce the alert's meaning with a recognisable visual cue. The icon should support, not replace, the message text.",
+          },
+        ],
+      },
+      {
+        title: "Title",
+        description: `Alerts can include a title to summarise the message and provide hierarchy, especially for longer or more complex content.\n\nAdding of title is optional.`,
+        controlLabel: "Alert title options",
+        defaultValue: "no-title",
+        options: [
+          {
+            label: "No title",
+            value: "no-title",
+            markup: `<sgds-alert show variant="info">
+              <div>Alert with no title</div>
+            </sgds-alert>`,
+            description: "Use for short, single-line messages that are easy to scan without an additional heading.",
+          },
+          {
+            label: "With title",
+            value: "with-title",
+            markup: `<sgds-alert show variant="info" title="Title">
+              <div>Alert with title</div>
+            </sgds-alert>`,
+            description: "Use when the alert contains longer or more detailed content that benefits from a clear summary heading.",
+          },
+        ],
+      },
+      {
+        title: "Slot",
+        description: "The default slot can contain supplementary content such as links or supporting actions, as long as the message remains clear and easy to scan.",
+        controlLabel: "Alert slot options",
+        defaultValue: "slot",
+        options: [
+          {
+            label: "Slot",
+            value: "slot",
+            markup: `<sgds-alert show dismissible variant="info" outlined title="Title">
+              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+              <div>Alert with title</div>
+              <div class="portal-slot-example">
+                <sgds-icon name="arrow-repeat" size="sm"></sgds-icon>
+                <span>Slot</span>
+              </div>
+            </sgds-alert>`,
+            description: "Use the default slot to include supplementary content such as links, descriptions, or supporting actions below the main message.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
-        "Variant",
-        "The alert offers variants to convey a different level of importance.",
-        `<div class="portal-demo-stack">
-          <sgds-alert show variant="info" title="Info alert">
-            <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
-          </sgds-alert>
-          <sgds-alert show variant="success" title="Success alert">
-            <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-            <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
-          </sgds-alert>
-          <sgds-alert show variant="danger" title="Danger alert">
-            <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-            <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
-          </sgds-alert>
-          <sgds-alert show variant="warning" title="Warning alert">
-            <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-            <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
-          </sgds-alert>
-          <sgds-alert show variant="neutral" title="Neutral alert">
-            <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
-          </sgds-alert>
-        </div>`,
-      ),
-      demo(
         "Style",
-        `The alert supports two styles—filled and outlined.
-
-Filled alerts are best for getting a user's attention. When in doubt, used outlined alert.
-
-        Every variants have an outlined version of it. Outlined alerts are visually less disruptive for users.`,
+        `The alert supports two styles—filled and outlined.\n\nFilled alerts are best for getting a user's attention. When in doubt, use the outlined alert.\n\nEvery variant has an outlined version. Outlined alerts are visually less disruptive for users.`,
         `<div class="portal-demo-stack">
           <sgds-alert show variant="info" title="Filled alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
@@ -970,9 +1184,7 @@ Filled alerts are best for getting a user's attention. When in doubt, used outli
       ),
       demo(
         "Dismissible",
-        `The alert can be manually dismissed by the user.
-
-It should ony be used for non-critical messages.`,
+        `The alert can be manually dismissed by the user.\n\nIt should only be used for non-critical messages.`,
         `<div class="portal-demo-stack">
           <sgds-alert show dismissible variant="info" title="A dismissible alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
@@ -986,9 +1198,7 @@ It should ony be used for non-critical messages.`,
       ),
       demo(
         "With icon",
-        `Alerts may include an icon to reinforce meaning. The icon should support, not replace, the message text.
-
-Adding of icon is optional.`,
+        `Alerts may include an icon to reinforce meaning. The icon should support, not replace, the message text.\n\nAdding of icon is optional.`,
         `<div class="portal-demo-stack">
           <sgds-alert show variant="info" title="Title">
             <div>Alert with no icon</div>
@@ -1001,9 +1211,7 @@ Adding of icon is optional.`,
       ),
       demo(
         "Title",
-        `Alerts can include a title to summarise the message and provide hierarchy, especially for longer or more complex content.
-
-Adding of title is optional.`,
+        `Alerts can include a title to summarise the message and provide hierarchy, especially for longer or more complex content.\n\nAdding of title is optional.`,
         `<div class="portal-demo-stack">
           <sgds-alert show variant="info">
             <div>Alert with no title</div>
@@ -1120,6 +1328,34 @@ Adding of title is optional.`,
       { number: 2, direction: "bottom", targetSelector: ".portal-anatomy-badge", targetX: "center", targetY: "bottom" },
       { number: 3, direction: "top", targetSelector: "sgds-icon[slot='icon']", targetX: "center", targetY: "top" },
     ],
+    configurationDemos: [
+      {
+        title: "Variants",
+        description: "Badge variants use colour to convey meaning at a glance. Each variant signals a different status or category.",
+        controlLabel: "Badge variant options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-row"><sgds-badge>Default</sgds-badge></div>`,
+            description: "The default badge uses the neutral colour tone. Use to apply a label with no particular status weight.",
+          },
+          {
+            label: "Success",
+            value: "success",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="success">Success</sgds-badge></div>`,
+            description: "Use to signal a positive state such as completed, approved, or active.",
+          },
+          {
+            label: "Outlined",
+            value: "outlined",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="accent" outlined>Outlined</sgds-badge></div>`,
+            description: "The outlined style uses a border instead of a fill, giving the badge a lighter visual presence.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Variants",
@@ -1163,6 +1399,26 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: "sgds-breadcrumb", targetX: "right", targetY: "center" },
       { number: 2, direction: "top", targetSelector: ".portal-anatomy-breadcrumb-item", targetX: "center", targetY: "top" },
       { number: 3, direction: "bottom", targetSelector: ".portal-anatomy-breadcrumb-current", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "Breadcrumbs show the navigation path from the root to the current page as a trail of links.",
+        controlLabel: "Breadcrumb demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-breadcrumb>
+          <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Payments</a></sgds-breadcrumb-item>
+        </sgds-breadcrumb>`,
+            description: "Displays the full navigation trail from home to the current page. Use on pages that are two or more levels deep so users can retrace their steps.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -1210,6 +1466,34 @@ Adding of title is optional.`,
       { number: 3, direction: "top", targetSelector: "sgds-icon[slot='leftIcon']", targetX: "center", targetY: "top" },
       { number: 4, direction: "top", targetSelector: "sgds-icon[slot='rightIcon']", targetX: "center", targetY: "top" },
     ],
+    configurationDemos: [
+      {
+        title: "Variants",
+        description: "Button variants communicate hierarchy and help users identify the most important action on a screen.",
+        controlLabel: "Button variant options",
+        defaultValue: "primary",
+        options: [
+          {
+            label: "Primary",
+            value: "primary",
+            markup: `<div class="portal-demo-row"><sgds-button>Primary action</sgds-button></div>`,
+            description: "Use for the main action on a screen. Each view should have only one primary button to clearly communicate the most important next step.",
+          },
+          {
+            label: "Outline",
+            value: "outline",
+            markup: `<div class="portal-demo-row"><sgds-button variant="outline">Secondary action</sgds-button></div>`,
+            description: "Use for secondary actions that support the primary action — such as cancelling, going back, or choosing an alternative.",
+          },
+          {
+            label: "Ghost",
+            value: "ghost",
+            markup: `<div class="portal-demo-row"><sgds-button variant="ghost">Tertiary action</sgds-button></div>`,
+            description: "Use for tertiary or low-priority actions that should not compete visually with the primary or secondary button.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Variants",
@@ -1228,11 +1512,11 @@ Adding of title is optional.`,
     tag: "sgds-card",
     group: "data display",
     summary:
-      "Cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.",
+      "Cards can include headers, footers, rich content, and contextual background colours or images.",
     purposeCards: [
       {
         title: "Group related content",
-        description: "Cards visually bundle a piece of information — a title, description, media, and action — into a single scannable unit.",
+        description: "Cards visually bundle a piece of information, such as a title, description, media, and action, into a single scannable unit.",
       },
       {
         title: "Enable comparison",
@@ -1240,23 +1524,41 @@ Adding of title is optional.`,
       },
       {
         title: "Flexible by design",
-        description: "Cards work across many contexts — content listings, dashboards, product summaries — because the structure adapts to what you put inside.",
+        description: "Cards work across many contexts, including content listings, dashboards, and product summaries, because the structure adapts to what you put inside.",
       },
     ],
     anatomyParts: [
       { title: "Container" },
-      defaultPartTitleMap.title,
-      defaultPartTitleMap.description,
-      defaultPartTitleMap.default,
-      defaultPartTitleMap.footer,
+      { title: "Icon or thumbnail", note: "(optional)" },
+      { title: "Subtitle", note: "(optional)" },
+      { title: "Title" },
+      { title: "Content slot", note: "(optional)" },
+      { title: "Description", note: "(optional)" },
+      { title: "Secondary text", note: "(optional)" },
+      { title: "Footer", note: "(optional)" },
+      { title: "Badge", note: "(optional)" },
     ],
     anatomyCallouts: [
-      { number: 1, direction: "right", targetSelector: "sgds-card", targetX: "right", targetY: "bottom" },
-      { number: 2, direction: "top", targetSelector: "[slot='title']", targetX: "center", targetY: "top" },
-      { number: 3, direction: "right", targetSelector: "[slot='description']", targetX: "right", targetY: "top" },
-      { number: 4, direction: "left", targetSelector: "sgds-card p", targetX: "left", targetY: "center" },
-      { number: 5, direction: "bottom", targetSelector: "[slot='footer']", targetX: "center", targetY: "bottom" },
+      { number: 1, direction: "right", targetSelector: "sgds-card", targetX: "right", targetY: "center" },
+      { number: 2, direction: "left", targetSelector: "[slot='icon']", targetX: "left", targetY: "center" },
+      { number: 3, direction: "left", targetSelector: "[slot='subtitle']", targetX: "left", targetY: "center" },
+      { number: 4, direction: "left", targetSelector: "[slot='title']", targetX: "left", targetY: "center" },
+      { number: 5, direction: "left", targetSelector: ".portal-anatomy-card-default-slot", targetX: "left", targetY: "center" },
+      { number: 6, direction: "left", targetSelector: "[slot='description']", targetX: "left", targetY: "center" },
+      { number: 7, direction: "left", targetSelector: "[slot='lower']", targetX: "left", targetY: "center" },
+      { number: 8, direction: "left", targetSelector: "[slot='footer']", targetX: "left", targetY: "center" },
+      { number: 9, direction: "right", targetSelector: "[slot='menu']", targetX: "right", targetY: "center" },
     ],
+    anatomyMarkup: `<sgds-card class="portal-demo-card portal-anatomy-card">
+      <sgds-badge slot="menu" variant="neutral" outlined>Badge</sgds-badge>
+      <sgds-icon slot="icon" name="box-seam" size="2xl"></sgds-icon>
+      <span slot="subtitle">Category</span>
+      <span slot="title">Card title</span>
+      <div class="portal-slot-example portal-anatomy-card-default-slot"><span>Default slot content</span></div>
+      <span slot="description">Supporting description for the card content.</span>
+      <span slot="lower">Secondary text</span>
+      <sgds-link slot="footer"><a href="#">View details</a></sgds-link>
+    </sgds-card>`,
     demos: [
       demo(
         "Default",
@@ -1264,10 +1566,510 @@ Adding of title is optional.`,
         `<sgds-card class="portal-demo-card">
           <span slot="title">Card title</span>
           <span slot="description">Supporting description for the card content.</span>
-          <p>Card content can mix text, metadata, and small actions.</p>
-          <div slot="footer"><sgds-link><a href="#">View details</a></sgds-link></div>
+          <sgds-link slot="footer"><a href="#">View details</a></sgds-link>
         </sgds-card>`,
       ),
+    ],
+    measurements: [
+      {
+        title: "",
+        description: "",
+        markup: `<sgds-card class="portal-demo-card">
+          <span slot="subtitle">Category</span>
+          <span slot="title">Card title</span>
+          <div class="portal-slot-example portal-structure-card-default-slot"><span>Default slot content</span></div>
+          <span slot="description">Supporting description for the card content.</span>
+          <span slot="lower">Secondary text</span>
+          <sgds-link slot="footer"><a href="#">View details</a></sgds-link>
+        </sgds-card>`,
+      },
+    ],
+    measurementTokens: [
+      { mapKey: "background", element: "Colour", property: "background", designToken: "sgds/surface-default", rawValue: "#FFFFFF" },
+      { mapKey: "title-color", element: "", property: "title-color", designToken: "sgds/body-color-default", rawValue: "#1A1A1A" },
+      { mapKey: "description-color", element: "", property: "description-color", designToken: "sgds/color-subtle", rawValue: "#525252" },
+      { mapKey: "border-color", element: "Border", property: "border-color", designToken: "sgds/border-color-muted", rawValue: "#DFDFDF" },
+      { mapKey: "border-width", element: "", property: "border-width", designToken: "sgds/border-width/1", rawValue: "1px" },
+      { mapKey: "border-radius", element: "", property: "border-radius", designToken: "sgds/border-radius/md", rawValue: "8px" },
+      { mapKey: "padding-x", element: "Spacing", property: "padding-x", designToken: "sgds/padding/xl", rawValue: "24px" },
+      { mapKey: "padding-y", element: "", property: "padding-y", designToken: "sgds/padding/xl", rawValue: "24px" },
+      { mapKey: "gap", element: "", property: "gap", designToken: "sgds/gap/lg", rawValue: "20px" },
+      { mapKey: "title-gap", element: "", property: "title-gap", designToken: "sgds/gap/xs", rawValue: "8px" },
+      { mapKey: "subtitle-gap", element: "", property: "subtitle-gap", designToken: "sgds/gap/2-xs", rawValue: "4px" },
+      { mapKey: "slot-gap", element: "", property: "slot-gap", designToken: "sgds/gap/sm", rawValue: "12px" },
+    ],
+    configurationDemos: [
+      {
+        title: "Border",
+        description: "Controls whether the card uses its default border.",
+        controlLabel: "Card border options",
+        defaultValue: "border",
+        options: [
+          {
+            label: "Border",
+            value: "border",
+            description: "Shows the default card border. Use when the card needs a clear container that stands apart from the surrounding layout.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Use the default border when the card needs its own visual container.</span>
+            </sgds-card>`,
+          },
+          {
+            label: "Borderless",
+            value: "borderless",
+            description: "Removes the default card border. Use when the page layout already provides enough separation and the border feels too heavy.",
+            markup: `<sgds-card class="portal-demo-card" hideBorder>
+              <span slot="title">Card title</span>
+              <span slot="description">Hide the border when the surrounding layout already gives enough separation.</span>
+            </sgds-card>`,
+          },
+        ],
+      },
+      {
+        title: "Tinted",
+        description: "Background treatment that changes visual emphasis without changing structure.",
+        controlLabel: "Card tinted options",
+        defaultValue: "false",
+        options: [
+          {
+            label: "Default",
+            value: "false",
+            description: "Uses the standard card background. Use for neutral card layouts that should not draw extra attention.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">The default treatment works for most neutral card layouts.</span>
+            </sgds-card>`,
+          },
+          {
+            label: "Tinted",
+            value: "true",
+            description: "Adds a subtle tinted background. Use to add gentle emphasis while keeping the same structure and content hierarchy.",
+            markup: `<sgds-card class="portal-demo-card" tinted>
+              <span slot="title">Card title</span>
+              <span slot="description">Use tinted cards to add gentle emphasis without changing the structure.</span>
+            </sgds-card>`,
+          },
+        ],
+      },
+      {
+        title: "Variant",
+        description: "Available SGDS card variants and the kind of content each one supports.",
+        controlLabel: "Card variant options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            description: "The base card variant is text-first and flexible. Use it when content matters more than supporting media.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Use the default variant for text-first card layouts.</span>
+            </sgds-card>`,
+          },
+          {
+            label: "Icon card",
+            value: "icon",
+            description: "The icon card variant pairs content with a simple symbol. Use it when a small visual cue helps users recognise the card’s purpose quickly.",
+            markup: `<sgds-icon-card class="portal-demo-card">
+              <sgds-icon slot="icon" name="box-seam"></sgds-icon>
+              <span slot="title">Service update</span>
+              <span slot="description">A concise summary of the content inside the card.</span>
+            </sgds-icon-card>`,
+          },
+          {
+            label: "Thumbnail card",
+            value: "thumbnail",
+            description: "The thumbnail card variant uses a compact image beside the content. Use it when a small visual preview needs to sit alongside concise supporting copy.",
+            markup: `<sgds-thumbnail-card class="portal-demo-card">
+              <img
+                slot="thumbnail"
+                alt="Thumbnail"
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80"
+                style="width: var(--sgds-dimension-64); height: var(--sgds-dimension-64); object-fit: cover; border-radius: var(--sgds-border-radius-md);"
+              />
+              <span slot="title">Thumbnail card title</span>
+              <span slot="description">Supporting description for the thumbnail card.</span>
+            </sgds-thumbnail-card>`,
+          },
+          {
+            label: "Image card",
+            value: "image-card",
+            description: "The image card variant uses a larger visual preview above the content. Use it when the image needs to carry part of the story alongside short supporting copy.",
+            markup: `<sgds-image-card class="portal-demo-card">
+              <img
+                slot="image"
+                alt="Service preview"
+                src="/landing/placeholder1.png"
+              />
+              <span slot="title">Image card title</span>
+              <span slot="description">Supporting description for the image card content.</span>
+            </sgds-image-card>`,
+          },
+        ],
+      },
+      {
+        title: "Orientation",
+        description: "Layout direction for arranging content and media vertically or horizontally.",
+        controlLabel: "Card orientation options",
+        defaultValue: "false",
+        options: [
+          {
+            label: "Vertical",
+            value: "false",
+            description: "Stacks the media above the content. Use when the card should follow a more traditional vertical layout.",
+            markup: `<sgds-card class="portal-demo-card">
+              <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+              <span slot="title">Card title</span>
+              <span slot="description">Media sits above the content in the default vertical layout.</span>
+            </sgds-card>`,
+          },
+          {
+            label: "Horizontal",
+            value: "true",
+            description: "Places the media beside the content. Use when you need a denser layout with media next to the body instead of above it.",
+            markup: `<sgds-card class="portal-demo-card" orientation="horizontal" imagePosition="before">
+              <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+              <span slot="title">Card title</span>
+              <span slot="description">Media moves to the left when the card uses a horizontal layout.</span>
+            </sgds-card>`,
+          },
+        ],
+      },
+      {
+        title: "Image position",
+        description: "Image placement before or after the content across vertical and horizontal layouts.",
+        controlLabel: "Card image position options",
+        defaultValue: "before",
+        options: [
+          {
+            label: "Before",
+            value: "before",
+            description: "Places the image before the content. Use when the image should appear above in vertical cards or to the left in horizontal cards.",
+            markup: `<div class="sgds:grid sgds:grid-cols-2 sgds:gap-layout-md sgds:max-sm:grid-cols-1">
+              <sgds-card class="portal-demo-card">
+                <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+                <span slot="title">Card title</span>
+                <span slot="description">The image appears above the content in a vertical card.</span>
+              </sgds-card>
+              <sgds-card class="portal-demo-card" orientation="horizontal" imagePosition="before">
+                <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+                <span slot="title">Card title</span>
+                <span slot="description">The image appears to the left of the content in a horizontal card.</span>
+              </sgds-card>
+            </div>`,
+          },
+          {
+            label: "After",
+            value: "after",
+            description: "Places the image after the content. Use when the image should appear below in vertical cards or to the right in horizontal cards.",
+            markup: `<div class="sgds:grid sgds:grid-cols-2 sgds:gap-layout-md sgds:max-sm:grid-cols-1">
+              <sgds-card class="portal-demo-card" imagePosition="after">
+                <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+                <span slot="title">Card title</span>
+                <span slot="description">The image appears below the content in a vertical card.</span>
+              </sgds-card>
+              <sgds-card class="portal-demo-card" orientation="horizontal" imagePosition="after">
+                <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+                <span slot="title">Card title</span>
+                <span slot="description">The image appears to the right of the content in a horizontal card.</span>
+              </sgds-card>
+            </div>`,
+          },
+        ],
+      },
+      {
+        title: "Badge",
+        description: "Top-right badge content for lightweight status or metadata.",
+        controlLabel: "Card badge options",
+        defaultValue: "true",
+        options: [
+          {
+            label: "Badge",
+            value: "true",
+            description: "A badge sits in the top-right area of the card. Use it to surface status, count, or lightweight metadata without taking over the card body.",
+            markup: `<sgds-card class="portal-demo-card">
+              <sgds-badge slot="menu" variant="neutral" outlined>Badge</sgds-badge>
+              <span slot="title">Card title</span>
+              <span slot="description">Add a badge when the card needs visible status at the top-right.</span>
+            </sgds-card>`,
+          },
+          {
+            label: "No badge",
+            value: "false",
+            description: "Removes the top-right badge area. Use when the card does not need extra status or metadata there.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Use this when the card does not need a badge.</span>
+            </sgds-card>`,
+          },
+        ],
+      },
+      {
+        title: "Secondary text",
+        description: "An extra supporting text row below the description for added context.",
+        controlLabel: "Card secondary text options",
+        defaultValue: "true",
+        options: [
+          {
+            label: "Secondary text",
+            value: "true",
+            description: "Secondary text sits below the description as a supporting row. Use it when the card needs an extra line for metadata, status, or supporting details.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Supporting description for the card content.</span>
+              <span slot="lower">Secondary text</span>
+            </sgds-card>`,
+          },
+          {
+            label: "No secondary text",
+            value: "false",
+            description: "Removes the secondary text row. Use when the title and description already provide enough context on their own.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Supporting description for the card content.</span>
+            </sgds-card>`,
+          },
+        ],
+      },
+      {
+        title: "Footer",
+        description: "Footer content patterns, from lightweight links to stronger calls to action.",
+        controlLabel: "Card footer options",
+        defaultValue: "none",
+        options: [
+          {
+            label: "No footer",
+            value: "none",
+            description: "Removes the footer action area. Use when the card is purely informational and does not need a follow-up action.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Use this layout when no footer action is needed.</span>
+            </sgds-card>`,
+          },
+          {
+            label: "Link",
+            value: "link",
+            description: "A footer link provides a lightweight next step. Use it when the action does not need strong visual emphasis.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Use a footer link for a lighter follow-up action.</span>
+              <sgds-link slot="footer"><a href="#">View details</a></sgds-link>
+            </sgds-card>`,
+          },
+          {
+            label: "Button",
+            value: "button",
+            description: "A footer button gives the action more emphasis than a text link. Use it when the card needs a clearer call to action.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Use a footer button when the action needs stronger emphasis.</span>
+              <sgds-button slot="footer" variant="secondary">Take action</sgds-button>
+            </sgds-card>`,
+          },
+          {
+            label: "Full width button",
+            value: "full-width-button",
+            description: "A full width button spans the footer and carries the strongest emphasis. Use it when the primary action should stand out clearly.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Use a full-width footer button when the primary action needs strong emphasis.</span>
+              <div slot="footer" class="portal-card-footer-full-width">
+                <sgds-button variant="primary" fullWidth>Take action</sgds-button>
+              </div>
+            </sgds-card>`,
+          },
+          {
+            label: "Badge",
+            value: "badge",
+            description: "A footer badge carries compact status or label content. Use it when the footer needs a short classification instead of an action.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Use a footer badge for compact status or label content.</span>
+              <sgds-badge slot="footer" variant="neutral" outlined>In progress</sgds-badge>
+            </sgds-card>`,
+          },
+          {
+            label: "Text",
+            value: "text",
+            description: "Footer text provides supporting metadata instead of an action. Use it for dates, status, or other small supporting details.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Use footer text for supporting details such as dates or status.</span>
+              <span slot="footer" class="sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle">Updated 2 hours ago</span>
+            </sgds-card>`,
+          },
+        ],
+      },
+      {
+        title: "Hierarchy",
+        description: "Title emphasis across heading levels within the same card structure.",
+        controlLabel: "Card hierarchy options",
+        defaultValue: "h4",
+        options: [
+          {
+            label: "H4",
+            value: "h4",
+            description: "Uses a larger heading level for the title. Use when the card title needs stronger emphasis in the layout.",
+            markup: `<sgds-card class="portal-demo-card portal-card-title-h4-demo">
+              <h4 slot="title" class="portal-card-title-h4 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Card title</h4>
+              <span slot="description">Use a higher emphasis when the title needs more prominence.</span>
+            </sgds-card>`,
+          },
+          {
+            label: "H5",
+            value: "h5",
+            description: "Uses a lighter heading level for the title. Use when the card sits in a denser layout and the title should feel slightly lighter.",
+            markup: `<sgds-card class="portal-demo-card portal-card-title-h5-demo">
+              <h5 slot="title" class="portal-card-title-h5 sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Card title</h5>
+              <span slot="description">Use a slightly lighter heading level for denser layouts.</span>
+            </sgds-card>`,
+          },
+        ],
+      },
+      {
+        title: "Subtitle",
+        description: "A short label above the title for category or supporting context.",
+        controlLabel: "Card subtitle options",
+        defaultValue: "true",
+        options: [
+          {
+            label: "Subtitle",
+            value: "true",
+            description: "Adds a short label above the title. Use to show a category or supporting context before the title.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="subtitle">Category</span>
+              <span slot="title">Card title</span>
+              <span slot="description">The subtitle helps users scan the card context quickly.</span>
+            </sgds-card>`,
+          },
+          {
+            label: "No subtitle",
+            value: "false",
+            description: "Removes the label above the title. Use when the title already provides enough context without extra support.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Remove the subtitle when the title already carries enough context.</span>
+            </sgds-card>`,
+          },
+        ],
+      },
+      {
+        title: "Description",
+        description: "Supporting text beneath the title for added explanation or context.",
+        controlLabel: "Card description options",
+        defaultValue: "true",
+        options: [
+          {
+            label: "Description",
+            value: "true",
+            description: "Description text sits below the title as supporting copy. Use it when the card needs extra explanation or context.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <span slot="description">Use the description slot for longer supporting text.</span>
+              <sgds-link slot="footer"><a href="#">View details</a></sgds-link>
+            </sgds-card>`,
+          },
+          {
+            label: "No description",
+            value: "false",
+            description: "Removes the supporting text area. Use when the card can stay compact and the title or action is enough on its own.",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Card title</span>
+              <sgds-link slot="footer"><a href="#">View details</a></sgds-link>
+            </sgds-card>`,
+          },
+        ],
+      },
+      {
+        title: "Content slot",
+        description: "Custom content areas within the card body using the available content slots.",
+        controlLabel: "Card content slot options",
+        defaultValue: "default",
+        interactionMode: "content-slots",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: "",
+            description: "The default slot sits directly below the title. Use it for the card's main custom content, such as text, metadata, or small supporting elements.",
+            selectedByDefault: true,
+          },
+          {
+            label: "Upper",
+            value: "upper",
+            markup: "",
+            description: "The upper slot sits above the title and main body content. Use it for banners, status markers, or supporting content that should appear first.",
+          },
+          {
+            label: "Lower",
+            value: "lower",
+            markup: "",
+            description: "The lower slot sits below the description. Use it for badges, metadata, or other supporting information.",
+          },
+        ],
+      },
+    ],
+    props: [
+      {
+        name: "imagePosition",
+        type: '"before" | "after"',
+        defaultValue: '"before"',
+        description: "Sets where the image slot appears in relation to the card content.",
+      },
+      {
+        name: "imageAdjustment",
+        type: '"default" | "padding around" | "aspect ratio"',
+        defaultValue: '"default"',
+        description: "Controls how the image is sized and fitted inside the card media area.",
+      },
+      {
+        name: "hasImageSlot",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Used only for SSR to indicate the presence of the image slot.",
+      },
+      {
+        name: "hasIconSlot",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Used only for SSR to indicate the presence of the icon slot.",
+      },
+      {
+        name: "hasUpperSlot",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Used only for SSR to indicate the presence of the upper slot.",
+      },
+      {
+        name: "stretchedLink",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Extends the footer or legacy link slot anchor so the card behaves like one larger click target.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables the card interaction.",
+      },
+      {
+        name: "hideBorder",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Hides the default card border.",
+      },
+      {
+        name: "tinted",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Applies a tinted background treatment to the card.",
+      },
+      {
+        name: "orientation",
+        type: '"vertical" | "horizontal"',
+        defaultValue: '"vertical"',
+        description: "Controls whether the card content is laid out vertically or horizontally.",
+      },
     ],
   },
   checkbox: {
@@ -1301,6 +2103,26 @@ Adding of title is optional.`,
       { number: 2, direction: "left", targetSelector: "sgds-checkbox", targetX: "left", targetY: "center" },
       { number: 3, direction: "right", targetSelector: "sgds-checkbox", targetX: "right", targetY: "center" },
     ],
+    configurationDemos: [
+      {
+        title: "Group",
+        description: "Checkboxes are grouped under a shared label so users can select multiple options from the same category.",
+        controlLabel: "Checkbox demo",
+        defaultValue: "group",
+        options: [
+          {
+            label: "Group",
+            value: "group",
+            markup: `<sgds-checkbox-group label="Delivery options">
+          <sgds-checkbox checked>Email</sgds-checkbox>
+          <sgds-checkbox>SMS</sgds-checkbox>
+          <sgds-checkbox>Phone call</sgds-checkbox>
+        </sgds-checkbox-group>`,
+            description: "Displays a group of related checkboxes under a shared label. Use when users may select more than one option from the same category.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Group",
@@ -1318,7 +2140,7 @@ Adding of title is optional.`,
     title: "Close button",
     tag: "sgds-close-button",
     group: "labels",
-    summary: "Close button for closing actions. Used in Modal, Drawer, Alert and Toast.",
+    summary: "A close button dismisses surfaces such as modals, drawers, alerts, and toasts.",
     purposeCards: [
       {
         title: "Dismiss with confidence",
@@ -1338,6 +2160,22 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: "sgds-close-button", targetX: "right", targetY: "center" },
       { number: 2, direction: "top", targetSelector: "sgds-close-button", targetX: "center", targetY: "top" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The close button is a compact dismiss control for surfaces like modals, drawers, alerts, and toasts.",
+        controlLabel: "Close button demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-row"><sgds-close-button></sgds-close-button></div>`,
+            description: "Renders a compact dismiss control. Use wherever users need a clear way to close a surface such as a modal, drawer, alert, or toast.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -1352,7 +2190,7 @@ Adding of title is optional.`,
     tag: "sgds-combo-box",
     group: "form",
     summary:
-      "ComboBox component is used for users to make one or more selections from a list through user input, keyboard or mouse actions",
+      "A combo box lets users make one or more selections from a list using text input, the keyboard, or the mouse.",
     purposeCards: [
       {
         title: "Search within a list",
@@ -1377,6 +2215,26 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: ".portal-anatomy-combobox", targetX: "right", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
       { number: 2, direction: "right", targetSelector: ".portal-anatomy-combobox", targetX: "right", targetY: "bottom", stemLengthToken: "--sgds-dimension-56" },
       { number: 3, direction: "left", targetSelector: ".portal-anatomy-combobox-option", targetX: "left", targetY: "center" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The combo box combines a text input with a filterable dropdown list.",
+        controlLabel: "Combo box demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-combo-box placeholder="Select a category">
+          <sgds-combo-box-option value="housing">Housing</sgds-combo-box-option>
+          <sgds-combo-box-option value="transport">Transport</sgds-combo-box-option>
+          <sgds-combo-box-option value="health">Health</sgds-combo-box-option>
+        </sgds-combo-box>`,
+            description: "Renders an input that filters a list of options as the user types. Use when the list is too long to browse but users know roughly what they're looking for.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -1418,6 +2276,22 @@ Adding of title is optional.`,
       { number: 2, direction: "top", targetSelector: ".portal-anatomy-datepicker", targetX: "right", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
       { number: 3, direction: "right", targetSelector: ".portal-anatomy-datepicker", targetX: "right", targetY: "bottom" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The datepicker combines a text input with a calendar panel for structured date selection.",
+        controlLabel: "Datepicker demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-datepicker placeholder="Select a date"></sgds-datepicker>`,
+            description: "Renders a date input with a calendar picker. Use when users need to select a specific date and a calendar view helps them pick the right one in context.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -1450,23 +2324,54 @@ Adding of title is optional.`,
     anatomyParts: [{ title: "Container" }, { title: "Label" }, { title: "Value" }],
     anatomyCallouts: [
       { number: 1, direction: "left", targetSelector: "sgds-description-list", targetX: "left", targetY: "center" },
-      { number: 2, direction: "top", targetSelector: "span[slot='default']", targetX: "center", targetY: "top" },
-      { number: 3, direction: "right", targetSelector: "span[slot='data']", targetX: "right", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: "sgds-description-list > span:not([slot])", targetX: "center", targetY: "top" },
+      { number: 3, direction: "right", targetSelector: "sgds-description-list > span[slot='data']", targetX: "right", targetY: "center" },
+    ],
+    anatomyMarkup: `<sgds-description-list-group>
+      <sgds-description-list>
+        <span>Label</span>
+        <span slot="data">Value</span>
+      </sgds-description-list>
+    </sgds-description-list-group>`,
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "Description lists pair terms with their corresponding values in a structured layout.",
+        controlLabel: "Description list demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-description-list-group>
+          <sgds-description-list>
+            <span>Status</span>
+            <span slot="data">Active</span>
+          </sgds-description-list>
+          <sgds-description-list>
+            <span>Updated</span>
+            <span slot="data">31 Mar 2026</span>
+          </sgds-description-list>
+        </sgds-description-list-group>`,
+            description: "Renders key-value pairs in a structured, readable layout. Use on confirmation or summary screens to show users what they have entered before they submit.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
         "Default",
         "Use description lists to pair labels with values in a compact, readable layout.",
-        `<sgds-description-list>
-          <sgds-description-list-group>
-            <span slot="default">Status</span>
+        `<sgds-description-list-group>
+          <sgds-description-list>
+            <span>Status</span>
             <span slot="data">Active</span>
-          </sgds-description-list-group>
-          <sgds-description-list-group>
-            <span slot="default">Updated</span>
+          </sgds-description-list>
+          <sgds-description-list>
+            <span>Updated</span>
             <span slot="data">31 Mar 2026</span>
-          </sgds-description-list-group>
-        </sgds-description-list>`,
+          </sgds-description-list>
+        </sgds-description-list-group>`,
       ),
     ],
   },
@@ -1495,6 +2400,28 @@ Adding of title is optional.`,
     anatomyCallouts: [
       { number: 1, direction: "right", targetSelector: "sgds-divider", targetX: "right", targetY: "center" },
       { number: 2, direction: "right", targetSelector: "sgds-divider[orientation='vertical']", targetX: "right", targetY: "center" },
+    ],
+    configurationDemos: [
+      {
+        title: "Orientation",
+        description: "Dividers can run horizontally or vertically depending on the layout direction of the content they separate.",
+        controlLabel: "Divider orientation options",
+        defaultValue: "horizontal",
+        options: [
+          {
+            label: "Horizontal",
+            value: "horizontal",
+            markup: `<div class="sgds:w-full"><sgds-divider></sgds-divider></div>`,
+            description: "Use to separate content stacked vertically — such as between sections, list rows, or form groups.",
+          },
+          {
+            label: "Vertical",
+            value: "vertical",
+            markup: `<div class="portal-demo-row sgds:h-12"><span>Left</span><sgds-divider orientation="vertical"></sgds-divider><span>Right</span></div>`,
+            description: "Use to separate content placed side by side — such as between columns, inline labels, or adjacent actions.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -1546,6 +2473,32 @@ Adding of title is optional.`,
       { number: 4, direction: "left", targetSelector: "sgds-drawer p", targetX: "left", targetY: "center" },
       { number: 5, direction: "bottom", targetSelector: "[slot='footer']", targetX: "center", targetY: "bottom" },
     ],
+    configurationDemos: [
+      {
+        title: "Contained",
+        description: "Drawers slide in from the edge of their container to reveal secondary content without replacing the main view.",
+        controlLabel: "Drawer demo",
+        defaultValue: "contained",
+        options: [
+          {
+            label: "Contained",
+            value: "contained",
+            markup: `<div class="portal-demo-overlay">
+          <sgds-drawer open contained size="sm">
+            <span slot="title">Edit details</span>
+            <span slot="description">Review the information before saving.</span>
+            <p>Drawers are useful for secondary tasks that need more space than a popover.</p>
+            <div slot="footer" class="portal-demo-row">
+              <sgds-button variant="outline">Cancel</sgds-button>
+              <sgds-button>Save</sgds-button>
+            </div>
+          </sgds-drawer>
+        </div>`,
+            description: "Renders a panel anchored to the container edge. Use for secondary tasks — such as reviewing details, editing settings, or applying filters — that support the main page without replacing it.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Contained",
@@ -1596,6 +2549,27 @@ Adding of title is optional.`,
       { number: 2, direction: "right", targetSelector: "sgds-dropdown", targetX: "right", targetY: "bottom", stemLengthToken: "--sgds-dimension-56" },
       { number: 3, direction: "left", targetSelector: ".portal-anatomy-dropdown-item", targetX: "left", targetY: "center" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "Dropdowns reveal a list of contextual actions or links anchored to a trigger element.",
+        controlLabel: "Dropdown demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-dropdown>
+          <sgds-button slot="toggler" variant="outline">Actions</sgds-button>
+          <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
+          <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
+          <sgds-dropdown-item><a href="#">Archive</a></sgds-dropdown-item>
+        </sgds-dropdown>`,
+            description: "Renders a menu of contextual options anchored to a trigger. Use when a set of related actions or links should be hidden until the user explicitly opens them.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -1634,6 +2608,22 @@ Adding of title is optional.`,
       { number: 1, direction: "top", targetSelector: "sgds-file-upload", targetX: "center", targetY: "top" },
       { number: 2, direction: "right", targetSelector: "sgds-file-upload", targetX: "right", targetY: "center" },
       { number: 3, direction: "bottom", targetSelector: "sgds-file-upload", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The file upload component provides a button for attaching files and displays selected file names.",
+        controlLabel: "File upload demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-file-upload accept=".pdf,.doc,.docx">Upload document</sgds-file-upload>`,
+            description: "Renders an upload control with a file selection button and attachment feedback. Use when users need to submit supporting documents or media as part of a form.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -1675,6 +2665,31 @@ Adding of title is optional.`,
       { number: 2, direction: "top", targetSelector: "[slot='title']", targetX: "center", targetY: "top" },
       { number: 3, direction: "left", targetSelector: "[slot='description']", targetX: "left", targetY: "center" },
       { number: 4, direction: "bottom", targetSelector: "sgds-footer", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The footer contains mandatory service information — name, contact links, and legal information — required on all .gov.sg pages.",
+        controlLabel: "Footer demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-footer
+          copyrightLiner="© 2026 Example service"
+          contactHref="#"
+          feedbackHref="#"
+          privacyHref="#"
+          termsOfUseHref="#"
+        >
+          <span slot="title">Example service</span>
+          <span slot="description">Supporting information for the service.</span>
+        </sgds-footer>`,
+            description: "Renders the required government footer with service name, contact links, and legal information. Use on every page of a .gov.sg service to meet mandatory disclosure requirements.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -1719,6 +2734,34 @@ Adding of title is optional.`,
       { number: 1, direction: "top", targetSelector: "sgds-icon", targetX: "center", targetY: "top" },
       { number: 2, direction: "right", targetSelector: "sgds-icon[size='lg']", targetX: "right", targetY: "center" },
     ],
+    configurationDemos: [
+      {
+        title: "Scale",
+        description: "Icon size should match the surrounding context — smaller for inline use, larger for prominent visual anchors.",
+        controlLabel: "Icon scale options",
+        defaultValue: "md",
+        options: [
+          {
+            label: "Small",
+            value: "sm",
+            markup: `<div class="portal-demo-row"><sgds-icon name="house" size="sm"></sgds-icon></div>`,
+            description: "Use small icons in tight spaces such as inline with text, within form controls, or in dense list rows.",
+          },
+          {
+            label: "Medium",
+            value: "md",
+            markup: `<div class="portal-demo-row"><sgds-icon name="search" size="md"></sgds-icon></div>`,
+            description: "Use medium icons as the standard size for most product contexts — buttons, navigation items, and standalone indicators.",
+          },
+          {
+            label: "Large",
+            value: "lg",
+            markup: `<div class="portal-demo-row"><sgds-icon name="three-dots" size="lg"></sgds-icon></div>`,
+            description: "Use large icons in prominent positions — hero sections, empty states, or feature highlights — where the icon carries visual weight.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Scale",
@@ -1758,6 +2801,28 @@ Adding of title is optional.`,
       { number: 2, direction: "top", targetSelector: "sgds-icon-button", targetX: "center", targetY: "top" },
       { number: 3, direction: "bottom", targetSelector: "sgds-icon-button[variant='outline']", targetX: "center", targetY: "bottom" },
     ],
+    configurationDemos: [
+      {
+        title: "Variants",
+        description: "Icon button variants control the visual weight of the control to suit different interface contexts.",
+        controlLabel: "Icon button variant options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-row"><sgds-icon-button name="search"></sgds-icon-button></div>`,
+            description: "The default filled variant is visually heavier. Use in toolbars or alongside other solid controls where the button needs to stand out.",
+          },
+          {
+            label: "Outline",
+            value: "outline",
+            markup: `<div class="portal-demo-row"><sgds-icon-button name="three-dots" variant="outline"></sgds-icon-button></div>`,
+            description: "The outlined variant has a lighter presence. Use when the icon button should not compete visually with nearby elements.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Variants",
@@ -1775,7 +2840,7 @@ Adding of title is optional.`,
     tag: "sgds-icon-card",
     group: "data display",
     summary:
-      "Icon cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.",
+      "Icon cards can include headers, footers, rich content, and contextual background colours or images.",
     purposeCards: [
       {
         title: "Lead with a visual cue",
@@ -1802,6 +2867,26 @@ Adding of title is optional.`,
       { number: 3, direction: "left", targetSelector: "[slot='title']", targetX: "left", targetY: "center" },
       { number: 4, direction: "bottom", targetSelector: "[slot='description']", targetX: "center", targetY: "bottom" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "Icon cards pair a leading icon with a title and description to help users identify the category or topic at a glance.",
+        controlLabel: "Icon card demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-icon-card class="portal-demo-card">
+          <sgds-icon slot="icon" name="box-seam"></sgds-icon>
+          <span slot="title">Service update</span>
+          <span slot="description">A concise summary of the content inside the card.</span>
+        </sgds-icon-card>`,
+            description: "Renders a card with a leading icon, title, and description. Use when a simple visual anchor helps users recognise the category or topic of each card in a grid.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -1820,7 +2905,7 @@ Adding of title is optional.`,
     tag: "sgds-icon-list",
     group: "list",
     summary:
-      "A IconList can be used to display content related to the same topic. Each list item begins an icon.",
+      "An icon list displays content related to the same topic, with each list item beginning with an icon.",
     purposeCards: [
       {
         title: "Pair icons with text rows",
@@ -1840,6 +2925,31 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: "sgds-icon-list", targetX: "right", targetY: "center" },
       { number: 2, direction: "bottom", targetSelector: ".portal-demo-list-item", targetX: "center", targetY: "bottom" },
       { number: 3, direction: "left", targetSelector: "sgds-icon", targetX: "left", targetY: "center" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "Icon lists display content rows where each item begins with a leading icon to aid scanning and visual grouping.",
+        controlLabel: "Icon list demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-icon-list>
+          <div role="listitem" class="portal-demo-list-item">
+            <sgds-icon name="check-circle"></sgds-icon>
+            <span>Respond within 3 working days</span>
+          </div>
+          <div role="listitem" class="portal-demo-list-item">
+            <sgds-icon name="check-circle"></sgds-icon>
+            <span>Bring your supporting documents</span>
+          </div>
+        </sgds-icon-list>`,
+            description: "Renders a list where each item is preceded by an icon. Use when a repeated visual marker helps users scan a set of similar items or understand their type at a glance.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -1864,7 +2974,7 @@ Adding of title is optional.`,
     tag: "sgds-image-card",
     group: "data display",
     summary:
-      "Image cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.",
+      "Image cards can include headers, footers, rich content, and contextual background colours or images.",
     purposeCards: [
       {
         title: "Lead with a visual",
@@ -1890,6 +3000,30 @@ Adding of title is optional.`,
       { number: 2, direction: "top", targetSelector: "[slot='image']", targetX: "center", targetY: "top" },
       { number: 3, direction: "left", targetSelector: "[slot='title']", targetX: "left", targetY: "center" },
       { number: 4, direction: "bottom", targetSelector: "[slot='description']", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "Image cards display a full-width image above the card content, letting the visual set context before users read the text.",
+        controlLabel: "Image card demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-image-card class="portal-demo-card">
+          <img
+            slot="image"
+            alt="Scenic placeholder"
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
+          />
+          <span slot="title">Image card title</span>
+          <span slot="description">Supporting description for the image card content.</span>
+        </sgds-image-card>`,
+            description: "Renders a card with a full-width image above the title and description. Use when the image needs to carry part of the story — such as for articles, projects, or catalogue items.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -1941,6 +3075,24 @@ Adding of title is optional.`,
       { number: 3, direction: "top", targetSelector: "sgds-icon[slot='trailing-icon']", targetX: "center", targetY: "top" },
       { number: 4, direction: "bottom", targetSelector: ".portal-anatomy-input", targetX: "right", targetY: "bottom" },
     ],
+    configurationDemos: [
+      {
+        title: "Leading icon",
+        description: "The text input supports optional leading and trailing icons for visual context or inline actions.",
+        controlLabel: "Input demo",
+        defaultValue: "leading-icon",
+        options: [
+          {
+            label: "Leading icon",
+            value: "leading-icon",
+            markup: `<sgds-input placeholder="Search services">
+          <sgds-icon slot="icon" name="search"></sgds-icon>
+        </sgds-input>`,
+            description: "Renders a text input with a leading icon. Use a recognisable icon to hint at the expected input type — such as a search icon for a search field.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Leading icon",
@@ -1975,6 +3127,22 @@ Adding of title is optional.`,
     anatomyCallouts: [
       { number: 1, direction: "top", targetSelector: "sgds-link", targetX: "center", targetY: "top" },
       { number: 2, direction: "bottom", targetSelector: "sgds-link a", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The link component provides a consistently styled inline anchor for navigating between pages or sections.",
+        controlLabel: "Link demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-link><a href="#">Visit related guidance</a></sgds-link>`,
+            description: "Renders an inline anchor styled as a link. Use within body copy, lists, or descriptions to navigate users to related pages or resources.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -2016,6 +3184,38 @@ Adding of title is optional.`,
       { number: 2, direction: "top", targetSelector: "[slot='brand']", targetX: "center", targetY: "top" },
       { number: 3, direction: "bottom", targetSelector: "sgds-mainnav-item[active]", targetX: "center", targetY: "bottom" },
       { number: 4, direction: "top", targetSelector: "sgds-mainnav-dropdown[slot='end']", targetX: "center", targetY: "top" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The main navigation provides top-level wayfinding with a brand logo, nav items, and an end slot for utility controls.",
+        controlLabel: "Mainnav demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-nav">
+          <sgds-mainnav fluid>
+            <img
+              slot="brand"
+              alt="SGDS"
+              src="/logo.svg"
+              style="height: var(--sgds-dimension-32); width: auto;"
+            />
+            <sgds-mainnav-item href="#">Overview</sgds-mainnav-item>
+            <sgds-mainnav-item href="#" active>Services</sgds-mainnav-item>
+            <sgds-mainnav-dropdown slot="end">
+              <span slot="toggler">Account</span>
+              <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
+              <sgds-dropdown-item><a href="#">Sign out</a></sgds-dropdown-item>
+            </sgds-mainnav-dropdown>
+          </sgds-mainnav>
+        </div>`,
+            description: "Renders the top-level navigation bar with brand, nav items, and an end slot for utility controls. Use on every page of a service to give users consistent wayfinding.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -2066,6 +3266,22 @@ Adding of title is optional.`,
     anatomyCallouts: [
       { number: 1, direction: "right", targetSelector: "sgds-masthead", targetX: "right", targetY: "center" },
       { number: 2, direction: "bottom", targetSelector: "sgds-masthead", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The masthead is the mandatory Singapore Government banner that confirms authenticity for .gov.sg services.",
+        controlLabel: "Masthead demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-nav"><sgds-masthead fluid></sgds-masthead></div>`,
+            description: "Renders the mandatory Singapore Government banner. Place this at the very top of every .gov.sg service page so users can verify they are on an official government website.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -2128,6 +3344,39 @@ Adding of title is optional.`,
       { number: 4, direction: "left", targetSelector: ".portal-modal-body", targetX: "left", targetY: "center" },
       { number: 5, direction: "bottom", targetSelector: ".portal-modal-footer", targetX: "center", targetY: "bottom" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "Modals are blocking dialogs that focus users on a single critical task or decision.",
+        controlLabel: "Modal demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-modal-preview">
+          <div class="portal-modal-panel">
+            <div class="portal-modal-header">
+              <div class="portal-modal-header-copy">
+                <div class="portal-modal-title">Confirm submission</div>
+                <div class="portal-modal-description">Review the information before you continue.</div>
+              </div>
+              <sgds-close-button aria-label="Close modal"></sgds-close-button>
+            </div>
+            <div class="portal-modal-body">
+              <p>The modal can contain short supporting content and clear actions.</p>
+            </div>
+            <div class="portal-modal-footer">
+              <sgds-button variant="outline">Cancel</sgds-button>
+              <sgds-button>Confirm</sgds-button>
+            </div>
+          </div>
+        </div>`,
+            description: "Renders a blocking dialog that focuses users on a single task. Use for confirmations, destructive actions, or short flows that require a decision before the main page can continue.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -2181,6 +3430,26 @@ Adding of title is optional.`,
       { number: 2, direction: "right", targetSelector: "sgds-overflow-menu", targetX: "right", targetY: "bottom", stemLengthToken: "--sgds-dimension-56" },
       { number: 3, direction: "left", targetSelector: ".portal-anatomy-overflow-item", targetX: "left", targetY: "center" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The overflow menu collects secondary actions behind a three-dot trigger to keep the interface clean.",
+        controlLabel: "Overflow menu demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-overflow-menu>
+          <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
+          <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
+          <sgds-dropdown-item><a href="#">Delete</a></sgds-dropdown-item>
+        </sgds-overflow-menu>`,
+            description: "Renders a three-dot trigger that opens a contextual action list. Use in rows, cards, or compact layouts where displaying all actions inline would clutter the interface.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -2220,6 +3489,22 @@ Adding of title is optional.`,
       { number: 2, direction: "top", targetSelector: "sgds-pagination", targetX: "center", targetY: "top" },
       { number: 3, direction: "right", targetSelector: "sgds-pagination", targetX: "right", targetY: "center" },
     ],
+    configurationDemos: [
+      {
+        title: "Number",
+        description: "Pagination breaks large datasets into discrete pages and gives users clear controls for navigating between them.",
+        controlLabel: "Pagination demo",
+        defaultValue: "number",
+        options: [
+          {
+            label: "Number",
+            value: "number",
+            markup: `<sgds-pagination currentPage="2" dataLength="120" itemsPerPage="10" variant="number"></sgds-pagination>`,
+            description: "Renders numbered page controls with previous and next buttons. Use at the bottom of a results list to let users navigate a large dataset without loading everything at once.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Number",
@@ -2254,6 +3539,22 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: "sgds-progress-bar", targetX: "right", targetY: "center" },
       { number: 2, direction: "top", targetSelector: "sgds-progress-bar", targetX: "left", targetY: "top" },
       { number: 3, direction: "bottom", targetSelector: "sgds-progress-bar", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Label",
+        description: "The progress bar shows how far a process has advanced with an optional descriptive label.",
+        controlLabel: "Progress bar demo",
+        defaultValue: "label",
+        options: [
+          {
+            label: "Label",
+            value: "label",
+            markup: `<sgds-progress-bar value="64" label="Submission progress"></sgds-progress-bar>`,
+            description: "Renders a horizontal progress bar with a labelled percentage. Use when a process has a known endpoint — such as a file upload or multi-step form — and users need to see how far along it is.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -2290,6 +3591,22 @@ Adding of title is optional.`,
       { number: 2, direction: "top", targetSelector: "sgds-quantity-toggle", targetX: "center", targetY: "top" },
       { number: 3, direction: "right", targetSelector: "sgds-quantity-toggle", targetX: "right", targetY: "center" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The quantity toggle provides increment and decrement controls for adjusting a numeric value within a defined range.",
+        controlLabel: "Quantity toggle demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-quantity-toggle value="2" min="0" max="5"></sgds-quantity-toggle>`,
+            description: "Renders increment and decrement buttons around a numeric input. Use when users need to adjust a count in clear, bounded steps — such as a booking quantity or item count.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -2324,6 +3641,26 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: "sgds-radio-group", targetX: "right", targetY: "center" },
       { number: 2, direction: "left", targetSelector: "sgds-radio", targetX: "left", targetY: "center" },
       { number: 3, direction: "right", targetSelector: "sgds-radio", targetX: "right", targetY: "center" },
+    ],
+    configurationDemos: [
+      {
+        title: "Group",
+        description: "Radio buttons are presented as a group where users can select exactly one option from a visible set.",
+        controlLabel: "Radio demo",
+        defaultValue: "group",
+        options: [
+          {
+            label: "Group",
+            value: "group",
+            markup: `<sgds-radio-group label="Preferred contact method" value="email">
+          <sgds-radio value="email">Email</sgds-radio>
+          <sgds-radio value="sms">SMS</sgds-radio>
+          <sgds-radio value="phone">Phone call</sgds-radio>
+        </sgds-radio-group>`,
+            description: "Renders a group of radio controls under a shared label. Use when users must choose exactly one option from a set of mutually exclusive choices that are all visible at once.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -2365,6 +3702,26 @@ Adding of title is optional.`,
       { number: 2, direction: "right", targetSelector: ".portal-anatomy-select", targetX: "right", targetY: "bottom", stemLengthToken: "--sgds-dimension-56" },
       { number: 3, direction: "left", targetSelector: ".portal-anatomy-select-option", targetX: "left", targetY: "center" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The select component presents a collapsed dropdown for choosing one value from a predefined list.",
+        controlLabel: "Select demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-select placeholder="Choose a service">
+          <sgds-select-option value="passport">Passport</sgds-select-option>
+          <sgds-select-option value="licence">Licence</sgds-select-option>
+          <sgds-select-option value="benefits">Benefits</sgds-select-option>
+        </sgds-select>`,
+            description: "Renders a dropdown field for choosing one option from a known list. Use when the list is too long for radio buttons but the user must pick from a constrained set.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -2403,6 +3760,35 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: "sgds-sidenav", targetX: "right", targetY: "center" },
       { number: 2, direction: "left", targetSelector: "sgds-sidenav-item[active]", targetX: "left", targetY: "center" },
       { number: 3, direction: "bottom", targetSelector: "sgds-sidenav-link[active]", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The side navigation displays a vertical list of section links that stays visible as users scroll through content.",
+        controlLabel: "Sidenav demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-nav-sm">
+          <sgds-sidenav>
+            <sgds-sidenav-item active>
+              <span slot="title">Getting started</span>
+              <sgds-sidenav-link active><a href="#">Overview</a></sgds-sidenav-link>
+              <sgds-sidenav-link><a href="#">Installation</a></sgds-sidenav-link>
+            </sgds-sidenav-item>
+            <sgds-sidenav-item>
+              <span slot="title">Components</span>
+              <sgds-sidenav-link><a href="#">Accordion</a></sgds-sidenav-link>
+              <sgds-sidenav-link><a href="#">Button</a></sgds-sidenav-link>
+            </sgds-sidenav-item>
+          </sgds-sidenav>
+        </div>`,
+            description: "Renders a vertical navigation panel with expandable sections and page links. Use for section-level navigation within documentation or multi-page services.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -2451,6 +3837,24 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: "sgds-skeleton", targetX: "right", targetY: "center" },
       { number: 2, direction: "top", targetSelector: "sgds-skeleton", targetX: "center", targetY: "top" },
     ],
+    configurationDemos: [
+      {
+        title: "Rows",
+        description: "Skeleton screens use animated placeholder blocks that match the shape of the incoming content.",
+        controlLabel: "Skeleton demo",
+        defaultValue: "rows",
+        options: [
+          {
+            label: "Rows",
+            value: "rows",
+            markup: `<div class="portal-demo-stack">
+          <sgds-skeleton width="100%" height="var(--sgds-dimension-80)" rows="3" sheen></sgds-skeleton>
+        </div>`,
+            description: "Renders animated placeholder rows. Use to preserve the page layout and reduce perceived loading time while data is being fetched.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Rows",
@@ -2486,6 +3890,22 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: "sgds-spinner", targetX: "right", targetY: "center" },
       { number: 2, direction: "top", targetSelector: "sgds-spinner", targetX: "center", targetY: "top" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The spinner is an animated circular indicator that signals an in-progress operation with an indeterminate duration.",
+        controlLabel: "Spinner demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-row"><sgds-spinner></sgds-spinner></div>`,
+            description: "Renders an animated circular indicator. Use for indeterminate waits where the duration cannot be predicted — such as API calls, form submissions, or page transitions.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -2520,6 +3940,24 @@ Adding of title is optional.`,
       { number: 1, direction: "top", targetSelector: "sgds-stepper", targetX: "left", targetY: "top" },
       { number: 2, direction: "bottom", targetSelector: "sgds-stepper", targetX: "left", targetY: "bottom" },
       { number: 3, direction: "right", targetSelector: "sgds-stepper", targetX: "right", targetY: "center" },
+    ],
+    configurationDemos: [
+      {
+        title: "Horizontal",
+        description: "The stepper shows users how many stages a process has and which one they are currently on.",
+        controlLabel: "Stepper demo",
+        defaultValue: "horizontal",
+        options: [
+          {
+            label: "Horizontal",
+            value: "horizontal",
+            markup: `<div class="portal-demo-stepper">
+          <sgds-stepper data-portal-stepper="default"></sgds-stepper>
+        </div>`,
+            description: "Renders a horizontal sequence of step markers and labels. Use in multi-step forms or processes to show users how many stages there are and which one they are currently on.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -2564,6 +4002,30 @@ Adding of title is optional.`,
       { number: 3, direction: "bottom", targetSelector: "sgds-subnav-item[active]", targetX: "center", targetY: "bottom" },
       { number: 4, direction: "top", targetSelector: "[slot='actions']", targetX: "center", targetY: "top" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The subnav provides secondary navigation within a specific section, with a header label, page links, and an optional action slot.",
+        controlLabel: "Subnav demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-nav">
+          <sgds-subnav>
+            <span slot="header">Applications</span>
+            <sgds-button slot="actions" variant="ghost">Manage</sgds-button>
+            <sgds-subnav-item active><a href="#">Overview</a></sgds-subnav-item>
+            <sgds-subnav-item><a href="#">History</a></sgds-subnav-item>
+            <sgds-subnav-item><a href="#">Settings</a></sgds-subnav-item>
+          </sgds-subnav>
+        </div>`,
+            description: "Renders a secondary navigation bar within a section. Use below the main navigation when a section has multiple sub-pages that users need to move between.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -2606,6 +4068,22 @@ Adding of title is optional.`,
       { number: 1, direction: "top", targetSelector: "sgds-switch", targetX: "left", targetY: "top" },
       { number: 2, direction: "bottom", targetSelector: "sgds-switch", targetX: "left", targetY: "bottom" },
       { number: 3, direction: "right", targetSelector: "sgds-switch", targetX: "right", targetY: "center" },
+    ],
+    configurationDemos: [
+      {
+        title: "Checked state",
+        description: "The switch is a toggle control that visually reflects its on or off state and applies the change immediately.",
+        controlLabel: "Switch demo",
+        defaultValue: "checked",
+        options: [
+          {
+            label: "Checked state",
+            value: "checked",
+            markup: `<sgds-switch checked>Enable notifications</sgds-switch>`,
+            description: "Renders a switch in its active state. Use when a setting should take effect immediately without a separate save action — such as enabling notifications or toggling a feature.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -2662,6 +4140,27 @@ Adding of title is optional.`,
       { number: 4, direction: "bottom", targetSelector: "sgds-badge[slot='badge']", targetX: "center", targetY: "bottom" },
       { number: 5, direction: "bottom", targetSelector: "sgds-system-banner", targetX: "right", targetY: "bottom" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The system banner displays important site-wide messages that should remain visible until the user dismisses them.",
+        controlLabel: "System banner demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-system-banner show>
+          <sgds-system-banner-item>
+            <sgds-icon slot="icon" name="info-circle-fill" size="md"></sgds-icon>
+            Scheduled maintenance will take place tonight from 10pm to 11pm.
+          </sgds-system-banner-item>
+        </sgds-system-banner>`,
+            description: "Renders a persistent banner at the top of the page. Use for important messages that affect all users — such as maintenance notices, urgent alerts, or policy changes.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -2701,6 +4200,42 @@ Adding of title is optional.`,
       { number: 2, direction: "top", targetSelector: "sgds-tab[active]", targetX: "center", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
       { number: 3, direction: "bottom", targetSelector: "sgds-tab-panel[name='overview']", targetX: "center", targetY: "bottom" },
     ],
+    configurationDemos: [
+      {
+        title: "Variant",
+        description: "Tab variants control the visual style of the active tab indicator to suit different surface contexts.",
+        controlLabel: "Tab variant options",
+        defaultValue: "underlined",
+        options: [
+          {
+            label: "Underlined",
+            value: "underlined",
+            markup: `<sgds-tab-group variant="underlined">
+          <sgds-tab slot="nav" panel="overview" active>Overview</sgds-tab>
+          <sgds-tab slot="nav" panel="details">Details</sgds-tab>
+          <sgds-tab slot="nav" panel="history">History</sgds-tab>
+          <sgds-tab-panel name="overview">Overview content</sgds-tab-panel>
+          <sgds-tab-panel name="details">Details content</sgds-tab-panel>
+          <sgds-tab-panel name="history">History content</sgds-tab-panel>
+        </sgds-tab-group>`,
+            description: "The underlined variant marks the active tab with a bottom border. Use as the default tab style in most page and panel contexts.",
+          },
+          {
+            label: "Solid",
+            value: "solid",
+            markup: `<sgds-tab-group variant="solid">
+          <sgds-tab slot="nav" panel="overview2" active>Overview</sgds-tab>
+          <sgds-tab slot="nav" panel="details2">Details</sgds-tab>
+          <sgds-tab slot="nav" panel="history2">History</sgds-tab>
+          <sgds-tab-panel name="overview2">Overview content</sgds-tab-panel>
+          <sgds-tab-panel name="details2">Details content</sgds-tab-panel>
+          <sgds-tab-panel name="history2">History content</sgds-tab-panel>
+        </sgds-tab-group>`,
+            description: "The solid variant marks the active tab with a filled pill. Use in dense or compact surfaces where a stronger indicator improves visual clarity.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Underlined",
@@ -2722,7 +4257,7 @@ Adding of title is optional.`,
     tag: "sgds-table",
     group: "table",
     summary:
-      "Table is used for displaying collections of data in organized rows and columns.",
+      "Tables are used to display collections of data in organised rows and columns.",
     purposeCards: [
       {
         title: "Compare data across rows",
@@ -2742,6 +4277,27 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: "sgds-table", targetX: "right", targetY: "center" },
       { number: 2, direction: "top", targetSelector: "sgds-table", targetX: "center", targetY: "top" },
       { number: 3, direction: "bottom", targetSelector: "sgds-table", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Structured data",
+        description: "Tables present repeated values across rows and columns in a layout optimised for comparison and scanning.",
+        controlLabel: "Table demo",
+        defaultValue: "structured",
+        options: [
+          {
+            label: "Structured data",
+            value: "structured",
+            markup: `<sgds-table
+          rowHeader='["Name","Status","Owner"]'
+          tableData='[["Alpha","Active","Team A"],["Beta","Pending","Team B"],["Gamma","Closed","Team C"]]'
+          headerBackground
+          tableBorder
+        ></sgds-table>`,
+            description: "Renders a bordered data table with column headers and data rows. Use when users need to compare multiple values across many records in a structured layout.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -2782,6 +4338,31 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: "sgds-table-of-contents", targetX: "right", targetY: "center" },
       { number: 2, direction: "top", targetSelector: "[slot='default']", targetX: "center", targetY: "top" },
       { number: 3, direction: "bottom", targetSelector: "[slot='contents']", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The table of contents renders a list of named anchor links for jumping to sections on the same page.",
+        controlLabel: "Table of contents demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-nav-sm">
+          <sgds-table-of-contents>
+            <span slot="default">On this page</span>
+            <div slot="contents" class="portal-demo-stack-sm">
+              <a href="#">Overview</a>
+              <a href="#">Requirements</a>
+              <a href="#">Examples</a>
+            </div>
+          </sgds-table-of-contents>
+        </div>`,
+            description: "Renders anchor links to all sections on the page. Use on long documentation or content pages where users need quick access to specific sections without scrolling.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -2826,6 +4407,22 @@ Adding of title is optional.`,
       { number: 1, direction: "right", targetSelector: "sgds-textarea", targetX: "right", targetY: "center" },
       { number: 2, direction: "bottom", targetSelector: "sgds-textarea", targetX: "center", targetY: "bottom" },
     ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "The textarea is a multi-line text input for collecting longer freeform responses.",
+        controlLabel: "Textarea demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-textarea rows="4" placeholder="Add supporting details"></sgds-textarea>`,
+            description: "Renders a multi-line text input. Use when users need to enter more than a single line of text — such as feedback, notes, or detailed descriptions.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -2840,7 +4437,7 @@ Adding of title is optional.`,
     tag: "sgds-thumbnail-card",
     group: "data display",
     summary:
-      "Thumbnail cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.",
+      "Thumbnail cards can include headers, footers, rich content, and contextual background colours or images.",
     purposeCards: [
       {
         title: "Preview before clicking",
@@ -2866,6 +4463,31 @@ Adding of title is optional.`,
       { number: 2, direction: "left", targetSelector: "[slot='thumbnail']", targetX: "left", targetY: "center" },
       { number: 3, direction: "top", targetSelector: "[slot='title']", targetX: "center", targetY: "top" },
       { number: 4, direction: "bottom", targetSelector: "[slot='description']", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Default",
+        description: "Thumbnail cards display a compact image beside the title and description for a dense, browseable layout.",
+        controlLabel: "Thumbnail card demo",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-thumbnail-card class="portal-demo-card">
+          <img
+            slot="thumbnail"
+            alt="Thumbnail"
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80"
+            style="width: var(--sgds-dimension-64); height: var(--sgds-dimension-64); object-fit: cover; border-radius: var(--sgds-border-radius-md);"
+          />
+          <span slot="title">Thumbnail card title</span>
+          <span slot="description">Supporting description for the thumbnail card.</span>
+        </sgds-thumbnail-card>`,
+            description: "Renders a card with a compact thumbnail image beside the title and description. Use when a small visual preview needs to sit alongside brief copy in a dense grid or listing.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -2911,6 +4533,49 @@ Adding of title is optional.`,
       { number: 3, direction: "left", targetSelector: "sgds-toast", targetX: "left", targetY: "center" },
       { number: 4, direction: "bottom", targetSelector: "[slot='action']", targetX: "center", targetY: "bottom" },
     ],
+    configurationDemos: [
+      {
+        title: "Variant",
+        description: "Toast variants use colour and context to communicate the nature of the notification.",
+        controlLabel: "Toast variant options",
+        defaultValue: "success",
+        options: [
+          {
+            label: "Success",
+            value: "success",
+            markup: `<sgds-toast show title="Saved" variant="success">
+          Changes have been saved successfully.
+          <sgds-link slot="action"><a href="#">Undo</a></sgds-link>
+        </sgds-toast>`,
+            description: "Use to confirm that an action completed successfully — such as saving, submitting, or deleting an item.",
+          },
+          {
+            label: "Warning",
+            value: "warning",
+            markup: `<sgds-toast show title="Check your input" variant="warning">
+          Some fields may need your attention before proceeding.
+        </sgds-toast>`,
+            description: "Use to alert users to something that needs attention without blocking their current task.",
+          },
+          {
+            label: "Danger",
+            value: "danger",
+            markup: `<sgds-toast show title="Action failed" variant="danger">
+          The request could not be completed. Please try again.
+        </sgds-toast>`,
+            description: "Use to communicate that an action has failed or that something requires immediate attention.",
+          },
+          {
+            label: "Info",
+            value: "info",
+            markup: `<sgds-toast show title="Update available" variant="info">
+          A new version of this service is available.
+        </sgds-toast>`,
+            description: "Use for neutral, informational updates that are not directly tied to a user action or status outcome.",
+          },
+        ],
+      },
+    ],
     demos: [
       demo(
         "Default",
@@ -2949,6 +4614,24 @@ Adding of title is optional.`,
       { number: 1, direction: "bottom", targetSelector: ".portal-anatomy-tooltip-target", targetX: "center", targetY: "bottom" },
       { number: 2, direction: "top", targetSelector: ".portal-anatomy-tooltip", targetX: "center", targetY: "top" },
       { number: 3, direction: "right", targetSelector: ".portal-anatomy-tooltip", targetX: "right", targetY: "top", stemLengthToken: "--sgds-dimension-56" },
+    ],
+    configurationDemos: [
+      {
+        title: "Hover and focus",
+        description: "Tooltips appear on hover or keyboard focus to provide short supplementary context for interface elements.",
+        controlLabel: "Tooltip demo",
+        defaultValue: "hover-focus",
+        options: [
+          {
+            label: "Hover and focus",
+            value: "hover-focus",
+            markup: `<sgds-tooltip content="More details about this action" trigger="hover focus">
+          <sgds-button variant="outline">Hover to view</sgds-button>
+        </sgds-tooltip>`,
+            description: "Renders a tooltip that appears on hover or keyboard focus. Use to provide short supplementary explanations for elements that already have a visible label or icon.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -3052,6 +4735,7 @@ const buildResolvedUsage = (doc: ComponentDoc): UsageContent => {
   return {
     guidance: usage.guidance?.length ? usage.guidance : buildUsageGuidance(doc),
     content: usage.content?.length ? usage.content : buildUsageContentSections(doc),
+    contentGuidelines: usage.contentGuidelines,
     behaviours: usage.behaviours?.length ? usage.behaviours : buildUsageBehaviours(doc),
     motion: usage.motion,
     bestPractices: usage.bestPractices,
@@ -3059,7 +4743,9 @@ const buildResolvedUsage = (doc: ComponentDoc): UsageContent => {
 };
 
 const buildAccessibilitySections = (doc: ComponentDoc): AccessibilitySection[] => {
-  if (doc.accessibility?.sections?.length) return doc.accessibility.sections;
+  if (doc.accessibility && "sections" in doc.accessibility) {
+    return doc.accessibility.sections ?? [];
+  }
 
   const firstDemoMarkup = doc.demos[0]?.markup || `<${doc.tag}></${doc.tag}>`;
 
@@ -3222,3 +4908,52 @@ export const getComponentDoc = (key: string): ResolvedComponentDoc | null => {
 export const componentDocSummaries = Object.fromEntries(
   Object.values(componentDocs).map((doc) => [doc.key, doc.summary]),
 );
+
+// ---------------------------------------------------------------------------
+// Source-reference links (GitHub repo + Storybook)
+// ---------------------------------------------------------------------------
+//
+// Every component page surfaces two canonical outbound links in the page
+// header: the web component implementation on GitHub and the live Storybook
+// example. URLs are derived from the doc key so individual components never
+// need to hardcode them.
+//
+// Kebab-case doc keys map to PascalCase folder names in the web component
+// repository (e.g. `combo-box` → `ComboBox`, `table-of-contents` →
+// `TableOfContents`). Folder names verified against
+// node_modules/@govtechsg/sgds-web-component/components/ on 2026-04-22.
+
+const kebabToPascalCase = (key: string): string =>
+  key
+    .split("-")
+    .filter(Boolean)
+    .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+    .join("");
+
+export const getComponentGithubHref = (key: string): string =>
+  `https://github.com/GovTechSG/sgds-web-component/tree/master/src/components/${kebabToPascalCase(key)}`;
+
+export const getComponentStorybookHref = (key: string): string =>
+  `https://webcomponent.designsystem.tech.gov.sg/?path=/docs/components-${key}--docs`;
+
+export type ComponentHeaderLink = {
+  label: string;
+  href: string;
+  path: string;
+  iconSrc: string;
+};
+
+export const getComponentHeaderLinks = (key: string): ComponentHeaderLink[] => [
+  {
+    label: "GitHub",
+    iconSrc: "/brands/github.svg",
+    path: `components/${key}`,
+    href: getComponentGithubHref(key),
+  },
+  {
+    label: "Storybook",
+    iconSrc: "/brands/storybook.svg",
+    path: `components/${key}`,
+    href: getComponentStorybookHref(key),
+  },
+];
