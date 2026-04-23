@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import CodeToken from "../ui/CodeToken.vue";
+import Section from "../foundations/Section.vue";
 import type { AccessibilityContent } from "../../data/component-docs";
 
 const props = defineProps<{
@@ -11,6 +12,18 @@ const accessibilityCanvasRefs = ref<Record<string, HTMLElement | null>>({});
 const accessibilityHighlightPositions = ref<Record<string, Array<{ key: string; left: number; top: number; width: number; height: number }>>>({});
 let resizeObserver: ResizeObserver | null = null;
 let mutationObservers: MutationObserver[] = [];
+
+const formatKeyboardKey = (key: string) =>
+  key
+    .split(/(\s+\+\s+|\s+or\s+|\s*\/\s*)/i)
+    .filter(Boolean)
+    .map((part) => {
+      const normalised = part.trim();
+      if (normalised === "+") return { type: "connector", label: "+" };
+      if (normalised === "/") return { type: "connector", label: "or" };
+      if (normalised.toLowerCase() === "or") return { type: "connector", label: "or" };
+      return { type: "key", label: normalised };
+    });
 
 const setCanvasRef = (title: string) => (el: Element | null) => {
   accessibilityCanvasRefs.value[title] = el as HTMLElement | null;
@@ -112,13 +125,15 @@ onBeforeUnmount(() => {
     <article
       v-for="section in accessibility?.sections || []"
       :key="section.title"
-      class="sgds:grid sgds:gap-layout-lg sgds:grid-cols-[minmax(0,3fr)_minmax(0,5fr)] sgds:max-lg:grid-cols-1"
+      :class="section.markup
+        ? 'sgds:grid sgds:gap-layout-lg sgds:grid-cols-[minmax(0,3fr)_minmax(0,5fr)] sgds:max-xl:grid-cols-1'
+        : 'sgds:flex sgds:flex-col sgds:gap-component-sm sgds:max-w-[var(--sgds-container-max-width-md)]'"
     >
-      <div class="sgds:flex sgds:flex-col sgds:gap-component-sm">
-        <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-4 sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+        <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
           {{ section.title }}
         </h3>
-        <div v-if="section.description?.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-component-xs">
+        <div v-if="section.description?.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs">
           <p
             v-for="paragraph in section.description"
             :key="paragraph"
@@ -127,11 +142,11 @@ onBeforeUnmount(() => {
             {{ paragraph }}
           </p>
         </div>
-        <ol v-if="section.items.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-2 sgds:m-0 sgds:pl-8">
+        <ul v-if="section.items.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
           <li v-for="item in section.items" :key="item">{{ item }}</li>
-        </ol>
+        </ul>
       </div>
-      <div class="sgds:flex sgds:items-center sgds:justify-center sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-288)] sgds:p-component-md sgds:max-lg:min-h-[var(--sgds-dimension-320)]">
+      <div v-if="section.markup" class="sgds:flex sgds:items-center sgds:justify-center sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-288)] sgds:p-component-md sgds:max-lg:min-h-[var(--sgds-dimension-320)]">
         <div v-if="section.markup" class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full">
           <div
             :ref="setCanvasRef(section.title)"
@@ -154,10 +169,7 @@ onBeforeUnmount(() => {
       </div>
     </article>
 
-    <section v-if="accessibility?.keyboardInteractions?.length" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
-      <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-4 sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
-        Keyboard interaction
-      </h3>
+    <Section v-if="accessibility?.keyboardInteractions?.length" title="Keyboard interaction" gap="sgds:gap-[var(--sgds-gap-xl)]">
       <sgds-table tableBorder headerBackground>
         <sgds-table-row>
           <sgds-table-head>Key</sgds-table-head>
@@ -165,12 +177,17 @@ onBeforeUnmount(() => {
         </sgds-table-row>
         <sgds-table-row v-for="row in accessibility?.keyboardInteractions || []" :key="row.key">
           <sgds-table-cell>
-            <CodeToken :label="row.key" />
+            <span class="sgds:inline-flex sgds:flex-wrap sgds:items-center sgds:gap-text-2-xs">
+              <template v-for="(part, index) in formatKeyboardKey(row.key)" :key="`${row.key}-${index}-${part.label}`">
+                <CodeToken v-if="part.type === 'key'" :label="part.label" />
+                <span v-else class="sgds:text-subtle">{{ part.label }}</span>
+              </template>
+            </span>
           </sgds-table-cell>
           <sgds-table-cell>{{ row.description }}</sgds-table-cell>
         </sgds-table-row>
       </sgds-table>
-    </section>
+    </Section>
   </div>
 </template>
 
@@ -178,7 +195,9 @@ onBeforeUnmount(() => {
 /* Global selectors targeting slotted web component elements in v-html markup */
 .accessibility-demo-markup > sgds-accordion {
   background: var(--sgds-surface-default);
+  border-radius: var(--sgds-border-radius-md);
   display: block;
+  overflow: hidden;
   width: 100%;
 }
 

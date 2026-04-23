@@ -286,17 +286,20 @@ onBeforeUnmount(() => {
       <!-- Accessibility tab -->
       <sgds-tab-panel name="accessibility">
         <div v-if="doc.accessibility?.sections?.length || doc.accessibility?.keyboardInteractions?.length" class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-margin-5-xl)] sgds:pt-[var(--sgds-layout-gap-lg)]">
-          <AccessibilitySection :accessibility="doc.accessibility" />
+          <Section title="Accessibility considerations" gap="sgds:gap-[var(--sgds-gap-xl)]">
+            <AccessibilitySection :accessibility="doc.accessibility" />
+          </Section>
         </div>
-        <article v-else class="sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-md)] sgds:p-component-md">
-          <h3 class="sgds:text-heading-default sgds:m-0">Accessibility notes</h3>
-          <ul v-if="doc.accessibilityNotes?.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-            <li v-for="note in doc.accessibilityNotes" :key="note">{{ note }}</li>
-          </ul>
-          <p v-else class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line">
-            Use the component with clear labels, meaningful text, and the SGDS interaction states that come with the component. Validate keyboard flow and screen reader behaviour in the surrounding page context.
-          </p>
-        </article>
+        <Section v-else title="Accessibility considerations" gap="sgds:gap-[var(--sgds-gap-xl)]">
+          <article class="sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-md)] sgds:p-component-md">
+            <ul v-if="doc.accessibilityNotes?.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
+              <li v-for="note in doc.accessibilityNotes" :key="note">{{ note }}</li>
+            </ul>
+            <p v-else class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line">
+              Use the component with clear labels, meaningful text, and the SGDS interaction states that come with the component. Validate keyboard flow and screen reader behaviour in the surrounding page context.
+            </p>
+          </article>
+        </Section>
       </sgds-tab-panel>
 
       <!-- Updates tab -->
