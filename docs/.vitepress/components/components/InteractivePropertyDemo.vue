@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref } from "vue";
+import { nextTick, onMounted, ref, watch } from "vue";
 import type { ConfigurationDemo } from "../../data/component-docs";
 import CardContentSlotsDemo from "./CardContentSlotsDemo.vue";
+import SegmentedControl from "./SegmentedControl.vue";
 
 const props = defineProps<{ demo: ConfigurationDemo }>();
 
 const rootRef = ref<HTMLElement | null>(null);
+
+const activeValue = ref<string>(
+  props.demo.defaultValue || props.demo.options[0]?.value || "",
+);
 
 const applyStateEffects = async () => {
   await nextTick();
@@ -32,6 +37,10 @@ const applyStateEffects = async () => {
 onMounted(() => {
   void applyStateEffects();
 });
+
+watch(activeValue, () => {
+  void applyStateEffects();
+});
 </script>
 
 <template>
@@ -41,25 +50,25 @@ onMounted(() => {
       <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ demo.description }}</p>
     </div>
 
-    <div class="interactive-demo sgds:flex sgds:flex-col sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-md sgds:py-component-sm">
+    <div class="interactive-demo sgds:flex sgds:flex-col sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-md sgds:py-component-xs sgds:gap-component-md">
       <CardContentSlotsDemo v-if="demo.interactionMode === 'content-slots'" :demo="demo" />
-      <sgds-tab-group v-else variant="solid" density="compact" :aria-label="demo.controlLabel || demo.title">
-        <sgds-tab
+      <template v-else>
+        <SegmentedControl
+          v-model="activeValue"
+          :options="demo.options"
+          :aria-label="demo.controlLabel || demo.title"
+        />
+
+        <div
           v-for="opt in demo.options"
+          v-show="opt.value === activeValue"
           :key="opt.value"
-          slot="nav"
-          :panel="opt.value"
-          :active="opt.value === demo.defaultValue || null"
-        >{{ opt.label }}</sgds-tab>
-        <sgds-tab-panel
-          v-for="opt in demo.options"
-          :key="opt.value"
-          :name="opt.value"
           :data-state-effect="opt.stateEffect"
+          role="tabpanel"
         >
-          <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+          <div class="sgds:flex sgds:flex-col sgds:gap-component-md">
             <div class="sgds:flex sgds:items-center sgds:justify-center">
-              <div class="sgds:w-full sgds:max-w-[var(--sgds-dimension-560)] sgds:mx-auto">
+              <div class="sgds:w-full sgds:max-w-[var(--sgds-dimension-640)] sgds:mx-auto">
                 <div class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="opt.markup"></div>
               </div>
             </div>
@@ -70,8 +79,8 @@ onMounted(() => {
               {{ opt.note }}
             </p>
           </div>
-        </sgds-tab-panel>
-      </sgds-tab-group>
+        </div>
+      </template>
     </div>
   </article>
 </template>
@@ -79,5 +88,25 @@ onMounted(() => {
 <style>
 .interactive-demo {
   background: var(--sgds-bg-alternate);
+}
+
+/* Global selectors targeting slotted web component elements in v-html markup.
+   These SGDS web components are inline by default; force them to fill the demo
+   wrapper so the max-width on the parent is respected. */
+.behaviour-demo-markup > sgds-accordion {
+  background: var(--sgds-surface-default);
+  border-radius: var(--sgds-border-radius-md);
+  display: block;
+  overflow: hidden;
+  width: 100%;
+}
+
+.behaviour-demo-markup > sgds-alert {
+  display: block;
+  width: 100%;
+}
+
+.behaviour-demo-markup sgds-alert-link {
+  vertical-align: baseline;
 }
 </style>

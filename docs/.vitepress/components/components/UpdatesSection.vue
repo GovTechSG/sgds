@@ -21,7 +21,7 @@ const displayRows = computed(() =>
 
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-margin-5-xl)] sgds:pt-[var(--sgds-layout-gap-lg)]">
-    <Section :title="updates.updates.title">
+    <Section :title="updates.updates.title" gap="sgds:gap-[var(--sgds-gap-xl)]">
       <sgds-table tableBorder headerBackground>
         <sgds-table-row>
           <sgds-table-head v-for="column in updates.updates.columns" :key="column">
@@ -55,7 +55,7 @@ const displayRows = computed(() =>
       </sgds-table>
     </Section>
 
-    <Section :title="updates.roadmap.title">
+    <Section :title="updates.roadmap.title" gap="sgds:gap-[var(--sgds-gap-xl)]">
       <sgds-table tableBorder headerBackground>
         <sgds-table-row>
           <sgds-table-head v-for="column in updates.roadmap.columns" :key="column">{{ column }}</sgds-table-head>
@@ -71,7 +71,7 @@ const displayRows = computed(() =>
       </sgds-table>
     </Section>
 
-    <Section :title="updates.feedback.title">
+    <Section :title="updates.feedback.title" gap="sgds:gap-[var(--sgds-gap-xl)]">
       <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-md)] sgds:max-w-[var(--sgds-container-max-width-md)]">
         <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
           {{ updates.feedback.heading }}
@@ -83,7 +83,7 @@ const displayRows = computed(() =>
       </div>
     </Section>
 
-    <Section :title="updates.bugReports.title">
+    <Section :title="updates.bugReports.title" gap="sgds:gap-[var(--sgds-gap-xl)]">
       <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-md)] sgds:max-w-[var(--sgds-container-max-width-md)]">
         <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
           {{ updates.bugReports.heading }}

@@ -41,12 +41,13 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 ## Component Composition
 
-**`icon` slot** — a single `<sgds-icon>` that matches the alert's semantic variant:
-- `info` → `<sgds-icon name="info-circle-fill">`
-- `success` → `<sgds-icon name="check-circle-fill">`
-- `danger` → `<sgds-icon name="exclamation-circle-fill">`
-- `warning` → `<sgds-icon name="exclamation-triangle-fill">`
+**`icon` slot** — a single `<sgds-icon size="md">` that matches the alert's semantic variant:
+- `info` → `<sgds-icon name="info-circle-fill" size="md">`
+- `success` → `<sgds-icon name="check-circle-fill" size="md">`
+- `danger` → `<sgds-icon name="exclamation-circle-fill" size="md">`
+- `warning` → `<sgds-icon name="exclamation-triangle-fill" size="md">`
 - Omit the slot entirely for a text-only (no icon) alert.
+- Always set `size="md"` on the icon — this is the required size for alert icons.
 
 **Default slot (body)** — paragraph text and `<sgds-alert-link>` elements for inline links. Basic HTML is permitted (`<strong>`, `<em>`, `<p>`). Avoid placing interactive components in the body — alerts are informational only.
 
@@ -109,40 +110,40 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 ```html
 <!-- Basic alert with icon -->
 <sgds-alert show variant="info" title="Title">
-  <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+  <sgds-icon slot="icon" name="info-circle-fill" size="md"></sgds-icon>
   <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
 </sgds-alert>
 
 <!-- All variants -->
 <sgds-alert show variant="success" title="Success alert">
-  <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
+  <sgds-icon slot="icon" name="check-circle-fill" size="md"></sgds-icon>
   <div>Operation completed.</div>
 </sgds-alert>
 
 <sgds-alert show variant="danger" title="Error alert">
-  <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
+  <sgds-icon slot="icon" name="exclamation-circle-fill" size="md"></sgds-icon>
   <div>Something went wrong.</div>
 </sgds-alert>
 
 <sgds-alert show variant="warning" title="Warning alert">
-  <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
+  <sgds-icon slot="icon" name="exclamation-triangle-fill" size="md"></sgds-icon>
   <div>Proceed with caution.</div>
 </sgds-alert>
 
 <sgds-alert show variant="neutral" title="Neutral alert">
-  <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+  <sgds-icon slot="icon" name="info-circle-fill" size="md"></sgds-icon>
   <div>Here is some information.</div>
 </sgds-alert>
 
 <!-- Outlined variant -->
 <sgds-alert show variant="info" title="Title" outlined>
-  <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+  <sgds-icon slot="icon" name="info-circle-fill" size="md"></sgds-icon>
   <div>Outlined alert.</div>
 </sgds-alert>
 
 <!-- Dismissible alert -->
 <sgds-alert show variant="info" title="Title" dismissible>
-  <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+  <sgds-icon slot="icon" name="info-circle-fill" size="md"></sgds-icon>
   <div>This alert can be closed.</div>
 </sgds-alert>
 
@@ -202,7 +203,7 @@ For framework-specific event syntax (React, Vue, Angular) see the **[sgds-compon
 **For AI agents**:
 1. Always use `<sgds-alert>` for feedback messages — never suggest custom `<div>` banners.
 2. `show` must be set to `true` for the alert to be visible regardless of whether it is `dismissible`.
-3. The `icon` slot is optional; omit it for a text-only alert.
+3. The `icon` slot is optional; omit it for a text-only alert. When using it, always set `size="md"` on the `<sgds-icon>`.
 4. Use `<sgds-alert-link>` (not a plain `<a>` tag) for any link inside the alert body.
 5. `title` accepts plain text only — do not pass HTML into the `title` attribute.
 6. `close()` programmatically dismisses the alert; listening for `sgds-hide` confirms it has closed.

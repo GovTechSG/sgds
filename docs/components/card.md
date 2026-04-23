@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Card
-description: Cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.
+description: Cards can include headers, footers, rich content, and contextual background colours or images.
 storybook: true
 ---
 

@@ -70,6 +70,18 @@ export type MeasurementTokenGroup = {
   tokens: MeasurementTokenRow[];
 };
 
+export type NamedTokenRow = {
+  category?: string;
+  name: string;
+  value: string;
+  rawValue?: string;
+};
+
+export type NamedTokenGroup = {
+  title: string;
+  rows: NamedTokenRow[];
+};
+
 export type UsageGuidance = {
   title: string;
   tone: "do" | "dont";
@@ -124,6 +136,28 @@ export type ConfigurationDemo = {
   defaultValue: string;
   options: ConfigurationDemoOption[];
   interactionMode?: "tabs" | "content-slots";
+};
+
+export type AlertPlaygroundContent = {
+  variantLabel: string;
+  outlinedLabel: string;
+  dismissibleLabel: string;
+  withIconLabel: string;
+  titleToggleLabel: string;
+  editTextLabel: string;
+  editTitleLabel: string;
+  editDescriptionLabel: string;
+  slotLabel: string;
+  defaultVariant: "info" | "success" | "danger" | "warning" | "neutral";
+  defaultOutlined: boolean;
+  defaultDismissible: boolean;
+  defaultWithIcon: boolean;
+  defaultShowTitle: boolean;
+  defaultShowSlot: boolean;
+  defaultTitle: string;
+  defaultDescription: string;
+  defaultLinkLabel: string;
+  defaultSlotText: string;
 };
 
 export type AccessibilitySection = {
@@ -219,8 +253,21 @@ export type ComponentDoc = {
   measurements?: (MeasurementAsset | ComponentDemo)[];
   measurementTokens?: MeasurementTokenRow[];
   measurementTokenGroups?: MeasurementTokenGroup[];
+  componentTokenGroups?: NamedTokenGroup[];
+  semanticTokenGroups?: NamedTokenGroup[];
   globalTokens?: MeasurementTokenRow[];
+  globalTokenGroups?: MeasurementTokenGroup[];
+  alertPlayground?: AlertPlaygroundContent;
   configurationDemos?: ConfigurationDemo[];
+  /**
+   * Minimum height of the Playground preview column.
+   * Defaults to "default" (376px) if omitted.
+   *  - extra-compact: 180px — for very small components (breadcrumb, badge)
+   *  - compact:       240px — for small components (link, icon-button)
+   *  - default:       376px — baseline
+   *  - tall:          480px — for large components (datepicker, modal, stepper)
+   */
+  playgroundSize?: "extra-compact" | "compact" | "default" | "tall";
   usage?: UsageContent;
   accessibility?: AccessibilityContent;
   updates?: UpdatesContent;
@@ -438,7 +485,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         element: "Colour",
         property: "hover-bg",
         designToken: "sgds/bg-translucent-subtle",
-        rawValue: "Translucent",
+        rawValue: "oklch(from #0E0E0E l c h / 0.05)",
       },
       {
         mapKey: "title-color",
@@ -446,7 +493,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         element: "",
         property: "title-color",
         designToken: "sgds/color-default",
-        rawValue: "#0E0E0E",
+        rawValue: "#1A1A1A",
       },
       {
         mapKey: "icon-color",
@@ -604,7 +651,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         element: "Icon colour",
         property: "",
         designToken: "sgds/color-default",
-        rawValue: "#0E0E0E",
+        rawValue: "#1A1A1A",
       },
     ],
     demos: [
@@ -1079,7 +1126,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "info",
             markup: `<sgds-alert show variant="info" title="Info alert">
               <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+              <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
             </sgds-alert>`,
             description: "Use to provide general context or neutral information, such as announcements or guidance that don't indicate a status outcome.",
           },
@@ -1088,7 +1135,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "success",
             markup: `<sgds-alert show variant="success" title="Success alert">
               <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+              <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
             </sgds-alert>`,
             description: "Use to confirm that an action or process has completed successfully. Reassures users that their input was accepted.",
           },
@@ -1097,7 +1144,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "danger",
             markup: `<sgds-alert show variant="danger" title="Danger alert">
               <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+              <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
             </sgds-alert>`,
             description: "Use to communicate errors or critical failures that require immediate attention. Reserve for situations that could block the user.",
           },
@@ -1106,7 +1153,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "warning",
             markup: `<sgds-alert show variant="warning" title="Warning alert">
               <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+              <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
             </sgds-alert>`,
             description: "Use to flag potential issues that may need attention. Cautions the user without blocking them from proceeding.",
           },
@@ -1115,7 +1162,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "neutral",
             markup: `<sgds-alert show variant="neutral" title="Neutral alert">
               <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+              <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
             </sgds-alert>`,
             description: "Use when the message carries no particular status or urgency, such as simple notices or reminders.",
           },
@@ -1123,33 +1170,69 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Style",
-        description: `The alert supports two styles—filled and outlined.\n\nFilled alerts are best for getting a user's attention. When in doubt, use the outlined alert.\n\nEvery variant has an outlined version. Outlined alerts are visually less disruptive for users.`,
+        description: "The alert supports two styles—filled and outlined.",
         controlLabel: "Alert style options",
         defaultValue: "filled",
         options: [
           {
             label: "Filled",
             value: "filled",
-            markup: `<sgds-alert show variant="info" title="Filled alert">
-              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
-            </sgds-alert>`,
-            description: "Use when the alert needs to stand out and immediately capture the user's attention, such as for critical or high-priority messages.",
+            markup: `<div class="portal-demo-stack">
+              <sgds-alert show variant="info" title="Info alert">
+                <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="success" title="Success alert">
+                <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
+                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="danger" title="Danger alert">
+                <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
+                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="warning" title="Warning alert">
+                <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
+                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="neutral" title="Neutral alert">
+                <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+              </sgds-alert>
+            </div>`,
+            description: "Use filled alerts when the message needs stronger visual emphasis, such as higher-priority updates or messages users should notice immediately.",
           },
           {
             label: "Outlined",
             value: "outlined",
-            markup: `<sgds-alert show variant="info" outlined title="Outlined alert">
-              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
-            </sgds-alert>`,
-            description: "Use for lower-priority messages that should remain visible without being visually disruptive. Recommended as the default when in doubt.",
+            markup: `<div class="portal-demo-stack">
+              <sgds-alert show variant="info" outlined title="Info alert">
+                <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="success" outlined title="Success alert">
+                <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
+                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="danger" outlined title="Danger alert">
+                <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
+                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="warning" outlined title="Warning alert">
+                <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
+                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="neutral" outlined title="Neutral alert">
+                <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+              </sgds-alert>
+            </div>`,
+            description: "Use outlined alerts for messages that should stay visible with less visual weight. They work well as the default style when the message does not need to dominate the page.",
           },
         ],
       },
       {
         title: "Dismissible",
-        description: `The alert can be manually dismissed by the user.\n\nIt should only be used for non-critical messages.`,
+        description: "The alert can be manually dismissed by the user.",
         controlLabel: "Alert dismissible options",
         defaultValue: "non-dismissible",
         options: [
@@ -1158,7 +1241,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "non-dismissible",
             markup: `<sgds-alert show variant="info" title="A non-dismissible alert">
               <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+              <div>This notice remains visible because it affects how users complete the current task. <sgds-alert-link href="#">Read notice</sgds-alert-link></div>
             </sgds-alert>`,
             description: "Use for persistent messages that must remain visible, such as system statuses or warnings the user needs to act on.",
           },
@@ -1167,7 +1250,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "dismissible",
             markup: `<sgds-alert show dismissible variant="info" title="A dismissible alert">
               <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+              <div>You can dismiss this message after reading the update. <sgds-alert-link href="#">View update</sgds-alert-link></div>
             </sgds-alert>`,
             description: "Use for non-critical messages the user can close after reading, such as informational banners or one-time notices.",
           },
@@ -1175,24 +1258,24 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "With icon",
-        description: `Alerts may include an icon to reinforce meaning. The icon should support, not replace, the message text.\n\nAdding of icon is optional.`,
+        description: "Alerts may include an icon to reinforce meaning. The icon should support, not replace, the message text.",
         controlLabel: "Alert icon options",
         defaultValue: "no-icon",
         options: [
           {
             label: "No icon",
             value: "no-icon",
-            markup: `<sgds-alert show variant="info" title="Title">
-              <div>Alert with no icon</div>
+            markup: `<sgds-alert show variant="info" title="Application received">
+              <div>We have received your application and will send updates to your registered email address.</div>
             </sgds-alert>`,
             description: "Use when the message is self-explanatory or when a minimal, text-only appearance is preferred.",
           },
           {
             label: "With icon",
             value: "with-icon",
-            markup: `<sgds-alert show variant="info" title="Title">
+            markup: `<sgds-alert show variant="info" title="Application received">
               <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>Alert with icon</div>
+              <div>We have received your application and will send updates to your registered email address.</div>
             </sgds-alert>`,
             description: "Use to reinforce the alert's meaning with a recognisable visual cue. The icon should support, not replace, the message text.",
           },
@@ -1200,7 +1283,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Title",
-        description: `Alerts can include a title to summarise the message and provide hierarchy, especially for longer or more complex content.\n\nAdding of title is optional.`,
+        description: "Alerts can include a title to summarise the message and provide hierarchy, especially for longer or more complex content.",
         controlLabel: "Alert title options",
         defaultValue: "no-title",
         options: [
@@ -1208,15 +1291,15 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No title",
             value: "no-title",
             markup: `<sgds-alert show variant="info">
-              <div>Alert with no title</div>
+              <div>Your draft has been saved and you can continue editing it before submission.</div>
             </sgds-alert>`,
             description: "Use for short, single-line messages that are easy to scan without an additional heading.",
           },
           {
             label: "With title",
             value: "with-title",
-            markup: `<sgds-alert show variant="info" title="Title">
-              <div>Alert with title</div>
+            markup: `<sgds-alert show variant="info" title="Draft saved">
+              <div>Your draft has been saved and you can continue editing it before submission.</div>
             </sgds-alert>`,
             description: "Use when the alert contains longer or more detailed content that benefits from a clear summary heading.",
           },
@@ -1226,17 +1309,26 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "Slot",
         description: "The default slot can contain supplementary content such as links or supporting actions, as long as the message remains clear and easy to scan.",
         controlLabel: "Alert slot options",
-        defaultValue: "slot",
+        defaultValue: "no-slot",
         options: [
+          {
+            label: "No slot",
+            value: "no-slot",
+            markup: `<sgds-alert show dismissible variant="info" outlined title="Application saved">
+              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+              <div>Your progress has been saved. You can return to this draft before the submission deadline.</div>
+            </sgds-alert>`,
+            description: "Use when the alert message is complete without extra supporting content.",
+          },
           {
             label: "Slot",
             value: "slot",
-            markup: `<sgds-alert show dismissible variant="info" outlined title="Title">
+            markup: `<sgds-alert show dismissible variant="info" outlined title="Application saved">
               <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>Alert with title</div>
-              <div class="portal-slot-example">
+              <div>Your progress has been saved. You can return to this draft before the submission deadline.</div>
+              <div class="portal-slot-example sgds:w-full">
                 <sgds-icon name="arrow-repeat" size="sm"></sgds-icon>
-                <span>Slot</span>
+                <span>Content slot</span>
               </div>
             </sgds-alert>`,
             description: "Use the default slot to include supplementary content such as links, descriptions, or supporting actions below the main message.",
@@ -1247,66 +1339,78 @@ const componentDocs: Record<string, ComponentDoc> = {
     demos: [
       demo(
         "Style",
-        `The alert supports two styles—filled and outlined.\n\nFilled alerts are best for getting a user's attention. When in doubt, use the outlined alert.\n\nEvery variant has an outlined version. Outlined alerts are visually less disruptive for users.`,
+        "The alert supports two styles—filled and outlined.",
         `<div class="portal-demo-stack">
-          <sgds-alert show variant="info" title="Filled alert">
+          <sgds-alert show variant="info" title="Info alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
           </sgds-alert>
-          <sgds-alert show variant="info" outlined title="Outlined alert">
+          <sgds-alert show variant="success" title="Success alert">
+            <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
+            <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+          </sgds-alert>
+          <sgds-alert show variant="danger" title="Danger alert">
+            <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
+            <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+          </sgds-alert>
+          <sgds-alert show variant="warning" title="Warning alert">
+            <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
+            <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+          </sgds-alert>
+          <sgds-alert show variant="neutral" title="Neutral alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
           </sgds-alert>
         </div>`,
       ),
       demo(
         "Dismissible",
-        `The alert can be manually dismissed by the user.\n\nIt should only be used for non-critical messages.`,
+        "The alert can be manually dismissed by the user.",
         `<div class="portal-demo-stack">
           <sgds-alert show dismissible variant="info" title="A dismissible alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            <div>You can dismiss this message after reading the update. <sgds-alert-link href="#">View update</sgds-alert-link></div>
           </sgds-alert>
           <sgds-alert show variant="info" title="A non-dismissible alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>Description with <sgds-alert-link href="#">link</sgds-alert-link></div>
+            <div>This notice remains visible because it affects how users complete the current task. <sgds-alert-link href="#">Read notice</sgds-alert-link></div>
           </sgds-alert>
         </div>`,
       ),
       demo(
         "With icon",
-        `Alerts may include an icon to reinforce meaning. The icon should support, not replace, the message text.\n\nAdding of icon is optional.`,
+        "Alerts may include an icon to reinforce meaning. The icon should support, not replace, the message text.",
         `<div class="portal-demo-stack">
-          <sgds-alert show variant="info" title="Title">
-            <div>Alert with no icon</div>
+          <sgds-alert show variant="info" title="Application received">
+            <div>We have received your application and will send updates to your registered email address.</div>
           </sgds-alert>
-          <sgds-alert show variant="info" title="Title">
+          <sgds-alert show variant="info" title="Application received">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>Alert with icon</div>
+            <div>We have received your application and will send updates to your registered email address.</div>
           </sgds-alert>
         </div>`,
       ),
       demo(
         "Title",
-        `Alerts can include a title to summarise the message and provide hierarchy, especially for longer or more complex content.\n\nAdding of title is optional.`,
+        "Alerts can include a title to summarise the message and provide hierarchy, especially for longer or more complex content.",
         `<div class="portal-demo-stack">
           <sgds-alert show variant="info">
-            <div>Alert with no title</div>
+            <div>Your draft has been saved and you can continue editing it before submission.</div>
           </sgds-alert>
-          <sgds-alert show variant="info" title="Title">
-            <div>Alert with title</div>
+          <sgds-alert show variant="info" title="Draft saved">
+            <div>Your draft has been saved and you can continue editing it before submission.</div>
           </sgds-alert>
         </div>`,
       ),
       demo(
         "Slot",
         "The default slot can contain supplementary content such as links or supporting actions, as long as the message remains clear and easy to scan.",
-        `<sgds-alert show dismissible variant="info" outlined title="Title">
+        `<sgds-alert show dismissible variant="info" outlined title="Application saved">
           <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-          <div>Alert with title</div>
-          <div class="portal-slot-example">
+          <div>Your progress has been saved. You can return to this draft before the submission deadline.</div>
+          <div class="portal-slot-example sgds:w-full">
             <sgds-icon name="arrow-repeat" size="sm"></sgds-icon>
-            <span>Slot</span>
+            <span>Content slot</span>
           </div>
         </sgds-alert>`,
       ),
@@ -1343,6 +1447,94 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "The title of the alert. Only text is allowed.",
       },
     ],
+    measurements: [
+      {
+        title: "",
+        description: "",
+        markup: `<sgds-alert show dismissible variant="success" outlined title="Application submitted">
+          <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
+          <div>Your application has been submitted successfully and a confirmation email has been sent to you.</div>
+        </sgds-alert>`,
+      },
+    ],
+    componentTokenGroups: [
+      {
+        title: "Components",
+        rows: [
+          { name: "padding-x", value: "sgds/padding/lg" },
+          { name: "padding-y", value: "sgds/padding/lg" },
+          { name: "content-padding-right", value: "sgds/padding/2-xl" },
+          { name: "gap", value: "sgds/gap/sm" },
+          { name: "title-gap", value: "sgds/gap/2-xs" },
+          { name: "content-gap", value: "sgds/gap/md" },
+          { name: "border-width", value: "sgds/border-width/1" },
+          { name: "border-radius", value: "sgds/border-radius/md" },
+        ],
+      },
+    ],
+    semanticTokenGroups: [
+      {
+        title: "sgds / alert / info",
+        rows: [
+          { name: "bg-emphasis", value: "sgds/primary/surface-default" },
+          { name: "bg-muted", value: "sgds/primary/surface-muted" },
+          { name: "border-color", value: "sgds/primary/border-color-muted" },
+        ],
+      },
+      {
+        title: "sgds / alert / success",
+        rows: [
+          { name: "bg-emphasis", value: "sgds/success/surface-default" },
+          { name: "bg-muted", value: "sgds/success/surface-muted" },
+          { name: "border-color", value: "sgds/success/border-color-muted" },
+        ],
+      },
+      {
+        title: "sgds / alert / danger",
+        rows: [
+          { name: "bg-emphasis", value: "sgds/danger/surface-default" },
+          { name: "bg-muted", value: "sgds/danger/surface-muted" },
+          { name: "border-color", value: "sgds/danger/border-color-muted" },
+        ],
+      },
+      {
+        title: "sgds / alert / warning",
+        rows: [
+          { name: "bg-emphasis", value: "sgds/warning/surface-default" },
+          { name: "bg-muted", value: "sgds/warning/surface-muted" },
+          { name: "border-color", value: "sgds/warning/border-color-muted" },
+        ],
+      },
+      {
+        title: "sgds / alert / neutral",
+        rows: [
+          { name: "bg-emphasis", value: "sgds/neutral/surface-emphasis" },
+          { name: "bg-muted", value: "sgds/neutral/surface-muted" },
+          { name: "border-color", value: "sgds/neutral/border-color-muted" },
+        ],
+      },
+    ],
+    alertPlayground: {
+      variantLabel: "Variant",
+      outlinedLabel: "Outlined",
+      dismissibleLabel: "Dismissible",
+      withIconLabel: "With icon",
+      titleToggleLabel: "Title",
+      editTextLabel: "↳ Edit text",
+      editTitleLabel: "Edit title",
+      editDescriptionLabel: "Edit description",
+      slotLabel: "◆ Slot",
+      defaultVariant: "info",
+      defaultOutlined: false,
+      defaultDismissible: true,
+      defaultWithIcon: true,
+      defaultShowTitle: true,
+      defaultShowSlot: true,
+      defaultTitle: "Title",
+      defaultDescription: "Description with inline link",
+      defaultLinkLabel: "Read details",
+      defaultSlotText: "Content slot",
+    },
     usage: {
       content: [
         {
@@ -1410,13 +1602,25 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "Variants",
         description: "Badge variants use colour to convey meaning at a glance. Each variant signals a different status or category.",
         controlLabel: "Badge variant options",
-        defaultValue: "default",
+        defaultValue: "neutral",
         options: [
           {
-            label: "Default",
-            value: "default",
-            markup: `<div class="portal-demo-row"><sgds-badge>Default</sgds-badge></div>`,
-            description: "The default badge uses the neutral colour tone. Use to apply a label with no particular status weight.",
+            label: "Neutral",
+            value: "neutral",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="neutral">Neutral</sgds-badge></div>`,
+            description: "The default tone for generic labels with no particular status weight. Use when the badge is purely informational.",
+          },
+          {
+            label: "Primary",
+            value: "primary",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="primary">Primary</sgds-badge></div>`,
+            description: "Uses the brand tone. Use for labels that should align with the primary identity of the interface.",
+          },
+          {
+            label: "Accent",
+            value: "accent",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="accent">Accent</sgds-badge></div>`,
+            description: "An alternative emphasis tone. Use to distinguish a small group of labels without relying on a status colour.",
           },
           {
             label: "Success",
@@ -1425,10 +1629,94 @@ const componentDocs: Record<string, ComponentDoc> = {
             description: "Use to signal a positive state such as completed, approved, or active.",
           },
           {
+            label: "Warning",
+            value: "warning",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="warning">Warning</sgds-badge></div>`,
+            description: "Use to flag items needing attention without blocking the user — for example, pending review or nearing a threshold.",
+          },
+          {
+            label: "Danger",
+            value: "danger",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="danger">Danger</sgds-badge></div>`,
+            description: "Use to communicate an error, failure, or critical state that should draw the user's attention immediately.",
+          },
+          {
+            label: "Cyan",
+            value: "cyan",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="cyan">Cyan</sgds-badge></div>`,
+            description: "A supplementary category tone. Use to differentiate labels when a status colour is not appropriate.",
+          },
+          {
+            label: "Purple",
+            value: "purple",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="purple">Purple</sgds-badge></div>`,
+            description: "Another supplementary category tone. Pair with cyan to separate two or more non-status categories.",
+          },
+          {
+            label: "White",
+            value: "white",
+            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-badge variant="white">White</sgds-badge></div>`,
+            description: "Use on dark or coloured backgrounds where the other variants would lack contrast.",
+          },
+        ],
+      },
+      {
+        title: "Outlined",
+        description: "Controls whether the badge uses a filled or outlined style. Outlined gives the badge a lighter visual presence.",
+        controlLabel: "Badge outlined options",
+        defaultValue: "filled",
+        options: [
+          {
+            label: "Filled",
+            value: "filled",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="accent">Filled</sgds-badge></div>`,
+            description: "The default filled style uses a solid background. Use when the badge needs to read strongly at a glance.",
+          },
+          {
             label: "Outlined",
             value: "outlined",
             markup: `<div class="portal-demo-row"><sgds-badge variant="accent" outlined>Outlined</sgds-badge></div>`,
-            description: "The outlined style uses a border instead of a fill, giving the badge a lighter visual presence.",
+            description: "The outlined style uses a border with a subtle fill. Use when badges should feel quieter alongside dense content.",
+          },
+        ],
+      },
+      {
+        title: "Dismissible",
+        description: "Add a close button when the user should be able to remove the badge — for example, active filters or removable tags.",
+        controlLabel: "Badge dismissible options",
+        defaultValue: "static",
+        options: [
+          {
+            label: "Static",
+            value: "static",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="accent">Filter</sgds-badge></div>`,
+            description: "Use when the badge is informational only and should not be removed by the user.",
+          },
+          {
+            label: "Dismissible",
+            value: "dismissible",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="accent" dismissible show>Filter</sgds-badge></div>`,
+            description: "Renders a close button. Use for active filters, selected tags, or any context where the user should be able to remove the label.",
+          },
+        ],
+      },
+      {
+        title: "Icon",
+        description: "Pair the badge with an icon when a visual cue helps users recognise meaning faster than the text alone.",
+        controlLabel: "Badge icon options",
+        defaultValue: "without-icon",
+        options: [
+          {
+            label: "Without icon",
+            value: "without-icon",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="success">Active</sgds-badge></div>`,
+            description: "Use when the text label is enough to convey the badge's meaning.",
+          },
+          {
+            label: "With icon",
+            value: "with-icon",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="success"><sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>Active</sgds-badge></div>`,
+            description: "Add an icon through the icon slot. Use small, recognisable icons that reinforce the badge's meaning without competing with the label.",
           },
         ],
       },
@@ -1450,6 +1738,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     title: "Breadcrumb",
     tag: "sgds-breadcrumb",
     group: "navigation",
+    playgroundSize: "extra-compact",
     summary:
       "Breadcrumbs help users to navigate and understand where they are on the current website or service.",
     purposeCards: [
@@ -1479,20 +1768,60 @@ const componentDocs: Record<string, ComponentDoc> = {
     ],
     configurationDemos: [
       {
-        title: "Default",
-        description: "Breadcrumbs show the navigation path from the root to the current page as a trail of links.",
-        controlLabel: "Breadcrumb demo",
-        defaultValue: "default",
+        title: "Number of links",
+        description: "Control how many breadcrumb items are shown. When 5 or more items are present, the middle items automatically collapse into an overflow menu placed as the second link.",
+        controlLabel: "Breadcrumb number of links",
+        defaultValue: "3",
         options: [
           {
-            label: "Default",
-            value: "default",
+            label: "1",
+            value: "1",
+            markup: `<sgds-breadcrumb>
+          <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+        </sgds-breadcrumb>`,
+            description: "A single-item breadcrumb only marks the current page.",
+          },
+          {
+            label: "2",
+            value: "2",
+            markup: `<sgds-breadcrumb>
+          <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item>
+        </sgds-breadcrumb>`,
+            description: "Use two items when the current page sits one level below the root.",
+          },
+          {
+            label: "3",
+            value: "3",
             markup: `<sgds-breadcrumb>
           <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
           <sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item>
           <sgds-breadcrumb-item><a href="#">Payments</a></sgds-breadcrumb-item>
         </sgds-breadcrumb>`,
-            description: "Displays the full navigation trail from home to the current page. Use on pages that are two or more levels deep so users can retrace their steps.",
+            description: "Three items show a typical nested path from the root to the current page.",
+          },
+          {
+            label: "4",
+            value: "4",
+            markup: `<sgds-breadcrumb>
+          <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Payments</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Fees</a></sgds-breadcrumb-item>
+        </sgds-breadcrumb>`,
+            description: "Four items are the maximum shown in full before the overflow menu kicks in.",
+          },
+          {
+            label: "5",
+            value: "5",
+            markup: `<sgds-breadcrumb>
+          <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Payments</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Fees</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Refunds</a></sgds-breadcrumb-item>
+        </sgds-breadcrumb>`,
+            description: "At five items, the breadcrumb automatically collapses the middle items into an overflow menu placed in the second position.",
           },
         ],
       },
@@ -1542,6 +1871,34 @@ const componentDocs: Record<string, ComponentDoc> = {
       { number: 2, direction: "bottom", targetSelector: ".portal-anatomy-button", targetX: "center", targetY: "bottom" },
       { number: 3, direction: "top", targetSelector: "sgds-icon[slot='leftIcon']", targetX: "center", targetY: "top" },
       { number: 4, direction: "top", targetSelector: "sgds-icon[slot='rightIcon']", targetX: "center", targetY: "top" },
+    ],
+    measurements: [
+      {
+        title: "",
+        description: "",
+        markup: `<sgds-button class="portal-structure-button">
+          <sgds-icon slot="leftIcon" name="house"></sgds-icon>
+          Button label
+          <sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon>
+        </sgds-button>`,
+      },
+    ],
+    measurementTokens: [
+      { mapKey: "background", category: "Colour", element: "Colour", property: "background", designToken: "sgds/primary/surface-default", rawValue: "#6B4FEB" },
+      { mapKey: "hover-bg", category: "Colour", element: "", property: "hover-bg", designToken: "sgds/primary/surface-emphasis", rawValue: "#523ABC" },
+      { mapKey: "text-color", category: "Colour", element: "", property: "text-color", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3" },
+      { mapKey: "border-radius", category: "Border", element: "Border", property: "border-radius", designToken: "sgds/border-radius/md", rawValue: "8px" },
+      { mapKey: "border-width", category: "Border", element: "", property: "border-width", designToken: "sgds/border-width/1", rawValue: "1px" },
+      { mapKey: "padding-x", category: "Spacing", element: "Spacing", property: "padding-x", designToken: "sgds/padding/lg", rawValue: "20px" },
+      { mapKey: "gap", category: "Spacing", element: "", property: "gap", designToken: "sgds/gap/2-xs", rawValue: "4px" },
+      { mapKey: "height", category: "Size", element: "Size", property: "height", designToken: "sgds/dimension/48", rawValue: "48px" },
+      { mapKey: "min-width", category: "Size", element: "", property: "min-width", designToken: "sgds/dimension/96", rawValue: "96px" },
+      { mapKey: "font-size", category: "Typography", element: "Typography", property: "font-size", designToken: "sgds/font-size/16", rawValue: "16px" },
+      { mapKey: "line-height", category: "Typography", element: "", property: "line-height", designToken: "sgds/line-height/24", rawValue: "24px" },
+    ],
+    globalTokens: [
+      { mapKey: "leading-icon-color", category: "Colour", element: "Leading icon", property: "", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3" },
+      { mapKey: "trailing-icon-color", category: "Colour", element: "Trailing icon", property: "", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3" },
     ],
     configurationDemos: [
       {
@@ -1677,12 +2034,12 @@ const componentDocs: Record<string, ComponentDoc> = {
     ],
     globalTokens: [
       { mapKey: "title-color", category: "Colour", element: "Card title", property: "", designToken: "sgds/body-color-default", rawValue: "#1A1A1A" },
-      { mapKey: "subtitle-color", element: "Subtitle", property: "", designToken: "sgds/color-subtle", rawValue: "#525252" },
-      { mapKey: "description-color", element: "Description", property: "", designToken: "sgds/color-subtle", rawValue: "#525252" },
-      { mapKey: "secondary-text-color", element: "Secondary text", property: "", designToken: "sgds/body-color-default", rawValue: "#1A1A1A" },
-      { mapKey: "link-color", element: "Link", property: "", designToken: "sgds/link-color-default", rawValue: "#0269D0" },
-      { mapKey: "link-color-emphasis", element: "Link on hover", property: "", designToken: "sgds/link-color-emphasis", rawValue: "#0151A0" },
-      { mapKey: "tinted-bg", category: "Background", element: "Tinted", property: "", designToken: "sgds/bg-translucent-subtle", rawValue: "Translucent" },
+      { mapKey: "subtitle-color", category: "Colour", element: "Subtitle", property: "", designToken: "sgds/color-subtle", rawValue: "#525252" },
+      { mapKey: "description-color", category: "Colour", element: "Description", property: "", designToken: "sgds/color-subtle", rawValue: "#525252" },
+      { mapKey: "secondary-text-color", category: "Colour", element: "Secondary text", property: "", designToken: "sgds/body-color-default", rawValue: "#1A1A1A" },
+      { mapKey: "link-color", category: "Colour", element: "Link", property: "", designToken: "sgds/link-color-default", rawValue: "#0269D0" },
+      { mapKey: "link-color-emphasis", category: "Colour", element: "Link on hover", property: "", designToken: "sgds/link-color-emphasis", rawValue: "#0151A0" },
+      { mapKey: "tinted-bg", category: "Background", element: "Tinted", property: "", designToken: "sgds/bg-translucent-subtle", rawValue: "oklch(from #0E0E0E l c h / 0.05)" },
     ],
     configurationDemos: [
       {

@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Close button
-description: Close button for closing actions. Used in modal, drawer, alert and toast.
+description: A close button dismisses surfaces such as modals, drawers, alerts, and toasts.
 storybook: true
 ---
 

@@ -21,10 +21,11 @@ const sectionId = computed(() =>
     <div class="sgds:flex sgds:gap-2 sgds:items-center">
       <h2
         :id="sectionId"
-        class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:mb-0"
+        class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:mb-0"
       >
         {{ title }}
       </h2>
+      <slot name="title-suffix"></slot>
       <a
         :href="`#${sectionId}`"
         class="sgds:inline-flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded-sm sgds:text-subtle sgds:no-underline sgds:hover:text-default sgds:focus:text-default sgds:focus-visible:text-default sgds:focus-visible:outline sgds:focus-visible:outline-[var(--sgds-outline-focus)] sgds:focus-visible:outline-offset-[var(--sgds-outline-offset-focus)]"
