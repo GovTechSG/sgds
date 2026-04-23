@@ -121,13 +121,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+  <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
     <article
       v-for="section in accessibility?.sections || []"
       :key="section.title"
-      :class="section.markup
-        ? 'sgds:grid sgds:gap-layout-lg sgds:grid-cols-[minmax(0,3fr)_minmax(0,5fr)] sgds:max-xl:grid-cols-1'
-        : 'sgds:flex sgds:flex-col sgds:gap-component-sm sgds:max-w-[var(--sgds-container-max-width-md)]'"
+      class="sgds:flex sgds:flex-col sgds:gap-component-sm sgds:max-w-[var(--sgds-container-max-width-md)]"
     >
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
         <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
@@ -143,29 +141,8 @@ onBeforeUnmount(() => {
           </p>
         </div>
         <ul v-if="section.items.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-          <li v-for="item in section.items" :key="item">{{ item }}</li>
+          <li v-for="item in section.items" :key="item" class="sgds:mt-0">{{ item }}</li>
         </ul>
-      </div>
-      <div v-if="section.markup" class="sgds:flex sgds:items-center sgds:justify-center sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-288)] sgds:p-component-md sgds:max-lg:min-h-[var(--sgds-dimension-320)]">
-        <div v-if="section.markup" class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full">
-          <div
-            :ref="setCanvasRef(section.title)"
-            class="sgds:relative sgds:w-full"
-          >
-            <span
-              v-for="highlight in accessibilityHighlightPositions[section.title] || []"
-              :key="`${section.title}-${highlight.key}`"
-              class="sgds:absolute sgds:z-[2] sgds:pointer-events-none sgds:bg-[var(--sgds-primary-surface-translucent)] sgds:border sgds:border-dashed sgds:border-[var(--sgds-primary-border-color-default)]"
-              :style="{
-                left: `${highlight.left}px`,
-                top: `${highlight.top}px`,
-                width: `${highlight.width}px`,
-                height: `${highlight.height}px`,
-              }"
-            ></span>
-            <div class="accessibility-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="section.markup"></div>
-          </div>
-        </div>
       </div>
     </article>
 
@@ -187,6 +164,16 @@ onBeforeUnmount(() => {
           <sgds-table-cell>{{ row.description }}</sgds-table-cell>
         </sgds-table-row>
       </sgds-table>
+    </Section>
+    <Section v-else-if="accessibility?.keyboardNotes?.length" title="Keyboard interaction" gap="sgds:gap-[var(--sgds-gap-xl)]">
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:max-w-[var(--sgds-container-max-width-md)]">
+        <p class="sgds:text-subtle sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+          This component does not have a separate keyboard interaction table because:
+        </p>
+        <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
+          <li v-for="note in accessibility.keyboardNotes" :key="note" class="sgds:mt-0">{{ note }}</li>
+        </ul>
+      </div>
     </Section>
   </div>
 </template>
