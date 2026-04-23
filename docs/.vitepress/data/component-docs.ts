@@ -58,6 +58,7 @@ export type MeasurementAsset = ThemedImageAsset & {
 
 export type MeasurementTokenRow = {
   mapKey?: string;
+  category?: string;
   element: string;
   property: string;
   designToken: string;
@@ -144,6 +145,16 @@ export type AccessibilityKeyboardRow = {
 
 export type AccessibilityContent = {
   sections?: AccessibilitySection[];
+  keyboardInteractions?: AccessibilityKeyboardRow[];
+};
+
+type GeneratedAccessibilityProfile = {
+  builtInDescription: string[];
+  builtInItems: string[];
+  authorDescription: string[];
+  authorItems: string[];
+  focusDescription: string[];
+  focusItems: string[];
   keyboardInteractions?: AccessibilityKeyboardRow[];
 };
 
@@ -420,6 +431,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     measurementTokens: [
       {
         mapKey: "hover-bg",
+        category: "Colour",
         element: "Colour",
         property: "hover-bg",
         designToken: "sgds/bg-translucent-subtle",
@@ -427,6 +439,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         mapKey: "title-color",
+        category: "Colour",
         element: "",
         property: "title-color",
         designToken: "sgds/color-default",
@@ -434,6 +447,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         mapKey: "icon-color",
+        category: "Colour",
         element: "",
         property: "icon-color",
         designToken: "sgds/color-subtle",
@@ -441,6 +455,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         mapKey: "gap",
+        category: "Spacing",
         element: "Gap",
         property: "gap",
         designToken: "sgds/gap/md",
@@ -448,6 +463,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         mapKey: "border-color",
+        category: "Border",
         element: "Border",
         property: "border-color",
         designToken: "sgds/border-color-muted",
@@ -455,6 +471,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         mapKey: "border-width",
+        category: "Border",
         element: "",
         property: "border-width",
         designToken: "sgds/border-width/1",
@@ -462,6 +479,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         mapKey: "border-radius",
+        category: "Border",
         element: "",
         property: "border-radius",
         designToken: "sgds/border-radius/md",
@@ -473,24 +491,28 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "sgds/accordion/default",
         tokens: [
           {
+            category: "Spacing",
             element: "Padding",
             property: "padding-x",
             designToken: "sgds/padding/lg",
             rawValue: "20px",
           },
           {
+            category: "Spacing",
             element: "",
             property: "padding-y",
             designToken: "sgds/padding/lg",
             rawValue: "20px",
           },
           {
+            category: "Spacing",
             element: "Content padding",
             property: "padding-top",
             designToken: "sgds/padding/xs",
             rawValue: "4px",
           },
           {
+            category: "Spacing",
             element: "",
             property: "padding-bottom",
             designToken: "sgds/padding/lg",
@@ -502,24 +524,28 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "sgds/accordion/compact",
         tokens: [
           {
+            category: "Spacing",
             element: "Padding",
             property: "padding-x",
             designToken: "sgds/padding/md",
             rawValue: "16px",
           },
           {
+            category: "Spacing",
             element: "",
             property: "padding-y",
             designToken: "sgds/padding/md",
             rawValue: "16px",
           },
           {
+            category: "Spacing",
             element: "Content padding",
             property: "padding-top",
             designToken: "sgds/padding/xs",
             rawValue: "4px",
           },
           {
+            category: "Spacing",
             element: "",
             property: "padding-bottom",
             designToken: "sgds/padding/md",
@@ -531,24 +557,28 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "sgds/accordion/spacious",
         tokens: [
           {
+            category: "Spacing",
             element: "Padding",
             property: "padding-x",
             designToken: "sgds/padding/xl",
             rawValue: "24px",
           },
           {
+            category: "Spacing",
             element: "",
             property: "padding-y",
             designToken: "sgds/padding/xl",
             rawValue: "24px",
           },
           {
+            category: "Spacing",
             element: "Content padding",
             property: "padding-top",
             designToken: "sgds/padding/xs",
             rawValue: "4px",
           },
           {
+            category: "Spacing",
             element: "",
             property: "padding-bottom",
             designToken: "sgds/padding/xl",
@@ -559,14 +589,16 @@ const componentDocs: Record<string, ComponentDoc> = {
     ],
     globalTokens: [
       {
-        element: "Colour",
+        category: "Background",
+        element: "Background colour",
         property: "",
         designToken: "sgds/bg-transparent",
         rawValue: "Transparent",
       },
       {
         mapKey: "leading-icon-color",
-        element: "",
+        category: "Colour",
+        element: "Icon colour",
         property: "",
         designToken: "sgds/color-default",
         rawValue: "#0E0E0E",
@@ -868,7 +900,90 @@ const componentDocs: Record<string, ComponentDoc> = {
   </sgds-accordion-item>
 </sgds-accordion>`,
     accessibility: {
-      sections: [],
+      sections: [
+        {
+          title: "Headings and labels",
+          description: [
+            "SGDS uses the header slot content as the visible label for the accordion trigger.",
+            "Write header text that is clear enough to stand on its own when announced as a button.",
+          ],
+          items: [
+            "Use short, specific titles that describe the content inside each panel.",
+            "If the accordion sits under a page heading structure, apply heading markup around it consistently in the surrounding page content.",
+          ],
+          markup: `<sgds-accordion>
+            <sgds-accordion-item>
+              <span slot="header">Application eligibility</span>
+              <div slot="content">Check who can apply before you start.</div>
+            </sgds-accordion-item>
+            <sgds-accordion-item>
+              <span slot="header">Required documents</span>
+              <div slot="content">Prepare the documents you need to upload.</div>
+            </sgds-accordion-item>
+          </sgds-accordion>`,
+        },
+        {
+          title: "State and announcements",
+          description: [
+            "SGDS exposes expanded and collapsed state on the accordion trigger, so users are not relying only on the chevron icon.",
+          ],
+          items: [
+            "Screen readers should be able to detect whether an item is expanded or collapsed.",
+            "Use the built-in accordion item rather than recreating the trigger and panel behaviour with custom markup.",
+          ],
+          markup: `<sgds-accordion>
+            <sgds-accordion-item open>
+              <span slot="header">Expanded section</span>
+              <div slot="content">Visible content confirms the current state.</div>
+            </sgds-accordion-item>
+            <sgds-accordion-item>
+              <span slot="header">Collapsed section</span>
+              <div slot="content">Accordion content</div>
+            </sgds-accordion-item>
+          </sgds-accordion>`,
+        },
+        {
+          title: "Focus and interaction",
+          description: [
+            "SGDS keeps the interaction on a real button and supports keyboard movement into interactive content inside an expanded panel.",
+          ],
+          items: [
+            "After opening a panel, users should be able to continue tabbing into links, buttons, and form fields in a logical order.",
+            "Do not place essential actions in collapsed content if users need to reach them immediately.",
+          ],
+          markup: `<sgds-accordion>
+            <sgds-accordion-item open>
+              <span slot="header">Review the details</span>
+              <div slot="content" class="portal-demo-stack-sm">
+                <p class="sgds:m-0">Read the guidance, then continue to the next step.</p>
+                <sgds-link><a href="#">Read the full guide</a></sgds-link>
+              </div>
+            </sgds-accordion-item>
+            <sgds-accordion-item>
+              <span slot="header">Next section</span>
+              <div slot="content">Accordion content</div>
+            </sgds-accordion-item>
+          </sgds-accordion>`,
+        },
+        {
+          title: "ARIA structure",
+          description: [
+            "SGDS applies built-in ARIA attributes to connect the accordion trigger with its content region.",
+          ],
+          items: [
+            "The trigger exposes its expanded state and references the controlled content.",
+            "The panel content is exposed as a region, so use accordions for grouped sections rather than for every small detail on a page.",
+          ],
+          markup: `<sgds-accordion>
+            <sgds-accordion-item open>
+              <span slot="header">What you need before you apply</span>
+              <div slot="content">
+                Bring your identification document and proof of address before starting the form.
+              </div>
+            </sgds-accordion-item>
+          </sgds-accordion>`,
+        },
+      ],
       keyboardInteractions: [
         {
           key: "Tab",
@@ -886,12 +1001,20 @@ const componentDocs: Record<string, ComponentDoc> = {
           key: "Space",
           description: "Expands or collapses the focused accordion header.",
         },
+        {
+          key: "↓ Down or → Right",
+          description: "Opens the focused accordion header.",
+        },
+        {
+          key: "↑ Up or ← Left",
+          description: "Closes the focused accordion header.",
+        },
       ],
     },
     accessibilityNotes: [
-      "Write headings that describe the hidden content clearly and uniquely.",
-      "Keep interactive content inside expanded panels keyboard accessible.",
-      "Use the built-in SGDS tab and accordion semantics so focus, ARIA, and keyboard handling stay consistent.",
+      "Use the built-in SGDS accordion item so the trigger remains a button with state and keyboard support.",
+      "Write clear header labels and keep interactive content inside expanded panels reachable by keyboard.",
+      "SGDS supports Enter, Space, and arrow keys for opening and closing accordion items.",
     ],
     updates: {
       updates: {
@@ -1585,27 +1708,27 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     measurementTokens: [
-      { mapKey: "background", element: "Colour", property: "background", designToken: "sgds/surface-default", rawValue: "#FFFFFF" },
-      { mapKey: "title-color", element: "", property: "title-color", designToken: "sgds/body-color-default", rawValue: "#1A1A1A" },
-      { mapKey: "description-color", element: "", property: "description-color", designToken: "sgds/color-subtle", rawValue: "#525252" },
-      { mapKey: "border-color", element: "Border", property: "border-color", designToken: "sgds/border-color-muted", rawValue: "#DFDFDF" },
-      { mapKey: "border-width", element: "", property: "border-width", designToken: "sgds/border-width/1", rawValue: "1px" },
-      { mapKey: "border-radius", element: "", property: "border-radius", designToken: "sgds/border-radius/md", rawValue: "8px" },
-      { mapKey: "padding-x", element: "Spacing", property: "padding-x", designToken: "sgds/padding/xl", rawValue: "24px" },
-      { mapKey: "padding-y", element: "", property: "padding-y", designToken: "sgds/padding/xl", rawValue: "24px" },
-      { mapKey: "gap", element: "", property: "gap", designToken: "sgds/gap/lg", rawValue: "20px" },
-      { mapKey: "title-gap", element: "", property: "title-gap", designToken: "sgds/gap/xs", rawValue: "8px" },
-      { mapKey: "subtitle-gap", element: "", property: "subtitle-gap", designToken: "sgds/gap/2-xs", rawValue: "4px" },
-      { mapKey: "slot-gap", element: "", property: "slot-gap", designToken: "sgds/gap/sm", rawValue: "12px" },
+      { mapKey: "background", category: "Colour", element: "Colour", property: "background", designToken: "sgds/surface-default", rawValue: "#FFFFFF" },
+      { mapKey: "title-color", category: "Colour", element: "", property: "title-color", designToken: "sgds/body-color-default", rawValue: "#1A1A1A" },
+      { mapKey: "description-color", category: "Colour", element: "", property: "description-color", designToken: "sgds/color-subtle", rawValue: "#525252" },
+      { mapKey: "border-color", category: "Border", element: "Border", property: "border-color", designToken: "sgds/border-color-muted", rawValue: "#DFDFDF" },
+      { mapKey: "border-width", category: "Border", element: "", property: "border-width", designToken: "sgds/border-width/1", rawValue: "1px" },
+      { mapKey: "border-radius", category: "Border", element: "", property: "border-radius", designToken: "sgds/border-radius/md", rawValue: "8px" },
+      { mapKey: "padding-x", category: "Spacing", element: "Spacing", property: "padding-x", designToken: "sgds/padding/xl", rawValue: "24px" },
+      { mapKey: "padding-y", category: "Spacing", element: "", property: "padding-y", designToken: "sgds/padding/xl", rawValue: "24px" },
+      { mapKey: "gap", category: "Spacing", element: "", property: "gap", designToken: "sgds/gap/lg", rawValue: "20px" },
+      { mapKey: "title-gap", category: "Spacing", element: "", property: "title-gap", designToken: "sgds/gap/xs", rawValue: "8px" },
+      { mapKey: "subtitle-gap", category: "Spacing", element: "", property: "subtitle-gap", designToken: "sgds/gap/2-xs", rawValue: "4px" },
+      { mapKey: "slot-gap", category: "Spacing", element: "", property: "slot-gap", designToken: "sgds/gap/sm", rawValue: "12px" },
     ],
     globalTokens: [
-      { mapKey: "title-color", element: "Card title", property: "", designToken: "sgds/body-color-default", rawValue: "#1A1A1A" },
+      { mapKey: "title-color", category: "Colour", element: "Card title", property: "", designToken: "sgds/body-color-default", rawValue: "#1A1A1A" },
       { mapKey: "subtitle-color", element: "Subtitle", property: "", designToken: "sgds/color-subtle", rawValue: "#525252" },
       { mapKey: "description-color", element: "Description", property: "", designToken: "sgds/color-subtle", rawValue: "#525252" },
       { mapKey: "secondary-text-color", element: "Secondary text", property: "", designToken: "sgds/body-color-default", rawValue: "#1A1A1A" },
       { mapKey: "link-color", element: "Link", property: "", designToken: "sgds/link-color-default", rawValue: "#0269D0" },
-      { element: "", property: "", designToken: "sgds/link-color-emphasis", rawValue: "#0151A0" },
-      { mapKey: "tinted-bg", element: "Tinted", property: "", designToken: "sgds/bg-translucent-subtle", rawValue: "Translucent" },
+      { mapKey: "link-color-emphasis", element: "Link on hover", property: "", designToken: "sgds/link-color-emphasis", rawValue: "#0151A0" },
+      { mapKey: "tinted-bg", category: "Background", element: "Tinted", property: "", designToken: "sgds/bg-translucent-subtle", rawValue: "Translucent" },
     ],
     configurationDemos: [
       {
@@ -5359,32 +5482,869 @@ const buildResolvedUsage = (doc: ComponentDoc): UsageContent => {
   };
 };
 
+const keyboardRows = {
+  tabNext: (target: string): AccessibilityKeyboardRow => ({
+    key: "Tab",
+    description: `Moves focus from the ${target} to the next focusable element.`,
+  }),
+  tabPrevious: (): AccessibilityKeyboardRow => ({
+    key: "Shift + Tab",
+    description: "Moves focus to the previous interactive element.",
+  }),
+  enterActivate: (target: string): AccessibilityKeyboardRow => ({
+    key: "Enter",
+    description: `Activates the focused ${target}.`,
+  }),
+  spaceActivate: (target: string): AccessibilityKeyboardRow => ({
+    key: "Space",
+    description: `Activates the focused ${target}.`,
+  }),
+  escapeClose: (target: string): AccessibilityKeyboardRow => ({
+    key: "Escape",
+    description: `Closes the open ${target} when supported by the component.`,
+  }),
+  arrowsOpenMove: (target: string): AccessibilityKeyboardRow => ({
+    key: "↓ Down or ↑ Up",
+    description: `Opens the ${target} menu or moves focus between available options.`,
+  }),
+  arrowsRadio: (): AccessibilityKeyboardRow => ({
+    key: "↓ Down or → Right or ↑ Up or ← Left",
+    description: "Moves between radio options and updates the selected option.",
+  }),
+};
+
+const focusRows = (target: string): AccessibilityKeyboardRow[] => [
+  keyboardRows.tabNext(target),
+  keyboardRows.tabPrevious(),
+];
+
+const actionRows = (target: string): AccessibilityKeyboardRow[] => [
+  ...focusRows(target),
+  keyboardRows.enterActivate(target),
+  keyboardRows.spaceActivate(target),
+];
+
+const linkRows = (target = "link"): AccessibilityKeyboardRow[] => [
+  ...focusRows(target),
+  keyboardRows.enterActivate(target),
+];
+
+const menuRows = (target: string): AccessibilityKeyboardRow[] => [
+  ...focusRows(target),
+  keyboardRows.arrowsOpenMove(target),
+  keyboardRows.enterActivate("focused option"),
+  keyboardRows.escapeClose(target),
+];
+
+const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAccessibilityProfile>> = {
+  alert: {
+    builtInDescription: [
+      "SGDS alerts expose their message as an alert region when they are shown.",
+      "Dismissible alerts use the SGDS close button for the close action.",
+    ],
+    builtInItems: [
+      "The alert container uses `role=\"alert\"` and updates `aria-hidden` based on its shown state.",
+      "Alert links render as anchors, so they keep native link behaviour.",
+    ],
+    authorItems: [
+      "Write the message so users can understand what happened and what to do next.",
+      "Use links only when they help users act on the alert.",
+    ],
+    focusItems: [
+      "Do not move focus to an alert automatically unless the alert interrupts the current task.",
+      "If an alert includes a link or close button, keep it in a logical tab order.",
+    ],
+  },
+  badge: {
+    builtInItems: [
+      "SGDS badge is a visual label for status, count, or category information.",
+      "The component does not add custom keyboard behaviour.",
+    ],
+    authorItems: [
+      "Use clear badge text instead of relying on colour alone.",
+      "Keep the badge close to the content it describes.",
+    ],
+    focusItems: [
+      "Do not make badges focusable unless they are paired with an interactive control.",
+      "If the badge changes status, make sure the surrounding content explains the change.",
+    ],
+  },
+  breadcrumb: {
+    builtInItems: [
+      "SGDS breadcrumb items render links through the SGDS link component.",
+      "The last item can be marked as the current location.",
+    ],
+    authorItems: [
+      "Use link text that matches the destination page.",
+      "Keep the trail short enough for users to scan.",
+    ],
+    focusItems: [
+      "Users should be able to tab through each breadcrumb link in page order.",
+      "Do not remove the native link destination from breadcrumb items.",
+    ],
+    keyboardInteractions: linkRows("breadcrumb link"),
+  },
+  button: {
+    builtInItems: [
+      "SGDS button renders a native button by default and an anchor when `href` is provided.",
+      "The component exposes disabled and loading states to assistive technology.",
+    ],
+    authorItems: [
+      "Use button text that describes the action.",
+      "Add an accessible label when the visible text is replaced by an icon or loading state.",
+    ],
+    focusItems: [
+      "Keep buttons in the same order as the task flow.",
+      "Do not use a disabled button as the only way to explain what users need to do next.",
+    ],
+    keyboardInteractions: actionRows("button"),
+  },
+  card: {
+    builtInItems: [
+      "SGDS card provides structured slots for title, description, media, supporting content, and footer actions.",
+      "Cards can become focusable when the stretched-link pattern is used.",
+    ],
+    authorItems: [
+      "Use a clear title and place actions in the footer slot.",
+      "Provide alt text for meaningful images placed inside card media slots.",
+    ],
+    focusItems: [
+      "Keep interactive elements inside the card reachable in a logical order.",
+      "Avoid making the whole card and an inner link point to different destinations.",
+    ],
+  },
+  checkbox: {
+    builtInItems: [
+      "SGDS checkbox renders a native checkbox input and reflects checked, disabled, and invalid states.",
+      "Checkbox groups provide shared label, hint, and feedback areas.",
+    ],
+    authorItems: [
+      "Write labels that describe the choice clearly.",
+      "Use checkbox groups when users may select more than one option.",
+    ],
+    focusItems: [
+      "Users should be able to move through each checkbox and its feedback text in order.",
+      "Keep related checkboxes inside the same group when they answer one question.",
+    ],
+    keyboardInteractions: actionRows("checkbox"),
+  },
+  "close-button": {
+    builtInItems: [
+      "SGDS close button renders a native button with a close icon.",
+      "The component includes a default accessible name for the close action.",
+    ],
+    authorItems: [
+      "Use close button only for dismissing or closing nearby content.",
+      "Override the accessible label in the parent context when users need more specific wording.",
+    ],
+    focusItems: [
+      "Place the close button where users expect to find the dismiss action.",
+      "Return focus to a sensible trigger or next step after closing temporary content.",
+    ],
+    keyboardInteractions: actionRows("close button"),
+  },
+  "combo-box": {
+    builtInItems: [
+      "SGDS combo box combines an input with a selectable list of options.",
+      "The component emits input, change, focus, blur, and select events for application state.",
+    ],
+    authorItems: [
+      "Use clear placeholder or label text that tells users what to search for.",
+      "Keep option labels short and unique enough to recognise when filtered.",
+    ],
+    focusItems: [
+      "Users should be able to type in the field and move to filtered options.",
+      "Return users to a predictable point in the flow after a selection is made.",
+    ],
+    keyboardInteractions: [
+      ...menuRows("combo box"),
+      {
+        key: "Backspace",
+        description: "Removes the last selected item when multi-select is enabled and the input is empty.",
+      },
+    ],
+  },
+  datepicker: {
+    builtInItems: [
+      "SGDS datepicker combines an input, trigger button, and calendar dialog.",
+      "The calendar dialog exposes its current view with an accessible dialog label.",
+    ],
+    authorItems: [
+      "Use a visible label and hint text when the expected date format needs support.",
+      "Keep validation feedback close to the datepicker.",
+    ],
+    focusItems: [
+      "When the calendar opens, SGDS moves focus into the calendar.",
+      "When the calendar closes, SGDS returns focus to the input.",
+    ],
+    keyboardInteractions: [
+      ...focusRows("datepicker control"),
+      keyboardRows.arrowsOpenMove("datepicker"),
+      keyboardRows.enterActivate("focused date"),
+      keyboardRows.escapeClose("datepicker"),
+    ],
+  },
+  "description-list": {
+    builtInItems: [
+      "SGDS description list presents terms and supporting details as paired content.",
+      "The component does not add custom keyboard behaviour.",
+    ],
+    authorItems: [
+      "Use short terms and clear descriptions.",
+      "Keep each term and description pair complete when read on its own.",
+    ],
+    focusItems: [
+      "Do not place unrelated interactive controls inside description list values.",
+      "If a value includes a link, the link should be reachable in normal tab order.",
+    ],
+  },
+  divider: {
+    builtInItems: [
+      "SGDS divider separates sections visually.",
+      "The component does not add custom keyboard behaviour.",
+    ],
+    authorItems: [
+      "Use dividers to separate related groups, not as decoration between every item.",
+      "Do not rely on a divider as the only cue that the page structure changed.",
+    ],
+    focusItems: [
+      "Dividers should not receive focus.",
+      "Use headings or labels to describe the sections on each side of a divider.",
+    ],
+  },
+  drawer: {
+    builtInItems: [
+      "SGDS drawer exposes its panel as a dialog with `aria-modal`.",
+      "The component sets initial focus when it opens and restores focus to the trigger when it closes.",
+    ],
+    authorItems: [
+      "Use a title that describes the drawer task.",
+      "Keep drawer content focused on one task or supporting flow.",
+    ],
+    focusItems: [
+      "Place the primary action after the content it acts on.",
+      "Avoid opening a drawer from another temporary overlay unless the flow requires it.",
+    ],
+    keyboardInteractions: [
+      ...focusRows("drawer content"),
+      keyboardRows.escapeClose("drawer"),
+    ],
+  },
+  dropdown: {
+    builtInItems: [
+      "SGDS dropdown exposes its menu with menu semantics.",
+      "Dropdown items are focusable menu items and support keyboard selection.",
+    ],
+    authorItems: [
+      "Use dropdown items for related actions or navigation choices.",
+      "Keep item labels short and action-oriented.",
+    ],
+    focusItems: [
+      "Focus should move through the toggler and menu items in a predictable order.",
+      "Return focus to the toggler when the menu closes.",
+    ],
+    keyboardInteractions: menuRows("dropdown"),
+  },
+  "file-upload": {
+    builtInItems: [
+      "SGDS file upload uses a native file input with SGDS button and close-button controls.",
+      "Selected files are rendered as a list with remove actions.",
+    ],
+    authorItems: [
+      "Explain accepted file types and size limits near the field.",
+      "Use validation feedback when a file is missing or not accepted.",
+    ],
+    focusItems: [
+      "Users should be able to reach the upload button and each remove-file button.",
+      "Do not hide file requirements until after the upload fails.",
+    ],
+    keyboardInteractions: actionRows("upload or remove-file button"),
+  },
+  footer: {
+    builtInItems: [
+      "SGDS footer provides structured areas for site links and supporting information.",
+      "Footer links keep native link behaviour.",
+    ],
+    authorItems: [
+      "Use link text that matches the destination.",
+      "Group related footer links under clear headings.",
+    ],
+    focusItems: [
+      "Users should be able to tab through footer links in a predictable order.",
+      "Avoid adding non-link text that looks like a link.",
+    ],
+    keyboardInteractions: linkRows("footer link"),
+  },
+  icon: {
+    builtInItems: [
+      "SGDS icon renders a visual symbol.",
+      "The component does not add custom keyboard behaviour.",
+    ],
+    authorItems: [
+      "Use icons as supporting visuals, not as the only way to convey meaning.",
+      "Hide decorative icons from assistive technology in the surrounding markup when needed.",
+    ],
+    focusItems: [
+      "Icons should not receive focus on their own.",
+      "If an icon is used inside a button or link, the parent control needs an accessible name.",
+    ],
+  },
+  "icon-list": {
+    builtInItems: [
+      "SGDS icon list structures repeated items with supporting icons.",
+      "The component does not add custom keyboard behaviour.",
+    ],
+    authorItems: [
+      "Use icons to support the text, not replace it.",
+      "Keep each list item meaningful when read without the icon.",
+    ],
+    focusItems: [
+      "Icon list items should not receive focus unless they contain links or controls.",
+      "If an item includes a link, keep the link text clear and reachable.",
+    ],
+  },
+  "icon-button": {
+    builtInItems: [
+      "SGDS icon button renders a native button by default and an anchor when `href` is provided.",
+      "The component supports an `ariaLabel` for the accessible name.",
+    ],
+    authorItems: [
+      "Always provide an accessible label that describes the action.",
+      "Use the icon only as a visual shortcut for the action.",
+    ],
+    focusItems: [
+      "Keep icon buttons close to the content or item they affect.",
+      "Avoid using several identical icon buttons without unique accessible labels.",
+    ],
+    keyboardInteractions: actionRows("icon button"),
+  },
+  "icon-card": {
+    builtInItems: [
+      "SGDS icon card uses card structure with an icon slot and optional stretched-link behaviour.",
+      "The card becomes focusable only when it is configured as a stretched link.",
+    ],
+    authorItems: [
+      "Use the icon to support the title, not replace it.",
+      "Keep the title and description meaningful without relying on the icon.",
+    ],
+    focusItems: [
+      "If the card links somewhere, use one clear destination.",
+      "Keep any nested interactive content reachable and understandable.",
+    ],
+  },
+  "image-card": {
+    builtInItems: [
+      "SGDS image card uses card structure with an image slot and optional stretched-link behaviour.",
+      "The card becomes focusable only when it is configured as a stretched link.",
+    ],
+    authorItems: [
+      "Provide alt text for meaningful images.",
+      "Use empty alt text for decorative images in the surrounding image markup.",
+    ],
+    focusItems: [
+      "If the card links somewhere, use one clear destination.",
+      "Avoid placing multiple competing actions inside one image card.",
+    ],
+  },
+  input: {
+    builtInItems: [
+      "SGDS input renders a native input and connects labels, hint text, and feedback to the control.",
+      "The component supports disabled, read-only, required, invalid, and feedback states.",
+    ],
+    authorItems: [
+      "Use a visible label that tells users what to enter.",
+      "Place format requirements in hint text before validation happens.",
+    ],
+    focusItems: [
+      "Focus should move to the input before any suffix or supporting controls.",
+      "Keep validation feedback close to the input it describes.",
+    ],
+    keyboardInteractions: [
+      ...focusRows("input"),
+      {
+        key: "Text keys",
+        description: "Enters or edits the input value.",
+      },
+    ],
+  },
+  link: {
+    builtInItems: [
+      "SGDS link renders an anchor and keeps native link behaviour.",
+      "Disabled links are removed from the tab order by the component.",
+    ],
+    authorItems: [
+      "Use link text that describes the destination or result.",
+      "Avoid using generic text such as read more when the destination is unclear.",
+    ],
+    focusItems: [
+      "Links should appear in the reading order where users need them.",
+      "Do not use a link when the action changes state on the same page. Use a button instead.",
+    ],
+    keyboardInteractions: linkRows(),
+  },
+  mainnav: {
+    builtInItems: [
+      "SGDS main navigation renders a navigation landmark and a responsive menu toggle.",
+      "The mobile toggle exposes expanded state and the controlled menu.",
+    ],
+    authorItems: [
+      "Use clear labels for top-level navigation items.",
+      "Keep primary navigation stable across pages.",
+    ],
+    focusItems: [
+      "Users should be able to reach the brand link, navigation items, and mobile toggle in order.",
+      "Do not add hidden navigation items that remain focusable.",
+    ],
+    keyboardInteractions: actionRows("navigation toggle or item"),
+  },
+  masthead: {
+    builtInItems: [
+      "SGDS masthead includes a disclosure control for the official government banner content.",
+      "The disclosure control supports keyboard activation.",
+    ],
+    authorItems: [
+      "Keep the masthead content unchanged unless product guidance says otherwise.",
+      "Do not place page-specific actions inside the masthead.",
+    ],
+    focusItems: [
+      "Users should be able to open the masthead information and continue through its links.",
+      "Keep focus order consistent with the page header.",
+    ],
+    keyboardInteractions: actionRows("masthead disclosure"),
+  },
+  modal: {
+    builtInItems: [
+      "SGDS modal exposes its panel as a dialog with `aria-modal`.",
+      "The component moves focus to the modal heading when it opens and restores focus to the trigger when it closes.",
+    ],
+    authorItems: [
+      "Use a title that describes the decision or task.",
+      "Keep modal content short enough for users to complete the task without losing context.",
+    ],
+    focusItems: [
+      "Place actions after the message or form content they relate to.",
+      "Avoid opening another modal from inside a modal.",
+    ],
+    keyboardInteractions: [
+      ...focusRows("modal content"),
+      keyboardRows.escapeClose("modal"),
+    ],
+  },
+  "overflow-menu": {
+    builtInItems: [
+      "SGDS overflow menu uses the dropdown component internally.",
+      "Menu items support the same keyboard selection behaviour as dropdown items.",
+    ],
+    authorItems: [
+      "Use overflow menus for secondary actions.",
+      "Keep destructive actions clearly labelled.",
+    ],
+    focusItems: [
+      "The menu button should be reachable next to the item it affects.",
+      "Return focus to the menu button after the menu closes.",
+    ],
+    keyboardInteractions: menuRows("overflow menu"),
+  },
+  pagination: {
+    builtInItems: [
+      "SGDS pagination renders a navigation region and page controls with current-page state.",
+      "Page controls expose labels for their destination pages.",
+    ],
+    authorItems: [
+      "Use pagination when users need to move through a known set of pages.",
+      "Keep the current page state accurate when data changes.",
+    ],
+    focusItems: [
+      "Users should be able to tab through available page controls.",
+      "Disabled previous or next controls should not block users from reaching page numbers.",
+    ],
+    keyboardInteractions: linkRows("page control"),
+  },
+  "progress-bar": {
+    builtInItems: [
+      "SGDS progress bar exposes progress semantics with `role=\"progressbar\"`.",
+      "The component supports accessible value attributes and an accessible label.",
+    ],
+    authorItems: [
+      "Use a clear label when the progress bar needs context.",
+      "Keep the value, minimum, and maximum accurate as progress changes.",
+    ],
+    focusItems: [
+      "Progress bars should not receive focus unless paired with an interactive control.",
+      "Use status text nearby when users need to know what is happening.",
+    ],
+  },
+  "quantity-toggle": {
+    builtInItems: [
+      "SGDS quantity toggle combines an input with increase and decrease icon buttons.",
+      "The input restricts unsupported keys and allows numeric editing keys.",
+    ],
+    authorItems: [
+      "Use a label that describes what quantity is being changed.",
+      "Set sensible minimum, maximum, and step values.",
+    ],
+    focusItems: [
+      "Users should be able to reach the decrease button, input, and increase button in order.",
+      "Validation feedback should explain any minimum or maximum constraint.",
+    ],
+    keyboardInteractions: [
+      ...focusRows("quantity control"),
+      {
+        key: "Number keys",
+        description: "Edits the quantity value in the input.",
+      },
+      {
+        key: "Backspace",
+        description: "Removes a digit from the quantity value.",
+      },
+      {
+        key: "↓ Down or ↑ Up or ← Left or → Right",
+        description: "Uses the native number input cursor or step behaviour when available.",
+      },
+    ],
+  },
+  radio: {
+    builtInItems: [
+      "SGDS radio renders native radio inputs and reflects checked and disabled states.",
+      "Radio groups manage selection across related radio options.",
+    ],
+    authorItems: [
+      "Use radio buttons when users can choose one option from a set.",
+      "Write labels that make each option distinct.",
+    ],
+    focusItems: [
+      "Keep related radio options inside the same group.",
+      "Place hint and validation text close to the group.",
+    ],
+    keyboardInteractions: [
+      ...focusRows("radio group"),
+      keyboardRows.arrowsRadio(),
+      keyboardRows.spaceActivate("focused radio option"),
+    ],
+  },
+  select: {
+    builtInItems: [
+      "SGDS select combines an input-like trigger with a selectable option menu.",
+      "The menu supports keyboard opening, movement, and selection.",
+    ],
+    authorItems: [
+      "Use a visible label that describes the choice.",
+      "Keep option labels short and unique.",
+    ],
+    focusItems: [
+      "Users should be able to open the option list and select an item without a pointer.",
+      "Keep validation feedback close to the select.",
+    ],
+    keyboardInteractions: menuRows("select"),
+  },
+  sidenav: {
+    builtInItems: [
+      "SGDS side navigation provides structured navigation links and expandable sections.",
+      "Expandable side navigation items support keyboard opening and closing.",
+    ],
+    authorItems: [
+      "Use clear section labels and link text.",
+      "Keep the current page state accurate.",
+    ],
+    focusItems: [
+      "Users should be able to move through navigation links in order.",
+      "Do not hide focusable links inside collapsed sections.",
+    ],
+    keyboardInteractions: [
+      ...focusRows("side navigation item"),
+      keyboardRows.enterActivate("focused side navigation item"),
+      keyboardRows.spaceActivate("focused side navigation item"),
+      {
+        key: "↓ Down or → Right",
+        description: "Opens the focused expandable side navigation item.",
+      },
+      {
+        key: "↑ Up or ← Left",
+        description: "Closes the focused expandable side navigation item.",
+      },
+    ],
+  },
+  skeleton: {
+    builtInItems: [
+      "SGDS skeleton is a loading placeholder.",
+      "The component does not add custom keyboard behaviour.",
+    ],
+    authorItems: [
+      "Use skeletons only while content is loading.",
+      "Replace the skeleton with real content as soon as it is available.",
+    ],
+    focusItems: [
+      "Skeleton placeholders should not receive focus.",
+      "Do not use skeletons as the only status message for long waits.",
+    ],
+  },
+  spinner: {
+    builtInItems: [
+      "SGDS spinner is a loading indicator.",
+      "The component does not add custom keyboard behaviour.",
+    ],
+    authorItems: [
+      "Pair the spinner with text when users need to know what is loading.",
+      "Use a progress bar instead when determinate progress is available.",
+    ],
+    focusItems: [
+      "Spinners should not receive focus.",
+      "Do not trap users on a loading state without a way forward.",
+    ],
+  },
+  stepper: {
+    builtInItems: [
+      "SGDS stepper communicates progress through a sequence of steps.",
+      "Clickable stepper items support Enter when the component is configured as clickable.",
+    ],
+    authorItems: [
+      "Use clear step names that match the task.",
+      "Keep the current step state accurate.",
+    ],
+    focusItems: [
+      "If steps are clickable, users should be able to reach them in order.",
+      "Do not make future steps clickable when users must complete earlier steps first.",
+    ],
+    keyboardInteractions: [
+      ...focusRows("clickable step"),
+      keyboardRows.enterActivate("focused step"),
+    ],
+  },
+  subnav: {
+    builtInItems: [
+      "SGDS sub-navigation supports expandable sections.",
+      "Expandable sub-navigation items support Enter and Space for opening and closing.",
+    ],
+    authorItems: [
+      "Use concise labels that describe the destination or section.",
+      "Keep nesting shallow so users can scan the navigation.",
+    ],
+    focusItems: [
+      "Users should be able to move through sub-navigation links in order.",
+      "Do not leave hidden links focusable when a section is collapsed.",
+    ],
+    keyboardInteractions: actionRows("sub-navigation item"),
+  },
+  switch: {
+    builtInItems: [
+      "SGDS switch renders a native checkbox input with switch styling.",
+      "The component reflects checked and disabled states.",
+    ],
+    authorItems: [
+      "Use switch for settings that take effect immediately.",
+      "Use a label that describes the setting, not the current state only.",
+    ],
+    focusItems: [
+      "Users should be able to reach the switch in form order.",
+      "Keep any status text close to the switch it describes.",
+    ],
+    keyboardInteractions: actionRows("switch"),
+  },
+  "system-banner": {
+    builtInItems: [
+      "SGDS system banner exposes application-level messages as an alert region.",
+      "Pagination and dismiss actions use SGDS icon button and close button controls.",
+    ],
+    authorItems: [
+      "Use system banners for important application-level messages.",
+      "Keep each message short and action-oriented.",
+    ],
+    focusItems: [
+      "Users should be able to reach banner actions without losing their place in the page.",
+      "Auto-cycling pauses on focus and hover in the SGDS implementation.",
+    ],
+    keyboardInteractions: actionRows("banner action"),
+  },
+  tab: {
+    builtInItems: [
+      "SGDS tabs expose tablist, tab, and panel relationships.",
+      "The tab group connects each tab with its controlled panel.",
+    ],
+    authorItems: [
+      "Use short tab labels that describe each panel.",
+      "Keep tab content related to the selected tab.",
+    ],
+    focusItems: [
+      "Users should be able to move between tabs and continue into the active panel.",
+      "Do not place critical content only in an inactive panel without a clear tab label.",
+    ],
+    keyboardInteractions: [
+      ...focusRows("tab"),
+      keyboardRows.enterActivate("focused tab"),
+      keyboardRows.spaceActivate("focused tab"),
+      {
+        key: "← Left or ↑ Up",
+        description: "Moves focus to the previous tab.",
+      },
+      {
+        key: "→ Right or ↓ Down",
+        description: "Moves focus to the next tab.",
+      },
+      {
+        key: "Home",
+        description: "Moves focus to the first tab.",
+      },
+      {
+        key: "End",
+        description: "Moves focus to the last tab.",
+      },
+    ],
+  },
+  table: {
+    builtInItems: [
+      "SGDS table renders table, row, header, and cell components for structured data.",
+      "Responsive tables can receive focus so users can scroll the table area.",
+    ],
+    authorItems: [
+      "Use clear column and row headers.",
+      "Keep cell content concise and avoid using tables for layout.",
+    ],
+    focusItems: [
+      "Interactive elements inside cells should follow the table reading order.",
+      "Do not remove table headers when switching to responsive layouts.",
+    ],
+    keyboardInteractions: focusRows("responsive table or cell control"),
+  },
+  "table-of-contents": {
+    builtInItems: [
+      "SGDS table of contents provides a structured list of page links.",
+      "Links placed in the contents slot keep their native link behaviour.",
+    ],
+    authorItems: [
+      "Use section names that match the headings on the page.",
+      "Keep the table of contents updated when sections change.",
+    ],
+    focusItems: [
+      "Users should be able to tab through each contents link in page order.",
+      "Do not include links to sections that are hidden or missing.",
+    ],
+    keyboardInteractions: linkRows("table of contents link"),
+  },
+  textarea: {
+    builtInItems: [
+      "SGDS textarea renders a native textarea and connects labels, hint text, and feedback to the control.",
+      "The component supports disabled, read-only, required, invalid, and feedback states.",
+    ],
+    authorItems: [
+      "Use a visible label that tells users what to enter.",
+      "Use hint text for character limits or formatting expectations.",
+    ],
+    focusItems: [
+      "Focus should move to the textarea in form order.",
+      "Keep validation feedback close to the textarea.",
+    ],
+    keyboardInteractions: [
+      ...focusRows("textarea"),
+      {
+        key: "Text keys",
+        description: "Enters or edits text in the textarea.",
+      },
+      {
+        key: "Enter",
+        description: "Adds a new line in the textarea.",
+      },
+    ],
+  },
+  "thumbnail-card": {
+    builtInItems: [
+      "SGDS thumbnail card uses card structure with a thumbnail slot and optional stretched-link behaviour.",
+      "The card becomes focusable only when it is configured as a stretched link.",
+    ],
+    authorItems: [
+      "Use thumbnail images that support the title or content.",
+      "Provide alt text for meaningful thumbnail images.",
+    ],
+    focusItems: [
+      "If the card links somewhere, use one clear destination.",
+      "Keep nested actions reachable and clearly labelled.",
+    ],
+  },
+  toast: {
+    builtInItems: [
+      "SGDS toast exposes its message as an assertive live alert when shown.",
+      "Dismissible toasts use the SGDS close button.",
+    ],
+    authorItems: [
+      "Use toast messages for short status updates.",
+      "Do not use a toast as the only place for important instructions.",
+    ],
+    focusItems: [
+      "Do not move focus to a toast automatically for routine status updates.",
+      "If a toast includes a close button, it should remain reachable without interrupting the task.",
+    ],
+  },
+  tooltip: {
+    builtInItems: [
+      "SGDS tooltip displays supporting text on hover and keyboard focus by default.",
+      "The tooltip bubble uses `role=\"tooltip\"`.",
+    ],
+    authorItems: [
+      "Use tooltip content to clarify, not to hide essential instructions.",
+      "Keep tooltip text short.",
+    ],
+    focusItems: [
+      "The trigger must be focusable for keyboard users.",
+      "Add `tabindex=\"0\"` to non-focusable HTML triggers when they need a tooltip.",
+    ],
+    keyboardInteractions: focusRows("tooltip trigger"),
+  },
+};
+
+const getGeneratedAccessibilityProfile = (doc: ComponentDoc): GeneratedAccessibilityProfile => {
+  const override = generatedAccessibilityProfileOverrides[doc.key] ?? {};
+
+  return {
+    builtInDescription: override.builtInDescription ?? [
+      `SGDS provides the base structure and states for ${doc.title.toLowerCase()}.`,
+      "Use the component as provided so its built-in semantics and interaction behaviour stay intact.",
+    ],
+    builtInItems: override.builtInItems ?? [
+      "Use the SGDS component instead of recreating the same pattern with custom markup.",
+      "Keep component states such as disabled, invalid, active, or expanded in sync with the user interface.",
+    ],
+    authorDescription: override.authorDescription ?? [
+      "Accessible use still depends on the content and surrounding page structure.",
+    ],
+    authorItems: override.authorItems ?? [
+      "Use clear labels, headings, and supporting text.",
+      "Do not rely on colour, position, or icon shape as the only way to communicate meaning.",
+    ],
+    focusDescription: override.focusDescription ?? [
+      "Keyboard flow should match the order of the task.",
+    ],
+    focusItems: override.focusItems ?? [
+      "Keep interactive content reachable in the normal tab order.",
+      "Do not add custom keyboard handling unless the SGDS component does not already support the interaction.",
+    ],
+    keyboardInteractions: override.keyboardInteractions,
+  };
+};
+
 const buildAccessibilitySections = (doc: ComponentDoc): AccessibilitySection[] => {
   if (doc.accessibility && "sections" in doc.accessibility) {
     return doc.accessibility.sections ?? [];
   }
 
   const firstDemoMarkup = doc.demos[0]?.markup || `<${doc.tag}></${doc.tag}>`;
+  const profile = getGeneratedAccessibilityProfile(doc);
 
   return [
     {
-      title: "Keyboard support",
-      description: [
-        `Use the built-in SGDS keyboard behaviour for ${doc.title.toLowerCase()} so focus order, activation, and screen-reader expectations stay consistent.`,
-        "Ensure the surrounding page does not interrupt the default interaction pattern with custom key handling unless it is required.",
-      ],
-      items: [],
+      title: "Built-in accessibility",
+      description: profile.builtInDescription,
+      items: profile.builtInItems,
       markup: firstDemoMarkup,
     },
     {
-      title: "Tab order",
-      description: [],
-      items: [
-        "Move focus to the component.",
-        "Navigate through the component’s interactive elements in order.",
-        "Access any revealed or supporting content.",
-        "Continue to the next interactive element on the page.",
-      ],
+      title: "Labels and content",
+      description: profile.authorDescription,
+      items: profile.authorItems,
+      markup: firstDemoMarkup,
+    },
+    {
+      title: "Focus and interaction",
+      description: profile.focusDescription,
+      items: profile.focusItems,
       markup: firstDemoMarkup,
     },
   ];
@@ -5393,24 +6353,7 @@ const buildAccessibilitySections = (doc: ComponentDoc): AccessibilitySection[] =
 const buildAccessibilityKeyboardRows = (doc: ComponentDoc): AccessibilityKeyboardRow[] => {
   if (doc.accessibility?.keyboardInteractions?.length) return doc.accessibility.keyboardInteractions;
 
-  return [
-    {
-      key: "Tab",
-      description: `Moves focus to the next ${doc.title.toLowerCase()} control or interactive element.`,
-    },
-    {
-      key: "Shift + Tab",
-      description: "Moves focus to the previous interactive element.",
-    },
-    {
-      key: "Enter",
-      description: "Activates the focused control or confirms the current action when supported.",
-    },
-    {
-      key: "Space",
-      description: "Activates the focused control when the component supports selection or toggling.",
-    },
-  ];
+  return getGeneratedAccessibilityProfile(doc).keyboardInteractions ?? [];
 };
 
 const buildResolvedAccessibility = (doc: ComponentDoc): AccessibilityContent => ({
