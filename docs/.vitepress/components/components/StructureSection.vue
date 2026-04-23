@@ -54,6 +54,7 @@ const activeDensityGroup = computed(
   () => props.tokenGroups?.find((group) => group.title.endsWith(`/${activeDensityId.value}`)) ?? null,
 );
 const hasElementColumn = (rows: MeasurementTokenRow[]) => rows.some((row) => Boolean(row.element?.trim()));
+const hasCategoryColumn = (rows: MeasurementTokenRow[]) => rows.some((row) => Boolean(row.category?.trim()));
 const tokenDisplay = (row?: MeasurementTokenRow) => row?.designToken || "—";
 const tokenValue = (row?: MeasurementTokenRow) => row?.rawValue || "—";
 
@@ -231,18 +232,32 @@ const isBorderOrColorOverlayKey = (key: string | null) =>
   key === "hover-bg" ||
   key === "background" ||
   key === "title-color" ||
+  key === "subtitle-color" ||
   key === "description-color" ||
+  key === "secondary-text-color" ||
+  key === "link-color" ||
+  key === "link-color-emphasis" ||
+  key === "tinted-bg" ||
   key === "icon-color" ||
   key === "leading-icon-color" ||
   key === "border-color" ||
   key === "border-width" ||
   key === "border-radius";
 
+const isSemanticTokenKey = (key: string | null) =>
+  key === "subtitle-color" ||
+  key === "secondary-text-color" ||
+  key === "link-color" ||
+  key === "link-color-emphasis" ||
+  key === "tinted-bg" ||
+  key === "leading-icon-color";
+
 const getTooltipTagClass = (key: string | null) => [
   "accordion-inspect-tooltip__tag",
   isPaddingOverlayKey(key) ? "accordion-inspect-tooltip__tag--padding" : "",
   isGapOverlayKey(key) ? "accordion-inspect-tooltip__tag--gap" : "",
-  isBorderOrColorOverlayKey(key) ? "accordion-inspect-tooltip__tag--border" : "",
+  isBorderOrColorOverlayKey(key) && !isSemanticTokenKey(key) ? "accordion-inspect-tooltip__tag--border" : "",
+  isSemanticTokenKey(key) ? "accordion-inspect-tooltip__tag--semantic" : "",
 ];
 
 const getStructureTone = (key: string | null) => {
@@ -258,9 +273,60 @@ const inspectMeta = computed<Record<string, InspectMeta>>(() => {
       background: { label: "background", value: tokenDisplay(cardBaseTokenMap.value.get("background")), valueSuffix: tokenValue(cardBaseTokenMap.value.get("background")), aria: "Inspect card background colour" },
       "title-color": { label: "title-color", value: tokenDisplay(cardBaseTokenMap.value.get("title-color")), valueSuffix: tokenValue(cardBaseTokenMap.value.get("title-color")), aria: "Inspect card title colour" },
       "description-color": { label: "description-color", value: tokenDisplay(cardBaseTokenMap.value.get("description-color")), valueSuffix: tokenValue(cardBaseTokenMap.value.get("description-color")), aria: "Inspect card description colour" },
-      "border-color": { label: "border-color", value: tokenDisplay(cardBaseTokenMap.value.get("border-color")), valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-color")), aria: "Inspect card border colour" },
-      "border-width": { label: "border-width", value: tokenDisplay(cardBaseTokenMap.value.get("border-width")), valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-width")), aria: "Inspect card border width" },
-      "border-radius": { label: "border-radius", value: tokenDisplay(cardBaseTokenMap.value.get("border-radius")), valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-radius")), aria: "Inspect card border radius" },
+      "border-color": {
+        label: "border-color",
+        value: tokenDisplay(cardBaseTokenMap.value.get("border-color")),
+        valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-color")),
+        rows: [
+          {
+            label: "border-width",
+            value: tokenDisplay(cardBaseTokenMap.value.get("border-width")),
+            valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-width")),
+          },
+          {
+            label: "border-radius",
+            value: tokenDisplay(cardBaseTokenMap.value.get("border-radius")),
+            valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-radius")),
+          },
+        ],
+        aria: "Inspect card border colour",
+      },
+      "border-width": {
+        label: "border-color",
+        value: tokenDisplay(cardBaseTokenMap.value.get("border-color")),
+        valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-color")),
+        rows: [
+          {
+            label: "border-width",
+            value: tokenDisplay(cardBaseTokenMap.value.get("border-width")),
+            valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-width")),
+          },
+          {
+            label: "border-radius",
+            value: tokenDisplay(cardBaseTokenMap.value.get("border-radius")),
+            valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-radius")),
+          },
+        ],
+        aria: "Inspect card border width",
+      },
+      "border-radius": {
+        label: "border-color",
+        value: tokenDisplay(cardBaseTokenMap.value.get("border-color")),
+        valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-color")),
+        rows: [
+          {
+            label: "border-width",
+            value: tokenDisplay(cardBaseTokenMap.value.get("border-width")),
+            valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-width")),
+          },
+          {
+            label: "border-radius",
+            value: tokenDisplay(cardBaseTokenMap.value.get("border-radius")),
+            valueSuffix: tokenValue(cardBaseTokenMap.value.get("border-radius")),
+          },
+        ],
+        aria: "Inspect card border radius",
+      },
       "padding-x": {
         label: "padding-y",
         value: tokenDisplay(cardBaseTokenMap.value.get("padding-y")),
@@ -291,6 +357,35 @@ const inspectMeta = computed<Record<string, InspectMeta>>(() => {
       "title-gap": { label: "title-gap", value: tokenDisplay(cardBaseTokenMap.value.get("title-gap")), valueSuffix: tokenValue(cardBaseTokenMap.value.get("title-gap")), aria: "Inspect card title gap" },
       "subtitle-gap": { label: "subtitle-gap", value: tokenDisplay(cardBaseTokenMap.value.get("subtitle-gap")), valueSuffix: tokenValue(cardBaseTokenMap.value.get("subtitle-gap")), aria: "Inspect card subtitle gap" },
       "slot-gap": { label: "slot-gap", value: tokenDisplay(cardBaseTokenMap.value.get("slot-gap")), valueSuffix: tokenValue(cardBaseTokenMap.value.get("slot-gap")), aria: "Inspect card slot gap" },
+      "subtitle-color": { label: "", value: tokenDisplay(globalTokenMap.value.get("subtitle-color")), valueSuffix: tokenValue(globalTokenMap.value.get("subtitle-color")), aria: "Inspect card subtitle colour" },
+      "secondary-text-color": { label: "", value: tokenDisplay(globalTokenMap.value.get("secondary-text-color")), valueSuffix: tokenValue(globalTokenMap.value.get("secondary-text-color")), aria: "Inspect card secondary text colour" },
+      "link-color": {
+        label: "",
+        value: tokenDisplay(globalTokenMap.value.get("link-color")),
+        valueSuffix: tokenValue(globalTokenMap.value.get("link-color")),
+        rows: [
+          {
+            label: "",
+            value: tokenDisplay(globalTokenMap.value.get("link-color-emphasis")),
+            valueSuffix: tokenValue(globalTokenMap.value.get("link-color-emphasis")),
+          },
+        ],
+        aria: "Inspect card link colour",
+      },
+      "link-color-emphasis": {
+        label: "",
+        value: tokenDisplay(globalTokenMap.value.get("link-color")),
+        valueSuffix: tokenValue(globalTokenMap.value.get("link-color")),
+        rows: [
+          {
+            label: "",
+            value: tokenDisplay(globalTokenMap.value.get("link-color-emphasis")),
+            valueSuffix: tokenValue(globalTokenMap.value.get("link-color-emphasis")),
+          },
+        ],
+        aria: "Inspect card link emphasis colour",
+      },
+      "tinted-bg": { label: "", value: tokenDisplay(globalTokenMap.value.get("tinted-bg")), valueSuffix: tokenValue(globalTokenMap.value.get("tinted-bg")), aria: "Inspect card tinted background" },
     };
   }
 
@@ -373,6 +468,12 @@ const scrollToTableRow = async (key: string) => {
 
 const getRelatedRowKeys = (key: string) => {
   if (structureKind.value === "card" && ["padding-x", "padding-y"].includes(key)) return ["padding-x", "padding-y"];
+  if (structureKind.value === "card" && ["link-color", "link-color-emphasis"].includes(key)) {
+    return ["link-color", "link-color-emphasis"];
+  }
+  if (structureKind.value === "card" && ["border-color", "border-width", "border-radius"].includes(key)) {
+    return ["border-color", "border-width", "border-radius"];
+  }
   if (structureKind.value === "accordion" && ["padding-x-default", "padding-y-default"].includes(key)) {
     return ["padding-x-default", "padding-y-default"];
   }
@@ -477,6 +578,7 @@ const measureHotspots = async () => {
     if (cardSurface) {
       const borderRect = getRelativeRect(cardSurface, shell);
       nextRects["background"] = borderRect;
+      nextRects["tinted-bg"] = borderRect;
       nextRects["border-color"] = borderRect;
       nextRects["border-width"] = borderRect;
       nextRects["border-radius"] = borderRect;
@@ -486,8 +588,21 @@ const measureHotspots = async () => {
       nextRects["title-color"] = getRelativeRect(title, shell);
     }
 
+    if (subtitle) {
+      nextRects["subtitle-color"] = getRelativeRect(subtitle, shell);
+    }
+
     if (description) {
       nextRects["description-color"] = getRelativeRect(description, shell);
+    }
+
+    if (lower) {
+      nextRects["secondary-text-color"] = getRelativeRect(lower, shell);
+    }
+
+    if (footer) {
+      const footerAnchor = footer.querySelector("a") as HTMLElement | null;
+      nextRects["link-color"] = getRelativeRect(footerAnchor ?? footer, shell);
     }
 
     if (cardBody) {
@@ -886,7 +1001,7 @@ const isActiveDensityGroup = (groupTitle?: string) =>
           :style="tooltipStyle"
         >
           <sgds-badge
-            v-if="hoverKey === 'leading-icon-color'"
+            v-if="isSemanticTokenKey(hoverKey)"
             variant="neutral"
             outlined
           >Semantic token</sgds-badge>
@@ -910,10 +1025,13 @@ const isActiveDensityGroup = (groupTitle?: string) =>
               v-for="(row, index) in inspectMeta[hoverKey].rows"
               :key="`${hoverKey}-tooltip-row-${index}`"
             >
-              <div :class="getTooltipTagClass(hoverKey)">
+              <div v-if="row.label" :class="getTooltipTagClass(hoverKey)">
                 {{ row.label }}
               </div>
-              <div class="accordion-inspect-tooltip__value">
+              <div
+                class="accordion-inspect-tooltip__value"
+                :class="!row.label ? 'accordion-inspect-tooltip__value--span-name' : ''"
+              >
                 {{ row.value }}
               </div>
               <div class="accordion-inspect-tooltip__value accordion-inspect-tooltip__value--raw">
@@ -941,7 +1059,7 @@ const isActiveDensityGroup = (groupTitle?: string) =>
         <h5 class="sgds:m-0 sgds:mt-[var(--sgds-layout-gap-xs)] sgds:text-heading-xs sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ baseTokenTitle }}</h5>
         <sgds-table tableBorder headerBackground responsive="always">
           <sgds-table-row>
-            <sgds-table-head v-if="hasElementColumn(tokens)">Element</sgds-table-head>
+            <sgds-table-head v-if="hasElementColumn(tokens)">Category</sgds-table-head>
             <sgds-table-head>Component token</sgds-table-head>
             <sgds-table-head>Semantic token</sgds-table-head>
             <sgds-table-head>Value</sgds-table-head>
@@ -972,7 +1090,7 @@ const isActiveDensityGroup = (groupTitle?: string) =>
         <h5 class="sgds:m-0 sgds:text-heading-xs sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ group.title }}</h5>
         <sgds-table tableBorder headerBackground responsive="always">
           <sgds-table-row>
-            <sgds-table-head v-if="hasElementColumn(group.tokens)">Element</sgds-table-head>
+            <sgds-table-head v-if="hasElementColumn(group.tokens)">Category</sgds-table-head>
             <sgds-table-head>Component token</sgds-table-head>
             <sgds-table-head>Semantic token</sgds-table-head>
             <sgds-table-head>Value</sgds-table-head>
@@ -1000,6 +1118,7 @@ const isActiveDensityGroup = (groupTitle?: string) =>
       <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Semantic tokens</h3>
       <sgds-table tableBorder headerBackground responsive="always">
         <sgds-table-row>
+          <sgds-table-head v-if="hasCategoryColumn(globalTokens)">Category</sgds-table-head>
           <sgds-table-head v-if="hasElementColumn(globalTokens)">Element</sgds-table-head>
           <sgds-table-head>Semantic token</sgds-table-head>
           <sgds-table-head>Value</sgds-table-head>
@@ -1014,7 +1133,8 @@ const isActiveDensityGroup = (groupTitle?: string) =>
           @mouseenter="row.mapKey ? (hoverKey = row.mapKey) : null"
           @mouseleave="hoverKey = null"
         >
-          <sgds-table-cell v-if="hasElementColumn(globalTokens)">{{ row.element }}</sgds-table-cell>
+          <sgds-table-cell v-if="hasCategoryColumn(globalTokens)">{{ row.category }}</sgds-table-cell>
+          <sgds-table-cell v-if="hasElementColumn(globalTokens)">{{ row.element || (row.mapKey === "link-color-emphasis" && isRowActive(row.mapKey) ? "Link" : "") }}</sgds-table-cell>
           <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
           <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
         </sgds-table-row>
@@ -1077,6 +1197,9 @@ sgds-table-row.structure-row-active[data-structure-tone="border"] {
   z-index: 7;
 }
 
+.accordion-inspect-hotspot[aria-label="Inspect card background colour"],
+.accordion-inspect-hotspot[aria-label="Inspect card tinted background"],
+.accordion-inspect-hotspot[aria-label="Inspect card border colour"],
 .accordion-inspect-hotspot[aria-label="Inspect card border width"],
 .accordion-inspect-hotspot[aria-label="Inspect card border radius"] {
   z-index: 5;
@@ -1129,7 +1252,7 @@ sgds-table-row.structure-row-active[data-structure-tone="border"] {
 .accordion-inspect-padding-visual__band {
   background: color-mix(in srgb, var(--sgds-accent-surface-muted) 52%, transparent);
   mix-blend-mode: multiply;
-  outline: 1px dotted var(--sgds-accent-border-color-default);
+  outline: 1px dashed var(--sgds-accent-border-color-default);
   outline-offset: 0;
   position: absolute;
 }
@@ -1154,23 +1277,28 @@ sgds-table-row.structure-row-active[data-structure-tone="border"] {
 }
 
 .structure-demo-box[data-hover-key="icon-color"] .accordion-inspect-hotspot[aria-label="Inspect accordion chevron colour"],
-.structure-demo-box[data-hover-key="leading-icon-color"] .accordion-inspect-hotspot[aria-label="Inspect accordion leading icon colour"],
 .structure-demo-box[data-hover-key="title-color"] .accordion-inspect-hotspot[aria-label="Inspect accordion title colour"] {
   background: color-mix(in srgb, var(--sgds-purple-surface-muted) 68%, transparent);
-  outline: 1px dotted var(--sgds-purple-border-color-default);
+  outline: 1px dashed var(--sgds-purple-border-color-default);
+  outline-offset: 0;
+}
+
+.structure-demo-box[data-hover-key="leading-icon-color"] .accordion-inspect-hotspot[aria-label="Inspect accordion leading icon colour"] {
+  background: color-mix(in srgb, var(--sgds-neutral-surface-muted) 68%, transparent);
+  outline: 1px dashed var(--sgds-neutral-border-color-default);
   outline-offset: 0;
 }
 
 .structure-demo-box[data-hover-key="gap"] .accordion-inspect-hotspot[aria-label="Inspect accordion gap"] {
   background: color-mix(in srgb, var(--sgds-purple-surface-muted) 68%, transparent);
-  outline: 1px dotted var(--sgds-purple-border-color-default);
+  outline: 1px dashed var(--sgds-purple-border-color-default);
   outline-offset: 0;
 }
 
 .structure-demo-box[data-hover-key="hover-bg"] .accordion-inspect-hotspot[aria-label="Inspect accordion header background"] {
   background: color-mix(in srgb, var(--sgds-purple-surface-muted) 52%, transparent);
   mix-blend-mode: multiply;
-  outline: 1px dotted var(--sgds-purple-border-color-default);
+  outline: 1px dashed var(--sgds-purple-border-color-default);
   outline-offset: 0;
 }
 
@@ -1179,7 +1307,7 @@ sgds-table-row.structure-row-active[data-structure-tone="border"] {
 .structure-demo-box[data-hover-key="content-padding"] .accordion-inspect-hotspot[aria-label="Inspect accordion content padding"] {
   background: color-mix(in srgb, var(--sgds-accent-surface-muted) 52%, transparent);
   mix-blend-mode: multiply;
-  outline: 1px dotted var(--sgds-accent-border-color-default);
+  outline: 1px dashed var(--sgds-accent-border-color-default);
   outline-offset: 0;
 }
 
@@ -1198,7 +1326,7 @@ sgds-table-row.structure-row-active[data-structure-tone="border"] {
 .structure-demo-box[data-hover-key="border-color"] .accordion-inspect-hotspot[aria-label="Inspect accordion border colour"],
 .structure-demo-box[data-hover-key="border-width"] .accordion-inspect-hotspot[aria-label="Inspect accordion border width"],
 .structure-demo-box[data-hover-key="border-radius"] .accordion-inspect-hotspot[aria-label="Inspect accordion border radius"] {
-  outline: 1px dotted var(--sgds-purple-border-color-default);
+  outline: 1px dashed var(--sgds-purple-border-color-default);
   outline-offset: 0;
 }
 
@@ -1214,7 +1342,7 @@ sgds-table-row.structure-row-active[data-structure-tone="border"] {
 .structure-demo-box[data-hover-key="padding-right"] .accordion-inspect-hotspot[aria-label="Inspect card padding right"] {
   background: color-mix(in srgb, var(--sgds-accent-surface-muted) 52%, transparent);
   mix-blend-mode: multiply;
-  outline: 1px dotted var(--sgds-accent-border-color-default);
+  outline: 1px dashed var(--sgds-accent-border-color-default);
   outline-offset: 0;
 }
 
@@ -1242,13 +1370,31 @@ sgds-table-row.structure-row-active[data-structure-tone="border"] {
 .structure-demo-box[data-hover-key="slot-gap"] .accordion-inspect-hotspot[aria-label="Inspect card slot gap"] {
   background: color-mix(in srgb, var(--sgds-purple-surface-muted) 46%, transparent);
   mix-blend-mode: multiply;
-  outline: 1px dotted var(--sgds-purple-border-color-default);
+  outline: 1px dashed var(--sgds-purple-border-color-default);
   outline-offset: 0;
 }
 
+.structure-demo-box[data-hover-key="title-color"] .accordion-inspect-hotspot[aria-label="Inspect card title colour"],
+.structure-demo-box[data-hover-key="description-color"] .accordion-inspect-hotspot[aria-label="Inspect card description colour"] {
+  background: color-mix(in srgb, var(--sgds-purple-surface-muted) 46%, transparent);
+  mix-blend-mode: multiply;
+  outline: 1px dashed var(--sgds-purple-border-color-default);
+  outline-offset: 0;
+}
+
+.structure-demo-box[data-hover-key="subtitle-color"] .accordion-inspect-hotspot[aria-label="Inspect card subtitle colour"],
+.structure-demo-box[data-hover-key="secondary-text-color"] .accordion-inspect-hotspot[aria-label="Inspect card secondary text colour"],
+.structure-demo-box[data-hover-key="link-color"] .accordion-inspect-hotspot[aria-label="Inspect card link colour"] {
+  background: color-mix(in srgb, var(--sgds-neutral-surface-muted) 46%, transparent);
+  mix-blend-mode: multiply;
+  outline: 1px dashed var(--sgds-neutral-border-color-default);
+  outline-offset: 0;
+}
+
+.structure-demo-box[data-hover-key="border-color"] .accordion-inspect-hotspot[aria-label="Inspect card border colour"],
 .structure-demo-box[data-hover-key="border-width"] .accordion-inspect-hotspot[aria-label="Inspect card border width"],
 .structure-demo-box[data-hover-key="border-radius"] .accordion-inspect-hotspot[aria-label="Inspect card border radius"] {
-  outline: 1px dotted var(--sgds-purple-border-color-default);
+  outline: 1px dashed var(--sgds-purple-border-color-default);
   outline-offset: 0;
 }
 
@@ -1319,6 +1465,10 @@ sgds-table-row.structure-row-active[data-structure-tone="border"] {
 
 .accordion-inspect-tooltip__tag--border {
   color: var(--sgds-purple-color-default);
+}
+
+.accordion-inspect-tooltip__tag--semantic {
+  color: var(--sgds-neutral-color-default);
 }
 
 .accordion-inspect-tooltip__value {
