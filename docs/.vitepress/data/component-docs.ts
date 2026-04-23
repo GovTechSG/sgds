@@ -902,7 +902,29 @@ const componentDocs: Record<string, ComponentDoc> = {
     accessibility: {
       sections: [
         {
-          title: "Headings and labels",
+          title: "Built-in accessibility",
+          description: [
+            "SGDS uses a real button for each accordion trigger and exposes expanded or collapsed state.",
+            "The component applies built-in ARIA attributes to connect the trigger with its content region.",
+          ],
+          items: [
+            "Use the built-in accordion item instead of recreating the trigger and panel behaviour with custom markup.",
+            "The trigger exposes its expanded state and references the content it controls.",
+            "The panel content is exposed as a region, so use accordions for grouped sections rather than for every small detail on a page.",
+          ],
+          markup: `<sgds-accordion>
+            <sgds-accordion-item open>
+              <span slot="header">Expanded section</span>
+              <div slot="content">Visible content confirms the current state.</div>
+            </sgds-accordion-item>
+            <sgds-accordion-item>
+              <span slot="header">Collapsed section</span>
+              <div slot="content">Accordion content</div>
+            </sgds-accordion-item>
+          </sgds-accordion>`,
+        },
+        {
+          title: "Labels and content",
           description: [
             "SGDS uses the header slot content as the visible label for the accordion trigger.",
             "Write header text that is clear enough to stand on its own when announced as a button.",
@@ -919,26 +941,6 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-accordion-item>
               <span slot="header">Required documents</span>
               <div slot="content">Prepare the documents you need to upload.</div>
-            </sgds-accordion-item>
-          </sgds-accordion>`,
-        },
-        {
-          title: "State and announcements",
-          description: [
-            "SGDS exposes expanded and collapsed state on the accordion trigger, so users are not relying only on the chevron icon.",
-          ],
-          items: [
-            "Screen readers should be able to detect whether an item is expanded or collapsed.",
-            "Use the built-in accordion item rather than recreating the trigger and panel behaviour with custom markup.",
-          ],
-          markup: `<sgds-accordion>
-            <sgds-accordion-item open>
-              <span slot="header">Expanded section</span>
-              <div slot="content">Visible content confirms the current state.</div>
-            </sgds-accordion-item>
-            <sgds-accordion-item>
-              <span slot="header">Collapsed section</span>
-              <div slot="content">Accordion content</div>
             </sgds-accordion-item>
           </sgds-accordion>`,
         },
@@ -962,24 +964,6 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-accordion-item>
               <span slot="header">Next section</span>
               <div slot="content">Accordion content</div>
-            </sgds-accordion-item>
-          </sgds-accordion>`,
-        },
-        {
-          title: "ARIA structure",
-          description: [
-            "SGDS applies built-in ARIA attributes to connect the accordion trigger with its content region.",
-          ],
-          items: [
-            "The trigger exposes its expanded state and references the controlled content.",
-            "The panel content is exposed as a region, so use accordions for grouped sections rather than for every small detail on a page.",
-          ],
-          markup: `<sgds-accordion>
-            <sgds-accordion-item open>
-              <span slot="header">What you need before you apply</span>
-              <div slot="content">
-                Bring your identification document and proof of address before starting the form.
-              </div>
             </sgds-accordion-item>
           </sgds-accordion>`,
         },
@@ -5500,7 +5484,7 @@ const keyboardRows = {
     description: `Activates the focused ${target}.`,
   }),
   escapeClose: (target: string): AccessibilityKeyboardRow => ({
-    key: "Escape",
+    key: "Esc",
     description: `Closes the open ${target} when supported by the component.`,
   }),
   arrowsOpenMove: (target: string): AccessibilityKeyboardRow => ({
