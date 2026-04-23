@@ -25,10 +25,16 @@ const props = defineProps<{
   anatomyPreviewMarkup: string;
   anatomyCallouts?: AnatomyCallout[];
   resolvedAnatomyParts: AnatomyPart[];
+  numberedListGapClass?: string;
 }>();
 
 const anatomyCanvasRef = ref<HTMLElement | null>(null);
 const anatomyCalloutPositions = ref<CalloutPosition[]>([]);
+// Offset applied to the markup (via transform) and baked into every callout's
+// left/top values. Ensures the combined bounding box of component + callouts
+// sits at the canvas's centre, so the demo box's internal padding wraps the
+// whole group symmetrically instead of just the component.
+const anatomyGroupOffset = ref<{ x: number; y: number }>({ x: 0, y: 0 });
 let resizeObserver: ResizeObserver | null = null;
 
 const getPointOnRect = (
@@ -48,6 +54,7 @@ const updateCallouts = async () => {
   const callouts = props.anatomyCallouts;
   if (!canvas || !callouts?.length) {
     anatomyCalloutPositions.value = [];
+    anatomyGroupOffset.value = { x: 0, y: 0 };
     return;
   }
 
@@ -56,7 +63,14 @@ const updateCallouts = async () => {
   const badgeRadius = badgeSize / 2;
   const canvasRect = canvas.getBoundingClientRect();
 
-  anatomyCalloutPositions.value = callouts
+  // The markup carries a translate transform from the previous pass; its rect
+  // (and every descendant target rect) is therefore shifted by the stored
+  // offset. Subtract it to work in "natural" coordinates and avoid cumulative
+  // drift across re-measurements.
+  const currentOffsetX = anatomyGroupOffset.value.x;
+  const currentOffsetY = anatomyGroupOffset.value.y;
+
+  const basePositions = callouts
     .map((callout) => {
       const baseTarget = canvas.querySelector(callout.targetSelector) as HTMLElement | null;
       const target = callout.targetShadowSelector
@@ -68,8 +82,8 @@ const updateCallouts = async () => {
       const targetRect = target.getBoundingClientRect();
       const point = getPointOnRect(targetRect, callout.targetX || "center", callout.targetY || "center");
       const stemLength = parseFloat(styles.getPropertyValue(callout.stemLengthToken || "--sgds-dimension-48")) || 48;
-      const localX = point.x - canvasRect.left;
-      const localY = point.y - canvasRect.top;
+      const localX = point.x - canvasRect.left - currentOffsetX + (callout.targetXOffset || 0);
+      const localY = point.y - canvasRect.top - currentOffsetY + (callout.targetYOffset || 0);
 
       if (callout.direction === "right") {
         return { number: callout.number, direction: callout.direction, badgeLeft: localX + stemLength + badgeRadius, badgeTop: localY, strokeLeft: localX, strokeTop: localY, strokeWidth: stemLength, strokeHeight: 0 };
@@ -83,6 +97,81 @@ const updateCallouts = async () => {
       return { number: callout.number, direction: callout.direction, badgeLeft: localX, badgeTop: localY + stemLength + badgeRadius, strokeLeft: localX, strokeTop: localY, strokeWidth: 0, strokeHeight: stemLength };
     })
     .filter((value): value is NonNullable<typeof value> => Boolean(value));
+
+  const positionByNumber = new Map(basePositions.map((position) => [position.number, position]));
+
+  const alignedPositions = basePositions.map((position) => {
+      const sourceCallout = callouts.find((callout) => callout.number === position.number);
+      const alignedCalloutNumber = sourceCallout?.alignBadgeWithCallout;
+
+      if (!alignedCalloutNumber) return position;
+
+      const alignedPosition = positionByNumber.get(alignedCalloutNumber);
+
+      if (!alignedPosition) return position;
+
+      if (position.direction === "left") {
+        const strokeLeft = alignedPosition.badgeLeft + badgeRadius;
+        return {
+          ...position,
+          badgeLeft: alignedPosition.badgeLeft,
+          strokeLeft,
+          strokeWidth: Math.max(0, position.strokeLeft + position.strokeWidth - strokeLeft),
+        };
+      }
+
+      if (position.direction === "right") {
+        const strokeRight = alignedPosition.badgeLeft - badgeRadius;
+        return {
+          ...position,
+          badgeLeft: alignedPosition.badgeLeft,
+          strokeWidth: Math.max(0, strokeRight - position.strokeLeft),
+        };
+      }
+
+      return {
+        ...position,
+        badgeLeft: alignedPosition.badgeLeft,
+      };
+    });
+
+  // Build the combined bounding box (in natural canvas-local coords) of the
+  // markup plus every callout, then work out the offset needed to centre that
+  // box inside the canvas. The markup gets shifted by the offset via CSS
+  // transform, and the offset is baked into every callout's absolute left/top.
+  const markupEl = canvas.querySelector(".anatomy-demo-markup") as HTMLElement | null;
+  let minX = Infinity;
+  let maxX = -Infinity;
+  let minY = Infinity;
+  let maxY = -Infinity;
+
+  if (markupEl) {
+    const markupRect = markupEl.getBoundingClientRect();
+    minX = Math.min(minX, markupRect.left - canvasRect.left - currentOffsetX);
+    maxX = Math.max(maxX, markupRect.right - canvasRect.left - currentOffsetX);
+    minY = Math.min(minY, markupRect.top - canvasRect.top - currentOffsetY);
+    maxY = Math.max(maxY, markupRect.bottom - canvasRect.top - currentOffsetY);
+  }
+
+  alignedPositions.forEach((position) => {
+    minX = Math.min(minX, position.strokeLeft, position.badgeLeft - badgeRadius);
+    maxX = Math.max(maxX, position.strokeLeft + position.strokeWidth, position.badgeLeft + badgeRadius);
+    minY = Math.min(minY, position.strokeTop, position.badgeTop - badgeRadius);
+    maxY = Math.max(maxY, position.strokeTop + position.strokeHeight, position.badgeTop + badgeRadius);
+  });
+
+  const hasBounds = Number.isFinite(minX) && Number.isFinite(minY) && Number.isFinite(maxX) && Number.isFinite(maxY);
+  const groupOffsetX = hasBounds ? canvasRect.width / 2 - (minX + maxX) / 2 : 0;
+  const groupOffsetY = hasBounds ? canvasRect.height / 2 - (minY + maxY) / 2 : 0;
+
+  anatomyGroupOffset.value = { x: groupOffsetX, y: groupOffsetY };
+  anatomyCalloutPositions.value = alignedPositions.map((position) => ({
+    ...position,
+    badgeLeft: position.badgeLeft + groupOffsetX,
+    badgeTop: position.badgeTop + groupOffsetY,
+    strokeLeft: position.strokeLeft + groupOffsetX,
+    strokeTop: position.strokeTop + groupOffsetY,
+  }));
 };
 
 onMounted(() => {
@@ -110,8 +199,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-    <div class="sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:p-component-md">
+  <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xl)]">
+    <div class="sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:px-component-lg sgds:py-component-lg max-md:sgds:px-component-md max-md:sgds:py-component-md">
       <div class="sgds:flex sgds:items-center sgds:justify-center sgds:relative sgds:w-full">
         <template v-if="anatomyAsset">
           <img
@@ -130,7 +219,11 @@ onBeforeUnmount(() => {
           ref="anatomyCanvasRef"
           class="sgds:flex sgds:items-center sgds:justify-center sgds:mx-auto sgds:max-w-[var(--sgds-dimension-688)] sgds:min-h-[var(--sgds-dimension-320)] sgds:relative sgds:w-full"
         >
-          <div class="anatomy-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="anatomyPreviewMarkup"></div>
+          <div
+            class="anatomy-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
+            :style="{ transform: `translate(${anatomyGroupOffset.x}px, ${anatomyGroupOffset.y}px)` }"
+            v-html="anatomyPreviewMarkup"
+          ></div>
           <span
             v-for="callout in anatomyCalloutPositions"
             :key="`stroke-${callout.number}`"
@@ -160,7 +253,7 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="sgds:grid sgds:grid-cols-2 sgds:gap-x-8 sgds:gap-y-4 sgds:max-lg:grid-cols-1">
-      <div class="sgds:flex sgds:flex-col sgds:gap-component-sm">
+      <div :class="['sgds:flex sgds:flex-col', numberedListGapClass || 'sgds:gap-[var(--sgds-gap-md)]']">
         <PortalNumberedItem
           v-for="part in resolvedAnatomyParts.slice(0, Math.ceil(resolvedAnatomyParts.length / 2))"
           :key="part.number"
@@ -169,7 +262,7 @@ onBeforeUnmount(() => {
           :note="part.note"
         />
       </div>
-      <div class="sgds:flex sgds:flex-col sgds:gap-component-sm">
+      <div :class="['sgds:flex sgds:flex-col', numberedListGapClass || 'sgds:gap-[var(--sgds-gap-md)]']">
         <PortalNumberedItem
           v-for="part in resolvedAnatomyParts.slice(Math.ceil(resolvedAnatomyParts.length / 2))"
           :key="part.number"
@@ -188,9 +281,19 @@ onBeforeUnmount(() => {
 .sgds-night-theme .anatomy-image-dark { display: block !important; }
 
 /* Global selectors targeting slotted web component elements in v-html markup */
+/* Anatomy previews are informational only — pointer events are disabled on the
+   wrapper so no descendant `<sgds-*>` component can be toggled, clicked, hovered
+   or focused from the anatomy canvas. The anatomy canvas is a reference diagram,
+   not a live component playground. */
+.anatomy-demo-markup {
+  pointer-events: none;
+}
+
 .anatomy-demo-markup > sgds-accordion {
   background: var(--sgds-surface-default);
+  border-radius: var(--sgds-border-radius-md);
   display: block;
+  overflow: hidden;
   width: 100%;
 }
 

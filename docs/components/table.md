@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Table
-description: Table is used for displaying collections of data in organized rows and columns.
+description: Tables are used to display collections of data in organised rows and columns.
 storybook: true
 ---
 

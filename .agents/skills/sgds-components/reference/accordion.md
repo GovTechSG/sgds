@@ -74,6 +74,12 @@ Accordion items support two expand modes:
 
 **Compact spacing?** → `density="compact"` on `<sgds-accordion>`
 
+**Spacious spacing?** → `density="spacious"` on `<sgds-accordion>`
+
+**Icon before the header?** → Use the `icon` slot on `<sgds-accordion-item>`
+
+**Badge after the header?** → Use the `badge` slot on `<sgds-accordion-item>`
+
 **Start an item open?** → Add `open` on `<sgds-accordion-item>`
 
 ```html
@@ -112,6 +118,22 @@ Accordion items support two expand modes:
     <div slot="content">Content B.</div>
   </sgds-accordion-item>
 </sgds-accordion>
+
+<!-- Spacious density with icon and badge slots -->
+<sgds-accordion density="spacious">
+  <sgds-accordion-item open>
+    <sgds-icon slot="icon" name="info-circle" size="xl"></sgds-icon>
+    <div slot="header">Section with icon</div>
+    <sgds-badge slot="badge" variant="primary">New</sgds-badge>
+    <div slot="content">Content here.</div>
+  </sgds-accordion-item>
+  <sgds-accordion-item>
+    <sgds-icon slot="icon" name="info-circle" size="xl"></sgds-icon>
+    <div slot="header">Another section</div>
+    <sgds-badge slot="badge" variant="warning">Updated</sgds-badge>
+    <div slot="content">More content here.</div>
+  </sgds-accordion-item>
+</sgds-accordion>
 ```
 
 ## API Summary
@@ -122,7 +144,7 @@ Accordion items support two expand modes:
 |---|---|---|---|
 | `allowMultiple` | boolean | `false` | Allows multiple items to be open simultaneously |
 | `variant` | `default \| border` | `default` | Visual style of the accordion |
-| `density` | `default \| compact` | `default` | Spacing density of accordion items |
+| `density` | `default \| compact \| spacious` | `default` | Spacing density of accordion items |
 
 ### `<sgds-accordion-item>`
 
@@ -135,9 +157,11 @@ Accordion items support two expand modes:
 
 | Slot | Purpose |
 |---|---|
+| `icon` | An icon placed before the header text |
 | `header` | The clickable header / title of the accordion item |
-| `content` | The body content shown when the item is expanded |
+| `badge` | A badge placed after the header text, aligned to the right |
 | `caret` | Custom caret/icon replacing the default chevron |
+| `content` | The body content shown when the item is expanded |
 
 ## Events (`<sgds-accordion-item>`)
 

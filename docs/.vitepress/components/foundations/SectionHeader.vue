@@ -33,6 +33,7 @@ const headingClass = computed(() =>
       >
         {{ title }}
       </component>
+      <slot name="title-suffix"></slot>
       <a
         :href="`#${sectionId}`"
         class="sgds:inline-flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded-sm sgds:text-subtle sgds:no-underline sgds:hover:text-default sgds:focus:text-default sgds:focus-visible:text-default sgds:focus-visible:outline sgds:focus-visible:outline-[var(--sgds-outline-focus)] sgds:focus-visible:outline-offset-[var(--sgds-outline-offset-focus)]"

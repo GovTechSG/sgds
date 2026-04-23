@@ -12,11 +12,11 @@ sgds-tab-group[variant="underlined"] {
   width: 100%;
 }
 
-sgds-tab-group[variant="underlined"] sgds-tab[slot="nav"]:last-of-type {
+sgds-tab-group[variant="underlined"] > sgds-tab[slot="nav"]:last-of-type {
   position: relative;
 }
 
-sgds-tab-group[variant="underlined"] sgds-tab[slot="nav"]:last-of-type::after {
+sgds-tab-group[variant="underlined"] > sgds-tab[slot="nav"]:last-of-type::after {
   border-bottom: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
   bottom: 0;
   content: "";

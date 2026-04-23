@@ -5,7 +5,7 @@ import { useData } from 'vitepress';
 import PageHeader from "../../components/page/PageHeader.vue";
 import DocFooter from "../../components/page/DocFooter.vue";
 import { isDraft } from "../../utils/page-status";
-import { getComponentDoc } from "../../data/component-docs";
+import { getComponentDoc, getComponentHeaderLinks } from "../../data/component-docs";
 
 const { theme, page } = useData()
 const currentPath = computed(() =>
@@ -90,7 +90,23 @@ const formatSidebarLabel = (text?: string) => {
     .join(" ")
 }
 
+// Component pages auto-derive GitHub + Storybook header links from the doc key.
+// Frontmatter-supplied `headerLinks` still win, so individual pages can
+// override (e.g. to point at a specific branch) without losing the default.
+const resolvedHeaderLinks = computed(() => {
+  const fromFrontmatter = page.value.frontmatter.headerLinks;
+  if (fromFrontmatter?.length) return fromFrontmatter;
+  if (currentSection.value === "components" && currentComponentKey.value) {
+    return getComponentHeaderLinks(currentComponentKey.value);
+  }
+  return undefined;
+});
+
 const pageMetadata = computed(() => {
+  if (resolvedHeaderLinks.value?.length) {
+    return [];
+  }
+
   if (currentSection.value === "components" && currentComponentDoc.value) {
     const { metadataStatus } = currentComponentDoc.value;
     return [
@@ -162,9 +178,9 @@ const pageMetadata = computed(() => {
                   </sgds-sidenav-link>
                 </template>
               </sgds-sidenav-item>
-              <sgds-sidenav-link v-else :active="(currentPath === withBase(group.link)) || null">
+              <sgds-sidenav-item v-else :active="(currentPath === withBase(group.link)) || null">
                 <a :href="withBase(group.link)">{{ formatSidebarLabel(group.text) }}</a>
-              </sgds-sidenav-link>
+              </sgds-sidenav-item>
             </template>
           </sgds-sidenav>
         </div>
@@ -174,6 +190,7 @@ const pageMetadata = computed(() => {
           :title="page.title"
           :description="page.description"
           :metadata="pageMetadata"
+          :header-links="resolvedHeaderLinks"
           :bottom-gap-class="pageHeaderBottomGapClass"
           :header-alert="page.frontmatter.headerAlert"
         />

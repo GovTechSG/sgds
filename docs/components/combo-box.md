@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Combo box
-description: ComboBox component is used for users to make one or more selections from a list through user input, keyboard or mouse actions.
+description: A combo box lets users make one or more selections from a list using text input, the keyboard, or the mouse.
 storybook: true
 ---
 

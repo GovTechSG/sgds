@@ -31,7 +31,9 @@ defineProps<{
 /* Global selectors targeting slotted web component elements in v-html markup */
 .behaviour-demo-markup > sgds-accordion {
   background: var(--sgds-surface-default);
+  border-radius: var(--sgds-border-radius-md);
   display: block;
+  overflow: hidden;
   width: 100%;
 }
 

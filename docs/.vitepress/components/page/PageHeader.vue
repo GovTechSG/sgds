@@ -6,10 +6,19 @@ type MetadataItem = {
   status: AvailabilityStatus;
 };
 
+type HeaderLink = {
+  label: string;
+  href: string;
+  path: string;
+  icon?: string;
+  iconSrc?: string;
+};
+
 export type Page = {
   title: string;
   description?: string;
   metadata?: MetadataItem[];
+  headerLinks?: HeaderLink[];
   titleClass?: string;
   descriptionClass?: string;
   bottomGapClass?: string;
@@ -21,14 +30,14 @@ export type Page = {
     icon?: string;
   };
 }
-const { title, description, metadata, titleClass, descriptionClass, bottomGapClass, headerAlert } = defineProps<Page>();
+const { title, description, metadata, headerLinks, titleClass, descriptionClass, bottomGapClass, headerAlert } = defineProps<Page>();
 </script>
 
 <template>
   <div
     :class="[
       'sgds:flex sgds:flex-col',
-      metadata?.length ? 'sgds:gap-layout-lg' : '',
+      metadata?.length || headerLinks?.length ? 'sgds:gap-layout-lg' : '',
       bottomGapClass || 'sgds:mb-layout-md'
     ]"
   >
@@ -50,6 +59,29 @@ const { title, description, metadata, titleClass, descriptionClass, bottomGapCla
       >
         {{ description }}
       </p>
+    </div>
+    <div v-if="headerLinks?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+      <div
+        v-for="link in headerLinks"
+        :key="link.label"
+        class="sgds:grid sgds:grid-cols-[var(--sgds-dimension-96)_minmax(0,1fr)] sgds:items-center sgds:gap-x-text-xs"
+      >
+        <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+          {{ link.label }}
+        </span>
+        <sgds-link tone="neutral">
+          <a :href="link.href" class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
+            <img
+              v-if="link.iconSrc"
+              :src="link.iconSrc"
+              :alt="`${link.label} logo`"
+              class="sgds:block sgds:h-4 sgds:w-4"
+            />
+            <sgds-icon v-else-if="link.icon" :name="link.icon"></sgds-icon>
+            <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ link.path }}</span>
+          </a>
+        </sgds-link>
+      </div>
     </div>
     <div
       v-if="metadata?.length"

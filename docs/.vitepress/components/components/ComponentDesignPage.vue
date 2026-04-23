@@ -4,13 +4,13 @@ import Section from "../foundations/Section.vue";
 import AnatomySection from "./AnatomySection.vue";
 import BehaviourSection from "./BehaviourSection.vue";
 import InteractivePropertyDemo from "./InteractivePropertyDemo.vue";
-import MeasurementsSection from "./MeasurementsSection.vue";
+import AlertPlayground from "./AlertPlayground.vue";
+import ComponentPlayground from "./ComponentPlayground.vue";
 import StructureSection from "./StructureSection.vue";
 import BestPracticesSection from "./BestPracticesSection.vue";
 import MotionSection from "./MotionSection.vue";
 import AccessibilitySection from "./AccessibilitySection.vue";
 import UpdatesSection from "./UpdatesSection.vue";
-import CodeToken from "../ui/CodeToken.vue";
 import { getComponentDoc } from "../../data/component-docs";
 import { accordionV2Data } from "../../data/accordion-v2";
 
@@ -64,11 +64,231 @@ const measurementExamples = computed(() => {
   if (doc.value.measurements) return doc.value.measurements;
   return doc.value.demos.slice(0, 2);
 });
-const measurementTokens = computed(() => doc.value?.measurementTokens ?? []);
-const measurementTokenGroups = computed(() => doc.value?.measurementTokenGroups ?? []);
+
+const rawValueByDesignToken: Record<string, string> = {
+  "sgds/bg-transparent": "Transparent",
+  "sgds/bg-translucent-subtle": "oklch(from #0E0E0E l c h / 0.05)",
+  "sgds/body-color-default": "#1A1A1A",
+  "sgds/border-color-muted": "#DFDFDF",
+  "sgds/border-width/1": "1px",
+  "sgds/border-radius/md": "8px",
+  "sgds/color-default": "#1A1A1A",
+  "sgds/color-fixed-light": "#F3F3F3",
+  "sgds/color-subtle": "#525252",
+  "sgds/danger/border-color-muted": "#F8D7D7",
+  "sgds/danger/surface-default": "#CF2323",
+  "sgds/danger/surface-muted": "#FCF1F1",
+  "sgds/dimension/48": "48px",
+  "sgds/dimension/96": "96px",
+  "sgds/font-size/16": "16px",
+  "sgds/gap/2-xs": "4px",
+  "sgds/gap/xs": "8px",
+  "sgds/gap/sm": "12px",
+  "sgds/gap/md": "16px",
+  "sgds/gap/lg": "20px",
+  "sgds/line-height/24": "24px",
+  "sgds/link-color-default": "#0269D0",
+  "sgds/link-color-emphasis": "#0151A0",
+  "sgds/neutral/border-color-muted": "#DFDFDF",
+  "sgds/neutral/surface-emphasis": "#525252",
+  "sgds/neutral/surface-muted": "#F3F3F3",
+  "sgds/padding/xs": "4px",
+  "sgds/padding/md": "16px",
+  "sgds/padding/lg": "20px",
+  "sgds/padding/xl": "24px",
+  "sgds/padding/2-xl": "32px",
+  "sgds/primary/border-color-muted": "#E1DBFB",
+  "sgds/primary/surface-default": "#6B4FEB",
+  "sgds/primary/surface-emphasis": "#523ABC",
+  "sgds/primary/surface-muted": "#F4F2FE",
+  "sgds/success/border-color-muted": "#B1EDCB",
+  "sgds/success/surface-default": "#0E7C3D",
+  "sgds/success/surface-muted": "#E3F9ED",
+  "sgds/surface-default": "#FFFFFF",
+  "sgds/warning/border-color-muted": "#FCDE63",
+  "sgds/warning/surface-default": "#FCDE63",
+  "sgds/warning/surface-muted": "#FEF4CB",
+};
+
+const fallbackComponentTokensByKey: Record<string, string[]> = {
+  accordion: ["sgds/padding/lg", "sgds/padding/md", "sgds/padding/xl", "sgds/padding/xs", "sgds/gap/md", "sgds/border-color-muted", "sgds/border-radius/md", "sgds/border-width/1", "sgds/font-size/body-sm", "sgds/font-size/heading-sm", "sgds/font-size/subtitle-md", "sgds/font-size/subtitle-sm", "sgds/font-weight/semibold", "sgds/line-height/2-xs", "sgds/line-height/sm", "sgds/line-height/xs", "sgds/color-default", "sgds/color-subtle"],
+  badge: ["sgds/padding/3-xs", "sgds/padding/none", "sgds/padding/xs", "sgds/border-color-muted", "sgds/border-color-transparent", "sgds/border-radius/sm", "sgds/border-width/1", "sgds/font-size/14", "sgds/font-weight/regular", "sgds/line-height/20", "sgds/color-fixed-dark", "sgds/color-fixed-light", "sgds/surface-fixed-light", "sgds/primary/border-color/muted", "sgds/primary/color/fixed-dark", "sgds/primary/surface/default", "sgds/primary/surface/muted", "sgds/success/border-color/muted"],
+  breadcrumb: ["sgds/gap/xs", "sgds/color-default", "sgds/link-color-default", "sgds/link-color-emphasis"],
+  button: ["sgds/padding/2-xs", "sgds/gap/none"],
+  card: ["sgds/bg-translucent-subtle", "sgds/opacity/50"],
+  checkbox: ["sgds/border-color-transparent", "sgds/font-size/16", "sgds/font-weight/regular", "sgds/form/border-radius/md", "sgds/form/border-width/default", "sgds/form/color/default", "sgds/form/danger/surface/default", "sgds/form/gap/md", "sgds/form/gap/sm", "sgds/form/padding-inline/sm", "sgds/form/primary/surface/default", "sgds/form/primary/surface/emphasis", "sgds/opacity/50"],
+  "close-button": ["sgds/border-color-transparent", "sgds/border-radius/sm", "sgds/border-width/1", "sgds/color-fixed-dark", "sgds/color-fixed-light", "sgds/icon-size/sm", "sgds/bg-translucent", "sgds/bg-transparent", "sgds/dimension/24", "sgds/dimension/32", "sgds/close-btn-border-radius", "sgds/outline-focus", "sgds/outline-offset-focus"],
+  "combo-box": ["sgds/gap/xs", "sgds/icon-size/md", "sgds/form/border-width/default", "sgds/form/padding/y", "sgds/dimension/48", "sgds/outline-focus", "sgds/outline-offset-focus"],
+  datepicker: ["sgds/font-size/14", "sgds/font-weight/semibold", "sgds/line-height/20", "sgds/line-height/24", "sgds/bg-translucent-subtle", "sgds/primary/surface/translucent", "sgds/form/border-radius/md", "sgds/form/border-radius/sm", "sgds/form/color/default", "sgds/form/color/fixed-light", "sgds/form/color/inverse", "sgds/form/gap/md", "sgds/form/gap/sm", "sgds/form/height/lg", "sgds/form/outline/focus", "sgds/form/padding/x", "sgds/form/padding/y"],
+  "description-list": ["sgds/padding/lg", "sgds/padding/xl", "sgds/gap/2-xl", "sgds/gap/2-xs", "sgds/gap/xs", "sgds/border-color-muted", "sgds/border-radius/md", "sgds/border-width/1", "sgds/font-size/16", "sgds/font-size/24", "sgds/font-weight/regular", "sgds/font-weight/semibold", "sgds/line-height/24", "sgds/line-height/32", "sgds/color-default", "sgds/color-subtle", "sgds/dimension/280"],
+  divider: ["sgds/border-color-muted", "sgds/border-width/1", "sgds/border-width/2", "sgds/border-width/4"],
+  drawer: ["sgds/padding/2-xl", "sgds/padding/lg", "sgds/padding/none", "sgds/gap/xs", "sgds/font-size/24", "sgds/color-default", "sgds/color-subtle", "sgds/surface-default", "sgds/bg-overlay", "sgds/dimension/512", "sgds/dimension/768", "sgds/dimension/1024"],
+  dropdown: ["sgds/padding/lg", "sgds/padding/none", "sgds/padding/sm", "sgds/padding/xs", "sgds/gap/sm", "sgds/border-radius/md", "sgds/color-default", "sgds/surface-default", "sgds/bg-translucent-subtle", "sgds/bg-transparent", "sgds/primary/color/default", "sgds/dimension/192", "sgds/dimension/480", "sgds/opacity/50"],
+  "file-upload": ["sgds/border-color-muted", "sgds/color-muted", "sgds/form/border-radius/md", "sgds/form/border-width/default", "sgds/form/gap/2-xl", "sgds/form/gap/lg", "sgds/form/gap/md", "sgds/form/gap/xl", "sgds/form/padding/x", "sgds/form/padding/y", "sgds/form/success/color/default", "sgds/form/surface/default"],
+  footer: ["sgds/padding/2-xl", "sgds/padding/3-xl", "sgds/padding/lg", "sgds/padding/none", "sgds/padding/xl", "sgds/gap/2-xl", "sgds/gap/3-xl", "sgds/gap/lg", "sgds/gap/md", "sgds/gap/sm", "sgds/gap/xl", "sgds/gap/xs", "sgds/border-color-default", "sgds/border-width/1", "sgds/font-size/14", "sgds/font-size/24", "sgds/font-size/28", "sgds/font-weight/regular"],
+  icon: ["sgds/icon-size/2-xl", "sgds/icon-size/3-xl", "sgds/icon-size/lg", "sgds/icon-size/md", "sgds/icon-size/sm", "sgds/icon-size/xl", "sgds/icon-size/xs"],
+  "icon-button": ["sgds/dimension/32", "sgds/dimension/40", "sgds/dimension/48", "sgds/dimension/56"],
+  "icon-card": ["sgds/padding/none", "sgds/padding/xl", "sgds/border-color-transparent", "sgds/border-width/1", "sgds/bg-translucent-subtle", "sgds/opacity/50"],
+  "icon-list": ["sgds/gap/xs", "sgds/font-size/14", "sgds/font-size/20", "sgds/line-height/20", "sgds/line-height/32"],
+  "image-card": ["sgds/padding/none", "sgds/padding/xl", "sgds/border-color-transparent", "sgds/border-width/1", "sgds/bg-translucent-subtle", "sgds/opacity/50"],
+  input: ["sgds/gap/sm", "sgds/gap/xs", "sgds/form/border-radius/md", "sgds/form/color/subtle", "sgds/form/outline/focus"],
+  link: ["sgds/font-size/12", "sgds/font-size/14", "sgds/font-size/16", "sgds/font-size/20", "sgds/line-height/16", "sgds/line-height/20", "sgds/line-height/24", "sgds/line-height/32", "sgds/color-default", "sgds/color-fixed-dark", "sgds/color-fixed-light", "sgds/link-color-default", "sgds/link-color-emphasis", "sgds/icon-size/lg", "sgds/icon-size/md", "sgds/icon-size/sm", "sgds/icon-size/xl", "sgds/danger/color/default"],
+  mainnav: ["sgds/padding/md", "sgds/padding/sm", "sgds/gap/xl", "sgds/gap/xs", "sgds/border-color-translucent", "sgds/border-width/1", "sgds/border-width/4", "sgds/color-default", "sgds/link-color-default", "sgds/link-color-emphasis", "sgds/surface-default", "sgds/bg-translucent-subtle", "sgds/primary/border-color/default", "sgds/primary/color/default", "sgds/opacity/50"],
+  masthead: ["sgds/icon-size/sm", "sgds/mainnav-max-width", "sgds/mainnav-mobile-padding-x", "sgds/mainnav-padding-x"],
+  modal: ["sgds/padding/md", "sgds/padding/xl", "sgds/gap/2-xl", "sgds/gap/md", "sgds/gap/sm", "sgds/border-radius/md", "sgds/font-size/24", "sgds/line-height/24", "sgds/line-height/40", "sgds/color-subtle", "sgds/surface-default", "sgds/bg-overlay", "sgds/dimension/480", "sgds/dimension/640", "sgds/dimension/800"],
+  "overflow-menu": ["sgds/border-radius/sm", "sgds/bg-translucent-subtle", "sgds/bg-transparent", "sgds/dimension/24", "sgds/dimension/32", "sgds/outline-focus", "sgds/outline-offset-focus"],
+  pagination: ["sgds/gap/2-xs", "sgds/border-radius/md", "sgds/font-size/14", "sgds/color-fixed-light", "sgds/bg-transparent", "sgds/primary/color/default", "sgds/primary/surface/default", "sgds/primary/surface/translucent", "sgds/dimension/40", "sgds/dimension/48", "sgds/opacity/50"],
+  "progress-bar": ["sgds/gap/2-xs", "sgds/font-size/14", "sgds/color-subtle", "sgds/bg-translucent", "sgds/primary/surface/default", "sgds/neutral/surface/default", "sgds/dimension/4"],
+  "quantity-toggle": ["sgds/form/gap/lg"],
+  radio: ["sgds/form/danger/surface/default", "sgds/form/gap/md", "sgds/form/gap/sm", "sgds/opacity/50"],
+  sidenav: ["sgds/padding/2-xs", "sgds/padding/3-xl", "sgds/padding/sm", "sgds/padding/xl", "sgds/gap/xs", "sgds/border-radius/md", "sgds/font-size/16", "sgds/font-weight/regular", "sgds/font-weight/semibold", "sgds/line-height/24", "sgds/color-default", "sgds/link-color-default", "sgds/link-color-emphasis", "sgds/bg-translucent-subtle", "sgds/primary/bg/translucent", "sgds/primary/color/emphasis", "sgds/primary/surface/translucent"],
+  skeleton: ["sgds/gap/xs", "sgds/border-radius/sm", "sgds/bg-translucent", "sgds/bg-translucent-subtle"],
+  spinner: ["sgds/gap/2-xs", "sgds/font-size/14", "sgds/surface-default", "sgds/surface-fixed-dark", "sgds/surface-fixed-light", "sgds/surface-inverse", "sgds/bg-translucent", "sgds/primary/surface/default", "sgds/neutral/color/default", "sgds/neutral/surface/default", "sgds/dimension/16", "sgds/dimension/24", "sgds/dimension/32", "sgds/dimension/48", "sgds/dimension/64"],
+  stepper: ["sgds/padding/2-xs", "sgds/padding/xl", "sgds/gap/sm", "sgds/border-color-translucent", "sgds/border-color-transparent", "sgds/border-width/2", "sgds/color-default", "sgds/color-fixed-light", "sgds/color-subtle", "sgds/bg-translucent", "sgds/bg-transparent", "sgds/primary/border-color/default", "sgds/primary/color/default", "sgds/primary/color/emphasis", "sgds/primary/surface/default", "sgds/primary/surface/emphasis"],
+  subnav: ["sgds/padding/2-xl", "sgds/padding/lg", "sgds/padding/md", "sgds/padding/none", "sgds/padding/sm", "sgds/gap/lg", "sgds/gap/md", "sgds/gap/none", "sgds/gap/xl", "sgds/border-color-muted", "sgds/border-width/0", "sgds/border-width/1", "sgds/border-width/2", "sgds/font-size/14", "sgds/color-default", "sgds/link-color-default", "sgds/link-color-emphasis", "sgds/icon-size/md"],
+  switch: ["sgds/border-color-transparent", "sgds/font-size/14", "sgds/font-size/20", "sgds/form/border-radius/full", "sgds/form/border-width/default", "sgds/form/gap/lg", "sgds/form/height/2-xs", "sgds/form/height/lg", "sgds/form/height/md", "sgds/form/height/sm", "sgds/form/padding-inline/sm", "sgds/form/primary/surface/default", "sgds/form/primary/surface/emphasis", "sgds/form/surface/emphasis", "sgds/form/surface/subtle", "sgds/form/width/2-xs", "sgds/form/width/3-xl", "sgds/form/width/md"],
+  "system-banner": ["sgds/padding/2-xs", "sgds/padding/sm", "sgds/gap/2-xs", "sgds/gap/sm", "sgds/gap/xl", "sgds/gap/xs", "sgds/font-size/12", "sgds/font-size/14", "sgds/font-weight/regular", "sgds/line-height/16", "sgds/line-height/20", "sgds/color-fixed-light", "sgds/surface-fixed-dark", "sgds/dimension/64", "sgds/dimension/872"],
+  tab: ["sgds/gap/xl", "sgds/gap/xs", "sgds/border-color-muted", "sgds/border-radius/md", "sgds/border-width/1", "sgds/border-width/4", "sgds/font-size/14", "sgds/color-default", "sgds/color-fixed-light", "sgds/bg-translucent", "sgds/bg-translucent-subtle", "sgds/primary/color/default", "sgds/primary/surface/default", "sgds/opacity/50"],
+  table: ["sgds/padding/md", "sgds/padding/sm", "sgds/border-color-emphasis", "sgds/border-color-muted", "sgds/border-width/0", "sgds/border-width/1", "sgds/font-weight/semibold", "sgds/surface-raised", "sgds/dimension/56"],
+  "table-of-contents": ["sgds/padding/none", "sgds/gap/md", "sgds/gap/xl", "sgds/font-size/24", "sgds/font-weight/semibold", "sgds/margin/none"],
+  textarea: ["sgds/form/padding/x", "sgds/form/padding/y", "sgds/dimension/136"],
+  "thumbnail-card": ["sgds/padding/none", "sgds/padding/xl", "sgds/border-color-transparent", "sgds/border-width/1", "sgds/bg-translucent-subtle", "sgds/dimension/128", "sgds/dimension/64", "sgds/opacity/50"],
+  toast: ["sgds/padding/md", "sgds/padding/xl", "sgds/gap/2-xs", "sgds/gap/sm", "sgds/border-radius/md", "sgds/font-size/label-sm", "sgds/font-size/subtitle-sm", "sgds/font-weight/regular", "sgds/font-weight/semibold", "sgds/line-height/2-xs", "sgds/color-subtle", "sgds/link-color-default", "sgds/surface-default", "sgds/primary/color/default", "sgds/success/color/default", "sgds/danger/color/default", "sgds/warning/color/fixed-light", "sgds/dimension/280"],
+  tooltip: ["sgds/padding/sm", "sgds/padding/xs", "sgds/border-radius/md", "sgds/font-size/14", "sgds/color-fixed-light", "sgds/surface-fixed-dark", "sgds/dimension/320", "sgds/z-index-overlay"],
+};
+
+const defaultComponentTokens = ["sgds/padding/lg", "sgds/gap/sm", "sgds/border-color-muted", "sgds/border-radius/md", "sgds/border-width/1", "sgds/color-default", "sgds/surface-default"];
+
+const tokenToCssVarName = (token: string) => `--${token.replace(/\//g, "-")}`;
+
+const resolveTokenRawValue = (token: string) => {
+  if (typeof window !== "undefined") {
+    const runtimeValue = getComputedStyle(document.documentElement)
+      .getPropertyValue(tokenToCssVarName(token))
+      .trim();
+    if (runtimeValue) return runtimeValue;
+  }
+  return rawValueByDesignToken[token] ?? "";
+};
+
+const tokenCategoryFromToken = (token: string) => {
+  const [, category = ""] = token.match(/^sgds\/([^/]+)/) ?? [];
+  const lowerCategory = category.toLowerCase();
+  if (lowerCategory.includes("padding")) return "Padding";
+  if (lowerCategory.includes("gap")) return "Gap";
+  if (lowerCategory.includes("border")) return "Border";
+  if (lowerCategory.includes("font") || lowerCategory.includes("line-height")) return "Typography";
+  if (lowerCategory.includes("color") || lowerCategory.includes("surface") || lowerCategory.includes("bg")) return "Colour";
+  if (lowerCategory.includes("dimension") || lowerCategory.includes("icon-size")) return "Size";
+  if (["primary", "success", "danger", "warning", "neutral", "accent", "link"].includes(lowerCategory)) return "Colour";
+  if (lowerCategory === "form") return "Form";
+  return category ? category.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase()) : "";
+};
+
+const componentTokenNameFromToken = (token: string) => token.replace(/^sgds\//, "").replace(/\//g, "-");
+
+const normaliseComponentTokenRows = (rows: Array<{ category?: string; name: string; value: string; rawValue?: string }>) => {
+  let previousCategory = "";
+  return rows.map((row) => {
+    const resolvedCategory = row.category ?? tokenCategoryFromToken(row.value);
+    const category = resolvedCategory === previousCategory ? "" : resolvedCategory;
+    previousCategory = resolvedCategory;
+    return {
+      ...row,
+      category,
+      rawValue: row.rawValue ?? resolveTokenRawValue(row.value),
+    };
+  });
+};
+
+const measurementTokens = computed(() => {
+  if (currentPageKey.value === "alert" && doc.value?.componentTokenGroups?.length) {
+    const categoryByName: Record<string, string> = {
+      "padding-x": "Padding",
+      "padding-y": "",
+      "content-padding-right": "",
+      gap: "Gap",
+      "title-gap": "",
+      "content-gap": "",
+      "border-width": "Border",
+      "border-radius": "",
+    };
+    return doc.value.componentTokenGroups[0].rows.map((row) => ({
+      element: categoryByName[row.name] ?? "",
+      property: row.name,
+      designToken: row.value,
+      rawValue: resolveTokenRawValue(row.value),
+      mapKey: row.name,
+    }));
+  }
+  return doc.value?.measurementTokens ?? [];
+});
+const measurementTokenGroups = computed(() => {
+  if (currentPageKey.value === "alert" && doc.value?.semanticTokenGroups?.length) {
+    return doc.value.semanticTokenGroups.map((group) => ({
+      title: group.title,
+      tokens: group.rows.map((row, index) => ({
+        element: index === 0 ? "Colour" : "",
+        property: row.name,
+        designToken: row.value,
+        rawValue: resolveTokenRawValue(row.value),
+        mapKey: row.name === "border-color" && group.title.endsWith("/ success") ? row.name : undefined,
+      })),
+    }));
+  }
+  return doc.value?.measurementTokenGroups ?? [];
+});
+const fallbackComponentTokenGroups = computed(() => {
+  const tokens = fallbackComponentTokensByKey[currentPageKey.value] ?? defaultComponentTokens;
+  return [
+    {
+      title: `sgds/${currentPageKey.value}`,
+      rows: normaliseComponentTokenRows(tokens.map((token) => ({
+        category: tokenCategoryFromToken(token),
+        name: componentTokenNameFromToken(token),
+        value: token,
+        rawValue: resolveTokenRawValue(token),
+      }))),
+    },
+  ];
+});
+const componentTokenGroups = computed(() => {
+  if (currentPageKey.value === "alert") return [];
+  if (doc.value?.componentTokenGroups?.length) {
+    return doc.value.componentTokenGroups.map((group) => ({
+      ...group,
+      rows: normaliseComponentTokenRows(group.rows),
+    }));
+  }
+  return fallbackComponentTokenGroups.value;
+});
+const semanticTokenGroups = computed(() => (currentPageKey.value === "alert" ? [] : doc.value?.semanticTokenGroups ?? []));
 const globalTokens = computed(() => doc.value?.globalTokens ?? []);
-const hasElementColumn = (rows: { element?: string }[]) =>
-  rows.some((row) => Boolean(row.element?.trim()));
+const globalTokenGroups = computed(() => {
+  if (currentPageKey.value === "alert") return [];
+  return doc.value?.globalTokenGroups ?? [];
+});
+const customStructureKeys = ["accordion", "card", "button", "alert"];
+const hasCustomStructure = computed(() => customStructureKeys.includes(currentPageKey.value));
+const structureTokens = computed(() => (hasCustomStructure.value ? measurementTokens.value : []));
+const structureTokenGroups = computed(() => {
+  if (hasCustomStructure.value) return measurementTokenGroups.value;
+
+  return [
+    ...componentTokenGroups.value.map((group) => ({
+      title: group.title,
+      tokens: group.rows.map((row) => ({
+        category: row.category,
+        element: row.category ?? "",
+        property: row.name,
+        designToken: row.value,
+        rawValue: row.rawValue || resolveTokenRawValue(row.value),
+        mapKey: row.name,
+      })),
+    })),
+    ...measurementTokenGroups.value,
+  ];
+});
 const structurePreviewMarkup = computed(() => {
   const first = measurementExamples.value[0];
   if (first && "markup" in first && first.markup) return first.markup;
@@ -177,58 +397,22 @@ onBeforeUnmount(() => {
             </div>
           </Section>
 
-          <Section v-if="measurementExamples.length || measurementTokens.length || measurementTokenGroups.length || globalTokens.length" title="Structure">
+          <Section title="Playground" gap="sgds:gap-[var(--sgds-gap-xl)]">
+            <template #title-suffix>
+              <sgds-badge variant="accent" outlined>BETA</sgds-badge>
+            </template>
+            <AlertPlayground v-if="currentPageKey === 'alert' && doc.alertPlayground" :content="doc.alertPlayground" />
+            <ComponentPlayground v-else :title="doc.title" :demos="configurationDemos" :size="doc.playgroundSize" />
+          </Section>
+
+          <Section v-if="measurementExamples.length || measurementTokens.length || measurementTokenGroups.length || componentTokenGroups.length || semanticTokenGroups.length || globalTokens.length || globalTokenGroups.length" title="Structure">
             <StructureSection
-              v-if="currentPageKey === 'accordion' || currentPageKey === 'card'"
               :preview-markup="structurePreviewMarkup"
-              :tokens="measurementTokens"
-              :token-groups="measurementTokenGroups"
+              :tokens="structureTokens"
+              :token-groups="structureTokenGroups"
               :global-tokens="globalTokens"
+              :global-token-groups="globalTokenGroups"
             />
-            <div v-else class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-              <MeasurementsSection v-if="measurementExamples.length" :examples="measurementExamples" />
-              <sgds-table v-if="measurementTokens.length" tableBorder headerBackground responsive="always">
-                <sgds-table-row>
-                  <sgds-table-head v-if="hasElementColumn(measurementTokens)">Element</sgds-table-head>
-                  <sgds-table-head>Component token</sgds-table-head>
-                  <sgds-table-head>Semantic token</sgds-table-head>
-                  <sgds-table-head>Value</sgds-table-head>
-                </sgds-table-row>
-                <sgds-table-row
-                  v-for="row in measurementTokens"
-                  :key="`${row.element}-${row.property}-${row.designToken}`"
-                >
-                  <sgds-table-cell v-if="hasElementColumn(measurementTokens)">{{ row.element }}</sgds-table-cell>
-                  <sgds-table-cell>{{ row.property }}</sgds-table-cell>
-                  <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
-                  <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
-                </sgds-table-row>
-              </sgds-table>
-              <div
-                v-for="group in measurementTokenGroups"
-                :key="group.title"
-                class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-sm)]"
-              >
-                <h5 class="sgds:m-0 sgds:text-heading-xs sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ group.title }}</h5>
-                <sgds-table tableBorder headerBackground responsive="always">
-                  <sgds-table-row>
-                    <sgds-table-head v-if="hasElementColumn(group.tokens)">Element</sgds-table-head>
-                    <sgds-table-head>Component token</sgds-table-head>
-                    <sgds-table-head>Semantic token</sgds-table-head>
-                    <sgds-table-head>Value</sgds-table-head>
-                  </sgds-table-row>
-                  <sgds-table-row
-                    v-for="row in group.tokens"
-                    :key="`${group.title}-${row.element}-${row.property}-${row.designToken}`"
-                  >
-                    <sgds-table-cell v-if="hasElementColumn(group.tokens)">{{ row.element }}</sgds-table-cell>
-                    <sgds-table-cell>{{ row.property }}</sgds-table-cell>
-                    <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
-                    <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
-                  </sgds-table-row>
-                </sgds-table>
-              </div>
-            </div>
           </Section>
         </div>
       </sgds-tab-panel>
@@ -317,6 +501,15 @@ onBeforeUnmount(() => {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sgds-gap-sm);
+}
+
+/* Dark-background modifier for demos that showcase items designed to sit on
+   inverse surfaces (e.g. the White badge variant). Pairs with .portal-demo-row. */
+.portal-demo-row-inverse {
+  background: var(--sgds-surface-inverse);
+  border-radius: var(--sgds-border-radius-md);
+  justify-content: center;
+  padding: var(--sgds-padding-md);
 }
 
 .portal-demo-stack {
