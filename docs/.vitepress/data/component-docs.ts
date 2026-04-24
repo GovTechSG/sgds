@@ -443,19 +443,21 @@ const componentDocs: Record<string, ComponentDoc> = {
           "Expanded content stays grouped beneath its trigger so users can stay oriented while reading.",
       },
     ],
-    anatomyMarkup: `<sgds-accordion variant="border" class="portal-anatomy-accordion">
-      <sgds-accordion-item class="portal-anatomy-accordion-item" open>
-        <sgds-icon slot="icon" class="portal-anatomy-accordion-icon" name="info-circle-fill"></sgds-icon>
-        <span slot="header" class="portal-anatomy-accordion-title">Accordion title</span>
-        <sgds-badge slot="badge" class="portal-anatomy-accordion-badge" variant="neutral" outlined>Badge</sgds-badge>
-        <div slot="content" class="portal-anatomy-accordion-content">Accordion content</div>
-      </sgds-accordion-item>
-      <sgds-accordion-item>
-        <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-        <span slot="header">Second section</span>
-        <div slot="content">Accordion content</div>
-      </sgds-accordion-item>
-    </sgds-accordion>`,
+    anatomyMarkup: `<div class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)] sgds:mx-auto">
+      <sgds-accordion variant="border" class="portal-anatomy-accordion">
+        <sgds-accordion-item class="portal-anatomy-accordion-item" open>
+          <sgds-icon slot="icon" class="portal-anatomy-accordion-icon" name="info-circle-fill"></sgds-icon>
+          <span slot="header" class="portal-anatomy-accordion-title">Accordion title</span>
+          <sgds-badge slot="badge" class="portal-anatomy-accordion-badge" variant="neutral" outlined>Badge</sgds-badge>
+          <div slot="content" class="portal-anatomy-accordion-content">Accordion content</div>
+        </sgds-accordion-item>
+        <sgds-accordion-item>
+          <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+          <span slot="header">Second section</span>
+          <div slot="content">Accordion content</div>
+        </sgds-accordion-item>
+      </sgds-accordion>
+    </div>`,
     anatomyParts: [
       { title: "Title" },
       { title: "Indicator", note: "(chevron)" },
@@ -2068,7 +2070,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       defaultPartTitleMap.rightIcon,
     ],
     anatomyCallouts: [
-      { number: 1, direction: "right", targetSelector: ".portal-anatomy-button", targetX: "right", targetY: "center" },
+      { number: 1, direction: "left", targetSelector: ".portal-anatomy-button", targetX: "left", targetY: "center" },
       { number: 2, direction: "bottom", targetSelector: ".portal-anatomy-button", targetX: "center", targetY: "bottom" },
       { number: 3, direction: "top", targetSelector: "sgds-icon[slot='leftIcon']", targetX: "center", targetY: "top" },
       { number: 4, direction: "top", targetSelector: "sgds-icon[slot='rightIcon']", targetX: "center", targetY: "top" },
@@ -2077,7 +2079,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "",
         description: "",
-        markup: `<sgds-button class="portal-structure-button">
+        markup: `<sgds-button class="portal-structure-button" variant="outline">
           <sgds-icon slot="leftIcon" name="house"></sgds-icon>
           Button label
           <sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon>
@@ -2085,21 +2087,151 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     measurementTokens: [
-      { mapKey: "background", category: "Colour", element: "Colour", property: "background", designToken: "sgds/primary/surface-default", rawValue: "#6B4FEB" },
-      { mapKey: "hover-bg", category: "Colour", element: "", property: "hover-bg", designToken: "sgds/primary/surface-emphasis", rawValue: "#523ABC" },
-      { mapKey: "text-color", category: "Colour", element: "", property: "text-color", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3" },
       { mapKey: "border-radius", category: "Border", element: "Border", property: "border-radius", designToken: "sgds/border-radius/md", rawValue: "8px" },
       { mapKey: "border-width", category: "Border", element: "", property: "border-width", designToken: "sgds/border-width/1", rawValue: "1px" },
-      { mapKey: "padding-x", category: "Spacing", element: "Spacing", property: "padding-x", designToken: "sgds/padding/lg", rawValue: "20px" },
-      { mapKey: "gap", category: "Spacing", element: "", property: "gap", designToken: "sgds/gap/2-xs", rawValue: "4px" },
-      { mapKey: "height", category: "Size", element: "Size", property: "height", designToken: "sgds/dimension/48", rawValue: "48px" },
-      { mapKey: "min-width", category: "Size", element: "", property: "min-width", designToken: "sgds/dimension/96", rawValue: "96px" },
-      { mapKey: "font-size", category: "Typography", element: "Typography", property: "font-size", designToken: "sgds/font-size/16", rawValue: "16px" },
-      { mapKey: "line-height", category: "Typography", element: "", property: "line-height", designToken: "sgds/line-height/24", rawValue: "24px" },
+      { mapKey: "gap", category: "Gap", element: "Gap", property: "gap", designToken: "sgds/gap/2-xs", rawValue: "4px" },
     ],
-    globalTokens: [
-      { mapKey: "leading-icon-color", category: "Colour", element: "Leading icon", property: "", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3" },
-      { mapKey: "trailing-icon-color", category: "Colour", element: "Trailing icon", property: "", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3" },
+    measurementTokenGroups: [
+      {
+        title: "sgds/btn/xs",
+        tokens: [
+          { mapKey: "padding-x", category: "Padding", element: "Padding", property: "padding-x", designToken: "sgds/padding/sm", rawValue: "12px" },
+          { mapKey: "height", category: "Size", element: "Size", property: "height", designToken: "sgds/dimension/32", rawValue: "32px" },
+          { mapKey: "min-width", category: "Size", element: "", property: "min-width", designToken: "sgds/dimension/64", rawValue: "64px" },
+          { mapKey: "font-size", category: "Typography", element: "Typography", property: "font-size", designToken: "sgds/font-size/12", rawValue: "12px" },
+          { mapKey: "line-height", category: "Typography", element: "", property: "line-height", designToken: "sgds/line-height/16", rawValue: "16px" },
+        ],
+      },
+      {
+        title: "sgds/btn/sm",
+        tokens: [
+          { mapKey: "padding-x", category: "Padding", element: "Padding", property: "padding-x", designToken: "sgds/padding/md", rawValue: "16px" },
+          { mapKey: "height", category: "Size", element: "Size", property: "height", designToken: "sgds/dimension/40", rawValue: "40px" },
+          { mapKey: "min-width", category: "Size", element: "", property: "min-width", designToken: "sgds/dimension/80", rawValue: "80px" },
+          { mapKey: "font-size", category: "Typography", element: "Typography", property: "font-size", designToken: "sgds/font-size/14", rawValue: "14px" },
+          { mapKey: "line-height", category: "Typography", element: "", property: "line-height", designToken: "sgds/line-height/20", rawValue: "20px" },
+        ],
+      },
+      {
+        title: "sgds/btn/md",
+        tokens: [
+          { mapKey: "padding-x", category: "Padding", element: "Padding", property: "padding-x", designToken: "sgds/padding/lg", rawValue: "20px" },
+          { mapKey: "height", category: "Size", element: "Size", property: "height", designToken: "sgds/dimension/48", rawValue: "48px" },
+          { mapKey: "min-width", category: "Size", element: "", property: "min-width", designToken: "sgds/dimension/96", rawValue: "96px" },
+          { mapKey: "font-size", category: "Typography", element: "Typography", property: "font-size", designToken: "sgds/font-size/16", rawValue: "16px" },
+          { mapKey: "line-height", category: "Typography", element: "", property: "line-height", designToken: "sgds/line-height/24", rawValue: "24px" },
+        ],
+      },
+      {
+        title: "sgds/btn/lg",
+        tokens: [
+          { mapKey: "padding-x", category: "Padding", element: "Padding", property: "padding-x", designToken: "sgds/padding/xl", rawValue: "24px" },
+          { mapKey: "height", category: "Size", element: "Size", property: "height", designToken: "sgds/dimension/56", rawValue: "56px" },
+          { mapKey: "min-width", category: "Size", element: "", property: "min-width", designToken: "sgds/dimension/112", rawValue: "112px" },
+          { mapKey: "font-size", category: "Typography", element: "Typography", property: "font-size", designToken: "sgds/font-size/20", rawValue: "20px" },
+          { mapKey: "line-height", category: "Typography", element: "", property: "line-height", designToken: "sgds/line-height/32", rawValue: "32px" },
+        ],
+      },
+      {
+        title: "sgds/btn/primary/brand",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/primary/surface-default", rawValue: "#6B4FEB", mapKey: "primary-brand-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/primary/surface-emphasis", rawValue: "#523ABC", mapKey: "primary-brand-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3", mapKey: "primary-brand-text-and-icon-color" },
+        ],
+      },
+      {
+        title: "sgds/btn/primary/danger",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/danger/surface/default", rawValue: "#CF2323", mapKey: "primary-danger-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/danger/surface/emphasis", rawValue: "#A11B1B", mapKey: "primary-danger-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3", mapKey: "primary-danger-text-and-icon-color" },
+        ],
+      },
+      {
+        title: "sgds/btn/primary/neutral",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/surface-inverse", rawValue: "#2A2A2A", mapKey: "primary-neutral-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/bg-translucent-inverse", rawValue: "oklch(from #FFFFFF l c h / 0.2)", mapKey: "primary-neutral-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/color-inverse", rawValue: "#F3F3F3", mapKey: "primary-neutral-text-and-icon-color" },
+        ],
+      },
+      {
+        title: "sgds/btn/primary/fixed-light",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/surface-fixed-light", rawValue: "#FFFFFF", mapKey: "primary-fixed-light-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/surface-fixed-light + sgds/bg-translucent-fixed-dark", rawValue: "#FFFFFF + oklch(from #0E0E0E l c h / 0.2)", mapKey: "primary-fixed-light-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/color-fixed-dark", rawValue: "#1A1A1A", mapKey: "primary-fixed-light-text-and-icon-color" },
+        ],
+      },
+      {
+        title: "sgds/btn/outline/brand",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/bg-transparent", rawValue: "Transparent", mapKey: "outline-brand-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/primary/bg-translucent", rawValue: "oklch(from #523ABC l c h / 0.1)", mapKey: "outline-brand-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/primary/color-default", rawValue: "#6B4FEB", mapKey: "outline-brand-text-and-icon-color" },
+          { category: "", element: "", property: "border-color", designToken: "sgds/primary/border-color/default", rawValue: "#6B4FEB", mapKey: "outline-brand-border-color" },
+        ],
+      },
+      {
+        title: "sgds/btn/outline/danger",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/bg-transparent", rawValue: "Transparent", mapKey: "outline-danger-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/danger/surface/translucent", rawValue: "oklch(from #A11B1B l c h / 0.08)", mapKey: "outline-danger-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/danger/color/default", rawValue: "#CF2323", mapKey: "outline-danger-text-and-icon-color" },
+          { category: "", element: "", property: "border-color", designToken: "sgds/danger/border-color/default", rawValue: "#CF2323", mapKey: "outline-danger-border-color" },
+        ],
+      },
+      {
+        title: "sgds/btn/outline/neutral",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/bg-transparent", rawValue: "Transparent", mapKey: "outline-neutral-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/bg-translucent-subtle + sgds/bg-translucent-inverse", rawValue: "oklch(from #0E0E0E l c h / 0.05) + oklch(from #FFFFFF l c h / 0.2)", mapKey: "outline-neutral-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/color-default", rawValue: "#1A1A1A", mapKey: "outline-neutral-text-and-icon-color" },
+          { category: "", element: "", property: "border-color", designToken: "sgds/border-color/emphasis", rawValue: "#3B3B3B", mapKey: "outline-neutral-border-color" },
+        ],
+      },
+      {
+        title: "sgds/btn/outline/fixed-light",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/bg-transparent", rawValue: "Transparent", mapKey: "outline-fixed-light-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/bg-transparent + sgds/bg-translucent-fixed-dark", rawValue: "Transparent + oklch(from #0E0E0E l c h / 0.2)", mapKey: "outline-fixed-light-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3", mapKey: "outline-fixed-light-text-and-icon-color" },
+          { category: "", element: "", property: "border-color", designToken: "sgds/border-color/fixed-light", rawValue: "#FFFFFF", mapKey: "outline-fixed-light-border-color" },
+        ],
+      },
+      {
+        title: "sgds/btn/ghost/brand",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/bg-transparent", rawValue: "Transparent", mapKey: "ghost-brand-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/primary/surface/translucent", rawValue: "oklch(from #523ABC l c h / 0.1)", mapKey: "ghost-brand-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/primary/color-default", rawValue: "#6B4FEB", mapKey: "ghost-brand-text-and-icon-color" },
+        ],
+      },
+      {
+        title: "sgds/btn/ghost/danger",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/bg-transparent", rawValue: "Transparent", mapKey: "ghost-danger-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/danger/surface/translucent", rawValue: "oklch(from #A11B1B l c h / 0.08)", mapKey: "ghost-danger-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/danger/color/default", rawValue: "#CF2323", mapKey: "ghost-danger-text-and-icon-color" },
+        ],
+      },
+      {
+        title: "sgds/btn/ghost/neutral",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/bg-transparent", rawValue: "Transparent", mapKey: "ghost-neutral-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/bg-translucent-subtle", rawValue: "oklch(from #0E0E0E l c h / 0.05)", mapKey: "ghost-neutral-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/color-default", rawValue: "#1A1A1A", mapKey: "ghost-neutral-text-and-icon-color" },
+        ],
+      },
+      {
+        title: "sgds/btn/ghost/fixed-light",
+        tokens: [
+          { category: "Colour", element: "Colour", property: "background", designToken: "sgds/bg-transparent", rawValue: "Transparent", mapKey: "ghost-fixed-light-background" },
+          { category: "", element: "", property: "hover-bg", designToken: "sgds/bg-transparent + sgds/bg-translucent-fixed-dark", rawValue: "Transparent + oklch(from #0E0E0E l c h / 0.2)", mapKey: "ghost-fixed-light-hover-bg" },
+          { category: "", element: "", property: "text-and-icon-color", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3", mapKey: "ghost-fixed-light-text-and-icon-color" },
+        ],
+      },
     ],
     configurationDemos: [
       {
@@ -2125,6 +2257,110 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "ghost",
             markup: `<div class="portal-demo-row"><sgds-button variant="ghost">Tertiary action</sgds-button></div>`,
             description: "Use for tertiary or low-priority actions that should not compete visually with the primary or secondary button.",
+          },
+        ],
+      },
+      {
+        title: "Tone",
+        description: "Button tone changes the colour treatment within the selected variant so the action can match the surrounding context.",
+        controlLabel: "Button tone options",
+        defaultValue: "brand",
+        options: [
+          {
+            label: "Brand",
+            value: "brand",
+            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            description: "The default button tone. Use for standard actions in the main SGDS brand colour system.",
+          },
+          {
+            label: "Neutral",
+            value: "neutral",
+            markup: `<div class="portal-demo-row"><sgds-button tone="neutral">Button label</sgds-button></div>`,
+            description: "Use when the button should feel quieter or sit inside a more neutral interface context.",
+          },
+          {
+            label: "Danger",
+            value: "danger",
+            markup: `<div class="portal-demo-row"><sgds-button tone="danger">Button label</sgds-button></div>`,
+            description: "Use for destructive or high-risk actions that need stronger visual warning.",
+          },
+          {
+            label: "Fixed light",
+            value: "fixed-light",
+            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-button tone="fixed-light">Button label</sgds-button></div>`,
+            description: "Use on dark or strongly coloured surfaces where the button needs a fixed light treatment for contrast.",
+          },
+        ],
+      },
+      {
+        title: "Size",
+        description: "Button sizes let you match the visual weight of the action to the density of the surrounding layout.",
+        controlLabel: "Button size options",
+        defaultValue: "md",
+        options: [
+          {
+            label: "Extra small",
+            value: "xs",
+            markup: `<div class="portal-demo-row"><sgds-button size="xs">Button label</sgds-button></div>`,
+            description: "Use in tight, compact surfaces such as table rows, toolbars, or dense list items where space is limited.",
+          },
+          {
+            label: "Small",
+            value: "sm",
+            markup: `<div class="portal-demo-row"><sgds-button size="sm">Button label</sgds-button></div>`,
+            description: "Use in secondary contexts such as inline actions, cards, or alongside other compact controls.",
+          },
+          {
+            label: "Medium",
+            value: "md",
+            markup: `<div class="portal-demo-row"><sgds-button size="md">Button label</sgds-button></div>`,
+            description: "The default size — use for most primary actions across forms, dialogs, and general page content.",
+          },
+          {
+            label: "Large",
+            value: "lg",
+            markup: `<div class="portal-demo-row"><sgds-button size="lg">Button label</sgds-button></div>`,
+            description: "Use for prominent calls to action, such as hero sections or landing pages, where the button needs extra visual weight.",
+          },
+        ],
+      },
+      {
+        title: "Leading icon",
+        description: "A leading icon sits to the left of the button label and reinforces the meaning of the action.",
+        controlLabel: "Leading icon options",
+        defaultValue: "none",
+        options: [
+          {
+            label: "No leading icon",
+            value: "none",
+            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            description: "Omit the leading icon when the label alone is clear and no visual reinforcement is needed.",
+          },
+          {
+            label: "Leading icon",
+            value: "leading",
+            markup: `<div class="portal-demo-row"><sgds-button><sgds-icon slot="leftIcon" name="house"></sgds-icon>Button label</sgds-button></div>`,
+            description: "Use a leading icon when the icon adds clarity to the action — for example, a download icon before a download label.",
+          },
+        ],
+      },
+      {
+        title: "Trailing icon",
+        description: "A trailing icon sits to the right of the button label and is typically used to signal direction or progression.",
+        controlLabel: "Trailing icon options",
+        defaultValue: "none",
+        options: [
+          {
+            label: "No trailing icon",
+            value: "none",
+            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            description: "Omit the trailing icon when the action does not imply movement, navigation, or a follow-up interaction.",
+          },
+          {
+            label: "Trailing icon",
+            value: "trailing",
+            markup: `<div class="portal-demo-row"><sgds-button>Button label<sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon></sgds-button></div>`,
+            description: "Use a trailing icon to indicate navigation, forward movement, or that a menu or panel will open.",
           },
         ],
       },

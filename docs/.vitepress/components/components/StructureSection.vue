@@ -40,6 +40,10 @@ const previewMarkupRef = ref<HTMLElement | null>(null);
 const hotspotRects = ref<Record<string, HotspotRect | null>>({});
 const breadcrumbGroupGapBands = ref<Array<{ left: number; top: number; width: number; height: number }>>([]);
 const breadcrumbIconBands = ref<Array<{ left: number; top: number; width: number; height: number }>>([]);
+// Button `gap` highlights each void between adjacent content (leftIcon↔label,
+// label↔rightIcon) rather than one wide band across the whole label. Each
+// entry is a discrete band; hover proxies + visual overlays v-for over these.
+const buttonGapBands = ref<Array<{ left: number; top: number; width: number; height: number }>>([]);
 const structureKind = computed<"accordion" | "card" | "button" | "alert" | "breadcrumb" | "generic">(() => {
   if (props.previewMarkup.includes("<sgds-accordion")) return "accordion";
   if (props.previewMarkup.includes("<sgds-card")) return "card";
@@ -48,24 +52,73 @@ const structureKind = computed<"accordion" | "card" | "button" | "alert" | "brea
   if (props.previewMarkup.includes("<sgds-breadcrumb")) return "breadcrumb";
   return "generic";
 });
-const densityOptions = [
-  { id: "default", label: "Default" },
-  { id: "compact", label: "Compact" },
-  { id: "spacious", label: "Spacious" },
-] as const;
-type DensityId = (typeof densityOptions)[number]["id"];
-const activeDensityId = ref<DensityId>("default");
+// Structure-tab size/density toggle. The segmented control is shared between
+// components that vary by density (accordion → default/compact/spacious) or by
+// size (button → xs/sm/md/lg). Config is derived from `structureKind` so the
+// same plumbing drives both: the segmented control options, the default
+// selection, the group-title suffix used to match the active token group, and
+// the attribute injected into the preview markup.
+type SizeToggleConfig = {
+  options: { id: string; label: string }[];
+  defaultId: string;
+  ariaLabel: string;
+  attributeName: string;
+};
+
+const sizeToggleConfig = computed<SizeToggleConfig | null>(() => {
+  if (structureKind.value === "accordion") {
+    return {
+      options: [
+        { id: "default", label: "Default" },
+        { id: "compact", label: "Compact" },
+        { id: "spacious", label: "Spacious" },
+      ],
+      defaultId: "default",
+      ariaLabel: "Accordion density",
+      attributeName: "density",
+    };
+  }
+  if (structureKind.value === "button") {
+    return {
+      options: [
+        { id: "xs", label: "Extra small" },
+        { id: "sm", label: "Small" },
+        { id: "md", label: "Medium" },
+        { id: "lg", label: "Large" },
+      ],
+      defaultId: "md",
+      ariaLabel: "Button size",
+      attributeName: "size",
+    };
+  }
+  return null;
+});
+
+const activeDensityId = ref<string>(sizeToggleConfig.value?.defaultId ?? "default");
 
 const densitySegmentOptions = computed(() =>
-  densityOptions.map((option) => ({ value: option.id, label: option.label })),
+  (sizeToggleConfig.value?.options ?? []).map((option) => ({ value: option.id, label: option.label })),
 );
 
 const onDensitySegmentChange = (next: string) => {
-  if (densityOptions.some((option) => option.id === next)) {
-    activeDensityId.value = next as DensityId;
+  const config = sizeToggleConfig.value;
+  if (!config) return;
+  if (config.options.some((option) => option.id === next)) {
+    activeDensityId.value = next;
     hoverKey.value = null;
   }
 };
+
+// Reset the active selection when the component kind changes (e.g. navigating
+// between an accordion page and a button page with the same renderer).
+watch(sizeToggleConfig, (config) => {
+  if (!config) return;
+  if (!config.options.some((option) => option.id === activeDensityId.value)) {
+    activeDensityId.value = config.defaultId;
+    hoverKey.value = null;
+  }
+}, { immediate: true });
+
 let resizeObserver: ResizeObserver | null = null;
 
 const activeDensityGroup = computed(
@@ -86,9 +139,17 @@ const accordionBaseTokenMap = computed(() => new Map(
   props.tokens.map((token) => [token.mapKey || token.property, token]),
 ));
 
-const buttonBaseTokenMap = computed(() => new Map(
-  props.tokens.map((token) => [token.mapKey || token.property, token]),
-));
+// Merge the shared button tokens (colour/border/gap) with the tokens of the
+// currently-active size group (padding-x/height/min-width/font-size/line-height)
+// so hotspot tooltips always reflect the selected size.
+const buttonBaseTokenMap = computed(() => {
+  const activeSizeTokens = structureKind.value === "button"
+    ? activeDensityGroup.value?.tokens ?? []
+    : [];
+  return new Map(
+    [...props.tokens, ...activeSizeTokens].map((token) => [token.mapKey || token.property, token]),
+  );
+});
 
 const alertBaseTokenMap = computed(() => new Map(
   props.tokens.map((token) => [token.mapKey || token.property, token]),
@@ -138,7 +199,7 @@ const flattenedSemanticTokens = computed(() => [
 const baseTokenTitle = computed(() => {
   if (structureKind.value === "card") return "sgds/card";
   if (structureKind.value === "accordion") return "sgds/accordion";
-  if (structureKind.value === "button") return "sgds/button";
+  if (structureKind.value === "button") return "sgds/btn";
   if (structureKind.value === "alert") return "sgds/alert";
   if (props.tokenGroups?.[0]?.title) return props.tokenGroups[0].title;
   return "";
@@ -204,6 +265,56 @@ const alertBorderHoverBands = computed(() => {
     { left: rect.left, top: rect.top + thickness, width: thickness, height: verticalHeight },
     { left: rect.left + rect.width - thickness, top: rect.top + thickness, width: thickness, height: verticalHeight },
   ];
+});
+
+// Thin proxy bands that follow the button's border edge. Hovering any of them
+// sets hoverKey to a shared "border" key so both border-width and border-radius
+// rows in the token list light up together (see getRelatedRowKeys + the CSS
+// at the bottom of the file). Without these proxies the user can only hover
+// the two stacked surface hotspots which each highlight a single token.
+const buttonBorderHoverBands = computed(() => {
+  if (structureKind.value !== "button") return [];
+  const rect = hotspotRects.value["border-radius"] ?? hotspotRects.value["border-width"];
+  if (!rect) return [];
+
+  const thickness = 4;
+  const verticalHeight = Math.max(0, rect.height - thickness * 2);
+
+  return [
+    { left: rect.left, top: rect.top, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + rect.height - thickness, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + thickness, width: thickness, height: verticalHeight },
+    { left: rect.left + rect.width - thickness, top: rect.top + thickness, width: thickness, height: verticalHeight },
+  ];
+});
+
+// Static dimension annotations (height, min-width) rendered outside the
+// button's surface rect — Figma-style guide lines. These do not intercept
+// hover, so padding-x / typography hotspots under the button are accessible.
+// Returns null when either the surface isn't known yet or the structure isn't
+// a button.
+const buttonDimensionAnnotations = computed(() => {
+  if (structureKind.value !== "button") return null;
+  const rect = hotspotRects.value["background"];
+  if (!rect) return null;
+
+  const heightLabel = tokenValue(buttonBaseTokenMap.value.get("height"));
+  const minWidthLabel = tokenValue(buttonBaseTokenMap.value.get("min-width"));
+
+  return {
+    height: {
+      label: heightLabel,
+      left: rect.left + rect.width,
+      top: rect.top,
+      size: rect.height,
+    },
+    minWidth: {
+      label: minWidthLabel,
+      left: rect.left,
+      top: rect.top + rect.height,
+      size: rect.width,
+    },
+  };
 });
 
 const getPaddingBands = (rect: HotspotRect | null) => {
@@ -290,6 +401,12 @@ const activeBreadcrumbGroupGapBands = computed(() =>
 const activeBreadcrumbIconBands = computed(() =>
   hoverKey.value === "icon-color" || selectedKeys.value.includes("icon-color")
     ? breadcrumbIconBands.value
+    : [],
+);
+
+const activeButtonGapBands = computed(() =>
+  hoverKey.value === "gap" || selectedKeys.value.includes("gap")
+    ? buttonGapBands.value
     : [],
 );
 
@@ -580,8 +697,6 @@ const inspectMeta = computed<Record<string, InspectMeta>>(() => {
         ],
         aria: "Inspect button line height",
       },
-      "leading-icon-color": { label: "", value: tokenDisplay(globalTokenMap.value.get("leading-icon-color")), valueSuffix: tokenValue(globalTokenMap.value.get("leading-icon-color")), aria: "Inspect button leading icon colour" },
-      "trailing-icon-color": { label: "", value: tokenDisplay(globalTokenMap.value.get("trailing-icon-color")), valueSuffix: tokenValue(globalTokenMap.value.get("trailing-icon-color")), aria: "Inspect button trailing icon colour" },
     };
   }
 
@@ -836,9 +951,20 @@ const inspectMeta = computed<Record<string, InspectMeta>>(() => {
 });
 
 const resolvedPreviewMarkup = computed(() => {
-  if (structureKind.value !== "accordion") return props.previewMarkup;
-  const densityAttribute = activeDensityId.value === "default" ? "" : ` density="${activeDensityId.value}"`;
-  return props.previewMarkup.replace("<sgds-accordion", `<sgds-accordion${densityAttribute}`);
+  const config = sizeToggleConfig.value;
+  if (!config) return props.previewMarkup;
+
+  if (structureKind.value === "accordion") {
+    const densityAttribute = activeDensityId.value === config.defaultId ? "" : ` ${config.attributeName}="${activeDensityId.value}"`;
+    return props.previewMarkup.replace("<sgds-accordion", `<sgds-accordion${densityAttribute}`);
+  }
+
+  if (structureKind.value === "button") {
+    const sizeAttribute = activeDensityId.value === config.defaultId ? "" : ` ${config.attributeName}="${activeDensityId.value}"`;
+    return props.previewMarkup.replace("<sgds-button", `<sgds-button${sizeAttribute}`);
+  }
+
+  return props.previewMarkup;
 });
 
 const clearPreviewHover = () => {
@@ -884,6 +1010,11 @@ const getRelatedRowKeys = (key: string) => {
   if (structureKind.value === "card" && ["border-color", "border-width", "border-radius"].includes(key)) {
     return ["border-color", "border-width", "border-radius"];
   }
+  // Button's border is a single visual edge: hovering either border-width or
+  // border-radius should light up both rows in the token list.
+  if (structureKind.value === "button" && ["border-width", "border-radius"].includes(key)) {
+    return ["border-width", "border-radius"];
+  }
   if (structureKind.value === "accordion" && ["padding-x-default", "padding-y-default"].includes(key)) {
     return ["padding-x-default", "padding-y-default"];
   }
@@ -904,12 +1035,27 @@ const activeDesignTokens = computed(() => {
     if (row?.designToken) tokens.add(row.designToken);
   };
   selectedKeys.value.forEach(collect);
-  collect(hoverKey.value);
+  // Propagate related row keys on hover too — so hovering one border token
+  // lights up the other border row without requiring a click.
+  if (hoverKey.value) {
+    getRelatedRowKeys(hoverKey.value).forEach(collect);
+  }
   return tokens;
 });
 
+// Same as activeDesignTokens but for row `mapKey` values — used by isRowActive
+// to light up related rows on hover (e.g. border-width ↔ border-radius).
+const activeRowKeys = computed(() => {
+  const keys = new Set<string>();
+  selectedKeys.value.forEach((k) => keys.add(k));
+  if (hoverKey.value) {
+    getRelatedRowKeys(hoverKey.value).forEach((k) => keys.add(k));
+  }
+  return keys;
+});
+
 const isRowActive = (key: string | null, designToken?: string | null) => {
-  if (key && selectedKeys.value.includes(key)) return true;
+  if (key && activeRowKeys.value.has(key)) return true;
   if (designToken && activeDesignTokens.value.has(designToken)) return true;
   return false;
 };
@@ -1117,6 +1263,10 @@ const measureHotspots = async () => {
     const button = root.querySelector("sgds-button") as HTMLElement | null;
     const buttonRoot = button?.shadowRoot;
     const buttonSurface = buttonRoot?.querySelector(".btn") as HTMLElement | null;
+    // The button's shadow DOM wraps the default slot (label text) in a single
+    // <span>, so we can target it directly. Typography tokens (font-size,
+    // line-height) should highlight this label, not the full surface.
+    const buttonLabel = buttonRoot?.querySelector(".btn > span") as HTMLElement | null;
     const leftIconSlot = buttonRoot?.querySelector('slot[name="leftIcon"]') as HTMLSlotElement | null;
     const rightIconSlot = buttonRoot?.querySelector('slot[name="rightIcon"]') as HTMLSlotElement | null;
     const leftIcon = (leftIconSlot?.assignedElements?.()[0] ?? root.querySelector('[slot="leftIcon"]')) as HTMLElement | null;
@@ -1133,13 +1283,23 @@ const measureHotspots = async () => {
       nextRects["text-color"] = surfaceRect;
       nextRects["border-width"] = surfaceRect;
       nextRects["border-radius"] = surfaceRect;
+      // height and min-width are rendered as static dimension annotations
+      // outside the button surface (see buttonHeightAnnotation /
+      // buttonMinWidthAnnotation below); they intentionally do not claim the
+      // full surfaceRect so they don't block padding-x/typography hotspots.
       nextRects["height"] = surfaceRect;
       nextRects["min-width"] = surfaceRect;
-      nextRects["font-size"] = surfaceRect;
-      nextRects["line-height"] = surfaceRect;
 
-      // Compute inner content rect for padding-x and gap overlays
-      const innerElements = [leftIcon, rightIcon].filter(Boolean) as HTMLElement[];
+      // font-size and line-height highlight the label span only, falling back
+      // to the surface rect if the span can't be located.
+      const labelRect = buttonLabel ? getRelativeRect(buttonLabel, shell) : surfaceRect;
+      nextRects["font-size"] = labelRect;
+      nextRects["line-height"] = labelRect;
+
+      // Compute inner content rect for padding-x. Include the label span so the
+      // padding bands also render when the button has no icons — padding-x is
+      // the strip between the surface edge and the leftmost/rightmost content.
+      const innerElements = [leftIcon, buttonLabel, rightIcon].filter(Boolean) as HTMLElement[];
       if (innerElements.length) {
         const innerRect = getUnionRect(innerElements, shell);
         if (innerRect) {
@@ -1154,25 +1314,59 @@ const measureHotspots = async () => {
       }
     }
 
-    if (leftIcon && rightIcon && buttonSurface) {
+    // `gap` is the spacing between icons and the label — compute one band per
+    // void: leftIcon↔label, label↔rightIcon. Storing bands separately (rather
+    // than one union rect spanning the label) is what lets the overlay paint
+    // only the true gap regions and not tint the label text too.
+    if (buttonSurface && buttonLabel) {
       const shellBounds = shell.getBoundingClientRect();
-      const leftBounds = leftIcon.getBoundingClientRect();
-      const rightBounds = rightIcon.getBoundingClientRect();
       const surfaceBounds = buttonSurface.getBoundingClientRect();
-      nextRects.gap = {
-        left: leftBounds.right - shellBounds.left,
-        top: surfaceBounds.top - shellBounds.top,
-        width: Math.max(0, rightBounds.left - leftBounds.right),
-        height: surfaceBounds.height,
-      };
-    }
+      const labelBounds = buttonLabel.getBoundingClientRect();
+      const bands: Array<{ left: number; top: number; width: number; height: number }> = [];
 
-    if (leftIcon) {
-      nextRects["leading-icon-color"] = getRelativeRect(leftIcon, shell);
-    }
+      if (leftIcon) {
+        const leftBounds = leftIcon.getBoundingClientRect();
+        const width = Math.max(0, labelBounds.left - leftBounds.right);
+        if (width > 0) {
+          bands.push({
+            left: leftBounds.right - shellBounds.left,
+            top: surfaceBounds.top - shellBounds.top,
+            width,
+            height: surfaceBounds.height,
+          });
+        }
+      }
 
-    if (rightIcon) {
-      nextRects["trailing-icon-color"] = getRelativeRect(rightIcon, shell);
+      if (rightIcon) {
+        const rightBounds = rightIcon.getBoundingClientRect();
+        const width = Math.max(0, rightBounds.left - labelBounds.right);
+        if (width > 0) {
+          bands.push({
+            left: labelBounds.right - shellBounds.left,
+            top: surfaceBounds.top - shellBounds.top,
+            width,
+            height: surfaceBounds.height,
+          });
+        }
+      }
+
+      buttonGapBands.value = bands;
+
+      // Union rect still required for tooltip positioning — tooltipStyle reads
+      // hotspotRects[hoverKey] to place itself. The standard hotspot button
+      // for this key is hidden in the template (see v-show skip list below).
+      if (bands.length) {
+        const left = Math.min(...bands.map((band) => band.left));
+        const right = Math.max(...bands.map((band) => band.left + band.width));
+        nextRects.gap = {
+          left,
+          top: surfaceBounds.top - shellBounds.top,
+          width: right - left,
+          height: surfaceBounds.height,
+        };
+      }
+    } else {
+      buttonGapBands.value = [];
     }
 
     hotspotRects.value = nextRects;
@@ -1485,10 +1679,10 @@ const getRowMapKey = (row: MeasurementTokenRow, groupTitle?: string) => {
   return null;
 };
 
-const isActiveDensityGroup = (groupTitle?: string) =>
-  structureKind.value === "accordion"
-    ? groupTitle?.endsWith(`/${activeDensityId.value}`) ?? false
-    : true;
+const isActiveDensityGroup = (groupTitle?: string) => {
+  if (!sizeToggleConfig.value) return true;
+  return groupTitle?.endsWith(`/${activeDensityId.value}`) ?? false;
+};
 
 const getCollapsedCategory = (
   rows: MeasurementTokenRow[],
@@ -1511,10 +1705,10 @@ const getCollapsedCategory = (
       @mouseleave="clearPreviewHover"
     >
       <SegmentedControl
-        v-if="structureKind === 'accordion'"
+        v-if="sizeToggleConfig"
         :model-value="activeDensityId"
         :options="densitySegmentOptions"
-        aria-label="Accordion density"
+        :aria-label="sizeToggleConfig.ariaLabel"
         @update:model-value="onDensitySegmentChange"
       />
 
@@ -1548,7 +1742,8 @@ const getCollapsedCategory = (
             !(structureKind === 'card' && ['padding-x', 'padding-y'].includes(key as string)) &&
             !(structureKind === 'accordion' && isAccordionPaddingKey(key as string)) &&
             !(structureKind === 'alert' && isAlertPaddingKey(key as string)) &&
-            !(structureKind === 'alert' && ['border-color', 'border-width', 'border-radius'].includes(key as string))
+            !(structureKind === 'alert' && ['border-color', 'border-width', 'border-radius'].includes(key as string)) &&
+            !(structureKind === 'button' && ['height', 'min-width', 'border-width', 'border-radius', 'gap'].includes(key as string))
           "
           type="button"
           class="accordion-inspect-hotspot"
@@ -1857,6 +2052,121 @@ const getCollapsedCategory = (
           <span class="sgds:sr-only">Inspect alert border</span>
         </button>
 
+        <button
+          v-for="(band, index) in buttonBorderHoverBands"
+          :key="`button-border-band-${index}`"
+          type="button"
+          class="accordion-inspect-border-proxy"
+          :style="{
+            left: `${band.left}px`,
+            top: `${band.top}px`,
+            width: `${band.width}px`,
+            height: `${band.height}px`,
+          }"
+          @mouseenter="hoverKey = 'border-width'"
+          @mouseleave="clearPreviewHover"
+          @focus="hoverKey = 'border-width'"
+          @blur="clearPreviewHover"
+          @click="scrollToTableRow('border-width')"
+          aria-label="Inspect button border"
+        >
+          <span class="sgds:sr-only">Inspect button border</span>
+        </button>
+
+        <!-- Button gap hover proxies: one per void (leftIcon↔label,
+             label↔rightIcon). Each proxy sets hoverKey='gap' so the tooltip
+             and token-row highlight still work through the shared inspect
+             meta, while the overlay bands below paint only the true gap
+             strips rather than one wide band across the label. -->
+        <template v-if="structureKind === 'button'">
+          <button
+            v-for="(band, index) in buttonGapBands"
+            :key="`button-gap-band-${index}`"
+            type="button"
+            class="accordion-inspect-padding-proxy"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+            @mouseenter="hoverKey = 'gap'"
+            @mouseleave="clearPreviewHover"
+            @focus="hoverKey = 'gap'"
+            @blur="clearPreviewHover"
+            @click="scrollToTableRow('gap')"
+            aria-label="Inspect button gap"
+          >
+            <span class="sgds:sr-only">Inspect button gap</span>
+          </button>
+        </template>
+
+        <div
+          v-if="structureKind === 'button' && activeButtonGapBands.length"
+          class="accordion-inspect-padding-visual"
+          aria-hidden="true"
+        >
+          <div
+            v-for="(band, index) in activeButtonGapBands"
+            :key="`button-gap-visual-${index}`"
+            class="accordion-inspect-padding-visual__band accordion-inspect-padding-visual__band--gap"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+          ></div>
+        </div>
+
+        <!-- Button border visual: rendered when the user hovers either
+             border token or one of the border-edge proxy bands. Drawn as a
+             single rounded outline that spans the button surface so the user
+             sees exactly what the token controls. -->
+        <div
+          v-if="structureKind === 'button' && ['border-width', 'border-radius'].includes(hoverKey || '') && hotspotRects['border-radius']"
+          class="button-inspect-border-visual"
+          aria-hidden="true"
+          :style="{
+            left: `${hotspotRects['border-radius']?.left || 0}px`,
+            top: `${hotspotRects['border-radius']?.top || 0}px`,
+            width: `${hotspotRects['border-radius']?.width || 0}px`,
+            height: `${hotspotRects['border-radius']?.height || 0}px`,
+          }"
+        ></div>
+
+        <!-- Static dimension annotations for the button's height and
+             min-width. Rendered outside the button surface (to the right for
+             height, below for min-width) so the lines don't intercept the
+             padding-x / typography hotspots. Non-interactive: aria-hidden and
+             pointer-events: none via the accordion-inspect-annotation CSS. -->
+        <template v-if="structureKind === 'button' && buttonDimensionAnnotations">
+          <div
+            class="accordion-inspect-annotation accordion-inspect-annotation--height"
+            aria-hidden="true"
+            :data-active="['height'].includes(hoverKey || '') ? 'true' : null"
+            :style="{
+              left: `${buttonDimensionAnnotations.height.left}px`,
+              top: `${buttonDimensionAnnotations.height.top}px`,
+              height: `${buttonDimensionAnnotations.height.size}px`,
+            }"
+          >
+            <span class="accordion-inspect-annotation__label">{{ buttonDimensionAnnotations.height.label }}</span>
+          </div>
+          <div
+            class="accordion-inspect-annotation accordion-inspect-annotation--min-width"
+            aria-hidden="true"
+            :data-active="['min-width'].includes(hoverKey || '') ? 'true' : null"
+            :style="{
+              left: `${buttonDimensionAnnotations.minWidth.left}px`,
+              top: `${buttonDimensionAnnotations.minWidth.top}px`,
+              width: `${buttonDimensionAnnotations.minWidth.size}px`,
+            }"
+          >
+            <span class="accordion-inspect-annotation__label">{{ buttonDimensionAnnotations.minWidth.label }}</span>
+          </div>
+        </template>
+
         <div
           v-if="structureKind === 'alert' && ['border-color', 'border-width', 'border-radius'].includes(hoverKey || '') && hotspotRects['border-radius']"
           class="alert-inspect-border-visual"
@@ -2158,6 +2468,108 @@ sgds-table-row.structure-row-clickable {
   z-index: 8;
 }
 
+/* Static dimension annotations (Figma-style guide lines) for non-interactive
+   tokens like button height and min-width. The line follows one edge of the
+   button and the label sits outside the surface so neither blocks hover on
+   padding-x / typography hotspots. Pointer-events are disabled so the
+   annotation never intercepts hovers — hovering the matching row in the
+   token list still flips data-active via the :data-active binding. */
+.accordion-inspect-annotation {
+  pointer-events: none;
+  position: absolute;
+  z-index: 7;
+}
+
+.accordion-inspect-annotation__label {
+  background: var(--sgds-purple-surface-default);
+  border: 1px solid var(--sgds-purple-surface-default);
+  border-radius: 4px;
+  color: var(--sgds-color-fixed-light);
+  font-family: var(--sgds-font-family-mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 2px 6px;
+  position: absolute;
+  white-space: nowrap;
+}
+
+/* Height annotation — vertical line sitting just to the right of the button.
+   ::before draws the main vertical line, ::after paints the top + bottom cap
+   marks in a single element using two stacked linear-gradient backgrounds. */
+.accordion-inspect-annotation--height {
+  width: 18px;
+}
+.accordion-inspect-annotation--height::before {
+  background: var(--sgds-purple-border-color-default);
+  content: "";
+  height: 100%;
+  left: 8px;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+.accordion-inspect-annotation--height::after {
+  background-image:
+    linear-gradient(var(--sgds-purple-border-color-default), var(--sgds-purple-border-color-default)),
+    linear-gradient(var(--sgds-purple-border-color-default), var(--sgds-purple-border-color-default));
+  background-repeat: no-repeat, no-repeat;
+  background-position: 0 0, 0 calc(100% - 1px);
+  background-size: 9px 1px, 9px 1px;
+  content: "";
+  height: 100%;
+  left: 4px;
+  position: absolute;
+  top: 0;
+  width: 9px;
+}
+.accordion-inspect-annotation--height .accordion-inspect-annotation__label {
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Min-width annotation — horizontal line sitting just below the button.
+   ::before draws the main horizontal line, ::after paints the left + right
+   cap marks in a single element. */
+.accordion-inspect-annotation--min-width {
+  height: 18px;
+}
+.accordion-inspect-annotation--min-width::before {
+  background: var(--sgds-purple-border-color-default);
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 8px;
+  width: 100%;
+}
+.accordion-inspect-annotation--min-width::after {
+  background-image:
+    linear-gradient(var(--sgds-purple-border-color-default), var(--sgds-purple-border-color-default)),
+    linear-gradient(var(--sgds-purple-border-color-default), var(--sgds-purple-border-color-default));
+  background-repeat: no-repeat, no-repeat;
+  background-position: 0 0, calc(100% - 1px) 0;
+  background-size: 1px 9px, 1px 9px;
+  content: "";
+  height: 9px;
+  left: 0;
+  position: absolute;
+  top: 4px;
+  width: 100%;
+}
+.accordion-inspect-annotation--min-width .accordion-inspect-annotation__label {
+  left: 50%;
+  top: 16px;
+  transform: translateX(-50%);
+}
+
+.accordion-inspect-annotation[data-active="true"] .accordion-inspect-annotation__label {
+  background: var(--sgds-purple-surface-emphasis);
+  border-color: var(--sgds-purple-surface-emphasis);
+  color: var(--sgds-color-fixed-light);
+}
+
 .accordion-inspect-padding-visual {
   inset: 0;
   pointer-events: none;
@@ -2410,12 +2822,15 @@ sgds-table-row.structure-row-clickable {
   border-radius: 8px;
 }
 
-/* Button hotspot styles */
+/* Button hotspot styles.
+   Note: height and min-width are NOT listed here — they render as static
+   dimension annotations outside the button (see .accordion-inspect-annotation
+   below). Border tokens also don't render as clickable hotspots; the border
+   edge is covered by the accordion-inspect-border-proxy bands, and the active
+   state is drawn by .button-inspect-border-visual. */
 .structure-demo-box[data-hover-key="background"] .accordion-inspect-hotspot[aria-label="Inspect button background colour"],
 .structure-demo-box[data-hover-key="hover-bg"] .accordion-inspect-hotspot[aria-label="Inspect button hover background"],
 .structure-demo-box[data-hover-key="text-color"] .accordion-inspect-hotspot[aria-label="Inspect button text colour"],
-.structure-demo-box[data-hover-key="height"] .accordion-inspect-hotspot[aria-label="Inspect button height"],
-.structure-demo-box[data-hover-key="min-width"] .accordion-inspect-hotspot[aria-label="Inspect button min width"],
 .structure-demo-box[data-hover-key="font-size"] .accordion-inspect-hotspot[aria-label="Inspect button font size"],
 .structure-demo-box[data-hover-key="line-height"] .accordion-inspect-hotspot[aria-label="Inspect button line height"] {
   background: color-mix(in srgb, var(--sgds-purple-surface-muted) 46%, transparent);
@@ -2424,47 +2839,54 @@ sgds-table-row.structure-row-clickable {
   outline-offset: 0;
 }
 
-.structure-demo-box[data-hover-key="border-width"] .accordion-inspect-hotspot[aria-label="Inspect button border width"],
-.structure-demo-box[data-hover-key="border-radius"] .accordion-inspect-hotspot[aria-label="Inspect button border radius"] {
+/* Button border visual — drawn as a single rounded outline over the surface
+   whenever either border-width or border-radius is active (hover or row
+   selection). Matches the button's resolved border-radius. */
+.button-inspect-border-visual {
+  border-radius: 8px;
   outline: 1px dashed var(--sgds-purple-border-color-default);
   outline-offset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 8;
 }
 
-.structure-demo-box[data-hover-key="border-radius"] .accordion-inspect-hotspot[aria-label="Inspect button border radius"] {
-  border-radius: 8px;
-}
-
+/* Padding-x is rendered as two rectangles (left + right bands) flanking the
+   content area. We leave the hotspot itself transparent and draw the two
+   bands with ::before (left) and ::after (right), using the inset coords
+   computed in code. */
 .structure-demo-box[data-hover-key="padding-x"] .accordion-inspect-hotspot[aria-label="Inspect button padding x"] {
-  background: color-mix(in srgb, var(--sgds-accent-surface-muted) 52%, transparent);
-  mix-blend-mode: multiply;
-  outline: 1px dashed var(--sgds-accent-border-color-default);
-  outline-offset: 0;
+  background: transparent;
 }
 
-.structure-demo-box[data-hover-key="padding-x"] .accordion-inspect-hotspot[aria-label="Inspect button padding x"]::before {
-  background: color-mix(in srgb, var(--sgds-accent-surface-muted) 38%, transparent);
+.structure-demo-box[data-hover-key="padding-x"] .accordion-inspect-hotspot[aria-label="Inspect button padding x"]::before,
+.structure-demo-box[data-hover-key="padding-x"] .accordion-inspect-hotspot[aria-label="Inspect button padding x"]::after {
+  background: color-mix(in srgb, var(--sgds-accent-surface-muted) 52%, transparent);
   content: "";
   display: block;
   height: var(--inspect-inset-height);
-  left: var(--inspect-inset-left);
   mix-blend-mode: multiply;
+  outline: 1px dashed var(--sgds-accent-border-color-default);
+  outline-offset: 0;
   position: absolute;
   top: var(--inspect-inset-top);
-  width: var(--inspect-inset-width);
   z-index: 1;
+}
+
+.structure-demo-box[data-hover-key="padding-x"] .accordion-inspect-hotspot[aria-label="Inspect button padding x"]::before {
+  left: 0;
+  width: var(--inspect-inset-left);
+}
+
+.structure-demo-box[data-hover-key="padding-x"] .accordion-inspect-hotspot[aria-label="Inspect button padding x"]::after {
+  left: calc(var(--inspect-inset-left) + var(--inspect-inset-width));
+  right: 0;
 }
 
 .structure-demo-box[data-hover-key="gap"] .accordion-inspect-hotspot[aria-label="Inspect button gap"] {
   background: color-mix(in srgb, var(--sgds-purple-surface-muted) 46%, transparent);
   mix-blend-mode: multiply;
   outline: 1px dashed var(--sgds-purple-border-color-default);
-  outline-offset: 0;
-}
-
-.structure-demo-box[data-hover-key="leading-icon-color"] .accordion-inspect-hotspot[aria-label="Inspect button leading icon colour"],
-.structure-demo-box[data-hover-key="trailing-icon-color"] .accordion-inspect-hotspot[aria-label="Inspect button trailing icon colour"] {
-  background: color-mix(in srgb, var(--sgds-neutral-surface-muted) 68%, transparent);
-  outline: 1px dashed var(--sgds-neutral-border-color-default);
   outline-offset: 0;
 }
 
