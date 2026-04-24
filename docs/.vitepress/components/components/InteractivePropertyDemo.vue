@@ -144,4 +144,5 @@ watch(activeValue, () => {
 .behaviour-demo-markup sgds-alert-link {
   vertical-align: baseline;
 }
+
 </style>
