@@ -584,17 +584,17 @@ const personaFilters: { id: PersonaFilter; label: string }[] = [
 
 const scenarioFilters: { id: ScenarioFilter; label: string }[] = [
   { id: "all",              label: "All scenarios" },
-  { id: "new-project",      label: "New project" },
-  { id: "migration",        label: "Migration" },
   { id: "figma-conversion", label: "Figma conversion" },
+  { id: "migration",        label: "Migration" },
+  { id: "new-project",      label: "New project" },
 ];
 
 const approachFilters: { id: ApproachFilter; label: string }[] = [
   { id: "all",           label: "All approaches" },
-  { id: "figma-first",   label: "Figma-first" },
-  { id: "mcp",           label: "MCP" },
   { id: "code-first",    label: "Code-first" },
+  { id: "figma-first",   label: "Figma-first" },
   { id: "process-first", label: "Process-first" },
+  { id: "mcp",           label: "MCP" },
 ];
 
 // ─── Derived data ─────────────────────────────────────────────────────────────
@@ -717,15 +717,15 @@ function setApproach(id: ApproachFilter) {
 
         <!-- Card header -->
         <div class="uj-card-head">
-          <div class="sgds:flex sgds:items-start sgds:gap-[var(--sgds-component-gap-sm)] sgds:min-w-0 sgds:flex-1">
+          <div class="sgds:flex sgds:items-center sgds:gap-[var(--sgds-gap-2-xs)] sgds:flex-wrap">
+            <sgds-badge v-for="tag in card.tags" :key="tag" :variant="tagVariant(tag)" size="sm" outlined>{{ tag }}</sgds-badge>
+          </div>
+          <div class="sgds:flex sgds:items-start sgds:gap-[var(--sgds-component-gap-sm)]">
             <sgds-icon :name="card.icon" size="md" class="sgds:text-subtle sgds:flex-shrink-0 sgds:mt-[2px]" aria-hidden="true" />
             <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-2-xs)]">
               <p class="sgds:text-3 sgds:font-semibold sgds:text-heading-default sgds:m-0 sgds:leading-sm">{{ card.title }}</p>
               <p class="sgds:text-1 sgds:text-subtle sgds:m-0 sgds:leading-[1.55]">{{ card.description }}</p>
             </div>
-          </div>
-          <div class="sgds:flex sgds:items-center sgds:gap-[var(--sgds-gap-2-xs)] sgds:flex-wrap sgds:flex-shrink-0">
-            <sgds-badge v-for="tag in card.tags" :key="tag" :variant="tagVariant(tag)" size="sm" outlined>{{ tag }}</sgds-badge>
           </div>
         </div>
 
@@ -900,12 +900,10 @@ function setApproach(id: ApproachFilter) {
 
 .uj-card-head {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--sgds-component-gap-md);
+  flex-direction: column;
+  gap: var(--sgds-component-gap-sm);
   padding: var(--sgds-component-padding-md) var(--sgds-component-padding-lg);
   border-bottom: 1px solid var(--sgds-border-color-muted);
-  flex-wrap: wrap;
 }
 
 /* ── Flow scroll ───────────────────────────────────────────────────────────── */
