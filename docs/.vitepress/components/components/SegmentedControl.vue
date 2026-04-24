@@ -14,9 +14,12 @@ const emit = defineEmits<{
   (e: "change", value: string): void;
 }>();
 
+const wrapperRef = ref<HTMLElement | null>(null);
 const tablistRef = ref<HTMLElement | null>(null);
 const canScrollLeft = ref(false);
 const canScrollRight = ref(false);
+const showGestureHint = ref(false);
+const isCompactLayout = ref(false);
 
 const indicatorStyle = ref<Record<string, string>>({
   transform: "translate3d(0, 0, 0)",
@@ -47,16 +50,11 @@ const updateIndicator = () => {
 const updateScrollState = () => {
   const tablist = tablistRef.value;
   if (!tablist) return;
+  isCompactLayout.value = (wrapperRef.value?.clientWidth ?? tablist.clientWidth) <= 560;
   const { scrollLeft, scrollWidth, clientWidth } = tablist;
   canScrollLeft.value = scrollLeft > 1;
   canScrollRight.value = scrollLeft + clientWidth < scrollWidth - 1;
-};
-
-const scrollByDirection = (direction: 1 | -1) => {
-  const tablist = tablistRef.value;
-  if (!tablist) return;
-  const amount = Math.max(tablist.clientWidth * 0.6, 120) * direction;
-  tablist.scrollBy({ left: amount, behavior: "smooth" });
+  showGestureHint.value = isCompactLayout.value && scrollWidth > clientWidth + 1;
 };
 
 // If the newly-active segment is partially (or fully) outside the scroll
@@ -120,10 +118,14 @@ watch(() => props.options, () => {
 </script>
 
 <template>
-  <div class="segmented-wrapper sgds:relative">
+  <div
+    ref="wrapperRef"
+    class="segmented-wrapper sgds:relative sgds:w-full"
+    :class="{ 'segmented-wrapper-compact': isCompactLayout }"
+  >
     <div
       ref="tablistRef"
-      class="segmented-control sgds:inline-flex sgds:max-md:flex sgds:max-md:w-full sgds:self-start sgds:bg-default sgds:border sgds:border-muted sgds:rounded-md"
+      class="segmented-control sgds:self-start sgds:bg-default sgds:border sgds:border-muted sgds:rounded-md"
       role="tablist"
       :aria-label="ariaLabel"
       @scroll="updateScrollState"
@@ -145,30 +147,23 @@ watch(() => props.options, () => {
         @click="onSegmentClick(opt.value)"
       >{{ opt.label }}</button>
     </div>
-    <button
-      v-show="canScrollLeft"
-      type="button"
-      class="scroll-arrow scroll-arrow-left"
-      aria-label="Scroll segments left"
-      tabindex="-1"
-      @click="scrollByDirection(-1)"
-    >
-      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+    <div v-show="canScrollLeft" class="scroll-fade scroll-fade-left" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="14" height="14" focusable="false">
         <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
-    </button>
-    <button
-      v-show="canScrollRight"
-      type="button"
-      class="scroll-arrow scroll-arrow-right"
-      aria-label="Scroll segments right"
-      tabindex="-1"
-      @click="scrollByDirection(1)"
-    >
-      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+    </div>
+    <div v-show="canScrollRight" class="scroll-fade scroll-fade-right" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="14" height="14" focusable="false">
         <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
-    </button>
+    </div>
+    <p
+      v-show="showGestureHint"
+      class="sgds:flex sgds:items-center sgds:justify-center sgds:gap-[var(--sgds-gap-2-xs)] sgds:mt-[var(--sgds-gap-2-xs)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle"
+      aria-hidden="true"
+    >
+      Swipe to view more
+    </p>
   </div>
 </template>
 
@@ -183,31 +178,37 @@ watch(() => props.options, () => {
    so it keeps pointing at the correct segment even when the container
    scrolls. */
 .segmented-control {
+  display: inline-flex;
   gap: var(--sgds-gap-2-xs);
+  max-width: 100%;
   padding: var(--sgds-padding-2-xs);
   position: relative;
+  touch-action: pan-x;
 }
 
-/* Mobile: let the segments scroll horizontally when their combined width
-   exceeds the container. Tailwind v4 has no `scrollbar-hide` utility so
-   the scrollbar-hiding rules live in CSS. Segments grow to share the
-   available width (`flex: 1 0 auto`) but never shrink below their natural
-   content size, so long labels trigger scroll rather than truncation. */
-@media (max-width: 767.98px) {
-  .segmented-control {
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
+/* Compact mode is based on actual component width, not viewport width, so it
+   works correctly inside narrow content columns too. */
+.segmented-wrapper-compact .segmented-control {
+  display: flex;
+  width: 100%;
+}
 
-  .segmented-control::-webkit-scrollbar {
-    display: none;
-  }
+.segmented-wrapper-compact .segmented-control {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
 
-  .segment {
-    flex: 1 0 auto;
-  }
+.segmented-wrapper-compact .segmented-control::-webkit-scrollbar {
+  display: none;
+}
+
+.segmented-wrapper-compact .segment {
+  flex: 0 0 auto;
+  max-width: calc(100% - (var(--sgds-padding-2-xs) * 2));
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Sliding indicator pill — absolute-positioned sibling sized/positioned
@@ -238,24 +239,25 @@ watch(() => props.options, () => {
   }
 }
 
-/* Segment button — matches <sgds-button variant="primary" size="sm"> visually
-   (font-size-14 / line-height-20 / dimension-40 / padding-md) but without the
-   greyed hover-bg swap on focus. Only the focus ring remains on focus-visible. */
+/* Segment button — uses SGDS label small regular typography
+   (font-size-label-sm / font-weight-regular / line-height-2-xs /
+   tracking-normal) while keeping the compact segmented-control geometry. */
 .segment {
   appearance: none;
   background: transparent;
   border: 1px solid transparent;
   border-radius: var(--sgds-border-radius-md);
-  color: var(--sgds-color-fixed-dark);
+  color: var(--sgds-color-default);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: inherit;
-  font-size: var(--sgds-font-size-14);
+  font-size: var(--sgds-font-size-label-sm);
   font-weight: var(--sgds-font-weight-regular);
   height: var(--sgds-dimension-40);
-  line-height: var(--sgds-line-height-20);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-2-xs);
   min-width: var(--sgds-dimension-80);
   padding: var(--sgds-padding-none) var(--sgds-padding-md);
   position: relative;
@@ -286,51 +288,34 @@ watch(() => props.options, () => {
   }
 }
 
-/* Scroll affordance arrows — rendered only when the segments overflow in
-   that direction (mobile only; desktop never triggers overflow). Overlaid
-   at the left/right edges so showing/hiding them doesn't reflow the
-   segmented control's width. */
-.scroll-arrow {
+/* Mobile overflow affordance — edge fades with chevrons hint that the
+   segmented control can be swiped horizontally. They are purely visual and
+   don't intercept touch, so gesture scrolling still works normally. */
+.scroll-fade {
   align-items: center;
-  appearance: none;
-  background: var(--sgds-surface-default);
-  border: 1px solid var(--sgds-border-color-muted);
-  border-radius: 9999px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  color: var(--sgds-color-fixed-dark);
-  cursor: pointer;
-  display: inline-flex;
-  height: var(--sgds-dimension-24, 24px);
+  color: var(--sgds-color-default);
+  display: none;
+  height: calc(100% - (var(--sgds-padding-2-xs) * 2));
   justify-content: center;
-  padding: 0;
+  pointer-events: none;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  transition:
-    background-color 140ms ease,
-    color 140ms ease;
-  width: var(--sgds-dimension-24, 24px);
+  width: var(--sgds-dimension-40);
   z-index: 4;
 }
 
-.scroll-arrow-left {
-  left: var(--sgds-dimension-4, 4px);
+.scroll-fade-left {
+  left: var(--sgds-padding-2-xs);
+  background: linear-gradient(90deg, var(--sgds-surface-default) 55%, transparent 100%);
 }
 
-.scroll-arrow-right {
-  right: var(--sgds-dimension-4, 4px);
+.scroll-fade-right {
+  right: var(--sgds-padding-2-xs);
+  background: linear-gradient(270deg, var(--sgds-surface-default) 55%, transparent 100%);
 }
 
-.scroll-arrow:hover {
-  background: var(--sgds-bg-translucent-subtle);
-}
-
-.scroll-arrow:focus {
-  outline: none;
-}
-
-.scroll-arrow:focus-visible {
-  outline: var(--sgds-outline-focus);
-  outline-offset: var(--sgds-outline-offset-focus);
+.segmented-wrapper-compact .scroll-fade {
+  display: inline-flex;
 }
 </style>

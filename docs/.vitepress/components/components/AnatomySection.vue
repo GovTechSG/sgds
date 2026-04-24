@@ -29,12 +29,19 @@ const props = defineProps<{
 }>();
 
 const anatomyCanvasRef = ref<HTMLElement | null>(null);
+const anatomyScaleLayerRef = ref<HTMLElement | null>(null);
 const anatomyCalloutPositions = ref<CalloutPosition[]>([]);
 // Offset applied to the markup (via transform) and baked into every callout's
 // left/top values. Ensures the combined bounding box of component + callouts
-// sits at the canvas's centre, so the demo box's internal padding wraps the
-// whole group symmetrically instead of just the component.
+// sits at the scale-layer's centre, so the demo box's internal padding wraps
+// the whole group symmetrically instead of just the component.
 const anatomyGroupOffset = ref<{ x: number; y: number }>({ x: 0, y: 0 });
+// Proportional scale applied to the whole anatomy group (component + callouts)
+// when the natural content width exceeds the available canvas width. Keeps the
+// component's layout intact at narrow widths — instead of the component
+// reflowing internally and callouts overflowing, everything shrinks together
+// as a single diagram.
+const anatomyScale = ref(1);
 let resizeObserver: ResizeObserver | null = null;
 
 const getPointOnRect = (
@@ -47,43 +54,71 @@ const getPointOnRect = (
   return { x: pointX, y: pointY };
 };
 
+const resolveShadowTarget = (baseTarget: HTMLElement | null, shadowSelector?: string) => {
+  if (!baseTarget || !shadowSelector) return baseTarget;
+
+  const selectorChain = shadowSelector
+    .split(">>>")
+    .map((selector) => selector.trim())
+    .filter(Boolean);
+
+  let currentTarget: HTMLElement | null = baseTarget;
+
+  for (const selector of selectorChain) {
+    currentTarget = (currentTarget?.shadowRoot?.querySelector(selector) as HTMLElement | null) ?? null;
+    if (!currentTarget) return null;
+  }
+
+  return currentTarget;
+};
+
 const updateCallouts = async () => {
   await nextTick();
 
   const canvas = anatomyCanvasRef.value;
+  const scaleLayer = anatomyScaleLayerRef.value;
   const callouts = props.anatomyCallouts;
-  if (!canvas || !callouts?.length) {
+  if (!canvas || !scaleLayer || !callouts?.length) {
     anatomyCalloutPositions.value = [];
     anatomyGroupOffset.value = { x: 0, y: 0 };
+    anatomyScale.value = 1;
     return;
   }
+
+  // Strip the scale/translate transforms that were applied in the previous
+  // pass so getBoundingClientRect returns natural (un-transformed) geometry.
+  // Measuring post-transform would compound scale across re-measurements.
+  // Also suspend the CSS transition on the scale-layer — without this, the
+  // transform change animates over 200 ms and `getBoundingClientRect` during
+  // that window returns the interpolated (not-yet-reset) rect, which breaks
+  // every downstream coordinate calculation.
+  const markupEl = scaleLayer.querySelector(".anatomy-demo-markup") as HTMLElement | null;
+  const prevLayerTransition = scaleLayer.style.transition;
+  scaleLayer.style.transition = "none";
+  scaleLayer.style.transform = "none";
+  if (markupEl) markupEl.style.transform = "none";
+  // Force a synchronous layout flush so the cleared transforms take effect
+  // before we read any rects.
+  void scaleLayer.offsetWidth;
 
   const styles = getComputedStyle(canvas);
   const badgeSize = parseFloat(styles.getPropertyValue("--sgds-dimension-24")) || 24;
   const badgeRadius = badgeSize / 2;
   const canvasRect = canvas.getBoundingClientRect();
-
-  // The markup carries a translate transform from the previous pass; its rect
-  // (and every descendant target rect) is therefore shifted by the stored
-  // offset. Subtract it to work in "natural" coordinates and avoid cumulative
-  // drift across re-measurements.
-  const currentOffsetX = anatomyGroupOffset.value.x;
-  const currentOffsetY = anatomyGroupOffset.value.y;
+  const layerRect = scaleLayer.getBoundingClientRect();
 
   const basePositions = callouts
     .map((callout) => {
-      const baseTarget = canvas.querySelector(callout.targetSelector) as HTMLElement | null;
-      const target = callout.targetShadowSelector
-        ? ((baseTarget as HTMLElement | null)?.shadowRoot?.querySelector(callout.targetShadowSelector) as HTMLElement | null)
-        : baseTarget;
+      const baseTarget = scaleLayer.querySelector(callout.targetSelector) as HTMLElement | null;
+      const target = resolveShadowTarget(baseTarget, callout.targetShadowSelector);
 
       if (!target) return null;
 
       const targetRect = target.getBoundingClientRect();
       const point = getPointOnRect(targetRect, callout.targetX || "center", callout.targetY || "center");
       const stemLength = parseFloat(styles.getPropertyValue(callout.stemLengthToken || "--sgds-dimension-48")) || 48;
-      const localX = point.x - canvasRect.left - currentOffsetX + (callout.targetXOffset || 0);
-      const localY = point.y - canvasRect.top - currentOffsetY + (callout.targetYOffset || 0);
+      const localX = point.x - layerRect.left + (callout.targetXOffset || 0);
+      const localY = point.y - layerRect.top + (callout.targetYOffset || 0);
 
       if (callout.direction === "right") {
         return { number: callout.number, direction: callout.direction, badgeLeft: localX + stemLength + badgeRadius, badgeTop: localY, strokeLeft: localX, strokeTop: localY, strokeWidth: stemLength, strokeHeight: 0 };
@@ -135,11 +170,10 @@ const updateCallouts = async () => {
       };
     });
 
-  // Build the combined bounding box (in natural canvas-local coords) of the
-  // markup plus every callout, then work out the offset needed to centre that
-  // box inside the canvas. The markup gets shifted by the offset via CSS
+  // Build the combined bounding box (in layer-local coords) of the markup
+  // plus every callout, then work out the offset needed to centre that box
+  // inside the scale-layer. The markup gets shifted by the offset via CSS
   // transform, and the offset is baked into every callout's absolute left/top.
-  const markupEl = canvas.querySelector(".anatomy-demo-markup") as HTMLElement | null;
   let minX = Infinity;
   let maxX = -Infinity;
   let minY = Infinity;
@@ -147,10 +181,10 @@ const updateCallouts = async () => {
 
   if (markupEl) {
     const markupRect = markupEl.getBoundingClientRect();
-    minX = Math.min(minX, markupRect.left - canvasRect.left - currentOffsetX);
-    maxX = Math.max(maxX, markupRect.right - canvasRect.left - currentOffsetX);
-    minY = Math.min(minY, markupRect.top - canvasRect.top - currentOffsetY);
-    maxY = Math.max(maxY, markupRect.bottom - canvasRect.top - currentOffsetY);
+    minX = Math.min(minX, markupRect.left - layerRect.left);
+    maxX = Math.max(maxX, markupRect.right - layerRect.left);
+    minY = Math.min(minY, markupRect.top - layerRect.top);
+    maxY = Math.max(maxY, markupRect.bottom - layerRect.top);
   }
 
   alignedPositions.forEach((position) => {
@@ -161,8 +195,19 @@ const updateCallouts = async () => {
   });
 
   const hasBounds = Number.isFinite(minX) && Number.isFinite(minY) && Number.isFinite(maxX) && Number.isFinite(maxY);
-  const groupOffsetX = hasBounds ? canvasRect.width / 2 - (minX + maxX) / 2 : 0;
-  const groupOffsetY = hasBounds ? canvasRect.height / 2 - (minY + maxY) / 2 : 0;
+
+  // If the natural content width (component + symmetric callout extensions)
+  // exceeds the canvas width, scale the whole group down proportionally so
+  // the diagram shrinks as a unit instead of the component reflowing while
+  // callouts overflow. Never scale up.
+  const naturalWidth = hasBounds ? maxX - minX : 0;
+  const availableWidth = canvasRect.width;
+  anatomyScale.value = naturalWidth > 0 && naturalWidth > availableWidth
+    ? availableWidth / naturalWidth
+    : 1;
+
+  const groupOffsetX = hasBounds ? layerRect.width / 2 - (minX + maxX) / 2 : 0;
+  const groupOffsetY = hasBounds ? layerRect.height / 2 - (minY + maxY) / 2 : 0;
 
   anatomyGroupOffset.value = { x: groupOffsetX, y: groupOffsetY };
   anatomyCalloutPositions.value = alignedPositions.map((position) => ({
@@ -172,6 +217,11 @@ const updateCallouts = async () => {
     strokeLeft: position.strokeLeft + groupOffsetX,
     strokeTop: position.strokeTop + groupOffsetY,
   }));
+
+  // Restore the CSS transition we suspended for measurement. Vue's next patch
+  // will write the new `transform` value; that write now animates smoothly
+  // (0.2 s ease) because the transition is back in place.
+  scaleLayer.style.transition = prevLayerTransition;
 };
 
 onMounted(() => {
@@ -200,7 +250,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xl)]">
-    <div class="sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:px-component-lg sgds:py-component-lg max-md:sgds:px-component-md max-md:sgds:py-component-md">
+    <div class="sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:px-component-lg sgds:py-component-lg sgds:max-md:px-component-md sgds:max-md:py-component-md">
       <div class="sgds:flex sgds:items-center sgds:justify-center sgds:relative sgds:w-full">
         <template v-if="anatomyAsset">
           <img
@@ -220,57 +270,52 @@ onBeforeUnmount(() => {
           class="sgds:flex sgds:items-center sgds:justify-center sgds:mx-auto sgds:max-w-[var(--sgds-dimension-688)] sgds:min-h-[var(--sgds-dimension-320)] sgds:relative sgds:w-full"
         >
           <div
-            class="anatomy-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
-            :style="{ transform: `translate(${anatomyGroupOffset.x}px, ${anatomyGroupOffset.y}px)` }"
-            v-html="anatomyPreviewMarkup"
-          ></div>
-          <span
-            v-for="callout in anatomyCalloutPositions"
-            :key="`stroke-${callout.number}`"
-            :class="[
-              'sgds:bg-[var(--sgds-border-color-default)] sgds:pointer-events-none sgds:absolute',
-              callout.direction === 'left' || callout.direction === 'right'
-                ? 'sgds:h-[var(--sgds-border-width-1)] sgds:-translate-y-1/2'
-                : 'sgds:-translate-x-1/2 sgds:w-[var(--sgds-border-width-1)]',
-            ]"
-            :style="{
-              left: `${callout.strokeLeft}px`,
-              top: `${callout.strokeTop}px`,
-              width: callout.strokeWidth ? `${callout.strokeWidth}px` : undefined,
-              height: callout.strokeHeight ? `${callout.strokeHeight}px` : undefined,
-            }"
-          ></span>
-          <span
-            v-for="callout in anatomyCalloutPositions"
-            :key="`badge-${callout.number}`"
-            class="sgds:inline-flex sgds:items-center sgds:justify-center sgds:bg-surface-inverse sgds:rounded-full sgds:text-inverse sgds:text-label-xs sgds:font-regular sgds:leading-3-xs sgds:tracking-normal sgds:pointer-events-none sgds:absolute sgds:-translate-x-1/2 sgds:-translate-y-1/2 sgds:w-6 sgds:h-6 sgds:z-[1]"
-            :style="{ left: `${callout.badgeLeft}px`, top: `${callout.badgeTop}px` }"
+            ref="anatomyScaleLayerRef"
+            class="anatomy-scale-layer sgds:absolute sgds:inset-0 sgds:flex sgds:items-center sgds:justify-center"
+            :style="{ transform: `scale(${anatomyScale})`, transformOrigin: 'center center' }"
           >
-            {{ callout.number }}
-          </span>
+            <div
+              class="anatomy-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
+              :style="{ transform: `translate(${anatomyGroupOffset.x}px, ${anatomyGroupOffset.y}px)` }"
+              v-html="anatomyPreviewMarkup"
+            ></div>
+            <span
+              v-for="callout in anatomyCalloutPositions"
+              :key="`stroke-${callout.number}`"
+              :class="[
+                'sgds:bg-[var(--sgds-border-color-default)] sgds:pointer-events-none sgds:absolute',
+                callout.direction === 'left' || callout.direction === 'right'
+                  ? 'sgds:h-[var(--sgds-border-width-1)] sgds:-translate-y-1/2'
+                  : 'sgds:-translate-x-1/2 sgds:w-[var(--sgds-border-width-1)]',
+              ]"
+              :style="{
+                left: `${callout.strokeLeft}px`,
+                top: `${callout.strokeTop}px`,
+                width: callout.strokeWidth ? `${callout.strokeWidth}px` : undefined,
+                height: callout.strokeHeight ? `${callout.strokeHeight}px` : undefined,
+              }"
+            ></span>
+            <span
+              v-for="callout in anatomyCalloutPositions"
+              :key="`badge-${callout.number}`"
+              class="sgds:inline-flex sgds:items-center sgds:justify-center sgds:bg-surface-inverse sgds:rounded-full sgds:text-inverse sgds:text-label-xs sgds:font-regular sgds:leading-3-xs sgds:tracking-normal sgds:pointer-events-none sgds:absolute sgds:-translate-x-1/2 sgds:-translate-y-1/2 sgds:w-6 sgds:h-6 sgds:z-[1]"
+              :style="{ left: `${callout.badgeLeft}px`, top: `${callout.badgeTop}px` }"
+            >
+              {{ callout.number }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="sgds:grid sgds:grid-cols-2 sgds:gap-x-8 sgds:gap-y-4 sgds:max-lg:grid-cols-1">
-      <div :class="['sgds:flex sgds:flex-col', numberedListGapClass || 'sgds:gap-[var(--sgds-gap-md)]']">
-        <PortalNumberedItem
-          v-for="part in resolvedAnatomyParts.slice(0, Math.ceil(resolvedAnatomyParts.length / 2))"
-          :key="part.number"
-          :number="part.number"
-          :title="part.title"
-          :note="part.note"
-        />
-      </div>
-      <div :class="['sgds:flex sgds:flex-col', numberedListGapClass || 'sgds:gap-[var(--sgds-gap-md)]']">
-        <PortalNumberedItem
-          v-for="part in resolvedAnatomyParts.slice(Math.ceil(resolvedAnatomyParts.length / 2))"
-          :key="part.number"
-          :number="part.number"
-          :title="part.title"
-          :note="part.note"
-        />
-      </div>
+    <div class="sgds:grid sgds:grid-cols-2 sgds:max-lg:grid-cols-1 sgds:gap-text-md">
+      <PortalNumberedItem
+        v-for="part in resolvedAnatomyParts"
+        :key="part.number"
+        :number="part.number"
+        :title="part.title"
+        :note="part.note"
+      />
     </div>
   </div>
 </template>
@@ -279,6 +324,22 @@ onBeforeUnmount(() => {
 /* Dark theme image switching — requires global class selector */
 .sgds-night-theme .anatomy-image-light { display: none; }
 .sgds-night-theme .anatomy-image-dark { display: block !important; }
+
+/* Scale-layer wrapping the anatomy markup + callouts. Scaled as a single
+   unit so the component and its callouts shrink together when the canvas
+   width is too narrow to fit the natural diagram (component + stem/badge
+   extensions). Transition is applied here — not on the inner markup — so the
+   whole group animates in sync. */
+.anatomy-scale-layer {
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anatomy-scale-layer {
+    transition: none;
+  }
+}
 
 /* Global selectors targeting slotted web component elements in v-html markup */
 /* Anatomy previews are informational only — pointer events are disabled on the

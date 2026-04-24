@@ -136,6 +136,13 @@ export type ConfigurationDemo = {
   defaultValue: string;
   options: ConfigurationDemoOption[];
   interactionMode?: "tabs" | "content-slots";
+  /**
+   * Which control the demo renders to switch between options. Defaults to
+   * "segmented" (the shared SegmentedControl). Use "select" when the option
+   * count is too high for a comfortable segmented layout (e.g. 5+ numeric
+   * values) — renders an `<sgds-select>` with no visible label.
+   */
+  controlType?: "segmented" | "select";
 };
 
 export type AlertPlaygroundContent = {
@@ -1124,47 +1131,77 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Info",
             value: "info",
-            markup: `<sgds-alert show variant="info" title="Info alert">
-              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
-            </sgds-alert>`,
-            description: "Use to provide general context or neutral information, such as announcements or guidance that don't indicate a status outcome.",
+            markup: `<div class="portal-demo-stack">
+              <sgds-alert show variant="info" title="Info alert">
+                <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="info" outlined title="Info alert">
+                <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+              </sgds-alert>
+            </div>`,
+            description: "Use to provide general context or neutral information, such as announcements or guidance that don't indicate a status outcome, in either filled or outlined style.",
           },
           {
             label: "Success",
             value: "success",
-            markup: `<sgds-alert show variant="success" title="Success alert">
-              <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-              <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
-            </sgds-alert>`,
-            description: "Use to confirm that an action or process has completed successfully. Reassures users that their input was accepted.",
+            markup: `<div class="portal-demo-stack">
+              <sgds-alert show variant="success" title="Success alert">
+                <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
+                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="success" outlined title="Success alert">
+                <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
+                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+              </sgds-alert>
+            </div>`,
+            description: "Use to confirm that an action or process has completed successfully. Reassures users that their input was accepted in either filled or outlined style.",
           },
           {
             label: "Danger",
             value: "danger",
-            markup: `<sgds-alert show variant="danger" title="Danger alert">
-              <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-              <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
-            </sgds-alert>`,
-            description: "Use to communicate errors or critical failures that require immediate attention. Reserve for situations that could block the user.",
+            markup: `<div class="portal-demo-stack">
+              <sgds-alert show variant="danger" title="Danger alert">
+                <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
+                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="danger" outlined title="Danger alert">
+                <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
+                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+              </sgds-alert>
+            </div>`,
+            description: "Use to communicate errors or critical failures that require immediate attention. Reserve for situations that could block the user, in either filled or outlined style.",
           },
           {
             label: "Warning",
             value: "warning",
-            markup: `<sgds-alert show variant="warning" title="Warning alert">
-              <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-              <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
-            </sgds-alert>`,
-            description: "Use to flag potential issues that may need attention. Cautions the user without blocking them from proceeding.",
+            markup: `<div class="portal-demo-stack">
+              <sgds-alert show variant="warning" title="Warning alert">
+                <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
+                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="warning" outlined title="Warning alert">
+                <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
+                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+              </sgds-alert>
+            </div>`,
+            description: "Use to flag potential issues that may need attention. Cautions the user without blocking them from proceeding, in either filled or outlined style.",
           },
           {
             label: "Neutral",
             value: "neutral",
-            markup: `<sgds-alert show variant="neutral" title="Neutral alert">
-              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
-            </sgds-alert>`,
-            description: "Use when the message carries no particular status or urgency, such as simple notices or reminders.",
+            markup: `<div class="portal-demo-stack">
+              <sgds-alert show variant="neutral" title="Neutral alert">
+                <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+              </sgds-alert>
+              <sgds-alert show variant="neutral" outlined title="Neutral alert">
+                <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+              </sgds-alert>
+            </div>`,
+            description: "Use when the message carries no particular status or urgency, such as simple notices or reminders, in either filled or outlined style.",
           },
         ],
       },
@@ -1257,7 +1294,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         ],
       },
       {
-        title: "With icon",
+        title: "Icon",
         description: "Alerts may include an icon to reinforce meaning. The icon should support, not replace, the message text.",
         controlLabel: "Alert icon options",
         defaultValue: "no-icon",
@@ -1271,7 +1308,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             description: "Use when the message is self-explanatory or when a minimal, text-only appearance is preferred.",
           },
           {
-            label: "With icon",
+            label: "Icon",
             value: "with-icon",
             markup: `<sgds-alert show variant="info" title="Application received">
               <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
@@ -1296,7 +1333,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             description: "Use for short, single-line messages that are easy to scan without an additional heading.",
           },
           {
-            label: "With title",
+            label: "Title",
             value: "with-title",
             markup: `<sgds-alert show variant="info" title="Draft saved">
               <div>Your draft has been saved and you can continue editing it before submission.</div>
@@ -1586,7 +1623,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "Badges are deliberately small and quiet — they annotate content rather than compete with it.",
       },
     ],
-    anatomyMarkup: `<div class="portal-demo-row"><sgds-badge class="portal-anatomy-badge"><sgds-icon slot="icon" name="star-fill"></sgds-icon>Badge label</sgds-badge></div>`,
+    anatomyMarkup: `<div class="portal-demo-row"><sgds-badge class="portal-anatomy-badge"><sgds-icon slot="icon" name="star-fill" size="sm"></sgds-icon>Badge label</sgds-badge></div>`,
     anatomyParts: [
       { title: "Container" },
       defaultPartTitleMap.default,
@@ -1607,56 +1644,56 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Neutral",
             value: "neutral",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="neutral">Neutral</sgds-badge></div>`,
-            description: "The default tone for generic labels with no particular status weight. Use when the badge is purely informational.",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="neutral">Neutral</sgds-badge><sgds-badge variant="neutral" outlined>Neutral</sgds-badge></div>`,
+            description: "The default tone for generic labels with no particular status weight. Use when the badge is purely informational, whether you need a stronger filled style or a quieter outlined style.",
           },
           {
             label: "Primary",
             value: "primary",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="primary">Primary</sgds-badge></div>`,
-            description: "Uses the brand tone. Use for labels that should align with the primary identity of the interface.",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="primary">Primary</sgds-badge><sgds-badge variant="primary" outlined>Primary</sgds-badge></div>`,
+            description: "Uses the brand tone. Use for labels that should align with the primary identity of the interface in either filled or outlined form.",
           },
           {
             label: "Accent",
             value: "accent",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="accent">Accent</sgds-badge></div>`,
-            description: "An alternative emphasis tone. Use to distinguish a small group of labels without relying on a status colour.",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="accent">Accent</sgds-badge><sgds-badge variant="accent" outlined>Accent</sgds-badge></div>`,
+            description: "An alternative emphasis tone. Use to distinguish a small group of labels without relying on a status colour, in either a filled or outlined treatment.",
           },
           {
             label: "Success",
             value: "success",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="success">Success</sgds-badge></div>`,
-            description: "Use to signal a positive state such as completed, approved, or active.",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="success">Success</sgds-badge><sgds-badge variant="success" outlined>Success</sgds-badge></div>`,
+            description: "Use to signal a positive state such as completed, approved, or active, with either strong or subtle emphasis.",
           },
           {
             label: "Warning",
             value: "warning",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="warning">Warning</sgds-badge></div>`,
-            description: "Use to flag items needing attention without blocking the user — for example, pending review or nearing a threshold.",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="warning">Warning</sgds-badge><sgds-badge variant="warning" outlined>Warning</sgds-badge></div>`,
+            description: "Use to flag items needing attention without blocking the user — for example, pending review or nearing a threshold — in filled or outlined form.",
           },
           {
             label: "Danger",
             value: "danger",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="danger">Danger</sgds-badge></div>`,
-            description: "Use to communicate an error, failure, or critical state that should draw the user's attention immediately.",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="danger">Danger</sgds-badge><sgds-badge variant="danger" outlined>Danger</sgds-badge></div>`,
+            description: "Use to communicate an error, failure, or critical state that should draw the user's attention immediately, whether as a filled or outlined badge.",
           },
           {
             label: "Cyan",
             value: "cyan",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="cyan">Cyan</sgds-badge></div>`,
-            description: "A supplementary category tone. Use to differentiate labels when a status colour is not appropriate.",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="cyan">Cyan</sgds-badge><sgds-badge variant="cyan" outlined>Cyan</sgds-badge></div>`,
+            description: "A supplementary category tone. Use to differentiate labels when a status colour is not appropriate, in either filled or outlined style.",
           },
           {
             label: "Purple",
             value: "purple",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="purple">Purple</sgds-badge></div>`,
-            description: "Another supplementary category tone. Pair with cyan to separate two or more non-status categories.",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="purple">Purple</sgds-badge><sgds-badge variant="purple" outlined>Purple</sgds-badge></div>`,
+            description: "Another supplementary category tone. Pair with cyan to separate two or more non-status categories, with filled and outlined options available.",
           },
           {
             label: "White",
             value: "white",
-            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-badge variant="white">White</sgds-badge></div>`,
-            description: "Use on dark or coloured backgrounds where the other variants would lack contrast.",
+            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-badge variant="white">White</sgds-badge><sgds-badge variant="white" outlined>White</sgds-badge></div>`,
+            description: "Use on dark or coloured backgrounds where the other variants would lack contrast, in either filled or outlined form.",
           },
         ],
       },
@@ -1669,14 +1706,32 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Filled",
             value: "filled",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="accent">Filled</sgds-badge></div>`,
-            description: "The default filled style uses a solid background. Use when the badge needs to read strongly at a glance.",
+            markup: `<div class="portal-demo-row">
+              <sgds-badge variant="neutral">Neutral</sgds-badge>
+              <sgds-badge variant="primary">Primary</sgds-badge>
+              <sgds-badge variant="accent">Accent</sgds-badge>
+              <sgds-badge variant="success">Success</sgds-badge>
+              <sgds-badge variant="warning">Warning</sgds-badge>
+              <sgds-badge variant="danger">Danger</sgds-badge>
+              <sgds-badge variant="cyan">Cyan</sgds-badge>
+              <sgds-badge variant="purple">Purple</sgds-badge>
+            </div>`,
+            description: "The default filled style uses a solid background. Use when badges need to read strongly at a glance across the full variant set.",
           },
           {
             label: "Outlined",
             value: "outlined",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="accent" outlined>Outlined</sgds-badge></div>`,
-            description: "The outlined style uses a border with a subtle fill. Use when badges should feel quieter alongside dense content.",
+            markup: `<div class="portal-demo-row">
+              <sgds-badge variant="neutral" outlined>Neutral</sgds-badge>
+              <sgds-badge variant="primary" outlined>Primary</sgds-badge>
+              <sgds-badge variant="accent" outlined>Accent</sgds-badge>
+              <sgds-badge variant="success" outlined>Success</sgds-badge>
+              <sgds-badge variant="warning" outlined>Warning</sgds-badge>
+              <sgds-badge variant="danger" outlined>Danger</sgds-badge>
+              <sgds-badge variant="cyan" outlined>Cyan</sgds-badge>
+              <sgds-badge variant="purple" outlined>Purple</sgds-badge>
+            </div>`,
+            description: "The outlined style uses a border with a subtle fill. Use when badges should feel quieter alongside dense content across the full variant set.",
           },
         ],
       },
@@ -1715,7 +1770,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "With icon",
             value: "with-icon",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="success"><sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>Active</sgds-badge></div>`,
+            markup: `<div class="portal-demo-row"><sgds-badge variant="success"><sgds-icon slot="icon" name="check-circle-fill" size="sm"></sgds-icon>Active</sgds-badge></div>`,
             description: "Add an icon through the icon slot. Use small, recognisable icons that reinforce the badge's meaning without competing with the label.",
           },
         ],
@@ -1755,22 +1810,69 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "On deep or complex sites, breadcrumbs prevent users from losing track of where they came from and how to get back.",
       },
     ],
-    anatomyMarkup: `<sgds-breadcrumb><sgds-breadcrumb-item class="portal-anatomy-breadcrumb-item"><a href="#">Home</a></sgds-breadcrumb-item><sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item><sgds-breadcrumb-item class="portal-anatomy-breadcrumb-current"><a href="#">Payments</a></sgds-breadcrumb-item></sgds-breadcrumb>`,
-    anatomyParts: [
-      { title: "Container" },
-      { title: "Breadcrumb item" },
-      { title: "Current page" },
-    ],
+    anatomyMarkup: `<sgds-breadcrumb>
+      <sgds-breadcrumb-item class="portal-anatomy-breadcrumb-page-link"><a href="#">Home</a></sgds-breadcrumb-item>
+      <sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item>
+      <sgds-breadcrumb-item><a href="#">Payments</a></sgds-breadcrumb-item>
+      <sgds-breadcrumb-item><a href="#">Fees</a></sgds-breadcrumb-item>
+      <sgds-breadcrumb-item><a href="#">Refunds</a></sgds-breadcrumb-item>
+    </sgds-breadcrumb>`,
+    anatomyParts: [{ title: "Page link" }, { title: "Separator" }, { title: "Overflow link" }],
     anatomyCallouts: [
-      { number: 1, direction: "right", targetSelector: "sgds-breadcrumb", targetX: "right", targetY: "center" },
-      { number: 2, direction: "top", targetSelector: ".portal-anatomy-breadcrumb-item", targetX: "center", targetY: "top" },
-      { number: 3, direction: "bottom", targetSelector: ".portal-anatomy-breadcrumb-current", targetX: "center", targetY: "bottom" },
+      {
+        number: 1,
+        direction: "left",
+        targetSelector: "sgds-breadcrumb",
+        targetShadowSelector: ".portal-anatomy-breadcrumb-page-link a",
+        targetX: "left",
+        targetY: "center",
+      },
+      {
+        number: 2,
+        direction: "top",
+        targetSelector: "sgds-breadcrumb",
+        targetShadowSelector: "sgds-breadcrumb-item:nth-of-type(3) >>> .separator svg",
+        targetX: "center",
+        targetY: "center",
+        targetYOffset: -3,
+      },
+      {
+        number: 3,
+        direction: "bottom",
+        targetSelector: "sgds-breadcrumb",
+        targetShadowSelector: "sgds-overflow-menu",
+        targetX: "center",
+        targetY: "bottom",
+      },
+    ],
+    componentTokenGroups: [
+      {
+        title: "sgds / breadcrumb",
+        rows: [
+          { category: "Colour", name: "icon-color", value: "sgds/body-color-default" },
+          { category: "Gap", name: "group-gap", value: "sgds/gap/xs" },
+        ],
+      },
+    ],
+    semanticTokenGroups: [
+      {
+        title: "sgds / breadcrumb",
+        rows: [
+          { category: "Colour", name: "icon-color", value: "sgds/body-color-default" },
+          { category: "Colour", name: "page-link-color", value: "sgds/link-color-default" },
+          { category: "Colour", name: "page-link-color-emphasis", value: "sgds/link-color-emphasis" },
+          { category: "Colour", name: "current-page-color", value: "sgds/color-default" },
+          { category: "Background", name: "overflow-bg", value: "sgds/bg-transparent" },
+          { category: "Background", name: "overflow-bg-hover", value: "sgds/bg-translucent-subtle" },
+        ],
+      },
     ],
     configurationDemos: [
       {
         title: "Number of links",
         description: "Control how many breadcrumb items are shown. When 5 or more items are present, the middle items automatically collapse into an overflow menu placed as the second link.",
         controlLabel: "Breadcrumb number of links",
+        controlType: "select",
         defaultValue: "3",
         options: [
           {
@@ -1825,6 +1927,37 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+      {
+        title: "Overflow",
+        description: "When there are too many links, overflow can be applied by collapsing items into an ellipsis to prevent visual clutter.",
+        controlLabel: "Breadcrumb overflow options",
+        defaultValue: "off",
+        options: [
+          {
+            label: "Off",
+            value: "off",
+            markup: `<sgds-breadcrumb>
+          <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Payments</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Fees</a></sgds-breadcrumb-item>
+        </sgds-breadcrumb>`,
+            description: "With four or fewer items, every link stays visible — no ellipsis is needed.",
+          },
+          {
+            label: "On",
+            value: "on",
+            markup: `<sgds-breadcrumb>
+          <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Payments</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Fees</a></sgds-breadcrumb-item>
+          <sgds-breadcrumb-item><a href="#">Refunds</a></sgds-breadcrumb-item>
+        </sgds-breadcrumb>`,
+            description: "With five or more items, middle links collapse into an ellipsis overflow menu placed in the second position.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -1837,6 +1970,74 @@ const componentDocs: Record<string, ComponentDoc> = {
         </sgds-breadcrumb>`,
       ),
     ],
+    usage: {
+      bestPractices: [
+        {
+          title: "Keep the current page as the last step",
+          description: "All earlier breadcrumb items should link back to previous levels, while the final item represents the current page.",
+          tone: "do",
+          markup: `<sgds-breadcrumb>
+            <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item><a href="#">Category</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item active>Current page</sgds-breadcrumb-item>
+          </sgds-breadcrumb>`,
+        },
+        {
+          title: "Use overflow on longer trails",
+          description: "When the hierarchy gets deeper, let the breadcrumb collapse middle levels into the built-in overflow menu instead of exposing every level at once.",
+          tone: "do",
+          markup: `<sgds-breadcrumb>
+            <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item><a href="#">Services</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item><a href="#">Payments</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item><a href="#">Property tax</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item active>Appeal outcome</sgds-breadcrumb-item>
+          </sgds-breadcrumb>`,
+        },
+        {
+          title: "Use specific, meaningful labels",
+          description: "Breadcrumb labels should match the page structure closely so users can predict where each level leads.",
+          tone: "do",
+          markup: `<sgds-breadcrumb>
+            <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item><a href="#">Property for sale</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item active>HDB for sale</sgds-breadcrumb-item>
+          </sgds-breadcrumb>`,
+        },
+        {
+          title: "Do not use generic labels",
+          description: "Generic names such as 'Page 1' and 'Page 2' do not help users understand the content or structure they are navigating through.",
+          tone: "dont",
+          markup: `<sgds-breadcrumb>
+            <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item><a href="#">Page 1</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item active>Page 2</sgds-breadcrumb-item>
+          </sgds-breadcrumb>`,
+        },
+        {
+          title: "Do not use breadcrumb for the wrong hierarchy",
+          description: "Breadcrumbs should reflect the actual site or service structure, not a temporary journey such as search, filtering, or a task sequence.",
+          tone: "dont",
+          markup: `<sgds-breadcrumb>
+            <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item><a href="#">Search results</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item><a href="#">Filtered results</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item active>Current page</sgds-breadcrumb-item>
+          </sgds-breadcrumb>`,
+        },
+        {
+          title: "Do not leave intermediate crumbs inactive",
+          description: "Every breadcrumb item before the current page should work as a link back to that level. Plain text crumbs break the navigation pattern.",
+          tone: "dont",
+          markup: `<sgds-breadcrumb>
+            <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item>Services</sgds-breadcrumb-item>
+            <sgds-breadcrumb-item>Payments</sgds-breadcrumb-item>
+            <sgds-breadcrumb-item active>Current page</sgds-breadcrumb-item>
+          </sgds-breadcrumb>`,
+        },
+      ],
+    },
   },
   button: {
     key: "button",
@@ -5883,17 +6084,46 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
   breadcrumb: {
     builtInItems: [
       "Breadcrumb items render links through the SGDS link component.",
-      "The last item can be marked as the current location.",
+      "The last item is marked as the current location automatically.",
     ],
     authorItems: [
       "Use link text that matches the destination page.",
       "Keep the trail short enough for users to scan.",
     ],
     focusItems: [
-      "Users should be able to tab through each breadcrumb link in page order.",
+      "Users should be able to tab through breadcrumb links in page order and reach the overflow menu trigger when it appears.",
       "Do not remove the native link destination from breadcrumb items.",
     ],
-    keyboardInteractions: linkRows("breadcrumb link"),
+    keyboardInteractions: [
+      {
+        key: "Tab",
+        description: "Moves focus to the next breadcrumb link or to the overflow menu trigger when it is present.",
+      },
+      {
+        key: "Shift + Tab",
+        description: "Moves focus to the previous breadcrumb link or back to the previous focusable element.",
+      },
+      {
+        key: "Enter",
+        description: "Activates the focused breadcrumb link, or opens the overflow menu when focus is on the ellipsis button.",
+      },
+      {
+        key: "Space",
+        description: "Opens the overflow menu when focus is on the ellipsis button.",
+      },
+      {
+        key: "Tab or ↓ Down",
+        description: "Moves focus to the next item in the open overflow menu.",
+      },
+      {
+        key: "Shift + Tab or ↑ Up",
+        description: "Moves focus to the previous item in the open overflow menu.",
+      },
+      {
+        key: "Esc",
+        description: "Closes the overflow menu and returns focus to the ellipsis button.",
+      },
+    ],
   },
   button: {
     builtInItems: [

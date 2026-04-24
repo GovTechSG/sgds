@@ -149,12 +149,12 @@ onBeforeUnmount(() => {
     <Section v-if="accessibility?.keyboardInteractions?.length" title="Keyboard interaction" gap="sgds:gap-[var(--sgds-gap-xl)]">
       <sgds-table tableBorder headerBackground>
         <sgds-table-row>
-          <sgds-table-head>Key</sgds-table-head>
+          <sgds-table-head class="sgds:whitespace-nowrap sgds:w-[1%]">Key</sgds-table-head>
           <sgds-table-head>Interaction</sgds-table-head>
         </sgds-table-row>
         <sgds-table-row v-for="row in accessibility?.keyboardInteractions || []" :key="row.key">
-          <sgds-table-cell>
-            <span class="sgds:inline-flex sgds:flex-wrap sgds:items-center sgds:gap-text-2-xs">
+          <sgds-table-cell class="sgds:whitespace-nowrap sgds:w-[1%]">
+            <span class="sgds:inline-flex sgds:flex-nowrap sgds:items-center sgds:gap-text-2-xs sgds:whitespace-nowrap">
               <template v-for="(part, index) in formatKeyboardKey(row.key)" :key="`${row.key}-${index}-${part.label}`">
                 <CodeToken v-if="part.type === 'key'" :label="part.label" />
                 <span v-else class="sgds:text-subtle">{{ part.label }}</span>
