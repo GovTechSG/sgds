@@ -2,17 +2,19 @@
 import { ref, computed } from "vue";
 import "@govtechsg/sgds-web-component/components/Badge/index.js";
 import "@govtechsg/sgds-web-component/components/Icon/index.js";
+import "@govtechsg/sgds-web-component/components/CloseButton/index.js";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type PersonaFilter = "all" | "designer" | "developer" | "pm";
+type PersonaFilter  = "all" | "designer" | "developer" | "pm";
 type ScenarioFilter = "all" | "new-project" | "migration" | "figma-conversion";
+type ApproachFilter = "all" | "figma-first" | "mcp" | "code-first" | "process-first";
 type StepType = "user" | "figma" | "ai" | "code";
 
 interface StepDetail {
   heading: string;
   body: string;
-  setup?: Array<{ text: string; code?: boolean }>;
+  setup?: Array<{ text: string; code?: boolean; label?: string }>;
   examples?: string[];
   links?: Array<{ label: string; href: string }>;
 }
@@ -39,6 +41,7 @@ interface JourneyCard {
   description: string;
   personas: Exclude<PersonaFilter, "all">[];
   scenarios: Exclude<ScenarioFilter, "all">[];
+  approaches: Exclude<ApproachFilter, "all">[];
   tags: string[];
   flow: FlowItem[];
   tip: string;
@@ -55,7 +58,8 @@ const stepDetails: Record<string, StepDetail> = {
     heading: "AI agent — reads SGDS agent skills",
     body: "Claude uses your installed SGDS agent skills to understand every component, token, and pattern. With skills in place it produces correct code instead of generic code that needs manual fixing.",
     setup: [
-      { text: "npx skills add govtechsg/sgds-web-component", code: true },
+      { text: "Open your terminal in your project root and run:" },
+      { text: "npx skills add govtechsg/sgds-web-component", code: true, label: "Copy and paste this into your terminal:" },
       { text: "Select all skills when prompted" },
       { text: "A .agents/ folder is created — your AI reads it automatically at query time" },
       { text: "Re-run after upgrading @govtechsg/sgds-web-component to stay current" },
@@ -94,7 +98,8 @@ const stepDetails: Record<string, StepDetail> = {
     heading: "AI agent — scans and migrates your codebase",
     body: "Claude reads your project files to map existing components to their SGDS v3 equivalents, then rewrites them component by component, preserving functionality while updating to SGDS markup and tokens.",
     setup: [
-      { text: "npx skills add govtechsg/sgds-web-component", code: true },
+      { text: "Open your terminal in your project root and run:" },
+      { text: "npx skills add govtechsg/sgds-web-component", code: true, label: "Copy and paste this into your terminal:" },
       { text: "Open your project in Claude Code or your AI-enabled IDE" },
       { text: "Point Claude at your components directory to start the migration" },
     ],
@@ -113,7 +118,8 @@ const stepDetails: Record<string, StepDetail> = {
     heading: "AI agent — reads your Figma screenshot",
     body: "Paste a screenshot of your Figma frame into Claude. With SGDS agent skills installed, Claude recognises the SGDS components in the design and generates matching code using correct sgds-web-component tags.",
     setup: [
-      { text: "Install SGDS agent skills first: npx skills add govtechsg/sgds-web-component", code: true },
+      { text: "Open your terminal and install SGDS agent skills:" },
+      { text: "npx skills add govtechsg/sgds-web-component", code: true, label: "Copy and paste this into your terminal:" },
       { text: "In Figma, select the frame you want to implement" },
       { text: "Screenshot it (Cmd+Shift+4 on Mac) or export as PNG" },
       { text: "Paste directly into Claude alongside your prompt" },
@@ -132,7 +138,8 @@ const stepDetails: Record<string, StepDetail> = {
     heading: "AI agent — runs the code migration in parallel",
     body: "Claude systematically migrates your codebase to SGDS v3, working in parallel with the designer updating Figma. It reads the agent skills to ensure every replacement uses the correct component name and token.",
     setup: [
-      { text: "npx skills add govtechsg/sgds-web-component", code: true },
+      { text: "Open your terminal in your project root and run:" },
+      { text: "npx skills add govtechsg/sgds-web-component", code: true, label: "Copy and paste this into your terminal:" },
       { text: "Start with the most-used or most-visible components" },
       { text: "Review each migrated component before continuing" },
     ],
@@ -164,10 +171,13 @@ const stepDetails: Record<string, StepDetail> = {
     heading: "Figma canvas — Code Connect",
     body: "Code Connect maps Figma components to their code implementations. Once set up, Figma Dev Mode shows the real SGDS component code for any selected element — no manual translation needed.",
     setup: [
-      { text: "npm install --save-dev @figma/code-connect", code: true },
-      { text: "figma connect create — scaffolds config files per component", code: true },
+      { text: "Open your terminal in your project root and install Code Connect:" },
+      { text: "npm install --save-dev @figma/code-connect", code: true, label: "Copy and paste this into your terminal:" },
+      { text: "Scaffold config files for each component:" },
+      { text: "figma connect create", code: true, label: "Copy and paste this into your terminal:" },
       { text: "Map each Figma component node ID to its sgds-web-component tag" },
-      { text: "figma connect publish — pushes mappings live into Figma", code: true },
+      { text: "Publish your mappings to Figma Dev Mode:" },
+      { text: "figma connect publish", code: true, label: "Copy and paste this into your terminal:" },
     ],
     links: [
       { label: "Figma to code workflow", href: "/ai/figma-to-code" },
@@ -239,9 +249,12 @@ const stepDetails: Record<string, StepDetail> = {
     heading: "Code in IDE — SGDS v3 implementation",
     body: "Your project uses @govtechsg/sgds-web-component. Components are custom HTML elements like <sgds-button> and <sgds-input> that work with any framework. Layout and styling use sgds: Tailwind utility classes.",
     setup: [
-      { text: "npm install @govtechsg/sgds-web-component", code: true },
-      { text: "import '@govtechsg/sgds-web-component/themes/day.css'", code: true },
-      { text: '<sgds-button variant="primary">Label</sgds-button>', code: true },
+      { text: "Open your terminal and install the package:" },
+      { text: "npm install @govtechsg/sgds-web-component", code: true, label: "Copy and paste this into your terminal:" },
+      { text: "Add the theme import to your entry file:" },
+      { text: "import '@govtechsg/sgds-web-component/themes/day.css'", code: true, label: "Copy and paste this into your entry file:" },
+      { text: "Use SGDS components directly in your HTML:" },
+      { text: '<sgds-button variant="primary">Label</sgds-button>', code: true, label: "Copy this into your HTML:" },
       { text: "Use sgds: utility classes for layout: sgds:flex sgds:gap-md" },
     ],
     links: [
@@ -253,10 +266,13 @@ const stepDetails: Record<string, StepDetail> = {
     heading: "Code in IDE — SGDS code with Code Connect",
     body: "The implementation is complete and Code Connect config files link each SGDS component back to its Figma counterpart. Developers selecting any element in Figma Dev Mode see the exact code to use.",
     setup: [
-      { text: "npm install --save-dev @figma/code-connect", code: true },
-      { text: "figma connect create — generates .figma/ config files", code: true },
+      { text: "Open your terminal in your project root and install Code Connect:" },
+      { text: "npm install --save-dev @figma/code-connect", code: true, label: "Copy and paste this into your terminal:" },
+      { text: "Scaffold config files for each SGDS component:" },
+      { text: "figma connect create", code: true, label: "Copy and paste this into your terminal:" },
       { text: "Map Figma component node IDs to sgds-web-component tags in config files" },
-      { text: "figma connect publish — snippets go live in Figma Dev Mode", code: true },
+      { text: "Publish snippets to Figma Dev Mode:" },
+      { text: "figma connect publish", code: true, label: "Copy and paste this into your terminal:" },
     ],
     links: [
       { label: "Figma to code workflow", href: "/ai/figma-to-code" },
@@ -384,9 +400,10 @@ const cards: JourneyCard[] = [
     icon: "chat-left-text",
     title: "Start from a text prompt — new build",
     description: "Describe what you want to build. Claude reads your SGDS agent skills and generates correct, standards-aligned code — no component names to memorise.",
-    personas: ["designer", "developer"],
+    personas: ["designer", "developer", "pm"],
     scenarios: ["new-project"],
-    tags: ["Designer", "Developer", "New project"],
+    approaches: [],
+    tags: ["Designer", "Developer", "Product Manager", "New project"],
     flow: [
       { kind: "step",      label: "You",         sublabel: "have an idea",  type: "user",  detailKey: "you-idea" },
       { kind: "connector", label: "describe" },
@@ -403,12 +420,13 @@ const cards: JourneyCard[] = [
   // ── 2. Figma design → SGDS code ────────────────────────────────────────────
   {
     id: "figma-to-code",
-    icon: "brush",
+    icon: "edit",
     title: "Design in Figma, then build — new project",
     description: "Design screens in Figma using the SGDS library, then hand them to Claude. It reads the design and generates SGDS-aligned code without guessing component names.",
     personas: ["designer"],
-    scenarios: ["new-project"],
-    tags: ["Designer", "New project", "Figma-first"],
+    scenarios: ["new-project", "figma-conversion"],
+    approaches: ["figma-first"],
+    tags: ["Designer", "New project", "Figma conversion"],
     flow: [
       { kind: "step",      label: "You",          sublabel: "in Figma",     type: "user",  detailKey: "you-in-figma" },
       { kind: "connector", label: "design" },
@@ -425,11 +443,12 @@ const cards: JourneyCard[] = [
   // ── 3. Figma MCP — live design to code ─────────────────────────────────────
   {
     id: "figma-mcp",
-    icon: "plugin",
+    icon: "dataflow",
     title: "Figma MCP — live design to code",
     description: "Connect the Figma MCP server so Claude reads your live Figma canvas directly. No screenshots needed — Claude sees component names, tokens, and layout structure in real time.",
     personas: ["designer", "developer"],
     scenarios: ["new-project"],
+    approaches: ["mcp"],
     tags: ["Designer", "Developer", "New project", "MCP"],
     flow: [
       { kind: "step",      label: "You",          sublabel: "in Figma",     type: "user",  detailKey: "you-in-figma" },
@@ -447,11 +466,12 @@ const cards: JourneyCard[] = [
   // ── 4. Migrate existing codebase ────────────────────────────────────────────
   {
     id: "codebase-migration",
-    icon: "terminal",
+    icon: "code-square",
     title: "Start from existing codebase — migration",
     description: "Let Claude analyse your existing code and migrate to SGDS v3.",
     personas: ["developer"],
     scenarios: ["migration"],
+    approaches: ["code-first"],
     tags: ["Developer", "Migration", "Code-first"],
     flow: [
       { kind: "step",      label: "You",          sublabel: "in IDE",          type: "user",  detailKey: "you-in-ide" },
@@ -471,12 +491,13 @@ const cards: JourneyCard[] = [
   // ── 5. Migrate existing Figma file ──────────────────────────────────────────
   {
     id: "figma-file-migration",
-    icon: "file-earmark-arrow-right",
+    icon: "file-text",
     title: "Start from existing Figma file — migration",
     description: "Convert old Figma designs to SGDS, implement to code, use Code Connect to map components.",
     personas: ["designer", "developer"],
     scenarios: ["migration", "figma-conversion"],
-    tags: ["Designer", "Developer", "Migration", "Figma-first"],
+    approaches: ["figma-first"],
+    tags: ["Designer", "Developer", "Migration", "Figma conversion"],
     flow: [
       { kind: "step",      label: "You",          sublabel: "old Figma file",  type: "user",  detailKey: "you-old-file" },
       { kind: "connector", label: "convert" },
@@ -495,11 +516,12 @@ const cards: JourneyCard[] = [
   // ── 6. PM — coordinate new build ────────────────────────────────────────────
   {
     id: "pm-new-build",
-    icon: "people",
+    icon: "users",
     title: "Coordinate a new product build — PM",
     description: "Brief the team, review at key stages, and sign off. You don't need to touch Figma or write code — SGDS and Claude handle implementation consistency.",
     personas: ["pm"],
     scenarios: ["new-project"],
+    approaches: ["process-first"],
     tags: ["Product Manager", "New project", "Process-first"],
     flow: [
       { kind: "step",      label: "You",          sublabel: "write brief",  type: "user",  detailKey: "you-brief" },
@@ -521,11 +543,12 @@ const cards: JourneyCard[] = [
   // ── 7. PM — coordinate migration ────────────────────────────────────────────
   {
     id: "pm-migration",
-    icon: "clipboard-check",
+    icon: "folder-check",
     title: "Coordinate a migration to SGDS v3 — PM",
     description: "Scope the work, track milestones, and review before sign-off. The technical migration runs in parallel between your designer and developer.",
     personas: ["pm"],
     scenarios: ["migration"],
+    approaches: ["process-first"],
     tags: ["Product Manager", "Migration", "Process-first"],
     flow: [
       { kind: "step",      label: "You",          sublabel: "scope & plan",   type: "user",  detailKey: "you-scope" },
@@ -547,12 +570,13 @@ const cards: JourneyCard[] = [
 
 const activePersona  = ref<PersonaFilter>("all");
 const activeScenario = ref<ScenarioFilter>("all");
+const activeApproach = ref<ApproachFilter>("all");
 
 // Which step is expanded: { cardId, flowIndex } — flowIndex is index in card.flow array
 const expandedStep = ref<{ cardId: string; flowIdx: number } | null>(null);
 
 const personaFilters: { id: PersonaFilter; label: string }[] = [
-  { id: "all",       label: "All" },
+  { id: "all",       label: "All roles" },
   { id: "designer",  label: "Designer" },
   { id: "developer", label: "Developer" },
   { id: "pm",        label: "Product Manager" },
@@ -565,6 +589,14 @@ const scenarioFilters: { id: ScenarioFilter; label: string }[] = [
   { id: "figma-conversion", label: "Figma conversion" },
 ];
 
+const approachFilters: { id: ApproachFilter; label: string }[] = [
+  { id: "all",           label: "All approaches" },
+  { id: "figma-first",   label: "Figma-first" },
+  { id: "mcp",           label: "MCP" },
+  { id: "code-first",    label: "Code-first" },
+  { id: "process-first", label: "Process-first" },
+];
+
 // ─── Derived data ─────────────────────────────────────────────────────────────
 
 const visibleCards = computed(() =>
@@ -575,7 +607,10 @@ const visibleCards = computed(() =>
     const sMatch =
       activeScenario.value === "all" ||
       card.scenarios.includes(activeScenario.value as Exclude<ScenarioFilter, "all">);
-    return pMatch && sMatch;
+    const aMatch =
+      activeApproach.value === "all" ||
+      card.approaches.includes(activeApproach.value as Exclude<ApproachFilter, "all">);
+    return pMatch && sMatch && aMatch;
   })
 );
 
@@ -630,6 +665,11 @@ function setScenario(id: ScenarioFilter) {
   activeScenario.value = id;
   expandedStep.value = null;
 }
+
+function setApproach(id: ApproachFilter) {
+  activeApproach.value = id;
+  expandedStep.value = null;
+}
 </script>
 
 <template>
@@ -653,6 +693,15 @@ function setScenario(id: ScenarioFilter) {
           class="uj-chip" :class="{ 'uj-chip--on': activeScenario === f.id }"
           :aria-pressed="activeScenario === f.id"
           @click="setScenario(f.id)"
+        >{{ f.label }}</button>
+      </div>
+      <div class="sgds:flex sgds:items-center sgds:gap-[var(--sgds-gap-xs)] sgds:flex-wrap" role="group" aria-label="Filter by approach">
+        <span class="sgds:text-1 sgds:text-subtle sgds:font-medium uj-filter-label">Approach</span>
+        <button
+          v-for="f in approachFilters" :key="f.id"
+          class="uj-chip" :class="{ 'uj-chip--on': activeApproach === f.id }"
+          :aria-pressed="activeApproach === f.id"
+          @click="setApproach(f.id)"
         >{{ f.label }}</button>
       </div>
     </div>
@@ -736,22 +785,19 @@ function setScenario(id: ScenarioFilter) {
                 <p class="sgds:text-2 sgds:font-semibold sgds:text-heading-default sgds:m-0 sgds:leading-sm">{{ expandedDetail.detail.heading }}</p>
                 <p class="sgds:text-1 sgds:text-default sgds:m-0 sgds:leading-[1.6]">{{ expandedDetail.detail.body }}</p>
               </div>
-              <button
-                class="uj-detail-close"
-                @click="expandedStep = null"
-                aria-label="Close details"
-              >
-                <sgds-icon name="x" size="sm" aria-hidden="true" />
-              </button>
+              <sgds-close-button @click="expandedStep = null" aria-label="Close details" />
             </div>
 
             <!-- Setup steps -->
             <div v-if="expandedDetail.detail.setup?.length" class="sgds:mt-[var(--sgds-text-gap-sm)]">
               <p class="sgds:text-1 sgds:font-semibold sgds:text-subtle sgds:m-0 sgds:mb-[var(--sgds-text-gap-2-xs)] sgds:uppercase sgds:tracking-[0.07em]" style="font-size:10px">How to set this up</p>
               <ol class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-2-xs)] sgds:m-0 sgds:pl-0 uj-setup-list">
-                <li v-for="(step, si) in expandedDetail.detail.setup" :key="si" class="sgds:flex sgds:items-start sgds:gap-[var(--sgds-gap-sm)]">
+                <li v-for="(step, si) in expandedDetail.detail.setup" :key="si" :class="['sgds:flex sgds:gap-[var(--sgds-gap-sm)]', step.code ? 'sgds:items-center' : 'sgds:items-start']">
                   <span class="uj-setup-num" :class="`uj-setup-num--${expandedDetail.type}`" aria-hidden="true">{{ si + 1 }}</span>
-                  <code v-if="step.code" class="sgds:font-mono sgds:text-1 sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-sm sgds:px-[6px] sgds:py-[2px] sgds:leading-[1.7]">{{ step.text }}</code>
+                  <div v-if="step.code" class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-2-xs)] sgds:flex-1">
+                    <span v-if="step.label" class="sgds:text-1 sgds:text-subtle sgds:leading-[1.6]">{{ step.label }}</span>
+                    <CopyCommand :command="step.text" />
+                  </div>
                   <span v-else class="sgds:text-1 sgds:text-default sgds:leading-[1.6]">{{ step.text }}</span>
                 </li>
               </ol>
@@ -972,24 +1018,6 @@ function setScenario(id: ScenarioFilter) {
 .uj-setup-num--figma { background: #ede9fe; color: #5b21b6; }
 .uj-setup-num--ai    { background: #dcfce7; color: #166534; }
 .uj-setup-num--code  { background: #ccfbf1; color: #134e4a; }
-
-/* Close button */
-.uj-detail-close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  border: 1px solid var(--sgds-border-color-muted);
-  background: var(--sgds-surface-default);
-  color: var(--sgds-body-color-subtle);
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background 0.1s;
-}
-.uj-detail-close:hover { background: var(--sgds-surface-raised); color: var(--sgds-body-color-default); }
-.uj-detail-close:focus-visible { outline: 2px solid var(--sgds-color-primary-default); outline-offset: 2px; }
 
 /* Links */
 .uj-detail-link:hover { text-decoration: underline; }
