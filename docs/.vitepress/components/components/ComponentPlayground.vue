@@ -65,28 +65,25 @@ const activeMarkup = computed(() => {
   return activeDemo.options.find((option) => option.value === selectedValue)?.markup ?? activeDemo.options[0]?.markup ?? "";
 });
 
-const activeSupportingText = computed(() => {
-  if (singleOptionMode.value) {
-    const selected = exampleOptions.value.find((option) => option.value === activeControlKey.value);
-    return {
-      description: selected?.description ?? "",
-      note: selected?.note ?? "",
-    };
-  }
+// Two-option demos (e.g. Static/Dismissible, No icon/With icon) render as a
+// switch instead of a select — the default value is the "off" state, the
+// other value is the "on" state.
+const isBooleanDemo = (demo: ConfigurationDemo) => demo.options.length === 2;
 
-  const activeDemo =
-    props.demos.find((demo) => demo.title === activeControlKey.value) ??
-    props.demos[0];
-  if (!activeDemo) return { description: "", note: "" };
+const isSwitchOn = (demo: ConfigurationDemo) => {
+  const selectedValue = selectedValues.value[demo.title] ?? demo.defaultValue;
+  return selectedValue !== demo.defaultValue;
+};
 
-  const selectedValue = selectedValues.value[activeDemo.title] ?? activeDemo.defaultValue;
-  const selectedOption = activeDemo.options.find((option) => option.value === selectedValue) ?? activeDemo.options[0];
+type SwitchChangeEvent = CustomEvent<{ checked: boolean }>;
 
-  return {
-    description: selectedOption?.description ?? activeDemo.description,
-    note: selectedOption?.note ?? "",
-  };
-});
+const handleSwitchChange = (demo: ConfigurationDemo, event: Event) => {
+  const checked = (event as SwitchChangeEvent).detail.checked;
+  const onValue = demo.options.find((opt) => opt.value !== demo.defaultValue)?.value;
+  const nextValue = checked ? onValue : demo.defaultValue;
+  if (!nextValue) return;
+  syncLinkedPlaygroundValues(demo.title, nextValue);
+};
 
 const activePreviewKey = computed(
   () =>
@@ -125,12 +122,33 @@ const handleExampleChange = (event: Event) => {
   activeControlKey.value = (event.target as HTMLSelectElement).value;
 };
 
-const handleDemoChange = (demoTitle: string, event: Event) => {
-  selectedValues.value = {
+const syncLinkedPlaygroundValues = (demoTitle: string, nextValue: string) => {
+  const nextValues = {
     ...selectedValues.value,
-    [demoTitle]: (event.target as HTMLSelectElement).value,
+    [demoTitle]: nextValue,
   };
+
+  if (props.title === "Breadcrumb") {
+    if (demoTitle === "Overflow") {
+      if (nextValue === "on") {
+        nextValues["Number of links"] = "5";
+      } else {
+        const currentCount = Number(selectedValues.value["Number of links"] ?? nextValues["Number of links"] ?? "4");
+        nextValues["Number of links"] = currentCount >= 5 ? "4" : String(currentCount || 4);
+      }
+    }
+
+    if (demoTitle === "Number of links") {
+      nextValues.Overflow = Number(nextValue) >= 5 ? "on" : "off";
+    }
+  }
+
+  selectedValues.value = nextValues;
   activeControlKey.value = demoTitle;
+};
+
+const handleDemoChange = (demoTitle: string, event: Event) => {
+  syncLinkedPlaygroundValues(demoTitle, (event.target as HTMLSelectElement).value);
 };
 
 onMounted(() => {
@@ -182,7 +200,7 @@ onBeforeUnmount(() => {
                 <select
                   :value="activeControlKey"
                   :aria-label="`${title} playground example`"
-                  class="sgds:box-border sgds:block sgds:h-10 sgds:w-full sgds:max-w-full sgds:appearance-none sgds:rounded-md sgds:border sgds:border-default sgds:bg-surface-default sgds:px-sm sgds:pr-[32px] sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-default sgds:outline-none focus:sgds:outline focus:sgds:outline-[var(--sgds-outline-focus)] focus:sgds:outline-offset-[var(--sgds-outline-offset-focus)]"
+                  class="sgds:box-border sgds:block sgds:h-[var(--sgds-dimension-40)] sgds:w-full sgds:max-w-full sgds:appearance-none sgds:rounded-md sgds:border sgds:border-default sgds:bg-surface-default sgds:px-sm sgds:pr-2-xl sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-default sgds:outline-none focus:sgds:outline focus:sgds:outline-[var(--sgds-outline-focus)] focus:sgds:outline-offset-[var(--sgds-outline-offset-focus)]"
                   @change="handleExampleChange"
                 >
                   <option
@@ -202,46 +220,50 @@ onBeforeUnmount(() => {
             </div>
 
             <template v-else>
-              <div
+              <template
                 v-for="demo in demos"
                 :key="demo.title"
-                class="sgds:flex sgds:flex-col sgds:gap-xs"
               >
-                <label class="sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-default">
+                <!-- Two-option demos render as a switch (y/n pattern) -->
+                <sgds-switch
+                  v-if="isBooleanDemo(demo)"
+                  size="sm"
+                  :checked="isSwitchOn(demo)"
+                  :aria-label="demo.controlLabel || `${title} ${demo.title}`"
+                  @sgds-change="handleSwitchChange(demo, $event)"
+                >
                   {{ demo.title }}
-                </label>
-                <div class="sgds:relative sgds:w-full">
-                  <select
-                    :value="selectedValues[demo.title]"
-                    :aria-label="demo.controlLabel || `${title} ${demo.title}`"
-                    class="sgds:box-border sgds:block sgds:h-10 sgds:w-full sgds:max-w-full sgds:appearance-none sgds:rounded-md sgds:border sgds:border-default sgds:bg-surface-default sgds:px-sm sgds:pr-[32px] sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-default sgds:outline-none focus:sgds:outline focus:sgds:outline-[var(--sgds-outline-focus)] focus:sgds:outline-offset-[var(--sgds-outline-offset-focus)]"
-                    @change="handleDemoChange(demo.title, $event)"
-                  >
-                    <option
-                      v-for="option in demo.options"
-                      :key="option.value"
-                      :value="option.value"
-                    >
-                      {{ option.label }}
-                    </option>
-                  </select>
-                  <sgds-icon
-                    name="chevron-down"
-                    size="sm"
-                    class="sgds:pointer-events-none sgds:absolute sgds:right-sm sgds:top-1/2 sgds:-translate-y-1/2 sgds:text-subtle"
-                  ></sgds-icon>
-                </div>
-              </div>
-            </template>
+                </sgds-switch>
 
-            <div v-if="activeSupportingText.description || activeSupportingText.note" class="sgds:flex sgds:flex-col sgds:gap-xs">
-              <p v-if="activeSupportingText.description" class="sgds:m-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle">
-                {{ activeSupportingText.description }}
-              </p>
-              <p v-if="activeSupportingText.note" class="sgds:m-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle">
-                {{ activeSupportingText.note }}
-              </p>
-            </div>
+                <!-- Multi-option demos render as a select -->
+                <div v-else class="sgds:flex sgds:flex-col sgds:gap-xs">
+                  <label class="sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-default">
+                    {{ demo.title }}
+                  </label>
+                  <div class="sgds:relative sgds:w-full">
+                    <select
+                      :value="selectedValues[demo.title]"
+                      :aria-label="demo.controlLabel || `${title} ${demo.title}`"
+                      class="sgds:box-border sgds:block sgds:h-[var(--sgds-dimension-40)] sgds:w-full sgds:max-w-full sgds:appearance-none sgds:rounded-md sgds:border sgds:border-default sgds:bg-surface-default sgds:px-sm sgds:pr-2-xl sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-default sgds:outline-none focus:sgds:outline focus:sgds:outline-[var(--sgds-outline-focus)] focus:sgds:outline-offset-[var(--sgds-outline-offset-focus)]"
+                      @change="handleDemoChange(demo.title, $event)"
+                    >
+                      <option
+                        v-for="option in demo.options"
+                        :key="option.value"
+                        :value="option.value"
+                      >
+                        {{ option.label }}
+                      </option>
+                    </select>
+                    <sgds-icon
+                      name="chevron-down"
+                      size="sm"
+                      class="sgds:pointer-events-none sgds:absolute sgds:right-sm sgds:top-1/2 sgds:-translate-y-1/2 sgds:text-subtle"
+                    ></sgds-icon>
+                  </div>
+                </div>
+              </template>
+            </template>
           </div>
         </div>
       </div>

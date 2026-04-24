@@ -78,6 +78,7 @@ const rawValueByDesignToken: Record<string, string> = {
   "sgds/danger/border-color-muted": "#F8D7D7",
   "sgds/danger/surface-default": "#CF2323",
   "sgds/danger/surface-muted": "#FCF1F1",
+  "sgds/dimension/256": "256px",
   "sgds/dimension/48": "48px",
   "sgds/dimension/96": "96px",
   "sgds/font-size/16": "16px",
@@ -268,6 +269,20 @@ const globalTokenGroups = computed(() => {
   if (currentPageKey.value === "alert") return [];
   return doc.value?.globalTokenGroups ?? [];
 });
+const structureGlobalTokenGroups = computed(() => [
+  ...semanticTokenGroups.value.map((group) => ({
+    title: group.title,
+    tokens: group.rows.map((row) => ({
+      category: row.category,
+      element: row.category ?? "",
+      property: row.name,
+      designToken: row.value,
+      rawValue: row.rawValue || resolveTokenRawValue(row.value),
+      mapKey: row.name,
+    })),
+  })),
+  ...globalTokenGroups.value,
+]);
 const customStructureKeys = ["accordion", "card", "button", "alert"];
 const hasCustomStructure = computed(() => customStructureKeys.includes(currentPageKey.value));
 const structureTokens = computed(() => (hasCustomStructure.value ? measurementTokens.value : []));
@@ -290,6 +305,9 @@ const structureTokenGroups = computed(() => {
   ];
 });
 const structurePreviewMarkup = computed(() => {
+  if (currentPageKey.value === "breadcrumb" && doc.value?.anatomyMarkup) {
+    return doc.value.anatomyMarkup;
+  }
   const first = measurementExamples.value[0];
   if (first && "markup" in first && first.markup) return first.markup;
   return "";
@@ -370,8 +388,12 @@ onBeforeUnmount(() => {
       <sgds-tab-panel name="design">
         <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-margin-5-xl)] sgds:pt-[var(--sgds-layout-gap-lg)]">
           <Section title="Purpose" gap="sgds:gap-[var(--sgds-gap-xl)]">
-            <div class="sgds:grid sgds:gap-layout-md sgds:grid-cols-3 sgds:max-sm:grid-cols-1">
-              <article v-for="card in doc.purposeCards" :key="card.title" class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:min-w-0 sgds:p-0">
+            <div class="sgds-grid">
+              <article
+                v-for="card in doc.purposeCards"
+                :key="card.title"
+                class="sgds-col-4 sgds-col-lg-4 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:min-w-0 sgds:p-0"
+              >
                 <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ card.title }}</h3>
                 <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ card.description }}</p>
               </article>
@@ -411,7 +433,7 @@ onBeforeUnmount(() => {
               :tokens="structureTokens"
               :token-groups="structureTokenGroups"
               :global-tokens="globalTokens"
-              :global-token-groups="globalTokenGroups"
+              :global-token-groups="structureGlobalTokenGroups"
             />
           </Section>
         </div>

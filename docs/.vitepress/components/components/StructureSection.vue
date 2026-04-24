@@ -38,11 +38,14 @@ const rootRef = ref<HTMLElement | null>(null);
 const previewShellRef = ref<HTMLElement | null>(null);
 const previewMarkupRef = ref<HTMLElement | null>(null);
 const hotspotRects = ref<Record<string, HotspotRect | null>>({});
-const structureKind = computed<"accordion" | "card" | "button" | "alert" | "generic">(() => {
+const breadcrumbGroupGapBands = ref<Array<{ left: number; top: number; width: number; height: number }>>([]);
+const breadcrumbIconBands = ref<Array<{ left: number; top: number; width: number; height: number }>>([]);
+const structureKind = computed<"accordion" | "card" | "button" | "alert" | "breadcrumb" | "generic">(() => {
   if (props.previewMarkup.includes("<sgds-accordion")) return "accordion";
   if (props.previewMarkup.includes("<sgds-card")) return "card";
   if (props.previewMarkup.includes("<sgds-button")) return "button";
   if (props.previewMarkup.includes("<sgds-alert")) return "alert";
+  if (props.previewMarkup.includes("<sgds-breadcrumb")) return "breadcrumb";
   return "generic";
 });
 const densityOptions = [
@@ -115,6 +118,22 @@ const genericTokenRows = computed(() => [
 const genericTokenMap = computed(() => new Map(
   genericTokenRows.value.map((token) => [token.mapKey || token.property, token]),
 ));
+
+const allStructureTokenRows = computed(() => [
+  ...props.tokens,
+  ...(props.tokenGroups?.flatMap((group) => group.tokens) ?? []),
+  ...(props.globalTokens ?? []),
+  ...(props.globalTokenGroups?.flatMap((group) => group.tokens) ?? []),
+]);
+
+const allStructureTokenMap = computed(() => new Map(
+  allStructureTokenRows.value.map((token) => [token.mapKey || token.property, token]),
+));
+
+const flattenedSemanticTokens = computed(() => [
+  ...(props.globalTokenGroups?.flatMap((group) => group.tokens) ?? []),
+  ...(props.globalTokens ?? []),
+]);
 
 const baseTokenTitle = computed(() => {
   if (structureKind.value === "card") return "sgds/card";
@@ -262,6 +281,18 @@ const activeAlertPaddingBands = computed(() => {
 const isAlertPaddingKey = (key: string) =>
   alertPaddingKeys.includes(key as (typeof alertPaddingKeys)[number]);
 
+const activeBreadcrumbGroupGapBands = computed(() =>
+  hoverKey.value === "group-gap" || selectedKeys.value.includes("group-gap")
+    ? breadcrumbGroupGapBands.value
+    : [],
+);
+
+const activeBreadcrumbIconBands = computed(() =>
+  hoverKey.value === "icon-color" || selectedKeys.value.includes("icon-color")
+    ? breadcrumbIconBands.value
+    : [],
+);
+
 
 const cardPaddingXHoverBands = computed(() => {
   if (structureKind.value !== "card") return [];
@@ -358,6 +389,14 @@ const isBorderOrColorOverlayKey = (key: string | null) =>
 const isSemanticTokenKey = (key: string | null) =>
   (structureKind.value === "alert" &&
     key === "border-color") ||
+  (structureKind.value === "breadcrumb" &&
+    [
+      "page-link-color",
+      "page-link-color-emphasis",
+      "current-page-color",
+      "overflow-bg",
+      "overflow-bg-hover",
+    ].includes(key || "")) ||
   key === "subtitle-color" ||
   key === "secondary-text-color" ||
   key === "link-color" ||
@@ -374,7 +413,17 @@ const getTooltipTagClass = (key: string | null) => [
   isSemanticTokenKey(key) ? "accordion-inspect-tooltip__tag--semantic" : "",
 ];
 
+// Structure hover-overlay tone rule — defines the single source of truth
+// for every overlay colour in the Structure tab. Keep this ordering stable
+// so downstream CSS continues to work:
+//   • "padding"  → blue  (accent)  — all padding-related tokens
+//   • "gap"      → purple           — every gap / spacing-between token
+//   • "semantic" → grey  (neutral) — link / subtitle / tinted-bg / etc.
+//   • "border"   → purple           — non-semantic border & colour tokens
+// Semantic is checked first so semantic colour tokens override the generic
+// colour fallback (which would otherwise classify them as "border").
 const getStructureTone = (key: string | null) => {
+  if (isSemanticTokenKey(key)) return "semantic";
   if (isPaddingOverlayKey(key)) return "padding";
   if (isGapOverlayKey(key)) return "gap";
   if (isBorderOrColorOverlayKey(key)) return "border";
@@ -382,6 +431,53 @@ const getStructureTone = (key: string | null) => {
 };
 
 const inspectMeta = computed<Record<string, InspectMeta>>(() => {
+  if (structureKind.value === "breadcrumb") {
+    return {
+      "icon-color": {
+        label: "icon-color",
+        value: tokenDisplay(allStructureTokenMap.value.get("icon-color")),
+        valueSuffix: tokenValue(allStructureTokenMap.value.get("icon-color")),
+        aria: "Inspect breadcrumb icon colour",
+      },
+      "group-gap": {
+        label: "group-gap",
+        value: tokenDisplay(allStructureTokenMap.value.get("group-gap")),
+        valueSuffix: tokenValue(allStructureTokenMap.value.get("group-gap")),
+        aria: "Inspect breadcrumb group gap",
+      },
+      "page-link-color": {
+        label: "page-link-color",
+        value: tokenDisplay(allStructureTokenMap.value.get("page-link-color")),
+        valueSuffix: tokenValue(allStructureTokenMap.value.get("page-link-color")),
+        aria: "Inspect breadcrumb page link colour",
+      },
+      "page-link-color-emphasis": {
+        label: "page-link-color-emphasis",
+        value: tokenDisplay(allStructureTokenMap.value.get("page-link-color-emphasis")),
+        valueSuffix: tokenValue(allStructureTokenMap.value.get("page-link-color-emphasis")),
+        aria: "Inspect breadcrumb page link emphasis colour",
+      },
+      "current-page-color": {
+        label: "current-page-color",
+        value: tokenDisplay(allStructureTokenMap.value.get("current-page-color")),
+        valueSuffix: tokenValue(allStructureTokenMap.value.get("current-page-color")),
+        aria: "Inspect breadcrumb current page colour",
+      },
+      "overflow-bg": {
+        label: "overflow-bg",
+        value: tokenDisplay(allStructureTokenMap.value.get("overflow-bg")),
+        valueSuffix: tokenValue(allStructureTokenMap.value.get("overflow-bg")),
+        aria: "Inspect breadcrumb overflow background",
+      },
+      "overflow-bg-hover": {
+        label: "overflow-bg-hover",
+        value: tokenDisplay(allStructureTokenMap.value.get("overflow-bg-hover")),
+        valueSuffix: tokenValue(allStructureTokenMap.value.get("overflow-bg-hover")),
+        aria: "Inspect breadcrumb overflow hover background",
+      },
+    };
+  }
+
   if (structureKind.value === "generic") {
     return Object.fromEntries(
       genericTokenRows.value.map((row) => {
@@ -795,7 +891,28 @@ const getRelatedRowKeys = (key: string) => {
   return [key];
 };
 
-const isRowActive = (key: string | null) => Boolean(key && selectedKeys.value.includes(key));
+// Cross-table design-token highlighting. Any row whose `designToken` value
+// matches the currently hovered/selected row's `designToken` lights up too —
+// this is what pairs up rows like `page-link-color` (component token) with
+// `sgds/link-color-default` (semantic token), or `title-color` and
+// `secondary-text-color` that both resolve to `sgds/body-color-default`.
+const activeDesignTokens = computed(() => {
+  const tokens = new Set<string>();
+  const collect = (key: string | null) => {
+    if (!key) return;
+    const row = allStructureTokenMap.value.get(key);
+    if (row?.designToken) tokens.add(row.designToken);
+  };
+  selectedKeys.value.forEach(collect);
+  collect(hoverKey.value);
+  return tokens;
+});
+
+const isRowActive = (key: string | null, designToken?: string | null) => {
+  if (key && selectedKeys.value.includes(key)) return true;
+  if (designToken && activeDesignTokens.value.has(designToken)) return true;
+  return false;
+};
 
 const syncAccordionForegroundLayers = () => {
   if (structureKind.value !== "accordion") return;
@@ -862,6 +979,10 @@ const measureHotspots = async () => {
     await customElements.whenDefined("sgds-button");
   } else if (structureKind.value === "alert") {
     await customElements.whenDefined("sgds-alert");
+  } else if (structureKind.value === "breadcrumb") {
+    await customElements.whenDefined("sgds-breadcrumb");
+    await customElements.whenDefined("sgds-breadcrumb-item");
+    await customElements.whenDefined("sgds-overflow-menu");
   } else {
     const rootElement = previewMarkupRef.value?.firstElementChild as HTMLElement | null;
     const tagName = rootElement?.tagName.toLowerCase();
@@ -873,6 +994,95 @@ const measureHotspots = async () => {
   const shell = previewShellRef.value;
   const root = previewMarkupRef.value;
   if (!shell || !root) return;
+
+  if (structureKind.value === "breadcrumb") {
+    const breadcrumb = root.querySelector("sgds-breadcrumb") as HTMLElement | null;
+    const breadcrumbRoot = breadcrumb?.shadowRoot;
+    const breadcrumbRow = breadcrumbRoot?.querySelector(".breadcrumb") as HTMLElement | null;
+    if (!breadcrumb || !breadcrumbRoot || !breadcrumbRow) return;
+
+    const rowRect = getRelativeRect(breadcrumbRow, shell);
+    const shellBounds = shell.getBoundingClientRect();
+    const items = Array.from(breadcrumbRoot.querySelectorAll("sgds-breadcrumb-item")) as HTMLElement[];
+    const orderedElements: HTMLElement[] = [];
+    const separatorElements: HTMLElement[] = [];
+
+    items.forEach((item) => {
+      const anchor = item.querySelector("a") as HTMLElement | null;
+      const overflowButton = item.querySelector("sgds-overflow-menu")?.shadowRoot?.querySelector(".overflow-btn") as HTMLElement | null;
+      const separator = item.shadowRoot?.querySelector(".separator svg") as HTMLElement | null;
+
+      if (overflowButton) {
+        orderedElements.push(overflowButton);
+      } else if (anchor) {
+        orderedElements.push(anchor);
+      }
+
+      if (separator) {
+        const rect = separator.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0) {
+          separatorElements.push(separator);
+          orderedElements.push(separator);
+        }
+      }
+    });
+
+    const sortedElements = orderedElements
+      .filter((element) => {
+        const rect = element.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0;
+      })
+      .sort((left, right) => left.getBoundingClientRect().left - right.getBoundingClientRect().left);
+
+    const gapBands = sortedElements.flatMap((element, index) => {
+      const next = sortedElements[index + 1];
+      if (!next) return [];
+
+      const currentBounds = element.getBoundingClientRect();
+      const nextBounds = next.getBoundingClientRect();
+      const width = Math.max(0, nextBounds.left - currentBounds.right);
+      if (width <= 0) return [];
+
+      return [{
+        left: currentBounds.right - shellBounds.left,
+        top: rowRect.top,
+        width,
+        height: rowRect.height,
+      }];
+    });
+
+    breadcrumbGroupGapBands.value = gapBands;
+    breadcrumbIconBands.value = separatorElements.map((separator) => {
+      const rect = getRelativeRect(separator, shell);
+      return {
+        left: rect.left,
+        top: rowRect.top,
+        width: rect.width,
+        height: rowRect.height,
+      };
+    });
+
+    const nextRects = Object.fromEntries(
+      Object.keys(inspectMeta.value).map((key) => [key, null]),
+    ) as Record<string, HotspotRect | null>;
+
+    if (gapBands.length) {
+      const left = Math.min(...gapBands.map((band) => band.left));
+      const right = Math.max(...gapBands.map((band) => band.left + band.width));
+      nextRects["group-gap"] = {
+        left,
+        top: rowRect.top,
+        width: right - left,
+        height: rowRect.height,
+      };
+    }
+
+    const iconRect = getUnionRect(separatorElements, shell);
+    if (iconRect) nextRects["icon-color"] = iconRect;
+
+    hotspotRects.value = nextRects;
+    return;
+  }
 
   if (structureKind.value === "generic") {
     const component = root.firstElementChild as HTMLElement | null;
@@ -1279,6 +1489,18 @@ const isActiveDensityGroup = (groupTitle?: string) =>
   structureKind.value === "accordion"
     ? groupTitle?.endsWith(`/${activeDensityId.value}`) ?? false
     : true;
+
+const getCollapsedCategory = (
+  rows: MeasurementTokenRow[],
+  row: MeasurementTokenRow,
+  index: number,
+) => {
+  const currentCategory = (row.category || row.element || "").trim();
+  if (!currentCategory) return "";
+  if (index === 0) return currentCategory;
+  const previousCategory = (rows[index - 1]?.category || rows[index - 1]?.element || "").trim();
+  return previousCategory === currentCategory ? "" : currentCategory;
+};
 </script>
 
 <template>
@@ -1321,6 +1543,8 @@ const isActiveDensityGroup = (groupTitle?: string) =>
           v-show="
             hotspotRects[key] &&
             !isBackgroundOverlayKey(key as string) &&
+            !(structureKind === 'breadcrumb' && key === 'icon-color') &&
+            !(structureKind === 'breadcrumb' && key === 'group-gap') &&
             !(structureKind === 'card' && ['padding-x', 'padding-y'].includes(key as string)) &&
             !(structureKind === 'accordion' && isAccordionPaddingKey(key as string)) &&
             !(structureKind === 'alert' && isAlertPaddingKey(key as string)) &&
@@ -1349,6 +1573,88 @@ const isActiveDensityGroup = (groupTitle?: string) =>
         >
           <span class="sgds:sr-only">{{ meta.aria }}</span>
         </button>
+
+        <template
+          v-if="structureKind === 'breadcrumb'"
+        >
+          <button
+            v-for="(band, index) in breadcrumbIconBands"
+            :key="`breadcrumb-icon-${index}`"
+            type="button"
+            class="accordion-inspect-padding-proxy"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+            @mouseenter="hoverKey = 'icon-color'"
+            @mouseleave="clearPreviewHover"
+            @focus="hoverKey = 'icon-color'"
+            @blur="clearPreviewHover"
+            @click="scrollToTableRow('icon-color')"
+            aria-label="Inspect breadcrumb icon colour"
+          >
+            <span class="sgds:sr-only">Inspect breadcrumb icon colour</span>
+          </button>
+
+          <button
+            v-for="(band, index) in breadcrumbGroupGapBands"
+            :key="`breadcrumb-group-gap-${index}`"
+            type="button"
+            class="accordion-inspect-padding-proxy"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+            @mouseenter="hoverKey = 'group-gap'"
+            @mouseleave="clearPreviewHover"
+            @focus="hoverKey = 'group-gap'"
+            @blur="clearPreviewHover"
+            @click="scrollToTableRow('group-gap')"
+            aria-label="Inspect breadcrumb group gap"
+          >
+            <span class="sgds:sr-only">Inspect breadcrumb group gap</span>
+          </button>
+        </template>
+
+        <div
+          v-if="activeBreadcrumbGroupGapBands.length"
+          class="accordion-inspect-padding-visual"
+          aria-hidden="true"
+        >
+          <div
+            v-for="(band, index) in activeBreadcrumbGroupGapBands"
+            :key="`breadcrumb-group-gap-visual-${index}`"
+            class="accordion-inspect-padding-visual__band accordion-inspect-padding-visual__band--gap"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+          ></div>
+        </div>
+
+        <div
+          v-if="activeBreadcrumbIconBands.length"
+          class="accordion-inspect-padding-visual"
+          aria-hidden="true"
+        >
+          <div
+            v-for="(band, index) in activeBreadcrumbIconBands"
+            :key="`breadcrumb-icon-visual-${index}`"
+            class="accordion-inspect-padding-visual__band accordion-inspect-padding-visual__band--semantic"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+          ></div>
+        </div>
 
         <template
           v-for="group in accordionPaddingHoverBandGroups"
@@ -1649,16 +1955,16 @@ const isActiveDensityGroup = (groupTitle?: string) =>
             <sgds-table-head>Value</sgds-table-head>
           </sgds-table-row>
           <sgds-table-row
-            v-for="row in tokens"
+            v-for="(row, index) in tokens"
             :key="`${row.element}-${row.property}-${row.designToken}`"
-            :class="isRowActive(row.mapKey || null) ? 'structure-row-active' : ''"
+            :class="[isRowActive(row.mapKey || null, row.designToken) ? 'structure-row-active' : '']"
             :data-structure-row-key="row.mapKey || null"
             :data-structure-tone="getStructureTone(row.mapKey || null)"
             tabindex="-1"
             @mouseenter="row.mapKey && !isBackgroundOverlayKey(row.mapKey) ? (hoverKey = row.mapKey) : null"
             @mouseleave="hoverKey = null"
           >
-            <sgds-table-cell>{{ row.element || row.category }}</sgds-table-cell>
+            <sgds-table-cell>{{ getCollapsedCategory(tokens, row, index) }}</sgds-table-cell>
             <sgds-table-cell>{{ row.property }}</sgds-table-cell>
             <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
             <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
@@ -1680,16 +1986,16 @@ const isActiveDensityGroup = (groupTitle?: string) =>
             <sgds-table-head>Value</sgds-table-head>
           </sgds-table-row>
           <sgds-table-row
-            v-for="row in group.tokens"
+            v-for="(row, index) in group.tokens"
             :key="`${group.title}-${row.property}-${row.designToken}`"
-            :class="isActiveDensityGroup(group.title) && isRowActive(getRowMapKey(row, group.title)) ? 'structure-row-active' : ''"
+            :class="[isActiveDensityGroup(group.title) && isRowActive(getRowMapKey(row, group.title), row.designToken) ? 'structure-row-active' : '']"
             :data-structure-row-key="getRowMapKey(row, group.title) || null"
             :data-structure-tone="getStructureTone(getRowMapKey(row, group.title))"
             tabindex="-1"
             @mouseenter="isActiveDensityGroup(group.title) && getRowMapKey(row, group.title) && !isBackgroundOverlayKey(getRowMapKey(row, group.title)) ? (hoverKey = getRowMapKey(row, group.title)) : null"
             @mouseleave="hoverKey = null"
           >
-            <sgds-table-cell>{{ row.element || row.category }}</sgds-table-cell>
+            <sgds-table-cell>{{ getCollapsedCategory(group.tokens, row, index) }}</sgds-table-cell>
             <sgds-table-cell>{{ row.property }}</sgds-table-cell>
             <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
             <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
@@ -1698,57 +2004,25 @@ const isActiveDensityGroup = (groupTitle?: string) =>
       </div>
     </div>
 
-    <div v-if="globalTokens?.length || props.globalTokenGroups?.length" class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-sm)]">
+    <div v-if="flattenedSemanticTokens.length" class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-sm)]">
       <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Semantic tokens</h3>
-      <div
-        v-for="group in props.globalTokenGroups"
-        :key="group.title"
-        class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-sm)]"
-      >
-        <h5 class="sgds:m-0 sgds:text-heading-xs sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ group.title }}</h5>
-        <sgds-table tableBorder headerBackground responsive="always">
-          <sgds-table-row>
-            <sgds-table-head>Category</sgds-table-head>
-            <sgds-table-head>Element</sgds-table-head>
-            <sgds-table-head>Semantic token</sgds-table-head>
-            <sgds-table-head>Value</sgds-table-head>
-          </sgds-table-row>
-          <sgds-table-row
-            v-for="row in group.tokens"
-            :key="`global-group-${group.title}-${row.property}-${row.designToken}`"
-            :class="isRowActive(row.mapKey || null) ? 'structure-row-active' : ''"
-            :data-structure-row-key="row.mapKey || null"
-            :data-structure-tone="getStructureTone(row.mapKey || null)"
-            tabindex="-1"
-            @mouseenter="row.mapKey && !isBackgroundOverlayKey(row.mapKey) ? (hoverKey = row.mapKey) : null"
-            @mouseleave="hoverKey = null"
-          >
-            <sgds-table-cell>{{ row.category }}</sgds-table-cell>
-            <sgds-table-cell>{{ row.element }}</sgds-table-cell>
-            <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
-            <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
-          </sgds-table-row>
-        </sgds-table>
-      </div>
       <sgds-table tableBorder headerBackground responsive="always">
         <sgds-table-row>
           <sgds-table-head>Category</sgds-table-head>
-          <sgds-table-head>Element</sgds-table-head>
           <sgds-table-head>Semantic token</sgds-table-head>
           <sgds-table-head>Value</sgds-table-head>
         </sgds-table-row>
         <sgds-table-row
-          v-for="row in globalTokens"
-          :key="`global-${row.element}-${row.property}-${row.designToken}`"
-          :class="isRowActive(row.mapKey || null) ? 'structure-row-active' : ''"
+          v-for="(row, index) in flattenedSemanticTokens"
+          :key="`global-${row.element}-${row.property}-${row.designToken}-${index}`"
+          :class="[isRowActive(row.mapKey || null, row.designToken) ? 'structure-row-active' : '']"
           :data-structure-row-key="row.mapKey || null"
           :data-structure-tone="getStructureTone(row.mapKey || null)"
           tabindex="-1"
           @mouseenter="row.mapKey && !isBackgroundOverlayKey(row.mapKey) ? (hoverKey = row.mapKey) : null"
           @mouseleave="hoverKey = null"
         >
-          <sgds-table-cell>{{ row.category }}</sgds-table-cell>
-          <sgds-table-cell>{{ row.element || (row.mapKey === "link-color-emphasis" && isRowActive(row.mapKey) ? "Link" : "") }}</sgds-table-cell>
+          <sgds-table-cell>{{ getCollapsedCategory(flattenedSemanticTokens, row, index) }}</sgds-table-cell>
           <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
           <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
         </sgds-table-row>
@@ -1773,6 +2047,14 @@ sgds-table-row.structure-row-active[data-structure-tone="gap"] {
 
 sgds-table-row.structure-row-active[data-structure-tone="border"] {
   background: color-mix(in srgb, var(--sgds-purple-surface-muted) 52%, transparent);
+}
+
+sgds-table-row.structure-row-active[data-structure-tone="semantic"] {
+  background: color-mix(in srgb, var(--sgds-neutral-surface-muted) 52%, transparent);
+}
+
+sgds-table-row.structure-row-clickable {
+  cursor: pointer;
 }
 
 .structure-preview-markup > sgds-accordion {
@@ -1891,6 +2173,20 @@ sgds-table-row.structure-row-active[data-structure-tone="border"] {
   position: absolute;
 }
 
+/* Structure overlay tone modifiers — keep in sync with getStructureTone().
+   --gap: every gap / spacing-between overlay renders in purple.
+   --semantic: semantic colour tokens (icon-color, link-color, etc.) render
+   in grey so they visually separate from structural padding/gap overlays. */
+.accordion-inspect-padding-visual__band--gap {
+  background: color-mix(in srgb, var(--sgds-purple-surface-muted) 52%, transparent);
+  outline-color: var(--sgds-purple-border-color-default);
+}
+
+.accordion-inspect-padding-visual__band--semantic {
+  background: color-mix(in srgb, var(--sgds-neutral-surface-muted) 52%, transparent);
+  outline-color: var(--sgds-neutral-border-color-default);
+}
+
 .structure-demo-box[data-hover-key] .accordion-inspect-hotspot[aria-label^="Inspect component"][data-active="true"][data-structure-tone="padding"] {
   background: color-mix(in srgb, var(--sgds-accent-surface-muted) 52%, transparent);
   mix-blend-mode: multiply;
@@ -1922,6 +2218,13 @@ sgds-table-row.structure-row-active[data-structure-tone="border"] {
   background: color-mix(in srgb, var(--sgds-purple-surface-muted) 38%, transparent);
   mix-blend-mode: multiply;
   outline: 1px dashed var(--sgds-purple-border-color-default);
+  outline-offset: 0;
+}
+
+.structure-demo-box[data-hover-key] .accordion-inspect-hotspot[aria-label^="Inspect component"][data-active="true"][data-structure-tone="semantic"] {
+  background: color-mix(in srgb, var(--sgds-neutral-surface-muted) 46%, transparent);
+  mix-blend-mode: multiply;
+  outline: 1px dashed var(--sgds-neutral-border-color-default);
   outline-offset: 0;
 }
 

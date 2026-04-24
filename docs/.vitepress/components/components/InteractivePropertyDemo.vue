@@ -12,6 +12,17 @@ const activeValue = ref<string>(
   props.demo.defaultValue || props.demo.options[0]?.value || "",
 );
 
+// sgds-select emits `sgds-change` with the new value exposed on the element
+// itself (event.target.value). Mirror that into activeValue so the rest of
+// the demo (tabpanel visibility, state-effect application) reacts the same
+// way it does for the segmented control.
+const onSelectChange = (event: Event) => {
+  const target = event.target as HTMLElement & { value?: string };
+  if (typeof target.value === "string") {
+    activeValue.value = target.value;
+  }
+};
+
 const applyStateEffects = async () => {
   await nextTick();
   await customElements.whenDefined("sgds-accordion-item");
@@ -50,10 +61,33 @@ watch(activeValue, () => {
       <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ demo.description }}</p>
     </div>
 
-    <div class="interactive-demo sgds:flex sgds:flex-col sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-md sgds:py-component-xs sgds:gap-component-md">
+    <div class="interactive-demo sgds:flex sgds:flex-col sgds:min-h-[var(--sgds-dimension-320)] sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-md sgds:py-component-xs sgds:gap-component-md">
       <CardContentSlotsDemo v-if="demo.interactionMode === 'content-slots'" :demo="demo" />
       <template v-else>
+        <!-- Select variant: rendered when option count is too high for a
+             comfortable segmented control (see ConfigurationDemo.controlType).
+             Wrapped in a max-w container so the select stays compact and
+             left-aligned instead of stretching across the demo width. No
+             visible label — the aria-label carries the accessible name. -->
+        <div
+          v-if="demo.controlType === 'select'"
+          class="sgds:max-w-[var(--sgds-dimension-120)]"
+        >
+          <sgds-select
+            :value="activeValue"
+            :aria-label="demo.controlLabel || demo.title"
+            @sgds-change="onSelectChange"
+          >
+            <sgds-select-option
+              v-for="opt in demo.options"
+              :key="opt.value"
+              :value="opt.value"
+              :selected="opt.value === activeValue ? 'true' : undefined"
+            >{{ opt.label }}</sgds-select-option>
+          </sgds-select>
+        </div>
         <SegmentedControl
+          v-else
           v-model="activeValue"
           :options="demo.options"
           :aria-label="demo.controlLabel || demo.title"
@@ -64,18 +98,19 @@ watch(activeValue, () => {
           v-show="opt.value === activeValue"
           :key="opt.value"
           :data-state-effect="opt.stateEffect"
+          class="sgds:flex sgds:flex-1"
           role="tabpanel"
         >
-          <div class="sgds:flex sgds:flex-col sgds:gap-component-md">
-            <div class="sgds:flex sgds:items-center sgds:justify-center">
-              <div class="sgds:w-full sgds:max-w-[var(--sgds-dimension-640)] sgds:mx-auto">
+          <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
+            <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
+              <div class="sgds:w-full sgds:max-w-[var(--sgds-dimension-768)] sgds:mx-auto">
                 <div class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="opt.markup"></div>
               </div>
             </div>
-            <p v-if="opt.description" class="sgds:m-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle">
+            <p v-if="opt.description" class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               {{ opt.description }}
             </p>
-            <p v-if="opt.note" class="sgds:m-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle">
+            <p v-if="opt.note" class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               {{ opt.note }}
             </p>
           </div>
