@@ -50,10 +50,37 @@ const exampleOptions = computed(() =>
   })),
 );
 
+const buttonPlaygroundMarkup = computed(() => {
+  if (props.title !== "Button") return "";
+
+  const variant = selectedValues.value.Variants ?? "primary";
+  const tone = selectedValues.value.Tone ?? "brand";
+  const size = selectedValues.value.Size ?? "md";
+  const leadingIcon = selectedValues.value["Leading icon"] ?? "none";
+  const trailingIcon = selectedValues.value["Trailing icon"] ?? "none";
+
+  const variantAttr = variant === "primary" ? "" : ` variant="${variant}"`;
+  const toneAttr = tone === "brand" ? "" : ` tone="${tone}"`;
+  const sizeAttr = size === "md" ? "" : ` size="${size}"`;
+  const leftIconMarkup = leadingIcon === "leading"
+    ? `<sgds-icon slot="leftIcon" name="house"></sgds-icon>`
+    : "";
+  const rightIconMarkup = trailingIcon === "trailing"
+    ? `<sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon>`
+    : "";
+  const wrapperClass = tone === "fixed-light" ? "portal-demo-row portal-demo-row-inverse" : "portal-demo-row";
+
+  return `<div class="${wrapperClass}"><sgds-button${variantAttr}${toneAttr}${sizeAttr}>${leftIconMarkup}Button label${rightIconMarkup}</sgds-button></div>`;
+});
+
 const activeMarkup = computed(() => {
   if (singleOptionMode.value) {
     const selected = exampleOptions.value.find((option) => option.value === activeControlKey.value);
     return selected?.markup ?? exampleOptions.value[0]?.markup ?? "";
+  }
+
+  if (props.title === "Button") {
+    return buttonPlaygroundMarkup.value;
   }
 
   const activeDemo =
@@ -328,4 +355,5 @@ onBeforeUnmount(() => {
 .component-playground-markup sgds-alert-link {
   vertical-align: baseline;
 }
+
 </style>

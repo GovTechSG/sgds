@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import PortalNumberedItem from "./PortalNumberedItem.vue";
 import type { ThemedImageAsset, AnatomyCallout } from "../../data/component-docs";
 
@@ -43,6 +43,15 @@ const anatomyGroupOffset = ref<{ x: number; y: number }>({ x: 0, y: 0 });
 // as a single diagram.
 const anatomyScale = ref(1);
 let resizeObserver: ResizeObserver | null = null;
+
+const anatomyPartColumns = computed(() => {
+  const parts = props.resolvedAnatomyParts ?? [];
+  const midpoint = Math.ceil(parts.length / 2);
+  return [
+    parts.slice(0, midpoint),
+    parts.slice(midpoint),
+  ].filter((column) => column.length > 0);
+});
 
 const getPointOnRect = (
   rect: DOMRect,
@@ -309,13 +318,19 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="sgds:grid sgds:grid-cols-2 sgds:max-lg:grid-cols-1 sgds:gap-text-md">
-      <PortalNumberedItem
-        v-for="part in resolvedAnatomyParts"
-        :key="part.number"
-        :number="part.number"
-        :title="part.title"
-        :note="part.note"
-      />
+      <div
+        v-for="(column, columnIndex) in anatomyPartColumns"
+        :key="`anatomy-column-${columnIndex}`"
+        class="sgds:flex sgds:flex-col sgds:gap-text-md"
+      >
+        <PortalNumberedItem
+          v-for="part in column"
+          :key="part.number"
+          :number="part.number"
+          :title="part.title"
+          :note="part.note"
+        />
+      </div>
     </div>
   </div>
 </template>
