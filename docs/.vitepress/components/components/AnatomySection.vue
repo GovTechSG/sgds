@@ -399,6 +399,44 @@ const openAnatomyDropdowns = async () => {
       void open().then(() => updateCallouts());
     });
   }
+
+  const tooltips = Array.from(
+    root.querySelectorAll("sgds-tooltip") as NodeListOf<HTMLElement & {
+      open?: boolean;
+      show?: () => Promise<void> | void;
+      updateComplete?: Promise<unknown>;
+    }>,
+  );
+  for (const el of tooltips) {
+    await customElements.whenDefined(el.localName);
+    el.open = true;
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "tooltip-inline-anatomy",
+      `:host {
+         display: inline-flex !important;
+       }
+       .tooltip-placeholder {
+         align-items: center !important;
+         display: inline-flex !important;
+         justify-content: center !important;
+         max-width: none !important;
+       }
+       .tooltip-placeholder slot {
+         display: none !important;
+       }
+       .tooltip {
+         left: auto !important;
+         position: static !important;
+         top: auto !important;
+         visibility: visible !important;
+       }`,
+    );
+    if (typeof el.show === "function") {
+      try { await el.show(); } catch { /* noop */ }
+    }
+  }
   await nextTick();
   void updateCallouts();
 };

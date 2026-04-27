@@ -61,7 +61,7 @@ watch(activeValue, () => {
       <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ demo.description }}</p>
     </div>
 
-    <div class="interactive-demo sgds:flex sgds:flex-col sgds:min-h-[var(--sgds-dimension-320)] sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-md sgds:py-component-xs sgds:gap-component-md">
+    <div class="interactive-demo sgds:flex sgds:flex-col sgds:min-h-[var(--sgds-dimension-320)] sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-xs sgds:py-component-xs sgds:gap-component-md">
       <CardContentSlotsDemo v-if="demo.interactionMode === 'content-slots'" :demo="demo" />
       <template v-else>
         <!-- Select variant: rendered when option count is too high for a
@@ -107,10 +107,10 @@ watch(activeValue, () => {
                 <div class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="opt.markup"></div>
               </div>
             </div>
-            <p v-if="opt.description" class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+            <p v-if="opt.description" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               {{ opt.description }}
             </p>
-            <p v-if="opt.note" class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+            <p v-if="opt.note" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               {{ opt.note }}
             </p>
           </div>

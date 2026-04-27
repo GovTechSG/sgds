@@ -45,6 +45,7 @@ const breadcrumbIconBands = ref<Array<{ left: number; top: number; width: number
 // entry is a discrete band; hover proxies + visual overlays v-for over these.
 const buttonGapBands = ref<Array<{ left: number; top: number; width: number; height: number }>>([]);
 const isComboBoxStructure = computed(() => props.previewMarkup.includes("<sgds-combo-box"));
+const isTooltipStructure = computed(() => props.previewMarkup.includes("<sgds-tooltip"));
 const structureKind = computed<"accordion" | "card" | "button" | "alert" | "breadcrumb" | "generic">(() => {
   if (props.previewMarkup.includes("<sgds-accordion")) return "accordion";
   if (props.previewMarkup.includes("<sgds-card")) return "card";
@@ -375,6 +376,22 @@ const comboBoxBorderHoverBands = computed(() => {
   ];
 });
 
+const tooltipBorderHoverBands = computed(() => {
+  if (structureKind.value !== "generic" || !isTooltipStructure.value) return [];
+  const rect = hotspotRects.value["border-radius"];
+  if (!rect) return [];
+
+  const thickness = 6;
+  const verticalHeight = Math.max(0, rect.height - thickness * 2);
+
+  return [
+    { left: rect.left, top: rect.top, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + rect.height - thickness, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + thickness, width: thickness, height: verticalHeight },
+    { left: rect.left + rect.width - thickness, top: rect.top + thickness, width: thickness, height: verticalHeight },
+  ];
+});
+
 const DIMENSION_ANNOTATION_GUTTER = 8;
 const DIMENSION_ANNOTATION_WIDTH = 18;
 
@@ -599,6 +616,117 @@ const cardPaddingYHoverBands = computed(() => {
   return [
     ...(leftWidth > 0 ? [{ left: rect.left, top: rect.top, width: leftWidth, height: rect.height }] : []),
     ...(rightWidth > 0 ? [{ left: rightLeft, top: rect.top, width: rightWidth, height: rect.height }] : []),
+  ];
+});
+
+// Datepicker form-padding-x bands — left + right strips between the input
+// border and the DD/MM/YYYY text. Mirrors the card pattern: hide the surface
+// hotspot (which would tint the whole field) and draw only the padding strips.
+const datepickerFormPaddingXBands = computed(() => {
+  if (structureKind.value !== "generic") return [];
+  const rect = hotspotRects.value["form-padding-x"];
+  if (!rect || rect.insetLeft == null || rect.insetWidth == null) return [];
+
+  const leftWidth = Math.max(0, rect.insetLeft);
+  const rightLeft = rect.left + rect.insetLeft + rect.insetWidth;
+  const rightWidth = Math.max(0, rect.width - rect.insetLeft - rect.insetWidth);
+
+  return [
+    ...(leftWidth > 0 ? [{ left: rect.left, top: rect.top, width: leftWidth, height: rect.height }] : []),
+    ...(rightWidth > 0 ? [{ left: rightLeft, top: rect.top, width: rightWidth, height: rect.height }] : []),
+  ];
+});
+
+const tooltipPaddingXBands = computed(() => {
+  if (structureKind.value !== "generic" || !isTooltipStructure.value) return [];
+  const rect = hotspotRects.value["padding-x"];
+  if (!rect || rect.insetLeft == null || rect.insetWidth == null) return [];
+
+  const leftWidth = Math.max(0, rect.insetLeft);
+  const rightLeft = rect.left + rect.insetLeft + rect.insetWidth;
+  const rightWidth = Math.max(0, rect.width - rect.insetLeft - rect.insetWidth);
+
+  return [
+    ...(leftWidth > 0 ? [{ left: rect.left, top: rect.top, width: leftWidth, height: rect.height }] : []),
+    ...(rightWidth > 0 ? [{ left: rightLeft, top: rect.top, width: rightWidth, height: rect.height }] : []),
+  ];
+});
+
+const tooltipPaddingYBands = computed(() => {
+  if (structureKind.value !== "generic" || !isTooltipStructure.value) return [];
+  const rect = hotspotRects.value["padding-y"];
+  if (!rect || rect.insetTop == null || rect.insetHeight == null) return [];
+
+  const topHeight = Math.max(0, rect.insetTop);
+  const bottomTop = rect.top + rect.insetTop + rect.insetHeight;
+  const bottomHeight = Math.max(0, rect.height - rect.insetTop - rect.insetHeight);
+
+  return [
+    ...(topHeight > 0 ? [{ left: rect.left, top: rect.top, width: rect.width, height: topHeight }] : []),
+    ...(bottomHeight > 0 ? [{ left: rect.left, top: bottomTop, width: rect.width, height: bottomHeight }] : []),
+  ];
+});
+
+// Universal padding bands for all generic components — replaces the
+// full-surface hotspot with thin perimeter strips that highlight only the
+// padding region (top/bottom/left/right gaps between border and content).
+// Keyed by every padding token in the inspectMeta so the renderer can
+// iterate without hard-coding component-specific lists.
+const genericPaddingBandsByKey = computed(() => {
+  if (structureKind.value !== "generic") return {} as Record<string, ReturnType<typeof getPaddingBands>>;
+  const result: Record<string, ReturnType<typeof getPaddingBands>> = {};
+  Object.keys(inspectMeta.value).forEach((key) => {
+    if (!isPaddingOverlayKey(key)) return;
+    const bands = getPaddingBands(hotspotRects.value[key] ?? null);
+    if (bands.length) result[key] = bands;
+  });
+  return result;
+});
+
+const activeGenericPaddingBands = computed(() => {
+  if (structureKind.value !== "generic" || !hoverKey.value) return [];
+  return genericPaddingBandsByKey.value[hoverKey.value] ?? [];
+});
+
+// Universal border ring for generic components — thin perimeter ring (top,
+// bottom, left, right strips) that highlights only the border region,
+// matching the card/alert pattern. Picks any token whose key contains
+// "border-radius" or "border-width" so prefixed names like form-border-radius-md
+// or control-border-width also work.
+const isGenericBorderKey = (key: string | null) => {
+  if (!key) return false;
+  const lower = key;
+  return (
+    lower === "border-radius" ||
+    lower === "border-width" ||
+    lower.includes("border-radius") ||
+    lower.includes("border-width")
+  );
+};
+
+const genericBorderRectKey = computed<string | null>(() => {
+  if (structureKind.value !== "generic") return null;
+  const radiusKey = Object.keys(inspectMeta.value).find((key) => key.includes("border-radius"));
+  if (radiusKey && hotspotRects.value[radiusKey]) return radiusKey;
+  const widthKey = Object.keys(inspectMeta.value).find((key) => key.includes("border-width"));
+  if (widthKey && hotspotRects.value[widthKey]) return widthKey;
+  return null;
+});
+
+const genericBorderHoverBands = computed(() => {
+  const key = genericBorderRectKey.value;
+  if (!key) return [];
+  const rect = hotspotRects.value[key];
+  if (!rect) return [];
+
+  const thickness = 8;
+  const verticalHeight = Math.max(0, rect.height - thickness * 2);
+
+  return [
+    { left: rect.left, top: rect.top, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + rect.height - thickness, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + thickness, width: thickness, height: verticalHeight },
+    { left: rect.left + rect.width - thickness, top: rect.top + thickness, width: thickness, height: verticalHeight },
   ];
 });
 
@@ -1319,6 +1447,49 @@ const openStructureDropdowns = async () => {
       }
     }
   }
+
+  const tooltips = Array.from(
+    root.querySelectorAll("sgds-tooltip") as NodeListOf<HTMLElement & {
+      open?: boolean;
+      show?: () => Promise<void> | void;
+      updateComplete?: Promise<unknown>;
+    }>,
+  );
+
+  for (const el of tooltips) {
+    await customElements.whenDefined(el.localName);
+    el.open = true;
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "tooltip-inline-structure",
+      `:host {
+         display: inline-flex !important;
+       }
+       .tooltip-placeholder {
+         align-items: center !important;
+         display: inline-flex !important;
+         justify-content: center !important;
+         max-width: none !important;
+       }
+       .tooltip-placeholder slot {
+         display: none !important;
+       }
+       .tooltip {
+         left: auto !important;
+         position: static !important;
+         top: auto !important;
+         visibility: visible !important;
+       }`,
+    );
+    if (typeof el.show === "function") {
+      try {
+        await el.show();
+      } catch {
+        // noop
+      }
+    }
+  }
 };
 
 const getUnionRect = (elements: HTMLElement[], container: HTMLElement): HotspotRect | null => {
@@ -1620,26 +1791,101 @@ const measureHotspots = async () => {
       }
     }
 
-    // For datepicker, the form-padding-x token describes the input field's
-    // internal horizontal padding (between the DD/MM/YYYY text and the input
-    // border), not the datepicker host's padding. The bordered field is the
-    // .form-control-group inside the input shadow; the inner text area is the
-    // input.form-control element. Override the generic surface hotspot so the
-    // highlight wraps the field and the inset matches the inner text width.
-    if (component.tagName === "SGDS-DATEPICKER") {
-      const dpRoot = component.shadowRoot;
-      const dpInput = dpRoot?.querySelector("sgds-datepicker-input") as HTMLElement | null;
-      const fieldGroup = dpInput?.shadowRoot?.querySelector(".form-control-group") as HTMLElement | null;
-      const input = dpInput?.shadowRoot?.querySelector("input.form-control") as HTMLElement | null;
-      if (fieldGroup && input && "form-padding-x" in nextRects) {
-        const fieldRect = getRelativeRect(fieldGroup, shell);
-        const inputRect = getRelativeRect(input, shell);
-        nextRects["form-padding-x"] = {
-          ...fieldRect,
-          insetLeft: Math.max(0, inputRect.left - fieldRect.left),
+    // For SGDS form components (input, textarea, select, datepicker, etc.),
+    // the form-* tokens describe the internal field's properties — the
+    // bordered .form-control-group, not the host element. Resolve the field
+    // and inner control rect from the shadow DOM and override hotspots:
+    //   • form-padding-x → bands between control border and inner text edge
+    //   • form-padding-y → bands above/below the inner text
+    //   • form-border-radius / form-border-width → ring around the field
+    //   • form-height-* → the field's height
+    //   • form-outline-focus → ring outside the field
+    // This keeps every form component using the same band/ring rendering
+    // without per-component custom logic.
+    const findFormField = (host: HTMLElement): { field: HTMLElement | null; control: HTMLElement | null } => {
+      const root = host.shadowRoot;
+      if (!root) return { field: null, control: null };
+      // Datepicker projects its input through sgds-datepicker-input
+      const nestedInput = root.querySelector("sgds-datepicker-input") as HTMLElement | null;
+      const targetRoot = nestedInput?.shadowRoot ?? root;
+      const field = targetRoot.querySelector(".form-control-group") as HTMLElement | null;
+      const control =
+        (targetRoot.querySelector(".form-control") as HTMLElement | null) ||
+        (targetRoot.querySelector("input") as HTMLElement | null) ||
+        (targetRoot.querySelector("textarea") as HTMLElement | null) ||
+        (targetRoot.querySelector("select") as HTMLElement | null);
+      return { field, control };
+    };
+
+    const formField = findFormField(component);
+    if (formField.field) {
+      const fieldRect = getRelativeRect(formField.field, shell);
+      const controlRect = formField.control ? getRelativeRect(formField.control, shell) : fieldRect;
+
+      // Compute the inner text-content rect. For inputs the control sits
+      // inside the field with horizontal padding (.form-control-group
+      // padding); for textareas the .form-control-group equals the textarea
+      // itself, so the visible padding is the textarea's own CSS padding.
+      let textRect = controlRect;
+      const fieldHostsControl = formField.control && (
+        controlRect.width < fieldRect.width - 1 || controlRect.height < fieldRect.height - 1
+      );
+      if (formField.control && !fieldHostsControl) {
+        const cs = getComputedStyle(formField.control);
+        const pl = Number.parseFloat(cs.paddingLeft) || 0;
+        const pr = Number.parseFloat(cs.paddingRight) || 0;
+        const pt = Number.parseFloat(cs.paddingTop) || 0;
+        const pb = Number.parseFloat(cs.paddingBottom) || 0;
+        textRect = {
+          left: controlRect.left + pl,
+          top: controlRect.top + pt,
+          width: Math.max(0, controlRect.width - pl - pr),
+          height: Math.max(0, controlRect.height - pt - pb),
+        };
+      }
+
+      // Replace surface for all form-* tokens with the actual bordered field.
+      Object.keys(nextRects).forEach((key) => {
+        if (!key.startsWith("form-") && !key.startsWith("control-")) return;
+        if (isPaddingOverlayKey(key)) {
+          nextRects[key] = {
+            ...fieldRect,
+            insetLeft: Math.max(0, textRect.left - fieldRect.left),
+            insetTop: Math.max(0, textRect.top - fieldRect.top),
+            insetWidth: textRect.width,
+            insetHeight: textRect.height,
+          };
+        } else {
+          nextRects[key] = fieldRect;
+        }
+      });
+    }
+
+    if (isTooltipStructure.value) {
+      const tooltip = root.querySelector("sgds-tooltip") as HTMLElement | null;
+      const bubble = tooltip?.shadowRoot?.querySelector(".tooltip") as HTMLElement | null;
+
+      if (bubble) {
+        const bubbleRect = getRelativeRect(bubble, shell);
+        const bubbleStyles = getComputedStyle(bubble);
+        const paddingLeft = Number.parseFloat(bubbleStyles.paddingLeft || "0");
+        const paddingRight = Number.parseFloat(bubbleStyles.paddingRight || "0");
+        const paddingTop = Number.parseFloat(bubbleStyles.paddingTop || "0");
+        const paddingBottom = Number.parseFloat(bubbleStyles.paddingBottom || "0");
+
+        nextRects["padding-x"] = {
+          ...bubbleRect,
+          insetLeft: paddingLeft,
           insetTop: 0,
-          insetWidth: inputRect.width,
-          insetHeight: fieldRect.height,
+          insetWidth: Math.max(0, bubbleRect.width - paddingLeft - paddingRight),
+          insetHeight: bubbleRect.height,
+        };
+        nextRects["padding-y"] = {
+          ...bubbleRect,
+          insetLeft: 0,
+          insetTop: paddingTop,
+          insetWidth: bubbleRect.width,
+          insetHeight: Math.max(0, bubbleRect.height - paddingTop - paddingBottom),
         };
       }
     }
@@ -2089,7 +2335,7 @@ const getCollapsedCategory = (
 <template>
   <div ref="rootRef" class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
     <div
-      class="structure-demo-box sgds:flex sgds:flex-col sgds:gap-component-sm sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-visible sgds:min-h-[var(--sgds-dimension-288)] sgds:px-component-md sgds:py-component-sm"
+      class="structure-demo-box sgds:flex sgds:flex-col sgds:gap-component-sm sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-visible sgds:min-h-[var(--sgds-dimension-288)] sgds:px-component-xs sgds:py-component-sm"
       :data-hover-key="hoverKey || null"
       @mouseleave="clearPreviewHover"
     >
@@ -2131,6 +2377,10 @@ const getCollapsedCategory = (
             !(structureKind === 'breadcrumb' && key === 'icon-color') &&
             !(structureKind === 'breadcrumb' && key === 'group-gap') &&
             !(structureKind === 'card' && ['padding-x', 'padding-y'].includes(key as string)) &&
+            !(structureKind === 'generic' && isPaddingOverlayKey(key as string) && genericPaddingBandsByKey[key as string]?.length) &&
+            !(structureKind === 'generic' && isGenericBorderKey(key as string) && genericBorderRectKey === key) &&
+            !(isTooltipStructure && structureKind === 'generic' && ['padding-x', 'padding-y'].includes(key as string)) &&
+            !(isTooltipStructure && structureKind === 'generic' && key === 'border-radius') &&
             !(isComboBoxStructure && structureKind === 'generic' && key === 'border-width') &&
             !(structureKind === 'accordion' && isAccordionPaddingKey(key as string)) &&
             !(structureKind === 'alert' && isAlertPaddingKey(key as string)) &&
@@ -2403,6 +2653,163 @@ const getCollapsedCategory = (
           <span class="sgds:sr-only">Inspect card padding y</span>
         </button>
 
+        <!-- Universal generic-component padding bands. Replaces the
+             full-surface hotspot with thin perimeter strips for every padding
+             token in the inspectMeta. Mirrors the accordion/card pattern but
+             applies to every "generic" component automatically. -->
+        <template
+          v-for="(bands, key) in genericPaddingBandsByKey"
+          :key="`generic-padding-${key}`"
+        >
+          <button
+            v-for="(band, index) in bands"
+            :key="`generic-padding-${key}-band-${index}`"
+            type="button"
+            class="accordion-inspect-padding-proxy"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+            @mouseenter="hoverKey = key"
+            @mouseleave="clearPreviewHover"
+            @focus="hoverKey = key"
+            @blur="clearPreviewHover"
+            @click="scrollToTableRow(key as string)"
+            :aria-label="inspectMeta[key]?.aria || `Inspect component ${key}`"
+          >
+            <span class="sgds:sr-only">{{ inspectMeta[key]?.aria || `Inspect component ${key}` }}</span>
+          </button>
+        </template>
+
+        <div
+          v-if="activeGenericPaddingBands.length"
+          class="accordion-inspect-padding-visual"
+          aria-hidden="true"
+        >
+          <div
+            v-for="(band, index) in activeGenericPaddingBands"
+            :key="`generic-padding-visual-${index}`"
+            class="accordion-inspect-padding-visual__band"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+          ></div>
+        </div>
+
+        <!-- Universal generic-component border ring. Thin perimeter strips
+             that highlight only the border edge for any border-width or
+             border-radius token. Without this, hovering border tokens would
+             tint the entire surface. -->
+        <button
+          v-if="genericBorderRectKey"
+          v-for="(band, index) in genericBorderHoverBands"
+          :key="`generic-border-band-${index}`"
+          type="button"
+          class="accordion-inspect-border-proxy"
+          :style="{
+            left: `${band.left}px`,
+            top: `${band.top}px`,
+            width: `${band.width}px`,
+            height: `${band.height}px`,
+          }"
+          @mouseenter="hoverKey = genericBorderRectKey"
+          @mouseleave="clearPreviewHover"
+          @focus="hoverKey = genericBorderRectKey"
+          @blur="clearPreviewHover"
+          @click="genericBorderRectKey && scrollToTableRow(genericBorderRectKey)"
+          :aria-label="`Inspect component ${genericBorderRectKey}`"
+        >
+          <span class="sgds:sr-only">{{ `Inspect component ${genericBorderRectKey}` }}</span>
+        </button>
+
+        <div
+          v-if="genericBorderRectKey && hoverKey === genericBorderRectKey && hotspotRects[genericBorderRectKey]"
+          class="alert-inspect-border-visual"
+          aria-hidden="true"
+          :style="{
+            left: `${hotspotRects[genericBorderRectKey]?.left || 0}px`,
+            top: `${hotspotRects[genericBorderRectKey]?.top || 0}px`,
+            width: `${hotspotRects[genericBorderRectKey]?.width || 0}px`,
+            height: `${hotspotRects[genericBorderRectKey]?.height || 0}px`,
+          }"
+        ></div>
+
+        <button
+          v-for="(band, index) in tooltipPaddingXBands"
+          :key="`tooltip-padding-x-band-${index}`"
+          type="button"
+          class="accordion-inspect-padding-proxy"
+          :style="{
+            left: `${band.left}px`,
+            top: `${band.top}px`,
+            width: `${band.width}px`,
+            height: `${band.height}px`,
+          }"
+          @mouseenter="hoverKey = 'padding-x'"
+          @mouseleave="clearPreviewHover"
+          @focus="hoverKey = 'padding-x'"
+          @blur="clearPreviewHover"
+          @click="scrollToTableRow('padding-x')"
+          aria-label="Inspect tooltip padding x"
+        >
+          <span class="sgds:sr-only">Inspect tooltip padding x</span>
+        </button>
+
+        <button
+          v-for="(band, index) in tooltipPaddingYBands"
+          :key="`tooltip-padding-y-band-${index}`"
+          type="button"
+          class="accordion-inspect-padding-proxy"
+          :style="{
+            left: `${band.left}px`,
+            top: `${band.top}px`,
+            width: `${band.width}px`,
+            height: `${band.height}px`,
+          }"
+          @mouseenter="hoverKey = 'padding-y'"
+          @mouseleave="clearPreviewHover"
+          @focus="hoverKey = 'padding-y'"
+          @blur="clearPreviewHover"
+          @click="scrollToTableRow('padding-y')"
+          aria-label="Inspect tooltip padding y"
+        >
+          <span class="sgds:sr-only">Inspect tooltip padding y</span>
+        </button>
+
+        <div
+          v-if="isTooltipStructure && structureKind === 'generic' && (hoverKey === 'padding-x' || hoverKey === 'padding-y')"
+          class="accordion-inspect-padding-visual"
+          aria-hidden="true"
+        >
+          <div
+            v-for="(band, index) in tooltipPaddingXBands"
+            :key="`tooltip-padding-x-visual-${index}`"
+            class="accordion-inspect-padding-visual__band"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+          ></div>
+          <div
+            v-for="(band, index) in tooltipPaddingYBands"
+            :key="`tooltip-padding-y-visual-${index}`"
+            class="accordion-inspect-padding-visual__band"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+          ></div>
+        </div>
+
         <button
           v-for="(band, index) in cardBorderHoverBands"
           :key="`card-border-band-${index}`"
@@ -2506,6 +2913,27 @@ const getCollapsedCategory = (
           aria-label="Inspect combo box border"
         >
           <span class="sgds:sr-only">Inspect combo box border</span>
+        </button>
+
+        <button
+          v-for="(band, index) in tooltipBorderHoverBands"
+          :key="`tooltip-border-band-${index}`"
+          type="button"
+          class="accordion-inspect-border-proxy"
+          :style="{
+            left: `${band.left}px`,
+            top: `${band.top}px`,
+            width: `${band.width}px`,
+            height: `${band.height}px`,
+          }"
+          @mouseenter="hoverKey = 'border-radius'"
+          @mouseleave="clearPreviewHover"
+          @focus="hoverKey = 'border-radius'"
+          @blur="clearPreviewHover"
+          @click="scrollToTableRow('border-radius')"
+          aria-label="Inspect tooltip border radius"
+        >
+          <span class="sgds:sr-only">Inspect tooltip border radius</span>
         </button>
 
         <!-- Button gap hover proxies: one per void (leftIcon↔label,

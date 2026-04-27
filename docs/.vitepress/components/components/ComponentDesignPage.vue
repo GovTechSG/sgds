@@ -4,8 +4,6 @@ import Section from "../foundations/Section.vue";
 import AnatomySection from "./AnatomySection.vue";
 import BehaviourSection from "./BehaviourSection.vue";
 import InteractivePropertyDemo from "./InteractivePropertyDemo.vue";
-import AlertPlayground from "./AlertPlayground.vue";
-import ComponentPlayground from "./ComponentPlayground.vue";
 import StructureSection from "./StructureSection.vue";
 import BestPracticesSection from "./BestPracticesSection.vue";
 import MotionSection from "./MotionSection.vue";
@@ -473,14 +471,6 @@ onBeforeUnmount(() => {
             </div>
           </Section>
 
-          <Section title="Playground" gap="sgds:gap-[var(--sgds-gap-xl)]">
-            <template #title-suffix>
-              <sgds-badge variant="accent" outlined>BETA</sgds-badge>
-            </template>
-            <AlertPlayground v-if="currentPageKey === 'alert' && doc.alertPlayground" :content="doc.alertPlayground" />
-            <ComponentPlayground v-else :title="doc.title" :demos="configurationDemos" :size="doc.playgroundSize" />
-          </Section>
-
           <Section v-if="measurementExamples.length || measurementTokens.length || measurementTokenGroups.length || componentTokenGroups.length || semanticTokenGroups.length || globalTokens.length || globalTokenGroups.length" title="Structure">
             <StructureSection
               :preview-markup="structurePreviewMarkup"
@@ -807,26 +797,21 @@ onBeforeUnmount(() => {
 }
 
 .portal-tooltip-anatomy {
+  block-size: var(--sgds-dimension-192);
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--sgds-gap-md);
+  justify-content: center;
+  min-inline-size: var(--sgds-dimension-320);
 }
 
-.portal-tooltip-anatomy-bubble {
-  background: var(--sgds-surface-inverse);
-  border-radius: var(--sgds-border-radius-md);
-  color: var(--sgds-color-inverse);
-  font-size: var(--sgds-font-size-body-sm);
-  padding: var(--sgds-padding-2-xs) var(--sgds-padding-md);
+.portal-anatomy-tooltip-real {
+  display: inline-flex;
 }
 
-.portal-tooltip-anatomy-arrow {
-  background: var(--sgds-surface-inverse);
-  height: var(--sgds-dimension-8);
-  margin-top: calc(var(--sgds-dimension-4) * -1);
-  transform: rotate(45deg);
-  width: var(--sgds-dimension-8);
+.portal-anatomy-tooltip-anchor {
+  block-size: 0;
+  inline-size: 0;
+  overflow: hidden;
 }
 
 .portal-demo-nav {
