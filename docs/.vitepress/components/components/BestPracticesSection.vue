@@ -32,7 +32,7 @@ const bestPracticeRows = computed(() => {
     >
       <article v-if="row.do" :key="row.do.title" class="sgds:flex sgds:flex-col sgds:gap-component-sm sgds:h-full">
         <div :class="[
-          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
+          'sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
           compactSidePadding ? 'sgds:px-component-sm' : 'sgds:px-component-md',
         ]">
           <span
@@ -68,7 +68,7 @@ const bestPracticeRows = computed(() => {
 
       <article v-if="row.dont" :key="row.dont.title" class="sgds:flex sgds:flex-col sgds:gap-component-sm sgds:h-full">
         <div :class="[
-          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
+          'sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
           compactSidePadding ? 'sgds:px-component-sm' : 'sgds:px-component-md',
         ]">
           <span

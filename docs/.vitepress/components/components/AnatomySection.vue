@@ -42,6 +42,10 @@ const anatomyGroupOffset = ref<{ x: number; y: number }>({ x: 0, y: 0 });
 // reflowing internally and callouts overflowing, everything shrinks together
 // as a single diagram.
 const anatomyScale = ref(1);
+// Canvas grows to fit content when the markup + callouts are taller than the
+// default 320 px floor. Without this the dp anatomy mockup (~344 px) overflows
+// the canvas and visually escapes the demo box.
+const anatomyCanvasMinHeight = ref<number | null>(null);
 let resizeObserver: ResizeObserver | null = null;
 
 const anatomyPartColumns = computed(() => {
@@ -189,7 +193,10 @@ const updateCallouts = async () => {
   let maxY = -Infinity;
 
   if (markupEl) {
-    const markupRect = markupEl.getBoundingClientRect();
+    const measuredMarkupTarget = markupEl.children.length === 1
+      ? (markupEl.firstElementChild as HTMLElement | null) ?? markupEl
+      : markupEl;
+    const markupRect = measuredMarkupTarget.getBoundingClientRect();
     minX = Math.min(minX, markupRect.left - layerRect.left);
     maxX = Math.max(maxX, markupRect.right - layerRect.left);
     minY = Math.min(minY, markupRect.top - layerRect.top);
@@ -211,12 +218,30 @@ const updateCallouts = async () => {
   // callouts overflow. Never scale up.
   const naturalWidth = hasBounds ? maxX - minX : 0;
   const availableWidth = canvasRect.width;
+  // Skip the update when the canvas hasn't been laid out yet — measuring
+  // against a zero-width canvas collapses scale to 0 and leaves the diagram
+  // invisible until the next mutation. Restore the transition we suspended
+  // for measurement so future updates animate normally.
+  if (availableWidth <= 0) {
+    scaleLayer.style.transition = prevLayerTransition;
+    return;
+  }
   anatomyScale.value = naturalWidth > 0 && naturalWidth > availableWidth
     ? availableWidth / naturalWidth
     : 1;
 
-  const groupOffsetX = hasBounds ? layerRect.width / 2 - (minX + maxX) / 2 : 0;
-  const groupOffsetY = hasBounds ? layerRect.height / 2 - (minY + maxY) / 2 : 0;
+  const groupOffsetX = 0;
+  const groupOffsetY = 0;
+
+  // Grow the canvas to fit content + callouts when the natural height (after
+  // any width-based scaling) exceeds the 320 px default. Padding ensures the
+  // top/bottom badges aren't flush against the box edge. Below 320 px we keep
+  // the class-based min-h-320 floor by leaving the inline style unset.
+  const naturalHeight = hasBounds ? maxY - minY : 0;
+  const scaledHeight = naturalHeight * anatomyScale.value;
+  const verticalPadding = 80;
+  const computedMinHeight = scaledHeight > 0 ? Math.ceil(scaledHeight + verticalPadding) : 0;
+  anatomyCanvasMinHeight.value = computedMinHeight > 320 ? computedMinHeight : null;
 
   anatomyGroupOffset.value = { x: groupOffsetX, y: groupOffsetY };
   anatomyCalloutPositions.value = alignedPositions.map((position) => ({
@@ -233,8 +258,154 @@ const updateCallouts = async () => {
   scaleLayer.style.transition = prevLayerTransition;
 };
 
+// Inject CSS into a Lit element's shadow root. Used to override popover-style
+// rules (position: absolute, z-index, box-shadow) so the dropdown menus render
+// inline within anatomy diagrams instead of escaping the demo box.
+const injectShadowStyles = (host: HTMLElement, id: string, css: string) => {
+  const root = host.shadowRoot;
+  if (!root) return;
+  if (root.querySelector(`style[data-anatomy-style="${id}"]`)) return;
+  const style = document.createElement("style");
+  style.setAttribute("data-anatomy-style", id);
+  style.textContent = css;
+  root.appendChild(style);
+};
+
+// Components like sgds-combo-box and sgds-datepicker only show their dropdown
+// menu after a click interaction; for anatomy diagrams we need it open from
+// the start. We open the menu after any pending render + click events settle,
+// then re-open it on any subsequent close so it stays anchored open while the
+// user is on the anatomy view.
+const openAnatomyDropdowns = async () => {
+  await nextTick();
+  const root = anatomyCanvasRef.value;
+  if (!root) return;
+
+  // Datepickers — open the calendar and force its dropdown menu to render
+  // inline (position: relative, no shadow) so it sits inside the canvas.
+  const datepickers = Array.from(
+    root.querySelectorAll("sgds-datepicker") as NodeListOf<HTMLElement & {
+      showMenu?: () => Promise<void> | void;
+      hideMenu?: (isOutside?: boolean) => void;
+      menuIsOpen?: boolean;
+      updateComplete?: Promise<unknown>;
+      _handleClickOutOfElement?: (e: Event) => void;
+      _handleCloseMenu?: () => void;
+      _handleOpenMenu?: () => void;
+    }>,
+  );
+  for (const el of datepickers) {
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "datepicker-inline-menu",
+      `:host {
+         display: inline-block;
+         width: var(--sgds-dimension-320);
+       }
+       .datepicker-container {
+         flex-wrap: wrap !important;
+       }
+       :host([menuisopen]:not([disabled]):not([readonly])) .dropdown-menu {
+         position: relative !important;
+         inset: auto !important;
+         transform: none !important;
+         box-shadow: none !important;
+         border: var(--sgds-border-width-1) solid var(--sgds-border-color-default) !important;
+         margin-top: var(--sgds-margin-2-xs) !important;
+         z-index: auto !important;
+         max-height: none !important;
+         flex-basis: 100% !important;
+       }
+       .datepicker-input-container { pointer-events: none; }
+       sgds-icon-button { pointer-events: none; }`,
+    );
+    // Detach the document-level outside-click listener so the menu can't
+    // close when the user clicks elsewhere on the page (e.g. configuration
+    // demo controls). Without this, an outside click triggers hideMenu →
+    // input.focus() → page scrolls back to the anatomy section.
+    if (el._handleClickOutOfElement) {
+      document.removeEventListener("click", el._handleClickOutOfElement);
+    }
+    // Replace sgds-show / sgds-hide handlers that focus the input/calendar
+    // — those calls scroll the anatomy datepicker into view whenever any
+    // click on the page settles, hijacking the user's scroll position.
+    if (el._handleCloseMenu) {
+      el.removeEventListener("sgds-hide", el._handleCloseMenu as EventListener);
+    }
+    if (el._handleOpenMenu) {
+      el.removeEventListener("sgds-show", el._handleOpenMenu as EventListener);
+    }
+    // Make hideMenu a no-op so toggleMenu/keyboard escape can't close it
+    // either; the calendar must stay open for the anatomy diagram.
+    el.hideMenu = () => {};
+    const open = async () => {
+      if (typeof el.showMenu === "function" && !el.menuIsOpen) {
+        try { await el.showMenu(); } catch { /* noop */ }
+      }
+    };
+    // Wait one frame for any pending click-handler microtasks to settle
+    // before opening so our show isn't immediately undone.
+    await new Promise<void>((resolve) => setTimeout(resolve, 200));
+    await open();
+  }
+
+  const comboBoxes = Array.from(
+    root.querySelectorAll("sgds-combo-box") as NodeListOf<HTMLElement & {
+      showMenu?: () => Promise<void> | void;
+      menuIsOpen?: boolean;
+      displayValue?: string;
+      updateComplete?: Promise<unknown>;
+      shadowRoot?: ShadowRoot | null;
+    }>,
+  );
+  for (const el of comboBoxes) {
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    (el as HTMLElement & {
+      noFlip?: boolean;
+      drop?: string;
+      floatingOpts?: { placement?: string; middleware?: unknown[] };
+    }).noFlip = true;
+    (el as HTMLElement & { drop?: string }).drop = "down";
+    const displayValue = el.getAttribute("data-anatomy-display-value");
+    const waitForAfterShow = () =>
+      new Promise<void>((resolve) => {
+        const handleAfterShow = () => {
+          el.removeEventListener("sgds-after-show", handleAfterShow as EventListener);
+          resolve();
+        };
+        el.addEventListener("sgds-after-show", handleAfterShow as EventListener, { once: true });
+      });
+    const open = async () => {
+      if (typeof el.showMenu === "function" && !el.menuIsOpen) {
+        try {
+          const afterShow = waitForAfterShow();
+          await el.showMenu();
+          await afterShow;
+          await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+        } catch { /* noop */ }
+      }
+    };
+    await open();
+    if (displayValue) {
+      el.displayValue = displayValue;
+      await el.updateComplete;
+      const input = el.shadowRoot?.querySelector("input.form-control") as HTMLInputElement | null;
+      if (input) input.value = displayValue;
+    }
+    el.addEventListener("sgds-after-hide", () => {
+      void open().then(() => updateCallouts());
+    });
+  }
+  await nextTick();
+  void updateCallouts();
+};
+
 onMounted(() => {
   void updateCallouts();
+  void openAnatomyDropdowns();
 
   resizeObserver = new ResizeObserver(() => {
     void updateCallouts();
@@ -277,6 +448,7 @@ onBeforeUnmount(() => {
           v-else
           ref="anatomyCanvasRef"
           class="sgds:flex sgds:items-center sgds:justify-center sgds:mx-auto sgds:max-w-[var(--sgds-dimension-688)] sgds:min-h-[var(--sgds-dimension-320)] sgds:relative sgds:w-full"
+          :style="anatomyCanvasMinHeight ? { minHeight: `${anatomyCanvasMinHeight}px` } : undefined"
         >
           <div
             ref="anatomyScaleLayerRef"
@@ -284,7 +456,7 @@ onBeforeUnmount(() => {
             :style="{ transform: `scale(${anatomyScale})`, transformOrigin: 'center center' }"
           >
             <div
-              class="anatomy-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
+              class="anatomy-demo-markup sgds:inline-flex sgds:items-center sgds:justify-center sgds:min-w-0"
               :style="{ transform: `translate(${anatomyGroupOffset.x}px, ${anatomyGroupOffset.y}px)` }"
               v-html="anatomyPreviewMarkup"
             ></div>

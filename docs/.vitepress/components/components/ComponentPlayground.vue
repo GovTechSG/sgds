@@ -1,8 +1,16 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import type { ConfigurationDemo } from "../../data/component-docs";
 
 type PlaygroundSize = "extra-compact" | "compact" | "default" | "tall";
+
+type EditablePlaygroundField = {
+  key: string;
+  label: string;
+  defaultValue: string;
+  multiline: boolean;
+  maxLength: number;
+};
 
 const props = withDefaults(
   defineProps<{
@@ -31,6 +39,18 @@ const activeControlKey = ref("");
 
 const CONTROL_RAIL_MIN_WIDTH = 280;
 const CONTROL_RAIL_MAX_WIDTH = 420;
+const PLAYGROUND_TEXT_MAX_LENGTH = 120;
+const PLAYGROUND_TEXTAREA_MAX_LENGTH = 240;
+
+const EDITABLE_ATTRIBUTE_LABELS: Record<string, string> = {
+  content: "Content",
+  label: "Label",
+  placeholder: "Placeholder",
+  title: "Title",
+};
+
+const EDITABLE_ATTRIBUTE_NAMES = new Set(Object.keys(EDITABLE_ATTRIBUTE_LABELS));
+const SKIPPED_TEXT_TAGS = new Set(["SCRIPT", "STYLE", "SGDS-ICON"]);
 
 const singleOptionMode = computed(
   () => props.demos.length > 0 && props.demos.every((demo) => demo.options.length === 1),
@@ -49,6 +69,220 @@ const exampleOptions = computed(() =>
     note: demo.options[0]?.note,
   })),
 );
+
+const sanitisePlaygroundText = (value: string, maxLength: number, multiline: boolean) => {
+  const strippedControlChars = value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "");
+  const normalisedNewlines = strippedControlChars.replace(/\r\n?/g, "\n");
+  const flattened = multiline ? normalisedNewlines : normalisedNewlines.replace(/\n+/g, " ");
+  return flattened.slice(0, maxLength);
+};
+
+const toSentenceCase = (value: string) =>
+  value
+    .replace(/^sgds-/, "")
+    .replace(/-/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+
+const buildEditableFieldLabel = (baseLabel: string, counts: Map<string, number>) => {
+  const nextCount = (counts.get(baseLabel) ?? 0) + 1;
+  counts.set(baseLabel, nextCount);
+  return nextCount === 1 ? baseLabel : `${baseLabel} ${nextCount}`;
+};
+
+const getEditableFields = (markup: string) => {
+  if (!markup.trim() || typeof DOMParser === "undefined" || typeof Node === "undefined") return [] as EditablePlaygroundField[];
+
+  const document = new DOMParser().parseFromString(`<div data-playground-root>${markup}</div>`, "text/html");
+  const root = document.body.firstElementChild;
+  if (!root) return [] as EditablePlaygroundField[];
+
+  const fields: EditablePlaygroundField[] = [];
+  const labelCounts = new Map<string, number>();
+  let textIndex = 0;
+  let attributeIndex = 0;
+
+  const walk = (node: Node) => {
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      const element = node as Element;
+      const tagName = element.tagName.toUpperCase();
+      const readableTag = toSentenceCase(tagName.toLowerCase());
+
+      for (const attributeName of EDITABLE_ATTRIBUTE_NAMES) {
+        if (!element.hasAttribute(attributeName)) continue;
+        const defaultValue = element.getAttribute(attributeName)?.trim();
+        if (!defaultValue) continue;
+
+        const label = buildEditableFieldLabel(
+          `${readableTag} ${EDITABLE_ATTRIBUTE_LABELS[attributeName]}`,
+          labelCounts,
+        );
+
+        fields.push({
+          key: `attr-${attributeIndex}`,
+          label,
+          defaultValue,
+          multiline: attributeName === "content" && defaultValue.length > 80,
+          maxLength: attributeName === "content" ? PLAYGROUND_TEXTAREA_MAX_LENGTH : PLAYGROUND_TEXT_MAX_LENGTH,
+        });
+
+        attributeIndex += 1;
+      }
+    }
+
+    if (node.nodeType === Node.TEXT_NODE) {
+      const rawText = node.textContent ?? "";
+      const trimmedText = rawText.trim();
+      const parentElement = node.parentElement;
+
+      if (
+        !trimmedText
+        || !parentElement
+        || SKIPPED_TEXT_TAGS.has(parentElement.tagName.toUpperCase())
+      ) {
+        return;
+      }
+
+      const label = buildEditableFieldLabel(
+        `${toSentenceCase(parentElement.tagName.toLowerCase())} text`,
+        labelCounts,
+      );
+
+      fields.push({
+        key: `text-${textIndex}`,
+        label,
+        defaultValue: trimmedText,
+        multiline: trimmedText.includes("\n") || trimmedText.length > 80,
+        maxLength: trimmedText.includes("\n") || trimmedText.length > 80
+          ? PLAYGROUND_TEXTAREA_MAX_LENGTH
+          : PLAYGROUND_TEXT_MAX_LENGTH,
+      });
+
+      textIndex += 1;
+      return;
+    }
+
+    node.childNodes.forEach(walk);
+  };
+
+  root.childNodes.forEach(walk);
+  return fields;
+};
+
+const textOverrides = ref<Record<string, string>>({});
+
+const getTextOverrideScope = () =>
+  singleOptionMode.value
+    ? `${props.title}:${activeControlKey.value || "default"}`
+    : props.title;
+
+const getTextOverrideStorageKey = (fieldKey: string) =>
+  `${getTextOverrideScope()}:${fieldKey}`;
+
+const buildInlineEditableMarkup = (markup: string, fields: EditablePlaygroundField[], overrides: Record<string, string>) => {
+  if (!markup.trim() || typeof DOMParser === "undefined" || typeof Node === "undefined") return markup;
+
+  const document = new DOMParser().parseFromString(`<div data-playground-root>${markup}</div>`, "text/html");
+  const root = document.body.firstElementChild;
+  if (!root) return markup;
+
+  let textIndex = 0;
+  let attributeIndex = 0;
+
+  const walk = (node: Node) => {
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      const element = node as Element;
+
+      for (const attributeName of EDITABLE_ATTRIBUTE_NAMES) {
+        if (!element.hasAttribute(attributeName)) continue;
+
+        const field = fields.find((candidate) => candidate.key === `attr-${attributeIndex}`);
+        attributeIndex += 1;
+        if (!field) continue;
+
+        const override = overrides[getTextOverrideStorageKey(field.key)];
+        element.setAttribute(
+          attributeName,
+          sanitisePlaygroundText(
+            override ?? field.defaultValue,
+            field.maxLength,
+            false,
+          ),
+        );
+      }
+    }
+
+    if (node.nodeType === Node.TEXT_NODE) {
+      const parentElement = node.parentElement;
+      const rawText = node.textContent ?? "";
+      const trimmedText = rawText.trim();
+
+      if (
+        !trimmedText
+        || !parentElement
+        || SKIPPED_TEXT_TAGS.has(parentElement.tagName.toUpperCase())
+      ) {
+        return;
+      }
+
+      const field = fields.find((candidate) => candidate.key === `text-${textIndex}`);
+      textIndex += 1;
+      if (!field) return;
+
+      const override = overrides[getTextOverrideStorageKey(field.key)];
+      const leadingWhitespace = rawText.match(/^\s*/)?.[0] ?? "";
+      const trailingWhitespace = rawText.match(/\s*$/)?.[0] ?? "";
+      const editableValue = sanitisePlaygroundText(
+        override ?? field.defaultValue,
+        field.maxLength,
+        field.multiline,
+      );
+
+      const fragment = document.createDocumentFragment();
+      if (leadingWhitespace) {
+        fragment.append(document.createTextNode(leadingWhitespace));
+      }
+
+      const span = document.createElement("span");
+      span.setAttribute("data-playground-field-key", field.key);
+      span.setAttribute("contenteditable", "true");
+      span.setAttribute("spellcheck", "false");
+      span.setAttribute("tabindex", "0");
+      span.setAttribute("aria-label", `Edit ${field.label}`);
+      span.className = [
+        "sgds:inline-block",
+        "sgds:max-w-full",
+        "sgds:cursor-text",
+        "sgds:rounded-sm",
+        "sgds:outline-none",
+        "focus:sgds:bg-surface-default",
+        "focus:sgds:outline",
+        "focus:sgds:outline-[var(--sgds-outline-focus)]",
+        "focus:sgds:outline-offset-[var(--sgds-outline-offset-focus)]",
+      ].join(" ");
+
+      if (field.multiline) {
+        span.classList.add("sgds:whitespace-pre-line");
+      }
+
+      span.textContent = editableValue;
+      fragment.append(span);
+
+      if (trailingWhitespace) {
+        fragment.append(document.createTextNode(trailingWhitespace));
+      }
+
+      node.parentNode?.replaceChild(fragment, node);
+      return;
+    }
+
+    node.childNodes.forEach(walk);
+  };
+
+  root.childNodes.forEach(walk);
+  return root.innerHTML;
+};
 
 const buttonPlaygroundMarkup = computed(() => {
   if (props.title !== "Button") return "";
@@ -73,7 +307,7 @@ const buttonPlaygroundMarkup = computed(() => {
   return `<div class="${wrapperClass}"><sgds-button${variantAttr}${toneAttr}${sizeAttr}>${leftIconMarkup}Button label${rightIconMarkup}</sgds-button></div>`;
 });
 
-const activeMarkup = computed(() => {
+const baseActiveMarkup = computed(() => {
   if (singleOptionMode.value) {
     const selected = exampleOptions.value.find((option) => option.value === activeControlKey.value);
     return selected?.markup ?? exampleOptions.value[0]?.markup ?? "";
@@ -91,6 +325,32 @@ const activeMarkup = computed(() => {
   const selectedValue = selectedValues.value[activeDemo.title] ?? activeDemo.defaultValue;
   return activeDemo.options.find((option) => option.value === selectedValue)?.markup ?? activeDemo.options[0]?.markup ?? "";
 });
+
+const editableFields = computed(() => getEditableFields(baseActiveMarkup.value));
+
+watch(
+  editableFields,
+  (fields) => {
+    const nextOverrides = { ...textOverrides.value };
+
+    fields.forEach((field) => {
+      const storageKey = getTextOverrideStorageKey(field.key);
+      if (nextOverrides[storageKey] !== undefined) return;
+      nextOverrides[storageKey] = field.defaultValue;
+    });
+
+    textOverrides.value = nextOverrides;
+  },
+  { immediate: true },
+);
+
+const activeMarkup = computed(() =>
+  buildInlineEditableMarkup(baseActiveMarkup.value, editableFields.value, textOverrides.value),
+);
+
+const editableFieldsByKey = computed(() =>
+  new Map(editableFields.value.map((field) => [field.key, field])),
+);
 
 // Two-option demos (e.g. Static/Dismissible, No icon/With icon) render as a
 // switch instead of a select — the default value is the "off" state, the
@@ -178,6 +438,78 @@ const handleDemoChange = (demoTitle: string, event: Event) => {
   syncLinkedPlaygroundValues(demoTitle, (event.target as HTMLSelectElement).value);
 };
 
+const getEditableFieldFromTarget = (eventTarget: EventTarget | null) => {
+  if (!(eventTarget instanceof HTMLElement)) return null;
+  const fieldTarget = eventTarget.closest<HTMLElement>("[data-playground-field-key]");
+  if (!fieldTarget) return null;
+  const fieldKey = fieldTarget.dataset.playgroundFieldKey;
+  if (!fieldKey) return null;
+  const field = editableFieldsByKey.value.get(fieldKey);
+  if (!field) return null;
+  return { field, fieldTarget };
+};
+
+const updateInlineEditableText = (field: EditablePlaygroundField, fieldTarget: HTMLElement) => {
+  const sanitisedValue = sanitisePlaygroundText(
+    fieldTarget.textContent ?? "",
+    field.maxLength,
+    field.multiline,
+  );
+
+  fieldTarget.textContent = sanitisedValue;
+  textOverrides.value = {
+    ...textOverrides.value,
+    [getTextOverrideStorageKey(field.key)]: sanitisedValue,
+  };
+};
+
+const handlePreviewInput = (event: Event) => {
+  const editableField = getEditableFieldFromTarget(event.target);
+  if (!editableField) return;
+  updateInlineEditableText(editableField.field, editableField.fieldTarget);
+};
+
+const handlePreviewPaste = (event: ClipboardEvent) => {
+  const editableField = getEditableFieldFromTarget(event.target);
+  if (!editableField) return;
+
+  event.preventDefault();
+  const pastedText = event.clipboardData?.getData("text/plain") ?? "";
+  const selection = window.getSelection();
+  if (!selection?.rangeCount) return;
+
+  selection.deleteFromDocument();
+  selection.getRangeAt(0).insertNode(document.createTextNode(pastedText));
+  selection.collapseToEnd();
+
+  updateInlineEditableText(editableField.field, editableField.fieldTarget);
+};
+
+const handlePreviewBlur = (event: FocusEvent) => {
+  const editableField = getEditableFieldFromTarget(event.target);
+  if (!editableField) return;
+  updateInlineEditableText(editableField.field, editableField.fieldTarget);
+};
+
+const handlePreviewKeydown = (event: KeyboardEvent) => {
+  const editableField = getEditableFieldFromTarget(event.target);
+  if (!editableField) return;
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    const storedValue = textOverrides.value[getTextOverrideStorageKey(editableField.field.key)]
+      ?? editableField.field.defaultValue;
+    editableField.fieldTarget.textContent = storedValue;
+    editableField.fieldTarget.blur();
+    return;
+  }
+
+  if (!editableField.field.multiline && event.key === "Enter") {
+    event.preventDefault();
+    editableField.fieldTarget.blur();
+  }
+};
+
 onMounted(() => {
   syncLayoutMode();
   window.addEventListener("resize", syncLayoutMode);
@@ -203,7 +535,15 @@ onBeforeUnmount(() => {
     >
       <div :class="['sgds:min-w-0 sgds:flex sgds:items-center sgds:justify-center sgds:bg-alternate sgds:px-4-xl sgds:py-4-xl', sizeMinHeightClass]">
         <div class="sgds:w-full sgds:max-w-[560px]">
-          <div :key="activePreviewKey" class="component-playground-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="activeMarkup"></div>
+          <div
+            :key="activePreviewKey"
+            class="component-playground-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
+            v-html="activeMarkup"
+            @input="handlePreviewInput"
+            @paste="handlePreviewPaste"
+            @focusout="handlePreviewBlur"
+            @keydown="handlePreviewKeydown"
+          ></div>
         </div>
       </div>
 
@@ -219,6 +559,10 @@ onBeforeUnmount(() => {
 
         <div class="sgds:min-h-0 sgds:flex-1 sgds:overflow-y-auto sgds:px-xl sgds:py-2-xl sgds:max-xl:overflow-visible">
           <div class="sgds:flex sgds:flex-col sgds:gap-md">
+            <p v-if="editableFields.length" class="sgds:m-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle">
+              Click text in the preview to edit it inline.
+            </p>
+
             <div v-if="singleOptionMode" class="sgds:flex sgds:flex-col sgds:gap-xs">
               <label class="sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-default">
                 Example
@@ -291,6 +635,7 @@ onBeforeUnmount(() => {
                 </div>
               </template>
             </template>
+
           </div>
         </div>
       </div>
