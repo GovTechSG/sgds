@@ -44,6 +44,7 @@ const breadcrumbIconBands = ref<Array<{ left: number; top: number; width: number
 // label↔rightIcon) rather than one wide band across the whole label. Each
 // entry is a discrete band; hover proxies + visual overlays v-for over these.
 const buttonGapBands = ref<Array<{ left: number; top: number; width: number; height: number }>>([]);
+const isComboBoxStructure = computed(() => props.previewMarkup.includes("<sgds-combo-box"));
 const structureKind = computed<"accordion" | "card" | "button" | "alert" | "breadcrumb" | "generic">(() => {
   if (props.previewMarkup.includes("<sgds-accordion")) return "accordion";
   if (props.previewMarkup.includes("<sgds-card")) return "card";
@@ -52,12 +53,11 @@ const structureKind = computed<"accordion" | "card" | "button" | "alert" | "brea
   if (props.previewMarkup.includes("<sgds-breadcrumb")) return "breadcrumb";
   return "generic";
 });
-// Structure-tab size/density toggle. The segmented control is shared between
-// components that vary by density (accordion → default/compact/spacious) or by
-// size (button → xs/sm/md/lg). Config is derived from `structureKind` so the
-// same plumbing drives both: the segmented control options, the default
-// selection, the group-title suffix used to match the active token group, and
-// the attribute injected into the preview markup.
+// Structure-tab size/density toggle. When the Structure data includes grouped
+// measurement tokens (for example button sizes or accordion densities), we
+// surface them as a segmented control in the preview box. The control is
+// derived from the token-group title suffixes so the renderer can support more
+// components without new hardcoded options each time.
 type SizeToggleConfig = {
   options: { id: string; label: string }[];
   defaultId: string;
@@ -65,33 +65,66 @@ type SizeToggleConfig = {
   attributeName: string;
 };
 
-const sizeToggleConfig = computed<SizeToggleConfig | null>(() => {
-  if (structureKind.value === "accordion") {
-    return {
-      options: [
-        { id: "default", label: "Default" },
-        { id: "compact", label: "Compact" },
-        { id: "spacious", label: "Spacious" },
-      ],
-      defaultId: "default",
-      ariaLabel: "Accordion density",
-      attributeName: "density",
-    };
-  }
-  if (structureKind.value === "button") {
-    return {
-      options: [
-        { id: "xs", label: "Extra small" },
-        { id: "sm", label: "Small" },
-        { id: "md", label: "Medium" },
-        { id: "lg", label: "Large" },
-      ],
-      defaultId: "md",
-      ariaLabel: "Button size",
-      attributeName: "size",
-    };
-  }
+const structureVariantGroupIds = computed(() => {
+  const suffixes = (props.tokenGroups ?? [])
+    .map((group) => group.title.split("/").pop()?.trim() || "")
+    .filter(Boolean);
+  return Array.from(new Set(suffixes));
+});
+
+const structureVariantAttributeName = computed(() => {
+  if (structureKind.value === "accordion") return "density";
+  if (
+    props.previewMarkup.includes("<sgds-button") ||
+    props.previewMarkup.includes("<sgds-close-button") ||
+    props.previewMarkup.includes("<sgds-drawer") ||
+    props.previewMarkup.includes("<sgds-icon ") ||
+    props.previewMarkup.includes("<sgds-icon-button") ||
+    props.previewMarkup.includes("<sgds-icon-list") ||
+    props.previewMarkup.includes("<sgds-link") ||
+    props.previewMarkup.includes("<sgds-modal") ||
+    props.previewMarkup.includes("<sgds-overflow-menu") ||
+    props.previewMarkup.includes("<sgds-pagination") ||
+    props.previewMarkup.includes("<sgds-spinner") ||
+    props.previewMarkup.includes("<sgds-switch")
+  ) return "size";
   return null;
+});
+
+const structureVariantLabel = (id: string) => {
+  const labels: Record<string, string> = {
+    default: "Default",
+    compact: "Compact",
+    spacious: "Spacious",
+    xs: "Extra small",
+    sm: "Small",
+    md: "Medium",
+    lg: "Large",
+    xl: "Extra large",
+  };
+  return labels[id] ?? id.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
+};
+
+const sizeToggleConfig = computed<SizeToggleConfig | null>(() => {
+  const attributeName = structureVariantAttributeName.value;
+  const options = structureVariantGroupIds.value;
+  if (!attributeName || options.length <= 1) return null;
+
+  const defaultId = options.includes("default")
+    ? "default"
+    : options.includes("md")
+      ? "md"
+      : options[0];
+
+  const controlName = attributeName === "density" ? "density" : "size";
+  const componentLabel = props.previewMarkup.match(/<sgds-([a-z-]+)/)?.[1]?.replace(/-/g, " ") || "component";
+
+  return {
+    options: options.map((id) => ({ id, label: structureVariantLabel(id) })),
+    defaultId,
+    ariaLabel: `${componentLabel} ${controlName}`,
+    attributeName,
+  };
 });
 
 const activeDensityId = ref<string>(sizeToggleConfig.value?.defaultId ?? "default");
@@ -126,6 +159,25 @@ const activeDensityGroup = computed(
 );
 const tokenDisplay = (row?: MeasurementTokenRow) => row?.designToken || "—";
 const tokenValue = (row?: MeasurementTokenRow) => row?.rawValue || "—";
+const getDimensionFallbackLabel = (
+  key: string | null,
+  orientation: "height" | "width" | null = null,
+) => {
+  if (orientation === "height") return "Height varies";
+  if (orientation === "width") return "Width varies";
+  if (key?.includes("height")) return "Height varies";
+  if (key?.includes("width")) return "Width varies";
+  if (key === "min-width") return "Width varies";
+  return null;
+};
+const getStructureValue = (
+  row?: MeasurementTokenRow,
+  key: string | null = null,
+  orientation: "height" | "width" | null = null,
+) => {
+  if (row?.rawValue) return row.rawValue;
+  return getDimensionFallbackLabel(key, orientation) || "—";
+};
 
 const cardTokenMap = computed(() => new Map(
   (props.tokenGroups?.[0]?.tokens ?? []).map((token) => [token.mapKey || token.property, token]),
@@ -235,6 +287,7 @@ const tooltipStyle = computed(() => {
 
 const cardBorderHoverBands = computed(() => {
   if (structureKind.value !== "card") return [];
+  if (!isHoverableStructureKey("border-radius")) return [];
   const rect = hotspotRects.value["border-radius"] ?? hotspotRects.value["border-width"];
   if (!rect) return [];
 
@@ -252,6 +305,7 @@ const cardBorderHoverBands = computed(() => {
 
 const alertBorderHoverBands = computed(() => {
   if (structureKind.value !== "alert") return [];
+  if (!isHoverableStructureKey("border-radius")) return [];
   const rect = hotspotRects.value["border-radius"] ?? hotspotRects.value["border-width"];
   if (!rect) return [];
 
@@ -274,6 +328,7 @@ const alertBorderHoverBands = computed(() => {
 // the two stacked surface hotspots which each highlight a single token.
 const buttonBorderHoverBands = computed(() => {
   if (structureKind.value !== "button") return [];
+  if (!isHoverableStructureKey("border-width")) return [];
   const rect = hotspotRects.value["border-radius"] ?? hotspotRects.value["border-width"];
   if (!rect) return [];
 
@@ -288,6 +343,41 @@ const buttonBorderHoverBands = computed(() => {
   ];
 });
 
+const checkboxBorderHoverBands = computed(() => {
+  if (structureKind.value !== "generic") return [];
+  const rect = hotspotRects.value["control-border-radius"];
+  if (!rect) return [];
+
+  const thickness = 4;
+  const verticalHeight = Math.max(0, rect.height - thickness * 2);
+
+  return [
+    { left: rect.left, top: rect.top, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + rect.height - thickness, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + thickness, width: thickness, height: verticalHeight },
+    { left: rect.left + rect.width - thickness, top: rect.top + thickness, width: thickness, height: verticalHeight },
+  ];
+});
+
+const comboBoxBorderHoverBands = computed(() => {
+  if (structureKind.value !== "generic" || !isComboBoxStructure.value) return [];
+  const rect = hotspotRects.value["border-width"];
+  if (!rect) return [];
+
+  const thickness = 4;
+  const verticalHeight = Math.max(0, rect.height - thickness * 2);
+
+  return [
+    { left: rect.left, top: rect.top, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + rect.height - thickness, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + thickness, width: thickness, height: verticalHeight },
+    { left: rect.left + rect.width - thickness, top: rect.top + thickness, width: thickness, height: verticalHeight },
+  ];
+});
+
+const DIMENSION_ANNOTATION_GUTTER = 8;
+const DIMENSION_ANNOTATION_WIDTH = 18;
+
 // Static dimension annotations (height, min-width) rendered outside the
 // button's surface rect — Figma-style guide lines. These do not intercept
 // hover, so padding-x / typography hotspots under the button are accessible.
@@ -298,23 +388,94 @@ const buttonDimensionAnnotations = computed(() => {
   const rect = hotspotRects.value["background"];
   if (!rect) return null;
 
-  const heightLabel = tokenValue(buttonBaseTokenMap.value.get("height"));
-  const minWidthLabel = tokenValue(buttonBaseTokenMap.value.get("min-width"));
+  const heightLabel = getStructureValue(buttonBaseTokenMap.value.get("height"), "height", "height");
+  const minWidthLabel = getStructureValue(buttonBaseTokenMap.value.get("min-width"), "min-width", "width");
 
   return {
     height: {
       label: heightLabel,
-      left: rect.left + rect.width,
+      left: rect.left + rect.width + DIMENSION_ANNOTATION_GUTTER,
       top: rect.top,
       size: rect.height,
     },
     minWidth: {
       label: minWidthLabel,
       left: rect.left,
-      top: rect.top + rect.height,
+      top: rect.top + rect.height + DIMENSION_ANNOTATION_GUTTER,
       size: rect.width,
     },
   };
+});
+
+const getSizeAnnotationKeys = (key: string | null) => {
+  if (!key) return null;
+  if (key.includes("border-width")) {
+    return null;
+  }
+  if (key === "input-size") {
+    return { heightKey: key, widthKey: key };
+  }
+  if (key.includes("font-size") || key.includes("line-height")) {
+    return null;
+  }
+  if (key.includes("height")) {
+    return { heightKey: key, widthKey: null };
+  }
+  if (key.includes("width")) {
+    return { heightKey: null, widthKey: key };
+  }
+  if (key.includes("dimension") || key.endsWith("size") || key.includes("-size")) {
+    return { heightKey: key, widthKey: key };
+  }
+  return null;
+};
+
+const staticSizeAnnotations = computed(() => {
+  if (structureKind.value === "button") return null;
+  const annotations: Array<{
+    id: string;
+    orientation: "height" | "width";
+    labelPlacement?: "default" | "left";
+    label: string;
+    left: number;
+    top: number;
+    size: number;
+  }> = [];
+
+  Object.keys(hotspotRects.value).forEach((key) => {
+    const annotationKeys = getSizeAnnotationKeys(key);
+    const rect = hotspotRects.value[key];
+    if (!annotationKeys || !rect) return;
+
+    if (annotationKeys.heightKey) {
+      const heightLeft = structureKind.value === "generic" && key === "input-size"
+        ? rect.left - DIMENSION_ANNOTATION_WIDTH - DIMENSION_ANNOTATION_GUTTER
+        : rect.left + rect.width + DIMENSION_ANNOTATION_GUTTER;
+      annotations.push({
+        id: `${key}-height`,
+        orientation: "height",
+        labelPlacement: structureKind.value === "generic" && key === "input-size" ? "left" : "default",
+        label: getStructureValue(allStructureTokenMap.value.get(annotationKeys.heightKey), annotationKeys.heightKey, "height"),
+        left: heightLeft,
+        top: rect.top,
+        size: rect.height,
+      });
+    }
+
+    if (annotationKeys.widthKey) {
+      annotations.push({
+        id: `${key}-width`,
+        orientation: "width",
+        labelPlacement: "default",
+        label: getStructureValue(allStructureTokenMap.value.get(annotationKeys.widthKey), annotationKeys.widthKey, "width"),
+        left: rect.left,
+        top: rect.top + rect.height + DIMENSION_ANNOTATION_GUTTER,
+        size: rect.width,
+      });
+    }
+  });
+
+  return annotations;
 });
 
 const getPaddingBands = (rect: HotspotRect | null) => {
@@ -399,7 +560,7 @@ const activeBreadcrumbGroupGapBands = computed(() =>
 );
 
 const activeBreadcrumbIconBands = computed(() =>
-  hoverKey.value === "icon-color" || selectedKeys.value.includes("icon-color")
+  isHoverableStructureKey("icon-color") && (hoverKey.value === "icon-color" || selectedKeys.value.includes("icon-color"))
     ? breadcrumbIconBands.value
     : [],
 );
@@ -459,6 +620,21 @@ const isGapOverlayKey = (key: string | null) =>
   key === "title-gap" ||
   key === "subtitle-gap" ||
   key === "slot-gap";
+
+const isSizeOverlayKey = (key: string | null) =>
+  !key?.includes("border-width") &&
+  Boolean(
+    key?.includes("height") ||
+    key?.includes("width") ||
+    key?.includes("dimension") ||
+    key?.includes("size") ||
+    key?.includes("font-size") ||
+    key?.includes("line-height"),
+  ) ||
+  key === "min-width";
+
+const isControlBorderOverlayKey = (key: string | null) =>
+  key === "control-border-width" || key === "control-border-radius";
 
 const isBackgroundOverlayKey = (key: string | null) =>
   Boolean(
@@ -535,6 +711,7 @@ const getTooltipTagClass = (key: string | null) => [
 // so downstream CSS continues to work:
 //   • "padding"  → blue  (accent)  — all padding-related tokens
 //   • "gap"      → purple           — every gap / spacing-between token
+//   • "size"     → accent          — dimension / measurement annotations
 //   • "semantic" → grey  (neutral) — link / subtitle / tinted-bg / etc.
 //   • "border"   → purple           — non-semantic border & colour tokens
 // Semantic is checked first so semantic colour tokens override the generic
@@ -543,9 +720,17 @@ const getStructureTone = (key: string | null) => {
   if (isSemanticTokenKey(key)) return "semantic";
   if (isPaddingOverlayKey(key)) return "padding";
   if (isGapOverlayKey(key)) return "gap";
+  if (isSizeOverlayKey(key)) return "size";
   if (isBorderOrColorOverlayKey(key)) return "border";
   return "border";
 };
+
+const isHoverableStructureKey = (key: string | null) =>
+  isPaddingOverlayKey(key) ||
+  isGapOverlayKey(key) ||
+  key === "border-width" ||
+  key === "border-radius" ||
+  isControlBorderOverlayKey(key);
 
 const inspectMeta = computed<Record<string, InspectMeta>>(() => {
   if (structureKind.value === "breadcrumb") {
@@ -954,17 +1139,8 @@ const resolvedPreviewMarkup = computed(() => {
   const config = sizeToggleConfig.value;
   if (!config) return props.previewMarkup;
 
-  if (structureKind.value === "accordion") {
-    const densityAttribute = activeDensityId.value === config.defaultId ? "" : ` ${config.attributeName}="${activeDensityId.value}"`;
-    return props.previewMarkup.replace("<sgds-accordion", `<sgds-accordion${densityAttribute}`);
-  }
-
-  if (structureKind.value === "button") {
-    const sizeAttribute = activeDensityId.value === config.defaultId ? "" : ` ${config.attributeName}="${activeDensityId.value}"`;
-    return props.previewMarkup.replace("<sgds-button", `<sgds-button${sizeAttribute}`);
-  }
-
-  return props.previewMarkup;
+  const variantAttribute = activeDensityId.value === config.defaultId ? "" : ` ${config.attributeName}="${activeDensityId.value}"`;
+  return props.previewMarkup.replace(/<sgds-[a-z-]+/, (match) => `${match}${variantAttribute}`);
 });
 
 const clearPreviewHover = () => {
@@ -1073,6 +1249,78 @@ const syncAccordionForegroundLayers = () => {
   trailing.style.zIndex = "8";
 };
 
+const injectShadowStyles = (host: HTMLElement, id: string, css: string) => {
+  const root = host.shadowRoot;
+  if (!root) return;
+  if (root.querySelector(`style[data-structure-style="${id}"]`)) return;
+  const style = document.createElement("style");
+  style.setAttribute("data-structure-style", id);
+  style.textContent = css;
+  root.appendChild(style);
+};
+
+const openStructureDropdowns = async () => {
+  await nextTick();
+  const root = previewMarkupRef.value;
+  if (!root) return;
+
+  const comboBoxes = Array.from(
+    root.querySelectorAll("sgds-combo-box") as NodeListOf<HTMLElement & {
+      showMenu?: () => Promise<void> | void;
+      menuIsOpen?: boolean;
+      updateComplete?: Promise<unknown>;
+    }>,
+  );
+
+  for (const el of comboBoxes) {
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "combo-box-inline-menu",
+      `:host {
+         display: inline-block;
+         width: var(--sgds-dimension-560);
+       }
+       .form-control-container {
+         display: flex !important;
+         flex-wrap: wrap !important;
+         align-items: flex-start !important;
+       }
+       .dropdown-menu {
+         position: relative !important;
+         inset: auto !important;
+         transform: none !important;
+         box-shadow: var(--sgds-box-shadow-md) !important;
+         margin-top: var(--sgds-margin-2-xs) !important;
+         z-index: auto !important;
+         max-height: none !important;
+         flex-basis: 100% !important;
+         pointer-events: none !important;
+       }
+       input.form-control {
+         pointer-events: none !important;
+       }`,
+    );
+    const input = el.shadowRoot?.querySelector("input.form-control") as HTMLInputElement | null;
+    if (input) {
+      input.tabIndex = -1;
+      input.readOnly = true;
+      input.setAttribute("readonly", "");
+    }
+    (el as HTMLElement & { noFlip?: boolean; drop?: string }).noFlip = true;
+    (el as HTMLElement & { drop?: string }).drop = "down";
+    if (typeof el.showMenu === "function" && !el.menuIsOpen) {
+      try {
+        await el.showMenu();
+        await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+      } catch {
+        // noop
+      }
+    }
+  }
+};
+
 const getUnionRect = (elements: HTMLElement[], container: HTMLElement): HotspotRect | null => {
   if (!elements.length) return null;
   const containerBounds = container.getBoundingClientRect();
@@ -1136,6 +1384,8 @@ const measureHotspots = async () => {
       await customElements.whenDefined(tagName);
     }
   }
+
+  await openStructureDropdowns();
 
   const shell = previewShellRef.value;
   const root = previewMarkupRef.value;
@@ -1254,6 +1504,145 @@ const measureHotspots = async () => {
         return [key, nextRect];
       }),
     ) as Record<string, HotspotRect | null>;
+
+    // For checkbox-group, override the form-padding-inline-sm hotspot to
+    // highlight the actual vertical margin strip applied per checkbox row.
+    // SGDS sets `.form-check { margin: var(--sgds-form-padding-inline-sm) 0 }`
+    // on each <sgds-checkbox>, so the visible effect is a thin band above and
+    // below each row — not padding around the whole group. We point at the
+    // first checkbox as a representative example: surface = its host rect
+    // (which includes margin), content = its inner .form-check rect.
+    if (component.tagName === "SGDS-CHECKBOX-GROUP") {
+      const groupRoot = component.shadowRoot;
+      const labelHintContainer = groupRoot?.querySelector(".label-hint-container") as HTMLElement | null;
+      const checkboxContainer = groupRoot?.querySelector(".checkbox-container") as HTMLElement | null;
+      const firstCheckbox = component.querySelector("sgds-checkbox") as HTMLElement | null;
+      const firstFormCheck = firstCheckbox?.shadowRoot?.querySelector(".form-check") as HTMLElement | null;
+      const firstInput = firstCheckbox?.shadowRoot?.querySelector(".form-check-input") as HTMLElement | null;
+      const firstLabel = firstCheckbox?.shadowRoot?.querySelector(".form-check-label") as HTMLElement | null;
+      if (firstCheckbox && firstFormCheck) {
+        const hostRect = getRelativeRect(firstCheckbox, shell);
+        const innerRect = getRelativeRect(firstFormCheck, shell);
+        nextRects["form-padding-inline-sm"] = {
+          ...hostRect,
+          insetLeft: Math.max(0, innerRect.left - hostRect.left),
+          insetTop: Math.max(0, innerRect.top - hostRect.top),
+          insetWidth: innerRect.width,
+          insetHeight: innerRect.height,
+        };
+      }
+      if (firstInput) {
+        const inputRect = getRelativeRect(firstInput, shell);
+        nextRects["input-size"] = inputRect;
+        nextRects["control-border-width"] = inputRect;
+        nextRects["control-border-radius"] = inputRect;
+      }
+      if (firstInput && firstLabel && firstFormCheck) {
+        const inputBounds = firstInput.getBoundingClientRect();
+        const labelBounds = firstLabel.getBoundingClientRect();
+        const formCheckBounds = firstFormCheck.getBoundingClientRect();
+        const shellBounds = shell.getBoundingClientRect();
+        const computedGap = Number.parseFloat(getComputedStyle(firstFormCheck).columnGap || getComputedStyle(firstFormCheck).gap || "0");
+        const measuredWidth = Math.max(0, labelBounds.left - inputBounds.right);
+        const width = Math.max(measuredWidth, computedGap);
+        if (width > 0) {
+          nextRects["option-gap"] = {
+            left: inputBounds.right - shellBounds.left,
+            top: formCheckBounds.top - shellBounds.top,
+            width,
+            height: formCheckBounds.height,
+          };
+        }
+      }
+      if (labelHintContainer && checkboxContainer) {
+        const labelBounds = labelHintContainer.getBoundingClientRect();
+        const groupBounds = checkboxContainer.getBoundingClientRect();
+        const shellBounds = shell.getBoundingClientRect();
+        const height = Math.max(0, groupBounds.top - labelBounds.bottom);
+        if (height > 0) {
+          nextRects["group-gap"] = {
+            left: Math.min(labelBounds.left, groupBounds.left) - shellBounds.left,
+            top: labelBounds.bottom - shellBounds.top,
+            width: Math.max(labelBounds.right, groupBounds.right) - Math.min(labelBounds.left, groupBounds.left),
+            height,
+          };
+        }
+      }
+    }
+
+    if (component.tagName === "SGDS-COMBO-BOX") {
+      const comboRoot = component.shadowRoot;
+      const controlGroup = comboRoot?.querySelector(".form-control-group") as HTMLElement | null;
+      const inputContainer = comboRoot?.querySelector(".combobox-input-container") as HTMLElement | null;
+      const input = comboRoot?.querySelector("input.form-control") as HTMLElement | null;
+      const suffixIcon = comboRoot?.querySelector('sgds-icon[name="chevron-down"], sgds-icon[name="chevron-up"]') as HTMLElement | null;
+
+      nextRects["padding-y"] = null;
+
+      if (controlGroup) {
+        const controlRect = getRelativeRect(controlGroup, shell);
+        nextRects["height"] = controlRect;
+        nextRects["border-width"] = controlRect;
+        nextRects["border-radius"] = controlRect;
+
+        if (inputContainer && suffixIcon) {
+          const inputContainerBounds = inputContainer.getBoundingClientRect();
+          const suffixIconBounds = suffixIcon.getBoundingClientRect();
+          const shellBounds = shell.getBoundingClientRect();
+          const width = Math.max(0, suffixIconBounds.left - inputContainerBounds.right);
+          if (width > 0) {
+            const gapRect = {
+              left: inputContainerBounds.right - shellBounds.left,
+              top: controlRect.top,
+              width,
+              height: controlRect.height,
+            };
+            Object.keys(nextRects)
+              .filter((key) => key.includes("gap"))
+              .forEach((key) => {
+                nextRects[key] = gapRect;
+              });
+          }
+        }
+
+        if (input) {
+          const inputRect = getRelativeRect(input, shell);
+          if ("padding-x" in nextRects) {
+            nextRects["padding-x"] = {
+              ...controlRect,
+              insetLeft: Math.max(0, inputRect.left - controlRect.left),
+              insetTop: 0,
+              insetWidth: inputRect.width,
+              insetHeight: controlRect.height,
+            };
+          }
+        }
+      }
+    }
+
+    // For datepicker, the form-padding-x token describes the input field's
+    // internal horizontal padding (between the DD/MM/YYYY text and the input
+    // border), not the datepicker host's padding. The bordered field is the
+    // .form-control-group inside the input shadow; the inner text area is the
+    // input.form-control element. Override the generic surface hotspot so the
+    // highlight wraps the field and the inset matches the inner text width.
+    if (component.tagName === "SGDS-DATEPICKER") {
+      const dpRoot = component.shadowRoot;
+      const dpInput = dpRoot?.querySelector("sgds-datepicker-input") as HTMLElement | null;
+      const fieldGroup = dpInput?.shadowRoot?.querySelector(".form-control-group") as HTMLElement | null;
+      const input = dpInput?.shadowRoot?.querySelector("input.form-control") as HTMLElement | null;
+      if (fieldGroup && input && "form-padding-x" in nextRects) {
+        const fieldRect = getRelativeRect(fieldGroup, shell);
+        const inputRect = getRelativeRect(input, shell);
+        nextRects["form-padding-x"] = {
+          ...fieldRect,
+          insetLeft: Math.max(0, inputRect.left - fieldRect.left),
+          insetTop: 0,
+          insetWidth: inputRect.width,
+          insetHeight: fieldRect.height,
+        };
+      }
+    }
 
     hotspotRects.value = nextRects;
     return;
@@ -1736,10 +2125,13 @@ const getCollapsedCategory = (
           :key="key"
           v-show="
             hotspotRects[key] &&
+            isHoverableStructureKey(key as string) &&
             !isBackgroundOverlayKey(key as string) &&
+            !(structureKind === 'generic' && key === 'control-border-radius') &&
             !(structureKind === 'breadcrumb' && key === 'icon-color') &&
             !(structureKind === 'breadcrumb' && key === 'group-gap') &&
             !(structureKind === 'card' && ['padding-x', 'padding-y'].includes(key as string)) &&
+            !(isComboBoxStructure && structureKind === 'generic' && key === 'border-width') &&
             !(structureKind === 'accordion' && isAccordionPaddingKey(key as string)) &&
             !(structureKind === 'alert' && isAlertPaddingKey(key as string)) &&
             !(structureKind === 'alert' && ['border-color', 'border-width', 'border-radius'].includes(key as string)) &&
@@ -1773,6 +2165,7 @@ const getCollapsedCategory = (
           v-if="structureKind === 'breadcrumb'"
         >
           <button
+            v-if="isHoverableStructureKey('icon-color')"
             v-for="(band, index) in breadcrumbIconBands"
             :key="`breadcrumb-icon-${index}`"
             type="button"
@@ -2073,6 +2466,48 @@ const getCollapsedCategory = (
           <span class="sgds:sr-only">Inspect button border</span>
         </button>
 
+        <button
+          v-for="(band, index) in checkboxBorderHoverBands"
+          :key="`checkbox-border-band-${index}`"
+          type="button"
+          class="accordion-inspect-border-proxy"
+          :style="{
+            left: `${band.left}px`,
+            top: `${band.top}px`,
+            width: `${band.width}px`,
+            height: `${band.height}px`,
+          }"
+          @mouseenter="hoverKey = 'control-border-radius'"
+          @mouseleave="clearPreviewHover"
+          @focus="hoverKey = 'control-border-radius'"
+          @blur="clearPreviewHover"
+          @click="scrollToTableRow('control-border-radius')"
+          aria-label="Inspect checkbox border radius"
+        >
+          <span class="sgds:sr-only">Inspect checkbox border radius</span>
+        </button>
+
+        <button
+          v-for="(band, index) in comboBoxBorderHoverBands"
+          :key="`combo-box-border-band-${index}`"
+          type="button"
+          class="accordion-inspect-border-proxy"
+          :style="{
+            left: `${band.left}px`,
+            top: `${band.top}px`,
+            width: `${band.width}px`,
+            height: `${band.height}px`,
+          }"
+          @mouseenter="hoverKey = 'border-width'"
+          @mouseleave="clearPreviewHover"
+          @focus="hoverKey = 'border-width'"
+          @blur="clearPreviewHover"
+          @click="scrollToTableRow('border-width')"
+          aria-label="Inspect combo box border"
+        >
+          <span class="sgds:sr-only">Inspect combo box border</span>
+        </button>
+
         <!-- Button gap hover proxies: one per void (leftIcon↔label,
              label↔rightIcon). Each proxy sets hoverKey='gap' so the tooltip
              and token-row highlight still work through the shared inspect
@@ -2135,6 +2570,30 @@ const getCollapsedCategory = (
           }"
         ></div>
 
+        <div
+          v-if="structureKind === 'generic' && hoverKey === 'control-border-radius' && hotspotRects['control-border-radius']"
+          class="button-inspect-border-visual"
+          aria-hidden="true"
+          :style="{
+            left: `${hotspotRects['control-border-radius']?.left || 0}px`,
+            top: `${hotspotRects['control-border-radius']?.top || 0}px`,
+            width: `${hotspotRects['control-border-radius']?.width || 0}px`,
+            height: `${hotspotRects['control-border-radius']?.height || 0}px`,
+          }"
+        ></div>
+
+        <div
+          v-if="isComboBoxStructure && structureKind === 'generic' && hoverKey === 'border-width' && hotspotRects['border-width']"
+          class="button-inspect-border-visual"
+          aria-hidden="true"
+          :style="{
+            left: `${hotspotRects['border-width']?.left || 0}px`,
+            top: `${hotspotRects['border-width']?.top || 0}px`,
+            width: `${hotspotRects['border-width']?.width || 0}px`,
+            height: `${hotspotRects['border-width']?.height || 0}px`,
+          }"
+        ></div>
+
         <!-- Static dimension annotations for the button's height and
              min-width. Rendered outside the button surface (to the right for
              height, below for min-width) so the lines don't intercept the
@@ -2144,7 +2603,7 @@ const getCollapsedCategory = (
           <div
             class="accordion-inspect-annotation accordion-inspect-annotation--height"
             aria-hidden="true"
-            :data-active="['height'].includes(hoverKey || '') ? 'true' : null"
+            data-active="true"
             :style="{
               left: `${buttonDimensionAnnotations.height.left}px`,
               top: `${buttonDimensionAnnotations.height.top}px`,
@@ -2156,7 +2615,7 @@ const getCollapsedCategory = (
           <div
             class="accordion-inspect-annotation accordion-inspect-annotation--min-width"
             aria-hidden="true"
-            :data-active="['min-width'].includes(hoverKey || '') ? 'true' : null"
+            data-active="true"
             :style="{
               left: `${buttonDimensionAnnotations.minWidth.left}px`,
               top: `${buttonDimensionAnnotations.minWidth.top}px`,
@@ -2164,6 +2623,29 @@ const getCollapsedCategory = (
             }"
           >
             <span class="accordion-inspect-annotation__label">{{ buttonDimensionAnnotations.minWidth.label }}</span>
+          </div>
+        </template>
+
+        <template v-if="staticSizeAnnotations?.length">
+          <div
+            v-for="annotation in staticSizeAnnotations"
+            :key="annotation.id"
+            class="accordion-inspect-annotation"
+            :class="[
+              annotation.orientation === 'height' ? 'accordion-inspect-annotation--height' : 'accordion-inspect-annotation--min-width',
+              annotation.labelPlacement === 'left' ? 'accordion-inspect-annotation--label-left' : '',
+            ]"
+            aria-hidden="true"
+            data-active="true"
+            :style="{
+              left: `${annotation.left}px`,
+              top: `${annotation.top}px`,
+              ...(annotation.orientation === 'height'
+                ? { height: `${annotation.size}px` }
+                : { width: `${annotation.size}px` }),
+            }"
+          >
+            <span class="accordion-inspect-annotation__label">{{ annotation.label }}</span>
           </div>
         </template>
 
@@ -2271,13 +2753,13 @@ const getCollapsedCategory = (
             :data-structure-row-key="row.mapKey || null"
             :data-structure-tone="getStructureTone(row.mapKey || null)"
             tabindex="-1"
-            @mouseenter="row.mapKey && !isBackgroundOverlayKey(row.mapKey) ? (hoverKey = row.mapKey) : null"
+            @mouseenter="row.mapKey && isHoverableStructureKey(row.mapKey) && !isBackgroundOverlayKey(row.mapKey) ? (hoverKey = row.mapKey) : null"
             @mouseleave="hoverKey = null"
           >
             <sgds-table-cell>{{ getCollapsedCategory(tokens, row, index) }}</sgds-table-cell>
             <sgds-table-cell>{{ row.property }}</sgds-table-cell>
             <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
-            <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
+            <sgds-table-cell>{{ getStructureValue(row, row.mapKey || row.property) }}</sgds-table-cell>
           </sgds-table-row>
         </sgds-table>
       </div>
@@ -2302,13 +2784,13 @@ const getCollapsedCategory = (
             :data-structure-row-key="getRowMapKey(row, group.title) || null"
             :data-structure-tone="getStructureTone(getRowMapKey(row, group.title))"
             tabindex="-1"
-            @mouseenter="isActiveDensityGroup(group.title) && getRowMapKey(row, group.title) && !isBackgroundOverlayKey(getRowMapKey(row, group.title)) ? (hoverKey = getRowMapKey(row, group.title)) : null"
+            @mouseenter="isActiveDensityGroup(group.title) && getRowMapKey(row, group.title) && isHoverableStructureKey(getRowMapKey(row, group.title)) && !isBackgroundOverlayKey(getRowMapKey(row, group.title)) ? (hoverKey = getRowMapKey(row, group.title)) : null"
             @mouseleave="hoverKey = null"
           >
             <sgds-table-cell>{{ getCollapsedCategory(group.tokens, row, index) }}</sgds-table-cell>
             <sgds-table-cell>{{ row.property }}</sgds-table-cell>
             <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
-            <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
+            <sgds-table-cell>{{ getStructureValue(row, getRowMapKey(row, group.title)) }}</sgds-table-cell>
           </sgds-table-row>
         </sgds-table>
       </div>
@@ -2329,12 +2811,12 @@ const getCollapsedCategory = (
           :data-structure-row-key="row.mapKey || null"
           :data-structure-tone="getStructureTone(row.mapKey || null)"
           tabindex="-1"
-          @mouseenter="row.mapKey && !isBackgroundOverlayKey(row.mapKey) ? (hoverKey = row.mapKey) : null"
+          @mouseenter="row.mapKey && isHoverableStructureKey(row.mapKey) && !isBackgroundOverlayKey(row.mapKey) ? (hoverKey = row.mapKey) : null"
           @mouseleave="hoverKey = null"
         >
           <sgds-table-cell>{{ getCollapsedCategory(flattenedSemanticTokens, row, index) }}</sgds-table-cell>
           <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
-          <sgds-table-cell>{{ row.rawValue || "—" }}</sgds-table-cell>
+          <sgds-table-cell>{{ getStructureValue(row, row.mapKey || row.property) }}</sgds-table-cell>
         </sgds-table-row>
       </sgds-table>
     </div>
@@ -2352,6 +2834,10 @@ sgds-table-row.structure-row-active[data-structure-tone="padding"] {
 }
 
 sgds-table-row.structure-row-active[data-structure-tone="gap"] {
+  background: color-mix(in srgb, var(--sgds-purple-surface-muted) 52%, transparent);
+}
+
+sgds-table-row.structure-row-active[data-structure-tone="size"] {
   background: color-mix(in srgb, var(--sgds-purple-surface-muted) 52%, transparent);
 }
 
@@ -2483,6 +2969,7 @@ sgds-table-row.structure-row-clickable {
 .accordion-inspect-annotation__label {
   background: var(--sgds-purple-surface-default);
   border: 1px solid var(--sgds-purple-surface-default);
+  box-shadow: 0 0 0 2px var(--sgds-purple-surface-default);
   border-radius: 4px;
   color: var(--sgds-color-fixed-light);
   font-family: var(--sgds-font-family-mono, "JetBrains Mono", ui-monospace, monospace);
@@ -2492,6 +2979,7 @@ sgds-table-row.structure-row-clickable {
   padding: 2px 6px;
   position: absolute;
   white-space: nowrap;
+  z-index: 1;
 }
 
 /* Height annotation — vertical line sitting just to the right of the button.
@@ -2524,7 +3012,7 @@ sgds-table-row.structure-row-clickable {
   width: 9px;
 }
 .accordion-inspect-annotation--height .accordion-inspect-annotation__label {
-  left: 16px;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -2564,9 +3052,22 @@ sgds-table-row.structure-row-clickable {
   transform: translateX(-50%);
 }
 
+.accordion-inspect-annotation--min-width.accordion-inspect-annotation--label-left .accordion-inspect-annotation__label {
+  left: 0;
+  top: 16px;
+  transform: translateX(0);
+}
+
+.accordion-inspect-annotation--height.accordion-inspect-annotation--label-left .accordion-inspect-annotation__label {
+  left: -8px;
+  top: 50%;
+  transform: translate(-100%, -50%);
+}
+
 .accordion-inspect-annotation[data-active="true"] .accordion-inspect-annotation__label {
   background: var(--sgds-purple-surface-emphasis);
   border-color: var(--sgds-purple-surface-emphasis);
+  box-shadow: 0 0 0 2px var(--sgds-purple-surface-emphasis);
   color: var(--sgds-color-fixed-light);
 }
 
@@ -2624,6 +3125,11 @@ sgds-table-row.structure-row-clickable {
   mix-blend-mode: multiply;
   outline: 1px dashed var(--sgds-purple-border-color-default);
   outline-offset: 0;
+}
+
+.structure-demo-box[data-hover-key] .accordion-inspect-hotspot[aria-label^="Inspect component"][data-active="true"][data-structure-tone="size"] {
+  background: transparent;
+  outline: none;
 }
 
 .structure-demo-box[data-hover-key] .accordion-inspect-hotspot[aria-label^="Inspect component"][data-active="true"][data-structure-tone="border"] {

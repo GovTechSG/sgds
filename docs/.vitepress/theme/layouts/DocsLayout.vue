@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Content, withBase } from "vitepress";
-import { computed } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useData } from 'vitepress';
 import PageHeader from "../../components/page/PageHeader.vue";
 import DocFooter from "../../components/page/DocFooter.vue";
@@ -8,6 +8,7 @@ import { isDraft } from "../../utils/page-status";
 import { getComponentDoc, getComponentHeaderLinks } from "../../data/component-docs";
 
 const { theme, page } = useData()
+const mobileSideNavOpen = ref(false)
 const currentPath = computed(() =>
   `/${page.value.relativePath.replace(/\.md$/, '')}`
 )
@@ -127,13 +128,17 @@ const pageMetadata = computed(() => {
   return items;
 })
 
+watch(currentPath, () => {
+  mobileSideNavOpen.value = false
+})
+
 </script>
 
 <template>
   <div class="sgds:mb-[var(--sgds-margin-xl)]">
     <div class="sgds-grid">
       <aside
-        class="sgds-col-4 sgds-col-lg-3 sgds:pt-[var(--sgds-padding-xs)] sgds:pr-[var(--sgds-padding-2-xl)] sgds:pb-0 sgds:pl-0"
+        class="docs-layout-desktop-sidenav sgds-col-4 sgds-col-lg-3 sgds:pt-[var(--sgds-padding-xs)] sgds:pr-[var(--sgds-padding-2-xl)] sgds:pb-0 sgds:pl-0"
         v-if="currentSidebar.items.length"
       >
         <div>
@@ -186,6 +191,85 @@ const pageMetadata = computed(() => {
         </div>
       </aside>
       <div class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-9">
+        <div
+          v-if="currentSidebar.items.length"
+          class="docs-layout-mobile-sidenav-trigger sgds:mb-component-md"
+        >
+          <sgds-button
+            variant="outline"
+            tone="neutral"
+            @click="mobileSideNavOpen = true"
+          >
+            <sgds-icon slot="leftIcon" name="menu"></sgds-icon>
+            Browse {{ header }}
+          </sgds-button>
+        </div>
+
+        <sgds-drawer
+          v-if="currentSidebar.items.length"
+          class="docs-layout-mobile-sidenav"
+          placement="start"
+          size="sm"
+          :open="mobileSideNavOpen || null"
+          @sgds-request-close="mobileSideNavOpen = false"
+        >
+          <h2 slot="title" class="sgds:text-heading-md sgds:mb-0">
+            {{ header }}
+          </h2>
+          <div class="sgds:flex sgds:flex-col sgds:gap-component-sm">
+            <div
+              v-if="showHeaderBadge"
+              class="sgds:flex sgds:items-center"
+            >
+              <sgds-badge variant="accent" outlined>NEW</sgds-badge>
+            </div>
+            <sgds-sidenav>
+              <template
+                v-for="group in currentSidebar.items"
+                :key="group.text"
+              >
+                <sgds-sidenav-item v-if="group.items && group.items.length" :active="isSideNavGroupActive(group, currentPath) || null">
+                  <span slot="title">{{ formatSidebarLabel(group.text) }}</span>
+                  <template
+                    v-for="item in group.items"
+                    :key="item.link ?? item.text"
+                  >
+                    <sgds-sidenav-item v-if="item.items && item.items.length" :active="isSideNavGroupActive(item, currentPath) || null">
+                      <span slot="title">{{ formatSidebarLabel(item.text) }}</span>
+                      <template
+                        v-for="secondLevelItem in item.items"
+                        :key="secondLevelItem.link"
+                      >
+                        <sgds-sidenav-link :active="(currentPath === secondLevelItem.link) || null">
+                          <a
+                            :href="isDraft(group.text) ? undefined : withBase(secondLevelItem.link)"
+                            :class="isDraft(group.text) ? 'sgds:cursor-not-allowed' : ''"
+                            @click="mobileSideNavOpen = false"
+                          >
+                            {{ formatSidebarLabel(secondLevelItem.text) }}
+                          </a>
+                        </sgds-sidenav-link>
+                      </template>
+                    </sgds-sidenav-item>
+                    <sgds-sidenav-link v-else :active="(currentPath === item.link) || null">
+                      <a
+                        :href="isDraft(group.text) ? undefined : withBase(item.link)"
+                        :class="isDraft(group.text) ? 'sgds:cursor-not-allowed' : ''"
+                        @click="mobileSideNavOpen = false"
+                      >
+                        {{ formatSidebarLabel(item.text) }}
+                      </a>
+                    </sgds-sidenav-link>
+                  </template>
+                </sgds-sidenav-item>
+                <sgds-sidenav-item v-else :active="(currentPath === withBase(group.link)) || null">
+                  <a :href="withBase(group.link)" @click="mobileSideNavOpen = false">{{ formatSidebarLabel(group.text) }}</a>
+                </sgds-sidenav-item>
+              </template>
+            </sgds-sidenav>
+          </div>
+        </sgds-drawer>
+
         <PageHeader
           :title="page.title"
           :description="page.description"
@@ -218,5 +302,20 @@ const pageMetadata = computed(() => {
 .docs-layout-content-ai > * > * + h3,
 .docs-layout-content-ai > * > * + h4 {
   margin-top: var(--sgds-layout-gap-lg);
+}
+
+/* Temporary mobile sidenav trigger until SGDS ships an official mobile sidenav pattern */
+.docs-layout-mobile-sidenav-trigger {
+  display: none;
+}
+
+@media screen and (max-width: 1023px) {
+  .docs-layout-desktop-sidenav {
+    display: none;
+  }
+
+  .docs-layout-mobile-sidenav-trigger {
+    display: block;
+  }
 }
 </style>

@@ -117,10 +117,10 @@ const fallbackComponentTokensByKey: Record<string, string[]> = {
   breadcrumb: ["sgds/gap/xs", "sgds/color-default", "sgds/link-color-default", "sgds/link-color-emphasis"],
   button: ["sgds/padding/2-xs", "sgds/gap/none"],
   card: ["sgds/bg-translucent-subtle", "sgds/opacity/50"],
-  checkbox: ["sgds/border-color-transparent", "sgds/font-size/16", "sgds/font-weight/regular", "sgds/form/border-radius/md", "sgds/form/border-width/default", "sgds/form/color/default", "sgds/form/danger/surface/default", "sgds/form/gap/md", "sgds/form/gap/sm", "sgds/form/padding-inline/sm", "sgds/form/primary/surface/default", "sgds/form/primary/surface/emphasis", "sgds/opacity/50"],
+  checkbox: ["sgds/font-size/16", "sgds/font-weight/regular", "sgds/form/color/default", "sgds/form/gap/md", "sgds/form/gap/sm", "sgds/form/padding-inline/sm", "sgds/form/surface/default", "sgds/form/height/sm", "sgds/form/width/xs", "sgds/form/border-radius/md", "sgds/form/border-width/default", "sgds/form/border-width/thick", "sgds/border-color/default", "sgds/border-color/emphasis", "sgds/border-color/transparent", "sgds/form/outline/focus", "sgds/form/outline-offset/focus", "sgds/form/primary/surface/default", "sgds/form/primary/surface/emphasis", "sgds/form/danger/surface/default", "sgds/form/danger/border-color/default", "sgds/form/danger/color/default", "sgds/border-width/2", "sgds/opacity/50"],
   "close-button": ["sgds/border-color-transparent", "sgds/border-radius/sm", "sgds/border-width/1", "sgds/color-fixed-dark", "sgds/color-fixed-light", "sgds/icon-size/sm", "sgds/bg-translucent", "sgds/bg-transparent", "sgds/dimension/24", "sgds/dimension/32", "sgds/close-btn-border-radius", "sgds/outline-focus", "sgds/outline-offset-focus"],
-  "combo-box": ["sgds/gap/xs", "sgds/icon-size/md", "sgds/form/border-width/default", "sgds/form/padding/y", "sgds/dimension/48", "sgds/outline-focus", "sgds/outline-offset-focus"],
-  datepicker: ["sgds/font-size/14", "sgds/font-weight/semibold", "sgds/line-height/20", "sgds/line-height/24", "sgds/bg-translucent-subtle", "sgds/primary/surface/translucent", "sgds/form/border-radius/md", "sgds/form/border-radius/sm", "sgds/form/color/default", "sgds/form/color/fixed-light", "sgds/form/color/inverse", "sgds/form/gap/md", "sgds/form/gap/sm", "sgds/form/height/lg", "sgds/form/outline/focus", "sgds/form/padding/x", "sgds/form/padding/y"],
+  "combo-box": ["sgds/gap/xs", "sgds/icon-size/md", "sgds/form/border-width/default", "sgds/dimension/48", "sgds/outline-focus", "sgds/outline-offset-focus"],
+  datepicker: ["sgds/form/border-radius/md", "sgds/form/padding/x"],
   "description-list": ["sgds/padding/lg", "sgds/padding/xl", "sgds/gap/2-xl", "sgds/gap/2-xs", "sgds/gap/xs", "sgds/border-color-muted", "sgds/border-radius/md", "sgds/border-width/1", "sgds/font-size/16", "sgds/font-size/24", "sgds/font-weight/regular", "sgds/font-weight/semibold", "sgds/line-height/24", "sgds/line-height/32", "sgds/color-default", "sgds/color-subtle", "sgds/dimension/280"],
   divider: ["sgds/border-color-muted", "sgds/border-width/1", "sgds/border-width/2", "sgds/border-width/4"],
   drawer: ["sgds/padding/2-xl", "sgds/padding/lg", "sgds/padding/none", "sgds/gap/xs", "sgds/font-size/24", "sgds/color-default", "sgds/color-subtle", "sgds/surface-default", "sgds/bg-overlay", "sgds/dimension/512", "sgds/dimension/768", "sgds/dimension/1024"],
@@ -188,7 +188,7 @@ const tokenCategoryFromToken = (token: string) => {
 
 const componentTokenNameFromToken = (token: string) => token.replace(/^sgds\//, "").replace(/\//g, "-");
 
-const normaliseComponentTokenRows = (rows: Array<{ category?: string; name: string; value: string; rawValue?: string }>) => {
+const normaliseComponentTokenRows = (rows: Array<{ category?: string; name: string; value: string; rawValue?: string; mapKey?: string }>) => {
   let previousCategory = "";
   return rows.map((row) => {
     const resolvedCategory = row.category ?? tokenCategoryFromToken(row.value);
@@ -269,40 +269,94 @@ const globalTokenGroups = computed(() => {
   if (currentPageKey.value === "alert") return [];
   return doc.value?.globalTokenGroups ?? [];
 });
-const structureGlobalTokenGroups = computed(() => [
-  ...semanticTokenGroups.value.map((group) => ({
-    title: group.title,
-    tokens: group.rows.map((row) => ({
-      category: row.category,
-      element: row.category ?? "",
-      property: row.name,
-      designToken: row.value,
-      rawValue: row.rawValue || resolveTokenRawValue(row.value),
-      mapKey: row.name,
-    })),
-  })),
-  ...globalTokenGroups.value,
-]);
-const customStructureKeys = ["accordion", "card", "button", "alert"];
-const hasCustomStructure = computed(() => customStructureKeys.includes(currentPageKey.value));
-const structureTokens = computed(() => (hasCustomStructure.value ? measurementTokens.value : []));
-const structureTokenGroups = computed(() => {
-  if (hasCustomStructure.value) return measurementTokenGroups.value;
+type StructureFilterToken = {
+  category?: string;
+  element?: string;
+  property?: string;
+  designToken?: string;
+  value?: string;
+  name?: string;
+  mapKey?: string;
+};
+const shouldHideStructureToken = (token: StructureFilterToken) => {
+  const haystack = [
+    token.category,
+    token.element,
+    token.property,
+    token.designToken,
+    token.value,
+    token.name,
+    token.mapKey,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
 
+  if (haystack.includes("colour")) return true;
+  if (haystack.includes("color")) return true;
+  if (haystack.includes("surface")) return true;
+  if (haystack.includes("background")) return true;
+  if (haystack.includes("hover-bg")) return true;
+  if (haystack.includes("bg-")) return true;
+  if (haystack.includes("bg/")) return true;
+  if (haystack.includes("opacity/50")) return true;
+  return false;
+};
+const filterStructureTokens = (tokens: StructureFilterToken[]) =>
+  tokens.filter((token) => !shouldHideStructureToken(token));
+const structureGlobalTokenGroups = computed(() => {
   return [
-    ...componentTokenGroups.value.map((group) => ({
+    ...semanticTokenGroups.value.map((group) => ({
       title: group.title,
-      tokens: group.rows.map((row) => ({
+      tokens: filterStructureTokens(group.rows.map((row) => ({
         category: row.category,
         element: row.category ?? "",
         property: row.name,
         designToken: row.value,
         rawValue: row.rawValue || resolveTokenRawValue(row.value),
-        mapKey: row.name,
-      })),
+        mapKey: row.mapKey ?? row.name,
+      }))),
     })),
-    ...measurementTokenGroups.value,
-  ];
+    ...globalTokenGroups.value
+      .map((group) => ({
+        ...group,
+        tokens: filterStructureTokens(group.tokens),
+      }))
+      .filter((group) => group.tokens.length > 0),
+  ].filter((group) => group.tokens.length > 0);
+});
+const customStructureKeys = ["accordion", "card", "button", "alert"];
+const hasCustomStructure = computed(() => customStructureKeys.includes(currentPageKey.value));
+const structureTokens = computed(() => (hasCustomStructure.value ? filterStructureTokens(measurementTokens.value) : []));
+const structureTokenGroups = computed(() => {
+  if (hasCustomStructure.value) {
+    return measurementTokenGroups.value
+      .map((group) => ({
+        ...group,
+        tokens: filterStructureTokens(group.tokens),
+      }))
+      .filter((group) => group.tokens.length > 0);
+  }
+
+  return [
+    ...componentTokenGroups.value.map((group) => ({
+      title: group.title,
+      tokens: filterStructureTokens(group.rows.map((row) => ({
+        category: row.category,
+        element: row.category ?? "",
+        property: row.name,
+        designToken: row.value,
+        rawValue: row.rawValue || resolveTokenRawValue(row.value),
+        mapKey: row.mapKey ?? row.name,
+      }))),
+    })),
+    ...measurementTokenGroups.value
+      .map((group) => ({
+        ...group,
+        tokens: filterStructureTokens(group.tokens),
+      }))
+      .filter((group) => group.tokens.length > 0),
+  ].filter((group) => group.tokens.length > 0);
 });
 const structurePreviewMarkup = computed(() => {
   if (currentPageKey.value === "breadcrumb" && doc.value?.anatomyMarkup) {
@@ -525,6 +579,10 @@ onBeforeUnmount(() => {
   gap: var(--sgds-gap-sm);
 }
 
+.portal-demo-row-center {
+  justify-content: center;
+}
+
 /* Dark-background modifier for demos that showcase items designed to sit on
    inverse surfaces (e.g. the White badge variant). Pairs with .portal-demo-row. */
 .portal-demo-row-inverse {
@@ -556,6 +614,11 @@ onBeforeUnmount(() => {
   max-width: var(--sgds-dimension-360);
   margin-inline: auto;
   width: 100%;
+}
+
+.portal-demo-datepicker {
+  display: block;
+  width: var(--sgds-dimension-288);
 }
 
 .portal-slot-example {
@@ -676,6 +739,94 @@ onBeforeUnmount(() => {
   flex-wrap: wrap;
   gap: var(--sgds-gap-md);
   justify-content: flex-end;
+}
+
+/* Anatomy mockups for components whose `open` state portals their menu
+   outside the demo container. Static HTML keeps the entire anatomy inside
+   the demo box where callouts can target individual parts. */
+.portal-popover-anatomy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-gap-2-xs);
+  width: var(--sgds-dimension-280);
+}
+
+.portal-popover-anatomy-trigger {
+  align-items: center;
+  background: var(--sgds-surface-default);
+  border: var(--sgds-border-width-1) solid var(--sgds-border-color-default);
+  border-radius: var(--sgds-border-radius-md);
+  color: var(--sgds-color-subtle);
+  display: flex;
+  font-size: var(--sgds-font-size-body-md);
+  gap: var(--sgds-gap-md);
+  justify-content: space-between;
+  padding: var(--sgds-padding-sm) var(--sgds-padding-md);
+}
+
+.portal-popover-anatomy-listbox {
+  background: var(--sgds-surface-default);
+  border: var(--sgds-border-width-1) solid var(--sgds-border-color-default);
+  border-radius: var(--sgds-border-radius-md);
+  display: flex;
+  flex-direction: column;
+  padding: var(--sgds-padding-2-xs);
+}
+
+.portal-popover-anatomy-option {
+  border-radius: var(--sgds-border-radius-sm);
+  color: var(--sgds-color-default);
+  font-size: var(--sgds-font-size-body-md);
+  padding: var(--sgds-padding-sm) var(--sgds-padding-md);
+}
+
+/* Combo box anatomy uses the real web component; these descendant selectors
+   style only the light-DOM content passed into slotted option rows. */
+.portal-anatomy-combo-real {
+  display: block;
+  width: 15.75rem;
+}
+
+.portal-anatomy-combo-stage {
+  align-items: flex-start;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 17.5rem;
+  padding-top: 2.75rem;
+}
+
+.portal-anatomy-combo-option-label {
+  color: var(--sgds-color-default);
+  line-height: var(--sgds-line-height-xs);
+}
+
+.portal-anatomy-combo-option-secondary {
+  color: var(--sgds-color-subtle);
+  line-height: var(--sgds-line-height-2-xs);
+  margin-top: 0.125rem;
+}
+
+.portal-tooltip-anatomy {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sgds-gap-md);
+}
+
+.portal-tooltip-anatomy-bubble {
+  background: var(--sgds-surface-inverse);
+  border-radius: var(--sgds-border-radius-md);
+  color: var(--sgds-color-inverse);
+  font-size: var(--sgds-font-size-body-sm);
+  padding: var(--sgds-padding-2-xs) var(--sgds-padding-md);
+}
+
+.portal-tooltip-anatomy-arrow {
+  background: var(--sgds-surface-inverse);
+  height: var(--sgds-dimension-8);
+  margin-top: calc(var(--sgds-dimension-4) * -1);
+  transform: rotate(45deg);
+  width: var(--sgds-dimension-8);
 }
 
 .portal-demo-nav {

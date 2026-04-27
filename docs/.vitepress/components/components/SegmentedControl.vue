@@ -14,12 +14,7 @@ const emit = defineEmits<{
   (e: "change", value: string): void;
 }>();
 
-const wrapperRef = ref<HTMLElement | null>(null);
 const tablistRef = ref<HTMLElement | null>(null);
-const canScrollLeft = ref(false);
-const canScrollRight = ref(false);
-const showGestureHint = ref(false);
-const isCompactLayout = ref(false);
 
 const indicatorStyle = ref<Record<string, string>>({
   transform: "translate3d(0, 0, 0)",
@@ -41,20 +36,6 @@ const updateIndicator = () => {
     height: `${activeBtn.offsetHeight}px`,
     opacity: "1",
   };
-};
-
-// Scroll-state tracking for the overflow arrows. A small tolerance absorbs
-// sub-pixel rounding so arrows don't flicker at the extremes. On desktop the
-// control is inline-flex (no overflow), so scrollWidth === clientWidth and
-// both flags stay false — arrows never render.
-const updateScrollState = () => {
-  const tablist = tablistRef.value;
-  if (!tablist) return;
-  isCompactLayout.value = (wrapperRef.value?.clientWidth ?? tablist.clientWidth) <= 560;
-  const { scrollLeft, scrollWidth, clientWidth } = tablist;
-  canScrollLeft.value = scrollLeft > 1;
-  canScrollRight.value = scrollLeft + clientWidth < scrollWidth - 1;
-  showGestureHint.value = isCompactLayout.value && scrollWidth > clientWidth + 1;
 };
 
 // If the newly-active segment is partially (or fully) outside the scroll
@@ -79,11 +60,6 @@ const scrollActiveIntoView = () => {
   }
 };
 
-const refresh = () => {
-  updateIndicator();
-  updateScrollState();
-};
-
 let resizeObserver: ResizeObserver | null = null;
 
 const onSegmentClick = (value: string) => {
@@ -92,9 +68,9 @@ const onSegmentClick = (value: string) => {
 };
 
 onMounted(() => {
-  void nextTick(refresh);
+  void nextTick(updateIndicator);
   if (tablistRef.value && typeof ResizeObserver !== "undefined") {
-    resizeObserver = new ResizeObserver(refresh);
+    resizeObserver = new ResizeObserver(updateIndicator);
     resizeObserver.observe(tablistRef.value);
   }
 });
@@ -108,107 +84,70 @@ watch(() => props.modelValue, () => {
   void nextTick(() => {
     updateIndicator();
     scrollActiveIntoView();
-    updateScrollState();
   });
 });
 
 watch(() => props.options, () => {
-  void nextTick(refresh);
+  void nextTick(updateIndicator);
 }, { deep: true });
 </script>
 
 <template>
   <div
-    ref="wrapperRef"
-    class="segmented-wrapper sgds:relative sgds:w-full"
-    :class="{ 'segmented-wrapper-compact': isCompactLayout }"
+    ref="tablistRef"
+    class="segmented-control sgds:bg-default sgds:border sgds:border-muted sgds:rounded-md"
+    role="tablist"
+    :aria-label="ariaLabel"
   >
-    <div
-      ref="tablistRef"
-      class="segmented-control sgds:self-start sgds:bg-default sgds:border sgds:border-muted sgds:rounded-md"
-      role="tablist"
-      :aria-label="ariaLabel"
-      @scroll="updateScrollState"
-    >
-      <span
-        class="segmented-indicator"
-        aria-hidden="true"
-        :style="indicatorStyle"
-      ></span>
-      <button
-        v-for="opt in options"
-        :key="opt.value"
-        type="button"
-        class="segment"
-        :class="{ 'segment-active': opt.value === modelValue }"
-        :data-segment-value="opt.value"
-        role="tab"
-        :aria-selected="opt.value === modelValue ? 'true' : 'false'"
-        @click="onSegmentClick(opt.value)"
-      >{{ opt.label }}</button>
-    </div>
-    <div v-show="canScrollLeft" class="scroll-fade scroll-fade-left" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="14" height="14" focusable="false">
-        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </div>
-    <div v-show="canScrollRight" class="scroll-fade scroll-fade-right" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="14" height="14" focusable="false">
-        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </div>
-    <p
-      v-show="showGestureHint"
-      class="sgds:flex sgds:items-center sgds:justify-center sgds:gap-[var(--sgds-gap-2-xs)] sgds:mt-[var(--sgds-gap-2-xs)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle"
+    <span
+      class="segmented-indicator"
       aria-hidden="true"
-    >
-      Swipe to view more
-    </p>
+      :style="indicatorStyle"
+    ></span>
+    <button
+      v-for="opt in options"
+      :key="opt.value"
+      type="button"
+      class="segment"
+      :class="{ 'segment-active': opt.value === modelValue }"
+      :data-segment-value="opt.value"
+      role="tab"
+      :aria-selected="opt.value === modelValue ? 'true' : 'false'"
+      @click="onSegmentClick(opt.value)"
+    >{{ opt.label }}</button>
   </div>
 </template>
 
 <style>
 /* Segmented control container — uses SGDS spacing tokens (2-xs = 4px)
    that don't currently have direct Tailwind utility equivalents. The
-   control is inline-flex on desktop (matches its prior layout — sizes to
-   content, doesn't stretch) and switches to flex + full width below the md
-   breakpoint (768px) so it fills the container on mobile. The sliding
+   control is always inline-flex so it sizes to its content. overflow-x:
+   auto enables native horizontal scroll if the consumer constrains its
+   width; otherwise the control just expands. The scrollbar is hidden —
+   the cropped next-segment at the edge is a sufficient affordance, and
+   the active segment auto-scrolls into view when selected. The sliding
    indicator is absolutely positioned within this container and uses
    offsetLeft, which is stable relative to content (not the viewport) —
    so it keeps pointing at the correct segment even when the container
    scrolls. */
 .segmented-control {
+  align-self: start;
+  box-sizing: border-box;
   display: inline-flex;
   gap: var(--sgds-gap-2-xs);
   max-width: 100%;
   padding: var(--sgds-padding-2-xs);
   position: relative;
   touch-action: pan-x;
-}
-
-/* Compact mode is based on actual component width, not viewport width, so it
-   works correctly inside narrow content columns too. */
-.segmented-wrapper-compact .segmented-control {
-  display: flex;
-  width: 100%;
-}
-
-.segmented-wrapper-compact .segmented-control {
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-.segmented-wrapper-compact .segmented-control::-webkit-scrollbar {
+.segmented-control::-webkit-scrollbar {
   display: none;
-}
-
-.segmented-wrapper-compact .segment {
-  flex: 0 0 auto;
-  max-width: calc(100% - (var(--sgds-padding-2-xs) * 2));
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* Sliding indicator pill — absolute-positioned sibling sized/positioned
@@ -252,6 +191,7 @@ watch(() => props.options, () => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 auto;
   font-family: inherit;
   font-size: var(--sgds-font-size-label-sm);
   font-weight: var(--sgds-font-weight-regular);
@@ -286,36 +226,5 @@ watch(() => props.options, () => {
   .segment {
     transition: none;
   }
-}
-
-/* Mobile overflow affordance — edge fades with chevrons hint that the
-   segmented control can be swiped horizontally. They are purely visual and
-   don't intercept touch, so gesture scrolling still works normally. */
-.scroll-fade {
-  align-items: center;
-  color: var(--sgds-color-default);
-  display: none;
-  height: calc(100% - (var(--sgds-padding-2-xs) * 2));
-  justify-content: center;
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: var(--sgds-dimension-40);
-  z-index: 4;
-}
-
-.scroll-fade-left {
-  left: var(--sgds-padding-2-xs);
-  background: linear-gradient(90deg, var(--sgds-surface-default) 55%, transparent 100%);
-}
-
-.scroll-fade-right {
-  right: var(--sgds-padding-2-xs);
-  background: linear-gradient(270deg, var(--sgds-surface-default) 55%, transparent 100%);
-}
-
-.segmented-wrapper-compact .scroll-fade {
-  display: inline-flex;
 }
 </style>
