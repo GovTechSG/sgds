@@ -456,6 +456,7 @@ onBeforeUnmount(() => {
             <AnatomySection
               :anatomy-asset="doc.anatomyAsset"
               :anatomy-preview-markup="anatomyPreviewMarkup"
+              :anatomy-variants="doc.anatomyVariants"
               :anatomy-callouts="doc.anatomyCallouts"
               :resolved-anatomy-parts="doc.resolvedAnatomyParts"
             />
@@ -812,6 +813,85 @@ onBeforeUnmount(() => {
   block-size: 0;
   inline-size: 0;
   overflow: hidden;
+}
+
+.portal-description-list-anatomy {
+  background: var(--sgds-surface-default);
+  display: block;
+  inline-size: var(--sgds-dimension-480);
+  max-inline-size: 100%;
+}
+
+.portal-icon-anatomy-container {
+  align-items: center;
+  background: var(--sgds-primary-color-default);
+  block-size: var(--sgds-dimension-48);
+  border-radius: var(--sgds-border-radius-md);
+  color: var(--sgds-color-fixed-light);
+  display: inline-flex;
+  inline-size: var(--sgds-dimension-48);
+  justify-content: center;
+}
+
+.portal-icon-anatomy-container sgds-icon {
+  color: inherit;
+}
+
+.portal-divider-anatomy {
+  inline-size: var(--sgds-dimension-280);
+}
+
+.portal-footer-anatomy {
+  display: block;
+  inline-size: var(--sgds-dimension-1168);
+  max-inline-size: 100%;
+}
+
+.portal-drawer-anatomy {
+  block-size: var(--sgds-dimension-288);
+  inline-size: min(100%, var(--sgds-dimension-768));
+  overflow: hidden;
+  position: relative;
+}
+
+.portal-drawer-anatomy-scrim {
+  background: var(--sgds-bg-overlay);
+  block-size: 100%;
+  inline-size: calc(100% - var(--sgds-dimension-320));
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  position: absolute;
+}
+
+.portal-anatomy-drawer {
+  block-size: 100%;
+  display: block;
+  inline-size: var(--sgds-dimension-320);
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  position: absolute;
+}
+
+.portal-drawer-anatomy-slot {
+  background: color-mix(in srgb, var(--sgds-primary-surface-muted) 58%, transparent);
+  border: var(--sgds-border-width-1) dashed var(--sgds-primary-border-color-default);
+  color: var(--sgds-primary-color-default);
+  padding: var(--sgds-padding-sm);
+}
+
+.portal-drawer-anatomy-footer {
+  display: flex;
+  gap: var(--sgds-gap-md);
+  justify-content: flex-end;
+}
+
+.portal-drawer-anatomy-scrollbar {
+  background: var(--sgds-border-color-muted);
+  block-size: var(--sgds-dimension-48);
+  inline-size: var(--sgds-border-width-2);
+  inset-block-start: 4.75rem;
+  inset-inline-end: var(--sgds-padding-2-xs);
+  position: absolute;
 }
 
 .portal-demo-nav {

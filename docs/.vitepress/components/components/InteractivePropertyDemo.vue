@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from "vue";
+import { computed, nextTick, onMounted, ref, watch } from "vue";
 import type { ConfigurationDemo } from "../../data/component-docs";
 import CardContentSlotsDemo from "./CardContentSlotsDemo.vue";
 import SegmentedControl from "./SegmentedControl.vue";
@@ -10,6 +10,14 @@ const rootRef = ref<HTMLElement | null>(null);
 
 const activeValue = ref<string>(
   props.demo.defaultValue || props.demo.options[0]?.value || "",
+);
+
+const activeOption = computed(() =>
+  props.demo.options.find((option) => option.value === activeValue.value) ?? props.demo.options[0],
+);
+
+const isWidePreview = computed(() =>
+  activeOption.value?.markup.includes("sgds-footer") ?? false,
 );
 
 // sgds-select emits `sgds-change` with the new value exposed on the element
@@ -103,7 +111,12 @@ watch(activeValue, () => {
         >
           <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
             <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
-              <div class="sgds:w-full sgds:max-w-[var(--sgds-dimension-768)] sgds:mx-auto">
+              <div
+                :class="[
+                  'sgds:w-full sgds:mx-auto',
+                  isWidePreview ? 'sgds:max-w-[var(--sgds-dimension-1312)]' : 'sgds:max-w-[var(--sgds-dimension-768)]',
+                ]"
+              >
                 <div class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="opt.markup"></div>
               </div>
             </div>
@@ -139,6 +152,11 @@ watch(activeValue, () => {
 .behaviour-demo-markup > sgds-alert {
   display: block;
   width: 100%;
+}
+
+.behaviour-demo-markup > sgds-input {
+  display: block;
+  width: var(--sgds-dimension-320);
 }
 
 .behaviour-demo-markup sgds-alert-link {

@@ -31,6 +31,12 @@ export type Page = {
   };
 }
 const { title, description, metadata, headerLinks, titleClass, descriptionClass, bottomGapClass, headerAlert } = defineProps<Page>();
+
+const isMaskedBrandIcon = (label: string) =>
+  ["github", "storybook"].includes(label.toLowerCase());
+
+const brandIconClass = (label: string) =>
+  `page-header-brand-icon page-header-brand-icon--${label.toLowerCase()}`;
 </script>
 
 <template>
@@ -71,8 +77,13 @@ const { title, description, metadata, headerLinks, titleClass, descriptionClass,
         </span>
         <sgds-link tone="neutral">
           <a :href="link.href" class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
+            <span
+              v-if="link.iconSrc && isMaskedBrandIcon(link.label)"
+              aria-hidden="true"
+              :class="brandIconClass(link.label)"
+            ></span>
             <img
-              v-if="link.iconSrc"
+              v-else-if="link.iconSrc"
               :src="link.iconSrc"
               :alt="`${link.label} logo`"
               class="sgds:block sgds:h-4 sgds:w-4"
@@ -101,3 +112,28 @@ const { title, description, metadata, headerLinks, titleClass, descriptionClass,
     </div>
   </div>
 </template>
+
+<style>
+/* Brand SVG masks let the component header icons keep their brand colour in
+   day mode and use the SGDS fixed white token in night mode. */
+.page-header-brand-icon {
+  display: block;
+  height: var(--sgds-dimension-16);
+  width: var(--sgds-dimension-16);
+}
+
+.page-header-brand-icon--github {
+  background-color: #181717;
+  mask: url("/brands/github.svg") center / contain no-repeat;
+}
+
+.page-header-brand-icon--storybook {
+  background-color: #ff4785;
+  mask: url("/brands/storybook.svg") center / contain no-repeat;
+}
+
+.sgds-night-theme .page-header-brand-icon--github,
+.sgds-night-theme .page-header-brand-icon--storybook {
+  background-color: var(--sgds-color-fixed-light);
+}
+</style>

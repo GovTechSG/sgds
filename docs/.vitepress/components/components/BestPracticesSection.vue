@@ -28,11 +28,11 @@ const bestPracticeRows = computed(() => {
     <div
       v-for="(row, index) in bestPracticeRows"
       :key="`best-practice-row-${index}`"
-      class="best-practice-row sgds:grid sgds:items-stretch sgds:gap-[var(--sgds-gap-2-xl)] sgds:grid-cols-2"
+      class="best-practice-row sgds:gap-[var(--sgds-gap-2-xl)]"
     >
-      <article v-if="row.do" :key="row.do.title" class="sgds:flex sgds:flex-col sgds:gap-component-sm sgds:h-full">
+      <article v-if="row.do" :key="row.do.title" class="best-practice-card">
         <div :class="[
-          'sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
+          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
           compactSidePadding ? 'sgds:px-component-sm' : 'sgds:px-component-md',
         ]">
           <span
@@ -64,11 +64,11 @@ const bestPracticeRows = computed(() => {
           </div>
         </div>
       </article>
-      <div v-else class="sgds:min-w-0"></div>
+      <div v-else class="best-practice-placeholder sgds:min-w-0"></div>
 
-      <article v-if="row.dont" :key="row.dont.title" class="sgds:flex sgds:flex-col sgds:gap-component-sm sgds:h-full">
+      <article v-if="row.dont" :key="row.dont.title" class="best-practice-card">
         <div :class="[
-          'sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
+          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
           compactSidePadding ? 'sgds:px-component-sm' : 'sgds:px-component-md',
         ]">
           <span
@@ -100,12 +100,35 @@ const bestPracticeRows = computed(() => {
           </div>
         </div>
       </article>
-      <div v-else class="sgds:min-w-0"></div>
+      <div v-else class="best-practice-placeholder sgds:min-w-0"></div>
     </div>
   </div>
 </template>
 
 <style>
+/* CSS subgrid is used here because Tailwind subgrid utilities are not applied
+   reliably under the SGDS prefix. The parent row defines two grid rows
+   (1fr for the demo box, auto for the description); each article spans both
+   rows via subgrid so demo-box rows and description rows align across columns,
+   keeping box heights equal even when description heights differ. */
+.best-practice-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
+  align-items: stretch;
+}
+
+.best-practice-card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 2;
+  gap: var(--sgds-gap-component-sm);
+}
+
+.best-practice-placeholder {
+  grid-row: span 2;
+}
+
 /* Global selectors targeting slotted web component elements in v-html markup */
 .best-practice-demo-markup > sgds-accordion {
   background: var(--sgds-surface-default);
@@ -129,6 +152,14 @@ const bestPracticeRows = computed(() => {
 @media (max-width: 511px) {
   .best-practice-row {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+  .best-practice-card {
+    grid-row: auto;
+    grid-template-rows: 1fr auto;
+  }
+  .best-practice-placeholder {
+    display: none;
   }
 }
 </style>

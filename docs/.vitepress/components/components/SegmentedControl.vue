@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 
-type SegmentOption = { value: string; label: string };
+type SegmentOption = {
+  value: string;
+  label: string;
+  // Use either `icon` (sgds-icon name from the SGDS registry) OR `iconSvg`
+  // (raw inline SVG markup) when the SGDS registry doesn't ship a fitting
+  // icon — e.g. device icons like phone / tablet / display.
+  icon?: string;
+  iconSvg?: string;
+};
 
 const props = defineProps<{
   modelValue: string;
@@ -114,7 +122,11 @@ watch(() => props.options, () => {
       role="tab"
       :aria-selected="opt.value === modelValue ? 'true' : 'false'"
       @click="onSegmentClick(opt.value)"
-    >{{ opt.label }}</button>
+    >
+      <span v-if="opt.iconSvg" class="segment-icon" v-html="opt.iconSvg"></span>
+      <sgds-icon v-else-if="opt.icon" :name="opt.icon" class="segment-icon"></sgds-icon>
+      <span>{{ opt.label }}</span>
+    </button>
   </div>
 </template>
 
@@ -207,6 +219,21 @@ watch(() => props.options, () => {
   user-select: none;
   white-space: nowrap;
   z-index: 1;
+  gap: var(--sgds-gap-text-xs);
+}
+
+.segment-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--sgds-font-size-2);
+}
+
+.segment-icon svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  display: block;
 }
 
 .segment.segment-active {

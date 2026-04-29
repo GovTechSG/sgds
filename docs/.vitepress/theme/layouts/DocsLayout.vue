@@ -31,6 +31,8 @@ const currentComponentDoc = computed(() => {
 
 const sectionLabels: Record<string, string> = {
   ai: "AI",
+  templates: "Templates",
+  blocks: "Blocks",
 }
 
 const header = computed(() => {
