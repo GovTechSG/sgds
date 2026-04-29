@@ -45,6 +45,14 @@ export type AnatomyCallout = {
   alignBadgeWithCallout?: number;
 };
 
+export type AnatomyVariant = {
+  label: string;
+  value: string;
+  markup: string;
+  parts: AnatomyInput[];
+  callouts: AnatomyCallout[];
+};
+
 export type ThemedImageAsset = {
   lightSrc: string;
   darkSrc: string;
@@ -141,7 +149,7 @@ export type ConfigurationDemo = {
    * Which control the demo renders to switch between options. Defaults to
    * "segmented" (the shared SegmentedControl). Use "select" when the option
    * count is too high for a comfortable segmented layout (e.g. 5+ numeric
-   * values) — renders an `<sgds-select>` with no visible label.
+   * values). Renders an `<sgds-select>` with no visible label.
    */
   controlType?: "segmented" | "select";
 };
@@ -255,6 +263,7 @@ export type ComponentDoc = {
   demos: UsageBehaviour[];
   purposeCards?: PurposeCardInput[];
   anatomyMarkup?: string;
+  anatomyVariants?: AnatomyVariant[];
   anatomyAsset?: ThemedImageAsset;
   anatomyParts?: AnatomyInput[];
   anatomyCallouts?: AnatomyCallout[];
@@ -270,10 +279,10 @@ export type ComponentDoc = {
   /**
    * Minimum height of the Playground preview column.
    * Defaults to "default" (376px) if omitted.
-   *  - extra-compact: 180px — for very small components (breadcrumb, badge)
-   *  - compact:       240px — for small components (link, icon-button)
-   *  - default:       376px — baseline
-   *  - tall:          480px — for large components (datepicker, modal, stepper)
+   *  - extra-compact: 180px. For very small components (breadcrumb, badge)
+   *  - compact:       240px. For small components (link, icon-button)
+   *  - default:       376px. Baseline
+   *  - tall:          480px. For large components (datepicker, modal, stepper)
    */
   playgroundSize?: "extra-compact" | "compact" | "default" | "tall";
   usage?: UsageContent;
@@ -332,7 +341,7 @@ const purposeThemeByGroup: Record<
   list: {
     secondTitle: "Improve readability",
     secondDescription:
-      "Use list patterns to break content into consistent, easy-to-scan units.",
+      "Use list patterns to break content into consistent, scannable units.",
     thirdTitle: "Maintain hierarchy",
     thirdDescription:
       "Keep labels, values, and supporting details in the structure the component is designed to support.",
@@ -668,7 +677,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         ...demo(
           "Density",
-          "The accordion offers two density options—default and compact—to adapt to different contexts.",
+          "The accordion offers two density options, default and compact, to adapt to different contexts.",
           `<div class="portal-demo-stack">
           <sgds-accordion density="compact">
             <sgds-accordion-item>
@@ -702,7 +711,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       ),
       demo(
         "Start slot",
-        "The start slot is an optional area placed before the accordion title. It is intended for identifiers or visual anchors that help users quickly recognize the type or context of the content.\n\nThis slot should remain visually balanced and not contain interactive elements.",
+        "The start slot is an optional area placed before the accordion title. It is intended for identifiers or visual anchors that help users recognise the type or context of the content at a glance.\n\nThis slot should stay visually balanced and not contain interactive elements.",
         `<sgds-accordion>
           <sgds-accordion-item>
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
@@ -858,7 +867,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       contentGuidelines: [
         {
           title: "Use sentence case",
-          description: "This keeps titles easy to scan.",
+          description: "This keeps titles scannable.",
           tone: "do",
           markup: `<sgds-accordion>
             <sgds-accordion-item>
@@ -1091,19 +1100,19 @@ const componentDocs: Record<string, ComponentDoc> = {
     tag: "sgds-alert",
     group: "feedback",
     summary:
-      "Alerts provide short, timely, and relevant information for your users. It can be a simple text message or customised HTML content with paragraphs, headings and links.",
+      "Alerts provide short, timely, and relevant information for your users. It can be a plain text message or customised HTML content with paragraphs, headings, and links.",
     purposeCards: [
       {
         title: "Timely information",
-        description: "Alerts surface messages that are relevant to what a user is currently doing — not after they've moved on.",
+        description: "Alerts surface messages that are relevant to what a user is currently doing, not after they have moved on.",
       },
       {
         title: "Communicate severity",
-        description: "Contextual tones — info, success, warning, danger — tell users at a glance how urgently they need to act.",
+        description: "Contextual tones (info, success, warning, danger) tell users at a glance how urgently they need to act.",
       },
       {
         title: "Stay in the flow",
-        description: "Inline alerts don't interrupt or redirect — they sit within the page so users stay oriented while being informed.",
+        description: "Inline alerts do not interrupt or redirect. They sit within the page so users stay oriented while being informed.",
       },
     ],
     anatomyMarkup: `<sgds-alert class="portal-alert-anatomy-demo" show dismissible variant="info" title="Scheduled maintenance">
@@ -1144,7 +1153,7 @@ const componentDocs: Record<string, ComponentDoc> = {
                 <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
               </sgds-alert>
             </div>`,
-            description: "Use to provide general context or neutral information, such as announcements or guidance that don't indicate a status outcome, in either filled or outlined style.",
+            description: "Use to provide general context or neutral information, such as announcements or guidance that do not indicate a status outcome, in either filled or outlined style.",
           },
           {
             label: "Success",
@@ -1159,7 +1168,7 @@ const componentDocs: Record<string, ComponentDoc> = {
                 <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
               </sgds-alert>
             </div>`,
-            description: "Use to confirm that an action or process has completed successfully. Reassures users that their input was accepted in either filled or outlined style.",
+            description: "Use to confirm that an action or process has completed successfully, reassuring users that their input was accepted in either filled or outlined style.",
           },
           {
             label: "Danger",
@@ -1189,7 +1198,7 @@ const componentDocs: Record<string, ComponentDoc> = {
                 <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
               </sgds-alert>
             </div>`,
-            description: "Use to flag potential issues that may need attention. Cautions the user without blocking them from proceeding, in either filled or outlined style.",
+            description: "Use to flag potential issues that may need attention without blocking the user from proceeding, in either filled or outlined style.",
           },
           {
             label: "Neutral",
@@ -1204,13 +1213,13 @@ const componentDocs: Record<string, ComponentDoc> = {
                 <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
               </sgds-alert>
             </div>`,
-            description: "Use when the message carries no particular status or urgency, such as simple notices or reminders, in either filled or outlined style.",
+            description: "Use when the message carries no particular status or urgency, such as notices or reminders, in either filled or outlined style.",
           },
         ],
       },
       {
         title: "Style",
-        description: "The alert supports two styles—filled and outlined.",
+        description: "The alert supports two styles, filled and outlined.",
         controlLabel: "Alert style options",
         defaultValue: "filled",
         options: [
@@ -1341,13 +1350,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<sgds-alert show variant="info">
               <div>Your draft has been saved and you can continue editing it before submission.</div>
             </sgds-alert>`,
-            description: "Use for short, single-line messages that are easy to scan without an additional heading.",
+            description: "Use for short, single-line messages that scan without an additional heading.",
           },
         ],
       },
       {
         title: "Slot",
-        description: "The default slot can contain supplementary content such as links or supporting actions, as long as the message remains clear and easy to scan.",
+        description: "The default slot can contain supplementary content such as links or supporting actions, as long as the message stays clear and scannable.",
         controlLabel: "Alert slot options",
         defaultValue: "slot",
         options: [
@@ -1379,7 +1388,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     demos: [
       demo(
         "Style",
-        "The alert supports two styles—filled and outlined.",
+        "The alert supports two styles, filled and outlined.",
         `<div class="portal-demo-stack">
           <sgds-alert show variant="info" title="Info alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
@@ -1444,7 +1453,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       ),
       demo(
         "Slot",
-        "The default slot can contain supplementary content such as links or supporting actions, as long as the message remains clear and easy to scan.",
+        "The default slot can contain supplementary content such as links or supporting actions, as long as the message stays clear and scannable.",
         `<sgds-alert show dismissible variant="info" outlined title="Application saved">
           <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
           <div>Your progress has been saved. You can return to this draft before the submission deadline.</div>
@@ -1599,7 +1608,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         {
           title: "Action",
           items: [
-            "Avoid placing critical actions only inside accordion content—ensure visibility.",
+            "Avoid placing critical actions only inside accordion content, ensure visibility.",
           ],
         },
       ],
@@ -1611,19 +1620,19 @@ const componentDocs: Record<string, ComponentDoc> = {
     tag: "sgds-badge",
     group: "feedback",
     summary:
-      "Badges can be used to highlight important bits of information such as labels, notifications & status.",
+      "Badges highlight short pieces of information such as labels, notifications, and status.",
     purposeCards: [
       {
         title: "Label at a glance",
-        description: "Badges attach short labels to content — a status, a count, a category — without breaking the reading flow.",
+        description: "Badges attach short labels to content (a status, a count, a category) without breaking the reading flow.",
       },
       {
         title: "Signal without words",
         description: "Colour-coded tones communicate meaning quickly, so users can scan a list and immediately understand state.",
       },
       {
-        title: "Complement, don't crowd",
-        description: "Badges are deliberately small and quiet — they annotate content rather than compete with it.",
+        title: "Complement, do not crowd",
+        description: "Badges are deliberately small and quiet. They annotate content rather than compete with it.",
       },
     ],
     anatomyMarkup: `<div class="portal-demo-row"><sgds-badge class="portal-anatomy-badge"><sgds-icon slot="icon" name="star-fill" size="sm"></sgds-icon>Badge label</sgds-badge></div>`,
@@ -1672,7 +1681,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Warning",
             value: "warning",
             markup: `<div class="portal-demo-row"><sgds-badge variant="warning">Warning</sgds-badge><sgds-badge variant="warning" outlined>Warning</sgds-badge></div>`,
-            description: "Use to flag items needing attention without blocking the user — for example, pending review or nearing a threshold — in filled or outlined form.",
+            description: "Use to flag items needing attention without blocking the user (for example, pending review or nearing a threshold) in filled or outlined form.",
           },
           {
             label: "Danger",
@@ -1740,7 +1749,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Dismissible",
-        description: "Add a close button when the user should be able to remove the badge — for example, active filters or removable tags.",
+        description: "Add a close button when the user should be able to remove the badge. For example, active filters or removable tags.",
         controlLabel: "Badge dismissible options",
         defaultValue: "static",
         options: [
@@ -1945,7 +1954,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-breadcrumb-item><a href="#">Payments</a></sgds-breadcrumb-item>
           <sgds-breadcrumb-item><a href="#">Fees</a></sgds-breadcrumb-item>
         </sgds-breadcrumb>`,
-            description: "With four or fewer items, every link stays visible — no ellipsis is needed.",
+            description: "With four or fewer items, every link stays visible. No ellipsis is needed.",
           },
           {
             label: "On",
@@ -1987,7 +1996,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Use overflow on longer trails",
-          description: "When the hierarchy gets deeper, let the breadcrumb collapse middle levels into the built-in overflow menu instead of exposing every level at once.",
+          description: "When the hierarchy gets deeper, let the breadcrumb collapse middle levels into the built-in overflow menu.",
           tone: "do",
           markup: `<sgds-breadcrumb>
             <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
@@ -2009,7 +2018,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use generic labels",
-          description: "Generic names such as 'Page 1' and 'Page 2' do not help users understand the content or structure they are navigating through.",
+          description: "Generic names such as 'Page 1' and 'Page 2' do not help users understand the content or structure.",
           tone: "dont",
           markup: `<sgds-breadcrumb>
             <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
@@ -2019,7 +2028,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use breadcrumb for the wrong hierarchy",
-          description: "Breadcrumbs should reflect the actual site or service structure, not a temporary journey such as search, filtering, or a task sequence.",
+          description: "Breadcrumbs should reflect the actual site or service structure, not a temporary journey or task sequence.",
           tone: "dont",
           markup: `<sgds-breadcrumb>
             <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
@@ -2030,7 +2039,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not leave intermediate crumbs inactive",
-          description: "Every breadcrumb item before the current page should work as a link back to that level. Plain text crumbs break the navigation pattern.",
+          description: "Every breadcrumb item before the current page should work as a link back to that level.",
           tone: "dont",
           markup: `<sgds-breadcrumb>
             <sgds-breadcrumb-item><a href="#">Home</a></sgds-breadcrumb-item>
@@ -2052,11 +2061,11 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Trigger actions clearly",
-        description: "Buttons signal to users that something will happen when they click — whether that's submitting a form, opening a modal, or confirming a choice.",
+        description: "Buttons signal to users that something will happen when they click, whether that is submitting a form, opening a modal, or confirming a choice.",
       },
       {
         title: "Communicate intent with variants",
-        description: "Primary, secondary, outline, and ghost variants let you express hierarchy — guiding users toward the most important action without overloading the page.",
+        description: "Primary, secondary, outline, and ghost variants let you express hierarchy, guiding users toward the main action without overloading the page.",
       },
       {
         title: "Support every state",
@@ -2237,7 +2246,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     configurationDemos: [
       {
         title: "Variants",
-        description: "Button variants communicate hierarchy and help users identify the most important action on a screen.",
+        description: "Button variants communicate hierarchy and help users identify the primary action on a screen.",
         controlLabel: "Button variant options",
         defaultValue: "primary",
         options: [
@@ -2245,13 +2254,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Primary",
             value: "primary",
             markup: `<div class="portal-demo-row"><sgds-button>Primary action</sgds-button></div>`,
-            description: "Use for the main action on a screen. Each view should have only one primary button to clearly communicate the most important next step.",
+            description: "Use for the main action on a screen. Each view should have only one primary button to communicate the next step.",
           },
           {
             label: "Outline",
             value: "outline",
             markup: `<div class="portal-demo-row"><sgds-button variant="outline">Secondary action</sgds-button></div>`,
-            description: "Use for secondary actions that support the primary action — such as cancelling, going back, or choosing an alternative.",
+            description: "Use for secondary actions that support the primary action, such as cancelling, going back, or choosing an alternative.",
           },
           {
             label: "Ghost",
@@ -2315,7 +2324,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Medium",
             value: "md",
             markup: `<div class="portal-demo-row"><sgds-button size="md">Button label</sgds-button></div>`,
-            description: "The default size — use for most primary actions across forms, dialogs, and general page content.",
+            description: "The default size. Use for most primary actions across forms, dialogs, and general page content.",
           },
           {
             label: "Large",
@@ -2335,7 +2344,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Leading icon",
             value: "leading",
             markup: `<div class="portal-demo-row"><sgds-button><sgds-icon slot="leftIcon" name="house"></sgds-icon>Button label</sgds-button></div>`,
-            description: "Use a leading icon when the icon adds clarity to the action — for example, a download icon before a download label.",
+            description: "Use a leading icon when the icon adds clarity to the action. For example, a download icon before a download label.",
           },
           {
             label: "No leading icon",
@@ -2550,7 +2559,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Icon card",
             value: "icon",
-            description: "The icon card variant pairs content with a simple symbol. Use it when a small visual cue helps users recognise the card’s purpose quickly.",
+            description: "The icon card variant pairs content with a small symbol. Use it when a visual cue helps users recognise the card’s purpose at a glance.",
             markup: `<sgds-icon-card class="portal-demo-card">
               <sgds-icon slot="icon" name="box-seam"></sgds-icon>
               <span slot="title">Service update</span>
@@ -2963,7 +2972,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Allow multiple selections",
-        description: "Checkboxes let users select any combination of options from a list — ideal when more than one answer is valid.",
+        description: "Checkboxes let users select any combination of options from a list. Ideal when more than one answer is valid.",
       },
       {
         title: "Make selections visible",
@@ -2971,7 +2980,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Support grouped choices",
-        description: "Group related checkboxes under a shared label to help users understand what they're selecting within a broader category.",
+        description: "Group related checkboxes under a shared label to help users understand what they are selecting within a broader category.",
       },
     ],
     anatomyParts: [
@@ -3033,7 +3042,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Standalone",
             value: "standalone",
             markup: `<sgds-checkbox>Subscribe to monthly digest</sgds-checkbox>`,
-            description: "A single checkbox used on its own — for example, to confirm a setting or accept terms.",
+            description: "A single checkbox used on its own. For example, to confirm a setting or accept terms.",
           },
           {
             label: "Group",
@@ -3071,7 +3080,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-checkbox>SMS</sgds-checkbox>
           <sgds-checkbox>Phone call</sgds-checkbox>
         </sgds-checkbox-group>`,
-            description: "The default — use when the label alone is enough for users to understand the choice.",
+            description: "The default. Use when the label alone is enough for users to understand the choice.",
           },
         ],
       },
@@ -3091,7 +3100,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Not disabled",
             value: "not-disabled",
             markup: `<sgds-checkbox checked>Email me updates</sgds-checkbox>`,
-            description: "The default — checkboxes are interactive and can be toggled.",
+            description: "The default. Checkboxes are interactive and can be toggled.",
           },
         ],
       },
@@ -3119,7 +3128,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-checkbox>SMS</sgds-checkbox>
           <sgds-checkbox>Phone call</sgds-checkbox>
         </sgds-checkbox-group>`,
-            description: "Shows the invalid state with the supplied `invalidFeedback` message. Use to tell the user what's wrong and how to fix it.",
+            description: "Shows the invalid state with the supplied `invalidFeedback` message. Use to tell the user what is wrong and how to fix it.",
           },
         ],
       },
@@ -3208,7 +3217,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Dismiss with confidence",
-        description: "A visible, accessible close affordance tells users they can exit a surface — modal, drawer, or alert — without uncertainty.",
+        description: "A visible, accessible close affordance tells users they can exit a surface (modal, drawer, or alert) without uncertainty.",
       },
       {
         title: "Universal recognition",
@@ -3268,7 +3277,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Medium",
             value: "md",
             markup: `<div class="portal-demo-row"><sgds-close-button size="md"></sgds-close-button></div>`,
-            description: "The default size — use for most surfaces such as modals, drawers, and standard alerts.",
+            description: "The default size. Use for most surfaces such as modals, drawers, and standard alerts.",
           },
         ],
       },
@@ -3284,7 +3293,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use the close button to dismiss a transient surface",
-          description: "Pair the close button with surfaces that users can leave without committing — modals, drawers, toasts, and inline alerts.",
+          description: "Pair the close button with surfaces users can leave without committing: modals, drawers, toasts, and alerts.",
           tone: "do",
           markup: `<sgds-modal title="Confirm changes" open>
             <sgds-close-button slot="close-button"></sgds-close-button>
@@ -3302,7 +3311,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Match the tone to the surface beneath it",
-          description: "Use the fixed-light tone on dark or strongly coloured surfaces and fixed-dark on light fixed surfaces so the icon keeps sufficient contrast.",
+          description: "Use fixed-light on dark surfaces and fixed-dark on light fixed surfaces so the icon keeps enough contrast.",
           tone: "do",
           markup: `<div class="portal-demo-row portal-demo-row-inverse">
             <sgds-close-button tone="fixed-light"></sgds-close-button>
@@ -3310,7 +3319,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use the default tone on dark surfaces",
-          description: "On dark or strongly coloured backgrounds, the default tone can fall below contrast thresholds. Switch to a fixed tone instead.",
+          description: "On dark or strongly coloured backgrounds, the default tone can fall below contrast. Use a fixed tone.",
           tone: "dont",
           markup: `<div class="portal-demo-row portal-demo-row-inverse">
             <sgds-close-button></sgds-close-button>
@@ -3318,13 +3327,13 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Use the small size in dense surfaces",
-          description: "Set size to sm inside compact surfaces such as toasts or inline alerts so the dismiss control matches the visual weight of the surrounding content.",
+          description: "Set size to sm inside compact surfaces such as toasts or inline alerts so the dismiss control fits in.",
           tone: "do",
           markup: `<div class="portal-demo-row"><sgds-close-button size="sm"></sgds-close-button></div>`,
         },
         {
           title: "Do not place the close button far from the surface it dismisses",
-          description: "Anchor the close button inside or at the corner of the surface it controls. Floating it away from the panel makes the relationship unclear and can be missed by assistive technologies.",
+          description: "Anchor the close button inside or at the corner of the surface it controls so the relationship stays clear.",
           tone: "dont",
           markup: `<div class="portal-demo-stack">
             <sgds-close-button></sgds-close-button>
@@ -3344,15 +3353,15 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Search within a list",
-        description: "When a dropdown has many options, a combo box lets users type to filter — saving them from scrolling through long lists.",
+        description: "When a dropdown has many options, a combo box lets users type to filter, saving them from scrolling through long lists.",
       },
       {
         title: "Balance flexibility and constraint",
-        description: "Users can narrow down options by typing, but selections are still constrained to valid values — reducing input errors.",
+        description: "Users can narrow down options by typing, but selections are still constrained to valid values, reducing input errors.",
       },
       {
         title: "Useful for large datasets",
-        description: "Combo boxes are best when the full list is too long to browse comfortably but the user knows roughly what they're looking for.",
+        description: "Combo boxes are best when the full list is too long to browse comfortably but the user knows roughly what they are looking for.",
       },
     ],
     anatomyMarkup: `<div class="portal-anatomy-combo-stage">
@@ -3451,7 +3460,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-combo-box-option value="my">Malaysia</sgds-combo-box-option>
           <sgds-combo-box-option value="id">Indonesia</sgds-combo-box-option>
         </sgds-combo-box>`,
-            description: "The default — use when the label alone is enough.",
+            description: "The default. Use when the label alone is enough.",
           },
           {
             label: "Hint text",
@@ -3493,7 +3502,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Selection mode",
-        description: "Combo boxes can accept a single value or multiple values via checkbox items. In multi-select, selected values wrap within the same field width and the control grows vertically as needed.",
+        description: "Combo boxes can accept a single value or multiple values through checkbox items. In multi-select, selected values wrap within the same field width and the control grows vertically as needed.",
         controlLabel: "Combo box selection mode options",
         defaultValue: "single",
         options: [
@@ -3563,7 +3572,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Invalid",
             value: "invalid",
-            markup: `<sgds-combo-box label="Country" required hasFeedback invalid invalidFeedback="Please select a country">
+            markup: `<sgds-combo-box label="Country" required hasFeedback invalid invalidFeedback="Select a country">
           <sgds-combo-box-option value="sg">Singapore</sgds-combo-box-option>
           <sgds-combo-box-option value="my">Malaysia</sgds-combo-box-option>
         </sgds-combo-box>`,
@@ -3587,7 +3596,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use combo box for longer option lists",
-          description: "Use combo box when the list is long enough that typing will help users reach an option faster than scrolling through a short menu.",
+          description: "Use combo box when the list is long enough that typing helps users reach an option faster than scrolling.",
           tone: "do",
           markup: `<sgds-combo-box label="Country" hintText="Type to filter the list">
             <sgds-combo-box-option value="sg">Singapore</sgds-combo-box-option>
@@ -3599,7 +3608,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use combo box for very short lists",
-          description: "If users only need to choose from a small number of options, use a simpler control such as radio buttons or select instead of adding search behaviour they do not need.",
+          description: "For a small number of options, use a simpler control such as radio buttons or select instead.",
           tone: "dont",
           markup: `<sgds-combo-box label="Preferred contact method">
             <sgds-combo-box-option value="email">Email</sgds-combo-box-option>
@@ -3608,7 +3617,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Use a clear label and supporting hint",
-          description: "Keep the visible label specific, and use hint text when users need help understanding what they can search for or how the list is filtered.",
+          description: "Keep the visible label specific, and use hint text to clarify what users can search for.",
           tone: "do",
           markup: `<sgds-combo-box label="Service category" hintText="Search by service name or topic">
             <sgds-combo-box-option value="housing">Housing grants</sgds-combo-box-option>
@@ -3618,7 +3627,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not rely on placeholder as the only instruction",
-          description: "Placeholder text disappears once users type. Keep the field label visible so the purpose of the control remains clear throughout the interaction.",
+          description: "Placeholder text disappears once users type. Keep the field label visible so the purpose stays clear.",
           tone: "dont",
           markup: `<sgds-combo-box placeholder="Search services">
             <sgds-combo-box-option value="housing">Housing grants</sgds-combo-box-option>
@@ -3627,8 +3636,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           </sgds-combo-box>`,
         },
         {
-          title: "Keep option text specific and easy to search",
-          description: "Use option labels that match the words users are likely to type. Distinct, recognisable option text makes filtering more reliable and reduces wrong selections.",
+          title: "Keep option text specific and searchable",
+          description: "Use option labels that match the words users are likely to type so filtering stays reliable.",
           tone: "do",
           markup: `<sgds-combo-box label="Agency">
             <sgds-combo-box-option value="mom">Ministry of Manpower (MOM)</sgds-combo-box-option>
@@ -3638,7 +3647,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use combo box as free-text input",
-          description: "In SGDS, combo box is for filtering and selecting from provided options. If users need to enter a custom value that is not in the list, use a text input instead.",
+          description: "Combo box is for filtering and selecting from provided options. For custom values, use a text input.",
           tone: "dont",
           markup: `<sgds-combo-box label="School name">
             <sgds-combo-box-option value="school-a">School A</sgds-combo-box-option>
@@ -3659,7 +3668,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Pick dates with precision",
-        description: "The calendar view helps users select dates in context — seeing the day of the week and surrounding dates reduces scheduling mistakes.",
+        description: "The calendar view helps users select dates in context. Seeing the day of the week and surrounding dates reduces scheduling mistakes.",
       },
       {
         title: "Type or click",
@@ -3710,7 +3719,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No hint text",
             value: "no-hint-text",
             markup: `<sgds-datepicker class="portal-demo-datepicker" label="Date of birth"></sgds-datepicker>`,
-            description: "Default — use when the label alone is enough.",
+            description: "Default. Use when the label alone is enough.",
           },
           {
             label: "Hint text",
@@ -3815,7 +3824,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Invalid",
             value: "invalid",
-            markup: `<sgds-datepicker class="portal-demo-datepicker" label="Date" required hasFeedback invalid invalidFeedback="Please enter a valid date"></sgds-datepicker>`,
+            markup: `<sgds-datepicker class="portal-demo-datepicker" label="Date" required hasFeedback invalid invalidFeedback="Enter a valid date"></sgds-datepicker>`,
             description: "Datepicker shows error styling and feedback message when validation fails.",
           },
         ],
@@ -3832,39 +3841,27 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use the datepicker for calendar-relevant dates",
-          description: "Use the datepicker when the day of the week, weekends, or surrounding dates matter to the choice — such as appointments, deliveries, or travel.",
+          description: "Use the datepicker when the day of the week or surrounding dates matter, such as appointments or travel.",
           tone: "do",
           markup: `<sgds-datepicker label="Appointment date" hintText="Use the format DD/MM/YYYY"></sgds-datepicker>`,
         },
         {
           title: "Do not use the datepicker for dates the user already knows",
-          description: "For dates that users can recall and type confidently — like a date of birth — a plain text input with a clear format hint is faster than scrolling a calendar.",
+          description: "For dates users can recall and type confidently, like a date of birth, a plain text input is faster.",
           tone: "dont",
           markup: `<sgds-datepicker label="Date of birth"></sgds-datepicker>`,
         },
         {
-          title: "Use range mode for paired start and end dates",
-          description: "Set mode to range when users need to pick a start and end date together, such as travel periods or report windows.",
-          tone: "do",
-          markup: `<sgds-datepicker label="Travel dates" mode="range"></sgds-datepicker>`,
-        },
-        {
           title: "Constrain the calendar to the dates users can actually choose",
-          description: "Set minDate and maxDate to limit selection to valid dates — for example, future dates only when scheduling, or dates within a financial year for reports.",
+          description: "Set minDate and maxDate to limit selection to valid dates. For example, future dates only when scheduling.",
           tone: "do",
           markup: `<sgds-datepicker label="Booking date" minDate="2026-01-01T00:00:00.000Z" maxDate="2026-12-31T00:00:00.000Z"></sgds-datepicker>`,
         },
         {
           title: "Do not leave the format ambiguous",
-          description: "Use hintText to show the expected date format so users typing into the input do not confuse day-month order with month-day order.",
+          description: "Use hintText to show the expected date format so users do not confuse day-month with month-day order.",
           tone: "dont",
           markup: `<sgds-datepicker label="Submission date" placeholder="Enter date"></sgds-datepicker>`,
-        },
-        {
-          title: "Use drop=\"up\" near the bottom of the viewport",
-          description: "Set drop to up when the datepicker sits near the bottom of a form or dialog so the calendar opens upward and stays fully visible.",
-          tone: "do",
-          markup: `<sgds-datepicker label="Date" drop="up"></sgds-datepicker>`,
         },
       ],
     },
@@ -3879,27 +3876,45 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Pair labels with values",
-        description: "Description lists present key-value information clearly — names paired with values, terms paired with definitions, attributes paired with data.",
+        description: "Description lists present key-value information clearly. Names paired with values, terms paired with definitions, attributes paired with data.",
       },
       {
         title: "Review before submission",
-        description: "Use description lists on confirmation or summary pages to show users exactly what they've entered before they commit.",
+        description: "Use description lists on confirmation or summary pages to show users exactly what they have entered before they commit.",
       },
       {
         title: "Detail without clutter",
-        description: "The structured layout keeps dense information readable — labels and values are visually distinct without needing a full table.",
+        description: "The structured layout keeps dense information readable. Labels and values are visually distinct without needing a full table.",
       },
     ],
-    anatomyParts: [{ title: "Container" }, { title: "Label" }, { title: "Value" }],
-    anatomyCallouts: [
-      { number: 1, direction: "left", targetSelector: "sgds-description-list", targetX: "left", targetY: "center" },
-      { number: 2, direction: "top", targetSelector: "sgds-description-list > span:not([slot])", targetX: "center", targetY: "top" },
-      { number: 3, direction: "right", targetSelector: "sgds-description-list > span[slot='data']", targetX: "right", targetY: "center" },
+    anatomyParts: [
+      { title: "Title", note: "(optional)" },
+      { title: "Description", note: "(optional)" },
+      { title: "Label" },
+      { title: "Data" },
+      { title: "Divider" },
     ],
-    anatomyMarkup: `<sgds-description-list-group>
+    anatomyCallouts: [
+      { number: 1, direction: "left", targetSelector: ".portal-description-list-title", targetX: "left", targetY: "center" },
+      { number: 2, direction: "left", targetSelector: ".portal-description-list-description", targetX: "left", targetY: "center" },
+      { number: 3, direction: "left", targetSelector: ".portal-description-list-first-label", targetX: "left", targetY: "center" },
+      { number: 4, direction: "right", targetSelector: ".portal-description-list-first-data", targetX: "right", targetY: "center", alignBadgeWithCallout: 5 },
+      { number: 5, direction: "right", targetSelector: ".portal-description-list-divider-target", targetShadowSelector: ".container", targetX: "right", targetY: "bottom" },
+    ],
+    anatomyMarkup: `<sgds-description-list-group class="portal-description-list-anatomy">
+      <span slot="title" class="portal-description-list-title">Title</span>
+      <span slot="description" class="portal-description-list-description">Description</span>
+      <sgds-description-list>
+        <span class="portal-description-list-first-label">Label</span>
+        <span slot="data" class="portal-description-list-first-data">Data</span>
+      </sgds-description-list>
       <sgds-description-list>
         <span>Label</span>
-        <span slot="data">Value</span>
+        <span slot="data">Data</span>
+      </sgds-description-list>
+      <sgds-description-list class="portal-description-list-divider-target">
+        <span>Label</span>
+        <span slot="data">Data</span>
       </sgds-description-list>
     </sgds-description-list-group>`,
     configurationDemos: [
@@ -4000,7 +4015,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use description lists for read-only key-value pairs",
-          description: "Description lists are for displaying paired information that users review — not for collecting input. Use them on summary, confirmation, and detail pages where each value belongs to a clear label.",
+          description: "Description lists display paired information for review. Use them on summary, confirmation, and detail pages.",
           tone: "do",
           markup: `<sgds-description-list-group bordered>
             <sgds-description-list bordered>
@@ -4019,26 +4034,26 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a description list for tabular data",
-          description: "If users need to compare values across rows, use a table instead. Description lists describe one entity at a time — they are not built for row-by-row comparison.",
+          description: "Use a table for row-by-row comparison. Description lists describe one entity at a time.",
           tone: "dont",
           markup: `<sgds-description-list-group>
             <sgds-description-list>
               Applicant 1
-              <span slot="data">Tan Mei Ling — Approved</span>
+              <span slot="data">Tan Mei Ling. Approved</span>
             </sgds-description-list>
             <sgds-description-list>
               Applicant 2
-              <span slot="data">Lim Wei Jie — Pending</span>
+              <span slot="data">Lim Wei Jie. Pending</span>
             </sgds-description-list>
             <sgds-description-list>
               Applicant 3
-              <span slot="data">Nur Aisyah — Rejected</span>
+              <span slot="data">Nur Aisyah. Rejected</span>
             </sgds-description-list>
           </sgds-description-list-group>`,
         },
         {
           title: "Stack the layout when values are long",
-          description: "Switch to the stacked layout when values wrap to multiple lines or sit awkwardly beside their labels. Stacked layouts also work better in narrow columns and on small screens.",
+          description: "Use the stacked layout when values wrap to multiple lines or in narrow columns and small screens.",
           tone: "do",
           markup: `<sgds-description-list-group stacked>
             <sgds-description-list stacked>
@@ -4053,7 +4068,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Keep labels short and consistent",
-          description: "Use concise, parallel labels so users can scan down the left column quickly. Avoid sentence-style labels or trailing punctuation such as colons.",
+          description: "Use concise, parallel labels so users can scan the left column. Avoid sentence-style labels or colons.",
           tone: "do",
           markup: `<sgds-description-list-group>
             <sgds-description-list>
@@ -4071,8 +4086,27 @@ const componentDocs: Record<string, ComponentDoc> = {
           </sgds-description-list-group>`,
         },
         {
+          title: "Do not make labels hard to scan",
+          description: "Avoid long question-style labels or inconsistent wording. Full-sentence content belongs elsewhere.",
+          tone: "dont",
+          markup: `<sgds-description-list-group>
+            <sgds-description-list>
+              What is the applicant's full legal name?
+              <span slot="data">Tan Mei Ling</span>
+            </sgds-description-list>
+            <sgds-description-list>
+              Email address:
+              <span slot="data">meiling.tan@example.gov.sg</span>
+            </sgds-description-list>
+            <sgds-description-list>
+              Contact number provided by applicant
+              <span slot="data">+65 9123 4567</span>
+            </sgds-description-list>
+          </sgds-description-list-group>`,
+        },
+        {
           title: "Do not leave empty values without a placeholder",
-          description: "If a value has not been provided, show a clear placeholder such as 'Not provided' rather than leaving the data slot empty. An empty value can look like a layout bug.",
+          description: "If a value is missing, show a placeholder such as 'Not provided' rather than leaving the slot empty.",
           tone: "dont",
           markup: `<sgds-description-list-group>
             <sgds-description-list>
@@ -4102,18 +4136,18 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Group without boxing",
-        description: "A line is lighter than a card border — use dividers when you want to separate content without enclosing it.",
+        description: "A line is lighter than a card border. Use dividers when you want to separate content without enclosing it.",
       },
       {
         title: "Works horizontally and vertically",
         description: "Orientation options let dividers separate both stacked sections and side-by-side elements consistently across layouts.",
       },
     ],
-    anatomyParts: [{ title: "Rule" }, { title: "Orientation" }],
+    anatomyParts: [{ title: "Divider" }],
     anatomyCallouts: [
       { number: 1, direction: "right", targetSelector: "sgds-divider", targetX: "right", targetY: "center" },
-      { number: 2, direction: "right", targetSelector: "sgds-divider[orientation='vertical']", targetX: "right", targetY: "center" },
     ],
+    anatomyMarkup: `<div class="portal-divider-anatomy"><sgds-divider></sgds-divider></div>`,
     configurationDemos: [
       {
         title: "Orientation",
@@ -4125,13 +4159,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Horizontal",
             value: "horizontal",
             markup: `<div class="sgds:w-full"><sgds-divider></sgds-divider></div>`,
-            description: "Use to separate content stacked vertically — such as between sections, list rows, or form groups.",
+            description: "Use to separate content stacked vertically, such as between sections, list rows, or form groups.",
           },
           {
             label: "Vertical",
             value: "vertical",
             markup: `<div class="portal-demo-row sgds:h-12"><span>Left</span><sgds-divider orientation="vertical"></sgds-divider><span>Right</span></div>`,
-            description: "Use to separate content placed side by side — such as between columns, inline labels, or adjacent actions.",
+            description: "Use to separate content placed side by side, such as between columns, inline labels, or adjacent actions.",
           },
         ],
       },
@@ -4145,7 +4179,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Thin",
             value: "thin",
             markup: `<div class="sgds:w-full"><sgds-divider thickness="thin"></sgds-divider></div>`,
-            description: "The default — use for subtle separation between closely related content such as list rows or paragraphs.",
+            description: "The default. Use for subtle separation between closely related content such as list rows or paragraphs.",
           },
           {
             label: "Thick",
@@ -4180,7 +4214,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a divider to separate related groups within a section",
-          description: "A divider is most useful when content sits close together but represents distinct ideas. Use it to mark transitions inside the same surface, such as between summary blocks or list groupings.",
+          description: "Use a divider when content sits close together but represents distinct ideas within the same surface.",
           tone: "do",
           markup: `<div class="portal-demo-stack">
             <p>Personal details</p>
@@ -4190,7 +4224,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a divider when spacing alone is enough",
-          description: "If the layout already has clear vertical spacing between sections, a divider adds visual noise without improving comprehension. Reach for spacing first, dividers second.",
+          description: "If the layout already has clear spacing between sections, a divider only adds noise. Use spacing first.",
           tone: "dont",
           markup: `<div class="portal-demo-stack">
             <h3>Section title</h3>
@@ -4202,7 +4236,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Match the divider orientation to the layout direction",
-          description: "Use a vertical divider only between content placed side by side, such as inline labels or adjacent actions. Use the horizontal default everywhere else.",
+          description: "Use a vertical divider only between side-by-side content. Use the horizontal default everywhere else.",
           tone: "do",
           markup: `<div class="portal-demo-row sgds:h-12">
             <span>Edit</span>
@@ -4214,7 +4248,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Use thicker dividers sparingly",
-          description: "Reserve thicker rules for the strongest separation between major page regions. Overusing them flattens the visual hierarchy and makes the page feel busy.",
+          description: "Reserve thicker rules for the strongest separation between major page regions to keep hierarchy clear.",
           tone: "do",
           markup: `<div class="portal-demo-stack">
             <p>Account settings</p>
@@ -4223,8 +4257,20 @@ const componentDocs: Record<string, ComponentDoc> = {
           </div>`,
         },
         {
+          title: "Do not make every divider heavy",
+          description: "Avoid thick dividers between every small group. Equal weight hides which separations matter.",
+          tone: "dont",
+          markup: `<div class="portal-demo-stack">
+            <p>Profile details</p>
+            <sgds-divider thickness="thicker"></sgds-divider>
+            <p>Contact details</p>
+            <sgds-divider thickness="thicker"></sgds-divider>
+            <p>Notification settings</p>
+          </div>`,
+        },
+        {
           title: "Do not use a divider as a decorative element",
-          description: "A divider should always carry meaning — separating one set of content from another. Adding rules purely for visual rhythm makes structure harder to read.",
+          description: "A divider should always carry meaning. Rules added purely for visual rhythm make structure harder to read.",
           tone: "dont",
           markup: `<div class="portal-demo-stack">
             <sgds-divider></sgds-divider>
@@ -4249,27 +4295,46 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Keep the page visible",
-        description: "Unlike a modal, a drawer sits alongside the main content — users can reference what's behind it while working in the panel.",
+        description: "Unlike a modal, a drawer sits alongside the main content. Users can reference what is behind it while working in the panel.",
       },
       {
         title: "Useful for secondary tasks",
-        description: "Use drawers for settings, filters, or detail panels where the content supports — but doesn't replace — what's already on screen.",
+        description: "Use drawers for settings, filters, or detail panels where the content supports what is already on screen rather than replacing it.",
       },
     ],
     anatomyParts: [
-      { title: "Panel" },
-      defaultPartTitleMap.title,
-      defaultPartTitleMap.description,
-      defaultPartTitleMap.default,
-      defaultPartTitleMap.footer,
+      { title: "Container" },
+      { title: "Title", note: "(optional)" },
+      { title: "Description", note: "(optional)" },
+      { title: "Slot", note: "(optional)" },
+      { title: "Footer", note: "(optional)" },
+      { title: "Scrim", note: "(optional)" },
+      { title: "Close button", note: "(optional)" },
+      { title: "Scrollbar", note: "(situational)" },
     ],
     anatomyCallouts: [
-      { number: 1, direction: "right", targetSelector: "sgds-drawer", targetX: "right", targetY: "bottom" },
-      { number: 2, direction: "top", targetSelector: "[slot='title']", targetX: "center", targetY: "top" },
-      { number: 3, direction: "right", targetSelector: "[slot='description']", targetX: "right", targetY: "center" },
-      { number: 4, direction: "left", targetSelector: "sgds-drawer p", targetX: "left", targetY: "center" },
-      { number: 5, direction: "bottom", targetSelector: "[slot='footer']", targetX: "center", targetY: "bottom" },
+      { number: 1, direction: "top", targetSelector: ".portal-anatomy-drawer", targetShadowSelector: ".drawer-panel", targetX: "center", targetY: "top" },
+      { number: 2, direction: "top", targetSelector: ".portal-drawer-anatomy-title", targetX: "left", targetY: "top" },
+      { number: 3, direction: "top", targetSelector: ".portal-drawer-anatomy-description", targetX: "left", targetY: "top" },
+      { number: 4, direction: "right", targetSelector: ".portal-drawer-anatomy-slot", targetX: "right", targetY: "center" },
+      { number: 5, direction: "right", targetSelector: ".portal-drawer-anatomy-footer", targetX: "right", targetY: "center" },
+      { number: 6, direction: "left", targetSelector: ".portal-drawer-anatomy-scrim", targetX: "center", targetY: "center" },
+      { number: 7, direction: "top", targetSelector: ".portal-anatomy-drawer", targetShadowSelector: ".drawer-close", targetX: "center", targetY: "top" },
+      { number: 8, direction: "right", targetSelector: ".portal-drawer-anatomy-scrollbar", targetX: "right", targetY: "center" },
     ],
+    anatomyMarkup: `<div class="portal-drawer-anatomy">
+      <div class="portal-drawer-anatomy-scrim" aria-hidden="true"></div>
+      <sgds-drawer class="portal-anatomy-drawer" open contained placement="end" size="sm">
+        <span slot="title" class="portal-drawer-anatomy-title">Title</span>
+        <span slot="description" class="portal-drawer-anatomy-description">Description</span>
+        <div class="portal-drawer-anatomy-slot">[Slot]</div>
+        <div slot="footer" class="portal-drawer-anatomy-footer">
+          <sgds-button variant="outline">Button 1</sgds-button>
+          <sgds-button>Button 2</sgds-button>
+        </div>
+      </sgds-drawer>
+      <span class="portal-drawer-anatomy-scrollbar" aria-hidden="true"></span>
+    </div>`,
     configurationDemos: [
       {
         title: "Placement",
@@ -4320,7 +4385,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-drawer open contained placement="bottom">
             <span slot="title">Bottom drawer</span>
             <span slot="description">Rises from the bottom edge.</span>
-            <p>Commonly used on mobile for quick actions.</p>
+            <p>Commonly used on mobile for short actions.</p>
           </sgds-drawer>
         </div>`,
             description: "Rises from the bottom, common for mobile sheets.",
@@ -4340,7 +4405,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-drawer open contained placement="end" size="sm">
             <span slot="title">Small drawer</span>
             <span slot="description">Compact panel for short content.</span>
-            <p>Good for quick actions or summaries.</p>
+            <p>Suits short actions or summaries.</p>
           </sgds-drawer>
         </div>`,
             description: "Default compact size for short content.",
@@ -4393,7 +4458,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a drawer for supporting tasks alongside the main page",
-          description: "Drawers work best for filters, settings, or detail panels where users benefit from keeping the underlying page in view while they work.",
+          description: "Drawers work best for filters, settings, or detail panels. Users keep the page in view while they work.",
           tone: "do",
           markup: `<sgds-drawer open contained placement="end" size="sm">
             <span slot="title">Filter results</span>
@@ -4407,7 +4472,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a drawer for critical confirmations",
-          description: "Decisions that block progress or have irreversible consequences belong in a modal, where users must respond before continuing.",
+          description: "Decisions that block progress or are irreversible belong in a modal, where users must respond first.",
           tone: "dont",
           markup: `<sgds-drawer open contained placement="end" size="sm">
             <span slot="title">Delete account</span>
@@ -4421,7 +4486,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Anchor the drawer to the edge that matches the content",
-          description: "Use end for detail and inspector panels, start for navigation, and bottom for mobile sheets. The placement should reinforce the relationship between the drawer and the page beneath it.",
+          description: "Use end for detail panels, start for navigation, and bottom for mobile sheets so placement matches purpose.",
           tone: "do",
           markup: `<sgds-drawer open contained placement="end" size="md">
             <span slot="title">Booking details</span>
@@ -4431,7 +4496,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not stack multiple drawers on top of each other",
-          description: "Opening a second drawer from inside another one hides the first context and makes it hard for users to track where they are. Resolve the current drawer before opening the next.",
+          description: "Opening a second drawer from inside another hides the first context. Resolve the current one first.",
           tone: "dont",
           markup: `<div class="portal-demo-overlay">
             <sgds-drawer open contained placement="end" size="sm">
@@ -4446,7 +4511,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Provide a clear way to close the drawer",
-          description: "Always include a footer action such as Save or Cancel so users know how to commit or back out. Pair this with the built-in close affordance for an obvious exit.",
+          description: "Include a footer action such as Save or Cancel, paired with the built-in close, so users have an obvious exit.",
           tone: "do",
           markup: `<sgds-drawer open contained placement="end" size="sm">
             <span slot="title">Edit details</span>
@@ -4460,7 +4525,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a drawer when navigation would be clearer",
-          description: "If the content is a full task or a page in its own right, send users to a dedicated page instead of squeezing it into a drawer panel.",
+          description: "If the content is a full task or page on its own, send users to a dedicated page instead of a drawer.",
           tone: "dont",
           markup: `<sgds-drawer open contained placement="end" size="lg">
             <span slot="title">Submit a new application</span>
@@ -4485,33 +4550,51 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Anchor to a trigger",
-        description: "The dropdown always opens relative to its trigger — users know exactly where it came from and where to dismiss it.",
+        description: "The dropdown always opens relative to its trigger. Users know exactly where it came from and where to dismiss it.",
       },
       {
         title: "Flexible content inside",
-        description: "Dropdown menus can contain plain links, actions, icons, or dividers — composing a list that fits the context.",
+        description: "Dropdown menus can contain plain links, actions, icons, or dividers, composing a list that fits the context.",
       },
     ],
-    anatomyMarkup: `<div class="portal-popover-anatomy">
-      <div class="portal-popover-anatomy-trigger portal-anatomy-dropdown-trigger">
-        <span>Actions</span>
-        <sgds-icon name="chevron-down" aria-hidden="true"></sgds-icon>
-      </div>
-      <div class="portal-popover-anatomy-listbox portal-anatomy-dropdown-menu">
-        <div class="portal-popover-anatomy-option portal-anatomy-dropdown-item">Edit</div>
-        <div class="portal-popover-anatomy-option">Duplicate</div>
-        <div class="portal-popover-anatomy-option">Archive</div>
-      </div>
-    </div>`,
+    anatomyMarkup: `<sgds-dropdown class="portal-anatomy-dropdown" menuisopen noFlip>
+      <sgds-icon-button class="portal-anatomy-dropdown-action" slot="toggler" name="chevron-down" variant="outline" ariaLabel="Open menu"></sgds-icon-button>
+      <sgds-dropdown-item>
+        <a href="#">
+          <sgds-icon class="portal-anatomy-dropdown-menu-icon" name="gear" size="md" aria-hidden="true"></sgds-icon>
+          <span class="portal-anatomy-dropdown-menu-label">Menu label</span>
+        </a>
+      </sgds-dropdown-item>
+      <sgds-dropdown-item>
+        <a href="#">
+          <sgds-icon name="gear" size="md" aria-hidden="true"></sgds-icon>
+          <span>Menu label</span>
+        </a>
+      </sgds-dropdown-item>
+      <sgds-dropdown-item>
+        <a href="#">
+          <sgds-icon name="gear" size="md" aria-hidden="true"></sgds-icon>
+          <span>Menu label</span>
+        </a>
+      </sgds-dropdown-item>
+      <sgds-dropdown-item>
+        <a href="#">
+          <sgds-icon name="gear" size="md" aria-hidden="true"></sgds-icon>
+          <span class="portal-anatomy-dropdown-bottom-menu-label">Menu label</span>
+        </a>
+      </sgds-dropdown-item>
+    </sgds-dropdown>`,
     anatomyParts: [
-      { title: "Toggler" },
-      { title: "Menu" },
-      { title: "Menu item" },
+      { title: "Action" },
+      { title: "Icon (optional)" },
+      { title: "Label" },
+      { title: "Container" },
     ],
     anatomyCallouts: [
-      { number: 1, direction: "right", targetSelector: ".portal-anatomy-dropdown-trigger", targetX: "right", targetY: "center" },
-      { number: 2, direction: "right", targetSelector: ".portal-anatomy-dropdown-menu", targetX: "right", targetY: "center" },
-      { number: 3, direction: "left", targetSelector: ".portal-anatomy-dropdown-item", targetX: "left", targetY: "center" },
+      { number: 1, direction: "left", targetSelector: ".portal-anatomy-dropdown-action", targetX: "left", targetY: "center" },
+      { number: 2, direction: "left", targetSelector: ".portal-anatomy-dropdown-menu-icon", targetX: "left", targetY: "center", alignBadgeWithCallout: 1 },
+      { number: 3, direction: "bottom", targetSelector: ".portal-anatomy-dropdown-bottom-menu-label", targetX: "center", targetY: "bottom" },
+      { number: 4, direction: "right", targetSelector: ".portal-anatomy-dropdown", targetShadowSelector: ".dropdown-menu", targetX: "right", targetY: "center" },
     ],
     configurationDemos: [
       {
@@ -4529,7 +4612,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
           <sgds-dropdown-item><a href="#">Sign out</a></sgds-dropdown-item>
         </sgds-dropdown>`,
-            description: "Menu opens below the trigger. Default behaviour.",
+            description: "Menu opens below the trigger. This is the default behaviour.",
           },
           {
             label: "Up",
@@ -4665,7 +4748,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a dropdown to group related actions",
-          description: "Collect a small set of contextually related actions or links under one trigger so the surrounding interface stays uncluttered.",
+          description: "Collect a small set of related actions or links under one trigger so the surrounding interface stays clean.",
           tone: "do",
           markup: `<sgds-dropdown>
             <sgds-button slot="toggler" variant="outline">Actions</sgds-button>
@@ -4676,7 +4759,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not hide the primary action inside a dropdown",
-          description: "If users must take a single most-important action on a screen, expose it as a button on the surface. Burying it behind a trigger adds an extra click and hides intent.",
+          description: "Expose the primary action as a button on the surface. Burying it behind a trigger hides intent.",
           tone: "dont",
           markup: `<sgds-dropdown>
             <sgds-button slot="toggler" variant="primary">More</sgds-button>
@@ -4696,7 +4779,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a dropdown to choose a value from a list",
-          description: "Dropdowns are for actions and links, not for selecting form values. For a single value selection use select; for filterable lists use combo box.",
+          description: "Dropdowns are for actions and links. Use select for a single value, combo box for filterable lists.",
           tone: "dont",
           markup: `<sgds-dropdown>
             <sgds-button slot="toggler" variant="outline">Country</sgds-button>
@@ -4707,7 +4790,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Keep the menu short and scannable",
-          description: "Aim for a small number of clearly labelled items. Long menus are hard to scan and signal that the underlying information needs better grouping.",
+          description: "Aim for a small number of clearly labelled items. Long menus are hard to scan and signal poor grouping.",
           tone: "do",
           markup: `<sgds-dropdown>
             <sgds-button slot="toggler" variant="outline">Account</sgds-button>
@@ -4718,7 +4801,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not nest dropdowns inside other dropdowns",
-          description: "Multi-level dropdowns are hard to operate, especially on touch and with assistive technology. Restructure the actions or move secondary options to a dedicated screen.",
+          description: "Multi-level dropdowns are hard to operate on touch and with assistive technology. Restructure instead.",
           tone: "dont",
           markup: `<sgds-dropdown>
             <sgds-button slot="toggler" variant="outline">Actions</sgds-button>
@@ -4746,7 +4829,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "File upload gives users a clear, accessible way to attach documents, images, or other files as part of completing a form or workflow.",
       },
       {
-        title: "Show what's been added",
+        title: "Show what is been added",
         description: "Once a file is selected, the component confirms the filename and size so users know their upload was received before submitting.",
       },
       {
@@ -4754,11 +4837,16 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "File type and size restrictions can be communicated upfront, reducing failed uploads and back-and-forth with users.",
       },
     ],
-    anatomyParts: [{ title: "Upload button" }, { title: "Selected file list" }, { title: "Feedback area" }],
+    anatomyMarkup: `<sgds-file-upload class="portal-anatomy-file-upload" label="Label" hintText="Hint text">Choose file</sgds-file-upload>`,
+    anatomyParts: [
+      { title: "Label (optional)" },
+      { title: "Action (button)" },
+      { title: "Hint text (optional)" },
+    ],
     anatomyCallouts: [
-      { number: 1, direction: "top", targetSelector: "sgds-file-upload", targetX: "center", targetY: "top" },
-      { number: 2, direction: "right", targetSelector: "sgds-file-upload", targetX: "right", targetY: "center" },
-      { number: 3, direction: "bottom", targetSelector: "sgds-file-upload", targetX: "center", targetY: "bottom" },
+      { number: 1, direction: "left", targetSelector: ".portal-anatomy-file-upload", targetShadowSelector: ".form-label", targetX: "left", targetY: "center" },
+      { number: 2, direction: "left", targetSelector: ".portal-anatomy-file-upload", targetShadowSelector: "sgds-button", targetX: "left", targetY: "center", alignBadgeWithCallout: 1 },
+      { number: 3, direction: "left", targetSelector: ".portal-anatomy-file-upload", targetShadowSelector: ".form-text", targetX: "left", targetY: "center", alignBadgeWithCallout: 1 },
     ],
     configurationDemos: [
       {
@@ -4842,7 +4930,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Invalid",
             value: "invalid",
-            markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Please attach at least one file">Upload file</sgds-file-upload>`,
+            markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Attach at least one file">Upload file</sgds-file-upload>`,
             description: "Upload control shows error styling and feedback message when no file is attached.",
           },
         ],
@@ -4859,7 +4947,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "State the accepted file types and size up front",
-          description: "Tell users which file types and sizes are accepted before they pick a file. Surfacing the rules in supporting copy reduces failed uploads and back-and-forth corrections.",
+          description: "Tell users which file types and sizes are accepted before they pick a file to reduce failed uploads.",
           tone: "do",
           markup: `<div class="portal-demo-stack">
             <sgds-file-upload accept=".pdf,.jpg,.png">Upload document</sgds-file-upload>
@@ -4868,31 +4956,31 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Restrict file types using the accept attribute",
-          description: "Set the accept attribute to filter the system file picker to the right formats so users do not have to scan their files manually.",
+          description: "Set the accept attribute to filter the system file picker so users do not have to scan files manually.",
           tone: "do",
           markup: `<sgds-file-upload accept="application/pdf">Upload PDF</sgds-file-upload>`,
         },
         {
           title: "Do not leave the upload action ambiguous",
-          description: "Use a clear verb-led label inside the slot — for example Upload report — instead of generic words like File or Browse so users know what they are attaching.",
+          description: "Use a clear verb-led label inside the slot, for example Upload report, rather than generic File or Browse.",
           tone: "dont",
           markup: `<sgds-file-upload>File</sgds-file-upload>`,
         },
         {
           title: "Use multiple only when users genuinely need it",
-          description: "Add the multiple attribute when the task expects several files in one go, such as photo evidence or batch documents. Leaving it on by default invites users to attach more than the workflow can handle.",
+          description: "Add the multiple attribute when the task expects several files in one go, such as photo evidence.",
           tone: "do",
           markup: `<sgds-file-upload accept="image/*" multiple>Upload supporting photos</sgds-file-upload>`,
         },
         {
           title: "Show validation feedback when an upload is required",
-          description: "Pair required with hasFeedback and invalidFeedback so the empty state can be flagged inline, the same way other SGDS form controls are validated.",
+          description: "Pair required with hasFeedback and invalidFeedback so the empty state can be flagged inline.",
           tone: "do",
-          markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Please attach at least one file">Upload document</sgds-file-upload>`,
+          markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Attach at least one file">Upload document</sgds-file-upload>`,
         },
         {
           title: "Do not use file upload for very small text inputs",
-          description: "If the user only needs to provide a short value such as a reference number or note, use a text input or textarea — uploading a file adds unnecessary friction.",
+          description: "For a short value such as a reference number, use a text input. Uploading a file adds friction.",
           tone: "dont",
           markup: `<sgds-file-upload>Upload your reference number</sgds-file-upload>`,
         },
@@ -4913,26 +5001,116 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Persistent across pages",
-        description: "The footer provides a consistent anchor at the bottom of every page — users know where to find legal and contact information regardless of where they are.",
+        description: "The footer provides a consistent anchor at the bottom of every page. Users know where to find legal and contact information regardless of where they are.",
       },
       {
         title: "Supports trust and compliance",
-        description: "A standardised footer reinforces the official identity of a government service and helps users verify they're on an authentic .gov.sg site.",
+        description: "A standardised footer reinforces the official identity of a government service and helps users verify they are on an authentic .gov.sg site.",
       },
     ],
     anatomyParts: [
-      { title: "Container" },
-      defaultPartTitleMap.title,
-      defaultPartTitleMap.description,
-      defaultPartTitleMap.items,
+      { title: "Site title", note: "(optional)" },
+      { title: "Site description", note: "(optional)" },
+      { title: "Slot", note: "(optional)" },
+      { title: "Footer navigation" },
+      { title: "Divider" },
+      { title: "Copyright notice" },
     ],
     anatomyCallouts: [
-      { number: 1, direction: "right", targetSelector: "sgds-footer", targetX: "right", targetY: "center" },
-      { number: 2, direction: "top", targetSelector: "[slot='title']", targetX: "center", targetY: "top" },
-      { number: 3, direction: "left", targetSelector: "[slot='description']", targetX: "left", targetY: "center" },
-      { number: 4, direction: "bottom", targetSelector: "sgds-footer", targetX: "center", targetY: "bottom" },
+      { number: 1, direction: "left", targetSelector: ".portal-footer-anatomy-title", targetX: "left", targetY: "center" },
+      { number: 2, direction: "left", targetSelector: ".portal-footer-anatomy-description", targetX: "left", targetY: "center", alignBadgeWithCallout: 1 },
+      { number: 3, direction: "left", targetSelector: ".portal-footer-anatomy-slot", targetX: "left", targetY: "center", alignBadgeWithCallout: 1 },
+      { number: 4, direction: "left", targetSelector: ".portal-footer-anatomy", targetShadowSelector: ".footer-mandatory-links ul", targetX: "left", targetY: "center", alignBadgeWithCallout: 1 },
+      { number: 5, direction: "right", targetSelector: ".portal-footer-anatomy", targetShadowSelector: ".footer-top", targetX: "right", targetY: "bottom" },
+      { number: 6, direction: "right", targetSelector: ".portal-footer-anatomy", targetShadowSelector: ".footer-copyrights", targetX: "right", targetY: "center", alignBadgeWithCallout: 5 },
     ],
+    anatomyMarkup: `<sgds-footer class="portal-footer-anatomy" copyrightLiner="Government of Singapore" faqHref="#" sitemapHref="#">
+      <h2 slot="title" class="portal-footer-anatomy-title">Site title</h2>
+      <p slot="description" class="portal-footer-anatomy-description">Site description</p>
+      <div class="portal-slot-example portal-footer-anatomy-slot">[Slot]</div>
+    </sgds-footer>`,
     configurationDemos: [
+      {
+        title: "Device",
+        description: "Footer layout responds to the available viewport width. Use the device presets to check how links and copyright wrap across common breakpoints.",
+        controlLabel: "Footer device width presets",
+        defaultValue: "1440",
+        controlType: "select",
+        options: [
+          {
+            label: "1440",
+            value: "1440",
+            markup: `<div class="sgds:w-[var(--sgds-dimension-1312)] sgds:max-w-full">
+          <sgds-footer copyrightLiner="Government of Singapore" faqHref="#" sitemapHref="#">
+            <span slot="title">Site title</span>
+            <span slot="description">Site description</span>
+            <div class="portal-slot-example portal-footer-anatomy-slot">[Slot]</div>
+          </sgds-footer>
+        </div>`,
+            description: "Large desktop width. Footer content has the most horizontal space.",
+          },
+          {
+            label: "1280",
+            value: "1280",
+            markup: `<div class="sgds:w-[var(--sgds-dimension-1168)] sgds:max-w-full">
+          <sgds-footer copyrightLiner="Government of Singapore" faqHref="#" sitemapHref="#">
+            <span slot="title">Site title</span>
+            <span slot="description">Site description</span>
+            <div class="portal-slot-example portal-footer-anatomy-slot">[Slot]</div>
+          </sgds-footer>
+        </div>`,
+            description: "Desktop width where footer navigation and copyright sit on the same row when space allows.",
+          },
+          {
+            label: "1024",
+            value: "1024",
+            markup: `<div class="sgds:w-[var(--sgds-dimension-888)] sgds:max-w-full">
+          <sgds-footer copyrightLiner="Government of Singapore" faqHref="#" sitemapHref="#">
+            <span slot="title">Site title</span>
+            <span slot="description">Site description</span>
+            <div class="portal-slot-example portal-footer-anatomy-slot">[Slot]</div>
+          </sgds-footer>
+        </div>`,
+            description: "Tablet landscape width. The footer keeps a compact desktop-style content width.",
+          },
+          {
+            label: "768",
+            value: "768",
+            markup: `<div class="sgds:w-[var(--sgds-dimension-688)] sgds:max-w-full">
+          <sgds-footer copyrightLiner="Government of Singapore" faqHref="#" sitemapHref="#">
+            <span slot="title">Site title</span>
+            <span slot="description">Site description</span>
+            <div class="portal-slot-example portal-footer-anatomy-slot">[Slot]</div>
+          </sgds-footer>
+        </div>`,
+            description: "Tablet portrait width. Navigation has less horizontal space and may wrap.",
+          },
+          {
+            label: "512",
+            value: "512",
+            markup: `<div class="sgds:w-[var(--sgds-dimension-480)] sgds:max-w-full">
+          <sgds-footer copyrightLiner="Government of Singapore" faqHref="#" sitemapHref="#">
+            <span slot="title">Site title</span>
+            <span slot="description">Site description</span>
+            <div class="portal-slot-example portal-footer-anatomy-slot">[Slot]</div>
+          </sgds-footer>
+        </div>`,
+            description: "Small tablet width. Footer navigation begins to stack more visibly.",
+          },
+          {
+            label: "320",
+            value: "320",
+            markup: `<div class="sgds:w-[var(--sgds-dimension-320)] sgds:max-w-full">
+          <sgds-footer copyrightLiner="Government of Singapore" faqHref="#" sitemapHref="#">
+            <span slot="title">Site title</span>
+            <span slot="description">Site description</span>
+            <div class="portal-slot-example portal-footer-anatomy-slot">[Slot]</div>
+          </sgds-footer>
+        </div>`,
+            description: "Mobile width. Footer links stack vertically for narrow screens.",
+          },
+        ],
+      },
       {
         title: "Contact information",
         description: "Provide contact and feedback links so users can reach the service team. Both fields accept a URL.",
@@ -4997,7 +5175,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         >
           <span slot="title">Service Name</span>
         </sgds-footer>`,
-            description: "Adds quick links to FAQ and sitemap for content-heavy services.",
+            description: "Adds shortcut links to FAQ and sitemap for content-heavy services.",
           },
         ],
       },
@@ -5069,7 +5247,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Include the mandatory legal links",
-          description: "All .gov.sg services must show a privacy statement and terms of use in the footer. Provide both links on every page so users can verify how their data is handled.",
+          description: "All .gov.sg services must show privacy and terms of use links in the footer on every page.",
           tone: "do",
           markup: `<sgds-footer
             contactHref="https://www.example.gov.sg/contact"
@@ -5084,7 +5262,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not omit privacy and terms",
-          description: "Even compact footers must surface privacy and terms of use links. Removing them puts the service out of compliance with .gov.sg requirements.",
+          description: "Even compact footers must surface privacy and terms of use links to stay compliant with .gov.sg rules.",
           tone: "dont",
           markup: `<sgds-footer copyrightLiner="Government of Singapore">
             <span slot="title">Example service</span>
@@ -5092,7 +5270,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Group related links under titled sections",
-          description: "When the footer carries many destinations, use sgds-footer-item to group them under clear headings so users can scan by topic instead of reading one long list.",
+          description: "Use sgds-footer-item to group destinations under clear headings so users can scan by topic.",
           tone: "do",
           markup: `<sgds-footer
             contactHref="#"
@@ -5116,7 +5294,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use the footer for primary actions",
-          description: "The footer is for supporting information and secondary navigation. Place primary calls to action — sign in, apply, submit — within the page body or main navigation, not in the footer.",
+          description: "The footer is for supporting information. Place primary calls to action in the page body or main nav.",
           tone: "dont",
           markup: `<sgds-footer
             privacyHref="#"
@@ -5128,34 +5306,6 @@ const componentDocs: Record<string, ComponentDoc> = {
               <span slot="title">Apply now</span>
               <a href="#">Start your application</a>
             </sgds-footer-item>
-          </sgds-footer>`,
-        },
-        {
-          title: "Provide contact and feedback channels",
-          description: "Recommended for all .gov.sg services. Contact and feedback links give users a clear route to support and let teams hear from the people they serve.",
-          tone: "do",
-          markup: `<sgds-footer
-            contactHref="https://www.example.gov.sg/contact"
-            feedbackHref="https://www.example.gov.sg/feedback"
-            privacyHref="#"
-            termsOfUseHref="#"
-            copyrightLiner="Government of Singapore"
-          >
-            <span slot="title">Example service</span>
-            <span slot="description">A short description of the service.</span>
-          </sgds-footer>`,
-        },
-        {
-          title: "Use a clear service name in the title slot",
-          description: "Name the service the way users will recognise it. Avoid acronyms or internal project names that won't match what users were searching for.",
-          tone: "do",
-          markup: `<sgds-footer
-            privacyHref="#"
-            termsOfUseHref="#"
-            copyrightLiner="Government of Singapore"
-          >
-            <span slot="title">HDB rental flat application</span>
-            <span slot="description">Apply for and manage public rental housing.</span>
           </sgds-footer>`,
         },
       ],
@@ -5171,7 +5321,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Communicate at a glance",
-        description: "Icons convey meaning quickly in spaces where text would be too long — labels, buttons, status indicators, and navigation all benefit from visual shorthand.",
+        description: "Icons convey meaning quickly in spaces where text would be too long. Labels, buttons, status indicators, and navigation all benefit from this visual shorthand.",
       },
       {
         title: "Support text, not replace it",
@@ -5182,11 +5332,14 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "All icons are drawn from the SgdsIcon set, ensuring visual consistency across every product built on SGDS.",
       },
     ],
-    anatomyParts: [{ title: "Icon glyph" }, { title: "Size variant" }],
+    anatomyParts: [{ title: "Container" }, { title: "Icon" }],
     anatomyCallouts: [
-      { number: 1, direction: "top", targetSelector: "sgds-icon", targetX: "center", targetY: "top" },
-      { number: 2, direction: "right", targetSelector: "sgds-icon[size='lg']", targetX: "right", targetY: "center" },
+      { number: 1, direction: "left", targetSelector: ".portal-icon-anatomy-container", targetX: "left", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: ".portal-icon-anatomy-icon", targetX: "center", targetY: "top" },
     ],
+    anatomyMarkup: `<div class="portal-icon-anatomy-container">
+      <sgds-icon class="portal-icon-anatomy-icon" name="circle" size="md" aria-hidden="true"></sgds-icon>
+    </div>`,
     configurationDemos: [
       {
         title: "Name",
@@ -5230,7 +5383,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Extra small",
             value: "xs",
             markup: `<div class="portal-demo-row"><sgds-icon name="info-circle" size="xs"></sgds-icon></div>`,
-            description: "Smallest scale — fits inline with body text.",
+            description: "Smallest scale that fits inline with body text.",
           },
           {
             label: "Small",
@@ -5274,7 +5427,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Pair icons with a clear text label",
-          description: "Use icons to reinforce meaning that is already clear from nearby text. When users can read the label, the icon helps them recognise the action faster on subsequent visits.",
+          description: "Use icons to reinforce meaning already clear from nearby text. They aid recognition on later visits.",
           tone: "do",
           markup: `<sgds-button>
             <sgds-icon slot="leftIcon" name="download"></sgds-icon>
@@ -5283,7 +5436,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not rely on an icon alone to convey meaning",
-          description: "Standalone icons are easy to misread, especially for users unfamiliar with a symbol. If you must use an icon without visible text, pair it with a tooltip or accessible label so the meaning is unambiguous.",
+          description: "Standalone icons are often misread. Pair icon-only controls with a tooltip or accessible label.",
           tone: "dont",
           markup: `<div class="portal-demo-row">
             <sgds-icon name="gear"></sgds-icon>
@@ -5293,7 +5446,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Use the same icon for the same meaning",
-          description: "Pick one icon per concept and reuse it across the product. Switching icons for the same idea — for example, using both a gear and a sliders icon for settings — undermines recognition.",
+          description: "Pick one icon per concept and reuse it across the product. Switching icons for the same idea hurts recognition.",
           tone: "do",
           markup: `<div class="portal-demo-row">
             <sgds-button variant="ghost">
@@ -5307,20 +5460,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           </div>`,
         },
         {
-          title: "Match the icon size to the surrounding text",
-          description: "Use sm for inline icons in body copy, md for most labels and buttons, and lg for emphasis in cards or hero sections. Sizing icons to match nearby text keeps alignment clean.",
-          tone: "do",
-          markup: `<div class="portal-demo-row">
-            <span><sgds-icon name="check-circle" size="sm"></sgds-icon> Confirmed</span>
-            <sgds-button>
-              <sgds-icon slot="leftIcon" name="check-circle"></sgds-icon>
-              Confirm
-            </sgds-button>
-          </div>`,
-        },
-        {
           title: "Do not use icons that conflict with their usual meaning",
-          description: "An exclamation triangle reads as a warning and a check circle as success. Using these icons for unrelated purposes will mislead users at a glance.",
+          description: "An exclamation triangle reads as warning and a check circle as success. Do not use them for other purposes.",
           tone: "dont",
           markup: `<div class="portal-demo-row">
             <span><sgds-icon name="exclamation-triangle"></sgds-icon> Help and FAQs</span>
@@ -5340,22 +5481,42 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Action in minimal space",
-        description: "Icon buttons let you place interactive controls in tight areas — toolbars, table rows, compact headers — without needing a text label.",
+        description: "Icon buttons let you place interactive controls in tight areas (toolbars, table rows, compact headers) without needing a text label.",
       },
       {
         title: "Always label for accessibility",
-        description: "Because there's no visible text, icon buttons require an accessible aria-label so screen reader users understand the action.",
+        description: "Because there is no visible text, icon buttons require an accessible aria-label so screen reader users understand the action.",
       },
       {
         title: "Consistent visual weight",
         description: "Using the icon button component keeps icon-only actions styled and sized consistently across your product.",
       },
     ],
-    anatomyParts: [{ title: "Button container" }, { title: "Icon" }, { title: "Interactive state" }],
+    anatomyParts: [{ title: "Button container" }, { title: "Icon" }],
     anatomyCallouts: [
-      { number: 1, direction: "right", targetSelector: "sgds-icon-button", targetX: "right", targetY: "center" },
-      { number: 2, direction: "top", targetSelector: "sgds-icon-button", targetX: "center", targetY: "top" },
-      { number: 3, direction: "bottom", targetSelector: "sgds-icon-button[variant='outline']", targetX: "center", targetY: "bottom" },
+      { number: 1, direction: "left", targetSelector: ".portal-icon-button-anatomy-primary", targetX: "left", targetY: "center" },
+      { number: 2, direction: "top", targetSelector: ".portal-icon-button-anatomy-secondary", targetShadowSelector: "sgds-icon", targetX: "center", targetY: "top" },
+    ],
+    anatomyMarkup: `<div class="sgds:flex sgds:items-center sgds:gap-lg">
+      <sgds-icon-button class="portal-icon-button-anatomy-primary" name="search" ariaLabel="Search"></sgds-icon-button>
+      <sgds-icon-button class="portal-icon-button-anatomy-secondary" name="three-dots" variant="outline" ariaLabel="More actions"></sgds-icon-button>
+    </div>`,
+    measurements: [
+      {
+        title: "",
+        description: "",
+        markup: `<sgds-icon-button class="portal-structure-icon-button" name="search" ariaLabel="Search"></sgds-icon-button>`,
+      },
+    ],
+    componentTokenGroups: [
+      {
+        title: "sgds/icon-button",
+        rows: [
+          { category: "Size", name: "width", value: "sgds/dimension/48", rawValue: "48px", mapKey: "width" },
+          { category: "Size", name: "height", value: "sgds/dimension/48", rawValue: "48px", mapKey: "height" },
+          { category: "Size", name: "icon-size", value: "sgds/icon-size/lg", rawValue: "24px", mapKey: "icon-size" },
+        ],
+      },
     ],
     configurationDemos: [
       {
@@ -5438,7 +5599,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Medium",
             value: "md",
             markup: `<div class="portal-demo-row"><sgds-icon-button name="search" size="md"></sgds-icon-button></div>`,
-            description: "The default size — use for most icon-only actions across forms, dialogs, and general page content.",
+            description: "The default size. Use for most icon-only actions across forms, dialogs, and general page content.",
           },
           {
             label: "Large",
@@ -5458,7 +5619,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Not disabled",
             value: "not-disabled",
             markup: `<div class="portal-demo-row"><sgds-icon-button name="search"></sgds-icon-button></div>`,
-            description: "The default — icon buttons are interactive and respond to pointer and keyboard input.",
+            description: "The default. Icon buttons are interactive and respond to pointer and keyboard input.",
           },
           {
             label: "Disabled",
@@ -5477,13 +5638,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Not loading",
             value: "not-loading",
-            markup: `<div class="portal-demo-row"><sgds-icon-button name="cloud-arrow-up"></sgds-icon-button></div>`,
-            description: "The default state — the icon is shown and the button is interactive.",
+            markup: `<div class="portal-demo-row"><sgds-icon-button name="search" ariaLabel="Search"></sgds-icon-button></div>`,
+            description: "The default state. The icon is shown and the button is interactive.",
           },
           {
             label: "Loading",
             value: "loading",
-            markup: `<div class="portal-demo-row"><sgds-icon-button name="cloud-arrow-up" loading></sgds-icon-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-icon-button name="search" loading></sgds-icon-button></div>`,
             description: "Replaces the icon with a spinner and disables interaction. Use to indicate that a triggered action is in progress.",
           },
         ],
@@ -5503,7 +5664,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use icon buttons for actions that are universally recognised",
-          description: "Reserve icon-only buttons for actions whose icon is widely understood — search, close, edit, delete. For less familiar actions, use a regular button with a visible label.",
+          description: "Reserve icon-only buttons for widely understood actions: search, close, edit, and delete.",
           tone: "do",
           markup: `<div class="portal-demo-row">
             <sgds-icon-button name="search" ariaLabel="Search"></sgds-icon-button>
@@ -5512,19 +5673,19 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Always provide an accessible label",
-          description: "Without visible text, icon buttons need an aria-label so screen reader users know what the action does. Never ship an icon button without one.",
+          description: "Without visible text, icon buttons need an aria-label so screen reader users know what the action does.",
           tone: "do",
           markup: `<sgds-icon-button name="trash" tone="danger" ariaLabel="Delete item"></sgds-icon-button>`,
         },
         {
           title: "Do not use icon buttons for primary calls to action",
-          description: "Primary actions deserve a visible label so users do not have to interpret an icon to take the most important step on the page. Use a regular button with text instead.",
+          description: "Primary actions deserve a visible label. Use a regular button with text rather than an icon-only one.",
           tone: "dont",
           markup: `<sgds-icon-button name="check-lg" ariaLabel="Submit application"></sgds-icon-button>`,
         },
         {
           title: "Match the tone to the action",
-          description: "Use the danger tone for destructive actions, neutral for quiet utility actions, and the brand default for everything else. The tone should reinforce, not contradict, what happens on click.",
+          description: "Use danger for destructive actions, neutral for quiet utility, and the brand default for everything else.",
           tone: "do",
           markup: `<div class="portal-demo-row">
             <sgds-icon-button name="pencil" variant="ghost" ariaLabel="Edit row"></sgds-icon-button>
@@ -5532,8 +5693,17 @@ const componentDocs: Record<string, ComponentDoc> = {
           </div>`,
         },
         {
+          title: "Do not use misleading tones",
+          description: "Avoid styling destructive actions like neutral ones, or using danger tone for harmless actions.",
+          tone: "dont",
+          markup: `<div class="portal-demo-row">
+            <sgds-icon-button name="trash" variant="ghost" ariaLabel="Delete row"></sgds-icon-button>
+            <sgds-icon-button name="pencil" variant="ghost" tone="danger" ariaLabel="Edit row"></sgds-icon-button>
+          </div>`,
+        },
+        {
           title: "Do not crowd icon buttons together without separation",
-          description: "When multiple icon buttons sit side by side, use the ghost variant or add spacing so users can tell them apart. A row of solid icon buttons reads as a single block of colour.",
+          description: "When icon buttons sit side by side, use the ghost variant or add spacing so users can tell them apart.",
           tone: "dont",
           markup: `<div class="portal-demo-row">
             <sgds-icon-button name="pencil" ariaLabel="Edit"></sgds-icon-button>
@@ -5563,7 +5733,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Uniform across a grid",
-        description: "The consistent structure — icon, title, description — means a row of icon cards stays balanced and easy to scan.",
+        description: "The consistent structure (icon, title, description) means a row of icon cards stays balanced and scannable.",
       },
     ],
     anatomyParts: [
@@ -5603,13 +5773,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           <span slot="title">Business grants</span>
           <span slot="description">Find financial support for growing local businesses.</span>
         </sgds-icon-card>`,
-            description: "Places the icon beside the content. Useful in narrower lists or sidebars.",
+            description: "Places the icon beside the content, useful in narrower lists or sidebars.",
           },
         ],
       },
       {
         title: "Tinted background",
-        description: "Use `tinted` to apply a subtle background color that helps the card stand out from its surface.",
+        description: "Use `tinted` to apply a subtle background colour that helps the card stand out from its surface.",
         controlLabel: "Icon card background options",
         defaultValue: "default",
         options: [
@@ -5708,7 +5878,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use icon cards for parallel categories or features",
-          description: "Icon cards work best when the items in a grid share the same shape — for example, a row of services, features, or topics. Each card is a peer of the others.",
+          description: "Icon cards work best in a grid where items share the same shape. Services, features, or topics.",
           tone: "do",
           markup: `<sgds-icon-card class="portal-demo-card">
             <sgds-icon slot="icon" name="building"></sgds-icon>
@@ -5719,7 +5889,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Keep titles and descriptions short",
-          description: "Icon cards are meant to be scanned. Titles should be a few words and descriptions a single sentence so a row of cards stays the same height and easy to compare.",
+          description: "Icon cards are made to be scanned. Keep titles a few words and descriptions a single sentence.",
           tone: "do",
           markup: `<sgds-icon-card class="portal-demo-card">
             <sgds-icon slot="icon" name="shield-check"></sgds-icon>
@@ -5729,7 +5899,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not pack long-form content into an icon card",
-          description: "If the description runs into multiple sentences, the card stops being scannable and the icon loses its anchoring role. Move the long-form content out of the card.",
+          description: "If the description runs into multiple sentences, the card stops being scannable. Move it out of the card.",
           tone: "dont",
           markup: `<sgds-icon-card class="portal-demo-card">
             <sgds-icon slot="icon" name="file-earmark-text"></sgds-icon>
@@ -5739,7 +5909,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Use stretched-link when the whole card navigates",
-          description: "When the card is a single click target, add a footer link with stretched-link so the entire surface is clickable and clearly focusable for keyboard users.",
+          description: "Add a footer link with stretched-link so the whole card is clickable and focusable for keyboard users.",
           tone: "do",
           markup: `<sgds-icon-card class="portal-demo-card" stretched-link>
             <sgds-icon slot="icon" name="file-earmark-text"></sgds-icon>
@@ -5750,7 +5920,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use icon cards as replacements for buttons",
-          description: "Icon cards introduce a category or feature. If you only need to trigger a single action without descriptive content, a button or icon button is the right control.",
+          description: "Icon cards introduce a category or feature. For a single action without description, use a button instead.",
           tone: "dont",
           markup: `<sgds-icon-card class="portal-demo-card" stretched-link>
             <sgds-icon slot="icon" name="download"></sgds-icon>
@@ -5775,7 +5945,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Communicate type or status",
-        description: "Icons can signal category, priority, or state at a glance — users don't need to read every label to understand the list.",
+        description: "Icons can signal category, priority, or state at a glance. Users do not need to read every label to understand the list.",
       },
       {
         title: "More expressive than plain lists",
@@ -5848,7 +6018,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a consistent icon when items share a meaning",
-          description: "When every item in the list belongs to the same category — for example, things included in a service — repeat the same icon. The visual rhythm reinforces that the items are peers.",
+          description: "When every item belongs to the same category, repeat the same icon so the visual rhythm shows they are peers.",
           tone: "do",
           markup: `<sgds-icon-list>
             <div role="listitem" class="portal-demo-list-item">
@@ -5867,7 +6037,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Vary the icon when items represent different states",
-          description: "When each item carries a different meaning — for example, a step that has succeeded versus one still in progress — choose icons that match each state so the list communicates more than a flat checklist.",
+          description: "When each item carries different meaning, match icons to each state so the list reads as more than a checklist.",
           tone: "do",
           markup: `<sgds-icon-list>
             <div role="listitem" class="portal-demo-list-item">
@@ -5886,7 +6056,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not mix unrelated icons in the same list",
-          description: "If the icons do not share a common purpose, they create visual noise instead of meaning. Either pick one icon for the whole list, or use icons that represent a clear shared dimension such as status or category.",
+          description: "If icons do not share a common purpose, they create noise. Use one icon, or icons tied to a shared dimension.",
           tone: "dont",
           markup: `<sgds-icon-list>
             <div role="listitem" class="portal-demo-list-item">
@@ -5905,7 +6075,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Keep each item to a single line where possible",
-          description: "Icon lists scan best when items are short and parallel. If items need a paragraph of explanation, switch to a regular list with descriptions or use a different layout altogether.",
+          description: "Icon lists scan best when items are short and parallel. For longer explanations, use a different layout.",
           tone: "do",
           markup: `<sgds-icon-list>
             <div role="listitem" class="portal-demo-list-item">
@@ -5920,7 +6090,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use an icon list as a substitute for a navigation menu",
-          description: "An icon list is a presentational pattern, not an interactive one. If users need to click each item to navigate, use a navigation component such as sidenav or a list of buttons instead.",
+          description: "An icon list is presentational, not interactive. Use sidenav or a list of buttons for navigation instead.",
           tone: "dont",
           markup: `<sgds-icon-list>
             <div role="listitem" class="portal-demo-list-item">
@@ -5946,7 +6116,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Lead with a visual",
-        description: "The image sets immediate context — users understand the content of the card before reading a single word.",
+        description: "The image sets immediate context. Users understand the content of the card before reading a single word.",
       },
       {
         title: "Present editorial or catalogue content",
@@ -6079,7 +6249,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a meaningful image, not a generic placeholder",
-          description: "The image is the primary signal in an image card. Pick a photo or illustration that previews the content behind the card so users can decide whether to click through.",
+          description: "The image is the primary signal. Pick one that previews the content so users can decide whether to click.",
           tone: "do",
           markup: `<sgds-image-card class="portal-demo-card">
             <img slot="image" alt="Crowd at the National Day Parade" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" />
@@ -6089,7 +6259,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Always provide meaningful alt text",
-          description: "Image alt text describes the picture for screen reader users. Write a brief, specific description — never leave alt empty or repeat the card title verbatim.",
+          description: "Write a brief, specific alt description. Never leave alt empty or repeat the card title verbatim.",
           tone: "do",
           markup: `<sgds-image-card class="portal-demo-card">
             <img slot="image" alt="Hawker preparing chicken rice at a stall" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" />
@@ -6099,7 +6269,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use image cards when the image adds no information",
-          description: "If the image is purely decorative or interchangeable, drop it. A list of icon cards or plain text cards will scan better than a row of generic stock photos.",
+          description: "If the image is purely decorative or interchangeable, drop it. Icon or text cards will scan better.",
           tone: "dont",
           markup: `<sgds-image-card class="portal-demo-card">
             <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" />
@@ -6109,7 +6279,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Use horizontal orientation in narrow columns",
-          description: "Horizontal image cards work better in lists, sidebars, or any column too narrow to give the image room to breathe vertically.",
+          description: "Horizontal image cards work better in lists, sidebars, or columns too narrow for a vertical image.",
           tone: "do",
           markup: `<sgds-image-card class="portal-demo-card" orientation="horizontal">
             <img slot="image" alt="Job seekers at a career fair" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=400&q=80" />
@@ -6119,7 +6289,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not stretch images to fill mismatched aspect ratios",
-          description: "Provide images sized for the card's expected ratio so people and objects do not appear distorted. Crop the source image rather than relying on raw stretching.",
+          description: "Provide images sized for the card's expected ratio. Crop the source rather than relying on stretching.",
           tone: "dont",
           markup: `<sgds-image-card class="portal-demo-card">
             <img slot="image" alt="Distorted city view" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=200&h=600&q=80" />
@@ -6140,29 +6310,41 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Collect free-form text",
-        description: "Text inputs are the default choice for any information that users need to type out — names, references, search terms, addresses.",
+        description: "Text inputs are the default choice for any information that users need to type out: names, references, search terms, and addresses.",
       },
       {
         title: "Built-in validation states",
-        description: "Error, warning, and success states are part of the component — validation feedback integrates naturally without custom styling.",
+        description: "Error, warning, and success states are part of the component. Validation feedback integrates naturally without custom styling.",
       },
       {
         title: "Label and helper text included",
         description: "The label and helper text slots keep form questions and guidance close to their field, reducing the cognitive load on users.",
       },
     ],
-    anatomyMarkup: `<sgds-input class="portal-anatomy-input" placeholder="Search services"><sgds-icon slot="icon" name="search"></sgds-icon><sgds-icon slot="trailing-icon" name="x-circle"></sgds-icon></sgds-input>`,
+    anatomyMarkup: `<sgds-input class="portal-anatomy-input" label="Label" hintText="Hint text" type="password" prefix="Prefix" suffix="Suffix" placeholder="Placeholder text"><sgds-icon slot="icon" name="search"></sgds-icon><sgds-icon slot="trailing-icon" name="cross"></sgds-icon><sgds-icon-button slot="action" name="gear" variant="ghost" size="md" aria-label="Open input settings"></sgds-icon-button></sgds-input>`,
     anatomyParts: [
-      { title: "Input field" },
-      defaultPartTitleMap.icon,
-      defaultPartTitleMap["trailing-icon"],
-      defaultPartTitleMap.action,
+      { title: "Label" },
+      { title: "Leading icon" },
+      { title: "Hint text" },
+      { title: "Prefix" },
+      { title: "Value" },
+      { title: "Password icon" },
+      { title: "Suffix" },
+      { title: "Trailing icon" },
+      { title: "Action - Icon button" },
+      { title: "Input container" },
     ],
     anatomyCallouts: [
-      { number: 1, direction: "right", targetSelector: ".portal-anatomy-input", targetX: "right", targetY: "center" },
-      { number: 2, direction: "top", targetSelector: "sgds-icon[slot='icon']", targetX: "center", targetY: "top" },
-      { number: 3, direction: "top", targetSelector: "sgds-icon[slot='trailing-icon']", targetX: "center", targetY: "top" },
-      { number: 4, direction: "bottom", targetSelector: ".portal-anatomy-input", targetX: "right", targetY: "bottom" },
+      { number: 1, direction: "left", targetSelector: ".portal-anatomy-input", targetShadowSelector: ".form-label", targetX: "left", targetY: "center" },
+      { number: 2, direction: "left", targetSelector: "sgds-icon[slot='icon']", targetX: "left", targetY: "center", alignBadgeWithCallout: 1 },
+      { number: 3, direction: "left", targetSelector: ".portal-anatomy-input", targetShadowSelector: ".form-text", targetX: "left", targetY: "center", alignBadgeWithCallout: 1 },
+      { number: 4, direction: "top", targetSelector: ".portal-anatomy-input", targetShadowSelector: ".form-control-prefix", targetX: "center", targetY: "top" },
+      { number: 5, direction: "top", targetSelector: ".portal-anatomy-input", targetShadowSelector: "input.form-control", targetX: "center", targetY: "top" },
+      { number: 6, direction: "top", targetSelector: ".portal-anatomy-input", targetShadowSelector: "sgds-icon[role='button']", targetX: "center", targetY: "top" },
+      { number: 7, direction: "top", targetSelector: ".portal-anatomy-input", targetShadowSelector: ".form-control-suffix", targetX: "center", targetY: "top" },
+      { number: 8, direction: "top", targetSelector: "sgds-icon[slot='trailing-icon']", targetX: "center", targetY: "top" },
+      { number: 9, direction: "right", targetSelector: "sgds-icon-button[slot='action']", targetX: "right", targetY: "center" },
+      { number: 10, direction: "bottom", targetSelector: ".portal-anatomy-input", targetShadowSelector: ".form-control-group", targetX: "center", targetY: "bottom" },
     ],
     configurationDemos: [
       {
@@ -6175,7 +6357,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No hint text",
             value: "no-hint-text",
             markup: `<sgds-input label="Full name"></sgds-input>`,
-            description: "Default — use when the label alone is enough.",
+            description: "Default. Use when the label alone is enough.",
           },
           {
             label: "Hint text",
@@ -6314,7 +6496,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Invalid",
             value: "invalid",
-            markup: `<sgds-input label="Email" type="email" required hasFeedback invalid invalidFeedback="Please enter a valid email"></sgds-input>`,
+            markup: `<sgds-input label="Email" type="email" required hasFeedback invalid invalidFeedback="Enter a valid email"></sgds-input>`,
             description: "Input shows error styling and feedback message below.",
           },
         ],
@@ -6333,39 +6515,27 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a clear, persistent label",
-          description: "Always pair the input with a visible label so users know what to enter and the field remains identifiable after they have typed in it.",
+          description: "Always pair the input with a visible label so users know what to enter, even after they have typed.",
           tone: "do",
           markup: `<sgds-input label="Full name" hintText="As shown on your NRIC"></sgds-input>`,
         },
         {
           title: "Do not rely on placeholder text as the only label",
-          description: "Placeholder text disappears once users start typing, leaving them without context. Keep the label visible above the field at all times.",
+          description: "Placeholder text disappears once users type. Keep the label visible above the field at all times.",
           tone: "dont",
           markup: `<sgds-input placeholder="Full name"></sgds-input>`,
         },
         {
           title: "Match the input type to the value being collected",
-          description: "Use type=email, type=number, or type=password so the browser provides the right on-screen keyboard, format validation, and masking.",
+          description: "Use type=email, type=number, or type=password so the browser provides the right keyboard and validation.",
           tone: "do",
           markup: `<sgds-input label="Email" type="email" placeholder="name@example.com"></sgds-input>`,
         },
         {
           title: "Do not use type=number for identifiers like NRIC or phone numbers",
-          description: "type=number strips leading zeros and exposes spinner controls that do not make sense for IDs. Use type=text and validate the format separately.",
+          description: "type=number strips leading zeros and exposes spinners that do not fit IDs. Use type=text and validate.",
           tone: "dont",
           markup: `<sgds-input label="Mobile number" type="number"></sgds-input>`,
-        },
-        {
-          title: "Show validation feedback inline next to the field",
-          description: "When the entry is invalid, surface the error with hasFeedback and invalidFeedback so users can correct the value without searching for the message.",
-          tone: "do",
-          markup: `<sgds-input label="Email" type="email" required hasFeedback invalid invalidFeedback="Please enter a valid email"></sgds-input>`,
-        },
-        {
-          title: "Use readonly for values users can copy but not change",
-          description: "When showing a value such as a reference number, use readonly so users can still select and copy it without seeing an editable border.",
-          tone: "do",
-          markup: `<sgds-input label="Reference number" value="REF-12345" readonly></sgds-input>`,
         },
       ],
     },
@@ -6383,11 +6553,11 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Visually distinct from text",
-        description: "The link style is consistently underlined and coloured so users can immediately tell what's interactive and what isn't.",
+        description: "The link style is consistently underlined and coloured so users can immediately tell what is interactive and what is not.",
       },
       {
         title: "Multiple size options",
-        description: "Link sizes let you match the surrounding text — whether it's body copy, a caption, or a heading — without breaking the typographic hierarchy.",
+        description: "Link sizes let you match the surrounding text (body copy, a caption, or a heading) without breaking the typographic hierarchy.",
       },
     ],
     anatomyParts: [{ title: "Link wrapper" }, { title: "Anchor content" }],
@@ -6398,7 +6568,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     configurationDemos: [
       {
         title: "Tone",
-        description: "Link tone adjusts the colour treatment so the link can match its context — body copy, danger messaging, or dark surfaces.",
+        description: "Link tone adjusts the colour treatment so the link can match its context. Body copy, danger messaging, or dark surfaces.",
         controlLabel: "Link tone options",
         defaultValue: "primary",
         options: [
@@ -6436,7 +6606,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Size",
-        description: "Link sizes let you match the link to the surrounding type — body copy, captions, or headings — without breaking the typographic hierarchy.",
+        description: "Link sizes let you match the link to the surrounding type (body copy, captions, or headings) without breaking the typographic hierarchy.",
         controlLabel: "Link size options",
         defaultValue: "md",
         options: [
@@ -6456,7 +6626,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Medium",
             value: "md",
             markup: `<sgds-link size="md"><a href="#">Visit related guidance</a></sgds-link>`,
-            description: "The default size — use within standard body copy and most page content.",
+            description: "The default size. Use within standard body copy and most page content.",
           },
           {
             label: "Large",
@@ -6476,7 +6646,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Not active",
             value: "not-active",
             markup: `<sgds-link><a href="#">Visit related guidance</a></sgds-link>`,
-            description: "The default state — use for any link that does not represent the current selection.",
+            description: "The default state. Use for any link that does not represent the current selection.",
           },
           {
             label: "Active",
@@ -6496,7 +6666,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Not disabled",
             value: "not-disabled",
             markup: `<sgds-link><a href="#">Visit related guidance</a></sgds-link>`,
-            description: "The default — links are interactive and follow their anchor destination.",
+            description: "The default. Links are interactive and follow their anchor destination.",
           },
           {
             label: "Disabled",
@@ -6518,39 +6688,27 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use links for navigation, buttons for actions",
-          description: "A link should take the user to another page, view, or anchor. If it changes data, submits a form, or triggers an interaction, use sgds-button instead so the affordance matches the outcome.",
+          description: "A link should take the user to another page or anchor. For actions that change data, use sgds-button.",
           tone: "do",
           markup: `<p>Read the full <sgds-link><a href="/eligibility">eligibility criteria</a></sgds-link> before applying.</p>`,
         },
         {
           title: "Do not style buttons as links for actions",
-          description: "Styling a destructive or submitting action as a link hides its consequence. Use a button — even a destructive one — when the control performs an action rather than navigating.",
+          description: "Styling an action as a link hides its consequence. Use a button when the control performs an action.",
           tone: "dont",
           markup: `<sgds-link tone="danger"><a href="#">Delete account</a></sgds-link>`,
         },
         {
           title: "Write descriptive link text",
-          description: "Make the link label describe the destination. Screen reader users often navigate by tabbing through links, so phrases like 'Read the housing grant guide' work better than 'Click here' or 'Read more'.",
+          description: "Make the link label describe the destination. 'Read the housing grant guide' beats 'Click here'.",
           tone: "do",
           markup: `<p>For more details, see the <sgds-link><a href="/grants/housing">housing grant guide</a></sgds-link>.</p>`,
         },
         {
           title: "Do not use vague link text",
-          description: "Generic labels like 'click here' or 'more' force users to read the surrounding sentence to understand what the link does, and they make screen reader navigation harder.",
+          description: "Generic labels like 'click here' force users to read the surrounding sentence and hurt screen reader use.",
           tone: "dont",
           markup: `<p>For more details about housing grants, <sgds-link><a href="/grants/housing">click here</a></sgds-link>.</p>`,
-        },
-        {
-          title: "Match link size to surrounding text",
-          description: "Pick the size that matches the body copy or heading the link sits within. A link should feel like part of the sentence, not stand apart from it.",
-          tone: "do",
-          markup: `<p class="sgds:text-body-sm">Refer to the <sgds-link size="sm"><a href="#">small print</a></sgds-link> for full terms.</p>`,
-        },
-        {
-          title: "Use the fixed-light tone on dark surfaces",
-          description: "On dark or strongly coloured backgrounds, the default link colour can lose contrast. Switch to fixed-light so the link remains legible regardless of theme.",
-          tone: "do",
-          markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-link tone="fixed-light"><a href="#">Visit related guidance</a></sgds-link></div>`,
         },
       ],
     },
@@ -6565,11 +6723,11 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Primary site navigation",
-        description: "The mainnav is the top-level wayfinding component — it gives users a clear view of the site's main sections from any page.",
+        description: "The mainnav is the top-level wayfinding component. It gives users a clear view of the site's main sections from any page.",
       },
       {
         title: "Includes brand identity",
-        description: "The logo slot ties navigation to the service brand, so users always know which product they're in, even when they navigate deep into the site.",
+        description: "The logo slot ties navigation to the service brand, so users always know which product they are in, even when they navigate deep into the site.",
       },
       {
         title: "Responsive and accessible",
@@ -6685,7 +6843,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-mainnav-item>Contact</sgds-mainnav-item>
           </sgds-mainnav>
         </div>`,
-            description: "Flat list of items. Best when there are five or fewer destinations.",
+            description: "Flat list of items, best when there are five or fewer destinations.",
           },
           {
             label: "With dropdown",
@@ -6768,7 +6926,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use mainnav for top-level destinations",
-          description: "Reserve mainnav for the small set of primary sections that every user needs to reach. Keep secondary or task-specific links in subnav or sidenav.",
+          description: "Reserve mainnav for primary sections every user needs. Keep secondary or task-specific links elsewhere.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
             <sgds-mainnav brandHref="/">
@@ -6782,7 +6940,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not overload the mainnav with every link",
-          description: "Long mainnavs are hard to scan and force users to re-read the labels each time. If you have more than five top-level items, consolidate them or move secondary links into a dropdown or subnav.",
+          description: "Long mainnavs are hard to scan. With more than five items, consolidate or move some into a dropdown or subnav.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
             <sgds-mainnav brandHref="/">
@@ -6800,39 +6958,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           </div>`,
         },
         {
-          title: "Indicate the current section with active",
-          description: "Mark the navigation item that matches the current page so users always know where they are within the service.",
-          tone: "do",
-          markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/">
-              <span slot="brand">Service Name</span>
-              <sgds-mainnav-item>Home</sgds-mainnav-item>
-              <sgds-mainnav-item active>Services</sgds-mainnav-item>
-              <sgds-mainnav-item>About</sgds-mainnav-item>
-            </sgds-mainnav>
-          </div>`,
-        },
-        {
-          title: "Group related sub-pages under a dropdown, not separate items",
-          description: "When a section has multiple related destinations, use sgds-mainnav-dropdown to keep the navbar concise. Avoid promoting every sub-page to a top-level item.",
-          tone: "do",
-          markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/">
-              <span slot="brand">Service Name</span>
-              <sgds-mainnav-item active>Home</sgds-mainnav-item>
-              <sgds-mainnav-dropdown>
-                <span slot="toggler">Services</span>
-                <sgds-dropdown-item>Apply</sgds-dropdown-item>
-                <sgds-dropdown-item>Renew</sgds-dropdown-item>
-                <sgds-dropdown-item>Track status</sgds-dropdown-item>
-              </sgds-mainnav-dropdown>
-              <sgds-mainnav-item>Contact</sgds-mainnav-item>
-            </sgds-mainnav>
-          </div>`,
-        },
-        {
           title: "Reserve the end slot for account and sign-in actions",
-          description: "Anchor user-account actions like sign in or sign out to the end slot so users learn to find them in a consistent place across pages.",
+          description: "Anchor user-account actions like sign in to the end slot so users find them in a consistent place.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
             <sgds-mainnav brandHref="/">
@@ -6845,7 +6972,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use the end slot for unrelated marketing content",
-          description: "The end slot draws strong visual attention. Reserve it for one global action, not for promotional links, badges, or content that competes with the navigation.",
+          description: "The end slot draws strong attention. Reserve it for one global action, not promotional links or badges.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
             <sgds-mainnav brandHref="/">
@@ -6872,15 +6999,15 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Mandatory for .gov.sg services",
-        description: "Every .gov.sg digital service is required to display the official government banner so users can verify they're on an authentic government website.",
+        description: "Every .gov.sg digital service is required to display the official government banner so users can verify they are on an authentic government website.",
       },
       {
         title: "Establishes trust immediately",
-        description: "The masthead is the first thing users see — its standardised design signals official authenticity before users interact with any content.",
+        description: "The masthead is the first thing users see. Its standardised design signals official authenticity before users interact with any content.",
       },
       {
         title: "Consistent across government",
-        description: "Using the same masthead across all .gov.sg services creates a unified experience that reinforces trust in the broader Singapore government digital ecosystem.",
+        description: "Using the same masthead across all .gov.sg services creates a unified experience that reinforces trust across Singapore government digital services.",
       },
     ],
     anatomyParts: [{ title: "Government banner" }, { title: "Expandable details" }],
@@ -6921,13 +7048,13 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Place the masthead at the very top of every page",
-          description: "The official banner identifies the site as a Singapore government service. Render it on every page, ahead of any branding or navigation, so users can verify authenticity before they interact.",
+          description: "Render the official banner on every page, ahead of branding or navigation, so users can verify the site.",
           tone: "do",
           markup: `<div class="portal-demo-nav"><sgds-masthead></sgds-masthead></div>`,
         },
         {
           title: "Do not omit the masthead on .gov.sg services",
-          description: "Skipping the banner — even on internal-looking pages such as transactional flows or success screens — undermines the trust signal users rely on to confirm the site is genuine.",
+          description: "Skipping the banner, even on internal flows or success screens, undermines the trust signal users rely on.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
             <sgds-mainnav brandHref="/">
@@ -6938,7 +7065,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Match the masthead width to the page shell",
-          description: "Use fluid when the rest of the app shell — mainnav, container — is full-bleed. Pair the constrained variant with constrained navigation so the banner aligns visually with the layout below it.",
+          description: "Use fluid when the app shell is full-bleed, and constrained when the navigation below is constrained too.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
             <sgds-masthead fluid></sgds-masthead>
@@ -6950,7 +7077,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not restyle or override the banner",
-          description: "The masthead is a standardised government identifier. Do not change its colours, copy, or layout — consistency across all .gov.sg services is what makes the trust signal recognisable.",
+          description: "The masthead is a standardised government identifier. Do not change its colours, copy, or layout.",
           tone: "dont",
           markup: `<div class="portal-demo-nav"><sgds-masthead></sgds-masthead></div>`,
         },
@@ -6971,11 +7098,11 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Confirm before consequences",
-        description: "Use modals to confirm destructive or irreversible actions — deleting a record, submitting a form — so users don't act by accident.",
+        description: "Use modals to confirm destructive or irreversible actions (deleting a record, submitting a form) so users do not act by accident.",
       },
       {
         title: "Self-contained interactions",
-        description: "A modal should contain everything needed to complete its task — title, body, and clear actions — so users don't need to leave it to find context.",
+        description: "A modal should contain everything needed to complete its task (title, body, and clear actions) so users do not need to leave it to find context.",
       },
     ],
     anatomyMarkup: `<div class="portal-modal-preview">
@@ -7013,7 +7140,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     configurationDemos: [
       {
         title: "Size",
-        description: "Modals come in different sizes to match the weight of the task. Smaller sizes work for quick confirmations, larger sizes give content room to breathe.",
+        description: "Modals come in different sizes to match the weight of the task. Smaller sizes work for short confirmations, larger sizes give content room to breathe.",
         controlLabel: "Modal size options",
         defaultValue: "md",
         options: [
@@ -7036,7 +7163,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
           </div>
         </div>`,
-            description: "Compact width for quick confirmation prompts.",
+            description: "Compact width for short confirmation prompts.",
           },
           {
             label: "Medium",
@@ -7159,7 +7286,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a modal for decisions that need an immediate response",
-          description: "Modals are for confirmations, destructive actions, or short focused tasks where users must respond before they can continue with anything else on the page.",
+          description: "Use modals for confirmations, destructive actions, or short focused tasks that need a response first.",
           tone: "do",
           markup: `<div class="portal-modal-preview">
             <div class="portal-modal-panel">
@@ -7180,7 +7307,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a modal for non-blocking notifications",
-          description: "If users do not need to respond, use a toast or inline alert instead. Modals interrupt the flow and feel disproportionate for routine status messages.",
+          description: "If users do not need to respond, use a toast or inline alert. Modals are disproportionate for routine messages.",
           tone: "dont",
           markup: `<div class="portal-modal-preview">
             <div class="portal-modal-panel">
@@ -7199,7 +7326,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Use clear, action-led button labels",
-          description: "Label the primary button with the verb that describes the outcome (Delete, Submit, Confirm) so users know what will happen. Avoid vague labels like Yes or OK.",
+          description: "Label the primary button with the verb that describes the outcome (Delete, Submit, Confirm), not Yes or OK.",
           tone: "do",
           markup: `<div class="portal-modal-preview">
             <div class="portal-modal-panel">
@@ -7220,7 +7347,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not stack modals on top of modals",
-          description: "Opening a second modal from inside the first creates a confusing focus trap and hides the original context. Resolve the current modal before showing another.",
+          description: "Opening a second modal from inside the first hides context and traps focus. Resolve the current one first.",
           tone: "dont",
           markup: `<div class="portal-modal-preview">
             <div class="portal-modal-panel">
@@ -7244,7 +7371,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Keep the modal content short and focused",
-          description: "A modal should hold one task. If the content is long enough to scroll significantly, consider sending users to a dedicated page where they have more room.",
+          description: "A modal should hold one task. If the content scrolls significantly, send users to a dedicated page instead.",
           tone: "do",
           markup: `<div class="portal-modal-preview portal-modal-preview-sm">
             <div class="portal-modal-panel">
@@ -7264,7 +7391,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not hide the close button without a reason",
-          description: "By default, give users a clear way to dismiss the modal. Only hide the close button when an explicit decision is required, such as confirming a destructive flow.",
+          description: "Give users a clear way to dismiss the modal. Only hide the close button when an explicit decision is required.",
           tone: "dont",
           markup: `<div class="portal-modal-preview">
             <div class="portal-modal-panel">
@@ -7298,11 +7425,11 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Avoid crowding the interface",
-        description: "When a row, card, or list item has many possible actions, the overflow menu keeps the layout clean without hiding important primary actions.",
+        description: "When a row, card, or list item has many possible actions, the overflow menu keeps the layout clean without hiding the primary actions.",
       },
       {
         title: "Consistent trigger pattern",
-        description: "The three-dot icon is a well-established pattern — users know tapping it reveals more options without needing any instruction.",
+        description: "The three-dot icon is a well-established pattern. Users know tapping it reveals more options without needing any instruction.",
       },
     ],
     anatomyMarkup: `<div class="portal-popover-anatomy">
@@ -7366,7 +7493,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use overflow menus for secondary or contextual actions",
-          description: "Tuck infrequent or row-level actions behind the overflow trigger to keep primary actions visible while still giving users the full set of options on demand.",
+          description: "Tuck infrequent or row-level actions behind the overflow trigger so primary actions stay visible.",
           tone: "do",
           markup: `<sgds-overflow-menu>
             <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
@@ -7376,7 +7503,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not hide the primary action inside an overflow menu",
-          description: "If users complete a row or task most often by performing one specific action, surface that action in the row directly. Hiding it behind the menu adds an extra step.",
+          description: "Surface the most-used row action directly, hiding it behind the menu adds an extra step.",
           tone: "dont",
           markup: `<sgds-overflow-menu>
             <sgds-dropdown-item><a href="#">Submit application</a></sgds-dropdown-item>
@@ -7386,7 +7513,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Keep menu items short and verb-led",
-          description: "Use short action phrases that begin with a verb so users can quickly scan the available choices. Match the wording to what will actually happen.",
+          description: "Use short verb-led phrases so users can scan the available choices. Match the wording to the outcome.",
           tone: "do",
           markup: `<sgds-overflow-menu>
             <sgds-dropdown-item><a href="#">Rename</a></sgds-dropdown-item>
@@ -7396,7 +7523,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not stuff the overflow menu with too many items",
-          description: "A long overflow list is hard to scan and obscures relationships between actions. If you have many options, group them into sections or rethink the structure of the page.",
+          description: "A long overflow list is hard to scan. Group options into sections or rethink the structure of the page.",
           tone: "dont",
           markup: `<sgds-overflow-menu>
             <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
@@ -7413,7 +7540,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Match the trigger size to the surrounding controls",
-          description: "Use the small size when the menu sits in dense rows or toolbars, and the medium size when it shares space with full-size buttons. Consistent sizing keeps layouts clean.",
+          description: "Use small in dense rows or toolbars, and medium when it shares space with full-size buttons.",
           tone: "do",
           markup: `<sgds-overflow-menu size="sm">
             <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
@@ -7434,15 +7561,15 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Navigate large datasets",
-        description: "Pagination breaks a long list of results into discrete pages, so users don't have to load or scroll through everything at once.",
+        description: "Pagination breaks a long list of results into discrete pages, so users do not have to load or scroll through everything at once.",
       },
       {
         title: "Show position in the set",
-        description: "The current page is always highlighted and the total page count is visible — users know exactly where they are in a long result set.",
+        description: "The current page is always highlighted and the total page count is visible. Users know exactly where they are in a long result set.",
       },
       {
         title: "Control how much you see",
-        description: "When paired with a page-size selector, pagination lets users decide how densely they want to browse — fewer items for focus, more for efficiency.",
+        description: "When paired with a page-size selector, pagination lets users decide how densely they want to browse. Fewer items for focus, more for efficiency.",
       },
     ],
     anatomyParts: [{ title: "Page controls" }, { title: "Current page" }, { title: "Next and previous actions" }],
@@ -7474,7 +7601,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Button",
             value: "button",
             markup: `<sgds-pagination variant="button" dataLength="100" itemsPerPage="10" currentPage="1"></sgds-pagination>`,
-            description: "Previous and next buttons only — for simple sequential flows.",
+            description: "Previous and next buttons only, for sequential flows.",
           },
           {
             label: "Description",
@@ -7542,42 +7669,30 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use pagination for large, browsable result sets",
-          description: "Pagination suits tables and lists with many entries where users need to scan, filter, or compare across pages. Set itemsPerPage to a value that fits the surrounding layout.",
+          description: "Pagination suits tables and lists with many entries. Set itemsPerPage to fit the surrounding layout.",
           tone: "do",
           markup: `<sgds-pagination dataLength="240" itemsPerPage="10" currentPage="1"></sgds-pagination>`,
         },
         {
           title: "Do not paginate very small lists",
-          description: "If the full list fits on one page, omit pagination. A control showing only one page adds visual noise without giving the user a real choice.",
+          description: "If the full list fits on one page, omit pagination. A single-page control only adds visual noise.",
           tone: "dont",
           markup: `<sgds-pagination dataLength="6" itemsPerPage="10" currentPage="1"></sgds-pagination>`,
         },
         {
-          title: "Use the description variant when total count matters",
-          description: "Show the description variant on pages where users want to know how far through the set they are — for example, search results or analytical reports.",
-          tone: "do",
-          markup: `<sgds-pagination variant="description" dataLength="240" itemsPerPage="10" currentPage="3"></sgds-pagination>`,
-        },
-        {
-          title: "Use the button variant for simple sequential flows",
-          description: "When users only need previous and next controls — for example moving through a guided tour or a stepwise log — the button variant keeps the UI uncluttered.",
+          title: "Use the button variant for sequential flows",
+          description: "When users only need previous and next controls, like a guided tour, the button variant keeps the UI clean.",
           tone: "do",
           markup: `<sgds-pagination variant="button" dataLength="50" itemsPerPage="10" currentPage="2"></sgds-pagination>`,
         },
         {
           title: "Do not pair pagination with infinite scroll",
-          description: "Pagination and infinite scroll set conflicting expectations about how data loads. Pick one pattern per surface so users can predict where the next results appear.",
+          description: "Pagination and infinite scroll conflict on how data loads. Pick one pattern per surface.",
           tone: "dont",
           markup: `<div class="portal-demo-stack">
             <div>Loading more results as you scroll...</div>
             <sgds-pagination dataLength="500" itemsPerPage="20" currentPage="1"></sgds-pagination>
           </div>`,
-        },
-        {
-          title: "Match the size to the surrounding density",
-          description: "Use the small size inside dense tables, drawers, and tight toolbars. Reserve the medium size for standard pages where the control should remain comfortably tappable.",
-          tone: "do",
-          markup: `<sgds-pagination size="sm" dataLength="120" itemsPerPage="10" currentPage="2"></sgds-pagination>`,
         },
       ],
     },
@@ -7588,19 +7703,19 @@ const componentDocs: Record<string, ComponentDoc> = {
     tag: "sgds-progress-bar",
     group: "feedback",
     summary:
-      "Provide up-to-date feedback on the progress of a workflow or action with simple yet flexible progress bars.",
+      "Provide up-to-date feedback on the progress of a workflow or action with flexible progress bars.",
     purposeCards: [
       {
         title: "Show ongoing progress",
-        description: "A progress bar communicates that work is happening and gives users a sense of how far along it is — reducing anxiety during longer operations.",
+        description: "A progress bar communicates that work is happening and gives users a sense of how far along it is, reducing anxiety during longer operations.",
       },
       {
         title: "Make completeness visible",
-        description: "When a process has a known endpoint — uploading a file, completing a profile — a progress bar shows how much is done versus how much remains.",
+        description: "When a process has a known endpoint, uploading a file, completing a profile, a progress bar shows how much is done versus how much remains.",
       },
       {
         title: "Prevent unnecessary interruptions",
-        description: "When users can see progress, they're less likely to abort a task or re-trigger it by clicking again.",
+        description: "When users can see progress, they are less likely to abort a task or re-trigger it by clicking again.",
       },
     ],
     anatomyParts: [{ title: "Track" }, { title: "Progress indicator" }, { title: "Label" }],
@@ -7620,13 +7735,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Primary",
             value: "primary",
             markup: `<sgds-progress-bar variant="primary" value="60" arialabel="Loading"></sgds-progress-bar>`,
-            description: "Brand-coloured fill — use for the dominant progress indicator on a page.",
+            description: "Brand-coloured fill. Use for the dominant progress indicator on a page.",
           },
           {
             label: "Neutral",
             value: "neutral",
             markup: `<sgds-progress-bar variant="neutral" value="60" arialabel="Loading"></sgds-progress-bar>`,
-            description: "Neutral fill — use for secondary or low-emphasis progress.",
+            description: "Neutral fill. Use for secondary or low-emphasis progress.",
           },
         ],
       },
@@ -7672,7 +7787,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No label",
             value: "no-label",
             markup: `<sgds-progress-bar value="50" arialabel="Loading"></sgds-progress-bar>`,
-            description: "Bar only — use when the surrounding context already explains the action.",
+            description: "Bar only. Use when the surrounding context already explains the action.",
           },
           {
             label: "Label",
@@ -7694,13 +7809,13 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a progress bar when progress is measurable",
-          description: "Reach for a progress bar only when the operation has a known endpoint — uploading a file of known size, completing a fixed number of steps. Use a spinner for indeterminate waits.",
+          description: "Use a progress bar only for operations with a known endpoint. Use a spinner for indeterminate waits.",
           tone: "do",
           markup: `<sgds-progress-bar value="40" label="Uploading 2 of 5 files" arialabel="Uploading 2 of 5 files"></sgds-progress-bar>`,
         },
         {
           title: "Do not use a progress bar for unknown durations",
-          description: "If you cannot calculate progress, do not fake it. A bar that creeps forward arbitrarily misleads users about how long the wait will be — use a spinner instead.",
+          description: "If progress cannot be calculated, do not fake it. A bar that creeps forward misleads users. Use a spinner.",
           tone: "dont",
           markup: `<sgds-progress-bar value="30" label="Connecting" arialabel="Connecting"></sgds-progress-bar>`,
         },
@@ -7712,19 +7827,19 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Always provide an accessible label",
-          description: "Set arialabel so screen reader users understand what is progressing. Without it, the bar announces only a percentage with no context.",
+          description: "Set arialabel so screen reader users know what is progressing. Without it, only a percentage is announced.",
           tone: "do",
           markup: `<sgds-progress-bar value="80" arialabel="Submission progress"></sgds-progress-bar>`,
         },
         {
           title: "Do not use the danger spectrum to communicate failure",
-          description: "Progress bars are for in-flight progress, not error states. If an operation fails, dismiss the bar and surface an alert or toast that explains what went wrong.",
+          description: "Progress bars are for in-flight progress, not errors. If an operation fails, dismiss it and show an alert.",
           tone: "dont",
           markup: `<sgds-progress-bar value="40" label="Upload failed" arialabel="Upload failed"></sgds-progress-bar>`,
         },
         {
           title: "Use the neutral variant for secondary progress",
-          description: "When a page already shows a primary progress bar, use the neutral variant for any secondary or background progress so the dominant indicator stays visually clear.",
+          description: "When a page already shows a primary progress bar, use the neutral variant for any secondary progress.",
           tone: "do",
           markup: `<sgds-progress-bar variant="neutral" value="30" label="Syncing in background" arialabel="Syncing in background"></sgds-progress-bar>`,
         },
@@ -7741,11 +7856,11 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Adjust counts without a keyboard",
-        description: "The increment and decrement buttons let users change a quantity directly — no need to clear and retype a number.",
+        description: "The increment and decrement buttons let users change a quantity directly. No need to clear and retype a number.",
       },
       {
         title: "Prevent invalid values",
-        description: "Min and max constraints are built in, so users can't accidentally enter a quantity outside the allowed range.",
+        description: "Min and max constraints are built in, so users cannot accidentally enter a quantity outside the allowed range.",
       },
       {
         title: "Fits naturally in transactional flows",
@@ -7789,7 +7904,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Step of 1",
             value: "step-1",
             markup: `<sgds-quantity-toggle value="2" min="0" max="10" step="1"></sgds-quantity-toggle>`,
-            description: "The default — each press of the increment or decrement button changes the value by one unit.",
+            description: "The default. Each press of the increment or decrement button changes the value by one unit.",
           },
           {
             label: "Step of 5",
@@ -7809,7 +7924,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No hint text",
             value: "no-hint-text",
             markup: `<sgds-quantity-toggle label="Quantity" value="2" min="0" max="5"></sgds-quantity-toggle>`,
-            description: "Default — use when the label alone is enough.",
+            description: "Default. Use when the label alone is enough.",
           },
           {
             label: "Hint text",
@@ -7829,7 +7944,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Not read only",
             value: "not-readonly",
             markup: `<sgds-quantity-toggle value="2" min="0" max="5"></sgds-quantity-toggle>`,
-            description: "The default — users can adjust the value with the increment and decrement buttons or by typing.",
+            description: "The default. Users can adjust the value with the increment and decrement buttons or by typing.",
           },
           {
             label: "Read only",
@@ -7849,7 +7964,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Not disabled",
             value: "not-disabled",
             markup: `<sgds-quantity-toggle value="2" min="0" max="5"></sgds-quantity-toggle>`,
-            description: "The default — the quantity toggle is interactive and accepts input.",
+            description: "The default. The quantity toggle is interactive and accepts input.",
           },
           {
             label: "Disabled",
@@ -7891,37 +8006,37 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use quantity toggle for small, bounded counts",
-          description: "Quantity toggle is for items users typically adjust in single units — number of tickets, copies, attendees. When users routinely enter large numbers, use a number input instead.",
+          description: "Quantity toggle is for items adjusted in single units, such as tickets or copies. For large numbers, use a number input.",
           tone: "do",
           markup: `<sgds-quantity-toggle label="Number of tickets" value="2" min="1" max="10"></sgds-quantity-toggle>`,
         },
         {
           title: "Do not use quantity toggle for arbitrary numbers",
-          description: "Numbers without a count meaning — postcodes, account IDs, percentages, monetary amounts — do not belong in a quantity toggle. Use a text or number input that matches the data type.",
+          description: "Numbers without a count meaning, postcodes, IDs, amounts, do not belong in a quantity toggle.",
           tone: "dont",
           markup: `<sgds-quantity-toggle label="Postal code" value="540123" min="0" max="999999"></sgds-quantity-toggle>`,
         },
         {
           title: "Set min and max to reflect real limits",
-          description: "Use min and max to constrain the field to the values your system can accept. Built-in clamping prevents users from submitting an invalid quantity in the first place.",
+          description: "Use min and max to constrain the field to accepted values. Clamping prevents invalid submissions.",
           tone: "do",
           markup: `<sgds-quantity-toggle label="Adults travelling" value="1" min="1" max="9"></sgds-quantity-toggle>`,
         },
         {
           title: "Pair with a label and explain the limit when needed",
-          description: "Always provide a label so users know what they are counting. When the maximum is meaningful, add hint text so users do not have to discover it by trial and error.",
+          description: "Always provide a label so users know what they count. Add hint text when the maximum is meaningful.",
           tone: "do",
           markup: `<sgds-quantity-toggle label="Tickets" hintText="Maximum 5 per booking" value="2" min="1" max="5"></sgds-quantity-toggle>`,
         },
         {
           title: "Choose a step size that matches the use case",
-          description: "Increment by 1 when users adjust quantity by single units. Use a larger step only when the typical adjustment is bigger — for example bulk orders that move in fives or tens.",
+          description: "Increment by 1 for single-unit adjustments. Use a larger step only when typical adjustments are bigger.",
           tone: "do",
           markup: `<sgds-quantity-toggle label="Bulk order quantity" value="10" min="0" max="100" step="5"></sgds-quantity-toggle>`,
         },
         {
           title: "Surface invalid feedback with hasFeedback",
-          description: "When the value falls outside the allowed range, set hasFeedback and invalid with a clear invalidFeedback message so users know exactly how to correct it.",
+          description: "When the value falls outside the allowed range, set hasFeedback and invalid with a clear invalidFeedback.",
           tone: "do",
           markup: `<sgds-quantity-toggle label="Tickets" value="6" min="1" max="5" hasFeedback invalid invalidFeedback="Enter a quantity between 1 and 5"></sgds-quantity-toggle>`,
         },
@@ -7938,15 +8053,15 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Mutually exclusive choices",
-        description: "Radio buttons enforce a single selection — users pick one option from a defined set, and changing their selection automatically deselects the previous one.",
+        description: "Radio buttons enforce a single selection. Users pick one option from a defined set, and changing their selection automatically deselects the previous one.",
       },
       {
         title: "All options visible upfront",
-        description: "Unlike a select, all radio options are shown at once — better when the number of choices is small and comparison matters.",
+        description: "Unlike a select, all radio options are shown at once. Better when the number of choices is small and comparison matters.",
       },
       {
         title: "Clear confirmation of selection",
-        description: "The selected state is visually distinct and persistent, so users always know what they've chosen before submitting.",
+        description: "The selected state is visually distinct and persistent, so users always know what they have chosen before submitting.",
       },
     ],
     anatomyParts: [{ title: "Group" }, { title: "Radio control" }, { title: "Label" }],
@@ -7970,7 +8085,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-radio value="weekly">Weekly</sgds-radio>
           <sgds-radio value="monthly">Monthly</sgds-radio>
         </sgds-radio-group>`,
-            description: "Default — use when the label alone is enough.",
+            description: "Default. Use when the label alone is enough.",
           },
           {
             label: "Hint text",
@@ -8058,7 +8173,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Invalid",
             value: "invalid",
-            markup: `<sgds-radio-group label="Plan" required hasFeedback invalid invalidFeedback="Please choose a plan">
+            markup: `<sgds-radio-group label="Plan" required hasFeedback invalid invalidFeedback="Choose a plan">
           <sgds-radio value="basic">Basic</sgds-radio>
           <sgds-radio value="standard">Standard</sgds-radio>
         </sgds-radio-group>`,
@@ -8154,7 +8269,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Choose from a defined list",
-        description: "Select is the right choice when users must pick one option from a known set — especially when the list is too long to show as radio buttons.",
+        description: "Select is the right choice when users must pick one option from a known set, especially when the list is too long to show as radio buttons.",
       },
       {
         title: "Compact for long lists",
@@ -8187,7 +8302,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-select-option value="my">Malaysia</sgds-select-option>
           <sgds-select-option value="id">Indonesia</sgds-select-option>
         </sgds-select>`,
-            description: "Default — use when the label alone is enough.",
+            description: "Default. Use when the label alone is enough.",
           },
           {
             label: "Hint text",
@@ -8325,7 +8440,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Invalid",
             value: "invalid",
-            markup: `<sgds-select label="Country" placeholder="Select a country" required hasFeedback invalid invalidFeedback="Please select a country">
+            markup: `<sgds-select label="Country" placeholder="Select a country" required hasFeedback invalid invalidFeedback="Select a country">
           <sgds-select-option value="sg">Singapore</sgds-select-option>
           <sgds-select-option value="my">Malaysia</sgds-select-option>
         </sgds-select>`,
@@ -8349,7 +8464,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use select for one choice from a known list",
-          description: "Use select when users must pick exactly one value from a defined set, especially when the list is long enough to crowd the page as radios.",
+          description: "Use select when users must pick one value from a defined set, especially when radios would crowd the page.",
           tone: "do",
           markup: `<sgds-select label="Country" placeholder="Select a country">
             <sgds-select-option value="sg">Singapore</sgds-select-option>
@@ -8378,7 +8493,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use select when users need to type to find an option",
-          description: "If the list is long and users will know the value they want, use a combo box so they can filter by typing instead of scrolling a long menu.",
+          description: "If the list is long and users know the value, use a combo box so they can filter by typing.",
           tone: "dont",
           markup: `<sgds-select label="Country">
             <sgds-select-option value="sg">Singapore</sgds-select-option>
@@ -8393,7 +8508,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Order options in a way users can predict",
-          description: "Sort options alphabetically, by frequency of use, or by recommended order — not the order they appear in the source data — so users can find their choice quickly.",
+          description: "Sort options alphabetically, by frequency, or by recommended order so users can find their choice quickly.",
           tone: "do",
           markup: `<sgds-select label="Country">
             <sgds-select-option value="id">Indonesia</sgds-select-option>
@@ -8404,7 +8519,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use select when multi-selection is required",
-          description: "Select only supports a single value. If users need to pick more than one, use a combo box with multiSelect or a checkbox group instead.",
+          description: "Select only supports a single value. For more than one, use a combo box with multiSelect or checkboxes.",
           tone: "dont",
           markup: `<sgds-select label="Languages spoken">
             <sgds-select-option value="en">English</sgds-select-option>
@@ -8426,7 +8541,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Navigate a section in depth",
-        description: "Side navigation is designed for pages with many sub-sections — it keeps all the links in view so users can jump between them without hunting.",
+        description: "Side navigation is designed for pages with many sub-sections. It keeps all the links in view so users can jump between them without hunting.",
       },
       {
         title: "Always visible while reading",
@@ -8434,7 +8549,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Highlights current location",
-        description: "The active state on the current page gives users a constant read of where they are within a section — useful on content-heavy sites.",
+        description: "The active state on the current page gives users a constant read of where they are within a section, useful on content-heavy sites.",
       },
     ],
     anatomyParts: [{ title: "Navigation container" }, { title: "Section item" }, { title: "Link" }],
@@ -8588,7 +8703,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use sidenav for navigating within a section",
-          description: "Sidenav suits content-heavy sections such as documentation, settings, or admin areas where users move between many sub-pages and need every link in view.",
+          description: "Sidenav suits content-heavy sections like documentation or settings where users need every link in view.",
           tone: "do",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-sidenav>
@@ -8608,7 +8723,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use sidenav as the only top-level navigation",
-          description: "Sidenav is for moving within a section. Place the global mainnav above it so users can still cross between sections and recognise where they are in the wider service.",
+          description: "Sidenav is for moving within a section. Place the global mainnav above it so users can still cross sections.",
           tone: "dont",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-sidenav>
@@ -8620,22 +8735,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           </div>`,
         },
         {
-          title: "Mark the current page with active",
-          description: "Set active on both the parent item and the matching child link so the section expands on first load and users can see exactly where they are.",
-          tone: "do",
-          markup: `<div class="portal-demo-nav-sm">
-            <sgds-sidenav>
-              <sgds-sidenav-item active>
-                <span slot="title">Reports</span>
-                <sgds-sidenav-link active><a href="#">Monthly summary</a></sgds-sidenav-link>
-                <sgds-sidenav-link><a href="#">Annual report</a></sgds-sidenav-link>
-              </sgds-sidenav-item>
-            </sgds-sidenav>
-          </div>`,
-        },
-        {
           title: "Group related links under a parent item",
-          description: "Use sgds-sidenav-item with a title and child links when sub-pages belong together. This keeps the nav scannable and reduces visual noise.",
+          description: "Use sgds-sidenav-item with child links when sub-pages belong together so the nav stays scannable.",
           tone: "do",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-sidenav>
@@ -8654,7 +8755,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not nest more levels than needed",
-          description: "Deeply nested sidenavs are hard to scan and operate. Restrict nesting to one level beyond the parent item, and break larger structures into separate sections or pages.",
+          description: "Deeply nested sidenavs are hard to operate. Restrict nesting to one level and split larger structures.",
           tone: "dont",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-sidenav>
@@ -8665,21 +8766,6 @@ const componentDocs: Record<string, ComponentDoc> = {
                   <sgds-sidenav-link><a href="#">January</a></sgds-sidenav-link>
                   <sgds-sidenav-link><a href="#">February</a></sgds-sidenav-link>
                 </sgds-sidenav-link>
-              </sgds-sidenav-item>
-            </sgds-sidenav>
-          </div>`,
-        },
-        {
-          title: "Use clear, unique link labels",
-          description: "Each link should describe its destination on its own. Avoid repeating words like Overview or Settings without context, since users scan the labels rather than the surrounding parent.",
-          tone: "do",
-          markup: `<div class="portal-demo-nav-sm">
-            <sgds-sidenav>
-              <sgds-sidenav-item active>
-                <span slot="title">Account</span>
-                <sgds-sidenav-link active><a href="#">Personal details</a></sgds-sidenav-link>
-                <sgds-sidenav-link><a href="#">Login and security</a></sgds-sidenav-link>
-                <sgds-sidenav-link><a href="#">Linked services</a></sgds-sidenav-link>
               </sgds-sidenav-item>
             </sgds-sidenav>
           </div>`,
@@ -8724,7 +8810,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No sheen",
             value: "no-sheen",
             markup: `<sgds-skeleton width="240px" height="16px"></sgds-skeleton>`,
-            description: "Static placeholder — use when the loading state is brief or animation would be distracting.",
+            description: "Static placeholder. Use when the loading state is brief or animation would be distracting.",
           },
           {
             label: "Sheen",
@@ -8744,7 +8830,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Square",
             value: "square",
             markup: `<sgds-skeleton width="80px" height="80px" border-radius="0" sheen></sgds-skeleton>`,
-            description: "No corner rounding — use for full-bleed images or tiles.",
+            description: "No corner rounding. Use for full-bleed images or tiles.",
           },
           {
             label: "Small radius",
@@ -8756,7 +8842,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Pill",
             value: "pill",
             markup: `<sgds-skeleton width="120px" height="32px" border-radius="999px" sheen></sgds-skeleton>`,
-            description: "Fully rounded — use for badges, pills and avatars.",
+            description: "Fully rounded. Use for badges, pills and avatars.",
           },
         ],
       },
@@ -8770,7 +8856,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Single row",
             value: "single-row",
             markup: `<sgds-skeleton width="320px" height="16px" sheen></sgds-skeleton>`,
-            description: "One row — represents a single line of text.",
+            description: "One row. Represents a single line of text.",
           },
           {
             label: "Three rows",
@@ -8800,7 +8886,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Match the skeleton to the shape of the incoming content",
-          description: "Size each placeholder to the dimensions of the element it stands in for. When the real content arrives, nothing shifts — the layout stays stable and the wait feels seamless.",
+          description: "Size each placeholder to the element it stands in for so nothing shifts when the real content arrives.",
           tone: "do",
           markup: `<div class="portal-demo-stack">
             <sgds-skeleton width="60%" height="24px" sheen></sgds-skeleton>
@@ -8809,39 +8895,24 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use skeletons for very brief waits",
-          description: "If content typically loads in under a second, a skeleton flashes in and out without helping the user. For short, indeterminate waits use a spinner instead.",
+          description: "If content loads in under a second, a skeleton flashes in and out. Use a spinner for short waits instead.",
           tone: "dont",
           markup: `<sgds-skeleton width="80px" height="16px" sheen></sgds-skeleton>`,
         },
         {
           title: "Use the sheen animation for active loading",
-          description: "Turn on sheen so users can see that loading is in progress. A static placeholder can read as a permanent layout element rather than a temporary state.",
+          description: "Turn on sheen so loading reads as in progress. A static placeholder looks like a permanent element.",
           tone: "do",
           markup: `<sgds-skeleton width="240px" height="16px" sheen></sgds-skeleton>`,
         },
         {
-          title: "Match the border radius to the underlying element",
-          description: "Use a pill radius for avatars and badges, a small radius for cards and inputs, and zero radius for full-bleed images. Matching shapes makes the transition to real content feel natural.",
-          tone: "do",
-          markup: `<div class="portal-demo-row">
-            <sgds-skeleton width="40px" height="40px" border-radius="999px" sheen></sgds-skeleton>
-            <sgds-skeleton width="120px" height="16px" sheen></sgds-skeleton>
-          </div>`,
-        },
-        {
           title: "Do not use skeletons as decorative placeholders",
-          description: "Skeletons signal loading. Showing them when there is nothing to load — for example, in an empty state — misleads users into thinking content is on the way.",
+          description: "Skeletons signal loading, showing them in empty states misleads users into thinking content is on the way.",
           tone: "dont",
           markup: `<div class="portal-demo-stack">
             <sgds-skeleton width="100%" height="80px" rows="3" sheen></sgds-skeleton>
             <p>No results found.</p>
           </div>`,
-        },
-        {
-          title: "Use rows to suggest paragraphs of text",
-          description: "When the loading content is a block of body text, set rows to render multiple lines of placeholder. A single row reads as a heading; multiple rows read as a paragraph.",
-          tone: "do",
-          markup: `<sgds-skeleton width="100%" height="80px" rows="3" sheen></sgds-skeleton>`,
         },
       ],
     },
@@ -8855,11 +8926,11 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Acknowledge the request",
-        description: "A spinner immediately confirms to the user that their action was received and something is being processed — preventing repeat clicks.",
+        description: "A spinner immediately confirms to the user that their action was received and something is being processed, preventing repeat clicks.",
       },
       {
         title: "Use for indeterminate waits",
-        description: "Spinners are best when you can't predict how long an operation will take — they signal ongoing activity without implying a specific duration.",
+        description: "Spinners are best when you cannot predict how long an operation will take. They signal ongoing activity without implying a specific duration.",
       },
       {
         title: "Keep it in context",
@@ -8882,7 +8953,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Brand",
             value: "brand",
             markup: `<div class="portal-demo-row"><sgds-spinner tone="brand"></sgds-spinner></div>`,
-            description: "Brand-coloured spinner — default for primary loading states.",
+            description: "Brand-coloured spinner. Default for primary loading states.",
           },
           {
             label: "Neutral",
@@ -8894,13 +8965,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Fixed light",
             value: "fixed-light",
             markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-spinner tone="fixed-light"></sgds-spinner></div>`,
-            description: "Always renders light — use over photography or fixed-dark surfaces.",
+            description: "Always renders light. Use over photography or fixed-dark surfaces.",
           },
           {
             label: "Fixed dark",
             value: "fixed-dark",
             markup: `<div class="portal-demo-row"><sgds-spinner tone="fixed-dark"></sgds-spinner></div>`,
-            description: "Always renders dark — use over light surfaces regardless of theme.",
+            description: "Always renders dark. Use over light surfaces regardless of theme.",
           },
         ],
       },
@@ -8914,7 +8985,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Extra small",
             value: "xs",
             markup: `<div class="portal-demo-row"><sgds-spinner size="xs"></sgds-spinner></div>`,
-            description: "Smallest size — fits inline within compact buttons and chips.",
+            description: "Smallest size that fits inline within compact buttons and chips.",
           },
           {
             label: "Small",
@@ -8946,7 +9017,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No label",
             value: "no-label",
             markup: `<div class="portal-demo-row"><sgds-spinner></sgds-spinner></div>`,
-            description: "Spinner only — use when the surrounding UI already explains the action.",
+            description: "Spinner only. Use when the surrounding UI already explains the action.",
           },
           {
             label: "Label",
@@ -8968,29 +9039,15 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a spinner for short, indeterminate waits",
-          description: "Spinners suit operations where progress cannot be measured but the wait is brief — for example, fetching data after a button press. For longer or measurable progress, use a progress bar.",
+          description: "Spinners suit brief, unmeasurable waits like fetching data. For longer or measurable progress, use a bar.",
           tone: "do",
           markup: `<div class="portal-demo-row"><sgds-spinner label="Loading"></sgds-spinner></div>`,
         },
         {
           title: "Do not use a spinner for measurable progress",
-          description: "If you can show what proportion of the work is done — uploading a file of known size, processing a fixed number of records — a progress bar gives users much better feedback.",
+          description: "If you can show what proportion is done, uploading a known file size, a progress bar gives better feedback.",
           tone: "dont",
           markup: `<div class="portal-demo-row"><sgds-spinner label="Uploading 3 of 10 files"></sgds-spinner></div>`,
-        },
-        {
-          title: "Place the spinner near the triggering action",
-          description: "Position the spinner inline with the control or section that initiated the wait. Users link the loading state to what they did, instead of scanning the page to find what is happening.",
-          tone: "do",
-          markup: `<div class="portal-demo-row">
-            <sgds-button disabled><sgds-spinner size="sm"></sgds-spinner>Saving</sgds-button>
-          </div>`,
-        },
-        {
-          title: "Match spinner size to its container",
-          description: "Use small or extra small inside buttons and inline text, medium for cards and panels, and large for full-page loaders. A spinner that overpowers its surroundings draws attention away from the rest of the UI.",
-          tone: "do",
-          markup: `<div class="portal-demo-row"><sgds-spinner size="sm" label="Saving"></sgds-spinner></div>`,
         },
         {
           title: "Pair the spinner with a label when context helps",
@@ -9000,7 +9057,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not leave a spinner running with no resolution",
-          description: "If the operation fails or stalls, replace the spinner with a clear error message and a way to retry. A spinner left running indefinitely tells the user nothing is wrong when something is.",
+          description: "If the operation fails or stalls, replace the spinner with a clear error message and a way to retry.",
           tone: "dont",
           markup: `<div class="portal-demo-row"><sgds-spinner label="Loading"></sgds-spinner></div>`,
         },
@@ -9017,7 +9074,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Track multi-step progress",
-        description: "Steppers show users how many stages a process has and which one they're currently on — reducing uncertainty in long workflows.",
+        description: "Steppers show users how many stages a process has and which one they are currently on, reducing uncertainty in long workflows.",
       },
       {
         title: "Allow review and return",
@@ -9025,7 +9082,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Set expectations upfront",
-        description: "Seeing all steps at the start lets users understand the scope of a form or process before they begin — reducing drop-off from unexpected length.",
+        description: "Seeing all steps at the start lets users understand the scope of a form or process before they begin, reducing drop-off from unexpected length.",
       },
     ],
     anatomyParts: [{ title: "Step marker" }, { title: "Step label" }, { title: "Step content" }],
@@ -9047,7 +9104,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stepper">
           <sgds-stepper data-portal-stepper="default" orientation="horizontal"></sgds-stepper>
         </div>`,
-            description: "Steps run left to right — best for top-of-page progress trackers.",
+            description: "Steps run left to right, best for top-of-page progress trackers.",
           },
           {
             label: "Vertical",
@@ -9055,7 +9112,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stepper">
           <sgds-stepper data-portal-stepper="default" orientation="vertical"></sgds-stepper>
         </div>`,
-            description: "Steps stack top to bottom — best for sidebars and narrow layouts.",
+            description: "Steps stack top to bottom, best for sidebars and narrow layouts.",
           },
         ],
       },
@@ -9097,7 +9154,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a stepper for sequential, multi-step processes",
-          description: "Steppers suit linear flows such as application forms, sign-ups, or guided checks where each step depends on the previous one and the order is fixed.",
+          description: "Steppers suit linear flows like application forms or sign-ups where each step depends on the previous one.",
           tone: "do",
           markup: `<div class="portal-demo-stepper">
             <sgds-stepper data-portal-stepper="default" activeStep="1"></sgds-stepper>
@@ -9105,7 +9162,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a stepper for parallel views",
-          description: "If users can visit each section in any order without consequence, use tabs or sidenav instead. A stepper implies that users are progressing through a workflow.",
+          description: "If users can visit sections in any order, use tabs or sidenav. A stepper implies progress through a workflow.",
           tone: "dont",
           markup: `<div class="portal-demo-stepper">
             <sgds-stepper data-portal-stepper="default"></sgds-stepper>
@@ -9113,34 +9170,18 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Show all steps upfront",
-          description: "Reveal the full set of steps from the start so users can estimate effort and decide whether to begin. Hiding later steps until earlier ones complete makes long flows feel unbounded.",
+          description: "Reveal the full set of steps from the start so users can estimate effort and decide whether to begin.",
           tone: "do",
           markup: `<div class="portal-demo-stepper">
             <sgds-stepper data-portal-stepper="default" activeStep="0"></sgds-stepper>
           </div>`,
         },
         {
-          title: "Use vertical orientation in narrow layouts",
-          description: "When the stepper sits in a sidebar or a narrow panel, switch to vertical orientation so step labels remain readable and the structure stays clear.",
-          tone: "do",
-          markup: `<div class="portal-demo-stepper">
-            <sgds-stepper data-portal-stepper="default" orientation="vertical" activeStep="1"></sgds-stepper>
-          </div>`,
-        },
-        {
           title: "Do not pile on too many steps",
-          description: "Long steppers feel daunting and reduce completion. If you have many steps, group related ones into logical phases or use progressive disclosure to keep the count manageable.",
+          description: "Long steppers reduce completion. Group related steps into phases or use progressive disclosure.",
           tone: "dont",
           markup: `<div class="portal-demo-stepper">
             <sgds-stepper data-portal-stepper="default"></sgds-stepper>
-          </div>`,
-        },
-        {
-          title: "Keep step labels short and outcome-led",
-          description: "Use short labels that describe what the user will accomplish at each step, such as Personal details or Review. Avoid generic labels like Step 1 or Form A.",
-          tone: "do",
-          markup: `<div class="portal-demo-stepper">
-            <sgds-stepper data-portal-stepper="default" activeStep="1"></sgds-stepper>
           </div>`,
         },
       ],
@@ -9156,15 +9197,15 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Navigate within a section",
-        description: "Subnavigation provides a secondary layer of navigation for a specific section — letting users move between closely related pages without using the main nav.",
+        description: "Subnavigation provides a secondary layer of navigation for a specific section, letting users move between closely related pages without using the main nav.",
       },
       {
-        title: "Shows what's available",
-        description: "All sub-sections are visible at once, so users know what's in the current section and can move freely between them.",
+        title: "Shows what is available",
+        description: "All sub-sections are visible at once, so users know what is in the current section and can move freely between them.",
       },
       {
         title: "Indicates the active page",
-        description: "The active indicator keeps users oriented within the sub-section — they know where they are without having to check the URL.",
+        description: "The active indicator keeps users oriented within the sub-section. They know where they are without having to check the URL.",
       },
     ],
     anatomyParts: [
@@ -9303,7 +9344,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use subnav for record-level or section-scoped tabs",
-          description: "Subnav suits pages where one entity has several views, such as an application with overview, tasks, and members. Keep cross-service navigation in the mainnav.",
+          description: "Subnav suits pages where one entity has several views, such as overview, tasks, and members. Keep cross-service nav in mainnav.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
             <sgds-subnav>
@@ -9317,7 +9358,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not duplicate the mainnav inside a subnav",
-          description: "Subnav is for moving within a section. Repeating top-level destinations confuses users and dilutes the role of the primary navigation.",
+          description: "Subnav is for moving within a section. Repeating top-level destinations dilutes the primary navigation.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
             <sgds-subnav>
@@ -9329,34 +9370,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           </div>`,
         },
         {
-          title: "Always indicate the active sub-page",
-          description: "Mark the current item with active so users can orient themselves within the section. Without an indicator the subnav becomes a list of generic links.",
-          tone: "do",
-          markup: `<div class="portal-demo-nav">
-            <sgds-subnav>
-              <span slot="header">Project Apollo</span>
-              <sgds-subnav-item>Overview</sgds-subnav-item>
-              <sgds-subnav-item active>Tasks</sgds-subnav-item>
-              <sgds-subnav-item>Members</sgds-subnav-item>
-            </sgds-subnav>
-          </div>`,
-        },
-        {
-          title: "Use the header slot to anchor the entity in view",
-          description: "When the subnav scopes to a single record, place the record's name in the header slot so users always see what they are operating on.",
-          tone: "do",
-          markup: `<div class="portal-demo-nav">
-            <sgds-subnav>
-              <span slot="header">Application APP-0421</span>
-              <sgds-subnav-item active>Details</sgds-subnav-item>
-              <sgds-subnav-item>Documents</sgds-subnav-item>
-              <sgds-subnav-item>History</sgds-subnav-item>
-            </sgds-subnav>
-          </div>`,
-        },
-        {
           title: "Use the actions slot for section-scoped controls only",
-          description: "Place buttons that act on the current section here. Avoid global controls that have no relationship to the visible sub-page.",
+          description: "Place buttons that act on the current section here. Avoid global controls unrelated to the sub-page.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
             <sgds-subnav>
@@ -9372,7 +9387,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not stack multiple subnavs on the same page",
-          description: "Each page should have at most one subnav. Two stacked subnavs create competing wayfinding and make it unclear which level a user is operating at.",
+          description: "Each page should have at most one subnav. Stacking two creates competing wayfinding and confuses users.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
             <sgds-subnav>
@@ -9400,11 +9415,11 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Toggle a setting on or off",
-        description: "Switches represent a binary state — enabled or disabled, on or off — and apply the change immediately without requiring a submit action.",
+        description: "Switches represent a binary state, enabled or disabled, on or off, and apply the change immediately without requiring a submit action.",
       },
       {
         title: "Immediate effect",
-        description: "Unlike a checkbox in a form, a switch takes effect the moment it's toggled — use it when the action should happen right away.",
+        description: "Unlike a checkbox in a form, a switch takes effect the moment it is toggled. Use it when the action should happen right away.",
       },
       {
         title: "Visible state at all times",
@@ -9448,7 +9463,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Small",
             value: "sm",
             markup: `<sgds-switch checked size="sm">Enable notifications</sgds-switch>`,
-            description: "The default size — use in most form layouts and settings panels.",
+            description: "The default size. Use in most form layouts and settings panels.",
           },
           {
             label: "Medium",
@@ -9474,7 +9489,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No icon",
             value: "no-icon",
             markup: `<sgds-switch checked>Enable notifications</sgds-switch>`,
-            description: "The default — use when the switch position alone is sufficient to communicate the state.",
+            description: "The default. Use when the switch position alone is sufficient to communicate the state.",
           },
           {
             label: "Icon",
@@ -9494,7 +9509,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Not disabled",
             value: "not-disabled",
             markup: `<sgds-switch checked>Enable notifications</sgds-switch>`,
-            description: "The default — switches are interactive and can be toggled by the user.",
+            description: "The default. Switches are interactive and can be toggled by the user.",
           },
           {
             label: "Disabled",
@@ -9516,37 +9531,37 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a switch for settings that take effect immediately",
-          description: "Use a switch when toggling the control should change the system right away — for example, turning on notifications or enabling a preference.",
+          description: "Use a switch when toggling should change the system right away, like turning on notifications.",
           tone: "do",
           markup: `<sgds-switch checked>Enable notifications</sgds-switch>`,
         },
         {
           title: "Do not use a switch inside a form that needs Save",
-          description: "If the change only takes effect after the user submits a form, use a checkbox so the convention matches the pending-save behaviour.",
+          description: "If the change only takes effect after submission, use a checkbox so the convention matches pending-save.",
           tone: "dont",
           markup: `<sgds-switch>Receive monthly newsletter</sgds-switch>`,
         },
         {
           title: "Use a positive, action-led label",
-          description: "Phrase the label as the on-state behaviour, such as Enable two-factor authentication, so users can tell what turning it on will do.",
+          description: "Phrase the label as the on-state behaviour, Enable two-factor authentication, so the result is clear.",
           tone: "do",
           markup: `<sgds-switch checked>Enable two-factor authentication</sgds-switch>`,
         },
         {
           title: "Do not use ambiguous on or off labels",
-          description: "Avoid labels like On or Yes that don't say what is being toggled. The label should describe the setting that the switch controls.",
+          description: "Avoid labels like On or Yes. The label should describe the setting that the switch controls.",
           tone: "dont",
           markup: `<sgds-switch>On</sgds-switch>`,
         },
         {
           title: "Add the icon prop when the state needs to be unmistakable",
-          description: "Use the icon prop to show a check or cross inside the thumb when the switch sits among other controls and users need a clearer cue beyond colour and position.",
+          description: "Use the icon prop to show a check or cross inside the thumb when users need a cue beyond colour.",
           tone: "do",
           markup: `<sgds-switch checked icon>Enable dark mode</sgds-switch>`,
         },
         {
           title: "Do not use a switch when there are more than two states",
-          description: "A switch is binary. If the option has more than two values — such as Off, Low, High — use radio buttons or a select instead.",
+          description: "A switch is binary. For more than two values (Off, Low, High), use radio buttons or a select instead.",
           tone: "dont",
           markup: `<sgds-switch>Notification frequency</sgds-switch>`,
         },
@@ -9559,19 +9574,19 @@ const componentDocs: Record<string, ComponentDoc> = {
     tag: "sgds-system-banner",
     group: "feedback",
     summary:
-      "The system banner component for displaying important messages to users at the application level.",
+      "The system banner component for displaying service-wide messages to users at the application level.",
     purposeCards: [
       {
         title: "Broadcast site-wide messages",
-        description: "System banners are designed for announcements that affect the entire service — planned maintenance, urgent alerts, or important policy updates.",
+        description: "System banners are designed for announcements that affect the entire service: planned maintenance, urgent alerts, or policy updates.",
       },
       {
         title: "Persistent and hard to miss",
-        description: "Unlike a toast, the system banner stays on screen until dismissed, ensuring important messages aren't lost when users navigate between pages.",
+        description: "Unlike a toast, the system banner stays on screen until dismissed, ensuring service-wide messages are not lost when users navigate between pages.",
       },
       {
         title: "Supports multiple announcements",
-        description: "When there's more than one message to convey, items cycle automatically — users can page through all announcements without the interface becoming crowded.",
+        description: "When there is more than one message to convey, items cycle automatically. Users can page through all announcements without the interface becoming crowded.",
       },
     ],
     anatomyMarkup: `<sgds-system-banner show fluid noClampAction class="portal-anatomy-system-banner">
@@ -9612,7 +9627,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             Scheduled maintenance from 1am to 3am on Sunday.
           </sgds-system-banner-item>
         </sgds-system-banner>`,
-            description: "Banner stays visible — use for persistent system-level messages.",
+            description: "Banner stays visible. Use for persistent system-level messages.",
           },
           {
             label: "Dismissible",
@@ -9623,7 +9638,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             Scheduled maintenance from 1am to 3am on Sunday.
           </sgds-system-banner-item>
         </sgds-system-banner>`,
-            description: "Adds a close affordance — use for time-bound announcements.",
+            description: "Adds a close affordance. Use for time-bound announcements.",
           },
         ],
       },
@@ -9642,7 +9657,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             Scheduled maintenance from 1am to 3am on Sunday.
           </sgds-system-banner-item>
         </sgds-system-banner>`,
-            description: "Default — content is constrained to the standard application width.",
+            description: "Default. Content is constrained to the standard application width.",
           },
           {
             label: "Fluid",
@@ -9684,7 +9699,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-link slot="action" href="#">Learn more</sgds-link>
           </sgds-system-banner-item>
         </sgds-system-banner>`,
-            description: "Includes an inline action — use to direct users to status page or details.",
+            description: "Includes an inline action. Use to direct users to status page or details.",
           },
         ],
       },
@@ -9703,7 +9718,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             Scheduled maintenance from 1am to 3am on Sunday.
           </sgds-system-banner-item>
         </sgds-system-banner>`,
-            description: "One message — pagination is hidden.",
+            description: "Only one message, so pagination is hidden.",
           },
           {
             label: "Multiple items",
@@ -9730,7 +9745,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     demos: [
       demo(
         "Default",
-        "Use system banners for important application-level messages that should remain prominent.",
+      "Use system banners for application-level messages that must stay prominent.",
         `<sgds-system-banner show>
           <sgds-system-banner-item>
             <sgds-icon slot="icon" name="info-circle-fill" size="md"></sgds-icon>
@@ -9743,7 +9758,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use system banners for service-wide announcements",
-          description: "Reserve system banners for messages that affect every user across the service, such as planned downtime, urgent advisories, or beta status indicators.",
+          description: "Reserve system banners for service-wide messages. Planned downtime, advisories, or beta indicators.",
           tone: "do",
           markup: `<sgds-system-banner show>
             <sgds-system-banner-item>
@@ -9755,18 +9770,18 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use system banners for page-specific feedback",
-          description: "Messages tied to a single screen, form, or action belong in an inline alert near the related content. The system banner is for messages that apply to the entire app.",
+          description: "Messages tied to a single screen or action belong in an inline alert. The system banner is for the whole app.",
           tone: "dont",
           markup: `<sgds-system-banner show>
             <sgds-system-banner-item>
               <sgds-icon slot="icon" name="exclamation-triangle"></sgds-icon>
-              Please complete the highlighted fields before submitting this form.
+              Complete the highlighted fields before submitting this form.
             </sgds-system-banner-item>
           </sgds-system-banner>`,
         },
         {
           title: "Keep banner copy short and scannable",
-          description: "Users may only glance at the banner, so put the most important information first. Use an action link to deep-link to a status page or details if more context is needed.",
+          description: "Lead with the headline message because users may only glance, then use an action link for more context.",
           tone: "do",
           markup: `<sgds-system-banner show>
             <sgds-system-banner-item>
@@ -9778,7 +9793,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not stack many banner items at once",
-          description: "Multiple items rotate automatically, but more than a handful overwhelms the user and dilutes urgency. Limit to the most important messages and remove items once they are no longer relevant.",
+          description: "Items rotate automatically, but too many dilute urgency. Limit to the highest priority and remove stale ones.",
           tone: "dont",
           markup: `<sgds-system-banner show>
             <sgds-system-banner-item>
@@ -9805,7 +9820,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Make time-bound banners dismissible",
-          description: "When a message is informational rather than critical, allow users to dismiss it once they have read it. Persistent banners are best reserved for ongoing system states.",
+          description: "Allow users to dismiss informational messages once read. Reserve persistent banners for ongoing system states.",
           tone: "do",
           markup: `<sgds-system-banner show dismissible>
             <sgds-system-banner-item>
@@ -9817,7 +9832,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a system banner in place of a toast",
-          description: "Confirmations of user actions, such as Saved or Sent, are short-lived and should appear as a toast. Putting them in a system banner makes the message feel heavier than it needs to be.",
+          description: "Confirmations like Saved or Sent are short-lived. Show them as a toast, not a system banner.",
           tone: "dont",
           markup: `<sgds-system-banner show>
             <sgds-system-banner-item>
@@ -9838,7 +9853,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Switch between related views",
-        description: "Tabs let users navigate between content sections that share a context — different aspects of the same object, or different states of the same data.",
+        description: "Tabs let users navigate between content sections that share a context. Different aspects of the same object, or different states of the same data.",
       },
       {
         title: "Keep all options reachable",
@@ -9846,7 +9861,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Preserve state between switches",
-        description: "Switching tabs doesn't reload the page — users can move back and forth between panels without losing scroll position or entered data.",
+        description: "Switching tabs does not reload the page. Users can move back and forth between panels without losing scroll position or entered data.",
       },
     ],
     anatomyParts: [{ title: "Tab list" }, { title: "Tab" }, { title: "Tab panel" }],
@@ -9905,7 +9920,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-tab-panel name="ho-overview">Overview content</sgds-tab-panel>
           <sgds-tab-panel name="ho-details">Details content</sgds-tab-panel>
         </sgds-tab-group>`,
-            description: "Default orientation — tab nav runs along the top of the panels.",
+            description: "Default orientation. Tab nav runs along the top of the panels.",
           },
           {
             label: "Vertical",
@@ -9916,7 +9931,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-tab-panel name="ve-overview">Overview content</sgds-tab-panel>
           <sgds-tab-panel name="ve-details">Details content</sgds-tab-panel>
         </sgds-tab-group>`,
-            description: "Tab nav runs down the left of the panels — best for narrow content areas.",
+            description: "Tab nav runs down the left of the panels, best for narrow content areas.",
           },
         ],
       },
@@ -9937,7 +9952,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-tab-panel name="ae-details">Details content</sgds-tab-panel>
           <sgds-tab-panel name="ae-activity">Activity content</sgds-tab-panel>
         </sgds-tab-group>`,
-            description: "All tabs interactive — default state.",
+            description: "All tabs interactive. This is the default state.",
           },
           {
             label: "Disabled tab",
@@ -9973,7 +9988,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use tabs for parallel views of the same content",
-          description: "Tabs work best when each panel shows a different facet of the same object — overview, details, history of one record. Users should not feel they are navigating to a new page.",
+          description: "Use tabs when each panel shows a different facet of the same object. Overview, details, history.",
           tone: "do",
           markup: `<sgds-tab-group variant="underlined">
             <sgds-tab slot="nav" panel="overview" active>Overview</sgds-tab>
@@ -9986,7 +10001,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use tabs for sequential steps",
-          description: "When users must complete steps in order, use a stepper instead. Tabs imply that any panel can be visited at any time without consequence.",
+          description: "For steps that must be completed in order, use a stepper. Tabs imply any panel can be visited anytime.",
           tone: "dont",
           markup: `<sgds-tab-group variant="underlined">
             <sgds-tab slot="nav" panel="step1" active>Step 1: Personal details</sgds-tab>
@@ -9998,19 +10013,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           </sgds-tab-group>`,
         },
         {
-          title: "Always set a default active tab",
-          description: "Mark one tab as active so the panel below has content on first load. An empty tab group with no selection looks broken.",
-          tone: "do",
-          markup: `<sgds-tab-group variant="underlined">
-            <sgds-tab slot="nav" panel="summary" active>Summary</sgds-tab>
-            <sgds-tab slot="nav" panel="activity">Activity</sgds-tab>
-            <sgds-tab-panel name="summary">Summary content</sgds-tab-panel>
-            <sgds-tab-panel name="activity">Activity content</sgds-tab-panel>
-          </sgds-tab-group>`,
-        },
-        {
           title: "Keep tab labels short and parallel",
-          description: "Use single nouns or short noun phrases that describe each view. Avoid mixing nouns and verbs — consistent grammar helps users scan the row quickly.",
+          description: "Use short nouns or noun phrases for each view. Consistent grammar helps users scan the row quickly.",
           tone: "do",
           markup: `<sgds-tab-group variant="underlined">
             <sgds-tab slot="nav" panel="overview" active>Overview</sgds-tab>
@@ -10023,7 +10027,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use too many tabs in one group",
-          description: "Long tab rows wrap or scroll, making it hard for users to see all options at once. If you need more than five tabs, reorganise the content or use sidenav for deeper navigation.",
+          description: "Long tab rows wrap or scroll. With more than five tabs, reorganise the content or use sidenav instead.",
           tone: "dont",
           markup: `<sgds-tab-group variant="underlined">
             <sgds-tab slot="nav" panel="t1" active>Overview</sgds-tab>
@@ -10046,19 +10050,6 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-tab-panel name="t9">Settings</sgds-tab-panel>
           </sgds-tab-group>`,
         },
-        {
-          title: "Use the solid variant for compact surfaces",
-          description: "When tabs sit inside a card or a tight panel, the solid variant gives the active tab more visual weight than the underlined variant.",
-          tone: "do",
-          markup: `<sgds-tab-group variant="solid">
-            <sgds-tab slot="nav" panel="day" active>Day</sgds-tab>
-            <sgds-tab slot="nav" panel="week">Week</sgds-tab>
-            <sgds-tab slot="nav" panel="month">Month</sgds-tab>
-            <sgds-tab-panel name="day">Day view</sgds-tab-panel>
-            <sgds-tab-panel name="week">Week view</sgds-tab-panel>
-            <sgds-tab-panel name="month">Month view</sgds-tab-panel>
-          </sgds-tab-group>`,
-        },
       ],
     },
   },
@@ -10072,11 +10063,11 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Compare data across rows",
-        description: "Tables are built for information that has a consistent structure across many entries — users can scan columns to compare values at a glance.",
+        description: "Tables are built for information that has a consistent structure across many entries. Users can scan columns to compare values at a glance.",
       },
       {
         title: "Handles dense information well",
-        description: "When there are many attributes and many records, a table gives each one a fixed position — making even complex datasets navigable.",
+        description: "When there are many attributes and many records, a table gives each one a fixed position, making even complex datasets navigable.",
       },
       {
         title: "Supports further interaction",
@@ -10194,7 +10185,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a table when users need to compare records",
-          description: "Tables are for repeating data with shared attributes — applications, transactions, devices. Users can scan a column to compare values across rows in a way no other layout supports.",
+          description: "Tables are for repeating data with shared attributes. Applications, transactions, devices.",
           tone: "do",
           markup: `<sgds-table headerBackground
             rowHeader='["Application ID","Submitted","Status"]'
@@ -10203,7 +10194,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a table for a single record",
-          description: "When users only need to read attributes for one item, a description list communicates the relationship between label and value more clearly than a one-row table.",
+          description: "For attributes of a single item, a description list shows the label–value relationship more clearly.",
           tone: "dont",
           markup: `<sgds-table
             rowHeader='["Name","Email","Role"]'
@@ -10212,7 +10203,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Use clear, consistent column headers",
-          description: "Headers tell users what each column contains. Keep them short, consistent in tone, and aligned with the meaning of the data — for example, 'Submitted' for a date or 'Status' for a state.",
+          description: "Keep headers short and consistent, 'Submitted' for a date, 'Status' for a state, so users know each column.",
           tone: "do",
           markup: `<sgds-table headerBackground
             rowHeader='["Service","Owner","Status"]'
@@ -10220,26 +10211,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           ></sgds-table>`,
         },
         {
-          title: "Use header background to make columns easier to scan",
-          description: "On long tables, a tinted header band keeps the column titles visible as users move down the page. Pair with cell borders for dense numeric data so values are easier to align across rows.",
-          tone: "do",
-          markup: `<sgds-table headerBackground tableBorder
-            rowHeader='["Region","Population","Area (km²)"]'
-            tableData='[["Central","950,000","132.7"],["East","720,000","93.1"],["West","940,000","201.3"]]'
-          ></sgds-table>`,
-        },
-        {
-          title: "Choose vertical headers for cross-attribute comparisons",
-          description: "When users compare a few items across many attributes, set header-position to vertical. Each item becomes a column and each attribute becomes a row, making attribute-by-attribute comparison easier.",
-          tone: "do",
-          markup: `<sgds-table header-position="vertical"
-            rowHeader='["Service","Owner","Status","Launched"]'
-            tableData='[["Citizen portal","GovTech","Live","2024"],["Booking system","NLB","Beta","2026"]]'
-          ></sgds-table>`,
-        },
-        {
           title: "Do not pack actions into too many columns",
-          description: "If every row needs three or more controls, the table becomes hard to scan. Move secondary actions into an overflow menu so the columns stay focused on data.",
+          description: "If every row needs three or more controls, move secondary actions into an overflow menu.",
           tone: "dont",
           markup: `<sgds-table
             rowHeader='["Name","Status","Edit","Delete","Share","Archive"]'
@@ -10259,7 +10232,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Navigate long pages without scrolling",
-        description: "A table of contents gives users direct links to every section on the page, so they can jump to what's relevant without reading from the top.",
+        description: "A table of contents gives users direct links to every section on the page, so they can jump to what is relevant without reading from the top.",
       },
       {
         title: "Understand the page at a glance",
@@ -10267,7 +10240,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Stays anchored while scrolling",
-        description: "A sticky table of contents keeps navigation within reach as users move through content — especially useful on documentation or policy pages.",
+        description: "A sticky table of contents keeps navigation within reach as users move through content, especially useful on documentation or policy pages.",
       },
     ],
     anatomyParts: [{ title: "Container" }, { title: "Header" }, { title: "Contents list" }],
@@ -10382,7 +10355,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a table of contents on long, scannable pages",
-          description: "Documentation, policy pages, and long-form articles benefit most. Each link should map to a heading the user can jump to without scrolling from the top.",
+          description: "Documentation, policy pages, and long-form articles benefit most. Each link should map to a heading.",
           tone: "do",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-table-of-contents>
@@ -10398,7 +10371,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a table of contents on short pages",
-          description: "If the page fits on one or two screens, a table of contents adds little value and competes with the body content for attention.",
+          description: "If the page fits on one or two screens, a table of contents adds little value and competes with the body.",
           tone: "dont",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-table-of-contents>
@@ -10411,7 +10384,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Label the block with a clear heading",
-          description: "Use a short heading like On this page or Contents in the default slot so users immediately recognise the navigation block, especially on documentation sites.",
+          description: "Use a short heading like On this page or Contents so users immediately recognise the navigation block.",
           tone: "do",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-table-of-contents>
@@ -10426,7 +10399,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Mirror the page's heading structure",
-          description: "Each link should match a real heading in the page, in the same order. Out-of-sync entries break user trust and create dead links.",
+          description: "Each link should match a real heading in the same order. Out-of-sync entries break trust and create dead links.",
           tone: "do",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-table-of-contents>
@@ -10442,7 +10415,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Use nested lists for major sub-sections only",
-          description: "Expose one level of nesting when a page has long sections that users may want to jump within. Avoid nesting every minor heading — it makes the navigation harder to scan than the content itself.",
+          description: "Expose one level of nesting for long sections. Avoid nesting every minor heading.",
           tone: "do",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-table-of-contents>
@@ -10463,7 +10436,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not nest more than one level deep",
-          description: "Multi-level tables of contents become as long as the page itself and lose their wayfinding value. Restructure long pages instead, or split them into smaller pages.",
+          description: "Multi-level contents lose wayfinding value. Restructure long pages or split them into smaller ones.",
           tone: "dont",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-table-of-contents>
@@ -10498,11 +10471,11 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Capture longer text input",
-        description: "Textareas are designed for open-ended responses — feedback, notes, descriptions — where a single line isn't enough room.",
+        description: "Textareas are designed for open-ended responses (feedback, notes, descriptions) where a single line is not enough room.",
       },
       {
         title: "Resize to fit the content",
-        description: "The textarea grows to accommodate longer entries, so users aren't constrained to a tiny box when they have more to say.",
+        description: "The textarea grows to accommodate longer entries, so users are not constrained to a tiny box when they have more to say.",
       },
       {
         title: "Same validation patterns as input",
@@ -10525,12 +10498,12 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No hint text",
             value: "no-hint-text",
             markup: `<sgds-textarea label="Comments"></sgds-textarea>`,
-            description: "Default — use when the label alone is enough.",
+            description: "Default. Use when the label alone is enough.",
           },
           {
             label: "Hint text",
             value: "hint-text",
-            markup: `<sgds-textarea label="Comments" hintText="Tell us what you liked or didn't like"></sgds-textarea>`,
+            markup: `<sgds-textarea label="Comments" hintText="Tell us what you liked or did not like"></sgds-textarea>`,
             description: "Hint text adds context about what to write.",
           },
         ],
@@ -10656,7 +10629,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Invalid",
             value: "invalid",
-            markup: `<sgds-textarea label="Comments" required hasFeedback invalid invalidFeedback="Please share your feedback"></sgds-textarea>`,
+            markup: `<sgds-textarea label="Comments" required hasFeedback invalid invalidFeedback="Share your feedback"></sgds-textarea>`,
             description: "Textarea shows error styling and feedback message below.",
           },
         ],
@@ -10673,39 +10646,27 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use textarea for open-ended responses",
-          description: "Use textarea when users may need to write more than a single line — feedback, descriptions, or notes — so the answer is not visually constrained.",
+          description: "Use textarea when users may write more than one line. Feedback, descriptions, or notes.",
           tone: "do",
-          markup: `<sgds-textarea label="Comments" hintText="Tell us what you liked or didn't like" rows="4"></sgds-textarea>`,
+          markup: `<sgds-textarea label="Comments" hintText="Tell us what you liked or did not like" rows="4"></sgds-textarea>`,
         },
         {
           title: "Do not use textarea for single-line values",
-          description: "If the answer is a name, reference number, or other one-line value, use a text input. A textarea suggests the response should be longer than it needs to be.",
+          description: "For a one-line value like a name or reference number, use a text input. Textarea implies a longer response.",
           tone: "dont",
           markup: `<sgds-textarea label="Full name"></sgds-textarea>`,
         },
         {
-          title: "Set rows to suggest the expected response length",
-          description: "Use the rows attribute to give the textarea an initial height that matches how much you expect users to write — short for a quick note, taller for detailed feedback.",
-          tone: "do",
-          markup: `<sgds-textarea label="Tell us about your experience" rows="6"></sgds-textarea>`,
-        },
-        {
           title: "Use resize=\"auto\" when responses can vary widely",
-          description: "Set resize to auto so the textarea grows with the content, sparing users from a tiny scroll area when they have more to say.",
+          description: "Set resize to auto so the textarea grows with the content rather than trapping users in a tiny scroll area.",
           tone: "do",
           markup: `<sgds-textarea label="Additional notes" resize="auto"></sgds-textarea>`,
         },
         {
           title: "Do not lock the height when responses might be long",
-          description: "Avoid resize=\"none\" for open-ended questions — users get stuck scrolling within a tiny field if they exceed the visible rows.",
+          description: "Avoid resize=\"none\" for open-ended questions. Users get stuck scrolling once they exceed the visible rows.",
           tone: "dont",
           markup: `<sgds-textarea label="Tell us about your experience" rows="2" resize="none"></sgds-textarea>`,
-        },
-        {
-          title: "Show validation feedback inline next to the field",
-          description: "When the response is required or has constraints, surface the error with hasFeedback and invalidFeedback so users can fix the value without leaving the field.",
-          tone: "do",
-          markup: `<sgds-textarea label="Comments" required hasFeedback invalid invalidFeedback="Please share your feedback"></sgds-textarea>`,
         },
       ],
     },
@@ -10720,11 +10681,11 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Preview before clicking",
-        description: "A thumbnail gives users a visual cue about the content behind the card — reducing the chance they click through to something irrelevant.",
+        description: "A thumbnail gives users a visual cue about the content behind the card, reducing the chance they click through to something irrelevant.",
       },
       {
         title: "Compact content listing",
-        description: "Thumbnail cards pack image, title, and description into a tight format — useful in sidebars, grids, or anywhere dense content needs to be browseable.",
+        description: "Thumbnail cards pack image, title, and description into a tight format, useful in sidebars, grids, or anywhere dense content needs to be browseable.",
       },
       {
         title: "Consistent proportions across a grid",
@@ -10758,7 +10719,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <span slot="title">Annual report 2025</span>
           <span slot="description">Highlights and metrics from the past year.</span>
         </sgds-thumbnail-card>`,
-            description: "Thumbnail sits beside the content. Best for lists and narrow columns.",
+            description: "Thumbnail sits beside the content, best for lists and narrow columns.",
           },
           {
             label: "Vertical",
@@ -10768,7 +10729,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <span slot="title">Annual report 2025</span>
           <span slot="description">Highlights and metrics from the past year.</span>
         </sgds-thumbnail-card>`,
-            description: "Thumbnail sits above the content. Useful for grid layouts.",
+            description: "Thumbnail sits above the content, useful for grid layouts.",
           },
         ],
       },
@@ -10851,7 +10812,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use thumbnail cards in dense lists where a small visual helps scanning",
-          description: "Thumbnail cards work best in lists of resources, articles, or files where a small image gives users a quick preview without taking the room a full image card would.",
+          description: "Thumbnail cards work best in lists of resources or articles where a small image gives a preview at a glance.",
           tone: "do",
           markup: `<sgds-thumbnail-card class="portal-demo-card">
             <img slot="thumbnail" alt="Cover of annual report 2025" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
@@ -10861,7 +10822,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Keep thumbnails consistently sized within a list",
-          description: "When stacking thumbnail cards in a list, use the same thumbnail dimensions for every card. Mismatched thumbnail sizes break the visual rhythm and make the list feel unfinished.",
+          description: "Use the same thumbnail dimensions for every card in a list. Mismatched sizes break the visual rhythm.",
           tone: "do",
           markup: `<sgds-thumbnail-card class="portal-demo-card">
             <img slot="thumbnail" alt="Tax filing guide cover" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
@@ -10871,7 +10832,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a thumbnail card when the image needs to lead",
-          description: "If the image is the main reason a user clicks the card — for example, a photo from a news article or campaign — use an image card so the picture has space to do the work.",
+          description: "If the image is the main reason to click the card, use an image card so the picture has room to work.",
           tone: "dont",
           markup: `<sgds-thumbnail-card class="portal-demo-card">
             <img slot="thumbnail" alt="National Day fireworks" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
@@ -10881,7 +10842,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Use stretched-link when the whole card is one click target",
-          description: "When the card represents a single resource, add stretched-link so the entire surface — not just the link in the footer — responds to click and keyboard activation.",
+          description: "Add stretched-link so the entire card, not just the footer link, responds to click and keyboard.",
           tone: "do",
           markup: `<sgds-thumbnail-card class="portal-demo-card" stretched-link>
             <img slot="thumbnail" alt="Open data icon" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
@@ -10892,7 +10853,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not omit alt text on the thumbnail image",
-          description: "The thumbnail still carries meaning for screen reader users. Provide concise alt text that describes the picture, not the card's title.",
+          description: "The thumbnail still carries meaning. Provide concise alt text describing the picture, not the title.",
           tone: "dont",
           markup: `<sgds-thumbnail-card class="portal-demo-card">
             <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
@@ -10908,19 +10869,19 @@ const componentDocs: Record<string, ComponentDoc> = {
     title: "Toast",
     tag: "sgds-toast",
     group: "feedback",
-    summary: "Toast allows you to convey quick messaging notifications to the user.",
+    summary: "Toast lets you convey short messaging notifications to the user.",
     purposeCards: [
       {
         title: "Confirm actions without interrupting",
-        description: "Toasts appear briefly to acknowledge that something worked — a save, a deletion, a form submission — without stopping the user mid-task.",
+        description: "Toasts appear briefly to acknowledge that something worked (a save, a deletion, a form submission) without stopping the user mid-task.",
       },
       {
         title: "Disappear automatically",
-        description: "Toasts dismiss themselves after a few seconds, so users don't have to manually close them to continue working.",
+        description: "Toasts dismiss themselves after a few seconds, so users do not have to manually close them to continue working.",
       },
       {
         title: "Non-blocking by design",
-        description: "Unlike a modal, a toast doesn't prevent interaction with the page — users can keep working while the notification is visible.",
+        description: "Unlike a modal, a toast does not prevent interaction with the page. Users can keep working while the notification is visible.",
       },
     ],
     anatomyParts: [{ title: "Toast surface" }, { title: "Title" }, { title: "Body content" }, { title: "Action" }],
@@ -10944,7 +10905,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           Changes have been saved successfully.
           <sgds-link slot="action"><a href="#">Undo</a></sgds-link>
         </sgds-toast>`,
-            description: "Use to confirm that an action completed successfully — such as saving, submitting, or deleting an item.",
+            description: "Use to confirm that an action completed successfully, such as saving, submitting, or deleting an item.",
           },
           {
             label: "Warning",
@@ -10958,7 +10919,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Danger",
             value: "danger",
             markup: `<sgds-toast show title="Action failed" variant="danger">
-          The request could not be completed. Please try again.
+          The request could not be completed. Try again.
         </sgds-toast>`,
             description: "Use to communicate that an action has failed or that something requires immediate attention.",
           },
@@ -11035,7 +10996,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use a toast to confirm a non-blocking action",
-          description: "Toasts work well to acknowledge that something completed in the background, such as a save, send, or delete, without interrupting the user's current task.",
+          description: "Toasts acknowledge background actions like save or send without interrupting the user's current task.",
           tone: "do",
           markup: `<sgds-toast show autohide title="Saved" variant="success">
             Your changes have been saved.
@@ -11044,7 +11005,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not use a toast for critical errors that block progress",
-          description: "Errors that require user action or that prevent the task from completing should appear in an inline alert or modal, where they remain visible until resolved.",
+          description: "Errors that require action or block the task belong in an inline alert or modal, where they stay visible.",
           tone: "dont",
           markup: `<sgds-toast show autohide title="Payment failed" variant="danger">
             Your card was declined. The order has not been submitted.
@@ -11052,7 +11013,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Match the variant to the nature of the message",
-          description: "Use success for positive confirmations, info for neutral updates, warning for issues that need attention, and danger for failures. Consistent variant use helps users recognise message types at a glance.",
+          description: "Use success for confirmations, info for neutral updates, warning for issues, and danger for failures.",
           tone: "do",
           markup: `<sgds-toast show autohide title="Update available" variant="info">
             A new version of this service is available.
@@ -11060,7 +11021,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not show many toasts at the same time",
-          description: "Multiple stacked toasts compete for attention and become noise. Surface only the most relevant message, or batch related updates into a single toast.",
+          description: "Stacked toasts compete for attention. Surface only the most relevant, or batch related updates into one.",
           tone: "dont",
           markup: `<div class="portal-demo-row">
             <sgds-toast show autohide title="File uploaded" variant="success">Report.pdf has been uploaded.</sgds-toast>
@@ -11070,7 +11031,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Keep toast content short and pair with an action where useful",
-          description: "Limit the message to a brief title and one supporting line. Add a single action such as Undo or View when it helps users recover or follow up quickly.",
+          description: "Keep to a brief title and one supporting line. Add an action like Undo or View when it helps recovery.",
           tone: "do",
           markup: `<sgds-toast show autohide title="Message sent" variant="success">
             Your reply has been sent.
@@ -11078,8 +11039,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           </sgds-toast>`,
         },
         {
-          title: "Do not use a toast as the only signal for important information",
-          description: "Because toasts dismiss themselves, users may miss them. For information that the user must read, use a system banner, modal, or inline alert that stays on screen.",
+          title: "Do not use a toast as the only signal for critical information",
+          description: "Toasts dismiss themselves and may be missed. For must-read information, use a banner, modal, or inline alert.",
           tone: "dont",
           markup: `<sgds-toast show autohide title="Account suspended" variant="danger">
             Your account has been suspended. You cannot access your records until this is resolved.
@@ -11098,15 +11059,15 @@ const componentDocs: Record<string, ComponentDoc> = {
     purposeCards: [
       {
         title: "Surface context without cluttering the UI",
-        description: "Tooltips reveal supporting information — descriptions, keyboard shortcuts, clarifications — on demand, keeping the interface clean until users ask for more.",
+        description: "Tooltips reveal supporting information (descriptions, keyboard shortcuts, clarifications) on demand, keeping the interface clean until users ask for more.",
       },
       {
         title: "Supplement, not replace, labels",
-        description: "Tooltips are supplementary — they add detail to elements that already have a visible label or icon, not a substitute for accessible labelling.",
+        description: "Tooltips are supplementary. They add detail to elements that already have a visible label or icon, not a substitute for accessible labelling.",
       },
       {
         title: "Triggered by attention, not action",
-        description: "Because tooltips appear on hover or focus rather than a click, they feel ambient — users encounter them naturally as they explore the interface.",
+        description: "Because tooltips appear on hover or focus rather than a click, they feel ambient. Users encounter them naturally as they explore the interface.",
       },
     ],
     anatomyMarkup: `<div class="portal-tooltip-anatomy">
@@ -11158,7 +11119,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<sgds-tooltip content="Tooltip on top" placement="top" open>
           <sgds-button variant="outline">Hover me</sgds-button>
         </sgds-tooltip>`,
-            description: "Anchors above the target. Default placement.",
+            description: "Anchors above the target. This is the default placement.",
           },
           {
             label: "Bottom",
@@ -11198,7 +11159,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<sgds-tooltip content="Opens on hover or keyboard focus" trigger="hover focus">
           <sgds-button variant="outline">Hover or focus me</sgds-button>
         </sgds-tooltip>`,
-            description: "Default behaviour, open via mouse hover or keyboard focus.",
+            description: "Default behaviour, open through mouse hover or keyboard focus.",
           },
           {
             label: "Hover",
@@ -11240,7 +11201,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       bestPractices: [
         {
           title: "Use tooltips for short supplementary hints",
-          description: "Tooltips are best for adding a brief explanation, label, or shortcut hint to an element that already has a visible affordance such as an icon or button.",
+          description: "Use tooltips for brief explanations or shortcut hints on elements that already have a visible affordance.",
           tone: "do",
           markup: `<sgds-tooltip content="Save this draft" trigger="hover focus">
             <sgds-icon-button name="save"></sgds-icon-button>
@@ -11248,7 +11209,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not put critical information in a tooltip",
-          description: "Information users need to complete their task, such as input requirements or error messages, should be visible without hovering. Use hint text or inline messages instead.",
+          description: "Information users need to complete a task should be visible without hovering. Use hint text or inline messages.",
           tone: "dont",
           markup: `<sgds-tooltip content="Password must be at least 12 characters and include a number" trigger="hover focus">
             <sgds-input label="Password" type="password"></sgds-input>
@@ -11256,7 +11217,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Keep tooltip text concise",
-          description: "Aim for a short phrase that fits on one or two lines. Long tooltips are easy to miss and harder to read because they appear and disappear quickly.",
+          description: "Aim for a short phrase that fits on one or two lines. Long tooltips are often missed and hard to read.",
           tone: "do",
           markup: `<sgds-tooltip content="Filter results" trigger="hover focus">
             <sgds-icon-button name="filter"></sgds-icon-button>
@@ -11264,7 +11225,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not attach tooltips to elements that already have a visible label",
-          description: "Repeating the visible label inside a tooltip adds noise without adding information. Only use a tooltip when it explains something the label or icon does not already convey.",
+          description: "Only use a tooltip when it explains something the label or icon does not already convey.",
           tone: "dont",
           markup: `<sgds-tooltip content="Submit" trigger="hover focus">
             <sgds-button>Submit</sgds-button>
@@ -11272,7 +11233,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Choose a placement that does not cover key content",
-          description: "Anchor the tooltip on the side with the most space and the least overlap with surrounding controls so users can read the hint without losing context.",
+          description: "Anchor the tooltip on the side with the most space and least overlap so users can read it without losing context.",
           tone: "do",
           markup: `<sgds-tooltip content="View activity log" placement="bottom" trigger="hover focus">
             <sgds-icon-button name="clock-history"></sgds-icon-button>
@@ -11280,7 +11241,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         },
         {
           title: "Do not rely on hover-only tooltips for keyboard or touch users",
-          description: "Hover triggers are invisible to keyboard and touch users. Use the default hover and focus trigger so the tooltip also opens when users tab to the element.",
+          description: "Hover-only triggers exclude keyboard and touch users. Use the default hover and focus trigger so tabbing also opens it.",
           tone: "dont",
           markup: `<sgds-tooltip content="Edit settings" trigger="hover">
             <sgds-icon-button name="gear"></sgds-icon-button>
@@ -11349,7 +11310,7 @@ const defaultGeneratedUsagePatterns: Record<ComponentGroup, GeneratedUsagePatter
       "Use it when a short label or reference helps users interpret the surrounding interface more quickly.",
     ],
     avoid: [
-      "Do not rely on this component as the only explanation for an important action, state, or instruction.",
+      "Do not rely on this component as the only explanation for a critical action, state, or instruction.",
       "Do not use long or decorative content when a short, direct label is enough.",
     ],
     doTitle: "Keep the label concise",
@@ -11378,12 +11339,12 @@ const defaultGeneratedUsagePatterns: Record<ComponentGroup, GeneratedUsagePatter
     ],
     avoid: [
       "Do not use this component when the content is short enough to show directly without extra controls.",
-      "Do not split simple information into more pages, rows, or controls than users need.",
+      "Do not split short information into more pages, rows, or controls than users need.",
     ],
     doTitle: "Match the structure to the task",
     doDescription: "Use structured navigation or comparison only when it helps users move through results with less effort.",
     dontTitle: "Do not add structure for its own sake",
-    dontDescription: "Extra pagination or tabular structure slows users down when the content could stay simple.",
+    dontDescription: "Extra pagination or tabular structure slows users down when the content could stay compact.",
   },
   navigation: {
     use: [
@@ -11411,14 +11372,14 @@ const generatedUsagePatternOverrides: Partial<Record<string, GeneratedUsagePatte
       "Do not use accordion when most users need to read all of the content straight through.",
       "Do not hide essential information that users need to see immediately.",
     ],
-    doTitle: "Keep sections easy to scan",
+    doTitle: "Keep sections scannable",
     doDescription: "Short titles and clearly grouped content help users decide what to open.",
     dontTitle: "Do not hide core information",
     dontDescription: "Accordion adds interaction cost, so it should not conceal information users must see at once.",
   },
   alert: {
     use: [
-      "Use alert for important inline feedback that affects the task or page the user is on.",
+      "Use alert for inline feedback that affects the task or page the user is on.",
       "Use the alert variant that matches the message severity and required response.",
     ],
     avoid: [
@@ -11479,7 +11440,7 @@ const generatedUsagePatternOverrides: Partial<Record<string, GeneratedUsagePatte
     ],
     avoid: [
       "Do not fill a card with too many competing text blocks, actions, or metadata.",
-      "Do not use a card when the content works better as a simple list or page section.",
+      "Do not use a card when the content works better as a list or page section.",
     ],
     doTitle: "Keep the card focused",
     doDescription: "A clear title, short description, and one obvious hierarchy make cards easier to compare.",
@@ -11534,7 +11495,7 @@ const generatedUsagePatternOverrides: Partial<Record<string, GeneratedUsagePatte
       "Use it for secondary actions and reference content, not primary task content.",
     ],
     avoid: [
-      "Do not move important task actions or critical page guidance into the footer.",
+      "Do not move primary task actions or critical page guidance into the footer.",
       "Do not overload the footer with too many competing link groups.",
     ],
     doTitle: "Keep footer content secondary",
@@ -11674,10 +11635,10 @@ const generatedUsagePatternOverrides: Partial<Record<string, GeneratedUsagePatte
       "Use it for structured data where alignment helps users spot patterns or differences quickly.",
     ],
     avoid: [
-      "Do not use table for simple content that reads better as a list or card.",
+      "Do not use table for short content that reads better as a list or card.",
       "Do not crowd the table with columns that users do not need for the decision at hand.",
     ],
-    doTitle: "Keep the table easy to compare",
+    doTitle: "Keep the table comparable",
     doDescription: "Relevant columns and clear row content help users scan and compare results quickly.",
     dontTitle: "Do not overload the table",
     dontDescription: "Too many columns or repeated details make comparison slower and more error-prone.",
@@ -11702,8 +11663,8 @@ const generatedUsagePatternOverrides: Partial<Record<string, GeneratedUsagePatte
       "Use it when users can continue their task without stopping to resolve the message immediately.",
     ],
     avoid: [
-      "Do not use toast for important content that must stay visible until the user reads it.",
-      "Do not show several toasts in quick succession for related updates.",
+      "Do not use toast for content that must stay visible until the user reads it.",
+      "Do not show several toasts in rapid succession for related updates.",
     ],
     doTitle: "Keep the toast brief",
     doDescription: "A short message with one clear outcome helps users recognise what just happened.",
@@ -11722,7 +11683,7 @@ const generatedUsagePatternOverrides: Partial<Record<string, GeneratedUsagePatte
     doTitle: "Keep the tooltip brief",
     doDescription: "Short supporting text works best because users should be able to read it at a glance.",
     dontTitle: "Do not hide essential guidance",
-    dontDescription: "Important instructions should stay visible in the interface, not appear only on hover or focus.",
+    dontDescription: "Critical instructions should stay visible in the interface rather than only appearing on hover or focus.",
   },
 };
 
@@ -11945,7 +11906,7 @@ const buildUsageContentSections = (doc: ComponentDoc): UsageContentSection[] => 
     sections.push({
       title: "Action",
       items: [
-        "Keep actions concise and easy to recognise so they do not compete with the component’s primary content.",
+        "Keep actions concise and recognisable so they do not compete with the component’s primary content.",
       ],
     });
   }
@@ -12689,7 +12650,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
       "Pagination and dismiss actions use SGDS icon button and close button controls.",
     ],
     authorItems: [
-      "Use system banners for important application-level messages.",
+      "Use system banners for application-level messages.",
       "Keep each message short and action-oriented.",
     ],
     focusItems: [
@@ -12809,7 +12770,7 @@ const generatedAccessibilityProfileOverrides: Record<string, Partial<GeneratedAc
     ],
     authorItems: [
       "Use toast messages for short status updates.",
-      "Do not use a toast as the only place for important instructions.",
+      "Do not use a toast as the only place for critical instructions.",
     ],
     focusItems: [
       "Do not move focus to a toast automatically for routine status updates.",

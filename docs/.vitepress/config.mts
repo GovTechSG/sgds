@@ -55,7 +55,8 @@ function getMenu(folder: string) {
 const config = withSidebar(vitePressConfig, [
     getMenu("foundations"),
     getMenu("components"),
-    getMenu("patterns"),
+    getMenu("templates"),
+    getMenu("blocks"),
     getMenu("guidelines"),
     getMenu("resources"),
     getMenu("ai"),
@@ -115,23 +116,16 @@ config.themeConfig.sidebar["/components/"] = {
   ],
 };
 config.themeConfig.sidebar["/foundations/"] = foundationsSidebar;
-config.themeConfig.sidebar["/patterns/"] = {
-  base: "/patterns/",
+config.themeConfig.sidebar["/templates/"] = {
+  base: "/templates/",
   items: [
-    {
-      text: "Page templates",
-      items: [
-        { text: "Form page", link: "/patterns/page-templates/form-page" },
-        { text: "Multi-step form", link: "/patterns/page-templates/multi-step-form" },
-      ],
-    },
-    {
-      text: "Block templates",
-      items: [
-        { text: "Hero", link: "/patterns/block-templates/hero" },
-        { text: "Card grid", link: "/patterns/block-templates/card-grid" },
-      ],
-    },
+    { text: "Overview", link: "/templates/" },
+  ],
+};
+config.themeConfig.sidebar["/blocks/"] = {
+  base: "/blocks/",
+  items: [
+    { text: "Overview", link: "/blocks/" },
   ],
 };
 config.themeConfig.sidebar["/guidelines/"] = {

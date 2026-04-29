@@ -1890,6 +1890,21 @@ const measureHotspots = async () => {
       }
     }
 
+    if (component.tagName === "SGDS-ICON-BUTTON") {
+      const buttonSurface = component.shadowRoot?.querySelector(".btn") as HTMLElement | null;
+      const icon = component.shadowRoot?.querySelector("sgds-icon") as HTMLElement | null;
+
+      if (buttonSurface) {
+        const buttonRect = getRelativeRect(buttonSurface, shell);
+        nextRects.width = buttonRect;
+        nextRects.height = buttonRect;
+      }
+
+      if (icon) {
+        nextRects["icon-size"] = getRelativeRect(icon, shell);
+      }
+    }
+
     hotspotRects.value = nextRects;
     return;
   }

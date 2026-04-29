@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import PortalNumberedItem from "./PortalNumberedItem.vue";
-import type { ThemedImageAsset, AnatomyCallout } from "../../data/component-docs";
+import SegmentedControl from "./SegmentedControl.vue";
+import type { ThemedImageAsset, AnatomyCallout, AnatomyVariant } from "../../data/component-docs";
 
 type AnatomyPart = {
   number: number;
@@ -23,11 +24,13 @@ type CalloutPosition = {
 const props = defineProps<{
   anatomyAsset?: ThemedImageAsset;
   anatomyPreviewMarkup: string;
+  anatomyVariants?: AnatomyVariant[];
   anatomyCallouts?: AnatomyCallout[];
   resolvedAnatomyParts: AnatomyPart[];
   numberedListGapClass?: string;
 }>();
 
+const selectedAnatomyVariant = ref(props.anatomyVariants?.[0]?.value ?? "");
 const anatomyCanvasRef = ref<HTMLElement | null>(null);
 const anatomyScaleLayerRef = ref<HTMLElement | null>(null);
 const anatomyCalloutPositions = ref<CalloutPosition[]>([]);
@@ -48,8 +51,44 @@ const anatomyScale = ref(1);
 const anatomyCanvasMinHeight = ref<number | null>(null);
 let resizeObserver: ResizeObserver | null = null;
 
+const anatomyVariantOptions = computed(() =>
+  (props.anatomyVariants ?? []).map((variant) => ({
+    value: variant.value,
+    label: variant.label,
+  })),
+);
+
+const activeAnatomyVariant = computed(() => {
+  const variants = props.anatomyVariants ?? [];
+  return variants.find((variant) => variant.value === selectedAnatomyVariant.value) ?? variants[0] ?? null;
+});
+
+const activeAnatomyMarkup = computed(() =>
+  activeAnatomyVariant.value?.markup ?? props.anatomyPreviewMarkup,
+);
+
+const isWideAnatomy = computed(() =>
+  activeAnatomyMarkup.value.includes("portal-footer-anatomy"),
+);
+
+const activeAnatomyCallouts = computed(() =>
+  activeAnatomyVariant.value?.callouts ?? props.anatomyCallouts,
+);
+
+const buildAnatomyParts = (parts: AnatomyVariant["parts"]) =>
+  parts.map((part, index) => ({
+    number: index + 1,
+    ...part,
+  }));
+
+const activeResolvedAnatomyParts = computed(() =>
+  activeAnatomyVariant.value
+    ? buildAnatomyParts(activeAnatomyVariant.value.parts)
+    : props.resolvedAnatomyParts,
+);
+
 const anatomyPartColumns = computed(() => {
-  const parts = props.resolvedAnatomyParts ?? [];
+  const parts = activeResolvedAnatomyParts.value ?? [];
   const midpoint = Math.ceil(parts.length / 2);
   return [
     parts.slice(0, midpoint),
@@ -90,7 +129,7 @@ const updateCallouts = async () => {
 
   const canvas = anatomyCanvasRef.value;
   const scaleLayer = anatomyScaleLayerRef.value;
-  const callouts = props.anatomyCallouts;
+  const callouts = activeAnatomyCallouts.value;
   if (!canvas || !scaleLayer || !callouts?.length) {
     anatomyCalloutPositions.value = [];
     anatomyGroupOffset.value = { x: 0, y: 0 };
@@ -400,6 +439,62 @@ const openAnatomyDropdowns = async () => {
     });
   }
 
+  const dropdowns = Array.from(
+    root.querySelectorAll(".portal-anatomy-dropdown") as NodeListOf<HTMLElement & {
+      showMenu?: () => Promise<void> | void;
+      hideMenu?: (isOutside?: boolean) => void;
+      menuIsOpen?: boolean;
+      updateComplete?: Promise<unknown>;
+      _handleClickOutOfElement?: (e: Event) => void;
+      _handleCloseMenu?: () => void;
+    }>,
+  );
+  for (const el of dropdowns) {
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "dropdown-inline-anatomy",
+      `:host {
+         display: inline-block !important;
+       }
+       .dropdown {
+         align-items: flex-start !important;
+         flex-direction: column !important;
+         gap: var(--sgds-gap-2-xs) !important;
+       }
+       .toggler-container {
+         display: inline-flex !important;
+       }
+       .dropdown-menu {
+         display: block !important;
+         left: auto !important;
+         max-height: none !important;
+         min-width: var(--sgds-dimension-280) !important;
+         position: relative !important;
+         top: auto !important;
+         transform: none !important;
+         z-index: auto !important;
+       }`,
+    );
+    if (el._handleClickOutOfElement) {
+      document.removeEventListener("click", el._handleClickOutOfElement);
+    }
+    if (el._handleCloseMenu) {
+      el.removeEventListener("sgds-hide", el._handleCloseMenu as EventListener);
+    }
+    el.hideMenu = () => {};
+    const open = async () => {
+      if (typeof el.showMenu === "function" && !el.menuIsOpen) {
+        try { await el.showMenu(); } catch { /* noop */ }
+      }
+    };
+    await open();
+    el.addEventListener("sgds-after-hide", () => {
+      void open().then(() => updateCallouts());
+    });
+  }
+
   const tooltips = Array.from(
     root.querySelectorAll("sgds-tooltip") as NodeListOf<HTMLElement & {
       open?: boolean;
@@ -437,6 +532,44 @@ const openAnatomyDropdowns = async () => {
       try { await el.show(); } catch { /* noop */ }
     }
   }
+
+  const drawers = Array.from(
+    root.querySelectorAll(".portal-anatomy-drawer") as NodeListOf<HTMLElement & {
+      updateComplete?: Promise<unknown>;
+    }>,
+  );
+  for (const el of drawers) {
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "drawer-contained-anatomy",
+      `:host {
+         display: block !important;
+         height: 100% !important;
+         width: var(--sgds-dimension-320) !important;
+       }
+       .drawer,
+       .drawer-contained {
+         height: 100% !important;
+         inset: 0 !important;
+         overflow: hidden !important;
+         position: absolute !important;
+         width: 100% !important;
+       }
+       .drawer-overlay {
+         display: none !important;
+       }
+       .drawer-panel {
+         height: 100% !important;
+         inset: 0 !important;
+         max-width: none !important;
+         overflow: hidden !important;
+         position: absolute !important;
+         width: 100% !important;
+       }`,
+    );
+  }
   await nextTick();
   void updateCallouts();
 };
@@ -460,6 +593,16 @@ watch(() => props.anatomyCallouts, () => {
   void updateCallouts();
 });
 
+watch(() => props.anatomyVariants, (variants) => {
+  selectedAnatomyVariant.value = variants?.[0]?.value ?? "";
+}, { deep: true });
+
+watch(selectedAnatomyVariant, async () => {
+  await nextTick();
+  void openAnatomyDropdowns();
+  void updateCallouts();
+});
+
 onBeforeUnmount(() => {
   resizeObserver?.disconnect();
   window.removeEventListener("resize", updateCallouts);
@@ -468,7 +611,13 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xl)]">
-    <div class="sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:px-component-lg sgds:py-component-lg sgds:max-md:px-component-md sgds:max-md:py-component-md">
+    <div class="sgds:flex sgds:flex-col sgds:gap-component-md sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:px-component-xs sgds:py-component-xs">
+      <SegmentedControl
+        v-if="anatomyVariantOptions.length > 1"
+        v-model="selectedAnatomyVariant"
+        :options="anatomyVariantOptions"
+        aria-label="Anatomy variant"
+      />
       <div class="sgds:flex sgds:items-center sgds:justify-center sgds:relative sgds:w-full">
         <template v-if="anatomyAsset">
           <img
@@ -485,7 +634,10 @@ onBeforeUnmount(() => {
         <div
           v-else
           ref="anatomyCanvasRef"
-          class="sgds:flex sgds:items-center sgds:justify-center sgds:mx-auto sgds:max-w-[var(--sgds-dimension-688)] sgds:min-h-[var(--sgds-dimension-320)] sgds:relative sgds:w-full"
+          :class="[
+            'sgds:flex sgds:items-center sgds:justify-center sgds:mx-auto sgds:min-h-[var(--sgds-dimension-320)] sgds:relative sgds:w-full',
+            isWideAnatomy ? 'sgds:max-w-[var(--sgds-dimension-1168)]' : 'sgds:max-w-[var(--sgds-dimension-688)]',
+          ]"
           :style="anatomyCanvasMinHeight ? { minHeight: `${anatomyCanvasMinHeight}px` } : undefined"
         >
           <div
@@ -496,7 +648,7 @@ onBeforeUnmount(() => {
             <div
               class="anatomy-demo-markup sgds:inline-flex sgds:items-center sgds:justify-center sgds:min-w-0"
               :style="{ transform: `translate(${anatomyGroupOffset.x}px, ${anatomyGroupOffset.y}px)` }"
-              v-html="anatomyPreviewMarkup"
+              v-html="activeAnatomyMarkup"
             ></div>
             <span
               v-for="callout in anatomyCalloutPositions"

@@ -1,7 +1,7 @@
 export const categoryColorClass: Record<string, string> = {
   Component: "sgds:text-primary-default",
   Foundation: "sgds:text-success-default",
-  Pattern: "sgds:text-warning-default",
+  Template: "sgds:text-warning-default",
   Guideline: "sgds:text-purple-default",
   AI: "sgds:text-cyan-default",
 };
@@ -97,13 +97,40 @@ export const searchIndex: SearchItem[] = [
   { title: "Subnav", category: "Component", url: "/components/subnav", keywords: ["sub navigation", "secondary nav", "tabs"] },
   { title: "Tab", category: "Component", url: "/components/tab", keywords: ["tabs", "navigation", "panel"] },
 
-  // Patterns — Page templates
-  { title: "Form page", category: "Pattern", url: "/patterns/page-templates/form-page", keywords: ["template", "form", "page"] },
-  { title: "Multi-step form", category: "Pattern", url: "/patterns/page-templates/multi-step-form", keywords: ["wizard", "steps", "form"] },
+  // Templates — Page templates
+  { title: "About us", category: "Template", url: "/templates/page-templates/preview/about-us", keywords: ["agency", "team", "company", "mission"] },
+  { title: "Application management", category: "Template", url: "/templates/page-templates/preview/application-management", keywords: ["admin", "portal", "table", "filter", "dashboard"] },
+  { title: "Blog", category: "Template", url: "/templates/page-templates/preview/blog", keywords: ["article", "news", "story", "case study", "post"] },
+  { title: "Catalogue", category: "Template", url: "/templates/page-templates/preview/catalogue", keywords: ["search", "filter", "browse", "listing", "grid"] },
+  { title: "Form page", category: "Template", url: "/templates/page-templates/preview/form-page", keywords: ["template", "form", "page"] },
+  { title: "Landing page", category: "Template", url: "/templates/page-templates/preview/landing", keywords: ["hero", "marketing", "campaign", "launch"] },
+  { title: "Multi-step form", category: "Template", url: "/templates/page-templates/preview/multi-step-form", keywords: ["wizard", "steps", "form"] },
+  { title: "Report an issue", category: "Template", url: "/templates/page-templates/preview/report-issue", keywords: ["form", "feedback", "complaint", "incident"] },
 
-  // Patterns — Block templates
-  { title: "Hero", category: "Pattern", url: "/patterns/block-templates/hero", keywords: ["banner", "header", "hero section"] },
-  { title: "Card grid", category: "Pattern", url: "/patterns/block-templates/card-grid", keywords: ["grid", "cards", "layout"] },
+  // Templates — Block templates
+  { title: "Cards", category: "Block", url: "/blocks/preview/cards", keywords: ["grid", "cards", "layout", "tiles"] },
+  { title: "Call to action", category: "Block", url: "/blocks/preview/cta", keywords: ["cta", "conversion", "banner", "promo"] },
+  { title: "Feature", category: "Block", url: "/blocks/preview/feature", keywords: ["feature", "showcase", "marketing", "image"] },
+  { title: "Filter", category: "Block", url: "/blocks/preview/filter", keywords: ["filter", "facet", "sidebar", "search"] },
+  { title: "All Types", category: "Block", url: "/blocks/preview/form-all-types", keywords: ["form", "fields", "input", "all types"] },
+  { title: "Basic Center", category: "Block", url: "/blocks/preview/form-basic-center", keywords: ["form", "basic", "center"] },
+  { title: "Basic Left", category: "Block", url: "/blocks/preview/form-basic-left", keywords: ["form", "basic", "left"] },
+  { title: "Basic Right", category: "Block", url: "/blocks/preview/form-basic-right", keywords: ["form", "basic", "right"] },
+  { title: "Form Fields Checkbox", category: "Block", url: "/blocks/preview/form-fields-checkbox", keywords: ["form", "fields", "checkbox"] },
+  { title: "Form Fields Dates Quantities", category: "Block", url: "/blocks/preview/form-fields-dates-quantities", keywords: ["form", "fields", "datepicker", "quantity"] },
+  { title: "Form Fields File Upload", category: "Block", url: "/blocks/preview/form-fields-file-upload", keywords: ["form", "fields", "file upload"] },
+  { title: "Form Fields Radio", category: "Block", url: "/blocks/preview/form-fields-radio", keywords: ["form", "fields", "radio"] },
+  { title: "Form Fields Selects", category: "Block", url: "/blocks/preview/form-fields-selects", keywords: ["form", "fields", "select"] },
+  { title: "Form Fields Textarea", category: "Block", url: "/blocks/preview/form-fields-textarea", keywords: ["form", "fields", "textarea"] },
+  { title: "Form Multi-step", category: "Block", url: "/blocks/preview/form-multi-step", keywords: ["form", "multi-step", "stepper"] },
+  { title: "Full-width only", category: "Block", url: "/blocks/preview/form-full-width-only", keywords: ["form", "full width", "fields"] },
+  { title: "Paired Only", category: "Block", url: "/blocks/preview/form-paired-only", keywords: ["form", "paired", "fields"] },
+  { title: "Sections Single", category: "Block", url: "/blocks/preview/form-sections-single", keywords: ["form", "sections", "single"] },
+  { title: "Sections Three", category: "Block", url: "/blocks/preview/form-sections-three", keywords: ["form", "sections", "three"] },
+  { title: "Sections Two", category: "Block", url: "/blocks/preview/form-sections-two", keywords: ["form", "sections", "two"] },
+  { title: "Hero", category: "Block", url: "/blocks/preview/hero", keywords: ["banner", "header", "hero section", "landing"] },
+  { title: "Page header", category: "Block", url: "/blocks/preview/header", keywords: ["title", "header", "breadcrumb", "page"] },
+  { title: "Stats", category: "Block", url: "/blocks/preview/stats", keywords: ["stats", "metrics", "kpi", "numbers"] },
 
   // Guidelines
   { title: "Overview", category: "Guideline", url: "/guidelines/overview" },
@@ -126,7 +153,7 @@ export const searchIndex: SearchItem[] = [
 const categoryOrder: Record<string, number> = {
   Component: 0,
   Foundation: 1,
-  Pattern: 2,
+  Template: 2,
   Guideline: 3,
   AI: 4,
 };
