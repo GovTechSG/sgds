@@ -57,51 +57,11 @@ export const foundationsSidebar = {
       text: "Colour",
       items: [
         { text: "Colour principles", link: "/foundations/colour" },
-        {
-          text: "Colour tokens",
-          items: [
-            {
-              text: "Primitive colour",
-              link: "/foundations/colour/primitive-colour",
-            },
-            {
-              text: "Product colour",
-              link: "/foundations/colour/product-colour",
-            },
-            {
-              text: "Background colour",
-              link: "/foundations/colour/semantic-background",
-            },
-            {
-              text: "Foreground colour",
-              link: "/foundations/colour/semantic-foreground",
-            },
-            {
-              text: "Surface colour",
-              link: "/foundations/colour/semantic-surface",
-            },
-            {
-              text: "Border colour",
-              link: "/foundations/colour/semantic-border",
-            },
-            { text: "Text colour", link: "/foundations/colour/semantic-text" },
-            { text: "Form colour", link: "/foundations/colour/semantic-form" },
-          ],
-        },
-        {
-          text: "Colour utilities",
-          items: [
-            {
-              text: "Background colour",
-              link: "/foundations/colour/background-colour",
-            },
-            {
-              text: "Border colour",
-              link: "/foundations/colour/border-colour",
-            },
-            { text: "Text colour", link: "/foundations/colour/text-colour" },
-          ],
-        },
+        { text: "Our colour", link: "/foundations/colour/our-colour" },
+        { text: "Product colour", link: "/foundations/colour/product-colour" },
+        { text: "Primitive colour", link: "/foundations/colour/primitive-colour" },
+        { text: "Semantic colour", link: "/foundations/colour/semantic-colour" },
+        { text: "System palette", link: "/foundations/colour/system-palette" },
       ],
     },
     {

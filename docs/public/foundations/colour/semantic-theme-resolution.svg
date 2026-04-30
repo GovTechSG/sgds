@@ -1,0 +1,46 @@
+<svg width="976" height="256" viewBox="0 0 976 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">How themes resolve semantic tokens</title>
+  <desc id="desc">A split day and night theme diagram showing --sgds-bg-default resolving to --sgds-gray-000 in the day theme and --sgds-gray-1100 in the night theme.</desc>
+
+  <defs>
+    <clipPath id="day-clip">
+      <rect width="488" height="256"/>
+    </clipPath>
+    <clipPath id="night-clip">
+      <rect x="488" width="488" height="256"/>
+    </clipPath>
+    <marker id="arrow-muted" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M1 1L4 4L7 1" stroke="#868686" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-default" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M1 7L4 4L7 7" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect width="488" height="256" fill="#FFFFFF"/>
+  <rect x="488" width="488" height="256" fill="#0E0E0E"/>
+
+  <text x="244" y="40" fill="#1A1A1A" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="0" text-anchor="middle">Day theme</text>
+  <text x="732" y="40" fill="#F3F3F3" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="0" text-anchor="middle">Night theme</text>
+
+  <text x="488" y="90" fill="#1A1A1A" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="middle" clip-path="url(#day-clip)">Semantic</text>
+  <text x="488" y="90" fill="#F3F3F3" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="middle" clip-path="url(#night-clip)">Semantic</text>
+
+  <rect x="428.5" y="104" width="139" height="24" rx="12" fill="#F3F3F3" clip-path="url(#day-clip)"/>
+  <rect x="428.5" y="104" width="139" height="24" rx="12" fill="#3B3B3B" clip-path="url(#night-clip)"/>
+  <text x="498" y="120" fill="#1A1A1A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" letter-spacing="0" text-anchor="middle" clip-path="url(#day-clip)">--sgds-bg-default</text>
+  <text x="498" y="120" fill="#F3F3F3" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" letter-spacing="0" text-anchor="middle" clip-path="url(#night-clip)">--sgds-bg-default</text>
+
+  <path d="M488 128V132C488 143 479 152 468 152H264C253 152 244 161 244 172" stroke="#868686" stroke-linecap="round" marker-end="url(#arrow-muted)"/>
+  <rect x="182" y="175" width="142" height="24" rx="12" fill="#F3F3F3"/>
+  <circle cx="196" cy="187" r="7" fill="#FFFFFF"/>
+  <text x="258" y="192" fill="#1A1A1A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" letter-spacing="0" text-anchor="middle">--sgds-gray-000</text>
+  <text x="244" y="219" fill="#1A1A1A" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="middle">Primitive</text>
+
+  <path d="M488 128V132C488 143 497 152 508 152H712C723 152 732 161 732 172" stroke="#868686" stroke-linecap="round" marker-end="url(#arrow-muted)"/>
+  <path d="M488 128V189C488 200 497 209 508 209H722C728 209 732 205 732 199" stroke="#000000" stroke-linecap="round" marker-end="url(#arrow-default)"/>
+  <rect x="667" y="175" width="150" height="24" rx="12" fill="#3B3B3B"/>
+  <circle cx="681" cy="187" r="7" fill="#0E0E0E"/>
+  <text x="747" y="192" fill="#F3F3F3" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" letter-spacing="0" text-anchor="middle">--sgds-gray-1100</text>
+  <text x="732" y="219" fill="#F3F3F3" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="middle">Primitive</text>
+</svg>

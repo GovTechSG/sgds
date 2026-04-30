@@ -24,6 +24,8 @@ export const searchIndex: SearchItem[] = [
   { title: "Token naming", category: "Foundation", url: "/foundations/token-naming", keywords: ["naming", "naming convention", "token structure", "semantic naming"] },
   { title: "Token governance", category: "Foundation", url: "/foundations/token-governance", keywords: ["governance", "deprecation", "change impact", "token lifecycle"] },
   { title: "Colour", category: "Foundation", url: "/foundations/colour" },
+  { title: "Our colour", category: "Foundation", url: "/foundations/colour/our-colour", keywords: ["colour", "color", "palette", "brand colour", "govtech colour", "extended colour"] },
+  { title: "System palette", category: "Foundation", url: "/foundations/colour/system-palette", keywords: ["colour", "color", "palette", "brand colour", "primitive colour", "semantic colour", "grayscale"] },
   { title: "Iconography", category: "Foundation", url: "/foundations/iconography" },
   { title: "Typography", category: "Foundation", url: "/foundations/typography" },
   { title: "Layout", category: "Foundation", url: "/foundations/layout" },

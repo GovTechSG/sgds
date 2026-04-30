@@ -36,14 +36,8 @@ const TOKEN_PAGE_PATHS = new Set<string>([
   "foundations/border/border-radius-tokens",
   "foundations/border/border-width-tokens",
   // Colour
-  "foundations/colour/primitive-colour",
   "foundations/colour/product-colour",
-  "foundations/colour/semantic-background",
-  "foundations/colour/semantic-border",
-  "foundations/colour/semantic-foreground",
-  "foundations/colour/semantic-form",
-  "foundations/colour/semantic-surface",
-  "foundations/colour/semantic-text",
+  "foundations/colour/semantic-colour",
   // Elevation
   "foundations/elevation/edge-elevation",
   "foundations/elevation/surface-elevation",
