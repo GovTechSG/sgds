@@ -35,6 +35,8 @@ const { title, description, metadata, headerLinks, titleClass, descriptionClass,
 const isMaskedBrandIcon = (label: string) =>
   ["github", "storybook"].includes(label.toLowerCase());
 
+const isStorybookLink = (label: string) => label.toLowerCase() === "storybook";
+
 const brandIconClass = (label: string) =>
   `page-header-brand-icon page-header-brand-icon--${label.toLowerCase()}`;
 </script>
@@ -76,7 +78,15 @@ const brandIconClass = (label: string) =>
           {{ link.label }}
         </span>
         <sgds-link tone="neutral">
-          <a :href="link.href" class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
+          <a
+            :href="link.href"
+            :target="isStorybookLink(link.label) ? '_blank' : undefined"
+            :rel="isStorybookLink(link.label) ? 'noreferrer' : undefined"
+            :class="[
+              'sgds:inline-flex sgds:items-center sgds:gap-text-2-xs',
+              isStorybookLink(link.label) ? 'page-header-storybook-link' : ''
+            ]"
+          >
             <span
               v-if="link.iconSrc && isMaskedBrandIcon(link.label)"
               aria-hidden="true"
@@ -135,5 +145,12 @@ const brandIconClass = (label: string) =>
 .sgds-night-theme .page-header-brand-icon--github,
 .sgds-night-theme .page-header-brand-icon--storybook {
   background-color: var(--sgds-color-fixed-light);
+}
+
+/* Storybook header links intentionally open in a new tab without rendering
+   SGDS link's external-link indicator beside the path. */
+.page-header-storybook-link::after,
+.page-header-storybook-link .external-link-icon {
+  display: none !important;
 }
 </style>

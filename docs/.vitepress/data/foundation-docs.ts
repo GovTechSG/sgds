@@ -12,8 +12,13 @@ const FOUNDATION_STORYBOOK_BASE =
 // section-level Storybook entry chosen by `fallbackStorybookIdForPath`.
 const foundationStorybookIds: Record<string, string> = {
   "foundations/colour/product-colour": "foundation-theming-govtech-brand-palettes--docs",
+  "foundations/colour/semantic-colour": "foundation-theming--docs",
   "foundations/layout/breakpoint": "foundation-grid-system--docs",
   "foundations/layout/responsive-grid": "foundation-grid-system--responsive",
+};
+
+const foundationStorybookPathLabels: Record<string, string> = {
+  "foundations/colour/semantic-colour": "foundation-theming",
 };
 
 const fallbackStorybookIdForPath = (path: string): string => {
@@ -87,7 +92,7 @@ export const getFoundationHeaderLinks = (path: string): FoundationHeaderLink[] =
     {
       label: "Storybook",
       iconSrc: "/brands/storybook.svg",
-      path: normalizedPath,
+      path: foundationStorybookPathLabels[normalizedPath] ?? normalizedPath,
       href: getFoundationStorybookHref(normalizedPath),
     },
   ];

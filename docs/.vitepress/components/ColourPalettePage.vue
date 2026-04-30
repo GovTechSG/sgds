@@ -1290,19 +1290,56 @@ const showSemanticForm = computed(
         <div class="typography-page-template__body typography-page-template__body--prose">
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">What semantic colour tokens are</h3>
+              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">How semantic colour tokens work</h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-                Semantic colour tokens describe the role a colour plays in an interface. Instead of choosing a hex value such as <CodeToken label="#0269D0" :surface="false" />, use a token such as <CodeToken label="--sgds-link-color-default" /> for a link, or <CodeToken label="--sgds-surface-default" /> for a surface.
+                A primitive colour token names a hex value. A semantic colour token names the job that value performs in the interface. Where <CodeToken label="--sgds-blue-600" /> names a specific shade, a semantic token like <CodeToken label="--sgds-link-color-default" /> names the role "default colour for a link". The system maps each role to the right primitive behind the scenes.
               </p>
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-                This keeps colour decisions consistent across services. A semantic token can resolve to one primitive colour in the day theme and another primitive colour in the night theme, while the role stays the same.
-              </p>
-            </div>
 
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">How themes resolve semantic tokens</h3>
+              <!-- Mapping: Raw hex → Primitive → Semantic. Two themed primitives
+                   converge on the same semantic token, illustrating that one
+                   semantic role can resolve to different primitives across
+                   day and night themes. -->
+              <div class="cp-token-anatomy cp-token-anatomy--theme-mapping">
+                <span aria-hidden="true"></span>
+                <span class="cp-token-anatomy__label">Raw hex value</span>
+                <span aria-hidden="true"></span>
+                <span class="cp-token-anatomy__label">Primitive colour</span>
+                <span aria-hidden="true"></span>
+                <span class="cp-token-anatomy__label">Semantic colour</span>
+
+                <span class="cp-token-anatomy__theme">Day theme</span>
+                <span class="cp-token-anatomy__pill">
+                  <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
+                  <code class="cp-token-anatomy__code">#0269D0</code>
+                </span>
+                <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="50" y2="7"/><polyline points="46,3 50,7 46,11"/></svg>
+                <span class="cp-token-anatomy__pill">
+                  <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
+                  <code class="cp-token-anatomy__code">--sgds-blue-600</code>
+                </span>
+                <svg class="cp-token-anatomy__arrow cp-token-anatomy__arrow--merge" width="56" height="80" viewBox="0 0 56 80" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M0 18 C 16 18, 16 40, 28 40"/><path d="M0 62 C 16 62, 16 40, 28 40"/><line x1="28" y1="40" x2="50" y2="40"/><polyline points="44,36 50,40 44,44"/></svg>
+                <span class="cp-token-anatomy__pill cp-token-anatomy__pill--span-2">
+                  <span class="cp-token-anatomy__swatch cp-token-anatomy__swatch--split" aria-hidden="true"></span>
+                  <code class="cp-token-anatomy__code">--sgds-link-color-default</code>
+                </span>
+
+                <span class="cp-token-anatomy__theme">Night theme</span>
+                <span class="cp-token-anatomy__pill">
+                  <span class="cp-token-anatomy__swatch" style="background:#60aaf4;" aria-hidden="true"></span>
+                  <code class="cp-token-anatomy__code">#60AAF4</code>
+                </span>
+                <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="50" y2="7"/><polyline points="46,3 50,7 46,11"/></svg>
+                <span class="cp-token-anatomy__pill">
+                  <span class="cp-token-anatomy__swatch" style="background:#60aaf4;" aria-hidden="true"></span>
+                  <code class="cp-token-anatomy__code">--sgds-blue-400</code>
+                </span>
+              </div>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-                This example uses an SGDS semantic colour token whose day and night primitive labels differ. The semantic role keeps its name while the primitive changes for contrast.
+                <CodeToken label="--sgds-link-color-default" /> resolves to <strong>two</strong> primitives, one for each theme. Switching themes swaps the underlying primitive while every component using the link role stays unchanged.
+              </p>
+
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+                This separation lets themes and brands shift colours without touching components. The same semantic token can point to one primitive in day mode and a different one in night mode. The role stays consistent across every component. Only the rendered hex value changes for contrast, brand, or accessibility.
               </p>
               <figure class="sgds:m-0">
                 <img
@@ -1311,48 +1348,46 @@ const showSemanticForm = computed(
                   alt="A split day and night theme diagram showing --sgds-bg-default resolving to --sgds-gray-000 in the day theme and --sgds-gray-1100 in the night theme."
                 />
               </figure>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+                This mapping gives SGDS one place to adjust colour behaviour across components, instead of changing each component separately.
+              </p>
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">How to read semantic tokens</h3>
+              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">How we structure semantic colours</h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-                SGDS semantic colour names follow a role-based structure. The name tells you where the colour belongs before it tells you the value.
+                SGDS semantic colour names follow a role-based structure. The name tells you what the colour is for before it tells you the visual value.
               </p>
-              <div class="cp-token-anatomy">
-                <span class="cp-token-anatomy__label">Primitive colour</span>
-                <span aria-hidden="true"></span>
-                <span class="cp-token-anatomy__label">Semantic colour</span>
-
-                <span class="cp-token-anatomy__pill">
-                  <span class="cp-token-anatomy__swatch" style="background:#6b4feb;" aria-hidden="true"></span>
-                  <code class="cp-token-anatomy__code">--sgds-product-primary-600</code>
-                </span>
-                <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="50" y2="7"/><polyline points="46,3 50,7 46,11"/></svg>
-                <span class="cp-token-anatomy__pill">
-                  <span class="cp-token-anatomy__swatch" style="background:#6b4feb;" aria-hidden="true"></span>
-                  <code class="cp-token-anatomy__code">--sgds-primary-surface-default</code>
-                </span>
+              <div class="cp-name-anatomy cp-name-anatomy--semantic">
+                <div class="cp-name-anatomy__inner">
+                  <span class="cp-name-anatomy__call cp-name-anatomy__call--base-element">Base design element or property</span>
+                  <code class="cp-name-anatomy__token">
+                    <span class="cp-name-anatomy__swatch cp-name-anatomy__swatch--danger" aria-hidden="true"></span>
+                    <span class="cp-name-anatomy__text"><span class="cp-name-anatomy__seg cp-name-anatomy__seg--prefix">--sgds-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--group">danger</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--separator">-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--property">surface</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--separator">-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--modifier">default</span></span>
+                  </code>
+                  <span class="cp-name-anatomy__call cp-name-anatomy__call--modifier">Modifier</span>
+                </div>
               </div>
               <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                <li><strong>Group</strong> identifies the purpose, such as primary, success, danger, warning, neutral, or the default grayscale set.</li>
-                <li><strong>Property</strong> identifies what the colour affects, such as background, surface, text, icon, border, or form control.</li>
-                <li><strong>Modifier</strong> identifies emphasis or context, such as default, muted, emphasis, inverse, fixed light, or fixed dark.</li>
+                <li><strong>Base design element or property</strong> combines the colour role and where it is applied, such as danger surface, success text, primary border, or neutral icon.</li>
+                <li><strong>Modifier</strong> identifies emphasis or state, such as default, subtle, muted, inverse, fixed light, fixed dark, hover, or selected.</li>
               </ul>
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">When to use semantic tokens</h3>
+              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">When we use semantic colours</h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-                Use semantic tokens for product UI. They help teams choose colour by intent, and they keep components reliable when themes or brand palettes change.
+                SGDS uses semantic colours wherever a colour decision needs to stay meaningful across components, themes, and product brands. They let us describe the job a colour performs once, then remap the primitive values behind that job as the system grows.
               </p>
               <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                <li><strong>Use background and surface tokens</strong> for page canvases, raised panels, overlays, cards, and containers.</li>
-                <li><strong>Use foreground, text, and icon tokens</strong> for readable content and interface elements.</li>
-                <li><strong>Use border tokens</strong> for dividers, outlines, component boundaries, and focus-adjacent structure.</li>
-                <li><strong>Use status tokens</strong> for success, danger, warning, and accent states.</li>
-                <li><strong>Use form tokens</strong> for inputs and validation states, so form controls stay aligned with SGDS components.</li>
+                <li><strong>Component foundations</strong> use background, surface, foreground, and border tokens so every component responds to day mode, night mode, and brand changes consistently.</li>
+                <li><strong>Interaction states</strong> use semantic tokens for hover, active, selected, disabled, and inverse states, so state behaviour stays predictable across patterns.</li>
+                <li><strong>Status and feedback</strong> use success, danger, warning, and neutral tokens, so alerts, validation, badges, and messages share the same meaning.</li>
+                <li><strong>Forms</strong> use form-specific semantic tokens for fields, labels, helper text, and validation states, so form controls stay aligned with SGDS components.</li>
+                <li><strong>System scaling</strong> relies on semantic colours because new themes, brands, and components can reuse the same roles instead of redefining colour values one component at a time.</li>
               </ul>
             </div>
+
           </article>
         </div>
       </section>
@@ -1911,6 +1946,46 @@ const showSemanticForm = computed(
   width: fit-content;
 }
 
+/* Theme-mapping variant: 6-column grid that pairs hex → primitive across
+   day and night themes, both feeding into a single semantic token on the
+   right (which spans both rows). */
+.cp-token-anatomy--theme-mapping {
+  grid-template-columns: max-content max-content max-content max-content max-content max-content;
+  row-gap: var(--sgds-text-gap-md);
+}
+
+.cp-token-anatomy__theme {
+  color: var(--sgds-color-subtle);
+  font-size: var(--sgds-font-size-label-sm);
+  font-weight: var(--sgds-font-weight-semibold);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-xs);
+  padding-inline-end: var(--sgds-padding-xs);
+}
+
+.cp-token-anatomy__pill--span-2 {
+  align-self: center;
+  grid-row: span 2;
+}
+
+/* Merge arrow: two lines from the day/night primitives converge in the
+   middle, then a single arrow extends right to the semantic pill. Width
+   matches the regular arrow column so the gap on either side of the
+   semantic pill is consistent with the rest of the diagram. */
+.cp-token-anatomy__arrow--merge {
+  block-size: 100%;
+  grid-row: span 2;
+  inline-size: 56px;
+  justify-self: center;
+  min-block-size: 4.5rem;
+}
+
+/* Split swatch: half day-mode primitive, half night-mode primitive. Visual
+   shorthand for "this semantic token resolves to two primitives". */
+.cp-token-anatomy__swatch--split {
+  background: linear-gradient(135deg, #0269d0 50%, #60aaf4 50%);
+}
+
 .cp-token-anatomy__label {
   color: var(--sgds-color-default);
   font-size: var(--sgds-font-size-label-md);
@@ -1998,6 +2073,7 @@ const showSemanticForm = computed(
   letter-spacing: 0;
   line-height: var(--sgds-line-height-xs);
   padding: var(--sgds-padding-sm) var(--sgds-padding-lg);
+  white-space: nowrap;
 }
 
 .cp-name-anatomy__swatch {
@@ -2007,6 +2083,10 @@ const showSemanticForm = computed(
   display: inline-block;
   flex-shrink: 0;
   inline-size: 1.5rem;
+}
+
+.cp-name-anatomy__swatch--danger {
+  background: var(--sgds-red-600, #cf2323);
 }
 
 .cp-name-anatomy__text {
@@ -2029,6 +2109,21 @@ const showSemanticForm = computed(
 
 .cp-name-anatomy__seg--scale {
   color: var(--cp-callout-scale-color);
+  font-weight: var(--sgds-font-weight-semibold);
+}
+
+.cp-name-anatomy__seg--group {
+  color: var(--sgds-product-primary-600, #6b4feb);
+  font-weight: var(--sgds-font-weight-semibold);
+}
+
+.cp-name-anatomy__seg--property {
+  color: var(--sgds-blue-600, #0269d0);
+  font-weight: var(--sgds-font-weight-semibold);
+}
+
+.cp-name-anatomy__seg--modifier {
+  color: var(--sgds-green-600, #0f7a3c);
   font-weight: var(--sgds-font-weight-semibold);
 }
 
@@ -2090,6 +2185,81 @@ const showSemanticForm = computed(
   transform: translateY(-50%);
 }
 
+.cp-name-anatomy--semantic {
+  --cp-callout-base-color: var(--sgds-red-600, #cf2323);
+  --cp-callout-modifier-color: var(--sgds-blue-600, #0269d0);
+}
+
+.sgds-night-theme .cp-name-anatomy--semantic {
+  --cp-callout-base-color: var(--sgds-red-400, #e98b8b);
+  --cp-callout-modifier-color: var(--sgds-blue-300, #96c7f7);
+}
+
+.cp-name-anatomy--semantic .cp-name-anatomy__inner {
+  padding-inline-end: 8.75rem;
+}
+
+.cp-name-anatomy--semantic .cp-name-anatomy__seg--group,
+.cp-name-anatomy--semantic .cp-name-anatomy__seg--property {
+  color: var(--cp-callout-base-color);
+}
+
+.cp-name-anatomy--semantic .cp-name-anatomy__seg--modifier {
+  color: var(--cp-callout-modifier-color);
+}
+
+.cp-name-anatomy__call--base-element {
+  left: calc(var(--sgds-padding-lg) + 1.5rem + var(--sgds-padding-sm) + 14ch);
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.cp-name-anatomy__call--base-element::after {
+  background: var(--cp-callout-base-color);
+  block-size: 2.625rem;
+  inline-size: var(--sgds-border-width-1, 1px);
+  left: 50%;
+  top: calc(100% + 0.25rem);
+}
+
+.cp-name-anatomy__call--base-element::before {
+  background: var(--cp-callout-base-color);
+  block-size: 0.5rem;
+  border-radius: 50%;
+  content: "";
+  inline-size: 0.5rem;
+  left: 50%;
+  position: absolute;
+  top: calc(100% + 2.625rem);
+  transform: translateX(-50%);
+}
+
+.cp-name-anatomy__call--modifier {
+  right: 0;
+  top: calc(4.25rem + 1.625rem);
+  transform: translateY(-50%);
+}
+
+.cp-name-anatomy__call--modifier::after {
+  background: var(--cp-callout-modifier-color);
+  block-size: var(--sgds-border-width-1, 1px);
+  inline-size: 4.5rem;
+  right: calc(100% + 0.5rem);
+  top: 50%;
+}
+
+.cp-name-anatomy__call--modifier::before {
+  background: var(--cp-callout-modifier-color);
+  block-size: 0.5rem;
+  border-radius: 50%;
+  content: "";
+  inline-size: 0.5rem;
+  position: absolute;
+  right: calc(100% + 4.75rem);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .cp-name-anatomy__call--scale::after {
   /* Horizontal stem from just left of the label across to the pill's right
      edge, beside the "600" segment. Stops at the pill boundary so the dot
@@ -2113,6 +2283,91 @@ const showSemanticForm = computed(
   right: calc(100% + 4.75rem);
   top: 50%;
   transform: translateY(-50%);
+}
+
+/* Small-screen responsive: scale the callout pill and labels down so the
+   diagram fits within mobile viewports. Uses smaller SGDS tokens for the
+   pill text, swatch, and padding, and recalculates the absolute callout
+   offsets so the lines and dots still land on the right segments. */
+@media (max-width: 640px) {
+  .cp-name-anatomy {
+    width: auto;
+    max-inline-size: 100%;
+    padding-inline: var(--sgds-padding-md);
+  }
+
+  .cp-name-anatomy__inner {
+    padding-block-end: var(--sgds-layout-gap-xs);
+    padding-block-start: 3rem;
+    padding-inline-end: 4.5rem;
+  }
+
+  .cp-name-anatomy__token {
+    font-size: var(--sgds-font-size-label-xs);
+    gap: var(--sgds-padding-2-xs);
+    padding: var(--sgds-padding-2-xs) var(--sgds-padding-sm);
+  }
+
+  .cp-name-anatomy__swatch {
+    block-size: 0.875rem;
+    inline-size: 0.875rem;
+  }
+
+  .cp-name-anatomy__call {
+    font-size: var(--sgds-font-size-label-xs);
+  }
+
+  .cp-name-anatomy__call--family {
+    left: calc(var(--sgds-padding-sm) + 0.875rem + var(--sgds-padding-2-xs) + 9ch);
+  }
+
+  .cp-name-anatomy__call--family::after {
+    block-size: 1.875rem;
+  }
+
+  .cp-name-anatomy__call--family::before {
+    top: calc(100% + 1.875rem);
+  }
+
+  .cp-name-anatomy__call--scale {
+    top: calc(3rem + 0.875rem);
+  }
+
+  .cp-name-anatomy__call--scale::after {
+    inline-size: 3rem;
+  }
+
+  .cp-name-anatomy__call--scale::before {
+    right: calc(100% + 3.25rem);
+  }
+
+  .cp-name-anatomy--semantic .cp-name-anatomy__inner {
+    padding-inline-end: 4.5rem;
+  }
+
+  .cp-name-anatomy__call--base-element {
+    left: calc(var(--sgds-padding-sm) + 0.875rem + var(--sgds-padding-2-xs) + 14ch);
+  }
+
+  .cp-name-anatomy__call--base-element::after {
+    block-size: 1.875rem;
+  }
+
+  .cp-name-anatomy__call--base-element::before {
+    top: calc(100% + 1.875rem);
+  }
+
+  .cp-name-anatomy__call--modifier {
+    top: calc(3rem + 0.875rem);
+  }
+
+  .cp-name-anatomy__call--modifier::after {
+    inline-size: 3rem;
+  }
+
+  .cp-name-anatomy__call--modifier::before {
+    right: calc(100% + 3.25rem);
+  }
 }
 
 /* Primitive palette role-mapped cards — each card shows a family ramp with
