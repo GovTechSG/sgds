@@ -40,7 +40,7 @@ const featureFoundations: FoundationItem[] = [
   {
     id: "design-tokens",
     title: "Design tokens",
-    url: "/foundations/colour/product-colour",
+    url: "/foundations/design-tokens",
     image: "/landing/design_token.png",
     phase: 1,
     status: "stable",

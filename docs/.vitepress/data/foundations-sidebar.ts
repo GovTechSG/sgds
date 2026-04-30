@@ -12,6 +12,15 @@ export const foundationsSidebar = {
   base: "/foundations/",
   items: [
     {
+      text: "Design tokens",
+      items: [
+        { text: "Design tokens", link: "/foundations/design-tokens" },
+        { text: "Token architecture", link: "/foundations/token-architecture" },
+        { text: "Token naming", link: "/foundations/token-naming" },
+        { text: "Token governance", link: "/foundations/token-governance" },
+      ],
+    },
+    {
       text: "Accessibility",
       items: [{ text: "Accessibility", link: "/foundations/accessibility" }],
     },
@@ -109,19 +118,6 @@ export const foundationsSidebar = {
             {
               text: "Surface elevation",
               link: "/foundations/elevation/surface-elevation",
-            },
-          ],
-        },
-        {
-          text: "Elevation utilities",
-          items: [
-            {
-              text: "Edge elevation",
-              link: "/foundations/elevation/edge-elevation-utilities",
-            },
-            {
-              text: "Surface elevation",
-              link: "/foundations/elevation/surface-elevation-utilities",
             },
           ],
         },

@@ -6,6 +6,7 @@ import PageHeader from "../../components/page/PageHeader.vue";
 import DocFooter from "../../components/page/DocFooter.vue";
 import { isDraft } from "../../utils/page-status";
 import { getComponentDoc, getComponentHeaderLinks } from "../../data/component-docs";
+import { getFoundationHeaderLinks } from "../../data/foundation-docs";
 
 const { theme, page } = useData()
 const mobileSideNavOpen = ref(false)
@@ -101,6 +102,9 @@ const resolvedHeaderLinks = computed(() => {
   if (fromFrontmatter?.length) return fromFrontmatter;
   if (currentSection.value === "components" && currentComponentKey.value) {
     return getComponentHeaderLinks(currentComponentKey.value);
+  }
+  if (currentSection.value === "foundations") {
+    return getFoundationHeaderLinks(page.value.relativePath);
   }
   return undefined;
 });

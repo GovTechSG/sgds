@@ -3,23 +3,19 @@ import { computed, ref } from "vue";
 import { iconRegistry } from "@govtechsg/sgds-web-component/components/Icon/icon-registry.js";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import SegmentedControl from "./components/SegmentedControl.vue";
 
 const searchQuery = ref("");
 const copiedIcon = ref<string | null>(null);
 
-// Style tabs — filter the icon grid by visual style
+// Style filter — filter the icon grid by visual style
 const styleOptions = [
-  { id: "outlined", label: "Outlined" },
-  { id: "filled", label: "Filled" },
-  { id: "logo", label: "Logo" },
+  { value: "outlined", label: "Outlined" },
+  { value: "filled", label: "Filled" },
+  { value: "logo", label: "Logo" },
 ] as const;
-type StyleId = (typeof styleOptions)[number]["id"];
+type StyleId = (typeof styleOptions)[number]["value"];
 const activeStyle = ref<StyleId>("outlined");
-
-const onStyleTabShow = (event: Event) => {
-  const next = (event as CustomEvent<{ name?: string }>).detail?.name as StyleId | undefined;
-  if (next && styleOptions.some((o) => o.id === next)) activeStyle.value = next;
-};
 
 // Categories that represent brand / logo marks (used by the "Logo" tab).
 const logoCategoryIds = new Set(["logo", "social"]);
@@ -314,27 +310,12 @@ async function copyIconName(iconName: string) {
 
             <!-- Style tabs + size select + search row -->
             <div class="il-toolbar sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-component-xs">
-            <sgds-tab-group
+            <SegmentedControl
               class="il-style-tabs"
-              variant="solid"
-              density="default"
-              @sgds-tab-show="onStyleTabShow"
-            >
-              <sgds-tab
-                v-for="option in styleOptions"
-                :key="option.id"
-                slot="nav"
-                :panel="option.id"
-                :active="activeStyle === option.id || null"
-              >
-                {{ option.label }}
-              </sgds-tab>
-              <sgds-tab-panel
-                v-for="option in styleOptions"
-                :key="`style-${option.id}`"
-                :name="option.id"
-              />
-            </sgds-tab-group>
+              v-model="activeStyle"
+              :options="styleOptions"
+              aria-label="Icon style filter"
+            />
             <sgds-select
               class="il-size-select"
               aria-label="Icon size"

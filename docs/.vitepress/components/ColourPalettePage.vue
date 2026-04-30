@@ -10,21 +10,56 @@ import {
   type PaletteId,
 } from "../theme/composables/sgds-palette";
 import { semanticColourGroups, typographySemanticGroup, formColourGroups } from "../data/semantic-colours";
+import SegmentedControl from "./components/SegmentedControl.vue";
 
 const tokenViewOptions = [
-  { id: "css-variable", label: "CSS variable" },
-  { id: "figma", label: "Figma token" },
+  { value: "css-variable", label: "CSS variable" },
+  { value: "figma", label: "Figma token" },
+  { value: "utility", label: "SGDS tailwind token" },
 ] as const;
-type TokenViewId = (typeof tokenViewOptions)[number]["id"];
+type TokenViewId = (typeof tokenViewOptions)[number]["value"];
 const activeTokenViewId = ref<TokenViewId>("css-variable");
 
-const onTokenViewShow = (event: Event) => {
-  const nextView = (event as CustomEvent<{ name?: string }>).detail?.name as TokenViewId | undefined;
-  if (nextView && tokenViewOptions.some((o) => o.id === nextView)) activeTokenViewId.value = nextView;
+// Map a colour CSS variable to its SGDS utility class. Order matters —
+// border-color and surface patterns are checked before bg/color so the more
+// specific patterns win.
+const tokenToUtility = (token: string): string => {
+  const stripped = token.replace(/^--sgds-/, "");
+
+  // Border colour (themed): {theme}-border-color-{variant}
+  let m = stripped.match(/^(.+)-border-color-(.+)$/);
+  if (m) return `sgds:border-${m[1]}-${m[2]}`;
+  // Border colour (foundational): border-color-{variant}
+  m = stripped.match(/^border-color-(.+)$/);
+  if (m) return `sgds:border-${m[1]}`;
+
+  // Themed background: {theme}-bg-{variant}
+  m = stripped.match(/^(.+)-bg-(.+)$/);
+  if (m) return `sgds:bg-${m[1]}-${m[2]}`;
+  // Foundational background: bg-{variant}
+  m = stripped.match(/^bg-(.+)$/);
+  if (m) return `sgds:bg-${m[1]}`;
+
+  // Themed surface: {theme}-surface-{variant}
+  m = stripped.match(/^(.+)-surface-(.+)$/);
+  if (m) return `sgds:bg-${m[1]}-surface-${m[2]}`;
+  // Foundational surface: surface-{variant}
+  m = stripped.match(/^surface-(.+)$/);
+  if (m) return `sgds:bg-surface-${m[1]}`;
+
+  // Themed text colour: {theme}-color-{variant}
+  m = stripped.match(/^(.+)-color-(.+)$/);
+  if (m) return `sgds:text-${m[1]}-${m[2]}`;
+  // Foundational text colour: color-{variant}
+  m = stripped.match(/^color-(.+)$/);
+  if (m) return `sgds:text-${m[1]}`;
+
+  return token;
 };
 
 // Tokens in this file always have the -- prefix
 const getTokenValue = (token: string) => {
+  if (activeTokenViewId.value === "utility") return tokenToUtility(token);
   if (activeTokenViewId.value === "css-variable") return token;
   return token.replace(/^--/, "");
 };
@@ -924,10 +959,7 @@ const showSemanticForm = computed(
 
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
           <div class="sgds:flex sgds:items-center sgds:justify-between sgds:gap-component-sm sgds:flex-wrap">
-            <sgds-tab-group class="ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
+            <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
           </div>
 
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
@@ -942,7 +974,7 @@ const showSemanticForm = computed(
               </h5>
               <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                 <sgds-table-row>
-                  <sgds-table-head class="cp-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+                  <sgds-table-head class="cp-token-column">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
                   <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
                   <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
                   <sgds-table-head class="cp-contrast-column">Contrast</sgds-table-head>
@@ -995,7 +1027,7 @@ const showSemanticForm = computed(
 
           <sgds-table v-else tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="cp-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="cp-token-column">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
               <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
               <sgds-table-head class="cp-contrast-column">Contrast</sgds-table-head>
@@ -1061,10 +1093,7 @@ const showSemanticForm = computed(
           </div>
 
           <div class="typography-page-template__body typography-page-template__body--prose">
-          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-          </sgds-tab-group>
+          <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
 
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
           <div
@@ -1077,7 +1106,7 @@ const showSemanticForm = computed(
             </h5>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="cp-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+                <sgds-table-head class="cp-token-column">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
                 <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
                 <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
                 <sgds-table-head class="cp-contrast-column">Contrast</sgds-table-head>
@@ -1143,10 +1172,7 @@ const showSemanticForm = computed(
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
+            <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`bg-group-${group.id}`">
@@ -1154,7 +1180,7 @@ const showSemanticForm = computed(
                   <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
-                      <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+                      <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
                       <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                       <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                       <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
@@ -1199,10 +1225,7 @@ const showSemanticForm = computed(
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
+            <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`fg-group-${group.id}`">
@@ -1210,7 +1233,7 @@ const showSemanticForm = computed(
                   <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
-                      <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+                      <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
                       <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                       <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                       <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
@@ -1255,10 +1278,7 @@ const showSemanticForm = computed(
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
+            <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`surface-group-${group.id}`">
@@ -1266,7 +1286,7 @@ const showSemanticForm = computed(
                   <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
-                      <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+                      <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
                       <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                       <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                       <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
@@ -1311,10 +1331,7 @@ const showSemanticForm = computed(
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
+            <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`border-group-${group.id}`">
@@ -1322,7 +1339,7 @@ const showSemanticForm = computed(
                   <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
-                      <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+                      <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
                       <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                       <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                       <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
@@ -1367,10 +1384,7 @@ const showSemanticForm = computed(
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
+            <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <div
@@ -1381,7 +1395,7 @@ const showSemanticForm = computed(
                 <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ sub.label }}</h5>
                 <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                   <sgds-table-row>
-                    <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+                    <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
                     <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                     <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                     <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
@@ -1425,10 +1439,7 @@ const showSemanticForm = computed(
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
+            <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
 
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <div
@@ -1439,7 +1450,7 @@ const showSemanticForm = computed(
                 <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
                 <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table sc-form-table">
                   <sgds-table-row>
-                    <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+                    <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
                     <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
                     <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
                     <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>

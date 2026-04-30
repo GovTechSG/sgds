@@ -2,20 +2,24 @@
 import { ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import SegmentedControl from "./components/SegmentedControl.vue";
 
 const tokenViewOptions = [
-  { id: "css-variable", label: "CSS variable" },
-  { id: "figma", label: "Figma token" },
+  { value: "css-variable", label: "CSS variable" },
+  { value: "figma", label: "Figma token" },
+  { value: "utility", label: "SGDS tailwind token" },
 ] as const;
-type TokenViewId = (typeof tokenViewOptions)[number]["id"];
+type TokenViewId = (typeof tokenViewOptions)[number]["value"];
 const activeTokenViewId = ref<TokenViewId>("css-variable");
 
-const onTokenViewShow = (event: Event) => {
-  const nextView = (event as CustomEvent<{ name?: string }>).detail?.name as TokenViewId | undefined;
-  if (nextView && tokenViewOptions.some((o) => o.id === nextView)) activeTokenViewId.value = nextView;
+// --sgds-font-size-{N} → sgds:text-{N}
+const tokenToUtility = (token: string): string => {
+  const m = token.match(/^--sgds-font-size-(.+)$/);
+  return m ? `sgds:text-${m[1]}` : token;
 };
 
 const getTokenValue = (token: string) => {
+  if (activeTokenViewId.value === "utility") return tokenToUtility(token);
   if (activeTokenViewId.value === "css-variable") return token;
   return token.replace(/^--/, "");
 };
@@ -56,14 +60,11 @@ const fontSizeTokens: FontSizeToken[] = [
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">Font size tokens define every step of the type scale. Use these tokens to build custom text styles that remain in sync with system typography.</p>
       </div>
       <div class="typography-page-template__body typography-page-template__body--prose">
-        <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-          <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-          <sgds-tab-panel v-for="option in tokenViewOptions" :key="`tokens-${option.id}`" :name="option.id"></sgds-tab-panel>
-        </sgds-tab-group>
+        <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
 
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
-            <sgds-table-head class="font-size-token-col-name">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+            <sgds-table-head class="font-size-token-col-name">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
             <sgds-table-head class="font-size-token-col-value">Value (px/rem)</sgds-table-head>
             <sgds-table-head class="font-size-token-col-preview">Preview</sgds-table-head>
           </sgds-table-row>

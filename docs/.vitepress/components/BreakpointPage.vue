@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import SegmentedControl from "./components/SegmentedControl.vue";
 
 const screenSizeGuideXs = [211, 467, 723, 979, 1235, 1491] as const;
 const screenSizeViewBoxWidth = 1672;
@@ -26,20 +27,23 @@ const screenSizeMarkers = [
 ] as const;
 
 const tokenViewOptions = [
-  { id: "css-variable", label: "CSS variable" },
-  { id: "figma", label: "Figma token" },
+  { value: "css-variable", label: "CSS variable" },
+  { value: "figma", label: "Figma token" },
+  { value: "utility", label: "SGDS tailwind token" },
 ] as const;
-type TokenViewId = (typeof tokenViewOptions)[number]["id"];
+type TokenViewId = (typeof tokenViewOptions)[number]["value"];
 
-// Single shared tab-group controls both breakpoint tables below.
+// Single shared segmented control governs both breakpoint tables below.
 const activeTokenViewId = ref<TokenViewId>("css-variable");
 
-const onTokenViewShow = (event: Event) => {
-  const nextView = (event as CustomEvent<{ name?: string }>).detail?.name as TokenViewId | undefined;
-  if (nextView && tokenViewOptions.some((o) => o.id === nextView)) activeTokenViewId.value = nextView;
+// Breakpoints map to Tailwind responsive variant prefixes (e.g. `sgds:lg:`).
+const tokenToUtility = (token: string): string => {
+  const m = token.match(/^sgds-breakpoint-(?:sbar-)?(.+)$/);
+  return m ? `sgds:${m[1]}:` : token;
 };
 
 const getTokenValue = (token: string) => {
+  if (activeTokenViewId.value === "utility") return tokenToUtility(token);
   if (activeTokenViewId.value === "css-variable") return `--${token}`;
   return token;
 };
@@ -234,17 +238,14 @@ const stickySidebarTokens = [
         </p>
       </div>
       <div class="typography-page-template__body typography-page-template__body--prose">
-        <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-          <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-          <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-        </sgds-tab-group>
+        <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
 
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
             <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">Standard breakpoint</h5>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head :class="$style.tokenColumn">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+                <sgds-table-head :class="$style.tokenColumn">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
                 <sgds-table-head :class="$style.valueColumn">Screen size</sgds-table-head>
                 <sgds-table-head :class="$style.valueColumn">Container width</sgds-table-head>
                 <sgds-table-head :class="$style.numericColumn">Columns</sgds-table-head>
@@ -289,7 +290,7 @@ const stickySidebarTokens = [
             <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">Breakpoint with sticky sidebar</h5>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head :class="$style.tokenColumn">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+                <sgds-table-head :class="$style.tokenColumn">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
                 <sgds-table-head :class="$style.valueColumn">Screen size</sgds-table-head>
                 <sgds-table-head :class="$style.valueColumn">Container width</sgds-table-head>
                 <sgds-table-head :class="$style.numericColumn">Columns</sgds-table-head>

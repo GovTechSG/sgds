@@ -2,23 +2,99 @@
 import { ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import SegmentedControl from "./components/SegmentedControl.vue";
 
 const tokenViewOptions = [
-  { id: "css-variable", label: "CSS variable" },
-  { id: "figma", label: "Figma token" },
+  { value: "css-variable", label: "CSS variable" },
+  { value: "figma", label: "Figma token" },
+  { value: "utility", label: "SGDS tailwind token" },
 ] as const;
-type TokenViewId = (typeof tokenViewOptions)[number]["id"];
+type TokenViewId = (typeof tokenViewOptions)[number]["value"];
 const activeTokenViewId = ref<TokenViewId>("css-variable");
 
-const onTokenViewShow = (event: Event) => {
-  const nextView = (event as CustomEvent<{ name?: string }>).detail?.name as TokenViewId | undefined;
-  if (nextView && tokenViewOptions.some((o) => o.id === nextView)) activeTokenViewId.value = nextView;
+// ─── Token → utility class map ──────────────────────────────────────────────
+// Primitive spacers map to many utilities (m, p, gap, mx, my, etc.), so we
+// display the named scale with a `*` placeholder. spacer-12 has no named
+// utility — fall back to the raw multiplier.
+const spacerUtilityByIndex: Record<number, string> = {
+  0: "sgds:*-none",
+  1: "sgds:*-3-xs",
+  2: "sgds:*-2-xs",
+  3: "sgds:*-xs",
+  4: "sgds:*-sm",
+  5: "sgds:*-md",
+  6: "sgds:*-lg",
+  7: "sgds:*-xl",
+  8: "sgds:*-2-xl",
+  9: "sgds:*-3-xl",
+  10: "sgds:*-4-xl",
+  11: "sgds:*-5-xl",
+  12: "sgds:*-32",
 };
 
-// Tokens in this file always have the -- prefix
+const tokenToUtility = (token: string): string => {
+  const primitive = token.match(/^--sgds-spacer-(\d+)$/);
+  if (primitive) {
+    const idx = Number.parseInt(primitive[1], 10);
+    return spacerUtilityByIndex[idx] ?? token;
+  }
+  const semantic = token.match(/^--sgds-(text|layout|component)-(gap|padding)-(.+)$/);
+  if (semantic) {
+    const [, scope, kind, size] = semantic;
+    return kind === "gap" ? `sgds:gap-${scope}-${size}` : `sgds:p-${scope}-${size}`;
+  }
+  return token;
+};
+
 const getTokenValue = (token: string) => {
+  if (activeTokenViewId.value === "utility") return tokenToUtility(token);
   if (activeTokenViewId.value === "css-variable") return token;
   return token.replace(/^--/, "");
+};
+
+// ─── Primitive resolution map (mobile / tablet ≥1024px / desktop ≥1440px) ───
+// Sourced from @govtechsg/sgds-web-component/themes/responsive.css.
+type PrimitiveResolution = { mobile: number; tablet: number; desktop: number };
+
+const tokenToPrimitive: Record<string, PrimitiveResolution> = {
+  "--sgds-text-gap-2-xs": { mobile: 2, tablet: 2, desktop: 2 },
+  "--sgds-text-gap-xs":   { mobile: 3, tablet: 3, desktop: 3 },
+  "--sgds-text-gap-sm":   { mobile: 3, tablet: 4, desktop: 4 },
+  "--sgds-text-gap-md":   { mobile: 4, tablet: 5, desktop: 5 },
+  "--sgds-text-gap-lg":   { mobile: 5, tablet: 6, desktop: 6 },
+  "--sgds-text-gap-xl":   { mobile: 6, tablet: 7, desktop: 7 },
+  "--sgds-text-gap-2-xl": { mobile: 7, tablet: 8, desktop: 8 },
+
+  "--sgds-layout-gap-2-xs": { mobile: 2, tablet: 4, desktop: 5 },
+  "--sgds-layout-gap-xs":   { mobile: 3, tablet: 5, desktop: 6 },
+  "--sgds-layout-gap-sm":   { mobile: 4, tablet: 6, desktop: 7 },
+  "--sgds-layout-gap-md":   { mobile: 5, tablet: 7, desktop: 8 },
+  "--sgds-layout-gap-lg":   { mobile: 6, tablet: 8, desktop: 9 },
+  "--sgds-layout-gap-xl":   { mobile: 7, tablet: 9, desktop: 10 },
+
+  "--sgds-component-gap-xs": { mobile: 3, tablet: 5, desktop: 6 },
+  "--sgds-component-gap-sm": { mobile: 4, tablet: 6, desktop: 7 },
+  "--sgds-component-gap-md": { mobile: 5, tablet: 7, desktop: 8 },
+  "--sgds-component-gap-lg": { mobile: 6, tablet: 8, desktop: 9 },
+  "--sgds-component-gap-xl": { mobile: 7, tablet: 9, desktop: 10 },
+
+  "--sgds-component-padding-xs": { mobile: 5, tablet: 6, desktop: 7 },
+  "--sgds-component-padding-sm": { mobile: 6, tablet: 7, desktop: 8 },
+  "--sgds-component-padding-md": { mobile: 7, tablet: 8, desktop: 9 },
+  "--sgds-component-padding-lg": { mobile: 8, tablet: 9, desktop: 10 },
+  "--sgds-component-padding-xl": { mobile: 9, tablet: 10, desktop: 11 },
+
+  "--sgds-layout-padding-xs": { mobile: 5, tablet: 6, desktop: 7 },
+  "--sgds-layout-padding-sm": { mobile: 6, tablet: 7, desktop: 8 },
+  "--sgds-layout-padding-md": { mobile: 7, tablet: 8, desktop: 9 },
+  "--sgds-layout-padding-lg": { mobile: 8, tablet: 9, desktop: 10 },
+  "--sgds-layout-padding-xl": { mobile: 9, tablet: 10, desktop: 11 },
+};
+
+const breakpointPrimitive = (token: string, breakpoint: "mobile" | "tablet" | "desktop"): string => {
+  const r = tokenToPrimitive[token];
+  if (!r) return "";
+  return `--sgds-spacer-${r[breakpoint]}`;
 };
 
 type SpacingTokenSection =
@@ -117,14 +193,15 @@ const layoutPaddingRows: ResponsiveRow[] = [
       </div>
 
       <div class="typography-page-template__body typography-page-template__body--prose">
-      <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-        <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-        <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-      </sgds-tab-group>
+      <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
+
+      <p v-if="activeTokenViewId === 'utility'" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+        Replace <CodeToken label="*" /> with the property prefix you need: <CodeToken label="m" />, <CodeToken label="p" />, <CodeToken label="gap" />, <CodeToken label="mx" />, or <CodeToken label="my" />.
+      </p>
 
       <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
         <sgds-table-row>
-          <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+          <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
           <sgds-table-head class="st-metric-col">rem</sgds-table-head>
           <sgds-table-head class="st-metric-col">px</sgds-table-head>
           <sgds-table-head class="st-swatch-col">Visual</sgds-table-head>
@@ -175,13 +252,10 @@ const layoutPaddingRows: ResponsiveRow[] = [
             </p>
           </div>
           <div class="typography-page-template__body typography-page-template__body--prose">
-          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-          </sgds-tab-group>
+          <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -198,9 +272,21 @@ const layoutPaddingRows: ResponsiveRow[] = [
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span></sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span></sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span></sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
@@ -216,13 +302,10 @@ const layoutPaddingRows: ResponsiveRow[] = [
             </p>
           </div>
           <div class="typography-page-template__body typography-page-template__body--prose">
-          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-          </sgds-tab-group>
+          <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -239,9 +322,21 @@ const layoutPaddingRows: ResponsiveRow[] = [
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span></sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span></sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span></sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
@@ -257,13 +352,10 @@ const layoutPaddingRows: ResponsiveRow[] = [
             </p>
           </div>
           <div class="typography-page-template__body typography-page-template__body--prose">
-          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-          </sgds-tab-group>
+          <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -280,9 +372,21 @@ const layoutPaddingRows: ResponsiveRow[] = [
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span></sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span></sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span></sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
@@ -307,13 +411,10 @@ const layoutPaddingRows: ResponsiveRow[] = [
             </p>
           </div>
           <div class="typography-page-template__body typography-page-template__body--prose">
-          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-          </sgds-tab-group>
+          <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -330,9 +431,21 @@ const layoutPaddingRows: ResponsiveRow[] = [
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span></sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span></sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span></sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
@@ -348,13 +461,10 @@ const layoutPaddingRows: ResponsiveRow[] = [
             </p>
           </div>
           <div class="typography-page-template__body typography-page-template__body--prose">
-          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-          </sgds-tab-group>
+          <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -371,9 +481,21 @@ const layoutPaddingRows: ResponsiveRow[] = [
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span></sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span></sgds-table-cell>
-              <sgds-table-cell class="st-metric-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span></sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
@@ -417,12 +539,11 @@ const layoutPaddingRows: ResponsiveRow[] = [
 
 /* Spacer visual bar — width set dynamically via :style binding (CSS var per row) */
 .st-spacer-bar {
-  background: var(--sgds-danger-surface-muted);
+  background: var(--sgds-neutral-surface-default);
   block-size: 1rem;
   border-radius: var(--sgds-border-radius-xs);
   display: block;
   max-inline-size: 8rem;
-  opacity: 0.65;
 }
 
 /* Base row highlight — applied to sgds-table-row host element */

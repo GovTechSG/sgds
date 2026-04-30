@@ -142,14 +142,14 @@ const paletteRows: PaletteRow[] = [
               ]"
               :style="{ backgroundColor: color.background }"
             >
-              <h3 class="sgds:text-[inherit] sgds:text-3 sgds:font-semibold sgds:tracking-normal sgds:leading-[24px] sgds:m-0">{{ color.name }}</h3>
+              <h3 class="sgds:text-[inherit] sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ color.name }}</h3>
               <div class="sgds:flex sgds:items-start sgds:gap-[var(--sgds-gap-xl)] sgds:text-[inherit]">
-                <div class="sgds:flex sgds:flex-col sgds:font-regular sgds:tracking-normal sgds:text-1 sgds:leading-[20px]">
+                <div class="sgds:flex sgds:flex-col sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>HEX</span>
                   <span>RGB</span>
                   <span>CMYK</span>
                 </div>
-                <div class="sgds:flex sgds:flex-col sgds:font-regular sgds:tracking-normal sgds:text-1 sgds:leading-[20px]">
+                <div class="sgds:flex sgds:flex-col sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>{{ color.hex }}</span>
                   <span>{{ color.rgb }}</span>
                   <span>{{ color.cmyk }}</span>
