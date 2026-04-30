@@ -19,6 +19,8 @@ const props = withDefaults(
     section?:
       | "all"
       | "product"
+      | "brand-govtech"
+      | "brand-custom"
       | "primitive"
       | "semantic"
       | "semantic-bg"
@@ -369,9 +371,15 @@ const customPaletteRows = computed<ProductPrimaryRow[]>(() => {
   return createProductPrimaryRows(palette);
 });
 
-const activeProductRows = computed<ProductPrimaryRow[]>(() =>
-  productPrimaryMode.value === "govtech-brand" ? currentColours.value : customPaletteRows.value
-);
+const activeProductRows = computed<ProductPrimaryRow[]>(() => {
+  // When the page is rendered standalone inside the Brand colour page's
+  // Custom tab, there is no segmented control to flip productPrimaryMode,
+  // so resolve directly to the generated custom palette.
+  if (showBrandCustomOnly.value) return customPaletteRows.value;
+  return productPrimaryMode.value === "govtech-brand"
+    ? currentColours.value
+    : customPaletteRows.value;
+});
 
 function onProductPrimaryModeChange(event: Event) {
   productPrimaryMode.value = (event as CustomEvent<{ value: ProductPrimaryMode }>).detail.value;
@@ -831,7 +839,33 @@ function semanticSwatchStyle(hex: string, label: string): Record<string, string>
 }
 
 const showAllSections = computed(() => props.section === "all");
-const showProductSection = computed(() => props.section === "all" || props.section === "product");
+// Standalone variants used inside the Brand colour page tabs. They render
+// just the GovTech brand tables or just the custom picker + table, without
+// the section heading or segmented control wrapper.
+const showBrandGovtechOnly = computed(() => props.section === "brand-govtech");
+const showBrandCustomOnly = computed(() => props.section === "brand-custom");
+const showProductSection = computed(
+  () =>
+    props.section === "all" ||
+    props.section === "product" ||
+    showBrandGovtechOnly.value ||
+    showBrandCustomOnly.value,
+);
+// Show the section heading and segmented-control chrome only when the page
+// is rendered standalone, not when embedded inside a Brand colour tab.
+const showProductChrome = computed(
+  () => props.section === "all" || props.section === "product",
+);
+const showGovtechTables = computed(
+  () =>
+    showBrandGovtechOnly.value ||
+    (showProductChrome.value && productPrimaryMode.value === "govtech-brand"),
+);
+const showCustomGenerator = computed(
+  () =>
+    showBrandCustomOnly.value ||
+    (showProductChrome.value && productPrimaryMode.value === "custom"),
+);
 const showPrimitiveSection = computed(() => props.section === "all" || props.section === "primitive");
 const showSemanticSection = computed(
   () =>
@@ -882,15 +916,16 @@ const showSemanticForm = computed(
 
     <!-- Product primary colour -->
     <section v-if="showProductSection" class="typography-page-template__section typography-page-template__section--spaced">
-      <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+      <div v-if="showProductChrome" class="sgds:flex sgds:flex-col sgds:gap-text-md">
         <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Product colour tokens</h3>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Choose a GovTech brand palette or enter a custom hex code for your <strong>600</strong> token. The table below uses the same SGDS primary token structure either way, so teams can compare a pre-approved palette with a generated custom ramp.
         </p>
       </div>
       <div class="typography-page-template__body typography-page-template__body--prose">
-        <div class="cp-source-panel sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <div v-if="showProductChrome || showCustomGenerator" class="cp-source-panel sgds:flex sgds:flex-col sgds:gap-layout-sm">
             <div
+              v-if="showProductChrome"
               class="cp-segmented-control sgds:inline-flex sgds:items-start"
               role="tablist"
               aria-label="Primary palette source"
@@ -921,7 +956,7 @@ const showSemanticForm = computed(
             </div>
 
             <div
-              v-if="productPrimaryMode === 'custom'"
+              v-if="showCustomGenerator"
               ref="customPickerRef"
               class="cp-source-panel__control cp-source-panel__control--custom sgds:flex sgds:flex-col sgds:gap-text-sm"
             >
@@ -978,11 +1013,7 @@ const showSemanticForm = computed(
           </div>
 
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-          <div class="sgds:flex sgds:items-center sgds:justify-between sgds:gap-component-sm sgds:flex-wrap">
-          </div>
-
-          <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-          <template v-if="productPrimaryMode === 'govtech-brand'">
+          <template v-if="showGovtechTables">
             <div
               v-for="palette in allGovtechPaletteRows"
               :key="palette.id"
@@ -1044,7 +1075,7 @@ const showSemanticForm = computed(
             </div>
           </template>
 
-          <sgds-table v-else tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+          <sgds-table v-else-if="showCustomGenerator" tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
               <sgds-table-head class="cp-token-column">Token</sgds-table-head>
               <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
@@ -1094,7 +1125,6 @@ const showSemanticForm = computed(
               </sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
-          </div>
           </div>
       </div>
     </section>
