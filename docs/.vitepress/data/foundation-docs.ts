@@ -11,13 +11,16 @@ const FOUNDATION_STORYBOOK_BASE =
 // Storybook story IDs for token pages. Paths not listed here fall back to a
 // section-level Storybook entry chosen by `fallbackStorybookIdForPath`.
 const foundationStorybookIds: Record<string, string> = {
-  "foundations/colour/product-colour": "foundation-theming-govtech-brand-palettes--docs",
+  "foundations/colour/brand-colour": "foundation-theming-govtech-brand-palettes--docs",
+  "foundations/colour/primitive-colour": "foundation-theming--docs",
   "foundations/colour/semantic-colour": "foundation-theming--docs",
   "foundations/layout/breakpoint": "foundation-grid-system--docs",
   "foundations/layout/responsive-grid": "foundation-grid-system--responsive",
 };
 
 const foundationStorybookPathLabels: Record<string, string> = {
+  "foundations/colour/brand-colour": "foundation/theming/govtech-brand-palettes",
+  "foundations/colour/primitive-colour": "foundation-theming",
   "foundations/colour/semantic-colour": "foundation-theming",
 };
 
@@ -41,7 +44,8 @@ const TOKEN_PAGE_PATHS = new Set<string>([
   "foundations/border/border-radius-tokens",
   "foundations/border/border-width-tokens",
   // Colour
-  "foundations/colour/product-colour",
+  "foundations/colour/brand-colour",
+  "foundations/colour/primitive-colour",
   "foundations/colour/semantic-colour",
   // Elevation
   "foundations/elevation/edge-elevation",

@@ -3,6 +3,7 @@ import { ref, computed, onMounted, onUnmounted, watch } from "vue";
 import { BackgroundColor, Color, Theme } from "@adobe/leonardo-contrast-colors";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import ThemeRevealDiagram from "./foundations/ThemeRevealDiagram.vue";
 import {
   brandPalettes,
   currentPaletteId,
@@ -909,6 +910,12 @@ const showSemanticForm = computed(
     props.section === "semantic" ||
     props.section === "semantic-form",
 );
+
+// Contrast info modal — shared across all tables that have a Contrast column.
+const contrastInfoOpen = ref(false);
+const openContrastInfo = () => {
+  contrastInfoOpen.value = true;
+};
 </script>
 
 <template>
@@ -917,7 +924,7 @@ const showSemanticForm = computed(
     <!-- Product primary colour -->
     <section v-if="showProductSection" class="typography-page-template__section typography-page-template__section--spaced">
       <div v-if="showProductChrome" class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Product colour tokens</h3>
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Product colour tokens</h2>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Choose a GovTech brand palette or enter a custom hex code for your <strong>600</strong> token. The table below uses the same SGDS primary token structure either way, so teams can compare a pre-approved palette with a generated custom ramp.
         </p>
@@ -1019,15 +1026,27 @@ const showSemanticForm = computed(
               :key="palette.id"
               class="sgds:flex sgds:flex-col sgds:gap-text-md"
             >
-              <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 GovTech {{ palette.shortLabel.toLowerCase() }} colour
-              </h5>
+              </h4>
               <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                 <sgds-table-row>
                   <sgds-table-head class="cp-token-column">Token</sgds-table-head>
                   <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
                   <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
-                  <sgds-table-head class="cp-contrast-column">Contrast</sgds-table-head>
+                  <sgds-table-head class="cp-contrast-column">
+                  <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
+                    Contrast
+                    <sgds-icon-button
+                      name="question-circle"
+                      variant="ghost"
+                      tone="neutral"
+                      size="sm"
+                      ariaLabel="About colour contrast ratios"
+                      @click="openContrastInfo"
+                    ></sgds-icon-button>
+                  </span>
+                </sgds-table-head>
                   <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
                 </sgds-table-row>
 
@@ -1080,7 +1099,19 @@ const showSemanticForm = computed(
               <sgds-table-head class="cp-token-column">Token</sgds-table-head>
               <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
               <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
-              <sgds-table-head class="cp-contrast-column">Contrast</sgds-table-head>
+              <sgds-table-head class="cp-contrast-column">
+                  <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
+                    Contrast
+                    <sgds-icon-button
+                      name="question-circle"
+                      variant="ghost"
+                      tone="neutral"
+                      size="sm"
+                      ariaLabel="About colour contrast ratios"
+                      @click="openContrastInfo"
+                    ></sgds-icon-button>
+                  </span>
+                </sgds-table-head>
               <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
             </sgds-table-row>
 
@@ -1136,7 +1167,7 @@ const showSemanticForm = computed(
 
           <!-- Intro: what primitive colour tokens are -->
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">How primitive colour tokens work</h3>
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">How primitive colour tokens work</h2>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               A primitive colour token is the foundation layer of the SGDS colour system. It pairs a raw hex value with a name that identifies the shade. Every other colour token in the system resolves down to a primitive.
             </p>
@@ -1152,35 +1183,35 @@ const showSemanticForm = computed(
                 <span class="cp-token-anatomy__swatch" style="background:#e98b8b;" aria-hidden="true"></span>
                 <code class="cp-token-anatomy__code">#E98B8B</code>
               </span>
-              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="50" y2="7"/><polyline points="46,3 50,7 46,11"/></svg>
+              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
               <span class="cp-token-anatomy__pill">
                 <span class="cp-token-anatomy__swatch" style="background:#e98b8b;" aria-hidden="true"></span>
-                <code class="cp-token-anatomy__code">--sgds-red-400</code>
+                <code class="cp-token-anatomy__code">sgds-red-400</code>
               </span>
 
               <span class="cp-token-anatomy__pill">
                 <span class="cp-token-anatomy__swatch" style="background:#129a4d;" aria-hidden="true"></span>
                 <code class="cp-token-anatomy__code">#129A4D</code>
               </span>
-              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="50" y2="7"/><polyline points="46,3 50,7 46,11"/></svg>
+              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
               <span class="cp-token-anatomy__pill">
                 <span class="cp-token-anatomy__swatch" style="background:#129a4d;" aria-hidden="true"></span>
-                <code class="cp-token-anatomy__code">--sgds-green-500</code>
+                <code class="cp-token-anatomy__code">sgds-green-500</code>
               </span>
 
               <span class="cp-token-anatomy__pill">
                 <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
                 <code class="cp-token-anatomy__code">#0269D0</code>
               </span>
-              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="50" y2="7"/><polyline points="46,3 50,7 46,11"/></svg>
+              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
               <span class="cp-token-anatomy__pill">
                 <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
-                <code class="cp-token-anatomy__code">--sgds-blue-600</code>
+                <code class="cp-token-anatomy__code">sgds-blue-600</code>
               </span>
             </div>
 
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-              Each primitive name has two parts: the <strong>colour</strong> and the <strong>scale</strong>. The token <CodeToken label="--sgds-blue-600" /> sits at step 600 on the blue ramp, and every other primitive follows the same pattern.
+              Each primitive colour has two parts: the <strong>base</strong> (colour) and the <strong>modifier</strong> (scale). The token <CodeToken label="sgds-blue-600" /> sits at step 600 on the blue ramp, and every other primitive follows the same pattern.
             </p>
 
             <!-- Naming anatomy: colour family + scale parts of the token.
@@ -1188,12 +1219,13 @@ const showSemanticForm = computed(
                  family segment, "Scale" label points across to the scale step. -->
             <div class="cp-name-anatomy">
               <div class="cp-name-anatomy__inner">
-                <span class="cp-name-anatomy__call cp-name-anatomy__call--family">Colour</span>
+                <span class="cp-name-anatomy__call cp-name-anatomy__call--family"><strong class="cp-name-anatomy__call-label">Base</strong> (Colour)</span>
                 <code class="cp-name-anatomy__token">
-                  <span class="cp-name-anatomy__swatch" aria-hidden="true"></span>
-                  <span class="cp-name-anatomy__text"><span class="cp-name-anatomy__seg cp-name-anatomy__seg--prefix">--sgds-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--family">blue</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--separator">-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--scale">600</span></span>
+                  <span class="cp-name-anatomy__text">
+                    <span class="cp-name-anatomy__seg cp-name-anatomy__seg--prefix">sgds-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--family sgds:rounded-sm sgds:bg-primary-surface-muted sgds:text-fixed-dark sgds:px-1">blue</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--separator">-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--scale sgds:rounded-sm sgds:bg-success-surface-muted sgds:text-fixed-dark sgds:px-1">600</span>
+                  </span>
                 </code>
-                <span class="cp-name-anatomy__call cp-name-anatomy__call--scale">Scale</span>
+                <span class="cp-name-anatomy__call cp-name-anatomy__call--scale"><strong class="cp-name-anatomy__call-label">Modifier</strong> (Scale)</span>
               </div>
             </div>
 
@@ -1204,7 +1236,7 @@ const showSemanticForm = computed(
 
           <!-- When to use primitives -->
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">When to use primitives</h3>
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">When to use primitives</h2>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Using primitives directly in product code or design files is not recommended. It leads to inconsistencies when themes or brand palettes change. Always reach for <a href="/foundations/colour/semantic-colour" class="sgds:underline">semantic colour tokens</a> first.
             </p>
@@ -1220,34 +1252,16 @@ const showSemanticForm = computed(
 
           <!-- Existing token table -->
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Primitive colour tokens</h3>
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Primitive colour tokens</h2>
 
             <!-- Subsection: how to read the shade scale used in the table below -->
             <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-              <h4 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">Understanding our colour scale</h4>
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Understanding our colour scale</h4>
               <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 <li><strong>100</strong> is lightest, <strong>900</strong> is darkest. Grey adds <strong>000</strong> and <strong>1100</strong> for dark-mode surfaces.</li>
                 <li>Shade <strong>600</strong> is the brand input each family scales around.</li>
                 <li>Grey uses <CodeToken label="gray" /> in token names for Tailwind compatibility.</li>
               </ul>
-            </div>
-
-            <!-- Subsection: how to read the contrast column in the table below -->
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:mt-md">
-              <h4 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">Colour contrast ratios</h4>
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-                Each row in the tables below previews the shade as <CodeToken label="A" :surface="false" /> on a contrasting background. Hover the sample for its WCAG and APCA ratios.
-              </p>
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-                The ratios measure whether a shade has enough contrast to be read as text on that background. Low contrast is a barrier for people with low vision or colour blindness, and for anyone reading on a glare-filled screen. WCAG and APCA are two ways of putting a number on that.
-              </p>
-              <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                <li><strong>WCAG</strong> (Web Content Accessibility Guidelines) is the international accessibility standard most government services follow. It scores contrast as a single ratio between <strong>1</strong> (no contrast) and <strong>21</strong> (black on white). Body text needs at least <strong>4.5</strong> to meet the AA conformance level. Large text needs at least <strong>3</strong>, since bigger letters are easier to read.</li>
-                <li><strong>APCA</strong> (Accessible Perceptual Contrast Algorithm) is a newer model that accounts for how text actually looks at different sizes and weights. It is not yet a legal requirement, but gives a more realistic read of legibility. As a rough guide, body text needs an absolute value around <strong>60</strong> or higher.</li>
-              </ul>
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-                For most UI, reach for semantic tokens first. They already pair primitives at safe contrast. The table below is for reference, listing every SGDS primitive shade.
-              </p>
             </div>
           </div>
 
@@ -1259,15 +1273,27 @@ const showSemanticForm = computed(
             :key="family.id"
             class="sgds:flex sgds:flex-col sgds:gap-text-md"
           >
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
               {{ family.label }}
-            </h5>
+            </h4>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
                 <sgds-table-head class="cp-token-column">Token</sgds-table-head>
                 <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
                 <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
-                <sgds-table-head class="cp-contrast-column">Contrast</sgds-table-head>
+                <sgds-table-head class="cp-contrast-column">
+                  <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
+                    Contrast
+                    <sgds-icon-button
+                      name="question-circle"
+                      variant="ghost"
+                      tone="neutral"
+                      size="sm"
+                      ariaLabel="About colour contrast ratios"
+                      @click="openContrastInfo"
+                    ></sgds-icon-button>
+                  </span>
+                </sgds-table-head>
                 <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
               </sgds-table-row>
 
@@ -1320,7 +1346,7 @@ const showSemanticForm = computed(
         <div class="typography-page-template__body typography-page-template__body--prose">
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">How semantic colour tokens work</h3>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">How semantic colour tokens work</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 A primitive colour token names a hex value. A semantic colour token names the job that value performs in the interface. Where <CodeToken label="--sgds-blue-600" /> names a specific shade, a semantic token like <CodeToken label="--sgds-link-color-default" /> names the role "default colour for a link". The system maps each role to the right primitive behind the scenes.
               </p>
@@ -1342,15 +1368,15 @@ const showSemanticForm = computed(
                   <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
                   <code class="cp-token-anatomy__code">#0269D0</code>
                 </span>
-                <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="50" y2="7"/><polyline points="46,3 50,7 46,11"/></svg>
+                <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
                 <span class="cp-token-anatomy__pill">
                   <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
-                  <code class="cp-token-anatomy__code">--sgds-blue-600</code>
+                  <code class="cp-token-anatomy__code">sgds-blue-600</code>
                 </span>
-                <svg class="cp-token-anatomy__arrow cp-token-anatomy__arrow--merge" width="56" height="80" viewBox="0 0 56 80" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M0 18 C 16 18, 16 40, 28 40"/><path d="M0 62 C 16 62, 16 40, 28 40"/><line x1="28" y1="40" x2="50" y2="40"/><polyline points="44,36 50,40 44,44"/></svg>
+                <svg class="cp-token-anatomy__arrow cp-token-anatomy__arrow--merge" width="56" height="80" viewBox="0 0 56 80" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M0 18 C 16 18, 16 40, 28 40"/><path d="M0 62 C 16 62, 16 40, 28 40"/><line x1="28" y1="40" x2="44" y2="40"/><polygon points="44,36 50,40 44,44" fill="currentColor" stroke="none"/></svg>
                 <span class="cp-token-anatomy__pill cp-token-anatomy__pill--span-2">
                   <span class="cp-token-anatomy__swatch cp-token-anatomy__swatch--split" aria-hidden="true"></span>
-                  <code class="cp-token-anatomy__code">--sgds-link-color-default</code>
+                  <code class="cp-token-anatomy__code">sgds-link-color-default</code>
                 </span>
 
                 <span class="cp-token-anatomy__theme">Night theme</span>
@@ -1358,10 +1384,10 @@ const showSemanticForm = computed(
                   <span class="cp-token-anatomy__swatch" style="background:#60aaf4;" aria-hidden="true"></span>
                   <code class="cp-token-anatomy__code">#60AAF4</code>
                 </span>
-                <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="50" y2="7"/><polyline points="46,3 50,7 46,11"/></svg>
+                <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
                 <span class="cp-token-anatomy__pill">
                   <span class="cp-token-anatomy__swatch" style="background:#60aaf4;" aria-hidden="true"></span>
-                  <code class="cp-token-anatomy__code">--sgds-blue-400</code>
+                  <code class="cp-token-anatomy__code">sgds-blue-400</code>
                 </span>
               </div>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
@@ -1371,13 +1397,7 @@ const showSemanticForm = computed(
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 This separation lets themes and brands shift colours without touching components. The same semantic token can point to one primitive in day mode and a different one in night mode. The role stays consistent across every component. Only the rendered hex value changes for contrast, brand, or accessibility.
               </p>
-              <figure class="sgds:m-0">
-                <img
-                  class="sgds:block sgds:w-full sgds:h-auto"
-                  src="/foundations/colour/semantic-theme-resolution.png"
-                  alt="A split day and night theme diagram showing --sgds-bg-default resolving to --sgds-gray-000 in the day theme and --sgds-gray-1100 in the night theme."
-                />
-              </figure>
+              <ThemeRevealDiagram />
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 This mapping gives SGDS one place to adjust colour behaviour across components, instead of changing each component separately.
               </p>
@@ -1390,12 +1410,15 @@ const showSemanticForm = computed(
               </p>
               <div class="cp-name-anatomy cp-name-anatomy--semantic">
                 <div class="cp-name-anatomy__inner">
-                  <span class="cp-name-anatomy__call cp-name-anatomy__call--base-element">Base design element or property</span>
+                  <span class="cp-name-anatomy__call cp-name-anatomy__call--base-element">
+                    <strong class="cp-name-anatomy__call-label">Base</strong>
+                  </span>
                   <code class="cp-name-anatomy__token">
-                    <span class="cp-name-anatomy__swatch cp-name-anatomy__swatch--danger" aria-hidden="true"></span>
-                    <span class="cp-name-anatomy__text"><span class="cp-name-anatomy__seg cp-name-anatomy__seg--prefix">--sgds-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--group">danger</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--separator">-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--property">surface</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--separator">-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--modifier">default</span></span>
+                    <span class="cp-name-anatomy__text"><span class="cp-name-anatomy__seg cp-name-anatomy__seg--prefix">sgds-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--group sgds:rounded-sm sgds:bg-primary-surface-muted sgds:text-fixed-dark sgds:px-1">primary-bg</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--separator">-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--modifier sgds:rounded-sm sgds:bg-success-surface-muted sgds:text-fixed-dark sgds:px-1">muted</span></span>
                   </code>
-                  <span class="cp-name-anatomy__call cp-name-anatomy__call--modifier">Modifier</span>
+                  <span class="cp-name-anatomy__call cp-name-anatomy__call--modifier">
+                    <strong class="cp-name-anatomy__call-label">Modifier</strong>
+                  </span>
                 </div>
               </div>
               <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -1428,7 +1451,7 @@ const showSemanticForm = computed(
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Background colour tokens</h3>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Background colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Background tokens set the base canvas colour for pages, panels, and overlays. They adapt between light and dark themes.
               </p>
@@ -1439,7 +1462,7 @@ const showSemanticForm = computed(
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`bg-group-${group.id}`">
                 <div v-if="filterGroupRows(group, 'bg').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
-                  <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
+                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
                       <sgds-table-head class="sc-token-column">Token</sgds-table-head>
@@ -1480,7 +1503,7 @@ const showSemanticForm = computed(
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Foreground colour tokens</h3>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Foreground colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Foreground colour tokens for icons and UI elements across semantic categories. Each token resolves to a different primitive value in light and dark modes.
               </p>
@@ -1491,7 +1514,7 @@ const showSemanticForm = computed(
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`fg-group-${group.id}`">
                 <div v-if="filterGroupRows(group, 'color').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
-                  <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
+                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
                       <sgds-table-head class="sc-token-column">Token</sgds-table-head>
@@ -1532,7 +1555,7 @@ const showSemanticForm = computed(
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Surface colour tokens</h3>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Surface colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Surface tokens define fill colours for elevated containers such as cards, drawers, and dropdowns. They adapt between light and dark themes.
               </p>
@@ -1543,7 +1566,7 @@ const showSemanticForm = computed(
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`surface-group-${group.id}`">
                 <div v-if="filterGroupRows(group, 'surface').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
-                  <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
+                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
                       <sgds-table-head class="sc-token-column">Token</sgds-table-head>
@@ -1584,7 +1607,7 @@ const showSemanticForm = computed(
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Border colour tokens</h3>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Border colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Border colour tokens define outline and divider colours for components across semantic categories. They adapt between light and dark themes.
               </p>
@@ -1595,7 +1618,7 @@ const showSemanticForm = computed(
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`border-group-${group.id}`">
                 <div v-if="filterGroupRows(group, 'border-color').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
-                  <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
+                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
                       <sgds-table-head class="sc-token-column">Token</sgds-table-head>
@@ -1636,7 +1659,7 @@ const showSemanticForm = computed(
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Text colour tokens</h3>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Text colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Typography colour tokens define the foreground colours for display, heading, body, label, and link text. They adapt between light and dark themes.
               </p>
@@ -1650,7 +1673,7 @@ const showSemanticForm = computed(
                 :key="sub.id"
                 class="sgds:flex sgds:flex-col sgds:gap-layout-xs"
               >
-                <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ sub.label }}</h5>
+                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ sub.label }}</h4>
                 <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                   <sgds-table-row>
                     <sgds-table-head class="sc-token-column">Token</sgds-table-head>
@@ -1690,7 +1713,7 @@ const showSemanticForm = computed(
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Form colour tokens</h3>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Form colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Form colour tokens cover surfaces, text, and validation states within input fields, checkboxes, radios, and other form controls.
               </p>
@@ -1704,7 +1727,7 @@ const showSemanticForm = computed(
                 :key="group.id"
                 class="sgds:flex sgds:flex-col sgds:gap-layout-xs"
               >
-                <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
+                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
                 <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table sc-form-table">
                   <sgds-table-row>
                     <sgds-table-head class="sc-token-column">Token</sgds-table-head>
@@ -1741,11 +1764,33 @@ const showSemanticForm = computed(
     </template>
 
   </TypographyPageTemplate>
+
+  <!-- Shared contrast info modal — opened from any "?" trigger next to a
+       Contrast column header. Uses <sgds-modal> with the documented title /
+       description / default body / footer slots. -->
+  <sgds-modal
+    :open="contrastInfoOpen"
+    size="lg"
+    @sgds-after-hide="contrastInfoOpen = false"
+  >
+    <h2 slot="title">Colour contrast ratios</h2>
+    <p slot="description">
+      Colour contrast ratios measure whether text is readable against a background.
+    </p>
+    <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+      <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+        <strong>WCAG (Web Content Accessibility Guidelines)</strong> is the international accessibility standard most government services follow. It scores contrast as a single ratio between 1 (no contrast) and 21 (black on white). Body text needs at least 4.5 to meet the AA conformance level. Large text needs at least 3, since bigger letters are easier to read.
+      </p>
+      <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+        <strong>APCA (Accessible Perceptual Contrast Algorithm)</strong> is a newer model that's more accurate for real reading. As a rough guide, body text needs an absolute value around 60 or higher.
+      </p>
+    </div>
+    <sgds-button slot="footer" variant="primary" @click="contrastInfoOpen = false">Got it</sgds-button>
+  </sgds-modal>
 </template>
 
 <style>
 /* ─── Product primary / Primitive shared styles ────────────────────────────── */
-
 
 .cp-token-column {
   box-sizing: border-box;
@@ -1985,8 +2030,7 @@ const showSemanticForm = computed(
 }
 
 .cp-token-anatomy__theme {
-  color: var(--sgds-color-subtle);
-  font-size: var(--sgds-font-size-label-sm);
+  color: var(--sgds-color-default);
   font-weight: var(--sgds-font-weight-semibold);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-xs);
@@ -2030,9 +2074,10 @@ const showSemanticForm = computed(
   border-radius: var(--sgds-border-radius-full);
   color: var(--sgds-color-default);
   display: inline-flex;
-  font-family: monospace;
+  font-family: var(--sgds-font-family-brand);
   font-size: var(--sgds-font-size-label-sm);
   gap: var(--sgds-padding-2-xs);
+  justify-self: start;
   line-height: var(--sgds-line-height-xs);
   padding: var(--sgds-padding-xs) var(--sgds-padding-md);
 }
@@ -2056,7 +2101,7 @@ const showSemanticForm = computed(
 }
 
 .cp-token-anatomy__arrow {
-  color: var(--sgds-color-default);
+  color: var(--sgds-border-color-default);
   justify-self: center;
 }
 
@@ -2065,12 +2110,11 @@ const showSemanticForm = computed(
    step. Coordinates use ch units so callouts stay aligned to the monospace
    token regardless of viewport width. */
 .cp-name-anatomy {
-  /* Theme-aware accents. Day mode keeps the brand-blue primitives
-     (--sgds-blue-600 / --sgds-blue-700). Night mode swaps to lighter
-     primitives so the lines, dots, and coloured segments stay readable on
-     the dark surface-raised pill. */
-  --cp-callout-family-color: var(--sgds-blue-600, #0269d0);
-  --cp-callout-scale-color: var(--sgds-blue-700, #0151a0);
+  /* Theme-aware accents using SGDS semantic colour tokens. Family ("blue")
+     uses primary (brand purple); scale ("600") uses success (green). Both
+     tokens flip automatically between day and night themes. */
+  --cp-callout-family-color: var(--sgds-primary-color-default);
+  --cp-callout-scale-color: var(--sgds-success-color-default);
   background: transparent;
   display: block;
   margin-block: var(--sgds-layout-gap-xs);
@@ -2078,16 +2122,13 @@ const showSemanticForm = computed(
   width: max-content;
 }
 
-.sgds-night-theme .cp-name-anatomy {
-  --cp-callout-family-color: var(--sgds-blue-400, #4da6ff);
-  --cp-callout-scale-color: var(--sgds-blue-300, #80c1ff);
-}
-
 .cp-name-anatomy__inner {
   display: inline-block;
   padding-block-end: var(--sgds-layout-gap-sm);
   padding-block-start: 4.25rem;
-  padding-inline-end: 7.5rem;
+  /* Reserve room for the "Modifier (Scale)" callout (~7rem wide) plus
+     the connector line (5rem) so the line/dot land just past the pill. */
+  padding-inline-end: 12.5rem;
   position: relative;
 }
 
@@ -2097,7 +2138,7 @@ const showSemanticForm = computed(
   border-radius: var(--sgds-border-radius-full);
   color: var(--sgds-color-default);
   display: inline-flex;
-  font-family: monospace;
+  font-family: var(--sgds-font-family-brand);
   font-size: var(--sgds-font-size-label-lg);
   gap: var(--sgds-padding-sm);
   letter-spacing: 0;
@@ -2132,39 +2173,26 @@ const showSemanticForm = computed(
   color: var(--sgds-color-default);
 }
 
-.cp-name-anatomy__seg--family {
-  color: var(--cp-callout-family-color);
-  font-weight: var(--sgds-font-weight-semibold);
-}
-
-.cp-name-anatomy__seg--scale {
-  color: var(--cp-callout-scale-color);
-  font-weight: var(--sgds-font-weight-semibold);
-}
-
-.cp-name-anatomy__seg--group {
-  color: var(--sgds-product-primary-600, #6b4feb);
-  font-weight: var(--sgds-font-weight-semibold);
-}
-
-.cp-name-anatomy__seg--property {
-  color: var(--sgds-blue-600, #0269d0);
-  font-weight: var(--sgds-font-weight-semibold);
-}
-
+.cp-name-anatomy__seg--group,
+.cp-name-anatomy__seg--family,
+.cp-name-anatomy__seg--scale,
+.cp-name-anatomy__seg--property,
 .cp-name-anatomy__seg--modifier {
-  color: var(--sgds-green-600, #0f7a3c);
   font-weight: var(--sgds-font-weight-semibold);
 }
 
 .cp-name-anatomy__call {
   color: var(--sgds-color-default);
   font-size: var(--sgds-font-size-label-md);
-  font-weight: var(--sgds-font-weight-semibold);
+  font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-xs);
   position: absolute;
   white-space: nowrap;
+}
+
+.cp-name-anatomy__call-label {
+  font-weight: var(--sgds-font-weight-semibold);
 }
 
 .cp-name-anatomy__call::after {
@@ -2174,8 +2202,11 @@ const showSemanticForm = computed(
 
 .cp-name-anatomy__call--family {
   /* Sits above the pill, centred over the "blue" segment.
-     Offset = pill's left padding + swatch + gap + prefix (7ch) + half "blue" (2ch). */
-  left: calc(var(--sgds-padding-lg) + 1.5rem + var(--sgds-padding-sm) + 9ch);
+     Offset = pill's left padding + 7 monospace chars (prefix "sgds-" + half
+     "blue") at label-lg 20px ≈ 5.25rem. We use rem instead of ch because
+     the callout's own font is sans-serif (label-md), so its ch unit doesn't
+     match the pill's monospace advance width. */
+  left: calc(var(--sgds-padding-lg) + 5.25rem);
   top: 0;
   transform: translateX(-50%);
 }
@@ -2184,7 +2215,7 @@ const showSemanticForm = computed(
   /* Vertical drop from just below the label down to the pill's top edge,
      directly above the "blue" segment. Stops at the top of the letterforms
      so the dot touches the word's bounding box without covering it. */
-  background: var(--cp-callout-family-color);
+  background: var(--sgds-border-color-default);
   block-size: 2.625rem;
   inline-size: var(--sgds-border-width-1, 1px);
   left: 50%;
@@ -2194,7 +2225,7 @@ const showSemanticForm = computed(
 .cp-name-anatomy__call--family::before {
   /* Anchor dot at the bottom of the stem, sitting at the top edge of the
      "blue" word without blocking it. */
-  background: var(--cp-callout-family-color);
+  background: var(--sgds-border-color-default);
   block-size: 0.5rem;
   border-radius: 50%;
   content: "";
@@ -2216,36 +2247,23 @@ const showSemanticForm = computed(
 }
 
 .cp-name-anatomy--semantic {
-  --cp-callout-base-color: var(--sgds-red-600, #cf2323);
-  --cp-callout-modifier-color: var(--sgds-blue-600, #0269d0);
-}
-
-.sgds-night-theme .cp-name-anatomy--semantic {
-  --cp-callout-base-color: var(--sgds-red-400, #e98b8b);
-  --cp-callout-modifier-color: var(--sgds-blue-300, #96c7f7);
+  --cp-callout-base-color: var(--sgds-purple-color-default);
+  --cp-callout-modifier-color: var(--sgds-success-color-default);
 }
 
 .cp-name-anatomy--semantic .cp-name-anatomy__inner {
   padding-inline-end: 8.75rem;
 }
 
-.cp-name-anatomy--semantic .cp-name-anatomy__seg--group,
-.cp-name-anatomy--semantic .cp-name-anatomy__seg--property {
-  color: var(--cp-callout-base-color);
-}
-
-.cp-name-anatomy--semantic .cp-name-anatomy__seg--modifier {
-  color: var(--cp-callout-modifier-color);
-}
 
 .cp-name-anatomy__call--base-element {
-  left: calc(var(--sgds-padding-lg) + 1.5rem + var(--sgds-padding-sm) + 14ch);
+  left: calc(var(--sgds-padding-lg) + 10ch);
   top: 0;
   transform: translateX(-50%);
 }
 
 .cp-name-anatomy__call--base-element::after {
-  background: var(--cp-callout-base-color);
+  background: var(--sgds-border-color-default);
   block-size: 2.625rem;
   inline-size: var(--sgds-border-width-1, 1px);
   left: 50%;
@@ -2253,7 +2271,7 @@ const showSemanticForm = computed(
 }
 
 .cp-name-anatomy__call--base-element::before {
-  background: var(--cp-callout-base-color);
+  background: var(--sgds-border-color-default);
   block-size: 0.5rem;
   border-radius: 50%;
   content: "";
@@ -2271,7 +2289,7 @@ const showSemanticForm = computed(
 }
 
 .cp-name-anatomy__call--modifier::after {
-  background: var(--cp-callout-modifier-color);
+  background: var(--sgds-border-color-default);
   block-size: var(--sgds-border-width-1, 1px);
   inline-size: 4.5rem;
   right: calc(100% + 0.5rem);
@@ -2279,7 +2297,7 @@ const showSemanticForm = computed(
 }
 
 .cp-name-anatomy__call--modifier::before {
-  background: var(--cp-callout-modifier-color);
+  background: var(--sgds-border-color-default);
   block-size: 0.5rem;
   border-radius: 50%;
   content: "";
@@ -2292,25 +2310,27 @@ const showSemanticForm = computed(
 
 .cp-name-anatomy__call--scale::after {
   /* Horizontal stem from just left of the label across to the pill's right
-     edge, beside the "600" segment. Stops at the pill boundary so the dot
-     touches the word's bounding box without covering it. */
-  background: var(--cp-callout-scale-color);
+     edge, beside the "600" segment. Width matches the gap between pill end
+     (padding-inline-end = 12.5rem) and label-left (~7.6rem) minus the
+     0.5rem gap to the label = 4.4rem. */
+  background: var(--sgds-border-color-default);
   block-size: var(--sgds-border-width-1, 1px);
-  inline-size: 4.5rem;
+  inline-size: 4.4rem;
   right: calc(100% + 0.5rem);
   top: 50%;
 }
 
 .cp-name-anatomy__call--scale::before {
-  /* Anchor dot at the left end of the stem, sitting at the right edge of
-     the "600" number without blocking it. */
-  background: var(--cp-callout-scale-color);
+  /* Anchor dot at the left end of the stem, sitting just past the right
+     edge of the "600" number. Offset = pill-end (12.5rem from inner-right)
+     minus label-width (~7.6rem) = 4.9rem from label-right. */
+  background: var(--sgds-border-color-default);
   block-size: 0.5rem;
   border-radius: 50%;
   content: "";
   inline-size: 0.5rem;
   position: absolute;
-  right: calc(100% + 4.75rem);
+  right: calc(100% + 4.9rem);
   top: 50%;
   transform: translateY(-50%);
 }
@@ -2348,7 +2368,9 @@ const showSemanticForm = computed(
   }
 
   .cp-name-anatomy__call--family {
-    left: calc(var(--sgds-padding-sm) + 0.875rem + var(--sgds-padding-2-xs) + 9ch);
+    /* 7 monospace chars at label-xs 12px ≈ 3.15rem (pill text shrinks on
+       mobile per the .cp-name-anatomy__token override above). */
+    left: calc(var(--sgds-padding-sm) + 3.15rem);
   }
 
   .cp-name-anatomy__call--family::after {
@@ -2529,7 +2551,7 @@ const showSemanticForm = computed(
 }
 
 .cp-contrast-bg-light {
-  background: var(--sgds-bg-default);
+  background: var(--sgds-surface-fixed-light);
 }
 
 @media (max-width: 1023px) {

@@ -4,9 +4,10 @@ import { computed } from "vue";
 export type Section = {
   title: string;
   description?: string;
-  headingLevel?: "h3" | "h4";
+  headingLevel?: "h2" | "h3" | "h4";
+  headerGap?: string;
 }
-const { title, description, headingLevel } = defineProps<Section>();
+const { title, description, headingLevel, headerGap = "sgds:gap-text-md" } = defineProps<Section>();
 
 const sectionId = computed(() =>
   title
@@ -19,15 +20,17 @@ const sectionId = computed(() =>
 const headingClass = computed(() =>
   headingLevel === "h4"
     ? "sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:mb-0"
-    : "sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:mb-0",
+    : headingLevel === "h3"
+    ? "sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:mb-0"
+    : "sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:mb-0",
 );
 </script>
 
 <template>
-  <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+  <div :class="['sgds:flex sgds:flex-col', headerGap]">
     <div class="sgds:flex sgds:gap-2 sgds:items-center">
       <component
-        :is="headingLevel ?? 'h3'"
+        :is="headingLevel ?? 'h2'"
         :id="sectionId"
         :class="headingClass"
       >

@@ -1,5 +1,44 @@
 <script setup lang="ts">
+import FoundationPrinciplesList from "./FoundationPrinciplesList.vue";
+import FoundationRulesGuidanceList from "./FoundationRulesGuidanceList.vue";
 import Section from "./Section.vue";
+
+const colourPrinciples = [
+  {
+    title: "Hierarchical",
+    description:
+      "Use colour to show interaction, relationships, and prominence.",
+  },
+  {
+    title: "Legible",
+    description: "Use colour combinations that meet legibility standards.",
+  },
+  {
+    title: "Harmonious",
+    description: "Use colour consistently so the interface feels unified.",
+  },
+] as const;
+
+const colourRules = [
+  {
+    title: "Contrast",
+    description:
+      "Choose colour combinations with enough contrast for text, icons, and controls. This supports users with low vision, colour blindness, and other visual impairments.",
+    demo: "colour-contrast",
+  },
+  {
+    title: "Skip one colour step",
+    description:
+      "Skip at least one step in the colour scale when pairing foreground and background colours. This creates clearer separation between surfaces, text, and interactive elements.",
+    demo: "colour-step",
+  },
+  {
+    title: "Keep colour consistent",
+    description:
+      "Use the same colour for the same role across the interface. This helps users recognise repeated patterns and understand what each colour means.",
+    demo: "colour-consistency",
+  },
+] as const;
 
 const swatches = [
   { name: "White", color: "#FFFFFF", bordered: true, tone: "light" },
@@ -150,63 +189,34 @@ const systemSections = [
 </script>
 
 <template>
-  <div :class="$style.page">
-    <div :class="$style.sectionStack">
-      <div :class="$style.pageSection">
-        <Section title="Greyscale">
-          <div :class="$style.card">
-            <div :class="$style.scaleFrame">
-              <div
-                v-for="level in topLevels"
-                :key="level.label"
-                :class="[$style.connector, $style.connectorTop]"
-                :style="{
-                  left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
-                  right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
-                  top: level.offset,
-                }"
-              >
-                <span :class="$style.connectorLabel">{{ level.label }}</span>
-              </div>
+  <div class="sgds:w-full">
+    <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+      <FoundationPrinciplesList title="Colour principles" :principles="colourPrinciples" />
 
-              <div :class="$style.swatchRow" aria-label="Greyscale contrast scale">
-                <div
-                  v-for="swatch in swatches"
-                  :key="swatch.name ?? swatch.color"
-                  :class="[
-                    $style.swatch,
-                    swatch.bordered ? $style.swatchBordered : '',
-                    swatch.tone === 'dark' ? $style.swatchDark : '',
-                  ]"
-                  :style="{ backgroundColor: swatch.color }"
-                >
-                  <span v-if="swatch.name" :class="$style.swatchLabel">{{ swatch.name }}</span>
-                </div>
-              </div>
+      <FoundationRulesGuidanceList title="Rules and guidance" :rules="colourRules" />
 
-              <div
-                v-for="level in bottomLevels"
-                :key="level.label"
-                :class="[$style.connector, $style.connectorBottom]"
-                :style="{
-                  left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
-                  right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
-                  bottom: level.offset,
-                }"
-              >
-                <span :class="$style.connectorLabel">{{ level.label }}</span>
-              </div>
-            </div>
-          </div>
-        </Section>
-      </div>
+      <section
+        aria-labelledby="colour-system-title"
+        class="sgds:flex sgds:flex-col sgds:gap-layout-lg"
+      >
+        <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+          <h2
+            id="colour-system-title"
+            class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:text-heading-default sgds:m-0"
+          >
+            Colour system
+          </h2>
+          <p class="sgds:text-body-md sgds:leading-xs sgds:tracking-normal sgds:text-body-default sgds:m-0">
+            SGDS uses 10 tints and shades of gray per color theme. These grays are neutral gray.
+          </p>
+        </div>
 
       <div
         v-for="section in semanticScaleSections"
         :key="section.title"
-        :class="$style.pageSection"
+        class="sgds:flex sgds:flex-col"
       >
-        <Section :title="section.title">
+        <Section :title="section.title" heading-level="h3" gap="sgds:gap-text-xl">
           <div :class="$style.backgroundCard">
             <div :class="$style.backgroundHalf">
               <div :class="$style.backgroundTop"></div>
@@ -274,14 +284,66 @@ const systemSections = [
         </Section>
       </div>
 
+      <div class="sgds:flex sgds:flex-col">
+        <Section title="Greyscale" heading-level="h3" gap="sgds:gap-text-xl">
+          <div :class="$style.card">
+            <div :class="$style.scaleFrame">
+              <div
+                v-for="level in topLevels"
+                :key="level.label"
+                :class="[$style.connector, $style.connectorTop]"
+                :style="{
+                  left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
+                  right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
+                  top: level.offset,
+                }"
+              >
+                <span :class="$style.connectorLabel">{{ level.label }}</span>
+              </div>
+
+              <div :class="$style.swatchRow" aria-label="Greyscale contrast scale">
+                <div
+                  v-for="swatch in swatches"
+                  :key="swatch.name ?? swatch.color"
+                  :class="[
+                    $style.swatch,
+                    swatch.bordered ? $style.swatchBordered : '',
+                    swatch.tone === 'dark' ? $style.swatchDark : '',
+                  ]"
+                  :style="{ backgroundColor: swatch.color }"
+                >
+                  <span v-if="swatch.name" :class="$style.swatchLabel">{{ swatch.name }}</span>
+                </div>
+              </div>
+
+              <div
+                v-for="level in bottomLevels"
+                :key="level.label"
+                :class="[$style.connector, $style.connectorBottom]"
+                :style="{
+                  left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
+                  right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
+                  bottom: level.offset,
+                }"
+              >
+                <span :class="$style.connectorLabel">{{ level.label }}</span>
+              </div>
+            </div>
+          </div>
+        </Section>
+      </div>
+
       <div
         v-for="section in systemSections"
         :key="section.title"
-        :class="$style.pageSection"
+        class="sgds:flex sgds:flex-col"
       >
         <Section
           :title="section.title"
           :description="section.description"
+          heading-level="h3"
+          header-gap="sgds:gap-text-xs"
+          gap="sgds:gap-text-xl"
         >
           <div :class="$style.chartCard">
             <div :class="$style.chartFrame">
@@ -330,28 +392,14 @@ const systemSections = [
           </div>
         </Section>
       </div>
+      </section>
     </div>
   </div>
 </template>
 
 <style module>
-.page {
-  width: 100%;
-}
-
-.sectionStack {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sgds-layout-gap-xl);
-}
-
-.pageSection {
-  display: flex;
-  flex-direction: column;
-}
-
 .card {
-  background: var(--sgds-bg-color-default);
+  background: var(--sgds-bg-default);
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-2-xl);
   overflow: hidden;
@@ -359,7 +407,7 @@ const systemSections = [
 }
 
 .backgroundCard {
-  background: var(--sgds-bg-color-default);
+  background: var(--sgds-bg-default);
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-2-xl);
   min-height: 25rem;
@@ -387,13 +435,13 @@ const systemSections = [
 }
 
 .backgroundTop {
-  background: #ffffff;
+  background: var(--sgds-bg-fixed-light);
   min-height: 0;
   width: 100%;
 }
 
 .backgroundBottom {
-  background: #0e0e0e;
+  background: var(--sgds-bg-fixed-dark);
   min-height: 0;
   width: 100%;
 }
@@ -471,7 +519,7 @@ const systemSections = [
 }
 
 .backgroundCaptionTop {
-  color: var(--sgds-body-color-default);
+  color: var(--sgds-color-fixed-dark);
   min-height: calc(var(--sgds-line-height-16) * 2);
 }
 
@@ -486,6 +534,10 @@ const systemSections = [
 
 .backgroundCaptionBottom.backgroundCaptionDark {
   color: var(--sgds-color-fixed-light);
+}
+
+.backgroundCaptionTop.backgroundCaptionDark {
+  color: var(--sgds-color-fixed-dark);
 }
 
 .chartCard {

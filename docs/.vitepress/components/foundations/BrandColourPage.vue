@@ -54,7 +54,7 @@ const brandColors: BrandColor[] = [
     rgb: "244 / 51 / 61",
     cmyk: "0 / 79 / 75 / 4",
     background: "#F4333D",
-    textTone: "light",
+    textTone: "fixed-light",
   },
   {
     name: "GovTech magenta",
@@ -62,7 +62,7 @@ const brandColors: BrandColor[] = [
     rgb: "186 / 47 / 162",
     cmyk: "0 / 75 / 13 / 27",
     background: "#BA2FA2",
-    textTone: "light",
+    textTone: "fixed-light",
   },
   {
     name: "GovTech cyan",
@@ -70,7 +70,7 @@ const brandColors: BrandColor[] = [
     rgb: "0 / 192 / 243",
     cmyk: "100 / 21 / 0 / 5",
     background: "#00C0F3",
-    textTone: "dark",
+    textTone: "fixed-dark",
   },
   {
     name: "White",
@@ -172,7 +172,7 @@ const paletteRows: PaletteRow[] = [
         </sgds-tab>
 
         <sgds-tab-panel name="govtech">
-          <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg sgds:pt-layout-md">
+          <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg sgds:pt-layout-sm">
 
             <!-- Brand palette cards: official identity colours with HEX, RGB, CMYK
                  for both digital and print reproduction. -->
@@ -274,9 +274,9 @@ const paletteRows: PaletteRow[] = [
                  tightly together so they read as a single section intro
                  above the tables. -->
             <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">
                 GovTech primary tokens
-              </h3>
+              </h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 The tables below map the GovTech brand onto SGDS primary tokens. These ship with the system by default, ready for any product to use as-is. If your product has its own brand colour, switch to the <sgds-link><a role="button" tabindex="0" @click="switchToCustomTab" @keydown.enter="switchToCustomTab" @keydown.space.prevent="switchToCustomTab" class="sgds:cursor-pointer">Custom colour</a></sgds-link> tab to generate the same primary structure from your hex value instead.
               </p>
@@ -286,12 +286,12 @@ const paletteRows: PaletteRow[] = [
         </sgds-tab-panel>
 
         <sgds-tab-panel name="custom">
-          <div class="sgds:flex sgds:flex-col sgds:gap-layout-md sgds:pt-layout-md">
+          <div class="sgds:flex sgds:flex-col sgds:gap-layout-md sgds:pt-layout-sm">
             <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
               <div class="sgds:flex sgds:items-center sgds:gap-2">
-                <h3 id="custom-colour" class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">
+                <h2 id="custom-colour" class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">
                   Custom colour
-                </h3>
+                </h2>
                 <sgds-badge variant="accent" outlined size="sm">BETA</sgds-badge>
                 <a
                   href="#custom-colour"

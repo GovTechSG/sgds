@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SectionHeader, { Section } from './SectionHeader.vue';
 
-const { title, description, gap = 'sgds:gap-text-lg' } = defineProps<Section & { gap?: string }>();
+const { title, description, headingLevel, headerGap, gap = 'sgds:gap-text-lg' } = defineProps<Section & { gap?: string }>();
 </script>
 
 <template>
@@ -9,6 +9,8 @@ const { title, description, gap = 'sgds:gap-text-lg' } = defineProps<Section & {
     <SectionHeader
       :title="title"
       :description="description"
+      :heading-level="headingLevel"
+      :header-gap="headerGap"
     >
       <template v-if="$slots['title-suffix']" #title-suffix>
         <slot name="title-suffix"></slot>

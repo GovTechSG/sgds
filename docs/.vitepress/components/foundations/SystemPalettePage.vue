@@ -57,9 +57,22 @@ const tokenCardClass = (item: SemanticColorItem) => [
 
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+    <!-- Intro: what this page is and what's on it -->
+    <section class="sgds:flex sgds:flex-col sgds:gap-text-md">
+      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">
+        What the system palette is
+      </h2>
+      <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+        The system palette is the complete set of colour values that ship with SGDS. Every card below shows a colour you can use in product UI, with its token name, hex value, HSL, and RGB so it can be referenced from code, design tools, or third-party libraries.
+      </p>
+      <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+        Use this page as a quick visual reference for the rendered colour values across the system. For naming structure, scale, and how each token maps from a primitive to a role, see the <a href="/foundations/colour/primitive-colour" class="sgds:underline">primitive colour</a> and <a href="/foundations/colour/semantic-colour" class="sgds:underline">semantic colour</a> pages.
+      </p>
+    </section>
+
     <Section
-      title="Semantic palettes"
-      description="Semantic colour tokens name the role a colour plays in the interface. These values are resolved from the SGDS day theme in the current web component package."
+      title="Colour cards"
+      description="Each card shows the rendered colour, the token name, and its hex, HSL, and RGB values. Values are resolved from the SGDS day theme in the current web component package."
     >
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
         <article
@@ -68,7 +81,7 @@ const tokenCardClass = (item: SemanticColorItem) => [
           class="sgds:flex sgds:flex-col sgds:gap-layout-md"
         >
           <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:m-0">{{ set.title }}</h3>
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">{{ set.title }}</h2>
             <p class="sgds:text-body-md sgds:text-subtle sgds:max-w-[56rem] sgds:m-0">{{ set.description }}</p>
           </div>
 
