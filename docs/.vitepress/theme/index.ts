@@ -3,6 +3,7 @@ import "@govtechsg/sgds-web-component";
 import Layout from "./Layout.vue";
 import SkillsTable from "../components/ui/SkillsTable.vue";
 import CopyCommand from "../components/ui/CopyCommand.vue";
+import CodeToken from "../components/ui/CodeToken.vue";
 import PromptBox from "../components/ui/PromptBox.vue";
 import AiWorkflowPaths from "../components/ai/AiWorkflowPaths.vue";
 import DesignPageWrapper from "../components/components/DesignPageWrapper.vue";
@@ -16,6 +17,7 @@ export default {
   enhanceApp({ app }) {
     app.component("SkillsTable", SkillsTable);
     app.component("CopyCommand", CopyCommand);
+    app.component("CodeToken", CodeToken);
     app.component("PromptBox", PromptBox);
     app.component("AiWorkflowPaths", AiWorkflowPaths);
     app.component("DesignPageWrapper", DesignPageWrapper);

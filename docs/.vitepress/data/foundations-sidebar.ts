@@ -14,10 +14,9 @@ export const foundationsSidebar = {
     {
       text: "Design tokens",
       items: [
-        { text: "Design tokens", link: "/foundations/design-tokens" },
+        { text: "Overview", link: "/foundations/design-tokens" },
         { text: "Token architecture", link: "/foundations/token-architecture" },
         { text: "Token naming", link: "/foundations/token-naming" },
-        { text: "Token governance", link: "/foundations/token-governance" },
       ],
     },
     {
@@ -56,12 +55,10 @@ export const foundationsSidebar = {
     {
       text: "Colour",
       items: [
-        { text: "Colour principles", link: "/foundations/colour" },
-        { text: "Our colour", link: "/foundations/colour/our-colour" },
-        { text: "Product colour", link: "/foundations/colour/product-colour" },
+        { text: "Overview", link: "/foundations/colour" },
+        { text: "Brand colour", link: "/foundations/colour/brand-colour" },
         { text: "Primitive colour", link: "/foundations/colour/primitive-colour" },
         { text: "Semantic colour", link: "/foundations/colour/semantic-colour" },
-        { text: "System palette", link: "/foundations/colour/system-palette" },
       ],
     },
     {
@@ -161,7 +158,7 @@ export const foundationsSidebar = {
     {
       text: "Typography",
       items: [
-        { text: "Typography principles", link: "/foundations/typography" },
+        { text: "Overview", link: "/foundations/typography" },
         {
           text: "Typography styles",
           items: [

@@ -1,117 +1,64 @@
-<script setup lang="ts">
-type Layer = {
-  label: string;
-  title: string;
-  description: string;
-  examples: string[];
-};
-
-type Family = {
-  title: string;
-  description: string;
-  examples: string[];
-};
-
-const layers: Layer[] = [
-  {
-    label: "01",
-    title: "Primitive",
-    description: "Base SGDS scales in root.css. They hold visual values such as palette steps, spacer values, dimensions, type sizes, radius, width, opacity, motion, z-index, and elevation.",
-    examples: ["--sgds-purple-600", "--sgds-spacer-5", "--sgds-font-size-16"],
-  },
-  {
-    label: "02",
-    title: "Semantic",
-    description: "Meaningful aliases in day.css and night.css. They describe interface roles such as background, surface, text, border, primary, danger, warning, success, and form.",
-    examples: ["--sgds-bg-default", "--sgds-primary-surface-default", "--sgds-form-danger-border-color-default"],
-  },
-  {
-    label: "03",
-    title: "Responsive",
-    description: "Breakpoint-aware aliases in responsive.css. They remap typography, line-height, layout gap, component gap, padding, and container width.",
-    examples: ["--sgds-font-size-heading-md", "--sgds-layout-gap-md", "--sgds-container-width"],
-  },
-  {
-    label: "04",
-    title: "Component usage",
-    description: "SGDS components consume the shared tokens and expose documented hooks where styling needs to be scoped to a component, such as form sizing, component measurements, CSS custom properties, or parts.",
-    examples: ["--sgds-form-height-md", "--sgds-form-icon-size-md", "--sidenav-theme-color"],
-  },
-];
-
-const families: Family[] = [
-  {
-    title: "Colour",
-    description: "Primitive palettes become role-based surface, text, border, background, state, and form tokens.",
-    examples: ["--sgds-product-primary-600", "--sgds-color-default", "--sgds-danger-surface-default"],
-  },
-  {
-    title: "Typography",
-    description: "Font family, weight, size, line-height, letter spacing, paragraph spacing, and responsive text styles.",
-    examples: ["--sgds-font-family-brand", "--sgds-font-size-body-md", "--sgds-line-height-xs"],
-  },
-  {
-    title: "Spacing",
-    description: "Spacer values map into gap, padding, margin, layout, component, and text spacing aliases.",
-    examples: ["--sgds-spacer-5", "--sgds-gap-md", "--sgds-component-padding-md"],
-  },
-  {
-    title: "Shape and layer",
-    description: "Radius, border width, dimensions, elevation, z-index, motion, breakpoints, and icon sizing.",
-    examples: ["--sgds-border-radius-md", "--sgds-elevation-surface-3", "--sgds-z-index-modal"],
-  },
-];
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-    <div class="sgds-grid">
-      <div
-        v-for="layer in layers"
-        :key="layer.title"
-        class="sgds-col-4 sgds-col-sm-4 sgds-col-lg-3 sgds:flex sgds:min-w-0"
-      >
-        <sgds-card class="sgds:h-full sgds:w-full sgds:min-w-0">
-          <span slot="subtitle">Layer {{ layer.label }}</span>
-          <span slot="title">{{ layer.title }}</span>
-          <div class="sgds:flex sgds:flex-col sgds:gap-component-sm">
-            <p class="sgds:m-0 sgds:text-body-sm sgds:text-subtle">
-              {{ layer.description }}
-            </p>
-            <code
-              v-for="example in layer.examples"
-              :key="example"
-              class="sgds:block sgds:max-w-full sgds:break-all sgds:rounded-md sgds:bg-surface-raised sgds:px-component-sm sgds:py-[var(--sgds-padding-2-xs)] sgds:text-body-sm"
-            >
-              {{ example }}
-            </code>
-          </div>
-        </sgds-card>
-      </div>
-    </div>
+  <figure
+    class="sgds:m-0 sgds:flex sgds:w-full sgds:justify-center sgds:overflow-hidden sgds:rounded-md sgds:bg-default"
+    aria-label="Token architecture from raw value to component-specific token"
+  >
+    <svg
+      class="sgds:block sgds:h-auto sgds:w-full"
+      viewBox="19 0 1012 196"
+      role="img"
+      aria-label="Token architecture flow"
+    >
+      <defs>
+        <marker id="token-flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M 0 0 L 8 4 L 0 8 z" fill="var(--sgds-border-color-default)" />
+        </marker>
+      </defs>
 
-    <div class="sgds-grid">
-      <div
-        v-for="family in families"
-        :key="family.title"
-        class="sgds-col-4 sgds-col-sm-4 sgds-col-lg-3 sgds:flex sgds:min-w-0"
-      >
-        <sgds-card class="sgds:h-full sgds:w-full sgds:min-w-0" tinted>
-          <span slot="title">{{ family.title }}</span>
-          <div class="sgds:flex sgds:flex-col sgds:gap-component-sm">
-            <p class="sgds:m-0 sgds:text-body-sm sgds:text-subtle">
-              {{ family.description }}
-            </p>
-            <code
-              v-for="example in family.examples"
-              :key="example"
-              class="sgds:block sgds:max-w-full sgds:break-all sgds:rounded-md sgds:bg-surface-default sgds:px-component-sm sgds:py-[var(--sgds-padding-2-xs)] sgds:text-body-sm"
-            >
-              {{ example }}
-            </code>
-          </div>
-        </sgds-card>
-      </div>
-    </div>
-  </div>
+      <g fill="none" stroke="var(--sgds-border-color-default)" stroke-width="var(--sgds-border-width-1)" stroke-linecap="square">
+        <path d="M66 62V78M20 78H112M20 78V90M112 78V90" />
+        <path d="M232 62V78M142 78H322M142 78V90M322 78V90" />
+        <path d="M467 62V78M352 78H582M352 78V90M582 78V90" />
+        <path d="M742 62V78M612 78H872M612 78V90M872 78V90" />
+        <path d="M961.5 62V78M902 78H1021M902 78V90M1021 78V90" />
+      </g>
+
+      <g fill="var(--sgds-color-default)" font-family="Inter, sans-serif" font-size="16" font-weight="600" text-anchor="middle">
+        <text x="66" y="42">Raw value</text>
+        <text x="232" y="42">Primitive</text>
+        <text x="467" y="42">Simplified semantic</text>
+        <text x="742" y="42">Granular semantic</text>
+        <text x="961.5" y="32">
+          <tspan x="961.5" dy="0">Component-</tspan>
+          <tspan x="961.5" dy="20">specific</tspan>
+        </text>
+      </g>
+
+      <g stroke="var(--sgds-border-color-default)" stroke-width="var(--sgds-border-width-1)" stroke-linecap="round" marker-end="url(#token-flow-arrow)">
+        <line x1="112" y1="128" x2="142" y2="128" />
+        <line x1="322" y1="128" x2="352" y2="128" />
+        <line x1="582" y1="128" x2="612" y2="128" />
+        <line x1="872" y1="128" x2="902" y2="128" />
+      </g>
+
+      <g>
+        <rect x="20" y="104" width="92" height="48" rx="24" fill="var(--sgds-surface-raised)" />
+        <text x="66" y="133" fill="var(--sgds-color-default)" font-family="var(--sgds-font-family-brand)" font-size="14" text-anchor="middle">#523ABC</text>
+
+        <rect x="142" y="104" width="180" height="48" rx="24" fill="var(--sgds-surface-raised)" />
+        <text x="232" y="133" fill="var(--sgds-color-default)" font-family="var(--sgds-font-family-brand)" font-size="14" text-anchor="middle">product-primary-700</text>
+
+        <rect x="352" y="104" width="230" height="48" rx="24" fill="var(--sgds-surface-raised)" />
+        <text x="467" y="133" fill="var(--sgds-color-default)" font-family="var(--sgds-font-family-brand)" font-size="14" text-anchor="middle">primary-surface-emphasis</text>
+
+        <rect x="612" y="104" width="260" height="48" rx="24" fill="var(--sgds-surface-raised)" />
+        <text x="742" y="133" fill="var(--sgds-color-default)" font-family="var(--sgds-font-family-brand)" font-size="14" text-anchor="middle">form-primary-surface-emphasis</text>
+
+        <rect x="902" y="104" width="119" height="48" rx="24" fill="var(--sgds-surface-raised)" />
+        <text x="961.5" y="133" fill="var(--sgds-color-default)" font-family="var(--sgds-font-family-brand)" font-size="14" text-anchor="middle">checkbox-bg</text>
+      </g>
+    </svg>
+  </figure>
 </template>

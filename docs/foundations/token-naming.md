@@ -1,66 +1,67 @@
 ---
 layout: docs
 title: Token naming
-description: Learn the SGDS naming principles, naming structure, and common anti-patterns for design tokens.
+description: How SGDS names design tokens — the four-part pattern, the principles behind it, and worked examples for each token type.
 ---
 
-Good token names make SGDS easier to read, scale, and maintain. SGDS tokens are CSS custom properties.
+<script setup>
+import DesignTokenStructureChart from "../.vitepress/components/foundations/DesignTokenStructureChart.vue";
+import DesignTokenExample from "../.vitepress/components/foundations/DesignTokenExample.vue";
+import PrimitiveTokenAnatomy from "../.vitepress/components/foundations/PrimitiveTokenAnatomy.vue";
+import SemanticTokenAnatomy from "../.vitepress/components/foundations/SemanticTokenAnatomy.vue";
+import ComponentTokenAnatomy from "../.vitepress/components/foundations/ComponentTokenAnatomy.vue";
+import TokenNameLegend from "../.vitepress/components/foundations/TokenNameLegend.vue";
+import TokenNameExample from "../.vitepress/components/foundations/TokenNameExample.vue";
+import TokenNamingPositionMap from "../.vitepress/components/foundations/TokenNamingPositionMap.vue";
+</script>
 
-Token names use the `--sgds-` namespace followed by the token family, role, scale, state, or component context.
+## Naming convention
 
-## Naming structure
+SGDS tokens are named in four ordered parts: **namespace**, **object**, **base**, and **modifier**. Each part narrows the meaning, so a token name reads from the broadest system context down to a specific design attribute. The legend below names each position; the worked example shows how the parts combine for a real token.
 
-Every public SGDS token starts with `--sgds-`. After that, the name narrows from broad family or context to specific role.
+<div class="sgds:flex sgds:flex-col sgds:gap-layout-sm sgds:mb-[var(--sgds-layout-gap-lg)]">
+  <TokenNamingPositionMap />
+  <TokenNameLegend />
+  <div class="sgds:h-[var(--sgds-layout-gap-xs)]" aria-hidden="true"></div>
+  <TokenNameExample />
+</div>
 
-For primitive tokens, the name usually identifies a foundation scale and a step:
+### Anatomy by token type
 
-```css
---sgds-purple-600
---sgds-spacer-5
---sgds-font-size-16
---sgds-border-radius-md
-```
+Each token type uses the four positions slightly differently. The diagrams below show how primitive, semantic, and component tokens combine namespace, object, base, and modifier.
 
-For semantic colour tokens, the name usually identifies role, property, and emphasis:
-
-```css
---sgds-primary-surface-default
---sgds-danger-border-color-muted
---sgds-body-color-subtle
---sgds-bg-translucent-subtle
-```
-
-For responsive spacing and typography tokens, the name identifies the usage context:
-
-```css
---sgds-font-size-heading-md
---sgds-line-height-xs
---sgds-layout-gap-md
---sgds-component-padding-lg
-```
-
-For form-oriented aliases, the name keeps the form context visible:
-
-```css
---sgds-form-height-md
---sgds-form-icon-size-lg
---sgds-form-danger-border-color-default
-```
-
-## Read the name from general to specific
-
-Read names from left to right. `--sgds-primary-surface-default` means SGDS namespace, primary role, surface property, default emphasis. `--sgds-form-danger-border-color-default` means SGDS namespace, form context, danger state, border colour property, default emphasis.
+<div class="sgds:flex sgds:flex-col sgds:gap-layout-md sgds:mb-[var(--sgds-layout-gap-lg)]">
+  <PrimitiveTokenAnatomy />
+  <SemanticTokenAnatomy />
+  <ComponentTokenAnatomy />
+</div>
 
 ## Naming principles
 
-Use names that describe meaning instead of literal appearance. Prefer `danger`, `warning`, `success`, `surface`, `border-color`, `heading`, and `body`.
+<div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:mb-[var(--sgds-layout-gap-lg)] sgds:[&>p]:!my-0 sgds:[&>ul]:!my-0">
 
-Avoid names that only describe a visual value such as red, yellow, or large. Keep names compact enough to scan. Make them specific enough that teams can choose the right token without looking up the resolved value.
+We follow five principles when naming SGDS tokens. They explain the choices behind every name shown above.
 
-Use scale names consistently. SGDS uses size names such as `xs`, `sm`, `md`, `lg`, and `xl`, numeric steps for primitive scales such as `--sgds-spacer-5`, and emphasis names such as `default`, `muted`, `subtle`, `emphasis`, `inverse`, and `fixed`.
+- **Short:** keep names compact enough to scan in code, design tools, and documentation.
+- **Meaningful:** name the decision, not the current value. Prefer role-based words like <CodeToken label="danger" />, <CodeToken label="warning" />, <CodeToken label="success" />, <CodeToken label="surface" />, <CodeToken label="border-color" />, <CodeToken label="heading" />, and <CodeToken label="body" />.
+- **Scalable:** choose names that can support more products, themes, states, and component variants over time.
+- **Flexible:** keep shared tokens broad enough for reuse. Add context, such as <CodeToken label="form" /> or <CodeToken label="btn" />, only when the decision is genuinely scoped.
+- **Clear:** make each segment easy to understand without resolving the token value.
 
-## Anti-patterns
+</div>
 
-Avoid naming tokens after raw values, one-off components, or temporary visual decisions. A token named for the current colour value will become misleading when theming changes. A token named for one page or one component should only exist if the decision is genuinely scoped to that context.
+## Full naming structure
 
-Do not create multiple names for the same decision. If a shared semantic token already fits, reuse it. If a component requires a scoped token, document why the shared token is not enough and where the new token is supported.
+For the full picture, the chart below maps every position, segment, and modifier the system can produce. Use it as the reference whenever a new token name needs to slot into the system.
+
+<div class="sgds:mb-[var(--sgds-layout-gap-lg)]">
+  <DesignTokenStructureChart />
+</div>
+
+## Worked example
+
+The button-with-hover-state example below traces every position through a real token name, from primitive to component.
+
+<div class="sgds:mb-[var(--sgds-layout-gap-lg)]">
+  <DesignTokenExample />
+</div>

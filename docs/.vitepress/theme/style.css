@@ -79,11 +79,15 @@ sgds-tab-group[variant="underlined"] > sgds-tab[slot="nav"]:last-of-type::after 
 }
 
 /* Inline code */
-.vp-doc code:not(pre code) {
-  background: var(--sgds-surface-raised);
-  border: 1px solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-sm);
-  color: var(--sgds-body-color-default);
-  font-size: 0.875em;
-  padding: 1px 6px;
+.vp-doc :not(pre, h1, h2, h3, h4, h5, h6) > code {
+  background: var(--sgds-surface-raised) !important;
+  background-color: var(--sgds-surface-raised) !important;
+  border-radius: var(--sgds-border-radius-sm) !important;
+  color: var(--sgds-color-default) !important;
+  display: inline-block !important;
+  font-family: var(--sgds-font-family-mono) !important;
+  font-size: 0.875em !important;
+  line-height: 1.4 !important;
+  padding: 0 6px !important;
+  white-space: nowrap !important;
 }
