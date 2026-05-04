@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
-import SegmentedControl from "./components/SegmentedControl.vue";
 
 const props = defineProps<{
   section: "width" | "radius";
@@ -10,33 +9,6 @@ const props = defineProps<{
 
 const isWidthPage = computed(() => props.section === "width");
 const isRadiusPage = computed(() => props.section === "radius");
-
-const tokenViewOptions = [
-  { value: "css-variable", label: "CSS variable" },
-  { value: "figma", label: "Figma token" },
-  { value: "utility", label: "SGDS tailwind token" },
-] as const;
-type TokenViewId = (typeof tokenViewOptions)[number]["value"];
-const activeTokenViewId = ref<TokenViewId>("css-variable");
-
-// Token names in this file omit the `--` prefix. Map to utility classes:
-// border-width-{N} → sgds:border-{N}; border-radius-{name} → sgds:rounded-{name};
-// form-border-radius-{name} → sgds:rounded-form-{name}.
-const tokenToUtility = (token: string): string => {
-  const formRadius = token.match(/^sgds-form-border-radius-(.+)$/);
-  if (formRadius) return `sgds:rounded-form-${formRadius[1]}`;
-  const width = token.match(/^sgds-border-width-(.+)$/);
-  if (width) return `sgds:border-${width[1]}`;
-  const radius = token.match(/^sgds-border-radius-(.+)$/);
-  if (radius) return `sgds:rounded-${radius[1]}`;
-  return token;
-};
-
-const getTokenValue = (token: string) => {
-  if (activeTokenViewId.value === "utility") return tokenToUtility(token);
-  if (activeTokenViewId.value === "css-variable") return `--${token}`;
-  return token;
-};
 
 type BorderToken = {
   token: string;
@@ -79,17 +51,15 @@ const formRadiusTokens: BorderToken[] = [
   <TypographyPageTemplate>
     <section v-if="isWidthPage" class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Border width tokens</h3>
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Border width tokens</h2>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Width tokens define the stroke thickness of borders applied to components and custom surfaces.
         </p>
       </div>
       <div class="typography-page-template__body typography-page-template__body--prose">
-        <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
-
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
-            <sgds-table-head class="border-token-table-name-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+            <sgds-table-head class="border-token-table-name-col">CSS variable</sgds-table-head>
             <sgds-table-head class="border-token-table-value-col">Value (px/rem)</sgds-table-head>
             <sgds-table-head class="border-token-table-example-col">Preview</sgds-table-head>
           </sgds-table-row>
@@ -101,7 +71,7 @@ const formRadiusTokens: BorderToken[] = [
           >
             <sgds-table-cell class="border-token-table-name-col">
               <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                <CodeToken :label="getTokenValue(row.token)" />
+                <CodeToken :label="`--${row.token}`" />
                 <sgds-badge v-if="row.note" variant="primary">{{ row.note }}</sgds-badge>
               </div>
             </sgds-table-cell>
@@ -121,24 +91,22 @@ const formRadiusTokens: BorderToken[] = [
       </div>
     </section>
 
-    <section v-if="isRadiusPage" class="typography-page-template__section typography-page-template__section--spaced">
-      <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Border radius tokens</h3>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-          Radius tokens define the corner rounding applied to components, surfaces, and form controls.
-        </p>
-      </div>
+    <section v-if="isRadiusPage" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Border radius tokens</h2>
       <div class="typography-page-template__body typography-page-template__body--prose">
-        <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
 
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">General radius</h5>
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">General radius</h4>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+                Radius tokens define the corner rounding applied to components, surfaces, and form controls.
+              </p>
+            </div>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="border-token-table-name-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+                <sgds-table-head class="border-token-table-name-col">CSS variable</sgds-table-head>
                 <sgds-table-head class="border-token-table-value-col">Value (px/rem)</sgds-table-head>
-                <sgds-table-head class="border-token-table-usage-col">Usage</sgds-table-head>
                 <sgds-table-head class="border-token-table-example-col">Preview</sgds-table-head>
               </sgds-table-row>
 
@@ -149,15 +117,12 @@ const formRadiusTokens: BorderToken[] = [
               >
                 <sgds-table-cell class="border-token-table-name-col">
                   <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                    <CodeToken :label="getTokenValue(row.token)" />
+                    <CodeToken :label="`--${row.token}`" />
                     <sgds-badge v-if="row.note" variant="primary">{{ row.note }}</sgds-badge>
                   </div>
                 </sgds-table-cell>
                 <sgds-table-cell class="border-token-table-value-col">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.value }}</span>
-                </sgds-table-cell>
-                <sgds-table-cell class="border-token-table-usage-col">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span>
                 </sgds-table-cell>
                 <sgds-table-cell class="border-token-table-example-col">
                   <div class="sgds:flex sgds:justify-center border-token-preview-cell">
@@ -174,15 +139,16 @@ const formRadiusTokens: BorderToken[] = [
           </div>
 
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">Form radius</h5>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-              Use form radius tokens only on native HTML form controls. When SGDS web components are available, prefer the component over styling custom form controls yourself.
-            </p>
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Form radius</h4>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+                Use form radius tokens only on native HTML form controls. When SGDS web components are available, prefer the component over styling custom form controls yourself.
+              </p>
+            </div>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="border-token-table-name-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+                <sgds-table-head class="border-token-table-name-col">CSS variable</sgds-table-head>
                 <sgds-table-head class="border-token-table-value-col">Value (px/rem)</sgds-table-head>
-                <sgds-table-head class="border-token-table-usage-col">Usage</sgds-table-head>
                 <sgds-table-head class="border-token-table-example-col">Preview</sgds-table-head>
               </sgds-table-row>
 
@@ -193,15 +159,12 @@ const formRadiusTokens: BorderToken[] = [
               >
                 <sgds-table-cell class="border-token-table-name-col">
                   <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                    <CodeToken :label="getTokenValue(row.token)" />
+                    <CodeToken :label="`--${row.token}`" />
                     <sgds-badge v-if="row.note" variant="primary">{{ row.note }}</sgds-badge>
                   </div>
                 </sgds-table-cell>
                 <sgds-table-cell class="border-token-table-value-col">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.value }}</span>
-                </sgds-table-cell>
-                <sgds-table-cell class="border-token-table-usage-col">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span>
                 </sgds-table-cell>
                 <sgds-table-cell class="border-token-table-example-col">
                   <div class="sgds:flex sgds:justify-center border-token-preview-cell">

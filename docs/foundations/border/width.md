@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Border width
-description: Design tokens for border width across the SGDS system.
+description: Width tokens define the stroke thickness of borders applied to components and surfaces.
 ---
 
 <script setup>

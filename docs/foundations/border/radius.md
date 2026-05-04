@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Border radius
-description: Design tokens for border radius across the SGDS system.
+description: Radius tokens define the corner rounding applied to components, surfaces, and form controls.
 ---
 
 <script setup>

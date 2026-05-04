@@ -18,11 +18,15 @@ type Example = {
 const principles: Principle[] = [
   {
     title: "Clarity",
-    description: "Borders should provide clear structure, aiding readability and navigation.",
+    description: "Use borders to show structure and support readability.",
   },
   {
     title: "Subtlety",
-    description: "Borders should be minimal and unobtrusive, letting content take priority.",
+    description: "Keep borders minimal so content stays the focus.",
+  },
+  {
+    title: "Separation",
+    description: "Use border width to separate content and clarify where areas begin and end.",
   },
 ];
 
@@ -89,90 +93,87 @@ const radiusExamples: Example[] = [
     <FoundationPrincipleTemplate>
       <FoundationPrinciplesList :principles="principles" />
 
-      <Section
-        title="Border"
-        description="SGDS border width is used to define structure and separation."
-      >
-      <div class="typography-page-template__body">
-        <article class="typography-page-template__split-row">
-          <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
-              {{ borderWidthExamples[0]?.title }}
-            </h5>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-              {{ borderWidthExamples[0]?.description }}
-            </p>
-          </div>
-
-          <div class="typography-page-template__demo-pane">
-            <div class="typography-page-template__card sgds:flex sgds:items-center sgds:justify-center sgds:min-h-[20rem] sgds:p-layout-md">
-              <div class="sgds:flex sgds:w-full sgds:max-w-[20rem] sgds:flex-col sgds:gap-text-xs">
-                <span class="sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Label</span>
-                <div class="sgds:flex sgds:h-12 sgds:items-center sgds:rounded-[8px] sgds:border sgds:border-default sgds:bg-surface-default sgds:px-component-xs">
-                  <span class="sgds:text-label-md sgds:font-light sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-                    Placeholder text
-                  </span>
-                </div>
-                <div class="sgds:h-px sgds:w-full sgds:bg-muted"></div>
+      <Section title="Characteristics (width)">
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+        <section class="sgds:flex sgds:flex-col sgds:gap-text-lg">
+          <div class="typography-page-template__body">
+            <article class="typography-page-template__split-row">
+              <div class="typography-page-template__copy-pane">
+                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+                  {{ borderWidthExamples[0]?.title }}
+                </h4>
+                <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                  {{ borderWidthExamples[0]?.description }}
+                </p>
               </div>
-            </div>
-          </div>
-        </article>
 
-        <article class="typography-page-template__split-row">
-          <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
-              {{ borderWidthExamples[1]?.title }}
-            </h5>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-              {{ borderWidthExamples[1]?.description }}
-            </p>
-          </div>
-
-          <div class="typography-page-template__demo-pane">
-            <div class="typography-page-template__card sgds:flex sgds:items-center sgds:justify-center sgds:min-h-[20rem] sgds:p-layout-md">
-              <div class="sgds:flex sgds:w-full sgds:max-w-[20rem] sgds:flex-col sgds:gap-text-xs">
-                <span class="sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Label</span>
-                <div class="sgds:flex sgds:h-12 sgds:items-center sgds:rounded-[8px] sgds:border-2 sgds:border-emphasis sgds:bg-surface-default sgds:px-component-xs">
-                  <span class="sgds:text-label-md sgds:font-light sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-                    Placeholder text
-                  </span>
+              <div class="typography-page-template__demo-pane">
+                <div class="typography-page-template__card sgds:flex sgds:items-center sgds:justify-center sgds:min-h-[20rem] sgds:p-layout-md">
+                  <div class="sgds:flex sgds:w-full sgds:max-w-[20rem] sgds:flex-col sgds:gap-text-xs">
+                    <span class="sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Label</span>
+                    <div class="sgds:flex sgds:h-12 sgds:items-center sgds:rounded-[8px] sgds:border sgds:border-default sgds:bg-surface-default sgds:px-component-xs">
+                      <span class="sgds:text-label-md sgds:font-light sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                        Placeholder text
+                      </span>
+                    </div>
+                    <div class="sgds:h-px sgds:w-full sgds:bg-muted"></div>
+                  </div>
                 </div>
-                <div class="sgds:h-px sgds:w-full sgds:bg-muted"></div>
               </div>
-            </div>
-          </div>
-        </article>
+            </article>
 
+            <article class="typography-page-template__split-row">
+              <div class="typography-page-template__copy-pane">
+                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+                  {{ borderWidthExamples[1]?.title }}
+                </h4>
+                <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                  {{ borderWidthExamples[1]?.description }}
+                </p>
+              </div>
+
+              <div class="typography-page-template__demo-pane">
+                <div class="typography-page-template__card sgds:flex sgds:items-center sgds:justify-center sgds:min-h-[20rem] sgds:p-layout-md">
+                  <div class="sgds:flex sgds:w-full sgds:max-w-[20rem] sgds:flex-col sgds:gap-text-xs">
+                    <span class="sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Label</span>
+                    <div class="sgds:flex sgds:h-12 sgds:items-center sgds:rounded-[8px] sgds:border-2 sgds:border-emphasis sgds:bg-surface-default sgds:px-component-xs">
+                      <span class="sgds:text-label-md sgds:font-light sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                        Placeholder text
+                      </span>
+                    </div>
+                    <div class="sgds:h-px sgds:w-full sgds:bg-muted"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="typography-page-template__split-row">
+              <div class="typography-page-template__copy-pane">
+                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+                  {{ borderWidthExamples[2]?.title }}
+                </h4>
+                <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                  {{ borderWidthExamples[2]?.description }}
+                </p>
+              </div>
+
+              <div class="typography-page-template__demo-pane">
+                <div class="typography-page-template__card sgds:flex sgds:items-center sgds:justify-center sgds:min-h-[20rem] sgds:p-layout-md">
+                  <div class="sgds:w-full sgds:max-w-[16rem] sgds:border-b-4 sgds:border-default"></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="sgds:flex sgds:flex-col sgds:gap-text-lg">
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Characteristics (radius)</h2>
+        <div class="typography-page-template__body">
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
-              {{ borderWidthExamples[2]?.title }}
-            </h5>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-              {{ borderWidthExamples[2]?.description }}
-            </p>
-          </div>
-
-          <div class="typography-page-template__demo-pane">
-            <div class="typography-page-template__card sgds:flex sgds:items-center sgds:justify-center sgds:min-h-[20rem] sgds:p-layout-md">
-              <div class="sgds:w-full sgds:max-w-[16rem] sgds:border-b-4 sgds:border-default"></div>
-            </div>
-          </div>
-        </article>
-      </div>
-      </Section>
-
-      <Section
-        title="Radius"
-        description="SGDS radius is used widely throughout our system. Each radius size is intentionally applied to select elements."
-      >
-      <div class="typography-page-template__body">
-        <article class="typography-page-template__split-row">
-          <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
               {{ radiusExamples[0]?.title }}
-            </h5>
+            </h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[0]?.description }}
             </p>
@@ -207,9 +208,9 @@ const radiusExamples: Example[] = [
 
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
               {{ radiusExamples[1]?.title }}
-            </h5>
+            </h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[1]?.description }}
             </p>
@@ -237,9 +238,9 @@ const radiusExamples: Example[] = [
 
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
               {{ radiusExamples[2]?.title }}
-            </h5>
+            </h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[2]?.description }}
             </p>
@@ -265,9 +266,9 @@ const radiusExamples: Example[] = [
 
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
               {{ radiusExamples[3]?.title }}
-            </h5>
+            </h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[3]?.description }}
             </p>
@@ -317,9 +318,9 @@ const radiusExamples: Example[] = [
 
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
               {{ radiusExamples[4]?.title }}
-            </h5>
+            </h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[4]?.description }}
             </p>
@@ -355,7 +356,9 @@ const radiusExamples: Example[] = [
             </div>
           </div>
         </article>
-      </div>
+        </div>
+        </section>
+        </div>
       </Section>
     </FoundationPrincipleTemplate>
   </TypographyPageTemplate>
