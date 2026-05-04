@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FoundationPrinciplesList from "./foundations/FoundationPrinciplesList.vue";
 import FoundationPrincipleTemplate from "./foundations/FoundationPrincipleTemplate.vue";
+import FoundationRulesGuidanceList from "./foundations/FoundationRulesGuidanceList.vue";
 import Section from "./foundations/Section.vue";
 import IconographyCharacteristicsPage from "./IconographyCharacteristicsPage.vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
@@ -8,34 +9,33 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 const principles = [
   {
     title: "Create visual consistency",
-    body: "Icons should be consistent in layouts, not only in their look and feel but in their placement within a page or component.",
+    body: "Keep icons consistent in look and placement across pages and components.",
   },
   {
     title: "Visually pleasing",
-    body: "An eye-catching and appealing graphic helps people perform tasks quicker and more easily.",
+    body: "Use clear, balanced icons that help users complete tasks quickly.",
   },
   {
     title: "Keep icons simple and schematic",
-    body: "Reduce the amount of graphic details by focusing on the basic characteristics of the object rather than creating a highly realistic image in order to speed up recognition.",
+    body: "Focus on the object's basic features. Simple icons are faster to recognise.",
   },
 ];
 
 const rules = [
   {
     title: "Design on purpose",
-    body: "Icons, like all elements of good design, must have a clear purpose. Before you even think about what sort of icons you want, you need to ask yourself: why?",
-  },
-  {
-    title: "Size really matters",
-    body: "The promise of nascent technologies, such as SVG and icon fonts, is yet to be realised, so for now we have to think about size and scalability.",
+    body: "Every icon needs a clear purpose. Decide why it is needed first.",
+    demo: "icon-purpose",
   },
   {
     title: "Prioritise recognition over recall",
-    body: "Icons are fast to recognise at a glance, if well designed. This is particularly true for standard icons that people have seen and used before.",
+    body: "Use icons people can recognise at a glance, especially standard icons.",
+    demo: "icon-recognition",
   },
   {
     title: "Icons need a text label",
-    body: "To help overcome the ambiguity that almost all icons face, a text label must be present alongside an icon to clarify its meaning in that particular context.",
+    body: "Add a text label when an icon could be unclear in context.",
+    demo: "icon-label",
   },
 ];
 </script>
@@ -44,7 +44,7 @@ const rules = [
   <TypographyPageTemplate stacked-examples>
     <FoundationPrincipleTemplate>
       <FoundationPrinciplesList :principles="principles" />
-      <FoundationPrinciplesList title="Rules and guide" :principles="rules" />
+      <FoundationRulesGuidanceList title="Rules and guide" :rules="rules" />
       <Section title="Characteristics">
         <IconographyCharacteristicsPage />
       </Section>

@@ -79,12 +79,7 @@ export const foundationsSidebar = {
       text: "Iconography",
       items: [
         { text: "Overview", link: "/foundations/iconography" },
-        {
-          text: "Icon tokens",
-          items: [
-            { text: "Icon size", link: "/foundations/iconography/icon-tokens" },
-          ],
-        },
+        { text: "Icon size", link: "/foundations/iconography/icon-size" },
         { text: "Icon library", link: "/foundations/iconography/icon-library" },
       ],
     },

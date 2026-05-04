@@ -14,6 +14,7 @@ const foundationStorybookIds: Record<string, string> = {
   "foundations/colour/brand-colour": "foundation-theming-govtech-brand-palettes--docs",
   "foundations/colour/primitive-colour": "foundation-theming--docs",
   "foundations/colour/semantic-colour": "foundation-theming--docs",
+  "foundations/iconography/icon-library": "components-icon--docs",
   "foundations/layout/breakpoint": "foundation-grid-system--docs",
   "foundations/layout/responsive-grid": "foundation-grid-system--responsive",
 };
@@ -24,6 +25,7 @@ const foundationStorybookPathLabels: Record<string, string> = {
   "foundations/colour/semantic-colour": "foundation-theming",
   "foundations/elevation/edge-elevation": "utilities-elevation--elevation",
   "foundations/elevation/surface-elevation": "utilities-elevation--elevation",
+  "foundations/iconography/icon-library": "components/icon",
 };
 
 const foundationStorybookHrefOverrides: Record<string, string> = {
@@ -60,7 +62,8 @@ const TOKEN_PAGE_PATHS = new Set<string>([
   "foundations/elevation/edge-elevation",
   "foundations/elevation/surface-elevation",
   // Iconography
-  "foundations/iconography/icon-tokens",
+  "foundations/iconography/icon-library",
+  "foundations/iconography/icon-size",
   // Layer
   "foundations/layer/layer-tokens",
   // Layout

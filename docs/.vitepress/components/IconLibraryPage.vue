@@ -46,13 +46,6 @@ function onSizeSelectChange(event: Event) {
   if (value && iconSizeOptions.some((o) => o.value === value)) iconSize.value = value;
 }
 
-const cdnSnippet =
-  '<script\n' +
-  '  src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component@3.17.0/components/Icon/index.umd.min.js"\n' +
-  '  integrity="sha384-VqlyRyyqU3dSkR278u8I16X1NKXYDxoZtGmJ1enaEYa7Xy2kkDKZF9flwD2fKY3m"\n' +
-  '  crossorigin="anonymous"\n' +
-  '><\/script>';
-
 type IconCategory = { id: string; label: string; icons: string[] };
 
 const iconCategories: IconCategory[] = [
@@ -235,34 +228,15 @@ async function copyIconName(iconName: string) {
       <div class="typography-page-template__body typography-page-template__body--prose">
         <article class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
-          <!-- Import -->
-          <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">
-              Import
-            </h3>
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-2-xs">
-              <div class="sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">React</div>
-              <CopyCommand command='import SgdsIcon from "@govtechsg/sgds-web-component/react/icon/index.js";' />
-            </div>
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-2-xs">
-              <div class="sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Others (Vue, Angular, plain HTML etc.)</div>
-              <CopyCommand command='import "@govtechsg/sgds-web-component/components/Icon";' />
-            </div>
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-2-xs il-cdn-snippet">
-              <div class="sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">CDN</div>
-              <CopyCommand :command="cdnSnippet" />
-            </div>
-          </div>
-
           <!-- API -->
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">
               API
-            </h3>
+            </h2>
             <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-            <h5 class="sgds:text-heading-xs sgds:font-semibold sgds:leading-xs sgds:tracking-tight sgds:m-0 sgds:font-mono">
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0 sgds:font-mono">
               sgds-icon
-            </h5>
+            </h4>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
                 <sgds-table-head class="il-api-col--name">Name</sgds-table-head>
@@ -304,9 +278,9 @@ async function copyIconName(iconName: string) {
 
           <!-- Icon list -->
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">
               List of icons
-            </h3>
+            </h2>
 
             <!-- Style tabs + size select + search row -->
             <div class="il-toolbar sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-component-xs">
@@ -400,7 +374,7 @@ async function copyIconName(iconName: string) {
                     :aria-label="`${iconName}${copiedIcon === iconName ? ' — copied' : ' — click to copy'}`"
                     @click="copyIconName(iconName)"
                   >
-                    <span class="il-tile-icon sgds:flex sgds:items-end sgds:justify-center" aria-hidden="true">
+                    <span class="il-tile-icon sgds:flex sgds:items-center sgds:justify-center" aria-hidden="true">
                       <sgds-icon :name="iconName" :size="iconSize" />
                     </span>
                     <span class="il-tile-name sgds:font-mono sgds:text-label-sm sgds:leading-2-xs sgds:tracking-normal">
@@ -490,14 +464,13 @@ async function copyIconName(iconName: string) {
  * layout and grid-auto-rows + align-self: stretch can size every tile
  * identically. */
 
-/* Lock the icon wrapper to a fixed size based on the largest supported icon
- * size token (--sgds-icon-size-3-xl = 64px). This keeps every tile the same
- * height regardless of which size is selected, and keeps rows uniform across
- * the whole grid. Both min/max are set so the wrapper cannot shrink or grow. */
+/* Lock the icon wrapper to the largest supported icon size token
+ * (--sgds-icon-size-3-xl = 64px). Every tile reserves the same icon area
+ * regardless of the currently selected size, so rows stay uniform. */
 .il-tile-icon {
-  block-size: var(--sgds-icon-size-xl);
-  min-block-size: var(--sgds-icon-size-xl);
-  max-block-size: var(--sgds-icon-size-xl);
+  block-size: var(--sgds-icon-size-3-xl);
+  min-block-size: var(--sgds-icon-size-3-xl);
+  max-block-size: var(--sgds-icon-size-3-xl);
   flex-shrink: 0;
 }
 
@@ -506,9 +479,10 @@ async function copyIconName(iconName: string) {
   appearance: none;
   /* transparent border preserves the space so tiles don't shift on hover */
   border: var(--sgds-border-width-1) solid transparent;
-  /* Fixed total tile height using an SGDS dimension token so every tile is
-   * identical regardless of the selected icon size. */
-  block-size: var(--sgds-dimension-96);
+  /* min-block-size instead of block-size so the tile can grow to fit the icon
+   * area (3-xl = 64px) + padding + label without clipping. grid-auto-rows: 1fr
+   * keeps all tiles in a row the same height. */
+  min-block-size: var(--sgds-dimension-96);
   inline-size: 100%;
   transition:
     background-color 120ms ease,
@@ -575,33 +549,6 @@ async function copyIconName(iconName: string) {
   border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
   overflow-x: auto;
   padding: var(--sgds-spacer-3) var(--sgds-spacer-4);
-}
-
-/* ─── CDN snippet — multi-line support override ─────────────────────────────
- * CopyCommand wraps its text in a CodeToken that applies `white-space: nowrap`,
- * which truncates multi-line commands on a single row and lets them overflow the
- * copy button. For the CDN snippet we need line breaks preserved and long
- * attribute lines to wrap inside the box. */
-
-.il-cdn-snippet code {
-  display: block;
-  white-space: pre-wrap;
-  word-break: break-word;
-  width: 100%;
-}
-
-/* CopyCommand's outer row uses items-center by default; switch to flex-start so
- * the copy button anchors to the top when the command wraps onto multiple
- * lines. CopyCommand's root is the last child of .il-cdn-snippet.
- *
- * The single-line React/Others boxes use min-h-12 (3rem) + py-2, so the visible
- * padding around the centered single line is effectively ~14px top/bottom.
- * For multi-line CDN the min-height doesn't kick in (the script content is
- * taller than 3rem), so py-2 alone looks tighter. Bump the block padding to
- * match the visual spacing of the single-line boxes. */
-.il-cdn-snippet > :last-child {
-  align-items: flex-start;
-  padding-block: var(--sgds-padding-md);
 }
 
 /* ─── API table columns ─────────────────────────────────────────────────────── */

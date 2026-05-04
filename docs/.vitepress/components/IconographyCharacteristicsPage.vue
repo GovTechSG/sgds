@@ -22,7 +22,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 1. Line vs solid vs logo -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Line, solid and logo variants</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Line, solid and logo variants</h4>
             <div class="icon-char-copy-list">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">SGDS icons (govicons) are available in line, solid and logo variants.</p>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Occasionally, only one style is available for aesthetic reasons.</p>
@@ -42,7 +42,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 2. Size -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Size</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Size</h4>
             <div class="icon-char-copy-list">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Set the size of icons using <code>icon-size</code> tokens. Available sizes on our system:</p>
               <ul class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal icon-char-list">
@@ -72,7 +72,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 3. Base grid -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Base grid</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Base grid</h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Icons are drawn on a pixel-based grid of 24 × 24 px and scaled down linearly to different sizes. Use the grid as your basic guideline to snap the artwork in place.</p>
           </div>
           <div class="typography-page-template__demo-pane">
@@ -88,7 +88,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 4. Padding -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Padding</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Padding</h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">The grid contains 2 px padding, which helps icons retain their desired scale.</p>
           </div>
           <div class="typography-page-template__demo-pane">
@@ -104,7 +104,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 5. Live area -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Live area</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Live area</h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">White space surrounding the 20 × 20 px live area.</p>
           </div>
           <div class="typography-page-template__demo-pane">
@@ -120,7 +120,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 6. Keyline shapes -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Keyline shapes</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Keyline shapes</h4>
             <div class="icon-char-copy-list">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Keylines give you consistent sizes for basic shapes or proportions across the icon set. These basic shapes help unify system icons and regulate their placement on the icon grid.</p>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Available shapes on our system:</p>
@@ -145,7 +145,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 7. Corner radius -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Corner radius</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Corner radius</h4>
             <div class="icon-char-copy-list">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Corner radius is 2 px by default. Interior corners should be square if the radius is 1 px.</p>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">The 2 px radius can be increased by 2 px when necessary to make the icon's metaphor clear. Use an additional radius to make the metaphor reflect the real form of the object.</p>
@@ -164,7 +164,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 8. Stroke alignment -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Stroke alignment</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Stroke alignment</h4>
             <div class="icon-char-copy-list">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Stroke placement affects an icon's overall appearance, depending on whether the stroke is placed on the inside, centre, or outside of a shape. In most cases, the stroke is best aligned with the centre of a shape.</p>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use consistent rounded stroke terminals.</p>
@@ -183,7 +183,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 9. Stroke terminal -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Stroke terminal</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Stroke terminal</h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use consistent rounded stroke terminals.</p>
           </div>
           <div class="typography-page-template__demo-pane">
@@ -199,7 +199,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 10. Stroke size -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Stroke size</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Stroke size</h4>
             <div class="icon-char-copy-list">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use a consistent stroke width, including curves, angles, and both interior and exterior strokes.</p>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">One icon should not look heavier or lighter than other icons of the same size. Maintain the same visual weight by using a <strong>1.25 px stroke</strong> when designing all icons.</p>
@@ -218,7 +218,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 11. Angles -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Angles</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Angles</h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use 45 degree angles for even anti-aliasing whenever that angle is logical or use increments of 15 degree for all other angles. You can create harmony across the icon set by making angles sit on the same increments.</p>
           </div>
           <div class="typography-page-template__demo-pane">
@@ -234,7 +234,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 12. Complex icon shapes -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Complex icon shapes</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Complex icon shapes</h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">If an icon requires complex details, subtle adjustments can be made to improve its legibility. These adjustments are referred to as optical corrections.</p>
           </div>
           <div class="typography-page-template__demo-pane">
@@ -250,7 +250,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 13. Icon size with container -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Icon size with container</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Icon size with container</h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Use the right icon size within containers such as icon buttons.</p>
           </div>
           <div class="typography-page-template__demo-pane">
@@ -266,7 +266,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 14. Pairing with text -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Pairing with text</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Pairing with text</h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Icon sizes are optimised to feel balanced when paired with buttons, text links, body copy or actionable elements.</p>
           </div>
           <div class="typography-page-template__demo-pane">
@@ -282,7 +282,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
         <!-- 15. Counter space -->
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Counter space</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Counter space</h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Keep at least 2 px of counter space between lines or shapes.</p>
           </div>
           <div class="typography-page-template__demo-pane">
@@ -327,7 +327,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
 .icon-char-variants {
   align-items: center;
   display: flex;
-  gap: var(--sgds-gap-xl);
+  gap: var(--sgds-component-gap-md);
   justify-content: center;
 }
 
@@ -335,7 +335,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
 .icon-char-sizes {
   align-items: flex-end;
   display: flex;
-  gap: var(--sgds-gap-lg);
+  gap: var(--sgds-component-gap-sm);
   justify-content: center;
 }
 
@@ -361,7 +361,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
 .icon-char-diagram-layout {
   align-items: flex-start;
   display: flex;
-  gap: var(--sgds-gap-3-xl);
+  gap: var(--sgds-layout-gap-xl);
   justify-content: center;
 }
 
@@ -369,7 +369,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: var(--sgds-gap-xs);
+  gap: var(--sgds-text-gap-xs);
 }
 
 .icon-char-scale-label {
@@ -604,7 +604,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
 .icon-char-grid-annotation {
   align-items: center;
   display: flex;
-  gap: var(--sgds-gap-xs);
+  gap: var(--sgds-text-gap-xs);
   position: absolute;
   right: -5.5rem;
   top: 50%;
@@ -632,19 +632,19 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: var(--sgds-gap-lg);
+  gap: var(--sgds-component-gap-sm);
 }
 
 .icon-char-complex-compare {
   display: flex;
-  gap: var(--sgds-gap-2-xl);
+  gap: var(--sgds-component-gap-md);
 }
 
 .icon-char-complex-item {
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: var(--sgds-gap-2-xs);
+  gap: var(--sgds-text-gap-2-xs);
 }
 
 .icon-char-compare-label {
@@ -694,9 +694,9 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
 .icon-char-cd-labels {
   display: flex;
   flex-direction: column;
-  gap: var(--sgds-gap-md);
+  gap: var(--sgds-component-gap-xs);
   justify-content: center;
-  left: calc(100% + var(--sgds-gap-xl));
+  left: calc(100% + var(--sgds-component-gap-md));
   position: absolute;
   top: 0;
   bottom: 0;
@@ -705,14 +705,14 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
 .icon-char-cd-lbl {
   align-items: center;
   display: flex;
-  gap: var(--sgds-gap-xs);
+  gap: var(--sgds-text-gap-xs);
 }
 
 /* Block 14 — pairing with text */
 .icon-char-pairing-demo {
   align-items: center;
   display: flex;
-  gap: var(--sgds-gap-2-xs);
+  gap: var(--sgds-text-gap-2-xs);
 }
 
 .icon-char-pairing-text {
@@ -733,7 +733,7 @@ import anglesSvg from "./foundations/assets/icon-angles.svg?raw";
 
   .icon-char-diagram-layout {
     flex-wrap: wrap;
-    gap: var(--sgds-gap-2-xl);
+    gap: var(--sgds-component-gap-md);
     justify-content: flex-start;
   }
 
