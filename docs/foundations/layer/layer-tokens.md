@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Layer tokens
-description: Design tokens for layer (z-index) stacking order across the SGDS design system.
+title: Z-index
+description: Design tokens for z-index stacking order across the SGDS design system.
 ---
 
 <script setup>

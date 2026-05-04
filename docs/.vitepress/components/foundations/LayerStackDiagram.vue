@@ -17,12 +17,12 @@ type Connector = { x1: number; x2: number; y: number };
 const columns: Column[] = [
   { label: "global-layer-", value: "base (0)", x: 192 },
   { label: "global-layer-", value: "raised (100)", x: 352 },
-  { label: "global-layer-", value: "floating (200)", x: 512 },
-  { label: "global-layer-", value: "overlay (400)", x: 672 },
-  { label: "global-layer-", value: "modal (800)", x: 832 },
-  { label: "local-layer-", value: "raised (900)", x: 992 },
-  { label: "local-layer-", value: "floating (1000)", x: 1152 },
-  { label: "local-layer-", value: "overlay (1200)", x: 1312 },
+  { label: "global-layer-", value: "floating (400)", x: 512 },
+  { label: "global-layer-", value: "overlay (800)", x: 672 },
+  { label: "global-layer-", value: "modal (1600)", x: 832 },
+  { label: "local-layer-", value: "raised (1700)", x: 992 },
+  { label: "local-layer-", value: "floating (2000)", x: 1152 },
+  { label: "local-layer-", value: "overlay (2400)", x: 1312 },
 ];
 
 const filledBars: FilledBar[] = [

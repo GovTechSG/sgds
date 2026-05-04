@@ -30,7 +30,6 @@ export const searchIndex: SearchItem[] = [
   { title: "Border", category: "Foundation", url: "/foundations/border" },
   { title: "Spacing", category: "Foundation", url: "/foundations/spacing" },
   { title: "Layer", category: "Foundation", url: "/foundations/layer", keywords: ["z-index", "stacking", "overlay"] },
-  { title: "Z-index utilities", category: "Foundation", url: "/foundations/layer/z-index-utilities", keywords: ["layer", "stacking", "z-base", "z-modal"] },
   { title: "Motion", category: "Foundation", url: "/foundations/motion" },
   { title: "Interaction", category: "Foundation", url: "/foundations/interaction" },
   { title: "Accessibility", category: "Foundation", url: "/foundations/accessibility" },

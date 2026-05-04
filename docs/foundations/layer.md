@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Layer principles
+title: Overview
 description: Layer (z-index) controls the stacking order of UI elements. It determines which components appear above or below others on the screen.
 ---
 
