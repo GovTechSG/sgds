@@ -13,7 +13,7 @@ const doc = computed(() => typographyTokenDocs[props.tokenKey]);
 const isResponsive = computed(() => doc.value?.rows?.some((r) => r.mobile !== undefined) ?? false);
 
 const tokenViewOptions = [
-  { value: "css-variable", label: "CSS variable" },
+  { value: "css-variable", label: "Token" },
   { value: "figma", label: "Figma token" },
   { value: "utility", label: "SGDS tailwind token" },
 ] as const;

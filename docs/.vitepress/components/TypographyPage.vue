@@ -1,40 +1,40 @@
 <script setup lang="ts">
 import FoundationPrinciplesList from "./foundations/FoundationPrinciplesList.vue";
 import FoundationPrincipleTemplate from "./foundations/FoundationPrincipleTemplate.vue";
+import FoundationRulesGuidanceList from "./foundations/FoundationRulesGuidanceList.vue";
 import Section from "./foundations/Section.vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 
 const principles = [
   {
     title: "Legibility",
-    body: "The ease with which one letterform can be distinguished from the next. It feeds into, but is not the same as, readability.",
+    body: "Make each letterform easy to tell apart. Legibility supports readability.",
   },
   {
     title: "Readability",
-    body: "Readability refers to the ease with which a block of text can be scanned by eye.",
+    body: "Make blocks of text easy to scan so users can read comfortably.",
   },
   {
     title: "Scannability",
-    body: "Scannability is the aggregate effect of writing and formatting techniques.",
+    body: "Use writing, headings, spacing, and structure to make content easy to scan.",
   },
 ];
 
 const rules = [
   {
     title: "Create contrast, skip one",
-    body: "Contrast creates visual order, emphasis, and clarity. It should also be harmoniously different, different enough to create visual interest, but not compete with each other. To achieve that, skip at least one size, weight, and/or colour.",
+    body: "Use contrast for order and emphasis. Skip one size, weight, or colour step.",
+    demo: "type-contrast",
   },
   {
-    title: "Leading & tracking",
-    body: "The larger and bolder the type, the smaller the tracking. Vice versa!",
+    title: "Leading and tracking",
+    body: "Use tighter tracking for larger, bolder type and looser tracking for smaller type.",
+    demo: "type-tracking",
   },
   {
     title: "Line length",
-    body: "Line length is how many characters are on a single line of text. For longer body text, the ideal length is between 40 and 60 characters. For shorter lines of text, the ideal length is 20 to 40 characters.",
-  },
-  {
-    title: "Alignment",
-    body: "Left-aligned text is the most common setting for left-to-right languages such as English. The F-alignment describes the most common user eye-scanning pattern when it comes to blocks of content.",
+    body: "Keep long body text to 40 to 60 characters per line, and short text to 20 to 40.",
+    demo: "type-line-length",
   },
 ];
 
@@ -259,7 +259,7 @@ const typePairingExamples: TypePairingExample[] = [
   <TypographyPageTemplate stacked-examples>
     <FoundationPrincipleTemplate>
       <FoundationPrinciplesList :principles="principles" />
-      <FoundationPrinciplesList title="Rules and guide" :principles="rules" />
+      <FoundationRulesGuidanceList title="Rules and guide" :rules="rules" />
 
       <Section title="Typeface">
         <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
@@ -302,9 +302,9 @@ const typePairingExamples: TypePairingExample[] = [
             class="typography-page-template__split-row"
           >
             <div class="typography-page-template__copy-pane">
-              <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
                 {{ variant.title }}
-              </h5>
+              </h4>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 <template v-for="(part, index) in variant.descriptionParts" :key="index">
                   <strong v-if="part.emphasised" class="sgds:font-semibold sgds:text-default">{{ part.text }}</strong>
@@ -345,9 +345,9 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Base size
-              </h5>
+              </h4>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 The default text size in browsers is 16px/1rem.
               </p>
@@ -371,9 +371,9 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Type scale aspect ratio
-              </h5>
+              </h4>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 The aspect ratio of the type system is Minor Third (1.200).
               </p>
@@ -398,9 +398,9 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Line height aspect ratio
-              </h5>
+              </h4>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 In the type system there is 2 aspect ratio for the line height:
               </p>
@@ -449,9 +449,9 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Spacing formula
-              </h5>
+              </h4>
               <div class="typography-page__formula-chip">
                 <code class="sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   Font size / 4

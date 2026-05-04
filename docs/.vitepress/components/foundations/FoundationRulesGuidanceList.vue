@@ -23,9 +23,9 @@ const { rules, title = "Rules and guidance" } = defineProps<{
         class="sgds:grid sgds:grid-cols-2 sgds:items-stretch sgds:gap-layout-md sgds:max-md:grid-cols-1"
       >
         <div class="sgds:flex sgds:min-w-0 sgds:flex-col sgds:gap-text-xs">
-          <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+          <h4 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
             {{ rule.title }}
-          </h3>
+          </h4>
           <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
             {{ rule.body ?? rule.description }}
           </p>

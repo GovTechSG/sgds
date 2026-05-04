@@ -5,7 +5,7 @@ import CodeToken from "./ui/CodeToken.vue";
 import SegmentedControl from "./components/SegmentedControl.vue";
 
 const tokenViewOptions = [
-  { value: "css-variable", label: "CSS variable" },
+  { value: "css-variable", label: "Token" },
   { value: "figma", label: "Figma token" },
   { value: "utility", label: "SGDS tailwind token" },
 ] as const;

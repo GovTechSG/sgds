@@ -7,15 +7,15 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 const principles = [
   {
     title: "Alignment",
-    body: "Ensure proper alignment of elements with consistent spacing to create a clean and organised layout, reinforcing the overall structure and flow of the design.",
+    body: "Use consistent spacing to align elements and support the layout structure.",
   },
   {
     title: "Flexibility",
-    body: "Allow adaptable spacing to accommodate different screen sizes and contexts while maintaining a harmonious design, enabling the system to scale effectively across various devices.",
+    body: "Let spacing adapt across screen sizes while keeping layouts balanced.",
   },
   {
     title: "Uniformity",
-    body: "Use a standardised spacing scale across the design system to ensure uniformity and coherence in layouts, making the interface predictable and easier to navigate.",
+    body: "Use the spacing scale consistently so layouts stay predictable.",
   },
 ];
 
@@ -64,7 +64,7 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
       <div class="spacing-page__body">
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Base size</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Base size</h4>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               SGDS follows a 4-point system. This allows us to create consistency across the user interface while decreasing
               design complexity.
@@ -82,7 +82,7 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
 
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Progression</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Progression</h4>
 
             <div class="typography-page-template__copy-block">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -98,19 +98,19 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
                 class="spacing-page__formula-block"
               >
                 <div class="spacing-page__formula-header">
-                  <h5 class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+                  <h6 class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">
                     {{ method.title }}
-                  </h5>
+                  </h6>
                   <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ method.description }}
                   </p>
                 </div>
 
                 <div class="spacing-page__formula-card">
-                  <h6 class="sgds:text-label-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+                  <h6 class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">
                     {{ method.formulaTitle }}
                   </h6>
-                  <div class="spacing-page__formula sgds:text-body-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal" :aria-label="method.ariaLabel">
+                  <div class="spacing-page__formula sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal" :aria-label="method.ariaLabel">
                     <span v-if="method.title.includes('Arithmetic')">
                       a<sub>n</sub> = a<sub>1</sub> + (n - 1) * d
                     </span>
@@ -118,11 +118,11 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
                       a<sub>n</sub> = a<sub>1</sub> * r<sup>n - 1</sup>
                     </span>
                   </div>
-                  <p class="spacing-page__formula-definition sgds:text-body-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                  <p class="spacing-page__formula-definition sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     <span v-for="definition in method.definitions" :key="definition">{{ definition }}</span>
                   </p>
                   <div class="spacing-page__sample">
-                    <span class="spacing-page__sample-label sgds:text-label-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Sample</span>
+                    <h6 class="spacing-page__sample-label sgds:text-subtitle-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">Sample</h6>
                     <div class="spacing-page__sample-values">
                       <span
                         v-for="value in method.sample"
@@ -309,7 +309,7 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
 
 .spacing-page__formula-header,
 .spacing-page__formula-card,
-.spacing-page__formula-block h5,
+.spacing-page__formula-block h6,
 .spacing-page__formula-block h6,
 .spacing-page__formula-block p {
   margin: 0;

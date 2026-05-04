@@ -1404,7 +1404,7 @@ const openContrastInfo = () => {
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">How we structure semantic colours</h3>
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">How we structure semantic colours</h4>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 SGDS semantic colour names follow a role-based structure. The name tells you what the colour is for before it tells you the visual value.
               </p>
@@ -1428,7 +1428,7 @@ const openContrastInfo = () => {
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">When we use semantic colours</h3>
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">When we use semantic colours</h4>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 SGDS uses semantic colours wherever a colour decision needs to stay meaningful across components, themes, and product brands. They let us describe the job a colour performs once, then remap the primitive values behind that job as the system grows.
               </p>

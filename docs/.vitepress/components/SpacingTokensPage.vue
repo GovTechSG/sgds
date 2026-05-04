@@ -1,56 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
-import SegmentedControl from "./components/SegmentedControl.vue";
 
-const tokenViewOptions = [
-  { value: "css-variable", label: "CSS variable" },
-  { value: "figma", label: "Figma token" },
-  { value: "utility", label: "SGDS tailwind token" },
-] as const;
-type TokenViewId = (typeof tokenViewOptions)[number]["value"];
-const activeTokenViewId = ref<TokenViewId>("css-variable");
-
-// ─── Token → utility class map ──────────────────────────────────────────────
-// Primitive spacers map to many utilities (m, p, gap, mx, my, etc.), so we
-// display the named scale with a `*` placeholder. spacer-12 has no named
-// utility — fall back to the raw multiplier.
-const spacerUtilityByIndex: Record<number, string> = {
-  0: "sgds:*-none",
-  1: "sgds:*-3-xs",
-  2: "sgds:*-2-xs",
-  3: "sgds:*-xs",
-  4: "sgds:*-sm",
-  5: "sgds:*-md",
-  6: "sgds:*-lg",
-  7: "sgds:*-xl",
-  8: "sgds:*-2-xl",
-  9: "sgds:*-3-xl",
-  10: "sgds:*-4-xl",
-  11: "sgds:*-5-xl",
-  12: "sgds:*-32",
-};
-
-const tokenToUtility = (token: string): string => {
-  const primitive = token.match(/^--sgds-spacer-(\d+)$/);
-  if (primitive) {
-    const idx = Number.parseInt(primitive[1], 10);
-    return spacerUtilityByIndex[idx] ?? token;
-  }
-  const semantic = token.match(/^--sgds-(text|layout|component)-(gap|padding)-(.+)$/);
-  if (semantic) {
-    const [, scope, kind, size] = semantic;
-    return kind === "gap" ? `sgds:gap-${scope}-${size}` : `sgds:p-${scope}-${size}`;
-  }
-  return token;
-};
-
-const getTokenValue = (token: string) => {
-  if (activeTokenViewId.value === "utility") return tokenToUtility(token);
-  if (activeTokenViewId.value === "css-variable") return token;
-  return token.replace(/^--/, "");
-};
 
 // ─── Primitive resolution map (mobile / tablet ≥1024px / desktop ≥1440px) ───
 // Sourced from @govtechsg/sgds-web-component/themes/responsive.css.
@@ -99,11 +50,14 @@ const breakpointPrimitive = (token: string, breakpoint: "mobile" | "tablet" | "d
 
 type SpacingTokenSection =
   | "spacer-scale"
+  | "gap"
   | "text-gap"
   | "layout-gap"
   | "component-gap"
+  | "padding"
   | "component-padding"
-  | "layout-padding";
+  | "layout-padding"
+  | "margin";
 
 const props = withDefaults(defineProps<{ section?: SpacingTokenSection }>(), {
   section: "spacer-scale",
@@ -177,6 +131,25 @@ const layoutPaddingRows: ResponsiveRow[] = [
   { token: "--sgds-layout-padding-lg", mobile: "32px", tablet: "48px", desktop: "64px", usage: "Generous page-level padding for spacious layouts"   },
   { token: "--sgds-layout-padding-xl", mobile: "48px", tablet: "64px", desktop: "96px", usage: "Maximum page inset for wide, focused content areas" },
 ];
+
+// ─── Margin tokens ────────────────────────────────────────────────────────────
+
+type MarginRow = { token: string; primitive: string; px: string; usage: string; isBase?: boolean };
+
+const marginRows: MarginRow[] = [
+  { token: "--sgds-margin-none",  primitive: "--sgds-spacer-0",  px: "0px",   usage: "Reset or suppress default browser margins"                },
+  { token: "--sgds-margin-3-xs",  primitive: "--sgds-spacer-1",  px: "2px",   usage: "Hairline margin, rarely used directly"                    },
+  { token: "--sgds-margin-2-xs",  primitive: "--sgds-spacer-2",  px: "4px",   usage: "Tight inline nudge between adjacent elements"             },
+  { token: "--sgds-margin-xs",    primitive: "--sgds-spacer-3",  px: "8px",   usage: "Small offset for closely related elements"                },
+  { token: "--sgds-margin-sm",    primitive: "--sgds-spacer-4",  px: "12px",  usage: "Compact block margin, e.g. between list items"            },
+  { token: "--sgds-margin-md",    primitive: "--sgds-spacer-5",  px: "16px",  usage: "Default block margin, e.g. below headings",  isBase: true },
+  { token: "--sgds-margin-lg",    primitive: "--sgds-spacer-6",  px: "20px",  usage: "Generous heading or section margin"                       },
+  { token: "--sgds-margin-xl",    primitive: "--sgds-spacer-7",  px: "24px",  usage: "Spacious separation between content blocks"               },
+  { token: "--sgds-margin-2-xl",  primitive: "--sgds-spacer-8",  px: "32px",  usage: "Large structural margin between major elements"           },
+  { token: "--sgds-margin-3-xl",  primitive: "--sgds-spacer-9",  px: "48px",  usage: "Section-level margin on wide layouts"                     },
+  { token: "--sgds-margin-4-xl",  primitive: "--sgds-spacer-10", px: "64px",  usage: "Feature block margin on desktop"                          },
+  { token: "--sgds-margin-5-xl",  primitive: "--sgds-spacer-11", px: "96px",  usage: "Maximum structural margin for hero or full-bleed regions" },
+];
 </script>
 
 <template>
@@ -185,7 +158,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
     <!-- ── Spacer scale ──────────────────────────────────────────────────── -->
     <section v-if="props.section === 'spacer-scale'" class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Spacer scale tokens</h3>
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Spacer scale tokens</h2>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           The spacer scale is the primitive foundation of the SGDS spacing system. Semantic spacing tokens reference these
           values. Use the numbered spacer tokens only when no semantic token fits the context.
@@ -193,19 +166,13 @@ const layoutPaddingRows: ResponsiveRow[] = [
       </div>
 
       <div class="typography-page-template__body typography-page-template__body--prose">
-      <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
-
-      <p v-if="activeTokenViewId === 'utility'" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-        Replace <CodeToken label="*" /> with the property prefix you need: <CodeToken label="m" />, <CodeToken label="p" />, <CodeToken label="gap" />, <CodeToken label="mx" />, or <CodeToken label="my" />.
-      </p>
-
-      <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
-        <sgds-table-row>
-          <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
-          <sgds-table-head class="st-metric-col">rem</sgds-table-head>
-          <sgds-table-head class="st-metric-col">px</sgds-table-head>
-          <sgds-table-head class="st-swatch-col">Visual</sgds-table-head>
-        </sgds-table-row>
+        <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+          <sgds-table-row>
+            <sgds-table-head class="st-token-col">Token</sgds-table-head>
+            <sgds-table-head class="st-metric-col">rem</sgds-table-head>
+            <sgds-table-head class="st-metric-col">px</sgds-table-head>
+            <sgds-table-head class="st-swatch-col">Visual</sgds-table-head>
+          </sgds-table-row>
 
         <sgds-table-row
           v-for="row in spacerRows"
@@ -214,7 +181,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
         >
           <sgds-table-cell class="st-token-col">
             <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-              <CodeToken :label="getTokenValue(`--sgds-spacer-${row.index}`)" />
+              <CodeToken :label="`--sgds-spacer-${row.index}`" />
               <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
             </div>
           </sgds-table-cell>
@@ -238,74 +205,23 @@ const layoutPaddingRows: ResponsiveRow[] = [
 
     <!-- ── Gap tokens ────────────────────────────────────────────────────── -->
     <section
-      v-if="props.section === 'text-gap' || props.section === 'layout-gap' || props.section === 'component-gap'"
+      v-if="props.section === 'gap' || props.section === 'text-gap' || props.section === 'layout-gap' || props.section === 'component-gap'"
       class="typography-page-template__section typography-page-template__section--spaced"
     >
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
-        <!-- Text gap -->
-        <article v-if="props.section === 'text-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
-          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Text gap tokens</h3>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-              Use for spacing between text elements and inline content. Utility: <CodeToken label="sgds:gap-text-{size}" />.
-            </p>
-          </div>
-          <div class="typography-page-template__body typography-page-template__body--prose">
-          <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
-          <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
-            <sgds-table-row>
-              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
-              <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
-              <sgds-table-head class="st-usage-col">Usage</sgds-table-head>
-            </sgds-table-row>
-            <sgds-table-row
-              v-for="row in textGapRows"
-              :key="row.token"
-              :class="{ 'st-base-row': row.isBase }"
-            >
-              <sgds-table-cell class="st-token-col">
-                <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="getTokenValue(row.token)" />
-                  <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
-                </div>
-              </sgds-table-cell>
-              <sgds-table-cell class="st-metric-col">
-                <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
-                </sgds-tooltip>
-              </sgds-table-cell>
-              <sgds-table-cell class="st-metric-col">
-                <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
-                </sgds-tooltip>
-              </sgds-table-cell>
-              <sgds-table-cell class="st-metric-col">
-                <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
-                </sgds-tooltip>
-              </sgds-table-cell>
-              <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
-            </sgds-table-row>
-          </sgds-table>
-          </div>
-        </article>
-
         <!-- Layout gap -->
-        <article v-if="props.section === 'layout-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+        <article v-if="props.section === 'gap' || props.section === 'layout-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Layout gap tokens</h3>
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Layout gap tokens</h2>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Use for spacing between page sections and major layout regions. Utility: <CodeToken label="sgds:gap-layout-{size}" />.
             </p>
           </div>
           <div class="typography-page-template__body typography-page-template__body--prose">
-          <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="st-token-col">Token</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -318,7 +234,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="getTokenValue(row.token)" />
+                  <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -344,18 +260,17 @@ const layoutPaddingRows: ResponsiveRow[] = [
         </article>
 
         <!-- Component gap -->
-        <article v-if="props.section === 'component-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+        <article v-if="props.section === 'gap' || props.section === 'component-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Component gap tokens</h3>
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Component gap tokens</h2>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Use for spacing between elements within a component. Utility: <CodeToken label="sgds:gap-component-{size}" />.
             </p>
           </div>
           <div class="typography-page-template__body typography-page-template__body--prose">
-          <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="st-token-col">Token</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -368,7 +283,56 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="getTokenValue(row.token)" />
+                  <CodeToken :label="row.token" />
+                  <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
+                </div>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-metric-col">
+                <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                </sgds-tooltip>
+              </sgds-table-cell>
+              <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
+            </sgds-table-row>
+          </sgds-table>
+          </div>
+        </article>
+
+        <!-- Text gap -->
+        <article v-if="props.section === 'gap' || props.section === 'text-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Text gap tokens</h2>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+              Use for spacing between text elements and inline content. Utility: <CodeToken label="sgds:gap-text-{size}" />.
+            </p>
+          </div>
+          <div class="typography-page-template__body typography-page-template__body--prose">
+          <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+            <sgds-table-row>
+              <sgds-table-head class="st-token-col">Token</sgds-table-head>
+              <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
+              <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
+              <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
+              <sgds-table-head class="st-usage-col">Usage</sgds-table-head>
+            </sgds-table-row>
+            <sgds-table-row
+              v-for="row in textGapRows"
+              :key="row.token"
+              :class="{ 'st-base-row': row.isBase }"
+            >
+              <sgds-table-cell class="st-token-col">
+                <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
+                  <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -397,24 +361,23 @@ const layoutPaddingRows: ResponsiveRow[] = [
 
     <!-- ── Padding tokens ─────────────────────────────────────────────────── -->
     <section
-      v-if="props.section === 'component-padding' || props.section === 'layout-padding'"
+      v-if="props.section === 'padding' || props.section === 'component-padding' || props.section === 'layout-padding'"
       class="typography-page-template__section typography-page-template__section--spaced"
     >
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
         <!-- Component padding -->
-        <article v-if="props.section === 'component-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+        <article v-if="props.section === 'padding' || props.section === 'component-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Component padding tokens</h3>
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Component padding tokens</h2>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Internal padding for UI components. Utility: <CodeToken label="sgds:p-component-{size}" />.
             </p>
           </div>
           <div class="typography-page-template__body typography-page-template__body--prose">
-          <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="st-token-col">Token</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -427,7 +390,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="getTokenValue(row.token)" />
+                  <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -453,18 +416,17 @@ const layoutPaddingRows: ResponsiveRow[] = [
         </article>
 
         <!-- Layout padding -->
-        <article v-if="props.section === 'layout-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+        <article v-if="props.section === 'padding' || props.section === 'layout-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Layout padding tokens</h3>
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Layout padding tokens</h2>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Padding for page-level containers and layout regions. Utility: <CodeToken label="sgds:p-layout-{size}" />.
             </p>
           </div>
           <div class="typography-page-template__body typography-page-template__body--prose">
-          <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
           <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="st-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="st-token-col">Token</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
               <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
@@ -477,7 +439,7 @@ const layoutPaddingRows: ResponsiveRow[] = [
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="getTokenValue(row.token)" />
+                  <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
                 </div>
               </sgds-table-cell>
@@ -501,6 +463,56 @@ const layoutPaddingRows: ResponsiveRow[] = [
           </sgds-table>
           </div>
         </article>
+      </div>
+    </section>
+
+    <!-- ── Margin tokens ─────────────────────────────────────────────────── -->
+    <section v-if="props.section === 'margin'" class="typography-page-template__section typography-page-template__section--spaced">
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Margin tokens</h2>
+        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+          Margin tokens map directly to fixed spacer primitives. Unlike gap and padding tokens, margin values do not
+          change across breakpoints.
+        </p>
+      </div>
+      <div class="typography-page-template__body typography-page-template__body--prose">
+        <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+          <sgds-table-row>
+            <sgds-table-head class="st-token-col">Token</sgds-table-head>
+            <sgds-table-head class="st-token-col">Primitive</sgds-table-head>
+            <sgds-table-head class="st-metric-col">px</sgds-table-head>
+            <sgds-table-head class="st-swatch-col">Visual</sgds-table-head>
+            <sgds-table-head class="st-usage-col">Usage</sgds-table-head>
+          </sgds-table-row>
+          <sgds-table-row
+            v-for="row in marginRows"
+            :key="row.token"
+            :class="{ 'st-base-row': row.isBase }"
+          >
+            <sgds-table-cell class="st-token-col">
+              <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
+                <CodeToken :label="row.token" />
+                <sgds-badge v-if="row.isBase" variant="primary">Base</sgds-badge>
+              </div>
+            </sgds-table-cell>
+            <sgds-table-cell class="st-token-col">
+              <CodeToken :label="row.primitive" />
+            </sgds-table-cell>
+            <sgds-table-cell class="st-metric-col">
+              <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.px }}</span>
+            </sgds-table-cell>
+            <sgds-table-cell class="st-swatch-col" aria-hidden="true">
+              <span
+                v-if="row.px !== '0px'"
+                class="st-spacer-bar"
+                :style="{ inlineSize: row.px }"
+              ></span>
+            </sgds-table-cell>
+            <sgds-table-cell class="st-usage-col">
+              <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span>
+            </sgds-table-cell>
+          </sgds-table-row>
+        </sgds-table>
       </div>
     </section>
 
@@ -556,44 +568,5 @@ const layoutPaddingRows: ResponsiveRow[] = [
   color: var(--sgds-color-fixed-dark);
 }
 
-/* ─── Token snippet row (copy-to-clipboard) ──────────────────────────────── */
-.ts-snippet-row {
-  align-items: center;
-  background: var(--sgds-bg-muted);
-  border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-md);
-  display: inline-flex;
-  gap: var(--sgds-gap-xs);
-  max-inline-size: 100%;
-  padding: var(--sgds-spacer-1) var(--sgds-spacer-3);
-}
-
-.ts-snippet-code {
-  color: var(--sgds-body-color-default);
-  font-family: var(--sgds-font-family-mono);
-  font-size: var(--sgds-font-size-13);
-  font-weight: var(--sgds-font-weight-regular);
-  line-height: var(--sgds-line-height-20);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.ts-snippet-code span {
-  white-space: nowrap;
-}
-
-.ts-snippet-copy-btn {
-  appearance: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  flex: none;
-  padding: 0;
-}
-
-.ts-snippet-copy-btn:hover {
-  opacity: 0.7;
-}
 
 </style>
