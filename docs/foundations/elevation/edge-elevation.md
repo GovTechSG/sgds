@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Edge elevation
-description: Edge elevation tokens for directional shadows on elements pinned to a viewport edge.
+description: Tokens for directional shadows on headers, action bars, and other elements pinned to the top or bottom edge.
 ---
 
 <script setup>

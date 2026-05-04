@@ -22,6 +22,15 @@ const foundationStorybookPathLabels: Record<string, string> = {
   "foundations/colour/brand-colour": "foundation/theming/govtech-brand-palettes",
   "foundations/colour/primitive-colour": "foundation-theming",
   "foundations/colour/semantic-colour": "foundation-theming",
+  "foundations/elevation/edge-elevation": "utilities-elevation--elevation",
+  "foundations/elevation/surface-elevation": "utilities-elevation--elevation",
+};
+
+const foundationStorybookHrefOverrides: Record<string, string> = {
+  "foundations/elevation/edge-elevation":
+    "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-elevation--elevation",
+  "foundations/elevation/surface-elevation":
+    "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-elevation--elevation",
 };
 
 const fallbackStorybookIdForPath = (path: string): string => {
@@ -79,6 +88,11 @@ const TOKEN_PAGE_PATHS = new Set<string>([
 
 export const getFoundationStorybookHref = (path: string): string => {
   const normalizedPath = path.replace(/\.md$/, "");
+
+  if (foundationStorybookHrefOverrides[normalizedPath]) {
+    return foundationStorybookHrefOverrides[normalizedPath];
+  }
+
   const storyId =
     foundationStorybookIds[normalizedPath] ?? fallbackStorybookIdForPath(normalizedPath);
 

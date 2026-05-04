@@ -26,7 +26,7 @@ export const foundationsSidebar = {
     {
       text: "Border",
       items: [
-        { text: "Border principles", link: "/foundations/border" },
+        { text: "Overview", link: "/foundations/border" },
         {
           text: "Border tokens",
           items: [
@@ -64,26 +64,21 @@ export const foundationsSidebar = {
     {
       text: "Elevation",
       items: [
-        { text: "Elevation principles", link: "/foundations/elevation" },
+        { text: "Overview", link: "/foundations/elevation" },
         {
-          text: "Elevation tokens",
-          items: [
-            {
-              text: "Edge elevation",
-              link: "/foundations/elevation/edge-elevation",
-            },
-            {
-              text: "Surface elevation",
-              link: "/foundations/elevation/surface-elevation",
-            },
-          ],
+          text: "Edge elevation",
+          link: "/foundations/elevation/edge-elevation",
+        },
+        {
+          text: "Surface elevation",
+          link: "/foundations/elevation/surface-elevation",
         },
       ],
     },
     {
       text: "Iconography",
       items: [
-        { text: "Icon principles", link: "/foundations/iconography" },
+        { text: "Overview", link: "/foundations/iconography" },
         {
           text: "Icon tokens",
           items: [
@@ -96,7 +91,7 @@ export const foundationsSidebar = {
     {
       text: "Layer",
       items: [
-        { text: "Layer principles", link: "/foundations/layer" },
+        { text: "Overview", link: "/foundations/layer" },
         { text: "Layer tokens", link: "/foundations/layer/layer-tokens" },
         { text: "Z-index utilities", link: "/foundations/layer/z-index-utilities" },
       ],
@@ -104,7 +99,7 @@ export const foundationsSidebar = {
     {
       text: "Layout",
       items: [
-        { text: "Layout principles", link: "/foundations/layout" },
+        { text: "Overview", link: "/foundations/layout" },
         {
           text: "Responsive grid",
           link: "/foundations/layout/responsive-grid",
@@ -119,7 +114,7 @@ export const foundationsSidebar = {
     {
       text: "Spacing",
       items: [
-        { text: "Spacing principles", link: "/foundations/spacing" },
+        { text: "Overview", link: "/foundations/spacing" },
         {
           text: "Spacing tokens",
           items: [

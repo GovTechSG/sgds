@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import CodeToken from "../ui/CodeToken.vue";
-import SegmentedControl from "../components/SegmentedControl.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -11,30 +9,6 @@ const props = withDefaults(
     section: "all",
   },
 );
-
-const tokenViewOptions = [
-  { value: "css-variable", label: "CSS variable" },
-  { value: "figma", label: "Figma token" },
-  { value: "utility", label: "SGDS tailwind token" },
-] as const;
-type TokenViewId = (typeof tokenViewOptions)[number]["value"];
-const activeTokenViewId = ref<TokenViewId>("css-variable");
-
-// --sgds-elevation-surface-{N} → sgds:shadow-{N}
-// --sgds-elevation-edge-{direction} → sgds:shadow-edge-{direction}
-const tokenToUtility = (token: string): string => {
-  const surface = token.match(/^--sgds-elevation-surface-(.+)$/);
-  if (surface) return `sgds:shadow-${surface[1]}`;
-  const edge = token.match(/^--sgds-elevation-edge-(.+)$/);
-  if (edge) return `sgds:shadow-edge-${edge[1]}`;
-  return token;
-};
-
-const getTokenValue = (token: string) => {
-  if (activeTokenViewId.value === "utility") return tokenToUtility(token);
-  if (activeTokenViewId.value === "css-variable") return token;
-  return token.replace(/^--/, "");
-};
 
 type ElevationRow = {
   name: string;
@@ -109,20 +83,19 @@ const edgeRows: EdgeRow[] = [
     <template v-if="props.section === 'all' || props.section === 'surface'">
     <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Surface elevation tokens</h3>
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Surface elevation tokens</h2>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">Surface shadows lift elements above the page. Use progressively higher levels as elements sit further from the base surface.</p>
       </div>
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-        <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
         <sgds-table tableBorder headerBackground responsive="always" class="elevation-utility-table">
           <sgds-table-row>
-            <sgds-table-head class="ev-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+            <sgds-table-head class="ev-token-col">Token</sgds-table-head>
             <sgds-table-head class="ev-value-col">Value (px/rem)</sgds-table-head>
             <sgds-table-head class="ev-preview-col">Preview</sgds-table-head>
           </sgds-table-row>
           <sgds-table-row v-for="row in surfaceRows" :key="row.token">
             <sgds-table-cell class="ev-token-col">
-              <CodeToken :label="getTokenValue(row.token)" />
+              <CodeToken :label="row.token" />
             </sgds-table-cell>
             <sgds-table-cell class="ev-value-col">
               <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:whitespace-pre-wrap">{{ row.value }}</span>
@@ -140,20 +113,19 @@ const edgeRows: EdgeRow[] = [
     <template v-if="props.section === 'all' || props.section === 'edge'">
     <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Edge elevation tokens</h3>
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Edge elevation tokens</h2>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">Edge shadows are directional and indicate that an element is pinned to a viewport edge, casting a shadow toward the content beneath.</p>
       </div>
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-        <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
       <sgds-table tableBorder headerBackground responsive="always" class="elevation-utility-table">
         <sgds-table-row>
-          <sgds-table-head class="ev-token-col">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+          <sgds-table-head class="ev-token-col">Token</sgds-table-head>
           <sgds-table-head class="ev-value-col">Value (px/rem)</sgds-table-head>
           <sgds-table-head class="ev-preview-col">Preview</sgds-table-head>
         </sgds-table-row>
         <sgds-table-row v-for="row in edgeRows" :key="row.token">
           <sgds-table-cell class="ev-token-col">
-            <CodeToken :label="getTokenValue(row.token)" />
+            <CodeToken :label="row.token" />
           </sgds-table-cell>
           <sgds-table-cell class="ev-value-col">
             <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:whitespace-pre-wrap">{{ row.value }}</span>
