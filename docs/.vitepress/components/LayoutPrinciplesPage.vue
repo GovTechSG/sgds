@@ -5,15 +5,15 @@ import FoundationPrincipleTemplate from "./foundations/FoundationPrincipleTempla
 const principles = [
   {
     title: "Predictable",
-    body: "Use intuitive and predictable layouts with consistent UI regions and spatial organisation.",
+    body: "Use familiar regions and clear spatial organisation so users know where to look.",
   },
   {
     title: "Consistent",
-    body: "Maintaining a consistent visual rhythm provides a consistent user experience. It also drives consistent scalability.",
+    body: "Keep a steady visual rhythm so layouts feel consistent and easier to scale.",
   },
   {
     title: "Hierarchical",
-    body: "Giving elements a visual hierarchy.",
+    body: "Give elements a clear visual order so users can spot what matters first.",
   },
 ];
 

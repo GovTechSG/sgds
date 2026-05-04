@@ -21,35 +21,14 @@ export const foundationsSidebar = {
     },
     {
       text: "Accessibility",
-      items: [{ text: "Accessibility", link: "/foundations/accessibility" }],
+      items: [],
     },
     {
       text: "Border",
       items: [
         { text: "Overview", link: "/foundations/border" },
-        {
-          text: "Border tokens",
-          items: [
-            {
-              text: "Border radius",
-              link: "/foundations/border/border-radius-tokens",
-            },
-            {
-              text: "Border width",
-              link: "/foundations/border/border-width-tokens",
-            },
-          ],
-        },
-        {
-          text: "Border utilities",
-          items: [
-            {
-              text: "Border radius",
-              link: "/foundations/border/border-radius",
-            },
-            { text: "Border width", link: "/foundations/border/border-width" },
-          ],
-        },
+        { text: "Radius", link: "/foundations/border/radius" },
+        { text: "Width", link: "/foundations/border/width" },
       ],
     },
     {
@@ -87,8 +66,7 @@ export const foundationsSidebar = {
       text: "Layer",
       items: [
         { text: "Overview", link: "/foundations/layer" },
-        { text: "Layer tokens", link: "/foundations/layer/layer-tokens" },
-        { text: "Z-index utilities", link: "/foundations/layer/z-index-utilities" },
+        { text: "Z-index", link: "/foundations/layer/layer-tokens" },
       ],
     },
     {
@@ -110,40 +88,11 @@ export const foundationsSidebar = {
       text: "Spacing",
       items: [
         { text: "Overview", link: "/foundations/spacing" },
-        {
-          text: "Spacing tokens",
-          items: [
-            {
-              text: "Component gap",
-              link: "/foundations/spacing/component-gap",
-            },
-            {
-              text: "Component padding",
-              link: "/foundations/spacing/component-padding",
-            },
-            { text: "Layout gap", link: "/foundations/spacing/layout-gap" },
-            {
-              text: "Layout padding",
-              link: "/foundations/spacing/layout-padding",
-            },
-            { text: "Spacer scale", link: "/foundations/spacing/spacer-scale" },
-            { text: "Text gap", link: "/foundations/spacing/text-gap" },
-          ],
-        },
-        {
-          text: "Spacing utilities",
-          items: [
-            {
-              text: "Spacing utilities",
-              link: "/foundations/spacing/spacing-utilities",
-            },
-          ],
-        },
+        { text: "Spacer scale", link: "/foundations/spacing/spacer-scale" },
+        { text: "Gap", link: "/foundations/spacing/gap" },
+        { text: "Padding", link: "/foundations/spacing/padding" },
+        { text: "Margin", link: "/foundations/spacing/margin" },
       ],
-    },
-    {
-      text: "Theming",
-      items: [{ text: "Theming", link: "/foundations/theming" }],
     },
     {
       text: "Typography",

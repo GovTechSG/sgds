@@ -17,6 +17,7 @@ const foundationStorybookIds: Record<string, string> = {
   "foundations/iconography/icon-library": "components-icon--docs",
   "foundations/layout/breakpoint": "foundation-grid-system--docs",
   "foundations/layout/responsive-grid": "foundation-grid-system--responsive",
+  "foundations/spacing/spacer-scale": "utilities-spacing-introduction--docs",
 };
 
 const foundationStorybookPathLabels: Record<string, string> = {
@@ -26,6 +27,9 @@ const foundationStorybookPathLabels: Record<string, string> = {
   "foundations/elevation/edge-elevation": "utilities-elevation--elevation",
   "foundations/elevation/surface-elevation": "utilities-elevation--elevation",
   "foundations/iconography/icon-library": "components/icon",
+  "foundations/layer/layer-tokens": "utilities-z-index--z-index-all-stacks",
+  "foundations/spacing/gap": "utilities-spacing-gap-component--component",
+  "foundations/spacing/padding": "utilities-spacing-padding-component--component",
 };
 
 const foundationStorybookHrefOverrides: Record<string, string> = {
@@ -33,6 +37,12 @@ const foundationStorybookHrefOverrides: Record<string, string> = {
     "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-elevation--elevation",
   "foundations/elevation/surface-elevation":
     "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-elevation--elevation",
+  "foundations/layer/layer-tokens":
+    "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-z-index--z-index-all-stacks",
+  "foundations/spacing/gap":
+    "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-spacing-gap-component--component",
+  "foundations/spacing/padding":
+    "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-spacing-padding-component--component",
 };
 
 const fallbackStorybookIdForPath = (path: string): string => {
@@ -52,8 +62,8 @@ const fallbackStorybookIdForPath = (path: string): string => {
 // (no leading "docs/", no `.md` suffix).
 const TOKEN_PAGE_PATHS = new Set<string>([
   // Border
-  "foundations/border/border-radius-tokens",
-  "foundations/border/border-width-tokens",
+  "foundations/border/radius",
+  "foundations/border/width",
   // Colour
   "foundations/colour/brand-colour",
   "foundations/colour/primitive-colour",
@@ -70,13 +80,10 @@ const TOKEN_PAGE_PATHS = new Set<string>([
   "foundations/layout/breakpoint",
   "foundations/layout/responsive-grid",
   // Spacing
-  "foundations/spacing/component-gap",
-  "foundations/spacing/component-padding",
-  "foundations/spacing/layout-gap",
-  "foundations/spacing/layout-padding",
+  "foundations/spacing/gap",
+  "foundations/spacing/margin",
+  "foundations/spacing/padding",
   "foundations/spacing/spacer-scale",
-  "foundations/spacing/spacing-tokens",
-  "foundations/spacing/text-gap",
   // Typography
   "foundations/typography/font-family",
   "foundations/typography/font-weight-tokens",

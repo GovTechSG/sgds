@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
-import SegmentedControl from "./components/SegmentedControl.vue";
 
 const screenSizeGuideXs = [211, 467, 723, 979, 1235, 1491] as const;
 const screenSizeViewBoxWidth = 1672;
@@ -25,28 +23,6 @@ const screenSizeMarkers = [
   { label: "1280", x: 1235 },
   { label: "1440", sublabel: "(max)", x: 1395, emphasized: true, thickTick: true },
 ] as const;
-
-const tokenViewOptions = [
-  { value: "css-variable", label: "CSS variable" },
-  { value: "figma", label: "Figma token" },
-  { value: "utility", label: "SGDS tailwind token" },
-] as const;
-type TokenViewId = (typeof tokenViewOptions)[number]["value"];
-
-// Single shared segmented control governs both breakpoint tables below.
-const activeTokenViewId = ref<TokenViewId>("css-variable");
-
-// Breakpoints map to Tailwind responsive variant prefixes (e.g. `sgds:lg:`).
-const tokenToUtility = (token: string): string => {
-  const m = token.match(/^sgds-breakpoint-(?:sbar-)?(.+)$/);
-  return m ? `sgds:${m[1]}:` : token;
-};
-
-const getTokenValue = (token: string) => {
-  if (activeTokenViewId.value === "utility") return tokenToUtility(token);
-  if (activeTokenViewId.value === "css-variable") return `--${token}`;
-  return token;
-};
 
 const breakpointTokens = [
   {
@@ -144,7 +120,7 @@ const stickySidebarTokens = [
   <TypographyPageTemplate>
     <section class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Screen sizes</h3>
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Screen sizes</h2>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Designers should create outputs for at least three key sizes: mobile (320px), tablet (768px), and desktop
           (1440px) for development.
@@ -231,21 +207,19 @@ const stickySidebarTokens = [
 
     <section class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Breakpoint tokens</h3>
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Breakpoint tokens</h2>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Breakpoints maintain layout integrity across screen sizes. Each breakpoint range determines the number of
           columns, recommended margins and gutters for each display size.
         </p>
       </div>
       <div class="typography-page-template__body typography-page-template__body--prose">
-        <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
-
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">Standard breakpoint</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Standard breakpoint</h4>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head :class="$style.tokenColumn">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+                <sgds-table-head :class="$style.tokenColumn">Token</sgds-table-head>
                 <sgds-table-head :class="$style.valueColumn">Screen size</sgds-table-head>
                 <sgds-table-head :class="$style.valueColumn">Container width</sgds-table-head>
                 <sgds-table-head :class="$style.numericColumn">Columns</sgds-table-head>
@@ -255,7 +229,7 @@ const stickySidebarTokens = [
 
               <sgds-table-row v-for="row in breakpointTokens" :key="row.token">
                 <sgds-table-cell :class="$style.tokenColumn">
-                  <CodeToken :label="getTokenValue(row.token)" />
+                  <CodeToken :label="`--${row.token}`" />
                 </sgds-table-cell>
                 <sgds-table-cell :class="$style.valueColumn">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -287,10 +261,10 @@ const stickySidebarTokens = [
           </div>
 
           <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">Breakpoint with sticky sidebar</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Breakpoint with sticky sidebar</h4>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head :class="$style.tokenColumn">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+                <sgds-table-head :class="$style.tokenColumn">Token</sgds-table-head>
                 <sgds-table-head :class="$style.valueColumn">Screen size</sgds-table-head>
                 <sgds-table-head :class="$style.valueColumn">Container width</sgds-table-head>
                 <sgds-table-head :class="$style.numericColumn">Columns</sgds-table-head>
@@ -301,7 +275,7 @@ const stickySidebarTokens = [
 
               <sgds-table-row v-for="row in stickySidebarTokens" :key="row.token">
                 <sgds-table-cell :class="$style.tokenColumn">
-                  <CodeToken :label="getTokenValue(row.token)" />
+                  <CodeToken :label="`--${row.token}`" />
                 </sgds-table-cell>
                 <sgds-table-cell :class="$style.valueColumn">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">

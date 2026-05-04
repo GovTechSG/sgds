@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Layout principles
+title: Overview
 description: SGDS layout principles help structure pages with consistent spacing, alignment, and hierarchy across devices.
 ---
 
