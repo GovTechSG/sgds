@@ -217,62 +217,62 @@ const systemSections = [
         class="sgds:flex sgds:flex-col"
       >
         <Section :title="section.title" heading-level="h3" gap="sgds:gap-text-xl">
-          <div :class="$style.backgroundCard">
-            <div :class="$style.backgroundHalf">
-              <div :class="$style.backgroundTop"></div>
-              <div :class="$style.backgroundBottom"></div>
+          <div class="cs-backgroundCard">
+            <div class="cs-backgroundHalf">
+              <div class="cs-backgroundTop"></div>
+              <div class="cs-backgroundBottom"></div>
             </div>
-            <div :class="$style.backgroundStage">
-              <div :class="$style.backgroundCaptionRail">
+            <div class="cs-backgroundStage">
+              <div class="cs-backgroundCaptionRail">
                 <div
                   v-for="swatch in section.swatches"
                   :key="`${section.title}-${swatch.label}-top`"
-                  :class="$style.backgroundCaptionSlot"
+                  class="cs-backgroundCaptionSlot"
                 >
                   <span
                     :class="[
-                      $style.backgroundCaption,
-                      $style.backgroundCaptionTop,
-                      !swatch.topCaption ? $style.backgroundCaptionHidden : '',
-                      swatch.tone === 'dark' ? $style.backgroundCaptionDark : '',
-                      swatch.label === '1100' ? $style.backgroundCaptionFixedDark : '',
+                      'cs-backgroundCaption',
+                      'cs-backgroundCaptionTop',
+                      !swatch.topCaption ? 'cs-backgroundCaptionHidden' : '',
+                      swatch.tone === 'dark' ? 'cs-backgroundCaptionDark' : '',
+                      swatch.label === '1100' ? 'cs-backgroundCaptionFixedDark' : '',
                     ]"
                   >
                     {{ swatch.topCaption }}
                   </span>
                 </div>
               </div>
-              <div :class="$style.backgroundSwatchRail">
+              <div class="cs-backgroundSwatchRail">
                 <div
                   v-for="swatch in section.swatches"
                   :key="`${section.title}-${swatch.label}`"
-                  :class="$style.backgroundSwatchSlot"
+                  class="cs-backgroundSwatchSlot"
                 >
                   <div
                     :class="[
-                      $style.backgroundSwatch,
-                      swatch.bordered ? $style.backgroundSwatchBordered : '',
-                      swatch.tone === 'dark' ? $style.backgroundSwatchDark : '',
+                      'cs-backgroundSwatch',
+                      swatch.bordered ? 'cs-backgroundSwatchBordered' : '',
+                      swatch.tone === 'dark' ? 'cs-backgroundSwatchDark' : '',
                     ]"
                     :style="{ backgroundColor: swatch.color }"
                   >
-                    <span :class="$style.backgroundSwatchLabel">{{ swatch.label }}</span>
+                    <span class="cs-backgroundSwatchLabel">{{ swatch.label }}</span>
                   </div>
                 </div>
               </div>
-              <div :class="$style.backgroundCaptionRail">
+              <div class="cs-backgroundCaptionRail">
                 <div
                   v-for="swatch in section.swatches"
                   :key="`${section.title}-${swatch.label}-bottom`"
-                  :class="$style.backgroundCaptionSlot"
+                  class="cs-backgroundCaptionSlot"
                 >
                   <span
                     :class="[
-                      $style.backgroundCaption,
-                      $style.backgroundCaptionBottom,
-                      !swatch.bottomCaption ? $style.backgroundCaptionHidden : '',
-                      swatch.tone === 'dark' ? $style.backgroundCaptionDark : '',
-                      ['1000', '1100'].includes(swatch.label) ? $style.backgroundCaptionDark : '',
+                      'cs-backgroundCaption',
+                      'cs-backgroundCaptionBottom',
+                      !swatch.bottomCaption ? 'cs-backgroundCaptionHidden' : '',
+                      swatch.tone === 'dark' ? 'cs-backgroundCaptionDark' : '',
+                      ['1000', '1100'].includes(swatch.label) ? 'cs-backgroundCaptionDark' : '',
                     ]"
                   >
                     {{ swatch.bottomCaption }}
@@ -286,47 +286,47 @@ const systemSections = [
 
       <div class="sgds:flex sgds:flex-col">
         <Section title="Greyscale" heading-level="h3" gap="sgds:gap-text-xl">
-          <div :class="$style.card">
-            <div :class="$style.scaleFrame">
+          <div class="cs-card">
+            <div class="cs-scaleFrame">
               <div
                 v-for="level in topLevels"
                 :key="level.label"
-                :class="[$style.connector, $style.connectorTop]"
+                :class="['cs-connector', 'cs-connectorTop']"
                 :style="{
                   left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
                   right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
                   top: level.offset,
                 }"
               >
-                <span :class="$style.connectorLabel">{{ level.label }}</span>
+                <span class="cs-connectorLabel">{{ level.label }}</span>
               </div>
 
-              <div :class="$style.swatchRow" aria-label="Greyscale contrast scale">
+              <div class="cs-swatchRow" aria-label="Greyscale contrast scale">
                 <div
                   v-for="swatch in swatches"
                   :key="swatch.name ?? swatch.color"
                   :class="[
-                    $style.swatch,
-                    swatch.bordered ? $style.swatchBordered : '',
-                    swatch.tone === 'dark' ? $style.swatchDark : '',
+                    'cs-swatch',
+                    swatch.bordered ? 'cs-swatchBordered' : '',
+                    swatch.tone === 'dark' ? 'cs-swatchDark' : '',
                   ]"
                   :style="{ backgroundColor: swatch.color }"
                 >
-                  <span v-if="swatch.name" :class="$style.swatchLabel">{{ swatch.name }}</span>
+                  <span v-if="swatch.name" class="cs-swatchLabel">{{ swatch.name }}</span>
                 </div>
               </div>
 
               <div
                 v-for="level in bottomLevels"
                 :key="level.label"
-                :class="[$style.connector, $style.connectorBottom]"
+                :class="['cs-connector', 'cs-connectorBottom']"
                 :style="{
                   left: `calc((100% / 12) * ${level.left} + var(--sgds-gap-xs) * ${level.left})`,
                   right: `calc((100% / 12) * ${11 - level.right} + var(--sgds-gap-xs) * ${11 - level.right})`,
                   bottom: level.offset,
                 }"
               >
-                <span :class="$style.connectorLabel">{{ level.label }}</span>
+                <span class="cs-connectorLabel">{{ level.label }}</span>
               </div>
             </div>
           </div>
@@ -345,23 +345,23 @@ const systemSections = [
           header-gap="sgds:gap-text-xs"
           gap="sgds:gap-text-xl"
         >
-          <div :class="$style.chartCard">
-            <div :class="$style.chartFrame">
-              <div :class="$style.lightnessChart">
-                <div :class="$style.lightnessYAxis">
+          <div class="cs-chartCard">
+            <div class="cs-chartFrame">
+              <div class="cs-lightnessChart">
+                <div class="cs-lightnessYAxis">
                   <span
                     v-for="label in section.yAxis"
                     :key="`${section.title}-${label}`"
-                    :class="$style.lightnessLabel"
+                    class="cs-lightnessLabel"
                   >
                     {{ label }}
                   </span>
                 </div>
-                <div :class="$style.lightnessChartWrap">
-                  <div :class="$style.lightnessChartBox">
-                    <div :class="$style.lightnessChartHalf"></div>
+                <div class="cs-lightnessChartWrap">
+                  <div class="cs-lightnessChartBox">
+                    <div class="cs-lightnessChartHalf"></div>
                     <svg
-                      :class="$style.lightnessCurve"
+                      class="cs-lightnessCurve"
                       preserveAspectRatio="none"
                       viewBox="0 0 624.894 220.458"
                       fill="none"
@@ -377,11 +377,11 @@ const systemSections = [
                       />
                     </svg>
                   </div>
-                  <div :class="$style.lightnessXAxis">
+                  <div class="cs-lightnessXAxis">
                     <span
                       v-for="label in section.xAxis"
                       :key="`${section.title}-${label}`"
-                      :class="$style.lightnessLabel"
+                      class="cs-lightnessLabel"
                     >
                       {{ label }}
                     </span>
@@ -397,8 +397,8 @@ const systemSections = [
   </div>
 </template>
 
-<style module>
-.card {
+<style>
+.cs-card {
   background: var(--sgds-bg-default);
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-2-xl);
@@ -406,7 +406,7 @@ const systemSections = [
   padding: var(--sgds-padding-3-xl);
 }
 
-.backgroundCard {
+.cs-backgroundCard {
   background: var(--sgds-bg-default);
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-2-xl);
@@ -415,14 +415,14 @@ const systemSections = [
   position: relative;
 }
 
-.backgroundHalf {
+.cs-backgroundHalf {
   display: grid;
   grid-template-rows: 1fr 1fr;
   height: 100%;
   min-height: 25rem;
 }
 
-.backgroundStage {
+.cs-backgroundStage {
   align-items: center;
   box-sizing: border-box;
   display: flex;
@@ -434,20 +434,20 @@ const systemSections = [
   position: absolute;
 }
 
-.backgroundTop {
+.cs-backgroundTop {
   background: var(--sgds-bg-fixed-light);
   min-height: 0;
   width: 100%;
 }
 
-.backgroundBottom {
+.cs-backgroundBottom {
   background: var(--sgds-bg-fixed-dark);
   min-height: 0;
   width: 100%;
 }
 
-.backgroundCaptionRail,
-.backgroundSwatchRail {
+.cs-backgroundCaptionRail,
+.cs-backgroundSwatchRail {
   align-items: center;
   box-sizing: border-box;
   display: grid;
@@ -457,8 +457,8 @@ const systemSections = [
   width: min(100%, 61rem);
 }
 
-.backgroundCaptionSlot,
-.backgroundSwatchSlot {
+.cs-backgroundCaptionSlot,
+.cs-backgroundSwatchSlot {
   align-items: center;
   display: flex;
   flex: 1 1 0;
@@ -466,7 +466,7 @@ const systemSections = [
   min-width: 0;
 }
 
-.backgroundSwatch {
+.cs-backgroundSwatch {
   align-items: center;
   aspect-ratio: 1;
   border-radius: min(var(--sgds-border-radius-xl), 30%);
@@ -476,15 +476,15 @@ const systemSections = [
   width: 100%;
 }
 
-.backgroundSwatchBordered {
+.cs-backgroundSwatchBordered {
   border: 1px solid var(--sgds-border-color-muted);
 }
 
-.backgroundSwatchDark {
+.cs-backgroundSwatchDark {
   color: var(--sgds-color-fixed-light);
 }
 
-.backgroundSwatchLabel {
+.cs-backgroundSwatchLabel {
   color: var(--sgds-color-fixed-dark);
   font-size: var(--sgds-font-size-label-xs);
   font-weight: var(--sgds-font-weight-regular);
@@ -493,19 +493,19 @@ const systemSections = [
   text-align: center;
 }
 
-.backgroundSwatchDark .backgroundSwatchLabel {
+.cs-backgroundSwatchDark .cs-backgroundSwatchLabel {
   color: var(--sgds-color-fixed-light);
 }
 
-.backgroundCaptionDark {
+.cs-backgroundCaptionDark {
   color: var(--sgds-color-fixed-light);
 }
 
-.backgroundCaptionFixedDark {
+.cs-backgroundCaptionFixedDark {
   color: var(--sgds-color-fixed-dark);
 }
 
-.backgroundCaption {
+.cs-backgroundCaption {
   align-items: center;
   display: flex;
   font-size: var(--sgds-font-size-label-xs);
@@ -518,29 +518,29 @@ const systemSections = [
   width: 100%;
 }
 
-.backgroundCaptionTop {
+.cs-backgroundCaptionTop {
   color: var(--sgds-color-fixed-dark);
   min-height: calc(var(--sgds-line-height-16) * 2);
 }
 
-.backgroundCaptionBottom {
+.cs-backgroundCaptionBottom {
   color: var(--sgds-color-fixed-light);
   min-height: calc(var(--sgds-line-height-16) * 2);
 }
 
-.backgroundCaptionHidden {
+.cs-backgroundCaptionHidden {
   visibility: hidden;
 }
 
-.backgroundCaptionBottom.backgroundCaptionDark {
+.cs-backgroundCaptionBottom.cs-backgroundCaptionDark {
   color: var(--sgds-color-fixed-light);
 }
 
-.backgroundCaptionTop.backgroundCaptionDark {
+.cs-backgroundCaptionTop.cs-backgroundCaptionDark {
   color: var(--sgds-color-fixed-dark);
 }
 
-.chartCard {
+.cs-chartCard {
   background: var(--sgds-surface-raised);
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-2-xl);
@@ -550,7 +550,7 @@ const systemSections = [
   padding-inline: var(--sgds-component-padding-md);
 }
 
-.scaleFrame {
+.cs-scaleFrame {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-layout-gap-lg);
@@ -560,14 +560,14 @@ const systemSections = [
   position: relative;
 }
 
-.chartFrame {
+.cs-chartFrame {
   margin: 0 auto;
   max-width: 84.5rem;
   padding-block: var(--sgds-layout-gap-lg);
   width: 100%;
 }
 
-.lightnessChart {
+.cs-lightnessChart {
   display: flex;
   gap: var(--sgds-gap-xs);
   margin: 0 auto;
@@ -575,7 +575,7 @@ const systemSections = [
   width: 100%;
 }
 
-.lightnessYAxis {
+.cs-lightnessYAxis {
   align-items: flex-end;
   display: flex;
   flex-direction: column;
@@ -585,7 +585,7 @@ const systemSections = [
   width: 2rem;
 }
 
-.lightnessLabel {
+.cs-lightnessLabel {
   color: var(--sgds-label-color-subtle);
   font-size: var(--sgds-font-size-2);
   font-weight: var(--sgds-font-weight-regular);
@@ -594,12 +594,12 @@ const systemSections = [
   white-space: nowrap;
 }
 
-.lightnessChartWrap {
+.cs-lightnessChartWrap {
   flex: 1;
   min-width: 0;
 }
 
-.lightnessChartBox {
+.cs-lightnessChartBox {
   aspect-ratio: 624 / 252;
   background: var(--sgds-surface-default);
   border: 1px solid var(--sgds-border-color-muted);
@@ -607,13 +607,13 @@ const systemSections = [
   width: 100%;
 }
 
-.lightnessChartHalf {
+.cs-lightnessChartHalf {
   border-bottom: 1px solid var(--sgds-border-color-muted);
   height: 50%;
   width: 100%;
 }
 
-.lightnessCurve {
+.cs-lightnessCurve {
   display: block;
   height: 100%;
   left: 0;
@@ -622,13 +622,13 @@ const systemSections = [
   width: 100%;
 }
 
-.lightnessXAxis {
+.cs-lightnessXAxis {
   display: flex;
   justify-content: space-between;
   margin-top: var(--sgds-gap-xs);
 }
 
-.swatchRow {
+.cs-swatchRow {
   align-items: center;
   display: grid;
   gap: var(--sgds-gap-xs);
@@ -637,7 +637,7 @@ const systemSections = [
   z-index: 2;
 }
 
-.swatch {
+.cs-swatch {
   align-items: center;
   aspect-ratio: 1;
   border-radius: min(var(--sgds-border-radius-xl), 30%);
@@ -646,15 +646,15 @@ const systemSections = [
   min-width: 0;
 }
 
-.swatchBordered {
+.cs-swatchBordered {
   border: 1px solid var(--sgds-border-color-muted);
 }
 
-.swatchDark {
+.cs-swatchDark {
   color: var(--sgds-body-color-fixed-light);
 }
 
-.swatchLabel {
+.cs-swatchLabel {
   color: inherit;
   font-size: var(--sgds-font-size-label-xs);
   font-weight: var(--sgds-font-weight-regular);
@@ -663,7 +663,7 @@ const systemSections = [
   text-align: center;
 }
 
-.connector {
+.cs-connector {
   border-color: var(--sgds-border-color-muted);
   border-style: solid;
   border-width: 1px 1px 0;
@@ -675,12 +675,12 @@ const systemSections = [
   z-index: 1;
 }
 
-.connectorBottom {
+.cs-connectorBottom {
   border-radius: 0 0 var(--sgds-border-radius-xl) var(--sgds-border-radius-xl);
   border-width: 0 1px 1px;
 }
 
-.connectorLabel {
+.cs-connectorLabel {
   background: var(--sgds-surface-raised);
   color: var(--sgds-body-color-default);
   font-size: var(--sgds-font-size-label-xs);
@@ -694,26 +694,26 @@ const systemSections = [
   white-space: nowrap;
 }
 
-.connectorTop .connectorLabel {
+.cs-connectorTop .cs-connectorLabel {
   top: -0.5rem;
 }
 
-.connectorBottom .connectorLabel {
+.cs-connectorBottom .cs-connectorLabel {
   bottom: -0.5rem;
 }
 
 @media (max-width: 1023px) {
-  .card {
+  .cs-card {
     padding: var(--sgds-padding-2-xl);
   }
 
-  .chartCard {
+  .cs-chartCard {
     padding-top: calc(var(--sgds-layout-padding-sm) + var(--sgds-padding-xs));
     padding-bottom: var(--sgds-layout-padding-sm);
     padding-inline: var(--sgds-component-padding-sm);
   }
 
-  .backgroundSwatchRail {
+  .cs-backgroundSwatchRail {
     left: var(--sgds-component-padding-sm);
     right: var(--sgds-component-padding-sm);
   }
@@ -722,17 +722,17 @@ const systemSections = [
 }
 
 @media (max-width: 767px) {
-  .card {
+  .cs-card {
     border-radius: var(--sgds-border-radius-xl);
     padding: var(--sgds-padding-xl);
   }
 
-  .scaleFrame {
+  .cs-scaleFrame {
     gap: var(--sgds-layout-gap-md);
     padding-block: var(--sgds-padding-3-xl);
   }
 
-  .chartCard {
+  .cs-chartCard {
     border-radius: var(--sgds-border-radius-xl);
     padding-top: calc(var(--sgds-layout-padding-xs) + var(--sgds-padding-xs));
     padding-bottom: var(--sgds-layout-padding-xs);
@@ -740,37 +740,37 @@ const systemSections = [
   }
 
 
-  .backgroundCard {
+  .cs-backgroundCard {
     border-radius: var(--sgds-border-radius-xl);
     min-height: 22rem;
   }
 
-  .backgroundHalf {
+  .cs-backgroundHalf {
     min-height: 22rem;
   }
 
 
-  .backgroundStage {
+  .cs-backgroundStage {
     box-sizing: border-box;
     padding-inline: var(--sgds-component-padding-xs);
   }
 
-  .backgroundSwatchLabel {
+  .cs-backgroundSwatchLabel {
     font-size: var(--sgds-font-size-label-xs);
     line-height: var(--sgds-line-height-16);
   }
 
-  .backgroundCaption {
+  .cs-backgroundCaption {
     font-size: var(--sgds-font-size-label-xs);
     line-height: var(--sgds-line-height-16);
   }
 
-  .backgroundCaptionTop,
-  .backgroundCaptionBottom {
+  .cs-backgroundCaptionTop,
+  .cs-backgroundCaptionBottom {
     min-height: calc(var(--sgds-line-height-16) * 2);
   }
 
-  .connectorLabel {
+  .cs-connectorLabel {
     font-size: var(--sgds-font-size-label-2-xs);
     line-height: var(--sgds-line-height-16);
   }

@@ -2,6 +2,10 @@
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
 
+const tokenColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[12rem] sgds:max-w-[clamp(12rem,22vw,16rem)]";
+const valueColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[7.5rem] sgds:max-w-[11rem]";
+const numericColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[4.5rem] sgds:max-w-[6rem]";
+
 const screenSizeGuideXs = [211, 467, 723, 979, 1235, 1491] as const;
 const screenSizeViewBoxWidth = 1672;
 const screenSizeViewBoxHeight = 480;
@@ -219,39 +223,39 @@ const stickySidebarTokens = [
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Standard breakpoint</h4>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head :class="$style.tokenColumn">Token</sgds-table-head>
-                <sgds-table-head :class="$style.valueColumn">Screen size</sgds-table-head>
-                <sgds-table-head :class="$style.valueColumn">Container width</sgds-table-head>
-                <sgds-table-head :class="$style.numericColumn">Columns</sgds-table-head>
-                <sgds-table-head :class="$style.numericColumn">Gutters</sgds-table-head>
-                <sgds-table-head :class="$style.valueColumn">Outer margins</sgds-table-head>
+                <sgds-table-head :class="tokenColumnClass">Token</sgds-table-head>
+                <sgds-table-head :class="valueColumnClass">Screen size</sgds-table-head>
+                <sgds-table-head :class="valueColumnClass">Container width</sgds-table-head>
+                <sgds-table-head :class="numericColumnClass">Columns</sgds-table-head>
+                <sgds-table-head :class="numericColumnClass">Gutters</sgds-table-head>
+                <sgds-table-head :class="valueColumnClass">Outer margins</sgds-table-head>
               </sgds-table-row>
 
               <sgds-table-row v-for="row in breakpointTokens" :key="row.token">
-                <sgds-table-cell :class="$style.tokenColumn">
+                <sgds-table-cell :class="tokenColumnClass">
                   <CodeToken :label="`--${row.token}`" />
                 </sgds-table-cell>
-                <sgds-table-cell :class="$style.valueColumn">
+                <sgds-table-cell :class="valueColumnClass">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.screenSize }}
                   </span>
                 </sgds-table-cell>
-                <sgds-table-cell :class="$style.valueColumn">
+                <sgds-table-cell :class="valueColumnClass">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.containerWidth }}
                   </span>
                 </sgds-table-cell>
-                <sgds-table-cell :class="$style.numericColumn">
+                <sgds-table-cell :class="numericColumnClass">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.columns }}
                   </span>
                 </sgds-table-cell>
-                <sgds-table-cell :class="$style.numericColumn">
+                <sgds-table-cell :class="numericColumnClass">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.gutters }}
                   </span>
                 </sgds-table-cell>
-                <sgds-table-cell :class="$style.valueColumn">
+                <sgds-table-cell :class="valueColumnClass">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.outerMargins }}
                   </span>
@@ -264,45 +268,45 @@ const stickySidebarTokens = [
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Breakpoint with sticky sidebar</h4>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head :class="$style.tokenColumn">Token</sgds-table-head>
-                <sgds-table-head :class="$style.valueColumn">Screen size</sgds-table-head>
-                <sgds-table-head :class="$style.valueColumn">Container width</sgds-table-head>
-                <sgds-table-head :class="$style.numericColumn">Columns</sgds-table-head>
-                <sgds-table-head :class="$style.numericColumn">Gutters</sgds-table-head>
-                <sgds-table-head :class="$style.valueColumn">Outer margins</sgds-table-head>
-                <sgds-table-head :class="$style.valueColumn">Side nav width</sgds-table-head>
+                <sgds-table-head :class="tokenColumnClass">Token</sgds-table-head>
+                <sgds-table-head :class="valueColumnClass">Screen size</sgds-table-head>
+                <sgds-table-head :class="valueColumnClass">Container width</sgds-table-head>
+                <sgds-table-head :class="numericColumnClass">Columns</sgds-table-head>
+                <sgds-table-head :class="numericColumnClass">Gutters</sgds-table-head>
+                <sgds-table-head :class="valueColumnClass">Outer margins</sgds-table-head>
+                <sgds-table-head :class="valueColumnClass">Side nav width</sgds-table-head>
               </sgds-table-row>
 
               <sgds-table-row v-for="row in stickySidebarTokens" :key="row.token">
-                <sgds-table-cell :class="$style.tokenColumn">
+                <sgds-table-cell :class="tokenColumnClass">
                   <CodeToken :label="`--${row.token}`" />
                 </sgds-table-cell>
-                <sgds-table-cell :class="$style.valueColumn">
+                <sgds-table-cell :class="valueColumnClass">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.screenSize }}
                   </span>
                 </sgds-table-cell>
-                <sgds-table-cell :class="$style.valueColumn">
+                <sgds-table-cell :class="valueColumnClass">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.containerWidth }}
                   </span>
                 </sgds-table-cell>
-                <sgds-table-cell :class="$style.numericColumn">
+                <sgds-table-cell :class="numericColumnClass">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.columns }}
                   </span>
                 </sgds-table-cell>
-                <sgds-table-cell :class="$style.numericColumn">
+                <sgds-table-cell :class="numericColumnClass">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.gutters }}
                   </span>
                 </sgds-table-cell>
-                <sgds-table-cell :class="$style.valueColumn">
+                <sgds-table-cell :class="valueColumnClass">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.outerMargins }}
                   </span>
                 </sgds-table-cell>
-                <sgds-table-cell :class="$style.valueColumn">
+                <sgds-table-cell :class="valueColumnClass">
                   <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                     {{ row.sideNavWidth }}
                   </span>
@@ -343,28 +347,4 @@ const stickySidebarTokens = [
     transform: scale(0.65);
   }
 }
-</style>
-
-<style module>
-.tokenColumn {
-  box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: clamp(12rem, 22vw, 16rem);
-  min-inline-size: 12rem;
-}
-
-.valueColumn {
-  box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: 11rem;
-  min-inline-size: 7.5rem;
-}
-
-.numericColumn {
-  box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: 6rem;
-  min-inline-size: 4.5rem;
-}
-
 </style>

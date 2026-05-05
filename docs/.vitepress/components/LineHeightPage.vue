@@ -70,12 +70,12 @@ const copyTokenValue = async (key: string, text: string) => {
 
               <sgds-table-row v-for="lh in lineHeights" :key="lh.utilityClass">
                 <sgds-table-cell class="typography-page-template__table-utility-column">
-                  <div class="ts-snippet-row">
-                    <code class="ts-snippet-code">
-                      <span>{{ lh.utilityClass }}</span>
+                  <div class="sgds:flex sgds:items-start sgds:justify-between sgds:gap-2-xs sgds:rounded-sm sgds:border sgds:border-muted sgds:bg-surface-raised sgds:px-sm sgds:py-[0.375rem]">
+                    <code class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:flex-col sgds:gap-2-xs sgds:overflow-visible sgds:whitespace-normal sgds:font-mono sgds:text-body-sm sgds:leading-xs sgds:text-subtle">
+                      <span class="sgds:self-start sgds:whitespace-nowrap sgds:text-default">{{ lh.utilityClass }}</span>
                     </code>
                     <button
-                      class="ts-snippet-copy-btn"
+                      class="sgds:flex sgds:flex-shrink-0 sgds:cursor-pointer sgds:rounded-sm sgds:border-0 sgds:bg-transparent sgds:p-1 sgds:hover:bg-translucent-subtle"
                       @click="copyTokenValue(lh.utilityClass, lh.utilityClass)"
                     >
                       <sgds-icon :name="copiedKey === lh.utilityClass ? 'check' : 'copy'" size="sm" />
@@ -114,12 +114,12 @@ const copyTokenValue = async (key: string, text: string) => {
 
               <sgds-table-row v-for="lh in staticLineHeights" :key="lh.utilityClass">
                 <sgds-table-cell class="typography-page-template__table-utility-column">
-                  <div class="ts-snippet-row">
-                    <code class="ts-snippet-code">
-                      <span>{{ lh.utilityClass }}</span>
+                  <div class="sgds:flex sgds:items-start sgds:justify-between sgds:gap-2-xs sgds:rounded-sm sgds:border sgds:border-muted sgds:bg-surface-raised sgds:px-sm sgds:py-[0.375rem]">
+                    <code class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:flex-col sgds:gap-2-xs sgds:overflow-visible sgds:whitespace-normal sgds:font-mono sgds:text-body-sm sgds:leading-xs sgds:text-subtle">
+                      <span class="sgds:self-start sgds:whitespace-nowrap sgds:text-default">{{ lh.utilityClass }}</span>
                     </code>
                     <button
-                      class="ts-snippet-copy-btn"
+                      class="sgds:flex sgds:flex-shrink-0 sgds:cursor-pointer sgds:rounded-sm sgds:border-0 sgds:bg-transparent sgds:p-1 sgds:hover:bg-translucent-subtle"
                       @click="copyTokenValue(lh.utilityClass, lh.utilityClass)"
                     >
                       <sgds-icon :name="copiedKey === lh.utilityClass ? 'check' : 'copy'" size="sm" />
@@ -140,50 +140,3 @@ const copyTokenValue = async (key: string, text: string) => {
     </section>
   </TypographyPageTemplate>
 </template>
-
-<style>
-.ts-snippet-row {
-  align-items: flex-start;
-  background: var(--sgds-surface-raised);
-  border: 1px solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-sm);
-  display: flex;
-  gap: var(--sgds-gap-2-xs);
-  justify-content: space-between;
-  padding: 0.375rem var(--sgds-padding-sm);
-}
-
-.ts-snippet-code {
-  color: var(--sgds-body-color-subtle);
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  font-family: var(--sgds-font-family-mono, monospace);
-  font-size: var(--sgds-font-size-body-sm);
-  gap: var(--sgds-gap-2-xs);
-  line-height: var(--sgds-line-height-xs);
-  min-width: 0;
-  overflow: visible;
-  white-space: normal;
-}
-
-.ts-snippet-code span {
-  align-self: flex-start;
-  color: var(--sgds-body-color-default);
-  white-space: nowrap;
-}
-
-.ts-snippet-copy-btn {
-  background: transparent;
-  border: 0;
-  border-radius: var(--sgds-border-radius-sm);
-  cursor: pointer;
-  display: flex;
-  flex-shrink: 0;
-  padding: var(--sgds-spacer-1);
-}
-
-.ts-snippet-copy-btn:hover {
-  background: var(--sgds-bg-translucent-subtle);
-}
-</style>

@@ -31,6 +31,12 @@ const items: LegendItem[] = [
       "The design attribute: emphasis (`default`, `muted`, `subtle`, `emphasis`), state (`hover`, `focus`), or scale (`md`, `lg`, `100`, `200`).",
   },
 ];
+
+const descriptionParts = (description: string) =>
+  description.split(/(`[^`]+`)/g).filter(Boolean).map((part) => ({
+    text: part.replace(/^`|`$/g, ""),
+    isCode: part.startsWith("`") && part.endsWith("`"),
+  }));
 </script>
 
 <template>
@@ -51,26 +57,19 @@ const items: LegendItem[] = [
         <span class="sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-default">
           {{ item.label }}
         </span>
-        <p
-          class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default sgds:m-0"
-          v-html="item.description.replace(/`([^`]+)`/g, '<code>$1</code>')"
-        />
+        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default sgds:m-0">
+          <template
+            v-for="part in descriptionParts(item.description)"
+            :key="`${item.number}-${part.text}`"
+          >
+            <code
+              v-if="part.isCode"
+              class="sgds:inline-block sgds:whitespace-nowrap sgds:rounded-sm sgds:bg-neutral-surface-muted sgds:px-[6px] sgds:py-0 sgds:font-mono sgds:text-[0.875em] sgds:leading-[1.4] sgds:text-fixed-dark"
+            >{{ part.text }}</code>
+            <span v-else>{{ part.text }}</span>
+          </template>
+        </p>
       </div>
     </li>
   </ol>
 </template>
-
-<style>
-/* Markdown-style inline code is injected through v-html for token snippets. */
-.tnl-list code {
-  background: var(--sgds-neutral-surface-muted);
-  border-radius: var(--sgds-border-radius-sm);
-  color: var(--sgds-color-fixed-dark);
-  display: inline-block;
-  font-family: var(--sgds-font-family-mono, monospace);
-  font-size: 0.875em;
-  line-height: 1.4;
-  padding: 0 6px;
-  white-space: nowrap;
-}
-</style>

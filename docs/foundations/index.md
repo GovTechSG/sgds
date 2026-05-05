@@ -11,7 +11,7 @@ import PortalImageCard from "../.vitepress/components/landing/PortalImageCard.vu
 const currentPhase = 99
 </script>
 
-<div :class="$style.container" class="sgds-grid">
+<div class="sgds-grid sgds:gap-y-10">
   <PortalImageCard
     v-for="foundation in foundations"
     :key="foundation.id"
@@ -21,9 +21,3 @@ const currentPhase = 99
   >
   </PortalImageCard>
 </div>
-
-<style module>
-  .container {
-    row-gap: var(--sgds-spacer-10);
-  }
-</style>

@@ -79,11 +79,17 @@ const examples: TokenExample[] = [
           {{ example.description }}
         </p>
       </div>
-      <div class="cta-row">
+      <div class="sgds:inline-flex sgds:max-w-full sgds:flex-wrap sgds:items-center sgds:gap-text-xs">
         <span
           v-for="(segment, segmentIndex) in example.segments"
           :key="`${exampleIndex}-${segmentIndex}`"
-          :class="['cta-segment', `cta-segment--${segment.tone}`]"
+          :class="[
+            'sgds:whitespace-nowrap sgds:rounded-full sgds:px-md sgds:py-2-xs sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-fixed-dark',
+            segment.tone === 'namespace' ? 'sgds:bg-neutral-surface-muted' : '',
+            segment.tone === 'context' ? 'sgds:bg-accent-surface-muted' : '',
+            segment.tone === 'object' ? 'sgds:bg-primary-surface-muted' : '',
+            segment.tone === 'scale' ? 'sgds:bg-success-surface-muted' : '',
+          ]"
         >
           {{ segment.text }}
         </span>
@@ -91,44 +97,3 @@ const examples: TokenExample[] = [
     </div>
   </div>
 </template>
-
-<style>
-.cta-row {
-  align-items: center;
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: var(--sgds-text-gap-xs);
-  max-width: max-content;
-}
-
-/* Pill text uses SGDS "label default" typography (label-md regular). Text
-   is always fixed-dark so it stays legible on the pastel chips in both
-   themes. */
-.cta-segment {
-  border-radius: var(--sgds-border-radius-full);
-  color: var(--sgds-color-fixed-dark);
-  font-size: var(--sgds-font-size-label-md);
-  font-weight: var(--sgds-font-weight-regular);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-xs);
-  padding: var(--sgds-padding-2-xs) var(--sgds-padding-md);
-  white-space: nowrap;
-}
-
-.cta-segment--namespace {
-  background: var(--sgds-neutral-surface-muted);
-}
-
-/* Component names, such as stepper, badge, and btn, use accent as a context segment. */
-.cta-segment--context {
-  background: var(--sgds-accent-surface-muted);
-}
-
-.cta-segment--object {
-  background: var(--sgds-primary-surface-muted);
-}
-
-.cta-segment--scale {
-  background: var(--sgds-success-surface-muted);
-}
-</style>
