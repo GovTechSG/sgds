@@ -1,28 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
-import SegmentedControl from "./components/SegmentedControl.vue";
-
-const tokenViewOptions = [
-  { value: "css-variable", label: "Token" },
-  { value: "figma", label: "Figma token" },
-  { value: "utility", label: "SGDS tailwind token" },
-] as const;
-type TokenViewId = (typeof tokenViewOptions)[number]["value"];
-const activeTokenViewId = ref<TokenViewId>("css-variable");
-
-// --sgds-font-size-{N} → sgds:text-{N}
-const tokenToUtility = (token: string): string => {
-  const m = token.match(/^--sgds-font-size-(.+)$/);
-  return m ? `sgds:text-${m[1]}` : token;
-};
-
-const getTokenValue = (token: string) => {
-  if (activeTokenViewId.value === "utility") return tokenToUtility(token);
-  if (activeTokenViewId.value === "css-variable") return token;
-  return token.replace(/^--/, "");
-};
 
 type FontSizeToken = {
   token: string;
@@ -56,15 +34,13 @@ const fontSizeTokens: FontSizeToken[] = [
   <TypographyPageTemplate>
     <section class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Font size tokens</h3>
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Font size tokens</h2>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">Font size tokens define every step of the type scale. Use these tokens to build custom text styles that remain in sync with system typography.</p>
       </div>
       <div class="typography-page-template__body typography-page-template__body--prose">
-        <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
-
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
-            <sgds-table-head class="font-size-token-col-name">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+            <sgds-table-head class="font-size-token-col-name">Token</sgds-table-head>
             <sgds-table-head class="font-size-token-col-value">Value (px/rem)</sgds-table-head>
             <sgds-table-head class="font-size-token-col-preview">Preview</sgds-table-head>
           </sgds-table-row>
@@ -76,7 +52,7 @@ const fontSizeTokens: FontSizeToken[] = [
           >
             <sgds-table-cell class="font-size-token-col-name">
               <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                <CodeToken :label="getTokenValue(row.token)" />
+                <CodeToken :label="row.token" />
                 <sgds-badge v-if="row.note" variant="primary">{{ row.note }}</sgds-badge>
               </div>
             </sgds-table-cell>

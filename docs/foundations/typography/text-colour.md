@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Text colour
-description: Semantic text colour utilities for body, heading, label, and interactive text across day and night themes.
+description: Apply SGDS text colour utilities for body, heading, label, and interactive text across themes.
 ---
 
 <script setup>

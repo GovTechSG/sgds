@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Typography style
-description: Explore SGDS type tokens and the reusable text styles that define hierarchy across the system.
+title: Text style
+description: Explore reusable text styles that define hierarchy, emphasis, and reading rhythm across SGDS interfaces.
 ---
 
 <script setup>

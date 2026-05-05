@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Label
-description: Label styles are predefined combinations of typography variables for controls and interface labelling, keeping UI text consistent without manual setup.
+description: Use label styles for form labels, controls, and compact interface text that needs clear emphasis.
 ---
 
 <script setup>

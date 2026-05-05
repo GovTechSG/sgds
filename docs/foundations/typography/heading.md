@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Heading
-description: Heading styles are predefined combinations of typography variables for section titles and hierarchy, helping content stay aligned without manual value picking.
+description: Use heading styles to structure pages, introduce sections, and help readers scan content.
 ---
 
 <script setup>

@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { typographyTokenDocs } from "../data/typography-token-docs";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
-import SegmentedControl from "./components/SegmentedControl.vue";
 
 const props = defineProps<{
   tokenKey: string;
@@ -11,67 +10,11 @@ const props = defineProps<{
 
 const doc = computed(() => typographyTokenDocs[props.tokenKey]);
 const isResponsive = computed(() => doc.value?.rows?.some((r) => r.mobile !== undefined) ?? false);
+const hasWipBadge = computed(() => ["text-decoration", "text-transform"].includes(props.tokenKey));
 
-const tokenViewOptions = [
-  { value: "css-variable", label: "Token" },
-  { value: "figma", label: "Figma token" },
-  { value: "utility", label: "SGDS tailwind token" },
-] as const;
-type TokenViewId = (typeof tokenViewOptions)[number]["value"];
-const activeTokenViewId = ref<TokenViewId>("css-variable");
-
-// Map a typography CSS variable to its SGDS utility class.
-// Returns the original string if no pattern matches (e.g. text-decoration's
-// "No SGDS token variable" rows, which are handled via the exampleClass fallback).
-const tokenToUtility = (token: string): string => {
-  if (token === "--sgds-font-family-brand") return "sgds:font-display";
-  let m = token.match(/^--sgds-font-size-(.+)$/);
-  if (m) return `sgds:text-${m[1]}`;
-  m = token.match(/^--sgds-font-weight-(.+)$/);
-  if (m) return `sgds:font-${m[1]}`;
-  m = token.match(/^--sgds-line-height-(.+)$/);
-  if (m) return `sgds:leading-${m[1]}`;
-  m = token.match(/^--sgds-letter-spacing-(.+)$/);
-  if (m) return `sgds:tracking-${m[1]}`;
-  m = token.match(/^--sgds-paragraph-spacing-(.+)$/);
-  if (m) return `sgds:mb-paragraph-${m[1]}`;
-  return token;
-};
-
-const getTokenValue = (token: string, fallback?: string) => {
-  if (activeTokenViewId.value === "utility") {
-    const u = tokenToUtility(token);
-    return u === token ? (fallback ?? token) : u;
-  }
-  if (activeTokenViewId.value === "css-variable") return token;
-  return token.replace(/^--/, "");
-};
-
-// Resolve the raw computed CSS value for a given token (e.g. "--sgds-font-size-56" → "3.5rem").
-// SSR-safe: returns empty string on the server; tooltip remains empty until client hydration.
-const getCssVarValue = (variable: string): string => {
-  if (typeof window === "undefined") return "";
-  const normalised = variable.startsWith("--") ? variable : `--${variable}`;
-  return getComputedStyle(document.documentElement).getPropertyValue(normalised).trim();
-};
-
-const tokenTooltip = (variable: string): string => {
-  const value = getCssVarValue(variable);
-  if (!value) return variable;
-  if (variable.includes("font-size")) return `Font size: ${value}`;
-  if (variable.includes("line-height")) return `Line height: ${value}`;
-  if (variable.includes("font-weight")) return `Font weight: ${value}`;
-  if (variable.includes("letter-spacing")) return `Letter spacing: ${value}`;
-  return value;
-};
-
-// For a semantic responsive token (e.g. --sgds-font-size-display-lg), show the
-// value it resolves to at each breakpoint by looking up its mapped primitive tokens.
-const responsiveTokenTooltip = (row: { desktop: string; tablet: string; mobile: string }): string => {
-  const desktop = getCssVarValue(row.desktop) || row.desktop;
-  const tablet = getCssVarValue(row.tablet) || row.tablet;
-  const mobile = getCssVarValue(row.mobile) || row.mobile;
-  return `${desktop} / ${tablet} / ${mobile}`;
+const getResponsiveTokenValue = (token: string): string => {
+  const value = token.match(/^--sgds-(?:font-size|line-height)-(.+)$/)?.[1];
+  return value && /^\d+$/.test(value) ? `${value}px` : token;
 };
 </script>
 
@@ -79,25 +22,26 @@ const responsiveTokenTooltip = (row: { desktop: string; tablet: string; mobile: 
   <TypographyPageTemplate>
     <section v-if="doc" class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">{{ doc.title }}</h3>
+        <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-text-xs">
+          <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">{{ doc.title }}</h2>
+          <sgds-badge v-if="hasWipBadge" variant="accent" outlined>WIP</sgds-badge>
+        </div>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ doc.description }}</p>
       </div>
       <div class="typography-page-template__body typography-page-template__body--prose">
-        <SegmentedControl v-model="activeTokenViewId" :options="tokenViewOptions" aria-label="Token view" style="margin-bottom: calc(var(--sgds-layout-gap-md) * -0.66);" />
-
           <!-- Responsive font-size subgroups (e.g. Display / Heading / Body …). Renders one h5 + table per subgroup. -->
           <div
             v-for="subgroup in doc.responsiveFontSizeSubgroups"
             :key="`rfs-${subgroup.label}`"
             class="sgds:flex sgds:flex-col sgds:gap-layout-xs"
           >
-            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ subgroup.label }}</h5>
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ subgroup.label }}</h4>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table typography-token-table">
               <sgds-table-row>
                 <sgds-table-head class="typography-token-table__token-column">Token name</sgds-table-head>
-                <sgds-table-head class="typography-token-table__breakpoint-column">Desktop</sgds-table-head>
-                <sgds-table-head class="typography-token-table__breakpoint-column">Tablet</sgds-table-head>
                 <sgds-table-head class="typography-token-table__breakpoint-column">Mobile</sgds-table-head>
+                <sgds-table-head class="typography-token-table__breakpoint-column">Tablet</sgds-table-head>
+                <sgds-table-head class="typography-token-table__breakpoint-column">Desktop</sgds-table-head>
               </sgds-table-row>
               <sgds-table-row
                 v-for="row in subgroup.rows"
@@ -106,25 +50,23 @@ const responsiveTokenTooltip = (row: { desktop: string; tablet: string; mobile: 
               >
                 <sgds-table-cell class="typography-token-table__token-column">
                   <div class="typography-token-table__token-cell sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                    <sgds-tooltip :content="responsiveTokenTooltip(row)" placement="top">
-                      <CodeToken :label="getTokenValue(row.token)" />
-                    </sgds-tooltip>
+                    <CodeToken :label="row.token" />
                     <sgds-badge v-if="row.isDefault" variant="primary">Default</sgds-badge>
                   </div>
                 </sgds-table-cell>
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
-                  <sgds-tooltip :content="tokenTooltip(row.desktop)" placement="top">
-                    <CodeToken :label="getTokenValue(row.desktop)" />
+                  <sgds-tooltip :content="row.mobile" placement="top">
+                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.mobile) }}</span>
                   </sgds-tooltip>
                 </sgds-table-cell>
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
-                  <sgds-tooltip :content="tokenTooltip(row.tablet)" placement="top">
-                    <CodeToken :label="getTokenValue(row.tablet)" />
+                  <sgds-tooltip :content="row.tablet" placement="top">
+                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.tablet) }}</span>
                   </sgds-tooltip>
                 </sgds-table-cell>
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
-                  <sgds-tooltip :content="tokenTooltip(row.mobile)" placement="top">
-                    <CodeToken :label="getTokenValue(row.mobile)" />
+                  <sgds-tooltip :content="row.desktop" placement="top">
+                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.desktop) }}</span>
                   </sgds-tooltip>
                 </sgds-table-cell>
               </sgds-table-row>
@@ -135,10 +77,10 @@ const responsiveTokenTooltip = (row: { desktop: string; tablet: string; mobile: 
             v-if="doc.rows && doc.rows.length"
             :class="doc.subgroupLabel ? 'sgds:flex sgds:flex-col sgds:gap-layout-xs' : null"
           >
-          <h5
+          <h4
             v-if="doc.subgroupLabel"
-            class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0"
-          >{{ doc.subgroupLabel }}</h5>
+            class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0"
+          >{{ doc.subgroupLabel }}</h4>
           <sgds-table
             tableBorder
             headerBackground
@@ -150,7 +92,7 @@ const responsiveTokenTooltip = (row: { desktop: string; tablet: string; mobile: 
             ]"
           >
             <sgds-table-row>
-              <sgds-table-head class="typography-token-table__token-column">{{ tokenViewOptions.find((o) => o.value === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="typography-token-table__token-column">Token</sgds-table-head>
               <template v-if="isResponsive">
                 <sgds-table-head class="typography-token-table__breakpoint-column">Mobile</sgds-table-head>
                 <sgds-table-head class="typography-token-table__breakpoint-column">Tablet</sgds-table-head>
@@ -169,19 +111,25 @@ const responsiveTokenTooltip = (row: { desktop: string; tablet: string; mobile: 
             >
               <sgds-table-cell class="typography-token-table__token-column">
                 <div class="typography-token-table__token-cell sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                  <CodeToken :label="getTokenValue(row.token, row.exampleClass)" />
+                  <CodeToken :label="row.token" />
                   <sgds-badge v-if="row.note" variant="primary">{{ row.note }}</sgds-badge>
                 </div>
               </sgds-table-cell>
               <template v-if="isResponsive">
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
-                  <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                  <sgds-tooltip :content="row.mobile" placement="top">
+                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.mobile) }}</span>
+                  </sgds-tooltip>
                 </sgds-table-cell>
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
-                  <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                  <sgds-tooltip :content="row.tablet" placement="top">
+                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.tablet) }}</span>
+                  </sgds-tooltip>
                 </sgds-table-cell>
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
-                  <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                  <sgds-tooltip :content="row.desktop" placement="top">
+                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.desktop) }}</span>
+                  </sgds-tooltip>
                 </sgds-table-cell>
               </template>
               <sgds-table-cell v-else class="typography-token-table__value-column">

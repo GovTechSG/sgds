@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Letter spacing
-description: Letter spacing tokens used across the SGDS typography system.
+description: Understand the letter spacing tokens that tune character spacing across SGDS text styles.
 ---
 
 <script setup>

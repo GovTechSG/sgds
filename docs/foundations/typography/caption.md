@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Caption
-description: Caption styles are predefined combinations of typography variables for supporting text, so smaller content stays readable and aligned.
+description: Use caption styles for short supporting text, metadata, and secondary details that need to remain readable.
 ---
 
 <script setup>

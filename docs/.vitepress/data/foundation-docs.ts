@@ -18,6 +18,15 @@ const foundationStorybookIds: Record<string, string> = {
   "foundations/layout/breakpoint": "foundation-grid-system--docs",
   "foundations/layout/responsive-grid": "foundation-grid-system--responsive",
   "foundations/spacing/spacer-scale": "utilities-spacing-introduction--docs",
+  "foundations/typography/caption": "foundation-typography-captions--docs",
+  "foundations/typography/display": "foundation-typography-display--docs",
+  "foundations/typography/heading": "foundation-typography-headings--docs",
+  "foundations/typography/label": "foundation-typography-labels--docs",
+  "foundations/typography/link": "foundation-typography-links--docs",
+  "foundations/typography/list": "foundation-typography-lists--docs",
+  "foundations/typography/overline": "foundation-typography-overline--docs",
+  "foundations/typography/paragraph-body": "foundation-typography-paragraph-body--docs",
+  "foundations/typography/subtitle": "foundation-typography-subtitles--docs",
 };
 
 const foundationStorybookPathLabels: Record<string, string> = {
@@ -30,6 +39,19 @@ const foundationStorybookPathLabels: Record<string, string> = {
   "foundations/layer/layer-tokens": "utilities-z-index--z-index-all-stacks",
   "foundations/spacing/gap": "utilities-spacing-gap-component--component",
   "foundations/spacing/padding": "utilities-spacing-padding-component--component",
+  "foundations/typography/caption": "foundation-typography-captions",
+  "foundations/typography/display": "foundation-typography-display",
+  "foundations/typography/heading": "foundation-typography-headings",
+  "foundations/typography/label": "foundation-typography-labels",
+  "foundations/typography/link": "foundation-typography-links",
+  "foundations/typography/list": "foundation-typography-lists",
+  "foundations/typography/overline": "foundation-typography-overline",
+  "foundations/typography/paragraph-body": "foundation-typography-paragraph-body",
+  "foundations/typography/subtitle": "foundation-typography-subtitles",
+  "foundations/typography/font-weight-tokens": "utilities-typography-font-weight--font-weight",
+  "foundations/typography/letter-spacing-tokens": "utilities-typography-letter-spacing--letter-spacing",
+  "foundations/typography/line-height-tokens": "utilities-typography-line-height--line-height",
+  "foundations/typography/typography-tokens": "utilities-typography-font-size--display-sizes",
 };
 
 const foundationStorybookHrefOverrides: Record<string, string> = {
@@ -43,6 +65,14 @@ const foundationStorybookHrefOverrides: Record<string, string> = {
     "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-spacing-gap-component--component",
   "foundations/spacing/padding":
     "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-spacing-padding-component--component",
+  "foundations/typography/font-weight-tokens":
+    "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-typography-font-weight--font-weight",
+  "foundations/typography/letter-spacing-tokens":
+    "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-typography-letter-spacing--letter-spacing",
+  "foundations/typography/line-height-tokens":
+    "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-typography-line-height--line-height",
+  "foundations/typography/typography-tokens":
+    "https://webcomponent.designsystem.tech.gov.sg/?path=/story/utilities-typography-font-size--display-sizes",
 };
 
 const fallbackStorybookIdForPath = (path: string): string => {
@@ -57,9 +87,8 @@ const fallbackStorybookIdForPath = (path: string): string => {
   return "foundation-introduction--docs";
 };
 
-// Token-only allowlist. Storybook links appear on token pages only — not on
-// principles, utilities, or other foundation pages. Paths are normalised
-// (no leading "docs/", no `.md` suffix).
+// Foundation pages that should show Storybook links. Paths are normalised
+// with no leading "docs/" and no `.md` suffix.
 const TOKEN_PAGE_PATHS = new Set<string>([
   // Border
   "foundations/border/radius",
@@ -84,15 +113,20 @@ const TOKEN_PAGE_PATHS = new Set<string>([
   "foundations/spacing/margin",
   "foundations/spacing/padding",
   "foundations/spacing/spacer-scale",
-  // Typography
-  "foundations/typography/font-family",
+  // Typography text styles
+  "foundations/typography/caption",
+  "foundations/typography/display",
+  "foundations/typography/heading",
+  "foundations/typography/label",
+  "foundations/typography/link",
+  "foundations/typography/list",
+  "foundations/typography/overline",
+  "foundations/typography/paragraph-body",
+  "foundations/typography/subtitle",
+  // Typography type system
   "foundations/typography/font-weight-tokens",
   "foundations/typography/letter-spacing-tokens",
   "foundations/typography/line-height-tokens",
-  "foundations/typography/paragraph-spacing",
-  "foundations/typography/responsive",
-  "foundations/typography/text-decoration",
-  "foundations/typography/text-transform",
   "foundations/typography/typography-tokens",
 ]);
 

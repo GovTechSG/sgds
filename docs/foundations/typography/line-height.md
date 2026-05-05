@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Line height
-description: Line height (leading) utilities and their responsive values across breakpoints.
+description: Apply SGDS line height utilities to keep single-line and multi-line text readable.
 ---
 
 <script setup>

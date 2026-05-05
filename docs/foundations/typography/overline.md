@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Overline
-description: Overline styles are predefined combinations of typography variables for compact labels and categorisation, keeping them consistent across interfaces.
+description: Use overline styles for short category labels, metadata, and pre-heading text.
 ---
 
 <script setup>

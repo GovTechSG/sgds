@@ -99,7 +99,7 @@ export const foundationsSidebar = {
       items: [
         { text: "Overview", link: "/foundations/typography" },
         {
-          text: "Typography styles",
+          text: "Text styles",
           items: [
             { text: "Display", link: "/foundations/typography/display" },
             { text: "Headings", link: "/foundations/typography/heading" },
@@ -116,7 +116,7 @@ export const foundationsSidebar = {
           ],
         },
         {
-          text: "Typography tokens",
+          text: "Type system",
           items: [
             {
               text: "Font family",
@@ -142,7 +142,6 @@ export const foundationsSidebar = {
               text: "Paragraph spacing",
               link: "/foundations/typography/paragraph-spacing",
             },
-            { text: "Responsive", link: "/foundations/typography/responsive" },
             {
               text: "Text decoration",
               link: "/foundations/typography/text-decoration",
@@ -150,24 +149,6 @@ export const foundationsSidebar = {
             {
               text: "Text transform",
               link: "/foundations/typography/text-transform",
-            },
-          ],
-        },
-        {
-          text: "Typography utilities",
-          items: [
-            { text: "Font size", link: "/foundations/typography/font-size" },
-            {
-              text: "Font weight",
-              link: "/foundations/typography/font-weight",
-            },
-            {
-              text: "Letter spacing",
-              link: "/foundations/typography/letter-spacing",
-            },
-            {
-              text: "Line height",
-              link: "/foundations/typography/line-height",
             },
           ],
         },

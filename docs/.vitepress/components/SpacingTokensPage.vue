@@ -285,8 +285,8 @@ const marginRows: MarginRow[] = [
             <sgds-table-row>
               <sgds-table-head class="st-token-col">Token</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
+              <sgds-table-head class="st-metric-col">Tablet</sgds-table-head>
+              <sgds-table-head class="st-metric-col">Desktop</sgds-table-head>
               <sgds-table-head class="st-usage-col">Usage</sgds-table-head>
             </sgds-table-row>
             <sgds-table-row
@@ -334,8 +334,8 @@ const marginRows: MarginRow[] = [
             <sgds-table-row>
               <sgds-table-head class="st-token-col">Token</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
+              <sgds-table-head class="st-metric-col">Tablet</sgds-table-head>
+              <sgds-table-head class="st-metric-col">Desktop</sgds-table-head>
               <sgds-table-head class="st-usage-col">Usage</sgds-table-head>
             </sgds-table-row>
             <sgds-table-row
@@ -383,8 +383,8 @@ const marginRows: MarginRow[] = [
             <sgds-table-row>
               <sgds-table-head class="st-token-col">Token</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
+              <sgds-table-head class="st-metric-col">Tablet</sgds-table-head>
+              <sgds-table-head class="st-metric-col">Desktop</sgds-table-head>
               <sgds-table-head class="st-usage-col">Usage</sgds-table-head>
             </sgds-table-row>
             <sgds-table-row
@@ -474,8 +474,8 @@ const marginRows: MarginRow[] = [
             <sgds-table-row>
               <sgds-table-head class="st-token-col">Token</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
+              <sgds-table-head class="st-metric-col">Tablet</sgds-table-head>
+              <sgds-table-head class="st-metric-col">Desktop</sgds-table-head>
               <sgds-table-head class="st-usage-col">Usage</sgds-table-head>
             </sgds-table-row>
             <sgds-table-row
@@ -523,8 +523,8 @@ const marginRows: MarginRow[] = [
             <sgds-table-row>
               <sgds-table-head class="st-token-col">Token</sgds-table-head>
               <sgds-table-head class="st-metric-col">Mobile</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1024px</sgds-table-head>
-              <sgds-table-head class="st-metric-col">≥ 1440px</sgds-table-head>
+              <sgds-table-head class="st-metric-col">Tablet</sgds-table-head>
+              <sgds-table-head class="st-metric-col">Desktop</sgds-table-head>
               <sgds-table-head class="st-usage-col">Usage</sgds-table-head>
             </sgds-table-row>
             <sgds-table-row

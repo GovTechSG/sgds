@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import { typographyStyleSections } from "../data/typography-style-tokens";
+import { typographyTokenDocs } from "../data/typography-token-docs";
 import CodeToken from "./ui/CodeToken.vue";
 
 const sectionUsageCopy: Record<string, string> = {
@@ -44,7 +45,29 @@ const getCssVarValue = (variable: string): string => {
   return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
 };
 
+const responsiveSubgroups =
+  typographyTokenDocs.responsive.responsiveFontSizeSubgroups ?? [];
+
+const responsiveRowsByToken = new Map(
+  responsiveSubgroups
+    .flatMap((subgroup) => subgroup.rows)
+    .map((row) => [row.token, row]),
+);
+
+const getResponsiveTokenValue = (token: string): string => {
+  const value = token.match(/^--sgds-(?:font-size|line-height)-(.+)$/)?.[1];
+  return value && /^\d+$/.test(value) ? `${value}px` : token;
+};
+
 const variableToTooltip = (variable: string): string => {
+  const responsiveRow = responsiveRowsByToken.get(variable);
+  const responsiveValues = responsiveRow
+    ? `Mobile ${getResponsiveTokenValue(responsiveRow.mobile)}, Tablet ${getResponsiveTokenValue(responsiveRow.tablet)}, Desktop ${getResponsiveTokenValue(responsiveRow.desktop)}`
+    : "";
+
+  if (responsiveValues && variable.startsWith("--sgds-font-size-")) return `Font size: ${responsiveValues}`;
+  if (responsiveValues && variable.startsWith("--sgds-line-height-")) return `Line height: ${responsiveValues}`;
+
   const value = getCssVarValue(variable);
   if (variable.startsWith("--sgds-font-size-")) return `Font size: ${value}`;
   if (variable.startsWith("--sgds-font-weight-")) return `Font weight: ${value}`;
@@ -72,7 +95,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
           class="ts-style-section"
         >
           <div class="ts-style-section-copy">
-            <h2 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:mb-0">
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:mb-0">
               When to use {{ sectionUsageHeadingLabel[section.key] }}
             </h2>
 
@@ -101,13 +124,10 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
             >
               <sgds-table-cell :class="['ts-preview-cell', section.key === 'display' ? 'ts-preview-cell--display' : '', section.key === 'caption' ? 'ts-preview-cell--caption' : '']">
                 <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-2-xs">
-                  <p :class="['ts-token-example', 'ts-' + row.exampleClass]">
-                    {{ row.example }}
-                  </p>
-                  <div
-                    v-if="row.note || row.headingLevel"
-                    class="sgds:flex sgds:flex-wrap sgds:gap-2-xs"
-                  >
+                  <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
+                    <p :class="['ts-token-example', 'ts-' + row.exampleClass]">
+                      {{ row.example }}
+                    </p>
                     <sgds-badge v-if="row.note" variant="primary">Default</sgds-badge>
                     <sgds-badge v-if="row.headingLevel" variant="neutral">{{ row.headingLevel }}</sgds-badge>
                   </div>
