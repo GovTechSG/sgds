@@ -190,50 +190,6 @@ export type AlertPlaygroundContent = {
   defaultSlotText: string;
 };
 
-export type AlertPlaygroundContent = {
-  variantLabel: string;
-  outlinedLabel: string;
-  dismissibleLabel: string;
-  withIconLabel: string;
-  titleToggleLabel: string;
-  editTextLabel: string;
-  editTitleLabel: string;
-  editDescriptionLabel: string;
-  slotLabel: string;
-  defaultVariant: "info" | "success" | "danger" | "warning" | "neutral";
-  defaultOutlined: boolean;
-  defaultDismissible: boolean;
-  defaultWithIcon: boolean;
-  defaultShowTitle: boolean;
-  defaultShowSlot: boolean;
-  defaultTitle: string;
-  defaultDescription: string;
-  defaultLinkLabel: string;
-  defaultSlotText: string;
-};
-
-export type AlertPlaygroundContent = {
-  variantLabel: string;
-  outlinedLabel: string;
-  dismissibleLabel: string;
-  withIconLabel: string;
-  titleToggleLabel: string;
-  editTextLabel: string;
-  editTitleLabel: string;
-  editDescriptionLabel: string;
-  slotLabel: string;
-  defaultVariant: "info" | "success" | "danger" | "warning" | "neutral";
-  defaultOutlined: boolean;
-  defaultDismissible: boolean;
-  defaultWithIcon: boolean;
-  defaultShowTitle: boolean;
-  defaultShowSlot: boolean;
-  defaultTitle: string;
-  defaultDescription: string;
-  defaultLinkLabel: string;
-  defaultSlotText: string;
-};
-
 export type AccessibilitySection = {
   title: string;
   description?: string[];
@@ -1262,6 +1218,126 @@ const componentDocs: Record<string, ComponentDoc> = {
     },
     updatesText:
       "This page uses the current SGDS accordion and tab components, with examples aligned to the portal design reference.",
+    componentTokenGroups: [
+      {
+        title: "sgds / accordion",
+        rows: [
+          {
+            category: "Padding",
+            name: "padding-lg",
+            value: "sgds/padding/lg",
+            usage: "Padding of the accordion button; padding of the content",
+          },
+          {
+            category: "Padding",
+            name: "padding-md",
+            value: "sgds/padding/md",
+            usage: "Padding of the accordion button; padding of the content",
+          },
+          {
+            category: "Padding",
+            name: "padding-xl",
+            value: "sgds/padding/xl",
+            usage: "Padding of the accordion button; padding of the content",
+          },
+          {
+            category: "Padding",
+            name: "padding-xs",
+            value: "sgds/padding/xs",
+            usage: "Padding of the content",
+          },
+          {
+            category: "Gap",
+            name: "gap-md",
+            value: "sgds/gap/md",
+            usage:
+              "Spacing between items of the accordion button; spacing between items of the accordion header trailing",
+          },
+          {
+            category: "Border",
+            name: "border-color-muted",
+            value: "sgds/border-color-muted",
+            usage:
+              "Bottom border of the accordion item; border of the accordion",
+          },
+          {
+            category: "Border",
+            name: "border-radius-md",
+            value: "sgds/border-radius/md",
+            usage: "Corner radius of the accordion",
+          },
+          {
+            category: "Border",
+            name: "border-width-1",
+            value: "sgds/border-width/1",
+            usage:
+              "Bottom border of the accordion item; border of the accordion",
+          },
+          {
+            category: "Typography",
+            name: "font-size-body-sm",
+            value: "sgds/font-size/body-sm",
+            usage: "Font size of the accordion body",
+          },
+          {
+            category: "Typography",
+            name: "font-size-heading-sm",
+            value: "sgds/font-size/heading-sm",
+            usage: "Font size of the accordion button",
+          },
+          {
+            category: "Typography",
+            name: "font-size-subtitle-md",
+            value: "sgds/font-size/subtitle-md",
+            usage: "Font size of the accordion button",
+          },
+          {
+            category: "Typography",
+            name: "font-size-subtitle-sm",
+            value: "sgds/font-size/subtitle-sm",
+            usage: "Font size of the accordion button",
+          },
+          {
+            category: "Typography",
+            name: "font-weight-semibold",
+            value: "sgds/font-weight/semibold",
+            usage: "Font weight of the accordion button",
+          },
+          {
+            category: "Typography",
+            name: "line-height-2-xs",
+            value: "sgds/line-height/2-xs",
+            usage:
+              "Line height of the accordion button; line height of the accordion body",
+          },
+          {
+            category: "Typography",
+            name: "line-height-sm",
+            value: "sgds/line-height/sm",
+            usage: "Line height of the accordion button",
+          },
+          {
+            category: "Typography",
+            name: "line-height-xs",
+            value: "sgds/line-height/xs",
+            usage:
+              "Line height of the accordion button; line height of the accordion body",
+          },
+          {
+            category: "Colour",
+            name: "color-default",
+            value: "sgds/color-default",
+            usage: "Text colour of the accordion button",
+          },
+          {
+            category: "Colour",
+            name: "color-subtle",
+            value: "sgds/color-subtle",
+            usage: "Text colour of the content",
+          },
+        ],
+      },
+    ],
   },
   alert: {
     key: "alert",
@@ -2186,37 +2262,43 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Warning",
             value: "warning",
             markup: `<div class="portal-demo-row"><sgds-badge variant="warning">Warning</sgds-badge></div>`,
-            description: "Use to flag items needing attention without blocking the user — for example, pending review or nearing a threshold.",
+            description:
+              "Use to flag items needing attention without blocking the user — for example, pending review or nearing a threshold.",
           },
           {
             label: "Danger",
             value: "danger",
             markup: `<div class="portal-demo-row"><sgds-badge variant="danger">Danger</sgds-badge></div>`,
-            description: "Use to communicate an error, failure, or critical state that should draw the user's attention immediately.",
+            description:
+              "Use to communicate an error, failure, or critical state that should draw the user's attention immediately.",
           },
           {
             label: "Cyan",
             value: "cyan",
             markup: `<div class="portal-demo-row"><sgds-badge variant="cyan">Cyan</sgds-badge></div>`,
-            description: "A supplementary category tone. Use to differentiate labels when a status colour is not appropriate.",
+            description:
+              "A supplementary category tone. Use to differentiate labels when a status colour is not appropriate.",
           },
           {
             label: "Purple",
             value: "purple",
             markup: `<div class="portal-demo-row"><sgds-badge variant="purple">Purple</sgds-badge></div>`,
-            description: "Another supplementary category tone. Pair with cyan to separate two or more non-status categories.",
+            description:
+              "Another supplementary category tone. Pair with cyan to separate two or more non-status categories.",
           },
           {
             label: "White",
             value: "white",
             markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-badge variant="white">White</sgds-badge></div>`,
-            description: "Use on dark or coloured backgrounds where the other variants would lack contrast.",
+            description:
+              "Use on dark or coloured backgrounds where the other variants would lack contrast.",
           },
         ],
       },
       {
         title: "Outlined",
-        description: "Controls whether the badge uses a filled or outlined style. Outlined gives the badge a lighter visual presence.",
+        description:
+          "Controls whether the badge uses a filled or outlined style. Outlined gives the badge a lighter visual presence.",
         controlLabel: "Badge outlined options",
         defaultValue: "filled",
         options: [
@@ -2224,7 +2306,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Filled",
             value: "filled",
             markup: `<div class="portal-demo-row"><sgds-badge variant="accent">Filled</sgds-badge></div>`,
-            description: "The default filled style uses a solid background. Use when the badge needs to read strongly at a glance.",
+            description:
+              "The default filled style uses a solid background. Use when the badge needs to read strongly at a glance.",
           },
           {
             label: "Outlined",
@@ -3469,21 +3552,112 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     measurementTokens: [
-      { mapKey: "background", category: "Colour", element: "Colour", property: "background", designToken: "sgds/primary/surface-default", rawValue: "#6B4FEB" },
-      { mapKey: "hover-bg", category: "Colour", element: "", property: "hover-bg", designToken: "sgds/primary/surface-emphasis", rawValue: "#523ABC" },
-      { mapKey: "text-color", category: "Colour", element: "", property: "text-color", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3" },
-      { mapKey: "border-radius", category: "Border", element: "Border", property: "border-radius", designToken: "sgds/border-radius/md", rawValue: "8px" },
-      { mapKey: "border-width", category: "Border", element: "", property: "border-width", designToken: "sgds/border-width/1", rawValue: "1px" },
-      { mapKey: "padding-x", category: "Spacing", element: "Spacing", property: "padding-x", designToken: "sgds/padding/lg", rawValue: "20px" },
-      { mapKey: "gap", category: "Spacing", element: "", property: "gap", designToken: "sgds/gap/2-xs", rawValue: "4px" },
-      { mapKey: "height", category: "Size", element: "Size", property: "height", designToken: "sgds/dimension/48", rawValue: "48px" },
-      { mapKey: "min-width", category: "Size", element: "", property: "min-width", designToken: "sgds/dimension/96", rawValue: "96px" },
-      { mapKey: "font-size", category: "Typography", element: "Typography", property: "font-size", designToken: "sgds/font-size/16", rawValue: "16px" },
-      { mapKey: "line-height", category: "Typography", element: "", property: "line-height", designToken: "sgds/line-height/24", rawValue: "24px" },
+      {
+        mapKey: "background",
+        category: "Colour",
+        element: "Colour",
+        property: "background",
+        designToken: "sgds/primary/surface-default",
+        rawValue: "#6B4FEB",
+      },
+      {
+        mapKey: "hover-bg",
+        category: "Colour",
+        element: "",
+        property: "hover-bg",
+        designToken: "sgds/primary/surface-emphasis",
+        rawValue: "#523ABC",
+      },
+      {
+        mapKey: "text-color",
+        category: "Colour",
+        element: "",
+        property: "text-color",
+        designToken: "sgds/color-fixed-light",
+        rawValue: "#F3F3F3",
+      },
+      {
+        mapKey: "border-radius",
+        category: "Border",
+        element: "Border",
+        property: "border-radius",
+        designToken: "sgds/border-radius/md",
+        rawValue: "8px",
+      },
+      {
+        mapKey: "border-width",
+        category: "Border",
+        element: "",
+        property: "border-width",
+        designToken: "sgds/border-width/1",
+        rawValue: "1px",
+      },
+      {
+        mapKey: "padding-x",
+        category: "Spacing",
+        element: "Spacing",
+        property: "padding-x",
+        designToken: "sgds/padding/lg",
+        rawValue: "20px",
+      },
+      {
+        mapKey: "gap",
+        category: "Spacing",
+        element: "",
+        property: "gap",
+        designToken: "sgds/gap/2-xs",
+        rawValue: "4px",
+      },
+      {
+        mapKey: "height",
+        category: "Size",
+        element: "Size",
+        property: "height",
+        designToken: "sgds/dimension/48",
+        rawValue: "48px",
+      },
+      {
+        mapKey: "min-width",
+        category: "Size",
+        element: "",
+        property: "min-width",
+        designToken: "sgds/dimension/96",
+        rawValue: "96px",
+      },
+      {
+        mapKey: "font-size",
+        category: "Typography",
+        element: "Typography",
+        property: "font-size",
+        designToken: "sgds/font-size/16",
+        rawValue: "16px",
+      },
+      {
+        mapKey: "line-height",
+        category: "Typography",
+        element: "",
+        property: "line-height",
+        designToken: "sgds/line-height/24",
+        rawValue: "24px",
+      },
     ],
     globalTokens: [
-      { mapKey: "leading-icon-color", category: "Colour", element: "Leading icon", property: "", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3" },
-      { mapKey: "trailing-icon-color", category: "Colour", element: "Trailing icon", property: "", designToken: "sgds/color-fixed-light", rawValue: "#F3F3F3" },
+      {
+        mapKey: "leading-icon-color",
+        category: "Colour",
+        element: "Leading icon",
+        property: "",
+        designToken: "sgds/color-fixed-light",
+        rawValue: "#F3F3F3",
+      },
+      {
+        mapKey: "trailing-icon-color",
+        category: "Colour",
+        element: "Trailing icon",
+        property: "",
+        designToken: "sgds/color-fixed-light",
+        rawValue: "#F3F3F3",
+      },
     ],
     configurationDemos: [
       {
@@ -4457,6 +4631,41 @@ const componentDocs: Record<string, ComponentDoc> = {
         defaultValue: '"vertical"',
         description:
           "Controls whether the card content is laid out vertically or horizontally.",
+      },
+    ],
+    componentTokenGroups: [
+      {
+        title: "sgds / card",
+        rows: [
+          {
+            category: "Padding",
+            name: "padding-x",
+            value: "sgds/padding/xl",
+            mapKey: "padding-x",
+            usage:
+              "Horizontal inset of the card body from its left and right edges",
+          },
+          {
+            category: "Padding",
+            name: "padding-y",
+            value: "sgds/padding/xl",
+            mapKey: "padding-y",
+            usage:
+              "Vertical inset of the card body from its top and bottom edges",
+          },
+          {
+            category: "Colour",
+            name: "bg-translucent-subtle",
+            value: "sgds/bg-translucent-subtle",
+            usage: "Background colour of the card tinted bg",
+          },
+          {
+            category: "Opacity",
+            name: "opacity-50",
+            value: "sgds/opacity/50",
+            usage: "Transparency of the card tinted bg",
+          },
+        ],
       },
     ],
     componentTokenGroups: [
