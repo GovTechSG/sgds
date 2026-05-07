@@ -620,7 +620,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         mapKey: "gap",
-        category: "Spacing",
+        category: "Gap",
         element: "Gap",
         property: "gap",
         designToken: "sgds/gap/md",
@@ -657,118 +657,132 @@ const componentDocs: Record<string, ComponentDoc> = {
     ],
     measurementTokenGroups: [
       {
-        title: "sgds/accordion/default",
+        title: "sgds / accordion",
         tokens: [
           {
-            category: "Spacing",
+            mapKey: "padding-x-default",
+            category: "Padding",
             element: "Padding",
             property: "padding-x",
             designToken: "sgds/padding/lg",
             rawValue: "20px",
+            variant: "default",
             usage:
               "Space between the left and right edges of the component and its content",
           },
           {
-            category: "Spacing",
+            mapKey: "padding-y-default",
+            category: "Padding",
             element: "",
             property: "padding-y",
             designToken: "sgds/padding/lg",
             rawValue: "20px",
+            variant: "default",
             usage:
               "Space between the top and bottom edges of the component and its content",
           },
           {
-            category: "Spacing",
+            mapKey: "content-padding",
+            category: "Padding",
             element: "Content padding",
             property: "padding-top",
             designToken: "sgds/padding/xs",
             rawValue: "4px",
+            variant: "default",
             usage: "Top padding of the accordion",
           },
           {
-            category: "Spacing",
+            mapKey: "content-padding",
+            category: "Padding",
             element: "",
             property: "padding-bottom",
             designToken: "sgds/padding/lg",
             rawValue: "20px",
+            variant: "default",
             usage: "Bottom padding of the accordion",
           },
-        ],
-      },
-      {
-        title: "sgds/accordion/compact",
-        tokens: [
           {
-            category: "Spacing",
+            mapKey: "padding-x-default",
+            category: "Padding",
             element: "Padding",
             property: "padding-x",
             designToken: "sgds/padding/md",
             rawValue: "16px",
+            variant: "compact",
             usage:
               "Space between the left and right edges of the component and its content",
           },
           {
-            category: "Spacing",
+            mapKey: "padding-y-default",
+            category: "Padding",
             element: "",
             property: "padding-y",
             designToken: "sgds/padding/md",
             rawValue: "16px",
+            variant: "compact",
             usage:
               "Space between the top and bottom edges of the component and its content",
           },
           {
-            category: "Spacing",
+            mapKey: "content-padding",
+            category: "Padding",
             element: "Content padding",
             property: "padding-top",
             designToken: "sgds/padding/xs",
             rawValue: "4px",
+            variant: "compact",
             usage: "Top padding of the accordion",
           },
           {
-            category: "Spacing",
+            mapKey: "content-padding",
+            category: "Padding",
             element: "",
             property: "padding-bottom",
             designToken: "sgds/padding/md",
             rawValue: "16px",
+            variant: "compact",
             usage: "Bottom padding of the accordion",
           },
-        ],
-      },
-      {
-        title: "sgds/accordion/spacious",
-        tokens: [
           {
-            category: "Spacing",
+            mapKey: "padding-x-default",
+            category: "Padding",
             element: "Padding",
             property: "padding-x",
             designToken: "sgds/padding/xl",
             rawValue: "24px",
+            variant: "spacious",
             usage:
               "Space between the left and right edges of the component and its content",
           },
           {
-            category: "Spacing",
+            mapKey: "padding-y-default",
+            category: "Padding",
             element: "",
             property: "padding-y",
             designToken: "sgds/padding/xl",
             rawValue: "24px",
+            variant: "spacious",
             usage:
               "Space between the top and bottom edges of the component and its content",
           },
           {
-            category: "Spacing",
+            mapKey: "content-padding",
+            category: "Padding",
             element: "Content padding",
             property: "padding-top",
             designToken: "sgds/padding/xs",
             rawValue: "4px",
+            variant: "spacious",
             usage: "Top padding of the accordion",
           },
           {
-            category: "Spacing",
+            mapKey: "content-padding",
+            category: "Padding",
             element: "",
             property: "padding-bottom",
             designToken: "sgds/padding/xl",
             rawValue: "24px",
+            variant: "spacious",
             usage: "Bottom padding of the accordion",
           },
         ],
@@ -796,18 +810,24 @@ const componentDocs: Record<string, ComponentDoc> = {
     demos: [
       {
         ...demo(
-          "Density",
-          "The accordion offers two density options, default and compact, to adapt to different contexts.",
+          "Size",
+          "The accordion offers default, compact, and spacious density options to adapt to different contexts.",
           `<div class="portal-demo-stack">
+          <sgds-accordion>
+            <sgds-accordion-item>
+              <span slot="header">Default</span>
+              <div slot="content">Accordion content</div>
+            </sgds-accordion-item>
+          </sgds-accordion>
           <sgds-accordion density="compact">
             <sgds-accordion-item>
               <span slot="header">Compact</span>
               <div slot="content">Accordion content</div>
             </sgds-accordion-item>
           </sgds-accordion>
-          <sgds-accordion>
+          <sgds-accordion density="spacious">
             <sgds-accordion-item>
-              <span slot="header">Default</span>
+              <span slot="header">Spacious</span>
               <div slot="content">Accordion content</div>
             </sgds-accordion-item>
           </sgds-accordion>
@@ -919,18 +939,24 @@ const componentDocs: Record<string, ComponentDoc> = {
         ),
         {
           ...demo(
-            "Density",
-            "Use compact or default density depending on the surrounding layout and information density.",
+            "Size",
+            "Use default, compact, or spacious density depending on the surrounding layout and information density.",
             `<div class="portal-demo-stack">
+              <sgds-accordion>
+                <sgds-accordion-item>
+                  <span slot="header">Default</span>
+                  <div slot="content">Accordion content</div>
+                </sgds-accordion-item>
+              </sgds-accordion>
               <sgds-accordion density="compact">
                 <sgds-accordion-item>
                   <span slot="header">Compact</span>
                   <div slot="content">Accordion content</div>
                 </sgds-accordion-item>
               </sgds-accordion>
-              <sgds-accordion>
+              <sgds-accordion density="spacious">
                 <sgds-accordion-item>
-                  <span slot="header">Default</span>
+                  <span slot="header">Spacious</span>
                   <div slot="content">Accordion content</div>
                 </sgds-accordion-item>
               </sgds-accordion>
@@ -1214,126 +1240,6 @@ const componentDocs: Record<string, ComponentDoc> = {
     },
     updatesText:
       "This page uses the current SGDS accordion and tab components, with examples aligned to the portal design reference.",
-    componentTokenGroups: [
-      {
-        title: "sgds / accordion",
-        rows: [
-          {
-            category: "Padding",
-            name: "padding-lg",
-            value: "sgds/padding/lg",
-            usage: "Padding of the accordion button; padding of the content",
-          },
-          {
-            category: "Padding",
-            name: "padding-md",
-            value: "sgds/padding/md",
-            usage: "Padding of the accordion button; padding of the content",
-          },
-          {
-            category: "Padding",
-            name: "padding-xl",
-            value: "sgds/padding/xl",
-            usage: "Padding of the accordion button; padding of the content",
-          },
-          {
-            category: "Padding",
-            name: "padding-xs",
-            value: "sgds/padding/xs",
-            usage: "Padding of the content",
-          },
-          {
-            category: "Gap",
-            name: "gap-md",
-            value: "sgds/gap/md",
-            usage:
-              "Spacing between items of the accordion button; spacing between items of the accordion header trailing",
-          },
-          {
-            category: "Border",
-            name: "border-color-muted",
-            value: "sgds/border-color-muted",
-            usage:
-              "Bottom border of the accordion item; border of the accordion",
-          },
-          {
-            category: "Border",
-            name: "border-radius-md",
-            value: "sgds/border-radius/md",
-            usage: "Corner radius of the accordion",
-          },
-          {
-            category: "Border",
-            name: "border-width-1",
-            value: "sgds/border-width/1",
-            usage:
-              "Bottom border of the accordion item; border of the accordion",
-          },
-          {
-            category: "Typography",
-            name: "font-size-body-sm",
-            value: "sgds/font-size/body-sm",
-            usage: "Font size of the accordion body",
-          },
-          {
-            category: "Typography",
-            name: "font-size-heading-sm",
-            value: "sgds/font-size/heading-sm",
-            usage: "Font size of the accordion button",
-          },
-          {
-            category: "Typography",
-            name: "font-size-subtitle-md",
-            value: "sgds/font-size/subtitle-md",
-            usage: "Font size of the accordion button",
-          },
-          {
-            category: "Typography",
-            name: "font-size-subtitle-sm",
-            value: "sgds/font-size/subtitle-sm",
-            usage: "Font size of the accordion button",
-          },
-          {
-            category: "Typography",
-            name: "font-weight-semibold",
-            value: "sgds/font-weight/semibold",
-            usage: "Font weight of the accordion button",
-          },
-          {
-            category: "Typography",
-            name: "line-height-2-xs",
-            value: "sgds/line-height/2-xs",
-            usage:
-              "Line height of the accordion button; line height of the accordion body",
-          },
-          {
-            category: "Typography",
-            name: "line-height-sm",
-            value: "sgds/line-height/sm",
-            usage: "Line height of the accordion button",
-          },
-          {
-            category: "Typography",
-            name: "line-height-xs",
-            value: "sgds/line-height/xs",
-            usage:
-              "Line height of the accordion button; line height of the accordion body",
-          },
-          {
-            category: "Colour",
-            name: "color-default",
-            value: "sgds/color-default",
-            usage: "Text colour of the accordion button",
-          },
-          {
-            category: "Colour",
-            name: "color-subtle",
-            value: "sgds/color-subtle",
-            usage: "Text colour of the content",
-          },
-        ],
-      },
-    ],
   },
   alert: {
     key: "alert",
@@ -1822,33 +1728,39 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "Components",
         rows: [
           {
+            category: "Padding",
             name: "padding-x",
             value: "sgds/padding/lg",
             usage:
               "Space between the left and right edges of the component and its content",
           },
           {
+            category: "Padding",
             name: "padding-y",
             value: "sgds/padding/lg",
             usage:
               "Space between the top and bottom edges of the component and its content",
           },
           {
+            category: "Padding",
             name: "content-padding-right",
             value: "sgds/padding/2-xl",
             usage: "Right padding of the alert content",
           },
           {
+            category: "Gap",
             name: "gap",
             value: "sgds/gap/sm",
             usage: "Spacing between items of the alert",
           },
           {
+            category: "Gap",
             name: "title-gap",
             value: "sgds/gap/2-xs",
             usage: "Spacing between items of the alert content upper",
           },
           {
+            category: "Gap",
             name: "content-gap",
             value: "sgds/gap/md",
             usage: "Spacing between items of the alert content",
@@ -2011,8 +1923,48 @@ const componentDocs: Record<string, ComponentDoc> = {
         {
           title: "Action",
           items: [
-            "Avoid placing critical actions only inside accordion content, ensure visibility.",
+            "Use a clear link or action only when it helps users resolve or understand the alert.",
           ],
+        },
+      ],
+      bestPractices: [
+        {
+          title: "Match the alert to the message",
+          description:
+            "Use the variant that reflects the message severity so users can understand the status quickly.",
+          tone: "do",
+          markup: `<sgds-alert show variant="info" title="Info alert">
+            <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+            <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+          </sgds-alert>`,
+        },
+        {
+          title: "Do not flood the page with alerts",
+          description:
+            "Too many alerts compete with the page content. Prioritise the message users need most.",
+          tone: "dont",
+          markup: `<div class="portal-demo-stack-sm">
+            <sgds-alert show outlined variant="info" title="Info alert">
+              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+              <div>Review the latest guidance before submitting your application.</div>
+            </sgds-alert>
+            <sgds-alert show outlined variant="warning" title="Warning alert">
+              <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
+              <div>Check your documents before you continue.</div>
+            </sgds-alert>
+            <sgds-alert show outlined variant="danger" title="Danger alert">
+              <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
+              <div>We could not save one part of the form.</div>
+            </sgds-alert>
+            <sgds-alert show outlined variant="success" title="Success alert">
+              <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
+              <div>Your progress will be saved automatically.</div>
+            </sgds-alert>
+            <sgds-alert show outlined variant="neutral" title="Neutral alert">
+              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+              <div>This service keeps drafts for 30 days.</div>
+            </sgds-alert>
+          </div>`,
         },
       ],
     },
@@ -2294,6 +2246,15 @@ const componentDocs: Record<string, ComponentDoc> = {
         </div>`,
       ),
     ],
+    measurements: [
+      {
+        title: "",
+        description: "",
+        markup: `<div class="portal-demo-row">
+          <sgds-badge outlined dismissible show>Badge</sgds-badge>
+        </div>`,
+      },
+    ],
     componentTokenGroups: [
       {
         title: "sgds / badge",
@@ -2304,7 +2265,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "sgds/padding/xs",
             mapKey: "padding-x",
             usage:
-              "Space between the left and right edges of the component and its content",
+              "Space between the left and right edges of the badge container and its content",
           },
           {
             category: "Padding",
@@ -2312,31 +2273,14 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "sgds/padding/none",
             mapKey: "padding-y",
             usage:
-              "Space between the top and bottom edges of the component and its content",
+              "Space between the top and bottom edges of the component and its content; also removes right padding when dismissible",
           },
           {
             category: "Padding",
             name: "padding-3-xs",
             value: "sgds/padding/3-xs",
-            usage: "Padding of the badge label",
-          },
-          {
-            category: "Border",
-            name: "accent-border-color-muted",
-            value: "sgds/accent/border-color/muted",
-            usage: "Border of the badge",
-          },
-          {
-            category: "Border",
-            name: "border-color-muted",
-            value: "sgds/border-color-muted",
-            usage: "Border of the badge",
-          },
-          {
-            category: "Border",
-            name: "border-color-transparent",
-            value: "sgds/border-color-transparent",
-            usage: "Border of the badge",
+            usage:
+              "Space between the left and right edges of the badge label and its content",
           },
           {
             category: "Border",
@@ -2355,44 +2299,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
           {
             category: "Border",
-            name: "cyan-border-color-muted",
-            value: "sgds/cyan-border-color-muted",
-            usage: "Border of the badge",
-          },
-          {
-            category: "Border",
-            name: "danger-border-color-muted",
-            value: "sgds/danger/border-color/muted",
-            usage: "Border of the badge",
-          },
-          {
-            category: "Border",
-            name: "neutral-border-color-muted",
-            value: "sgds/neutral/border-color/muted",
-            usage: "Border of the badge",
-          },
-          {
-            category: "Border",
             name: "primary-border-color-muted",
             value: "sgds/primary/border-color/muted",
-            usage: "Border of the badge",
-          },
-          {
-            category: "Border",
-            name: "purple-border-color-muted",
-            value: "sgds/purple-border-color-muted",
-            usage: "Border of the badge",
-          },
-          {
-            category: "Border",
-            name: "success-border-color-muted",
-            value: "sgds/success/border-color/muted",
-            usage: "Border of the badge",
-          },
-          {
-            category: "Border",
-            name: "warning-border-color-muted",
-            value: "sgds/warning/border-color/muted",
             usage: "Border of the badge",
           },
           {
@@ -2411,91 +2319,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-192",
             value: "sgds/dimension/192",
-            usage: "Width of the badge",
+            usage: "Maximum width before the badge label truncates",
           },
           {
             category: "Size",
             name: "dimension-24",
             value: "sgds/dimension/24",
-            usage: "Width of the badge",
-          },
-          {
-            category: "Colour",
-            name: "accent-color-fixed-dark",
-            value: "sgds/accent/color-fixed/dark",
-            usage: "Text colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "accent-surface-default",
-            value: "sgds/accent/surface/default",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "accent-surface-muted",
-            value: "sgds/accent/surface/muted",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "color-fixed-dark",
-            value: "sgds/color-fixed-dark",
-            usage: "Text colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "color-fixed-light",
-            value: "sgds/color-fixed-light",
-            usage: "Text colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "cyan-color-fixed-dark",
-            value: "sgds/cyan-color-fixed-dark",
-            usage: "Text colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "cyan-surface-default",
-            value: "sgds/cyan-surface-default",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "cyan-surface-muted",
-            value: "sgds/cyan-surface-muted",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "danger-color-fixed-dark",
-            value: "sgds/danger/color-fixed/dark",
-            usage: "Text colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "danger-surface-default",
-            value: "sgds/danger/surface/default",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "danger-surface-muted",
-            value: "sgds/danger/surface/muted",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "neutral-surface-default",
-            value: "sgds/neutral/surface/default",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "neutral-surface-muted",
-            value: "sgds/neutral/surface/muted",
-            usage: "Background colour of the badge",
+            usage: "Height of the badge",
           },
           {
             category: "Colour",
@@ -2505,74 +2335,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
           {
             category: "Colour",
-            name: "primary-surface-default",
-            value: "sgds/primary/surface/default",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
             name: "primary-surface-muted",
             value: "sgds/primary/surface/muted",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "purple-color-fixed-dark",
-            value: "sgds/purple-color-fixed-dark",
-            usage: "Text colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "purple-surface-default",
-            value: "sgds/purple-surface-default",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "purple-surface-muted",
-            value: "sgds/purple-surface-muted",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "success-color-fixed-dark",
-            value: "sgds/success/color-fixed/dark",
-            usage: "Text colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "success-surface-default",
-            value: "sgds/success/surface/default",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "success-surface-muted",
-            value: "sgds/success/surface/muted",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "surface-fixed-light",
-            value: "sgds/surface-fixed-light",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "warning-color-fixed-dark",
-            value: "sgds/warning/color-fixed/dark",
-            usage: "Text colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "warning-surface-default",
-            value: "sgds/warning/surface/default",
-            usage: "Background colour of the badge",
-          },
-          {
-            category: "Colour",
-            name: "warning-surface-muted",
-            value: "sgds/warning/surface/muted",
             usage: "Background colour of the badge",
           },
         ],
@@ -2923,7 +2687,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Cover common states",
         description:
-          "Loading, disabled, and focus states keep button behaviour predictable.",
+          "Loading, `disabled`, and focus states keep button behaviour predictable.",
       },
     ],
     anatomyMarkup: `<div class="portal-demo-row"><sgds-button class="portal-anatomy-button"><sgds-icon slot="leftIcon" name="house"></sgds-icon><span class="portal-anatomy-button-label">Button label</span><sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon></sgds-button></div>`,
@@ -3005,7 +2769,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     ],
     measurementTokenGroups: [
       {
-        title: "sgds/btn/xs",
+        title: "sgds / button",
         tokens: [
           {
             mapKey: "padding-x",
@@ -3014,6 +2778,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "padding-x",
             designToken: "sgds/padding/sm",
             rawValue: "12px",
+            variant: "xs",
             usage:
               "Space between the left and right edges of the component and its content",
           },
@@ -3024,6 +2789,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "height",
             designToken: "sgds/dimension/32",
             rawValue: "32px",
+            variant: "xs",
             usage: "Height of the button",
           },
           {
@@ -3033,15 +2799,17 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "min-width",
             designToken: "sgds/dimension/64",
             rawValue: "64px",
-            usage: "Width of the button",
+            variant: "xs",
+            usage: "Minimum width of the button",
           },
           {
             mapKey: "font-size",
             category: "Typography",
             element: "Typography",
             property: "font-size",
-            designToken: "sgds/font-size/12",
+            designToken: "sgds/font-size/label-xs",
             rawValue: "12px",
+            variant: "xs",
             usage: "Font size of the button",
           },
           {
@@ -3049,15 +2817,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Typography",
             element: "",
             property: "line-height",
-            designToken: "sgds/line-height/16",
+            designToken: "sgds/line-height/3-xs",
             rawValue: "16px",
+            variant: "xs",
             usage: "Line height of the button",
           },
-        ],
-      },
-      {
-        title: "sgds/btn/sm",
-        tokens: [
           {
             mapKey: "padding-x",
             category: "Padding",
@@ -3065,6 +2829,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "padding-x",
             designToken: "sgds/padding/md",
             rawValue: "16px",
+            variant: "sm",
             usage:
               "Space between the left and right edges of the component and its content",
           },
@@ -3075,6 +2840,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "height",
             designToken: "sgds/dimension/40",
             rawValue: "40px",
+            variant: "sm",
             usage: "Height of the button",
           },
           {
@@ -3084,15 +2850,17 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "min-width",
             designToken: "sgds/dimension/80",
             rawValue: "80px",
-            usage: "Width of the button",
+            variant: "sm",
+            usage: "Minimum width of the button",
           },
           {
             mapKey: "font-size",
             category: "Typography",
             element: "Typography",
             property: "font-size",
-            designToken: "sgds/font-size/14",
+            designToken: "sgds/font-size/label-sm",
             rawValue: "14px",
+            variant: "sm",
             usage: "Font size of the button",
           },
           {
@@ -3100,15 +2868,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Typography",
             element: "",
             property: "line-height",
-            designToken: "sgds/line-height/20",
+            designToken: "sgds/line-height/2-xs",
             rawValue: "20px",
+            variant: "sm",
             usage: "Line height of the button",
           },
-        ],
-      },
-      {
-        title: "sgds/btn/md",
-        tokens: [
           {
             mapKey: "padding-x",
             category: "Padding",
@@ -3116,6 +2880,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "padding-x",
             designToken: "sgds/padding/lg",
             rawValue: "20px",
+            variant: "md",
             usage:
               "Space between the left and right edges of the component and its content",
           },
@@ -3126,6 +2891,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "height",
             designToken: "sgds/dimension/48",
             rawValue: "48px",
+            variant: "md",
             usage: "Height of the button",
           },
           {
@@ -3135,15 +2901,17 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "min-width",
             designToken: "sgds/dimension/96",
             rawValue: "96px",
-            usage: "Width of the button",
+            variant: "md",
+            usage: "Minimum width of the button",
           },
           {
             mapKey: "font-size",
             category: "Typography",
             element: "Typography",
             property: "font-size",
-            designToken: "sgds/font-size/16",
+            designToken: "sgds/font-size/label-md",
             rawValue: "16px",
+            variant: "md",
             usage: "Font size of the button",
           },
           {
@@ -3151,15 +2919,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Typography",
             element: "",
             property: "line-height",
-            designToken: "sgds/line-height/24",
+            designToken: "sgds/line-height/xs",
             rawValue: "24px",
+            variant: "md",
             usage: "Line height of the button",
           },
-        ],
-      },
-      {
-        title: "sgds/btn/lg",
-        tokens: [
           {
             mapKey: "padding-x",
             category: "Padding",
@@ -3167,6 +2931,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "padding-x",
             designToken: "sgds/padding/xl",
             rawValue: "24px",
+            variant: "lg",
             usage:
               "Space between the left and right edges of the component and its content",
           },
@@ -3177,6 +2942,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "height",
             designToken: "sgds/dimension/56",
             rawValue: "56px",
+            variant: "lg",
             usage: "Height of the button",
           },
           {
@@ -3186,15 +2952,17 @@ const componentDocs: Record<string, ComponentDoc> = {
             property: "min-width",
             designToken: "sgds/dimension/112",
             rawValue: "112px",
-            usage: "Width of the button",
+            variant: "lg",
+            usage: "Minimum width of the button",
           },
           {
             mapKey: "font-size",
             category: "Typography",
             element: "Typography",
             property: "font-size",
-            designToken: "sgds/font-size/20",
+            designToken: "sgds/font-size/label-lg",
             rawValue: "20px",
+            variant: "lg",
             usage: "Font size of the button",
           },
           {
@@ -3202,8 +2970,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Typography",
             element: "",
             property: "line-height",
-            designToken: "sgds/line-height/32",
+            designToken: "sgds/line-height/md",
             rawValue: "32px",
+            variant: "lg",
             usage: "Line height of the button",
           },
         ],
@@ -3814,6 +3583,24 @@ const componentDocs: Record<string, ComponentDoc> = {
         ],
       },
     ],
+    usage: {
+      bestPractices: [
+        {
+          title: "Use a clear action label",
+          description:
+            "Specific labels help users understand the outcome before they act.",
+          tone: "do",
+          markup: `<div class="portal-demo-row"><sgds-button>Save changes</sgds-button></div>`,
+        },
+        {
+          title: "Do not use vague labels",
+          description:
+            "Generic labels such as Click here force users to read surrounding text to understand what happens.",
+          tone: "dont",
+          markup: `<div class="portal-demo-row"><sgds-button>Click here</sgds-button></div>`,
+        },
+      ],
+    },
   },
   card: {
     key: "card",
@@ -3917,7 +3704,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     ],
     anatomyMarkup: `<sgds-card class="portal-demo-card portal-anatomy-card">
       <sgds-badge slot="menu" variant="neutral" outlined>Badge</sgds-badge>
-      <sgds-icon slot="icon" name="box-seam" size="2xl"></sgds-icon>
+      <sgds-icon slot="icon" name="box-seam" size="2-xl"></sgds-icon>
       <span slot="subtitle">Category</span>
       <span slot="title">Card title</span>
       <div class="portal-slot-example portal-anatomy-card-default-slot"><span>Default slot content</span></div>
@@ -4007,8 +3794,8 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         mapKey: "padding-x",
-        category: "Spacing",
-        element: "Spacing",
+        category: "Padding",
+        element: "Padding",
         property: "padding-x",
         designToken: "sgds/padding/xl",
         rawValue: "24px",
@@ -4017,7 +3804,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         mapKey: "padding-y",
-        category: "Spacing",
+        category: "Padding",
         element: "",
         property: "padding-y",
         designToken: "sgds/padding/xl",
@@ -4027,16 +3814,16 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         mapKey: "gap",
-        category: "Spacing",
-        element: "",
+        category: "Gap",
+        element: "Gap",
         property: "gap",
-        designToken: "sgds/gap/lg",
-        rawValue: "20px",
+        designToken: "sgds/gap/xl",
+        rawValue: "24px",
         usage: "Spacing between items inside the card",
       },
       {
         mapKey: "title-gap",
-        category: "Spacing",
+        category: "Gap",
         element: "",
         property: "title-gap",
         designToken: "sgds/gap/xs",
@@ -4045,16 +3832,16 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         mapKey: "subtitle-gap",
-        category: "Spacing",
+        category: "Gap",
         element: "",
         property: "subtitle-gap",
-        designToken: "sgds/gap/2-xs",
-        rawValue: "4px",
+        designToken: "sgds/gap/xs",
+        rawValue: "8px",
         usage: "Spacing around the subtitle",
       },
       {
         mapKey: "slot-gap",
-        category: "Spacing",
+        category: "Gap",
         element: "",
         property: "slot-gap",
         designToken: "sgds/gap/sm",
@@ -4182,67 +3969,6 @@ const componentDocs: Record<string, ComponentDoc> = {
               <span slot="title">Card title</span>
               <span slot="description">The default treatment works for most neutral card layouts.</span>
             </sgds-card>`,
-          },
-        ],
-      },
-      {
-        title: "Variant",
-        description:
-          "Available SGDS card variants and the kind of content each one supports.",
-        controlLabel: "Card variant options",
-        defaultValue: "default",
-        options: [
-          {
-            label: "Default",
-            value: "default",
-            description:
-              "The base card variant is text-first and flexible. Use it when content matters more than supporting media.",
-            markup: `<sgds-card class="portal-demo-card">
-              <span slot="title">Card title</span>
-              <span slot="description">Use the default variant for text-first card layouts.</span>
-            </sgds-card>`,
-          },
-          {
-            label: "Icon card",
-            value: "icon",
-            description:
-              "The icon card variant pairs content with a small symbol. Use it when a visual cue helps users recognise the card’s purpose at a glance.",
-            markup: `<sgds-icon-card class="portal-demo-card">
-              <sgds-icon slot="icon" name="box-seam"></sgds-icon>
-              <span slot="title">Service update</span>
-              <span slot="description">A concise summary of the content inside the card.</span>
-            </sgds-icon-card>`,
-          },
-          {
-            label: "Thumbnail card",
-            value: "thumbnail",
-            description:
-              "The thumbnail card variant uses a compact image beside the content. Use it when a small visual preview needs to sit alongside concise supporting copy.",
-            markup: `<sgds-thumbnail-card class="portal-demo-card">
-              <img
-                slot="thumbnail"
-                alt="Thumbnail"
-                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80"
-                style="width: var(--sgds-dimension-64); height: var(--sgds-dimension-64); object-fit: cover; border-radius: var(--sgds-border-radius-md);"
-              />
-              <span slot="title">Thumbnail card title</span>
-              <span slot="description">Supporting description for the thumbnail card.</span>
-            </sgds-thumbnail-card>`,
-          },
-          {
-            label: "Image card",
-            value: "image-card",
-            description:
-              "The image card variant uses a larger visual preview above the content. Use it when the image needs to carry part of the story alongside short supporting copy.",
-            markup: `<sgds-image-card class="portal-demo-card">
-              <img
-                slot="image"
-                alt="Service preview"
-                src="/landing/placeholder1.png"
-              />
-              <span slot="title">Image card title</span>
-              <span slot="description">Supporting description for the image card content.</span>
-            </sgds-image-card>`,
           },
         ],
       },
@@ -4418,7 +4144,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<sgds-card class="portal-demo-card">
               <span slot="title">Card title</span>
               <span slot="description">Use a footer button when the action needs stronger emphasis.</span>
-              <sgds-button slot="footer" variant="secondary">Take action</sgds-button>
+              <sgds-button slot="footer" variant="outline">Take action</sgds-button>
             </sgds-card>`,
           },
           {
@@ -4812,7 +4538,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             usage: "Transparency of the label hint container when disabled",
           },
           {
-            category: "Other",
+            category: "Border",
             name: "form-border-radius-md",
             value: "sgds/form/border-radius/md",
             usage: "Corner radius of the form check input",
@@ -4912,7 +4638,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Disabled",
         description:
-          "Use the disabled state to prevent interaction when the option is not available in the current context.",
+          "Use the `disabled` state to prevent interaction when the option is not available in the current context.",
         controlLabel: "Checkbox disabled options",
         defaultValue: "disabled",
         options: [
@@ -4970,26 +4696,38 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Use checkbox groups when users can choose more than one option at a time.",
         `<sgds-checkbox-group label="Delivery options">
           <sgds-checkbox checked>Email</sgds-checkbox>
+          <sgds-checkbox>SMS</sgds-checkbox>
         </sgds-checkbox-group>`,
       ),
+    ],
+    measurements: [
+      {
+        title: "",
+        description: "",
+        markup: `<sgds-checkbox-group label="Delivery options">
+          <sgds-checkbox checked>Email</sgds-checkbox>
+          <sgds-checkbox>SMS</sgds-checkbox>
+        </sgds-checkbox-group>`,
+      },
     ],
     usage: {
       bestPractices: [
         {
-          title: "Use a single checkbox for one form choice",
+          title: "Use a single checkbox for one optional choice",
           description:
             "Use a standalone checkbox when users are confirming or selecting one optional item within a form.",
           tone: "do",
           markup: `<sgds-checkbox>Email me updates</sgds-checkbox>`,
         },
         {
-          title: "Do not use two checkboxes for one yes-or-no decision",
+          title: "Do not use checkboxes for one required choice",
           description:
-            "For a single mutually exclusive choice, do not offer separate Yes and No checkboxes.",
+            "If users must choose exactly one option, use radio buttons so the mutual exclusivity is clear.",
           tone: "dont",
-          markup: `<sgds-checkbox-group label="Do you want to receive updates?">
-            <sgds-checkbox>Yes</sgds-checkbox>
-            <sgds-checkbox>No</sgds-checkbox>
+          markup: `<sgds-checkbox-group label="Preferred contact method">
+            <sgds-checkbox>Email</sgds-checkbox>
+            <sgds-checkbox>SMS</sgds-checkbox>
+            <sgds-checkbox>Phone call</sgds-checkbox>
           </sgds-checkbox-group>`,
         },
         {
@@ -5004,14 +4742,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           </sgds-checkbox-group>`,
         },
         {
-          title: "Do not use checkboxes when only one option is allowed",
+          title: "Do not use two checkboxes for a yes-or-no decision",
           description:
-            "If users must pick exactly one option, use radio buttons for mutually exclusive choices instead.",
+            "A pair of Yes and No checkboxes lets users select both. Use radio buttons or one clearly labelled checkbox instead.",
           tone: "dont",
-          markup: `<sgds-checkbox-group label="Preferred contact method">
-            <sgds-checkbox>Email</sgds-checkbox>
-            <sgds-checkbox>SMS</sgds-checkbox>
-            <sgds-checkbox>Phone call</sgds-checkbox>
+          markup: `<sgds-checkbox-group label="Do you want to receive updates?">
+            <sgds-checkbox>Yes</sgds-checkbox>
+            <sgds-checkbox>No</sgds-checkbox>
           </sgds-checkbox-group>`,
         },
         {
@@ -5029,7 +4766,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         {
           title: "Do not overload a checkbox group",
           description:
-            "If the list is long or hard to scan, consider a select or combo box instead of showing every option as a checkbox.",
+            "If the list is long or hard to scan, use select or combo box instead of showing every option as a checkbox.",
           tone: "dont",
           markup: `<sgds-checkbox-group label="Services of interest">
             <sgds-checkbox>Passport renewal</sgds-checkbox>
@@ -5066,7 +4803,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Support interaction states",
         description:
-          "Built-in hover, focus, and disabled states keep the control predictable.",
+          "Built-in hover, focus, and `disabled` states keep the control predictable.",
       },
     ],
     anatomyMarkup: `<sgds-close-button class="portal-close-button-anatomy" style="--sgds-bg-transparent: var(--sgds-bg-translucent);"></sgds-close-button>`,
@@ -5246,19 +4983,24 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-24",
             value: "sgds/dimension/24",
+            mapKey: "dimension",
+            variant: "sm",
             usage: "Height of the button close; width of the button close",
           },
           {
             category: "Size",
             name: "dimension-32",
             value: "sgds/dimension/32",
+            mapKey: "dimension",
+            variant: "md",
             usage: "Height of the button close; width of the button close",
           },
           {
             category: "Size",
             name: "icon-size-sm",
             value: "sgds/icon-size/sm",
-            usage: "Height of the button close; width of the button close",
+            variant: "sm",
+            usage: "Height of the inner icon; width of the inner icon",
           },
           {
             category: "Colour",
@@ -5310,7 +5052,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               "Focus-outline offset of the button close when keyboard-focused",
           },
           {
-            category: "Other",
+            category: "Border",
             name: "close-btn-border-radius",
             value: "sgds/close-btn-border-radius",
             usage: "Corner radius of the button close",
@@ -5467,7 +5209,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-48",
             value: "sgds/dimension/48",
-            usage: "Height of the form control group",
+            mapKey: "form-height",
+            usage: "Height of the combo box input container",
           },
           {
             category: "Outline",
@@ -5641,6 +5384,17 @@ const componentDocs: Record<string, ComponentDoc> = {
         </sgds-combo-box>`,
       ),
     ],
+    measurements: [
+      {
+        title: "",
+        description: "",
+        markup: `<sgds-combo-box label="Categories" placeholder="Search categories" multiSelect value="housing">
+          <sgds-combo-box-option value="housing">Housing</sgds-combo-box-option>
+          <sgds-combo-box-option value="transport">Transport</sgds-combo-box-option>
+          <sgds-combo-box-option value="health">Health</sgds-combo-box-option>
+        </sgds-combo-box>`,
+      },
+    ],
     usage: {
       bestPractices: [
         {
@@ -5737,7 +5491,15 @@ const componentDocs: Record<string, ComponentDoc> = {
           "Use a shared date pattern so users know what format to enter.",
       },
     ],
-    anatomyMarkup: `<sgds-datepicker class="portal-anatomy-datepicker" mode="range" label="Label" placeholder="DD/MM/YYYY - DD/MM/YYYY" value="12/05/2026 - 25/05/2026"></sgds-datepicker>`,
+    measurements: [
+      {
+        title: "Default",
+        description:
+          "Datepicker combines an input, trigger button, and calendar dropdown.",
+        markup: `<sgds-datepicker class="portal-structure-datepicker" label="Appointment date" value="22/12/2024" menuisopen noflip></sgds-datepicker>`,
+      },
+    ],
+    anatomyMarkup: `<sgds-datepicker class="portal-anatomy-datepicker" mode="range" label="Label" hintText="Use the format DD/MM/YYYY - DD/MM/YYYY" value="12/05/2026 - 25/05/2026"></sgds-datepicker>`,
     anatomyParts: [
       { title: "Label" },
       { title: "Value" },
@@ -5907,7 +5669,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Min and max date",
         description:
-          "Restrict the selectable date window using minDate and maxDate as ISO strings.",
+          "Restrict the selectable date window using `minDate` and `maxDate` as ISO strings.",
         controlLabel: "Datepicker date range options",
         defaultValue: "no-limits",
         options: [
@@ -5984,9 +5746,9 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Invalid",
             value: "invalid",
-            markup: `<sgds-datepicker class="portal-demo-datepicker" label="Date" required hasFeedback invalid invalidFeedback="Enter a valid date"></sgds-datepicker>`,
+            markup: `<sgds-datepicker class="portal-demo-datepicker" label="Date" required hasFeedback invalidFeedback="Enter a valid date"></sgds-datepicker>`,
             description:
-              "Datepicker shows error styling and feedback message when validation fails.",
+              "Datepicker is configured to show the feedback message when validation fails.",
           },
         ],
       },
@@ -5995,7 +5757,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       demo(
         "Default",
         "Use datepicker when users need a guided way to enter a calendar date.",
-        `<sgds-datepicker placeholder="Select a date"></sgds-datepicker>`,
+        `<sgds-datepicker label="Appointment date"></sgds-datepicker>`,
       ),
     ],
     usage: {
@@ -6018,16 +5780,16 @@ const componentDocs: Record<string, ComponentDoc> = {
           title:
             "Constrain the calendar to the dates users can actually choose",
           description:
-            "Set minDate and maxDate to limit selection to valid dates. For example, future dates only when scheduling.",
+            "Set `minDate` and `maxDate` to limit selection to valid dates. For example, future dates only when scheduling.",
           tone: "do",
           markup: `<sgds-datepicker label="Booking date" minDate="2026-01-01T00:00:00.000Z" maxDate="2026-12-31T00:00:00.000Z"></sgds-datepicker>`,
         },
         {
           title: "Do not leave the format ambiguous",
           description:
-            "Use hintText to show the expected date format so users do not confuse day-month with month-day order.",
+            "Use `hintText` to show the expected date format so users do not confuse day-month with month-day order.",
           tone: "dont",
-          markup: `<sgds-datepicker label="Submission date" placeholder="Enter date"></sgds-datepicker>`,
+          markup: `<sgds-datepicker label="Submission date"></sgds-datepicker>`,
         },
       ],
     },
@@ -6050,14 +5812,6 @@ const componentDocs: Record<string, ComponentDoc> = {
             mapKey: "padding-y",
             usage:
               "Space between the top and bottom edges of the component and its content",
-          },
-          {
-            category: "Padding",
-            name: "form-padding-y",
-            value: "sgds/form/padding/y",
-            mapKey: "form-padding-y",
-            usage:
-              "Space between the top and bottom edges of the field and the typed value",
           },
           {
             category: "Gap",
@@ -6097,15 +5851,27 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
           {
             category: "Size",
+            name: "dimension-48",
+            value: "sgds/dimension/48",
+            rawValue: "48px",
+            mapKey: "dimension-48",
+            usage: "Height of the input container",
+          },
+          {
+            category: "Size",
             name: "dimension-160",
             value: "sgds/dimension/160",
-            usage: "Width of the m width 160",
+            rawValue: "160px",
+            mapKey: "dimension-160",
+            usage: "Minimum width of the input",
           },
           {
             category: "Size",
             name: "dimension-320",
             value: "sgds/dimension/320",
-            usage: "Width of the dropdown menu",
+            rawValue: "320px",
+            mapKey: "dimension-320",
+            usage: "Maximum width of the dropdown menu",
           },
           {
             category: "Colour",
@@ -6166,58 +5932,58 @@ const componentDocs: Record<string, ComponentDoc> = {
             usage: "Transparency of the td.disabled when disabled",
           },
           {
-            category: "Other",
+            category: "Border",
             name: "form-border-radius-md",
             value: "sgds/form/border-radius/md",
             usage:
               "Corner radius of the sgds datepicker input; corner radius of the sgds icon button",
           },
           {
-            category: "Other",
+            category: "Border",
             name: "form-border-radius-sm",
             value: "sgds/form/border-radius/sm",
             usage:
               "Corner radius of the button.year; corner radius of the td.active when keyboard-focused and when active",
           },
           {
-            category: "Other",
+            category: "Size",
             name: "form-height-lg",
             value: "sgds/form/height-lg",
             usage: "Height of the th",
           },
           {
-            category: "Other",
+            category: "Outline",
             name: "form-outline-focus",
             value: "sgds/form/outline/focus",
             usage: "Focus outline of the td when keyboard-focused",
           },
           {
-            category: "Other",
+            category: "Outline",
             name: "form-outline-offset-focus",
             value: "sgds/form/outline-offset/focus",
             usage: "Focus-outline offset of the td when keyboard-focused",
           },
           {
-            category: "Other",
+            category: "Size",
             name: "form-width-md",
             value: "sgds/form/width-md",
             usage: "Width of the th",
           },
           {
-            category: "Other",
+            category: "Colour",
             name: "primary",
             value: "sgds/primary",
             usage:
               "Text colour of items inside the component; background colour of items inside the component",
           },
           {
-            category: "Other",
+            category: "Colour",
             name: "primary-100",
             value: "sgds/primary/100",
             usage: "Background colour of items inside the component",
           },
           {
-            category: "Other",
+            category: "Colour",
             name: "primary-700",
             value: "sgds/primary/700",
             usage: "Background colour of items inside the component",
@@ -6402,12 +6168,12 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Use description lists to pair labels with values in a compact, readable layout.",
         `<sgds-description-list-group>
           <sgds-description-list>
-            <span>Status</span>
-            <span slot="data">Active</span>
+            <span>Application status</span>
+            <span slot="data">Pending verification by service team</span>
           </sgds-description-list>
           <sgds-description-list>
             <span>Updated</span>
-            <span slot="data">31 Mar 2026</span>
+            <span slot="data">31 Mar 2026, 10:30am</span>
           </sgds-description-list>
         </sgds-description-list-group>`,
       ),
@@ -6632,7 +6398,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-280",
             value: "sgds/dimension/280",
-            usage: "Width of the label container",
+            usage: "Maximum width of the label container",
           },
           {
             category: "Colour",
@@ -6691,6 +6457,13 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     anatomyMarkup: `<div class="portal-divider-anatomy"><sgds-divider></sgds-divider></div>`,
+    measurements: [
+      {
+        title: "Default",
+        description: "Divider thickness is set with the `thickness` prop.",
+        markup: `<div class="sgds:w-full"><sgds-divider thickness="thin"></sgds-divider></div>`,
+      },
+    ],
     configurationDemos: [
       {
         title: "Orientation",
@@ -6852,6 +6625,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             name: "border-width-1",
             value: "sgds/border-width/1",
             mapKey: "border-width",
+            variant: "Thin",
             usage: "Border thickness of items inside the component",
           },
           {
@@ -6859,6 +6633,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             name: "border-width-2",
             value: "sgds/border-width/2",
             mapKey: "border-width",
+            variant: "Thick",
             usage: "Border thickness of items inside the component",
           },
           {
@@ -6866,6 +6641,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             name: "border-width-4",
             value: "sgds/border-width/4",
             mapKey: "border-width",
+            variant: "Thicker",
             usage: "Border thickness of items inside the component",
           },
         ],
@@ -7216,7 +6992,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Padding",
             name: "padding-none",
             value: "sgds/padding/none",
-            usage: "Padding of the drawer header",
+            usage: "Bottom padding of the drawer header",
           },
           {
             category: "Gap",
@@ -7238,21 +7014,25 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
           {
             category: "Size",
-            name: "dimension-1024",
-            value: "sgds/dimension/1024",
-            usage: "Width of the drawer panel; height of the drawer panel",
-          },
-          {
-            category: "Size",
             name: "dimension-512",
             value: "sgds/dimension/512",
-            usage: "Height of the drawer panel; width of the drawer panel",
+            mapKey: "dimension",
+            usage:
+              "Width of the drawer panel; height of the drawer panel (small)",
           },
           {
             category: "Size",
             name: "dimension-768",
             value: "sgds/dimension/768",
-            usage: "Width of the drawer panel; height of the drawer panel",
+            usage:
+              "Width of the drawer panel; height of the drawer panel (medium)",
+          },
+          {
+            category: "Size",
+            name: "dimension-1024",
+            value: "sgds/dimension/1024",
+            usage:
+              "Width of the drawer panel; height of the drawer panel (large)",
           },
           {
             category: "Colour",
@@ -7643,7 +7423,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Padding",
             name: "padding-xs",
             value: "sgds/padding/xs",
-            usage: "Padding of the dropdown menu",
+            usage: "Top and bottom padding of the dropdown menu",
           },
           {
             category: "Gap",
@@ -7669,19 +7449,19 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-192",
             value: "sgds/dimension/192",
-            usage: "Width of the dropdown menu",
+            usage: "Minimum width of the dropdown menu",
           },
           {
             category: "Size",
             name: "dimension-320",
             value: "sgds/dimension/320",
-            usage: "Width of the dropdown menu",
+            usage: "Maximum width of the dropdown menu",
           },
           {
             category: "Size",
             name: "dimension-480",
             value: "sgds/dimension/480",
-            usage: "Height of the dropdown menu",
+            usage: "Maximum height of the dropdown menu",
           },
           {
             category: "Colour",
@@ -7743,6 +7523,34 @@ const componentDocs: Record<string, ComponentDoc> = {
         ],
       },
     ],
+    usage: {
+      bestPractices: [
+        {
+          title: "Use specific item labels",
+          description:
+            "Clear verbs and nouns help users predict what each menu item does before they choose.",
+          tone: "do",
+          markup: `<sgds-dropdown menuisopen noFlip>
+            <sgds-button slot="toggler" variant="outline">Export</sgds-button>
+            <sgds-dropdown-item><a href="#">Download CSV</a></sgds-dropdown-item>
+            <sgds-dropdown-item><a href="#">Download PDF</a></sgds-dropdown-item>
+            <sgds-dropdown-item><a href="#">Email report</a></sgds-dropdown-item>
+          </sgds-dropdown>`,
+        },
+        {
+          title: "Do not use vague item labels",
+          description:
+            "Generic labels such as Item force users to read every option to find what they need.",
+          tone: "dont",
+          markup: `<sgds-dropdown menuisopen noFlip>
+            <sgds-button slot="toggler" variant="outline">More</sgds-button>
+            <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
+            <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
+            <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
+          </sgds-dropdown>`,
+        },
+      ],
+    },
   },
   "file-upload": {
     key: "file-upload",
@@ -7827,7 +7635,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Accepted file types",
         description:
-          "Restrict the file picker to specific file types using the accept attribute.",
+          "Restrict the file picker to specific file types using the `accept` attribute.",
         controlLabel: "File upload accept options",
         defaultValue: "any",
         options: [
@@ -7903,6 +7711,14 @@ const componentDocs: Record<string, ComponentDoc> = {
         `<sgds-file-upload accept=".pdf,.doc,.docx">Upload document</sgds-file-upload>`,
       ),
     ],
+    measurements: [
+      {
+        title: "File upload structure",
+        description:
+          "File upload structure shows the upload control and the spacing, padding, and border tokens used by the component.",
+        markup: `<sgds-file-upload class="portal-structure-file-upload" label="Supporting documents" hintText="PDF, JPG, or PNG. Max 5 MB per file.">Upload file</sgds-file-upload>`,
+      },
+    ],
     usage: {
       bestPractices: [
         {
@@ -7916,9 +7732,9 @@ const componentDocs: Record<string, ComponentDoc> = {
           </div>`,
         },
         {
-          title: "Restrict file types using the accept attribute",
+          title: "Restrict file types in the picker",
           description:
-            "Set the accept attribute to filter the system file picker so users do not have to scan files manually.",
+            "Set the `accept` attribute to filter the system file picker so users do not have to scan files manually.",
           tone: "do",
           markup: `<sgds-file-upload accept="application/pdf">Upload PDF</sgds-file-upload>`,
         },
@@ -7930,16 +7746,16 @@ const componentDocs: Record<string, ComponentDoc> = {
           markup: `<sgds-file-upload>File</sgds-file-upload>`,
         },
         {
-          title: "Use multiple only when users genuinely need it",
+          title: "Allow several files only when users genuinely need it",
           description:
-            "Add the multiple attribute when the task expects several files in one go, such as photo evidence.",
+            "Add the `multiple` attribute when the task expects several files in one go, such as photo evidence.",
           tone: "do",
           markup: `<sgds-file-upload accept="image/*" multiple>Upload supporting photos</sgds-file-upload>`,
         },
         {
           title: "Show validation feedback when an upload is required",
           description:
-            "Pair required with hasFeedback and invalidFeedback so the empty state can be flagged inline.",
+            "Pair `required` with `hasFeedback` and `invalidFeedback` so the empty state can be flagged inline.",
           tone: "do",
           markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Attach at least one file">Upload document</sgds-file-upload>`,
         },
@@ -7971,14 +7787,6 @@ const componentDocs: Record<string, ComponentDoc> = {
             mapKey: "padding-y",
             usage:
               "Space between the top and bottom edges of the component and its content",
-          },
-          {
-            category: "Padding",
-            name: "form-padding-y",
-            value: "sgds/form/padding/y",
-            mapKey: "form-padding-y",
-            usage:
-              "Space between the top and bottom edges of the field and the typed value",
           },
           {
             category: "Gap",
@@ -8035,7 +7843,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             usage: "Background colour of the file upload list item",
           },
           {
-            category: "Other",
+            category: "Border",
             name: "form-border-radius-md",
             value: "sgds/form/border-radius/md",
             usage: "Corner radius of the file upload list item",
@@ -8440,10 +8248,77 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             category: "Padding",
             name: "padding-x",
+            value: "sgds/padding/lg",
+            mapKey: "padding-x",
+            usage: "Left and right padding of the footer (320px breakpoint)",
+            variant: "320",
+          },
+          {
+            category: "Padding",
+            name: "padding-x",
+            value: "sgds/padding/xl",
+            mapKey: "padding-x",
+            usage: "Left and right padding of the footer (512px breakpoint)",
+            variant: "512",
+          },
+          {
+            category: "Padding",
+            name: "padding-x",
+            value: "sgds/padding/2-xl",
+            mapKey: "padding-x",
+            usage: "Left and right padding of the footer (768px breakpoint)",
+            variant: "768",
+          },
+          {
+            category: "Padding",
+            name: "padding-x",
             value: "sgds/padding/none",
             mapKey: "padding-x",
+            usage: "Left and right padding of the footer (1024px breakpoint)",
+            variant: "1024",
+          },
+          {
+            category: "Padding",
+            name: "padding-x",
+            value: "sgds/padding/none",
+            mapKey: "padding-x",
+            usage: "Left and right padding of the footer (1280px breakpoint)",
+            variant: "1280",
+          },
+          {
+            category: "Padding",
+            name: "padding-x",
+            value: "sgds/padding/none",
+            mapKey: "padding-x",
+            usage: "Left and right padding of the footer (1440px breakpoint)",
+            variant: "1440",
+          },
+          {
+            category: "Padding",
+            name: "padding-y",
+            value: "sgds/padding/2-xl",
+            mapKey: "padding-y",
             usage:
-              "Space between the left and right edges of the component and its content",
+              "Top and bottom padding of the footer top (320px breakpoint)",
+            variant: "320",
+          },
+          {
+            category: "Padding",
+            name: "padding-y",
+            value: "sgds/padding/2-xl",
+            mapKey: "padding-y",
+            usage:
+              "Top and bottom padding of the footer top (512px breakpoint)",
+            variant: "512",
+          },
+          {
+            category: "Padding",
+            name: "padding-y",
+            value: "sgds/padding/2-xl",
+            mapKey: "padding-y",
+            usage:
+              "Top and bottom padding of the footer top (768px breakpoint)",
+            variant: "768",
           },
           {
             category: "Padding",
@@ -8451,37 +8326,78 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "sgds/padding/3-xl",
             mapKey: "padding-y",
             usage:
-              "Space between the top and bottom edges of the component and its content",
+              "Top and bottom padding of the footer top (1024px breakpoint)",
+            variant: "1024",
+          },
+          {
+            category: "Padding",
+            name: "padding-y",
+            value: "sgds/padding/3-xl",
+            mapKey: "padding-y",
+            usage:
+              "Top and bottom padding of the footer top (1280px breakpoint)",
+            variant: "1280",
+          },
+          {
+            category: "Padding",
+            name: "padding-y",
+            value: "sgds/padding/3-xl",
+            mapKey: "padding-y",
+            usage:
+              "Top and bottom padding of the footer top (1440px breakpoint)",
+            variant: "1440",
           },
           {
             category: "Padding",
             name: "padding-2-xl",
             value: "sgds/padding/2-xl",
-            usage: "Padding of the footer top; padding of the footer bottom",
-          },
-          {
-            category: "Padding",
-            name: "padding-lg",
-            value: "sgds/padding/lg",
-            usage: "Padding of the footer",
-          },
-          {
-            category: "Padding",
-            name: "padding-xl",
-            value: "sgds/padding/xl",
-            usage: "Padding of the footer",
+            usage: "Top and bottom padding of the footer bottom",
           },
           {
             category: "Gap",
             name: "gap-2-xl",
             value: "sgds/gap/2-xl",
-            usage: "Spacing between items of the footer top",
+            usage:
+              "Spacing between items of the footer top (320px, 512px, and 768px breakpoints)",
+            variant: "320",
+          },
+          {
+            category: "Gap",
+            name: "gap-2-xl",
+            value: "sgds/gap/2-xl",
+            usage: "Spacing between items of the footer top (512px breakpoint)",
+            variant: "512",
+          },
+          {
+            category: "Gap",
+            name: "gap-2-xl",
+            value: "sgds/gap/2-xl",
+            usage: "Spacing between items of the footer top (768px breakpoint)",
+            variant: "768",
           },
           {
             category: "Gap",
             name: "gap-3-xl",
             value: "sgds/gap/3-xl",
-            usage: "Spacing between items of the footer top",
+            usage:
+              "Spacing between items of the footer top (1024px breakpoint)",
+            variant: "1024",
+          },
+          {
+            category: "Gap",
+            name: "gap-3-xl",
+            value: "sgds/gap/3-xl",
+            usage:
+              "Spacing between items of the footer top (1280px breakpoint)",
+            variant: "1280",
+          },
+          {
+            category: "Gap",
+            name: "gap-3-xl",
+            value: "sgds/gap/3-xl",
+            usage:
+              "Spacing between items of the footer top (1440px breakpoint)",
+            variant: "1440",
           },
           {
             category: "Gap",
@@ -8551,13 +8467,43 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Typography",
             name: "font-size-24",
             value: "sgds/font-size/24",
-            usage: "Font size of the content",
+            usage: "Font size of the footer title (320px breakpoint)",
+            variant: "320",
+          },
+          {
+            category: "Typography",
+            name: "font-size-24",
+            value: "sgds/font-size/24",
+            usage: "Font size of the footer title (512px breakpoint)",
+            variant: "512",
+          },
+          {
+            category: "Typography",
+            name: "font-size-24",
+            value: "sgds/font-size/24",
+            usage: "Font size of the footer title (768px breakpoint)",
+            variant: "768",
           },
           {
             category: "Typography",
             name: "font-size-28",
             value: "sgds/font-size/28",
-            usage: "Font size of the content",
+            usage: "Font size of the footer title (1024px breakpoint)",
+            variant: "1024",
+          },
+          {
+            category: "Typography",
+            name: "font-size-28",
+            value: "sgds/font-size/28",
+            usage: "Font size of the footer title (1280px breakpoint)",
+            variant: "1280",
+          },
+          {
+            category: "Typography",
+            name: "font-size-28",
+            value: "sgds/font-size/28",
+            usage: "Font size of the footer title (1440px breakpoint)",
+            variant: "1440",
           },
           {
             category: "Typography",
@@ -8575,31 +8521,67 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Typography",
             name: "line-height-32",
             value: "sgds/line-height/32",
-            usage: "Line height of the content",
+            usage: "Line height of the footer title (320px breakpoint)",
+            variant: "320",
+          },
+          {
+            category: "Typography",
+            name: "line-height-32",
+            value: "sgds/line-height/32",
+            usage: "Line height of the footer title (512px breakpoint)",
+            variant: "512",
+          },
+          {
+            category: "Typography",
+            name: "line-height-32",
+            value: "sgds/line-height/32",
+            usage: "Line height of the footer title (768px breakpoint)",
+            variant: "768",
           },
           {
             category: "Typography",
             name: "line-height-36",
             value: "sgds/line-height/36",
-            usage: "Line height of the content",
+            usage: "Line height of the footer title (1024px breakpoint)",
+            variant: "1024",
           },
           {
-            category: "Size",
-            name: "dimension-1168",
-            value: "sgds/dimension/1168",
-            usage: "Width of the footer top",
+            category: "Typography",
+            name: "line-height-36",
+            value: "sgds/line-height/36",
+            usage: "Line height of the footer title (1280px breakpoint)",
+            variant: "1280",
           },
           {
-            category: "Size",
-            name: "dimension-1312",
-            value: "sgds/dimension/1312",
-            usage: "Width of the footer top",
+            category: "Typography",
+            name: "line-height-36",
+            value: "sgds/line-height/36",
+            usage: "Line height of the footer title (1440px breakpoint)",
+            variant: "1440",
           },
           {
             category: "Size",
             name: "dimension-888",
             value: "sgds/dimension/888",
-            usage: "Width of the footer top; width of the footer bottom",
+            usage:
+              "Maximum width of the footer top and footer bottom (1024px breakpoint)",
+            variant: "1024",
+          },
+          {
+            category: "Size",
+            name: "dimension-1168",
+            value: "sgds/dimension/1168",
+            usage:
+              "Maximum width of the footer top and footer bottom (1280px breakpoint)",
+            variant: "1280",
+          },
+          {
+            category: "Size",
+            name: "dimension-1312",
+            value: "sgds/dimension/1312",
+            usage:
+              "Maximum width of the footer top and footer bottom (1440px breakpoint)",
+            variant: "1440",
           },
           {
             category: "Colour",
@@ -8819,44 +8801,58 @@ const componentDocs: Record<string, ComponentDoc> = {
         rows: [
           {
             category: "Size",
-            name: "icon-size-2-xl",
-            value: "sgds/icon-size/2-xl",
-            usage: "Height of the svg; width of the svg",
-          },
-          {
-            category: "Size",
-            name: "icon-size-3-xl",
-            value: "sgds/icon-size/3-xl",
-            usage: "Height of the svg; width of the svg",
-          },
-          {
-            category: "Size",
-            name: "icon-size-lg",
-            value: "sgds/icon-size/lg",
-            usage: "Height of the svg; width of the svg",
-          },
-          {
-            category: "Size",
-            name: "icon-size-md",
-            value: "sgds/icon-size/md",
+            name: "icon-size-xs",
+            value: "sgds/icon-size/xs",
+            mapKey: "icon-size",
+            variant: "xs",
             usage: "Height of the svg; width of the svg",
           },
           {
             category: "Size",
             name: "icon-size-sm",
             value: "sgds/icon-size/sm",
+            mapKey: "icon-size",
+            variant: "sm",
+            usage: "Height of the svg; width of the svg",
+          },
+          {
+            category: "Size",
+            name: "icon-size-md",
+            value: "sgds/icon-size/md",
+            mapKey: "icon-size",
+            variant: "md",
+            usage: "Height of the svg; width of the svg",
+          },
+          {
+            category: "Size",
+            name: "icon-size-lg",
+            value: "sgds/icon-size/lg",
+            mapKey: "icon-size",
+            variant: "lg",
             usage: "Height of the svg; width of the svg",
           },
           {
             category: "Size",
             name: "icon-size-xl",
             value: "sgds/icon-size/xl",
+            mapKey: "icon-size",
+            variant: "xl",
             usage: "Height of the svg; width of the svg",
           },
           {
             category: "Size",
-            name: "icon-size-xs",
-            value: "sgds/icon-size/xs",
+            name: "icon-size-2-xl",
+            value: "sgds/icon-size/2-xl",
+            mapKey: "icon-size",
+            variant: "2-xl",
+            usage: "Height of the svg; width of the svg",
+          },
+          {
+            category: "Size",
+            name: "icon-size-3-xl",
+            value: "sgds/icon-size/3-xl",
+            mapKey: "icon-size",
+            variant: "3-xl",
             usage: "Height of the svg; width of the svg",
           },
         ],
@@ -8923,18 +8919,32 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-32",
             value: "sgds/dimension/32",
+            mapKey: "dimension",
+            variant: "xs",
             usage: "Height of the button; width of the button",
           },
           {
             category: "Size",
             name: "dimension-40",
             value: "sgds/dimension/40",
+            mapKey: "dimension",
+            variant: "sm",
+            usage: "Height of the button; width of the button",
+          },
+          {
+            category: "Size",
+            name: "dimension-48",
+            value: "sgds/dimension/48",
+            mapKey: "dimension",
+            variant: "md",
             usage: "Height of the button; width of the button",
           },
           {
             category: "Size",
             name: "dimension-56",
             value: "sgds/dimension/56",
+            mapKey: "dimension",
+            variant: "lg",
             usage: "Height of the button; width of the button",
           },
         ],
@@ -9047,7 +9057,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Disabled",
         description:
-          "Use the disabled state to prevent interaction when the action is not available in the current context.",
+          "Use the `disabled` state to prevent interaction when the action is not available in the current context.",
         controlLabel: "Icon button disabled options",
         defaultValue: "not-disabled",
         options: [
@@ -9333,14 +9343,14 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Footer link",
             value: "with-footer",
-            markup: `<sgds-icon-card class="portal-demo-card" stretched-link>
+            markup: `<sgds-icon-card class="portal-demo-card" stretchedLink>
           <sgds-icon slot="icon" name="file-earmark-text"></sgds-icon>
           <span slot="title">Application form</span>
           <span slot="description">Complete your details to start your application.</span>
           <a slot="footer" href="#">Start application</a>
         </sgds-icon-card>`,
             description:
-              "Adds a link in the footer. With `stretched-link`, the entire card becomes clickable.",
+              "Adds a link in the footer. With `stretchedLink`, the entire card becomes clickable.",
           },
         ],
       },
@@ -9393,11 +9403,11 @@ const componentDocs: Record<string, ComponentDoc> = {
           </sgds-icon-card>`,
         },
         {
-          title: "Use stretched-link when the whole card navigates",
+          title: "Make the whole card navigate only when intended",
           description:
-            "Add a footer link with stretched-link so the whole card is clickable and focusable for keyboard users.",
+            "Add a footer link with `stretchedLink` so the whole card is clickable and focusable for keyboard users.",
           tone: "do",
-          markup: `<sgds-icon-card class="portal-demo-card" stretched-link>
+          markup: `<sgds-icon-card class="portal-demo-card" stretchedLink>
             <sgds-icon slot="icon" name="file-earmark-text"></sgds-icon>
             <span slot="title">Apply for a permit</span>
             <span slot="description">Start a new application for an event permit.</span>
@@ -9409,7 +9419,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Icon cards introduce a category or feature. For a single action without description, use a button instead.",
           tone: "dont",
-          markup: `<sgds-icon-card class="portal-demo-card" stretched-link>
+          markup: `<sgds-icon-card class="portal-demo-card" stretchedLink>
             <sgds-icon slot="icon" name="download"></sgds-icon>
             <span slot="title">Download</span>
             <a slot="footer" href="#">Download</a>
@@ -9669,6 +9679,22 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
           </sgds-icon-list>`,
         },
+        {
+          title: "Do not write long explanations as icon list items",
+          description:
+            "Long items make the icon alignment less useful and slow scanning. Use paragraphs, cards, or description lists for detailed content.",
+          tone: "dont",
+          markup: `<sgds-icon-list>
+            <div role="listitem" class="portal-demo-list-item">
+              <sgds-icon name="check-circle"></sgds-icon>
+              <span>Bring all supporting documents, including identification, proof of address, and any letters requested by the agency.</span>
+            </div>
+            <div role="listitem" class="portal-demo-list-item">
+              <sgds-icon name="check-circle"></sgds-icon>
+              <span>Review the full eligibility criteria before applying, especially if your household details recently changed.</span>
+            </div>
+          </sgds-icon-list>`,
+        },
       ],
     },
     componentTokenGroups: [
@@ -9686,25 +9712,43 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Typography",
             name: "font-size-14",
             value: "sgds/font-size/14",
-            usage: "Font size of the sm",
+            variant: "sm",
+            usage: "Font size of the content",
+          },
+          {
+            category: "Typography",
+            name: "font-size-16",
+            value: "sgds/font-size/16",
+            variant: "md",
+            usage: "Font size of the content (inherited from parent)",
           },
           {
             category: "Typography",
             name: "font-size-20",
             value: "sgds/font-size/20",
-            usage: "Font size of the lg",
+            variant: "lg",
+            usage: "Font size of the content",
           },
           {
             category: "Typography",
             name: "line-height-20",
             value: "sgds/line-height/20",
-            usage: "Line height of the sm",
+            variant: "sm",
+            usage: "Line height of the content",
+          },
+          {
+            category: "Typography",
+            name: "line-height-24",
+            value: "sgds/line-height/24",
+            variant: "md",
+            usage: "Line height of the content (inherited from parent)",
           },
           {
             category: "Typography",
             name: "line-height-32",
             value: "sgds/line-height/32",
-            usage: "Line height of the lg",
+            variant: "lg",
+            usage: "Line height of the content",
           },
         ],
       },
@@ -9810,14 +9854,14 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Image position",
         description:
-          "Use `image-position` to flip the image to the opposite side of the content.",
+          "Use `imagePosition` to flip the image to the opposite side of the content.",
         controlLabel: "Image card image position options",
         defaultValue: "before",
         options: [
           {
             label: "Before content",
             value: "before",
-            markup: `<sgds-image-card class="portal-demo-card" image-position="before">
+            markup: `<sgds-image-card class="portal-demo-card" imagePosition="before">
           <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">Career fair</span>
           <span slot="description">Meet hiring agencies and explore new roles.</span>
@@ -9828,7 +9872,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "After content",
             value: "after",
-            markup: `<sgds-image-card class="portal-demo-card" image-position="after">
+            markup: `<sgds-image-card class="portal-demo-card" imagePosition="after">
           <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">Career fair</span>
           <span slot="description">Meet hiring agencies and explore new roles.</span>
@@ -10338,7 +10382,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-160",
             value: "sgds/dimension/160",
-            usage: "Width of items inside the component",
+            usage: "Minimum width of items inside the component",
           },
           {
             category: "Colour",
@@ -10347,13 +10391,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             usage: "Text colour of the form control suffix",
           },
           {
-            category: "Other",
+            category: "Border",
             name: "form-border-radius-md",
             value: "sgds/form/border-radius/md",
             usage: "Corner radius of items inside the component",
           },
           {
-            category: "Other",
+            category: "Outline",
             name: "form-outline-focus",
             value: "sgds/form/outline/focus",
             usage: "Focus outline of the sgds icon when keyboard-focused",
@@ -10530,7 +10574,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Disabled",
         description:
-          "Use the disabled state to prevent navigation when the destination is not available in the current context.",
+          "Use the `disabled` state to prevent navigation when the destination is not available in the current context.",
         controlLabel: "Link disabled options",
         defaultValue: "not-disabled",
         options: [
@@ -10554,8 +10598,8 @@ const componentDocs: Record<string, ComponentDoc> = {
     measurements: [
       demo(
         "Structure",
-        "Link structure preview with a leading icon.",
-        `<sgds-link><a href="#"><sgds-icon name="arrow-left"></sgds-icon>Visit related guidance</a></sgds-link>`,
+        "Link structure preview with a trailing icon.",
+        `<sgds-link><a href="#">Visit related guidance<sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>`,
       ),
     ],
     demos: [
@@ -10605,72 +10649,88 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Typography",
             name: "font-size-12",
             value: "sgds/font-size/12",
+            variant: "xs",
             usage: "Font size of the content",
           },
           {
             category: "Typography",
             name: "font-size-14",
             value: "sgds/font-size/14",
+            variant: "sm",
             usage: "Font size of the content",
           },
           {
             category: "Typography",
             name: "font-size-16",
             value: "sgds/font-size/16",
+            variant: "md",
             usage: "Font size of the content",
           },
           {
             category: "Typography",
             name: "font-size-20",
             value: "sgds/font-size/20",
+            variant: "lg",
             usage: "Font size of the content",
           },
           {
             category: "Typography",
             name: "line-height-16",
             value: "sgds/line-height/16",
+            variant: "xs",
             usage: "Line height of the content",
           },
           {
             category: "Typography",
             name: "line-height-20",
             value: "sgds/line-height/20",
+            variant: "sm",
             usage: "Line height of the content",
           },
           {
             category: "Typography",
             name: "line-height-24",
             value: "sgds/line-height/24",
+            variant: "md",
             usage: "Line height of the content",
           },
           {
             category: "Typography",
             name: "line-height-32",
             value: "sgds/line-height/32",
+            variant: "lg",
             usage: "Line height of the content",
           },
           {
             category: "Size",
-            name: "icon-size-lg",
-            value: "sgds/icon-size/lg",
+            name: "icon-size-sm",
+            value: "sgds/icon-size/sm",
+            mapKey: "icon-size",
+            variant: "xs",
             usage: "Height of the content; width of the content",
           },
           {
             category: "Size",
             name: "icon-size-md",
             value: "sgds/icon-size/md",
+            mapKey: "icon-size",
+            variant: "sm",
             usage: "Height of the content; width of the content",
           },
           {
             category: "Size",
-            name: "icon-size-sm",
-            value: "sgds/icon-size/sm",
+            name: "icon-size-lg",
+            value: "sgds/icon-size/lg",
+            mapKey: "icon-size",
+            variant: "md",
             usage: "Height of the content; width of the content",
           },
           {
             category: "Size",
             name: "icon-size-xl",
             value: "sgds/icon-size/xl",
+            mapKey: "icon-size",
+            variant: "lg",
             usage: "Height of the content; width of the content",
           },
           {
@@ -10738,18 +10798,18 @@ const componentDocs: Record<string, ComponentDoc> = {
             usage: "Transparency of the content when disabled",
           },
           {
-            category: "Other",
+            category: "Motion",
             name: "motion-duration-standard",
             value: "sgds/motion-duration-standard",
             usage:
-              "Transition of the content); transition of the content when active",
+              "Transition of the content; transition of the content when active",
           },
           {
-            category: "Other",
+            category: "Motion",
             name: "motion-easing-enter",
             value: "sgds/motion-easing-enter",
             usage:
-              "Transition of the content); transition of the content when active",
+              "Transition of the content; transition of the content when active",
           },
         ],
       },
@@ -10835,7 +10895,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "constrained",
             markup: `<div class="portal-demo-nav">
           <sgds-mainnav brandHref="/">
-            <span slot="brand">Service Name</span>
+            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
           </sgds-mainnav>
@@ -10848,7 +10908,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "fluid",
             markup: `<div class="portal-demo-nav">
           <sgds-mainnav brandHref="/" fluid>
-            <span slot="brand">Service Name</span>
+            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
           </sgds-mainnav>
@@ -10861,7 +10921,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Item states",
         description:
-          "Mark the current page with active and use disabled to indicate items that are unavailable.",
+          "Mark the current page with `active` and use `disabled` to indicate items that are unavailable.",
         controlLabel: "Mainnav item states options",
         defaultValue: "with-active",
         options: [
@@ -10870,7 +10930,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "default-items",
             markup: `<div class="portal-demo-nav">
           <sgds-mainnav brandHref="/">
-            <span slot="brand">Service Name</span>
+            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Contact</sgds-mainnav-item>
@@ -10884,7 +10944,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "with-active",
             markup: `<div class="portal-demo-nav">
           <sgds-mainnav brandHref="/">
-            <span slot="brand">Service Name</span>
+            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Contact</sgds-mainnav-item>
@@ -10898,7 +10958,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "with-disabled",
             markup: `<div class="portal-demo-nav">
           <sgds-mainnav brandHref="/">
-            <span slot="brand">Service Name</span>
+            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item disabled>Coming soon</sgds-mainnav-item>
@@ -10921,7 +10981,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "without-dropdown",
             markup: `<div class="portal-demo-nav">
           <sgds-mainnav brandHref="/">
-            <span slot="brand">Service Name</span>
+            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Contact</sgds-mainnav-item>
@@ -10935,7 +10995,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "with-dropdown",
             markup: `<div class="portal-demo-nav">
           <sgds-mainnav brandHref="/">
-            <span slot="brand">Service Name</span>
+            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-dropdown>
               <span slot="toggler">Services</span>
@@ -10963,7 +11023,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "without-end",
             markup: `<div class="portal-demo-nav">
           <sgds-mainnav brandHref="/">
-            <span slot="brand">Service Name</span>
+            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
           </sgds-mainnav>
@@ -10975,7 +11035,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "with-end-action",
             markup: `<div class="portal-demo-nav">
           <sgds-mainnav brandHref="/">
-            <span slot="brand">Service Name</span>
+            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-button slot="end" variant="primary">Sign in</sgds-button>
@@ -10986,6 +11046,24 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+    ],
+    measurements: [
+      demo(
+        "Structure",
+        "Mainnav structure preview with illustrative slot content.",
+        `<div class="portal-demo-nav">
+          <sgds-mainnav fluid expand="always" brandHref="/">
+            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav-item><a href="#">Overview</a></sgds-mainnav-item>
+            <sgds-mainnav-dropdown active>
+              <span slot="toggler">Services</span>
+              <sgds-dropdown-item><a href="#">Apply</a></sgds-dropdown-item>
+            </sgds-mainnav-dropdown>
+            <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
+            <div slot="end" class="portal-slot-example"><span>Slot content</span></div>
+          </sgds-mainnav>
+        </div>`,
+      ),
     ],
     demos: [
       demo(
@@ -11018,8 +11096,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Reserve mainnav for primary sections every user needs. Keep secondary or task-specific links elsewhere.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/">
-              <span slot="brand">Service Name</span>
+            <sgds-mainnav brandHref="/" expand="always">
+              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <sgds-mainnav-item>Services</sgds-mainnav-item>
               <sgds-mainnav-item>About</sgds-mainnav-item>
@@ -11033,8 +11111,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Long mainnavs are hard to scan. With more than five items, consolidate or move some into a dropdown or subnav.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/">
-              <span slot="brand">Service Name</span>
+            <sgds-mainnav brandHref="/" expand="always">
+              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
               <sgds-mainnav-item>Home</sgds-mainnav-item>
               <sgds-mainnav-item>Apply</sgds-mainnav-item>
               <sgds-mainnav-item>Renew</sgds-mainnav-item>
@@ -11053,8 +11131,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Anchor user-account actions like sign in to the end slot so users find them in a consistent place.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/">
-              <span slot="brand">Service Name</span>
+            <sgds-mainnav brandHref="/" expand="always">
+              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <sgds-mainnav-item>About</sgds-mainnav-item>
               <sgds-button slot="end" variant="primary">Sign in</sgds-button>
@@ -11067,8 +11145,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "The end slot draws strong attention. Reserve it for one global action, not promotional links or badges.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/">
-              <span slot="brand">Service Name</span>
+            <sgds-mainnav brandHref="/" expand="always">
+              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <div slot="end">
                 <sgds-badge>New</sgds-badge>
@@ -11123,29 +11201,31 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Border",
             name: "border-color-translucent",
             value: "sgds/border-color-translucent",
-            usage: "Top border of the navbar body",
+            mapKey: "navbar-body-border-color",
+            usage:
+              "Colour of the bottom border stroke of the mainnav component",
           },
           {
             category: "Border",
             name: "border-width-1",
             value: "sgds/border-width/1",
-            mapKey: "border-width",
-            usage: "Top border of the navbar body",
+            mapKey: "navbar-body-border-width",
+            usage:
+              "Thickness of the bottom border stroke of the mainnav component",
           },
           {
             category: "Border",
             name: "border-width-4",
             value: "sgds/border-width/4",
-            mapKey: "border-width",
-            usage:
-              "Bottom border of the nav link; bottom border of the content",
+            mapKey: "nav-link-border-width",
+            usage: "Thickness of the active nav link purple stroke",
           },
           {
             category: "Border",
             name: "primary-border-color-default",
             value: "sgds/primary/border-color/default",
-            usage:
-              "Border colour of the nav link when active; border colour of the content when active",
+            mapKey: "nav-link-border-color",
+            usage: "Colour of the active nav link purple stroke",
           },
           {
             category: "Size",
@@ -11263,10 +11343,10 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         number: 3,
-        direction: "right",
+        direction: "left",
         targetSelector: ".portal-anatomy-masthead",
         targetShadowSelector: ".trusted-websites-link",
-        targetX: "right",
+        targetX: "left",
         targetY: "center",
       },
       {
@@ -11297,14 +11377,22 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Constrained width",
             value: "constrained",
-            markup: `<div class="portal-demo-nav"><sgds-masthead></sgds-masthead></div>`,
+            markup: `<div class="portal-masthead-width-demo">
+              <div class="portal-masthead-width-demo__viewport">
+                <sgds-masthead></sgds-masthead>
+              </div>
+            </div>`,
             description:
               "Default. Content is bounded by the standard SGDS container max-width.",
           },
           {
             label: "Full-bleed (fluid)",
             value: "fluid",
-            markup: `<div class="portal-demo-nav"><sgds-masthead fluid></sgds-masthead></div>`,
+            markup: `<div class="portal-masthead-width-demo">
+              <div class="portal-masthead-width-demo__viewport">
+                <sgds-masthead fluid></sgds-masthead>
+              </div>
+            </div>`,
             description:
               "Stretches the masthead bar to the full viewport width. Pair with a fluid mainnav.",
           },
@@ -11334,7 +11422,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "dont",
           markup: `<div class="portal-demo-nav">
             <sgds-mainnav brandHref="/">
-              <span slot="brand">Service Name</span>
+              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
             </sgds-mainnav>
           </div>`,
@@ -11347,7 +11435,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           markup: `<div class="portal-demo-nav">
             <sgds-masthead fluid></sgds-masthead>
             <sgds-mainnav fluid brandHref="/">
-              <span slot="brand">Service Name</span>
+              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
             </sgds-mainnav>
           </div>`,
@@ -11357,7 +11445,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "The masthead is a standardised government identifier. Do not change its colours, copy, or layout.",
           tone: "dont",
-          markup: `<div class="portal-demo-nav"><sgds-masthead></sgds-masthead></div>`,
+          markup: `<div class="portal-demo-nav"><sgds-masthead class="portal-masthead-restyled-demo"></sgds-masthead></div>`,
         },
       ],
     },
@@ -11367,9 +11455,9 @@ const componentDocs: Record<string, ComponentDoc> = {
         rows: [
           {
             category: "Size",
-            name: "icon-size-sm",
-            value: "sgds/icon-size/sm",
-            usage: "Size of the icon",
+            name: "dimension-20",
+            value: "sgds/dimension/20",
+            usage: "Height of the Merlion icon; width of the Merlion icon",
           },
           {
             category: "Mainnav Max Width",
@@ -11381,13 +11469,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Padding",
             name: "mainnav-mobile-padding-x",
             value: "sgds/mainnav-mobile-padding-x",
-            usage: "Padding inside the component",
+            usage: "Left and right padding of the masthead container (mobile)",
           },
           {
             category: "Padding",
             name: "mainnav-padding-x",
             value: "sgds/mainnav-padding-x",
-            usage: "Padding inside the component",
+            usage: "Left and right padding of the masthead container (desktop)",
           },
         ],
       },
@@ -11471,6 +11559,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         number: 4,
         direction: "right",
         targetSelector: "sgds-close-button",
+        targetShadowSelector: ".btn-close",
         targetX: "right",
         targetY: "center",
         stemLengthToken: "--sgds-dimension-96",
@@ -11563,6 +11652,49 @@ const componentDocs: Record<string, ComponentDoc> = {
         </div>`,
             description: "Wider canvas for multi-field forms or longer copy.",
           },
+          {
+            label: "Extra large",
+            value: "xl",
+            markup: `<div class="portal-modal-preview portal-modal-preview-xl">
+          <div class="portal-modal-panel">
+            <div class="portal-modal-header">
+              <div class="portal-modal-header-copy">
+                <div class="portal-modal-title">Extra large modal</div>
+                <div class="portal-modal-description">Provides the widest standard modal panel.</div>
+              </div>
+              <sgds-close-button aria-label="Close"></sgds-close-button>
+            </div>
+            <div class="portal-modal-body"><p>Use this size for content-heavy focused tasks that still belong in a modal.</p></div>
+            <div class="portal-modal-footer">
+              <sgds-button variant="outline">Cancel</sgds-button>
+              <sgds-button>Confirm</sgds-button>
+            </div>
+          </div>
+        </div>`,
+            description: 'Use `size="xl"` for the widest standard modal panel.',
+          },
+          {
+            label: "Fullscreen",
+            value: "fullscreen",
+            markup: `<div class="portal-modal-preview portal-modal-preview-fullscreen">
+          <div class="portal-modal-panel">
+            <div class="portal-modal-header">
+              <div class="portal-modal-header-copy">
+                <div class="portal-modal-title">Fullscreen modal</div>
+                <div class="portal-modal-description">Uses the fullscreen layout for maximum available space.</div>
+              </div>
+              <sgds-close-button aria-label="Close"></sgds-close-button>
+            </div>
+            <div class="portal-modal-body"><p>Use this for focused tasks that need more space while still blocking the page behind it.</p></div>
+            <div class="portal-modal-footer">
+              <sgds-button variant="outline">Cancel</sgds-button>
+              <sgds-button>Confirm</sgds-button>
+            </div>
+          </div>
+        </div>`,
+            description:
+              'Use `size="fullscreen"` when the modal needs the fullscreen layout.',
+          },
         ],
       },
       {
@@ -11639,6 +11771,20 @@ const componentDocs: Record<string, ComponentDoc> = {
           </div>
         </div>`,
       ),
+    ],
+    measurements: [
+      {
+        title: "Modal structure",
+        description:
+          "Modal structure uses the real SGDS modal component so the size control reflects the documented modal sizes.",
+        markup: `<sgds-modal noAnimation data-structure-open>
+          <h2 slot="title">Confirm submission</h2>
+          <p slot="description">Review the information before you continue.</p>
+          <p>The modal can contain short supporting content and clear actions.</p>
+          <sgds-button slot="footer" variant="outline">Cancel</sgds-button>
+          <sgds-button slot="footer">Confirm</sgds-button>
+        </sgds-modal>`,
+      },
     ],
     usage: {
       bestPractices: [
@@ -11799,7 +11945,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             name: "padding-md",
             value: "sgds/padding/md",
             usage:
-              "Right of the modal header close; top of the modal header close",
+              "Top padding of the modal content; offset of the modal close button",
           },
           {
             category: "Gap",
@@ -11882,51 +12028,63 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
           {
             category: "Size",
-            name: "dimension-1168",
-            value: "sgds/dimension/1168",
-            usage: "Width of the modal panel",
-          },
-          {
-            category: "Size",
-            name: "dimension-1280",
-            value: "sgds/dimension/1280",
-            usage: "Width of the modal panel",
-          },
-          {
-            category: "Size",
-            name: "dimension-1312",
-            value: "sgds/dimension/1312",
-            usage: "Width of the modal panel",
-          },
-          {
-            category: "Size",
             name: "dimension-480",
             value: "sgds/dimension/480",
-            usage: "Width of the modal panel",
+            mapKey: "dimension",
+            variant: "sm",
+            usage: "Maximum width of the modal panel",
           },
           {
             category: "Size",
             name: "dimension-640",
             value: "sgds/dimension/640",
-            usage: "Width of the modal panel",
+            mapKey: "dimension",
+            variant: "md",
+            usage: "Maximum width of the modal panel",
           },
           {
             category: "Size",
             name: "dimension-800",
             value: "sgds/dimension/800",
-            usage: "Width of the modal panel",
+            mapKey: "dimension",
+            variant: "lg",
+            usage: "Maximum width of the modal panel",
+          },
+          {
+            category: "Size",
+            name: "dimension-1280",
+            value: "sgds/dimension/1280",
+            mapKey: "dimension",
+            variant: "xl",
+            usage: "Maximum width of the modal panel",
           },
           {
             category: "Size",
             name: "dimension-872",
             value: "sgds/dimension/872",
-            usage: "Width of the modal header",
+            variant: "fullscreen",
+            usage: "Maximum width of the modal header",
           },
           {
             category: "Size",
             name: "dimension-888",
             value: "sgds/dimension/888",
-            usage: "Width of the modal panel",
+            variant: "fullscreen",
+            usage: "Maximum width of the modal panel (≥1024px viewport)",
+          },
+          {
+            category: "Size",
+            name: "dimension-1168",
+            value: "sgds/dimension/1168",
+            variant: "fullscreen",
+            usage: "Maximum width of the modal panel (≥1280px viewport)",
+          },
+          {
+            category: "Size",
+            name: "dimension-1312",
+            value: "sgds/dimension/1312",
+            variant: "fullscreen",
+            usage: "Maximum width of the modal panel (≥1440px viewport)",
           },
           {
             category: "Colour",
@@ -11954,7 +12112,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             usage: "Stacking layer of the modal",
           },
           {
-            category: "Other",
+            category: "Typography",
             name: "body-font-family",
             value: "sgds/body-font-family",
             usage: "Font-family of the modal",
@@ -12134,6 +12292,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-24",
             value: "sgds/dimension/24",
+            mapKey: "dimension",
+            variant: "sm",
             usage:
               "Height of the overflow button; width of the overflow button",
           },
@@ -12141,6 +12301,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-32",
             value: "sgds/dimension/32",
+            mapKey: "dimension",
+            variant: "md",
             usage:
               "Height of the overflow button; width of the overflow button",
           },
@@ -12350,7 +12512,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         {
           title: "Use pagination for large, browsable result sets",
           description:
-            "Pagination suits tables and lists with many entries. Set itemsPerPage to fit the surrounding layout.",
+            "Pagination suits tables and lists with many entries. Set `itemsPerPage` to fit the surrounding layout.",
           tone: "do",
           markup: `<sgds-pagination dataLength="240" itemsPerPage="10" currentPage="1"></sgds-pagination>`,
         },
@@ -12401,6 +12563,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Typography",
             name: "font-size-14",
             value: "sgds/font-size/14",
+            variant: "sm",
             usage:
               "Font size of the page link; font size of the pagination description",
           },
@@ -12408,12 +12571,16 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-40",
             value: "sgds/dimension/40",
+            mapKey: "dimension",
+            variant: "sm",
             usage: "Height of the page link; width of the page link",
           },
           {
             category: "Size",
             name: "dimension-48",
             value: "sgds/dimension/48",
+            mapKey: "dimension",
+            variant: "md",
             usage: "Height of the page link; width of the page link",
           },
           {
@@ -12606,42 +12773,56 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Use a progress bar only for operations with a known endpoint. Use a spinner for indeterminate waits.",
           tone: "do",
-          markup: `<sgds-progress-bar value="40" label="Uploading 2 of 5 files" arialabel="Uploading 2 of 5 files"></sgds-progress-bar>`,
+          markup: `<sgds-progress-bar value="40" ariamin="0" ariamax="100" label="Uploading 2 of 5 files" arialabel="File upload progress"></sgds-progress-bar>`,
         },
         {
           title: "Do not use a progress bar for unknown durations",
           description:
             "If progress cannot be calculated, do not fake it. A bar that creeps forward misleads users. Use a spinner.",
           tone: "dont",
-          markup: `<sgds-progress-bar value="30" label="Connecting" arialabel="Connecting"></sgds-progress-bar>`,
+          markup: `<sgds-progress-bar value="30" ariamin="0" ariamax="100" label="Connecting" arialabel="Connection progress"></sgds-progress-bar>`,
         },
         {
           title: "Label the running task",
           description:
             "Add a label that names what is happening. A bar without context tells users that something is loading but not what.",
           tone: "do",
-          markup: `<sgds-progress-bar value="65" label="Generating report" arialabel="Generating report"></sgds-progress-bar>`,
+          markup: `<sgds-progress-bar value="65" ariamin="0" ariamax="100" label="Generating report" arialabel="Report generation progress"></sgds-progress-bar>`,
         },
         {
           title: "Always provide an accessible label",
           description:
-            "Set arialabel so screen reader users know what is progressing. Without it, only a percentage is announced.",
+            "Set `arialabel` so screen reader users know what is progressing. Pair it with a visible `label` when the surrounding context is not enough.",
           tone: "do",
-          markup: `<sgds-progress-bar value="80" arialabel="Submission progress"></sgds-progress-bar>`,
+          markup: `<sgds-progress-bar value="80" ariamin="0" ariamax="100" label="Submission progress" arialabel="Submission progress"></sgds-progress-bar>`,
         },
         {
-          title: "Do not use the danger spectrum to communicate failure",
+          title: "Do not use progress as failure feedback",
           description:
-            "Progress bars are for in-flight progress, not errors. If an operation fails, dismiss it and show an alert.",
+            "Progress bars are for in-flight progress, not errors. If an operation fails, stop the progress state and show an alert.",
           tone: "dont",
-          markup: `<sgds-progress-bar value="40" label="Upload failed" arialabel="Upload failed"></sgds-progress-bar>`,
+          markup: `<sgds-progress-bar value="40" ariamin="0" ariamax="100" label="Upload failed" arialabel="Upload progress"></sgds-progress-bar>`,
+        },
+        {
+          title: "Do not let progress fall outside its range",
+          description:
+            "Keep `value` within `ariamin` and `ariamax`. Out-of-range values can render as empty or overflow and misrepresent the task.",
+          tone: "dont",
+          markup: `<sgds-progress-bar value="-10" ariamin="0" ariamax="100" label="-10%" arialabel="Upload progress"></sgds-progress-bar>`,
+        },
+        {
+          title: "Do not rely on the bar alone for completion",
+          description:
+            "When `value` reaches `ariamax`, show a success message, next action, or completion state. The component does not trigger completion feedback by itself.",
+          tone: "dont",
+          markup: `<sgds-progress-bar value="100" ariamin="0" ariamax="100" label="Processing 100%" arialabel="Report generation progress"></sgds-progress-bar>`,
         },
         {
           title: "Use the neutral variant for secondary progress",
           description:
             "When a page already shows a primary progress bar, use the neutral variant for any secondary progress.",
           tone: "do",
-          markup: `<sgds-progress-bar variant="neutral" value="30" label="Syncing in background" arialabel="Syncing in background"></sgds-progress-bar>`,
+          markup: `<sgds-progress-bar variant="neutral" value="30" ariamin="0" ariamax="100" label="Syncing in background" arialabel="Background sync progress"></sgds-progress-bar>`,
         },
       ],
     },
@@ -12844,7 +13025,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Disabled",
         description:
-          "Use the disabled state to prevent interaction when the field is not available in the current context.",
+          "Use the `disabled` state to prevent interaction when the field is not available in the current context.",
         controlLabel: "Quantity toggle disabled options",
         defaultValue: "not-disabled",
         options: [
@@ -12914,9 +13095,16 @@ const componentDocs: Record<string, ComponentDoc> = {
         {
           title: "Set min and max to reflect real limits",
           description:
-            "Use min and max to constrain the field to accepted values. Clamping prevents invalid submissions.",
+            "Use `min` and `max` to constrain the field to accepted values, and use `hintText` to tell users the maximum before they adjust it.",
           tone: "do",
-          markup: `<sgds-quantity-toggle label="Adults travelling" value="1" min="1" max="9"></sgds-quantity-toggle>`,
+          markup: `<sgds-quantity-toggle label="Travellers" hintText="Max 9" value="1" min="1" max="9"></sgds-quantity-toggle>`,
+        },
+        {
+          title: "Do not use quantity toggle for large ranges",
+          description:
+            "If users may need to enter values like 250 or 1,000, repeated incrementing becomes tedious. Use `sgds-input type=number` instead.",
+          tone: "dont",
+          markup: `<sgds-quantity-toggle label="Number of records" value="250" min="0" max="1000" step="1"></sgds-quantity-toggle>`,
         },
         {
           title: "Pair with a label and explain the limit when needed",
@@ -12926,6 +13114,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           markup: `<sgds-quantity-toggle label="Tickets" hintText="Maximum 5 per booking" value="2" min="1" max="5"></sgds-quantity-toggle>`,
         },
         {
+          title: "Do not use quantity toggle for precise values",
+          description:
+            "Currency, measurements, percentages, or decimals need direct entry and clearer validation. Quantity toggle works best for whole-number counts.",
+          tone: "dont",
+          markup: `<sgds-quantity-toggle label="Payment amount" value="125.50" min="0" max="500" step="0.01"></sgds-quantity-toggle>`,
+        },
+        {
           title: "Choose a step size that matches the use case",
           description:
             "Increment by 1 for single-unit adjustments. Use a larger step only when typical adjustments are bigger.",
@@ -12933,11 +13128,25 @@ const componentDocs: Record<string, ComponentDoc> = {
           markup: `<sgds-quantity-toggle label="Bulk order quantity" value="10" min="0" max="100" step="5"></sgds-quantity-toggle>`,
         },
         {
-          title: "Surface invalid feedback with hasFeedback",
+          title: "Do not hide the allowed range",
           description:
-            "When the value falls outside the allowed range, set hasFeedback and invalid with a clear invalidFeedback.",
+            "If there is a meaningful `min` or `max`, do not make users discover it by pressing the buttons. Show the limit in the label or `hintText`.",
+          tone: "dont",
+          markup: `<sgds-quantity-toggle label="Tickets" value="5" min="1" max="5"></sgds-quantity-toggle>`,
+        },
+        {
+          title: "Surface invalid feedback inline",
+          description:
+            "When the value falls outside the allowed range, set `hasFeedback` and `invalid` with a clear `invalidFeedback`.",
           tone: "do",
           markup: `<sgds-quantity-toggle label="Tickets" value="6" min="1" max="5" hasFeedback invalid invalidFeedback="Enter a quantity between 1 and 5"></sgds-quantity-toggle>`,
+        },
+        {
+          title: "Do not remove submitted values unintentionally",
+          description:
+            "A `disabled` quantity toggle is excluded from form submission. Use `readonly` when the value should stay visible, unchanged, and still be submitted.",
+          tone: "dont",
+          markup: `<sgds-quantity-toggle class="portal-quantity-toggle-compact" label="Attendees" name="attendees" value="3" disabled></sgds-quantity-toggle>`,
         },
       ],
     },
@@ -12958,17 +13167,17 @@ const componentDocs: Record<string, ComponentDoc> = {
             usage: "Outer spacing of the sgds input",
           },
           {
-            category: "Size",
-            name: "dimension-0",
-            value: "sgds/dimension/0",
-            usage: "Width of the sgds input",
-          },
-          {
-            category: "Other",
+            category: "Border",
             name: "form-border-radius-md",
             value: "sgds/form/border-radius/md",
             usage:
               "Corner radius of the sgds icon button.minus btn; corner radius of the sgds icon button.plus btn",
+          },
+          {
+            category: "Size",
+            name: "dimension-0",
+            value: "sgds/dimension/0",
+            usage: "Minimum width of the sgds input",
           },
         ],
       },
@@ -13015,6 +13224,16 @@ const componentDocs: Record<string, ComponentDoc> = {
         targetX: "right",
         targetY: "center",
       },
+    ],
+    measurements: [
+      demo(
+        "Structure",
+        "Radio structure shows the label, hint text, radio options, and the gaps between them.",
+        `<sgds-radio-group label="Would you like to receive SMS reminders?" hintText="We will send reminders before your appointment.">
+          <sgds-radio value="yes">Yes</sgds-radio>
+          <sgds-radio value="no">No</sgds-radio>
+        </sgds-radio-group>`,
+      ),
     ],
     configurationDemos: [
       {
@@ -13134,71 +13353,51 @@ const componentDocs: Record<string, ComponentDoc> = {
     usage: {
       bestPractices: [
         {
-          title: "Use a single checkbox for one form choice",
+          title: "Use radios for one choice from a visible set",
           description:
-            "Use a standalone checkbox when users are confirming or selecting one optional item within a form.",
+            "Use a radio group when users must choose exactly one option and seeing all options helps them compare.",
           tone: "do",
-          markup: `<sgds-checkbox>Email me updates</sgds-checkbox>`,
+          markup: `<sgds-radio-group label="Preferred contact method" value="email">
+            <sgds-radio value="email">Email</sgds-radio>
+            <sgds-radio value="sms">SMS</sgds-radio>
+            <sgds-radio value="phone">Phone call</sgds-radio>
+          </sgds-radio-group>`,
         },
         {
-          title: "Do not use two checkboxes for one yes-or-no decision",
+          title: "Do not use radios when users can select several options",
           description:
-            "For a single mutually exclusive choice, do not offer separate Yes and No checkboxes.",
+            "Radio groups are mutually exclusive. Use checkboxes when more than one option can apply.",
           tone: "dont",
-          markup: `<sgds-checkbox-group label="Do you want to receive updates?">
-            <sgds-checkbox>Yes</sgds-checkbox>
-            <sgds-checkbox>No</sgds-checkbox>
-          </sgds-checkbox-group>`,
-        },
-        {
-          title: "Use checkbox groups for multi-select choices",
-          description:
-            "Use checkboxes when users can select more than one option from the same set.",
-          tone: "do",
-          markup: `<sgds-checkbox-group label="Delivery options">
-            <sgds-checkbox checked>Email</sgds-checkbox>
-            <sgds-checkbox>SMS</sgds-checkbox>
-            <sgds-checkbox>Phone call</sgds-checkbox>
-          </sgds-checkbox-group>`,
-        },
-        {
-          title: "Do not use checkboxes when only one option is allowed",
-          description:
-            "If users must pick exactly one option, use radio buttons for mutually exclusive choices instead.",
-          tone: "dont",
-          markup: `<sgds-checkbox-group label="Preferred contact method">
-            <sgds-checkbox>Email</sgds-checkbox>
-            <sgds-checkbox>SMS</sgds-checkbox>
-            <sgds-checkbox>Phone call</sgds-checkbox>
-          </sgds-checkbox-group>`,
+          markup: `<sgds-radio-group label="Delivery channels">
+            <sgds-radio value="email">Email</sgds-radio>
+            <sgds-radio value="sms">SMS</sgds-radio>
+            <sgds-radio value="phone">Phone call</sgds-radio>
+          </sgds-radio-group>`,
         },
         {
           title: "Use a clear group label",
           description:
-            "A shared label helps users understand what the checkbox options represent before they start selecting.",
+            "The radio group label should state the decision users are making before they compare the options.",
           tone: "do",
-          markup: `<sgds-checkbox-group label="Documents submitted">
-            <sgds-checkbox>NRIC</sgds-checkbox>
-            <sgds-checkbox>Proof of address</sgds-checkbox>
-            <sgds-checkbox>Income statement</sgds-checkbox>
-            <sgds-checkbox>Supporting letter</sgds-checkbox>
-          </sgds-checkbox-group>`,
+          markup: `<sgds-radio-group label="Payment frequency" value="monthly">
+            <sgds-radio value="monthly">Monthly</sgds-radio>
+            <sgds-radio value="quarterly">Quarterly</sgds-radio>
+            <sgds-radio value="yearly">Yearly</sgds-radio>
+          </sgds-radio-group>`,
         },
         {
-          title: "Do not overload a checkbox group",
+          title: "Do not use radios for very long option lists",
           description:
-            "If the list is long or hard to scan, consider a select or combo box instead of showing every option as a checkbox.",
+            "Long radio groups are hard to scan. Use select or combo box when the list is too long to compare at once.",
           tone: "dont",
-          markup: `<sgds-checkbox-group label="Services of interest">
-            <sgds-checkbox>Passport renewal</sgds-checkbox>
-            <sgds-checkbox>Driving licence</sgds-checkbox>
-            <sgds-checkbox>Housing grant</sgds-checkbox>
-            <sgds-checkbox>Healthcare subsidy</sgds-checkbox>
-            <sgds-checkbox>Work permit</sgds-checkbox>
-            <sgds-checkbox>Business registration</sgds-checkbox>
-            <sgds-checkbox>Marriage registration</sgds-checkbox>
-            <sgds-checkbox>Property tax</sgds-checkbox>
-          </sgds-checkbox-group>`,
+          markup: `<sgds-radio-group label="Service type">
+            <sgds-radio value="passport">Passport renewal</sgds-radio>
+            <sgds-radio value="licence">Driving licence</sgds-radio>
+            <sgds-radio value="housing">Housing grant</sgds-radio>
+            <sgds-radio value="healthcare">Healthcare subsidy</sgds-radio>
+            <sgds-radio value="work">Work permit</sgds-radio>
+            <sgds-radio value="business">Business registration</sgds-radio>
+          </sgds-radio-group>`,
         },
       ],
     },
@@ -13270,7 +13469,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           "The select supports standard field, option, and keyboard interaction patterns.",
       },
     ],
-    anatomyMarkup: `<div style="min-height: 180px;"><sgds-select class="portal-anatomy-select" placeholder="Choose a service" open><sgds-select-option class="portal-anatomy-select-option" value="passport">Passport</sgds-select-option><sgds-select-option value="licence">Licence</sgds-select-option><sgds-select-option value="benefits">Benefits</sgds-select-option></sgds-select></div>`,
+    anatomyMarkup: `<div style="min-height: 180px;"><sgds-select class="portal-anatomy-select" placeholder="Choose a service" menuIsOpen><sgds-select-option class="portal-anatomy-select-option" value="passport">Passport</sgds-select-option><sgds-select-option value="licence">Licence</sgds-select-option><sgds-select-option value="benefits">Benefits</sgds-select-option></sgds-select></div>`,
     anatomyParts: [
       { title: "Trigger field" },
       { title: "Listbox" },
@@ -13561,9 +13760,9 @@ const componentDocs: Record<string, ComponentDoc> = {
         rows: [
           {
             category: "Gap",
-            name: "gap-sm",
-            value: "sgds/gap/sm",
-            usage: "Spacing between items inside the component",
+            name: "form-gap-md",
+            value: "sgds/form/gap/md",
+            usage: "Spacing between items inside the form control",
           },
           {
             category: "Gap",
@@ -13572,13 +13771,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             usage: "Spacing between items inside the component",
           },
           {
-            category: "Form",
+            category: "Border",
             name: "form-border-radius-md",
             value: "sgds/form/border-radius/md",
             usage: "Value used by the component",
           },
           {
-            category: "Form",
+            category: "Border",
             name: "form-border-width-default",
             value: "sgds/form/border-width/default",
             usage: "Value used by the component",
@@ -13587,7 +13786,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-48",
             value: "sgds/dimension/48",
-            usage: "Width or height of an element inside",
+            usage: "Height of the select trigger",
           },
           {
             category: "Size",
@@ -13596,16 +13795,16 @@ const componentDocs: Record<string, ComponentDoc> = {
             usage: "Size of the icon",
           },
           {
-            category: "Outline Focus",
-            name: "outline-focus",
-            value: "sgds/outline-focus",
-            usage: "Value used by the component",
+            category: "Outline",
+            name: "form-outline-focus",
+            value: "sgds/form/outline/focus",
+            usage: "Focus outline of the form control",
           },
           {
-            category: "Outline Offset Focus",
-            name: "outline-offset-focus",
-            value: "sgds/outline-offset-focus",
-            usage: "Value used by the component",
+            category: "Outline",
+            name: "form-outline-offset-focus",
+            value: "sgds/form/outline/offset-focus",
+            usage: "Focus outline offset of the form control",
           },
         ],
       },
@@ -13815,16 +14014,24 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "Structure",
         description:
           "Sidebar width defaults to 288px and collapses to 72px. Navigation content uses compact padding and gaps so dense application menus stay scannable.",
-        markup: `<sgds-sidebar active="overview" aria-label="Structure example sidebar" class="sgds:h-[420px]">
-          <sgds-sidebar-section title="Main" name="main" separator>
-            <sgds-sidebar-item title="Overview" name="overview">
-              <sgds-icon name="house" slot="icon"></sgds-icon>
-            </sgds-sidebar-item>
-            <sgds-sidebar-item title="Records" name="records">
-              <sgds-icon name="folder" slot="icon"></sgds-icon>
-            </sgds-sidebar-item>
-          </sgds-sidebar-section>
-        </sgds-sidebar>`,
+        markup: `<div class="sgds:flex sgds:justify-start sgds:w-[calc(var(--sgds-dimension-288)*2)] sgds:max-w-full">
+          <sgds-sidebar active="applications" variant="collapsible" scrim aria-label="Structure example sidebar" class="sgds:h-[420px]">
+            <sgds-sidebar-section title="Main" name="main" separator>
+              <sgds-sidebar-item title="Overview" name="overview">
+                <sgds-icon name="house" slot="icon"></sgds-icon>
+              </sgds-sidebar-item>
+              <sgds-sidebar-group title="Records" name="records">
+                <sgds-icon name="folder" slot="icon"></sgds-icon>
+                <sgds-sidebar-item title="Applications" name="applications">
+                  <sgds-icon name="file-text" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Reports" name="reports">
+                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+              </sgds-sidebar-group>
+            </sgds-sidebar-section>
+          </sgds-sidebar>
+        </div>`,
       },
     ],
     componentTokenGroups: [
@@ -13900,7 +14107,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "sgds/padding/lg",
             rawValue: "20px",
             mapKey: "container-padding",
-            category: "Spacing",
+            category: "Padding",
             usage: "Value used by the component",
           },
           {
@@ -13908,7 +14115,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "sgds/padding/xs",
             rawValue: "8px",
             mapKey: "item-padding",
-            category: "Spacing",
+            category: "Padding",
             usage: "Value used by the component",
           },
           {
@@ -13916,7 +14123,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "sgds/gap/md",
             rawValue: "16px",
             mapKey: "content-gap",
-            category: "Spacing",
+            category: "Gap",
             usage: "Value used by the component",
           },
           {
@@ -13924,7 +14131,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "sgds/gap/xs",
             rawValue: "8px",
             mapKey: "item-gap",
-            category: "Spacing",
+            category: "Gap",
             usage: "Value used by the component",
           },
           {
@@ -14058,6 +14265,26 @@ const componentDocs: Record<string, ComponentDoc> = {
           key: "Space",
           description:
             "Activates the focused sidebar item or opens an expandable group.",
+        },
+        {
+          key: "↓ Down",
+          description:
+            "Moves focus to the next sidebar item, or to the first child item when an expanded group is focused.",
+        },
+        {
+          key: "↑ Up",
+          description:
+            "Moves focus to the previous sidebar item, or to the last child of the previous group.",
+        },
+        {
+          key: "→ Right",
+          description:
+            "Opens the focused expandable group, or moves focus into its first child when already open.",
+        },
+        {
+          key: "← Left",
+          description:
+            "Closes the focused expandable group, or returns focus to the parent group from a nested item.",
         },
       ],
     },
@@ -14542,7 +14769,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               "Transparency of the sidenav button when disabled; transparency of the content when disabled",
           },
           {
-            category: "Other",
+            category: "Colour",
             name: "primary-bg-translucent",
             value: "sgds/primary/bg/translucent",
             usage:
@@ -14577,7 +14804,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     anatomyMarkup: `<div class="portal-skeleton-anatomy-demo">
-      <sgds-skeleton class="portal-anatomy-skeleton portal-anatomy-skeleton-heading" width="100%" height="28px" sheen></sgds-skeleton>
+      <sgds-skeleton class="portal-anatomy-skeleton portal-anatomy-skeleton-heading" width="100%" height="16px" sheen></sgds-skeleton>
       <sgds-skeleton class="portal-anatomy-skeleton" width="88%" height="16px" sheen></sgds-skeleton>
       <sgds-skeleton class="portal-anatomy-skeleton" width="64%" height="16px" sheen></sgds-skeleton>
     </div>`,
@@ -14797,6 +15024,14 @@ const componentDocs: Record<string, ComponentDoc> = {
         targetY: "center",
       },
     ],
+    measurements: [
+      {
+        title: "Spinner structure",
+        description:
+          "Spinner structure shows the spinner glyph, label, and the size, gap, and typography tokens used by the component.",
+        markup: `<div class="portal-demo-row"><sgds-spinner label="Loading"></sgds-spinner></div>`,
+      },
+    ],
     configurationDemos: [
       {
         title: "Tone",
@@ -14951,30 +15186,40 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-16",
             value: "sgds/dimension/16",
-            usage: "Height of the spinner xs; width of the spinner xs",
+            mapKey: "dimension",
+            variant: "xs",
+            usage: "Height of the spinner; width of the spinner",
           },
           {
             category: "Size",
             name: "dimension-24",
             value: "sgds/dimension/24",
+            mapKey: "dimension",
+            variant: "sm",
             usage: "Height of the spinner; width of the spinner",
           },
           {
             category: "Size",
             name: "dimension-32",
             value: "sgds/dimension/32",
+            mapKey: "dimension",
+            variant: "md",
             usage: "Height of the spinner; width of the spinner",
           },
           {
             category: "Size",
             name: "dimension-48",
             value: "sgds/dimension/48",
+            mapKey: "dimension",
+            variant: "lg",
             usage: "Height of the spinner; width of the spinner",
           },
           {
             category: "Size",
             name: "dimension-64",
             value: "sgds/dimension/64",
+            mapKey: "dimension",
+            variant: "xl",
             usage: "Height of the spinner; width of the spinner",
           },
           {
@@ -15026,13 +15271,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             usage: "Background colour of items inside the component",
           },
           {
-            category: "Other",
+            category: "Colour",
             name: "spinner-bg",
             value: "sgds/spinner-bg",
             usage: "Right border of the spinner",
           },
           {
-            category: "Other",
+            category: "Colour",
             name: "spinner-color",
             value: "sgds/spinner-color",
             usage: "Text colour of the spinner",
@@ -15066,12 +15311,16 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     anatomyParts: [
-      { title: "Step marker" },
-      { title: "Step label" },
-      { title: "Step content" },
+      { title: "Step indicator" },
+      { title: "Label" },
+      { title: "Slot (optional)" },
+      { title: "Connection line" },
     ],
-    anatomyPreviewMarkup: `<div class="portal-demo-stepper sgds:w-[var(--sgds-dimension-480)] sgds:max-w-full">
+    anatomyPreviewMarkup: `<div class="portal-demo-stepper sgds:flex sgds:w-[var(--sgds-dimension-480)] sgds:max-w-full sgds:flex-col sgds:gap-md">
       <sgds-stepper class="portal-anatomy-stepper" data-portal-stepper="default"></sgds-stepper>
+      <div class="portal-anatomy-stepper-content sgds:rounded-md sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-md sgds:text-body-sm">
+        Slot content
+      </div>
     </div>`,
     anatomyCallouts: [
       {
@@ -15085,21 +15334,30 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         number: 2,
-        direction: "bottom",
+        direction: "left",
         targetSelector: ".portal-anatomy-stepper",
         targetShadowSelector:
           ".stepper-item-container:first-child .stepper-detail",
-        targetX: "center",
-        targetY: "bottom",
+        targetX: "left",
+        targetY: "center",
       },
       {
         number: 3,
         direction: "bottom",
-        targetSelector: ".portal-anatomy-stepper",
-        targetShadowSelector:
-          ".stepper-item-container:last-child .stepper-item",
+        targetSelector: ".portal-anatomy-stepper-content",
         targetX: "center",
         targetY: "bottom",
+      },
+      {
+        number: 4,
+        direction: "top",
+        targetSelector: ".portal-anatomy-stepper",
+        targetShadowSelector:
+          ".stepper-item-container:nth-child(2) .stepper-item",
+        targetX: "left",
+        targetY: "top",
+        targetXOffset: -30,
+        targetYOffset: 15,
       },
     ],
     configurationDemos: [
@@ -15234,8 +15492,15 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Steppers suit linear flows like application forms or sign-ups where each step depends on the previous one.",
           tone: "do",
-          markup: `<div class="portal-demo-stepper">
+          markup: `<div class="portal-demo-stepper sgds:flex sgds:flex-col sgds:gap-md">
             <sgds-stepper data-portal-stepper="default" activeStep="1"></sgds-stepper>
+            <div class="sgds:flex sgds:flex-col sgds:gap-xs sgds:rounded-md sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-md">
+              <span class="sgds:text-subtitle-sm sgds:font-semibold">Review details</span>
+              <div class="sgds:flex sgds:justify-between sgds:gap-sm">
+                <sgds-button variant="outline" size="sm">Back</sgds-button>
+                <sgds-button size="sm">Continue</sgds-button>
+              </div>
+            </div>
           </div>`,
         },
         {
@@ -15243,8 +15508,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "If users can visit sections in any order, use tabs or sidenav. A stepper implies progress through a workflow.",
           tone: "dont",
-          markup: `<div class="portal-demo-stepper">
-            <sgds-stepper data-portal-stepper="default"></sgds-stepper>
+          markup: `<div class="portal-demo-stepper sgds:flex sgds:flex-col sgds:gap-md">
+            <sgds-stepper data-portal-stepper="default" activeStep="0"></sgds-stepper>
+            <div class="sgds:grid sgds:grid-cols-3 sgds:gap-2-xs sgds:text-center">
+              <span class="sgds:rounded-sm sgds:bg-surface-default sgds:px-2-xs sgds:py-2-xs sgds:text-body-sm">Overview</span>
+              <span class="sgds:rounded-sm sgds:bg-surface-default sgds:px-2-xs sgds:py-2-xs sgds:text-body-sm">Documents</span>
+              <span class="sgds:rounded-sm sgds:bg-surface-default sgds:px-2-xs sgds:py-2-xs sgds:text-body-sm">Status</span>
+            </div>
           </div>`,
         },
         {
@@ -15252,8 +15522,11 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Reveal the full set of steps from the start so users can estimate effort and decide whether to begin.",
           tone: "do",
-          markup: `<div class="portal-demo-stepper">
+          markup: `<div class="portal-demo-stepper sgds:flex sgds:flex-col sgds:gap-md">
             <sgds-stepper data-portal-stepper="default" activeStep="0"></sgds-stepper>
+            <div class="sgds:rounded-md sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-md sgds:text-body-sm">
+              Step 1 of 3: Start the application
+            </div>
           </div>`,
         },
         {
@@ -15261,8 +15534,11 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Long steppers reduce completion. Group related steps into phases or use progressive disclosure.",
           tone: "dont",
-          markup: `<div class="portal-demo-stepper">
-            <sgds-stepper data-portal-stepper="default"></sgds-stepper>
+          markup: `<div class="portal-demo-stepper sgds:flex sgds:flex-col sgds:gap-md">
+            <sgds-stepper data-portal-stepper="long" activeStep="4"></sgds-stepper>
+            <div class="sgds:rounded-md sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-md sgds:text-body-sm">
+              Eight crowded steps make progress hard to scan.
+            </div>
           </div>`,
         },
       ],
@@ -15316,7 +15592,6 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Border",
             name: "border-width-2",
             value: "sgds/border-width/2",
-            mapKey: "border-width",
             usage: "Border of the stepper marker",
           },
           {
@@ -15330,7 +15605,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-128",
             value: "sgds/dimension/128",
-            usage: "Width of the stepper detail",
+            usage: "Maximum width of the stepper detail",
           },
           {
             category: "Size",
@@ -15593,8 +15868,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-subnav-item active>Overview</sgds-subnav-item>
             <sgds-subnav-item>Tasks</sgds-subnav-item>
             <div slot="actions">
-              <sgds-button variant="outline">Share</sgds-button>
-              <sgds-button variant="primary">New task</sgds-button>
+              <sgds-button size="sm" variant="outline">Share</sgds-button>
+              <sgds-button size="sm" variant="primary">New task</sgds-button>
             </div>
           </sgds-subnav>
         </div>`,
@@ -15604,6 +15879,21 @@ const componentDocs: Record<string, ComponentDoc> = {
         ],
       },
     ],
+    measurements: [
+      demo(
+        "Structure",
+        "Subnav structure highlights the header, navigation items, action, and the padding/gap tokens applied to each region.",
+        `<div class="portal-demo-nav">
+          <sgds-subnav>
+            <h5 slot="header">Header</h5>
+            <sgds-button slot="actions" size="sm" variant="primary">Manage</sgds-button>
+            <sgds-subnav-item active><a href="#">Overview</a></sgds-subnav-item>
+            <sgds-subnav-item><a href="#">History</a></sgds-subnav-item>
+            <sgds-subnav-item><a href="#">Settings</a></sgds-subnav-item>
+          </sgds-subnav>
+        </div>`,
+      ),
+    ],
     demos: [
       demo(
         "Default",
@@ -15611,7 +15901,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         `<div class="portal-demo-nav">
           <sgds-subnav>
             <span slot="header">Applications</span>
-            <sgds-button slot="actions" variant="ghost">Manage</sgds-button>
+            <sgds-button slot="actions" size="sm" variant="ghost">Manage</sgds-button>
             <sgds-subnav-item active><a href="#">Overview</a></sgds-subnav-item>
             <sgds-subnav-item><a href="#">History</a></sgds-subnav-item>
             <sgds-subnav-item><a href="#">Settings</a></sgds-subnav-item>
@@ -15661,8 +15951,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               <sgds-subnav-item active>Tasks</sgds-subnav-item>
               <sgds-subnav-item>Members</sgds-subnav-item>
               <div slot="actions">
-                <sgds-button variant="outline">Share</sgds-button>
-                <sgds-button variant="primary">New task</sgds-button>
+                <sgds-button size="sm" variant="outline">Share</sgds-button>
+                <sgds-button size="sm" variant="primary">New task</sgds-button>
               </div>
             </sgds-subnav>
           </div>`,
@@ -15768,23 +16058,14 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
           {
             category: "Border",
-            name: "border-width-0",
-            value: "sgds/border-width/0",
-            mapKey: "border-width",
-            usage: "Bottom border of the nav; bottom border of the subnav",
-          },
-          {
-            category: "Border",
             name: "border-width-1",
             value: "sgds/border-width/1",
-            mapKey: "border-width",
             usage: "Bottom border of the nav; bottom border of the subnav",
           },
           {
             category: "Border",
             name: "border-width-2",
             value: "sgds/border-width/2",
-            mapKey: "border-width",
             usage:
               "Bottom border of the content when active; bottom border of the content",
           },
@@ -15917,7 +16198,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "unchecked",
             markup: `<sgds-switch>Enable notifications</sgds-switch>`,
             description:
-              "The default off state. Use when the setting is currently disabled.",
+              "The default off state. Use when the setting is currently `disabled`.",
           },
           {
             label: "Checked",
@@ -15984,7 +16265,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Disabled",
         description:
-          "Use the disabled state to prevent toggling when the setting is not available in the current context.",
+          "Use the `disabled` state to prevent toggling when the setting is not available in the current context.",
         controlLabel: "Switch disabled options",
         defaultValue: "not-disabled",
         options: [
@@ -16067,7 +16348,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             name: "form-padding-inline-sm",
             value: "sgds/form/padding/inline-sm",
             usage:
-              "Background-position of the form check input; padding of the form check input",
+              "Horizontal padding of the form check input; background-position of the form check input",
           },
           {
             category: "Gap",
@@ -16091,12 +16372,14 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Typography",
             name: "font-size-14",
             value: "sgds/font-size/14",
+            variant: "sm",
             usage: "Font size of the form check",
           },
           {
             category: "Typography",
             name: "font-size-20",
             value: "sgds/font-size/20",
+            variant: "lg",
             usage: "Font size of the form check",
           },
           {
@@ -16145,87 +16428,95 @@ const componentDocs: Record<string, ComponentDoc> = {
             usage: "Transparency of the form check when disabled",
           },
           {
-            category: "Other",
+            category: "Border",
             name: "form-border-radius-full",
             value: "sgds/form/border-radius/full",
             usage: "Corner radius of the form check input",
           },
           {
-            category: "Other",
+            category: "Size",
             name: "form-height-2-xs",
             value: "sgds/form/height-2-xs",
-            usage: "Background-size of the form check input",
+            variant: "sm",
+            usage: "Height of the toggle indicator icon",
           },
           {
-            category: "Other",
-            name: "form-height-lg",
-            value: "sgds/form/height-lg",
+            category: "Size",
+            name: "form-height-sm",
+            value: "sgds/form/height-sm",
+            variant: "sm",
             usage: "Height of the form check input",
           },
           {
-            category: "Other",
+            category: "Size",
             name: "form-height-md",
             value: "sgds/form/height-md",
-            usage:
-              "Height of the form check input; background-size of the form check input",
+            variant: "md",
+            usage: "Height of the form check input",
           },
           {
-            category: "Other",
-            name: "form-height-sm",
-            value: "sgds/form/height-sm",
-            usage:
-              "Background-size of the form check input; height of the form check input",
+            category: "Size",
+            name: "form-height-lg",
+            value: "sgds/form/height-lg",
+            variant: "lg",
+            usage: "Height of the form check input",
           },
           {
-            category: "Other",
+            category: "Size",
             name: "form-width-2-xs",
             value: "sgds/form/width-2-xs",
-            usage: "Background-size of the form check input",
+            variant: "sm",
+            usage: "Width of the toggle indicator icon",
           },
           {
-            category: "Other",
-            name: "form-width-3-xl",
-            value: "sgds/form/width-3-xl",
-            usage: "Width of the form check input",
-          },
-          {
-            category: "Other",
+            category: "Size",
             name: "form-width-md",
             value: "sgds/form/width-md",
+            variant: "sm",
             usage: "Width of the form check input",
           },
           {
-            category: "Other",
-            name: "form-width-sm",
-            value: "sgds/form/width-sm",
-            usage: "Background-size of the form check input",
-          },
-          {
-            category: "Other",
-            name: "form-width-xl",
-            value: "sgds/form/width-xl",
-            usage: "Width of the form check input",
-          },
-          {
-            category: "Other",
+            category: "Size",
             name: "form-width-xs",
             value: "sgds/form/width-xs",
-            usage: "Background-size of the form check input",
+            variant: "md",
+            usage: "Width of the toggle indicator icon",
           },
           {
-            category: "Other",
+            category: "Size",
+            name: "form-width-xl",
+            value: "sgds/form/width-xl",
+            variant: "md",
+            usage: "Width of the form check input",
+          },
+          {
+            category: "Size",
+            name: "form-width-sm",
+            value: "sgds/form/width-sm",
+            variant: "lg",
+            usage: "Width of the toggle indicator icon",
+          },
+          {
+            category: "Size",
+            name: "form-width-3-xl",
+            value: "sgds/form/width-3-xl",
+            variant: "lg",
+            usage: "Width of the form check input",
+          },
+          {
+            category: "Image",
             name: "switch-bg-image",
             value: "sgds/switch-bg-image",
             usage: "Background-image of the form check input",
           },
           {
-            category: "Other",
+            category: "Size",
             name: "switch-height",
             value: "sgds/switch-height",
             usage: "Height of the form check input",
           },
           {
-            category: "Other",
+            category: "Size",
             name: "switch-width",
             value: "sgds/switch-width",
             usage: "Width of the form check input",
@@ -16481,6 +16772,19 @@ const componentDocs: Record<string, ComponentDoc> = {
         ],
       },
     ],
+    measurements: [
+      demo(
+        "Structure",
+        "System banner structure highlights the icon, message, action, and gaps between them.",
+        `<sgds-system-banner show>
+          <sgds-system-banner-item>
+            <sgds-icon slot="icon" name="info-circle-fill" size="md"></sgds-icon>
+            Scheduled maintenance will take place tonight from 10pm to 11pm.
+            <sgds-link slot="action" href="#">View details</sgds-link>
+          </sgds-system-banner-item>
+        </sgds-system-banner>`,
+      ),
+    ],
     demos: [
       demo(
         "Default",
@@ -16662,13 +16966,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-64",
             value: "sgds/dimension/64",
-            usage: "Height of the banner",
+            usage: "Minimum height of the banner",
           },
           {
             category: "Size",
             name: "dimension-872",
             value: "sgds/dimension/872",
-            usage: "Width of the clamped container",
+            usage: "Maximum width of the clamped container",
           },
           {
             category: "Colour",
@@ -16710,23 +17014,33 @@ const componentDocs: Record<string, ComponentDoc> = {
           "Tabs change panels while keeping users in the same context.",
       },
     ],
+    anatomyMarkup: `<sgds-tab-group variant="underlined" class="portal-anatomy-tab">
+          <sgds-tab slot="nav" panel="overview" active>
+            <sgds-icon slot="icon" name="house"></sgds-icon>
+            <span class="portal-anatomy-tab-label">Overview</span>
+          </sgds-tab>
+          <sgds-tab slot="nav" panel="details">Details</sgds-tab>
+          <sgds-tab slot="nav" panel="history">History</sgds-tab>
+        </sgds-tab-group>`,
     anatomyParts: [
-      { title: "Tab list" },
-      { title: "Tab" },
-      { title: "Tab panel" },
+      { title: "Leading icon", note: "(optional)" },
+      { title: "Label" },
+      { title: "Active indicator" },
+      { title: "Divider", note: "(optional)" },
     ],
     anatomyCallouts: [
       {
         number: 1,
         direction: "top",
-        targetSelector: "sgds-tab-group",
+        targetSelector: "sgds-tab[active] sgds-icon[slot='icon']",
         targetX: "center",
         targetY: "top",
+        stemLengthToken: "--sgds-dimension-56",
       },
       {
         number: 2,
         direction: "top",
-        targetSelector: "sgds-tab[active]",
+        targetSelector: ".portal-anatomy-tab-label",
         targetX: "center",
         targetY: "top",
         stemLengthToken: "--sgds-dimension-56",
@@ -16734,8 +17048,16 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         number: 3,
         direction: "bottom",
-        targetSelector: "sgds-tab-panel[name='overview']",
+        targetSelector: "sgds-tab[active]",
         targetX: "center",
+        targetY: "bottom",
+      },
+      {
+        number: 4,
+        direction: "bottom",
+        targetSelector: ".portal-anatomy-tab",
+        targetShadowSelector: ".tab-group__nav",
+        targetX: "right",
         targetY: "bottom",
       },
     ],
@@ -16842,7 +17164,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-tab-panel name="dt-activity">Activity content</sgds-tab-panel>
         </sgds-tab-group>`,
             description:
-              "Use the disabled state for tabs that are temporarily unavailable.",
+              "Use the `disabled` state for tabs that are temporarily unavailable.",
           },
         ],
       },
@@ -17120,18 +17442,19 @@ const componentDocs: Record<string, ComponentDoc> = {
         number: 3,
         direction: "left",
         targetSelector: "sgds-table",
-        targetShadowSelector: "table.table tbody td",
+        targetShadowSelector:
+          "table.table tbody tr:nth-child(2) td:first-child",
         targetX: "left",
         targetY: "center",
-        targetXOffset: 154,
       },
       {
         number: 4,
         direction: "top",
         targetSelector: "sgds-table",
         targetShadowSelector: "table.table",
-        targetX: "right",
+        targetX: "center",
         targetY: "top",
+        targetXOffset: -100,
       },
       {
         number: 5,
@@ -17162,14 +17485,14 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Header position",
         description:
-          "Use `header-position` to put headers across the top, down the side, or both.",
+          "Use `headerPosition` to put headers across the top, down the side, or both.",
         controlLabel: "Table header position options",
         defaultValue: "horizontal",
         options: [
           {
             label: "Horizontal",
             value: "horizontal",
-            markup: `<sgds-table header-position="horizontal"
+            markup: `<sgds-table headerPosition="horizontal"
           rowHeader='["Service","Owner","Status"]'
           tableData='[["Citizen portal","GovTech","Live"],["Booking system","NLB","Beta"]]'
         ></sgds-table>`,
@@ -17179,7 +17502,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Vertical",
             value: "vertical",
-            markup: `<sgds-table header-position="vertical"
+            markup: `<sgds-table headerPosition="vertical"
           rowHeader='["Service","Owner","Status"]'
           tableData='[["Citizen portal","GovTech","Live"],["Booking system","NLB","Beta"]]'
         ></sgds-table>`,
@@ -17189,7 +17512,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Both",
             value: "both",
-            markup: `<sgds-table header-position="both"
+            markup: `<sgds-table headerPosition="both"
           rowHeader='["Service","Owner","Status"]'
           tableData='[["Citizen portal","GovTech","Live"],["Booking system","NLB","Beta"]]'
         ></sgds-table>`,
@@ -17371,7 +17694,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-56",
             value: "sgds/dimension/56",
-            usage: "Height of the table cell; height of the table head",
+            usage:
+              "Minimum height of the table cell; minimum height of the table head",
           },
           {
             category: "Colour",
@@ -17514,6 +17838,20 @@ const componentDocs: Record<string, ComponentDoc> = {
           </div>`,
         },
         {
+          title: "Do not use it for site-level navigation",
+          description:
+            "Table of contents links should stay within the current page. Use mainnav or sidenav when users need to move across pages.",
+          tone: "dont",
+          markup: `<div class="portal-demo-nav-sm">
+            <sgds-table-of-contents>
+              <h3>Explore services</h3>
+              <li slot="contents"><sgds-link><a href="/services">Services</a></sgds-link></li>
+              <li slot="contents"><sgds-link><a href="/forms">Forms</a></sgds-link></li>
+              <li slot="contents"><sgds-link><a href="/contact">Contact</a></sgds-link></li>
+            </sgds-table-of-contents>
+          </div>`,
+        },
+        {
           title: "Keep contents entries one level deep",
           description:
             "Use one direct contents item for each major section. Split dense pages into clearer major sections instead of nesting links.",
@@ -17525,6 +17863,20 @@ const componentDocs: Record<string, ComponentDoc> = {
               <li slot="contents"><sgds-link><a href="#findings">Findings</a></sgds-link></li>
               <li slot="contents"><sgds-link><a href="#recommendations">Recommendations</a></sgds-link></li>
               <li slot="contents"><sgds-link><a href="#conclusion">Conclusion</a></sgds-link></li>
+            </sgds-table-of-contents>
+          </div>`,
+        },
+        {
+          title: "Do not link to missing or duplicate sections",
+          description:
+            "Each anchor must match one unique section id on the page. Broken or repeated ids can send users to the wrong place.",
+          tone: "dont",
+          markup: `<div class="portal-demo-nav-sm">
+            <sgds-table-of-contents>
+              <h3>On this page</h3>
+              <li slot="contents"><sgds-link><a href="#overview">Overview</a></sgds-link></li>
+              <li slot="contents"><sgds-link><a href="#missing-section">Eligibility</a></sgds-link></li>
+              <li slot="contents"><sgds-link><a href="#overview">Fees</a></sgds-link></li>
             </sgds-table-of-contents>
           </div>`,
         },
@@ -17554,19 +17906,10 @@ const componentDocs: Record<string, ComponentDoc> = {
         rows: [
           {
             category: "Padding",
-            name: "padding-x",
+            name: "padding",
             value: "sgds/padding/none",
-            mapKey: "padding-x",
-            usage:
-              "Space between the left and right edges of the component and its content",
-          },
-          {
-            category: "Padding",
-            name: "padding-y",
-            value: "sgds/padding/none",
-            mapKey: "padding-y",
-            usage:
-              "Space between the top and bottom edges of the component and its content",
+            mapKey: "padding",
+            usage: "Space between the edges of the component and its content",
           },
           {
             category: "Gap",
@@ -17840,7 +18183,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       demo(
         "Default",
         "Use textarea when users need more space than a single-line input provides.",
-        `<sgds-textarea rows="4" placeholder="Add supporting details"></sgds-textarea>`,
+        `<sgds-textarea label="Comments" rows="4" placeholder="Add supporting details"></sgds-textarea>`,
       ),
     ],
     usage: {
@@ -17896,18 +18239,10 @@ const componentDocs: Record<string, ComponentDoc> = {
               "Space between the top and bottom edges of the component and its content",
           },
           {
-            category: "Padding",
-            name: "form-padding-y",
-            value: "sgds/form/padding/y",
-            mapKey: "form-padding-y",
-            usage:
-              "Space between the top and bottom edges of the field and the typed value",
-          },
-          {
             category: "Size",
             name: "dimension-136",
             value: "sgds/dimension/136",
-            usage: "Height of the textarea.form control group",
+            usage: "Minimum height of the textarea form control group",
           },
         ],
       },
@@ -18045,7 +18380,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Not disabled",
             value: "not-disabled",
-            markup: `<sgds-thumbnail-card class="portal-demo-card" stretched-link>
+            markup: `<sgds-thumbnail-card class="portal-demo-card" stretchedLink>
           <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Browse datasets</span>
           <span slot="description">Open data published by Singapore agencies.</span>
@@ -18056,7 +18391,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Disabled",
             value: "disabled",
-            markup: `<sgds-thumbnail-card class="portal-demo-card" disabled stretched-link>
+            markup: `<sgds-thumbnail-card class="portal-demo-card" disabled stretchedLink>
           <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Browse datasets</span>
           <span slot="description">Open data published by Singapore agencies.</span>
@@ -18120,11 +18455,11 @@ const componentDocs: Record<string, ComponentDoc> = {
           </sgds-thumbnail-card>`,
         },
         {
-          title: "Use stretched-link when the whole card is one click target",
+          title: "Make the whole card one click target only when intended",
           description:
-            "Add stretched-link so the entire card, not just the footer link, responds to click and keyboard.",
+            "Add `stretchedLink` so the entire card, not just the footer link, responds to click and keyboard.",
           tone: "do",
-          markup: `<sgds-thumbnail-card class="portal-demo-card" stretched-link>
+          markup: `<sgds-thumbnail-card class="portal-demo-card" stretchedLink>
             <img slot="thumbnail" alt="Open data icon" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
             <span slot="title">Browse datasets</span>
             <span slot="description">Open data published by Singapore agencies.</span>
@@ -18181,13 +18516,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-128",
             value: "sgds/dimension/128",
-            usage: "Width of the content",
+            usage: "Maximum width of the thumbnail",
           },
           {
             category: "Size",
             name: "dimension-64",
             value: "sgds/dimension/64",
-            usage: "Height of the content; width of the content",
+            usage: "Minimum width of the thumbnail",
           },
           {
             category: "Colour",
@@ -18301,7 +18636,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "sgds/padding/md",
             mapKey: "padding-x",
             usage:
-              "Space between the left and right edges of the component and its content",
+              "Space between the left and right edges of the toast and its content",
           },
           {
             category: "Padding",
@@ -18377,13 +18712,13 @@ const componentDocs: Record<string, ComponentDoc> = {
             category: "Size",
             name: "dimension-280",
             value: "sgds/dimension/280",
-            usage: "Width of the toast",
+            usage: "Minimum width of the toast",
           },
           {
             category: "Size",
             name: "dimension-480",
             value: "sgds/dimension/480",
-            usage: "Width of the toast",
+            usage: "Maximum width of the toast",
           },
           {
             category: "Size",
@@ -18692,7 +19027,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Toasts acknowledge background actions like save or send without interrupting the user's current task.",
           tone: "do",
-          markup: `<sgds-toast show autohide title="Saved" variant="success">
+          markup: `<sgds-toast show title="Saved" variant="success">
             <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
             Your changes have been saved.
             <sgds-link slot="action"><a href="#">Undo</a></sgds-link>
@@ -18703,7 +19038,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Errors that require action or block the task belong in an inline alert or modal, where they stay visible.",
           tone: "dont",
-          markup: `<sgds-toast show autohide title="Payment failed" variant="danger">
+          markup: `<sgds-toast show title="Payment failed" variant="danger">
             <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
             Your card was declined. The order has not been submitted.
           </sgds-toast>`,
@@ -18713,7 +19048,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Use success for confirmations, info for neutral updates, warning for issues, and danger for failures.",
           tone: "do",
-          markup: `<sgds-toast show autohide title="Update available" variant="info">
+          markup: `<sgds-toast show title="Update available" variant="info">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
             A new version of this service is available.
           </sgds-toast>`,
@@ -18724,15 +19059,15 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Stacked toasts compete for attention. Surface only the most relevant, or batch related updates into one.",
           tone: "dont",
           markup: `<div class="portal-demo-row">
-            <sgds-toast show autohide title="File uploaded" variant="success">
+            <sgds-toast show title="File uploaded" variant="success">
               <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
               Report.pdf has been uploaded.
             </sgds-toast>
-            <sgds-toast show autohide title="File uploaded" variant="success">
+            <sgds-toast show title="File uploaded" variant="success">
               <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
               Summary.pdf has been uploaded.
             </sgds-toast>
-            <sgds-toast show autohide title="File uploaded" variant="success">
+            <sgds-toast show title="File uploaded" variant="success">
               <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
               Notes.pdf has been uploaded.
             </sgds-toast>
@@ -18744,7 +19079,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Keep to a brief title and one supporting line. Add an action like Undo or View when it helps recovery.",
           tone: "do",
-          markup: `<sgds-toast show autohide title="Message sent" variant="success">
+          markup: `<sgds-toast show title="Message sent" variant="success">
             <sgds-icon slot="icon" name="send"></sgds-icon>
             Your reply has been sent.
             <sgds-link slot="action"><a href="#">View thread</a></sgds-link>
@@ -18756,7 +19091,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Toasts dismiss themselves and may be missed. For must-read information, use a banner, modal, or inline alert.",
           tone: "dont",
-          markup: `<sgds-toast show autohide title="Account suspended" variant="danger">
+          markup: `<sgds-toast show title="Account suspended" variant="danger">
             <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
             Your account has been suspended. You cannot access your records until this is resolved.
           </sgds-toast>`,
@@ -18789,7 +19124,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     anatomyMarkup: `<div class="portal-tooltip-anatomy">
-      <sgds-tooltip class="portal-anatomy-tooltip-real" content="Tooltip text" placement="top" open>
+      <sgds-tooltip class="portal-anatomy-tooltip-real" content="Tooltip text" placement="top">
         <span class="portal-anatomy-tooltip-anchor" aria-hidden="true"></span>
       </sgds-tooltip>
     </div>`,
@@ -18818,7 +19153,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Structure",
         "Tooltip structure uses the real tooltip component in its open state. The bubble is constrained by a 320px max-width, so the preview text is long enough to show wrapping at that limit.",
         `<div class="portal-tooltip-anatomy">
-          <sgds-tooltip class="portal-structure-tooltip-real" content="Tooltip max width is 320px for brief help." placement="top" open>
+          <sgds-tooltip class="portal-structure-tooltip-real" content="Tooltip max width is 320px for brief help." placement="top">
             <span class="portal-anatomy-tooltip-anchor" aria-hidden="true"></span>
           </sgds-tooltip>
         </div>`,
@@ -18884,7 +19219,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "sgds/dimension/320",
             rawValue: "320px",
             mapKey: "max-width",
-            usage: "Width of the tooltip",
+            usage: "Maximum width of the tooltip",
           },
           {
             category: "Layer",
@@ -18908,7 +19243,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Top",
             value: "top",
-            markup: `<sgds-tooltip content="Tooltip on top" placement="top" open>
+            markup: `<sgds-tooltip content="Tooltip on top" placement="top">
           <sgds-button variant="outline">Hover me</sgds-button>
         </sgds-tooltip>`,
             description:
@@ -18917,7 +19252,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Bottom",
             value: "bottom",
-            markup: `<sgds-tooltip content="Tooltip on bottom" placement="bottom" open>
+            markup: `<sgds-tooltip content="Tooltip on bottom" placement="bottom">
           <sgds-button variant="outline">Hover me</sgds-button>
         </sgds-tooltip>`,
             description:
@@ -18926,7 +19261,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Left",
             value: "left",
-            markup: `<sgds-tooltip content="Tooltip on left" placement="left" open>
+            markup: `<sgds-tooltip content="Tooltip on left" placement="left">
           <sgds-button variant="outline">Hover me</sgds-button>
         </sgds-tooltip>`,
             description: "Sits to the leading side of the target.",
@@ -18934,7 +19269,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Right",
             value: "right",
-            markup: `<sgds-tooltip content="Tooltip on right" placement="right" open>
+            markup: `<sgds-tooltip content="Tooltip on right" placement="right">
           <sgds-button variant="outline">Hover me</sgds-button>
         </sgds-tooltip>`,
             description: "Sits to the trailing side of the target.",
@@ -19081,7 +19416,7 @@ const defaultGeneratedUsagePatterns: Record<
     doTitle: "Keep the content focused",
     doDescription:
       "Use one clear content pattern so users can scan and understand the component quickly.",
-    dontTitle: "Do not overload the component",
+    dontTitle: "Do not make the content compete",
     dontDescription:
       "Too many repeated instances or competing content blocks make the page harder to scan.",
   },
@@ -19230,9 +19565,9 @@ const generatedUsagePatternOverrides: Partial<
     doTitle: "Keep the badge short",
     doDescription:
       "A short status or category label works best because users can read it at a glance.",
-    dontTitle: "Do not stretch the badge into body copy",
+    dontTitle: "Do not put sentences inside a badge",
     dontDescription:
-      "Long badge text is harder to scan and starts behaving like regular content.",
+      "Long badge text is hard to scan at a glance and stops looking like a label.",
   },
   breadcrumb: {
     use: [
@@ -19646,7 +19981,7 @@ const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
         <sgds-checkbox>Option 5</sgds-checkbox>
       </sgds-checkbox-group>`;
     case "datepicker":
-      return `<sgds-datepicker placeholder="Date"></sgds-datepicker>`;
+      return `<sgds-datepicker label="Date"></sgds-datepicker>`;
     case "divider":
       return `<div class="portal-demo-stack-sm">
         <sgds-divider></sgds-divider>
@@ -19691,10 +20026,9 @@ const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
     case "pagination":
       return `<sgds-pagination currentPage="1" dataLength="10" itemsPerPage="10" variant="number"></sgds-pagination>`;
     case "radio":
-      return `<sgds-radio-group label="Select one">
-        <sgds-radio value="1">Option 1</sgds-radio>
-        <sgds-radio value="2">Option 2</sgds-radio>
-        <sgds-radio value="3">Option 3</sgds-radio>
+      return `<sgds-radio-group label="Would you like to receive SMS reminders?" hintText="We will send reminders before your appointment.">
+        <sgds-radio value="yes">Yes</sgds-radio>
+        <sgds-radio value="no">No</sgds-radio>
       </sgds-radio-group>`;
     case "select":
       return `<sgds-select placeholder="Choose">
@@ -19825,6 +20159,29 @@ const buildUsageBehaviours = (doc: ComponentDoc): UsageBehaviour[] =>
       ]
     : [];
 
+const compactBestPracticeMarkup = (
+  doc: ComponentDoc,
+  markup: string,
+): string => {
+  if (doc.key !== "mainnav") return markup;
+
+  return markup.replace(
+    /<sgds-mainnav(?![^>]*\bexpand=)/g,
+    '<sgds-mainnav expand="always"',
+  );
+};
+
+const getBestPracticeDemoMarkup = (
+  doc: ComponentDoc,
+  tone: BestPractice["tone"],
+): string =>
+  compactBestPracticeMarkup(
+    doc,
+    tone === "do"
+      ? getPrimaryUsageDemoMarkup(doc)
+      : buildAntiPatternMarkup(doc),
+  );
+
 const buildGeneratedBestPractices = (doc: ComponentDoc): BestPractice[] => {
   const pattern = getGeneratedUsagePattern(doc);
 
@@ -19833,13 +20190,13 @@ const buildGeneratedBestPractices = (doc: ComponentDoc): BestPractice[] => {
       title: pattern.doTitle,
       description: pattern.doDescription,
       tone: "do",
-      markup: getPrimaryUsageDemoMarkup(doc),
+      markup: getBestPracticeDemoMarkup(doc, "do"),
     },
     {
       title: pattern.dontTitle,
       description: pattern.dontDescription,
       tone: "dont",
-      markup: buildAntiPatternMarkup(doc),
+      markup: getBestPracticeDemoMarkup(doc, "dont"),
     },
   ];
 };
@@ -19847,13 +20204,14 @@ const buildGeneratedBestPractices = (doc: ComponentDoc): BestPractice[] => {
 const buildResolvedUsage = (doc: ComponentDoc): UsageContent => {
   const usage = doc.usage ?? {};
   const generatedBestPractices = buildGeneratedBestPractices(doc);
+  const contentGuidelines = usage.contentGuidelines ?? [];
 
   return {
     guidance: usage.guidance?.length ? usage.guidance : buildUsageGuidance(doc),
     content: usage.content?.length
       ? usage.content
       : buildUsageContentSections(doc),
-    contentGuidelines: usage.contentGuidelines ?? [],
+    contentGuidelines,
     behaviours: usage.behaviours?.length
       ? usage.behaviours
       : buildUsageBehaviours(doc),
@@ -20007,7 +20365,7 @@ const generatedAccessibilityProfileOverrides: Record<
   button: {
     builtInItems: [
       "Buttons render as native buttons by default and anchors when `href` is provided.",
-      "The component exposes disabled and loading states to assistive technology.",
+      "The component exposes `disabled` and loading states to assistive technology.",
     ],
     authorItems: [
       "Use button text that describes the action.",
@@ -20015,14 +20373,14 @@ const generatedAccessibilityProfileOverrides: Record<
     ],
     focusItems: [
       "Keep buttons in the same order as the task flow.",
-      "Do not use a disabled button as the only way to explain what users need to do next.",
+      "Do not use a `disabled` button as the only way to explain what users need to do next.",
     ],
     keyboardInteractions: actionRows("button"),
   },
   card: {
     builtInItems: [
       "Cards provide structured slots for title, description, media, supporting content, and footer actions.",
-      "Cards can become focusable when the stretched-link pattern is used.",
+      "Cards can become focusable when the `stretchedLink` pattern is used.",
     ],
     authorItems: [
       "Use a clear title and place actions in the footer slot.",
@@ -20035,7 +20393,7 @@ const generatedAccessibilityProfileOverrides: Record<
   },
   checkbox: {
     builtInItems: [
-      "Checkboxes render native checkbox inputs and reflect checked, disabled, and invalid states.",
+      "Checkboxes render native checkbox inputs and reflect checked, `disabled`, and `invalid` states.",
       "Checkbox groups provide shared label, hint, and feedback areas.",
     ],
     authorItems: [
@@ -20241,7 +20599,7 @@ const generatedAccessibilityProfileOverrides: Record<
   },
   "icon-card": {
     builtInItems: [
-      "Icon cards use card structure with an icon slot and optional stretched-link behaviour.",
+      "Icon cards use card structure with an icon slot and optional `stretchedLink` behaviour.",
       "The card becomes focusable only when it is configured as a stretched link.",
     ],
     authorItems: [
@@ -20255,7 +20613,7 @@ const generatedAccessibilityProfileOverrides: Record<
   },
   "image-card": {
     builtInItems: [
-      "Image cards use card structure with an image slot and optional stretched-link behaviour.",
+      "Image cards use card structure with an image slot and optional `stretchedLink` behaviour.",
       "The card becomes focusable only when it is configured as a stretched link.",
     ],
     authorItems: [
@@ -20270,7 +20628,7 @@ const generatedAccessibilityProfileOverrides: Record<
   input: {
     builtInItems: [
       "Inputs render native input controls and connect labels, hint text, and feedback to the control.",
-      "The component supports disabled, read-only, required, invalid, and feedback states.",
+      "The component supports `disabled`, `readonly`, `required`, `invalid`, and feedback states.",
     ],
     authorItems: [
       "Use a visible label that tells users what to enter.",
@@ -20427,7 +20785,7 @@ const generatedAccessibilityProfileOverrides: Record<
   },
   radio: {
     builtInItems: [
-      "Radio buttons render native radio inputs and reflect checked and disabled states.",
+      "Radio buttons render native radio inputs and reflect checked and `disabled` states.",
       "Radio groups manage selection across related radio options.",
     ],
     authorItems: [
@@ -20550,7 +20908,7 @@ const generatedAccessibilityProfileOverrides: Record<
   switch: {
     builtInItems: [
       "Switches render native checkbox inputs with switch styling.",
-      "The component reflects checked and disabled states.",
+      "The component reflects checked and `disabled` states.",
     ],
     authorItems: [
       "Use switch for settings that take effect immediately.",
@@ -20645,7 +21003,7 @@ const generatedAccessibilityProfileOverrides: Record<
   textarea: {
     builtInItems: [
       "Textareas render native textarea controls and connect labels, hint text, and feedback to the control.",
-      "The component supports disabled, read-only, required, invalid, and feedback states.",
+      "The component supports `disabled`, `readonly`, `required`, `invalid`, and feedback states.",
     ],
     authorItems: [
       "Use a visible label that tells users what to enter.",
@@ -20669,7 +21027,7 @@ const generatedAccessibilityProfileOverrides: Record<
   },
   "thumbnail-card": {
     builtInItems: [
-      "Thumbnail cards use card structure with a thumbnail slot and optional stretched-link behaviour.",
+      "Thumbnail cards use card structure with a thumbnail slot and optional `stretchedLink` behaviour.",
       "The card becomes focusable only when it is configured as a stretched link.",
     ],
     authorItems: [
@@ -20888,13 +21246,13 @@ const accessibilityDemoMarkupOverrides: Record<
     </sgds-combo-box>`,
   },
   datepicker: {
-    builtIn: `<sgds-datepicker open placeholder="Select appointment date"></sgds-datepicker>`,
+    builtIn: `<sgds-datepicker open label="Appointment date"></sgds-datepicker>`,
     author: `<div class="portal-demo-stack-sm">
       <label for="appointment-date">Appointment date</label>
-      <sgds-datepicker id="appointment-date" placeholder="DD/MM/YYYY"></sgds-datepicker>
+      <sgds-datepicker id="appointment-date" label="Appointment date" hintText="Use the format DD/MM/YYYY"></sgds-datepicker>
       <span class="sgds:text-subtle">Use the format DD/MM/YYYY.</span>
     </div>`,
-    focus: `<sgds-datepicker open placeholder="Select appointment date"></sgds-datepicker>`,
+    focus: `<sgds-datepicker open label="Appointment date"></sgds-datepicker>`,
   },
   "description-list": {
     builtIn: `<sgds-description-list-group>
@@ -21097,23 +21455,38 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   modal: {
     builtIn: `<div class="portal-modal-preview">
-      <sgds-modal open>
-        <span slot="title">Confirm submission</span>
-        <p>Check your details before submitting.</p>
-      </sgds-modal>
+      <div class="portal-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-built-in-title">
+        <div class="portal-modal-header">
+          <div class="portal-modal-header-copy">
+            <span id="modal-built-in-title" class="portal-modal-title">Confirm submission</span>
+          </div>
+          <sgds-close-button aria-label="Close modal"></sgds-close-button>
+        </div>
+        <div class="portal-modal-body"><p>Check your details before submitting.</p></div>
+      </div>
     </div>`,
     author: `<div class="portal-modal-preview">
-      <sgds-modal open>
-        <span slot="title">Delete draft?</span>
-        <p>This draft will be removed from your applications.</p>
-        <sgds-button slot="footer" variant="danger">Delete draft</sgds-button>
-      </sgds-modal>
+      <div class="portal-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-author-title">
+        <div class="portal-modal-header">
+          <div class="portal-modal-header-copy">
+            <span id="modal-author-title" class="portal-modal-title">Delete draft?</span>
+          </div>
+          <sgds-close-button aria-label="Close modal"></sgds-close-button>
+        </div>
+        <div class="portal-modal-body"><p>This draft will be removed from your applications.</p></div>
+        <div class="portal-modal-footer"><sgds-button variant="danger">Delete draft</sgds-button></div>
+      </div>
     </div>`,
     focus: `<div class="portal-modal-preview">
-      <sgds-modal open>
-        <span slot="title">Review application</span>
-        <sgds-button slot="footer">Confirm</sgds-button>
-      </sgds-modal>
+      <div class="portal-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-focus-title">
+        <div class="portal-modal-header">
+          <div class="portal-modal-header-copy">
+            <span id="modal-focus-title" class="portal-modal-title">Review application</span>
+          </div>
+          <sgds-close-button aria-label="Close modal"></sgds-close-button>
+        </div>
+        <div class="portal-modal-footer"><sgds-button>Confirm</sgds-button></div>
+      </div>
     </div>`,
   },
   "overflow-menu": {
@@ -21169,7 +21542,7 @@ const accessibilityDemoMarkupOverrides: Record<
     </sgds-radio-group>`,
   },
   select: {
-    builtIn: `<sgds-select open placeholder="Choose a service">
+    builtIn: `<sgds-select menuIsOpen placeholder="Choose a service">
       <sgds-select-option value="passport">Passport</sgds-select-option>
       <sgds-select-option value="licence">Driving licence</sgds-select-option>
     </sgds-select>`,
@@ -21177,7 +21550,7 @@ const accessibilityDemoMarkupOverrides: Record<
       <sgds-select-option value="passport">Passport renewal</sgds-select-option>
       <sgds-select-option value="licence">Driving licence</sgds-select-option>
     </sgds-select>`,
-    focus: `<sgds-select open placeholder="Choose a service">
+    focus: `<sgds-select menuIsOpen placeholder="Choose a service">
       <sgds-select-option value="passport">Passport</sgds-select-option>
       <sgds-select-option value="licence">Driving licence</sgds-select-option>
     </sgds-select>`,
@@ -21237,24 +21610,13 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   stepper: {
     builtIn: `<div class="portal-demo-stepper">
-      <sgds-stepper activeStep="2">
-        <sgds-stepper-item stepHeader="Personal details"></sgds-stepper-item>
-        <sgds-stepper-item stepHeader="Upload documents"></sgds-stepper-item>
-        <sgds-stepper-item stepHeader="Review"></sgds-stepper-item>
-      </sgds-stepper>
+      <sgds-stepper data-portal-stepper="default" activeStep="2"></sgds-stepper>
     </div>`,
     author: `<div class="portal-demo-stepper">
-      <sgds-stepper activeStep="2">
-        <sgds-stepper-item stepHeader="Details"></sgds-stepper-item>
-        <sgds-stepper-item stepHeader="Documents"></sgds-stepper-item>
-        <sgds-stepper-item stepHeader="Submit"></sgds-stepper-item>
-      </sgds-stepper>
+      <sgds-stepper data-portal-stepper="default" activeStep="1"></sgds-stepper>
     </div>`,
     focus: `<div class="portal-demo-stepper">
-      <sgds-stepper activeStep="2">
-        <sgds-stepper-item stepHeader="Details"></sgds-stepper-item>
-        <sgds-stepper-item stepHeader="Documents"></sgds-stepper-item>
-      </sgds-stepper>
+      <sgds-stepper data-portal-stepper="default" activeStep="0"></sgds-stepper>
     </div>`,
   },
   subnav: {
@@ -21472,7 +21834,7 @@ const keyboardNoteOverrides: Record<string, string[]> = {
   ],
   card: [
     "Cards do not define a keyboard pattern on their own.",
-    "Keyboard behaviour depends on the links, buttons, or stretched-link pattern placed inside the card.",
+    "Keyboard behaviour depends on the links, buttons, or `stretchedLink` pattern placed inside the card.",
   ],
   "description-list": [
     "Description lists are structural content for term and detail pairs.",
@@ -21682,8 +22044,11 @@ const kebabToPascalCase = (key: string): string =>
 export const getComponentGithubHref = (key: string): string =>
   `https://github.com/GovTechSG/sgds-web-component/tree/master/src/components/${kebabToPascalCase(key)}`;
 
+const componentStorybookIdSegment = (key: string): string =>
+  key.replace(/-/g, "");
+
 export const getComponentStorybookHref = (key: string): string =>
-  `https://webcomponent.designsystem.tech.gov.sg/?path=/docs/components-${key}--docs`;
+  `https://webcomponent.designsystem.tech.gov.sg/?path=/docs/components-${componentStorybookIdSegment(key)}--docs`;
 
 export type ComponentHeaderLink = {
   label: string;

@@ -96,3 +96,13 @@ const displayRows = computed(() =>
     </Section>
   </div>
 </template>
+
+<style>
+/* GitHub PR links in release notes are already presented as compact issue
+   references, so suppress the generic external-link glyph. */
+.updates-source-link::after,
+.updates-source-link .external-link-icon {
+  content: none !important;
+  display: none !important;
+}
+</style>
