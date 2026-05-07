@@ -61,14 +61,14 @@ const toggleSlot = (value: string, event: Event) => {
               slot="upper"
               class="portal-slot-example sgds:w-full sgds:h-[var(--sgds-dimension-48)]"
             >
-              <span>Upper slot content</span>
+              <span>Slot content</span>
             </div>
             <span slot="title">Card title</span>
             <div
               v-if="hasSlot('default')"
               class="portal-slot-example sgds:w-full sgds:h-[var(--sgds-dimension-48)]"
             >
-              <span>Default slot content</span>
+              <span>Slot content</span>
             </div>
             <span slot="description">Supporting description for the card content.</span>
             <div
@@ -76,7 +76,7 @@ const toggleSlot = (value: string, event: Event) => {
               slot="lower"
               class="portal-slot-example sgds:w-full sgds:h-[var(--sgds-dimension-48)]"
             >
-              <span>Lower slot content</span>
+              <span>Slot content</span>
             </div>
             <sgds-link slot="footer"><a href="#">View details</a></sgds-link>
           </sgds-card>

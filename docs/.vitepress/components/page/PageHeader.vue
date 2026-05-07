@@ -76,7 +76,12 @@ const brandIconClass = (label: string) =>
           {{ link.label }}
         </span>
         <sgds-link tone="neutral">
-          <a :href="link.href" class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
+          <a
+            :href="link.href"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="page-header-source-link sgds:inline-flex sgds:items-center sgds:gap-text-2-xs"
+          >
             <span
               v-if="link.iconSrc && isMaskedBrandIcon(link.label)"
               aria-hidden="true"
@@ -135,5 +140,13 @@ const brandIconClass = (label: string) =>
 .sgds-night-theme .page-header-brand-icon--github,
 .sgds-night-theme .page-header-brand-icon--storybook {
   background-color: var(--sgds-color-fixed-light);
+}
+
+/* Header source links already show GitHub or Storybook brand marks, so the
+   generic external-link glyph would be redundant visual noise. */
+.page-header-source-link::after,
+.page-header-source-link .external-link-icon {
+  content: none !important;
+  display: none !important;
 }
 </style>

@@ -826,10 +826,10 @@ const openAnatomyDropdowns = async () => {
       `:host {
          display: block !important;
          pointer-events: none !important;
-         width: calc(var(--sgds-dimension-288) * 3) !important;
+         width: calc(var(--sgds-dimension-288) * 2 + var(--sgds-dimension-96)) !important;
        }
        .sidebar {
-         width: calc(var(--sgds-dimension-288) * 3) !important;
+         width: calc(var(--sgds-dimension-288) * 2 + var(--sgds-dimension-96)) !important;
        }
        .sidebar-main {
          position: relative !important;
@@ -847,20 +847,66 @@ const openAnatomyDropdowns = async () => {
          background-color: var(--sgds-bg-overlay) !important;
          opacity: 0.32 !important;
          pointer-events: none !important;
-         width: calc(var(--sgds-dimension-288) * 3) !important;
+         width: calc(var(--sgds-dimension-288) * 2 + var(--sgds-dimension-96)) !important;
          z-index: 1 !important;
        }
        .sidebar--overlay.show {
          opacity: 0.32 !important;
        }`,
     );
+    // Capture the active group's items BEFORE setting `el.active`, because
+    // setting active triggers the sidebar's reactive lifecycle that moves
+    // those items into shadow DOM. After they move, the group's children
+    // collection is empty.
+    const activeGroup = el.querySelector("sgds-sidebar-group[name='selected-label']") as HTMLElement | null;
+    const capturedItemsHtml = activeGroup
+      ? Array.from(activeGroup.children)
+          .filter((child) => child.tagName.toLowerCase() === "sgds-sidebar-item")
+          .map((child) => (child as HTMLElement).outerHTML)
+          .join("")
+      : "";
+
     el.active = "selected-label";
     el.collapsed = false;
-    const activeGroup = el.querySelector("sgds-sidebar-group[name='selected-label']");
-    if (activeGroup) el._setNodesToDrawer?.(activeGroup);
-    el._showDrawer = true;
-    el.requestUpdate?.();
-    await el.updateComplete;
+
+    // Pin the drawer to its open state. The original click-outside handler
+    // would otherwise close it the first time the user interacts with the
+    // page, hiding the nested overlay we want the anatomy to keep showing.
+    type SidebarPrivate = HTMLElement & {
+      _showDrawer?: boolean;
+      _handleClickOutOfElement?: (e: Event) => void;
+      requestUpdate?: () => void;
+      updateComplete?: Promise<unknown>;
+    };
+    const sidebarPrivate = el as unknown as SidebarPrivate;
+    if (typeof sidebarPrivate._handleClickOutOfElement === "function") {
+      document.removeEventListener("click", sidebarPrivate._handleClickOutOfElement);
+      sidebarPrivate._handleClickOutOfElement = () => {};
+    }
+    sidebarPrivate._showDrawer = true;
+    sidebarPrivate.requestUpdate?.();
+    await sidebarPrivate.updateComplete;
+
+    // The sidebar's reactive `_handleActiveItem` may revert drawer items back
+    // to the parent group whenever it re-evaluates, leaving the nested overlay
+    // empty. Insert *clones* of the original items directly into the overlay
+    // shadow DOM so they survive the sidebar's lifecycle, and refresh them on
+    // each update via a MutationObserver.
+    const overlayHost = el.shadowRoot?.querySelector(".sidebar-nested-overlay") as HTMLElement | null;
+    if (overlayHost && capturedItemsHtml) {
+      const ensureAnatomyItems = () => {
+        if (overlayHost.querySelector('[data-anatomy-clone="sidebar-item"]')) return;
+        const template = document.createElement("template");
+        template.innerHTML = capturedItemsHtml.trim();
+        Array.from(template.content.children).forEach((node) => {
+          (node as HTMLElement).setAttribute("data-anatomy-clone", "sidebar-item");
+          overlayHost.appendChild(node);
+        });
+      };
+      ensureAnatomyItems();
+      const observer = new MutationObserver(() => ensureAnatomyItems());
+      observer.observe(overlayHost, { childList: true });
+    }
   }
 
   const mastheads = Array.from(
@@ -896,6 +942,12 @@ const openAnatomyDropdowns = async () => {
     if (el.localName !== "sgds-stepper") continue;
     await customElements.whenDefined(el.localName);
     await el.updateComplete;
+    (el as HTMLElement & { activeStep?: number; steps?: unknown[] }).steps = [
+      { stepHeader: "Start", component: "Step one" },
+      { stepHeader: "Review", component: "Step two" },
+      { stepHeader: "Confirm", component: "Step three" },
+    ];
+    (el as HTMLElement & { activeStep?: number; steps?: unknown[] }).activeStep = 0;
     injectShadowStyles(
       el,
       "stepper-anatomy-width",

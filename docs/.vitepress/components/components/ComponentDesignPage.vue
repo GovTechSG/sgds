@@ -11,6 +11,8 @@ import AccessibilitySection from "./AccessibilitySection.vue";
 import UpdatesSection from "./UpdatesSection.vue";
 import { getComponentDoc } from "../../data/component-docs";
 import { accordionV2Data } from "../../data/accordion-v2";
+import CodeToken from "../ui/CodeToken.vue";
+import { textParts } from "../../utils/text-parts";
 
 const props = defineProps<{
   componentKey: string;
@@ -330,7 +332,10 @@ const initSteppers = async () => {
 
   root.querySelectorAll<HTMLElement>("sgds-stepper[data-portal-stepper]").forEach((el) => {
     const variant = el.dataset.portalStepper || "default";
-    (el as HTMLElement & { steps?: unknown[] }).steps = stepperSteps[variant] ?? stepperSteps.default;
+    const activeStep = Number(el.getAttribute("activeStep") ?? el.getAttribute("activestep") ?? el.dataset.portalActiveStep ?? 0);
+    const stepper = el as HTMLElement & { activeStep?: number; steps?: unknown[] };
+    stepper.steps = stepperSteps[variant] ?? stepperSteps.default;
+    stepper.activeStep = Number.isFinite(activeStep) ? activeStep : 0;
   });
 };
 
@@ -391,7 +396,15 @@ onBeforeUnmount(() => {
                 class="sgds-col-4 sgds-col-lg-4 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:min-w-0 sgds:p-0"
               >
                 <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ card.title }}</h3>
-                <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ card.description }}</p>
+                <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                  <template
+                    v-for="(part, index) in textParts(card.description)"
+                    :key="`${card.title}-${index}`"
+                  >
+                    <CodeToken v-if="part.isCode" :label="part.text" />
+                    <template v-else>{{ part.text }}</template>
+                  </template>
+                </p>
               </article>
             </div>
           </Section>
@@ -445,7 +458,15 @@ onBeforeUnmount(() => {
                   <h4 class="sgds:m-0">{{ section.title }}</h4>
                 </div>
                 <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-                  <li v-for="item in section.items" :key="item" class="sgds:mt-0">{{ item }}</li>
+                  <li v-for="item in section.items" :key="item" class="sgds:mt-0">
+                    <template
+                      v-for="(part, index) in textParts(item)"
+                      :key="`${item}-${index}`"
+                    >
+                      <CodeToken v-if="part.isCode" :label="part.text" />
+                      <template v-else>{{ part.text }}</template>
+                    </template>
+                  </li>
                 </ul>
               </article>
             </div>
@@ -488,7 +509,15 @@ onBeforeUnmount(() => {
         <Section v-else title="Accessibility considerations" gap="sgds:gap-[var(--sgds-gap-xl)]">
           <article class="sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-md)] sgds:p-component-md">
             <ul v-if="doc.accessibilityNotes?.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-              <li v-for="note in doc.accessibilityNotes" :key="note">{{ note }}</li>
+              <li v-for="note in doc.accessibilityNotes" :key="note">
+                <template
+                  v-for="(part, index) in textParts(note)"
+                  :key="`${note}-${index}`"
+                >
+                  <CodeToken v-if="part.isCode" :label="part.text" />
+                  <template v-else>{{ part.text }}</template>
+                </template>
+              </li>
             </ul>
             <p v-else class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line">
               Use the component with clear labels, meaningful text, and the SGDS interaction states that come with the component. Validate keyboard flow and screen reader behaviour in the surrounding page context.
@@ -665,6 +694,21 @@ onBeforeUnmount(() => {
 
 .portal-modal-preview-lg .portal-modal-panel {
   max-width: var(--sgds-dimension-800);
+}
+
+.portal-modal-preview-xl .portal-modal-panel {
+  max-width: var(--sgds-dimension-1280);
+}
+
+.portal-modal-preview-fullscreen {
+  align-items: stretch;
+  min-height: var(--sgds-dimension-320);
+}
+
+.portal-modal-preview-fullscreen .portal-modal-panel {
+  border-radius: var(--sgds-border-radius-md);
+  max-width: none;
+  min-height: var(--sgds-dimension-288);
 }
 
 .portal-modal-header {

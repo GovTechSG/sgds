@@ -81,7 +81,6 @@ export const searchIndex: SearchItem[] = [
 
   // Components — Labels
   { title: "Close button", category: "Component", url: "/components/close-button", keywords: ["dismiss", "x"] },
-  { title: "Icon", category: "Component", url: "/components/icon", keywords: ["glyph", "symbol"] },
   { title: "Link", category: "Component", url: "/components/link", keywords: ["anchor", "href", "url"] },
 
   // Components — Navigation
