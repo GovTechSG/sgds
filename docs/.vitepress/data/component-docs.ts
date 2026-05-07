@@ -1218,126 +1218,6 @@ const componentDocs: Record<string, ComponentDoc> = {
     },
     updatesText:
       "This page uses the current SGDS accordion and tab components, with examples aligned to the portal design reference.",
-    componentTokenGroups: [
-      {
-        title: "sgds / accordion",
-        rows: [
-          {
-            category: "Padding",
-            name: "padding-lg",
-            value: "sgds/padding/lg",
-            usage: "Padding of the accordion button; padding of the content",
-          },
-          {
-            category: "Padding",
-            name: "padding-md",
-            value: "sgds/padding/md",
-            usage: "Padding of the accordion button; padding of the content",
-          },
-          {
-            category: "Padding",
-            name: "padding-xl",
-            value: "sgds/padding/xl",
-            usage: "Padding of the accordion button; padding of the content",
-          },
-          {
-            category: "Padding",
-            name: "padding-xs",
-            value: "sgds/padding/xs",
-            usage: "Padding of the content",
-          },
-          {
-            category: "Gap",
-            name: "gap-md",
-            value: "sgds/gap/md",
-            usage:
-              "Spacing between items of the accordion button; spacing between items of the accordion header trailing",
-          },
-          {
-            category: "Border",
-            name: "border-color-muted",
-            value: "sgds/border-color-muted",
-            usage:
-              "Bottom border of the accordion item; border of the accordion",
-          },
-          {
-            category: "Border",
-            name: "border-radius-md",
-            value: "sgds/border-radius/md",
-            usage: "Corner radius of the accordion",
-          },
-          {
-            category: "Border",
-            name: "border-width-1",
-            value: "sgds/border-width/1",
-            usage:
-              "Bottom border of the accordion item; border of the accordion",
-          },
-          {
-            category: "Typography",
-            name: "font-size-body-sm",
-            value: "sgds/font-size/body-sm",
-            usage: "Font size of the accordion body",
-          },
-          {
-            category: "Typography",
-            name: "font-size-heading-sm",
-            value: "sgds/font-size/heading-sm",
-            usage: "Font size of the accordion button",
-          },
-          {
-            category: "Typography",
-            name: "font-size-subtitle-md",
-            value: "sgds/font-size/subtitle-md",
-            usage: "Font size of the accordion button",
-          },
-          {
-            category: "Typography",
-            name: "font-size-subtitle-sm",
-            value: "sgds/font-size/subtitle-sm",
-            usage: "Font size of the accordion button",
-          },
-          {
-            category: "Typography",
-            name: "font-weight-semibold",
-            value: "sgds/font-weight/semibold",
-            usage: "Font weight of the accordion button",
-          },
-          {
-            category: "Typography",
-            name: "line-height-2-xs",
-            value: "sgds/line-height/2-xs",
-            usage:
-              "Line height of the accordion button; line height of the accordion body",
-          },
-          {
-            category: "Typography",
-            name: "line-height-sm",
-            value: "sgds/line-height/sm",
-            usage: "Line height of the accordion button",
-          },
-          {
-            category: "Typography",
-            name: "line-height-xs",
-            value: "sgds/line-height/xs",
-            usage:
-              "Line height of the accordion button; line height of the accordion body",
-          },
-          {
-            category: "Colour",
-            name: "color-default",
-            value: "sgds/color-default",
-            usage: "Text colour of the accordion button",
-          },
-          {
-            category: "Colour",
-            name: "color-subtle",
-            value: "sgds/color-subtle",
-            usage: "Text colour of the content",
-          },
-        ],
-      },
-    ],
   },
   alert: {
     key: "alert",
@@ -5021,6 +4901,27 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-checkbox>Email</sgds-checkbox>
             <sgds-checkbox>SMS</sgds-checkbox>
             <sgds-checkbox>Phone call</sgds-checkbox>
+          </sgds-checkbox-group>`,
+        },
+        {
+          title: "Use checkbox groups for multi-select choices",
+          description:
+            "Use checkboxes when users can select more than one option from the same set.",
+          tone: "do",
+          markup: `<sgds-checkbox-group label="Delivery options">
+            <sgds-checkbox checked>Email</sgds-checkbox>
+            <sgds-checkbox>SMS</sgds-checkbox>
+            <sgds-checkbox>Phone call</sgds-checkbox>
+          </sgds-checkbox-group>`,
+        },
+        {
+          title: "Do not use two checkboxes for a yes-or-no decision",
+          description:
+            "A pair of Yes and No checkboxes lets users select both. Use radio buttons or one clearly labelled checkbox instead.",
+          tone: "dont",
+          markup: `<sgds-checkbox-group label="Do you want to receive updates?">
+            <sgds-checkbox>Yes</sgds-checkbox>
+            <sgds-checkbox>No</sgds-checkbox>
           </sgds-checkbox-group>`,
         },
         {
@@ -13528,6 +13429,16 @@ const componentDocs: Record<string, ComponentDoc> = {
         </sgds-radio-group>`,
       ),
     ],
+    measurements: [
+      demo(
+        "Structure",
+        "Radio structure shows the label, hint text, radio options, and the gaps between them.",
+        `<sgds-radio-group label="Would you like to receive SMS reminders?" hintText="We will send reminders before your appointment.">
+          <sgds-radio value="yes">Yes</sgds-radio>
+          <sgds-radio value="no">No</sgds-radio>
+        </sgds-radio-group>`,
+      ),
+    ],
     configurationDemos: [
       {
         title: "Hint text",
@@ -14579,6 +14490,26 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Closes the focused expandable group, or returns focus to the parent group from a nested item.",
         },
+        {
+          key: "↓ Down",
+          description:
+            "Moves focus to the next sidebar item, or to the first child item when an expanded group is focused.",
+        },
+        {
+          key: "↑ Up",
+          description:
+            "Moves focus to the previous sidebar item, or to the last child of the previous group.",
+        },
+        {
+          key: "→ Right",
+          description:
+            "Opens the focused expandable group, or moves focus into its first child when already open.",
+        },
+        {
+          key: "← Left",
+          description:
+            "Closes the focused expandable group, or returns focus to the parent group from a nested item.",
+        },
       ],
     },
     props: [
@@ -15315,6 +15246,14 @@ const componentDocs: Record<string, ComponentDoc> = {
         targetShadowSelector: ".spinner-label",
         targetX: "right",
         targetY: "center",
+      },
+    ],
+    measurements: [
+      {
+        title: "Spinner structure",
+        description:
+          "Spinner structure shows the spinner glyph, label, and the size, gap, and typography tokens used by the component.",
+        markup: `<div class="portal-demo-row"><sgds-spinner label="Loading"></sgds-spinner></div>`,
       },
     ],
     measurements: [
