@@ -1,6 +1,6 @@
 ---
 layout: bare
-title: Form Fields Textarea
+title: Form fields textarea
 ---
 
 <script setup>

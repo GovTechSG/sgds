@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref } from "vue";
+import { computed, nextTick, onBeforeUnmount, ref } from "vue";
 import PromptBox from "../ui/PromptBox.vue";
 import ThemeControls from "../ui/ThemeControls.vue";
 
 type Viewport = "mobile" | "tablet" | "desktop";
-type DropdownOption = { key: string; title: string; kind: "template" | "block" };
+type DropdownOption = { key: string; title: string; kind: "template" | "block"; groupLabel?: string };
 
 const props = defineProps<{
   viewport: Viewport;
@@ -61,6 +61,8 @@ const storybookStoryIds: Record<string, string> = {
 
 const promptOpen = ref(false);
 const promptTipRef = ref<HTMLElement | null>(null);
+const pageTemplateMenuRef = ref<HTMLElement | null>(null);
+const blockTemplateMenuRef = ref<HTMLElement | null>(null);
 
 const selectedOption = computed(() =>
   [...props.templateOptions, ...props.blockOptions].find((option) => isActiveOption(option)),
@@ -68,23 +70,24 @@ const selectedOption = computed(() =>
 
 const selectedTitle = computed(() => selectedOption.value?.title ?? "Template");
 
-const promptParts = computed(() => {
-  const [category, name] = selectedTitle.value.split(" / ");
-  return name ? { category, name } : { category: "", name: selectedTitle.value };
+const selectedGroupLabel = computed(() => selectedOption.value?.groupLabel ?? "");
+
+const promptExample = computed(() => {
+  if (props.activeKind === "template") return `Build a page template using SGDS ${selectedTitle.value}`;
+  if (selectedGroupLabel.value.startsWith("Form")) return `Build a form block using SGDS ${selectedTitle.value}`;
+  return `Build a ${selectedTitle.value.toLowerCase()} block using SGDS`;
 });
 
-const promptTitle = computed(() =>
-  promptParts.value.category
-    ? `${promptParts.value.category} ${promptParts.value.name}`
-    : promptParts.value.name,
-);
+const blockOptionGroups = computed(() => {
+  const groups = new Map<string, DropdownOption[]>();
 
-const promptNoun = computed(() => {
-  if (props.activeKind === "template") return "page template";
-  return promptParts.value.category ? promptParts.value.category.toLowerCase() : "block";
+  props.blockOptions.forEach((option) => {
+    const label = option.groupLabel ?? "Other blocks";
+    groups.set(label, [...(groups.get(label) ?? []), option]);
+  });
+
+  return Array.from(groups, ([label, options]) => ({ label, options }));
 });
-
-const promptExample = computed(() => `Build a ${promptNoun.value} using SGDS ${promptTitle.value}`);
 
 const storybookHref = computed(() => {
   const storyId = storybookStoryIds[`${props.activeKind}:${props.activeKey}`];
@@ -95,6 +98,42 @@ const storybookHref = computed(() => {
 
 const isActiveOption = (option: DropdownOption) =>
   option.kind === props.activeKind && option.key === props.activeKey;
+
+const injectPreviewDropdownMenuWidth = (host: HTMLElement | null) => {
+  const root = host?.shadowRoot;
+  if (!root || root.querySelector('style[data-preview-style="dropdown-menu-width"]')) return;
+
+  const style = document.createElement("style");
+  style.setAttribute("data-preview-style", "dropdown-menu-width");
+  style.textContent = `
+    .dropdown-menu {
+      width: min(var(--sgds-dimension-400), calc(100vw - var(--sgds-dimension-32))) !important;
+    }
+  `;
+  root.appendChild(style);
+};
+
+const scrollActiveMenuItem = async (menuRef: typeof pageTemplateMenuRef) => {
+  await nextTick();
+  requestAnimationFrame(() => {
+    injectPreviewDropdownMenuWidth(menuRef.value);
+
+    const menu = menuRef.value?.shadowRoot?.querySelector(".dropdown-menu") as HTMLElement | null;
+    const activeItem = menuRef.value?.querySelector(
+      '[data-template-preview-active="true"]',
+    ) as HTMLElement | null;
+
+    if (!menu || !activeItem) return;
+
+    const menuRect = menu.getBoundingClientRect();
+    const itemRect = activeItem.getBoundingClientRect();
+    const anchorOffset = itemRect.top - menuRect.top - menu.clientHeight / 3;
+    menu.scrollTop += anchorOffset;
+  });
+};
+
+const scrollActivePageMenuItem = () => scrollActiveMenuItem(pageTemplateMenuRef);
+const scrollActiveBlockMenuItem = () => scrollActiveMenuItem(blockTemplateMenuRef);
 
 const handleOutsidePromptClick = (event: PointerEvent) => {
   const target = event.target;
@@ -132,37 +171,66 @@ onBeforeUnmount(() => {
       @click="closePrompt"
     ></button>
 
-    <sgds-dropdown menuAlignRight class="template-preview-template-menu">
-      <sgds-button
-        slot="toggler"
-        role="button"
-        variant="primary"
-        tone="fixed-light"
-        size="sm"
-        class="template-preview-template-button"
+    <div class="template-preview-template-menu sgds:flex sgds:items-center">
+      <sgds-dropdown
+        v-if="activeKind === 'template'"
+        ref="pageTemplateMenuRef"
+        @sgds-after-show="scrollActivePageMenuItem"
       >
-        <span class="template-preview-toolbar-label">More templates</span>
-        <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
-      </sgds-button>
-      <sgds-dropdown-item disabled class="template-preview-dropdown-section">Page templates</sgds-dropdown-item>
-      <sgds-dropdown-item
-        v-for="option in templateOptions"
-        :key="`template-${option.key}`"
-        :active="isActiveOption(option) ? '' : null"
-        @click="emit('navigate', option)"
+        <sgds-button
+          slot="toggler"
+          role="button"
+          variant="primary"
+          tone="fixed-light"
+          size="sm"
+          class="template-preview-template-button"
+        >
+          <span class="template-preview-toolbar-label">Page templates</span>
+          <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
+        </sgds-button>
+        <sgds-dropdown-item
+          v-for="option in templateOptions"
+          :key="`template-${option.key}`"
+          :active="isActiveOption(option) ? '' : null"
+          :aria-current="isActiveOption(option) ? 'page' : null"
+          :data-template-preview-active="isActiveOption(option) ? 'true' : null"
+          @click="emit('navigate', option)"
+        >
+          {{ option.title }}
+        </sgds-dropdown-item>
+      </sgds-dropdown>
+
+      <sgds-dropdown
+        v-else
+        ref="blockTemplateMenuRef"
+        @sgds-after-show="scrollActiveBlockMenuItem"
       >
-        {{ option.title }}
-      </sgds-dropdown-item>
-      <sgds-dropdown-item disabled class="template-preview-dropdown-section">Block templates</sgds-dropdown-item>
-      <sgds-dropdown-item
-        v-for="option in blockOptions"
-        :key="`block-${option.key}`"
-        :active="isActiveOption(option) ? '' : null"
-        @click="emit('navigate', option)"
-      >
-        {{ option.title }}
-      </sgds-dropdown-item>
-    </sgds-dropdown>
+        <sgds-button
+          slot="toggler"
+          role="button"
+          variant="primary"
+          tone="fixed-light"
+          size="sm"
+          class="template-preview-template-button"
+        >
+          <span class="template-preview-toolbar-label">Block templates</span>
+          <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
+        </sgds-button>
+        <template v-for="blockGroup in blockOptionGroups" :key="blockGroup.label">
+          <sgds-dropdown-item disabled class="template-preview-dropdown-section">{{ blockGroup.label }}</sgds-dropdown-item>
+          <sgds-dropdown-item
+            v-for="option in blockGroup.options"
+            :key="`block-${option.key}`"
+            :active="isActiveOption(option) ? '' : null"
+            :aria-current="isActiveOption(option) ? 'page' : null"
+            :data-template-preview-active="isActiveOption(option) ? 'true' : null"
+            @click="emit('navigate', option)"
+          >
+            {{ option.title }}
+          </sgds-dropdown-item>
+        </template>
+      </sgds-dropdown>
+    </div>
 
     <div class="template-preview-toolbar-actions">
       <sgds-tooltip content="Open in Storybook" placement="bottom" trigger="hover focus">
@@ -262,7 +330,7 @@ onBeforeUnmount(() => {
 }
 
 .template-preview-template-button {
-  min-inline-size: var(--sgds-dimension-280);
+  width: var(--sgds-dimension-280);
 }
 
 .template-preview-toolbar-label {
@@ -371,7 +439,11 @@ onBeforeUnmount(() => {
   }
 
   .template-preview-template-button {
-    min-inline-size: auto;
+    width: auto;
+  }
+
+  .template-preview-template-menu {
+    grid-column: 1 / -1;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 ---
 layout: bare
-title: Form Fields Dates Quantities
+title: Form fields dates quantities
 ---
 
 <script setup>
