@@ -1,9 +1,9 @@
 ---
 layout: docs
 title: Introduction
-description: AI is changing how product teams design and build by accelerating whatever is already in place.
+description: SGDS helps teams use AI with clearer context, shared standards, and design system guidance.
 headerAlert:
-  description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
+  description: This AI section is still being developed. Treat the content as contextual guidance while the workflows continue to evolve.
   variant: danger
   icon: exclamation-circle-fill
 ---
