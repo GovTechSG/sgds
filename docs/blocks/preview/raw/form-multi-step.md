@@ -1,6 +1,6 @@
 ---
 layout: bare
-title: Form Multi-step
+title: Form multi-step
 ---
 
 <script setup>

@@ -1,6 +1,6 @@
 ---
 layout: bare
-title: Form Fields Selects
+title: Form fields selects
 ---
 
 <script setup>
