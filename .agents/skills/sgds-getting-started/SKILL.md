@@ -120,7 +120,7 @@ Every SGDS application should be structured using one of the two recommended lay
 </div>
 ```
 
-> For full layout details and responsive container breakpoints, see **[Application Shell](../sgds-pattern-block-templates/reference/application-shell.md)**.
+> For full layout details and responsive container breakpoints, see **[Application Shell](../sgds-blocks/reference/application-shell.md)**.
 
 ---
 

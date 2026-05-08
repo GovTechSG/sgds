@@ -336,8 +336,29 @@ When a user reports unexpected component behaviour (wrong event, property not re
 | **Forms** | Datepicker | [→ reference/datepicker.md](reference/datepicker.md) |
 | **Forms** | File Upload | [→ reference/file-upload.md](reference/file-upload.md) |
 | **Forms** | Quantity Toggle | [→ reference/quantity-toggle.md](reference/quantity-toggle.md) |
-| **Forms** | Switch | [→ reference/switch.md](reference/switch.md) |
-| **Forms** | Stepper | [→ reference/stepper.md](reference/stepper.md) |
+| **Feedback** | Switch | [→ reference/switch.md](reference/switch.md) |
+| **Workflow** | Stepper | [→ reference/stepper.md](reference/stepper.md) |
+
+---
+
+## Form Input Components
+
+When building forms, use these 9 form input components to capture user data:
+1. `<sgds-input>` — text fields
+2. `<sgds-textarea>` — multi-line text
+3. `<sgds-select>` — dropdown selection
+4. `<sgds-checkbox>` / `<sgds-checkbox-group>` — multiple choice
+5. `<sgds-radio>` / `<sgds-radio-group>` — single choice
+6. `<sgds-combo-box>` — searchable select
+7. `<sgds-datepicker>` — date input
+8. `<sgds-file-upload>` — file picker
+9. `<sgds-quantity-toggle>` — numeric counter
+
+**DO NOT use in forms (these are feedback/state, not input):**
+- `<sgds-switch>` — This is a **feedback component** (displays toggle state), not a form input. Use `<sgds-checkbox>` or `<sgds-radio-group>` to collect user choice instead.
+- Other non-input components (Alert, Badge, Button, Card, etc.) — These are layout/feedback, not form controls.
+
+For form layout patterns (field pairing, spacing, width constraints, multi-step forms with `<sgds-stepper>`, header hierarchy), see the [sgds-blocks form layout skill](../sgds-blocks/reference/form-layout.md).
 | **Feedback** | Alert | [→ reference/alert.md](reference/alert.md) |
 | **Feedback** | Spinner | [→ reference/spinner.md](reference/spinner.md) |
 | **Feedback** | Skeleton | [→ reference/skeleton.md](reference/skeleton.md) |
