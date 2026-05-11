@@ -1,6 +1,6 @@
 ---
 layout: bare
-title: All Types
+title: All types
 ---
 
 <script setup>

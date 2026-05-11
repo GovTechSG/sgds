@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, nextTick, onMounted, onUpdated, ref } from "vue";
 import type { BestPractice } from "../../data/component-docs";
+import CodeToken from "../ui/CodeToken.vue";
+import { textParts } from "../../utils/text-parts";
 
 const props = defineProps<{
   bestPractices: BestPractice[];
@@ -21,14 +23,190 @@ const bestPracticeRows = computed(() => {
     dont: donts[index] ?? null,
   }));
 });
+
+const sectionRef = ref<HTMLElement | null>(null);
+const pinnedTooltips = new WeakSet<Element>();
+const pinnedToasts = new WeakSet<Element>();
+
+const pinIllustrativeTooltip = (tooltip: Element) => {
+  if (pinnedTooltips.has(tooltip)) return;
+  pinnedTooltips.add(tooltip);
+
+  tooltip.addEventListener("sgds-hide", () => {
+    window.setTimeout(() => {
+      if (!tooltip.isConnected) return;
+      if ("show" in tooltip && typeof tooltip.show === "function") {
+        tooltip.show();
+      }
+    }, 0);
+  });
+};
+
+const setElementBooleanProperty = (element: Element, property: string, value: boolean) => {
+  if (property in element) {
+    (element as Element & Record<string, unknown>)[property] = value;
+  }
+};
+
+const injectShadowStyles = (host: Element, id: string, css: string) => {
+  const root = host.shadowRoot;
+  if (!root) return;
+  if (root.querySelector(`style[data-demo-style="${id}"]`)) return;
+  const style = document.createElement("style");
+  style.setAttribute("data-demo-style", id);
+  style.textContent = css;
+  root.appendChild(style);
+};
+
+const compactIllustrativeQuantityToggle = async (quantityToggle: Element) => {
+  await customElements.whenDefined("sgds-quantity-toggle");
+  await (quantityToggle as HTMLElement & { updateComplete?: Promise<unknown> }).updateComplete;
+  const isExplicitCompact = quantityToggle.classList.contains("portal-quantity-toggle-compact");
+  injectShadowStyles(
+    quantityToggle,
+    isExplicitCompact ? "quantity-toggle-best-practice-explicit-compact" : "quantity-toggle-best-practice-compact",
+    isExplicitCompact
+      ? `:host {
+           display: block !important;
+           flex: 0 0 var(--sgds-dimension-192) !important;
+           inline-size: var(--sgds-dimension-192) !important;
+           max-inline-size: var(--sgds-dimension-192) !important;
+         }
+         .input-group {
+           inline-size: var(--sgds-dimension-192) !important;
+           max-inline-size: var(--sgds-dimension-192) !important;
+         }`
+      : `.input-group {
+           max-width: var(--sgds-dimension-240) !important;
+         }`,
+  );
+};
+
+const restyleIllustrativeMasthead = async (masthead: Element) => {
+  await customElements.whenDefined("sgds-masthead");
+  await (masthead as HTMLElement & { updateComplete?: Promise<unknown> }).updateComplete;
+  injectShadowStyles(
+    masthead,
+    "masthead-restyled-best-practice",
+    `.banner,
+     .panel {
+       background: var(--sgds-primary-surface-default) !important;
+     }
+     .container {
+       padding-block: var(--sgds-padding-sm) !important;
+     }
+     .sg-crest path {
+       fill: var(--sgds-color-fixed-light) !important;
+     }
+     .masthead-text-layout,
+     .sgds-masthead-button {
+       color: var(--sgds-color-fixed-light) !important;
+       font-weight: var(--sgds-font-weight-bold) !important;
+     }
+     .sgds-masthead-button {
+       text-decoration: underline !important;
+     }`,
+  );
+};
+
+const setupIllustrativeSteppers = async () => {
+  await customElements.whenDefined("sgds-stepper");
+
+  const stepperSteps: Record<string, unknown[]> = {
+    default: [
+      { stepHeader: "Start", component: "Step one" },
+      { stepHeader: "Review", component: "Step two" },
+      { stepHeader: "Confirm", component: "Step three" },
+    ],
+    long: [
+      { stepHeader: "Start", component: "Step one" },
+      { stepHeader: "Details", component: "Step two" },
+      { stepHeader: "Upload", component: "Step three" },
+      { stepHeader: "Verify", component: "Step four" },
+      { stepHeader: "Review", component: "Step five" },
+      { stepHeader: "Pay", component: "Step six" },
+      { stepHeader: "Confirm", component: "Step seven" },
+      { stepHeader: "Done", component: "Step eight" },
+    ],
+  };
+
+  sectionRef.value
+    ?.querySelectorAll<HTMLElement>("sgds-stepper[data-portal-stepper]")
+    .forEach((el) => {
+      const variant = el.dataset.portalStepper || "default";
+      const activeStep = Number(el.getAttribute("activeStep") ?? el.getAttribute("activestep") ?? el.dataset.portalActiveStep ?? 0);
+      const stepper = el as HTMLElement & { activeStep?: number; steps?: unknown[] };
+      stepper.steps = stepperSteps[variant] ?? stepperSteps.default;
+      stepper.activeStep = Number.isFinite(activeStep) ? activeStep : 0;
+    });
+};
+
+const showIllustrativeToast = (toast: Element) => {
+  toast.removeAttribute("autohide");
+  toast.setAttribute("no-animation", "");
+  toast.setAttribute("show", "");
+  setElementBooleanProperty(toast, "autohide", false);
+  setElementBooleanProperty(toast, "noAnimation", true);
+  setElementBooleanProperty(toast, "show", true);
+  toast.shadowRoot?.querySelector(".toast")?.classList.remove("d-none");
+};
+
+const pinIllustrativeToast = (toast: Element) => {
+  showIllustrativeToast(toast);
+  if (pinnedToasts.has(toast)) return;
+  pinnedToasts.add(toast);
+
+  toast.addEventListener("sgds-hide", () => {
+    window.setTimeout(() => {
+      if (!toast.isConnected) return;
+      showIllustrativeToast(toast);
+    }, 0);
+  });
+
+  toast.addEventListener("sgds-after-hide", () => {
+    window.setTimeout(() => {
+      if (!toast.isConnected) return;
+      showIllustrativeToast(toast);
+    }, 0);
+  });
+};
+
+const showIllustrativeComponents = async () => {
+  await nextTick();
+  sectionRef.value
+    ?.querySelectorAll("sgds-tooltip[open]")
+    .forEach((tooltip) => {
+      pinIllustrativeTooltip(tooltip);
+      if ("show" in tooltip && typeof tooltip.show === "function") {
+        tooltip.show();
+      }
+    });
+  sectionRef.value
+    ?.querySelectorAll("sgds-toast")
+    .forEach(pinIllustrativeToast);
+  sectionRef.value
+    ?.querySelectorAll("sgds-quantity-toggle")
+    .forEach((quantityToggle) => {
+      void compactIllustrativeQuantityToggle(quantityToggle);
+    });
+  sectionRef.value
+    ?.querySelectorAll("sgds-masthead.portal-masthead-restyled-demo")
+    .forEach((masthead) => {
+      void restyleIllustrativeMasthead(masthead);
+    });
+  await setupIllustrativeSteppers();
+};
+
+onMounted(showIllustrativeComponents);
+onUpdated(showIllustrativeComponents);
 </script>
 
 <template>
-  <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+  <div ref="sectionRef" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
     <div
       v-for="(row, index) in bestPracticeRows"
       :key="`best-practice-row-${index}`"
-      class="best-practice-row sgds:gap-[var(--sgds-gap-2-xl)]"
+      class="best-practice-row"
     >
       <article v-if="row.do" :key="row.do.title" class="best-practice-card">
         <div :class="[
@@ -37,7 +215,7 @@ const bestPracticeRows = computed(() => {
         ]">
           <span
             v-if="iconsInBox"
-            class="sgds:absolute sgds:top-component-xs sgds:right-component-xs sgds:inline-flex sgds:items-center sgds:justify-center sgds:flex-none sgds:h-8 sgds:w-8 sgds:text-success-default"
+            class="sgds:absolute sgds:top-component-xs sgds:right-component-xs sgds:z-[20] sgds:inline-flex sgds:items-center sgds:justify-center sgds:flex-none sgds:h-8 sgds:w-8 sgds:text-success-default"
           >
             <sgds-icon name="check-circle-fill" size="lg"></sgds-icon>
           </span>
@@ -45,7 +223,10 @@ const bestPracticeRows = computed(() => {
             <div class="best-practice-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="row.do.markup"></div>
           </div>
         </div>
-        <div :class="iconsInBox ? 'sgds:flex sgds:flex-col sgds:gap-text-2-xs' : 'sgds:flex sgds:items-start sgds:gap-[var(--sgds-gap-xs)]'">
+        <div :class="[
+          iconsInBox ? 'sgds:flex sgds:flex-col sgds:gap-text-2-xs' : 'sgds:flex sgds:items-start sgds:gap-[var(--sgds-gap-xs)]',
+          'sgds:min-w-0',
+        ]">
           <span v-if="!iconsInBox" class="sgds:self-start sgds:inline-flex sgds:items-center sgds:justify-center sgds:flex-none sgds:h-8 sgds:w-8 sgds:text-success-default">
             <sgds-icon name="check-circle-fill" size="lg"></sgds-icon>
           </span>
@@ -60,11 +241,19 @@ const bestPracticeRows = computed(() => {
                   : 'sgds:text-heading-sm sgds:leading-sm sgds:tracking-tight',
               ]"
             >{{ row.do.title }}</component>
-            <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.do.description }}</p>
+            <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+              <template
+                v-for="(part, index) in textParts(row.do.description)"
+                :key="`${part.text}-${index}`"
+              >
+                <CodeToken v-if="part.isCode" :label="part.text" />
+                <template v-else>{{ part.text }}</template>
+              </template>
+            </p>
           </div>
         </div>
       </article>
-      <div v-else class="best-practice-placeholder sgds:min-w-0"></div>
+      <div v-else class="sgds:max-md:hidden best-practice-placeholder sgds:min-w-0"></div>
 
       <article v-if="row.dont" :key="row.dont.title" class="best-practice-card">
         <div :class="[
@@ -73,7 +262,7 @@ const bestPracticeRows = computed(() => {
         ]">
           <span
             v-if="iconsInBox"
-            class="sgds:absolute sgds:top-component-xs sgds:right-component-xs sgds:inline-flex sgds:items-center sgds:justify-center sgds:flex-none sgds:h-8 sgds:w-8 sgds:text-danger-default"
+            class="sgds:absolute sgds:top-component-xs sgds:right-component-xs sgds:z-[20] sgds:inline-flex sgds:items-center sgds:justify-center sgds:flex-none sgds:h-8 sgds:w-8 sgds:text-danger-default"
           >
             <sgds-icon name="xcircle-fill" size="lg"></sgds-icon>
           </span>
@@ -81,7 +270,10 @@ const bestPracticeRows = computed(() => {
             <div class="best-practice-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="row.dont.markup"></div>
           </div>
         </div>
-        <div :class="iconsInBox ? 'sgds:flex sgds:flex-col sgds:gap-text-2-xs' : 'sgds:flex sgds:items-start sgds:gap-[var(--sgds-gap-xs)]'">
+        <div :class="[
+          iconsInBox ? 'sgds:flex sgds:flex-col sgds:gap-text-2-xs' : 'sgds:flex sgds:items-start sgds:gap-[var(--sgds-gap-xs)]',
+          'sgds:min-w-0',
+        ]">
           <span v-if="!iconsInBox" class="sgds:self-start sgds:inline-flex sgds:items-center sgds:justify-center sgds:flex-none sgds:h-8 sgds:w-8 sgds:text-danger-default">
             <sgds-icon name="xcircle-fill" size="lg"></sgds-icon>
           </span>
@@ -96,37 +288,63 @@ const bestPracticeRows = computed(() => {
                   : 'sgds:text-heading-sm sgds:leading-sm sgds:tracking-tight',
               ]"
             >{{ row.dont.title }}</component>
-            <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.dont.description }}</p>
+            <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+              <template
+                v-for="(part, index) in textParts(row.dont.description)"
+                :key="`${part.text}-${index}`"
+              >
+                <CodeToken v-if="part.isCode" :label="part.text" />
+                <template v-else>{{ part.text }}</template>
+              </template>
+            </p>
           </div>
         </div>
       </article>
-      <div v-else class="best-practice-placeholder sgds:min-w-0"></div>
+      <div v-else class="sgds:max-md:hidden best-practice-placeholder sgds:min-w-0"></div>
     </div>
   </div>
 </template>
 
 <style>
-/* CSS subgrid is used here because Tailwind subgrid utilities are not applied
-   reliably under the SGDS prefix. The parent row defines two grid rows
-   (1fr for the demo box, auto for the description); each article spans both
-   rows via subgrid so demo-box rows and description rows align across columns,
-   keeping box heights equal even when description heights differ. */
+/* Utility gap: SGDS grid utilities do not provide subgrid. Best-practice pairs
+   use subgrid so the demo panels stretch to the taller side while text remains
+   visible and attached to its own card. */
 .best-practice-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr auto;
   align-items: stretch;
+  column-gap: var(--sgds-gap-2-xl);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(var(--sgds-dimension-280), 1fr) auto;
+  row-gap: var(--sgds-gap-component-sm);
 }
 
 .best-practice-card {
   display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 2;
   gap: var(--sgds-gap-component-sm);
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  min-width: 0;
 }
 
 .best-practice-placeholder {
   grid-row: span 2;
+}
+
+@media (max-width: 767px) {
+  .best-practice-row {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    row-gap: var(--sgds-gap-2-xl);
+  }
+
+  .best-practice-card {
+    grid-row: auto;
+    grid-template-rows: minmax(var(--sgds-dimension-280), auto) auto;
+  }
+
+  .best-practice-placeholder {
+    display: none;
+  }
 }
 
 /* Global selectors targeting slotted web component elements in v-html markup */
@@ -143,23 +361,41 @@ const bestPracticeRows = computed(() => {
   width: 100%;
 }
 
+.best-practice-demo-markup > sgds-progress-bar {
+  display: block;
+  inline-size: min(100%, var(--sgds-dimension-384));
+}
+
+.best-practice-demo-markup > sgds-quantity-toggle.portal-quantity-toggle-compact {
+  display: block;
+  flex: 0 0 var(--sgds-dimension-192);
+  inline-size: var(--sgds-dimension-192);
+  max-inline-size: var(--sgds-dimension-192);
+}
+
 .best-practice-demo-markup sgds-alert-link {
   vertical-align: baseline;
 }
 
-/* Responsive fallback for this section because the SGDS prefixed breakpoint utility
-   is not being applied reliably in the current build pipeline. */
-@media (max-width: 511px) {
-  .best-practice-row {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto;
-  }
-  .best-practice-card {
-    grid-row: auto;
-    grid-template-rows: 1fr auto;
-  }
-  .best-practice-placeholder {
-    display: none;
-  }
+/* Global selectors targeting v-html demos. Mainnav normally responds to the
+   viewport, not the card container, so best-practice cards constrain it. */
+.best-practice-demo-markup .portal-demo-nav {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.best-practice-demo-markup sgds-mainnav {
+  display: block;
+  flex: 0 0 var(--sgds-dimension-768);
+  transform: scale(0.56);
+  transform-origin: center;
+  width: var(--sgds-dimension-768);
+}
+
+.best-practice-demo-markup .portal-demo-nav:has(> sgds-mainnav) {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: var(--sgds-dimension-96);
 }
 </style>

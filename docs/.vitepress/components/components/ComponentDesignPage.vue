@@ -11,6 +11,8 @@ import AccessibilitySection from "./AccessibilitySection.vue";
 import UpdatesSection from "./UpdatesSection.vue";
 import { getComponentDoc } from "../../data/component-docs";
 import { accordionV2Data } from "../../data/accordion-v2";
+import CodeToken from "../ui/CodeToken.vue";
+import { textParts } from "../../utils/text-parts";
 
 const props = defineProps<{
   componentKey: string;
@@ -36,6 +38,7 @@ const toOptionValue = (label: string, index: number) => {
 // section matches the accordion page template.
 const configurationDemos = computed(() => {
   if (doc.value?.configurationDemos?.length) return doc.value.configurationDemos;
+  if (currentPageKey.value === "table-of-contents") return [];
   if (currentPageKey.value === "accordion") return accordionV2Data.variantPropertyDemos;
   return (doc.value?.demos ?? []).map((demo, index) => ({
     title: demo.title,
@@ -109,55 +112,6 @@ const rawValueByDesignToken: Record<string, string> = {
   "sgds/warning/surface-muted": "#FEF4CB",
 };
 
-const fallbackComponentTokensByKey: Record<string, string[]> = {
-  accordion: ["sgds/padding/lg", "sgds/padding/md", "sgds/padding/xl", "sgds/padding/xs", "sgds/gap/md", "sgds/border-color-muted", "sgds/border-radius/md", "sgds/border-width/1", "sgds/font-size/body-sm", "sgds/font-size/heading-sm", "sgds/font-size/subtitle-md", "sgds/font-size/subtitle-sm", "sgds/font-weight/semibold", "sgds/line-height/2-xs", "sgds/line-height/sm", "sgds/line-height/xs", "sgds/color-default", "sgds/color-subtle"],
-  badge: ["sgds/padding/3-xs", "sgds/padding/none", "sgds/padding/xs", "sgds/border-color-muted", "sgds/border-color-transparent", "sgds/border-radius/sm", "sgds/border-width/1", "sgds/font-size/14", "sgds/font-weight/regular", "sgds/line-height/20", "sgds/color-fixed-dark", "sgds/color-fixed-light", "sgds/surface-fixed-light", "sgds/primary/border-color/muted", "sgds/primary/color/fixed-dark", "sgds/primary/surface/default", "sgds/primary/surface/muted", "sgds/success/border-color/muted"],
-  breadcrumb: ["sgds/gap/xs", "sgds/color-default", "sgds/link-color-default", "sgds/link-color-emphasis"],
-  button: ["sgds/padding/2-xs", "sgds/gap/none"],
-  card: ["sgds/bg-translucent-subtle", "sgds/opacity/50"],
-  checkbox: ["sgds/font-size/16", "sgds/font-weight/regular", "sgds/form/color/default", "sgds/form/gap/md", "sgds/form/gap/sm", "sgds/form/padding-inline/sm", "sgds/form/surface/default", "sgds/form/height/sm", "sgds/form/width/xs", "sgds/form/border-radius/md", "sgds/form/border-width/default", "sgds/form/border-width/thick", "sgds/border-color/default", "sgds/border-color/emphasis", "sgds/border-color/transparent", "sgds/form/outline/focus", "sgds/form/outline-offset/focus", "sgds/form/primary/surface/default", "sgds/form/primary/surface/emphasis", "sgds/form/danger/surface/default", "sgds/form/danger/border-color/default", "sgds/form/danger/color/default", "sgds/border-width/2", "sgds/opacity/50"],
-  "close-button": ["sgds/border-color-transparent", "sgds/border-radius/sm", "sgds/border-width/1", "sgds/color-fixed-dark", "sgds/color-fixed-light", "sgds/icon-size/sm", "sgds/bg-translucent", "sgds/bg-transparent", "sgds/dimension/24", "sgds/dimension/32", "sgds/close-btn-border-radius", "sgds/outline-focus", "sgds/outline-offset-focus"],
-  "combo-box": ["sgds/gap/xs", "sgds/icon-size/md", "sgds/form/border-width/default", "sgds/dimension/48", "sgds/outline-focus", "sgds/outline-offset-focus"],
-  datepicker: ["sgds/form/border-radius/md", "sgds/form/padding/x"],
-  "description-list": ["sgds/padding/lg", "sgds/padding/xl", "sgds/gap/2-xl", "sgds/gap/2-xs", "sgds/gap/xs", "sgds/border-color-muted", "sgds/border-radius/md", "sgds/border-width/1", "sgds/font-size/16", "sgds/font-size/24", "sgds/font-weight/regular", "sgds/font-weight/semibold", "sgds/line-height/24", "sgds/line-height/32", "sgds/color-default", "sgds/color-subtle", "sgds/dimension/280"],
-  divider: ["sgds/border-color-muted", "sgds/border-width/1", "sgds/border-width/2", "sgds/border-width/4"],
-  drawer: ["sgds/padding/2-xl", "sgds/padding/lg", "sgds/padding/none", "sgds/gap/xs", "sgds/font-size/24", "sgds/color-default", "sgds/color-subtle", "sgds/surface-default", "sgds/bg-overlay", "sgds/dimension/512", "sgds/dimension/768", "sgds/dimension/1024"],
-  dropdown: ["sgds/padding/lg", "sgds/padding/none", "sgds/padding/sm", "sgds/padding/xs", "sgds/gap/sm", "sgds/border-radius/md", "sgds/color-default", "sgds/surface-default", "sgds/bg-translucent-subtle", "sgds/bg-transparent", "sgds/primary/color/default", "sgds/dimension/192", "sgds/dimension/480", "sgds/opacity/50"],
-  "file-upload": ["sgds/border-color-muted", "sgds/color-muted", "sgds/form/border-radius/md", "sgds/form/border-width/default", "sgds/form/gap/2-xl", "sgds/form/gap/lg", "sgds/form/gap/md", "sgds/form/gap/xl", "sgds/form/padding/x", "sgds/form/padding/y", "sgds/form/success/color/default", "sgds/form/surface/default"],
-  footer: ["sgds/padding/2-xl", "sgds/padding/3-xl", "sgds/padding/lg", "sgds/padding/none", "sgds/padding/xl", "sgds/gap/2-xl", "sgds/gap/3-xl", "sgds/gap/lg", "sgds/gap/md", "sgds/gap/sm", "sgds/gap/xl", "sgds/gap/xs", "sgds/border-color-default", "sgds/border-width/1", "sgds/font-size/14", "sgds/font-size/24", "sgds/font-size/28", "sgds/font-weight/regular"],
-  icon: ["sgds/icon-size/2-xl", "sgds/icon-size/3-xl", "sgds/icon-size/lg", "sgds/icon-size/md", "sgds/icon-size/sm", "sgds/icon-size/xl", "sgds/icon-size/xs"],
-  "icon-button": ["sgds/dimension/32", "sgds/dimension/40", "sgds/dimension/48", "sgds/dimension/56"],
-  "icon-card": ["sgds/padding/none", "sgds/padding/xl", "sgds/border-color-transparent", "sgds/border-width/1", "sgds/bg-translucent-subtle", "sgds/opacity/50"],
-  "icon-list": ["sgds/gap/xs", "sgds/font-size/14", "sgds/font-size/20", "sgds/line-height/20", "sgds/line-height/32"],
-  "image-card": ["sgds/padding/none", "sgds/padding/xl", "sgds/border-color-transparent", "sgds/border-width/1", "sgds/bg-translucent-subtle", "sgds/opacity/50"],
-  input: ["sgds/gap/sm", "sgds/gap/xs", "sgds/form/border-radius/md", "sgds/form/color/subtle", "sgds/form/outline/focus"],
-  link: ["sgds/font-size/12", "sgds/font-size/14", "sgds/font-size/16", "sgds/font-size/20", "sgds/line-height/16", "sgds/line-height/20", "sgds/line-height/24", "sgds/line-height/32", "sgds/color-default", "sgds/color-fixed-dark", "sgds/color-fixed-light", "sgds/link-color-default", "sgds/link-color-emphasis", "sgds/icon-size/lg", "sgds/icon-size/md", "sgds/icon-size/sm", "sgds/icon-size/xl", "sgds/danger/color/default"],
-  mainnav: ["sgds/padding/md", "sgds/padding/sm", "sgds/gap/xl", "sgds/gap/xs", "sgds/border-color-translucent", "sgds/border-width/1", "sgds/border-width/4", "sgds/color-default", "sgds/link-color-default", "sgds/link-color-emphasis", "sgds/surface-default", "sgds/bg-translucent-subtle", "sgds/primary/border-color/default", "sgds/primary/color/default", "sgds/opacity/50"],
-  masthead: ["sgds/icon-size/sm", "sgds/mainnav-max-width", "sgds/mainnav-mobile-padding-x", "sgds/mainnav-padding-x"],
-  modal: ["sgds/padding/md", "sgds/padding/xl", "sgds/gap/2-xl", "sgds/gap/md", "sgds/gap/sm", "sgds/border-radius/md", "sgds/font-size/24", "sgds/line-height/24", "sgds/line-height/40", "sgds/color-subtle", "sgds/surface-default", "sgds/bg-overlay", "sgds/dimension/480", "sgds/dimension/640", "sgds/dimension/800"],
-  "overflow-menu": ["sgds/border-radius/sm", "sgds/bg-translucent-subtle", "sgds/bg-transparent", "sgds/dimension/24", "sgds/dimension/32", "sgds/outline-focus", "sgds/outline-offset-focus"],
-  pagination: ["sgds/gap/2-xs", "sgds/border-radius/md", "sgds/font-size/14", "sgds/color-fixed-light", "sgds/bg-transparent", "sgds/primary/color/default", "sgds/primary/surface/default", "sgds/primary/surface/translucent", "sgds/dimension/40", "sgds/dimension/48", "sgds/opacity/50"],
-  "progress-bar": ["sgds/gap/2-xs", "sgds/font-size/14", "sgds/color-subtle", "sgds/bg-translucent", "sgds/primary/surface/default", "sgds/neutral/surface/default", "sgds/dimension/4"],
-  "quantity-toggle": ["sgds/form/gap/lg"],
-  radio: ["sgds/form/danger/surface/default", "sgds/form/gap/md", "sgds/form/gap/sm", "sgds/opacity/50"],
-  sidenav: ["sgds/padding/2-xs", "sgds/padding/3-xl", "sgds/padding/sm", "sgds/padding/xl", "sgds/gap/xs", "sgds/border-radius/md", "sgds/font-size/16", "sgds/font-weight/regular", "sgds/font-weight/semibold", "sgds/line-height/24", "sgds/color-default", "sgds/link-color-default", "sgds/link-color-emphasis", "sgds/bg-translucent-subtle", "sgds/primary/bg/translucent", "sgds/primary/color/emphasis", "sgds/primary/surface/translucent"],
-  skeleton: ["sgds/gap/xs", "sgds/border-radius/sm", "sgds/bg-translucent", "sgds/bg-translucent-subtle"],
-  spinner: ["sgds/gap/2-xs", "sgds/font-size/14", "sgds/surface-default", "sgds/surface-fixed-dark", "sgds/surface-fixed-light", "sgds/surface-inverse", "sgds/bg-translucent", "sgds/primary/surface/default", "sgds/neutral/color/default", "sgds/neutral/surface/default", "sgds/dimension/16", "sgds/dimension/24", "sgds/dimension/32", "sgds/dimension/48", "sgds/dimension/64"],
-  stepper: ["sgds/padding/2-xs", "sgds/padding/xl", "sgds/gap/sm", "sgds/border-color-translucent", "sgds/border-color-transparent", "sgds/border-width/2", "sgds/color-default", "sgds/color-fixed-light", "sgds/color-subtle", "sgds/bg-translucent", "sgds/bg-transparent", "sgds/primary/border-color/default", "sgds/primary/color/default", "sgds/primary/color/emphasis", "sgds/primary/surface/default", "sgds/primary/surface/emphasis"],
-  subnav: ["sgds/padding/2-xl", "sgds/padding/lg", "sgds/padding/md", "sgds/padding/none", "sgds/padding/sm", "sgds/gap/lg", "sgds/gap/md", "sgds/gap/none", "sgds/gap/xl", "sgds/border-color-muted", "sgds/border-width/0", "sgds/border-width/1", "sgds/border-width/2", "sgds/font-size/14", "sgds/color-default", "sgds/link-color-default", "sgds/link-color-emphasis", "sgds/icon-size/md"],
-  switch: ["sgds/border-color-transparent", "sgds/font-size/14", "sgds/font-size/20", "sgds/form/border-radius/full", "sgds/form/border-width/default", "sgds/form/gap/lg", "sgds/form/height/2-xs", "sgds/form/height/lg", "sgds/form/height/md", "sgds/form/height/sm", "sgds/form/padding-inline/sm", "sgds/form/primary/surface/default", "sgds/form/primary/surface/emphasis", "sgds/form/surface/emphasis", "sgds/form/surface/subtle", "sgds/form/width/2-xs", "sgds/form/width/3-xl", "sgds/form/width/md"],
-  "system-banner": ["sgds/padding/2-xs", "sgds/padding/sm", "sgds/gap/2-xs", "sgds/gap/sm", "sgds/gap/xl", "sgds/gap/xs", "sgds/font-size/12", "sgds/font-size/14", "sgds/font-weight/regular", "sgds/line-height/16", "sgds/line-height/20", "sgds/color-fixed-light", "sgds/surface-fixed-dark", "sgds/dimension/64", "sgds/dimension/872"],
-  tab: ["sgds/gap/xl", "sgds/gap/xs", "sgds/border-color-muted", "sgds/border-radius/md", "sgds/border-width/1", "sgds/border-width/4", "sgds/font-size/14", "sgds/color-default", "sgds/color-fixed-light", "sgds/bg-translucent", "sgds/bg-translucent-subtle", "sgds/primary/color/default", "sgds/primary/surface/default", "sgds/opacity/50"],
-  table: ["sgds/padding/md", "sgds/padding/sm", "sgds/border-color-emphasis", "sgds/border-color-muted", "sgds/border-width/0", "sgds/border-width/1", "sgds/font-weight/semibold", "sgds/surface-raised", "sgds/dimension/56"],
-  "table-of-contents": ["sgds/padding/none", "sgds/gap/md", "sgds/gap/xl", "sgds/font-size/24", "sgds/font-weight/semibold", "sgds/margin/none"],
-  textarea: ["sgds/form/padding/x", "sgds/form/padding/y", "sgds/dimension/136"],
-  "thumbnail-card": ["sgds/padding/none", "sgds/padding/xl", "sgds/border-color-transparent", "sgds/border-width/1", "sgds/bg-translucent-subtle", "sgds/dimension/128", "sgds/dimension/64", "sgds/opacity/50"],
-  toast: ["sgds/padding/md", "sgds/padding/xl", "sgds/gap/2-xs", "sgds/gap/sm", "sgds/border-radius/md", "sgds/font-size/label-sm", "sgds/font-size/subtitle-sm", "sgds/font-weight/regular", "sgds/font-weight/semibold", "sgds/line-height/2-xs", "sgds/color-subtle", "sgds/link-color-default", "sgds/surface-default", "sgds/primary/color/default", "sgds/success/color/default", "sgds/danger/color/default", "sgds/warning/color/fixed-light", "sgds/dimension/280"],
-  tooltip: ["sgds/padding/sm", "sgds/padding/xs", "sgds/border-radius/md", "sgds/font-size/14", "sgds/color-fixed-light", "sgds/surface-fixed-dark", "sgds/dimension/320", "sgds/z-index-overlay"],
-};
-
-const defaultComponentTokens = ["sgds/padding/lg", "sgds/gap/sm", "sgds/border-color-muted", "sgds/border-radius/md", "sgds/border-width/1", "sgds/color-default", "sgds/surface-default"];
-
 const tokenToCssVarName = (token: string) => `--${token.replace(/\//g, "-")}`;
 
 const resolveTokenRawValue = (token: string) => {
@@ -184,20 +138,17 @@ const tokenCategoryFromToken = (token: string) => {
   return category ? category.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase()) : "";
 };
 
-const componentTokenNameFromToken = (token: string) => token.replace(/^sgds\//, "").replace(/\//g, "-");
-
 const normaliseComponentTokenRows = (rows: Array<{ category?: string; name: string; value: string; rawValue?: string; mapKey?: string }>) => {
-  let previousCategory = "";
-  return rows.map((row) => {
-    const resolvedCategory = row.category ?? tokenCategoryFromToken(row.value);
-    const category = resolvedCategory === previousCategory ? "" : resolvedCategory;
-    previousCategory = resolvedCategory;
-    return {
-      ...row,
-      category,
-      rawValue: row.rawValue ?? resolveTokenRawValue(row.value),
-    };
-  });
+  // Always preserve the full category on each row. The structure table runs
+  // its own `getCollapsedCategory` at render time which decides whether to
+  // hide repeated category labels in adjacent rows; collapsing here too would
+  // strip the category from rows that downstream code (e.g. the inspect
+  // popup) needs to read in full.
+  return rows.map((row) => ({
+    ...row,
+    category: row.category ?? tokenCategoryFromToken(row.value),
+    rawValue: row.rawValue ?? resolveTokenRawValue(row.value),
+  }));
 };
 
 const measurementTokens = computed(() => {
@@ -237,29 +188,12 @@ const measurementTokenGroups = computed(() => {
   }
   return doc.value?.measurementTokenGroups ?? [];
 });
-const fallbackComponentTokenGroups = computed(() => {
-  const tokens = fallbackComponentTokensByKey[currentPageKey.value] ?? defaultComponentTokens;
-  return [
-    {
-      title: `sgds/${currentPageKey.value}`,
-      rows: normaliseComponentTokenRows(tokens.map((token) => ({
-        category: tokenCategoryFromToken(token),
-        name: componentTokenNameFromToken(token),
-        value: token,
-        rawValue: resolveTokenRawValue(token),
-      }))),
-    },
-  ];
-});
 const componentTokenGroups = computed(() => {
   if (currentPageKey.value === "alert") return [];
-  if (doc.value?.componentTokenGroups?.length) {
-    return doc.value.componentTokenGroups.map((group) => ({
-      ...group,
-      rows: normaliseComponentTokenRows(group.rows),
-    }));
-  }
-  return fallbackComponentTokenGroups.value;
+  return (doc.value?.componentTokenGroups ?? []).map((group) => ({
+    ...group,
+    rows: normaliseComponentTokenRows(group.rows),
+  }));
 });
 const semanticTokenGroups = computed(() => (currentPageKey.value === "alert" ? [] : doc.value?.semanticTokenGroups ?? []));
 const globalTokens = computed(() => doc.value?.globalTokens ?? []);
@@ -346,6 +280,8 @@ const structureTokenGroups = computed(() => {
         designToken: row.value,
         rawValue: row.rawValue || resolveTokenRawValue(row.value),
         mapKey: row.mapKey ?? row.name,
+        usage: row.usage,
+        variant: row.variant,
       }))),
     })),
     ...measurementTokenGroups.value
@@ -367,10 +303,10 @@ const structurePreviewMarkup = computed(() => {
 
 const anatomyPreviewMarkup = computed(() => {
   if (!doc.value) return "";
+  if (doc.value.anatomyPreviewMarkup) return doc.value.anatomyPreviewMarkup;
   if (doc.value.anatomyMarkup) return doc.value.anatomyMarkup;
-  if (doc.value.demos.length <= 1) {
-    return doc.value.demos[0]?.markup || `<${doc.value.tag}></${doc.value.tag}>`;
-  }
+  if (doc.value.demos.length <= 1) return doc.value.demos[0]?.markup || `<${doc.value.tag}></${doc.value.tag}>`;
+
   return `<div class="portal-demo-stack">${doc.value.demos
     .map((example) => `<div class="portal-anatomy-demo-block">${example.markup}</div>`)
     .join("")}</div>`;
@@ -381,12 +317,25 @@ const initSteppers = async () => {
   const root = document.querySelector(`[data-component-page="${currentPageKey.value}"]`);
   if (!root) return;
 
-  root.querySelectorAll<HTMLElement>('sgds-stepper[data-portal-stepper="default"]').forEach((el) => {
-    (el as HTMLElement & { steps?: unknown[] }).steps = [
+  const stepperSteps: Record<string, unknown[]> = {
+    default: [
       { stepHeader: "Start", component: "Step one" },
       { stepHeader: "Review", component: "Step two" },
       { stepHeader: "Confirm", component: "Step three" },
-    ];
+    ],
+    icons: [
+      { stepHeader: "Start", component: "Step one", iconName: "pencil" },
+      { stepHeader: "Review", component: "Step two", iconName: "file-earmark-text" },
+      { stepHeader: "Confirm", component: "Step three", iconName: "check" },
+    ],
+  };
+
+  root.querySelectorAll<HTMLElement>("sgds-stepper[data-portal-stepper]").forEach((el) => {
+    const variant = el.dataset.portalStepper || "default";
+    const activeStep = Number(el.getAttribute("activeStep") ?? el.getAttribute("activestep") ?? el.dataset.portalActiveStep ?? 0);
+    const stepper = el as HTMLElement & { activeStep?: number; steps?: unknown[] };
+    stepper.steps = stepperSteps[variant] ?? stepperSteps.default;
+    stepper.activeStep = Number.isFinite(activeStep) ? activeStep : 0;
   });
 };
 
@@ -447,7 +396,15 @@ onBeforeUnmount(() => {
                 class="sgds-col-4 sgds-col-lg-4 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:min-w-0 sgds:p-0"
               >
                 <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ card.title }}</h3>
-                <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ card.description }}</p>
+                <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                  <template
+                    v-for="(part, index) in textParts(card.description)"
+                    :key="`${card.title}-${index}`"
+                  >
+                    <CodeToken v-if="part.isCode" :label="part.text" />
+                    <template v-else>{{ part.text }}</template>
+                  </template>
+                </p>
               </article>
             </div>
           </Section>
@@ -462,7 +419,7 @@ onBeforeUnmount(() => {
             />
           </Section>
 
-          <Section title="Configuration" gap="sgds:gap-[var(--sgds-gap-xl)]">
+          <Section v-if="configurationDemos.length" title="Configuration" gap="sgds:gap-[var(--sgds-gap-xl)]">
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <InteractivePropertyDemo
                 v-for="demo in configurationDemos"
@@ -501,7 +458,15 @@ onBeforeUnmount(() => {
                   <h4 class="sgds:m-0">{{ section.title }}</h4>
                 </div>
                 <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-                  <li v-for="item in section.items" :key="item" class="sgds:mt-0">{{ item }}</li>
+                  <li v-for="item in section.items" :key="item" class="sgds:mt-0">
+                    <template
+                      v-for="(part, index) in textParts(item)"
+                      :key="`${item}-${index}`"
+                    >
+                      <CodeToken v-if="part.isCode" :label="part.text" />
+                      <template v-else>{{ part.text }}</template>
+                    </template>
+                  </li>
                 </ul>
               </article>
             </div>
@@ -544,7 +509,15 @@ onBeforeUnmount(() => {
         <Section v-else title="Accessibility considerations" gap="sgds:gap-[var(--sgds-gap-xl)]">
           <article class="sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-md)] sgds:p-component-md">
             <ul v-if="doc.accessibilityNotes?.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-              <li v-for="note in doc.accessibilityNotes" :key="note">{{ note }}</li>
+              <li v-for="note in doc.accessibilityNotes" :key="note">
+                <template
+                  v-for="(part, index) in textParts(note)"
+                  :key="`${note}-${index}`"
+                >
+                  <CodeToken v-if="part.isCode" :label="part.text" />
+                  <template v-else>{{ part.text }}</template>
+                </template>
+              </li>
             </ul>
             <p v-else class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line">
               Use the component with clear labels, meaningful text, and the SGDS interaction states that come with the component. Validate keyboard flow and screen reader behaviour in the surrounding page context.
@@ -600,6 +573,28 @@ onBeforeUnmount(() => {
   gap: var(--sgds-gap-xs);
 }
 
+.portal-skeleton-anatomy-demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-gap-sm);
+  inline-size: var(--sgds-dimension-320);
+  max-inline-size: 100%;
+}
+
+.portal-skeleton-anatomy-demo sgds-skeleton {
+  display: block;
+}
+
+.portal-progress-bar-anatomy-demo {
+  inline-size: var(--sgds-dimension-320);
+  max-inline-size: 100%;
+}
+
+.portal-progress-bar-anatomy-demo sgds-progress-bar {
+  display: block;
+  inline-size: 100%;
+}
+
 .portal-demo-card {
   display: block;
   max-width: var(--sgds-dimension-360);
@@ -618,15 +613,19 @@ onBeforeUnmount(() => {
   border: var(--sgds-border-width-1) dashed var(--sgds-link-color-default);
   border-radius: var(--sgds-border-radius-none);
   box-sizing: border-box;
-  color: var(--sgds-link-color-default);
+  color: var(--sgds-link-color-default) !important;
   display: flex;
   gap: var(--sgds-gap-sm);
   justify-content: flex-start;
   padding: var(--sgds-padding-md);
 }
 
-.portal-slot-example span {
+.portal-slot-example,
+.portal-slot-example * {
   color: inherit;
+}
+
+.portal-slot-example span {
   text-align: left;
 }
 
@@ -684,9 +683,32 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-gap-2-xl);
-  max-width: var(--sgds-dimension-480);
+  max-width: var(--sgds-dimension-640);
   padding: var(--sgds-padding-xl);
   width: 100%;
+}
+
+.portal-modal-preview-sm .portal-modal-panel {
+  max-width: var(--sgds-dimension-480);
+}
+
+.portal-modal-preview-lg .portal-modal-panel {
+  max-width: var(--sgds-dimension-800);
+}
+
+.portal-modal-preview-xl .portal-modal-panel {
+  max-width: var(--sgds-dimension-1280);
+}
+
+.portal-modal-preview-fullscreen {
+  align-items: stretch;
+  min-height: var(--sgds-dimension-320);
+}
+
+.portal-modal-preview-fullscreen .portal-modal-panel {
+  border-radius: var(--sgds-border-radius-md);
+  max-width: none;
+  min-height: var(--sgds-dimension-288);
 }
 
 .portal-modal-header {
@@ -805,6 +827,15 @@ onBeforeUnmount(() => {
   min-inline-size: var(--sgds-dimension-320);
 }
 
+/* Tab structure preview wrapper. Constrains the underlined-variant tab nav so
+   it doesn't stretch across the full structure shell — keeps the focus on the
+   nav strip, divider, and active-indicator tokens. */
+.portal-tab-anatomy {
+  display: inline-block;
+  inline-size: var(--sgds-dimension-320);
+  max-inline-size: 100%;
+}
+
 .portal-anatomy-tooltip-real {
   display: inline-flex;
 }
@@ -863,9 +894,11 @@ onBeforeUnmount(() => {
   position: absolute;
 }
 
-.portal-anatomy-drawer {
+.portal-drawer-anatomy-panel {
+  background: var(--sgds-surface-default);
   block-size: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
   inline-size: var(--sgds-dimension-320);
   inset-block-start: 0;
   inset-inline-end: 0;
@@ -902,6 +935,16 @@ onBeforeUnmount(() => {
 .portal-demo-nav-sm {
   max-width: var(--sgds-dimension-320);
   width: 100%;
+}
+
+.portal-sidenav-anatomy-demo {
+  inline-size: var(--sgds-dimension-320);
+  max-inline-size: 100%;
+}
+
+.portal-sidenav-anatomy-demo sgds-sidenav {
+  display: block;
+  inline-size: 100%;
 }
 
 .portal-demo-list-item {

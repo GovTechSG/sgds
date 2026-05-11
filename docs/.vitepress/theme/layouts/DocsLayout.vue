@@ -189,8 +189,11 @@ watch(currentPath, () => {
                   </sgds-sidenav-link>
                 </template>
               </sgds-sidenav-item>
-              <sgds-sidenav-item v-else :active="(currentPath === withBase(group.link)) || null">
+              <sgds-sidenav-item v-else-if="group.link" :active="(currentPath === withBase(group.link)) || null">
                 <a :href="withBase(group.link)">{{ formatSidebarLabel(group.text) }}</a>
+              </sgds-sidenav-item>
+              <sgds-sidenav-item v-else>
+                <span>{{ formatSidebarLabel(group.text) }}</span>
               </sgds-sidenav-item>
             </template>
           </sgds-sidenav>
@@ -257,7 +260,7 @@ watch(currentPath, () => {
                         </sgds-sidenav-link>
                       </template>
                     </sgds-sidenav-item>
-                    <sgds-sidenav-link v-else :active="(currentPath === item.link) || null">
+                    <sgds-sidenav-link v-else-if="item.link" :active="(currentPath === item.link) || null">
                       <a
                         :href="isDraft(group.text) ? undefined : withBase(item.link)"
                         :class="isDraft(group.text) ? 'sgds:cursor-not-allowed' : ''"
@@ -268,8 +271,11 @@ watch(currentPath, () => {
                     </sgds-sidenav-link>
                   </template>
                 </sgds-sidenav-item>
-                <sgds-sidenav-item v-else :active="(currentPath === withBase(group.link)) || null">
+                <sgds-sidenav-item v-else-if="group.link" :active="(currentPath === withBase(group.link)) || null">
                   <a :href="withBase(group.link)" @click="mobileSideNavOpen = false">{{ formatSidebarLabel(group.text) }}</a>
+                </sgds-sidenav-item>
+                <sgds-sidenav-item v-else>
+                  <span>{{ formatSidebarLabel(group.text) }}</span>
                 </sgds-sidenav-item>
               </template>
             </sgds-sidenav>

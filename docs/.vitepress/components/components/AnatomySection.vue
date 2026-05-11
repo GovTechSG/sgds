@@ -68,7 +68,24 @@ const activeAnatomyMarkup = computed(() =>
 );
 
 const isWideAnatomy = computed(() =>
-  activeAnatomyMarkup.value.includes("portal-footer-anatomy"),
+  activeAnatomyMarkup.value.includes("portal-footer-anatomy") ||
+  activeAnatomyMarkup.value.includes("portal-anatomy-datepicker") ||
+  activeAnatomyMarkup.value.includes("portal-anatomy-masthead") ||
+  activeAnatomyMarkup.value.includes("portal-anatomy-sidebar") ||
+  activeAnatomyMarkup.value.includes("portal-anatomy-subnav") ||
+  activeAnatomyMarkup.value.includes("portal-anatomy-system-banner"),
+);
+
+const isSidebarAnatomy = computed(() =>
+  activeAnatomyMarkup.value.includes("portal-anatomy-sidebar"),
+);
+
+const isSidenavAnatomy = computed(() =>
+  activeAnatomyMarkup.value.includes("portal-sidenav-anatomy-demo"),
+);
+
+const isSystemBannerAnatomy = computed(() =>
+  activeAnatomyMarkup.value.includes("portal-anatomy-system-banner"),
 );
 
 const activeAnatomyCallouts = computed(() =>
@@ -124,6 +141,55 @@ const resolveShadowTarget = (baseTarget: HTMLElement | null, shadowSelector?: st
   return currentTarget;
 };
 
+const alignCalloutBadges = (positions: CalloutPosition[], badgeRadius: number) => {
+  const leftColumn = Math.min(...positions.filter((position) => position.direction === "left").map((position) => position.badgeLeft));
+  const rightColumn = Math.max(...positions.filter((position) => position.direction === "right").map((position) => position.badgeLeft));
+  const topRow = Math.min(...positions.filter((position) => position.direction === "top").map((position) => position.badgeTop));
+  const bottomRow = Math.max(...positions.filter((position) => position.direction === "bottom").map((position) => position.badgeTop));
+
+  return positions.map((position) => {
+    if (position.direction === "left" && Number.isFinite(leftColumn)) {
+      const targetX = position.strokeLeft + position.strokeWidth;
+      const strokeLeft = leftColumn + badgeRadius;
+      return {
+        ...position,
+        badgeLeft: leftColumn,
+        strokeLeft,
+        strokeWidth: Math.max(0, targetX - strokeLeft),
+      };
+    }
+
+    if (position.direction === "right" && Number.isFinite(rightColumn)) {
+      return {
+        ...position,
+        badgeLeft: rightColumn,
+        strokeWidth: Math.max(0, rightColumn - badgeRadius - position.strokeLeft),
+      };
+    }
+
+    if (position.direction === "top" && Number.isFinite(topRow)) {
+      const targetY = position.strokeTop + position.strokeHeight;
+      const strokeTop = topRow + badgeRadius;
+      return {
+        ...position,
+        badgeTop: topRow,
+        strokeTop,
+        strokeHeight: Math.max(0, targetY - strokeTop),
+      };
+    }
+
+    if (position.direction === "bottom" && Number.isFinite(bottomRow)) {
+      return {
+        ...position,
+        badgeTop: bottomRow,
+        strokeHeight: Math.max(0, bottomRow - badgeRadius - position.strokeTop),
+      };
+    }
+
+    return position;
+  });
+};
+
 const updateCallouts = async () => {
   await nextTick();
 
@@ -158,6 +224,18 @@ const updateCallouts = async () => {
   const badgeRadius = badgeSize / 2;
   const canvasRect = canvas.getBoundingClientRect();
   const layerRect = scaleLayer.getBoundingClientRect();
+  const measuredMarkupTarget = markupEl?.children.length === 1
+    ? (markupEl.firstElementChild as HTMLElement | null) ?? markupEl
+    : markupEl;
+  const markupRect = measuredMarkupTarget?.getBoundingClientRect();
+  const componentBounds = markupRect
+    ? {
+        minX: markupRect.left - layerRect.left,
+        maxX: markupRect.right - layerRect.left,
+        minY: markupRect.top - layerRect.top,
+        maxY: markupRect.bottom - layerRect.top,
+      }
+    : null;
 
   const basePositions = callouts
     .map((callout) => {
@@ -173,21 +251,27 @@ const updateCallouts = async () => {
       const localY = point.y - layerRect.top + (callout.targetYOffset || 0);
 
       if (callout.direction === "right") {
-        return { number: callout.number, direction: callout.direction, badgeLeft: localX + stemLength + badgeRadius, badgeTop: localY, strokeLeft: localX, strokeTop: localY, strokeWidth: stemLength, strokeHeight: 0 };
+        const badgeLeft = Math.max(localX + stemLength + badgeRadius, (componentBounds?.maxX ?? localX) + badgeRadius);
+        return { number: callout.number, direction: callout.direction, badgeLeft, badgeTop: localY, strokeLeft: localX, strokeTop: localY, strokeWidth: Math.max(0, badgeLeft - badgeRadius - localX), strokeHeight: 0 };
       }
       if (callout.direction === "left") {
-        return { number: callout.number, direction: callout.direction, badgeLeft: localX - stemLength - badgeRadius, badgeTop: localY, strokeLeft: localX - stemLength, strokeTop: localY, strokeWidth: stemLength, strokeHeight: 0 };
+        const badgeLeft = Math.min(localX - stemLength - badgeRadius, (componentBounds?.minX ?? localX) - badgeRadius);
+        const strokeLeft = badgeLeft + badgeRadius;
+        return { number: callout.number, direction: callout.direction, badgeLeft, badgeTop: localY, strokeLeft, strokeTop: localY, strokeWidth: Math.max(0, localX - strokeLeft), strokeHeight: 0 };
       }
       if (callout.direction === "top") {
-        return { number: callout.number, direction: callout.direction, badgeLeft: localX, badgeTop: localY - stemLength - badgeRadius, strokeLeft: localX, strokeTop: localY - stemLength, strokeWidth: 0, strokeHeight: stemLength };
+        const badgeTop = Math.min(localY - stemLength - badgeRadius, (componentBounds?.minY ?? localY) - badgeRadius);
+        const strokeTop = badgeTop + badgeRadius;
+        return { number: callout.number, direction: callout.direction, badgeLeft: localX, badgeTop, strokeLeft: localX, strokeTop, strokeWidth: 0, strokeHeight: Math.max(0, localY - strokeTop) };
       }
-      return { number: callout.number, direction: callout.direction, badgeLeft: localX, badgeTop: localY + stemLength + badgeRadius, strokeLeft: localX, strokeTop: localY, strokeWidth: 0, strokeHeight: stemLength };
+      const badgeTop = Math.max(localY + stemLength + badgeRadius, (componentBounds?.maxY ?? localY) + badgeRadius);
+      return { number: callout.number, direction: callout.direction, badgeLeft: localX, badgeTop, strokeLeft: localX, strokeTop: localY, strokeWidth: 0, strokeHeight: Math.max(0, badgeTop - badgeRadius - localY) };
     })
     .filter((value): value is NonNullable<typeof value> => Boolean(value));
 
   const positionByNumber = new Map(basePositions.map((position) => [position.number, position]));
 
-  const alignedPositions = basePositions.map((position) => {
+  const manuallyAlignedPositions = basePositions.map((position) => {
       const sourceCallout = callouts.find((callout) => callout.number === position.number);
       const alignedCalloutNumber = sourceCallout?.alignBadgeWithCallout;
 
@@ -222,6 +306,10 @@ const updateCallouts = async () => {
       };
     });
 
+  // Keep callout labels tidy across every anatomy diagram:
+  // left/right badges share side columns, while top/bottom badges share rows.
+  const alignedPositions = alignCalloutBadges(manuallyAlignedPositions, badgeRadius);
+
   // Build the combined bounding box (in layer-local coords) of the markup
   // plus every callout, then work out the offset needed to centre that box
   // inside the scale-layer. The markup gets shifted by the offset via CSS
@@ -231,15 +319,11 @@ const updateCallouts = async () => {
   let minY = Infinity;
   let maxY = -Infinity;
 
-  if (markupEl) {
-    const measuredMarkupTarget = markupEl.children.length === 1
-      ? (markupEl.firstElementChild as HTMLElement | null) ?? markupEl
-      : markupEl;
-    const markupRect = measuredMarkupTarget.getBoundingClientRect();
-    minX = Math.min(minX, markupRect.left - layerRect.left);
-    maxX = Math.max(maxX, markupRect.right - layerRect.left);
-    minY = Math.min(minY, markupRect.top - layerRect.top);
-    maxY = Math.max(maxY, markupRect.bottom - layerRect.top);
+  if (componentBounds) {
+    minX = Math.min(minX, componentBounds.minX);
+    maxX = Math.max(maxX, componentBounds.maxX);
+    minY = Math.min(minY, componentBounds.minY);
+    maxY = Math.max(maxY, componentBounds.maxY);
   }
 
   alignedPositions.forEach((position) => {
@@ -256,29 +340,37 @@ const updateCallouts = async () => {
   // the diagram shrinks as a unit instead of the component reflowing while
   // callouts overflow. Never scale up.
   const naturalWidth = hasBounds ? maxX - minX : 0;
-  const availableWidth = canvasRect.width;
+  const compactSidePadding = 12;
+  const comfortableSidePadding = 24;
+  const comfortableAvailableWidth = Math.max(0, canvasRect.width - comfortableSidePadding * 2);
+  const compactAvailableWidth = Math.max(0, canvasRect.width - compactSidePadding * 2);
   // Skip the update when the canvas hasn't been laid out yet — measuring
   // against a zero-width canvas collapses scale to 0 and leaves the diagram
   // invisible until the next mutation. Restore the transition we suspended
   // for measurement so future updates animate normally.
-  if (availableWidth <= 0) {
+  if (canvasRect.width <= 0) {
     scaleLayer.style.transition = prevLayerTransition;
     return;
   }
+  const availableWidth = naturalWidth <= comfortableAvailableWidth
+    ? comfortableAvailableWidth
+    : compactAvailableWidth;
   anatomyScale.value = naturalWidth > 0 && naturalWidth > availableWidth
-    ? availableWidth / naturalWidth
+    ? Math.max(0.1, availableWidth / naturalWidth)
     : 1;
 
-  const groupOffsetX = 0;
-  const groupOffsetY = 0;
+  const boundsCenterX = hasBounds ? minX + naturalWidth / 2 : layerRect.width / 2;
+  const naturalHeight = hasBounds ? maxY - minY : 0;
+  const boundsCenterY = hasBounds ? minY + naturalHeight / 2 : layerRect.height / 2;
+  const groupOffsetX = layerRect.width / 2 - boundsCenterX;
+  const groupOffsetY = layerRect.height / 2 - boundsCenterY;
 
   // Grow the canvas to fit content + callouts when the natural height (after
   // any width-based scaling) exceeds the 320 px default. Padding ensures the
   // top/bottom badges aren't flush against the box edge. Below 320 px we keep
   // the class-based min-h-320 floor by leaving the inline style unset.
-  const naturalHeight = hasBounds ? maxY - minY : 0;
   const scaledHeight = naturalHeight * anatomyScale.value;
-  const verticalPadding = 80;
+  const verticalPadding = canvasRect.width < 520 ? 48 : 80;
   const computedMinHeight = scaledHeight > 0 ? Math.ceil(scaledHeight + verticalPadding) : 0;
   anatomyCanvasMinHeight.value = computedMinHeight > 320 ? computedMinHeight : null;
 
@@ -439,6 +531,65 @@ const openAnatomyDropdowns = async () => {
     });
   }
 
+  const selects = Array.from(
+    root.querySelectorAll(".portal-anatomy-select") as NodeListOf<HTMLElement & {
+      showMenu?: () => Promise<void> | void;
+      hideMenu?: (isOutside?: boolean) => void;
+      menuIsOpen?: boolean;
+      updateComplete?: Promise<unknown>;
+      _handleClickOutOfElement?: (e: Event) => void;
+      _handleCloseMenu?: () => void;
+      noFlip?: boolean;
+      drop?: string;
+    }>,
+  );
+  for (const el of selects) {
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "select-inline-anatomy",
+      `:host {
+         display: inline-block !important;
+         pointer-events: none !important;
+         width: var(--sgds-dimension-320) !important;
+       }
+       .select {
+         overflow: visible !important;
+       }
+       .form-control-group {
+         pointer-events: none !important;
+       }
+       .dropdown-menu {
+         display: block !important;
+         left: auto !important;
+         max-height: none !important;
+         position: relative !important;
+         top: auto !important;
+         transform: none !important;
+         z-index: auto !important;
+       }`,
+    );
+    if (el._handleClickOutOfElement) {
+      document.removeEventListener("click", el._handleClickOutOfElement);
+    }
+    if (el._handleCloseMenu) {
+      el.removeEventListener("sgds-hide", el._handleCloseMenu as EventListener);
+    }
+    el.noFlip = true;
+    el.drop = "down";
+    el.hideMenu = () => {};
+    const open = async () => {
+      if (typeof el.showMenu === "function" && !el.menuIsOpen) {
+        try { await el.showMenu(); } catch { /* noop */ }
+      }
+    };
+    await open();
+    el.addEventListener("sgds-after-hide", () => {
+      void open().then(() => updateCallouts());
+    });
+  }
+
   const dropdowns = Array.from(
     root.querySelectorAll(".portal-anatomy-dropdown") as NodeListOf<HTMLElement & {
       showMenu?: () => Promise<void> | void;
@@ -495,6 +646,89 @@ const openAnatomyDropdowns = async () => {
     });
   }
 
+  const overflowMenus = Array.from(
+    root.querySelectorAll(".portal-anatomy-overflow-menu") as NodeListOf<HTMLElement & {
+      updateComplete?: Promise<unknown>;
+      shadowRoot?: ShadowRoot | null;
+    }>,
+  );
+  for (const el of overflowMenus) {
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "overflow-menu-inline-anatomy",
+      `:host {
+         pointer-events: none !important;
+       }
+       sgds-dropdown {
+         display: inline-block !important;
+       }
+       .overflow-btn {
+         background-color: var(--sgds-bg-translucent-subtle) !important;
+         cursor: default !important;
+       }`,
+    );
+
+    const dropdown = el.shadowRoot?.querySelector("sgds-dropdown") as HTMLElement & {
+      showMenu?: () => Promise<void> | void;
+      hideMenu?: (isOutside?: boolean) => void;
+      menuIsOpen?: boolean;
+      updateComplete?: Promise<unknown>;
+      _handleClickOutOfElement?: (e: Event) => void;
+      _handleCloseMenu?: () => void;
+      noFlip?: boolean;
+      drop?: string;
+    } | null;
+    if (!dropdown) continue;
+
+    await customElements.whenDefined(dropdown.localName);
+    await dropdown.updateComplete;
+    injectShadowStyles(
+      dropdown,
+      "dropdown-inline-anatomy",
+      `:host {
+         display: inline-block !important;
+       }
+       .dropdown {
+         align-items: flex-start !important;
+         flex-direction: column !important;
+         gap: var(--sgds-gap-2-xs) !important;
+       }
+       .toggler-container {
+         display: inline-flex !important;
+       }
+       .dropdown-menu {
+         display: block !important;
+         left: auto !important;
+         max-height: none !important;
+         min-width: var(--sgds-dimension-280) !important;
+         position: relative !important;
+         top: auto !important;
+         transform: none !important;
+         z-index: auto !important;
+       }`,
+    );
+    if (dropdown._handleClickOutOfElement) {
+      document.removeEventListener("click", dropdown._handleClickOutOfElement);
+    }
+    if (dropdown._handleCloseMenu) {
+      dropdown.removeEventListener("sgds-hide", dropdown._handleCloseMenu as EventListener);
+    }
+    dropdown.noFlip = true;
+    dropdown.drop = "down";
+    dropdown.hideMenu = () => {};
+    const open = async () => {
+      if (typeof dropdown.showMenu === "function" && !dropdown.menuIsOpen) {
+        try { await dropdown.showMenu(); } catch { /* noop */ }
+      }
+    };
+    await open();
+    dropdown.addEventListener("sgds-after-hide", () => {
+      void open().then(() => updateCallouts());
+    });
+  }
+
   const tooltips = Array.from(
     root.querySelectorAll("sgds-tooltip") as NodeListOf<HTMLElement & {
       open?: boolean;
@@ -539,6 +773,7 @@ const openAnatomyDropdowns = async () => {
     }>,
   );
   for (const el of drawers) {
+    if (el.localName !== "sgds-drawer") continue;
     await customElements.whenDefined(el.localName);
     await el.updateComplete;
     injectShadowStyles(
@@ -567,6 +802,183 @@ const openAnatomyDropdowns = async () => {
          overflow: hidden !important;
          position: absolute !important;
          width: 100% !important;
+      }`,
+    );
+  }
+
+  const sidebars = Array.from(
+    root.querySelectorAll(".portal-anatomy-sidebar") as NodeListOf<HTMLElement & {
+      active?: string;
+      collapsed?: boolean;
+      _setNodesToDrawer?: (element: Element) => void;
+      _showDrawer?: boolean;
+      requestUpdate?: () => void;
+      updateComplete?: Promise<unknown>;
+    }>,
+  );
+  for (const el of sidebars) {
+    if (el.localName !== "sgds-sidebar") continue;
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "sidebar-open-anatomy",
+      `:host {
+         display: block !important;
+         pointer-events: none !important;
+         width: calc(var(--sgds-dimension-288) * 2 + var(--sgds-dimension-96)) !important;
+       }
+       .sidebar {
+         width: calc(var(--sgds-dimension-288) * 2 + var(--sgds-dimension-96)) !important;
+       }
+       .sidebar-main {
+         position: relative !important;
+         width: var(--sgds-dimension-288) !important;
+         z-index: 3 !important;
+       }
+       .sidebar-nested-overlay {
+         opacity: 1 !important;
+         left: var(--sgds-dimension-288) !important;
+         pointer-events: none !important;
+         width: var(--sgds-dimension-288) !important;
+         z-index: 2 !important;
+       }
+       .sidebar--overlay {
+         background-color: var(--sgds-bg-overlay) !important;
+         opacity: 0.32 !important;
+         pointer-events: none !important;
+         width: calc(var(--sgds-dimension-288) * 2 + var(--sgds-dimension-96)) !important;
+         z-index: 1 !important;
+       }
+       .sidebar--overlay.show {
+         opacity: 0.32 !important;
+       }`,
+    );
+    // Capture the active group's items BEFORE setting `el.active`, because
+    // setting active triggers the sidebar's reactive lifecycle that moves
+    // those items into shadow DOM. After they move, the group's children
+    // collection is empty.
+    const activeGroup = el.querySelector("sgds-sidebar-group[name='selected-label']") as HTMLElement | null;
+    const capturedItemsHtml = activeGroup
+      ? Array.from(activeGroup.children)
+          .filter((child) => child.tagName.toLowerCase() === "sgds-sidebar-item")
+          .map((child) => (child as HTMLElement).outerHTML)
+          .join("")
+      : "";
+
+    el.active = "selected-label";
+    el.collapsed = false;
+
+    // Pin the drawer to its open state. The original click-outside handler
+    // would otherwise close it the first time the user interacts with the
+    // page, hiding the nested overlay we want the anatomy to keep showing.
+    type SidebarPrivate = HTMLElement & {
+      _showDrawer?: boolean;
+      _handleClickOutOfElement?: (e: Event) => void;
+      requestUpdate?: () => void;
+      updateComplete?: Promise<unknown>;
+    };
+    const sidebarPrivate = el as unknown as SidebarPrivate;
+    if (typeof sidebarPrivate._handleClickOutOfElement === "function") {
+      document.removeEventListener("click", sidebarPrivate._handleClickOutOfElement);
+      sidebarPrivate._handleClickOutOfElement = () => {};
+    }
+    sidebarPrivate._showDrawer = true;
+    sidebarPrivate.requestUpdate?.();
+    await sidebarPrivate.updateComplete;
+
+    // The sidebar's reactive `_handleActiveItem` may revert drawer items back
+    // to the parent group whenever it re-evaluates, leaving the nested overlay
+    // empty. Insert *clones* of the original items directly into the overlay
+    // shadow DOM so they survive the sidebar's lifecycle, and refresh them on
+    // each update via a MutationObserver.
+    const overlayHost = el.shadowRoot?.querySelector(".sidebar-nested-overlay") as HTMLElement | null;
+    if (overlayHost && capturedItemsHtml) {
+      const ensureAnatomyItems = () => {
+        if (overlayHost.querySelector('[data-anatomy-clone="sidebar-item"]')) return;
+        const template = document.createElement("template");
+        template.innerHTML = capturedItemsHtml.trim();
+        Array.from(template.content.children).forEach((node) => {
+          (node as HTMLElement).setAttribute("data-anatomy-clone", "sidebar-item");
+          overlayHost.appendChild(node);
+        });
+      };
+      ensureAnatomyItems();
+      const observer = new MutationObserver(() => ensureAnatomyItems());
+      observer.observe(overlayHost, { childList: true });
+    }
+  }
+
+  const mastheads = Array.from(
+    root.querySelectorAll(".portal-anatomy-masthead") as NodeListOf<HTMLElement & {
+      toggleVisibility?: boolean;
+      requestUpdate?: () => void;
+      updateComplete?: Promise<unknown>;
+    }>,
+  );
+  for (const el of mastheads) {
+    if (el.localName !== "sgds-masthead") continue;
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "masthead-anatomy-spacing",
+      `.container {
+         padding-left: var(--sgds-padding-sm) !important;
+         padding-right: var(--sgds-padding-sm) !important;
+       }`,
+    );
+    el.toggleVisibility = true;
+    el.requestUpdate?.();
+    await el.updateComplete;
+  }
+
+  const steppers = Array.from(
+    root.querySelectorAll(".portal-anatomy-stepper") as NodeListOf<HTMLElement & {
+      updateComplete?: Promise<unknown>;
+    }>,
+  );
+  for (const el of steppers) {
+    if (el.localName !== "sgds-stepper") continue;
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    (el as HTMLElement & { activeStep?: number; steps?: unknown[] }).steps = [
+      { stepHeader: "Start", component: "Step one" },
+      { stepHeader: "Review", component: "Step two" },
+      { stepHeader: "Confirm", component: "Step three" },
+    ];
+    (el as HTMLElement & { activeStep?: number; steps?: unknown[] }).activeStep = 0;
+    injectShadowStyles(
+      el,
+      "stepper-anatomy-width",
+      `:host {
+         display: block !important;
+         width: var(--sgds-dimension-480) !important;
+       }
+       .stepper {
+         width: var(--sgds-dimension-480) !important;
+       }
+       .stepper:not(.vertical) .stepper-detail {
+         max-width: var(--sgds-dimension-192) !important;
+       }`,
+    );
+  }
+
+  const systemBanners = Array.from(
+    root.querySelectorAll(".portal-anatomy-system-banner") as NodeListOf<HTMLElement & {
+      updateComplete?: Promise<unknown>;
+    }>,
+  );
+  for (const el of systemBanners) {
+    if (el.localName !== "sgds-system-banner") continue;
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "system-banner-anatomy-padding",
+      `.banner {
+         min-height: var(--sgds-dimension-56) !important;
+         padding: var(--sgds-padding-xs) var(--sgds-padding-md) !important;
        }`,
     );
   }
@@ -611,7 +1023,13 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xl)]">
-    <div class="sgds:flex sgds:flex-col sgds:gap-component-md sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:px-component-xs sgds:py-component-xs">
+    <div
+      :class="[
+        'sgds:flex sgds:flex-col sgds:gap-component-md sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl',
+        isSystemBannerAnatomy ? 'sgds:px-2xs sgds:py-2xs' : 'sgds:py-component-xs',
+        isSystemBannerAnatomy ? '' : isSidebarAnatomy ? 'sgds:px-xs' : isSidenavAnatomy ? 'sgds:px-2xs' : 'sgds:px-component-xs',
+      ]"
+    >
       <SegmentedControl
         v-if="anatomyVariantOptions.length > 1"
         v-model="selectedAnatomyVariant"
@@ -647,6 +1065,7 @@ onBeforeUnmount(() => {
           >
             <div
               class="anatomy-demo-markup sgds:inline-flex sgds:items-center sgds:justify-center sgds:min-w-0"
+              inert
               :style="{ transform: `translate(${anatomyGroupOffset.x}px, ${anatomyGroupOffset.y}px)` }"
               v-html="activeAnatomyMarkup"
             ></div>

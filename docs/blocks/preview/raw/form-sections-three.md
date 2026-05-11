@@ -1,6 +1,6 @@
 ---
 layout: bare
-title: Sections Three
+title: Sections three
 ---
 
 <script setup>
