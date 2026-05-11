@@ -18,14 +18,18 @@ const vitePressConfig = {
         href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400;1,14..32,600;1,14..32,700&display=swap",
       },
     ],
-    [
-      "script",
-      {
-        src: "https://mcp.figma.com/mcp/html-to-design/capture.js",
-        async: "",
-        "data-figma-capture": "true",
-      },
-    ],
+    ...(process.env.NODE_ENV !== "production"
+      ? [
+          [
+            "script",
+            {
+              src: "https://mcp.figma.com/mcp/html-to-design/capture.js",
+              async: "",
+              "data-figma-capture": "true",
+            },
+          ] as const,
+        ]
+      : []),
   ],
   vue: {
     template: {

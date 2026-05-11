@@ -21,7 +21,7 @@ export default {
     app.component("DesignPageWrapper", DesignPageWrapper);
     app.component("CodeBlock", CodeBlock);
     if (typeof window !== "undefined") {
-      if (!document.querySelector('script[data-figma-capture="true"]')) {
+      if (import.meta.env.DEV && !document.querySelector('script[data-figma-capture="true"]')) {
         const captureScript = document.createElement("script");
         captureScript.async = true;
         captureScript.dataset.figmaCapture = "true";
