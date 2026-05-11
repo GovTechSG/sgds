@@ -157,22 +157,12 @@ config.themeConfig.sidebar["/resources/"] = {
 config.themeConfig.sidebar["/ai/"] = {
   base: "/ai/",
   items: [
-    {
-      text: "Overview",
-      items: [
-        { text: "Introduction", link: "/ai/introduction" },
-        { text: "What AI can do", link: "/ai/what-ai-can-do" },
-      ],
-    },
-    {
-      text: "Setup & workflows",
-      items: [
-        { text: "LLMs.txt", link: "/ai/llm-txt" },
-        { text: "Agent skills", link: "/ai/agent-skills" },
-        { text: "MCP server", link: "/ai/mcp-server" },
-        { text: "Prompt tips", link: "/ai/prompt-tips" },
-      ],
-    },
+    { text: "Introduction", link: "/ai/introduction" },
+    { text: "Use AI with SGDS", link: "/ai/use-ai-with-sgds" },
+    { text: "AI by role", link: "/ai/ai-by-role" },
+    { text: "Skills", link: "/ai/skills" },
+    { text: "Prompt tips", link: "/ai/prompt-tips" },
+    { text: "MCP server", link: "/ai/mcp-server" },
   ],
 };
 

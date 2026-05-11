@@ -16,5 +16,5 @@ Cross-functional teams can use AI to understand how SGDS works, align on impleme
 
 - [Introduction](/ai/introduction)
 - [What AI can do](/ai/what-ai-can-do)
-- [Agent skills](/ai/agent-skills)
+- [Agent skills](/ai/skills)
 - [MCP server](/ai/mcp-server)

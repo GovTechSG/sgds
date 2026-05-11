@@ -15,7 +15,7 @@ export const skills: Skill[] = [
   },
   {
     name: "sgds-components",
-    descriptionHtml: "All 47 <code class=\"portal-code-token\">&lt;sgds-*&gt;</code> web components — attributes, slots, events, and framework integration (React 19+, React ≤18, Vue, Angular, Next.js).",
+    descriptionHtml: "All 47 <code class=\"portal-code-token\">&lt;sgds-*&gt;</code> web components, including attributes, slots, events, and framework integration (React 19+, React ≤18, Vue, Angular, Next.js).",
   },
   {
     name: "sgds-utilities",
@@ -30,8 +30,20 @@ export const skills: Skill[] = [
     descriptionHtml: "Form validation, constraint validation, <code class=\"portal-code-token\">FormData</code>, and <code class=\"portal-code-token\">setInvalid</code>.",
   },
   {
+    name: "sgds-patterns",
+    descriptionHtml: "Typography and content patterns for headings, display text, paragraphs, lists, and page text hierarchy.",
+  },
+  {
+    name: "sgds-blocks",
+    descriptionHtml: "Reusable page sections such as hero sections, cards, feature blocks, statistics, filters, forms, and calls to action.",
+  },
+  {
+    name: "sgds-templates",
+    descriptionHtml: "Ready-made full-page layouts for common product flows such as dashboards, login pages, list pages, forms, and settings.",
+  },
+  {
     name: "sgds-pattern-block-templates",
-    descriptionHtml: "Application shell, page header, basic details card, filter sidebar, session detail, and table filter — self-contained UI blocks that slot into any page.",
+    descriptionHtml: "Self-contained UI blocks that slot into any page, including application shell, page header, details card, filter sidebar, session detail, and table filter.",
   },
   {
     name: "sgds-pattern-page-templates",
@@ -40,5 +52,9 @@ export const skills: Skill[] = [
   {
     name: "sgds-data-visualisation",
     descriptionHtml: "Charts and dashboards using ECharts with the SGDS colour palette.",
+  },
+  {
+    name: "sgds-writing",
+    descriptionHtml: "SGDS writing guidance for clear, direct, and consistent documentation, UI copy, labels, and prompts.",
   },
 ];
