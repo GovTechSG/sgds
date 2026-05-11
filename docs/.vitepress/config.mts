@@ -158,11 +158,16 @@ config.themeConfig.sidebar["/ai/"] = {
   base: "/ai/",
   items: [
     { text: "Introduction", link: "/ai/introduction" },
-    { text: "Use AI with SGDS", link: "/ai/use-ai-with-sgds" },
-    { text: "AI by role", link: "/ai/ai-by-role" },
-    { text: "Skills", link: "/ai/skills" },
+    { text: "Agent skills", link: "/ai/skills" },
+    {
+      text: "Use AI with SGDS",
+      collapsed: false,
+      items: [
+        { text: "Figma workflows", link: "/ai/figma-and-code-workflows" },
+        { text: "Development workflows", link: "/ai/development-workflows" },
+      ],
+    },
     { text: "Prompt tips", link: "/ai/prompt-tips" },
-    { text: "MCP server", link: "/ai/mcp-server" },
   ],
 };
 

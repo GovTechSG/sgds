@@ -91,8 +91,8 @@ const stepDetails: Record<string, StepDetail> = {
       '"Convert this layout to SGDS code, keeping the spacing values from Figma"',
     ],
     links: [
-      { label: "Set up Figma MCP server", href: "/ai/mcp-server" },
-      { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+      { label: "Figma MCP setup", href: "/ai/figma-and-code-workflows" },
+      { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
     ],
   },
 
@@ -129,7 +129,7 @@ const stepDetails: Record<string, StepDetail> = {
       '"Implement this screen with SGDS components and sgds: spacing utilities"',
     ],
     links: [
-      { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+      { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
       { label: "Prompt tips", href: "/ai/prompt-tips" },
     ],
   },
@@ -162,7 +162,7 @@ const stepDetails: Record<string, StepDetail> = {
       { text: "Drag components onto your canvas; don't detach instances" },
     ],
     links: [
-      { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+      { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
     ],
   },
 
@@ -176,7 +176,7 @@ const stepDetails: Record<string, StepDetail> = {
       { text: "figma connect publish — pushes mappings live into Figma", code: true },
     ],
     links: [
-      { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+      { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
     ],
   },
 
@@ -191,7 +191,7 @@ const stepDetails: Record<string, StepDetail> = {
       { text: "Replace custom spacing with SGDS spacing tokens" },
     ],
     links: [
-      { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+      { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
     ],
   },
 
@@ -210,7 +210,7 @@ const stepDetails: Record<string, StepDetail> = {
     heading: "Figma canvas — templates flowing back from Code Connect",
     body: "Once Code Connect is configured, component usage examples flow back into Figma as templates. Designers use these to populate new screens knowing each component maps exactly to production code.",
     links: [
-      { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+      { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
     ],
   },
 
@@ -223,7 +223,7 @@ const stepDetails: Record<string, StepDetail> = {
       { text: "Arrange a design review before development begins" },
     ],
     links: [
-      { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+      { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
     ],
   },
 
@@ -236,7 +236,7 @@ const stepDetails: Record<string, StepDetail> = {
       { text: "Colour and spacing styles are updated to SGDS semantic tokens" },
     ],
     links: [
-      { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+      { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
     ],
   },
 
@@ -265,7 +265,7 @@ const stepDetails: Record<string, StepDetail> = {
       { text: "figma connect publish — snippets go live in Figma Dev Mode", code: true },
     ],
     links: [
-      { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+      { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
     ],
   },
 
@@ -307,7 +307,7 @@ const stepDetails: Record<string, StepDetail> = {
       { text: "Keep instances attached — detaching makes code generation less accurate" },
     ],
     links: [
-      { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+      { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
     ],
   },
 
@@ -425,7 +425,7 @@ const cards: JourneyCard[] = [
       { kind: "step",      label: "Code in IDE",  sublabel: "SGDS v3",      type: "code",  detailKey: "code-sgds-v3" },
     ],
     tip: "Use the SGDS Figma library so every component you place already maps to a real <sgds-*> element. When you screenshot the frame and ask Claude to implement it, the component names are already correct.",
-    link: { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+    link: { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
   },
 
   // ── 3. Figma MCP — live design to code ─────────────────────────────────────
@@ -447,7 +447,7 @@ const cards: JourneyCard[] = [
       { kind: "step",      label: "Figma canvas", sublabel: "Code Connect", type: "figma", detailKey: "figma-code-connect" },
     ],
     tip: "The Figma MCP server lets Claude see your live canvas — components, auto-layout, spacing tokens. Pair it with agent skills for fully accurate output. Code Connect closes the loop by linking code back to Figma.",
-    link: { label: "Set up Figma MCP server", href: "/ai/mcp-server" },
+    link: { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
   },
 
   // ── 4. Migrate existing codebase ────────────────────────────────────────────
@@ -495,7 +495,7 @@ const cards: JourneyCard[] = [
       { kind: "step",      label: "Figma canvas", sublabel: "templates",       type: "figma", detailKey: "figma-templates" },
     ],
     tip: "Once converted to code with Code Connect, ask Figma to populate other screens using templates sent back from code. Components stay mapped to your codebase throughout.",
-    link: { label: "Figma to code workflow", href: "/ai/figma-to-code" },
+    link: { label: "Figma workflows", href: "/ai/figma-and-code-workflows" },
   },
 ];
 
@@ -650,8 +650,8 @@ function setScenario(id: ScenarioFilter) {
       </p>
     </section>
 
-    <section class="sgds:grid sgds:grid-cols-2 sgds:gap-layout-md sgds:max-md:grid-cols-1" aria-label="Project starting point">
-      <sgds-icon-card v-for="card in projectPathCards" :key="card.title" class="sgds:h-full">
+    <section class="sgds-grid sgds:gap-layout-md" aria-label="Project starting point">
+      <sgds-icon-card v-for="card in projectPathCards" :key="card.title" class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds-col-lg-6 sgds:h-full">
         <sgds-icon slot="icon" :name="card.icon" size="xl" class="sgds:text-primary-default" aria-hidden="true" />
         <span slot="title">{{ card.title }}</span>
         <span slot="description">{{ card.description }}</span>
@@ -866,7 +866,7 @@ function setScenario(id: ScenarioFilter) {
             <div class="sgds:mb-0 sgds:w-full">
               <img
                 src="/ai/figma-to-code.svg"
-                alt="Diagram showing the Figma to code workflow."
+                alt="Diagram showing the Figma workflows."
                 class="sgds:block sgds:h-auto sgds:max-w-full"
               />
             </div>
@@ -939,7 +939,7 @@ function setScenario(id: ScenarioFilter) {
               </template>
 
               <template #step-4>
-                <p>Once the screen is in Figma, tidy the file for future design work. Use clear names, keep the hierarchy clean, and replace temporary UI with SGDS components where possible. When you are ready to turn it back into code, refer to the <a href="#figma-to-code" @click="openFigmaToCodeTab">Figma to code workflow</a>.</p>
+                <p>Once the screen is in Figma, tidy the file for future design work. Use clear names, keep the hierarchy clean, and replace temporary UI with SGDS components where possible. When you are ready to turn it back into code, refer to the <a href="#figma-to-code" @click="openFigmaToCodeTab">Figma workflows</a>.</p>
               </template>
             </AiInstructionStepper>
 

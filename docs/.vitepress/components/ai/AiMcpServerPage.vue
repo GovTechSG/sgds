@@ -4,6 +4,7 @@ import AiInstructionStepper from "./AiInstructionStepper.vue";
 import CodeToken from "../ui/CodeToken.vue";
 import CopyCommand from "../ui/CopyCommand.vue";
 import PromptBox from "../ui/PromptBox.vue";
+import { figmaWorkflowCards } from "../../data/ai-workflow-data";
 
 const figmaToCodeSteps = [
   { number: 1, title: "Go to your Figma screen" },
@@ -37,48 +38,105 @@ const openFigmaToCodeTab = (event: Event) => {
 
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
-    <section class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)]">
-      <h2 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">What is MCP server?</h2>
-      <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-        MCP stands for <strong>Model Context Protocol</strong>. It is a standard way for an AI tool to connect to another tool and use real information from it. In the simplest terms, it allows your AI to "see" what you're working on and respond based on that, rather than just your prompt. Instead of guessing, the AI can pull real context and use it to generate more accurate outputs.
-      </p>
-    </section>
+    <div class="sgds:flex sgds:flex-col">
+    <section class="sgds:flex sgds:flex-col sgds:gap-text-md" aria-labelledby="figma-workflow-options">
+      <h2 id="figma-workflow-options" class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Work from Figma context</h2>
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+          Use Figma MCP when you need AI to work with real Figma context, selected frames, or live UI captures. Use Figma Make when you want to explore interface ideas from prompts before refining them with SGDS guidance.
+        </p>
 
-    <section class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)] sgds:-mb-[var(--sgds-text-gap-md)]">
-      <h2 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">About Figma MCP</h2>
-      <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)]">
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-          Figma first introduced its MCP server to help teams generate code more accurately from Figma screens. Instead of giving AI only a screenshot, teams could give it real design context from selected Figma frames.
-        </p>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-          This meant the server could pass useful information to the AI, such as variables, components, tokens, and design context—guiding it toward correct outputs instead of generating something that only looks similar.
-        </p>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-          More recently, the remote MCP server has expanded beyond generating code from selected frames. It can now let agents write directly to the canvas, generate editable designs from live UI, and bring richer design context into the workflow.
-        </p>
+        <div class="sgds-grid sgds:gap-layout-md" aria-label="Figma workflow options">
+        <a
+          v-for="card in figmaWorkflowCards"
+          :key="card.title"
+          :href="card.href"
+          class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds-col-lg-6 sgds:block sgds:h-full sgds:text-default sgds:no-underline"
+          :aria-label="`Go to ${card.title} section`"
+        >
+          <sgds-icon-card class="sgds:h-full">
+            <svg
+              v-if="card.icon === 'figma-mcp'"
+              slot="icon"
+              class="sgds:size-8 sgds:text-primary-default"
+              viewBox="0 0 180 180"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M18 84.8528L85.8822 16.9706C95.2548 7.59798 110.451 7.59798 119.823 16.9706C129.196 26.3431 129.196 41.5391 119.823 50.9117L68.5581 102.177"
+                stroke="currentColor"
+                stroke-width="12"
+                stroke-linecap="round"
+              />
+              <path
+                d="M69.2652 101.47L119.823 50.9117C129.196 41.5391 144.392 41.5391 153.765 50.9117L154.118 51.2652C163.491 60.6378 163.491 75.8338 154.118 85.2063L92.7248 146.6C89.6006 149.724 89.6006 154.789 92.7248 157.913L105.331 170.52"
+                stroke="currentColor"
+                stroke-width="12"
+                stroke-linecap="round"
+              />
+              <path
+                d="M102.853 33.9411L52.6482 84.1457C43.2756 93.5183 43.2756 108.714 52.6482 118.087C62.0208 127.459 77.2167 127.459 86.5893 118.087L136.794 67.8822"
+                stroke="currentColor"
+                stroke-width="12"
+                stroke-linecap="round"
+              />
+            </svg>
+            <svg
+              v-else
+              slot="icon"
+              class="sgds:size-8 sgds:text-primary-default"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <rect fill="var(--sgds-primary-surface-muted)" rx="4" height="24" width="24" />
+              <path fill-opacity="0.9" fill="currentColor" d="M14.6699 11.6376C14.8556 11.6573 15 11.8141 15 12.0009C15 14.382 14.7164 16.5566 14.2471 18.1522C14.0134 18.9465 13.7258 19.626 13.3838 20.1181C13.0519 20.5953 12.592 21.0008 12 21.0009C11.408 21.0008 10.9481 20.5953 10.6162 20.1181C10.2742 19.626 9.98655 18.9465 9.75293 18.1522C9.64937 17.8001 9.55614 17.4192 9.47266 17.0145C9.40742 16.6971 9.66681 16.4119 9.99023 16.4335C10.2176 16.4487 10.4104 16.6148 10.457 16.8378C10.5339 17.2067 10.6185 17.5524 10.7119 17.87C10.9306 18.6136 11.1815 19.1796 11.4375 19.5477C11.7034 19.9301 11.9018 20.0008 12 20.0009C12.0982 20.0008 12.2966 19.9301 12.5625 19.5477C12.8185 19.1796 13.0694 18.6136 13.2881 17.87C13.7236 16.3893 14 14.314 14 12.0009C14 11.7728 14.1899 11.5907 14.417 11.6122C14.5021 11.6203 14.5864 11.6287 14.6699 11.6376ZM6.98438 9.47353C7.30159 9.40798 7.5871 9.66692 7.56641 9.99013C7.55176 10.2174 7.38601 10.4103 7.16309 10.4569C6.79398 10.5341 6.44864 10.6193 6.13086 10.7128C5.38721 10.9315 4.82131 11.1823 4.45312 11.4384C4.07048 11.7045 4 11.9027 4 12.0009C4.00004 12.0991 4.07055 12.2973 4.45312 12.5634C4.82131 12.8194 5.38722 13.0702 6.13086 13.289C7.61162 13.7244 9.68681 14.0009 12 14.0009C12.2275 14.0009 12.4086 14.1895 12.3867 14.4159C12.3782 14.5029 12.3696 14.5894 12.3604 14.6747C12.3403 14.8587 12.185 15.0009 12 15.0009C9.61889 15.0009 7.44426 14.7172 5.84863 14.2479C5.05427 14.0143 4.37485 13.7267 3.88281 13.3847C3.40549 13.0527 3.00004 12.593 3 12.0009C3 11.4087 3.40548 10.949 3.88281 10.6171C4.37485 10.275 5.05425 9.98744 5.84863 9.7538C6.2003 9.65037 6.5803 9.55702 6.98438 9.47353ZM12 9.00087C14.3811 9.00087 16.5557 9.2845 18.1514 9.7538C18.9457 9.98744 19.6252 10.275 20.1172 10.6171C20.5945 10.949 21 11.4087 21 12.0009C21 12.593 20.5945 13.0527 20.1172 13.3847C19.6252 13.7267 18.9457 14.0143 18.1514 14.2479C17.7995 14.3514 17.4191 14.444 17.0146 14.5272C16.6974 14.5925 16.412 14.3338 16.4326 14.0106C16.4473 13.7833 16.613 13.5903 16.8359 13.5438C17.2054 13.4669 17.5511 13.3825 17.8691 13.289C18.6128 13.0702 19.1787 12.8194 19.5469 12.5634C19.9295 12.2973 20 12.0991 20 12.0009C20 11.9027 19.9295 11.7045 19.5469 11.4384C19.1787 11.1823 18.6128 10.9315 17.8691 10.7128C16.3884 10.2773 14.3132 10.0009 12 10.0009C11.7721 10.0009 11.5905 9.81069 11.6123 9.58388C11.6207 9.49759 11.6295 9.41167 11.6387 9.32704C11.6587 9.14254 11.8144 9.00087 12 9.00087ZM12 3.00087C12.592 3.00097 13.0519 3.40644 13.3838 3.88368C13.7258 4.3757 14.0134 5.05519 14.2471 5.8495C14.3505 6.20104 14.4432 6.58128 14.5264 6.98524C14.5916 7.30277 14.3323 7.5881 14.0088 7.56728C13.7815 7.55251 13.5884 7.38692 13.542 7.16396C13.4654 6.79501 13.3815 6.44931 13.2881 6.13173C13.0694 5.38816 12.8185 4.82218 12.5625 4.45399C12.2966 4.07168 12.0982 4.00097 12 4.00087C11.9018 4.00097 11.7034 4.07168 11.4375 4.45399C11.1815 4.82218 10.9306 5.38816 10.7119 6.13173C10.2764 7.61248 10 9.6877 10 12.0009C10 12.2283 9.81042 12.4098 9.58398 12.3886C9.49766 12.3804 9.41181 12.3722 9.32715 12.3632C9.14206 12.3435 9 12.187 9 12.0009C9 9.61978 9.28364 7.44512 9.75293 5.8495C9.98655 5.05519 10.2742 4.3757 10.6162 3.88368C10.9481 3.40644 11.408 3.00097 12 3.00087Z" />
+            </svg>
+            <span slot="title">{{ card.title }}</span>
+            <span slot="description">{{ card.description }}</span>
+          </sgds-icon-card>
+        </a>
+        </div>
       </div>
     </section>
 
-    <section class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-xs)]">
-      <div class="sgds:p-[var(--sgds-padding-lg)]">
-        <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-lg)] sgds:w-full">
-          <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)] sgds:w-full">
-            <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)] sgds:min-w-0">
+    <sgds-divider class="sgds:my-layout-sm"></sgds-divider>
+
+    <section class="sgds:flex sgds:flex-col sgds:gap-text-sm">
+      <h2 id="figma-mcp" class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Figma MCP</h2>
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
+        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+          MCP stands for <strong>Model Context Protocol</strong>. It is a standard way for an AI tool to connect to another tool and use live information from it.
+        </p>
+        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+          Figma MCP gives AI tools real design context from Figma, including selected frames, components, variables, spacing, and tokens. This helps them produce SGDS-aligned output instead of guessing from screenshots or written descriptions.
+        </p>
+        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+          Figma MCP supports design-to-code workflows, canvas writing, live UI capture for supported clients, FigJam diagrams, Make resources, and Code Connect context. Pair it with SGDS skills so the AI can use both Figma context and SGDS implementation guidance.
+        </p>
+      </div>
+    </section>
+    </div>
+
+    <section class="sgds:flex sgds:flex-col sgds:gap-component-md sgds:w-full sgds:px-8">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:w-full">
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:min-w-0">
               <p class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-heading-default sgds:m-0">Before Figma MCP</p>
-              <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-[var(--sgds-gap-xs)] sgds:w-full">
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-[var(--sgds-gap-2-xs)] sgds:py-[var(--sgds-padding-sm)] sgds:px-[var(--sgds-padding-xl)] sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+              <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-component-xs sgds:w-full">
+                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Figma screenshot</span>
                 </div>
-                <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-[var(--sgds-dimension-40)] sgds:w-[var(--sgds-dimension-40)]" aria-hidden="true">
+                <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-[var(--sgds-gap-2-xs)] sgds:py-[var(--sgds-padding-sm)] sgds:px-[var(--sgds-padding-xl)] sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>AI reads screenshot</span>
                 </div>
-                <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-[var(--sgds-dimension-40)] sgds:w-[var(--sgds-dimension-40)]" aria-hidden="true">
+                <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-[var(--sgds-gap-2-xs)] sgds:py-[var(--sgds-padding-sm)] sgds:px-[var(--sgds-padding-xl)] sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Intent gets lost</span>
                 </div>
               </div>
@@ -90,106 +148,107 @@ const openFigmaToCodeTab = (event: Event) => {
 
           <sgds-divider class="sgds:m-0"></sgds-divider>
 
-          <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)] sgds:w-full">
-            <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)] sgds:min-w-0">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:w-full">
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:min-w-0">
               <p class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-heading-default sgds:m-0">When Figma MCP first arrived</p>
-              <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-[var(--sgds-gap-xs)] sgds:w-full">
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-[var(--sgds-gap-2-xs)] sgds:py-[var(--sgds-padding-sm)] sgds:px-[var(--sgds-padding-xl)] sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+              <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-component-xs sgds:w-full">
+                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Figma frame</span>
                 </div>
-                <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-[var(--sgds-dimension-40)] sgds:w-[var(--sgds-dimension-40)]" aria-hidden="true">
+                <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-[var(--sgds-gap-2-xs)] sgds:py-[var(--sgds-padding-sm)] sgds:px-[var(--sgds-padding-xl)] sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>AI reads design context</span>
                 </div>
-                <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-[var(--sgds-dimension-40)] sgds:w-[var(--sgds-dimension-40)]" aria-hidden="true">
+                <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-[var(--sgds-gap-2-xs)] sgds:py-[var(--sgds-padding-sm)] sgds:px-[var(--sgds-padding-xl)] sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Code</span>
                 </div>
               </div>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-                With Figma MCP, AI can access design context directly from selected Figma frames instead of guessing from images. With a design system, it can better map components, variables, and layout context—producing more accurate outputs.
+                With Figma MCP, AI can access design context directly from selected Figma frames instead of guessing from images. With a design system, it can better map components, variables, and layout context to produce more accurate outputs.
               </p>
             </div>
           </div>
 
           <sgds-divider class="sgds:m-0"></sgds-divider>
 
-          <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)] sgds:w-full">
-            <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)] sgds:min-w-0">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:w-full">
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:min-w-0">
               <p class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-heading-default sgds:m-0">What it can do now</p>
-              <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-[var(--sgds-gap-xs)] sgds:w-full">
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-[var(--sgds-gap-2-xs)] sgds:py-[var(--sgds-padding-sm)] sgds:px-[var(--sgds-padding-xl)] sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+              <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-component-xs sgds:w-full">
+                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Figma canvas</span>
                 </div>
-                <div class="sgds:inline-flex sgds:items-center sgds:shrink-0 sgds:grow-0 sgds:basis-[var(--sgds-dimension-40)] sgds:w-[var(--sgds-dimension-40)] sgds:flex-col sgds:gap-[var(--sgds-gap-xs)]" aria-hidden="true">
+                <div class="sgds:inline-flex sgds:items-center sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10 sgds:flex-col sgds:gap-component-xs" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                   <span class="flow-long-arrow-reverse"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-[var(--sgds-gap-2-xs)] sgds:py-[var(--sgds-padding-sm)] sgds:px-[var(--sgds-padding-xl)] sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>AI reads full design context</span>
                 </div>
-                <div class="sgds:inline-flex sgds:items-center sgds:shrink-0 sgds:grow-0 sgds:basis-[var(--sgds-dimension-40)] sgds:w-[var(--sgds-dimension-40)] sgds:flex-col sgds:gap-[var(--sgds-gap-xs)]" aria-hidden="true">
+                <div class="sgds:inline-flex sgds:items-center sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10 sgds:flex-col sgds:gap-component-xs" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                   <span class="flow-long-arrow-reverse"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-[var(--sgds-gap-2-xs)] sgds:py-[var(--sgds-padding-sm)] sgds:px-[var(--sgds-padding-xl)] sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Code</span>
                 </div>
               </div>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-                AI can work with richer design context, move more fluidly between code and Figma, and even write directly to the Figma canvas.
+                AI can work with richer design context, move between code and Figma, and write directly to the Figma canvas when the MCP client supports it.
               </p>
             </div>
           </div>
-        </div>
-      </div>
     </section>
 
-    <section class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)]">
-      <h2 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Before you start — Set up SGDS with Figma MCP</h2>
+    <section class="sgds:flex sgds:flex-col sgds:gap-text-sm">
+      <h2 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Before you start: set up Figma MCP for SGDS workflows</h2>
       <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-        To set up your Figma MCP server and to turn your Figma designs into working code powered by SGDS components and utilities, you need these things:
+        To turn Figma designs into SGDS-aligned code, set up the Figma MCP server, SGDS package, and SGDS skills first.
       </p>
 
-      <AiInstructionStepper :steps="setupInstructionSteps">
+      <AiInstructionStepper :steps="setupInstructionSteps" class="sgds:mt-layout-xs">
         <template #step-1>
-          <p>Choose your AI agent (Claude Code, Codex, Cursor, etc) and follow their documentation for their installation steps.</p>
+          <p>Choose a supported MCP client, such as Codex, Claude Code, Cursor, or VS Code. Follow your client documentation to install and sign in.</p>
         </template>
 
         <template #step-2>
           <p>
-            Read their
-            <a href="https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/" target="_blank" rel="noreferrer">documentation</a>
-            for the latest installation steps as their setup instructions are updated frequently. The necessary Figma skills will be installed automatically when you set up the Figma MCP plugin.
+            Follow Figma's
+            <a href="https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/" target="_blank" rel="noreferrer">remote MCP server setup guide</a>
+            for your client. Figma recommends the remote server because it connects to Figma files without requiring the Figma desktop app.
           </p>
         </template>
 
         <template #step-3>
-          <p>Run the following command if you have not have SGDS components installed:</p>
+          <p>Run the following command if the SGDS web component package is not installed:</p>
           <CopyCommand command="npm i @govtechsg/sgds-web-component" />
         </template>
 
         <template #step-4>
           <p>Run the following command to install the skills:</p>
           <CopyCommand command="npx skills add govtechsg/sgds-web-component" />
-          <p>Select all existing skills from the list. This pulls the latest skills from the <CodeToken label="skills/" /> folder of this repository into your local <CodeToken label=".agents/" /> directory, where compatible AI tools automatically pick them up.</p>
+          <p>Select all SGDS skills from the list. This pulls the latest SGDS guidance into your local <CodeToken label=".agents/" /> directory, where compatible AI tools can read it while generating or reviewing SGDS code.</p>
         </template>
       </AiInstructionStepper>
 
-      <sgds-alert class="sgds:mt-layout-sm" show variant="success" outlined>
-        <div>You only need to complete this setup once. Once everything is in place, your AI agent will have the context it needs to work with SGDS — just prompt it and it will know what to do.</div>
-      </sgds-alert>
     </section>
 
-    <section class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)]">
-      <h2 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Working between Figma and code</h2>
-      <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-        Use the workflow that matches your starting point.
-      </p>
+    <section class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
+        <h2 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Working between Figma and code</h2>
+        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+          Use the workflow that matches your starting point.
+        </p>
+      </div>
+
+      <sgds-alert show variant="primary" outlined title="Prerequisite: use SGDS v3 components in your Figma file first">
+        <div>Your Figma file should use official SGDS v3 components and tokens from the SGDS Figma library before you ask AI to generate SGDS-aligned code.</div>
+      </sgds-alert>
 
       <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined">
         <sgds-tab ref="figmaToCodeTab" slot="nav" panel="figma-to-code" active>Figma to code</sgds-tab>
@@ -201,7 +260,7 @@ const openFigmaToCodeTab = (event: Event) => {
               Start here if you already have screens in Figma and want the AI to help turn them into SGDS-aligned code or implementation guidance.
             </p>
 
-            <div class="sgds:mb-0 sgds:w-full">
+            <div class="sgds:w-full">
               <img
                 src="/ai/figma-to-code.svg"
                 alt="Diagram showing the Figma to code workflow."
@@ -211,46 +270,37 @@ const openFigmaToCodeTab = (event: Event) => {
 
             <AiInstructionStepper :steps="figmaToCodeSteps">
               <template #step-1>
-                <p>Choose the frame or layer you want the AI to work from. Make sure the Figma Dev Mode MCP server plugin is running locally before proceeding.</p>
+                <p>Choose the frame or layer you want the AI to work from. If you use the remote MCP server, copy the Figma link. If you use the desktop MCP server, make sure the Figma desktop app is running.</p>
               </template>
 
               <template #step-2>
-                <p>With the Figma MCP server enabled, give the AI the right Figma context. You can do this in different ways depending on how your MCP setup works:</p>
-                <ol class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-xs)] sgds:m-0 sgds:pl-[var(--sgds-padding-2-xl)] sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                <p>Give the AI the right Figma context. The method depends on your MCP setup:</p>
+                <ol class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-8 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   <li class="sgds:m-0"><strong>Desktop MCP:</strong> select the frame or layer directly in Figma, or open <strong>Dev Mode</strong> and copy the relevant Figma link.</li>
-                  <li class="sgds:m-0"><strong>Remote MCP:</strong> share the relevant Figma link with your AI client so it can pull the design context into the workflow.</li>
+                  <li class="sgds:m-0"><strong>Remote MCP:</strong> share the relevant Figma link with your AI client. The client can extract the node ID from the link and request design context from Figma MCP.</li>
                 </ol>
               </template>
 
               <template #step-3>
-                <p>Be explicit that you want the AI to implement the design using SGDS components and patterns where possible, not just produce generic front-end output.</p>
-                <PromptBox prompt="Build this Figma frame using SGDS web components and utility classes. Refer to the SGDS skills for the correct component APIs, utility tokens, and layout pattern." />
+                <p>Be explicit that you want SGDS components and patterns where possible. Ask the AI to flag anything that does not have a direct SGDS match.</p>
+                <PromptBox prompt="Build this Figma frame using SGDS web components and utility classes. Refer to the SGDS skills for the correct component APIs, utility tokens, and layout patterns. Flag anything that does not have a direct SGDS match." />
               </template>
 
               <template #step-4>
-                <p>The agent will read the selected Figma frame via the MCP server, reference the installed SGDS skills to identify the right components and utilities and generate code that replicates the design using <CodeToken label="<sgds-*>" /> components and SGDS CSS utility classes.</p>
+                <p>The agent reads the selected Figma frame through MCP, then uses the installed SGDS skills to choose suitable components, utilities, and layout patterns. Review the result before using it in production.</p>
               </template>
             </AiInstructionStepper>
 
-            <sgds-alert show variant="info" outlined title="Tips for better output">
-              <sgds-icon slot="icon" name="lightbulb"></sgds-icon>
-              <ul class="sgds:flex sgds:flex-col sgds:gap-0 sgds:m-0 sgds:pl-[var(--sgds-padding-lg)] sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                <li>Keep your Figma frames clean and well-structured for the best results.</li>
-                <li>Name your Figma layers descriptively — the agent uses layer names to infer intent.</li>
-                <li>If the output is not accurate, refine your prompt by specifying which section or component to focus on.</li>
-                <li>See <sgds-alert-link href="/ai/prompt-tips">Prompt tips</sgds-alert-link> for more effective results.</li>
-              </ul>
-            </sgds-alert>
           </div>
         </sgds-tab-panel>
 
         <sgds-tab-panel name="code-to-figma">
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-              Start here if you send your code back to Figma for further design refinement.
+              Start here if you want to capture a running page or section in Figma for further design refinement.
             </p>
 
-            <div class="sgds:mb-0 sgds:w-full">
+            <div class="sgds:w-full">
               <img
                 src="/ai/code-to-figma.svg"
                 alt="Diagram showing the code to Figma workflow from you, to AI agent, to Figma MCP, to Figma output."
@@ -260,47 +310,71 @@ const openFigmaToCodeTab = (event: Event) => {
 
             <AiInstructionStepper :steps="codeToFigmaSteps">
               <template #step-1>
-                <p>Choose the live page, flow, or section you want to bring into Figma. Tell your AI exactly what should be captured, so it can turn that UI into editable Figma layers.</p>
+                <p>Choose the live page, flow, or section you want to bring into Figma. Tell your AI exactly what should be captured, so it can create editable Figma layers from the live UI.</p>
               </template>
 
               <template #step-2>
                 <p>Tell the AI where the captured screen or objects should go in Figma. If you already know the destination, include the relevant Figma link in your prompt. Here are a few ways you can get it:</p>
-                <ol class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-xs)] sgds:m-0 sgds:pl-[var(--sgds-padding-2-xl)] sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                  <li class="sgds:m-0"><strong>To get the link of a Figma page:</strong> Click the <strong>Share</strong> button at the top right hand corner and select <strong>Copy link</strong>.</li>
-                  <li class="sgds:m-0"><strong>To get the link of a frame:</strong> Right click on a frame and choose <strong>Copy/Paste as → Copy link to selection</strong>.</li>
+                <ol class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-8 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                  <li class="sgds:m-0"><strong>To get a Figma page link:</strong> click the <strong>Share</strong> button in the top-right corner and select <strong>Copy link</strong>.</li>
+                  <li class="sgds:m-0"><strong>To get a frame link:</strong> right-click a frame and choose <strong>Copy/Paste as → Copy link to selection</strong>.</li>
                 </ol>
               </template>
 
               <template #step-3>
-                <p>Be explicit about what you want sent and where it should go. Ask the AI to map the result to SGDS components, tokens, and layout rules where possible, and to flag anything that does not have a direct SGDS match.</p>
-                <PromptBox prompt="Send my dashboard page to Figma at this place <insert link of figma's page or frame>. Map to SGDS as closely as possible and flag anything that does not have a direct SGDS match." />
+                <p>Be explicit about what you want sent and where it should go. Ask the AI to use SGDS components, tokens, and layout rules where possible, and to flag anything that does not have a direct SGDS match.</p>
+                <PromptBox prompt="Send my dashboard page to this Figma page or frame: <insert Figma link>. Use SGDS components, tokens, and layout rules where possible. Flag anything that does not have a direct SGDS match." />
               </template>
 
               <template #step-4>
-                <p>Once the screen is in Figma, tidy the file for future design work. Use clear names, keep the hierarchy clean, and replace temporary UI with SGDS components where possible. When you are ready to turn it back into code, refer to the <a href="#figma-to-code" @click="openFigmaToCodeTab">Figma to code workflow</a>.</p>
+                <p>Once the screen is in Figma, tidy the file for future design work. Use clear layer names, keep the hierarchy clean, and replace temporary UI with SGDS components where possible. When you are ready to turn it back into code, refer to the <a href="#figma-to-code" @click="openFigmaToCodeTab">Figma to code workflow</a>.</p>
               </template>
             </AiInstructionStepper>
-
-            <sgds-alert show variant="info" outlined title="Tips for better output">
-              <sgds-icon slot="icon" name="lightbulb"></sgds-icon>
-              <ul class="sgds:flex sgds:flex-col sgds:gap-0 sgds:m-0 sgds:pl-[var(--sgds-padding-lg)] sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                <li>Keep your Figma frames clean and well-structured for the best results.</li>
-                <li>Name your Figma layers descriptively — the agent uses layer names to infer intent.</li>
-                <li>If the output is not accurate, refine your prompt by specifying which section or component to focus on.</li>
-                <li>See <sgds-alert-link href="/ai/prompt-tips">Prompt tips</sgds-alert-link> for more effective results.</li>
-              </ul>
-            </sgds-alert>
 
           </div>
         </sgds-tab-panel>
       </sgds-tab-group>
+
+      <section class="sgds:mt-layout-sm sgds:flex sgds:flex-col sgds:gap-text-sm">
+        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Tips for better output</h4>
+        <ul class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-6 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+          <li class="sgds:m-0">Keep your Figma frames clean and well-structured for the best results.</li>
+          <li class="sgds:m-0">Name your Figma layers descriptively. The agent uses layer names to infer intent.</li>
+          <li class="sgds:m-0">If the output is not accurate, refine your prompt by specifying which section or component to focus on.</li>
+          <li class="sgds:m-0">If Code Connect mappings exist, ask the AI to use them so generated code follows the mapped component implementation.</li>
+          <li class="sgds:m-0">See <a href="/ai/prompt-tips">Prompt tips</a> for more effective results.</li>
+        </ul>
+      </section>
+    </section>
+
+    <section class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+      <h2 id="figma-make" class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Figma Make</h2>
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+        <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
+          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What is Figma Make?</h4>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+            <a href="https://www.figma.com/make/" target="_blank" rel="noreferrer">Figma Make</a>
+            is an AI tool for turning prompts, designs, and product context into functional prototypes. You can start from an existing design, prompt changes, edit the output, and bring the result back into Figma Design as editable layers.
+          </p>
+        </div>
+
+        <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
+          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">SGDS Make Kit</h4>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+            SGDS intends to build a <a href="https://help.figma.com/hc/en-us/articles/39241689698839-Get-started-with-Make-kits" target="_blank" rel="noreferrer">Make kit</a> for SGDS workflows. A Make kit gives Figma Make design system context, such as npm package references, published Figma library styles and variables, and guidelines for how components, tokens, and patterns should be used.
+          </p>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+            This work is in progress. You can expect the SGDS Make Kit to help Figma Make start from SGDS components and tokens, follow SGDS usage guidance, and produce prototypes that are easier to review before implementation.
+          </p>
+        </div>
+      </div>
     </section>
 
   </div>
 </template>
 
 <style>
-/* Arrow pseudo-elements — cannot be expressed as utility classes */
+/* Arrow pseudo-elements: cannot be expressed as utility classes */
 .flow-long-arrow {
   border-top: var(--sgds-border-width-1) solid var(--sgds-border-color-emphasis);
   display: block;
@@ -341,7 +415,7 @@ const openFigmaToCodeTab = (event: Event) => {
   transform: translateY(-50%);
 }
 
-/* Descendant combinator for flow node box text — requires fallback color value */
+/* Descendant combinator for flow node box text: requires fallback color value */
 .flow-node-box > span {
   color: var(--sgds-color-fixed-dark, #161616);
 }

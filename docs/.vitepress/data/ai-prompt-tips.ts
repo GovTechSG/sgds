@@ -6,6 +6,10 @@ export interface PromptContextRow {
 export interface PromptTipRow {
   tip: string;
   detail: string;
+  link?: {
+    href: string;
+    label: string;
+  };
 }
 
 export interface PromptExample {
@@ -132,30 +136,38 @@ export const figmaPromptTips: PromptTipRow[] = [
     tip: "Ask the agent to flag gaps",
     detail: "Tell it to identify anything that does not map cleanly to SGDS before coding.",
   },
+  {
+    tip: "Name the Figma skill",
+    detail: "When the task depends on Figma MCP, tell the agent which Figma skill to use, such as figma-use for writing to the canvas or figma-implement-design for generating code from a frame.",
+    link: {
+      href: "https://help.figma.com/hc/en-us/articles/39166810751895-Figma-skills-for-MCP",
+      label: "Figma skills for MCP",
+    },
+  },
 ];
 
 export const textPromptExamples: PromptExample[] = [
   {
-    label: "Start with a plan",
+    label: "Example prompt",
     prompt: "I need to build a case management dashboard for agency officers. Use SGDS skills and inspect the existing docs app patterns before editing. First, propose a page structure and list the SGDS components you will use.",
   },
   {
-    label: "Build one page",
+    label: "Example prompt",
     prompt: "Build a form page for users to submit a grant application. Use SGDS components and sgds: utility classes only. Include required fields, validation messages, an empty attachment state, and a final review step.",
   },
   {
-    label: "Migrate safely",
+    label: "Example prompt",
     prompt: "Migrate this page to SGDS v3 one section at a time. Keep the current behaviour and routes unchanged. Replace custom UI with SGDS components where possible, and tell me when there is no direct SGDS match.",
   },
 ];
 
 export const figmaPromptExamples: PromptExample[] = [
   {
-    label: "Implement a selected frame",
+    label: "Example prompt",
     prompt: "Use the selected Figma frame as the source. Implement it with SGDS components and sgds: utility classes. Preserve the visible layout, then flag any behaviour, state, or responsive rule that is not shown in Figma.",
   },
   {
-    label: "Review before coding",
+    label: "Example prompt",
     prompt: "Review this Figma screen before generating code. Identify the likely SGDS components, missing states, unclear behaviours, and areas that may not map directly to SGDS.",
   },
 ];

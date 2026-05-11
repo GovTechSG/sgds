@@ -21,4 +21,4 @@ Developers can use AI to:
 
 - [Agent skills](/ai/skills)
 - [Prompt tips](/ai/prompt-tips)
-- [MCP server](/ai/mcp-server)
+- [Figma workflows](/ai/figma-and-code-workflows)

@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Figma workflows
-description: Use Figma MCP to move between Figma and code so designers and developers can work from shared SGDS context.
+title: Development workflows
+description: Use AI coding agents to start new SGDS projects or improve existing codebases with SGDS components, utilities, and skills.
 headerAlert:
   description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
   variant: danger
@@ -9,7 +9,7 @@ headerAlert:
 ---
 
 <script setup>
-import AiMcpServerPage from "../.vitepress/components/ai/AiMcpServerPage.vue";
+import AiUseWithSgdsPage from "../.vitepress/components/ai/AiUseWithSgdsPage.vue";
 </script>
 
-<AiMcpServerPage />
+<AiUseWithSgdsPage />

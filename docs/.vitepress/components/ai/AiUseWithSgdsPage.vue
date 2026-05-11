@@ -3,46 +3,75 @@ import AiInstructionStepper from "./AiInstructionStepper.vue";
 import CodeToken from "../ui/CodeToken.vue";
 import CopyCommand from "../ui/CopyCommand.vue";
 import PromptBox from "../ui/PromptBox.vue";
+import { migrationSteps } from "../../data/ai-prompt-tips";
 
 const beforeStartSteps = [
-  { number: 1, title: "Install and configure your AI agent" },
-  { number: 2, title: "Install SGDS web component package" },
-  { number: 3, title: "Install SGDS agent skills" },
+  { number: 1, title: "Set up a coding tool" },
+  { number: 2, title: "Install the SGDS package" },
+  { number: 3, title: "Add SGDS agent skills" },
+];
+
+const newProjectInstructionSteps = [
+  { number: 1, title: "Describe what you want to build" },
+  { number: 2, title: "Start from the SGDS workflow skill" },
+  { number: 3, title: "Generate the SGDS implementation" },
+  { number: 4, title: "Review and refine the output" },
+];
+
+const developmentWorkflowCards = [
+  {
+    icon: "rocket",
+    title: "New project",
+    description: "You are starting a new product or service and want SGDS to be the design system from the start.",
+    href: "#new-project",
+  },
+  {
+    icon: "arrow-repeat",
+    title: "Existing project",
+    description: "You have an existing codebase or implemented interface and want to adopt SGDS components, utilities, and layout guidance.",
+    href: "#existing-project",
+  },
 ];
 </script>
 
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg sgds:w-full">
-    <section class="sgds:flex sgds:flex-col sgds:gap-text-md sgds:w-full">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-normal sgds:m-0">Choose your AI workflow</h2>
+    <div class="sgds:flex sgds:flex-col">
+      <section class="sgds:flex sgds:flex-col sgds:gap-text-md sgds:w-full">
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Build with SGDS in code</h2>
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md sgds:w-full">
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-          Use AI to build SGDS interfaces from prompts, Figma designs, or existing code. Start by choosing your project context, then follow the workflow for your role.
+          Use this page when you are building or improving SGDS code with an AI coding tool. Start with a new SGDS project, or use an existing codebase that needs to adopt SGDS components, utilities, and layout guidance.
         </p>
-        <div class="sgds:grid sgds:grid-cols-2 sgds:max-md:grid-cols-1 sgds:gap-layout-md" aria-label="Project starting point">
-          <sgds-icon-card class="sgds:h-full">
-            <sgds-icon slot="icon" name="rocket" size="xl" class="sgds:text-primary-default" aria-hidden="true" />
-            <span slot="title">New project</span>
-            <span slot="description">Create a new product, prototype, or service from scratch.</span>
-          </sgds-icon-card>
-          <sgds-icon-card class="sgds:h-full">
-            <sgds-icon slot="icon" name="arrow-repeat" size="xl" class="sgds:text-primary-default" aria-hidden="true" />
-            <span slot="title">Existing project</span>
-            <span slot="description">Adopt SGDS in an existing product, or improve an existing SGDS interface.</span>
-          </sgds-icon-card>
+        <div class="sgds-grid sgds:gap-layout-md" aria-label="Development workflow paths">
+          <a
+            v-for="card in developmentWorkflowCards"
+            :key="card.title"
+            :href="card.href"
+            class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds-col-lg-6 sgds:block sgds:h-full sgds:text-default sgds:no-underline"
+            :aria-label="`Go to ${card.title} section`"
+          >
+            <sgds-icon-card class="sgds:h-full">
+              <sgds-icon slot="icon" :name="card.icon" size="xl" class="sgds:text-primary-default" aria-hidden="true" />
+              <span slot="title">{{ card.title }}</span>
+              <span slot="description">{{ card.description }}</span>
+            </sgds-icon-card>
+          </a>
         </div>
       </div>
-    </section>
+      </section>
 
-    <section class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-sm)]">
+      <sgds-divider class="sgds:my-layout-sm"></sgds-divider>
+
+      <section class="sgds:flex sgds:flex-col sgds:gap-text-sm">
       <h2 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Before you start</h2>
       <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-        Set up your AI agent and SGDS dependencies before using these journeys.
+        Set up your AI coding tool, SGDS package, and SGDS skills before using these workflows.
       </p>
 
-      <AiInstructionStepper :steps="beforeStartSteps">
+      <AiInstructionStepper :steps="beforeStartSteps" class="sgds:mt-layout-xs">
         <template #step-1>
-          <p>Choose your AI agent, such as Claude Code, Codex, Cursor, or another compatible AI tool. Follow the tool documentation for installation and setup.</p>
+          <p>Choose a compatible AI coding tool, such as Claude Code, Codex, Cursor, or another tool that can read your project and run local commands. Follow the tool documentation for installation and project setup.</p>
         </template>
 
         <template #step-2>
@@ -51,171 +80,200 @@ const beforeStartSteps = [
         </template>
 
         <template #step-3>
-          <p>Run the following command to install the skills:</p>
+          <p>Run the SGDS skills installer in your project root:</p>
           <CopyCommand command="npx skills add govtechsg/sgds-web-component" />
-          <p>Select all existing skills from the list. This pulls the latest skills from the <CodeToken label="skills/" /> folder of this repository into your local <CodeToken label=".agents/" /> directory, where compatible AI tools automatically pick them up.</p>
+          <p>Select all SGDS skills when prompted. This creates a local <CodeToken label=".agents/" /> folder with SGDS guidance for setup, components, utilities, templates, forms, and writing. Compatible AI tools can use this guidance when you ask them to build or review SGDS code.</p>
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+            <PromptBox prompt="Read sgds-workflow first, then use the SGDS skills in this repository to create a sidebar dashboard with SGDS web components and SGDS utility classes." label="Example prompt" />
+          </div>
         </template>
       </AiInstructionStepper>
 
-      <sgds-alert class="sgds:mt-layout-sm" show variant="success" outlined>
-        <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-        <div>You only need to complete this setup once. Once everything is in place, your AI agent will have the context it needs to work with SGDS. Prompt it and it will know what to do.</div>
-      </sgds-alert>
-    </section>
-
-    <section class="sgds:flex sgds:flex-col sgds:gap-text-md sgds:w-full">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-normal sgds:m-0">Get started</h2>
-      <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-            To get started with a new project:
-          </p>
-          <ul class="sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-            <li><a href="#new-prompt-code">Text prompt to code with SGDS skills</a></li>
-            <li><a href="#new-figma-code">Moving from Figma to code</a></li>
-          </ul>
-        </div>
-
-        <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-            To get started with an existing project:
-          </p>
-          <ul class="sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-            <li><a href="#existing-code-migration">Prompt-to-code with SGDS migration skills</a></li>
-            <li><a href="#existing-figma-code">Figma to code</a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <section id="new-project" class="sgds:flex sgds:flex-col sgds:gap-layout-md sgds:w-full">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-normal sgds:m-0">New project</h2>
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">New project</h2>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-          Use this path when you are starting from a blank codebase, early prototype, or new service journey.
-        </p>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-          Choose <strong>prompt-to-code</strong> when you want to move quickly from intent to working interface.
-        </p>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-          Choose <strong>Figma-to-code</strong> when visual review, layout precision, or stakeholder alignment matters before implementation.
+          Use this path when you are starting a new product or service and want SGDS to be the design system from the start.
         </p>
       </div>
 
-      <sgds-tab-group>
-        <sgds-tab slot="nav" panel="new-prompt-code" active>Prompt-to-code</sgds-tab>
-        <sgds-tab slot="nav" panel="new-figma-code">Figma-to-code</sgds-tab>
+      <sgds-alert show variant="info" outlined title="Have Figma screens already?">
+        <div>Use <sgds-alert-link href="/ai/figma-and-code-workflows">Figma workflows</sgds-alert-link> instead if you are building from an existing Figma screen or using Figma MCP to move designs into code.</div>
+      </sgds-alert>
 
-        <sgds-tab-panel id="new-prompt-code" name="new-prompt-code" class="sgds:pt-layout-md">
-          <article class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <div>
-              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-normal sgds:m-0">Prompt-to-code with SGDS skills</h3>
-            </div>
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-                Use this workflow when you want to generate working SGDS code directly from a product requirement, user flow, wireframe, or page description.
-              </p>
-              <ol class="sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:m-0 sgds:pl-[var(--sgds-padding-xl)] sgds:text-subtle">
-                <li>Describe the page, flow, or component you want to build.</li>
-                <li>Ask your AI coding tool to use the relevant SGDS skills.</li>
-                <li>Start with <CodeToken label="sgds-getting-started" /> to set up the project correctly.</li>
-                <li>Use SGDS component, utility, form, block, and template skills as the interface grows.</li>
-                <li>Review the output against SGDS guidance before shipping.</li>
-              </ol>
-              <PromptBox prompt="Create a new SGDS application for a service request dashboard. Use SGDS web components, SGDS utilities, and the SGDS application shell. Include a sidebar, summary cards, a filterable table, and an empty state." />
-            </div>
-          </article>
-        </sgds-tab-panel>
+      <article class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+            When kicking off a new project, give the agent a clear setup instruction upfront and a few things to keep in mind:
+          </p>
+          <ul class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-8 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+            <li class="sgds:m-0"><strong>Specify your framework.</strong> Use React, Vue, Angular, or plain HTML.</li>
+            <li class="sgds:m-0"><strong>Say "sole design system".</strong> This prevents the agent from mixing in other UI libraries.</li>
+          </ul>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+            The agent will handle installation, setup, and make sure all UI uses SGDS components and utilities from the start.
+          </p>
+        </div>
 
-        <sgds-tab-panel id="new-figma-code" name="new-figma-code" class="sgds:pt-layout-md">
-          <article class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <div>
-              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-normal sgds:m-0">Figma-to-code with SGDS libraries</h3>
+        <PromptBox prompt="Set up a new frontend app using [your framework]. Run npm install @govtechsg/sgds-web-component and install the skills with npx skills add govtechsg/sgds-web-component. Use SGDS as the sole design system for the application.">
+          Set up a new frontend app using
+          <CodeToken label="[your framework]" wrap />.
+          Run
+          <CodeToken label="npm install @govtechsg/sgds-web-component" wrap />
+          and install the skills with
+          <CodeToken label="npx skills add govtechsg/sgds-web-component" wrap />.
+          Use SGDS as the sole design system for the application.
+        </PromptBox>
+      </article>
+
+      <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+        <AiInstructionStepper :steps="newProjectInstructionSteps">
+          <template #step-1>
+            <p>
+              Write the prompt in terms of the user flow, page purpose, content, and key interactions. You do not need to know SGDS component names, but you should describe the interface clearly enough for the AI coding tool to choose the right SGDS patterns.
+            </p>
+            <ol class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-8 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              <li class="sgds:m-0">State the product or service context.</li>
+              <li class="sgds:m-0">Describe the page, flow, or component you need.</li>
+              <li class="sgds:m-0">Include required content, states, interactions, and responsive behaviour.</li>
+              <li class="sgds:m-0">Ask for SGDS components, SGDS utilities, and accessible markup.</li>
+            </ol>
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <PromptBox prompt="Create an SGDS login page for a government service. Include email and password fields, a submit button, validation states, and accessible form labels." label="Example prompt" />
+              <PromptBox prompt="Create an SGDS dashboard with sidebar navigation, summary cards, filters, a data table, loading state, and empty state." label="Example prompt" />
+              <PromptBox prompt="Create a multi-step SGDS application form with a stepper, applicant details, supporting documents, review, and submission states." label="Example prompt" />
             </div>
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-                Use this workflow when visual review, layout precision, or stakeholder alignment needs to happen before implementation.
-              </p>
-              <ol class="sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:m-0 sgds:pl-[var(--sgds-padding-xl)] sgds:text-subtle">
-                <li>Start from the SGDS Figma libraries.</li>
-                <li>Compose the screen using SGDS components and styles.</li>
-                <li>Use Figma MCP to send the selected design from Figma to code.</li>
-                <li>Ask the AI coding tool to implement the design using SGDS web components and utilities.</li>
-              </ol>
-              <PromptBox prompt="Implement this Figma screen using SGDS web components and SGDS utilities. Match the layout closely, reuse existing SGDS components where possible, and flag anything that does not have a direct SGDS match." />
+          </template>
+
+          <template #step-2>
+            <p>
+              Ask the AI coding tool to read <CodeToken label="sgds-workflow" /> first. It points the tool to the right SGDS skill for each part of the task.
+            </p>
+            <ol class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-8 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              <li class="sgds:m-0">For a new app, begin with <CodeToken label="sgds-getting-started" /> before writing page code.</li>
+              <li class="sgds:m-0">For UI elements, check <CodeToken label="sgds-components" /> before creating custom markup.</li>
+              <li class="sgds:m-0">For spacing, layout, typography, and colours, use <CodeToken label="sgds-utilities" /> and <CodeToken label="sgds:" /> classes.</li>
+              <li class="sgds:m-0">For full pages or reusable sections, use <CodeToken label="sgds-templates" /> and <CodeToken label="sgds-blocks" />.</li>
+            </ol>
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <PromptBox prompt="Read sgds-workflow first. Then build a sidebar dashboard layout using SGDS components, utilities, and the recommended app layout." label="Example prompt" />
             </div>
-          </article>
-        </sgds-tab-panel>
-      </sgds-tab-group>
+          </template>
+
+          <template #step-3>
+            <p>
+              Ask the AI coding tool to create the implementation using SGDS setup, components, utilities, and app layout rules.
+            </p>
+            <ol class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-8 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              <li class="sgds:m-0">Add Inter in the HTML <CodeToken label="<head>" /> before SGDS CSS.</li>
+              <li class="sgds:m-0">Import <CodeToken label="themes/day.css" />, <CodeToken label="css/sgds.css" />, and <CodeToken label="css/utility.css" /> in that order from a CSS file processed by Tailwind.</li>
+              <li class="sgds:m-0">Import <CodeToken label="@govtechsg/sgds-web-component" /> once in the app entry point.</li>
+              <li class="sgds:m-0">Use the SGDS app shell with <CodeToken label=".sgds-container" /> or <CodeToken label=".sgds-container-sidebar" />.</li>
+              <li class="sgds:m-0">Use <CodeToken label="<sgds-*>" /> components and <CodeToken label="sgds:" /> utility classes instead of custom CSS where possible.</li>
+            </ol>
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <PromptBox prompt="Create a new SGDS application for a service request dashboard. Complete the SGDS setup first, then use SGDS web components, SGDS utility classes, and the SGDS application shell. Include a sidebar, summary cards, a filterable table, and an empty state." label="Example prompt" />
+            </div>
+          </template>
+
+          <template #step-4>
+            <p>
+              Check that the generated code uses SGDS v3 components correctly, follows project conventions, and works across the intended desktop and mobile views.
+            </p>
+            <ol class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-8 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              <li class="sgds:m-0">Run your test suite to check for regressions.</li>
+              <li class="sgds:m-0">Do a visual pass in a browser on desktop and mobile.</li>
+              <li class="sgds:m-0">Compare against any product brief, wireframe, or Figma design for remaining gaps.</li>
+            </ol>
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <PromptBox prompt="Review the generated page against SGDS guidance. Flag any incorrect components, missing states, spacing issues, or accessibility gaps before making changes." label="Example prompt" />
+            </div>
+          </template>
+        </AiInstructionStepper>
+
+      </article>
     </section>
 
     <section id="existing-project" class="sgds:flex sgds:flex-col sgds:gap-layout-md sgds:w-full">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-normal sgds:m-0">Existing project</h2>
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Existing project</h2>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
           Use this path when you already have a codebase, product, or interface that needs to adopt SGDS or improve its SGDS alignment.
         </p>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-          Choose <strong>code migration</strong> when you are working inside an existing codebase and need to move existing UI towards SGDS.
-        </p>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-          Choose <strong>Figma-to-code</strong> when visual review, layout precision, or stakeholder alignment matters before implementation.
-        </p>
       </div>
 
-      <sgds-tab-group>
-        <sgds-tab slot="nav" panel="existing-code-migration" active>Code migration</sgds-tab>
-        <sgds-tab slot="nav" panel="existing-figma-code">Figma-to-code</sgds-tab>
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+        <sgds-alert show variant="info" outlined title="Have Figma screens already?">
+          <div>Use <sgds-alert-link href="/ai/figma-and-code-workflows">Figma workflows</sgds-alert-link> instead if you are building from an existing Figma screen or using Figma MCP to move designs into code.</div>
+        </sgds-alert>
 
-        <sgds-tab-panel id="existing-code-migration" name="existing-code-migration" class="sgds:pt-layout-md">
-          <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
-            <sgds-alert show variant="warning" outlined>
-              <sgds-icon slot="icon" name="exclamation-triangle"></sgds-icon>
-              <div>SGDS migration skills are still in progress. Until they are ready, use the SGDS component, utility, form, block, and template skills as references during migration.</div>
-            </sgds-alert>
+        <sgds-alert show variant="warning" outlined title="Migration skills are in progress">
+          <div>Until they are ready, use sgds-components, sgds-utilities, sgds-forms, sgds-blocks, and sgds-templates as references during migration.</div>
+        </sgds-alert>
 
-            <article class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <div>
-              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-normal sgds:m-0">Code migration with SGDS skills</h3>
-            </div>
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-                Use this workflow when you need to refactor existing pages, replace custom UI with SGDS components, or migrate an interface towards SGDS standards.
+        <article class="sgds:flex sgds:flex-col sgds:gap-text-md">
+          <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Improve or migrate existing UI</h3>
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
+              Use this workflow when you need to refactor existing pages, replace custom UI with SGDS components, or migrate an interface towards SGDS standards.
+            </p>
+            <ol class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-8 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              <li class="sgds:m-0">Share the relevant page, component, or codebase context with the AI coding tool.</li>
+              <li class="sgds:m-0">Ask it to check the SGDS setup, including CSS import order, utility CSS processing, and component registration.</li>
+              <li class="sgds:m-0">Replace custom UI with SGDS components where appropriate, and use <CodeToken label="sgds:" /> utility classes for styling.</li>
+              <li class="sgds:m-0">Use <CodeToken label="sgds-forms" /> for form validation and <CodeToken label="sgds-data-visualisation" /> if the page includes charts.</li>
+              <li class="sgds:m-0">Preserve existing routes, data handling, and behaviour unless the migration requires a change.</li>
+              <li class="sgds:m-0">Build and test the updated page before review.</li>
+            </ol>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+              If you are upgrading an existing app, work <strong>incrementally</strong>. Change one component or section at a time.
+            </p>
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+                Start with this prompt:
               </p>
-              <ol class="sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:m-0 sgds:pl-[var(--sgds-padding-xl)] sgds:text-subtle">
-                <li>Share the relevant page, component, or codebase context with the AI tool.</li>
-                <li>Ask it to assess the current implementation against SGDS patterns.</li>
-                <li>Use the SGDS migration skills when they are available.</li>
-                <li>Replace custom UI with SGDS components where appropriate.</li>
-                <li>Preserve existing behaviour unless the migration requires a change.</li>
-                <li>Build and test the updated page before review.</li>
-              </ol>
-              <PromptBox prompt="Review this existing form page and migrate it to SGDS. Replace custom inputs, buttons, alerts, and layout styles with SGDS web components and utilities. Keep the current validation behaviour unless it conflicts with SGDS guidance." />
+              <PromptBox prompt="I want to migrate my app to SGDS v3 incrementally." />
             </div>
-            </article>
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+                Then build on it with these strategies:
+              </p>
+
+              <AiInstructionStepper :steps="migrationSteps">
+                <template #step-1>
+                  <p>Ask the agent to analyse your codebase first and produce a migration plan before touching any code:</p>
+                  <PromptBox prompt="Analyse my codebase and generate a migration plan to SGDS v3 before making any changes." />
+                </template>
+
+                <template #step-2>
+                  <p>Tell the agent to replace existing UI components with their SGDS equivalents, one by one:</p>
+                  <PromptBox prompt="Replace the existing button component with &lt;sgds-button&gt;. Do not change anything else." />
+                </template>
+
+                <template #step-3>
+                  <p>Ask the agent to swap your old design system's typography, spacing, and colour foundations with SGDS v3:</p>
+                  <PromptBox prompt="Replace the old foundation styles (typography, spacing, colours) with SGDS v3 equivalents." />
+                </template>
+
+                <template #step-4>
+                  <p>Request the agent to recommend the appropriate SGDS semantic CSS utility tokens to replace existing styles:</p>
+                  <PromptBox prompt="Look at the components and recommend the appropriate SGDS semantic CSS utility tokens to replace existing styles, including inline styles, CSS classes, or old utility classes." />
+                </template>
+              </AiInstructionStepper>
+            </div>
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <p class="sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">Putting it all together</p>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+                Use this prompt when you want the agent to review a page and migrate it safely:
+              </p>
+              <PromptBox prompt="Review this existing form page and migrate it to SGDS. Check the SGDS setup, replace custom inputs, buttons, alerts, and layout styles with SGDS web components and utilities where appropriate, and keep the current validation behaviour unless it conflicts with SGDS guidance." />
+            </div>
           </div>
-        </sgds-tab-panel>
-
-        <sgds-tab-panel id="existing-figma-code" name="existing-figma-code" class="sgds:pt-layout-md">
-          <article class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <div>
-              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-normal sgds:m-0">Figma-to-code for existing projects</h3>
-            </div>
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-                Use this workflow when the existing product needs design review before implementation.
-              </p>
-              <ol class="sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:m-0 sgds:pl-[var(--sgds-padding-xl)] sgds:text-subtle">
-                <li>Recreate or update the screen in Figma using SGDS libraries.</li>
-                <li>Keep existing product constraints visible in the design.</li>
-                <li>Use Figma MCP to send the design to code.</li>
-                <li>Ask the AI coding tool to implement the update within the existing codebase.</li>
-              </ol>
-              <PromptBox prompt="Implement this updated Figma design in the existing project. Use SGDS web components and SGDS utilities. Preserve existing routes, data handling, and business logic unless the design requires a change." />
-            </div>
-          </article>
-        </sgds-tab-panel>
-      </sgds-tab-group>
+        </article>
+      </div>
     </section>
 
   </div>

@@ -20,8 +20,8 @@ const copyPrompt = async () => {
 </script>
 
 <template>
-  <div class="sgds:box-border sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-2-xs)] sgds:min-w-0 sgds:max-w-full sgds:py-[var(--sgds-padding-md)] sgds:px-[var(--sgds-component-padding-xs)] sgds:w-full">
-    <div class="sgds:flex sgds:items-center sgds:justify-between sgds:gap-[var(--sgds-gap-md)] sgds:min-w-0">
+  <div class="sgds:box-border sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:flex sgds:flex-col sgds:gap-text-2-xs sgds:min-w-0 sgds:max-w-full sgds:py-component-xs sgds:px-component-xs sgds:w-full">
+    <div class="sgds:flex sgds:items-center sgds:justify-between sgds:gap-component-xs sgds:min-w-0">
       <span class="sgds:text-[var(--sgds-label-color-subtle)] sgds:uppercase sgds:text-label-sm sgds:font-semibold sgds:leading-xs sgds:tracking-normal">{{ label }}</span>
       <button
         :class="['sgds:flex sgds:items-center sgds:justify-center sgds:bg-transparent sgds:border-0 sgds:rounded sgds:cursor-pointer sgds:flex-none sgds:p-1 sgds:transition sgds:duration-200 sgds:ease-in-out sgds:hover:bg-muted', copied ? 'sgds:text-success-default' : 'sgds:text-default']"
