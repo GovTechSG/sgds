@@ -56,7 +56,7 @@ jobs:
   analyze-ruby:
     name: Analyze (ruby)
     # Only run Ruby scanning on branches that still use Ruby (not v3)
-    if: github.ref != 'refs/heads/v3' && github.base_ref != 'v3'
+    if: github.ref != 'refs/heads/v3' && (github.base_ref == null || github.base_ref != 'v3')
     runs-on: ubuntu-latest
     permissions:
       security-events: write
