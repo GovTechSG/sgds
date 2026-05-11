@@ -2,6 +2,7 @@ export const categoryColorClass: Record<string, string> = {
   Component: "sgds:text-primary-default",
   Foundation: "sgds:text-success-default",
   Template: "sgds:text-warning-default",
+  "Get started": "sgds:text-primary-default",
   Guideline: "sgds:text-purple-default",
   AI: "sgds:text-cyan-default",
 };
@@ -18,6 +19,12 @@ export interface SearchResult extends SearchItem {
 }
 
 export const searchIndex: SearchItem[] = [
+  // Get started
+  { title: "Get started", category: "Get started", url: "/get-started/", keywords: ["overview", "sgds v3", "start"] },
+  { title: "About SGDS", category: "Get started", url: "/get-started/about-sgds", keywords: ["vision", "principles", "values"] },
+  { title: "Design", category: "Get started", url: "/get-started/design", keywords: ["figma", "design", "libraries", "tokens"] },
+  { title: "Develop", category: "Get started", url: "/get-started/develop", keywords: ["install", "components", "templates", "blocks"] },
+
   // Foundations
   { title: "Colour", category: "Foundation", url: "/foundations/colour" },
   { title: "Iconography", category: "Foundation", url: "/foundations/iconography" },
@@ -153,8 +160,9 @@ const categoryOrder: Record<string, number> = {
   Component: 0,
   Foundation: 1,
   Template: 2,
-  Guideline: 3,
-  AI: 4,
+  "Get started": 3,
+  Guideline: 4,
+  AI: 5,
 };
 
 function getExcerpt(text: string, query: string, maxLen = 110): string {
