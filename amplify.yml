@@ -3,22 +3,16 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - corepack enable
+        - corepack prepare pnpm@latest --activate
+        - pnpm install --frozen-lockfile
     build:
       commands:
-        - npm run build
-        - |
-          if [ $AWS_BRANCH == "v2" ]
-          then 
-            JEKYLL_ENV=production npm run build
-          else
-            npm run build:dev
-          fi
-        - ls -a
-
+        - pnpm docs:build
   artifacts:
-    baseDirectory: portal/_site
+    baseDirectory: docs/.vitepress/dist
     files:
       - '**/*'
   cache:
-    paths: [] 
+    paths:
+      - node_modules/.pnpm
