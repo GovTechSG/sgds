@@ -505,7 +505,7 @@ Organize navigation into collapsible groups with visual indicators like notifica
 </div>
 ```
 
-See **[Application Shell](../../sgds-pattern-block-templates/reference/application-shell.md)** for the complete sidebar app layout setup.
+See **[Application Shell](../../sgds-blocks/reference/application-shell.md)** for the complete sidebar app layout setup.
 
 ## Keyboard Navigation
 
@@ -520,8 +520,8 @@ See **[Application Shell](../../sgds-pattern-block-templates/reference/applicati
 ## Related Components
 
 - **[sidenav reference](sidenav.md)** — The stable published sidebar; use when you need a production-ready vertical nav without the RC dependency. `sgds-sidebar` replaces `sgds-sidenav` once out of RC.
-- **[Application Shell](../../sgds-pattern-block-templates/reference/application-shell.md)** — Full sidebar app layout template
-- **[sgds-pattern-page-templates](../sgds-pattern-page-templates/SKILL.md)** — Dashboard template usage
+- **[Application Shell](../../sgds-blocks/reference/application-shell.md)** — Full sidebar app layout template
+- **[sgds-templates](../sgds-templates/SKILL.md)** — Dashboard template usage
 
 ---
 

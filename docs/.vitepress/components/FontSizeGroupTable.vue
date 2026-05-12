@@ -17,10 +17,13 @@ type FontSizeGroup = {
   sizes: readonly FontSizeRow[];
 };
 
-const props = defineProps<{
-  group: FontSizeGroup;
-  showHeader?: boolean;
-}>();
+const props = withDefaults(
+  defineProps<{
+    group: FontSizeGroup;
+    showHeader?: boolean;
+  }>(),
+  { showHeader: true },
+);
 
 const copiedKey = ref<string | null>(null);
 
@@ -92,11 +95,8 @@ const copyTokenValue = async (sizeName: string, text: string) => {
 </script>
 
 <template>
-  <article :id="group.key" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-    <div v-if="showHeader !== false" class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-      <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ group.label }}</h4>
-      <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ group.description }}</p>
-    </div>
+  <article :id="group.key" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+    <h5 v-if="showHeader !== false" class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
 
     <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table font-size-utility-table">
       <sgds-table-row>

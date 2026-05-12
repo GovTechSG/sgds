@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Font size
-description: Semantic font size utility classes and their responsive values across breakpoints.
+description: Apply SGDS font size utilities for text that needs to follow the system type scale.
 ---
 
 <script setup>

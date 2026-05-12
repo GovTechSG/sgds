@@ -6,11 +6,15 @@ import Section from "./Section.vue";
 const principles = [
   {
     title: "Visual hierarchy",
-    body: "Elevation should clearly indicate the importance of elements, helping users prioritize content and navigate the interface effectively.",
+    body: "Use elevation to show importance and help users prioritise content.",
   },
   {
     title: "Subtlety",
-    body: "Elevation effects should be subtle and natural, adding depth without overwhelming the design or drawing unnecessary attention to themselves.",
+    body: "Keep elevation subtle so it adds depth without taking focus from content.",
+  },
+  {
+    title: "Focus",
+    body: "Use opacity backgrounds to focus layered surfaces, such as modals and sheets.",
   },
 ];
 </script>
@@ -21,47 +25,54 @@ const principles = [
     <!-- Principle -->
     <FoundationPrinciplesList :principles="principles" />
 
-    <!-- Surface -->
-    <Section
-      title="Surface"
-      description="Default elevation level that elevates navigation or information temporarily appearing in front of other surfaces, such as dropdown menu and tooltips. The elevation level is also applied to actionable elements after hovering over like cards and tiles."
-    >
-      <div class="ep-demo-card sgds:min-h-[18rem] sgds:max-md:min-h-[14rem]">
-        <div class="ep-surface-row">
-          <div class="ep-shadow-tile elevation-surface-1"></div>
-          <div class="ep-shadow-tile elevation-surface-2"></div>
-          <div class="ep-shadow-tile elevation-surface-3"></div>
-          <div class="ep-shadow-tile elevation-surface-4"></div>
-          <div class="ep-shadow-tile elevation-surface-5"></div>
-        </div>
-      </div>
-    </Section>
+    <Section title="Characteristics">
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+        <section class="sgds:flex sgds:flex-col sgds:gap-text-lg">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:mb-0">Surface</h4>
+            <p class="sgds:text-subtle sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:max-w-[864px] sgds:mb-0">
+              Default elevation level that elevates navigation or information temporarily appearing in front of other surfaces, such as dropdown menu and tooltips. The elevation level is also applied to actionable elements after hovering over like cards and tiles.
+            </p>
+          </div>
+          <div class="ep-demo-card sgds:min-h-[18rem] sgds:max-md:min-h-[14rem]">
+            <div class="ep-surface-row">
+              <div class="ep-shadow-tile elevation-surface-1"></div>
+              <div class="ep-shadow-tile elevation-surface-2"></div>
+              <div class="ep-shadow-tile elevation-surface-3"></div>
+              <div class="ep-shadow-tile elevation-surface-4"></div>
+              <div class="ep-shadow-tile elevation-surface-5"></div>
+            </div>
+          </div>
+        </section>
 
-    <!-- Edge -->
-    <Section
-      title="Edge"
-      description="A drop shadow on the edge of a top or bottom component, allowing surfaces to move behind when scrolled such as header and action bar."
-    >
-      <div class="ep-demo-card sgds:min-h-[18rem] sgds:max-md:min-h-[14rem]">
-        <div class="ep-edge-row">
-          <div class="ep-edge-tile elevation-edge-top"></div>
-          <div class="ep-edge-tile elevation-edge-bottom"></div>
-        </div>
-      </div>
-    </Section>
+        <section class="sgds:flex sgds:flex-col sgds:gap-text-lg">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:mb-0">Edge</h4>
+            <p class="sgds:text-subtle sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:max-w-[864px] sgds:mb-0">
+              A drop shadow on the edge of a top or bottom component, allowing surfaces to move behind when scrolled such as header and action bar.
+            </p>
+          </div>
+          <div class="ep-demo-card sgds:min-h-[18rem] sgds:max-md:min-h-[14rem]">
+            <div class="ep-edge-row">
+              <div class="ep-edge-tile elevation-edge-top"></div>
+              <div class="ep-edge-tile elevation-edge-bottom"></div>
+            </div>
+          </div>
+        </section>
 
-    <!-- Opacities -->
-    <Section
-      title="Opacities"
-      description="A opacity background can bring focus by increasing the visual contrast of a layered surface like modals and sheets."
-    >
-      <div class="ep-demo-card ep-opacities-scene sgds:min-h-[18rem] sgds:max-md:min-h-[14rem]">
-        <!-- Content card sitting on the base surface, behind the scrim -->
-        <div class="ep-opacity-content-card elevation-surface-1"></div>
-        <!-- Dark overlay scrim on top of the base and content card -->
-        <div class="ep-overlay-scrim"></div>
-        <!-- Modal card elevated above the scrim -->
-        <div class="ep-opacity-modal-card elevation-surface-4"></div>
+        <section class="sgds:flex sgds:flex-col sgds:gap-text-lg">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:mb-0">Opacities</h4>
+            <p class="sgds:text-subtle sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:max-w-[864px] sgds:mb-0">
+              An opacity background can bring focus by increasing the visual contrast of a layered surface like modals and sheets.
+            </p>
+          </div>
+          <div class="ep-demo-card ep-opacities-scene sgds:min-h-[18rem] sgds:max-md:min-h-[14rem]">
+            <div class="ep-opacity-content-card elevation-surface-1"></div>
+            <div class="ep-overlay-scrim"></div>
+            <div class="ep-opacity-modal-card elevation-surface-4"></div>
+          </div>
+        </section>
       </div>
     </Section>
 

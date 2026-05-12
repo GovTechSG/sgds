@@ -63,7 +63,7 @@ const copyTokenValue = async (key: string, text: string) => {
     <section class="typography-page-template__section">
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
         <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Base</h4>
+          <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Base</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">General-purpose hierarchy tokens. Use these when a specific typographic role (heading, label, link) does not apply.</p>
         </div>
 

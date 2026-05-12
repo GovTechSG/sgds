@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
-import { typographyStyleSections, aliasToUtility } from "../data/typography-style-tokens";
+import { typographyStyleSections } from "../data/typography-style-tokens";
+import { typographyTokenDocs } from "../data/typography-token-docs";
+import CodeToken from "./ui/CodeToken.vue";
 
 const sectionUsageCopy: Record<string, string> = {
   display:
@@ -36,23 +37,45 @@ const sectionUsageHeadingLabel: Record<string, string> = {
   overline: "overline",
 };
 
-const copiedSnippetKey = ref<string | null>(null);
+const getCssVariables = (row: { aliases: readonly string[] }) =>
+  row.aliases.filter((alias) => alias.startsWith("--"));
 
-const getUtilityValues = (row: { aliases: readonly string[] }) =>
-  row.aliases
-    .filter((alias) => alias.startsWith("--"))
-    .map(aliasToUtility);
-
-const getCombinedUtilityValues = (row: { aliases: readonly string[] }) =>
-  getUtilityValues(row).join(" ");
-
-const copySnippet = async (key: string, text: string) => {
-  await navigator.clipboard.writeText(text);
-  copiedSnippetKey.value = key;
-  setTimeout(() => {
-    if (copiedSnippetKey.value === key) copiedSnippetKey.value = null;
-  }, 2000);
+const getCssVarValue = (variable: string): string => {
+  if (typeof window === "undefined") return "";
+  return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
 };
+
+const responsiveSubgroups =
+  typographyTokenDocs.responsive.responsiveFontSizeSubgroups ?? [];
+
+const responsiveRowsByToken = new Map(
+  responsiveSubgroups
+    .flatMap((subgroup) => subgroup.rows)
+    .map((row) => [row.token, row]),
+);
+
+const getResponsiveTokenValue = (token: string): string => {
+  const value = token.match(/^--sgds-(?:font-size|line-height)-(.+)$/)?.[1];
+  return value && /^\d+$/.test(value) ? `${value}px` : token;
+};
+
+const variableToTooltip = (variable: string): string => {
+  const responsiveRow = responsiveRowsByToken.get(variable);
+  const responsiveValues = responsiveRow
+    ? `Mobile ${getResponsiveTokenValue(responsiveRow.mobile)}, Tablet ${getResponsiveTokenValue(responsiveRow.tablet)}, Desktop ${getResponsiveTokenValue(responsiveRow.desktop)}`
+    : "";
+
+  if (responsiveValues && variable.startsWith("--sgds-font-size-")) return `Font size: ${responsiveValues}`;
+  if (responsiveValues && variable.startsWith("--sgds-line-height-")) return `Line height: ${responsiveValues}`;
+
+  const value = getCssVarValue(variable);
+  if (variable.startsWith("--sgds-font-size-")) return `Font size: ${value}`;
+  if (variable.startsWith("--sgds-font-weight-")) return `Font weight: ${value}`;
+  if (variable.startsWith("--sgds-line-height-")) return `Line height: ${value}`;
+  if (variable.startsWith("--sgds-letter-spacing-")) return `Letter spacing: ${value}`;
+  return value || variable;
+};
+
 
 const props = defineProps<{
   sectionKeys: string[];
@@ -72,7 +95,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
           class="ts-style-section"
         >
           <div class="ts-style-section-copy">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:mb-0">
               When to use {{ sectionUsageHeadingLabel[section.key] }}
             </h2>
 
@@ -89,10 +112,9 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
             class="typography-page-template__utility-table ts-type-token-table"
           >
             <sgds-table-row>
-              <sgds-table-head class="typography-page-template__table-style-column">Style name</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-preview-column">Preview</sgds-table-head>
+              <sgds-table-head class="typography-page-template__table-preview-column">Style</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-usage-column">When to use</sgds-table-head>
-              <sgds-table-head>SGDS tailwind token</sgds-table-head>
+              <sgds-table-head>Alias token</sgds-table-head>
             </sgds-table-row>
 
             <sgds-table-row
@@ -100,24 +122,16 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
               :key="row.tokenNames.join('-')"
               :class="{ 'ts-default-row': Boolean(row.note) }"
             >
-              <sgds-table-cell :class="['typography-page-template__table-style-column', section.key === 'display' ? 'ts-style-name-cell--display' : '']">
+              <sgds-table-cell :class="['ts-preview-cell', section.key === 'display' ? 'ts-preview-cell--display' : '', section.key === 'caption' ? 'ts-preview-cell--caption' : '']">
                 <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-2-xs">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                    {{ row.example }}
-                  </span>
-                  <div
-                    v-if="row.note || row.headingLevel"
-                    class="sgds:flex sgds:flex-wrap sgds:gap-2-xs"
-                  >
+                  <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
+                    <p :class="['ts-token-example', 'ts-' + row.exampleClass]">
+                      {{ row.example }}
+                    </p>
                     <sgds-badge v-if="row.note" variant="primary">Default</sgds-badge>
                     <sgds-badge v-if="row.headingLevel" variant="neutral">{{ row.headingLevel }}</sgds-badge>
                   </div>
                 </div>
-              </sgds-table-cell>
-              <sgds-table-cell :class="['ts-preview-cell', section.key === 'display' ? 'ts-preview-cell--display' : '']">
-                <p :class="['ts-token-example', 'ts-' + row.exampleClass]">
-                  {{ row.example }}
-                </p>
               </sgds-table-cell>
               <sgds-table-cell class="typography-page-template__table-usage-column">
                 <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:mb-0">
@@ -126,25 +140,14 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
               </sgds-table-cell>
               <sgds-table-cell>
                 <div class="ts-alias-token-list">
-                  <div class="ts-snippet-row">
-                    <code class="ts-snippet-code">
-                      <span
-                        v-for="token in getUtilityValues(row)"
-                        :key="`${row.tokenNames.join('-')}-snippet-${token}`"
-                      >
-                        {{ token }}
-                      </span>
-                    </code>
-                    <button
-                      :class="[
-                        'ts-snippet-copy-btn',
-                        copiedSnippetKey === row.tokenNames.join('-') ? 'sgds:text-success-default' : 'sgds:text-default'
-                      ]"
-                      @click="copySnippet(row.tokenNames.join('-'), getCombinedUtilityValues(row))"
-                    >
-                      <sgds-icon :name="copiedSnippetKey === row.tokenNames.join('-') ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
+                  <sgds-tooltip
+                    v-for="variable in getCssVariables(row)"
+                    :key="`${row.tokenNames.join('-')}-var-${variable}`"
+                    :content="variableToTooltip(variable)"
+                    placement="top"
+                  >
+                    <CodeToken :label="variable" />
+                  </sgds-tooltip>
                 </div>
               </sgds-table-cell>
             </sgds-table-row>
@@ -178,6 +181,12 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
   background: var(--sgds-primary-surface-muted);
 }
 
+.ts-default-row span,
+.ts-default-row p,
+.ts-default-row .ts-token-example {
+  color: var(--sgds-color-fixed-dark);
+}
+
 .ts-token-name-cell {
   align-items: center;
   display: flex;
@@ -196,69 +205,22 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
   display: flex;
   flex-direction: column;
   gap: var(--sgds-gap-xs);
-  min-width: 0;
-}
-
-.ts-alias-token-list code {
-  max-inline-size: none;
-  white-space: nowrap;
-}
-
-.ts-snippet-row {
-  align-items: flex-start;
-  background: var(--sgds-surface-raised);
-  border: 1px solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-sm);
-  display: flex;
-  gap: var(--sgds-gap-2-xs);
-  justify-content: space-between;
-  padding: 0.375rem var(--sgds-padding-sm);
-}
-
-.ts-snippet-code {
-  color: var(--sgds-body-color-subtle);
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  font-family: var(--sgds-font-family-mono, monospace);
-  font-size: var(--sgds-font-size-body-sm);
-  gap: var(--sgds-gap-2-xs);
-  line-height: var(--sgds-line-height-xs);
-  min-width: 0;
-  overflow: visible;
-  white-space: normal;
-}
-
-.ts-snippet-code span {
-  align-self: flex-start;
-  color: var(--sgds-body-color-default);
-  white-space: nowrap;
-}
-
-.ts-snippet-copy-btn {
-  background: transparent;
-  border: 0;
-  border-radius: var(--sgds-border-radius-sm);
-  cursor: pointer;
-  display: flex;
-  flex-shrink: 0;
-  padding: var(--sgds-spacer-1);
-}
-
-.ts-snippet-copy-btn:hover {
-  background: var(--sgds-bg-translucent-subtle);
 }
 
 .ts-preview-cell {
+  min-width: 14rem;
   overflow: visible;
+  width: 28%;
 }
 
 .ts-preview-cell--display {
-  min-width: 16rem;
+  min-width: 20rem;
+  width: 34%;
 }
 
-.ts-style-name-cell--display {
-  width: 13rem;
+.ts-preview-cell--caption {
+  min-width: 10rem;
+  width: 22%;
 }
 
 .ts-token-example {

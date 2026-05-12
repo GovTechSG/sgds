@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Text decoration
-description: Text decoration utilities used with SGDS typography.
+description: Apply text decoration utilities for underlines and other text treatments used in SGDS interfaces.
 ---
 
 <script setup>

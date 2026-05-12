@@ -1,0 +1,43 @@
+<svg viewBox="0 80 640 420" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+<!-- outer border removed -->
+<rect x="200.5" y="80.5" width="239" height="239" fill="var(--sgds-border-color-muted)" fill-opacity="0.25" stroke="var(--sgds-border-color-muted)"/>
+<rect x="230.5" y="110.5" width="179" height="179" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<rect x="220.5" y="120.5" width="199" height="159" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<rect x="240.5" y="100.5" width="159" height="199" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<circle cx="320" cy="200" r="99.5" stroke="var(--sgds-border-color-muted)"/>
+<circle cx="320" cy="200" r="49.5" stroke="var(--sgds-border-color-muted)"/>
+<path d="M201 81L439 319" stroke="var(--sgds-border-color-muted)" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M201 319L439 81" stroke="var(--sgds-border-color-muted)" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="80.5" y="384.5" width="95" height="95" fill="var(--sgds-border-color-muted)" fill-opacity="0.25" stroke="var(--sgds-border-color-muted)"/>
+<rect x="88.4998" y="400.5" width="79" height="63" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<rect x="96.5002" y="392.5" width="63" height="79" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<circle cx="128" cy="432" r="39.5" stroke="var(--sgds-border-color-muted)"/>
+<circle cx="128" cy="432" r="19.5" stroke="var(--sgds-border-color-muted)"/>
+<path d="M80.4001 384.4L175.6 479.6" stroke="var(--sgds-border-color-muted)" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M80.4001 479.6L175.6 384.4" stroke="var(--sgds-border-color-muted)" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="92" y="396" width="72" height="72" rx="10" fill="var(--sgds-danger-color-default)" fill-opacity="0.2"/>
+<rect x="208.5" y="384.5" width="95" height="95" fill="var(--sgds-border-color-muted)" fill-opacity="0.25" stroke="var(--sgds-border-color-muted)"/>
+<rect x="216.5" y="400.5" width="79" height="63" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<rect x="224.5" y="392.5" width="63" height="79" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<circle cx="256" cy="432" r="19.5" stroke="var(--sgds-border-color-muted)"/>
+<path d="M208.4 384.4L303.6 479.6" stroke="var(--sgds-border-color-muted)" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M208.4 479.6L303.6 384.4" stroke="var(--sgds-border-color-muted)" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="220.5" y="396.5" width="71" height="71" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<circle cx="256" cy="432" r="40" fill="var(--sgds-danger-color-default)" fill-opacity="0.2"/>
+<rect x="336.5" y="384.5" width="95" height="95" fill="var(--sgds-border-color-muted)" fill-opacity="0.25" stroke="var(--sgds-border-color-muted)"/>
+<rect x="352.5" y="392.5" width="63" height="79" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<circle cx="384" cy="432" r="19.5" stroke="var(--sgds-border-color-muted)"/>
+<path d="M336.4 384.4L431.6 479.6" stroke="var(--sgds-border-color-muted)" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M336.4 479.6L431.6 384.4" stroke="var(--sgds-border-color-muted)" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="348.5" y="396.5" width="71" height="71" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<circle cx="384" cy="432" r="39.5" stroke="var(--sgds-border-color-muted)"/>
+<rect x="344" y="400" width="80" height="64" rx="10" fill="var(--sgds-danger-color-default)" fill-opacity="0.2"/>
+<rect x="464.5" y="384.5" width="95" height="95" fill="var(--sgds-border-color-muted)" fill-opacity="0.25" stroke="var(--sgds-border-color-muted)"/>
+<circle cx="512" cy="432" r="19.5" stroke="var(--sgds-border-color-muted)"/>
+<path d="M464.4 384.4L559.6 479.6" stroke="var(--sgds-border-color-muted)" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M464.4 479.6L559.6 384.4" stroke="var(--sgds-border-color-muted)" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="476.5" y="396.5" width="71" height="71" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<circle cx="512" cy="432" r="39.5" stroke="var(--sgds-border-color-muted)"/>
+<rect x="472.5" y="400.5" width="79" height="63" rx="9.5" stroke="var(--sgds-border-color-muted)"/>
+<rect x="480" y="392" width="64" height="80" rx="10" fill="var(--sgds-danger-color-default)" fill-opacity="0.2"/>
+</svg>

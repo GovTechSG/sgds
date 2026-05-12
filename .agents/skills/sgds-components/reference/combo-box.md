@@ -54,6 +54,14 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 - **Clearing selection**: `clearable` resets `element.value` to empty — ensure downstream listeners on `sgds-change` handle an empty value gracefully.
 - **Mobile**: the dropdown renders inline; for very large datasets on small screens, consider limiting the option count via async filtering rather than rendering all options.
 - **IME input** (e.g. Chinese/Japanese): filtering fires via `sgds-input` which may fire during composition — use `async` mode with debouncing if IME input causes unintended filtering.
+- **⚠️ DO NOT use placeholder text as an option**: Never include options like `<sgds-combo-box-option value="">Select country</sgds-combo-box-option>`. Every option in the menu is a valid selectable value that will be submitted with the form. Use the `placeholder` attribute instead to display prompt text when no option is selected — it will not be included in the option list.
+
+## Form Layout Context
+
+- **Single-select** (`multiSelect` omitted) is a **4-column form component** — can share a row with other 4-column components.
+- **Multi-select** (`multiSelect="true"`) is a **full-width form component** — MUST NOT share a row with any other component.
+
+For detailed form pattern guidance (when to pair fields, spacing, responsive behavior, multi-select rules), see the [sgds-blocks form layout skill](../sgds-blocks/reference/form.md).
 
 ## Quick Decision Guide
 
@@ -179,3 +187,4 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 3. Use `clearable` to let users reset the selection without form submission.
 4. `filterFunction` must be set as a JS property (`.filterFunction = (input, item) => ...`), not as an HTML attribute.
 5. `<sgds-combo-box>` does **not** have `hasFeedback` or `invalidFeedback` attributes — unlike all other SGDS form components. Validation relies entirely on the browser-native `required` constraint. Do not add these attributes.
+6. **Boolean attribute handling**: For single-select, omit the `multiSelect` attribute entirely. For multi-select, include `multiSelect` with no value (HTML5 boolean) or `multiSelect="true"`. Do **NOT** use `multiSelect="false"` for single-select — in HTML, any attribute presence (even with value "false") is truthy. Omit the attribute for false.

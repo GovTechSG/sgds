@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Font weight
-description: Font weight tokens used across the SGDS typography system.
+description: Understand the font weight tokens that control emphasis, hierarchy, and readability in SGDS text.
 ---
 
 <script setup>

@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Image card
-description: Image cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.
+description: Image cards can include headers, footers, rich content, and contextual background colours or images.
 storybook: true
 ---
 

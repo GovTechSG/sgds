@@ -1,0 +1,191 @@
+{
+  "skill_name": "sgds-blocks",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I'm building a STACK-X conference programme page with SGDS. I need a block for each session that shows: the time slot, the session title with an expand/collapse toggle, the speaker's name and organisation, outlined badges for type and hall, and a full abstract. Below the abstract, show the speaker's circular photo, name, job title, and a 'View profile' link. Output the block as an HTML snippet — no masthead, nav, or footer needed.",
+      "expected_output": "An HTML block using sgds-badge (outlined), sgds-divider, sgds-link, sgds-icon. Time slot uses sgds:text-overline-md with sgds:text-primary-default. Session title uses sgds:text-heading-md sgds:font-semibold. Body text uses sgds:text-body-md. Text colours use sgds:text-heading-default, sgds:text-body-default, sgds:text-body-subtle. Speaker avatar is 88x88px circular. No masthead/mainnav/footer.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "uses-sgds-badge-outlined",
+          "description": "Output includes sgds-badge elements with the outlined attribute",
+          "type": "contains",
+          "value": "outlined"
+        },
+        {
+          "id": "uses-sgds-divider",
+          "description": "Output includes sgds-divider",
+          "type": "contains",
+          "value": "sgds-divider"
+        },
+        {
+          "id": "uses-sgds-link",
+          "description": "Output includes sgds-link for the View profile link",
+          "type": "contains",
+          "value": "sgds-link"
+        },
+        {
+          "id": "uses-overline-typography",
+          "description": "Time slot uses sgds:text-overline-md",
+          "type": "contains",
+          "value": "text-overline-md"
+        },
+        {
+          "id": "uses-heading-md-typography",
+          "description": "Session title uses sgds:text-heading-md",
+          "type": "contains",
+          "value": "text-heading-md"
+        },
+        {
+          "id": "uses-body-md-typography",
+          "description": "Body text uses sgds:text-body-md not sgds:text-base",
+          "type": "contains",
+          "value": "text-body-md"
+        },
+        {
+          "id": "no-text-base",
+          "description": "Does not use raw sgds:text-base (wrong token)",
+          "type": "not_contains",
+          "value": "sgds:text-base"
+        },
+        {
+          "id": "uses-text-primary-default",
+          "description": "Uses sgds:text-primary-default for the time slot colour",
+          "type": "contains",
+          "value": "text-primary-default"
+        },
+        {
+          "id": "uses-text-heading-default",
+          "description": "Uses sgds:text-heading-default for heading colour",
+          "type": "contains",
+          "value": "text-heading-default"
+        },
+        {
+          "id": "uses-text-body-subtle",
+          "description": "Uses sgds:text-body-subtle for secondary text",
+          "type": "contains",
+          "value": "text-body-subtle"
+        },
+        {
+          "id": "circular-avatar",
+          "description": "Speaker avatar has border-radius for circular style",
+          "type": "contains",
+          "value": "border-radius"
+        },
+        {
+          "id": "no-page-chrome",
+          "description": "Output does not include sgds-masthead or sgds-mainnav",
+          "type": "not_contains",
+          "value": "sgds-masthead"
+        },
+        {
+          "id": "no-text-color-tokens",
+          "description": "Does not use wrong sgds:text-color-* tokens",
+          "type": "not_contains",
+          "value": "text-color-default"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "I'm building an events website using SGDS web components. Can you give me a session listing item that shows an event talk's details? I need: the time of day as a small label, the talk title (with a collapse/expand chevron button), the presenter's name and their organisation, description text of the talk, tags for session type and venue, and a speaker card with their photo (circular), name, role, and a profile link.",
+      "expected_output": "An HTML block using SGDS components and correct typography tokens. Same requirements as eval 0 — correct semantic typography tokens, sgds-badge with outlined, sgds-divider at the bottom, sgds-link for profile. No page chrome.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "uses-sgds-badge-outlined",
+          "description": "Output includes sgds-badge elements with the outlined attribute",
+          "type": "contains",
+          "value": "outlined"
+        },
+        {
+          "id": "uses-sgds-divider",
+          "description": "Output includes sgds-divider",
+          "type": "contains",
+          "value": "sgds-divider"
+        },
+        {
+          "id": "uses-body-md-typography",
+          "description": "Body text uses sgds:text-body-md not sgds:text-base",
+          "type": "contains",
+          "value": "text-body-md"
+        },
+        {
+          "id": "no-text-base",
+          "description": "Does not use raw sgds:text-base (wrong token)",
+          "type": "not_contains",
+          "value": "sgds:text-base"
+        },
+        {
+          "id": "no-text-color-tokens",
+          "description": "Does not use wrong sgds:text-color-* pattern",
+          "type": "not_contains",
+          "value": "text-color-default"
+        },
+        {
+          "id": "uses-overline-typography",
+          "description": "Time slot uses sgds:text-overline-md",
+          "type": "contains",
+          "value": "text-overline-md"
+        },
+        {
+          "id": "no-page-chrome",
+          "description": "Output does not include sgds-masthead",
+          "type": "not_contains",
+          "value": "sgds-masthead"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "My conference site needs a programme listing page built with SGDS. On the left I want a filter sidebar with checkboxes for: programme type (Keynote, Panel Discussion, Presentation), session time (Morning, Afternoon), and event hall (Hall A, Hall B, Hall C). On the right, show session results — each one should be a full session detail block with the time slot, title, speaker byline, outlined category badges, description, and a speaker profile card with circular photo and profile link. Give me the HTML for both the filter sidebar and one session detail block.",
+      "expected_output": "HTML containing both a filter sidebar (using sgds-checkbox-group and sgds-checkbox) and a session detail block (sgds-badge outlined, sgds-divider, sgds-link, correct typography tokens). No page chrome.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "uses-sgds-checkbox-group",
+          "description": "Filter sidebar uses sgds-checkbox-group",
+          "type": "contains",
+          "value": "sgds-checkbox-group"
+        },
+        {
+          "id": "uses-sgds-badge-outlined",
+          "description": "Session detail uses sgds-badge with outlined",
+          "type": "contains",
+          "value": "outlined"
+        },
+        {
+          "id": "uses-sgds-divider",
+          "description": "Session detail has sgds-divider",
+          "type": "contains",
+          "value": "sgds-divider"
+        },
+        {
+          "id": "uses-body-md-typography",
+          "description": "Body text uses sgds:text-body-md not sgds:text-base",
+          "type": "contains",
+          "value": "text-body-md"
+        },
+        {
+          "id": "no-text-base",
+          "description": "Does not use raw sgds:text-base",
+          "type": "not_contains",
+          "value": "sgds:text-base"
+        },
+        {
+          "id": "uses-sgds-link",
+          "description": "Profile link uses sgds-link",
+          "type": "contains",
+          "value": "sgds-link"
+        },
+        {
+          "id": "no-page-chrome",
+          "description": "Output does not include sgds-masthead",
+          "type": "not_contains",
+          "value": "sgds-masthead"
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Surface elevation
-description: Surface elevation tokens for shadows that lift elements above the page surface.
+description: Tokens for surface shadows that lift menus, tooltips, cards, and layered content above the page.
 ---
 
 <script setup>

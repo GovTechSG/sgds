@@ -3,6 +3,7 @@ import { ref, computed, onMounted, onUnmounted, watch } from "vue";
 import { BackgroundColor, Color, Theme } from "@adobe/leonardo-contrast-colors";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import ThemeRevealDiagram from "./foundations/ThemeRevealDiagram.vue";
 import {
   brandPalettes,
   currentPaletteId,
@@ -11,34 +12,24 @@ import {
 } from "../theme/composables/sgds-palette";
 import { semanticColourGroups, typographySemanticGroup, formColourGroups } from "../data/semantic-colours";
 
-const tokenViewOptions = [
-  { id: "css-variable", label: "CSS variable" },
-  { id: "figma", label: "Figma token" },
-] as const;
-type TokenViewId = (typeof tokenViewOptions)[number]["id"];
-const activeTokenViewId = ref<TokenViewId>("css-variable");
-const copiedKey = ref<string | null>(null);
-
-const onTokenViewShow = (event: Event) => {
-  const nextView = (event as CustomEvent<{ name?: string }>).detail?.name as TokenViewId | undefined;
-  if (nextView && tokenViewOptions.some((o) => o.id === nextView)) activeTokenViewId.value = nextView;
-};
-
-const copyTokenValue = async (key: string, text: string) => {
-  await navigator.clipboard.writeText(text);
-  copiedKey.value = key;
-  setTimeout(() => { if (copiedKey.value === key) copiedKey.value = null; }, 2000);
-};
-
-// Tokens in this file always have the -- prefix
-const getTokenValue = (token: string) => {
-  if (activeTokenViewId.value === "css-variable") return token;
-  return token.replace(/^--/, "");
-};
+// Tokens always render in their CSS variable form (with the -- prefix).
+const getTokenValue = (token: string) => token;
 
 const props = withDefaults(
   defineProps<{
-    section?: "all" | "product" | "primitive" | "semantic";
+    section?:
+      | "all"
+      | "product"
+      | "brand-govtech"
+      | "brand-custom"
+      | "primitive"
+      | "semantic"
+      | "semantic-bg"
+      | "semantic-foreground"
+      | "semantic-surface"
+      | "semantic-border"
+      | "semantic-text"
+      | "semantic-form";
   }>(),
   {
     section: "all",
@@ -310,8 +301,20 @@ const currentColours = computed<ProductPrimaryRow[]>(() => {
   return createProductPrimaryRows(palette.shades);
 });
 
+const allGovtechPaletteRows = computed<{ id: string; shortLabel: string; rows: ProductPrimaryRow[] }[]>(() =>
+  brandPalettes.map((palette) => ({
+    id: palette.id,
+    shortLabel: palette.shortLabel,
+    rows: createProductPrimaryRows(palette.shades),
+  }))
+);
+
 function onTabShow(e: Event) {
   selectedGovtechPaletteId.value = (e as CustomEvent).detail.name as Exclude<PaletteId, "default">;
+}
+
+function onColourSelectChange(e: Event) {
+  selectedGovtechPaletteId.value = (e.target as HTMLElement & { value: string }).value as Exclude<PaletteId, "default">;
 }
 
 const normalisedCustomHex = computed(() => normaliseColourInput(customHexInput.value));
@@ -323,9 +326,15 @@ const customPaletteRows = computed<ProductPrimaryRow[]>(() => {
   return createProductPrimaryRows(palette);
 });
 
-const activeProductRows = computed<ProductPrimaryRow[]>(() =>
-  productPrimaryMode.value === "govtech-brand" ? currentColours.value : customPaletteRows.value
-);
+const activeProductRows = computed<ProductPrimaryRow[]>(() => {
+  // When the page is rendered standalone inside the Brand colour page's
+  // Custom tab, there is no segmented control to flip productPrimaryMode,
+  // so resolve directly to the generated custom palette.
+  if (showBrandCustomOnly.value) return customPaletteRows.value;
+  return productPrimaryMode.value === "govtech-brand"
+    ? currentColours.value
+    : customPaletteRows.value;
+});
 
 function onProductPrimaryModeChange(event: Event) {
   productPrimaryMode.value = (event as CustomEvent<{ value: ProductPrimaryMode }>).detail.value;
@@ -584,8 +593,77 @@ const primitiveColourFamilies: PrimitiveFamily[] = [
 
 const activePrimitiveFamilyId = ref("grey");
 
-const currentPrimitiveRows = computed(() => {
-  const family = primitiveColourFamilies.find((f) => f.id === activePrimitiveFamilyId.value)!;
+// ─── Primitive role-mapped cards (split light/dark layout) ────────────────────
+// Each card shows a family ramp with border-role captions for both themes.
+// Captions describe how the primitive shade is consumed by the family's
+// border-* semantic tokens. Sourced from day.css and night.css.
+
+type PrimitiveScaleSwatch = {
+  shade: string;
+  hex: string;
+  tone: "light" | "dark";
+  bordered?: boolean;
+  topCaption?: string;
+  bottomCaption?: string;
+};
+
+type PrimitiveScaleCard = {
+  id: string;
+  family: string;
+  role: string;
+  swatches: PrimitiveScaleSwatch[];
+};
+
+// Helper: build chromatic card swatches given the border-default shade.
+const chromaticBorderSwatches = (
+  family: PrimitiveFamily,
+  defaultShade: string,
+): PrimitiveScaleSwatch[] =>
+  family.shades.map(({ shade, hex }) => {
+    const tone: "light" | "dark" = parseInt(shade, 10) >= 500 ? "dark" : "light";
+    let topCaption: string | undefined;
+    let bottomCaption: string | undefined;
+    if (shade === "200") { topCaption = "Muted"; bottomCaption = "Emphasis"; }
+    if (shade === defaultShade) { topCaption = "Default"; bottomCaption = "Default"; }
+    if (shade === "700") { topCaption = "Emphasis"; bottomCaption = "Muted"; }
+    return { shade, hex, tone, topCaption, bottomCaption };
+  });
+
+const greyFamily = primitiveColourFamilies.find((f) => f.id === "grey")!;
+const redFamily = primitiveColourFamilies.find((f) => f.id === "red")!;
+const yellowFamily = primitiveColourFamilies.find((f) => f.id === "yellow")!;
+const greenFamily = primitiveColourFamilies.find((f) => f.id === "green")!;
+const cyanFamily = primitiveColourFamilies.find((f) => f.id === "cyan")!;
+const blueFamily = primitiveColourFamilies.find((f) => f.id === "blue")!;
+const purpleFamily = primitiveColourFamilies.find((f) => f.id === "purple")!;
+
+const primitiveScaleCards: PrimitiveScaleCard[] = [
+  {
+    id: "grey",
+    family: "Grey",
+    role: "Neutral borders across both themes",
+    swatches: greyFamily.shades.map(({ shade, hex }) => {
+      const idx = parseInt(shade, 10);
+      const tone: "light" | "dark" = idx >= 500 ? "dark" : "light";
+      let topCaption: string | undefined;
+      let bottomCaption: string | undefined;
+      if (shade === "000") { topCaption = "Fixed light"; bottomCaption = "Fixed light"; }
+      if (shade === "200") { topCaption = "Muted"; bottomCaption = "Emphasis"; }
+      if (shade === "500") { topCaption = "Default"; bottomCaption = "Default"; }
+      if (shade === "800") { topCaption = "Emphasis"; bottomCaption = "Muted"; }
+      if (shade === "1000") { topCaption = "Fixed dark"; bottomCaption = "Fixed dark"; }
+      return { shade, hex, tone, bordered: shade === "000", topCaption, bottomCaption };
+    }),
+  },
+  { id: "red",    family: "Red",    role: "Danger borders",  swatches: chromaticBorderSwatches(redFamily,    "600") },
+  { id: "yellow", family: "Yellow", role: "Warning borders", swatches: chromaticBorderSwatches(yellowFamily, "600") },
+  { id: "green",  family: "Green",  role: "Success borders", swatches: chromaticBorderSwatches(greenFamily,  "600") },
+  { id: "cyan",   family: "Cyan",   role: "Cyan borders",    swatches: chromaticBorderSwatches(cyanFamily,   "500") },
+  { id: "blue",   family: "Blue",   role: "Accent borders",  swatches: chromaticBorderSwatches(blueFamily,   "500") },
+  { id: "purple", family: "Purple", role: "Purple borders",  swatches: chromaticBorderSwatches(purpleFamily, "500") },
+];
+
+function createPrimitiveRows(family: PrimitiveFamily) {
   return family.shades.map(({ shade, hex }) => {
     const bg = isDarkShade(shade) ? contrastLightBackground : contrastDarkBackground;
     return {
@@ -597,7 +675,20 @@ const currentPrimitiveRows = computed(() => {
       apca: apcaContrast(hex, bg),
     };
   });
+}
+
+const currentPrimitiveRows = computed(() => {
+  const family = primitiveColourFamilies.find((f) => f.id === activePrimitiveFamilyId.value)!;
+  return createPrimitiveRows(family);
 });
+
+const allPrimitiveFamilyRows = computed(() =>
+  primitiveColourFamilies.map((family) => ({
+    id: family.id,
+    label: family.label,
+    rows: createPrimitiveRows(family),
+  }))
+);
 
 function onPrimitiveTabShow(e: Event) {
   activePrimitiveFamilyId.value = (e as CustomEvent).detail.name as string;
@@ -622,49 +713,6 @@ function filterGroupRows(group: (typeof semanticColourGroups)[number], tokenType
   return group.rows.filter((r) => r.token.startsWith(prefix));
 }
 
-const activeSemanticGroupId = ref("default");
-
-const currentSemanticRows = computed(() => {
-  const group = semanticColourGroups.find((g) => g.id === activeSemanticGroupId.value)!;
-  return filterGroupRows(group, "color");
-});
-
-function onSemanticTabShow(e: Event) {
-  activeSemanticGroupId.value = (e as CustomEvent).detail.name as string;
-}
-
-const activeBgGroupId = ref("default");
-
-const currentBgRows = computed(() => {
-  const group = semanticColourGroups.find((g) => g.id === activeBgGroupId.value)!;
-  return filterGroupRows(group, "bg");
-});
-
-function onBgTabShow(e: Event) {
-  activeBgGroupId.value = (e as CustomEvent).detail.name as string;
-}
-
-const activeSurfaceGroupId = ref("default");
-
-const currentSurfaceRows = computed(() => {
-  const group = semanticColourGroups.find((g) => g.id === activeSurfaceGroupId.value)!;
-  return filterGroupRows(group, "surface");
-});
-
-function onSurfaceTabShow(e: Event) {
-  activeSurfaceGroupId.value = (e as CustomEvent).detail.name as string;
-}
-
-const activeBorderGroupId = ref("default");
-
-const currentBorderRows = computed(() => {
-  const group = semanticColourGroups.find((g) => g.id === activeBorderGroupId.value)!;
-  return filterGroupRows(group, "border-color");
-});
-
-function onBorderTabShow(e: Event) {
-  activeBorderGroupId.value = (e as CustomEvent).detail.name as string;
-}
 
 const activeTextColourTabId = ref("text-display");
 
@@ -680,6 +728,27 @@ function onTextTabShow(e: Event) {
   activeTextColourTabId.value = (e as CustomEvent).detail.name as string;
 }
 
+const textColourSubgroups = [
+  { id: "text-display", label: "Display" },
+  { id: "text-heading", label: "Heading" },
+  { id: "text-body", label: "Body" },
+  { id: "text-label", label: "Label" },
+  { id: "text-link", label: "Link" },
+  { id: "text-form", label: "Form" },
+] as const;
+
+const allTextColourSubgroups = computed(() =>
+  textColourSubgroups.map((sub) => {
+    const rows =
+      sub.id === "text-form"
+        ? formColourGroups.find((g) => g.id === "form-color")!.rows
+        : typographySemanticGroup.rows.filter((r) =>
+            r.token.startsWith(sub.id.replace("text-", "--sgds-") + "-"),
+          );
+    return { id: sub.id, label: sub.label, rows };
+  })
+);
+
 const activeFormColourGroupId = ref(formColourGroups[0].id);
 
 const currentFormColourRows = computed(() => {
@@ -689,6 +758,10 @@ const currentFormColourRows = computed(() => {
 function onFormTabShow(e: Event) {
   activeFormColourGroupId.value = (e as CustomEvent).detail.name as string;
 }
+
+const allFormColourGroups = computed(() =>
+  formColourGroups.map((group) => ({ id: group.id, label: group.label, rows: group.rows }))
+);
 
 // Add a border to near-invisible swatches: explicit border flag OR any rgba value below 40% opacity.
 // bg-overlay at 50% is dark enough to see; everything below that threshold is not.
@@ -721,9 +794,82 @@ function semanticSwatchStyle(hex: string, label: string): Record<string, string>
 }
 
 const showAllSections = computed(() => props.section === "all");
-const showProductSection = computed(() => props.section === "all" || props.section === "product");
+// Standalone variants used inside the Brand colour page tabs. They render
+// just the GovTech brand tables or just the custom picker + table, without
+// the section heading or segmented control wrapper.
+const showBrandGovtechOnly = computed(() => props.section === "brand-govtech");
+const showBrandCustomOnly = computed(() => props.section === "brand-custom");
+const showProductSection = computed(
+  () =>
+    props.section === "all" ||
+    props.section === "product" ||
+    showBrandGovtechOnly.value ||
+    showBrandCustomOnly.value,
+);
+// Show the section heading and segmented-control chrome only when the page
+// is rendered standalone, not when embedded inside a Brand colour tab.
+const showProductChrome = computed(
+  () => props.section === "all" || props.section === "product",
+);
+const showGovtechTables = computed(
+  () =>
+    showBrandGovtechOnly.value ||
+    (showProductChrome.value && productPrimaryMode.value === "govtech-brand"),
+);
+const showCustomGenerator = computed(
+  () =>
+    showBrandCustomOnly.value ||
+    (showProductChrome.value && productPrimaryMode.value === "custom"),
+);
 const showPrimitiveSection = computed(() => props.section === "all" || props.section === "primitive");
-const showSemanticSection = computed(() => props.section === "all" || props.section === "semantic");
+const showSemanticSection = computed(
+  () =>
+    props.section === "all" ||
+    props.section === "semantic" ||
+    props.section.startsWith("semantic-"),
+);
+const showSemanticBg = computed(
+  () =>
+    props.section === "all" ||
+    props.section === "semantic" ||
+    props.section === "semantic-bg",
+);
+const showSemanticForeground = computed(
+  () =>
+    props.section === "all" ||
+    props.section === "semantic" ||
+    props.section === "semantic-foreground",
+);
+const showSemanticSurface = computed(
+  () =>
+    props.section === "all" ||
+    props.section === "semantic" ||
+    props.section === "semantic-surface",
+);
+const showSemanticBorder = computed(
+  () =>
+    props.section === "all" ||
+    props.section === "semantic" ||
+    props.section === "semantic-border",
+);
+const showSemanticText = computed(
+  () =>
+    props.section === "all" ||
+    props.section === "semantic" ||
+    props.section === "semantic-text",
+);
+const showSemanticForm = computed(
+  () =>
+    props.section === "all" ||
+    props.section === "semantic" ||
+    props.section === "semantic-form",
+);
+
+// Contrast info modal — shared across all tables that have a Contrast column.
+const contrastInfoOpen = ref(false);
+const openContrastInfo = () => {
+  contrastInfoOpen.value = true;
+};
 </script>
 
 <template>
@@ -731,18 +877,16 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
 
     <!-- Product primary colour -->
     <section v-if="showProductSection" class="typography-page-template__section typography-page-template__section--spaced">
+      <div v-if="showProductChrome" class="sgds:flex sgds:flex-col sgds:gap-text-md">
+        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Product colour tokens</h2>
+        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+          Choose a GovTech brand palette or enter a custom hex code for your <strong>600</strong> token. The table below uses the same SGDS primary token structure either way, so teams can compare a pre-approved palette with a generated custom ramp.
+        </p>
+      </div>
       <div class="typography-page-template__body typography-page-template__body--prose">
-        <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
-
-          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h4 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Primary colour tokens</h4>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-              Choose a GovTech brand palette or enter a custom hex code for your <strong>600</strong> token. The table below uses the same SGDS primary token structure either way, so teams can compare a pre-approved palette with a generated custom ramp.
-            </p>
-          </div>
-
-          <div class="cp-source-panel sgds:flex sgds:flex-col sgds:gap-layout-sm">
+        <div v-if="showProductChrome || showCustomGenerator" class="cp-source-panel sgds:flex sgds:flex-col sgds:gap-layout-sm">
             <div
+              v-if="showProductChrome"
               class="cp-segmented-control sgds:inline-flex sgds:items-start"
               role="tablist"
               aria-label="Primary palette source"
@@ -772,25 +916,8 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </button>
             </div>
 
-            <div v-if="productPrimaryMode === 'govtech-brand'" class="cp-source-panel__control sgds:flex sgds:flex-col sgds:gap-text-sm">
-              <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onTabShow">
-                <sgds-tab
-                  v-for="palette in brandPalettes"
-                  :key="palette.id"
-                  slot="nav"
-                  :panel="palette.id"
-                  :active="selectedGovtechPaletteId === palette.id || null"
-                >{{ palette.shortLabel }}</sgds-tab>
-                <sgds-tab-panel
-                  v-for="palette in brandPalettes"
-                  :key="`panel-${palette.id}`"
-                  :name="palette.id"
-                ></sgds-tab-panel>
-              </sgds-tab-group>
-            </div>
-
             <div
-              v-else
+              v-if="showCustomGenerator"
               ref="customPickerRef"
               class="cp-source-panel__control cp-source-panel__control--custom sgds:flex sgds:flex-col sgds:gap-text-sm"
             >
@@ -846,34 +973,105 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
             </div>
           </div>
 
-          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-          </sgds-tab-group>
+          <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+          <template v-if="showGovtechTables">
+            <div
+              v-for="palette in allGovtechPaletteRows"
+              :key="palette.id"
+              class="sgds:flex sgds:flex-col sgds:gap-text-md"
+            >
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+                GovTech {{ palette.shortLabel.toLowerCase() }} colour
+              </h4>
+              <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+                <sgds-table-row>
+                  <sgds-table-head class="cp-token-column">Token</sgds-table-head>
+                  <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
+                  <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
+                  <sgds-table-head class="cp-contrast-column">
+                  <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
+                    Contrast
+                    <sgds-icon-button
+                      name="question-circle"
+                      variant="ghost"
+                      tone="neutral"
+                      size="sm"
+                      ariaLabel="About colour contrast ratios"
+                      @click="openContrastInfo"
+                    ></sgds-icon-button>
+                  </span>
+                </sgds-table-head>
+                  <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
+                </sgds-table-row>
 
-          <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+                <sgds-table-row v-for="row in palette.rows" :key="`${palette.id}-${row.token}`">
+                  <sgds-table-cell class="cp-token-column">
+                    <CodeToken :label="getTokenValue(row.token)" />
+                  </sgds-table-cell>
+                  <sgds-table-cell class="cp-hex-column">
+                    <CodeToken :label="row.hex" :surface="false" />
+                  </sgds-table-cell>
+                  <sgds-table-cell class="cp-value-column">
+                    <CodeToken :label="row.rgba" :surface="false" />
+                  </sgds-table-cell>
+                  <sgds-table-cell class="cp-contrast-column">
+                    <sgds-tooltip :content="`WCAG ${row.wcag}. APCA ${row.apca}.`" placement="top">
+                      <button
+                        :class="[
+                          'cp-contrast-sample',
+                          parseInt(row.shade, 10) <= 500
+                            ? 'cp-contrast-bg-dark'
+                            : 'cp-contrast-bg-light',
+                        ]"
+                        :style="{ color: row.hex }"
+                        :aria-label="`${row.token} contrast: WCAG ${row.wcag}. APCA ${row.apca}.`"
+                        type="button"
+                      >A</button>
+                    </sgds-tooltip>
+                  </sgds-table-cell>
+                  <sgds-table-cell class="cp-example-column">
+                    <div class="cp-example-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                      <span
+                        class="cp-swatch"
+                        :style="{ background: row.hex }"
+                        aria-hidden="true"
+                      ></span>
+                      <span
+                        class="cp-example-ag"
+                        :style="{ color: row.hex }"
+                        aria-hidden="true"
+                      >Ag</span>
+                    </div>
+                  </sgds-table-cell>
+                </sgds-table-row>
+              </sgds-table>
+            </div>
+          </template>
+
+          <sgds-table v-else-if="showCustomGenerator" tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="cp-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
+              <sgds-table-head class="cp-token-column">Token</sgds-table-head>
               <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
               <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
-              <sgds-table-head class="cp-contrast-column">Contrast</sgds-table-head>
-              <sgds-table-head class="cp-example-column">Example</sgds-table-head>
+              <sgds-table-head class="cp-contrast-column">
+                  <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
+                    Contrast
+                    <sgds-icon-button
+                      name="question-circle"
+                      variant="ghost"
+                      tone="neutral"
+                      size="sm"
+                      ariaLabel="About colour contrast ratios"
+                      @click="openContrastInfo"
+                    ></sgds-icon-button>
+                  </span>
+                </sgds-table-head>
+              <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
             </sgds-table-row>
 
             <sgds-table-row v-for="row in activeProductRows" :key="`${productPrimaryMode}-${row.token}`">
               <sgds-table-cell class="cp-token-column">
-                <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                  <CodeToken :label="getTokenValue(row.token)" />
-                </sgds-tooltip>
-                <div v-else class="ts-snippet-row">
-                  <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                  <button
-                    :class="['ts-snippet-copy-btn', copiedKey === `product-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
-                    @click="copyTokenValue(`product-${row.token}`, getTokenValue(row.token))"
-                  >
-                    <sgds-icon :name="copiedKey === `product-${row.token}` ? 'check' : 'copy'" size="sm" />
-                  </button>
-                </div>
+                <CodeToken :label="getTokenValue(row.token)" />
               </sgds-table-cell>
               <sgds-table-cell class="cp-hex-column">
                 <CodeToken :label="row.hex" :surface="false" />
@@ -912,539 +1110,607 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
               </sgds-table-cell>
             </sgds-table-row>
           </sgds-table>
-        </article>
+          </div>
       </div>
     </section>
 
     <!-- Primitive colours -->
     <section v-if="showPrimitiveSection" class="typography-page-template__section typography-page-template__section--spaced">
       <div class="typography-page-template__body typography-page-template__body--prose">
-        <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+        <article class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
+          <!-- Intro: what primitive colour tokens are -->
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h4 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Primitive colour tokens</h4>
-            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-              These are the base primitive colour tokens in the SGDS design system. Semantic tokens for feedback, status, and neutral surfaces are mapped from this palette.
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">How primitive colour tokens work</h2>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+              A primitive colour token is the foundation layer of the SGDS colour system. It pairs a raw hex value with a name that identifies the shade. Every other colour token in the system resolves down to a primitive.
+            </p>
+
+            <!-- Anatomy of a primitive token: raw value, primitive name.
+                 Multiple rows show the same pattern across colour families. -->
+            <div class="cp-token-anatomy">
+              <span class="cp-token-anatomy__label">Raw hex value</span>
+              <span aria-hidden="true"></span>
+              <span class="cp-token-anatomy__label">Primitive colour</span>
+
+              <span class="cp-token-anatomy__pill">
+                <span class="cp-token-anatomy__swatch" style="background:#e98b8b;" aria-hidden="true"></span>
+                <code class="cp-token-anatomy__code">#E98B8B</code>
+              </span>
+              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
+              <span class="cp-token-anatomy__pill">
+                <span class="cp-token-anatomy__swatch" style="background:#e98b8b;" aria-hidden="true"></span>
+                <code class="cp-token-anatomy__code">sgds-red-400</code>
+              </span>
+
+              <span class="cp-token-anatomy__pill">
+                <span class="cp-token-anatomy__swatch" style="background:#129a4d;" aria-hidden="true"></span>
+                <code class="cp-token-anatomy__code">#129A4D</code>
+              </span>
+              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
+              <span class="cp-token-anatomy__pill">
+                <span class="cp-token-anatomy__swatch" style="background:#129a4d;" aria-hidden="true"></span>
+                <code class="cp-token-anatomy__code">sgds-green-500</code>
+              </span>
+
+              <span class="cp-token-anatomy__pill">
+                <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
+                <code class="cp-token-anatomy__code">#0269D0</code>
+              </span>
+              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
+              <span class="cp-token-anatomy__pill">
+                <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
+                <code class="cp-token-anatomy__code">sgds-blue-600</code>
+              </span>
+            </div>
+
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+              Each primitive colour has two parts: the <strong>base</strong> (colour) and the <strong>modifier</strong> (scale). The token <CodeToken label="sgds-blue-600" /> sits at step 600 on the blue ramp, and every other primitive follows the same pattern.
+            </p>
+
+            <!-- Naming anatomy: colour family + scale parts of the token.
+                 Compact pill with a swatch; "Colour" label drops to the
+                 family segment, "Scale" label points across to the scale step. -->
+            <div class="cp-name-anatomy">
+              <div class="cp-name-anatomy__inner">
+                <span class="cp-name-anatomy__call cp-name-anatomy__call--family"><strong class="cp-name-anatomy__call-label">Base</strong> (Colour)</span>
+                <code class="cp-name-anatomy__token">
+                  <span class="cp-name-anatomy__text">
+                    <span class="cp-name-anatomy__seg cp-name-anatomy__seg--prefix">sgds-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--family sgds:rounded-sm sgds:bg-primary-surface-muted sgds:text-fixed-dark sgds:px-1">blue</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--separator">-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--scale sgds:rounded-sm sgds:bg-success-surface-muted sgds:text-fixed-dark sgds:px-1">600</span>
+                  </span>
+                </code>
+                <span class="cp-name-anatomy__call cp-name-anatomy__call--scale"><strong class="cp-name-anatomy__call-label">Modifier</strong> (Scale)</span>
+              </div>
+            </div>
+
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+              Beyond naming, each primitive is a stable reference for a single hex value. Across the seven colour families, the SGDS palette covers every shade the system needs, from the lightest tints to the deepest darks.
             </p>
           </div>
 
-          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onPrimitiveTabShow">
-            <sgds-tab
-              v-for="family in primitiveColourFamilies"
-              :key="family.id"
-              slot="nav"
-              :panel="family.id"
-              :active="activePrimitiveFamilyId === family.id || null"
-            >{{ family.label }}</sgds-tab>
-            <sgds-tab-panel
-              v-for="family in primitiveColourFamilies"
-              :key="`prim-panel-${family.id}`"
-              :name="family.id"
-            ></sgds-tab-panel>
-          </sgds-tab-group>
+          <!-- When to use primitives -->
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">When to use primitives</h2>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+              Using primitives directly in product code or design files is not recommended. It leads to inconsistencies when themes or brand palettes change. Always reach for <a href="/foundations/colour/semantic-colour" class="sgds:underline">semantic colour tokens</a> first.
+            </p>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+              Only use primitives when you need to:
+            </p>
+            <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+              <li><strong>Generate a custom brand palette</strong> through our colour generator.</li>
+              <li><strong>Explore colour ideas in Figma</strong> when prototyping or experimenting.</li>
+              <li><strong>Define new semantic tokens</strong> when extending the design system.</li>
+            </ul>
+          </div>
 
-          <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-            <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-            <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-          </sgds-tab-group>
+          <!-- Existing token table -->
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Primitive colour tokens</h2>
 
-          <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
-            <sgds-table-row>
-              <sgds-table-head class="cp-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
-              <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
-              <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
-              <sgds-table-head class="cp-contrast-column">Contrast</sgds-table-head>
-              <sgds-table-head class="cp-example-column">Example</sgds-table-head>
-            </sgds-table-row>
+            <!-- Subsection: how to read the shade scale used in the table below -->
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Understanding our colour scale</h4>
+              <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                <li><strong>100</strong> is lightest, <strong>900</strong> is darkest. Grey adds <strong>000</strong> and <strong>1100</strong> for dark-mode surfaces.</li>
+                <li>Shade <strong>600</strong> is the brand input each family scales around.</li>
+                <li>Grey uses <CodeToken label="gray" /> in token names for Tailwind compatibility.</li>
+              </ul>
+            </div>
+          </div>
 
-            <sgds-table-row v-for="row in currentPrimitiveRows" :key="row.token">
-              <sgds-table-cell class="cp-token-column">
-                <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
+          <div class="typography-page-template__body typography-page-template__body--prose">
+
+          <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+          <div
+            v-for="family in allPrimitiveFamilyRows"
+            :key="family.id"
+            class="sgds:flex sgds:flex-col sgds:gap-text-md"
+          >
+            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+              {{ family.label }}
+            </h4>
+            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+              <sgds-table-row>
+                <sgds-table-head class="cp-token-column">Token</sgds-table-head>
+                <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
+                <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
+                <sgds-table-head class="cp-contrast-column">
+                  <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
+                    Contrast
+                    <sgds-icon-button
+                      name="question-circle"
+                      variant="ghost"
+                      tone="neutral"
+                      size="sm"
+                      ariaLabel="About colour contrast ratios"
+                      @click="openContrastInfo"
+                    ></sgds-icon-button>
+                  </span>
+                </sgds-table-head>
+                <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
+              </sgds-table-row>
+
+              <sgds-table-row v-for="row in family.rows" :key="`${family.id}-${row.token}`">
+                <sgds-table-cell class="cp-token-column">
                   <CodeToken :label="getTokenValue(row.token)" />
-                </sgds-tooltip>
-                <div v-else class="ts-snippet-row">
-                  <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                  <button
-                    :class="['ts-snippet-copy-btn', copiedKey === `prim-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
-                    @click="copyTokenValue(`prim-${row.token}`, getTokenValue(row.token))"
-                  >
-                    <sgds-icon :name="copiedKey === `prim-${row.token}` ? 'check' : 'copy'" size="sm" />
-                  </button>
-                </div>
-              </sgds-table-cell>
-              <sgds-table-cell class="cp-hex-column">
-                <CodeToken :label="row.hex" :surface="false" />
-              </sgds-table-cell>
-              <sgds-table-cell class="cp-value-column">
-                <CodeToken :label="row.rgba" :surface="false" />
-              </sgds-table-cell>
-              <sgds-table-cell class="cp-contrast-column">
-                <sgds-tooltip :content="`WCAG ${row.wcag}. APCA ${row.apca}.`" placement="top">
-                  <button
-                    :class="['cp-contrast-sample', isDarkShade(row.shade) ? 'cp-contrast-bg-light' : 'cp-contrast-bg-dark']"
-                    :style="{ color: row.hex }"
-                    :aria-label="`${row.token} contrast: WCAG ${row.wcag}. APCA ${row.apca}.`"
-                    type="button"
-                  >A</button>
-                </sgds-tooltip>
-              </sgds-table-cell>
-              <sgds-table-cell class="cp-example-column">
-                <div class="cp-example-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                  <span
-                    class="cp-swatch"
-                    :style="{ background: row.hex }"
-                    aria-hidden="true"
-                  ></span>
-                  <span
-                    class="cp-example-ag"
-                    :style="{ color: row.hex }"
-                    aria-hidden="true"
-                  >Ag</span>
-                </div>
-              </sgds-table-cell>
-            </sgds-table-row>
-          </sgds-table>
+                </sgds-table-cell>
+                <sgds-table-cell class="cp-hex-column">
+                  <CodeToken :label="row.hex" :surface="false" />
+                </sgds-table-cell>
+                <sgds-table-cell class="cp-value-column">
+                  <CodeToken :label="row.rgba" :surface="false" />
+                </sgds-table-cell>
+                <sgds-table-cell class="cp-contrast-column">
+                  <sgds-tooltip :content="`WCAG ${row.wcag}. APCA ${row.apca}.`" placement="top">
+                    <button
+                      :class="['cp-contrast-sample', isDarkShade(row.shade) ? 'cp-contrast-bg-light' : 'cp-contrast-bg-dark']"
+                      :style="{ color: row.hex }"
+                      :aria-label="`${row.token} contrast: WCAG ${row.wcag}. APCA ${row.apca}.`"
+                      type="button"
+                    >A</button>
+                  </sgds-tooltip>
+                </sgds-table-cell>
+                <sgds-table-cell class="cp-example-column">
+                  <div class="cp-example-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                    <span
+                      class="cp-swatch"
+                      :style="{ background: row.hex }"
+                      aria-hidden="true"
+                    ></span>
+                    <span
+                      class="cp-example-ag"
+                      :style="{ color: row.hex }"
+                      aria-hidden="true"
+                    >Ag</span>
+                  </div>
+                </sgds-table-cell>
+              </sgds-table-row>
+            </sgds-table>
+          </div>
+          </div>
+          </div>
         </article>
       </div>
     </section>
 
     <!-- Semantic colours: 3 sub-sections -->
     <template v-if="showSemanticSection">
+      <section v-if="props.section === 'semantic'" class="typography-page-template__section typography-page-template__section--spaced">
+        <div class="typography-page-template__body typography-page-template__body--prose">
+          <article class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">How semantic colour tokens work</h2>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+                A primitive colour token names a hex value. A semantic colour token names the job that value performs in the interface. Where <CodeToken label="--sgds-blue-600" /> names a specific shade, a semantic token like <CodeToken label="--sgds-link-color-default" /> names the role "default colour for a link". The system maps each role to the right primitive behind the scenes.
+              </p>
+
+              <!-- Mapping: Raw hex → Primitive → Semantic. Two themed primitives
+                   converge on the same semantic token, illustrating that one
+                   semantic role can resolve to different primitives across
+                   day and night themes. -->
+              <div class="cp-token-anatomy cp-token-anatomy--theme-mapping">
+                <span aria-hidden="true"></span>
+                <span class="cp-token-anatomy__label">Raw hex value</span>
+                <span aria-hidden="true"></span>
+                <span class="cp-token-anatomy__label">Primitive colour</span>
+                <span aria-hidden="true"></span>
+                <span class="cp-token-anatomy__label">Semantic colour</span>
+
+                <span class="cp-token-anatomy__theme">Day theme</span>
+                <span class="cp-token-anatomy__pill">
+                  <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
+                  <code class="cp-token-anatomy__code">#0269D0</code>
+                </span>
+                <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
+                <span class="cp-token-anatomy__pill">
+                  <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
+                  <code class="cp-token-anatomy__code">sgds-blue-600</code>
+                </span>
+                <svg class="cp-token-anatomy__arrow cp-token-anatomy__arrow--merge" width="56" height="80" viewBox="0 0 56 80" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M0 18 C 16 18, 16 40, 28 40"/><path d="M0 62 C 16 62, 16 40, 28 40"/><line x1="28" y1="40" x2="44" y2="40"/><polygon points="44,36 50,40 44,44" fill="currentColor" stroke="none"/></svg>
+                <span class="cp-token-anatomy__pill cp-token-anatomy__pill--span-2">
+                  <span class="cp-token-anatomy__swatch cp-token-anatomy__swatch--split" aria-hidden="true"></span>
+                  <code class="cp-token-anatomy__code">sgds-link-color-default</code>
+                </span>
+
+                <span class="cp-token-anatomy__theme">Night theme</span>
+                <span class="cp-token-anatomy__pill">
+                  <span class="cp-token-anatomy__swatch" style="background:#60aaf4;" aria-hidden="true"></span>
+                  <code class="cp-token-anatomy__code">#60AAF4</code>
+                </span>
+                <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
+                <span class="cp-token-anatomy__pill">
+                  <span class="cp-token-anatomy__swatch" style="background:#60aaf4;" aria-hidden="true"></span>
+                  <code class="cp-token-anatomy__code">sgds-blue-400</code>
+                </span>
+              </div>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+                <CodeToken label="--sgds-link-color-default" /> resolves to <strong>two</strong> primitives, one for each theme. Switching themes swaps the underlying primitive while every component using the link role stays unchanged.
+              </p>
+
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+                This separation lets themes and brands shift colours without touching components. The same semantic token can point to one primitive in day mode and a different one in night mode. The role stays consistent across every component. Only the rendered hex value changes for contrast, brand, or accessibility.
+              </p>
+              <ThemeRevealDiagram />
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+                This mapping gives SGDS one place to adjust colour behaviour across components, instead of changing each component separately.
+              </p>
+            </div>
+
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">How we structure semantic colours</h4>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+                SGDS semantic colour names follow a role-based structure. The name tells you what the colour is for before it tells you the visual value.
+              </p>
+              <div class="cp-name-anatomy cp-name-anatomy--semantic">
+                <div class="cp-name-anatomy__inner">
+                  <span class="cp-name-anatomy__call cp-name-anatomy__call--base-element">
+                    <strong class="cp-name-anatomy__call-label">Base</strong>
+                  </span>
+                  <code class="cp-name-anatomy__token">
+                    <span class="cp-name-anatomy__text"><span class="cp-name-anatomy__seg cp-name-anatomy__seg--prefix">sgds-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--group sgds:rounded-sm sgds:bg-primary-surface-muted sgds:text-fixed-dark sgds:px-1">primary-bg</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--separator">-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--modifier sgds:rounded-sm sgds:bg-success-surface-muted sgds:text-fixed-dark sgds:px-1">muted</span></span>
+                  </code>
+                  <span class="cp-name-anatomy__call cp-name-anatomy__call--modifier">
+                    <strong class="cp-name-anatomy__call-label">Modifier</strong>
+                  </span>
+                </div>
+              </div>
+              <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                <li><strong>Base design element or property</strong> combines the colour role and where it is applied, such as danger surface, success text, primary border, or neutral icon.</li>
+                <li><strong>Modifier</strong> identifies emphasis or state, such as default, subtle, muted, inverse, fixed light, fixed dark, hover, or selected.</li>
+              </ul>
+            </div>
+
+            <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">When we use semantic colours</h4>
+              <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+                SGDS uses semantic colours wherever a colour decision needs to stay meaningful across components, themes, and product brands. They let us describe the job a colour performs once, then remap the primitive values behind that job as the system grows.
+              </p>
+              <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                <li><strong>Component foundations</strong> use background, surface, foreground, and border tokens so every component responds to day mode, night mode, and brand changes consistently.</li>
+                <li><strong>Interaction states</strong> use semantic tokens for hover, active, selected, disabled, and inverse states, so state behaviour stays predictable across patterns.</li>
+                <li><strong>Status and feedback</strong> use success, danger, warning, and neutral tokens, so alerts, validation, badges, and messages share the same meaning.</li>
+                <li><strong>Forms</strong> use form-specific semantic tokens for fields, labels, helper text, and validation states, so form controls stay aligned with SGDS components.</li>
+                <li><strong>System scaling</strong> relies on semantic colours because new themes, brands, and components can reuse the same roles instead of redefining colour values one component at a time.</li>
+              </ul>
+            </div>
+
+          </article>
+        </div>
+      </section>
 
       <!-- 1. Background colour -->
-      <section class="typography-page-template__section typography-page-template__section--spaced">
+      <section v-if="showSemanticBg" class="typography-page-template__section typography-page-template__section--spaced">
         <div class="typography-page-template__body typography-page-template__body--prose">
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h4 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Background colour</h4>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Background colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Background tokens set the base canvas colour for pages, panels, and overlays. They adapt between light and dark themes.
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onBgTabShow">
-              <sgds-tab
-                v-for="group in semanticColourGroups"
-                :key="group.id"
-                slot="nav"
-                :panel="group.id"
-                :active="activeBgGroupId === group.id || null"
-              >{{ group.label }}</sgds-tab>
-              <sgds-tab-panel
-                v-for="group in semanticColourGroups"
-                :key="`bg-panel-${group.id}`"
-                :name="group.id"
-              ></sgds-tab-panel>
-            </sgds-tab-group>
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
-
-            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
-              <sgds-table-row>
-                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
-                <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
-              </sgds-table-row>
-              <sgds-table-row v-for="row in currentBgRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column">
-                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                    <CodeToken :label="getTokenValue(row.token)" />
-                  </sgds-tooltip>
-                  <div v-else class="ts-snippet-row">
-                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                    <button
-                      :class="['ts-snippet-copy-btn', copiedKey === `bg-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
-                      @click="copyTokenValue(`bg-${row.token}`, getTokenValue(row.token))"
-                    >
-                      <sgds-icon :name="copiedKey === `bg-${row.token}` ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.light.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.dark.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-              </sgds-table-row>
-            </sgds-table>
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+              <template v-for="group in semanticColourGroups" :key="`bg-group-${group.id}`">
+                <div v-if="filterGroupRows(group, 'bg').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
+                  <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+                    <sgds-table-row>
+                      <sgds-table-head class="sc-token-column">Token</sgds-table-head>
+                      <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
+                      <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
+                      <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
+                    </sgds-table-row>
+                    <sgds-table-row v-for="row in filterGroupRows(group, 'bg')" :key="row.token">
+                      <sgds-table-cell class="sc-token-column">
+                        <CodeToken :label="getTokenValue(row.token)" />
+                      </sgds-table-cell>
+                      <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
+                      <sgds-table-cell class="sc-mode-column">
+                        <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                          <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
+                          <CodeToken :label="row.light.label" :surface="false" />
+                        </div>
+                      </sgds-table-cell>
+                      <sgds-table-cell class="sc-mode-column">
+                        <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                          <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
+                          <CodeToken :label="row.dark.label" :surface="false" />
+                        </div>
+                      </sgds-table-cell>
+                    </sgds-table-row>
+                  </sgds-table>
+                </div>
+              </template>
+            </div>
+            </div>
           </article>
         </div>
       </section>
 
       <!-- 2. Foreground colour -->
-      <section class="typography-page-template__section typography-page-template__section--spaced">
+      <section v-if="showSemanticForeground" class="typography-page-template__section typography-page-template__section--spaced">
         <div class="typography-page-template__body typography-page-template__body--prose">
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h4 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Foreground colour</h4>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Foreground colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Foreground colour tokens for icons and UI elements across semantic categories. Each token resolves to a different primitive value in light and dark modes.
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onSemanticTabShow">
-              <sgds-tab
-                v-for="group in semanticColourGroups"
-                :key="group.id"
-                slot="nav"
-                :panel="group.id"
-                :active="activeSemanticGroupId === group.id || null"
-              >{{ group.label }}</sgds-tab>
-              <sgds-tab-panel
-                v-for="group in semanticColourGroups"
-                :key="`sem-panel-${group.id}`"
-                :name="group.id"
-              ></sgds-tab-panel>
-            </sgds-tab-group>
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
-
-            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
-              <sgds-table-row>
-                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
-                <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
-              </sgds-table-row>
-              <sgds-table-row v-for="row in currentSemanticRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column">
-                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                    <CodeToken :label="getTokenValue(row.token)" />
-                  </sgds-tooltip>
-                  <div v-else class="ts-snippet-row">
-                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                    <button
-                      :class="['ts-snippet-copy-btn', copiedKey === `fg-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
-                      @click="copyTokenValue(`fg-${row.token}`, getTokenValue(row.token))"
-                    >
-                      <sgds-icon :name="copiedKey === `fg-${row.token}` ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.light.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.dark.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-              </sgds-table-row>
-            </sgds-table>
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+              <template v-for="group in semanticColourGroups" :key="`fg-group-${group.id}`">
+                <div v-if="filterGroupRows(group, 'color').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
+                  <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+                    <sgds-table-row>
+                      <sgds-table-head class="sc-token-column">Token</sgds-table-head>
+                      <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
+                      <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
+                      <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
+                    </sgds-table-row>
+                    <sgds-table-row v-for="row in filterGroupRows(group, 'color')" :key="row.token">
+                      <sgds-table-cell class="sc-token-column">
+                        <CodeToken :label="getTokenValue(row.token)" />
+                      </sgds-table-cell>
+                      <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
+                      <sgds-table-cell class="sc-mode-column">
+                        <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                          <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
+                          <CodeToken :label="row.light.label" :surface="false" />
+                        </div>
+                      </sgds-table-cell>
+                      <sgds-table-cell class="sc-mode-column">
+                        <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                          <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
+                          <CodeToken :label="row.dark.label" :surface="false" />
+                        </div>
+                      </sgds-table-cell>
+                    </sgds-table-row>
+                  </sgds-table>
+                </div>
+              </template>
+            </div>
+            </div>
           </article>
         </div>
       </section>
 
       <!-- 3. Surface colour -->
-      <section class="typography-page-template__section typography-page-template__section--spaced">
+      <section v-if="showSemanticSurface" class="typography-page-template__section typography-page-template__section--spaced">
         <div class="typography-page-template__body typography-page-template__body--prose">
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h4 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Surface colour</h4>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Surface colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Surface tokens define fill colours for elevated containers such as cards, drawers, and dropdowns. They adapt between light and dark themes.
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onSurfaceTabShow">
-              <sgds-tab
-                v-for="group in semanticColourGroups"
-                :key="group.id"
-                slot="nav"
-                :panel="group.id"
-                :active="activeSurfaceGroupId === group.id || null"
-              >{{ group.label }}</sgds-tab>
-              <sgds-tab-panel
-                v-for="group in semanticColourGroups"
-                :key="`surface-panel-${group.id}`"
-                :name="group.id"
-              ></sgds-tab-panel>
-            </sgds-tab-group>
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
-
-            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
-              <sgds-table-row>
-                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
-                <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
-              </sgds-table-row>
-              <sgds-table-row v-for="row in currentSurfaceRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column">
-                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                    <CodeToken :label="getTokenValue(row.token)" />
-                  </sgds-tooltip>
-                  <div v-else class="ts-snippet-row">
-                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                    <button
-                      :class="['ts-snippet-copy-btn', copiedKey === `surface-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
-                      @click="copyTokenValue(`surface-${row.token}`, getTokenValue(row.token))"
-                    >
-                      <sgds-icon :name="copiedKey === `surface-${row.token}` ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.light.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.dark.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-              </sgds-table-row>
-            </sgds-table>
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+              <template v-for="group in semanticColourGroups" :key="`surface-group-${group.id}`">
+                <div v-if="filterGroupRows(group, 'surface').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
+                  <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+                    <sgds-table-row>
+                      <sgds-table-head class="sc-token-column">Token</sgds-table-head>
+                      <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
+                      <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
+                      <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
+                    </sgds-table-row>
+                    <sgds-table-row v-for="row in filterGroupRows(group, 'surface')" :key="row.token">
+                      <sgds-table-cell class="sc-token-column">
+                        <CodeToken :label="getTokenValue(row.token)" />
+                      </sgds-table-cell>
+                      <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
+                      <sgds-table-cell class="sc-mode-column">
+                        <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                          <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
+                          <CodeToken :label="row.light.label" :surface="false" />
+                        </div>
+                      </sgds-table-cell>
+                      <sgds-table-cell class="sc-mode-column">
+                        <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                          <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
+                          <CodeToken :label="row.dark.label" :surface="false" />
+                        </div>
+                      </sgds-table-cell>
+                    </sgds-table-row>
+                  </sgds-table>
+                </div>
+              </template>
+            </div>
+            </div>
           </article>
         </div>
       </section>
 
       <!-- 4. Border colour -->
-      <section class="typography-page-template__section typography-page-template__section--spaced">
+      <section v-if="showSemanticBorder" class="typography-page-template__section typography-page-template__section--spaced">
         <div class="typography-page-template__body typography-page-template__body--prose">
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h4 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Border colour</h4>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Border colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Border colour tokens define outline and divider colours for components across semantic categories. They adapt between light and dark themes.
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onBorderTabShow">
-              <sgds-tab
-                v-for="group in semanticColourGroups"
-                :key="group.id"
-                slot="nav"
-                :panel="group.id"
-                :active="activeBorderGroupId === group.id || null"
-              >{{ group.label }}</sgds-tab>
-              <sgds-tab-panel
-                v-for="group in semanticColourGroups"
-                :key="`border-panel-${group.id}`"
-                :name="group.id"
-              ></sgds-tab-panel>
-            </sgds-tab-group>
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
-
-            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
-              <sgds-table-row>
-                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
-                <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
-              </sgds-table-row>
-              <sgds-table-row v-for="row in currentBorderRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column">
-                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                    <CodeToken :label="getTokenValue(row.token)" />
-                  </sgds-tooltip>
-                  <div v-else class="ts-snippet-row">
-                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                    <button
-                      :class="['ts-snippet-copy-btn', copiedKey === `border-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
-                      @click="copyTokenValue(`border-${row.token}`, getTokenValue(row.token))"
-                    >
-                      <sgds-icon :name="copiedKey === `border-${row.token}` ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.light.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.dark.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-              </sgds-table-row>
-            </sgds-table>
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+              <template v-for="group in semanticColourGroups" :key="`border-group-${group.id}`">
+                <div v-if="filterGroupRows(group, 'border-color').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
+                  <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+                    <sgds-table-row>
+                      <sgds-table-head class="sc-token-column">Token</sgds-table-head>
+                      <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
+                      <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
+                      <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
+                    </sgds-table-row>
+                    <sgds-table-row v-for="row in filterGroupRows(group, 'border-color')" :key="row.token">
+                      <sgds-table-cell class="sc-token-column">
+                        <CodeToken :label="getTokenValue(row.token)" />
+                      </sgds-table-cell>
+                      <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
+                      <sgds-table-cell class="sc-mode-column">
+                        <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                          <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
+                          <CodeToken :label="row.light.label" :surface="false" />
+                        </div>
+                      </sgds-table-cell>
+                      <sgds-table-cell class="sc-mode-column">
+                        <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                          <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
+                          <CodeToken :label="row.dark.label" :surface="false" />
+                        </div>
+                      </sgds-table-cell>
+                    </sgds-table-row>
+                  </sgds-table>
+                </div>
+              </template>
+            </div>
+            </div>
           </article>
         </div>
       </section>
 
       <!-- 5. Text colour -->
-      <section class="typography-page-template__section typography-page-template__section--spaced">
+      <section v-if="showSemanticText" class="typography-page-template__section typography-page-template__section--spaced">
         <div class="typography-page-template__body typography-page-template__body--prose">
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h4 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Text colour</h4>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Text colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Typography colour tokens define the foreground colours for display, heading, body, label, and link text. They adapt between light and dark themes.
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onTextTabShow">
-              <sgds-tab slot="nav" panel="text-display" :active="activeTextColourTabId === 'text-display' || null">Display</sgds-tab>
-              <sgds-tab slot="nav" panel="text-heading" :active="activeTextColourTabId === 'text-heading' || null">Heading</sgds-tab>
-              <sgds-tab slot="nav" panel="text-body" :active="activeTextColourTabId === 'text-body' || null">Body</sgds-tab>
-              <sgds-tab slot="nav" panel="text-label" :active="activeTextColourTabId === 'text-label' || null">Label</sgds-tab>
-              <sgds-tab slot="nav" panel="text-link" :active="activeTextColourTabId === 'text-link' || null">Link</sgds-tab>
-              <sgds-tab slot="nav" panel="text-form" :active="activeTextColourTabId === 'text-form' || null">Form</sgds-tab>
-              <sgds-tab-panel name="text-display"></sgds-tab-panel>
-              <sgds-tab-panel name="text-heading"></sgds-tab-panel>
-              <sgds-tab-panel name="text-body"></sgds-tab-panel>
-              <sgds-tab-panel name="text-label"></sgds-tab-panel>
-              <sgds-tab-panel name="text-link"></sgds-tab-panel>
-              <sgds-tab-panel name="text-form"></sgds-tab-panel>
-            </sgds-tab-group>
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
-
-            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
-              <sgds-table-row>
-                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
-                <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
-              </sgds-table-row>
-              <sgds-table-row v-for="row in currentTextColourRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column">
-                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                    <CodeToken :label="getTokenValue(row.token)" />
-                  </sgds-tooltip>
-                  <div v-else class="ts-snippet-row">
-                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                    <button
-                      :class="['ts-snippet-copy-btn', copiedKey === `text-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
-                      @click="copyTokenValue(`text-${row.token}`, getTokenValue(row.token))"
-                    >
-                      <sgds-icon :name="copiedKey === `text-${row.token}` ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.light.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.dark.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-              </sgds-table-row>
-            </sgds-table>
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+              <div
+                v-for="sub in allTextColourSubgroups"
+                :key="sub.id"
+                class="sgds:flex sgds:flex-col sgds:gap-layout-xs"
+              >
+                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ sub.label }}</h4>
+                <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+                  <sgds-table-row>
+                    <sgds-table-head class="sc-token-column">Token</sgds-table-head>
+                    <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
+                    <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
+                    <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
+                  </sgds-table-row>
+                  <sgds-table-row v-for="row in sub.rows" :key="`${sub.id}-${row.token}`">
+                    <sgds-table-cell class="sc-token-column">
+                      <CodeToken :label="getTokenValue(row.token)" />
+                    </sgds-table-cell>
+                    <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
+                    <sgds-table-cell class="sc-mode-column">
+                      <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                        <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
+                        <CodeToken :label="row.light.label" :surface="false" />
+                      </div>
+                    </sgds-table-cell>
+                    <sgds-table-cell class="sc-mode-column">
+                      <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                        <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
+                        <CodeToken :label="row.dark.label" :surface="false" />
+                      </div>
+                    </sgds-table-cell>
+                  </sgds-table-row>
+                </sgds-table>
+              </div>
+            </div>
+            </div>
           </article>
         </div>
       </section>
 
       <!-- 6. Form colour -->
-      <section class="typography-page-template__section typography-page-template__section--spaced">
+      <section v-if="showSemanticForm" class="typography-page-template__section typography-page-template__section--spaced">
         <div class="typography-page-template__body typography-page-template__body--prose">
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h4 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Form colour</h4>
+              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Form colour tokens</h2>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Form colour tokens cover surfaces, text, and validation states within input fields, checkboxes, radios, and other form controls.
               </p>
             </div>
 
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onFormTabShow">
-              <sgds-tab
-                v-for="group in formColourGroups"
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+
+            <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+              <div
+                v-for="group in allFormColourGroups"
                 :key="group.id"
-                slot="nav"
-                :panel="group.id"
-                :active="activeFormColourGroupId === group.id || null"
-              >{{ group.label }}</sgds-tab>
-              <sgds-tab-panel
-                v-for="group in formColourGroups"
-                :key="`form-panel-${group.id}`"
-                :name="group.id"
-              ></sgds-tab-panel>
-            </sgds-tab-group>
-
-            <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="solid" density="compact" @sgds-tab-show="onTokenViewShow">
-              <sgds-tab v-for="option in tokenViewOptions" :key="option.id" slot="nav" :panel="option.id" :active="activeTokenViewId === option.id || null">{{ option.label }}</sgds-tab>
-              <sgds-tab-panel v-for="option in tokenViewOptions" :key="`panel-${option.id}`" :name="option.id"></sgds-tab-panel>
-            </sgds-tab-group>
-
-            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table sc-form-table">
-              <sgds-table-row>
-                <sgds-table-head class="sc-token-column">{{ tokenViewOptions.find((o) => o.id === activeTokenViewId)?.label }}</sgds-table-head>
-                <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
-                <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
-              </sgds-table-row>
-              <sgds-table-row v-for="row in currentFormColourRows" :key="row.token">
-                <sgds-table-cell class="sc-token-column">
-                  <sgds-tooltip v-if="activeTokenViewId === 'figma'" :content="getTokenValue(row.token)" placement="top">
-                    <CodeToken :label="getTokenValue(row.token)" />
-                  </sgds-tooltip>
-                  <div v-else class="ts-snippet-row">
-                    <code class="ts-snippet-code"><span>{{ getTokenValue(row.token) }}</span></code>
-                    <button
-                      :class="['ts-snippet-copy-btn', copiedKey === `form-${row.token}` ? 'sgds:text-success-default' : 'sgds:text-default']"
-                      @click="copyTokenValue(`form-${row.token}`, getTokenValue(row.token))"
-                    >
-                      <sgds-icon :name="copiedKey === `form-${row.token}` ? 'check' : 'copy'" size="sm" />
-                    </button>
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.light.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-                <sgds-table-cell class="sc-mode-column">
-                  <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
-                    <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
-                    <CodeToken :label="row.dark.label" :surface="false" />
-                  </div>
-                </sgds-table-cell>
-              </sgds-table-row>
-            </sgds-table>
+                class="sgds:flex sgds:flex-col sgds:gap-layout-xs"
+              >
+                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
+                <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table sc-form-table">
+                  <sgds-table-row>
+                    <sgds-table-head class="sc-token-column">Token</sgds-table-head>
+                    <sgds-table-head class="sc-desc-column">Description</sgds-table-head>
+                    <sgds-table-head class="sc-mode-column">Light</sgds-table-head>
+                    <sgds-table-head class="sc-mode-column">Dark</sgds-table-head>
+                  </sgds-table-row>
+                  <sgds-table-row v-for="row in group.rows" :key="`${group.id}-${row.token}`">
+                    <sgds-table-cell class="sc-token-column">
+                      <CodeToken :label="getTokenValue(row.token)" />
+                    </sgds-table-cell>
+                    <sgds-table-cell class="sc-desc-column">{{ row.description }}</sgds-table-cell>
+                    <sgds-table-cell class="sc-mode-column">
+                      <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                        <span :class="['sc-swatch', semanticSwatchHasBorder(row.light.hex, row.light.label, row.light.border) ? 'sc-swatch--border' : '', row.light.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.light.hex, row.light.label)" aria-hidden="true"></span>
+                        <CodeToken :label="row.light.label" :surface="false" />
+                      </div>
+                    </sgds-table-cell>
+                    <sgds-table-cell class="sc-mode-column">
+                      <div class="sc-cell sgds:flex sgds:items-center sgds:gap-text-xs">
+                        <span :class="['sc-swatch', semanticSwatchHasBorder(row.dark.hex, row.dark.label, row.dark.border) ? 'sc-swatch--border' : '', row.dark.hex === 'transparent' ? 'sc-swatch--transparent' : '']" :style="semanticSwatchStyle(row.dark.hex, row.dark.label)" aria-hidden="true"></span>
+                        <CodeToken :label="row.dark.label" :surface="false" />
+                      </div>
+                    </sgds-table-cell>
+                  </sgds-table-row>
+                </sgds-table>
+              </div>
+            </div>
+            </div>
           </article>
         </div>
       </section>
@@ -1452,16 +1718,38 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
     </template>
 
   </TypographyPageTemplate>
+
+  <!-- Shared contrast info modal — opened from any "?" trigger next to a
+       Contrast column header. Uses <sgds-modal> with the documented title /
+       description / default body / footer slots. -->
+  <sgds-modal
+    :open="contrastInfoOpen"
+    size="lg"
+    @sgds-after-hide="contrastInfoOpen = false"
+  >
+    <h2 slot="title">Colour contrast ratios</h2>
+    <p slot="description">
+      Colour contrast ratios measure whether text is readable against a background.
+    </p>
+    <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+      <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+        <strong>WCAG (Web Content Accessibility Guidelines)</strong> is the international accessibility standard most government services follow. It scores contrast as a single ratio between 1 (no contrast) and 21 (black on white). Body text needs at least 4.5 to meet the AA conformance level. Large text needs at least 3, since bigger letters are easier to read.
+      </p>
+      <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
+        <strong>APCA (Accessible Perceptual Contrast Algorithm)</strong> is a newer model that's more accurate for real reading. As a rough guide, body text needs an absolute value around 60 or higher.
+      </p>
+    </div>
+    <sgds-button slot="footer" variant="primary" @click="contrastInfoOpen = false">Got it</sgds-button>
+  </sgds-modal>
 </template>
 
 <style>
 /* ─── Product primary / Primitive shared styles ────────────────────────────── */
 
-
 .cp-token-column {
   box-sizing: border-box;
   inline-size: max-content;
-  max-inline-size: 18rem;
+  max-inline-size: none;
   min-inline-size: 13rem;
 }
 
@@ -1548,6 +1836,10 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
 .cp-source-panel__control--custom {
   max-inline-size: 24rem;
   position: relative;
+}
+
+.cp-colour-select {
+  min-width: 10rem;
 }
 
 .cp-custom-picker-field {
@@ -1667,6 +1959,519 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
   inline-size: var(--sgds-dimension-80);
 }
 
+/* Token anatomy: horizontal Value / Primitive flow that maps a raw
+   colour value to its primitive token name. Labels sit above their pill;
+   arrows live in the same row as the pills so they centre with them. */
+.cp-token-anatomy {
+  align-items: center;
+  background: transparent;
+  column-gap: var(--sgds-padding-xs);
+  display: grid;
+  grid-template-columns: max-content max-content max-content;
+  justify-content: start;
+  margin-block: var(--sgds-layout-gap-xs);
+  padding-inline: var(--sgds-padding-2-xl);
+  row-gap: var(--sgds-text-gap-sm);
+  width: fit-content;
+}
+
+/* Theme-mapping variant: 6-column grid that pairs hex → primitive across
+   day and night themes, both feeding into a single semantic token on the
+   right (which spans both rows). */
+.cp-token-anatomy--theme-mapping {
+  grid-template-columns: max-content max-content max-content max-content max-content max-content;
+  row-gap: var(--sgds-text-gap-md);
+}
+
+.cp-token-anatomy__theme {
+  color: var(--sgds-color-default);
+  font-weight: var(--sgds-font-weight-semibold);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-xs);
+  padding-inline-end: var(--sgds-padding-xs);
+}
+
+.cp-token-anatomy__pill--span-2 {
+  align-self: center;
+  grid-row: span 2;
+}
+
+/* Merge arrow: two lines from the day/night primitives converge in the
+   middle, then a single arrow extends right to the semantic pill. Width
+   matches the regular arrow column so the gap on either side of the
+   semantic pill is consistent with the rest of the diagram. */
+.cp-token-anatomy__arrow--merge {
+  block-size: 100%;
+  grid-row: span 2;
+  inline-size: 56px;
+  justify-self: center;
+  min-block-size: 4.5rem;
+}
+
+/* Split swatch: half day-mode primitive, half night-mode primitive. Visual
+   shorthand for "this semantic token resolves to two primitives". */
+.cp-token-anatomy__swatch--split {
+  background: linear-gradient(135deg, #0269d0 50%, #60aaf4 50%);
+}
+
+.cp-token-anatomy__label {
+  color: var(--sgds-color-default);
+  font-size: var(--sgds-font-size-label-md);
+  font-weight: var(--sgds-font-weight-semibold);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-xs);
+}
+
+.cp-token-anatomy__pill {
+  align-items: center;
+  background: var(--sgds-surface-raised);
+  border-radius: var(--sgds-border-radius-full);
+  color: var(--sgds-color-default);
+  display: inline-flex;
+  font-family: var(--sgds-font-family-brand);
+  font-size: var(--sgds-font-size-label-sm);
+  gap: var(--sgds-padding-2-xs);
+  justify-self: start;
+  line-height: var(--sgds-line-height-xs);
+  padding: var(--sgds-padding-xs) var(--sgds-padding-md);
+}
+
+.cp-token-anatomy__swatch {
+  block-size: 0.875rem;
+  border-radius: var(--sgds-border-radius-full);
+  display: inline-block;
+  flex-shrink: 0;
+  inline-size: 0.875rem;
+}
+
+.cp-token-anatomy__code {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+}
+
+.cp-token-anatomy__arrow {
+  color: var(--sgds-border-color-default);
+  justify-self: center;
+}
+
+/* Naming anatomy: compact pill with a swatch, plus two short callouts —
+   "Colour" drops to the family segment, "Scale" points across to the scale
+   step. Coordinates use ch units so callouts stay aligned to the monospace
+   token regardless of viewport width. */
+.cp-name-anatomy {
+  /* Theme-aware accents using SGDS semantic colour tokens. Family ("blue")
+     uses primary (brand purple); scale ("600") uses success (green). Both
+     tokens flip automatically between day and night themes. */
+  --cp-callout-family-color: var(--sgds-primary-color-default);
+  --cp-callout-scale-color: var(--sgds-success-color-default);
+  background: transparent;
+  display: block;
+  margin-block: var(--sgds-layout-gap-xs);
+  padding-inline: var(--sgds-padding-2-xl);
+  width: max-content;
+}
+
+.cp-name-anatomy__inner {
+  display: inline-block;
+  padding-block-end: var(--sgds-layout-gap-sm);
+  padding-block-start: 4.25rem;
+  /* Reserve room for the "Modifier (Scale)" callout (~7rem wide) plus
+     the connector line (5rem) so the line/dot land just past the pill. */
+  padding-inline-end: 12.5rem;
+  position: relative;
+}
+
+.cp-name-anatomy__token {
+  align-items: center;
+  background: var(--sgds-surface-raised);
+  border-radius: var(--sgds-border-radius-full);
+  color: var(--sgds-color-default);
+  display: inline-flex;
+  font-family: var(--sgds-font-family-brand);
+  font-size: var(--sgds-font-size-label-lg);
+  gap: var(--sgds-padding-sm);
+  letter-spacing: 0;
+  line-height: var(--sgds-line-height-xs);
+  padding: var(--sgds-padding-sm) var(--sgds-padding-lg);
+  white-space: nowrap;
+}
+
+.cp-name-anatomy__swatch {
+  background: var(--sgds-blue-600, #0269d0);
+  block-size: 1.5rem;
+  border-radius: var(--sgds-border-radius-full);
+  display: inline-block;
+  flex-shrink: 0;
+  inline-size: 1.5rem;
+}
+
+.cp-name-anatomy__swatch--danger {
+  background: var(--sgds-red-600, #cf2323);
+}
+
+.cp-name-anatomy__text {
+  display: inline-block;
+}
+
+.cp-name-anatomy__seg {
+  display: inline-block;
+}
+
+.cp-name-anatomy__seg--prefix,
+.cp-name-anatomy__seg--separator {
+  color: var(--sgds-color-default);
+}
+
+.cp-name-anatomy__seg--group,
+.cp-name-anatomy__seg--family,
+.cp-name-anatomy__seg--scale,
+.cp-name-anatomy__seg--property,
+.cp-name-anatomy__seg--modifier {
+  font-weight: var(--sgds-font-weight-semibold);
+}
+
+.cp-name-anatomy__call {
+  color: var(--sgds-color-default);
+  font-size: var(--sgds-font-size-label-md);
+  font-weight: var(--sgds-font-weight-regular);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-xs);
+  position: absolute;
+  white-space: nowrap;
+}
+
+.cp-name-anatomy__call-label {
+  font-weight: var(--sgds-font-weight-semibold);
+}
+
+.cp-name-anatomy__call::after {
+  content: "";
+  position: absolute;
+}
+
+.cp-name-anatomy__call--family {
+  /* Sits above the pill, centred over the "blue" segment.
+     Offset = pill's left padding + 7 monospace chars (prefix "sgds-" + half
+     "blue") at label-lg 20px ≈ 5.25rem. We use rem instead of ch because
+     the callout's own font is sans-serif (label-md), so its ch unit doesn't
+     match the pill's monospace advance width. */
+  left: calc(var(--sgds-padding-lg) + 5.25rem);
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.cp-name-anatomy__call--family::after {
+  /* Vertical drop from just below the label down to the pill's top edge,
+     directly above the "blue" segment. Stops at the top of the letterforms
+     so the dot touches the word's bounding box without covering it. */
+  background: var(--sgds-border-color-default);
+  block-size: 2.625rem;
+  inline-size: var(--sgds-border-width-1, 1px);
+  left: 50%;
+  top: calc(100% + 0.25rem);
+}
+
+.cp-name-anatomy__call--family::before {
+  /* Anchor dot at the bottom of the stem, sitting at the top edge of the
+     "blue" word without blocking it. */
+  background: var(--sgds-border-color-default);
+  block-size: 0.5rem;
+  border-radius: 50%;
+  content: "";
+  inline-size: 0.5rem;
+  left: 50%;
+  position: absolute;
+  top: calc(100% + 2.625rem);
+  transform: translateX(-50%);
+}
+
+.cp-name-anatomy__call--scale {
+  /* Sits to the right of the pill, vertically centred on the row.
+     Top = pill top (padding-block-start = 4.25rem) + half pill height.
+     With label-lg font + line-height-xs (~28px) and padding-sm (12px)
+     top/bottom the pill is ~52px tall, so half ≈ 1.625rem. */
+  right: 0;
+  top: calc(4.25rem + 1.625rem);
+  transform: translateY(-50%);
+}
+
+.cp-name-anatomy--semantic {
+  --cp-callout-base-color: var(--sgds-purple-color-default);
+  --cp-callout-modifier-color: var(--sgds-success-color-default);
+}
+
+.cp-name-anatomy--semantic .cp-name-anatomy__inner {
+  padding-inline-end: 8.75rem;
+}
+
+
+.cp-name-anatomy__call--base-element {
+  left: calc(var(--sgds-padding-lg) + 10ch);
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.cp-name-anatomy__call--base-element::after {
+  background: var(--sgds-border-color-default);
+  block-size: 2.625rem;
+  inline-size: var(--sgds-border-width-1, 1px);
+  left: 50%;
+  top: calc(100% + 0.25rem);
+}
+
+.cp-name-anatomy__call--base-element::before {
+  background: var(--sgds-border-color-default);
+  block-size: 0.5rem;
+  border-radius: 50%;
+  content: "";
+  inline-size: 0.5rem;
+  left: 50%;
+  position: absolute;
+  top: calc(100% + 2.625rem);
+  transform: translateX(-50%);
+}
+
+.cp-name-anatomy__call--modifier {
+  right: 0;
+  top: calc(4.25rem + 1.625rem);
+  transform: translateY(-50%);
+}
+
+.cp-name-anatomy__call--modifier::after {
+  background: var(--sgds-border-color-default);
+  block-size: var(--sgds-border-width-1, 1px);
+  inline-size: 4.5rem;
+  right: calc(100% + 0.5rem);
+  top: 50%;
+}
+
+.cp-name-anatomy__call--modifier::before {
+  background: var(--sgds-border-color-default);
+  block-size: 0.5rem;
+  border-radius: 50%;
+  content: "";
+  inline-size: 0.5rem;
+  position: absolute;
+  right: calc(100% + 4.75rem);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.cp-name-anatomy__call--scale::after {
+  /* Horizontal stem from just left of the label across to the pill's right
+     edge, beside the "600" segment. Width matches the gap between pill end
+     (padding-inline-end = 12.5rem) and label-left (~7.6rem) minus the
+     0.5rem gap to the label = 4.4rem. */
+  background: var(--sgds-border-color-default);
+  block-size: var(--sgds-border-width-1, 1px);
+  inline-size: 4.4rem;
+  right: calc(100% + 0.5rem);
+  top: 50%;
+}
+
+.cp-name-anatomy__call--scale::before {
+  /* Anchor dot at the left end of the stem, sitting just past the right
+     edge of the "600" number. Offset = pill-end (12.5rem from inner-right)
+     minus label-width (~7.6rem) = 4.9rem from label-right. */
+  background: var(--sgds-border-color-default);
+  block-size: 0.5rem;
+  border-radius: 50%;
+  content: "";
+  inline-size: 0.5rem;
+  position: absolute;
+  right: calc(100% + 4.9rem);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Small-screen responsive: scale the callout pill and labels down so the
+   diagram fits within mobile viewports. Uses smaller SGDS tokens for the
+   pill text, swatch, and padding, and recalculates the absolute callout
+   offsets so the lines and dots still land on the right segments. */
+@media (max-width: 640px) {
+  .cp-name-anatomy {
+    width: auto;
+    max-inline-size: 100%;
+    padding-inline: var(--sgds-padding-md);
+  }
+
+  .cp-name-anatomy__inner {
+    padding-block-end: var(--sgds-layout-gap-xs);
+    padding-block-start: 3rem;
+    padding-inline-end: 4.5rem;
+  }
+
+  .cp-name-anatomy__token {
+    font-size: var(--sgds-font-size-label-xs);
+    gap: var(--sgds-padding-2-xs);
+    padding: var(--sgds-padding-2-xs) var(--sgds-padding-sm);
+  }
+
+  .cp-name-anatomy__swatch {
+    block-size: 0.875rem;
+    inline-size: 0.875rem;
+  }
+
+  .cp-name-anatomy__call {
+    font-size: var(--sgds-font-size-label-xs);
+  }
+
+  .cp-name-anatomy__call--family {
+    /* 7 monospace chars at label-xs 12px ≈ 3.15rem (pill text shrinks on
+       mobile per the .cp-name-anatomy__token override above). */
+    left: calc(var(--sgds-padding-sm) + 3.15rem);
+  }
+
+  .cp-name-anatomy__call--family::after {
+    block-size: 1.875rem;
+  }
+
+  .cp-name-anatomy__call--family::before {
+    top: calc(100% + 1.875rem);
+  }
+
+  .cp-name-anatomy__call--scale {
+    top: calc(3rem + 0.875rem);
+  }
+
+  .cp-name-anatomy__call--scale::after {
+    inline-size: 3rem;
+  }
+
+  .cp-name-anatomy__call--scale::before {
+    right: calc(100% + 3.25rem);
+  }
+
+  .cp-name-anatomy--semantic .cp-name-anatomy__inner {
+    padding-inline-end: 4.5rem;
+  }
+
+  .cp-name-anatomy__call--base-element {
+    left: calc(var(--sgds-padding-sm) + 0.875rem + var(--sgds-padding-2-xs) + 14ch);
+  }
+
+  .cp-name-anatomy__call--base-element::after {
+    block-size: 1.875rem;
+  }
+
+  .cp-name-anatomy__call--base-element::before {
+    top: calc(100% + 1.875rem);
+  }
+
+  .cp-name-anatomy__call--modifier {
+    top: calc(3rem + 0.875rem);
+  }
+
+  .cp-name-anatomy__call--modifier::after {
+    inline-size: 3rem;
+  }
+
+  .cp-name-anatomy__call--modifier::before {
+    right: calc(100% + 3.25rem);
+  }
+}
+
+/* Primitive palette role-mapped cards — each card shows a family ramp with
+   light/dark theme captions stacked vertically. Mirrors the visual treatment
+   used on the colour principles page. */
+.cp-scale-card {
+  background: var(--sgds-bg-default);
+  border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-2-xl);
+  min-block-size: 25rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.cp-scale-card__halves {
+  block-size: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  inline-size: 100%;
+  min-block-size: 25rem;
+}
+
+.cp-scale-card__half--light { background: #ffffff; }
+.cp-scale-card__half--dark  { background: #0e0e0e; }
+
+.cp-scale-card__stage {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgds-gap-sm);
+  inset: 0;
+  justify-content: center;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  position: absolute;
+}
+
+.cp-scale-card__rail {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--sgds-gap-xs);
+  inline-size: min(100%, 61rem);
+  max-inline-size: 61rem;
+}
+
+.cp-scale-card__slot {
+  align-items: center;
+  display: flex;
+  flex: 1 1 0;
+  justify-content: center;
+  min-inline-size: 0;
+}
+
+.cp-scale-card__swatch {
+  align-items: center;
+  aspect-ratio: 1;
+  border-radius: min(var(--sgds-border-radius-xl), 30%);
+  display: flex;
+  inline-size: 100%;
+  justify-content: center;
+  min-inline-size: 0;
+}
+
+.cp-scale-card__swatch--bordered {
+  border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
+}
+
+.cp-scale-card__swatch-label {
+  color: var(--sgds-color-fixed-dark);
+  font-size: var(--sgds-font-size-label-xs);
+  font-weight: var(--sgds-font-weight-regular);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-16);
+  text-align: center;
+}
+
+.cp-scale-card__swatch--dark .cp-scale-card__swatch-label {
+  color: var(--sgds-color-fixed-light);
+}
+
+.cp-scale-card__caption {
+  align-items: center;
+  display: flex;
+  font-size: var(--sgds-font-size-label-xs);
+  font-weight: var(--sgds-font-weight-regular);
+  inline-size: 100%;
+  justify-content: center;
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-16);
+  min-block-size: calc(var(--sgds-line-height-16) * 2);
+  text-align: center;
+  white-space: pre-line;
+}
+
+.cp-scale-card__caption--top    { color: var(--sgds-color-fixed-dark); }
+.cp-scale-card__caption--bottom { color: var(--sgds-color-fixed-light); }
+
 .cp-example-ag {
   font-family: var(--sgds-font-family-brand);
   font-size: var(--sgds-font-size-22);
@@ -1700,19 +2505,10 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
 }
 
 .cp-contrast-bg-light {
-  background: var(--sgds-bg-default);
+  background: var(--sgds-surface-fixed-light);
 }
 
 @media (max-width: 1023px) {
-  .cp-token-column,
-  .cp-hex-column,
-  .cp-value-column,
-  .cp-contrast-column,
-  .cp-example-column {
-    inline-size: auto;
-    min-inline-size: 0;
-  }
-
   .cp-segmented-control {
     inline-size: 100%;
   }
@@ -1733,15 +2529,15 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
 .sc-token-column {
   box-sizing: border-box;
   inline-size: max-content;
-  max-inline-size: 14rem;
+  max-inline-size: none;
   min-inline-size: 11rem;
 }
 
 .sc-mode-column {
   box-sizing: border-box;
   inline-size: max-content;
-  max-inline-size: 11rem;
-  min-inline-size: 7rem;
+  max-inline-size: 16rem;
+  min-inline-size: 10rem;
 }
 
 .sc-swatch {
@@ -1777,23 +2573,14 @@ const showSemanticSection = computed(() => props.section === "all" || props.sect
 
 /* Form colour table: widen description column, narrow token and mode columns */
 .sc-form-table .sc-token-column {
-  max-inline-size: 18rem;
+  inline-size: max-content;
+  max-inline-size: none;
   min-inline-size: 14rem;
 }
 
 .sc-form-table .sc-mode-column {
-  max-inline-size: 9rem;
-  min-inline-size: 6rem;
+  max-inline-size: 14rem;
+  min-inline-size: 9rem;
 }
 
-@media (max-width: 1023px) {
-  .sc-token-column,
-  .sc-desc-column,
-  .sc-mode-column {
-    inline-size: auto;
-    max-inline-size: none;
-    min-inline-size: 0;
-    width: auto;
-  }
-}
 </style>

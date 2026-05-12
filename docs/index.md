@@ -40,7 +40,7 @@ const featureFoundations: FoundationItem[] = [
   {
     id: "design-tokens",
     title: "Design tokens",
-    url: "/foundations/colour/product-colour",
+    url: "/foundations/design-tokens",
     image: "/landing/design_token.png",
     phase: 1,
     status: "stable",
@@ -134,7 +134,7 @@ const showCommunitySection = false;
       </div>
     </section>
     <section :class="$style['feature-section']">
-      <h2 :class="$style.header">Buiding together,<br>designing better.</h2>
+      <h2 :class="$style.header">Building together,<br>designing better.</h2>
       <div :class="$style['feature-grid']" class="sgds-grid">
         <img
           src="/landing/placeholder5.png"
@@ -155,7 +155,7 @@ const showCommunitySection = false;
       </div>
     </section>
     <section :class="$style['feature-section']">
-      <h2 :class="$style.header">Buiding together,<br>designing better.</h2>
+      <h2 :class="$style.header">Building together,<br>designing better.</h2>
       <div :class="$style['feature-grid']" class="sgds-grid">
         <div
           :class="$style['description-container']"

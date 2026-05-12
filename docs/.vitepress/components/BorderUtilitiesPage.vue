@@ -384,8 +384,6 @@ const borderColorGroups: BorderColorGroup[] = [
 ];
 
 const copiedKey = ref<string | null>(null);
-const activeBorderColorGroupId = ref("foundational");
-const activeRadiusGroupId = ref("general");
 
 
 const copyTokenValue = async (key: string, text: string) => {
@@ -399,27 +397,15 @@ const copyTokenValue = async (key: string, text: string) => {
 const isWidthPage = computed(() => props.section === "width");
 const isRadiusPage = computed(() => props.section === "radius");
 const isColourPage = computed(() => props.section === "colour");
-const currentBorderColorRows = computed(
-  () => borderColorGroups.find((group) => group.id === activeBorderColorGroupId.value)?.rows ?? foundationalBorderColors,
-);
-
-
-function onBorderColorTabShow(e: Event) {
-  activeBorderColorGroupId.value = (e as CustomEvent).detail.name as string;
-}
-
-function onRadiusTabShow(e: Event) {
-  activeRadiusGroupId.value = (e as CustomEvent).detail.name as string;
-}
 </script>
 
 <template>
   <TypographyPageTemplate>
     <!-- ═══════════════ WIDTH ═══════════════ -->
     <section v-if="isWidthPage" class="typography-page-template__section typography-page-template__section--spaced">
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
         <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Border width</h4>
+          <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Border width utilities</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
             Border width utilities define thickness and which sides are visible. Prefer SGDS components like
             <CodeToken label="<sgds-divider>" :surface="false" /> for separators between content sections instead of simulating
@@ -430,7 +416,7 @@ function onRadiusTabShow(e: Event) {
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
             <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
-            <sgds-table-head class="typography-page-template__table-value-column">Applies</sgds-table-head>
+            <sgds-table-head class="typography-page-template__table-value-column sgds:min-w-[7.5rem]">Applies</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
             <sgds-table-head class="typography-page-template__table-preview-column">Preview</sgds-table-head>
           </sgds-table-row>
@@ -439,7 +425,7 @@ function onRadiusTabShow(e: Event) {
             <sgds-table-cell class="typography-page-template__table-utility-column">
               <div class="ts-snippet-row">
                 <code class="ts-snippet-code">
-                  <span>{{ item.utilityClass }}</span>
+                  <span v-for="token in item.utilityClass.split(' ')" :key="`${item.utilityClass}-${token}`">{{ token }}</span>
                 </code>
                 <button
                   class="ts-snippet-copy-btn"
@@ -449,14 +435,14 @@ function onRadiusTabShow(e: Event) {
                 </button>
               </div>
             </sgds-table-cell>
-            <sgds-table-cell class="typography-page-template__table-value-column">
+            <sgds-table-cell class="typography-page-template__table-value-column sgds:min-w-[7.5rem]">
               <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.applies }}</span>
             </sgds-table-cell>
             <sgds-table-cell class="typography-page-template__table-usage-column">
               <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.usage }}</span>
             </sgds-table-cell>
             <sgds-table-cell class="typography-page-template__table-preview-column">
-              <div class="sgds:flex sgds:justify-center sgds:min-h-[5rem]">
+              <div class="sgds:flex sgds:justify-center">
                 <div :class="['sgds:h-14 sgds:w-14 sgds:rounded sgds:bg-transparent', item.previewClass]"></div>
               </div>
             </sgds-table-cell>
@@ -467,9 +453,9 @@ function onRadiusTabShow(e: Event) {
 
     <!-- ═══════════════ RADIUS ═══════════════ -->
     <section v-if="isRadiusPage" class="typography-page-template__section typography-page-template__section--spaced">
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
         <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Border radius</h4>
+          <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Border radius utilities</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
             SGDS has two radius scales: general radius utilities for components and surfaces, and form radius utilities for
             native HTML form elements. Use general tokens by default, and switch to <CodeToken label="sgds:rounded-form-*" />
@@ -477,20 +463,15 @@ function onRadiusTabShow(e: Event) {
           </p>
         </div>
 
-        <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onRadiusTabShow">
-          <sgds-tab slot="nav" panel="general" :active="activeRadiusGroupId === 'general' || null">General radius</sgds-tab>
-          <sgds-tab slot="nav" panel="form" :active="activeRadiusGroupId === 'form' || null">Form radius</sgds-tab>
-          <sgds-tab-panel name="general"></sgds-tab-panel>
-          <sgds-tab-panel name="form"></sgds-tab-panel>
-        </sgds-tab-group>
-
-        <sgds-table
-            v-if="activeRadiusGroupId === 'general'"
-            tableBorder
-            headerBackground
-            responsive="always"
-            class="typography-page-template__utility-table border-utilities-radius-table"
-          >
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+          <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">General radius</h5>
+            <sgds-table
+              tableBorder
+              headerBackground
+              responsive="always"
+              class="typography-page-template__utility-table border-utilities-radius-table"
+            >
             <sgds-table-row>
               <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-value-column">Value</sgds-table-head>
@@ -519,7 +500,7 @@ function onRadiusTabShow(e: Event) {
                 <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.usage }}</span>
               </sgds-table-cell>
               <sgds-table-cell class="typography-page-template__table-preview-column">
-                <div class="sgds:flex sgds:justify-center sgds:min-h-[5rem]">
+                <div class="sgds:flex sgds:justify-center">
                   <div
                     :class="[
                       'sgds:flex sgds:h-14 sgds:w-[6.5rem] sgds:items-center sgds:justify-center sgds:border sgds:border-default sgds:bg-transparent',
@@ -531,69 +512,69 @@ function onRadiusTabShow(e: Event) {
                 </div>
               </sgds-table-cell>
             </sgds-table-row>
-          </sgds-table>
+            </sgds-table>
+          </div>
 
-        <div v-if="activeRadiusGroupId === 'form'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-          <div class="typography-page-template__content-block">
+          <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">Form radius</h5>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               Use these only on native HTML controls. When SGDS web components are available, prefer the component over
               styling custom form controls yourself.
             </p>
-          </div>
+            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table border-utilities-radius-table">
+              <sgds-table-row>
+                <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-value-column">Value</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-preview-column">Preview</sgds-table-head>
+              </sgds-table-row>
 
-          <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table border-utilities-radius-table">
-            <sgds-table-row>
-              <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-value-column">Value</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-preview-column">Preview</sgds-table-head>
-            </sgds-table-row>
-
-            <sgds-table-row v-for="item in formRadiusUtilities" :key="item.utilityClass">
-              <sgds-table-cell class="typography-page-template__table-utility-column">
-                <div class="ts-snippet-row">
-                  <code class="ts-snippet-code">
-                    <span>{{ item.utilityClass }}</span>
-                  </code>
-                  <button
-                    class="ts-snippet-copy-btn"
-                    @click="copyTokenValue(item.utilityClass, item.utilityClass)"
-                  >
-                    <sgds-icon :name="copiedKey === item.utilityClass ? 'check' : 'copy'" size="sm" />
-                  </button>
-                </div>
-              </sgds-table-cell>
-              <sgds-table-cell class="typography-page-template__table-value-column">
-                <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.value }}</span>
-              </sgds-table-cell>
-              <sgds-table-cell class="typography-page-template__table-usage-column">
-                <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.usage }}</span>
-              </sgds-table-cell>
-              <sgds-table-cell class="typography-page-template__table-preview-column">
-                <div class="sgds:flex sgds:justify-center sgds:min-h-[5rem]">
-                  <div
-                    :class="[
-                      'sgds:flex sgds:h-12 sgds:w-full sgds:max-w-[12rem] sgds:items-center sgds:border sgds:border-default sgds:bg-transparent sgds:px-component-xs',
-                      item.previewClass
-                    ]"
-                  >
-                    <span class="sgds:text-label-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
-                      {{ item.previewLabel }}
-                    </span>
+              <sgds-table-row v-for="item in formRadiusUtilities" :key="item.utilityClass">
+                <sgds-table-cell class="typography-page-template__table-utility-column">
+                  <div class="ts-snippet-row">
+                    <code class="ts-snippet-code">
+                      <span>{{ item.utilityClass }}</span>
+                    </code>
+                    <button
+                      class="ts-snippet-copy-btn"
+                      @click="copyTokenValue(item.utilityClass, item.utilityClass)"
+                    >
+                      <sgds-icon :name="copiedKey === item.utilityClass ? 'check' : 'copy'" size="sm" />
+                    </button>
                   </div>
-                </div>
-              </sgds-table-cell>
-            </sgds-table-row>
-          </sgds-table>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-value-column">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.value }}</span>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-usage-column">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.usage }}</span>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-preview-column">
+                  <div class="sgds:flex sgds:justify-center">
+                    <div
+                      :class="[
+                        'sgds:flex sgds:h-12 sgds:w-full sgds:max-w-[12rem] sgds:items-center sgds:border sgds:border-default sgds:bg-transparent sgds:px-component-xs',
+                        item.previewClass
+                      ]"
+                    >
+                      <span class="sgds:text-label-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                        {{ item.previewLabel }}
+                      </span>
+                    </div>
+                  </div>
+                </sgds-table-cell>
+              </sgds-table-row>
+            </sgds-table>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ═══════════════ COLOUR ═══════════════ -->
     <section v-if="isColourPage" class="typography-page-template__section typography-page-template__section--spaced">
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
         <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Border semantics</h4>
+          <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Border colour utilities</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
             Border colour utilities are theme-aware and follow the pattern <CodeToken label="sgds:border-{semantic}-{modifier}" />.
             The word <CodeToken label="color" :surface="false" /> never appears in the class name. Always pair border colour
@@ -601,29 +582,21 @@ function onRadiusTabShow(e: Event) {
           </p>
         </div>
 
-        <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onBorderColorTabShow">
-          <sgds-tab
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+          <div
             v-for="group in borderColorGroups"
             :key="group.id"
-            slot="nav"
-            :panel="group.id"
-            :active="activeBorderColorGroupId === group.id || null"
-          >{{ group.label }}</sgds-tab>
-          <sgds-tab-panel
-            v-for="group in borderColorGroups"
-            :key="`border-colour-panel-${group.id}`"
-            :name="group.id"
-          ></sgds-tab-panel>
-        </sgds-tab-group>
-
-        <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+            class="sgds:flex sgds:flex-col sgds:gap-layout-xs"
+          >
+            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ group.label }}</h5>
+            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
             <sgds-table-row>
               <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
               <sgds-table-head class="typography-page-template__table-preview-column">Preview</sgds-table-head>
             </sgds-table-row>
 
-            <sgds-table-row v-for="item in currentBorderColorRows" :key="item.utilityClass">
+            <sgds-table-row v-for="item in group.rows" :key="item.utilityClass">
               <sgds-table-cell class="typography-page-template__table-utility-column">
                 <div class="ts-snippet-row">
                   <code class="ts-snippet-code">
@@ -641,12 +614,14 @@ function onRadiusTabShow(e: Event) {
                 <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ item.usage }}</span>
               </sgds-table-cell>
               <sgds-table-cell class="typography-page-template__table-preview-column">
-                <div class="sgds:flex sgds:justify-center sgds:min-h-[5rem]">
+                <div class="sgds:flex sgds:justify-center">
                   <div :class="['sgds:h-14 sgds:w-14 sgds:border sgds:bg-transparent', item.previewClass, 'sgds:rounded-lg']"></div>
                 </div>
               </sgds-table-cell>
             </sgds-table-row>
-          </sgds-table>
+            </sgds-table>
+          </div>
+        </div>
       </div>
     </section>
   </TypographyPageTemplate>

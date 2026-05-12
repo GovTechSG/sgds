@@ -26,15 +26,17 @@ const copyToken = async () => {
 <template>
   <div class="typography-page-template__utility-copy">
     <CodeToken :label="props.label" />
-    <button
-      :class="[
-        'typography-page-template__utility-copy-button',
-        copied ? 'sgds:text-success-default' : 'sgds:text-default'
-      ]"
-      :aria-label="copied ? 'Copied!' : props.copyLabel"
-      @click="copyToken"
-    >
-      <sgds-icon :name="copied ? 'check' : 'copy'" size="md" />
-    </button>
+    <sgds-tooltip :content="copied ? 'Copied' : props.copyLabel" placement="top">
+      <button
+        :class="[
+          'typography-page-template__utility-copy-button',
+          copied ? 'sgds:text-success-default' : 'sgds:text-default'
+        ]"
+        :aria-label="copied ? 'Copied!' : props.copyLabel"
+        @click="copyToken"
+      >
+        <sgds-icon :name="copied ? 'check' : 'copy'" size="md" />
+      </button>
+    </sgds-tooltip>
   </div>
 </template>

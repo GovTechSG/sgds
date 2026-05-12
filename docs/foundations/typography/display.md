@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Display
-description: Display styles are predefined combinations of typography variables for large expressive headings, so you do not need to choose each value individually.
+description: Use display styles for the most prominent text on a page, such as hero headings and key statements.
 ---
 
 <script setup>

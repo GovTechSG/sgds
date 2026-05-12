@@ -38,12 +38,12 @@ const { stackedExamples = false } = defineProps<{
 .typography-page-template__body {
   display: flex;
   flex-direction: column;
-  gap: var(--sgds-layout-gap-xl);
+  gap: var(--sgds-layout-gap-lg);
   width: 100%;
 }
 
 .typography-page-template__body--prose {
-  gap: var(--sgds-layout-gap-md);
+  gap: var(--sgds-layout-gap-lg);
 }
 
 .typography-page-template__content-block {
@@ -82,7 +82,7 @@ const { stackedExamples = false } = defineProps<{
 .typography-page-template__copy-pane {
   display: flex;
   flex-direction: column;
-  gap: var(--sgds-text-gap-md);
+  gap: var(--sgds-text-gap-xs);
 }
 
 .typography-page-template--stacked .typography-page-template__split-row {
@@ -247,6 +247,13 @@ const { stackedExamples = false } = defineProps<{
  * use a token-view switcher above their table. */
 .ts-token-tab-group {
   --sgds-gap-xl: 0;
+  /* Standardise the space around the tab group to layout-gap-sm on both
+   * sides. The gap ABOVE comes from section--spaced (layout-gap-md between
+   * the h3+p block and body--prose), the gap BELOW comes from body--prose
+   * (layout-gap-lg between the tab group and the table blocks). Negative
+   * margins compensate each respective gap so the visible space becomes sm. */
+  margin-top: calc(var(--sgds-layout-gap-sm) - var(--sgds-layout-gap-md));
+  margin-bottom: calc(var(--sgds-layout-gap-sm) - var(--sgds-layout-gap-lg));
 }
 
 /* ── Copyable token snippet row ──────────────────────────────────────────────

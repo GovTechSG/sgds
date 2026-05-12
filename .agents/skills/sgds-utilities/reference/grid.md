@@ -87,7 +87,7 @@ Use for every page that does **not** have a persistent sidebar.
 
 ### `.sgds-container-sidebar` — use inside sidebar app layouts
 
-Use when content sits alongside a sticky sidebar (i.e. the Sidebar App Layout from the [Application Shell](../../sgds-pattern-block-templates/reference/application-shell.md)). Narrower max-widths preserve readable line lengths.
+Use when content sits alongside a sticky sidebar (i.e. the Sidebar App Layout from the [Application Shell](../../sgds-blocks/reference/application-shell.md)). Narrower max-widths preserve readable line lengths.
 
 | Breakpoint | Max width |
 |------------|-----------|

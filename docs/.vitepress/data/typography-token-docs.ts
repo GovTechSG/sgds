@@ -12,11 +12,28 @@ export type TypographyTokenRow = {
   note?: string;
 };
 
+export type ResponsiveFontSizeRow = {
+  token: string;
+  mobile: string;
+  tablet: string;
+  desktop: string;
+  isDefault?: boolean;
+};
+
+export type ResponsiveFontSizeSubgroup = {
+  label: string;
+  rows: ResponsiveFontSizeRow[];
+};
+
 export type TypographyTokenDoc = {
   key: string;
   title: string;
   description: string;
-  rows: TypographyTokenRow[];
+  /** Optional h5 subgroup label rendered between the description and the main table. */
+  subgroupLabel?: string;
+  /** Optional responsive font-size subgroups (h5 + token table) rendered before the main table. */
+  responsiveFontSizeSubgroups?: ResponsiveFontSizeSubgroup[];
+  rows?: TypographyTokenRow[];
 };
 
 export const typographyTokenDocs: Record<string, TypographyTokenDoc> = {
@@ -215,19 +232,86 @@ export const typographyTokenDocs: Record<string, TypographyTokenDoc> = {
   },
   "responsive": {
     key: "responsive",
-    title: "Responsive line height tokens",
+    title: "Responsive tokens",
     description:
-      "Semantic line height tokens that scale across breakpoints. Use these tokens when vertical rhythm needs to adapt to the screen size alongside responsive font sizes.",
-    rows: [
-      { token: "--sgds-line-height-3-xs", value: "16px", mobile: "16px / 1rem", tablet: "16px / 1rem", desktop: "16px / 1rem", exampleClass: "sgds:leading-3-xs", exampleText: "Line one\nLine two", usage: "Compact labels and badges." },
-      { token: "--sgds-line-height-2-xs", value: "20px", mobile: "20px / 1.25rem", tablet: "20px / 1.25rem", desktop: "20px / 1.25rem", exampleClass: "sgds:leading-2-xs", exampleText: "Line one\nLine two", usage: "Small labels, captions, and overlines." },
-      { token: "--sgds-line-height-xs", value: "24px", mobile: "24px / 1.5rem", tablet: "24px / 1.5rem", desktop: "24px / 1.5rem", exampleClass: "sgds:leading-xs", exampleText: "Line one\nLine two", usage: "Subtitles, body medium, and body small text." },
-      { token: "--sgds-line-height-sm", value: "24px", mobile: "24px / 1.5rem", tablet: "28px / 1.75rem", desktop: "28px / 1.75rem", exampleClass: "sgds:leading-sm", exampleText: "Line one\nLine two", usage: "Small headings such as H4." },
-      { token: "--sgds-line-height-md", value: "28px", mobile: "28px / 1.75rem", tablet: "32px / 2rem", desktop: "32px / 2rem", exampleClass: "sgds:leading-md", exampleText: "Line one\nLine two", usage: "Medium headings and body large text." },
-      { token: "--sgds-line-height-lg", value: "32px", mobile: "32px / 2rem", tablet: "36px / 2.25rem", desktop: "40px / 2.5rem", exampleClass: "sgds:leading-lg", exampleText: "Line one\nLine two", usage: "Large headings such as H2." },
-      { token: "--sgds-line-height-xl", value: "40px", mobile: "40px / 2.5rem", tablet: "44px / 2.75rem", desktop: "48px / 3rem", exampleClass: "sgds:leading-xl", exampleText: "Line one\nLine two", usage: "XL headings and display small text." },
-      { token: "--sgds-line-height-2-xl", value: "44px", mobile: "44px / 2.75rem", tablet: "52px / 3.25rem", desktop: "56px / 3.5rem", exampleClass: "sgds:leading-2-xl", exampleText: "Line one\nLine two", usage: "Display medium text." },
-      { token: "--sgds-line-height-3-xl", value: "48px", mobile: "48px / 3rem", tablet: "60px / 3.75rem", desktop: "64px / 4rem", exampleClass: "sgds:leading-3-xl", exampleText: "Line one\nLine two", usage: "Display large text." },
+      "Semantic tokens that scale across breakpoints. Use these tokens when typography needs to adapt to the screen size alongside responsive font sizes.",
+    responsiveFontSizeSubgroups: [
+      {
+        label: "Display",
+        rows: [
+          { token: "--sgds-font-size-display-lg", desktop: "--sgds-font-size-56", tablet: "--sgds-font-size-52", mobile: "--sgds-font-size-40" },
+          { token: "--sgds-font-size-display-md", desktop: "--sgds-font-size-48", tablet: "--sgds-font-size-44", mobile: "--sgds-font-size-36", isDefault: true },
+          { token: "--sgds-font-size-display-sm", desktop: "--sgds-font-size-40", tablet: "--sgds-font-size-36", mobile: "--sgds-font-size-32" },
+        ],
+      },
+      {
+        label: "Heading",
+        rows: [
+          { token: "--sgds-font-size-heading-xl", desktop: "--sgds-font-size-40", tablet: "--sgds-font-size-36", mobile: "--sgds-font-size-32" },
+          { token: "--sgds-font-size-heading-lg", desktop: "--sgds-font-size-32", tablet: "--sgds-font-size-30", mobile: "--sgds-font-size-28" },
+          { token: "--sgds-font-size-heading-md", desktop: "--sgds-font-size-28", tablet: "--sgds-font-size-26", mobile: "--sgds-font-size-24", isDefault: true },
+          { token: "--sgds-font-size-heading-sm", desktop: "--sgds-font-size-24", tablet: "--sgds-font-size-22", mobile: "--sgds-font-size-20" },
+        ],
+      },
+      {
+        label: "Subtitle",
+        rows: [
+          { token: "--sgds-font-size-subtitle-md", desktop: "--sgds-font-size-20", tablet: "--sgds-font-size-20", mobile: "--sgds-font-size-18", isDefault: true },
+          { token: "--sgds-font-size-subtitle-sm", desktop: "--sgds-font-size-16", tablet: "--sgds-font-size-16", mobile: "--sgds-font-size-16" },
+        ],
+      },
+      {
+        label: "Body",
+        rows: [
+          { token: "--sgds-font-size-body-lg", desktop: "--sgds-font-size-20", tablet: "--sgds-font-size-20", mobile: "--sgds-font-size-18" },
+          { token: "--sgds-font-size-body-md", desktop: "--sgds-font-size-16", tablet: "--sgds-font-size-16", mobile: "--sgds-font-size-16", isDefault: true },
+          { token: "--sgds-font-size-body-sm", desktop: "--sgds-font-size-14", tablet: "--sgds-font-size-14", mobile: "--sgds-font-size-14" },
+        ],
+      },
+      {
+        label: "Label",
+        rows: [
+          { token: "--sgds-font-size-label-lg", desktop: "--sgds-font-size-20", tablet: "--sgds-font-size-20", mobile: "--sgds-font-size-18" },
+          { token: "--sgds-font-size-label-md", desktop: "--sgds-font-size-16", tablet: "--sgds-font-size-16", mobile: "--sgds-font-size-16", isDefault: true },
+          { token: "--sgds-font-size-label-sm", desktop: "--sgds-font-size-14", tablet: "--sgds-font-size-14", mobile: "--sgds-font-size-14" },
+          { token: "--sgds-font-size-label-xs", desktop: "--sgds-font-size-12", tablet: "--sgds-font-size-12", mobile: "--sgds-font-size-12" },
+        ],
+      },
+      {
+        label: "Caption",
+        rows: [
+          { token: "--sgds-font-size-caption-md", desktop: "--sgds-font-size-14", tablet: "--sgds-font-size-14", mobile: "--sgds-font-size-14", isDefault: true },
+        ],
+      },
+      {
+        label: "Overline",
+        rows: [
+          { token: "--sgds-font-size-overline-md", desktop: "--sgds-font-size-14", tablet: "--sgds-font-size-14", mobile: "--sgds-font-size-14", isDefault: true },
+        ],
+      },
+      {
+        label: "Link",
+        rows: [
+          { token: "--sgds-font-size-link-lg", desktop: "--sgds-font-size-20", tablet: "--sgds-font-size-20", mobile: "--sgds-font-size-18" },
+          { token: "--sgds-font-size-link-md", desktop: "--sgds-font-size-16", tablet: "--sgds-font-size-16", mobile: "--sgds-font-size-16", isDefault: true },
+          { token: "--sgds-font-size-link-sm", desktop: "--sgds-font-size-14", tablet: "--sgds-font-size-14", mobile: "--sgds-font-size-14" },
+          { token: "--sgds-font-size-link-xs", desktop: "--sgds-font-size-12", tablet: "--sgds-font-size-12", mobile: "--sgds-font-size-12" },
+        ],
+      },
+      {
+        label: "Line height",
+        rows: [
+          { token: "--sgds-line-height-3-xs", desktop: "--sgds-line-height-16", tablet: "--sgds-line-height-16", mobile: "--sgds-line-height-16" },
+          { token: "--sgds-line-height-2-xs", desktop: "--sgds-line-height-20", tablet: "--sgds-line-height-20", mobile: "--sgds-line-height-20" },
+          { token: "--sgds-line-height-xs", desktop: "--sgds-line-height-24", tablet: "--sgds-line-height-24", mobile: "--sgds-line-height-24" },
+          { token: "--sgds-line-height-sm", desktop: "--sgds-line-height-28", tablet: "--sgds-line-height-28", mobile: "--sgds-line-height-24" },
+          { token: "--sgds-line-height-md", desktop: "--sgds-line-height-32", tablet: "--sgds-line-height-32", mobile: "--sgds-line-height-28" },
+          { token: "--sgds-line-height-lg", desktop: "--sgds-line-height-40", tablet: "--sgds-line-height-36", mobile: "--sgds-line-height-32" },
+          { token: "--sgds-line-height-xl", desktop: "--sgds-line-height-48", tablet: "--sgds-line-height-44", mobile: "--sgds-line-height-40" },
+          { token: "--sgds-line-height-2-xl", desktop: "--sgds-line-height-56", tablet: "--sgds-line-height-52", mobile: "--sgds-line-height-44" },
+          { token: "--sgds-line-height-3-xl", desktop: "--sgds-line-height-64", tablet: "--sgds-line-height-60", mobile: "--sgds-line-height-48" },
+        ],
+      },
     ],
   },
 };

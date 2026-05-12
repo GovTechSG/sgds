@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Link
-description: Link styles are predefined combinations of typography variables for interactive text, so links stay aligned with the rest of the type system.
+description: Use link styles for interactive text that needs to be recognisable, accessible, and consistent.
 ---
 
 <script setup>

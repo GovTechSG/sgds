@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Line height
-description: Line height tokens used across the SGDS typography system.
+description: Understand the line height tokens that control vertical rhythm and readability in SGDS text.
 ---
 
 <script setup>

@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Paragraph body
-description: Paragraph body styles are predefined combinations of typography variables for longer reading content, making text easier to apply consistently.
+description: Use paragraph body styles for main reading content, descriptions, and supporting copy.
 ---
 
 <script setup>

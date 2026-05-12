@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Font size
-description: Primitive font size design tokens used across the SGDS type scale.
+description: Understand the primitive font size tokens that form the SGDS type scale.
 ---
 
 <script setup>

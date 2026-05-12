@@ -55,7 +55,8 @@ function getMenu(folder: string) {
 const config = withSidebar(vitePressConfig, [
     getMenu("foundations"),
     getMenu("components"),
-    getMenu("patterns"),
+    getMenu("templates"),
+    getMenu("blocks"),
     getMenu("guidelines"),
     getMenu("resources"),
     getMenu("ai"),
@@ -66,113 +67,65 @@ config.themeConfig.sidebar ??= {};
 config.themeConfig.sidebar["/components/"] = {
   base: "/components/",
   items: [
-    {
-      text: "Data display",
-      items: [
-        { text: "Accordion", link: "/components/accordion" },
-        { text: "Accordion v2", link: "/components/accordion-v2" },
-        { text: "Card", link: "/components/card" },
-        { text: "Icon card", link: "/components/icon-card" },
-        { text: "Image card", link: "/components/image-card" },
-        { text: "Thumbnail card", link: "/components/thumbnail-card" },
-      ],
-    },
-    {
-      text: "List",
-      items: [
-        { text: "Description list", link: "/components/description-list" },
-        { text: "Icon list", link: "/components/icon-list" },
-      ],
-    },
-    {
-      text: "Layout",
-      items: [
-        { text: "Divider", link: "/components/divider" },
-      ],
-    },
-    {
-      text: "Table",
-      items: [
-        { text: "Table", link: "/components/table" },
-        { text: "Table of contents", link: "/components/table-of-contents" },
-        { text: "Pagination", link: "/components/pagination" },
-      ],
-    },
-    {
-      text: "Feedback",
-      items: [
-        { text: "Alert", link: "/components/alert" },
-        { text: "Badge", link: "/components/badge" },
-        { text: "Drawer", link: "/components/drawer" },
-        { text: "Modal", link: "/components/modal" },
-        { text: "Progress bar", link: "/components/progress-bar" },
-        { text: "Skeleton", link: "/components/skeleton" },
-        { text: "Spinner", link: "/components/spinner" },
-        { text: "System banner", link: "/components/system-banner" },
-        { text: "Toast", link: "/components/toast" },
-        { text: "Tooltip", link: "/components/tooltip" },
-      ],
-    },
-    {
-      text: "Form",
-      items: [
-        { text: "Button", link: "/components/button" },
-        { text: "Checkbox", link: "/components/checkbox" },
-        { text: "Combo box", link: "/components/combo-box" },
-        { text: "Datepicker", link: "/components/datepicker" },
-        { text: "File upload", link: "/components/file-upload" },
-        { text: "Input", link: "/components/input" },
-        { text: "Quantity toggle", link: "/components/quantity-toggle" },
-        { text: "Radio", link: "/components/radio" },
-        { text: "Select", link: "/components/select" },
-        { text: "Switch", link: "/components/switch" },
-        { text: "Textarea", link: "/components/textarea" },
-      ],
-    },
-    {
-      text: "Labels",
-      items: [
-        { text: "Close button", link: "/components/close-button" },
-        { text: "Icon", link: "/components/icon" },
-        { text: "Link", link: "/components/link" },
-      ],
-    },
-    {
-      text: "Navigation",
-      items: [
-        { text: "Breadcrumb", link: "/components/breadcrumb" },
-        { text: "Dropdown", link: "/components/dropdown" },
-        { text: "Footer", link: "/components/footer" },
-        { text: "Icon button", link: "/components/icon-button" },
-        { text: "Mainnav", link: "/components/mainnav" },
-        { text: "Masthead", link: "/components/masthead" },
-        { text: "Overflow menu", link: "/components/overflow-menu" },
-        { text: "Sidenav", link: "/components/sidenav" },
-        { text: "Stepper", link: "/components/stepper" },
-        { text: "Subnav", link: "/components/subnav" },
-        { text: "Tab", link: "/components/tab" },
-      ],
-    },
+    { text: "Accordion", link: "/components/accordion" },
+    { text: "Alert", link: "/components/alert" },
+    { text: "Badge", link: "/components/badge" },
+    { text: "Breadcrumb", link: "/components/breadcrumb" },
+    { text: "Button", link: "/components/button" },
+    { text: "Card", link: "/components/card" },
+    { text: "Checkbox", link: "/components/checkbox" },
+    { text: "Close button", link: "/components/close-button" },
+    { text: "Combo box", link: "/components/combo-box" },
+    { text: "Datepicker", link: "/components/datepicker" },
+    { text: "Description list", link: "/components/description-list" },
+    { text: "Divider", link: "/components/divider" },
+    { text: "Drawer", link: "/components/drawer" },
+    { text: "Dropdown", link: "/components/dropdown" },
+    { text: "File upload", link: "/components/file-upload" },
+    { text: "Footer", link: "/components/footer" },
+    { text: "Icon", link: "/components/icon" },
+    { text: "Icon button", link: "/components/icon-button" },
+    { text: "Icon card", link: "/components/icon-card" },
+    { text: "Icon list", link: "/components/icon-list" },
+    { text: "Image card", link: "/components/image-card" },
+    { text: "Input", link: "/components/input" },
+    { text: "Link", link: "/components/link" },
+    { text: "Mainnav", link: "/components/mainnav" },
+    { text: "Masthead", link: "/components/masthead" },
+    { text: "Modal", link: "/components/modal" },
+    { text: "Overflow menu", link: "/components/overflow-menu" },
+    { text: "Pagination", link: "/components/pagination" },
+    { text: "Progress bar", link: "/components/progress-bar" },
+    { text: "Quantity toggle", link: "/components/quantity-toggle" },
+    { text: "Radio", link: "/components/radio" },
+    { text: "Select", link: "/components/select" },
+    { text: "Sidenav", link: "/components/sidenav" },
+    { text: "Skeleton", link: "/components/skeleton" },
+    { text: "Spinner", link: "/components/spinner" },
+    { text: "Stepper", link: "/components/stepper" },
+    { text: "Subnav", link: "/components/subnav" },
+    { text: "Switch", link: "/components/switch" },
+    { text: "System banner", link: "/components/system-banner" },
+    { text: "Tab", link: "/components/tab" },
+    { text: "Table", link: "/components/table" },
+    { text: "Table of contents", link: "/components/table-of-contents" },
+    { text: "Textarea", link: "/components/textarea" },
+    { text: "Thumbnail card", link: "/components/thumbnail-card" },
+    { text: "Toast", link: "/components/toast" },
+    { text: "Tooltip", link: "/components/tooltip" },
   ],
 };
 config.themeConfig.sidebar["/foundations/"] = foundationsSidebar;
-config.themeConfig.sidebar["/patterns/"] = {
-  base: "/patterns/",
+config.themeConfig.sidebar["/templates/"] = {
+  base: "/templates/",
   items: [
-    {
-      text: "Page templates",
-      items: [
-        { text: "Form page", link: "/patterns/page-templates/form-page" },
-        { text: "Multi-step form", link: "/patterns/page-templates/multi-step-form" },
-      ],
-    },
-    {
-      text: "Block templates",
-      items: [
-        { text: "Hero", link: "/patterns/block-templates/hero" },
-        { text: "Card grid", link: "/patterns/block-templates/card-grid" },
-      ],
-    },
+    { text: "Overview", link: "/templates/" },
+  ],
+};
+config.themeConfig.sidebar["/blocks/"] = {
+  base: "/blocks/",
+  items: [
+    { text: "Overview", link: "/blocks/" },
   ],
 };
 config.themeConfig.sidebar["/guidelines/"] = {

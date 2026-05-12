@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Icon card
-description: Icon cards can be used for headers and footers, a wide variety of content, contain contextual background colors and images.
+description: Icon cards can include headers, footers, rich content, and contextual background colours or images.
 storybook: true
 ---
 

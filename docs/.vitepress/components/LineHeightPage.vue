@@ -29,19 +29,7 @@ const staticLineHeights = [
   { utilityClass: "sgds:leading-60", value: "60px / 3.75rem", usage: "Fixed hero display line-height." },
   { utilityClass: "sgds:leading-64", value: "64px / 4rem", usage: "Fixed hero display line-height." },
 ] as const;
-
-const lineHeightModes = [
-  { id: "responsive", label: "Responsive" },
-  { id: "static", label: "Static" },
-] as const;
-
-const activeLineHeightMode = ref<(typeof lineHeightModes)[number]["id"]>("responsive");
 const copiedKey = ref<string | null>(null);
-
-const onLineHeightTabShow = (event: Event) => {
-  const nextMode = (event as CustomEvent<{ name?: string }>).detail?.name as (typeof lineHeightModes)[number]["id"] | undefined;
-  if (nextMode && lineHeightModes.some((mode) => mode.id === nextMode)) activeLineHeightMode.value = nextMode;
-};
 
 const copyTokenValue = async (key: string, text: string) => {
   await navigator.clipboard.writeText(text);
@@ -55,157 +43,100 @@ const copyTokenValue = async (key: string, text: string) => {
 <template>
   <TypographyPageTemplate>
     <section class="typography-page-template__section">
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
         <div class="typography-page-template__content-block">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Line height utilities</h4>
+          <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Line height utilities</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
             Line height (leading) controls the vertical space between lines of text. SGDS semantic leading tokens are responsive — they scale up at tablet (1024px) and desktop (1440px) breakpoints to maintain comfortable reading rhythm alongside larger font sizes.
           </p>
         </div>
-        <sgds-tab-group class="sgds:block sgds:w-full ts-token-tab-group" variant="underlined" @sgds-tab-show="onLineHeightTabShow">
-          <sgds-tab
-            v-for="mode in lineHeightModes"
-            :key="mode.id"
-            slot="nav"
-            :panel="mode.id"
-            :active="activeLineHeightMode === mode.id || null"
-          >{{ mode.label }}</sgds-tab>
-          <sgds-tab-panel
-            v-for="mode in lineHeightModes"
-            :key="`line-height-mode-panel-${mode.id}`"
-            :name="mode.id"
-          ></sgds-tab-panel>
-        </sgds-tab-group>
 
-        <div v-if="activeLineHeightMode === 'responsive'" class="typography-page-template__content-block">
-          <sgds-table
-            tableBorder
-            headerBackground
-            responsive="always"
-            class="typography-page-template__utility-table"
-          >
-            <sgds-table-row>
-              <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-metric-column">Mobile</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-metric-column">Tablet</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-metric-column">Desktop</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
-            </sgds-table-row>
+        <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
+          <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">Responsive</h5>
+            <sgds-table
+              tableBorder
+              headerBackground
+              responsive="always"
+              class="typography-page-template__utility-table"
+            >
+              <sgds-table-row>
+                <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-metric-column">Mobile</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-metric-column">Tablet</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-metric-column">Desktop</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
+              </sgds-table-row>
 
-            <sgds-table-row v-for="lh in lineHeights" :key="lh.utilityClass">
-              <sgds-table-cell class="typography-page-template__table-utility-column">
-                <div class="ts-snippet-row">
-                  <code class="ts-snippet-code">
-                    <span>{{ lh.utilityClass }}</span>
-                  </code>
-                  <button
-                    class="ts-snippet-copy-btn"
-                    @click="copyTokenValue(lh.utilityClass, lh.utilityClass)"
-                  >
-                    <sgds-icon :name="copiedKey === lh.utilityClass ? 'check' : 'copy'" size="sm" />
-                  </button>
-                </div>
-              </sgds-table-cell>
-              <sgds-table-cell class="typography-page-template__table-metric-column">
-                <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.mobile }}px</span>
-              </sgds-table-cell>
-              <sgds-table-cell class="typography-page-template__table-metric-column">
-                <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.tablet }}px</span>
-              </sgds-table-cell>
-              <sgds-table-cell class="typography-page-template__table-metric-column">
-                <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.desktop }}px</span>
-              </sgds-table-cell>
-              <sgds-table-cell class="typography-page-template__table-usage-column">
-                <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.usage }}</span>
-              </sgds-table-cell>
-            </sgds-table-row>
-          </sgds-table>
-        </div>
+              <sgds-table-row v-for="lh in lineHeights" :key="lh.utilityClass">
+                <sgds-table-cell class="typography-page-template__table-utility-column">
+                  <div class="sgds:flex sgds:items-start sgds:justify-between sgds:gap-2-xs sgds:rounded-sm sgds:border sgds:border-muted sgds:bg-surface-raised sgds:px-sm sgds:py-[0.375rem]">
+                    <code class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:flex-col sgds:gap-2-xs sgds:overflow-visible sgds:whitespace-normal sgds:font-mono sgds:text-body-sm sgds:leading-xs sgds:text-subtle">
+                      <span class="sgds:self-start sgds:whitespace-nowrap sgds:text-default">{{ lh.utilityClass }}</span>
+                    </code>
+                    <button
+                      class="sgds:flex sgds:flex-shrink-0 sgds:cursor-pointer sgds:rounded-sm sgds:border-0 sgds:bg-transparent sgds:p-1 sgds:hover:bg-translucent-subtle"
+                      @click="copyTokenValue(lh.utilityClass, lh.utilityClass)"
+                    >
+                      <sgds-icon :name="copiedKey === lh.utilityClass ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-metric-column">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.mobile }}px</span>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-metric-column">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.tablet }}px</span>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-metric-column">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.desktop }}px</span>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-usage-column">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.usage }}</span>
+                </sgds-table-cell>
+              </sgds-table-row>
+            </sgds-table>
+          </div>
 
-        <div v-else class="typography-page-template__content-block">
-          <sgds-table
-            tableBorder
-            headerBackground
-            responsive="always"
-            class="typography-page-template__utility-table"
-          >
-            <sgds-table-row>
-              <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-value-column">Value</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
-            </sgds-table-row>
+          <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+            <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0">Static</h5>
+            <sgds-table
+              tableBorder
+              headerBackground
+              responsive="always"
+              class="typography-page-template__utility-table"
+            >
+              <sgds-table-row>
+                <sgds-table-head class="typography-page-template__table-utility-column">SGDS tailwind token</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-value-column">Value</sgds-table-head>
+                <sgds-table-head class="typography-page-template__table-usage-column">Usage</sgds-table-head>
+              </sgds-table-row>
 
-            <sgds-table-row v-for="lh in staticLineHeights" :key="lh.utilityClass">
-              <sgds-table-cell class="typography-page-template__table-utility-column">
-                <div class="ts-snippet-row">
-                  <code class="ts-snippet-code">
-                    <span>{{ lh.utilityClass }}</span>
-                  </code>
-                  <button
-                    class="ts-snippet-copy-btn"
-                    @click="copyTokenValue(lh.utilityClass, lh.utilityClass)"
-                  >
-                    <sgds-icon :name="copiedKey === lh.utilityClass ? 'check' : 'copy'" size="sm" />
-                  </button>
-                </div>
-              </sgds-table-cell>
-              <sgds-table-cell class="typography-page-template__table-value-column">
-                <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.value }}</span>
-              </sgds-table-cell>
-              <sgds-table-cell class="typography-page-template__table-usage-column">
-                <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.usage }}</span>
-              </sgds-table-cell>
-            </sgds-table-row>
-          </sgds-table>
+              <sgds-table-row v-for="lh in staticLineHeights" :key="lh.utilityClass">
+                <sgds-table-cell class="typography-page-template__table-utility-column">
+                  <div class="sgds:flex sgds:items-start sgds:justify-between sgds:gap-2-xs sgds:rounded-sm sgds:border sgds:border-muted sgds:bg-surface-raised sgds:px-sm sgds:py-[0.375rem]">
+                    <code class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:flex-col sgds:gap-2-xs sgds:overflow-visible sgds:whitespace-normal sgds:font-mono sgds:text-body-sm sgds:leading-xs sgds:text-subtle">
+                      <span class="sgds:self-start sgds:whitespace-nowrap sgds:text-default">{{ lh.utilityClass }}</span>
+                    </code>
+                    <button
+                      class="sgds:flex sgds:flex-shrink-0 sgds:cursor-pointer sgds:rounded-sm sgds:border-0 sgds:bg-transparent sgds:p-1 sgds:hover:bg-translucent-subtle"
+                      @click="copyTokenValue(lh.utilityClass, lh.utilityClass)"
+                    >
+                      <sgds-icon :name="copiedKey === lh.utilityClass ? 'check' : 'copy'" size="sm" />
+                    </button>
+                  </div>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-value-column">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.value }}</span>
+                </sgds-table-cell>
+                <sgds-table-cell class="typography-page-template__table-usage-column">
+                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ lh.usage }}</span>
+                </sgds-table-cell>
+              </sgds-table-row>
+            </sgds-table>
+          </div>
         </div>
       </div>
     </section>
   </TypographyPageTemplate>
 </template>
-
-<style>
-.ts-snippet-row {
-  align-items: flex-start;
-  background: var(--sgds-surface-raised);
-  border: 1px solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-sm);
-  display: flex;
-  gap: var(--sgds-gap-2-xs);
-  justify-content: space-between;
-  padding: 0.375rem var(--sgds-padding-sm);
-}
-
-.ts-snippet-code {
-  color: var(--sgds-body-color-subtle);
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  font-family: var(--sgds-font-family-mono, monospace);
-  font-size: var(--sgds-font-size-body-sm);
-  gap: var(--sgds-gap-2-xs);
-  line-height: var(--sgds-line-height-xs);
-  min-width: 0;
-  overflow: visible;
-  white-space: normal;
-}
-
-.ts-snippet-code span {
-  align-self: flex-start;
-  color: var(--sgds-body-color-default);
-  white-space: nowrap;
-}
-
-.ts-snippet-copy-btn {
-  background: transparent;
-  border: 0;
-  border-radius: var(--sgds-border-radius-sm);
-  cursor: pointer;
-  display: flex;
-  flex-shrink: 0;
-  padding: var(--sgds-spacer-1);
-}
-
-.ts-snippet-copy-btn:hover {
-  background: var(--sgds-bg-translucent-subtle);
-}
-</style>

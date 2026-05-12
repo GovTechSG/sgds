@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Letter spacing
-description: Letter spacing (tracking) utilities and how they pair with typographic roles in the SGDS type scale.
+description: Apply SGDS letter spacing utilities to tune display text, headings, body text, and compact labels.
 ---
 
 <script setup>

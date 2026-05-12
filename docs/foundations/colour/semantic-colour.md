@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Semantic colour
-description: Semantic colour tokens for roles like background, surface, text, and border across light and dark modes.
+description: How SGDS semantic colour tokens work, how they map from primitive colours, and when to use them across backgrounds, surfaces, text, borders, and forms.
 ---
 
 <script setup>

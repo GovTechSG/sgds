@@ -22,14 +22,14 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 ## Behaviour
 
 - Renders a labelled list of anchor links for navigating within the current page.
-- The default slot accepts a heading element (e.g. `<h3>`) to label the table of contents.
+- The default slot accepts a heading element (e.g. `<h5>`) to label the table of contents.
 - The `contents` slot accepts `<li>` elements, each containing a `<sgds-link>` wrapping an `<a href="#section-id">`.
 - Clicking a link scrolls the page to the matching `id` on the target section.
 - The component has no attributes, events, or public methods — it is purely presentational and structural.
 
 ## Advanced Considerations
 
-- **Heading level**: choose a heading level for the default slot that fits the surrounding document hierarchy — typically `<h3>` or `<h4>` depending on page structure.
+- **Heading level**: choose a heading level for the default slot that fits the surrounding document hierarchy — typically `<h4>` or `<h5>` depending on page structure.
 - **Anchor accuracy**: each `<a href="#id">` must exactly match the `id` of a section on the page — a mismatch produces a broken link that scrolls to the top of the page.
 - **No active state tracking**: `<sgds-table-of-contents>` does not highlight the currently visible section as the user scrolls — implement scroll-spy behaviour manually if needed.
 - **Ordering**: list items appear in the order they are added to the `contents` slot — match the visual order of sections on the page for consistency.
@@ -50,7 +50,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 ```html
 <!-- Basic table of contents -->
 <sgds-table-of-contents>
-  <h3>Contents</h3>
+  <h5>Contents</h5>
   <li slot="contents">
     <sgds-link><a href="#overview">Overview</a></sgds-link>
   </li>
@@ -89,7 +89,7 @@ No attributes.
 
 | Slot | Purpose |
 |---|---|
-| *(default)* | Heading element for the table of contents (e.g. `<h3>Contents</h3>`) |
+| *(default)* | Heading element for the table of contents (e.g. `<h5>Contents</h5>`) |
 | `contents` | `<li>` elements, each containing a `<sgds-link>` with an anchor `<a href="#">` |
 
 ## Events
@@ -99,7 +99,7 @@ None.
 ---
 
 **For AI agents**:
-1. The *(default)* slot takes the heading — use a semantic heading element like `<h3>`.
+1. The *(default)* slot takes the heading — use a semantic heading element like `<h5>`.
 2. Each `contents` slot item is a `<li>` element containing `<sgds-link><a href="#section-id">Label</a></sgds-link>`.
 3. Anchor `href` values should match `id` attributes on the target page sections.
 4. There are no attributes, custom events, or public methods on this component.

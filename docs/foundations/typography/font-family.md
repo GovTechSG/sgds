@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Font family
-description: Font family tokens used across the SGDS typography system.
+description: Understand the font family tokens that define the primary typefaces used in SGDS interfaces.
 ---
 
 <script setup>

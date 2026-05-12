@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Font weight
-description: Font weight utilities and the semantic tokens that map to the SGDS type scale.
+description: Apply SGDS font weight utilities to control emphasis and hierarchy in text.
 ---
 
 <script setup>

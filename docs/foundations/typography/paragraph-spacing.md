@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Paragraph spacing
-description: Paragraph spacing tokens used across the SGDS typography system.
+description: Understand the paragraph spacing tokens that set consistent space after text blocks.
 ---
 
 <script setup>

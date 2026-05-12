@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Spacing principles
+title: Overview
 description: SGDS spacing helps create consistent rhythm, hierarchy, and alignment across layouts and components.
 ---
 

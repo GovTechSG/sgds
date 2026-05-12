@@ -12,177 +12,100 @@ export const foundationsSidebar = {
   base: "/foundations/",
   items: [
     {
+      text: "Design tokens",
+      items: [
+        { text: "Overview", link: "/foundations/design-tokens" },
+        { text: "Token architecture", link: "/foundations/token-architecture" },
+        { text: "Token naming", link: "/foundations/token-naming" },
+      ],
+    },
+    {
       text: "Accessibility",
-      items: [{ text: "Accessibility", link: "/foundations/accessibility" }],
+      items: [],
     },
     {
       text: "Border",
       items: [
-        { text: "Border principles", link: "/foundations/border" },
-        {
-          text: "Border tokens",
-          items: [
-            {
-              text: "Border radius",
-              link: "/foundations/border/border-radius-tokens",
-            },
-            {
-              text: "Border width",
-              link: "/foundations/border/border-width-tokens",
-            },
-          ],
-        },
-        {
-          text: "Border utilities",
-          items: [
-            {
-              text: "Border radius",
-              link: "/foundations/border/border-radius",
-            },
-            { text: "Border width", link: "/foundations/border/border-width" },
-          ],
-        },
+        { text: "Overview", link: "/foundations/border" },
+        { text: "Radius", link: "/foundations/border/radius" },
+        { text: "Width", link: "/foundations/border/width" },
       ],
     },
     {
       text: "Colour",
       items: [
-        { text: "Colour principles", link: "/foundations/colour" },
-        {
-          text: "Colour tokens",
-          items: [
-            {
-              text: "Primitive colour",
-              link: "/foundations/colour/primitive-colour",
-            },
-            {
-              text: "Product colour",
-              link: "/foundations/colour/product-colour",
-            },
-            {
-              text: "Semantic colour",
-              link: "/foundations/colour/semantic-colour",
-            },
-          ],
-        },
-        {
-          text: "Colour utilities",
-          items: [
-            {
-              text: "Background colour",
-              link: "/foundations/colour/background-colour",
-            },
-            {
-              text: "Border colour",
-              link: "/foundations/colour/border-colour",
-            },
-            { text: "Text colour", link: "/foundations/colour/text-colour" },
-          ],
-        },
+        { text: "Overview", link: "/foundations/colour" },
+        { text: "Brand colour", link: "/foundations/colour/brand-colour" },
+        { text: "Primitive colour", link: "/foundations/colour/primitive-colour" },
+        { text: "Semantic colour", link: "/foundations/colour/semantic-colour" },
       ],
     },
     {
       text: "Elevation",
       items: [
-        { text: "Elevation principles", link: "/foundations/elevation" },
+        { text: "Overview", link: "/foundations/elevation" },
         {
-          text: "Elevation tokens",
-          items: [
-            {
-              text: "Edge elevation",
-              link: "/foundations/elevation/edge-elevation",
-            },
-            {
-              text: "Surface elevation",
-              link: "/foundations/elevation/surface-elevation",
-            },
-          ],
+          text: "Edge elevation",
+          link: "/foundations/elevation/edge-elevation",
         },
         {
-          text: "Elevation utilities",
-          items: [
-            {
-              text: "Edge elevation",
-              link: "/foundations/elevation/edge-elevation-utilities",
-            },
-            {
-              text: "Surface elevation",
-              link: "/foundations/elevation/surface-elevation-utilities",
-            },
-          ],
+          text: "Surface elevation",
+          link: "/foundations/elevation/surface-elevation",
         },
       ],
     },
     {
       text: "Iconography",
       items: [
-        { text: "Icon principles", link: "/foundations/iconography" },
-        {
-          text: "Icon tokens",
-          items: [
-            { text: "Icon size", link: "/foundations/iconography/icon-tokens" },
-          ],
-        },
+        { text: "Overview", link: "/foundations/iconography" },
+        { text: "Icon size", link: "/foundations/iconography/icon-size" },
         { text: "Icon library", link: "/foundations/iconography/icon-library" },
+      ],
+    },
+    {
+      text: "Layer",
+      items: [
+        { text: "Overview", link: "/foundations/layer" },
+        { text: "Z-index", link: "/foundations/layer/layer-tokens" },
       ],
     },
     {
       text: "Layout",
       items: [
-        { text: "Layout principles", link: "/foundations/layout" },
+        { text: "Overview", link: "/foundations/layout" },
         {
-          text: "Layout tokens",
-          items: [
-            { text: "Breakpoint", link: "/foundations/layout/breakpoint" },
-            {
-              text: "Responsive grid",
-              link: "/foundations/layout/responsive-grid",
-            },
-          ],
+          text: "Responsive grid",
+          link: "/foundations/layout/responsive-grid",
         },
+        { text: "Breakpoint", link: "/foundations/layout/breakpoint" },
+        {
+          text: "Layout utilities",
+          items: [],
+        },
+      ],
+    },
+    {
+      text: "Motion",
+      items: [
+        { text: "Overview", link: "/foundations/motion" },
       ],
     },
     {
       text: "Spacing",
       items: [
-        { text: "Spacing principles", link: "/foundations/spacing" },
-        {
-          text: "Spacing tokens",
-          items: [
-            {
-              text: "Component gap",
-              link: "/foundations/spacing/component-gap",
-            },
-            {
-              text: "Component padding",
-              link: "/foundations/spacing/component-padding",
-            },
-            { text: "Layout gap", link: "/foundations/spacing/layout-gap" },
-            {
-              text: "Layout padding",
-              link: "/foundations/spacing/layout-padding",
-            },
-            { text: "Spacer scale", link: "/foundations/spacing/spacer-scale" },
-            { text: "Text gap", link: "/foundations/spacing/text-gap" },
-          ],
-        },
-        {
-          text: "Spacing utilities",
-          items: [
-            {
-              text: "Spacing utilities",
-              link: "/foundations/spacing/spacing-utilities",
-            },
-          ],
-        },
+        { text: "Overview", link: "/foundations/spacing" },
+        { text: "Spacer scale", link: "/foundations/spacing/spacer-scale" },
+        { text: "Gap", link: "/foundations/spacing/gap" },
+        { text: "Padding", link: "/foundations/spacing/padding" },
+        { text: "Margin", link: "/foundations/spacing/margin" },
       ],
     },
     {
       text: "Typography",
       items: [
-        { text: "Typography principles", link: "/foundations/typography" },
+        { text: "Overview", link: "/foundations/typography" },
         {
-          text: "Typography styles",
+          text: "Text styles",
           items: [
             { text: "Display", link: "/foundations/typography/display" },
             { text: "Headings", link: "/foundations/typography/heading" },
@@ -199,7 +122,7 @@ export const foundationsSidebar = {
           ],
         },
         {
-          text: "Typography tokens",
+          text: "Type system",
           items: [
             {
               text: "Font family",
@@ -225,7 +148,6 @@ export const foundationsSidebar = {
               text: "Paragraph spacing",
               link: "/foundations/typography/paragraph-spacing",
             },
-            { text: "Responsive", link: "/foundations/typography/responsive" },
             {
               text: "Text decoration",
               link: "/foundations/typography/text-decoration",
@@ -236,24 +158,6 @@ export const foundationsSidebar = {
             },
           ],
         },
-        {
-          text: "Typography utilities",
-          items: [
-            { text: "Font size", link: "/foundations/typography/font-size" },
-            {
-              text: "Font weight",
-              link: "/foundations/typography/font-weight",
-            },
-            {
-              text: "Letter spacing",
-              link: "/foundations/typography/letter-spacing",
-            },
-            {
-              text: "Line height",
-              link: "/foundations/typography/line-height",
-            },
-          ],
-        },
       ],
     },
   ] satisfies Array<SidebarGroupItem>,
@@ -261,7 +165,7 @@ export const foundationsSidebar = {
 
 export function findSidebarTextByLink(
   items: Array<SidebarGroupItem | SidebarLinkItem>,
-  link: string,
+  link: string
 ): string | null {
   for (const item of items) {
     if ("link" in item && item.link === link) return item.text;
@@ -275,7 +179,7 @@ export function findSidebarTextByLink(
 }
 
 function findFirstLeafLink(
-  items: Array<SidebarGroupItem | SidebarLinkItem>,
+  items: Array<SidebarGroupItem | SidebarLinkItem>
 ): string | undefined {
   for (const item of items) {
     if ("link" in item) return item.link;
@@ -294,7 +198,7 @@ function findFirstLeafLink(
  */
 export function getFoundationEntryUrl(id: string): string {
   const section = foundationsSidebar.items.find(
-    (item) => item.text.toLowerCase() === id,
+    (item) => item.text.toLowerCase().replace(/\s+/g, "-") === id
   );
   if (!section) return "";
   return findFirstLeafLink(section.items) ?? "";

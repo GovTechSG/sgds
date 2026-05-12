@@ -1,40 +1,40 @@
 <script setup lang="ts">
 import FoundationPrinciplesList from "./foundations/FoundationPrinciplesList.vue";
 import FoundationPrincipleTemplate from "./foundations/FoundationPrincipleTemplate.vue";
+import FoundationRulesGuidanceList from "./foundations/FoundationRulesGuidanceList.vue";
 import Section from "./foundations/Section.vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 
 const principles = [
   {
     title: "Legibility",
-    body: "The ease with which one letterform can be distinguished from the next. It feeds into, but is not the same as, readability.",
+    body: "Make each letterform easy to tell apart. Legibility supports readability.",
   },
   {
     title: "Readability",
-    body: "Readability refers to the ease with which a block of text can be scanned by eye.",
+    body: "Make blocks of text easy to scan so users can read comfortably.",
   },
   {
     title: "Scannability",
-    body: "Scannability is the aggregate effect of writing and formatting techniques.",
+    body: "Use writing, headings, spacing, and structure to make content easy to scan.",
   },
 ];
 
 const rules = [
   {
     title: "Create contrast, skip one",
-    body: "Contrast creates visual order, emphasis, and clarity. It should also be harmoniously different, different enough to create visual interest, but not compete with each other. To achieve that, skip at least one size, weight, and/or colour.",
+    body: "Use contrast for order and emphasis. Skip one size, weight, or colour step.",
+    demo: "type-contrast",
   },
   {
-    title: "Leading & tracking",
-    body: "The larger and bolder the type, the smaller the tracking. Vice versa!",
+    title: "Leading and tracking",
+    body: "Use tighter tracking for larger, bolder type and looser tracking for smaller type.",
+    demo: "type-tracking",
   },
   {
     title: "Line length",
-    body: "Line length is how many characters are on a single line of text. For longer body text, the ideal length is between 40 and 60 characters. For shorter lines of text, the ideal length is 20 to 40 characters.",
-  },
-  {
-    title: "Alignment",
-    body: "Left-aligned text is the most common setting for left-to-right languages such as English. The F-alignment describes the most common user eye-scanning pattern when it comes to blocks of content.",
+    body: "Keep long body text to 40 to 60 characters per line, and short text to 20 to 40.",
+    demo: "type-line-length",
   },
 ];
 
@@ -118,6 +118,95 @@ type TypePairingExample = {
 const pairingBodyCopy =
   "An agency should consider using the privacy statement template appended below, and to only deviate from it when there are good reasons to do so.";
 
+// Heading specs — content sourced from Figma (SGDS v3 typography guidelines, node 3:8341)
+type HeadingSpec = {
+  tag: string;
+  label: string;
+  sampleClass: string;
+  styleName: string;
+  size: string;
+  weight: string;
+  leading: string;
+  tracking: string;
+  case: string;
+  marginBottom: string;
+};
+
+const headingSpecs: HeadingSpec[] = [
+  {
+    tag: "h1",
+    label: "Heading 1 (h1)",
+    sampleClass: "sgds:text-heading-xl sgds:font-bold sgds:leading-xl sgds:tracking-tight sgds:m-0",
+    styleName: "Heading extra large bold",
+    size: "40/2.5",
+    weight: "700",
+    leading: "120%",
+    tracking: "-0.4",
+    case: "Sentence",
+    marginBottom: "20/1.25",
+  },
+  {
+    tag: "h2",
+    label: "Heading 2 (h2)",
+    sampleClass: "sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0",
+    styleName: "Heading large bold",
+    size: "32/2",
+    weight: "700",
+    leading: "120%",
+    tracking: "-0.4",
+    case: "Sentence",
+    marginBottom: "16/1",
+  },
+  {
+    tag: "h3",
+    label: "Heading 3 (h3)",
+    sampleClass: "sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0",
+    styleName: "Heading medium bold",
+    size: "28/1.75",
+    weight: "700",
+    leading: "120%",
+    tracking: "-0.4",
+    case: "Sentence",
+    marginBottom: "16/1",
+  },
+  {
+    tag: "h4",
+    label: "Heading 4 (h4)",
+    sampleClass: "sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0",
+    styleName: "Heading small bold",
+    size: "24/1.5",
+    weight: "700",
+    leading: "120%",
+    tracking: "-0.4",
+    case: "Sentence",
+    marginBottom: "16/1",
+  },
+  {
+    tag: "h5",
+    label: "Heading 5 (h5)",
+    sampleClass: "sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:m-0",
+    styleName: "Subtitle medium semi bold",
+    size: "20/1.25",
+    weight: "600",
+    leading: "120%",
+    tracking: "0",
+    case: "Sentence",
+    marginBottom: "8/0.5",
+  },
+  {
+    tag: "h6",
+    label: "Heading 6 (h6)",
+    sampleClass: "sgds:text-subtitle-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:m-0",
+    styleName: "Subtitle small semi bold",
+    size: "16/1",
+    weight: "600",
+    leading: "20/1.25",
+    tracking: "0",
+    case: "Sentence",
+    marginBottom: "8/0.5",
+  },
+];
+
 const typePairingExamples: TypePairingExample[] = [
   {
     title: "Pairing example A",
@@ -170,7 +259,7 @@ const typePairingExamples: TypePairingExample[] = [
   <TypographyPageTemplate stacked-examples>
     <FoundationPrincipleTemplate>
       <FoundationPrinciplesList :principles="principles" />
-      <FoundationPrinciplesList title="Rules and guide" :principles="rules" />
+      <FoundationRulesGuidanceList title="Rules and guide" :rules="rules" />
 
       <Section title="Typeface">
         <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
@@ -213,7 +302,7 @@ const typePairingExamples: TypePairingExample[] = [
             class="typography-page-template__split-row"
           >
             <div class="typography-page-template__copy-pane">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
                 {{ variant.title }}
               </h4>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -256,7 +345,7 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Base size
               </h4>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -282,7 +371,7 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Type scale aspect ratio
               </h4>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -309,17 +398,17 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Line height aspect ratio
               </h4>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 In the type system there is 2 aspect ratio for the line height:
               </p>
               <ol class="sgds:list-decimal sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-2-xs">
-                <li class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                <li class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:mt-0">
                   Minor third (1.200) for Displays, Headings and Subtitles
                 </li>
-                <li class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                <li class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:mt-0">
                   Perfect Fifth (1.500) for Bodys, Labels, Caption and Overline
                 </li>
               </ol>
@@ -360,7 +449,7 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Spacing formula
               </h4>
               <div class="typography-page__formula-chip">
@@ -406,7 +495,7 @@ const typePairingExamples: TypePairingExample[] = [
         </div>
       </Section>
 
-      <Section title="Type pairing example">
+      <Section title="Type pairing example" heading-level="h4">
         <div class="typography-page-template__body">
           <article
             v-for="example in typePairingExamples"
@@ -414,9 +503,9 @@ const typePairingExamples: TypePairingExample[] = [
             class="typography-page-template__split-row"
           >
             <div class="typography-page-template__copy-pane">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+              <h5 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
                 {{ example.title }}
-              </h4>
+              </h5>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 {{ example.description }}
               </p>
@@ -456,6 +545,49 @@ const typePairingExamples: TypePairingExample[] = [
               </div>
             </div>
           </article>
+        </div>
+      </Section>
+
+      <Section title="Heading">
+        <div class="typography-heading-table">
+          <div class="typography-heading-table__header">
+            <div class="typography-heading-table__col-sample" aria-hidden="true"></div>
+            <div class="typography-heading-table__col-style">Style name</div>
+            <div class="typography-heading-table__col-cell">
+              <span>Size</span>
+              <span>(px/em)</span>
+            </div>
+            <div class="typography-heading-table__col-cell">Weight</div>
+            <div class="typography-heading-table__col-cell">
+              <span>Leading</span>
+              <span>(px/rem)</span>
+            </div>
+            <div class="typography-heading-table__col-cell">
+              <span>Tracking</span>
+              <span>(px)</span>
+            </div>
+            <div class="typography-heading-table__col-cell">Case</div>
+            <div class="typography-heading-table__col-margin">
+              <span>Margin (bottom)</span>
+              <span>(px/em)</span>
+            </div>
+          </div>
+          <div
+            v-for="row in headingSpecs"
+            :key="row.tag"
+            class="typography-heading-table__row"
+          >
+            <div class="typography-heading-table__col-sample">
+              <component :is="row.tag" :class="row.sampleClass">{{ row.label }}</component>
+            </div>
+            <div class="typography-heading-table__col-style typography-heading-table__cell-text">{{ row.styleName }}</div>
+            <div class="typography-heading-table__col-cell typography-heading-table__cell-text">{{ row.size }}</div>
+            <div class="typography-heading-table__col-cell typography-heading-table__cell-text">{{ row.weight }}</div>
+            <div class="typography-heading-table__col-cell typography-heading-table__cell-text">{{ row.leading }}</div>
+            <div class="typography-heading-table__col-cell typography-heading-table__cell-text">{{ row.tracking }}</div>
+            <div class="typography-heading-table__col-cell typography-heading-table__cell-text">{{ row.case }}</div>
+            <div class="typography-heading-table__col-margin typography-heading-table__cell-text">{{ row.marginBottom }}</div>
+          </div>
         </div>
       </Section>
     </FoundationPrincipleTemplate>
@@ -838,6 +970,88 @@ const typePairingExamples: TypePairingExample[] = [
 
   .typography-page__heading-tick {
     height: calc(2.75rem * 1.3125);
+  }
+}
+
+/* ── Heading specs table ─────────────────────────────────────────────────
+ * Renders the h1–h6 specification from the Figma reference
+ * (SGDS v3 typography guidelines, node 3:8341). Custom grid table — each
+ * column has a fixed/flex width that mirrors the design, with a rounded
+ * translucent header row and dotted-grey row dividers. */
+.typography-heading-table {
+  border: 1px solid var(--sgds-border-color-muted);
+  border-radius: var(--sgds-border-radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+}
+
+.typography-heading-table__header,
+.typography-heading-table__row {
+  box-sizing: border-box;
+  display: grid;
+  gap: var(--sgds-gap-lg);
+  grid-template-columns: minmax(12rem, 17.5rem) minmax(10rem, 15rem) repeat(5, minmax(4.5rem, 5rem)) minmax(6rem, 1fr);
+  padding: var(--sgds-padding-lg);
+  width: 100%;
+}
+
+.typography-heading-table__header {
+  background: var(--sgds-bg-translucent-subtle);
+  color: var(--sgds-body-color-subtle);
+  font-family: var(--sgds-font-family-base);
+  font-size: var(--sgds-font-size-overline-md);
+  font-weight: var(--sgds-font-weight-semibold);
+  letter-spacing: var(--sgds-letter-spacing-wide);
+  line-height: var(--sgds-line-height-2-xs);
+  text-transform: uppercase;
+}
+
+.typography-heading-table__row {
+  align-items: center;
+  background: var(--sgds-bg-default);
+  border-top: 1px solid var(--sgds-border-color-muted);
+  min-block-size: 6rem;
+}
+
+.typography-heading-table__cell-text {
+  color: var(--sgds-body-color-default);
+  font-family: var(--sgds-font-family-base);
+  font-size: var(--sgds-font-size-label-md);
+  font-weight: var(--sgds-font-weight-regular);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-xs);
+}
+
+.typography-heading-table__col-cell,
+.typography-heading-table__col-margin,
+.typography-heading-table__col-style,
+.typography-heading-table__col-sample {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.typography-heading-table__col-cell span,
+.typography-heading-table__col-margin span {
+  display: block;
+}
+
+@media (max-width: 1023px) {
+  .typography-heading-table__header,
+  .typography-heading-table__row {
+    grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr);
+    gap: var(--sgds-gap-sm) var(--sgds-gap-md);
+    padding: var(--sgds-padding-md);
+  }
+
+  .typography-heading-table__header > * + * {
+    display: none;
+  }
+
+  .typography-heading-table__row > * + * {
+    min-width: 0;
   }
 }
 </style>

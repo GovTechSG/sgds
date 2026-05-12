@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Elevation principles
-description: Complete reference of all elevation CSS tokens and their values.
+title: Overview
+description: Principles and characteristics for using elevation to show hierarchy, separate surfaces, and focus layered content.
 ---
 
 <script setup>

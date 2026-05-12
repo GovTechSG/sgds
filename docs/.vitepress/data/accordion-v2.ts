@@ -30,6 +30,23 @@ export type AccordionV2ApiSection = {
   rows: AccordionV2ApiRow[];
 };
 
+export type AccordionV2PropertyOption = {
+  label: string;
+  value: string;
+  markup: string;
+  note?: string;
+  stateEffect?: "hover" | "focus";
+};
+
+export type AccordionV2PropertyDemo = {
+  title: string;
+  description: string;
+  titleTag?: "h3" | "h4" | "h5" | "h6";
+  controlLabel?: string;
+  defaultValue: string;
+  options: AccordionV2PropertyOption[];
+};
+
 export type AccordionV2Data = {
   doc: ResolvedComponentDoc;
   usageGuidance: AccordionV2BulletSection[];
@@ -39,6 +56,8 @@ export type AccordionV2Data = {
   visualConsistency: AccordionV2BulletSection[];
   states: AccordionV2BulletSection[];
   stateDemos: UsageBehaviour[];
+  variantPropertyDemos: AccordionV2PropertyDemo[];
+  statePropertyDemos: AccordionV2PropertyDemo[];
   accessibilityPrinciples: string[];
   developmentBehaviour: AccordionV2BulletSection[];
   measurementTokens: AccordionV2TokenRow[];
@@ -104,22 +123,6 @@ const designBehaviour: UsageBehaviour[] = [
 ];
 
 const usagePatterns: AccordionV2BulletSection[] = [
-  {
-    title: "Good fit",
-    items: [
-      "FAQs, settings groups, supporting details, and other content that benefits from progressive disclosure.",
-      "Grouped information where users compare headings first, then open the section they need.",
-      "Side panels or mobile layouts where vertical space is limited.",
-    ],
-  },
-  {
-    title: "Avoid",
-    items: [
-      "Critical information that users must see immediately without interaction.",
-      "Very short content that would be clearer as plain text or a simple list.",
-      "Deeply nested disclosure patterns that make scanning and orientation harder.",
-    ],
-  },
 ];
 
 const visualConsistency: AccordionV2BulletSection[] = [
@@ -347,6 +350,256 @@ const apiSections: AccordionV2ApiSection[] = [
   },
 ];
 
+const buildBaseItems = (openIndexes: number[] = []) =>
+  [1, 2, 3]
+    .map((n, i) => {
+      const isOpen = openIndexes.includes(i);
+      return `<sgds-accordion-item${isOpen ? " open" : ""}>
+        <span slot="header">Accordion item ${n}</span>
+        <div slot="content">Content of accordion item ${n}</div>
+      </sgds-accordion-item>`;
+    })
+    .join("");
+
+const variantPropertyDemos: AccordionV2PropertyDemo[] = [
+  {
+    title: "Density",
+    titleTag: "h5",
+    description:
+      "Density controls the spacing and visual weight of accordion items.",
+    controlLabel: "Density",
+    defaultValue: "default",
+    options: [
+      {
+        label: "Default",
+        value: "default",
+        markup: `<sgds-accordion>${buildBaseItems([])}</sgds-accordion>`,
+        note: "Standard spacing for most page content. Use it in typical layouts.",
+      },
+      {
+        label: "Compact",
+        value: "compact",
+        markup: `<sgds-accordion density="compact">${buildBaseItems([])}</sgds-accordion>`,
+        note: "Reduced spacing for denser layouts. Use it when space is limited.",
+      },
+      {
+        label: "Spacious",
+        value: "spacious",
+        markup: `<sgds-accordion density="spacious">${buildBaseItems([])}</sgds-accordion>`,
+        note: "More generous spacing for a roomier feel. Use it when the accordion needs more emphasis.",
+      },
+    ],
+  },
+  {
+    title: "Border",
+    titleTag: "h5",
+    description:
+      "Border controls whether the accordion uses a borderless or bordered container.",
+    defaultValue: "borderless",
+    options: [
+      {
+        label: "Borderless",
+        value: "borderless",
+        markup: `<sgds-accordion>${buildBaseItems([0])}</sgds-accordion>`,
+        note: "No outer shell around the accordion. Use it when the surrounding layout already provides structure.",
+      },
+      {
+        label: "Border",
+        value: "border",
+        markup: `<sgds-accordion variant="border">${buildBaseItems([0])}</sgds-accordion>`,
+        note: "Adds a framed shell around the accordion. Use it when stronger separation is needed.",
+      },
+    ],
+  },
+  {
+    title: "Expansion",
+    titleTag: "h5",
+    description:
+      "Expansion controls how many accordion items can stay open at the same time.",
+    controlLabel: "Expansion",
+    defaultValue: "single",
+    options: [
+      {
+        label: "Single expansion",
+        value: "single",
+        markup: `<sgds-accordion>${buildBaseItems([0])}</sgds-accordion>`,
+        note: "Keeps one section open at a time. Use it to keep the page compact and focused.",
+      },
+      {
+        label: "Multiple expansion",
+        value: "multiple",
+        markup: `<sgds-accordion allowMultiple>${buildBaseItems([0, 1])}</sgds-accordion>`,
+        note: "Allows multiple sections to stay open. Use it when users need to compare or reference several sections.",
+      },
+    ],
+  },
+  {
+    title: "Slots",
+    titleTag: "h5",
+    description:
+      "Slots control the optional content added to the accordion header.",
+    controlLabel: "Slot composition",
+    defaultValue: "default",
+    options: [
+      {
+        label: "Default",
+        value: "default",
+        markup: `<sgds-accordion>${buildBaseItems([0])}</sgds-accordion>`,
+        note: "Uses the standard header only. Use it for most content lists.",
+      },
+      {
+        label: "Icon slot",
+        value: "icon-slot",
+        markup: `<sgds-accordion>
+          <sgds-accordion-item open>
+            <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+            <span slot="header">Accordion item with icon</span>
+            <div slot="content">Content of accordion item 1</div>
+          </sgds-accordion-item>
+          <sgds-accordion-item>
+            <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+            <span slot="header">Accordion item 2</span>
+            <div slot="content">Content of accordion item 2</div>
+          </sgds-accordion-item>
+          <sgds-accordion-item>
+            <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+            <span slot="header">Accordion item 3</span>
+            <div slot="content">Content of accordion item 3</div>
+          </sgds-accordion-item>
+        </sgds-accordion>`,
+        note: "Adds a visual anchor before the label. Use it when items need a quick category or type cue.",
+      },
+      {
+        label: "Badge slot",
+        value: "badge-slot",
+        markup: `<sgds-accordion>
+          <sgds-accordion-item open>
+            <span slot="header">Accordion item with badge</span>
+            <sgds-badge slot="badge" variant="neutral" outlined>Badge</sgds-badge>
+            <div slot="content">Content of accordion item 1</div>
+          </sgds-accordion-item>
+          <sgds-accordion-item>
+            <span slot="header">Accordion item 2</span>
+            <sgds-badge slot="badge" variant="neutral" outlined>Badge</sgds-badge>
+            <div slot="content">Content of accordion item 2</div>
+          </sgds-accordion-item>
+          <sgds-accordion-item>
+            <span slot="header">Accordion item 3</span>
+            <sgds-badge slot="badge" variant="neutral" outlined>Badge</sgds-badge>
+            <div slot="content">Content of accordion item 3</div>
+          </sgds-accordion-item>
+        </sgds-accordion>`,
+        note: "Adds short status or metadata in the header. Use it for counts, labels, or brief supporting information.",
+      },
+      {
+        label: "Custom caret",
+        value: "custom-caret",
+        markup: `<sgds-accordion>
+          <sgds-accordion-item open>
+            <span slot="header">Accordion with custom caret</span>
+            <sgds-icon slot="caret" name="plus"></sgds-icon>
+            <div slot="content">Content of accordion item 1</div>
+          </sgds-accordion-item>
+          <sgds-accordion-item>
+            <span slot="header">Accordion item 2</span>
+            <sgds-icon slot="caret" name="plus"></sgds-icon>
+            <div slot="content">Content of accordion item 2</div>
+          </sgds-accordion-item>
+          <sgds-accordion-item>
+            <span slot="header">Accordion item 3</span>
+            <sgds-icon slot="caret" name="plus"></sgds-icon>
+            <div slot="content">Content of accordion item 3</div>
+          </sgds-accordion-item>
+        </sgds-accordion>`,
+        note: "Replaces the default chevron with a custom affordance. Use it only when a different expand-collapse cue is needed.",
+      },
+    ],
+  },
+];
+
+const statePropertyDemos: AccordionV2PropertyDemo[] = [
+  {
+    title: "State",
+    description:
+      "Default items are interactive. Disabled items stay visible but cannot be expanded. Hover and focus are CSS states - see the Measurements section for their tokens.",
+    controlLabel: "State",
+    defaultValue: "default",
+    options: [
+      {
+        label: "Default",
+        value: "default",
+        markup: `<sgds-accordion>
+          <sgds-accordion-item>
+            <span slot="header">Accordion item</span>
+            <div slot="content">Content of accordion item</div>
+          </sgds-accordion-item>
+        </sgds-accordion>`,
+      },
+      {
+        label: "Hover",
+        value: "hover",
+        markup: `<sgds-accordion>
+          <sgds-accordion-item>
+            <span slot="header">Accordion item</span>
+            <div slot="content">Content of accordion item</div>
+          </sgds-accordion-item>
+        </sgds-accordion>`,
+        stateEffect: "hover",
+      },
+      {
+        label: "Focus",
+        value: "focus",
+        markup: `<sgds-accordion>
+          <sgds-accordion-item>
+            <span slot="header">Accordion item</span>
+            <div slot="content">Content of accordion item</div>
+          </sgds-accordion-item>
+        </sgds-accordion>`,
+        stateEffect: "focus",
+      },
+      {
+        label: "Disabled",
+        value: "disabled",
+        markup: `<sgds-accordion>
+          <sgds-accordion-item disabled>
+            <span slot="header">Disabled item</span>
+            <div slot="content">Disabled content</div>
+          </sgds-accordion-item>
+        </sgds-accordion>`,
+      },
+    ],
+  },
+  {
+    title: "Open state",
+    description:
+      "Items can render collapsed or expanded by default. Expanded items surface content directly below the header.",
+    controlLabel: "Open state",
+    defaultValue: "collapsed",
+    options: [
+      {
+        label: "Collapsed",
+        value: "collapsed",
+        markup: `<sgds-accordion>
+          <sgds-accordion-item>
+            <span slot="header">Accordion item</span>
+            <div slot="content">Content of accordion item</div>
+          </sgds-accordion-item>
+        </sgds-accordion>`,
+      },
+      {
+        label: "Expanded",
+        value: "expanded",
+        markup: `<sgds-accordion>
+          <sgds-accordion-item open>
+            <span slot="header">Accordion item</span>
+            <div slot="content">Content of accordion item</div>
+          </sgds-accordion-item>
+        </sgds-accordion>`,
+      },
+    ],
+  },
+];
+
 const codeExamples: AccordionV2CodeExample[] = [
   {
     title: "Basic accordion",
@@ -401,6 +654,8 @@ export const accordionV2Data: AccordionV2Data = {
   visualConsistency,
   states,
   stateDemos,
+  variantPropertyDemos,
+  statePropertyDemos,
   accessibilityPrinciples: accordionDoc.accessibilityNotes ?? [],
   developmentBehaviour,
   measurementTokens,

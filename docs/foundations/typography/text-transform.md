@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Text transform
-description: Text transform utilities used with SGDS typography.
+description: Apply text transform utilities to control casing for labels, overlines, and other short text.
 ---
 
 <script setup>

@@ -6,10 +6,19 @@ type MetadataItem = {
   status: AvailabilityStatus;
 };
 
+type HeaderLink = {
+  label: string;
+  href: string;
+  path: string;
+  icon?: string;
+  iconSrc?: string;
+};
+
 export type Page = {
   title: string;
   description?: string;
   metadata?: MetadataItem[];
+  headerLinks?: HeaderLink[];
   titleClass?: string;
   descriptionClass?: string;
   bottomGapClass?: string;
@@ -21,14 +30,22 @@ export type Page = {
     icon?: string;
   };
 }
-const { title, description, metadata, titleClass, descriptionClass, bottomGapClass, headerAlert } = defineProps<Page>();
+const { title, description, metadata, headerLinks, titleClass, descriptionClass, bottomGapClass, headerAlert } = defineProps<Page>();
+
+const isMaskedBrandIcon = (label: string) =>
+  ["github", "storybook"].includes(label.toLowerCase());
+
+const isStorybookLink = (label: string) => label.toLowerCase() === "storybook";
+
+const brandIconClass = (label: string) =>
+  `page-header-brand-icon page-header-brand-icon--${label.toLowerCase()}`;
 </script>
 
 <template>
   <div
     :class="[
       'sgds:flex sgds:flex-col',
-      metadata?.length ? 'sgds:gap-layout-lg' : '',
+      metadata?.length || headerLinks?.length ? 'sgds:gap-layout-lg' : '',
       bottomGapClass || 'sgds:mb-layout-md'
     ]"
   >
@@ -51,6 +68,42 @@ const { title, description, metadata, titleClass, descriptionClass, bottomGapCla
         {{ description }}
       </p>
     </div>
+    <div v-if="headerLinks?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+      <div
+        v-for="link in headerLinks"
+        :key="link.label"
+        class="sgds:grid sgds:grid-cols-[var(--sgds-dimension-96)_minmax(0,1fr)] sgds:items-center sgds:gap-x-text-xs"
+      >
+        <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+          {{ link.label }}
+        </span>
+        <sgds-link tone="neutral">
+          <a
+            :href="link.href"
+            :target="isStorybookLink(link.label) ? '_blank' : undefined"
+            :rel="isStorybookLink(link.label) ? 'noreferrer' : undefined"
+            :class="[
+              'sgds:inline-flex sgds:items-center sgds:gap-text-2-xs',
+              isStorybookLink(link.label) ? 'page-header-storybook-link' : ''
+            ]"
+          >
+            <span
+              v-if="link.iconSrc && isMaskedBrandIcon(link.label)"
+              aria-hidden="true"
+              :class="brandIconClass(link.label)"
+            ></span>
+            <img
+              v-else-if="link.iconSrc"
+              :src="link.iconSrc"
+              :alt="`${link.label} logo`"
+              class="sgds:block sgds:h-4 sgds:w-4"
+            />
+            <sgds-icon v-else-if="link.icon" :name="link.icon"></sgds-icon>
+            <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ link.path }}</span>
+          </a>
+        </sgds-link>
+      </div>
+    </div>
     <div
       v-if="metadata?.length"
       class="sgds:flex sgds:flex-wrap sgds:gap-text-lg"
@@ -69,3 +122,35 @@ const { title, description, metadata, titleClass, descriptionClass, bottomGapCla
     </div>
   </div>
 </template>
+
+<style>
+/* Brand SVG masks let the component header icons keep their brand colour in
+   day mode and use the SGDS fixed white token in night mode. */
+.page-header-brand-icon {
+  display: block;
+  height: var(--sgds-dimension-16);
+  width: var(--sgds-dimension-16);
+}
+
+.page-header-brand-icon--github {
+  background-color: #181717;
+  mask: url("/brands/github.svg") center / contain no-repeat;
+}
+
+.page-header-brand-icon--storybook {
+  background-color: #ff4785;
+  mask: url("/brands/storybook.svg") center / contain no-repeat;
+}
+
+.sgds-night-theme .page-header-brand-icon--github,
+.sgds-night-theme .page-header-brand-icon--storybook {
+  background-color: var(--sgds-color-fixed-light);
+}
+
+/* Storybook header links intentionally open in a new tab without rendering
+   SGDS link's external-link indicator beside the path. */
+.page-header-storybook-link::after,
+.page-header-storybook-link .external-link-icon {
+  display: none !important;
+}
+</style>

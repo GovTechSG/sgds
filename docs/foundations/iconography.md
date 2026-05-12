@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Icon principles
+title: Overview
 description: Principles for using icons clearly, consistently, and accessibly across SGDS interfaces.
 ---
 

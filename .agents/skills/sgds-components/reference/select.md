@@ -45,6 +45,11 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 - **Duplicate values**: Avoid options with identical `value` attributes; `<sgds-select>` matches by value string.
 - **Long labels**: Options with very long text may overflow; keep labels concise since no CSS parts are exposed to customise overflow behaviour.
 - **Dynamic option changes**: Avoid mutating the option list while the dropdown is open to prevent focus and selection inconsistencies.
+- **⚠️ DO NOT use placeholder text as an option**: Never include options like `<sgds-select-option value="">Select country</sgds-select-option>`. Every option in the menu is a valid selectable value that will be submitted with the form. Use the `placeholder` attribute instead to display prompt text when no option is selected — it will not be included in the option list.
+
+## Form Layout Context
+
+`<sgds-select>` is a **4-column form component** — it can share a row with other 4-column components in form layouts. For detailed form pattern guidance (when to pair fields, spacing, responsive behavior), see the [sgds-blocks form layout skill](../sgds-blocks/reference/form.md).
 
 ## Quick Decision Guide
 

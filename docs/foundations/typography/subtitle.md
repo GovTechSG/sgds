@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Subtitle
-description: Subtitle styles are predefined combinations of typography variables for secondary headings and supporting titles, so they remain consistent across the system.
+description: Use subtitle styles for secondary headings, supporting titles, and grouped content labels.
 ---
 
 <script setup>

@@ -4,6 +4,36 @@ This file encodes the architectural rules for the `docs/` VitePress site. Follow
 
 ---
 
+## Always use SGDS skills
+
+This project IS the Singapore Government Design System portal. Every UI decision must come from SGDS — never invent components, utilities, tokens, or theming on the fly.
+
+**Before adding, modifying, or styling any UI**, invoke the relevant SGDS skill via the Skill tool:
+
+| When the task involves… | Invoke this skill |
+|---|---|
+| Bootstrapping a new app, deciding where to start, or unsure which skill applies | `sgds-workflow` |
+| First-time setup of a new app (font, foundation CSS, utilities, layout) | `sgds-getting-started` |
+| Any `<sgds-*>` web component (button, input, modal, table, tab, etc.) | `sgds-components` |
+| Any `sgds:` Tailwind utility class (spacing, colour, typography, border, layout, grid) | `sgds-utilities` |
+| Theming, primary colour, day/night mode, font customisation, CSS token overrides | `sgds-theming` |
+| Form validation, `hasFeedback`, constraint validation, `FormData` from SGDS form components | `sgds-forms` |
+| Building a full page (dashboard, login, settings, list, form page) | `sgds-pattern-page-templates` |
+| Reusable UI blocks (app shell, sticky header, sidebar, filter panel, container layout) | `sgds-pattern-block-templates` |
+| Charts, graphs, dashboards, ECharts setup with SGDS palette | `sgds-data-visualisation` |
+
+**Rules**:
+
+- Use `sgds:` Tailwind utilities for ALL styling — no raw CSS, no inline `style` attributes (see [Guiding Principles → 6](#6-sgds-utilities-for-all-styling--no-raw-css-no-inline-styles)).
+- Use `<sgds-*>` web components, not custom equivalents. If a component seems missing, check `sgds-components` first.
+- Use SGDS semantic spacing (`sgds:gap-layout-*`, `sgds:gap-text-*`, `sgds:p-component-*`) over raw numeric utilities.
+- Use SGDS typography classes for all text (`sgds:text-heading-*`, `sgds:text-body-*`, `sgds:text-subtitle-*`) — match the class to the heading element semantically (H2 → `text-heading-lg`, H3 → `text-heading-md`, H4 → `text-heading-sm`).
+- Use SGDS colour tokens (`sgds:bg-*`, `sgds:text-*`, `sgds:border-*`) — never hex values directly in markup. Hex is only acceptable in data files where it represents source-of-truth palette values.
+
+If a UI need genuinely cannot be expressed with SGDS, raise it as a token/utility/component gap — do not work around it with raw CSS or non-SGDS components.
+
+---
+
 ## Project Structure
 
 ```

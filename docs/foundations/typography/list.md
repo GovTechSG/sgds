@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: List
-description: List styles follow predefined typography combinations so structured text stays readable and aligned with paragraph body styles.
+description: Use list styles to present grouped information with clear structure, spacing, and readability.
 ---
 
 <script setup>
