@@ -77,10 +77,8 @@ const pickerCanvasRef = ref<HTMLElement | null>(null);
 const pickerDragging = ref(false);
 const shadeKeys = ["100", "200", "300", "400", "500", "600", "700", "800", "900"] as const;
 
-// Contrast ratios against white that define the default shade curve.
-// 600 is treated as the brand input; lighter/darker shades scale around it.
-const SHADE_RATIOS = [1.1, 1.3, 1.6, 2.2, 3.0, 4.5, 7.0, 10.0, 14.0] as const;
-const BRAND_SHADE_INDEX = shadeKeys.indexOf("600");
+// Contrast ratios against white for shades 100–900.
+const SHADE_RATIOS = [1.1, 1.33, 1.78, 2.46, 3.64, 5.33, 7.81, 10.86, 14.35] as const;
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
@@ -261,45 +259,6 @@ function hslToRgb(h: number, s: number, l: number): { r: number; g: number; b: n
   };
 }
 
-function wcagContrastNumber(foregroundHex: string, backgroundHex: string): number {
-  return Number(wcagContrastRatio(foregroundHex, backgroundHex));
-}
-
-function remapRatio(value: number, sourceMin: number, sourceMax: number, targetMin: number, targetMax: number): number {
-  if (sourceMax === sourceMin) return targetMin;
-  const progress = clamp((value - sourceMin) / (sourceMax - sourceMin), 0, 1);
-  return targetMin + (targetMax - targetMin) * progress;
-}
-
-function targetRatioForShade(index: number, seedContrast: number): number {
-  const seedTarget = SHADE_RATIOS[BRAND_SHADE_INDEX];
-  const defaultTarget = SHADE_RATIOS[index];
-
-  if (index === BRAND_SHADE_INDEX) return seedContrast;
-
-  if (index < BRAND_SHADE_INDEX) {
-    const lightestTarget = Math.min(seedContrast, SHADE_RATIOS[0]);
-    return remapRatio(
-      defaultTarget,
-      SHADE_RATIOS[0],
-      seedTarget,
-      lightestTarget,
-      seedContrast,
-    );
-  }
-
-  const darkestTarget = seedContrast >= SHADE_RATIOS[shadeKeys.length - 1]
-    ? 21
-    : SHADE_RATIOS[shadeKeys.length - 1];
-  return remapRatio(
-    defaultTarget,
-    seedTarget,
-    SHADE_RATIOS[shadeKeys.length - 1],
-    seedContrast,
-    darkestTarget,
-  );
-}
-
 function createProductPrimaryRows(shades: Record<string, string>): ProductPrimaryRow[] {
   return (Object.entries(shades) as [string, string][]).map(([shade, hex]) => {
     const bg = parseInt(shade, 10) <= 500 ? contrastDarkBackground : contrastLightBackground;
@@ -316,33 +275,28 @@ function createProductPrimaryRows(shades: Record<string, string>): ProductPrimar
 
 function generateCustomPalette(hex: string): Record<string, string> {
   const seed = hex.toUpperCase();
-  const seedContrast = wcagContrastNumber(seed, contrastLightBackground);
   const ratios = Object.fromEntries(
-    shadeKeys.map((shade, index) => [shade, targetRatioForShade(index, seedContrast)]),
+    shadeKeys.map((shade, index) => [shade, SHADE_RATIOS[index]]),
   );
   const backgroundColor = new BackgroundColor({
     name: "background",
     colorKeys: [contrastLightBackground],
-    ratios: [1],
-    output: "HEX",
+    ratios
   });
   const customBrandColor = new Color({
     name: "primary",
     colorKeys: [seed],
-    colorSpace: "LCH",
-    ratios,
-    output: "HEX",
+    ratios
   });
   const theme = new Theme({
-    colors: [backgroundColor, customBrandColor],
+    colors: [customBrandColor],
     backgroundColor,
-    lightness: 100,
-    output: "HEX",
+    lightness: 100
   });
   const primary = theme.contrastColors.find((colour) => "name" in colour && colour.name === "primary");
 
   if (!primary || !("values" in primary)) {
-    return { "600": seed };
+    return Object.fromEntries(shadeKeys.map((shade) => [shade, seed]));
   }
 
   return Object.fromEntries(
