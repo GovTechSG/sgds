@@ -1587,16 +1587,6 @@ const componentDocs: Record<string, ComponentDoc> = {
             description:
               "Use the default slot to include supplementary content such as links, descriptions, or supporting actions below the main message.",
           },
-          {
-            label: "No slot",
-            value: "no-slot",
-            markup: `<sgds-alert show dismissible variant="info" outlined title="Application saved">
-              <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>Your progress has been saved. You can return to this draft before the submission deadline.</div>
-            </sgds-alert>`,
-            description:
-              "Use when the alert message is complete without extra supporting content.",
-          },
         ],
       },
     ],
