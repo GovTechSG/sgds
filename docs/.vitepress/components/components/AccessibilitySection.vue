@@ -3,6 +3,7 @@ import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import CodeToken from "../ui/CodeToken.vue";
 import Section from "../foundations/Section.vue";
 import type { AccessibilityContent } from "../../data/component-docs";
+import { textParts } from "../../utils/text-parts";
 
 const props = defineProps<{
   accessibility: AccessibilityContent;
@@ -137,11 +138,25 @@ onBeforeUnmount(() => {
             :key="paragraph"
             class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal"
           >
-            {{ paragraph }}
+            <template
+              v-for="(part, index) in textParts(paragraph)"
+              :key="`${paragraph}-${index}`"
+            >
+              <CodeToken v-if="part.isCode" :label="part.text" />
+              <template v-else>{{ part.text }}</template>
+            </template>
           </p>
         </div>
         <ul v-if="section.items.length" class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-          <li v-for="item in section.items" :key="item" class="sgds:mt-0">{{ item }}</li>
+          <li v-for="item in section.items" :key="item" class="sgds:mt-0">
+            <template
+              v-for="(part, index) in textParts(item)"
+              :key="`${item}-${index}`"
+            >
+              <CodeToken v-if="part.isCode" :label="part.text" />
+              <template v-else>{{ part.text }}</template>
+            </template>
+          </li>
         </ul>
       </div>
     </article>
@@ -161,7 +176,15 @@ onBeforeUnmount(() => {
               </template>
             </span>
           </sgds-table-cell>
-          <sgds-table-cell>{{ row.description }}</sgds-table-cell>
+          <sgds-table-cell>
+            <template
+              v-for="(part, index) in textParts(row.description)"
+              :key="`${row.key}-desc-${index}`"
+            >
+              <CodeToken v-if="part.isCode" :label="part.text" />
+              <template v-else>{{ part.text }}</template>
+            </template>
+          </sgds-table-cell>
         </sgds-table-row>
       </sgds-table>
     </Section>
@@ -171,7 +194,15 @@ onBeforeUnmount(() => {
           This component does not have a separate keyboard interaction table because:
         </p>
         <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
-          <li v-for="note in accessibility.keyboardNotes" :key="note" class="sgds:mt-0">{{ note }}</li>
+          <li v-for="note in accessibility.keyboardNotes" :key="note" class="sgds:mt-0">
+            <template
+              v-for="(part, index) in textParts(note)"
+              :key="`${note}-${index}`"
+            >
+              <CodeToken v-if="part.isCode" :label="part.text" />
+              <template v-else>{{ part.text }}</template>
+            </template>
+          </li>
         </ul>
       </div>
     </Section>

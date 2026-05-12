@@ -1,10 +1,10 @@
 ---
 layout: preview
-title: Form Fields Textarea preview
+title: Form fields textarea preview
 ---
 
 <script setup>
 import TemplatePreview from "../../../.vitepress/components/components/TemplatePreview.vue";
 </script>
 
-<TemplatePreview kind="block" template-key="form-fields-textarea" template-title="Form Fields Textarea" />
+<TemplatePreview kind="block" template-key="form-fields-textarea" template-title="Form fields textarea" />

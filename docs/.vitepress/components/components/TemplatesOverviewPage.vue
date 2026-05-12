@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { templateOverviewGroups, type PatternGroup } from "../../data/pattern-docs";
+import { blockTemplateCategoryOrder, templateOverviewGroups, type PatternGroup } from "../../data/pattern-docs";
 
 const { group } = defineProps<{
   group: PatternGroup;
@@ -9,19 +9,38 @@ const { group } = defineProps<{
 const selectedGroup = ref("all");
 const selectedSort = ref("recommended");
 
-const getTemplateImage = (key: string) => `/templates/thumbnails/${key}.png`;
+const isBlockOverview = computed(() => group === "block templates");
+const filterHeading = computed(() => isBlockOverview.value ? "Block type" : "Category");
+const typeSortLabel = computed(() => isBlockOverview.value ? "Block type" : "Template type");
+const itemNoun = computed(() => isBlockOverview.value ? "block" : "template");
 
 const templateItems = computed(() =>
   templateOverviewGroups.find((templateGroup) => templateGroup.group === group)?.items ?? [],
 );
 
+const getGroupOrder = (label: string) => {
+  const index = blockTemplateCategoryOrder.indexOf(label);
+  return index === -1 ? blockTemplateCategoryOrder.length : index;
+};
+
+const sortByGroup = (current: { groupLabel: string; title: string }, next: { groupLabel: string; title: string }) =>
+  getGroupOrder(current.groupLabel) - getGroupOrder(next.groupLabel) ||
+  current.groupLabel.localeCompare(next.groupLabel) ||
+  current.title.localeCompare(next.title);
+
 const categoryOptions = computed(() => {
   const labels = new Set(templateItems.value.map((item) => item.groupLabel));
-  return Array.from(labels).map((label) => ({
-    value: label,
-    label,
-    count: templateItems.value.filter((item) => item.groupLabel === label).length,
-  }));
+  return Array.from(labels)
+    .map((label) => ({
+      value: label,
+      label,
+      count: templateItems.value.filter((item) => item.groupLabel === label).length,
+    }))
+    .sort((current, next) =>
+      isBlockOverview.value
+        ? getGroupOrder(current.label) - getGroupOrder(next.label) || current.label.localeCompare(next.label)
+        : current.label.localeCompare(next.label),
+    );
 });
 
 const filteredTemplateItems = computed(() => {
@@ -30,11 +49,10 @@ const filteredTemplateItems = computed(() => {
   });
 
   return [...filtered].sort((current, next) => {
+    if (selectedSort.value === "recommended" && isBlockOverview.value) return sortByGroup(current, next);
     if (selectedSort.value === "title-asc") return current.title.localeCompare(next.title);
     if (selectedSort.value === "title-desc") return next.title.localeCompare(current.title);
-    if (selectedSort.value === "type") {
-      return current.groupLabel.localeCompare(next.groupLabel) || current.title.localeCompare(next.title);
-    }
+    if (selectedSort.value === "type") return sortByGroup(current, next);
     return 0;
   });
 });
@@ -65,7 +83,7 @@ const clearFilters = () => {
 
               <div class="sgds:flex sgds:flex-col sgds:gap-xs">
                 <div class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-heading-default">
-                  Category
+                  {{ filterHeading }}
                 </div>
                 <sgds-checkbox-group>
                   <sgds-checkbox
@@ -97,7 +115,7 @@ const clearFilters = () => {
                 <sgds-select-option value="recommended">Recommended</sgds-select-option>
                 <sgds-select-option value="title-asc">Name: A-Z</sgds-select-option>
                 <sgds-select-option value="title-desc">Name: Z-A</sgds-select-option>
-                <sgds-select-option value="type">Template type</sgds-select-option>
+                <sgds-select-option value="type">{{ typeSortLabel }}</sgds-select-option>
               </sgds-select>
             </div>
 
@@ -108,16 +126,10 @@ const clearFilters = () => {
                 class="sgds-col-4 sgds-col-md-4 sgds-col-lg-4"
               >
                 <sgds-link class="sgds:block">
-                  <a :href="item.previewHref" class="sgds:flex sgds:flex-col sgds:gap-component-md sgds:no-underline">
-                    <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-[32px]">
-                      <img
-                        :src="getTemplateImage(item.key)"
-                        :alt="`${item.title} template preview`"
-                        class="sgds:w-full sgds:h-full sgds:object-cover sgds:object-top"
-                      />
-                    </div>
+                  <a :href="item.previewHref" class="sgds:flex sgds:flex-col sgds:gap-component-sm sgds:no-underline">
+                    <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-[32px] sgds:bg-surface-raised" aria-hidden="true"></div>
                     <div class="sgds:flex sgds:items-center sgds:gap-component-xs sgds:w-full">
-                      <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:flex-1 sgds:mb-0 sgds:text-heading-default sgds:text-left">{{ item.title }}</h4>
+                      <h4 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:flex-1 sgds:mb-0 sgds:text-heading-default sgds:text-left">{{ item.title }}</h4>
                       <sgds-icon name="arrow-right" size="2-xl" class="sgds:text-default sgds:flex-shrink-0"></sgds-icon>
                     </div>
                   </a>
@@ -129,7 +141,7 @@ const clearFilters = () => {
               v-if="!filteredTemplateItems.length"
               class="sgds:mt-layout-sm sgds:flex sgds:flex-col sgds:items-start sgds:gap-component-sm sgds:rounded-lg sgds:border sgds:border-muted sgds:bg-surface-raised sgds:p-layout-md"
             >
-              <h3 class="sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:text-heading-default">No templates found</h3>
+              <h3 class="sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:text-heading-default">No {{ itemNoun }}s found</h3>
               <p class="sgds:m-0 sgds:text-body-md sgds:text-body-subtle">Try clearing the filters.</p>
               <sgds-button variant="outline" tone="neutral" @click="clearFilters">Clear filters</sgds-button>
             </div>

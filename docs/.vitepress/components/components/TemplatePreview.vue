@@ -2,6 +2,7 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { withBase } from "vitepress";
 import TemplatePreviewToolbar from "./TemplatePreviewToolbar.vue";
+import { blockTemplateCategoryOrder, templateOverviewGroups } from "../../data/pattern-docs";
 import { isDarkTheme } from "../../theme/composables/sgds-theming";
 import { currentPaletteId } from "../../theme/composables/sgds-palette";
 
@@ -54,7 +55,7 @@ const iframeSrc = computed(() =>
 
 // Dropdown of every preview the toolbar can switch into. Page templates and
 // block templates share one menu — the kind is used to derive the URL.
-type DropdownOption = { key: string; title: string; kind: "template" | "block" };
+type DropdownOption = { key: string; title: string; kind: "template" | "block"; groupLabel?: string };
 
 const templateOptions: DropdownOption[] = [
   { key: "about-us", title: "About us", kind: "template" },
@@ -67,31 +68,22 @@ const templateOptions: DropdownOption[] = [
   { key: "report-issue", title: "Report an issue", kind: "template" },
 ];
 
-const blockOptions: DropdownOption[] = [
-  { key: "cards", title: "Cards", kind: "block" },
-  { key: "cta", title: "Call to action", kind: "block" },
-  { key: "feature", title: "Feature", kind: "block" },
-  { key: "filter", title: "Filter", kind: "block" },
-  { key: "form-all-types", title: "Form / All Types", kind: "block" },
-  { key: "form-basic-center", title: "Form / Basic Center", kind: "block" },
-  { key: "form-basic-left", title: "Form / Basic Left", kind: "block" },
-  { key: "form-basic-right", title: "Form / Basic Right", kind: "block" },
-  { key: "form-fields-checkbox", title: "Form / Form Fields Checkbox", kind: "block" },
-  { key: "form-fields-dates-quantities", title: "Form / Form Fields Dates Quantities", kind: "block" },
-  { key: "form-fields-file-upload", title: "Form / Form Fields File Upload", kind: "block" },
-  { key: "form-fields-radio", title: "Form / Form Fields Radio", kind: "block" },
-  { key: "form-fields-selects", title: "Form / Form Fields Selects", kind: "block" },
-  { key: "form-fields-textarea", title: "Form / Form Fields Textarea", kind: "block" },
-  { key: "form-multi-step", title: "Form / Form Multi-step", kind: "block" },
-  { key: "form-full-width-only", title: "Form / Full-width only", kind: "block" },
-  { key: "form-paired-only", title: "Form / Paired Only", kind: "block" },
-  { key: "form-sections-single", title: "Form / Sections Single", kind: "block" },
-  { key: "form-sections-three", title: "Form / Sections Three", kind: "block" },
-  { key: "form-sections-two", title: "Form / Sections Two", kind: "block" },
-  { key: "header", title: "Page header", kind: "block" },
-  { key: "hero", title: "Hero", kind: "block" },
-  { key: "stats", title: "Stats", kind: "block" },
-];
+const getBlockCategoryOrder = (label: string) => {
+  const index = blockTemplateCategoryOrder.indexOf(label);
+  return index === -1 ? blockTemplateCategoryOrder.length : index;
+};
+
+const blockOverviewItems =
+  templateOverviewGroups.find((templateGroup) => templateGroup.group === "block templates")?.items ?? [];
+
+const blockOptions = [...blockOverviewItems]
+  .sort((current, next) => getBlockCategoryOrder(current.groupLabel) - getBlockCategoryOrder(next.groupLabel))
+  .map((item) => ({
+    key: item.key,
+    title: item.title,
+    kind: "block" as const,
+    groupLabel: item.groupLabel,
+  }));
 
 // Resize the iframe to match its content height so the iframe itself never
 // scrolls. The parent page handles all scrolling. ResizeObserver inside the
@@ -279,7 +271,7 @@ onBeforeUnmount(() => {
      so the iframe itself never scrolls — the parent page handles scrolling. */
 }
 
-@media (max-width: 900px) {
+@media (max-width: 640px) {
   .template-preview-sticky-bar {
     display: flex;
     overflow-x: auto;

@@ -39,42 +39,53 @@ const sentenceCase = (text: string): string => {
   const linked = cleaned
     .replace(
       /https:\/\/github\.com\/GovTechSG\/sgds-web-component\/pull\/(\d+)/gi,
-      (_, num) => `<a href="${PR_BASE}/${num}" target="_blank" rel="noopener noreferrer">#${num}</a>`,
+      (_, num) => `<a class="updates-source-link" href="${PR_BASE}/${num}" target="_blank" rel="noopener noreferrer">#${num}</a>`,
     )
     .replace(
       /\bin\s+#(\d+)/gi,
-      (_, num) => `in <a href="${PR_BASE}/${num}" target="_blank" rel="noopener noreferrer">#${num}</a>`,
+      (_, num) => `in <a class="updates-source-link" href="${PR_BASE}/${num}" target="_blank" rel="noopener noreferrer">#${num}</a>`,
     )
     .replace(
       /\(#(\d+)\)/g,
-      (_, num) => `(<a href="${PR_BASE}/${num}" target="_blank" rel="noopener noreferrer">#${num}</a>)`,
+      (_, num) => `(<a class="updates-source-link" href="${PR_BASE}/${num}" target="_blank" rel="noopener noreferrer">#${num}</a>)`,
     );
 
   const result = linked.charAt(0).toUpperCase() + linked.slice(1);
   return /[.!?]$/.test(result) ? result : `${result}.`;
 };
 
+const getScopedKeys = (scope: string): string[] =>
+  scope
+    .toLowerCase()
+    .split(",")
+    .map((part) => part.trim())
+    .map((part) => scopeToKey[part])
+    .filter((key): key is string => Boolean(key));
+
 const isSkippable = (line: string): boolean => {
   const t = line.trim();
-  if (!t.startsWith("*") && !t.startsWith("-")) return true;
+  if (!t.startsWith("*") && !t.startsWith("-") && !/^\w+(?:\([^)]+\))?:/.test(t)) return true;
   if (/\bdependabot\b|\bbump\b.+\bfrom\b/i.test(t)) return true;
   // Skip chore/ci/docs/build unless the scope is a known component
   const scopeMatch = t.match(/^[*\-]\s+(\w+)(?:\(([^)]+)\))?:/);
-  if (scopeMatch) {
-    const type = scopeMatch[1].toLowerCase();
-    const scope = scopeMatch[2]?.toLowerCase() ?? "";
+  const directScopeMatch = t.match(/^(\w+)(?:\(([^)]+)\))?:/);
+  const match = scopeMatch ?? directScopeMatch;
+  if (match) {
+    const type = match[1].toLowerCase();
+    const scope = match[2] ?? "";
     const isChoreType = ["chore", "ci", "build", "style", "test"].includes(type);
-    if (isChoreType && !scopeToKey[scope]) return true;
+    if (isChoreType && getScopedKeys(scope).length === 0) return true;
   }
   return false;
 };
 
 const findComponentKey = (line: string): string | null => {
   // Pass 1: conventional commit scope — fast and precise
-  const scopeMatch = line.match(/^[*\-]\s+\w+\(([^)]+)\):/);
+  const scopeMatch = line.match(/^(?:[*\-]\s+)?\w+\(([^)]+)\):/);
   if (scopeMatch) {
-    const scope = scopeMatch[1].toLowerCase();
-    if (scopeToKey[scope]) return scopeToKey[scope];
+    const [key] = getScopedKeys(scopeMatch[1]);
+    if (key) return key;
+    return null;
   }
 
   // Pass 2: keyword alias scan across the full line

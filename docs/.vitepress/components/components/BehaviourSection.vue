@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { UsageBehaviour } from "../../data/component-docs";
+import CodeToken from "../ui/CodeToken.vue";
+import { textParts } from "../../utils/text-parts";
 
 defineProps<{
   items: UsageBehaviour[];
@@ -15,7 +17,15 @@ defineProps<{
     >
       <div class="sgds:flex sgds:flex-col sgds:gap-component-sm">
         <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ example.title }}</h3>
-        <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ example.description }}</p>
+        <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+          <template
+            v-for="(part, index) in textParts(example.description)"
+            :key="`${example.title}-${index}`"
+          >
+            <CodeToken v-if="part.isCode" :label="part.text" />
+            <template v-else>{{ part.text }}</template>
+          </template>
+        </p>
       </div>
 
       <div class="sgds:flex sgds:items-center sgds:justify-center sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-288)] sgds:p-component-md sgds:max-lg:min-h-[var(--sgds-dimension-320)]">

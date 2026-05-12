@@ -32,6 +32,12 @@ type InspectMeta = {
     valueSuffix?: string;
   }[];
 };
+type InspectMetaRow = NonNullable<InspectMeta["rows"]>[number];
+type StructureTokenTableRow = MeasurementTokenRow & {
+  groupTitle?: string;
+};
+type PaddingBand = { left: number; top: number; width: number; height: number; borderRadius?: string };
+type PaddingAxis = "x" | "y" | "all" | "left" | "right" | "top" | "bottom";
 const hoverKey = ref<string | null>(null);
 const selectedKeys = ref<string[]>([]);
 const rootRef = ref<HTMLElement | null>(null);
@@ -40,126 +46,233 @@ const previewMarkupRef = ref<HTMLElement | null>(null);
 const hotspotRects = ref<Record<string, HotspotRect | null>>({});
 const breadcrumbGroupGapBands = ref<Array<{ left: number; top: number; width: number; height: number }>>([]);
 const breadcrumbIconBands = ref<Array<{ left: number; top: number; width: number; height: number }>>([]);
+const genericGapBandsByKey = ref<Record<string, PaddingBand[]>>({});
+// Component-specific padding bands populated by measureHotspots (e.g. table
+// renders bands on every cell, not just the first). Merged into
+// genericPaddingBandsByKey alongside the auto-computed bands.
+const extraPaddingBandsByKey = ref<Record<string, PaddingBand[]>>({});
+// Component-specific border bands populated by measureHotspots when the
+// generic perimeter-ring rendering is wrong for this component. Subnav, for
+// instance, has bottom-only borders on the nav element (1px) and the active
+// subnav-item (2px) — wrapping the whole subnav in a ring would imply
+// borders on all four sides. When a key has bands here, the perimeter ring
+// is suppressed and these bands render as proxy buttons + visual strips
+// instead.
+const customBorderBandsByKey = ref<Record<string, PaddingBand[]>>({});
 // Button `gap` highlights each void between adjacent content (leftIcon↔label,
 // label↔rightIcon) rather than one wide band across the whole label. Each
 // entry is a discrete band; hover proxies + visual overlays v-for over these.
 const buttonGapBands = ref<Array<{ left: number; top: number; width: number; height: number }>>([]);
 const isComboBoxStructure = computed(() => props.previewMarkup.includes("<sgds-combo-box"));
+const isDatepickerStructure = computed(() => props.previewMarkup.includes("<sgds-datepicker"));
+const isDescriptionListStructure = computed(() => props.previewMarkup.includes("<sgds-description-list"));
+const isDividerStructure = computed(() => props.previewMarkup.includes("<sgds-divider"));
+const isDropdownStructure = computed(() => props.previewMarkup.includes("<sgds-dropdown"));
+const isDrawerStructure = computed(() => props.previewMarkup.includes("<sgds-drawer"));
+const isFooterStructure = computed(() => props.previewMarkup.includes("<sgds-footer"));
+const isMastheadStructure = computed(() => props.previewMarkup.includes("<sgds-masthead"));
+const isModalStructure = computed(() => props.previewMarkup.includes("<sgds-modal"));
+const isModalFullscreenStructure = computed(() => isModalStructure.value && activeVariant.value === "fullscreen");
 const isTooltipStructure = computed(() => props.previewMarkup.includes("<sgds-tooltip"));
-const structureKind = computed<"accordion" | "card" | "button" | "alert" | "breadcrumb" | "generic">(() => {
-  if (props.previewMarkup.includes("<sgds-accordion")) return "accordion";
-  if (props.previewMarkup.includes("<sgds-card")) return "card";
-  if (props.previewMarkup.includes("<sgds-button")) return "button";
-  if (props.previewMarkup.includes("<sgds-alert")) return "alert";
-  if (props.previewMarkup.includes("<sgds-breadcrumb")) return "breadcrumb";
-  return "generic";
+const isToastStructure = computed(() => props.previewMarkup.includes("<sgds-toast"));
+const isTabStructure = computed(() => props.previewMarkup.includes("<sgds-tab-group"));
+const isLinkStructure = computed(() => props.previewMarkup.includes("<sgds-link"));
+const isSelectStructure = computed(() => props.previewMarkup.includes("<sgds-select"));
+const isSwitchStructure = computed(() => props.previewMarkup.includes("<sgds-switch"));
+const isSidebarStructure = computed(() => props.previewMarkup.includes("<sgds-sidebar"));
+const isStepperStructure = computed(() => props.previewMarkup.includes("<sgds-stepper"));
+
+// Collect every distinct `variant` label from the token rows. When this list
+// has 2+ entries, the structure preview shows a segmented control above the
+// demo to switch the active variant. Tokens that omit `variant` are shared
+// across all variants and always render in the table.
+const structureRowVariants = computed<string[]>(() => {
+  const variants = new Set<string>();
+  for (const row of props.tokens) {
+    if (row.variant) variants.add(row.variant);
+  }
+  for (const group of props.tokenGroups ?? []) {
+    for (const row of group.tokens) {
+      if (row.variant) variants.add(row.variant);
+    }
+  }
+  return Array.from(variants);
 });
-// Structure-tab size/density toggle. When the Structure data includes grouped
-// measurement tokens (for example button sizes or accordion densities), we
-// surface them as a segmented control in the preview box. The control is
-// derived from the token-group title suffixes so the renderer can support more
-// components without new hardcoded options each time.
-type SizeToggleConfig = {
-  options: { id: string; label: string }[];
-  defaultId: string;
-  ariaLabel: string;
-  attributeName: string;
+
+// Spelled-out labels for size variants. Used for any component whose
+// segmented control switches the `size` attribute (link, button, icon-button,
+// modal, drawer, switch, spinner, …) — keeps the segment text human-readable
+// instead of the cryptic two-letter token names.
+const sizeLabels: Record<string, string> = {
+  xs: "Extra small",
+  sm: "Small",
+  md: "Medium",
+  lg: "Large",
+  xl: "Extra large",
+  "2-xl": "2x large",
+  "3-xl": "3x large",
+  fullscreen: "Fullscreen",
+};
+const densityLabels: Record<string, string> = {
+  default: "Default",
+  compact: "Compact",
+  spacious: "Spacious",
+};
+const breakpointOrder = ["320", "512", "768", "1024", "1280", "1440"];
+const footerBreakpointWidthClasses: Record<string, string> = {
+  "320": "sgds:w-[var(--sgds-dimension-320)]",
+  "512": "sgds:w-[var(--sgds-dimension-480)]",
+  "768": "sgds:w-[var(--sgds-dimension-688)]",
+  "1024": "sgds:w-[var(--sgds-dimension-888)]",
+  "1280": "sgds:w-[var(--sgds-dimension-1168)]",
+  "1440": "sgds:w-[var(--sgds-dimension-1312)]",
 };
 
-const structureVariantGroupIds = computed(() => {
-  const suffixes = (props.tokenGroups ?? [])
-    .map((group) => group.title.split("/").pop()?.trim() || "")
-    .filter(Boolean);
-  return Array.from(new Set(suffixes));
+// Stable ordering for size segments so they always read smallest → largest,
+// regardless of the order tokens happen to be authored in the data file.
+const sizeOrder = ["xs", "sm", "md", "lg", "xl", "2-xl", "3-xl", "fullscreen"];
+const densityOrder = ["default", "compact", "spacious"];
+
+// Pick a sensible starting variant from the available list. Prefers `md`
+// (the SGDS default for most sized components), then `default`, then the
+// first entry. Used both for the initial state and whenever the variant set
+// changes.
+const pickDefaultVariant = (variants: string[]): string | null => {
+  if (variants.length === 0) return null;
+  if (variants.includes("md")) return "md";
+  if (variants.includes("default")) return "default";
+  return variants[0];
+};
+
+// Active variant state for the demo + tokens table.
+const activeVariant = ref<string | null>(pickDefaultVariant(structureRowVariants.value));
+watch(structureRowVariants, (variants) => {
+  if (variants.length === 0) {
+    activeVariant.value = null;
+  } else if (!activeVariant.value || !variants.includes(activeVariant.value)) {
+    activeVariant.value = pickDefaultVariant(variants);
+  }
 });
 
-const structureVariantAttributeName = computed(() => {
+// Maps a chip-cased variant ("Underlined", "Solid") to the lowercase value the
+// SGDS web component expects on its `variant=""` attribute.
+const variantAttributeValue = (label: string) => label.toLowerCase().replace(/\s+/g, "-");
+
+// SGDS components that switch size via the `size=""` HTML attribute. When the
+// structure preview targets one of these, the segmented control writes the
+// selected variant onto this attribute (mirroring the live component's API).
+const SIZED_COMPONENT_TAGS = [
+  "sgds-button",
+  "sgds-link",
+  "sgds-icon",
+  "sgds-icon-button",
+  "sgds-icon-list",
+  "sgds-close-button",
+  "sgds-modal",
+  "sgds-drawer",
+  "sgds-spinner",
+  "sgds-switch",
+  "sgds-overflow-menu",
+  "sgds-pagination",
+];
+
+const isSizedStructure = computed(() =>
+  SIZED_COMPONENT_TAGS.some((tag) => props.previewMarkup.includes(`<${tag}`)),
+);
+
+// HTML attribute name to set on the structure-section's component for variant
+// switching. Tabs use `variant`; sized components use `size`.
+const variantAttributeName = computed<string | null>(() => {
   if (structureKind.value === "accordion") return "density";
-  if (
-    props.previewMarkup.includes("<sgds-button") ||
-    props.previewMarkup.includes("<sgds-close-button") ||
-    props.previewMarkup.includes("<sgds-drawer") ||
-    props.previewMarkup.includes("<sgds-icon ") ||
-    props.previewMarkup.includes("<sgds-icon-button") ||
-    props.previewMarkup.includes("<sgds-icon-list") ||
-    props.previewMarkup.includes("<sgds-link") ||
-    props.previewMarkup.includes("<sgds-modal") ||
-    props.previewMarkup.includes("<sgds-overflow-menu") ||
-    props.previewMarkup.includes("<sgds-pagination") ||
-    props.previewMarkup.includes("<sgds-spinner") ||
-    props.previewMarkup.includes("<sgds-switch")
-  ) return "size";
+  if (isFooterStructure.value) return "data-structure-breakpoint";
+  if (isDividerStructure.value) return "thickness";
+  if (isTabStructure.value) return "variant";
+  if (isSizedStructure.value) return "size";
   return null;
 });
 
-const structureVariantLabel = (id: string) => {
-  const labels: Record<string, string> = {
-    default: "Default",
-    compact: "Compact",
-    spacious: "Spacious",
-    xs: "Extra small",
-    sm: "Small",
-    md: "Medium",
-    lg: "Large",
-    xl: "Extra large",
-  };
-  return labels[id] ?? id.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
-};
-
-const sizeToggleConfig = computed<SizeToggleConfig | null>(() => {
-  const attributeName = structureVariantAttributeName.value;
-  const options = structureVariantGroupIds.value;
-  if (!attributeName || options.length <= 1) return null;
-
-  const defaultId = options.includes("default")
-    ? "default"
-    : options.includes("md")
-      ? "md"
-      : options[0];
-
-  const controlName = attributeName === "density" ? "density" : "size";
-  const componentLabel = props.previewMarkup.match(/<sgds-([a-z-]+)/)?.[1]?.replace(/-/g, " ") || "component";
-
-  return {
-    options: options.map((id) => ({ id, label: structureVariantLabel(id) })),
-    defaultId,
-    ariaLabel: `${componentLabel} ${controlName}`,
-    attributeName,
-  };
+const variantSegmentOptions = computed(() => {
+  const usesSizeLabels = variantAttributeName.value === "size";
+  const usesDensityLabels = variantAttributeName.value === "density";
+  const variants = usesSizeLabels
+    ? [...structureRowVariants.value].sort(
+        (a, b) => sizeOrder.indexOf(a) - sizeOrder.indexOf(b),
+      )
+    : usesDensityLabels
+      ? [...structureRowVariants.value].sort(
+          (a, b) => densityOrder.indexOf(a) - densityOrder.indexOf(b),
+        )
+    : isFooterStructure.value
+      ? [...structureRowVariants.value].sort(
+          (a, b) => breakpointOrder.indexOf(a) - breakpointOrder.indexOf(b),
+        )
+      : structureRowVariants.value;
+  return variants.map((label) => ({
+    value: label,
+    label: usesSizeLabels
+      ? sizeLabels[label] ?? label
+      : usesDensityLabels
+        ? densityLabels[label] ?? label
+        : label,
+  }));
 });
 
-const activeDensityId = ref<string>(sizeToggleConfig.value?.defaultId ?? "default");
-
-const densitySegmentOptions = computed(() =>
-  (sizeToggleConfig.value?.options ?? []).map((option) => ({ value: option.id, label: option.label })),
+const footerPreviewWidthClass = computed(() =>
+  footerBreakpointWidthClasses[activeVariant.value ?? ""] ?? footerBreakpointWidthClasses["320"],
 );
 
-const onDensitySegmentChange = (next: string) => {
-  const config = sizeToggleConfig.value;
-  if (!config) return;
-  if (config.options.some((option) => option.id === next)) {
-    activeDensityId.value = next;
-    hoverKey.value = null;
-  }
+// True when a token row should be visible given the currently selected variant.
+// Rows with no `variant` are shared and always show. Rows with a `variant`
+// only show when it matches the active variant.
+const isRowVisibleForActiveVariant = (row: MeasurementTokenRow) => {
+  if (!activeVariant.value) return true;
+  if (!row.variant) return true;
+  return row.variant === activeVariant.value;
 };
-
-// Reset the active selection when the component kind changes (e.g. navigating
-// between an accordion page and a button page with the same renderer).
-watch(sizeToggleConfig, (config) => {
-  if (!config) return;
-  if (!config.options.some((option) => option.id === activeDensityId.value)) {
-    activeDensityId.value = config.defaultId;
-    hoverKey.value = null;
+// The OUTER SGDS element in the preview markup determines the structure kind.
+// Picking the first match in the string would mis-classify components like
+// subnav (which contains `<sgds-button slot="actions">` inside it) as a button.
+const outerSgdsTag = computed(() => props.previewMarkup.match(/<sgds-([a-z][a-z0-9-]*)/)?.[1] ?? "");
+const structureKind = computed<"accordion" | "card" | "button" | "alert" | "breadcrumb" | "generic">(() => {
+  switch (outerSgdsTag.value) {
+    case "accordion": return "accordion";
+    case "card": return "card";
+    case "button": return "button";
+    case "alert": return "alert";
+    case "breadcrumb": return "breadcrumb";
+    default: return "generic";
   }
-}, { immediate: true });
+});
+const defaultStructureVariantId = computed(() => {
+  const uniqueVariants = structureRowVariants.value;
+  return uniqueVariants.includes("default")
+    ? "default"
+    : uniqueVariants.includes("md")
+      ? "md"
+      : uniqueVariants[0] ?? null;
+});
 
 let resizeObserver: ResizeObserver | null = null;
 
-const activeDensityGroup = computed(
-  () => props.tokenGroups?.find((group) => group.title.endsWith(`/${activeDensityId.value}`)) ?? null,
-);
+const visibleTokenGroups = computed(() => {
+  return props.tokenGroups ?? [];
+});
 const tokenDisplay = (row?: MeasurementTokenRow) => row?.designToken || "—";
 const tokenValue = (row?: MeasurementTokenRow) => row?.rawValue || "—";
+const hasTooltipValue = (value?: string) => Boolean(value && value !== "—");
+const isVisibleTooltipRow = (row: InspectMetaRow) =>
+  hasTooltipValue(row.value) && hasTooltipValue(row.valueSuffix);
+const getVisibleTooltipRows = (meta: InspectMeta) =>
+  meta.rows?.filter(isVisibleTooltipRow) ?? [];
+const shouldShowPrimaryTooltipRow = (meta: InspectMeta) =>
+  hasTooltipValue(meta.value) && hasTooltipValue(meta.valueSuffix);
+const hasVisibleTooltipContent = (meta?: InspectMeta) =>
+  Boolean(meta && (shouldShowPrimaryTooltipRow(meta) || getVisibleTooltipRows(meta).length));
+const shouldShowTooltipRowCategory = (meta: InspectMeta, index: number) =>
+  !shouldShowPrimaryTooltipRow(meta) && index === 0;
+// Render tokens as `sgds-border-radius-md` instead of `sgds/border-radius/md`
+// to match how they're consumed as CSS custom properties (--sgds-border-radius-md).
+const formatToken = (token: string) => token.replace(/\//g, "-");
 const getDimensionFallbackLabel = (
   key: string | null,
   orientation: "height" | "width" | null = null,
@@ -192,12 +305,16 @@ const accordionBaseTokenMap = computed(() => new Map(
   props.tokens.map((token) => [token.mapKey || token.property, token]),
 ));
 
+const activeVariantGroupTokens = computed(() =>
+  (props.tokenGroups?.flatMap((group) => group.tokens) ?? []).filter(isRowVisibleForActiveVariant),
+);
+
 // Merge the shared button tokens (colour/border/gap) with the tokens of the
 // currently-active size group (padding-x/height/min-width/font-size/line-height)
 // so hotspot tooltips always reflect the selected size.
 const buttonBaseTokenMap = computed(() => {
   const activeSizeTokens = structureKind.value === "button"
-    ? activeDensityGroup.value?.tokens ?? []
+    ? activeVariantGroupTokens.value
     : [];
   return new Map(
     [...props.tokens, ...activeSizeTokens].map((token) => [token.mapKey || token.property, token]),
@@ -221,7 +338,11 @@ const globalTokenMap = computed(() => new Map(
 ));
 
 const densityTokenMap = computed(() => new Map(
-  activeDensityGroup.value?.tokens.map((token) => [token.property, token]) ?? [],
+  activeVariantGroupTokens.value.flatMap((token) => {
+    const keys = [token.property];
+    if (token.mapKey) keys.push(token.mapKey);
+    return keys.map((key) => [key, token] as const);
+  }),
 ));
 
 const genericTokenRows = computed(() => [
@@ -229,8 +350,12 @@ const genericTokenRows = computed(() => [
   ...(props.tokenGroups?.flatMap((group) => group.tokens) ?? []),
 ]);
 
+const activeGenericTokenRows = computed(() =>
+  genericTokenRows.value.filter(isRowVisibleForActiveVariant),
+);
+
 const genericTokenMap = computed(() => new Map(
-  genericTokenRows.value.map((token) => [token.mapKey || token.property, token]),
+  activeGenericTokenRows.value.map((token) => [token.mapKey || token.property, token]),
 ));
 
 const allStructureTokenRows = computed(() => [
@@ -240,14 +365,86 @@ const allStructureTokenRows = computed(() => [
   ...(props.globalTokenGroups?.flatMap((group) => group.tokens) ?? []),
 ]);
 
+const activeStructureTokenRows = computed(() =>
+  allStructureTokenRows.value.filter(isRowVisibleForActiveVariant),
+);
+
 const allStructureTokenMap = computed(() => new Map(
-  allStructureTokenRows.value.map((token) => [token.mapKey || token.property, token]),
+  activeStructureTokenRows.value.map((token) => [token.mapKey || token.property, token]),
 ));
 
-const flattenedSemanticTokens = computed(() => [
-  ...(props.globalTokenGroups?.flatMap((group) => group.tokens) ?? []),
+const getTooltipTokenRowByKey = (key?: string | null): MeasurementTokenRow | undefined => {
+  if (!key) return undefined;
+  return (
+    allStructureTokenMap.value.get(key) ||
+    genericTokenMap.value.get(key) ||
+    densityTokenMap.value.get(key) ||
+    buttonBaseTokenMap.value.get(key) ||
+    alertBaseTokenMap.value.get(key) ||
+    cardBaseTokenMap.value.get(key) ||
+    accordionBaseTokenMap.value.get(key) ||
+    alertSemanticTokenMap.value.get(key) ||
+    globalTokenMap.value.get(key)
+  );
+};
+
+const getTooltipTokenRowByValue = (value?: string | null): MeasurementTokenRow | undefined => {
+  if (!value) return undefined;
+  return activeStructureTokenRows.value.find((token) => token.designToken === value);
+};
+
+const getTooltipCategoryFallback = (key?: string | null) => {
+  if (isPaddingOverlayKey(key || null)) return "Padding";
+  if (isGapOverlayKey(key || null)) return "Gap";
+  if (isSizeOverlayKey(key || null)) return "Size";
+  if (isBorderOrColorOverlayKey(key || null)) {
+    return key?.includes("border") ? "Border" : "Colour";
+  }
+  return "Token";
+};
+
+const getTooltipPrimaryCategory = (key: string | null, meta: InspectMeta) => {
+  const tokenRow =
+    getTooltipTokenRowByKey(key) ||
+    getTooltipTokenRowByKey(meta.label) ||
+    getTooltipTokenRowByValue(meta.value);
+  return tokenRow?.category || tokenRow?.element || getTooltipCategoryFallback(key || meta.label || meta.value);
+};
+
+const getTooltipRowCategory = (row: InspectMetaRow, fallbackKey: string | null) => {
+  const tokenRow =
+    getTooltipTokenRowByKey(row.label) ||
+    getTooltipTokenRowByValue(row.value) ||
+    getTooltipTokenRowByKey(fallbackKey);
+  return tokenRow?.category || tokenRow?.element || getTooltipCategoryFallback(row.label || fallbackKey || row.value);
+};
+
+const baseTokenRows = computed(() => [
+  ...props.tokens,
   ...(props.globalTokens ?? []),
+].filter(isRowVisibleForActiveVariant));
+
+const visibleDesignTokenGroups = computed(() => [
+  ...visibleTokenGroups.value,
+  ...(props.globalTokenGroups ?? []),
 ]);
+
+const visibleRowsInGroup = (group: { tokens: MeasurementTokenRow[] }) =>
+  group.tokens.filter(isRowVisibleForActiveVariant);
+
+const designTokenRows = computed<StructureTokenTableRow[]>(() => [
+  ...baseTokenRows.value,
+  ...visibleDesignTokenGroups.value.flatMap((group) =>
+    visibleRowsInGroup(group).map((row) => ({
+      ...row,
+      groupTitle: group.title,
+    })),
+  ),
+]);
+
+const hasDesignTokenRows = computed(() =>
+  designTokenRows.value.length > 0,
+);
 
 const baseTokenTitle = computed(() => {
   if (structureKind.value === "card") return "sgds/card";
@@ -257,6 +454,10 @@ const baseTokenTitle = computed(() => {
   if (props.tokenGroups?.[0]?.title) return props.tokenGroups[0].title;
   return "";
 });
+
+const isThumbnailCardStructure = computed(() =>
+  baseTokenTitle.value.includes("thumbnail-card"),
+);
 
 const componentTokenHelper = computed(() => {
   const exampleToken = props.tokens[0]?.property || props.tokenGroups?.[0]?.tokens[0]?.property || "token-name";
@@ -294,6 +495,23 @@ const cardBorderHoverBands = computed(() => {
 
   const thickness = 10;
   const horizontalWidth = Math.max(0, rect.width - thickness * 2);
+  const verticalHeight = Math.max(0, rect.height - thickness * 2);
+
+  return [
+    { left: rect.left, top: rect.top, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + rect.height - thickness, width: rect.width, height: thickness },
+    { left: rect.left, top: rect.top + thickness, width: thickness, height: verticalHeight },
+    { left: rect.left + rect.width - thickness, top: rect.top + thickness, width: thickness, height: verticalHeight },
+  ];
+});
+
+const accordionBorderHoverBands = computed(() => {
+  if (structureKind.value !== "accordion") return [];
+  if (!isHoverableStructureKey("border-radius")) return [];
+  const rect = hotspotRects.value["border-radius"] ?? hotspotRects.value["border-width"];
+  if (!rect) return [];
+
+  const thickness = 6;
   const verticalHeight = Math.max(0, rect.height - thickness * 2);
 
   return [
@@ -344,54 +562,6 @@ const buttonBorderHoverBands = computed(() => {
   ];
 });
 
-const checkboxBorderHoverBands = computed(() => {
-  if (structureKind.value !== "generic") return [];
-  const rect = hotspotRects.value["control-border-radius"];
-  if (!rect) return [];
-
-  const thickness = 4;
-  const verticalHeight = Math.max(0, rect.height - thickness * 2);
-
-  return [
-    { left: rect.left, top: rect.top, width: rect.width, height: thickness },
-    { left: rect.left, top: rect.top + rect.height - thickness, width: rect.width, height: thickness },
-    { left: rect.left, top: rect.top + thickness, width: thickness, height: verticalHeight },
-    { left: rect.left + rect.width - thickness, top: rect.top + thickness, width: thickness, height: verticalHeight },
-  ];
-});
-
-const comboBoxBorderHoverBands = computed(() => {
-  if (structureKind.value !== "generic" || !isComboBoxStructure.value) return [];
-  const rect = hotspotRects.value["border-width"];
-  if (!rect) return [];
-
-  const thickness = 4;
-  const verticalHeight = Math.max(0, rect.height - thickness * 2);
-
-  return [
-    { left: rect.left, top: rect.top, width: rect.width, height: thickness },
-    { left: rect.left, top: rect.top + rect.height - thickness, width: rect.width, height: thickness },
-    { left: rect.left, top: rect.top + thickness, width: thickness, height: verticalHeight },
-    { left: rect.left + rect.width - thickness, top: rect.top + thickness, width: thickness, height: verticalHeight },
-  ];
-});
-
-const tooltipBorderHoverBands = computed(() => {
-  if (structureKind.value !== "generic" || !isTooltipStructure.value) return [];
-  const rect = hotspotRects.value["border-radius"];
-  if (!rect) return [];
-
-  const thickness = 6;
-  const verticalHeight = Math.max(0, rect.height - thickness * 2);
-
-  return [
-    { left: rect.left, top: rect.top, width: rect.width, height: thickness },
-    { left: rect.left, top: rect.top + rect.height - thickness, width: rect.width, height: thickness },
-    { left: rect.left, top: rect.top + thickness, width: thickness, height: verticalHeight },
-    { left: rect.left + rect.width - thickness, top: rect.top + thickness, width: thickness, height: verticalHeight },
-  ];
-});
-
 const DIMENSION_ANNOTATION_GUTTER = 8;
 const DIMENSION_ANNOTATION_WIDTH = 18;
 
@@ -424,12 +594,28 @@ const buttonDimensionAnnotations = computed(() => {
   };
 });
 
+// Tokens whose name contains "width" but whose value represents a STROKE
+// thickness (perpendicular to the long axis of a thin strip) — e.g. the 4px
+// active-tab indicator or the 1px nav divider. They are still hoverable via
+// the inspect-proxy bands, but we don't render a static dimension annotation
+// for them in the demo: the strip itself is too thin for a bracket and the
+// floating label clutters the preview without adding information that's not
+// already in the popup on hover.
+const isStrokeThicknessKey = (key: string) =>
+  key.includes("indicator-width") || key.includes("divider-width") || key.includes("stroke-width");
+
 const getSizeAnnotationKeys = (key: string | null) => {
   if (!key) return null;
+  if (isStrokeThicknessKey(key)) {
+    return null;
+  }
   if (key.includes("border-width")) {
     return null;
   }
   if (key === "input-size") {
+    return { heightKey: key, widthKey: key };
+  }
+  if (isLinkStructure.value && key === "icon-size") {
     return { heightKey: key, widthKey: key };
   }
   if (key.includes("font-size") || key.includes("line-height")) {
@@ -441,53 +627,313 @@ const getSizeAnnotationKeys = (key: string | null) => {
   if (key.includes("width")) {
     return { heightKey: null, widthKey: key };
   }
+  if (
+    isModalFullscreenStructure.value &&
+    ["dimension-888", "dimension-1168", "dimension-1312"].includes(key)
+  ) {
+    return null;
+  }
   if (key.includes("dimension") || key.endsWith("size") || key.includes("-size")) {
     return { heightKey: key, widthKey: key };
   }
   return null;
 };
 
+// Read a token's `usage` string to infer which axis the value applies to.
+// "Height of the foo" → "height". "Maximum width of the bar" → "width".
+// "Height of X; width of X" → "both". Anything ambiguous returns null so the
+// annotation logic falls back to its default behaviour (both axes).
+const inferDimensionAxis = (usage?: string): "height" | "width" | "both" | null => {
+  if (!usage) return null;
+  const lower = usage.toLowerCase();
+  const hasHeight = /\bheight\b/.test(lower);
+  const hasWidth = /\bwidth\b/.test(lower);
+  if (hasHeight && hasWidth) return "both";
+  if (hasHeight) return "height";
+  if (hasWidth) return "width";
+  return null;
+};
+
+// Detect whether a dimension token represents a max-* or min-* constraint
+// based on its usage text. Used to render the bracket at the constraint's
+// pixel value (e.g. 192px) rather than the component's current rendered
+// size, and to prefix the label with "Max " / "Min ".
+const inferDimensionConstraint = (usage?: string): "max" | "min" | null => {
+  if (!usage) return null;
+  const lower = usage.toLowerCase();
+  if (/\bmax(?:imum)?\b/.test(lower)) return "max";
+  if (/\bmin(?:imum)?\b/.test(lower)) return "min";
+  return null;
+};
+
+// Convert a raw token value like "192px" or "1.5rem" to a pixel number for
+// sizing annotation brackets. Returns null when the value is non-numeric
+// (e.g. "Width varies").
+const parseRawPxValue = (rawValue?: string): number | null => {
+  if (!rawValue) return null;
+  const pxMatch = rawValue.match(/^(-?\d+(?:\.\d+)?)px$/);
+  if (pxMatch) return Number.parseFloat(pxMatch[1]);
+  const remMatch = rawValue.match(/^(-?\d+(?:\.\d+)?)rem$/);
+  if (remMatch) return Number.parseFloat(remMatch[1]) * 16;
+  return null;
+};
+
+const isZeroTokenValue = (token?: MeasurementTokenRow | null) => {
+  if (!token) return false;
+  const raw = (token.rawValue || "").trim();
+  if (raw && /^0(?:\.0+)?(?:px|rem|em|%)?$/.test(raw)) return true;
+  const designToken = (token.designToken || "").toLowerCase();
+  return designToken.endsWith("/none") || designToken.endsWith("/0");
+};
+
+const formatConstraintLabel = (constraint: "max" | "min" | null, rawValue: string): string => {
+  if (constraint === "max") return `Max ${rawValue}`;
+  if (constraint === "min") return `Min ${rawValue}`;
+  return rawValue;
+};
+
+const isDrawerDimensionKey = (key: string | null) =>
+  isDrawerStructure.value && (key === "dimension" || Boolean(key?.startsWith("dimension-")));
+
 const staticSizeAnnotations = computed(() => {
   if (structureKind.value === "button") return null;
   const annotations: Array<{
     id: string;
     orientation: "height" | "width";
-    labelPlacement?: "default" | "left";
+    labelPlacement?: "default" | "left" | "above";
     label: string;
     left: number;
     top: number;
     size: number;
+    isThickness?: boolean;
+    isIconSize?: boolean;
   }> = [];
+  const annotationSlots = new Set<string>();
+  const addAnnotation = (annotation: (typeof annotations)[number]) => {
+    const slotKey = [
+      annotation.orientation,
+      annotation.labelPlacement || "default",
+      Math.round(annotation.left),
+      Math.round(annotation.top),
+      Math.round(annotation.size),
+    ].join(":");
+    if (annotationSlots.has(slotKey)) return;
+    annotationSlots.add(slotKey);
+    annotations.push(annotation);
+  };
+
+  // Bracket element dimensions (must match .accordion-inspect-annotation--*
+  // CSS). The bracket itself is 18px in its main axis, with end caps spanning
+  // offsets 4–13 inside that 18px box.
+  const HEIGHT_BRACKET_WIDTH = 18;
+  const WIDTH_BRACKET_HEIGHT = 18;
+  // Estimated footprint of a bracket + label outside the component rect.
+  // Used to detect when the default placement would push the annotation off
+  // the preview shell so we can flip it to the opposite side instead.
+  const HEIGHT_BRACKET_FOOTPRINT = 60; // bracket (18px) + label peek (~40px)
+  const WIDTH_BRACKET_FOOTPRINT = 32; // bracket (18px) + label peek (~14px)
+  const shellWidth = previewShellRef.value?.clientWidth ?? 0;
+  const shellHeight = previewShellRef.value?.clientHeight ?? 0;
 
   Object.keys(hotspotRects.value).forEach((key) => {
     const annotationKeys = getSizeAnnotationKeys(key);
     const rect = hotspotRects.value[key];
     if (!annotationKeys || !rect) return;
+    if (isDatepickerStructure.value && ["form-height-lg", "form-width-md"].includes(key)) return;
+    if (isDescriptionListStructure.value && key === "dimension-280") return;
+    if (isDrawerDimensionKey(key)) return;
+    if (isDropdownStructure.value && key === "dimension-192") return;
 
-    if (annotationKeys.heightKey) {
-      const heightLeft = structureKind.value === "generic" && key === "input-size"
-        ? rect.left - DIMENSION_ANNOTATION_WIDTH - DIMENSION_ANNOTATION_GUTTER
-        : rect.left + rect.width + DIMENSION_ANNOTATION_GUTTER;
-      annotations.push({
+    // When the component is flush with the shell's right or bottom edge, the
+    // default bracket placement would render outside the preview area (or on
+    // top of the component, since the shell clips overflow). Flip the bracket
+    // to the opposite side in that case.
+    const rightOverflow =
+      shellWidth > 0 &&
+      rect.left + rect.width + DIMENSION_ANNOTATION_GUTTER + HEIGHT_BRACKET_FOOTPRINT >
+        shellWidth;
+    const bottomOverflow =
+      shellHeight > 0 &&
+      rect.top + rect.height + DIMENSION_ANNOTATION_GUTTER + WIDTH_BRACKET_FOOTPRINT >
+        shellHeight;
+
+    // Some structures populate hotspot rects for keys that have no backing
+    // token row (e.g. icon-button sets "width"/"height"/"icon-size" rects on
+    // the surface for hover-pairing only). Without this guard, those keys
+    // would render "Width varies" / "Height varies" fallback brackets even
+    // though no token row exists to inspect. Skip the axis when there's no
+    // active token to read a value from.
+    const heightToken = annotationKeys.heightKey
+      ? allStructureTokenMap.value.get(annotationKeys.heightKey)
+      : null;
+    const widthToken = annotationKeys.widthKey
+      ? allStructureTokenMap.value.get(annotationKeys.widthKey)
+      : null;
+
+    // Suppress the height bracket when the active token's `usage` only
+    // describes a width, and vice versa. Tokens like "Maximum width of the
+    // modal panel" should render a width bracket below the surface but no
+    // height bracket on the right. Square-shape tokens whose usage mentions
+    // both axes ("Height of X; width of X") still render both.
+    const heightAxis = inferDimensionAxis(heightToken?.usage);
+    const widthAxis = inferDimensionAxis(widthToken?.usage);
+
+    if (
+      annotationKeys.heightKey &&
+      heightToken?.rawValue &&
+      !isZeroTokenValue(heightToken) &&
+      heightAxis !== "width" &&
+      !isDrawerDimensionKey(key)
+    ) {
+      const isThickness = isStrokeThicknessKey(key);
+      // The switch's toggle sits to the LEFT of its label inside the host —
+      // a bracket on the right would overlap the label text. Pin the switch
+      // height bracket to the left of the toggle instead.
+      const leftSpace = rect.left;
+      const rightSpace = shellWidth > 0
+        ? shellWidth - (rect.left + rect.width)
+        : Number.POSITIVE_INFINITY;
+      const leftHasBracketSpace = leftSpace >= HEIGHT_BRACKET_WIDTH + DIMENSION_ANNOTATION_GUTTER;
+      const rightHasBracketSpace = rightSpace >= HEIGHT_BRACKET_WIDTH + DIMENSION_ANNOTATION_GUTTER;
+      const forceLeftSide = isMastheadStructure.value && key === "dimension-20";
+      const forceRightSide = isStepperStructure.value && key === "dimension-32";
+      const prefersLeft =
+        !forceRightSide &&
+        (
+          (structureKind.value === "generic" && key === "input-size") ||
+          isSwitchStructure.value ||
+          isThickness ||
+          rightOverflow
+        );
+      const placeOnLeft =
+        leftHasBracketSpace &&
+        (forceLeftSide || prefersLeft || (!rightHasBracketSpace && leftSpace > rightSpace));
+      // Stroke-thickness annotations render as a label badge anchored to the
+      // strip's vertical centre rather than a tall bracket — the strip is too
+      // thin to bracket meaningfully. Inflate the visual `size` to a readable
+      // minimum so the badge has somewhere to sit; the displayed label still
+      // shows the actual thickness.
+      const visualSize = isThickness ? Math.max(rect.height, 20) : rect.height;
+      const visualTop = isThickness
+        ? rect.top + rect.height / 2 - visualSize / 2
+        : rect.top;
+      // Thickness annotations are just the label badge (no bracket); anchor
+      // the container's right edge near the strip and let the label extend
+      // leftward. Clamp the right edge so the label always stays inside the
+      // shell — overlapping the strip's left tip is preferable to clipping.
+      const thicknessLabelWidth = 32; // approximate width of the label badge
+      const thicknessIdealRight = rect.left - 4;
+      const thicknessMinRight = thicknessLabelWidth; // keep label.left >= 0
+      // The bracket element is 18px wide. On the right we sit it at
+      // `rect.right + GUTTER` so the bracket's leftmost visual element (the
+      // end cap at offset 4) lands `GUTTER + 4` past the component edge. To
+      // keep the same visual gap when placed on the LEFT, we have to subtract
+      // both the gutter AND the bracket's full width — otherwise the bracket
+      // overlaps the component.
+      const heightLeft = isThickness
+        ? Math.max(thicknessMinRight, thicknessIdealRight)
+        : placeOnLeft
+          ? rect.left - DIMENSION_ANNOTATION_GUTTER - HEIGHT_BRACKET_WIDTH
+          : rect.left + rect.width + DIMENSION_ANNOTATION_GUTTER;
+      const heightRawValue = getStructureValue(allStructureTokenMap.value.get(annotationKeys.heightKey), annotationKeys.heightKey, "height");
+      const heightConstraint = inferDimensionConstraint(heightToken?.usage);
+      const heightConstraintPx = heightConstraint ? parseRawPxValue(heightToken?.rawValue) : null;
+      const useRenderedHeightForConstraint =
+        isDropdownStructure.value && key === "dimension-480";
+      addAnnotation({
         id: `${key}-height`,
         orientation: "height",
-        labelPlacement: structureKind.value === "generic" && key === "input-size" ? "left" : "default",
-        label: getStructureValue(allStructureTokenMap.value.get(annotationKeys.heightKey), annotationKeys.heightKey, "height"),
+        labelPlacement: placeOnLeft ? "left" : "default",
+        label: formatConstraintLabel(heightConstraint, heightRawValue),
         left: heightLeft,
-        top: rect.top,
-        size: rect.height,
+        top: visualTop,
+        // Render the bracket at the constraint's pixel value so a "Max 480px"
+        // label sits on a 480-tall bracket regardless of the component's
+        // current rendered height. Falls back to the rendered height for
+        // non-constraint tokens.
+        size: useRenderedHeightForConstraint ? visualSize : heightConstraintPx ?? visualSize,
+        isThickness,
+        isIconSize: isLinkStructure.value && key === "icon-size",
       });
     }
 
-    if (annotationKeys.widthKey) {
-      annotations.push({
+    if (
+      annotationKeys.widthKey &&
+      widthToken?.rawValue &&
+      !isZeroTokenValue(widthToken) &&
+      widthAxis !== "height" &&
+      !isSelectStructure.value
+    ) {
+      const isStepperMarkerDimension = isStepperStructure.value && key === "dimension-32";
+      const isThumbnailDimensionWidth =
+        isThumbnailCardStructure.value &&
+        ["dimension-128", "dimension-64"].includes(key);
+      if (isThumbnailDimensionWidth && key === "dimension-128") return;
+      const isDatepickerInputMinWidth =
+        isDatepickerStructure.value && key === "dimension-160";
+      const isDatepickerDropdownMaxWidth =
+        isDatepickerStructure.value && key === "dimension-320";
+      const isDropdownMenuMaxWidth =
+        isDropdownStructure.value && key === "dimension-320";
+      const isDescriptionListLabelMaxWidth =
+        isDescriptionListStructure.value && key === "dimension-280";
+      const isDrawerPanelDimensionWidth =
+        isDrawerDimensionKey(key);
+      const isFooterContentMaxWidth =
+        isFooterStructure.value && key.startsWith("dimension-");
+      const isModalPanelDimensionWidth =
+        isModalStructure.value && (key === "dimension" || key.startsWith("dimension-"));
+      const forceAbove = isMastheadStructure.value && key === "dimension-20";
+      const forceBelow = isModalFullscreenStructure.value && isModalPanelDimensionWidth;
+      const placeAbove =
+        !forceBelow &&
+        !isFooterContentMaxWidth &&
+        (forceAbove || isStepperMarkerDimension || isDatepickerInputMinWidth || isThumbnailDimensionWidth || isDrawerPanelDimensionWidth || bottomOverflow);
+      const widthRawValue = getStructureValue(allStructureTokenMap.value.get(annotationKeys.widthKey), annotationKeys.widthKey, "width");
+      const widthConstraint = inferDimensionConstraint(widthToken?.usage);
+      const widthConstraintPx = widthConstraint ? parseRawPxValue(widthToken?.rawValue) : null;
+      // Constraint brackets (max/min) decouple from the component's rendered
+      // size — a "Max 192px" bracket on a 74px-wide badge has no obvious
+      // anchor point. Centre it horizontally inside the preview shell so it
+      // reads as a stand-alone measurement of the constraint, not as a
+      // bracket attached to the live element. Non-constraint width brackets
+      // stay anchored to the component's left edge.
+      const widthSize = isModalPanelDimensionWidth
+        ? rect.width
+        : isFooterContentMaxWidth && shellWidth > 0
+        ? Math.min(widthConstraintPx ?? rect.width, shellWidth)
+        : widthConstraintPx ?? rect.width;
+      const unclampedWidthLeft = isModalPanelDimensionWidth
+        ? rect.left
+        : isThumbnailDimensionWidth
+        ? Math.round(rect.left + rect.width / 2 - widthSize / 2)
+        : isDatepickerInputMinWidth || isDatepickerDropdownMaxWidth || isDropdownMenuMaxWidth || isFooterContentMaxWidth
+          ? Math.round(rect.left + rect.width / 2 - widthSize / 2)
+        : isDescriptionListLabelMaxWidth
+          ? rect.left
+        : widthConstraintPx != null && shellWidth > 0
+          ? Math.round((shellWidth - widthSize) / 2)
+          : rect.left;
+      const widthLeft = shellWidth > 0
+        ? Math.max(0, Math.min(unclampedWidthLeft, Math.max(0, shellWidth - widthSize)))
+        : unclampedWidthLeft;
+      const minTopForAboveLabel = isThumbnailDimensionWidth ? 24 : 0;
+      const widthTop = placeAbove
+        ? Math.max(minTopForAboveLabel, rect.top - WIDTH_BRACKET_HEIGHT - DIMENSION_ANNOTATION_GUTTER)
+        : rect.top + rect.height + DIMENSION_ANNOTATION_GUTTER;
+      addAnnotation({
         id: `${key}-width`,
         orientation: "width",
-        labelPlacement: "default",
-        label: getStructureValue(allStructureTokenMap.value.get(annotationKeys.widthKey), annotationKeys.widthKey, "width"),
-        left: rect.left,
-        top: rect.top + rect.height + DIMENSION_ANNOTATION_GUTTER,
-        size: rect.width,
+        labelPlacement: placeAbove ? "above" : "default",
+        label: formatConstraintLabel(widthConstraint, widthRawValue),
+        left: widthLeft,
+        top: widthTop,
+        // Render the bracket at the constraint's pixel value so a "Max 192px"
+        // label sits on a 192-wide bracket regardless of the component's
+        // current rendered width. Falls back to the rendered width for
+        // non-constraint tokens.
+        size: widthSize,
+        isIconSize: isLinkStructure.value && key === "icon-size",
       });
     }
   });
@@ -495,7 +941,40 @@ const staticSizeAnnotations = computed(() => {
   return annotations;
 });
 
-const getPaddingBands = (rect: HotspotRect | null) => {
+const getPaddingAxisFromToken = (row?: MeasurementTokenRow, fallbackKey?: string | null): PaddingAxis => {
+  const usageText = (row?.usage ?? "").toLowerCase();
+  const fallbackText = `${row?.property ?? ""} ${row?.mapKey ?? ""} ${fallbackKey ?? ""}`.toLowerCase();
+  const explicitLeft = usageText.includes("left padding") || usageText.includes("padding on the left");
+  const explicitRight = usageText.includes("right padding") || usageText.includes("padding on the right");
+  const explicitTop = usageText.includes("top padding") || usageText.includes("padding on the top");
+  const explicitBottom = usageText.includes("bottom padding") || usageText.includes("padding on the bottom");
+
+  if (explicitLeft && !explicitRight) return "left";
+  if (explicitRight && !explicitLeft) return "right";
+  if (explicitTop && !explicitBottom) return "top";
+  if (explicitBottom && !explicitTop) return "bottom";
+
+  const text = `${usageText} ${fallbackText}`;
+  const isHorizontal =
+    text.includes("left and right") ||
+    text.includes("left/right") ||
+    text.includes("horizontal") ||
+    text.includes("padding-x") ||
+    text.includes("padding x");
+  const isVertical =
+    text.includes("top and bottom") ||
+    text.includes("top/bottom") ||
+    text.includes("vertical") ||
+    text.includes("padding-y") ||
+    text.includes("padding y");
+
+  if (isHorizontal && isVertical) return "all";
+  if (isHorizontal) return "x";
+  if (isVertical) return "y";
+  return "all";
+};
+
+const getPaddingBands = (rect: HotspotRect | null, axis: PaddingAxis = "all"): PaddingBand[] => {
   if (
     !rect ||
     rect.insetLeft == null ||
@@ -513,12 +992,28 @@ const getPaddingBands = (rect: HotspotRect | null) => {
   const rightLeft = rect.left + rect.insetLeft + rect.insetWidth;
   const rightWidth = Math.max(0, rect.width - rect.insetLeft - rect.insetWidth);
 
-  return [
-    ...(topHeight > 0 ? [{ left: rect.left, top: rect.top, width: rect.width, height: topHeight }] : []),
-    ...(bottomHeight > 0 ? [{ left: rect.left, top: bottomTop, width: rect.width, height: bottomHeight }] : []),
-    ...(leftWidth > 0 ? [{ left: rect.left, top: rect.top, width: leftWidth, height: rect.height }] : []),
-    ...(rightWidth > 0 ? [{ left: rightLeft, top: rect.top, width: rightWidth, height: rect.height }] : []),
-  ];
+  const topBand = topHeight > 0 ? [{ left: rect.left, top: rect.top, width: rect.width, height: topHeight }] : [];
+  const bottomBand = bottomHeight > 0 ? [{ left: rect.left, top: bottomTop, width: rect.width, height: bottomHeight }] : [];
+  const leftBand = leftWidth > 0 ? [{ left: rect.left, top: rect.top, width: leftWidth, height: rect.height }] : [];
+  const rightBand = rightWidth > 0 ? [{ left: rightLeft, top: rect.top, width: rightWidth, height: rect.height }] : [];
+
+  if (axis === "left") return leftBand;
+  if (axis === "right") return rightBand;
+  if (axis === "top") return topBand;
+  if (axis === "bottom") return bottomBand;
+  if (axis === "x") return [...leftBand, ...rightBand];
+  if (axis === "y") return [...topBand, ...bottomBand];
+  return [...topBand, ...bottomBand, ...leftBand, ...rightBand];
+};
+
+const getPaddingBandsForKey = (key: string, rect: HotspotRect | null) =>
+  getPaddingBands(rect, getPaddingAxisFromToken(getTooltipTokenRowByKey(key), key));
+
+const getRelatedPaddingBandsForKey = (key: string) => {
+  const relatedPaddingKeys = getRelatedRowKeys(key).filter(isPaddingOverlayKey);
+  if (!relatedPaddingKeys.length && !isPaddingOverlayKey(key)) return [];
+  const keys = relatedPaddingKeys.length ? relatedPaddingKeys : [key];
+  return keys.flatMap((relatedKey) => getPaddingBandsForKey(relatedKey, hotspotRects.value[relatedKey] ?? null));
 };
 
 const accordionPaddingKeys = ["padding-x-default", "padding-y-default", "content-padding"] as const;
@@ -529,7 +1024,7 @@ const accordionPaddingHoverBandGroups = computed(() => {
   return accordionPaddingKeys
     .map((key) => ({
       key,
-      bands: getPaddingBands(hotspotRects.value[key]),
+      bands: getPaddingBandsForKey(key, hotspotRects.value[key]),
     }))
     .filter((group) => group.bands.length);
 });
@@ -539,7 +1034,7 @@ const activeAccordionPaddingBands = computed(() => {
     return [];
   }
 
-  return getPaddingBands(hotspotRects.value[hoverKey.value]);
+  return getRelatedPaddingBandsForKey(hoverKey.value);
 });
 
 const isAccordionPaddingKey = (key: string) =>
@@ -554,7 +1049,7 @@ const alertPaddingHoverBandGroups = computed(() => {
   return alertPaddingProxyKeys
     .map((key) => ({
       key,
-      bands: getPaddingBands(hotspotRects.value[key]),
+      bands: getPaddingBandsForKey(key, hotspotRects.value[key]),
     }))
     .filter((group) => group.bands.length);
 });
@@ -564,7 +1059,7 @@ const activeAlertPaddingBands = computed(() => {
     return [];
   }
 
-  return getPaddingBands(hotspotRects.value[hoverKey.value]);
+  return getRelatedPaddingBandsForKey(hoverKey.value);
 });
 
 const isAlertPaddingKey = (key: string) =>
@@ -588,35 +1083,22 @@ const activeButtonGapBands = computed(() =>
     : [],
 );
 
+const activeGenericGapBands = computed(() => {
+  if (structureKind.value !== "generic" || !hoverKey.value) return [];
+  return genericGapBandsByKey.value[hoverKey.value] ?? [];
+});
+
 
 const cardPaddingXHoverBands = computed(() => {
   if (structureKind.value !== "card") return [];
   const rect = hotspotRects.value["padding-x"];
-  if (!rect || rect.insetTop == null || rect.insetHeight == null) return [];
-
-  const topHeight = Math.max(0, rect.insetTop);
-  const bottomTop = rect.top + rect.insetTop + rect.insetHeight;
-  const bottomHeight = Math.max(0, rect.height - rect.insetTop - rect.insetHeight);
-
-  return [
-    ...(topHeight > 0 ? [{ left: rect.left, top: rect.top, width: rect.width, height: topHeight }] : []),
-    ...(bottomHeight > 0 ? [{ left: rect.left, top: bottomTop, width: rect.width, height: bottomHeight }] : []),
-  ];
+  return getPaddingBandsForKey("padding-x", rect ?? null);
 });
 
 const cardPaddingYHoverBands = computed(() => {
   if (structureKind.value !== "card") return [];
   const rect = hotspotRects.value["padding-y"];
-  if (!rect || rect.insetLeft == null || rect.insetWidth == null) return [];
-
-  const leftWidth = Math.max(0, rect.insetLeft);
-  const rightLeft = rect.left + rect.insetLeft + rect.insetWidth;
-  const rightWidth = Math.max(0, rect.width - rect.insetLeft - rect.insetWidth);
-
-  return [
-    ...(leftWidth > 0 ? [{ left: rect.left, top: rect.top, width: leftWidth, height: rect.height }] : []),
-    ...(rightWidth > 0 ? [{ left: rightLeft, top: rect.top, width: rightWidth, height: rect.height }] : []),
-  ];
+  return getPaddingBandsForKey("padding-y", rect ?? null);
 });
 
 // Datepicker form-padding-x bands — left + right strips between the input
@@ -625,46 +1107,19 @@ const cardPaddingYHoverBands = computed(() => {
 const datepickerFormPaddingXBands = computed(() => {
   if (structureKind.value !== "generic") return [];
   const rect = hotspotRects.value["form-padding-x"];
-  if (!rect || rect.insetLeft == null || rect.insetWidth == null) return [];
-
-  const leftWidth = Math.max(0, rect.insetLeft);
-  const rightLeft = rect.left + rect.insetLeft + rect.insetWidth;
-  const rightWidth = Math.max(0, rect.width - rect.insetLeft - rect.insetWidth);
-
-  return [
-    ...(leftWidth > 0 ? [{ left: rect.left, top: rect.top, width: leftWidth, height: rect.height }] : []),
-    ...(rightWidth > 0 ? [{ left: rightLeft, top: rect.top, width: rightWidth, height: rect.height }] : []),
-  ];
+  return getPaddingBandsForKey("form-padding-x", rect ?? null);
 });
 
 const tooltipPaddingXBands = computed(() => {
   if (structureKind.value !== "generic" || !isTooltipStructure.value) return [];
   const rect = hotspotRects.value["padding-x"];
-  if (!rect || rect.insetLeft == null || rect.insetWidth == null) return [];
-
-  const leftWidth = Math.max(0, rect.insetLeft);
-  const rightLeft = rect.left + rect.insetLeft + rect.insetWidth;
-  const rightWidth = Math.max(0, rect.width - rect.insetLeft - rect.insetWidth);
-
-  return [
-    ...(leftWidth > 0 ? [{ left: rect.left, top: rect.top, width: leftWidth, height: rect.height }] : []),
-    ...(rightWidth > 0 ? [{ left: rightLeft, top: rect.top, width: rightWidth, height: rect.height }] : []),
-  ];
+  return getPaddingBandsForKey("padding-x", rect ?? null);
 });
 
 const tooltipPaddingYBands = computed(() => {
   if (structureKind.value !== "generic" || !isTooltipStructure.value) return [];
   const rect = hotspotRects.value["padding-y"];
-  if (!rect || rect.insetTop == null || rect.insetHeight == null) return [];
-
-  const topHeight = Math.max(0, rect.insetTop);
-  const bottomTop = rect.top + rect.insetTop + rect.insetHeight;
-  const bottomHeight = Math.max(0, rect.height - rect.insetTop - rect.insetHeight);
-
-  return [
-    ...(topHeight > 0 ? [{ left: rect.left, top: rect.top, width: rect.width, height: topHeight }] : []),
-    ...(bottomHeight > 0 ? [{ left: rect.left, top: bottomTop, width: rect.width, height: bottomHeight }] : []),
-  ];
+  return getPaddingBandsForKey("padding-y", rect ?? null);
 });
 
 // Universal padding bands for all generic components — replaces the
@@ -673,19 +1128,33 @@ const tooltipPaddingYBands = computed(() => {
 // Keyed by every padding token in the inspectMeta so the renderer can
 // iterate without hard-coding component-specific lists.
 const genericPaddingBandsByKey = computed(() => {
-  if (structureKind.value !== "generic") return {} as Record<string, ReturnType<typeof getPaddingBands>>;
-  const result: Record<string, ReturnType<typeof getPaddingBands>> = {};
+  if (structureKind.value !== "generic") return {} as Record<string, PaddingBand[]>;
+  const result: Record<string, PaddingBand[]> = {};
   Object.keys(inspectMeta.value).forEach((key) => {
     if (!isPaddingOverlayKey(key)) return;
-    const bands = getPaddingBands(hotspotRects.value[key] ?? null);
+    const bands = getPaddingBandsForKey(key, hotspotRects.value[key] ?? null);
     if (bands.length) result[key] = bands;
+  });
+  // Merge in any per-component manually-computed bands (e.g. table replicates
+  // the same padding strips across every cell rather than just the first).
+  Object.entries(extraPaddingBandsByKey.value).forEach(([key, bands]) => {
+    if (bands.length) result[key] = [...(result[key] ?? []), ...bands];
   });
   return result;
 });
 
 const activeGenericPaddingBands = computed(() => {
   if (structureKind.value !== "generic" || !hoverKey.value) return [];
-  return genericPaddingBandsByKey.value[hoverKey.value] ?? [];
+  // Prefer the merged genericPaddingBandsByKey when it has bands for the
+  // active key (covers manually-populated cases like table's per-cell strips).
+  // Fall back to the auto-computed related-padding bands for components that
+  // share padding-x/padding-y across one rect.
+  const related = getRelatedRowKeys(hoverKey.value).filter(isPaddingOverlayKey);
+  const keys = related.length ? related : [hoverKey.value];
+  return keys.flatMap((key) =>
+    genericPaddingBandsByKey.value[key]
+      ?? getPaddingBandsForKey(key, hotspotRects.value[key] ?? null),
+  );
 });
 
 // Universal border ring for generic components — thin perimeter ring (top,
@@ -700,15 +1169,35 @@ const isGenericBorderKey = (key: string | null) => {
     lower === "border-radius" ||
     lower === "border-width" ||
     lower.includes("border-radius") ||
-    lower.includes("border-width")
+    lower.includes("border-width") ||
+    lower.includes("border-color")
   );
 };
 
+// Resolve the active border-radius rawValue (e.g. "999px", "8px") so the
+// dashed border-visual rendered around a generic component matches the actual
+// rounded-corner radius of the component. Returns "0" when no border-radius
+// row exists in the token table — components like table and divider have no
+// rounded corners, so the highlight should also have sharp corners.
+const genericBorderRadiusValue = computed<string>(() => {
+  const radiusKey = Object.keys(inspectMeta.value).find((key) =>
+    key.includes("border-radius"),
+  );
+  if (!radiusKey) return "0";
+  const token = allStructureTokenMap.value.get(radiusKey);
+  return token?.rawValue || "0";
+});
+
 const genericBorderRectKey = computed<string | null>(() => {
   if (structureKind.value !== "generic") return null;
-  const radiusKey = Object.keys(inspectMeta.value).find((key) => key.includes("border-radius"));
+  const customKeys = customBorderBandsByKey.value;
+  const radiusKey = Object.keys(inspectMeta.value).find(
+    (key) => key.includes("border-radius") && !customKeys[key]?.length,
+  );
   if (radiusKey && hotspotRects.value[radiusKey]) return radiusKey;
-  const widthKey = Object.keys(inspectMeta.value).find((key) => key.includes("border-width"));
+  const widthKey = Object.keys(inspectMeta.value).find(
+    (key) => key.includes("border-width") && !customKeys[key]?.length,
+  );
   if (widthKey && hotspotRects.value[widthKey]) return widthKey;
   return null;
 });
@@ -853,15 +1342,31 @@ const getStructureTone = (key: string | null) => {
   return "border";
 };
 
+// A token's rawValue resolves to 0 (e.g. "0", "0px", "0rem", "sgds/padding/none"),
+// which means the token doesn't render anything visible — there's no padding
+// strip, gap, or border to highlight. Used by isHoverableStructureKey so the
+// inspect hotspot doesn't activate a popup on a row that has nothing to show.
+const isZeroValueToken = (key: string | null) => {
+  if (!key) return false;
+  const token = allStructureTokenMap.value.get(key);
+  return isZeroTokenValue(token);
+};
+
 const isHoverableStructureKey = (key: string | null) =>
-  isPaddingOverlayKey(key) ||
-  isGapOverlayKey(key) ||
-  key === "border-width" ||
-  key === "border-radius" ||
-  isControlBorderOverlayKey(key);
+  !isZeroValueToken(key) && (
+    isPaddingOverlayKey(key) ||
+    isGapOverlayKey(key) ||
+    Boolean(key?.includes("border-width")) ||
+    Boolean(key?.includes("border-radius")) ||
+    Boolean(key && customBorderBandsByKey.value[key]?.length) ||
+    Boolean(key?.includes("divider-width")) ||
+    Boolean(key?.includes("indicator-width")) ||
+    isControlBorderOverlayKey(key)
+  );
 
 const inspectMeta = computed<Record<string, InspectMeta>>(() => {
   if (structureKind.value === "breadcrumb") {
+    const breadcrumbGapToken = allStructureTokenMap.value.get("gap-xs");
     return {
       "icon-color": {
         label: "icon-color",
@@ -870,9 +1375,9 @@ const inspectMeta = computed<Record<string, InspectMeta>>(() => {
         aria: "Inspect breadcrumb icon colour",
       },
       "group-gap": {
-        label: "group-gap",
-        value: tokenDisplay(allStructureTokenMap.value.get("group-gap")),
-        valueSuffix: tokenValue(allStructureTokenMap.value.get("group-gap")),
+        label: "gap-xs",
+        value: tokenDisplay(breadcrumbGapToken),
+        valueSuffix: tokenValue(breadcrumbGapToken),
         aria: "Inspect breadcrumb group gap",
       },
       "page-link-color": {
@@ -912,12 +1417,49 @@ const inspectMeta = computed<Record<string, InspectMeta>>(() => {
     return Object.fromEntries(
       genericTokenRows.value.map((row) => {
         const key = row.mapKey || row.property;
+
+        // Toast-specific: hovering content-padding-right also shows the base
+        // padding row for context.
+        const toastRelated = isToastStructure.value && key === "content-padding-right"
+          ? [
+              {
+                label: "padding",
+                value: tokenDisplay(genericTokenMap.value.get("padding")),
+                valueSuffix: tokenValue(genericTokenMap.value.get("padding")),
+              },
+            ]
+          : undefined;
+
+        // Generic pairing (e.g. padding-x ↔ padding-y) so hovering one
+        // padding axis shows both axes in the popup. `getRelatedRowKeys`
+        // returns just `[key]` when there are no peers to surface.
+        const peerKeys = getRelatedRowKeys(key).filter((k) => k !== key);
+        const peerRows = peerKeys
+          .map((k) => {
+            const peer = genericTokenMap.value.get(k);
+            if (!peer) return null;
+            return {
+              label: peer.property || k,
+              value: tokenDisplay(peer),
+              valueSuffix: tokenValue(peer),
+            };
+          })
+          .filter((row): row is NonNullable<typeof row> => row !== null);
+
+        const relatedRows = toastRelated ?? (peerRows.length ? peerRows : undefined);
+        const hasRelated = Boolean(relatedRows && relatedRows.length);
+
         return [
           key,
           {
-            label: row.property,
+            // When there are related rows (e.g. padding-x paired with
+            // padding-y), use the property name for each so they're
+            // distinguishable. Otherwise show the category as the coloured
+            // tag for high-level grouping.
+            label: hasRelated ? row.property : (row.category || row.element || ""),
             value: tokenDisplay(genericTokenMap.value.get(key)),
             valueSuffix: tokenValue(genericTokenMap.value.get(key)),
+            rows: relatedRows,
             aria: `Inspect component ${row.property}`,
           },
         ];
@@ -1146,14 +1688,14 @@ const inspectMeta = computed<Record<string, InspectMeta>>(() => {
         aria: "Inspect card border radius",
       },
       "padding-x": {
-        label: "padding-y",
-        value: tokenDisplay(cardBaseTokenMap.value.get("padding-y")),
-        valueSuffix: tokenValue(cardBaseTokenMap.value.get("padding-y")),
+        label: "padding-x",
+        value: tokenDisplay(cardBaseTokenMap.value.get("padding-x")),
+        valueSuffix: tokenValue(cardBaseTokenMap.value.get("padding-x")),
         rows: [
           {
-            label: "padding-x",
-            value: tokenDisplay(cardBaseTokenMap.value.get("padding-x")),
-            valueSuffix: tokenValue(cardBaseTokenMap.value.get("padding-x")),
+            label: "padding-y",
+            value: tokenDisplay(cardBaseTokenMap.value.get("padding-y")),
+            valueSuffix: tokenValue(cardBaseTokenMap.value.get("padding-y")),
           },
         ],
         aria: "Inspect card padding x",
@@ -1264,11 +1806,18 @@ const inspectMeta = computed<Record<string, InspectMeta>>(() => {
 });
 
 const resolvedPreviewMarkup = computed(() => {
-  const config = sizeToggleConfig.value;
-  if (!config) return props.previewMarkup;
-
-  const variantAttribute = activeDensityId.value === config.defaultId ? "" : ` ${config.attributeName}="${activeDensityId.value}"`;
-  return props.previewMarkup.replace(/<sgds-[a-z-]+/, (match) => `${match}${variantAttribute}`);
+  const attrName = variantAttributeName.value;
+  if (!attrName || !activeVariant.value) return props.previewMarkup;
+  const attrValue = variantAttributeValue(activeVariant.value);
+  // Inject the variant attribute on the first SGDS custom element in the markup.
+  // If a value is already declared we replace it; otherwise we append a new
+  // attribute. This lets the structure preview switch variants without the
+  // component-doc author needing to maintain multiple markup strings.
+  const attrPattern = new RegExp(`(<sgds-[a-z-]+\\b[^>]*?)\\s${attrName}="[^"]*"`, "i");
+  if (attrPattern.test(props.previewMarkup)) {
+    return props.previewMarkup.replace(attrPattern, `$1 ${attrName}="${attrValue}"`);
+  }
+  return props.previewMarkup.replace(/<sgds-[a-z-]+/, (match) => `${match} ${attrName}="${attrValue}"`);
 });
 
 const clearPreviewHover = () => {
@@ -1281,16 +1830,35 @@ const isAlertCloseEvent = (event: Event) =>
     node instanceof HTMLElement && node.tagName.toLowerCase() === "sgds-close-button",
   );
 
-const preventAlertClose = (event: Event) => {
+const isDrawerInteractionEvent = (event: Event) =>
+  isDrawerStructure.value &&
+  event.composedPath().some((node) =>
+    node instanceof HTMLElement && node.tagName.toLowerCase() === "sgds-drawer",
+  );
+
+const isModalInteractionEvent = (event: Event) =>
+  isModalStructure.value &&
+  event.composedPath().some((node) =>
+    node instanceof HTMLElement && node.tagName.toLowerCase() === "sgds-modal",
+  );
+
+const preventPreviewInteraction = (event: Event) => {
+  if (isDrawerInteractionEvent(event) || isModalInteractionEvent(event)) {
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    return;
+  }
+
   if (!isAlertCloseEvent(event)) return;
   event.preventDefault();
   event.stopPropagation();
   event.stopImmediatePropagation();
 };
 
-const preventAlertCloseKeyboard = (event: KeyboardEvent) => {
+const preventPreviewInteractionKeyboard = (event: KeyboardEvent) => {
   if (event.key !== "Enter" && event.key !== " ") return;
-  preventAlertClose(event);
+  preventPreviewInteraction(event);
 };
 
 const scrollToTableRow = async (key: string) => {
@@ -1305,8 +1873,20 @@ const scrollToTableRow = async (key: string) => {
 };
 
 const getRelatedRowKeys = (key: string) => {
-  if (structureKind.value === "card" && ["padding-x", "padding-y"].includes(key)) return ["padding-x", "padding-y"];
-  if (structureKind.value === "alert" && ["padding-x", "padding-y"].includes(key)) return ["padding-x", "padding-y"];
+  // Generic padding pairing: hovering padding-x or padding-y always pops
+  // both rows together (when both exist), across every component, so the
+  // user sees what the structural padding is in both axes at once. Same for
+  // form-padding-x / form-padding-y on form components. Reads from
+  // genericTokenMap (built from data) rather than inspectMeta (still being
+  // computed here) to avoid a circular dependency.
+  if (["padding-x", "padding-y"].includes(key)) {
+    const paired = ["padding-x", "padding-y"].filter((k) => Boolean(genericTokenMap.value.get(k)));
+    if (paired.length > 1) return paired;
+  }
+  if (["form-padding-x", "form-padding-y"].includes(key)) {
+    const paired = ["form-padding-x", "form-padding-y"].filter((k) => Boolean(genericTokenMap.value.get(k)));
+    if (paired.length > 1) return paired;
+  }
   if (structureKind.value === "alert" && ["border-color", "border-width", "border-radius"].includes(key)) return ["border-color", "border-width", "border-radius"];
   if (structureKind.value === "card" && ["link-color", "link-color-emphasis"].includes(key)) {
     return ["link-color", "link-color-emphasis"];
@@ -1319,10 +1899,38 @@ const getRelatedRowKeys = (key: string) => {
   if (structureKind.value === "button" && ["border-width", "border-radius"].includes(key)) {
     return ["border-width", "border-radius"];
   }
+  if (structureKind.value === "generic") {
+    const mainnavBodyBorderKeys = ["navbar-body-border-color", "navbar-body-border-width"];
+    const mainnavLinkBorderKeys = ["nav-link-border-color", "nav-link-border-width"];
+    if (mainnavBodyBorderKeys.includes(key)) return mainnavBodyBorderKeys;
+    if (mainnavLinkBorderKeys.includes(key)) return mainnavLinkBorderKeys;
+  }
+  // Generic structures (switch, input, etc.) — when the hovered token is a
+  // border-* row, pair it with any other visible border-* rows so the popup
+  // surfaces border-width AND border-radius together. The keys aren't fixed
+  // (e.g. form-border-radius-full vs form-border-width-default), so we
+  // discover them from the active token map at hover time.
+  // Exception: when a key has custom per-element border bands (e.g. subnav's
+  // border-width-1 paints the nav's bottom rule and border-width-2 paints
+  // the active item's underline — distinct strokes on distinct elements),
+  // each one stands alone in the popup so the user reads exactly the
+  // stroke they are hovering.
+  if (
+    structureKind.value === "generic" &&
+    (key.includes("border-radius") || key.includes("border-width") || key.includes("border-color")) &&
+    !customBorderBandsByKey.value[key]?.length
+  ) {
+    const borderKeys = Array.from(genericTokenMap.value.keys()).filter((k) =>
+      (k.includes("border-radius") || k.includes("border-width") || k.includes("border-color")) &&
+      !customBorderBandsByKey.value[k]?.length,
+    );
+    if (borderKeys.length > 1) return borderKeys;
+  }
   if (structureKind.value === "accordion" && ["padding-x-default", "padding-y-default"].includes(key)) {
     return ["padding-x-default", "padding-y-default"];
   }
   if (structureKind.value === "accordion" && key === "content-padding") return ["content-padding", "padding-y-default"];
+  if (structureKind.value === "breadcrumb" && key === "group-gap") return ["group-gap", "gap-xs"];
   return [key];
 };
 
@@ -1380,11 +1988,135 @@ const syncAccordionForegroundLayers = () => {
 const injectShadowStyles = (host: HTMLElement, id: string, css: string) => {
   const root = host.shadowRoot;
   if (!root) return;
-  if (root.querySelector(`style[data-structure-style="${id}"]`)) return;
+  const existing = root.querySelector<HTMLStyleElement>(`style[data-structure-style="${id}"]`);
+  if (existing) {
+    existing.textContent = css;
+    return;
+  }
   const style = document.createElement("style");
   style.setAttribute("data-structure-style", id);
   style.textContent = css;
   root.appendChild(style);
+};
+
+const getFooterBreakpointStyle = (breakpoint: string | null) => {
+  const footerPaddingX =
+    breakpoint === "320"
+      ? "var(--sgds-padding-lg)"
+      : breakpoint === "512"
+        ? "var(--sgds-padding-xl)"
+        : breakpoint === "768"
+          ? "var(--sgds-padding-2-xl)"
+          : "var(--sgds-padding-none)";
+  const desktop = ["1024", "1280", "1440"].includes(breakpoint ?? "");
+  const contentMaxWidth =
+    breakpoint === "1280"
+      ? "var(--sgds-dimension-1168)"
+      : breakpoint === "1440"
+        ? "var(--sgds-dimension-1312)"
+        : "var(--sgds-dimension-888)";
+  const topPaddingY = desktop ? "var(--sgds-padding-3-xl)" : "var(--sgds-padding-2-xl)";
+  const topGap = desktop ? "var(--sgds-gap-3-xl)" : "var(--sgds-gap-2-xl)";
+  const titleFontSize = desktop ? "var(--sgds-font-size-28)" : "var(--sgds-font-size-24)";
+  const titleLineHeight = desktop ? "var(--sgds-line-height-36)" : "var(--sgds-line-height-32)";
+  const mandatoryDirection = ["1280", "1440"].includes(breakpoint ?? "") ? "row" : "column";
+  const mandatoryListDirection = ["768", "1024", "1280", "1440"].includes(breakpoint ?? "") ? "row" : "column";
+  const mandatoryListGap = desktop ? "var(--sgds-gap-xl)" : "var(--sgds-gap-sm)";
+  const mandatoryListColumnGap = ["768", "1024", "1280", "1440"].includes(breakpoint ?? "")
+    ? "var(--sgds-gap-xl)"
+    : mandatoryListGap;
+
+  return `
+    .footer {
+      padding: var(--sgds-padding-none) ${footerPaddingX} !important;
+    }
+    .footer-top {
+      max-width: ${desktop ? contentMaxWidth : "none"} !important;
+      padding: ${topPaddingY} var(--sgds-padding-none) !important;
+      width: 100% !important;
+    }
+    .footer-top.has-content {
+      gap: ${topGap} !important;
+    }
+    slot[name="title"]::slotted(*) {
+      font-size: ${titleFontSize} !important;
+      line-height: ${titleLineHeight} !important;
+    }
+    .footer-bottom {
+      max-width: ${desktop ? contentMaxWidth : "none"} !important;
+      padding: var(--sgds-padding-2-xl) var(--sgds-padding-none) !important;
+      width: 100% !important;
+    }
+    .footer-mandatory-links {
+      flex-direction: ${mandatoryDirection} !important;
+    }
+    .footer-mandatory-links ul {
+      flex-direction: ${mandatoryListDirection} !important;
+      gap: var(--sgds-gap-sm) ${mandatoryListColumnGap} !important;
+    }
+  `;
+};
+
+const getModalStructurePreviewStyle = () => `
+  :host {
+    display: block;
+    min-height: var(--sgds-dimension-480);
+    position: relative;
+    width: 100%;
+  }
+  :host([size="fullscreen"]) {
+    min-height: var(--sgds-dimension-320);
+  }
+  .modal {
+    display: flex !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    z-index: 1 !important;
+  }
+  .modal[hidden] {
+    display: flex !important;
+  }
+  .modal-panel {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .modal-panel[hidden] {
+    display: flex !important;
+  }
+  :host([size="fullscreen"]) .modal-panel {
+    background-color: var(--sgds-surface-default) !important;
+    border-radius: var(--sgds-border-radius-md) !important;
+    height: 100% !important;
+    margin: 0 !important;
+    max-height: 100% !important;
+    max-width: 100% !important;
+    padding: var(--sgds-padding-xl) !important;
+  }
+  :host([size="fullscreen"]) .modal-header__close {
+    right: 0 !important;
+    top: 0 !important;
+  }
+  .modal-overlay {
+    display: none !important;
+    position: absolute !important;
+  }
+  .modal-overlay[hidden] {
+    display: none !important;
+  }
+`;
+
+const revealModalStructurePreview = (component: HTMLElement) => {
+  if (!component.hasAttribute("data-structure-open")) return;
+
+  const modalRoot = component.shadowRoot;
+  const dialog = modalRoot?.querySelector(".modal") as HTMLElement | null;
+  const panel = modalRoot?.querySelector(".modal-panel") as HTMLElement | null;
+
+  dialog?.removeAttribute("hidden");
+  dialog?.classList.add("show");
+  panel?.removeAttribute("hidden");
+  panel?.setAttribute("aria-hidden", "false");
 };
 
 const openStructureDropdowns = async () => {
@@ -1397,6 +2129,9 @@ const openStructureDropdowns = async () => {
       showMenu?: () => Promise<void> | void;
       menuIsOpen?: boolean;
       updateComplete?: Promise<unknown>;
+      multiSelect?: boolean;
+      selectedItems?: { label: string; value: string }[];
+      value?: string;
     }>,
   );
 
@@ -1415,6 +2150,12 @@ const openStructureDropdowns = async () => {
          flex-wrap: wrap !important;
          align-items: flex-start !important;
        }
+       .form-control-group {
+         min-height: var(--sgds-dimension-48) !important;
+       }
+       .combobox-input-container {
+         flex-wrap: nowrap !important;
+       }
        .dropdown-menu {
          position: relative !important;
          inset: auto !important;
@@ -1427,6 +2168,8 @@ const openStructureDropdowns = async () => {
          pointer-events: none !important;
        }
        input.form-control {
+         flex: 1 1 var(--sgds-dimension-96) !important;
+         width: auto !important;
          pointer-events: none !important;
        }`,
     );
@@ -1435,6 +2178,20 @@ const openStructureDropdowns = async () => {
       input.tabIndex = -1;
       input.readOnly = true;
       input.setAttribute("readonly", "");
+    }
+    const selectedValues = (el.value ?? "").split(";").filter(Boolean);
+    if (el.multiSelect && selectedValues.length && !el.selectedItems?.length) {
+      const options = Array.from(el.querySelectorAll("sgds-combo-box-option")) as HTMLElement[];
+      const selectedItems = options
+        .map((option) => ({
+          label: option.textContent?.trim() ?? "",
+          value: option.getAttribute("value") ?? option.textContent?.trim() ?? "",
+        }))
+        .filter((option) => selectedValues.includes(option.value));
+      if (selectedItems.length) {
+        el.selectedItems = selectedItems;
+        await el.updateComplete;
+      }
     }
     (el as HTMLElement & { noFlip?: boolean; drop?: string }).noFlip = true;
     (el as HTMLElement & { drop?: string }).drop = "down";
@@ -1446,6 +2203,128 @@ const openStructureDropdowns = async () => {
         // noop
       }
     }
+  }
+
+  const datepickers = Array.from(
+    root.querySelectorAll("sgds-datepicker") as NodeListOf<HTMLElement & {
+      showMenu?: () => Promise<void> | void;
+      menuIsOpen?: boolean;
+      updateComplete?: Promise<unknown>;
+      noFlip?: boolean;
+      drop?: string;
+    }>,
+  );
+
+  for (const el of datepickers) {
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "datepicker-inline-menu",
+      `:host {
+         display: inline-block;
+         width: var(--sgds-dimension-320);
+       }
+       .datepicker-container {
+         display: flex !important;
+         flex-wrap: wrap !important;
+         align-items: flex-start !important;
+       }
+       sgds-datepicker-input {
+         flex: 0 0 var(--sgds-dimension-160) !important;
+         width: var(--sgds-dimension-160) !important;
+       }
+       .dropdown-menu {
+         position: relative !important;
+         inset: auto !important;
+         left: auto !important;
+         top: auto !important;
+         transform: none !important;
+         box-shadow: var(--sgds-box-shadow-md) !important;
+         margin-top: var(--sgds-margin-2-xs) !important;
+         z-index: auto !important;
+         flex-basis: 100% !important;
+         pointer-events: none !important;
+       }
+       sgds-datepicker-input,
+       sgds-icon-button {
+         pointer-events: none !important;
+       }`,
+    );
+    el.noFlip = true;
+    el.drop = "down";
+    if (typeof el.showMenu === "function" && !el.menuIsOpen) {
+      try {
+        await el.showMenu();
+      } catch {
+        // noop
+      }
+    } else {
+      el.menuIsOpen = true;
+    }
+    await el.updateComplete;
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+  }
+
+  const dropdowns = Array.from(
+    root.querySelectorAll("sgds-dropdown") as NodeListOf<HTMLElement & {
+      showMenu?: () => Promise<void> | void;
+      menuIsOpen?: boolean;
+      updateComplete?: Promise<unknown>;
+      noFlip?: boolean;
+      drop?: string;
+    }>,
+  );
+
+  for (const el of dropdowns) {
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "dropdown-inline-menu",
+      `:host {
+         display: inline-flex !important;
+         width: var(--sgds-dimension-320) !important;
+       }
+       .dropdown {
+         display: flex !important;
+         flex-direction: column !important;
+         align-items: stretch !important;
+         width: 100% !important;
+       }
+       .toggler-container {
+         align-self: center !important;
+         flex: none !important;
+       }
+       .dropdown-menu {
+         display: block !important;
+         position: relative !important;
+         inset: auto !important;
+         left: auto !important;
+         top: auto !important;
+         transform: none !important;
+         width: 100% !important;
+         max-width: var(--sgds-dimension-320) !important;
+         max-height: none !important;
+         margin-top: var(--sgds-margin-2-xs) !important;
+         box-shadow: var(--sgds-box-shadow-md) !important;
+         z-index: auto !important;
+         pointer-events: none !important;
+       }`,
+    );
+    el.noFlip = true;
+    el.drop = "down";
+    if (typeof el.showMenu === "function" && !el.menuIsOpen) {
+      try {
+        await el.showMenu();
+      } catch {
+        // noop
+      }
+    } else {
+      el.menuIsOpen = true;
+    }
+    await el.updateComplete;
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
   }
 
   const tooltips = Array.from(
@@ -1490,6 +2369,34 @@ const openStructureDropdowns = async () => {
       }
     }
   }
+
+  const overflowMenus = Array.from(
+    root.querySelectorAll(".portal-structure-overflow-hover") as NodeListOf<HTMLElement & {
+      updateComplete?: Promise<unknown>;
+      shadowRoot?: ShadowRoot | null;
+    }>,
+  );
+
+  for (const el of overflowMenus) {
+    await customElements.whenDefined(el.localName);
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "overflow-menu-active-structure",
+      `:host {
+         pointer-events: none !important;
+       }
+       sgds-dropdown {
+         display: inline-block !important;
+       }
+       .overflow-btn,
+       .overflow-btn:hover {
+         background: var(--sgds-bg-translucent-subtle) !important;
+         background-color: var(--sgds-bg-translucent-subtle) !important;
+         cursor: default !important;
+       }`,
+    );
+  }
 };
 
 const getUnionRect = (elements: HTMLElement[], container: HTMLElement): HotspotRect | null => {
@@ -1523,6 +2430,55 @@ const getGapRect = (first: HTMLElement | null, second: HTMLElement | null, conta
   };
 };
 
+const getHorizontalGapRect = (first: HTMLElement | null, second: HTMLElement | null, container: HTMLElement): HotspotRect | null => {
+  if (!first || !second) return null;
+  const containerBounds = container.getBoundingClientRect();
+  const firstBounds = first.getBoundingClientRect();
+  const secondBounds = second.getBoundingClientRect();
+  const leftElement = firstBounds.left <= secondBounds.left ? firstBounds : secondBounds;
+  const rightElement = firstBounds.left <= secondBounds.left ? secondBounds : firstBounds;
+  const width = Math.max(0, rightElement.left - leftElement.right);
+  if (width <= 0) return null;
+
+  return {
+    left: leftElement.right - containerBounds.left,
+    top: Math.min(leftElement.top, rightElement.top) - containerBounds.top,
+    width,
+    height: Math.max(leftElement.bottom, rightElement.bottom) - Math.min(leftElement.top, rightElement.top),
+  };
+};
+
+const parseCssLength = (value: string | null | undefined) => {
+  const parsed = Number.parseFloat(value ?? "");
+  return Number.isFinite(parsed) ? parsed : 0;
+};
+
+const getUnionBandRect = (bands: PaddingBand[]): HotspotRect | null => {
+  if (!bands.length) return null;
+  const left = Math.min(...bands.map((band) => band.left));
+  const top = Math.min(...bands.map((band) => band.top));
+  const right = Math.max(...bands.map((band) => band.left + band.width));
+  const bottom = Math.max(...bands.map((band) => band.top + band.height));
+  return {
+    left,
+    top,
+    width: right - left,
+    height: bottom - top,
+  };
+};
+
+const clampBandToRect = (band: PaddingBand | null, rect: HotspotRect): PaddingBand | null => {
+  if (!band) return null;
+  const left = Math.max(band.left, rect.left);
+  const top = Math.max(band.top, rect.top);
+  const right = Math.min(band.left + band.width, rect.left + rect.width);
+  const bottom = Math.min(band.top + band.height, rect.top + rect.height);
+  const width = Math.max(0, right - left);
+  const height = Math.max(0, bottom - top);
+  if (width <= 0 || height <= 0) return null;
+  return { left, top, width, height };
+};
+
 const getRelativeRect = (element: Element, container: HTMLElement): HotspotRect => {
   const containerBounds = container.getBoundingClientRect();
   const bounds = element.getBoundingClientRect();
@@ -1532,6 +2488,474 @@ const getRelativeRect = (element: Element, container: HTMLElement): HotspotRect 
     width: bounds.width,
     height: bounds.height,
   };
+};
+
+// Convert a CSS length string (e.g. "12px", "0.75rem") to pixels using the
+// document root font size. Returns null when the value cannot be parsed.
+// Used to translate gap-token rawValues into the same pixel space that
+// getComputedStyle returns, so we can match a CSS `gap` value to the token
+// row that documents it.
+const parseLengthToPx = (value: string | null | undefined): number | null => {
+  if (!value) return null;
+  const trimmed = value.trim();
+  const match = trimmed.match(/^([0-9]+(?:\.[0-9]+)?)(px|rem|em)?$/i);
+  if (!match) return null;
+  const num = Number.parseFloat(match[1]);
+  if (!Number.isFinite(num)) return null;
+  const unit = (match[2] || "px").toLowerCase();
+  if (unit === "rem" || unit === "em") {
+    const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    return num * rootFontSize;
+  }
+  return num;
+};
+
+// Expand <slot> children into their assigned/flattened elements so the
+// returned list reflects what the flex/grid layout actually arranges. A bare
+// <slot> has zero size and would otherwise be skipped, breaking gap
+// detection for shadow-DOM hosts that compose slotted light-DOM content
+// (e.g. system-banner-item's `.banner-item` flex strip).
+const expandSlotElement = (el: Element): HTMLElement[] => {
+  if (el instanceof HTMLSlotElement) {
+    const assigned = el.assignedElements({ flatten: true });
+    if (assigned.length) {
+      return assigned.filter((node): node is HTMLElement => node instanceof HTMLElement);
+    }
+    return Array.from(el.children).filter((node): node is HTMLElement => node instanceof HTMLElement);
+  }
+  if (el instanceof HTMLElement) return [el];
+  return [];
+};
+
+// "Effective" children of a flex/grid container — what the layout treats as
+// participants. Filters out collapsed slots and zero-size siblings so the
+// adjacency walk only considers visible items.
+const getEffectiveChildren = (container: HTMLElement): HTMLElement[] => {
+  return Array.from(container.children)
+    .flatMap(expandSlotElement)
+    .filter((el) => {
+      const rect = el.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0;
+    });
+};
+
+// A nested SGDS element is "intrinsic" to the host (e.g. `sgds-subnav-item`
+// inside `sgds-subnav`) only when its tag begins with the host's tag prefix.
+// Standalone SGDS components reused inside another component (e.g. an
+// `sgds-button` placed in a subnav's actions slot) live in their own
+// component page with their own tokens — their internal padding / gap should
+// NOT be attributed to the host's tokens, even if the pixel values happen
+// to match. The auto-detect walks therefore stop at non-intrinsic shadow
+// boundaries.
+const isIntrinsicToHost = (el: Element, hostTag: string): boolean => {
+  const tag = el.tagName.toLowerCase();
+  if (!tag.startsWith("sgds-")) return true;
+  return tag === hostTag || tag.startsWith(`${hostTag}-`);
+};
+
+// Walk both light DOM and shadow DOM under `root`, collecting every flex /
+// inline-flex / grid / inline-grid container. The generic gap detector runs
+// `detectGapBandsForToken` against every entry to find where a given gap
+// token actually paints. Walking shadow roots is essential because most
+// SGDS components encapsulate their flex strips inside their shadow tree.
+// The walk skips shadow DOM of nested non-intrinsic SGDS components so a
+// sgds-button reused inside a sgds-subnav's actions slot doesn't leak its
+// internal flex/gap into the subnav's auto-detect results.
+const enumerateFlexGridContainers = (root: HTMLElement): HTMLElement[] => {
+  const result: HTMLElement[] = [];
+  const visited = new WeakSet<Element>();
+  const hostTag = root.tagName.toLowerCase();
+  const visit = (el: Element) => {
+    if (visited.has(el)) return;
+    visited.add(el);
+    if (el instanceof HTMLElement) {
+      const cs = getComputedStyle(el);
+      const display = cs.display;
+      if (display === "flex" || display === "inline-flex" || display === "grid" || display === "inline-grid") {
+        result.push(el);
+      }
+    }
+    for (const child of Array.from(el.children)) visit(child);
+    if (el instanceof HTMLElement && el.shadowRoot && isIntrinsicToHost(el, hostTag)) {
+      for (const child of Array.from(el.shadowRoot.children)) visit(child);
+    }
+  };
+  visit(root);
+  return result;
+};
+
+// Find every visible gap region inside `containers` whose CSS `gap` matches
+// `gapPx` pixels (within 0.5px tolerance to absorb subpixel rounding). For
+// each match, compute one band per pair of adjacent effective children, so
+// the highlight covers every void the gap token paints — not just one of
+// them. This is the engine that auto-detects gaps for any component with a
+// gap-* token row.
+const detectGapBandsForToken = (
+  containers: HTMLElement[],
+  gapPx: number,
+  shell: HTMLElement,
+): PaddingBand[] => {
+  const bands: PaddingBand[] = [];
+  const targetRounded = Math.round(gapPx);
+  for (const container of containers) {
+    const cs = getComputedStyle(container);
+    const display = cs.display;
+    const isFlex = display === "flex" || display === "inline-flex";
+    const isGrid = display === "grid" || display === "inline-grid";
+    if (!isFlex && !isGrid) continue;
+    const flexDirection = cs.flexDirection;
+    const isVerticalFlex = isFlex && (flexDirection === "column" || flexDirection === "column-reverse");
+    const isHorizontalFlex = isFlex && (flexDirection === "row" || flexDirection === "row-reverse" || !flexDirection);
+    const rowGapPx = Math.round(parseCssLength(cs.rowGap) || parseCssLength(cs.gap));
+    const colGapPx = Math.round(parseCssLength(cs.columnGap) || parseCssLength(cs.gap));
+    const matchVertical = (isVerticalFlex || isGrid) && rowGapPx === targetRounded;
+    const matchHorizontal = (isHorizontalFlex || isGrid) && colGapPx === targetRounded;
+    if (!matchVertical && !matchHorizontal) continue;
+    const children = getEffectiveChildren(container);
+    if (children.length < 2) continue;
+    const shellBounds = shell.getBoundingClientRect();
+    if (matchHorizontal) {
+      const sorted = [...children].sort(
+        (a, b) => a.getBoundingClientRect().left - b.getBoundingClientRect().left,
+      );
+      for (let i = 0; i < sorted.length - 1; i++) {
+        const aBounds = sorted[i].getBoundingClientRect();
+        const bBounds = sorted[i + 1].getBoundingClientRect();
+        const visualGap = Math.max(0, bBounds.left - aBounds.right);
+        if (visualGap <= 0) continue;
+        // Clamp the highlight to the actual gap-token width so layouts that
+        // also use `margin: auto` (e.g. system-banner's `.action`) don't
+        // bleed the highlight across the auto-margin space — only the CSS
+        // gap region is shaded. When the visual void is smaller than the
+        // token (rare; usually means flex-shrink ate the gap) fall back to
+        // the visual width so the band stays visible.
+        const width = Math.min(targetRounded, visualGap);
+        bands.push({
+          left: aBounds.right - shellBounds.left,
+          top: aBounds.top - shellBounds.top,
+          width,
+          height: aBounds.height,
+        });
+      }
+    }
+    if (matchVertical) {
+      const sorted = [...children].sort(
+        (a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top,
+      );
+      for (let i = 0; i < sorted.length - 1; i++) {
+        const aBounds = sorted[i].getBoundingClientRect();
+        const bBounds = sorted[i + 1].getBoundingClientRect();
+        const visualGap = Math.max(0, bBounds.top - aBounds.bottom);
+        if (visualGap <= 0) continue;
+        const height = Math.min(targetRounded, visualGap);
+        bands.push({
+          left: aBounds.left - shellBounds.left,
+          top: aBounds.bottom - shellBounds.top,
+          width: aBounds.width,
+          height,
+        });
+      }
+    }
+  }
+  return bands;
+};
+
+// Auto-populate gap bands for every gap-* key in `inspectMeta` that hasn't
+// already been set by component-specific logic above. Components that
+// declare a Gap row in their token table get a working highlight + popup
+// for free — no per-component branch in measureHotspots is needed. The
+// detector matches by computed pixel value, so a token row with rawValue
+// "12px" / "0.75rem" auto-binds to every flex/grid container whose CSS
+// gap resolves to 12px under the current viewport.
+const autoDetectGenericGapBands = (
+  component: HTMLElement,
+  shell: HTMLElement,
+  nextRects: Record<string, HotspotRect | null>,
+) => {
+  const gapKeys = Object.keys(inspectMeta.value).filter((key) => isGapOverlayKey(key));
+  if (!gapKeys.length) return;
+  const pendingKeys = gapKeys.filter((key) => !genericGapBandsByKey.value[key]?.length);
+  if (!pendingKeys.length) return;
+  const containers = enumerateFlexGridContainers(component);
+  if (!containers.length) return;
+  let updates: Record<string, PaddingBand[]> | null = null;
+  for (const key of pendingKeys) {
+    const token = genericTokenMap.value.get(key);
+    const px = parseLengthToPx(token?.rawValue);
+    if (!px) continue;
+    const bands = detectGapBandsForToken(containers, px, shell);
+    if (!bands.length) continue;
+    if (!updates) updates = {};
+    updates[key] = bands;
+    nextRects[key] = getUnionBandRect(bands);
+  }
+  if (updates) {
+    genericGapBandsByKey.value = {
+      ...genericGapBandsByKey.value,
+      ...updates,
+    };
+  }
+};
+
+// Walk both light and shadow DOM under `root`, collecting every element. The
+// padding auto-detector iterates this list to find which element actually
+// owns each padding-* token, regardless of nesting depth or shadow boundary.
+// Skips shadow DOM of nested non-intrinsic SGDS components (see
+// isIntrinsicToHost) so a reused sgds-button's internal padding doesn't leak
+// into the host component's padding tokens just because pixel values match.
+const enumerateAllElements = (root: HTMLElement): HTMLElement[] => {
+  const result: HTMLElement[] = [];
+  const visited = new WeakSet<Element>();
+  const hostTag = root.tagName.toLowerCase();
+  const visit = (el: Element) => {
+    if (visited.has(el)) return;
+    visited.add(el);
+    if (el instanceof HTMLElement) result.push(el);
+    for (const child of Array.from(el.children)) visit(child);
+    if (el instanceof HTMLElement && el.shadowRoot && isIntrinsicToHost(el, hostTag)) {
+      for (const child of Array.from(el.shadowRoot.children)) visit(child);
+    }
+  };
+  visit(root);
+  return result;
+};
+
+// Find every visible padding strip whose computed value matches `paddingPx`
+// pixels. Each side is checked independently; an element with `padding: 12px
+// 0` produces a top + bottom band but no horizontal ones. The token's axis
+// (derived from its name / usage text) restricts which sides count, so a
+// `padding-x` row never claims a vertical strip, etc.
+const detectPaddingBandsForToken = (
+  elements: HTMLElement[],
+  paddingPx: number,
+  shell: HTMLElement,
+  axis: PaddingAxis,
+): PaddingBand[] => {
+  const bands: PaddingBand[] = [];
+  const target = Math.round(paddingPx);
+  const shellBounds = shell.getBoundingClientRect();
+  const considerLeft = axis === "all" || axis === "x" || axis === "left";
+  const considerRight = axis === "all" || axis === "x" || axis === "right";
+  const considerTop = axis === "all" || axis === "y" || axis === "top";
+  const considerBottom = axis === "all" || axis === "y" || axis === "bottom";
+  for (const el of elements) {
+    const rect = el.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) continue;
+    const cs = getComputedStyle(el);
+    const padTop = Math.round(parseCssLength(cs.paddingTop));
+    const padRight = Math.round(parseCssLength(cs.paddingRight));
+    const padBottom = Math.round(parseCssLength(cs.paddingBottom));
+    const padLeft = Math.round(parseCssLength(cs.paddingLeft));
+    if (considerTop && padTop === target && padTop > 0) {
+      bands.push({
+        left: rect.left - shellBounds.left,
+        top: rect.top - shellBounds.top,
+        width: rect.width,
+        height: padTop,
+      });
+    }
+    if (considerBottom && padBottom === target && padBottom > 0) {
+      bands.push({
+        left: rect.left - shellBounds.left,
+        top: rect.bottom - padBottom - shellBounds.top,
+        width: rect.width,
+        height: padBottom,
+      });
+    }
+    if (considerLeft && padLeft === target && padLeft > 0) {
+      bands.push({
+        left: rect.left - shellBounds.left,
+        top: rect.top - shellBounds.top,
+        width: padLeft,
+        height: rect.height,
+      });
+    }
+    if (considerRight && padRight === target && padRight > 0) {
+      bands.push({
+        left: rect.right - padRight - shellBounds.left,
+        top: rect.top - shellBounds.top,
+        width: padRight,
+        height: rect.height,
+      });
+    }
+  }
+  return bands;
+};
+
+// Auto-populate padding bands for every padding-* key in `inspectMeta` that
+// hasn't already been set by component-specific logic. Mirrors the gap
+// auto-detector: matches each token's computed pixel value against every
+// element's padding-top/right/bottom/left, scoped by the token's axis hint.
+// Setting `nextRects[key] = null` ensures the surface-rect fallback in
+// `genericPaddingBandsByKey` doesn't double-render the surfaceRect strips
+// alongside our targeted bands — the per-band buttons populated via
+// `extraPaddingBandsByKey` become the single source of highlight + hover.
+const autoDetectGenericPaddingBands = (
+  component: HTMLElement,
+  shell: HTMLElement,
+  nextRects: Record<string, HotspotRect | null>,
+) => {
+  const paddingKeys = Object.keys(inspectMeta.value).filter((key) => isPaddingOverlayKey(key));
+  if (!paddingKeys.length) return;
+  const pendingKeys = paddingKeys.filter((key) => !extraPaddingBandsByKey.value[key]?.length);
+  if (!pendingKeys.length) return;
+  const elements = enumerateAllElements(component);
+  if (!elements.length) return;
+  let updates: Record<string, PaddingBand[]> | null = null;
+  for (const key of pendingKeys) {
+    const token = genericTokenMap.value.get(key);
+    const px = parseLengthToPx(token?.rawValue);
+    if (!px) {
+      // Zero-value padding tokens (padding-none, etc.) don't paint anything,
+      // so the surface-rect fallback's measurement-noise strip would just be
+      // misleading — null the rect so no band renders.
+      nextRects[key] = null;
+      continue;
+    }
+    const axis = getPaddingAxisFromToken(token, key);
+    const bands = detectPaddingBandsForToken(elements, px, shell, axis);
+    if (bands.length) {
+      if (!updates) updates = {};
+      updates[key] = bands;
+      // Replace the rect with a no-inset union of the targeted bands. The
+      // tooltip's `v-if` checks `hotspotRects[hoverKey]` is truthy, so a
+      // non-null rect is needed for the popup to appear on hover. The union
+      // rect omits inset properties, which also makes getPaddingBandsForKey
+      // return [] (it requires all four insets), so the surface-rect
+      // fallback doesn't double-render alongside our per-element bands.
+      nextRects[key] = getUnionBandRect(bands);
+      continue;
+    }
+    // No targeted match. Decide whether to keep the surface-rect fallback.
+    // The default initialization sets every padding key to the component's
+    // surfaceRect with insets derived from its child union. When the token
+    // describes padding on an inner shadow-DOM element (e.g. subnav's
+    // .subnav-actions), those insets are tiny measurement noise — rendering
+    // them as the token's padding strip is misleading. Validate that at
+    // least one surface inset actually equals the token's pixel value
+    // before letting the fallback render. Components that explicitly set a
+    // custom rect (e.g. SGDS-CHECKBOX-GROUP wrapping its form-check margin
+    // into form-padding-inline-sm) keep working because their insets DO
+    // equal the token's value.
+    const existing = nextRects[key];
+    if (
+      existing &&
+      existing.insetLeft != null &&
+      existing.insetTop != null &&
+      existing.insetWidth != null &&
+      existing.insetHeight != null
+    ) {
+      const target = Math.round(px);
+      const surfaceTop = Math.round(existing.insetTop);
+      const surfaceLeft = Math.round(existing.insetLeft);
+      const surfaceBottom = Math.round(existing.height - existing.insetTop - existing.insetHeight);
+      const surfaceRight = Math.round(existing.width - existing.insetLeft - existing.insetWidth);
+      const matchesTop = (axis === "all" || axis === "y" || axis === "top") && surfaceTop === target;
+      const matchesBottom = (axis === "all" || axis === "y" || axis === "bottom") && surfaceBottom === target;
+      const matchesLeft = (axis === "all" || axis === "x" || axis === "left") && surfaceLeft === target;
+      const matchesRight = (axis === "all" || axis === "x" || axis === "right") && surfaceRight === target;
+      if (!matchesTop && !matchesBottom && !matchesLeft && !matchesRight) {
+        nextRects[key] = null;
+      }
+    }
+  }
+  if (updates) {
+    extraPaddingBandsByKey.value = {
+      ...extraPaddingBandsByKey.value,
+      ...updates,
+    };
+  }
+};
+
+const setupStructureSidebars = async () => {
+  await nextTick();
+  const root = previewMarkupRef.value;
+  if (!root) return;
+
+  const sidebars = Array.from(
+    root.querySelectorAll("sgds-sidebar") as NodeListOf<HTMLElement & {
+      updateComplete?: Promise<unknown>;
+    }>,
+  );
+
+  for (const sidebar of sidebars) {
+    await customElements.whenDefined("sgds-sidebar");
+    await customElements.whenDefined("sgds-sidebar-group");
+    await customElements.whenDefined("sgds-sidebar-item");
+    await sidebar.updateComplete;
+
+    injectShadowStyles(
+      sidebar,
+      "sidebar-structure-inspect-layers",
+      `:host {
+         position: relative;
+         z-index: 0 !important;
+       }
+       .sidebar,
+       .sidebar-main,
+       .sidebar-nested-overlay,
+       .sidebar--overlay {
+         z-index: 0 !important;
+       }`,
+    );
+
+    const activeGroup =
+      (sidebar.querySelector("sgds-sidebar-group[active]") as HTMLElement | null) ??
+      (sidebar.querySelector("sgds-sidebar-group") as HTMLElement | null);
+    const drawerIsOpen = sidebar.shadowRoot?.querySelector(".sidebar-nested-overlay.show");
+    if (!activeGroup || drawerIsOpen) continue;
+
+    await (activeGroup as HTMLElement & { updateComplete?: Promise<unknown> }).updateComplete;
+    const openDrawer = (activeGroup as HTMLElement & { _handleClick?: () => void })._handleClick;
+    if (typeof openDrawer === "function") {
+      openDrawer.call(activeGroup);
+      await sidebar.updateComplete;
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    }
+  }
+};
+
+const setupStructureSteppers = async () => {
+  const root = previewMarkupRef.value;
+  if (!root?.querySelector("sgds-stepper[data-portal-stepper]")) return;
+
+  await customElements.whenDefined("sgds-stepper");
+
+  const stepperSteps: Record<string, unknown[]> = {
+    default: [
+      { stepHeader: "Start", component: "Step one" },
+      { stepHeader: "Review", component: "Step two" },
+      { stepHeader: "Confirm", component: "Step three" },
+    ],
+    icons: [
+      { stepHeader: "Start", component: "Step one", iconName: "pencil" },
+      { stepHeader: "Review", component: "Step two", iconName: "file-earmark-text" },
+      { stepHeader: "Confirm", component: "Step three", iconName: "check" },
+    ],
+    long: [
+      { stepHeader: "Start", component: "Step one" },
+      { stepHeader: "Profile", component: "Step two" },
+      { stepHeader: "Eligibility", component: "Step three" },
+      { stepHeader: "Documents", component: "Step four" },
+      { stepHeader: "Review", component: "Step five" },
+      { stepHeader: "Payment", component: "Step six" },
+      { stepHeader: "Submit", component: "Step seven" },
+      { stepHeader: "Confirm", component: "Step eight" },
+    ],
+  };
+
+  const steppers = Array.from(
+    root.querySelectorAll<HTMLElement>("sgds-stepper[data-portal-stepper]"),
+  );
+
+  for (const el of steppers) {
+    const variant = el.dataset.portalStepper || "default";
+    const activeStep = Number(el.getAttribute("activeStep") ?? el.getAttribute("activestep") ?? el.dataset.portalActiveStep ?? 0);
+    const stepper = el as HTMLElement & { activeStep?: number; steps?: unknown[]; updateComplete?: Promise<unknown> };
+    stepper.steps = stepperSteps[variant] ?? stepperSteps.default;
+    stepper.activeStep = Number.isFinite(activeStep) ? activeStep : 0;
+    await stepper.updateComplete;
+  }
 };
 
 const measureHotspots = async () => {
@@ -1556,11 +2980,16 @@ const measureHotspots = async () => {
     }
   }
 
+  await setupStructureSteppers();
+  await setupStructureSidebars();
   await openStructureDropdowns();
 
   const shell = previewShellRef.value;
   const root = previewMarkupRef.value;
   if (!shell || !root) return;
+  genericGapBandsByKey.value = {};
+  extraPaddingBandsByKey.value = {};
+  customBorderBandsByKey.value = {};
 
   if (structureKind.value === "breadcrumb") {
     const breadcrumb = root.querySelector("sgds-breadcrumb") as HTMLElement | null;
@@ -1571,51 +3000,37 @@ const measureHotspots = async () => {
     const rowRect = getRelativeRect(breadcrumbRow, shell);
     const shellBounds = shell.getBoundingClientRect();
     const items = Array.from(breadcrumbRoot.querySelectorAll("sgds-breadcrumb-item")) as HTMLElement[];
-    const orderedElements: HTMLElement[] = [];
     const separatorElements: HTMLElement[] = [];
+    const breadcrumbGap = Number.parseFloat(getComputedStyle(breadcrumbRow).gap || "0") || 8;
 
     items.forEach((item) => {
-      const anchor = item.querySelector("a") as HTMLElement | null;
-      const overflowButton = item.querySelector("sgds-overflow-menu")?.shadowRoot?.querySelector(".overflow-btn") as HTMLElement | null;
-      const separator = item.shadowRoot?.querySelector(".separator svg") as HTMLElement | null;
-
-      if (overflowButton) {
-        orderedElements.push(overflowButton);
-      } else if (anchor) {
-        orderedElements.push(anchor);
-      }
+      const separator = item.shadowRoot?.querySelector(".separator sgds-icon") as HTMLElement | null;
 
       if (separator) {
         const rect = separator.getBoundingClientRect();
         if (rect.width > 0 && rect.height > 0) {
           separatorElements.push(separator);
-          orderedElements.push(separator);
         }
       }
     });
 
-    const sortedElements = orderedElements
-      .filter((element) => {
-        const rect = element.getBoundingClientRect();
-        return rect.width > 0 && rect.height > 0;
-      })
-      .sort((left, right) => left.getBoundingClientRect().left - right.getBoundingClientRect().left);
-
-    const gapBands = sortedElements.flatMap((element, index) => {
-      const next = sortedElements[index + 1];
-      if (!next) return [];
-
-      const currentBounds = element.getBoundingClientRect();
-      const nextBounds = next.getBoundingClientRect();
-      const width = Math.max(0, nextBounds.left - currentBounds.right);
-      if (width <= 0) return [];
-
-      return [{
-        left: currentBounds.right - shellBounds.left,
-        top: rowRect.top,
-        width,
-        height: rowRect.height,
-      }];
+    const gapBands = separatorElements.flatMap((separator) => {
+      const rect = getRelativeRect(separator, shell);
+      const gapWidth = Math.max(0, breadcrumbGap);
+      return [
+        {
+          left: Math.max(rowRect.left, rect.left - gapWidth),
+          top: rowRect.top,
+          width: Math.min(gapWidth, Math.max(0, rect.left - rowRect.left)),
+          height: rowRect.height,
+        },
+        {
+          left: rect.left + rect.width,
+          top: rowRect.top,
+          width: Math.min(gapWidth, Math.max(0, rowRect.left + rowRect.width - (rect.left + rect.width))),
+          height: rowRect.height,
+        },
+      ].filter((band) => band.width > 0);
     });
 
     breadcrumbGroupGapBands.value = gapBands;
@@ -1652,8 +3067,39 @@ const measureHotspots = async () => {
   }
 
   if (structureKind.value === "generic") {
-    const component = root.firstElementChild as HTMLElement | null;
+    // Some component demos wrap their SGDS element in a layout div (e.g.
+    // <div class="portal-demo-nav"><sgds-mainnav>...). Walk through any
+    // single-child non-SGDS wrappers so we use the actual SGDS host as the
+    // component. Otherwise the wrapper's only child IS the SGDS host, which
+    // makes contentRect === surfaceRect and padding bands collapse to 0.
+    let component = root.firstElementChild as HTMLElement | null;
+    while (
+      component &&
+      !component.tagName.toLowerCase().startsWith("sgds-") &&
+      component.children.length === 1
+    ) {
+      component = component.firstElementChild as HTMLElement | null;
+    }
     if (!component) return;
+
+    if (component.tagName === "SGDS-FOOTER") {
+      injectShadowStyles(
+        component,
+        "footer-breakpoint-preview",
+        getFooterBreakpointStyle(activeVariant.value),
+      );
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    }
+
+    if (component.tagName === "SGDS-MODAL") {
+      injectShadowStyles(
+        component,
+        "modal-structure-preview",
+        getModalStructurePreviewStyle(),
+      );
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+      revealModalStructurePreview(component);
+    }
 
     const surfaceRect = getRelativeRect(component, shell);
     const childElements = Array.from(component.children).filter((child) => {
@@ -1663,6 +3109,13 @@ const measureHotspots = async () => {
     const contentRect = getUnionRect(childElements, shell);
     const nextRects = Object.fromEntries(
       Object.keys(inspectMeta.value).map((key) => {
+        // Default fallback: surfaceRect (with padding insets when applicable).
+        // Gap-* keys are an exception — they should only highlight when a
+        // component-specific override (below) supplies a real gap rect.
+        // Otherwise the hotspot would tint the entire surface as a "gap",
+        // which is misleading. Initial null means the hotspot stays hidden
+        // unless explicitly set later in this branch.
+        if (isGapOverlayKey(key)) return [key, null as HotspotRect | null];
         const nextRect = isPaddingOverlayKey(key) && contentRect
           ? {
               ...surfaceRect,
@@ -1676,6 +3129,717 @@ const measureHotspots = async () => {
       }),
     ) as Record<string, HotspotRect | null>;
 
+    if (component.tagName === "SGDS-MASTHEAD") {
+      const crest = component.shadowRoot?.querySelector(".sg-crest") as HTMLElement | null;
+      if (crest && "dimension-20" in nextRects) {
+        nextRects["dimension-20"] = getRelativeRect(crest, shell);
+      }
+      const container = component.shadowRoot?.querySelector(".container") as HTMLElement | null;
+      if (container) {
+        const containerRect = getRelativeRect(container, shell);
+        const paddingUpdates: Record<string, PaddingBand[]> = {};
+        ["mainnav-mobile-padding-x", "mainnav-padding-x"].forEach((key) => {
+          if (!(key in nextRects)) return;
+          const tokenPx =
+            parseLengthToPx(genericTokenMap.value.get(key)?.rawValue) ??
+            parseCssLength(getComputedStyle(container).paddingLeft);
+          if (!tokenPx) {
+            nextRects[key] = null;
+            return;
+          }
+          const width = Math.min(tokenPx, containerRect.width / 2);
+          const bands = [
+            {
+              left: containerRect.left,
+              top: containerRect.top,
+              width,
+              height: containerRect.height,
+            },
+            {
+              left: containerRect.left + containerRect.width - width,
+              top: containerRect.top,
+              width,
+              height: containerRect.height,
+            },
+          ];
+          paddingUpdates[key] = bands;
+          nextRects[key] = getUnionBandRect(bands);
+        });
+        if (Object.keys(paddingUpdates).length) {
+          extraPaddingBandsByKey.value = {
+            ...extraPaddingBandsByKey.value,
+            ...paddingUpdates,
+          };
+        }
+      }
+    }
+
+    if (component.tagName === "SGDS-SKELETON") {
+      const skeletonRoot = component.shadowRoot;
+      const skeletonSurface = skeletonRoot?.querySelector(".skeleton") as HTMLElement | null;
+      const skeletonRows = Array.from(
+        skeletonRoot?.querySelectorAll(".skeleton > div[class*='skeleton-row']") ?? [],
+      ) as HTMLElement[];
+      const borderTargets = skeletonRows.length
+        ? skeletonRows
+        : skeletonSurface
+          ? [skeletonSurface]
+          : [];
+      const borderRadius = allStructureTokenMap.value.get("border-radius")?.rawValue || "4px";
+      const borderBands = borderTargets.map((target) => ({
+        ...getRelativeRect(target, shell),
+        borderRadius,
+      }));
+      if (borderBands.length) {
+        customBorderBandsByKey.value = {
+          ...customBorderBandsByKey.value,
+          "border-radius": borderBands,
+        };
+        nextRects["border-radius"] = getUnionBandRect(borderBands);
+      }
+    }
+
+    if (component.tagName === "SGDS-PROGRESS-BAR") {
+      const progressRoot = component.shadowRoot;
+      const progressTrack = progressRoot?.querySelector(".progress") as HTMLElement | null;
+      const progressBar = progressRoot?.querySelector(".progress-bar") as HTMLElement | null;
+      const label = progressRoot?.querySelector(".label") as HTMLElement | null;
+
+      if (progressBar) {
+        nextRects["primary-surface-default"] = getRelativeRect(progressBar, shell);
+        nextRects["neutral-surface-default"] = getRelativeRect(progressBar, shell);
+      }
+
+      if (progressTrack) {
+        const trackRect = getRelativeRect(progressTrack, shell);
+        nextRects["dimension-4"] = trackRect;
+        nextRects["bg-translucent"] = trackRect;
+      }
+
+      if (label) {
+        const labelRect = getRelativeRect(label, shell);
+        nextRects["font-size-14"] = labelRect;
+        nextRects["color-subtle"] = labelRect;
+      }
+    }
+
+    if (component.tagName === "SGDS-PAGINATION") {
+      const paginationRoot = component.shadowRoot;
+      const pageLinks = Array.from(
+        paginationRoot?.querySelectorAll('li[key] .page-link') ?? [],
+      ) as HTMLElement[];
+      const pageLink =
+        (paginationRoot?.querySelector('li[key="12"] .page-link') as HTMLElement | null) ??
+        (paginationRoot?.querySelector(".page-item.active .page-link") as HTMLElement | null) ??
+        (paginationRoot?.querySelector(".page-link:not(.ellipsis)") as HTMLElement | null);
+
+      if (pageLink && "dimension" in nextRects) {
+        nextRects.dimension = getRelativeRect(pageLink, shell);
+      }
+
+      if (pageLink && "border-radius" in nextRects) {
+        const borderTargets = pageLinks.length ? pageLinks : [pageLink];
+        const borderRadius = allStructureTokenMap.value.get("border-radius")?.rawValue || getComputedStyle(pageLink).borderRadius || "8px";
+        const borderBands = borderTargets.map((target) => ({
+          ...getRelativeRect(target, shell),
+          borderRadius: getComputedStyle(target).borderRadius || borderRadius,
+        }));
+        customBorderBandsByKey.value = {
+          ...customBorderBandsByKey.value,
+          "border-radius": borderBands,
+        };
+        nextRects["border-radius"] = getUnionBandRect(borderBands);
+      }
+    }
+
+    if (component.tagName === "SGDS-SIDENAV") {
+      const activeLink =
+        (component.querySelector("sgds-sidenav-link[active]") as HTMLElement | null) ??
+        (component.querySelector("sgds-sidenav-link") as HTMLElement | null);
+      const activeItem =
+        (component.querySelector("sgds-sidenav-item[active]") as HTMLElement | null) ??
+        (component.querySelector("sgds-sidenav-item") as HTMLElement | null);
+      const linkAnchor = activeLink?.querySelector("a") as HTMLElement | null;
+      const itemButton = activeItem?.shadowRoot?.querySelector(".sidenav-btn") as HTMLElement | null;
+      const itemAnchor = activeItem?.querySelector("a") as HTMLElement | null;
+      const borderTarget = linkAnchor ?? itemButton ?? itemAnchor;
+      if (borderTarget && "border-radius" in nextRects) {
+        nextRects["border-radius"] = getRelativeRect(borderTarget, shell);
+      }
+    }
+
+    if (component.tagName === "SGDS-FOOTER") {
+      const footerSurface = component.shadowRoot?.querySelector(".footer") as HTMLElement | null;
+      if (footerSurface && "padding-x" in nextRects) {
+        const footerRect = getRelativeRect(footerSurface, shell);
+        const footerStyles = getComputedStyle(footerSurface);
+        const paddingLeft = parseCssLength(footerStyles.paddingLeft);
+        const paddingRight = parseCssLength(footerStyles.paddingRight);
+        const bands: PaddingBand[] = [];
+        if (paddingLeft > 0) {
+          bands.push({
+            left: footerRect.left,
+            top: footerRect.top,
+            width: paddingLeft,
+            height: footerRect.height,
+          });
+        }
+        if (paddingRight > 0) {
+          bands.push({
+            left: footerRect.left + footerRect.width - paddingRight,
+            top: footerRect.top,
+            width: paddingRight,
+            height: footerRect.height,
+          });
+        }
+        nextRects["padding-x"] = bands.length ? getUnionBandRect(bands) : null;
+        extraPaddingBandsByKey.value = {
+          ...extraPaddingBandsByKey.value,
+          "padding-x": bands,
+        };
+      }
+
+      const footerTop = component.shadowRoot?.querySelector(".footer-top") as HTMLElement | null;
+      if (footerTop) {
+        const footerTopRect = getRelativeRect(footerTop, shell);
+        const footerTopStyles = getComputedStyle(footerTop);
+        const borderBottomWidth = parseCssLength(footerTopStyles.borderBottomWidth) || 1;
+        const footerTopBottomBorder: PaddingBand = {
+          left: footerTopRect.left,
+          top: footerTopRect.top + footerTopRect.height - borderBottomWidth,
+          width: footerTopRect.width,
+          height: borderBottomWidth,
+        };
+        customBorderBandsByKey.value = {
+          ...customBorderBandsByKey.value,
+          "border-color-default": [footerTopBottomBorder],
+          "border-width": [footerTopBottomBorder],
+        };
+        nextRects["border-color-default"] = footerTopBottomBorder;
+        nextRects["border-width"] = footerTopBottomBorder;
+      }
+    }
+
+    if (component.tagName === "SGDS-MODAL") {
+      const modalRoot = component.shadowRoot;
+      const panel = modalRoot?.querySelector(".modal-panel") as HTMLElement | null;
+      const header = modalRoot?.querySelector(".modal-header") as HTMLElement | null;
+      const overlay = modalRoot?.querySelector(".modal-overlay") as HTMLElement | null;
+
+      if (panel) {
+        const panelRect = getRelativeRect(panel, shell);
+        Object.keys(nextRects).forEach((key) => {
+          if (key === "dimension" || key.startsWith("dimension-")) {
+            nextRects[key] = panelRect;
+          }
+        });
+        nextRects["border-radius"] = panelRect;
+        nextRects["surface-default"] = panelRect;
+      }
+
+      if (header && "dimension-872" in nextRects && !isModalFullscreenStructure.value) {
+        nextRects["dimension-872"] = getRelativeRect(header, shell);
+      }
+
+      if (overlay && "bg-overlay" in nextRects) {
+        nextRects["bg-overlay"] = null;
+      }
+    }
+
+    if (component.tagName === "SGDS-DRAWER") {
+      Object.keys(nextRects).forEach((key) => {
+        if (key === "dimension" || key.startsWith("dimension-")) {
+          nextRects[key] = null;
+        }
+      });
+      nextRects["padding-none"] = null;
+    }
+
+    if (component.tagName === "SGDS-DROPDOWN") {
+      Object.keys(nextRects).forEach((key) => {
+        nextRects[key] = null;
+      });
+      const dropdownMenu = component.shadowRoot?.querySelector(".dropdown-menu") as HTMLElement | null;
+      if (dropdownMenu) {
+        const dropdownRect = getRelativeRect(dropdownMenu, shell);
+        const dropdownStyles = getComputedStyle(dropdownMenu);
+        const dropdownPaddingTop = parseCssLength(dropdownStyles.paddingTop);
+        const dropdownPaddingBottom = parseCssLength(dropdownStyles.paddingBottom);
+        const dropdownPaddingRect = {
+          ...dropdownRect,
+          insetLeft: 0,
+          insetTop: dropdownPaddingTop,
+          insetWidth: dropdownRect.width,
+          insetHeight: Math.max(
+            0,
+            dropdownRect.height - dropdownPaddingTop - dropdownPaddingBottom,
+          ),
+        };
+        nextRects["dimension-192"] = dropdownRect;
+        nextRects["dimension-320"] = dropdownRect;
+        nextRects["dimension-480"] = dropdownRect;
+        nextRects["border-radius"] = dropdownRect;
+        nextRects["padding-xs"] = dropdownPaddingRect;
+        extraPaddingBandsByKey.value = {
+          ...extraPaddingBandsByKey.value,
+          "padding-xs": getPaddingBands(dropdownPaddingRect, "y"),
+        };
+      }
+    }
+
+    if (component.tagName === "SGDS-FILE-UPLOAD") {
+      const uploadRoot = component.shadowRoot;
+      const uploadContainer = uploadRoot?.querySelector(".file-upload-container") as HTMLElement | null;
+      const uploadButton = uploadRoot?.querySelector("sgds-button") as HTMLElement | null;
+      const buttonSurface = uploadButton?.shadowRoot?.querySelector(".btn") as HTMLElement | null;
+      const buttonLabel = uploadButton?.shadowRoot?.querySelector(".btn > span") as HTMLElement | null;
+      const rightIconSlot = uploadButton?.shadowRoot?.querySelector('slot[name="rightIcon"]') as HTMLSlotElement | null;
+      const rightIcon = rightIconSlot?.assignedElements?.({ flatten: true })[0] as HTMLElement | undefined;
+
+      if (buttonSurface) {
+        const buttonRect = getRelativeRect(buttonSurface, shell);
+        const buttonStyles = getComputedStyle(buttonSurface);
+        const paddingTop = parseCssLength(buttonStyles.paddingTop);
+        const paddingRight = parseCssLength(buttonStyles.paddingRight);
+        const paddingBottom = parseCssLength(buttonStyles.paddingBottom);
+        const paddingLeft = parseCssLength(buttonStyles.paddingLeft);
+        nextRects["padding-x"] = {
+          ...buttonRect,
+          insetLeft: paddingLeft,
+          insetTop: 0,
+          insetWidth: Math.max(0, buttonRect.width - paddingLeft - paddingRight),
+          insetHeight: buttonRect.height,
+        };
+        nextRects["padding-y"] = {
+          ...buttonRect,
+          insetLeft: 0,
+          insetTop: paddingTop,
+          insetWidth: buttonRect.width,
+          insetHeight: Math.max(0, buttonRect.height - paddingTop - paddingBottom),
+        };
+        nextRects["border-color-muted"] = buttonRect;
+        nextRects["form-border-width-default"] = buttonRect;
+        nextRects["form-border-radius-md"] = buttonRect;
+      }
+
+      const containerChildren = uploadContainer
+        ? getEffectiveChildren(uploadContainer).filter((child) => child.getBoundingClientRect().height > 0)
+        : [];
+      const uploadContainerGapBands = containerChildren
+        .slice(0, -1)
+        .map((child, index) => getGapRect(child, containerChildren[index + 1], shell))
+        .filter((band): band is HotspotRect => Boolean(band && band.height > 0));
+      const buttonGapBand = getHorizontalGapRect(buttonLabel, rightIcon ?? null, shell);
+      genericGapBandsByKey.value = {
+        ...genericGapBandsByKey.value,
+        "form-gap-md": uploadContainerGapBands,
+        "form-gap-lg": buttonGapBand ? [buttonGapBand] : [],
+      };
+      Object.entries(genericGapBandsByKey.value).forEach(([key, bands]) => {
+        if (bands.length) nextRects[key] = getUnionBandRect(bands);
+        else if (key in nextRects) nextRects[key] = null;
+      });
+
+      for (const key of ["form-gap-2-xl", "form-gap-xl"]) {
+        if (key in nextRects) nextRects[key] = null;
+      }
+    }
+
+    if (component.tagName === "SGDS-MAINNAV") {
+      const mainnavRoot = component.shadowRoot;
+      injectShadowStyles(
+        component,
+        "mainnav-structure-layer",
+        `nav,
+         nav > .navbar-body {
+           z-index: auto !important;
+         }`,
+      );
+      const mainnavSurface = mainnavRoot?.querySelector("nav") as HTMLElement | null;
+      const activeItem = component.querySelector("sgds-mainnav-item[active]") as HTMLElement | null;
+      const activeItemSlot = activeItem?.shadowRoot?.querySelector("slot") as HTMLSlotElement | null;
+      const activeDropdown = component.querySelector("sgds-mainnav-dropdown[active]") as HTMLElement | null;
+      const activeDropdownNavLink = activeDropdown?.shadowRoot?.querySelector(".nav-link") as HTMLElement | null;
+      const activeLink = activeDropdownNavLink ?? (
+        activeItemSlot?.assignedElements({ flatten: true })[0] ??
+        activeItem?.querySelector("a")
+      ) as HTMLElement | null;
+      const dropdown = activeDropdown ?? component.querySelector("sgds-mainnav-dropdown") as HTMLElement | null;
+      const dropdownNavLink = dropdown?.shadowRoot?.querySelector(".nav-link") as HTMLElement | null;
+      const dropdownTogglerSlot = dropdownNavLink?.querySelector("slot[name='toggler']") as HTMLSlotElement | null;
+      const dropdownToggler = dropdownTogglerSlot?.assignedElements({ flatten: true })[0] as HTMLElement | undefined;
+      const dropdownChevron = dropdownNavLink?.querySelector("sgds-icon") as HTMLElement | null;
+      const customBands: Record<string, PaddingBand[]> = {};
+
+      const setCustomBorderBand = (key: string, band: PaddingBand | null) => {
+        if (!(key in nextRects) || !band) return;
+        customBands[key] = [band];
+        nextRects[key] = band;
+      };
+
+      const setCustomGapBands = (key: string, bands: PaddingBand[]) => {
+        if (!(key in nextRects) || !bands.length) return;
+        genericGapBandsByKey.value = {
+          ...genericGapBandsByKey.value,
+          [key]: bands,
+        };
+        nextRects[key] = getUnionBandRect(bands);
+      };
+
+      if (mainnavSurface) {
+        const mainnavSurfaceRect = getRelativeRect(mainnavSurface, shell);
+        const bottomBorderWidth =
+          parseLengthToPx(genericTokenMap.value.get("navbar-body-border-width")?.rawValue) ||
+          1;
+        const mainnavBottomBorder = {
+          left: mainnavSurfaceRect.left,
+          top: mainnavSurfaceRect.top + mainnavSurfaceRect.height - bottomBorderWidth,
+          width: mainnavSurfaceRect.width,
+          height: bottomBorderWidth,
+        };
+        setCustomBorderBand("navbar-body-border-color", mainnavBottomBorder);
+        setCustomBorderBand("navbar-body-border-width", mainnavBottomBorder);
+      }
+
+      if (activeLink) {
+        const activeLinkRect = getRelativeRect(activeLink, shell);
+        const activeLinkStyles = getComputedStyle(activeLink);
+        const bottomBorderWidth =
+          parseCssLength(activeLinkStyles.borderBottomWidth) ||
+          parseLengthToPx(genericTokenMap.value.get("nav-link-border-width")?.rawValue) ||
+          4;
+        const activeLinkBottomBorder = {
+          left: activeLinkRect.left,
+          top: activeLinkRect.top + activeLinkRect.height - bottomBorderWidth,
+          width: activeLinkRect.width,
+          height: bottomBorderWidth,
+        };
+        setCustomBorderBand("nav-link-border-color", activeLinkBottomBorder);
+        setCustomBorderBand("nav-link-border-width", activeLinkBottomBorder);
+      }
+
+      const dropdownLinkGapBand = getHorizontalGapRect(dropdownToggler ?? null, dropdownChevron, shell);
+      if (dropdownLinkGapBand) {
+        setCustomGapBands("gap-xs", [dropdownLinkGapBand]);
+      }
+
+      if (Object.keys(customBands).length) {
+        customBorderBandsByKey.value = {
+          ...customBorderBandsByKey.value,
+          ...customBands,
+        };
+      }
+    }
+
+    // Subnav: at the structure preview's typical desktop viewport (≥1024px),
+    // SGDS's media queries collapse `.header-container` and `.subnav-actions`
+    // padding to 0, hiding the `padding-2-xl` (32px horizontal) and
+    // `padding-md` (16px vertical) tokens entirely. Inject a stylesheet into
+    // the subnav's shadow root that pins these tokens onto both elements so
+    // the structure preview renders all four documented padding tokens at
+    // once. The override only applies inside the docs preview — no shipped
+    // SGDS CSS changes.
+    if (component.tagName === "SGDS-SUBNAV") {
+      const SUBNAV_OVERRIDE_MARKER = "__sgds_subnav_structure_preview__";
+      const subnavRoot = component.shadowRoot;
+      if (subnavRoot) {
+        const existing = (subnavRoot.adoptedStyleSheets ?? []).find(
+          (sheet: any) => sheet[SUBNAV_OVERRIDE_MARKER],
+        );
+        if (!existing) {
+          const sheet = new CSSStyleSheet();
+          sheet.replaceSync(`
+            .subnav {
+              align-items: center !important;
+            }
+            .subnav-nav-group {
+              align-items: center !important;
+            }
+            .header-container {
+              align-items: center !important;
+              padding: var(--sgds-padding-md) var(--sgds-padding-2-xl) !important;
+            }
+            .subnav-actions {
+              align-items: center !important;
+              padding: var(--sgds-padding-sm) var(--sgds-padding-2-xl) !important;
+            }
+            /* SGDS adds 20px padding-top to the slotted header at desktop
+               widths so the heading sits below an invisible breadcrumb
+               row. In the structure preview the row is standalone and
+               align-items: center already vertically centres the H5 box —
+               the extra padding pushes the visible text below the row's
+               true centre, leaving empty space above. Reset it. */
+            slot[name="header"]::slotted(*) {
+              padding-top: 0 !important;
+              margin-top: 0 !important;
+            }
+          `);
+          (sheet as any)[SUBNAV_OVERRIDE_MARKER] = true;
+          subnavRoot.adoptedStyleSheets = [
+            ...(subnavRoot.adoptedStyleSheets ?? []),
+            sheet,
+          ];
+        }
+      }
+
+      // Subnav's "borders" are bottom-only strokes:
+      //   • border-width-1 (1px) + border-color-muted → bottom of the .nav
+      //     element (the row-separator rule under the entire subnav)
+      //   • border-width-2 (2px) + primary-border-color-default → bottom of
+      //     the active subnav-item (the active-tab indicator)
+      // The generic perimeter ring would wrap the whole subnav in a 4-sided
+      // outline — wrong for both tokens. Populate customBorderBandsByKey so
+      // each token highlights only the actual stroke region, and dimension
+      // annotations / perimeter rings are suppressed.
+      const navEl = subnavRoot?.querySelector("nav") as HTMLElement | null;
+      const subnavInner = subnavRoot?.querySelector(".subnav") as HTMLElement | null;
+      const navBorderTarget = navEl ?? subnavInner;
+      if (navBorderTarget) {
+        const navStyles = getComputedStyle(navBorderTarget);
+        const navThickness = Number.parseFloat(navStyles.borderBottomWidth) || 1;
+        const navRect = getRelativeRect(navBorderTarget, shell);
+        const navStripe: PaddingBand = {
+          left: navRect.left,
+          top: navRect.top + navRect.height - navThickness,
+          width: navRect.width,
+          height: navThickness,
+        };
+        customBorderBandsByKey.value = {
+          ...customBorderBandsByKey.value,
+          "border-width-1": [navStripe],
+        };
+        nextRects["border-width-1"] = navStripe;
+      }
+
+      const activeItem = component.querySelector("sgds-subnav-item[active]") as HTMLElement | null;
+      const activeAnchor = activeItem?.querySelector("a, :scope > *") as HTMLElement | null;
+      const activeTarget = activeAnchor ?? activeItem;
+      if (activeTarget) {
+        const activeStyles = getComputedStyle(activeTarget);
+        const activeThickness = Number.parseFloat(activeStyles.borderBottomWidth) || 2;
+        const activeRect = getRelativeRect(activeTarget, shell);
+        const activeStripe: PaddingBand = {
+          left: activeRect.left,
+          top: activeRect.top + activeRect.height - activeThickness,
+          width: activeRect.width,
+          height: activeThickness,
+        };
+        customBorderBandsByKey.value = {
+          ...customBorderBandsByKey.value,
+          "border-width-2": [activeStripe],
+        };
+        nextRects["border-width-2"] = activeStripe;
+      }
+
+      // Suppress the icon-size-md dimension annotations — the subnav-item's
+      // external-link affordance isn't rendered in the structure preview, so
+      // the 1.25rem brackets that would otherwise flank the row don't
+      // correspond to anything visible.
+      nextRects["icon-size-md"] = null;
+    }
+
+    // Stepper structure tokens map onto specific shadow-DOM elements per the
+    // "Where it's used" column — wrapping the whole component in a perimeter
+    // ring or annotating its full bounds would be wrong:
+    //   • border-width-2 → 2px connector stroke between markers
+    //   • dimension-32   → step 3 marker box (32x32)
+    //   • other dimension tokens are listed in the table but not annotated
+    //   • padding-x/y/xl → don't apply at the horizontal-orientation preview
+    if (component.tagName === "SGDS-STEPPER") {
+      const stepperRoot = component.shadowRoot;
+      const markers = Array.from(
+        stepperRoot?.querySelectorAll(".stepper-marker") ?? [],
+      ) as HTMLElement[];
+      // Connector stroke: the actual line is a pseudo-element between each
+      // marker pair, so synthesise the same 2px band from marker positions.
+      if (markers.length >= 2) {
+        const shellBounds = shell.getBoundingClientRect();
+        const strokeWidth =
+          parseLengthToPx(allStructureTokenMap.value.get("border-width-2")?.rawValue) ||
+          2;
+        const connectorBands: PaddingBand[] = [];
+        for (let index = 0; index < markers.length - 1; index++) {
+          const a = markers[index].getBoundingClientRect();
+          const b = markers[index + 1].getBoundingClientRect();
+          const width = Math.max(0, b.left - a.right);
+          if (width <= 0) continue;
+          connectorBands.push({
+            left: a.right - shellBounds.left,
+            top: a.top - shellBounds.top + (a.height - strokeWidth) / 2,
+            width,
+            height: strokeWidth,
+          });
+        }
+        customBorderBandsByKey.value = {
+          ...customBorderBandsByKey.value,
+          "border-width-2": connectorBands,
+        };
+        nextRects["border-width-2"] = connectorBands.length
+          ? getUnionBandRect(connectorBands)
+          : null;
+      }
+
+      // dimension-32 — markers are square (32x32). Anchor the only Stepper
+      // size annotation to step 3 so it sits beside the final marker.
+      if (markers.length) {
+        const marker = markers[2] ?? markers[markers.length - 1] ?? markers[0];
+        nextRects["dimension-32"] = getRelativeRect(marker, shell);
+      }
+
+      // Keep the Stepper structure preview focused: only the marker's
+      // 32px dimension is annotated. Other size tokens remain in the table
+      // but do not render dimension brackets in the demo.
+      nextRects["dimension-128"] = null;
+      nextRects["dimension-2"] = null;
+
+      // padding-x / padding-y / padding-xl don't apply at the horizontal
+      // preview's viewport — clear them so no dimension annotation or
+      // surface-rect hotspot renders.
+      nextRects["padding-x"] = null;
+      nextRects["padding-y"] = null;
+      nextRects["padding-xl"] = null;
+    }
+
+    if (isToastStructure.value && component.tagName === "SGDS-TOAST") {
+      const toastRoot = component.shadowRoot;
+      const toastSurface = toastRoot?.querySelector(".toast") as HTMLElement | null;
+      const toastRect = toastSurface ? getRelativeRect(toastSurface, shell) : surfaceRect;
+      const iconSlot = toastRoot?.querySelector('slot[name="icon"]') as HTMLSlotElement | null;
+      const actionSlot = toastRoot?.querySelector('slot[name="action"]') as HTMLSlotElement | null;
+      const icon = (iconSlot?.assignedElements({ flatten: true })[0] ?? component.querySelector('[slot="icon"]')) as HTMLElement | null;
+      const action = (actionSlot?.assignedElements({ flatten: true })[0] ?? component.querySelector('[slot="action"]')) as HTMLElement | null;
+      const toastContent = toastRoot?.querySelector(".toast-content") as HTMLElement | null;
+      const toastBody = toastRoot?.querySelector(".toast-body") as HTMLElement | null;
+      const title = toastRoot?.querySelector(".toast-body__title") as HTMLElement | null;
+      const message = toastRoot?.querySelector(".toast-body__message") as HTMLElement | null;
+
+      const toastBodyGapBands = [
+        getGapRect(title, message, shell),
+      ]
+        .map((band) => clampBandToRect(band, toastRect))
+        .filter((band): band is PaddingBand => Boolean(band && band.height > 0));
+
+      const toastContentGapBands = [
+        getGapRect(toastBody, action, shell),
+      ]
+        .map((band) => clampBandToRect(band, toastRect))
+        .filter((band): band is PaddingBand => Boolean(band && band.height > 0));
+
+      const toastGapBands = [
+        getHorizontalGapRect(icon, toastContent, shell),
+        ...toastContentGapBands,
+      ]
+        .map((band) => clampBandToRect(band, toastRect))
+        .filter((band): band is PaddingBand => Boolean(band && (band.width > 0 || band.height > 0)));
+
+      genericGapBandsByKey.value = {
+        "gap-2-xs": toastBodyGapBands,
+        "gap-sm": toastGapBands,
+      };
+
+      Object.entries(genericGapBandsByKey.value).forEach(([key, bands]) => {
+        nextRects[key] = getUnionBandRect(bands);
+      });
+
+      nextRects["layout-gap-md"] = null;
+    }
+
+    if (component.tagName === "SGDS-BADGE") {
+      const badgeRoot = component.shadowRoot;
+      const badgeSurface = badgeRoot?.querySelector(".badge") as HTMLElement | null;
+      const badgeLabel = badgeRoot?.querySelector(".badge-label") as HTMLElement | null;
+
+      if (badgeSurface) {
+        const badgeRect = getRelativeRect(badgeSurface, shell);
+        const badgeStyles = getComputedStyle(badgeSurface);
+        const paddingLeft = Number.parseFloat(badgeStyles.paddingLeft || "0");
+        const paddingRight = paddingLeft;
+        nextRects["padding-x"] = {
+          ...badgeRect,
+          insetLeft: paddingLeft,
+          insetTop: 0,
+          insetWidth: Math.max(0, badgeRect.width - paddingLeft - paddingRight),
+          insetHeight: badgeRect.height,
+        };
+        nextRects["padding-y"] = null;
+        if (badgeLabel) {
+          const labelRect = getRelativeRect(badgeLabel, shell);
+          const labelStyles = getComputedStyle(badgeLabel);
+          const labelPadding = Number.parseFloat(labelStyles.paddingLeft || "0");
+          nextRects["padding-3-xs"] = {
+            ...labelRect,
+            insetLeft: labelPadding,
+            insetTop: 0,
+            insetWidth: Math.max(0, labelRect.width - labelPadding * 2),
+            insetHeight: labelRect.height,
+          };
+        }
+        nextRects["border-width"] = badgeRect;
+        nextRects["border-radius"] = badgeRect;
+        nextRects["height"] = badgeRect;
+        nextRects["min-width"] = badgeRect;
+      }
+    }
+
+    if (component.tagName === "SGDS-DESCRIPTION-LIST-GROUP") {
+      const listItems = Array.from(component.querySelectorAll("sgds-description-list")) as HTMLElement[];
+      const xBands: PaddingBand[] = [];
+      const yBands: PaddingBand[] = [];
+      const labelContainers = listItems
+        .map((item) => item.shadowRoot?.querySelector(".label-container") as HTMLElement | null)
+        .filter((labelContainer): labelContainer is HTMLElement => Boolean(labelContainer));
+      const lastLabelContainer = labelContainers.at(-1);
+
+      if (lastLabelContainer) {
+        const labelRect = getRelativeRect(lastLabelContainer, shell);
+        const componentRect = getRelativeRect(component, shell);
+        nextRects["dimension-280"] = {
+          ...labelRect,
+          height: Math.max(labelRect.height, componentRect.top + componentRect.height - labelRect.top),
+        };
+      }
+
+      listItems.forEach((item) => {
+        const itemRoot = item.shadowRoot;
+        const itemContainer = itemRoot?.querySelector(".container") as HTMLElement | null;
+        const labelContainer = itemRoot?.querySelector(".label-container") as HTMLElement | null;
+        const dataContainer = itemRoot?.querySelector(".data-container") as HTMLElement | null;
+        const contentRect = getUnionRect(
+          [labelContainer, dataContainer].filter(Boolean) as HTMLElement[],
+          shell,
+        );
+        if (!itemContainer || !contentRect) return;
+
+        const itemRect = getRelativeRect(itemContainer, shell);
+        const paddingRect: HotspotRect = {
+          ...itemRect,
+          insetLeft: Math.max(0, contentRect.left - itemRect.left),
+          insetTop: Math.max(0, contentRect.top - itemRect.top),
+          insetWidth: contentRect.width,
+          insetHeight: contentRect.height,
+        };
+        xBands.push(...getPaddingBands(paddingRect, "x"));
+        yBands.push(...getPaddingBands(paddingRect, "y"));
+      });
+
+      if (xBands.length || yBands.length) {
+        extraPaddingBandsByKey.value = {
+          ...extraPaddingBandsByKey.value,
+          ...(xBands.length ? { "padding-x": xBands } : {}),
+          ...(yBands.length ? { "padding-y": yBands } : {}),
+        };
+        if (xBands.length) nextRects["padding-x"] = getUnionBandRect(xBands);
+        if (yBands.length) nextRects["padding-y"] = getUnionBandRect(yBands);
+      }
+    }
+
+    if (component.tagName === "SGDS-LINK") {
+      const trailingIcon = component.querySelector("a sgds-icon:last-child") as HTMLElement | null;
+      if (trailingIcon) {
+        nextRects["icon-size"] = getRelativeRect(trailingIcon, shell);
+      }
+    }
+
     // For checkbox-group, override the form-padding-inline-sm hotspot to
     // highlight the actual vertical margin strip applied per checkbox row.
     // SGDS sets `.form-check { margin: var(--sgds-form-padding-inline-sm) 0 }`
@@ -1687,8 +3851,11 @@ const measureHotspots = async () => {
       const groupRoot = component.shadowRoot;
       const labelHintContainer = groupRoot?.querySelector(".label-hint-container") as HTMLElement | null;
       const checkboxContainer = groupRoot?.querySelector(".checkbox-container") as HTMLElement | null;
-      const firstCheckbox = component.querySelector("sgds-checkbox") as HTMLElement | null;
+      const checkboxItems = Array.from(component.querySelectorAll("sgds-checkbox")) as HTMLElement[];
+      const firstCheckbox = checkboxItems[0] ?? null;
+      const secondCheckbox = checkboxItems[1] ?? null;
       const firstFormCheck = firstCheckbox?.shadowRoot?.querySelector(".form-check") as HTMLElement | null;
+      const secondFormCheck = secondCheckbox?.shadowRoot?.querySelector(".form-check") as HTMLElement | null;
       const firstInput = firstCheckbox?.shadowRoot?.querySelector(".form-check-input") as HTMLElement | null;
       const firstLabel = firstCheckbox?.shadowRoot?.querySelector(".form-check-label") as HTMLElement | null;
       if (firstCheckbox && firstFormCheck) {
@@ -1707,6 +3874,14 @@ const measureHotspots = async () => {
         nextRects["input-size"] = inputRect;
         nextRects["control-border-width"] = inputRect;
         nextRects["control-border-radius"] = inputRect;
+        // Point any form-border-* hotspots at the same checkbox input rect
+        // so the generic border hover bands wrap the visible border (the
+        // checkbox itself), not the whole form-check-group row.
+        Object.keys(nextRects).forEach((key) => {
+          if (key.includes("border-radius") || key.includes("border-width") || key.includes("border-color")) {
+            nextRects[key] = inputRect;
+          }
+        });
       }
       if (firstInput && firstLabel && firstFormCheck) {
         const inputBounds = firstInput.getBoundingClientRect();
@@ -1725,6 +3900,16 @@ const measureHotspots = async () => {
           };
         }
       }
+      if (firstFormCheck && secondFormCheck) {
+        const optionGap = getGapRect(firstFormCheck, secondFormCheck, shell);
+        if (optionGap && optionGap.height > 0) {
+          genericGapBandsByKey.value = {
+            ...genericGapBandsByKey.value,
+            "form-gap-md": [optionGap],
+          };
+          nextRects["form-gap-md"] = optionGap;
+        }
+      }
       if (labelHintContainer && checkboxContainer) {
         const labelBounds = labelHintContainer.getBoundingClientRect();
         const groupBounds = checkboxContainer.getBoundingClientRect();
@@ -1741,12 +3926,44 @@ const measureHotspots = async () => {
       }
     }
 
+    if (component.tagName === "SGDS-RADIO-GROUP") {
+      const groupRoot = component.shadowRoot;
+      const formLabel = groupRoot?.querySelector(".label-hint-container .form-label") as HTMLElement | null;
+      const hintText = groupRoot?.querySelector(".label-hint-container .form-text") as HTMLElement | null;
+      const radioItems = Array.from(component.querySelectorAll("sgds-radio")) as HTMLElement[];
+      const firstRadio = radioItems[0] ?? null;
+      const secondRadio = radioItems[1] ?? null;
+      const firstFormCheck = firstRadio?.shadowRoot?.querySelector(".form-check") as HTMLElement | null;
+      const secondFormCheck = secondRadio?.shadowRoot?.querySelector(".form-check") as HTMLElement | null;
+
+      if (formLabel && hintText) {
+        const labelHintGap = getGapRect(formLabel, hintText, shell);
+        if (labelHintGap && labelHintGap.height > 0) {
+          genericGapBandsByKey.value = {
+            ...genericGapBandsByKey.value,
+            "form-gap-sm": [labelHintGap],
+          };
+          nextRects["form-gap-sm"] = labelHintGap;
+        }
+      }
+
+      if (firstFormCheck && secondFormCheck) {
+        const optionGap = getGapRect(firstFormCheck, secondFormCheck, shell);
+        if (optionGap && optionGap.height > 0) {
+          genericGapBandsByKey.value = {
+            ...genericGapBandsByKey.value,
+            "form-gap-md": [optionGap],
+          };
+          nextRects["form-gap-md"] = optionGap;
+        }
+      }
+    }
+
     if (component.tagName === "SGDS-COMBO-BOX") {
       const comboRoot = component.shadowRoot;
       const controlGroup = comboRoot?.querySelector(".form-control-group") as HTMLElement | null;
       const inputContainer = comboRoot?.querySelector(".combobox-input-container") as HTMLElement | null;
       const input = comboRoot?.querySelector("input.form-control") as HTMLElement | null;
-      const suffixIcon = comboRoot?.querySelector('sgds-icon[name="chevron-down"], sgds-icon[name="chevron-up"]') as HTMLElement | null;
 
       nextRects["padding-y"] = null;
 
@@ -1756,23 +3973,74 @@ const measureHotspots = async () => {
         nextRects["border-width"] = controlRect;
         nextRects["border-radius"] = controlRect;
 
-        if (inputContainer && suffixIcon) {
-          const inputContainerBounds = inputContainer.getBoundingClientRect();
-          const suffixIconBounds = suffixIcon.getBoundingClientRect();
-          const shellBounds = shell.getBoundingClientRect();
-          const width = Math.max(0, suffixIconBounds.left - inputContainerBounds.right);
-          if (width > 0) {
-            const gapRect = {
-              left: inputContainerBounds.right - shellBounds.left,
-              top: controlRect.top,
-              width,
-              height: controlRect.height,
+        if (inputContainer) {
+          const inputContainerRect = getRelativeRect(inputContainer, shell);
+          const inputContainerStyles = getComputedStyle(inputContainer);
+          const paddingTop = Number.parseFloat(inputContainerStyles.paddingTop || "0");
+          const paddingBottom = Number.parseFloat(inputContainerStyles.paddingBottom || "0");
+          nextRects["form-padding-y"] = {
+            ...inputContainerRect,
+            insetLeft: 0,
+            insetTop: paddingTop,
+            insetWidth: inputContainerRect.width,
+            insetHeight: Math.max(0, inputContainerRect.height - paddingTop - paddingBottom),
+          };
+        }
+
+        if (inputContainer && input) {
+          const visibleItems = Array.from(inputContainer.children).filter((child): child is HTMLElement => {
+            if (!(child instanceof HTMLElement)) return false;
+            const rect = child.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0;
+          });
+          const firstBadge = inputContainer.querySelector("sgds-badge") as HTMLElement | null;
+          let gapRect = getHorizontalGapRect(firstBadge, input, shell);
+          for (let i = 0; !gapRect && i < visibleItems.length - 1; i += 1) {
+            gapRect = getHorizontalGapRect(visibleItems[i], visibleItems[i + 1], shell);
+          }
+          if (!gapRect) {
+            const inputContainerRect = getRelativeRect(inputContainer, shell);
+            const inputRect = getRelativeRect(input, shell);
+            const inputContainerStyles = getComputedStyle(inputContainer);
+            const gapWidth =
+              parseCssLength(inputContainerStyles.columnGap) ||
+              parseCssLength(inputContainerStyles.gap) ||
+              parseCssLength(getComputedStyle(document.documentElement).getPropertyValue("--sgds-gap-xs"));
+            const fallbackWidth = Math.min(gapWidth, Math.max(0, inputRect.left - inputContainerRect.left));
+            if (fallbackWidth > 0) {
+              gapRect = {
+                left: inputRect.left - fallbackWidth,
+                top: inputRect.top,
+                width: fallbackWidth,
+                height: inputRect.height,
+              };
+            }
+          }
+          if (!gapRect) {
+            const firstVisibleItem = visibleItems[0] ?? null;
+            const inputContainerStyles = getComputedStyle(inputContainer);
+            const gapWidth =
+              parseCssLength(inputContainerStyles.columnGap) ||
+              parseCssLength(inputContainerStyles.gap) ||
+              parseCssLength(getComputedStyle(document.documentElement).getPropertyValue("--sgds-gap-xs"));
+            if (firstVisibleItem && gapWidth > 0) {
+              const itemRect = getRelativeRect(firstVisibleItem, shell);
+              gapRect = {
+                left: itemRect.left + itemRect.width,
+                top: itemRect.top,
+                width: gapWidth,
+                height: itemRect.height,
+              };
+            }
+          }
+          if (gapRect && gapRect.width > 0) {
+            genericGapBandsByKey.value = {
+              ...genericGapBandsByKey.value,
+              "gap-xs": [gapRect],
             };
-            Object.keys(nextRects)
-              .filter((key) => key.includes("gap"))
-              .forEach((key) => {
-                nextRects[key] = gapRect;
-              });
+            if ("gap-xs" in nextRects) {
+              nextRects["gap-xs"] = gapRect;
+            }
           }
         }
 
@@ -1844,9 +4112,27 @@ const measureHotspots = async () => {
         };
       }
 
-      // Replace surface for all form-* tokens with the actual bordered field.
+      // Replace surface for all form-* / control-* / dimension-* tokens with
+      // the actual bordered field. For form components with labels above the
+      // field (textarea, datepicker, input), the host element's rect spans
+      // label + field, so a raw "Minimum height of the form control group"
+      // token would otherwise anchor to the whole component instead of just
+      // the field. dimension-* tokens on form components always describe the
+      // field, never the label.
       Object.keys(nextRects).forEach((key) => {
-        if (!key.startsWith("form-") && !key.startsWith("control-")) return;
+        // Generic padding-x / padding-y on a form component refer to the
+        // field's padding (e.g. textarea uses sgds/form/padding/x), not the
+        // host element. Route them to the field rect so the hover bands
+        // bracket the visible left/right or top/bottom padding strips of the
+        // bordered field, not the entire host (which spans the label too).
+        const isFormToken =
+          key.startsWith("form-") ||
+          key.startsWith("control-") ||
+          key.startsWith("dimension-") ||
+          key === "padding-x" ||
+          key === "padding-y";
+        if (!isFormToken) return;
+        if (component.tagName === "SGDS-COMBO-BOX" && key === "form-padding-y") return;
         if (isPaddingOverlayKey(key)) {
           nextRects[key] = {
             ...fieldRect,
@@ -1859,6 +4145,89 @@ const measureHotspots = async () => {
           nextRects[key] = fieldRect;
         }
       });
+
+      if (component.tagName === "SGDS-DATEPICKER") {
+        const datepickerInput = component.shadowRoot?.querySelector("sgds-datepicker-input") as HTMLElement | null;
+        const calendarButton = component.shadowRoot?.querySelector("sgds-icon-button[name='calendar']") as HTMLElement | null;
+        const inputLabel = datepickerInput?.shadowRoot?.querySelector(".form-label") as HTMLElement | null;
+        const inputField = datepickerInput?.shadowRoot?.querySelector(".form-control-group") as HTMLElement | null;
+        const inputRowRect = getUnionRect(
+          [datepickerInput, calendarButton].filter(Boolean) as HTMLElement[],
+          shell,
+        );
+        const inputControlRect = getUnionRect(
+          [inputField, calendarButton].filter(Boolean) as HTMLElement[],
+          shell,
+        );
+        if (inputRowRect && inputControlRect) {
+          if ("dimension-48" in nextRects) nextRects["dimension-48"] = inputControlRect;
+          if ("dimension-160" in nextRects) {
+            const fieldOnlyRect = inputField ? getRelativeRect(inputField, shell) : inputControlRect;
+            const labelRect = inputLabel ? getRelativeRect(inputLabel, shell) : null;
+            const top = labelRect ? Math.min(labelRect.top, fieldOnlyRect.top) : fieldOnlyRect.top;
+            nextRects["dimension-160"] = {
+              ...fieldOnlyRect,
+              top,
+              height: fieldOnlyRect.top + fieldOnlyRect.height - top,
+            };
+          }
+        }
+        const dropdown = component.shadowRoot?.querySelector(".dropdown-menu") as HTMLElement | null;
+        if (dropdown) {
+          const dropdownRect = getRelativeRect(dropdown, shell);
+          if ("dimension-320" in nextRects) nextRects["dimension-320"] = dropdownRect;
+        }
+      }
+    }
+
+    // Switch's form-check-input (the toggle pill) is the visible "switch
+    // surface" — its width/height come from --sgds-switch-width / --sgds-switch-height,
+    // which resolve to form-width-* / form-height-* size tokens. The host
+    // <sgds-switch> rect includes the label too, so without overriding the
+    // hotspot rect, the dimension annotation would point at the whole row
+    // (label + toggle) rather than the toggle itself.
+    if (component.tagName === "SGDS-SWITCH") {
+      const switchInput = component.shadowRoot?.querySelector(
+        ".form-check-input",
+      ) as HTMLElement | null;
+      if (switchInput) {
+        const switchRect = getRelativeRect(switchInput, shell);
+        Object.keys(nextRects).forEach((key) => {
+          if (
+            key.startsWith("form-width") ||
+            key.startsWith("form-height") ||
+            key === "switch-width" ||
+            key === "switch-height" ||
+            // The visible border lives on the toggle pill, not the host row.
+            // Point border-radius / border-width / border-color / outline
+            // hotspots at the same .form-check-input rect so hovering any
+            // border row highlights the actual border edge.
+            key.includes("border-radius") ||
+            key.includes("border-width") ||
+            key.includes("border-color") ||
+            key.startsWith("outline") ||
+            key.startsWith("form-outline")
+          ) {
+            nextRects[key] = switchRect;
+          }
+        });
+        // The toggle pill applies horizontal padding via
+        // `padding: 0 var(--sgds-form-padding-inline-sm)`. Compute the inset
+        // from the live computed style so the padding band overlay highlights
+        // exactly the left/right padding strips, no top/bottom bands.
+        const inputCs = getComputedStyle(switchInput);
+        const padLeft = Number.parseFloat(inputCs.paddingLeft) || 0;
+        const padRight = Number.parseFloat(inputCs.paddingRight) || 0;
+        if ("form-padding-inline-sm" in nextRects && (padLeft > 0 || padRight > 0)) {
+          nextRects["form-padding-inline-sm"] = {
+            ...switchRect,
+            insetLeft: padLeft,
+            insetTop: 0,
+            insetWidth: Math.max(0, switchRect.width - padLeft - padRight),
+            insetHeight: switchRect.height,
+          };
+        }
+      }
     }
 
     if (isTooltipStructure.value) {
@@ -1887,6 +4256,7 @@ const measureHotspots = async () => {
           insetWidth: bubbleRect.width,
           insetHeight: Math.max(0, bubbleRect.height - paddingTop - paddingBottom),
         };
+        nextRects["border-radius"] = bubbleRect;
       }
     }
 
@@ -1904,6 +4274,301 @@ const measureHotspots = async () => {
         nextRects["icon-size"] = getRelativeRect(icon, shell);
       }
     }
+
+    if (component.tagName === "SGDS-THUMBNAIL-CARD") {
+      const thumbnailSlot = component.shadowRoot?.querySelector(
+        'slot[name="thumbnail"]',
+      ) as HTMLSlotElement | null;
+      const thumbnail = thumbnailSlot?.assignedElements?.()[0] as HTMLElement | null;
+      if (thumbnail) {
+        const thumbnailRect = getRelativeRect(thumbnail, shell);
+        nextRects["dimension-128"] = thumbnailRect;
+        nextRects["dimension-64"] = thumbnailRect;
+      }
+    }
+
+    // Icon list uses the same gap-xs token in two places:
+    //   • the default slot stacks each list item
+    //   • each slotted list item spaces its leading icon from its content
+    // A shadow <slot> has no regular children, so the generic flex detector
+    // cannot see the item-to-item gap. Measure both places from the assigned
+    // list items and their visible children.
+    if (component.tagName === "SGDS-ICON-LIST") {
+      const iconListSlot = component.shadowRoot?.querySelector("slot") as HTMLSlotElement | null;
+      const itemElements = (
+        iconListSlot?.assignedElements({ flatten: true }) ??
+        Array.from(component.children)
+      )
+        .filter((el): el is HTMLElement => el instanceof HTMLElement)
+        .filter((el) => {
+          const rect = el.getBoundingClientRect();
+          return rect.width > 0 && rect.height > 0;
+        })
+        .sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+
+      const bands: PaddingBand[] = [];
+      for (let i = 0; i < itemElements.length - 1; i++) {
+        const itemGap = getGapRect(itemElements[i], itemElements[i + 1], shell);
+        if (itemGap && itemGap.height > 0) bands.push(itemGap);
+      }
+
+      itemElements.forEach((item) => {
+        const contentChildren = Array.from(item.children)
+          .filter((el): el is HTMLElement => el instanceof HTMLElement)
+          .filter((el) => {
+            const rect = el.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0;
+          })
+          .sort((a, b) => a.getBoundingClientRect().left - b.getBoundingClientRect().left);
+
+        for (let i = 0; i < contentChildren.length - 1; i++) {
+          const contentGap = getHorizontalGapRect(contentChildren[i], contentChildren[i + 1], shell);
+          if (contentGap && contentGap.width > 0) bands.push(contentGap);
+        }
+      });
+
+      if (bands.length) {
+        genericGapBandsByKey.value = {
+          ...genericGapBandsByKey.value,
+          "gap-xs": bands,
+        };
+        nextRects["gap-xs"] = getUnionBandRect(bands);
+      }
+    }
+
+    // Table of contents: gap-md applies between the heading and the contents
+    // list, and between adjacent list items. Use the first <li> pair under
+    // .contents so the gap hover lands on a visible strip between two items.
+    if (component.tagName === "SGDS-TABLE-OF-CONTENTS") {
+      // gap-md applies in two places:
+      //   • between the heading slot and the .contents list (.container has
+      //     `gap: var(--sgds-gap-md)` on the column layout)
+      //   • between adjacent <li> items inside .contents (same gap rule on
+      //     .contents)
+      // Render every visible gap band as a separate hover proxy so the
+      // highlight covers the full set of strips, not just one of them.
+      const contents = component.shadowRoot?.querySelector(".contents") as HTMLElement | null;
+      const heading = component.querySelector(":scope > :not([slot])") as HTMLElement | null;
+      const items = contents
+        ? Array.from(contents.querySelectorAll("slot[name='contents']"))
+            .flatMap((s) => (s as HTMLSlotElement).assignedElements?.() ?? [])
+        : [];
+      const visibleItems = items.filter((el) => {
+        const r = (el as HTMLElement).getBoundingClientRect();
+        return r.width > 0 && r.height > 0;
+      }) as HTMLElement[];
+      const bands: PaddingBand[] = [];
+      const headingGap = heading && contents ? getGapRect(heading, contents, shell) : null;
+      if (headingGap && headingGap.height > 0) bands.push(headingGap);
+      for (let i = 0; i < visibleItems.length - 1; i++) {
+        const itemGap = getGapRect(visibleItems[i], visibleItems[i + 1], shell);
+        if (itemGap && itemGap.height > 0) bands.push(itemGap);
+      }
+      if (bands.length) {
+        genericGapBandsByKey.value = {
+          ...genericGapBandsByKey.value,
+          "gap-md": bands,
+        };
+        nextRects["gap-md"] = getUnionBandRect(bands);
+      }
+    }
+
+    // Table: padding-x and padding-y are applied to the inner <div> of each
+    // <th>/<td> cell (`padding: <padding-y> <padding-x>` per the SGDS source).
+    // Replicate the padding bands across every cell so the highlight covers
+    // the whole table instead of just the first column. The same token value
+    // applies to every cell, so we just collect bands from each one.
+    if (component.tagName === "SGDS-TABLE") {
+      const cells = Array.from(component.shadowRoot?.querySelectorAll("th, td") ?? []) as HTMLElement[];
+      const xBands: PaddingBand[] = [];
+      const yBands: PaddingBand[] = [];
+      cells.forEach((cell) => {
+        const innerDiv = cell.querySelector("div") as HTMLElement | null;
+        if (!innerDiv) return;
+        const innerRect = getRelativeRect(innerDiv, shell);
+        const cs = getComputedStyle(innerDiv);
+        const padLeft = Number.parseFloat(cs.paddingLeft) || 0;
+        const padRight = Number.parseFloat(cs.paddingRight) || 0;
+        const padTop = Number.parseFloat(cs.paddingTop) || 0;
+        const padBottom = Number.parseFloat(cs.paddingBottom) || 0;
+        if (padLeft > 0) xBands.push({ left: innerRect.left, top: innerRect.top, width: padLeft, height: innerRect.height });
+        if (padRight > 0) xBands.push({ left: innerRect.left + innerRect.width - padRight, top: innerRect.top, width: padRight, height: innerRect.height });
+        if (padTop > 0) yBands.push({ left: innerRect.left, top: innerRect.top, width: innerRect.width, height: padTop });
+        if (padBottom > 0) yBands.push({ left: innerRect.left, top: innerRect.top + innerRect.height - padBottom, width: innerRect.width, height: padBottom });
+      });
+      if (xBands.length || yBands.length) {
+        extraPaddingBandsByKey.value = {
+          ...extraPaddingBandsByKey.value,
+          ...(xBands.length ? { "padding-x": xBands } : {}),
+          ...(yBands.length ? { "padding-y": yBands } : {}),
+        };
+        if (xBands.length) nextRects["padding-x"] = getUnionBandRect(xBands);
+        if (yBands.length) nextRects["padding-y"] = getUnionBandRect(yBands);
+      }
+    }
+
+    // Tab-group structure: locate the sgds-tab-group anywhere under the
+    // structure-preview-markup root (not just as the first child) so an
+    // optional layout wrapper around the tab-group doesn't break detection.
+    const tabGroup = (component.tagName === "SGDS-TAB-GROUP" ? component : root.querySelector("sgds-tab-group")) as HTMLElement | null;
+    if (tabGroup) {
+      const tabGroupRoot = tabGroup.shadowRoot;
+      const tabGroupBox = tabGroupRoot?.querySelector(".tab-group") as HTMLElement | null;
+      const navStrip = tabGroupRoot?.querySelector(".tab-group__nav") as HTMLElement | null;
+      const contentBox = tabGroupRoot?.querySelector(".tab-group__content") as HTMLElement | null;
+      const tabs = Array.from(tabGroup.querySelectorAll("sgds-tab")) as HTMLElement[];
+      const activeTab = tabs.find((tab) => tab.hasAttribute("active")) ?? tabs[0];
+      const activeTabSurface = activeTab?.shadowRoot?.querySelector(".tab") as HTMLElement | null;
+      const variantAttr = tabGroup.getAttribute("variant") || "underlined";
+
+      // 1. nav-content-gap: vertical strip between the nav strip's bottom and the panel content's top.
+      if (navStrip && contentBox) {
+        const navBounds = navStrip.getBoundingClientRect();
+        const contentBounds = contentBox.getBoundingClientRect();
+        const shellBounds = shell.getBoundingClientRect();
+        const gapHeight = Math.max(0, contentBounds.top - navBounds.bottom);
+        if (gapHeight > 0) {
+          nextRects["nav-content-gap"] = {
+            left: navBounds.left - shellBounds.left,
+            top: navBounds.bottom - shellBounds.top,
+            width: navBounds.width,
+            height: gapHeight,
+          };
+        }
+      }
+
+      // 2. nav-tab-gap: horizontal strips between EVERY pair of adjacent tabs
+      // (solid variant only; underlined tabs sit flush). Render one band per
+      // gap so the highlight covers the whole nav strip, not just the first
+      // gap. Clear the rect when no gap is present so the proxy doesn't fall
+      // back to the host's surface rect.
+      nextRects["nav-tab-gap"] = null;
+      const tabRects = tabs
+        .map((tab) => tab.shadowRoot?.querySelector(".tab") as HTMLElement | null)
+        .filter((el): el is HTMLElement => Boolean(el))
+        .map((el) => el.getBoundingClientRect())
+        .sort((a, b) => a.left - b.left);
+      const tabGapBands: PaddingBand[] = [];
+      const tabShellBounds = shell.getBoundingClientRect();
+      for (let i = 0; i < tabRects.length - 1; i++) {
+        const a = tabRects[i];
+        const b = tabRects[i + 1];
+        const gapWidth = Math.max(0, b.left - a.right);
+        if (gapWidth > 0) {
+          tabGapBands.push({
+            left: a.right - tabShellBounds.left,
+            top: a.top - tabShellBounds.top,
+            width: gapWidth,
+            height: a.height,
+          });
+        }
+      }
+      if (tabGapBands.length) {
+        genericGapBandsByKey.value = {
+          ...genericGapBandsByKey.value,
+          "nav-tab-gap": tabGapBands,
+        };
+        nextRects["nav-tab-gap"] = getUnionBandRect(tabGapBands);
+      }
+
+      const orientation = tabGroup.getAttribute("orientation") || "horizontal";
+
+      // 3. nav-divider-width: the rule under (or right of) the nav strip. Only
+      // present when the underlined variant actually paints a border on
+      // .tab-group__nav. If border-width is 0 the token doesn't apply — clear
+      // the rect so its inspect proxy + token row stay hidden.
+      nextRects["nav-divider-width"] = null;
+      if (navStrip) {
+        const navStripStyles = getComputedStyle(navStrip);
+        const dividerThickness =
+          Number.parseFloat(orientation === "vertical" ? navStripStyles.borderRightWidth : navStripStyles.borderBottomWidth) || 0;
+        if (dividerThickness > 0) {
+          const navRect = getRelativeRect(navStrip, shell);
+          nextRects["nav-divider-width"] = orientation === "vertical"
+            ? {
+                left: navRect.left + navRect.width - dividerThickness,
+                top: navRect.top,
+                width: dividerThickness,
+                height: navRect.height,
+              }
+            : {
+                left: navRect.left,
+                top: navRect.top + navRect.height - dividerThickness,
+                width: navRect.width,
+                height: dividerThickness,
+              };
+        }
+      }
+
+      // 4. active-indicator-width: the ::after strip under the active tab.
+      // Only the underlined variant renders this pseudo-element. Reading
+      // `content` from the computed style tells us whether it exists; if the
+      // computed value is "none" the indicator isn't drawn.
+      nextRects["active-indicator-width"] = null;
+      if (activeTabSurface) {
+        const after = getComputedStyle(activeTabSurface, "::after");
+        const hasIndicator = after.content && after.content !== "none";
+        if (hasIndicator) {
+          const indicatorThickness = Number.parseFloat(orientation === "vertical" ? after.width : after.height) || 0;
+          if (indicatorThickness > 0) {
+            const tabBounds = activeTabSurface.getBoundingClientRect();
+            const shellBounds = shell.getBoundingClientRect();
+            nextRects["active-indicator-width"] = orientation === "vertical"
+              ? {
+                  left: tabBounds.right - shellBounds.left - indicatorThickness,
+                  top: tabBounds.top - shellBounds.top,
+                  width: indicatorThickness,
+                  height: tabBounds.height,
+                }
+              : {
+                  left: tabBounds.left - shellBounds.left,
+                  top: tabBounds.bottom - shellBounds.top - indicatorThickness,
+                  width: tabBounds.width,
+                  height: indicatorThickness,
+                };
+          }
+        }
+      }
+
+      // 5. tab-border-radius: only solid-variant tabs have a non-zero radius.
+      // Read the computed border-radius on the active tab's .tab element; if
+      // it's 0 (underlined variant) clear the rect so the token row + ring
+      // proxy don't surface.
+      nextRects["tab-border-radius"] = null;
+      if (activeTabSurface) {
+        const activeRadius = Number.parseFloat(getComputedStyle(activeTabSurface).borderTopLeftRadius || "0") || 0;
+        if (activeRadius > 0) {
+          nextRects["tab-border-radius"] = getRelativeRect(activeTabSurface, shell);
+        }
+      }
+
+      // Non-border tokens that always reference the active-tab surface.
+      if (activeTabSurface) {
+        const surfaceRect = getRelativeRect(activeTabSurface, shell);
+        nextRects["tab-bg"] = surfaceRect;
+        nextRects["tab-bg-hover"] = surfaceRect;
+        nextRects["active-bg"] = surfaceRect;
+        nextRects["color-default"] = surfaceRect;
+        nextRects["color-active"] = surfaceRect;
+        nextRects["color-active-solid"] = surfaceRect;
+        nextRects["font-size"] = surfaceRect;
+        nextRects["disabled-opacity"] = surfaceRect;
+      }
+    }
+
+    // Auto-detect gap bands for any gap-* token row that wasn't already
+    // populated above. Walks the component's flex/grid descendants (incl.
+    // shadow DOM) and matches each container's computed gap to the gap
+    // tokens declared in this component's table — so new components inherit
+    // gap highlighting just by listing the token, no per-component branch.
+    autoDetectGenericGapBands(component, shell, nextRects);
+
+    // Same idea for padding: walk every descendant and match its computed
+    // padding-top/right/bottom/left against each padding-* token's pixel
+    // value, so each token only highlights the actual element it applies
+    // to (subnav-actions's 12px padding-y, header's 32px padding, etc.) —
+    // not the whole-component surface rect.
+    autoDetectGenericPaddingBands(component, shell, nextRects);
 
     hotspotRects.value = nextRects;
     return;
@@ -2163,10 +4828,10 @@ const measureHotspots = async () => {
           top: bodyRect.top,
           width: bodyRect.width,
           height: bodyRect.height,
-          insetLeft: 0,
-          insetTop: Math.max(0, contentStackRect.top - bodyRect.top),
-          insetWidth: bodyRect.width,
-          insetHeight: contentStackRect.height,
+          insetLeft: Math.max(0, contentStackRect.left - bodyRect.left),
+          insetTop: 0,
+          insetWidth: contentStackRect.width,
+          insetHeight: bodyRect.height,
         };
 
         nextRects["padding-y"] = {
@@ -2174,10 +4839,10 @@ const measureHotspots = async () => {
           top: bodyRect.top,
           width: bodyRect.width,
           height: bodyRect.height,
-          insetLeft: Math.max(0, contentStackRect.left - bodyRect.left),
-          insetTop: 0,
-          insetWidth: contentStackRect.width,
-          insetHeight: bodyRect.height,
+          insetLeft: 0,
+          insetTop: Math.max(0, contentStackRect.top - bodyRect.top),
+          insetWidth: bodyRect.width,
+          insetHeight: contentStackRect.height,
         };
       }
     }
@@ -2322,28 +4987,28 @@ const getRowMapKey = (row: MeasurementTokenRow, groupTitle?: string) => {
   if (groupTitle?.startsWith("sgds/card") && row.property.startsWith("padding") && !["padding-x", "padding-y"].includes(row.property)) return null;
   if (row.mapKey) return row.mapKey;
   if (groupTitle?.startsWith("sgds/card")) return row.property;
-  if (!groupTitle?.startsWith("sgds/accordion/")) return null;
+  if (structureKind.value !== "accordion") return null;
   if (row.property === "padding-x") return "padding-x-default";
   if (row.property === "padding-y") return "padding-y-default";
   if (row.property === "padding-top" || row.property === "padding-bottom") return "content-padding";
   return null;
 };
 
-const isActiveDensityGroup = (groupTitle?: string) => {
-  if (!sizeToggleConfig.value) return true;
-  return groupTitle?.endsWith(`/${activeDensityId.value}`) ?? false;
-};
+const getRowCategory = (row: MeasurementTokenRow) =>
+  (row.category || row.element || "").trim();
 
+// Show the category label only on the first row of each consecutive run, so
+// the table reads like a grouped list ("Padding" once, then padding-x /
+// padding-y blank in the category column).
 const getCollapsedCategory = (
-  rows: MeasurementTokenRow[],
-  row: MeasurementTokenRow,
+  rows: { category?: string; element?: string }[],
+  row: { category?: string; element?: string },
   index: number,
 ) => {
-  const currentCategory = (row.category || row.element || "").trim();
-  if (!currentCategory) return "";
-  if (index === 0) return currentCategory;
-  const previousCategory = (rows[index - 1]?.category || rows[index - 1]?.element || "").trim();
-  return previousCategory === currentCategory ? "" : currentCategory;
+  const current = (row.category || row.element || "").trim();
+  if (!current || index === 0) return current;
+  const previous = (rows[index - 1]?.category || rows[index - 1]?.element || "").trim();
+  return current === previous ? "" : current;
 };
 </script>
 
@@ -2355,29 +5020,49 @@ const getCollapsedCategory = (
       @mouseleave="clearPreviewHover"
     >
       <SegmentedControl
-        v-if="sizeToggleConfig"
-        :model-value="activeDensityId"
-        :options="densitySegmentOptions"
-        :aria-label="sizeToggleConfig.ariaLabel"
-        @update:model-value="onDensitySegmentChange"
+        v-if="variantSegmentOptions.length >= 2 && variantAttributeName && activeVariant"
+        :model-value="activeVariant"
+        :options="variantSegmentOptions"
+        :aria-label="`${variantAttributeName} variant`"
+        @update:model-value="(value: string) => activeVariant = value"
       />
 
       <div
         ref="previewShellRef"
         :class="[
-          'sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-560)] sgds:w-full sgds:relative sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center sgds:min-h-[var(--sgds-dimension-224)]',
+          'sgds:bg-transparent sgds:mx-auto sgds:w-full sgds:relative sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center sgds:min-h-[var(--sgds-dimension-224)]',
+          isFooterStructure
+            ? 'sgds:max-w-full sgds:min-h-[var(--sgds-dimension-512)]'
+            : isSidebarStructure
+              ? 'sgds:max-w-full sgds:min-h-[var(--sgds-dimension-512)]'
+              : isModalFullscreenStructure
+                ? 'sgds:max-w-full sgds:min-h-[var(--sgds-dimension-400)]'
+                : isModalStructure
+                ? 'sgds:max-w-full sgds:min-h-[var(--sgds-dimension-512)]'
+                : 'sgds:max-w-[var(--sgds-dimension-560)]',
           structureKind === 'alert' ? 'sgds:min-h-[var(--sgds-dimension-288)] sgds:flex sgds:items-center' : '',
+          isDatepickerStructure ? 'sgds:min-h-[var(--sgds-dimension-512)] sgds:items-start sgds:pt-component-sm' : '',
+          isDropdownStructure ? 'sgds:min-h-[var(--sgds-dimension-360)]' : '',
+          isDrawerStructure ? 'sgds:min-h-[var(--sgds-dimension-360)]' : '',
         ]"
       >
         <div
           ref="previewMarkupRef"
           :class="[
-            'structure-preview-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full',
+            'structure-preview-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:max-w-full',
+            isFooterStructure ? footerPreviewWidthClass : 'sgds:w-full',
             structureKind === 'alert' ? 'sgds:items-center' : '',
+            isDatepickerStructure ? 'sgds:items-start' : '',
+            isDrawerStructure ? 'sgds:min-h-[var(--sgds-dimension-360)]' : '',
+            isModalFullscreenStructure
+              ? 'sgds:min-h-[var(--sgds-dimension-320)]'
+              : isModalStructure
+                ? 'sgds:min-h-[var(--sgds-dimension-480)]'
+                : '',
           ]"
-          @pointerdown.capture="preventAlertClose"
-          @click.capture="preventAlertClose"
-          @keydown.capture="preventAlertCloseKeyboard"
+          @pointerdown.capture="preventPreviewInteraction"
+          @click.capture="preventPreviewInteraction"
+          @keydown.capture="preventPreviewInteractionKeyboard"
           v-html="resolvedPreviewMarkup"
         ></div>
 
@@ -2393,7 +5078,9 @@ const getCollapsedCategory = (
             !(structureKind === 'breadcrumb' && key === 'group-gap') &&
             !(structureKind === 'card' && ['padding-x', 'padding-y'].includes(key as string)) &&
             !(structureKind === 'generic' && isPaddingOverlayKey(key as string) && genericPaddingBandsByKey[key as string]?.length) &&
-            !(structureKind === 'generic' && isGenericBorderKey(key as string) && genericBorderRectKey === key) &&
+            !(structureKind === 'generic' && isGapOverlayKey(key as string) && genericGapBandsByKey[key as string]?.length) &&
+            !(structureKind === 'generic' && isGenericBorderKey(key as string) && genericBorderRectKey) &&
+            !(structureKind === 'generic' && customBorderBandsByKey[key as string]?.length) &&
             !(isTooltipStructure && structureKind === 'generic' && ['padding-x', 'padding-y'].includes(key as string)) &&
             !(isTooltipStructure && structureKind === 'generic' && key === 'border-radius') &&
             !(isComboBoxStructure && structureKind === 'generic' && key === 'border-width') &&
@@ -2487,6 +5174,7 @@ const getCollapsedCategory = (
               top: `${band.top}px`,
               width: `${band.width}px`,
               height: `${band.height}px`,
+              borderRadius: band.borderRadius,
             }"
           ></div>
         </div>
@@ -2680,7 +5368,10 @@ const getCollapsedCategory = (
             v-for="(band, index) in bands"
             :key="`generic-padding-${key}-band-${index}`"
             type="button"
-            class="accordion-inspect-padding-proxy"
+            :class="[
+              'accordion-inspect-padding-proxy',
+              key === 'padding-x' || key === 'padding-xs' ? 'accordion-inspect-padding-proxy--priority' : '',
+            ]"
             :style="{
               left: `${band.left}px`,
               top: `${band.top}px`,
@@ -2707,6 +5398,50 @@ const getCollapsedCategory = (
             v-for="(band, index) in activeGenericPaddingBands"
             :key="`generic-padding-visual-${index}`"
             class="accordion-inspect-padding-visual__band"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+          ></div>
+        </div>
+
+        <template
+          v-for="(bands, key) in genericGapBandsByKey"
+          :key="`generic-gap-${key}`"
+        >
+          <button
+            v-for="(band, index) in bands"
+            :key="`generic-gap-${key}-band-${index}`"
+            type="button"
+            class="accordion-inspect-padding-proxy"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+            @mouseenter="hoverKey = key"
+            @mouseleave="clearPreviewHover"
+            @focus="hoverKey = key"
+            @blur="clearPreviewHover"
+            @click="scrollToTableRow(key as string)"
+            :aria-label="inspectMeta[key]?.aria || `Inspect component ${key}`"
+          >
+            <span class="sgds:sr-only">{{ inspectMeta[key]?.aria || `Inspect component ${key}` }}</span>
+          </button>
+        </template>
+
+        <div
+          v-if="activeGenericGapBands.length"
+          class="accordion-inspect-padding-visual"
+          aria-hidden="true"
+        >
+          <div
+            v-for="(band, index) in activeGenericGapBands"
+            :key="`generic-gap-visual-${index}`"
+            class="accordion-inspect-padding-visual__band accordion-inspect-padding-visual__band--gap"
             :style="{
               left: `${band.left}px`,
               top: `${band.top}px`,
@@ -2751,8 +5486,59 @@ const getCollapsedCategory = (
             top: `${hotspotRects[genericBorderRectKey]?.top || 0}px`,
             width: `${hotspotRects[genericBorderRectKey]?.width || 0}px`,
             height: `${hotspotRects[genericBorderRectKey]?.height || 0}px`,
+            borderRadius: genericBorderRadiusValue,
           }"
         ></div>
+
+        <!-- Custom per-element border bands (e.g. subnav's bottom-only
+             strokes on the .nav rule and the active item's underline).
+             Renders one proxy + one visual per band, replacing the
+             4-sided perimeter ring for keys whose border isn't a
+             rectangle around the whole component. -->
+        <template
+          v-for="(bands, key) in customBorderBandsByKey"
+          :key="`custom-border-${key}`"
+        >
+          <button
+            v-for="(band, index) in bands"
+            :key="`custom-border-${key}-band-${index}`"
+            type="button"
+            :class="key.includes('border-radius') ? 'accordion-inspect-border-proxy' : 'accordion-inspect-padding-proxy'"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+            }"
+            @mouseenter="hoverKey = key"
+            @mouseleave="clearPreviewHover"
+            @focus="hoverKey = key"
+            @blur="clearPreviewHover"
+            @click="scrollToTableRow(key as string)"
+            :aria-label="inspectMeta[key]?.aria || `Inspect component ${key}`"
+          >
+            <span class="sgds:sr-only">{{ inspectMeta[key]?.aria || `Inspect component ${key}` }}</span>
+          </button>
+        </template>
+
+        <div
+          v-if="hoverKey && customBorderBandsByKey[hoverKey]?.length"
+          class="accordion-inspect-padding-visual"
+          aria-hidden="true"
+        >
+          <div
+            v-for="(band, index) in customBorderBandsByKey[hoverKey]"
+            :key="`custom-border-visual-${index}`"
+            :class="hoverKey.includes('border-radius') ? 'alert-inspect-border-visual' : 'accordion-inspect-padding-visual__band accordion-inspect-padding-visual__band--gap'"
+            :style="{
+              left: `${band.left}px`,
+              top: `${band.top}px`,
+              width: `${band.width}px`,
+              height: `${band.height}px`,
+              borderRadius: hoverKey.includes('border-radius') ? (band.borderRadius || genericBorderRadiusValue) : undefined,
+            }"
+          ></div>
+        </div>
 
         <button
           v-for="(band, index) in tooltipPaddingXBands"
@@ -2847,6 +5633,27 @@ const getCollapsedCategory = (
         </button>
 
         <button
+          v-for="(band, index) in accordionBorderHoverBands"
+          :key="`accordion-border-band-${index}`"
+          type="button"
+          class="accordion-inspect-border-proxy"
+          :style="{
+            left: `${band.left}px`,
+            top: `${band.top}px`,
+            width: `${band.width}px`,
+            height: `${band.height}px`,
+          }"
+          @mouseenter="hoverKey = 'border-radius'"
+          @mouseleave="clearPreviewHover"
+          @focus="hoverKey = 'border-radius'"
+          @blur="clearPreviewHover"
+          @click="scrollToTableRow('border-radius')"
+          aria-label="Inspect accordion border"
+        >
+          <span class="sgds:sr-only">Inspect accordion border</span>
+        </button>
+
+        <button
           v-for="(band, index) in alertBorderHoverBands"
           :key="`alert-border-band-${index}`"
           type="button"
@@ -2886,69 +5693,6 @@ const getCollapsedCategory = (
           aria-label="Inspect button border"
         >
           <span class="sgds:sr-only">Inspect button border</span>
-        </button>
-
-        <button
-          v-for="(band, index) in checkboxBorderHoverBands"
-          :key="`checkbox-border-band-${index}`"
-          type="button"
-          class="accordion-inspect-border-proxy"
-          :style="{
-            left: `${band.left}px`,
-            top: `${band.top}px`,
-            width: `${band.width}px`,
-            height: `${band.height}px`,
-          }"
-          @mouseenter="hoverKey = 'control-border-radius'"
-          @mouseleave="clearPreviewHover"
-          @focus="hoverKey = 'control-border-radius'"
-          @blur="clearPreviewHover"
-          @click="scrollToTableRow('control-border-radius')"
-          aria-label="Inspect checkbox border radius"
-        >
-          <span class="sgds:sr-only">Inspect checkbox border radius</span>
-        </button>
-
-        <button
-          v-for="(band, index) in comboBoxBorderHoverBands"
-          :key="`combo-box-border-band-${index}`"
-          type="button"
-          class="accordion-inspect-border-proxy"
-          :style="{
-            left: `${band.left}px`,
-            top: `${band.top}px`,
-            width: `${band.width}px`,
-            height: `${band.height}px`,
-          }"
-          @mouseenter="hoverKey = 'border-width'"
-          @mouseleave="clearPreviewHover"
-          @focus="hoverKey = 'border-width'"
-          @blur="clearPreviewHover"
-          @click="scrollToTableRow('border-width')"
-          aria-label="Inspect combo box border"
-        >
-          <span class="sgds:sr-only">Inspect combo box border</span>
-        </button>
-
-        <button
-          v-for="(band, index) in tooltipBorderHoverBands"
-          :key="`tooltip-border-band-${index}`"
-          type="button"
-          class="accordion-inspect-border-proxy"
-          :style="{
-            left: `${band.left}px`,
-            top: `${band.top}px`,
-            width: `${band.width}px`,
-            height: `${band.height}px`,
-          }"
-          @mouseenter="hoverKey = 'border-radius'"
-          @mouseleave="clearPreviewHover"
-          @focus="hoverKey = 'border-radius'"
-          @blur="clearPreviewHover"
-          @click="scrollToTableRow('border-radius')"
-          aria-label="Inspect tooltip border radius"
-        >
-          <span class="sgds:sr-only">Inspect tooltip border radius</span>
         </button>
 
         <!-- Button gap hover proxies: one per void (leftIcon↔label,
@@ -3077,6 +5821,9 @@ const getCollapsedCategory = (
             :class="[
               annotation.orientation === 'height' ? 'accordion-inspect-annotation--height' : 'accordion-inspect-annotation--min-width',
               annotation.labelPlacement === 'left' ? 'accordion-inspect-annotation--label-left' : '',
+              annotation.labelPlacement === 'above' ? 'accordion-inspect-annotation--label-above' : '',
+              annotation.isThickness ? 'accordion-inspect-annotation--thickness' : '',
+              annotation.isIconSize ? 'accordion-inspect-annotation--icon-size' : '',
             ]"
             aria-hidden="true"
             data-active="true"
@@ -3105,46 +5852,43 @@ const getCollapsedCategory = (
         ></div>
 
         <div
-          v-if="hoverKey && hotspotRects[hoverKey]"
+          v-if="hoverKey && hotspotRects[hoverKey] && hasVisibleTooltipContent(inspectMeta[hoverKey])"
           :class="[
             'accordion-inspect-tooltip',
             tooltipPlacement === 'right' ? 'accordion-inspect-tooltip--align-right' : '',
           ]"
           :style="tooltipStyle"
         >
-          <sgds-badge
-            v-if="isSemanticTokenKey(hoverKey)"
-            variant="neutral"
-            outlined
-          >Semantic token</sgds-badge>
           <div class="accordion-inspect-tooltip__grid">
             <div
-              v-if="inspectMeta[hoverKey].label"
+              v-if="shouldShowPrimaryTooltipRow(inspectMeta[hoverKey])"
               :class="getTooltipTagClass(hoverKey)"
             >
-              {{ inspectMeta[hoverKey].label }}
+              {{ getTooltipPrimaryCategory(hoverKey, inspectMeta[hoverKey]) }}
             </div>
             <div
+              v-if="shouldShowPrimaryTooltipRow(inspectMeta[hoverKey])"
               class="accordion-inspect-tooltip__value"
-              :class="!inspectMeta[hoverKey].label ? 'accordion-inspect-tooltip__value--span-name' : ''"
             >
-              {{ inspectMeta[hoverKey].value }}
+              {{ formatToken(inspectMeta[hoverKey].value) }}
             </div>
-            <div class="accordion-inspect-tooltip__value accordion-inspect-tooltip__value--raw">
+            <div
+              v-if="shouldShowPrimaryTooltipRow(inspectMeta[hoverKey])"
+              class="accordion-inspect-tooltip__value accordion-inspect-tooltip__value--raw"
+            >
               {{ inspectMeta[hoverKey].valueSuffix }}
             </div>
             <template
-              v-for="(row, index) in inspectMeta[hoverKey].rows"
+              v-for="(row, index) in getVisibleTooltipRows(inspectMeta[hoverKey])"
               :key="`${hoverKey}-tooltip-row-${index}`"
             >
-              <div v-if="row.label" :class="getTooltipTagClass(hoverKey)">
-                {{ row.label }}
+              <div :class="getTooltipTagClass(row.label || hoverKey)">
+                <template v-if="shouldShowTooltipRowCategory(inspectMeta[hoverKey], index)">
+                  {{ getTooltipRowCategory(row, hoverKey) }}
+                </template>
               </div>
-              <div
-                class="accordion-inspect-tooltip__value"
-                :class="!row.label ? 'accordion-inspect-tooltip__value--span-name' : ''"
-              >
-                {{ row.value }}
+              <div class="accordion-inspect-tooltip__value">
+                {{ formatToken(row.value) }}
               </div>
               <div class="accordion-inspect-tooltip__value accordion-inspect-tooltip__value--raw">
                 {{ row.valueSuffix }}
@@ -3155,113 +5899,45 @@ const getCollapsedCategory = (
       </div>
     </div>
 
-    <div v-if="baseTokenTitle && (tokens.length || tokenGroups?.length)" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
+    <div v-if="hasDesignTokenRows" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-        <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Component tokens</h3>
-        <p v-if="structureKind !== 'alert'" class="sgds:m-0 sgds:max-w-[var(--sgds-dimension-760)] sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
-          Component tokens are specific to each component. Use the table title as the prefix:
-          <span class="sgds:font-semibold">{{ componentTokenHelper.exampleToken }}</span>
-          under
-          <span class="sgds:font-semibold">{{ componentTokenHelper.prefix }}</span>
-          means
-          <span class="sgds:font-semibold">{{ componentTokenHelper.fullToken }}</span>.
-        </p>
-        <p v-else class="sgds:m-0 sgds:max-w-[var(--sgds-dimension-760)] sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
-          Component tokens are specific to Alert. Use the table title as the prefix:
-          <span class="sgds:font-semibold">padding-x</span>
-          under
-          <span class="sgds:font-semibold">sgds/alert</span>
-          means
-          <span class="sgds:font-semibold">sgds/alert/padding-x</span>;
-          <span class="sgds:font-semibold">bg-emphasis</span>
-          under
-          <span class="sgds:font-semibold">sgds / alert / info</span>
-          means
-          <span class="sgds:font-semibold">sgds/alert/info/bg-emphasis</span>.
+        <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Design tokens used</h3>
+        <p class="sgds:m-0 sgds:max-w-[var(--sgds-dimension-760)] sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+          Each row is a colour, spacing, or size value the component uses, and
+          the right-most column tells you where in the component you'll see it.
+          Hover any row to highlight that part in the demo above.
         </p>
       </div>
-      <div v-if="tokens.length" class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-2-xs)]">
-        <h5 class="sgds:m-0 sgds:text-heading-xs sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ baseTokenTitle }}</h5>
+      <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-2-xs)]">
         <sgds-table tableBorder headerBackground responsive="always">
           <sgds-table-row>
             <sgds-table-head>Category</sgds-table-head>
-            <sgds-table-head>Component token</sgds-table-head>
-            <sgds-table-head>Semantic token</sgds-table-head>
+            <sgds-table-head>Token</sgds-table-head>
             <sgds-table-head>Value</sgds-table-head>
+            <sgds-table-head>Where it's used</sgds-table-head>
           </sgds-table-row>
           <sgds-table-row
-            v-for="(row, index) in tokens"
-            :key="`${row.element}-${row.property}-${row.designToken}`"
-            :class="[isRowActive(row.mapKey || null, row.designToken) ? 'structure-row-active' : '']"
-            :data-structure-row-key="row.mapKey || null"
-            :data-structure-tone="getStructureTone(row.mapKey || null)"
+            v-for="(row, index) in designTokenRows"
+            :key="`${row.groupTitle || 'base'}-${row.element}-${row.property}-${row.designToken}-${index}`"
+            :class="[isRowActive(getRowMapKey(row, row.groupTitle) || row.mapKey || null, row.designToken) ? 'structure-row-active' : '']"
+            :data-structure-row-key="getRowMapKey(row, row.groupTitle) || row.mapKey || null"
+            :data-structure-tone="getStructureTone(getRowMapKey(row, row.groupTitle) || row.mapKey || null)"
             tabindex="-1"
-            @mouseenter="row.mapKey && isHoverableStructureKey(row.mapKey) && !isBackgroundOverlayKey(row.mapKey) ? (hoverKey = row.mapKey) : null"
+            @mouseenter="(getRowMapKey(row, row.groupTitle) || row.mapKey) && isHoverableStructureKey(getRowMapKey(row, row.groupTitle) || row.mapKey || null) && !isBackgroundOverlayKey(getRowMapKey(row, row.groupTitle) || row.mapKey || null) ? (hoverKey = getRowMapKey(row, row.groupTitle) || row.mapKey || null) : null"
             @mouseleave="hoverKey = null"
           >
-            <sgds-table-cell>{{ getCollapsedCategory(tokens, row, index) }}</sgds-table-cell>
-            <sgds-table-cell>{{ row.property }}</sgds-table-cell>
-            <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
-            <sgds-table-cell>{{ getStructureValue(row, row.mapKey || row.property) }}</sgds-table-cell>
+            <sgds-table-cell>{{ getCollapsedCategory(designTokenRows, row, index) }}</sgds-table-cell>
+            <sgds-table-cell><CodeToken :label="formatToken(row.designToken)" /></sgds-table-cell>
+            <sgds-table-cell>
+              <CodeToken
+                :label="getStructureValue(row, getRowMapKey(row, row.groupTitle) || row.mapKey || row.property)"
+                :surface="false"
+              />
+            </sgds-table-cell>
+            <sgds-table-cell>{{ row.usage || "" }}</sgds-table-cell>
           </sgds-table-row>
         </sgds-table>
       </div>
-
-      <div
-        v-for="group in tokenGroups"
-        :key="group.title"
-        class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-2-xs)]"
-      >
-        <h5 class="sgds:m-0 sgds:text-heading-xs sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ group.title }}</h5>
-        <sgds-table tableBorder headerBackground responsive="always">
-          <sgds-table-row>
-            <sgds-table-head>Category</sgds-table-head>
-            <sgds-table-head>Component token</sgds-table-head>
-            <sgds-table-head>Semantic token</sgds-table-head>
-            <sgds-table-head>Value</sgds-table-head>
-          </sgds-table-row>
-          <sgds-table-row
-            v-for="(row, index) in group.tokens"
-            :key="`${group.title}-${row.property}-${row.designToken}`"
-            :class="[isActiveDensityGroup(group.title) && isRowActive(getRowMapKey(row, group.title), row.designToken) ? 'structure-row-active' : '']"
-            :data-structure-row-key="getRowMapKey(row, group.title) || null"
-            :data-structure-tone="getStructureTone(getRowMapKey(row, group.title))"
-            tabindex="-1"
-            @mouseenter="isActiveDensityGroup(group.title) && getRowMapKey(row, group.title) && isHoverableStructureKey(getRowMapKey(row, group.title)) && !isBackgroundOverlayKey(getRowMapKey(row, group.title)) ? (hoverKey = getRowMapKey(row, group.title)) : null"
-            @mouseleave="hoverKey = null"
-          >
-            <sgds-table-cell>{{ getCollapsedCategory(group.tokens, row, index) }}</sgds-table-cell>
-            <sgds-table-cell>{{ row.property }}</sgds-table-cell>
-            <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
-            <sgds-table-cell>{{ getStructureValue(row, getRowMapKey(row, group.title)) }}</sgds-table-cell>
-          </sgds-table-row>
-        </sgds-table>
-      </div>
-    </div>
-
-    <div v-if="flattenedSemanticTokens.length" class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-sm)]">
-      <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Semantic tokens</h3>
-      <sgds-table tableBorder headerBackground responsive="always">
-        <sgds-table-row>
-          <sgds-table-head>Category</sgds-table-head>
-          <sgds-table-head>Semantic token</sgds-table-head>
-          <sgds-table-head>Value</sgds-table-head>
-        </sgds-table-row>
-        <sgds-table-row
-          v-for="(row, index) in flattenedSemanticTokens"
-          :key="`global-${row.element}-${row.property}-${row.designToken}-${index}`"
-          :class="[isRowActive(row.mapKey || null, row.designToken) ? 'structure-row-active' : '']"
-          :data-structure-row-key="row.mapKey || null"
-          :data-structure-tone="getStructureTone(row.mapKey || null)"
-          tabindex="-1"
-          @mouseenter="row.mapKey && isHoverableStructureKey(row.mapKey) && !isBackgroundOverlayKey(row.mapKey) ? (hoverKey = row.mapKey) : null"
-          @mouseleave="hoverKey = null"
-        >
-          <sgds-table-cell>{{ getCollapsedCategory(flattenedSemanticTokens, row, index) }}</sgds-table-cell>
-          <sgds-table-cell><CodeToken :label="row.designToken" /></sgds-table-cell>
-          <sgds-table-cell>{{ getStructureValue(row, row.mapKey || row.property) }}</sgds-table-cell>
-        </sgds-table-row>
-      </sgds-table>
     </div>
 
   </div>
@@ -3296,6 +5972,30 @@ sgds-table-row.structure-row-clickable {
   cursor: pointer;
 }
 
+/* Make the rendered component non-interactive so hover events fall through
+   to the absolutely-positioned inspect proxy buttons sitting beside the
+   markup. Without this, the host element (e.g. <sgds-button>, <sgds-tooltip>)
+   captures pointer events and the proxies under it never fire. */
+.structure-preview-markup,
+.structure-preview-markup * {
+  pointer-events: none;
+}
+
+/* Suppress host-level z-index on rendered sgds components inside the
+   structure preview. Components like <sgds-subnav> set
+   `z-index: var(--sgds-z-index-sticky)` (200) on their host to support
+   sticky behaviour in real layouts, but inside the static structure
+   preview that ranking pushes the component above the inspect overlay
+   (`.accordion-inspect-padding-visual` / `.accordion-inspect-padding-proxy`,
+   z-index 6–10), hiding the padding / gap highlight bands. The preview
+   doesn't need any layering semantics from the rendered components, so
+   reset their z-index here. Shadow-DOM internals are unaffected — this
+   rule only reaches the host elements in the light DOM. */
+.structure-preview-markup > *,
+.structure-preview-markup > * * {
+  z-index: auto !important;
+}
+
 .structure-preview-markup > sgds-accordion {
   background: var(--sgds-surface-default);
   border-radius: var(--sgds-border-radius-md);
@@ -3323,6 +6023,44 @@ sgds-table-row.structure-row-clickable {
   display: block;
   max-width: var(--sgds-dimension-640);
   width: 100%;
+}
+
+.structure-preview-markup > sgds-modal {
+  display: block;
+  min-height: var(--sgds-dimension-480);
+  position: relative;
+  width: 100%;
+}
+
+.structure-preview-markup > sgds-modal[size="fullscreen"] {
+  min-height: var(--sgds-dimension-320);
+}
+
+/* Global selectors for drawer markup rendered through v-html. The SGDS
+   contained drawer expects its parent to provide the containing block. */
+.structure-preview-markup > .portal-demo-overlay:has(> sgds-drawer) {
+  background: var(--sgds-bg-overlay);
+  min-height: var(--sgds-dimension-360);
+}
+
+.structure-preview-markup > .portal-demo-overlay > sgds-drawer {
+  inset: 0;
+  position: absolute;
+}
+
+/* Tab structure preview: constrain the underlined nav so it doesn't stretch
+   across the full structure shell. Higher specificity (class + attribute) is
+   needed to override the SGDS `sgds-tab-group[variant="underlined"]` rule
+   that forces width: 100%. Keeps the demo focused on the nav strip, divider
+   rule and active-indicator, and leaves room for thickness-annotation labels
+   on the left. */
+.structure-preview-markup > sgds-tab-group,
+.structure-preview-markup > sgds-tab-group[variant="underlined"],
+.structure-preview-markup > sgds-tab-group[variant="solid"] {
+  display: block;
+  inline-size: var(--sgds-dimension-256);
+  max-inline-size: 100%;
+  width: var(--sgds-dimension-256);
 }
 
 .accordion-inspect-hotspot {
@@ -3375,7 +6113,11 @@ sgds-table-row.structure-row-clickable {
   cursor: pointer;
   padding: 0;
   position: absolute;
-  z-index: 8;
+  /* Sit above sibling proxies (padding, etc.) at the same z-stack so the
+     thin strip running along the visible border edge always wins the hover
+     race. Without this, a padding-y proxy that overlaps the border strip
+     captures the pointer first and the border popup never appears. */
+  z-index: 9;
 }
 
 .accordion-inspect-padding-proxy {
@@ -3383,9 +6125,16 @@ sgds-table-row.structure-row-clickable {
   background: transparent;
   border: 0;
   cursor: pointer;
+  min-height: 8px;
+  min-width: 8px;
   padding: 0;
   position: absolute;
   z-index: 8;
+}
+
+.accordion-inspect-padding-proxy--priority {
+  min-width: 12px;
+  z-index: 10;
 }
 
 .alert-inspect-border-visual {
@@ -3434,10 +6183,10 @@ sgds-table-row.structure-row-clickable {
 .accordion-inspect-annotation--height::before {
   background: var(--sgds-purple-border-color-default);
   content: "";
-  height: 100%;
+  height: calc(100% - 2px);
   left: 8px;
   position: absolute;
-  top: 0;
+  top: 1px;
   width: 1px;
 }
 .accordion-inspect-annotation--height::after {
@@ -3455,7 +6204,8 @@ sgds-table-row.structure-row-clickable {
   width: 9px;
 }
 .accordion-inspect-annotation--height .accordion-inspect-annotation__label {
-  left: 20px;
+  /* Bracket end cap right edge sits at offset 13. Add 8px for consistent gap. */
+  left: 21px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -3470,10 +6220,10 @@ sgds-table-row.structure-row-clickable {
   background: var(--sgds-purple-border-color-default);
   content: "";
   height: 1px;
-  left: 0;
+  left: 1px;
   position: absolute;
   top: 8px;
-  width: 100%;
+  width: calc(100% - 2px);
 }
 .accordion-inspect-annotation--min-width::after {
   background-image:
@@ -3490,21 +6240,62 @@ sgds-table-row.structure-row-clickable {
   width: 100%;
 }
 .accordion-inspect-annotation--min-width .accordion-inspect-annotation__label {
+  /* Bracket end cap bottom sits at offset 13. Add 8px for consistent gap. */
   left: 50%;
-  top: 16px;
+  top: 21px;
   transform: translateX(-50%);
+}
+
+.accordion-inspect-annotation--min-width.accordion-inspect-annotation--icon-size .accordion-inspect-annotation__label {
+  top: 21px;
 }
 
 .accordion-inspect-annotation--min-width.accordion-inspect-annotation--label-left .accordion-inspect-annotation__label {
   left: 0;
-  top: 16px;
+  top: 21px;
   transform: translateX(0);
 }
 
+.accordion-inspect-annotation--min-width.accordion-inspect-annotation--label-above .accordion-inspect-annotation__label {
+  /* Bracket end cap top at offset 4. Subtract 8px for consistent gap. */
+  left: 50%;
+  top: -4px;
+  transform: translate(-50%, -100%);
+}
+
 .accordion-inspect-annotation--height.accordion-inspect-annotation--label-left .accordion-inspect-annotation__label {
-  left: -8px;
+  /* Bracket end cap left at offset 4. Subtract 8px for consistent gap. */
+  left: -4px;
   top: 50%;
   transform: translate(-100%, -50%);
+}
+
+/* Stroke-thickness annotations (e.g. nav divider, active-tab indicator). The
+   strip is too thin to bracket meaningfully so we drop the bracket lines
+   and render only the label badge. The container is a 0-width anchor whose
+   right edge sits one gutter away from the strip; the label is absolutely
+   positioned and grows leftward from that anchor. */
+.accordion-inspect-annotation--thickness {
+  width: 0;
+}
+
+.accordion-inspect-annotation--thickness::before,
+.accordion-inspect-annotation--thickness::after {
+  display: none;
+}
+
+/* Higher specificity to override the .label-left rule that translates the
+   label by -100% (which would push it off-screen for thickness annotations).
+   Also tighter padding so the badge fits in the narrow space between the
+   demo box's left edge and the strip itself. */
+.accordion-inspect-annotation--height.accordion-inspect-annotation--thickness .accordion-inspect-annotation__label,
+.accordion-inspect-annotation--height.accordion-inspect-annotation--thickness.accordion-inspect-annotation--label-left .accordion-inspect-annotation__label {
+  font-size: 10px;
+  left: auto;
+  padding: 1px 5px;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 .accordion-inspect-annotation[data-active="true"] .accordion-inspect-annotation__label {
@@ -3854,7 +6645,7 @@ sgds-table-row.structure-row-clickable {
   position: absolute;
   top: 0;
   transform: translate(-12px, calc(-100% - 12px));
-  z-index: 10;
+  z-index: var(--sgds-z-index-overlay);
 }
 
 .accordion-inspect-tooltip--align-right {

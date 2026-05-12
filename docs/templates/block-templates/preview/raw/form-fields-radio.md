@@ -1,6 +1,6 @@
 ---
 layout: bare
-title: Form Fields Radio
+title: Form fields radio
 ---
 
 <script setup>
