@@ -35,8 +35,6 @@ const { title, description, metadata, headerLinks, titleClass, descriptionClass,
 const isMaskedBrandIcon = (label: string) =>
   ["github", "storybook"].includes(label.toLowerCase());
 
-const isStorybookLink = (label: string) => label.toLowerCase() === "storybook";
-
 const brandIconClass = (label: string) =>
   `page-header-brand-icon page-header-brand-icon--${label.toLowerCase()}`;
 </script>

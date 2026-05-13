@@ -152,7 +152,8 @@ export const componentDocTemplate: ComponentDoc = {
   purposeCards: [
     {
       title: "TODO: first value prop",
-      description: "TODO: 1–2 sentence description of the first reason to use this component.",
+      description:
+        "TODO: 1–2 sentence description of the first reason to use this component.",
     },
     {
       title: "TODO: second value prop",
@@ -281,28 +282,100 @@ export const componentDocTemplate: ComponentDoc = {
     {
       title: "sgds/TODO-component/default",
       tokens: [
-        { category: "Padding", element: "Header padding", property: "padding-x", designToken: "sgds/padding/lg", rawValue: "20px" },
-        { category: "Padding", element: "",               property: "padding-y", designToken: "sgds/padding/lg", rawValue: "20px" },
-        { category: "Padding", element: "Content padding", property: "padding-top",    designToken: "sgds/padding/xs", rawValue: "4px" },
-        { category: "Padding", element: "",                property: "padding-bottom", designToken: "sgds/padding/lg", rawValue: "20px" },
+        {
+          category: "Padding",
+          element: "Header padding",
+          property: "padding-x",
+          designToken: "sgds/padding/lg",
+          rawValue: "20px",
+        },
+        {
+          category: "Padding",
+          element: "",
+          property: "padding-y",
+          designToken: "sgds/padding/lg",
+          rawValue: "20px",
+        },
+        {
+          category: "Padding",
+          element: "Content padding",
+          property: "padding-top",
+          designToken: "sgds/padding/xs",
+          rawValue: "4px",
+        },
+        {
+          category: "Padding",
+          element: "",
+          property: "padding-bottom",
+          designToken: "sgds/padding/lg",
+          rawValue: "20px",
+        },
       ],
     },
     {
       title: "sgds/TODO-component/compact",
       tokens: [
-        { category: "Padding", element: "Header padding", property: "padding-x", designToken: "sgds/padding/md", rawValue: "16px" },
-        { category: "Padding", element: "",               property: "padding-y", designToken: "sgds/padding/md", rawValue: "16px" },
-        { category: "Padding", element: "Content padding", property: "padding-top",    designToken: "sgds/padding/xs", rawValue: "4px" },
-        { category: "Padding", element: "",                property: "padding-bottom", designToken: "sgds/padding/md", rawValue: "16px" },
+        {
+          category: "Padding",
+          element: "Header padding",
+          property: "padding-x",
+          designToken: "sgds/padding/md",
+          rawValue: "16px",
+        },
+        {
+          category: "Padding",
+          element: "",
+          property: "padding-y",
+          designToken: "sgds/padding/md",
+          rawValue: "16px",
+        },
+        {
+          category: "Padding",
+          element: "Content padding",
+          property: "padding-top",
+          designToken: "sgds/padding/xs",
+          rawValue: "4px",
+        },
+        {
+          category: "Padding",
+          element: "",
+          property: "padding-bottom",
+          designToken: "sgds/padding/md",
+          rawValue: "16px",
+        },
       ],
     },
     {
       title: "sgds/TODO-component/spacious",
       tokens: [
-        { category: "Padding", element: "Header padding", property: "padding-x", designToken: "sgds/padding/xl", rawValue: "24px" },
-        { category: "Padding", element: "",               property: "padding-y", designToken: "sgds/padding/xl", rawValue: "24px" },
-        { category: "Padding", element: "Content padding", property: "padding-top",    designToken: "sgds/padding/xs", rawValue: "4px" },
-        { category: "Padding", element: "",                property: "padding-bottom", designToken: "sgds/padding/xl", rawValue: "24px" },
+        {
+          category: "Padding",
+          element: "Header padding",
+          property: "padding-x",
+          designToken: "sgds/padding/xl",
+          rawValue: "24px",
+        },
+        {
+          category: "Padding",
+          element: "",
+          property: "padding-y",
+          designToken: "sgds/padding/xl",
+          rawValue: "24px",
+        },
+        {
+          category: "Padding",
+          element: "Content padding",
+          property: "padding-top",
+          designToken: "sgds/padding/xs",
+          rawValue: "4px",
+        },
+        {
+          category: "Padding",
+          element: "",
+          property: "padding-bottom",
+          designToken: "sgds/padding/xl",
+          rawValue: "24px",
+        },
       ],
     },
   ],
@@ -382,10 +455,10 @@ export const componentDocTemplate: ComponentDoc = {
     sections: [],
 
     keyboardInteractions: [
-      { key: "Tab",         description: "TODO: what Tab does." },
+      { key: "Tab", description: "TODO: what Tab does." },
       { key: "Shift + Tab", description: "TODO: what Shift+Tab does." },
-      { key: "Enter",       description: "TODO: what Enter does." },
-      { key: "Space",       description: "TODO: what Space does." },
+      { key: "Enter", description: "TODO: what Enter does." },
+      { key: "Space", description: "TODO: what Space does." },
     ],
   },
   accessibilityNotes: [

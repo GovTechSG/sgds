@@ -10,7 +10,10 @@ const vitePressConfig = {
   cleanUrls: true,
   head: [
     ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
-    ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" }],
+    [
+      "link",
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
+    ],
     [
       "link",
       {
@@ -57,14 +60,14 @@ function getMenu(folder: string) {
 
 // https://vitepress.dev/reference/site-config
 const config = withSidebar(vitePressConfig, [
-    getMenu("foundations"),
-    getMenu("components"),
-    getMenu("templates"),
-    getMenu("blocks"),
-    getMenu("guidelines"),
-    getMenu("resources"),
-    getMenu("ai"),
-  ]);
+  getMenu("foundations"),
+  getMenu("components"),
+  getMenu("templates"),
+  getMenu("blocks"),
+  getMenu("guidelines"),
+  getMenu("resources"),
+  getMenu("ai"),
+]);
 
 config.themeConfig ??= {};
 config.themeConfig.sidebar ??= {};
@@ -127,24 +130,18 @@ config.themeConfig.sidebar["/components/"] = {
 config.themeConfig.sidebar["/foundations/"] = foundationsSidebar;
 config.themeConfig.sidebar["/templates/"] = {
   base: "/templates/",
-  items: [
-    { text: "Overview", link: "/templates/" },
-  ],
+  items: [{ text: "Overview", link: "/templates/" }],
 };
 config.themeConfig.sidebar["/blocks/"] = {
   base: "/blocks/",
-  items: [
-    { text: "Overview", link: "/blocks/" },
-  ],
+  items: [{ text: "Overview", link: "/blocks/" }],
 };
 config.themeConfig.sidebar["/guidelines/"] = {
   base: "/guidelines/",
   items: [
     {
       text: "Guidelines",
-      items: [
-        { text: "Overview", link: "/guidelines/overview" },
-      ],
+      items: [{ text: "Overview", link: "/guidelines/overview" }],
     },
   ],
 };
@@ -153,31 +150,24 @@ config.themeConfig.sidebar["/resources/"] = {
   items: [
     {
       text: "Resources",
-      items: [
-        { text: "Overview", link: "/resources/overview" },
-      ],
+      items: [{ text: "Overview", link: "/resources/overview" }],
     },
   ],
 };
 config.themeConfig.sidebar["/ai/"] = {
   base: "/ai/",
   items: [
+    { text: "Introduction", link: "/ai/introduction" },
+    { text: "Agent skills", link: "/ai/skills" },
     {
-      text: "Overview",
+      text: "Use AI with SGDS",
+      collapsed: false,
       items: [
-        { text: "Introduction", link: "/ai/introduction" },
-        { text: "What AI can do", link: "/ai/what-ai-can-do" },
+        { text: "Figma workflows", link: "/ai/figma-and-code-workflows" },
+        { text: "Development workflows", link: "/ai/development-workflows" },
       ],
     },
-    {
-      text: "Setup & workflows",
-      items: [
-        { text: "LLMs.txt", link: "/ai/llm-txt" },
-        { text: "Agent skills", link: "/ai/agent-skills" },
-        { text: "MCP server", link: "/ai/mcp-server" },
-        { text: "Prompt tips", link: "/ai/prompt-tips" },
-      ],
-    },
+    { text: "Prompt tips", link: "/ai/prompt-tips" },
   ],
 };
 

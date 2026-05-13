@@ -143,15 +143,21 @@ export const searchIndex: SearchItem[] = [
 
   // AI
   { title: "Introduction", category: "AI", url: "/ai/introduction", keywords: ["ai", "overview"] },
+  { title: "Overview", category: "AI", url: "/ai/overview", keywords: ["ai", "skills", "setup"] },
   { title: "What AI can do", category: "AI", url: "/ai/what-ai-can-do", keywords: ["capabilities", "features"] },
+  { title: "Figma workflows", category: "AI", url: "/ai/figma-and-code-workflows", keywords: ["ai", "workflow", "figma", "mcp", "code to figma", "figma to code", "designer developer handoff"] },
+  { title: "Development workflows", category: "AI", url: "/ai/development-workflows", keywords: ["ai", "workflow", "new project", "existing project", "developers", "code", "prompt to code", "sgds skills"] },
+  { title: "Designers", category: "AI", url: "/ai/designers", keywords: ["design", "role"] },
+  { title: "Developers", category: "AI", url: "/ai/developers", keywords: ["dev", "code", "role"] },
+  { title: "Others", category: "AI", url: "/ai/others", keywords: ["role", "product", "delivery"] },
+  { title: "Agent skills", category: "AI", url: "/ai/skills", keywords: ["skills", "agent skills", "install", "setup", "configure"] },
+  { title: "LLMs.txt", category: "AI", url: "/ai/llm-txt", keywords: ["llms", "llms.txt", "context", "documentation"] },
   { title: "Setup instructions", category: "AI", url: "/ai/setup-instructions", keywords: ["install", "setup", "configure"] },
   { title: "Prompt tips", category: "AI", url: "/ai/prompt-tips", keywords: ["prompts", "tips", "guide"] },
   { title: "What is MCP?", category: "AI", url: "/ai/what-is-mcp", keywords: ["mcp", "model context protocol"] },
+  { title: "MCP server", category: "AI", url: "/ai/figma-and-code-workflows", keywords: ["mcp", "server", "figma"] },
   { title: "MCP server setup", category: "AI", url: "/ai/mcp-server-setup", keywords: ["mcp", "server", "setup"] },
-  { title: "Figma to code", category: "AI", url: "/ai/figma-to-code", keywords: ["figma", "design", "code"] },
-  { title: "Designers", category: "AI", url: "/ai/designers", keywords: ["design", "role"] },
-  { title: "Developers", category: "AI", url: "/ai/developers", keywords: ["dev", "code", "role"] },
-  { title: "Others", category: "AI", url: "/ai/others", keywords: ["role"] },
+  { title: "Figma to code", category: "AI", url: "/ai/figma-and-code-workflows", keywords: ["figma", "design", "code"] },
 ];
 
 const categoryOrder: Record<string, number> = {

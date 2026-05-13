@@ -190,28 +190,6 @@ export type AlertPlaygroundContent = {
   defaultSlotText: string;
 };
 
-export type AlertPlaygroundContent = {
-  variantLabel: string;
-  outlinedLabel: string;
-  dismissibleLabel: string;
-  withIconLabel: string;
-  titleToggleLabel: string;
-  editTextLabel: string;
-  editTitleLabel: string;
-  editDescriptionLabel: string;
-  slotLabel: string;
-  defaultVariant: "info" | "success" | "danger" | "warning" | "neutral";
-  defaultOutlined: boolean;
-  defaultDismissible: boolean;
-  defaultWithIcon: boolean;
-  defaultShowTitle: boolean;
-  defaultShowSlot: boolean;
-  defaultTitle: string;
-  defaultDescription: string;
-  defaultLinkLabel: string;
-  defaultSlotText: string;
-};
-
 export type AccessibilitySection = {
   title: string;
   description?: string[];
@@ -2161,6 +2139,57 @@ const componentDocs: Record<string, ComponentDoc> = {
               "The default filled style uses a solid background. Use when the badge needs to read strongly at a glance.",
           },
           {
+            label: "Warning",
+            value: "warning",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="warning">Warning</sgds-badge></div>`,
+            description:
+              "Use to flag items needing attention without blocking the user — for example, pending review or nearing a threshold.",
+          },
+          {
+            label: "Danger",
+            value: "danger",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="danger">Danger</sgds-badge></div>`,
+            description:
+              "Use to communicate an error, failure, or critical state that should draw the user's attention immediately.",
+          },
+          {
+            label: "Cyan",
+            value: "cyan",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="cyan">Cyan</sgds-badge></div>`,
+            description:
+              "A supplementary category tone. Use to differentiate labels when a status colour is not appropriate.",
+          },
+          {
+            label: "Purple",
+            value: "purple",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="purple">Purple</sgds-badge></div>`,
+            description:
+              "Another supplementary category tone. Pair with cyan to separate two or more non-status categories.",
+          },
+          {
+            label: "White",
+            value: "white",
+            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-badge variant="white">White</sgds-badge></div>`,
+            description:
+              "Use on dark or coloured backgrounds where the other variants would lack contrast.",
+          },
+        ],
+      },
+      {
+        title: "Outlined",
+        description:
+          "Controls whether the badge uses a filled or outlined style. Outlined gives the badge a lighter visual presence.",
+        controlLabel: "Badge outlined options",
+        defaultValue: "filled",
+        options: [
+          {
+            label: "Filled",
+            value: "filled",
+            markup: `<div class="portal-demo-row"><sgds-badge variant="accent">Filled</sgds-badge></div>`,
+            description:
+              "The default filled style uses a solid background. Use when the badge needs to read strongly at a glance.",
+          },
+          {
             label: "Outlined",
             value: "outlined",
             markup: `<div class="portal-demo-row portal-demo-row-center">
@@ -3391,6 +3420,125 @@ const componentDocs: Record<string, ComponentDoc> = {
         ],
       },
     ],
+    measurements: [
+      {
+        title: "",
+        description: "",
+        markup: `<sgds-button class="portal-structure-button">
+          <sgds-icon slot="leftIcon" name="house"></sgds-icon>
+          Button label
+          <sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon>
+        </sgds-button>`,
+      },
+    ],
+    measurementTokens: [
+      {
+        mapKey: "background",
+        category: "Colour",
+        element: "Colour",
+        property: "background",
+        designToken: "sgds/primary/surface-default",
+        rawValue: "#6B4FEB",
+      },
+      {
+        mapKey: "hover-bg",
+        category: "Colour",
+        element: "",
+        property: "hover-bg",
+        designToken: "sgds/primary/surface-emphasis",
+        rawValue: "#523ABC",
+      },
+      {
+        mapKey: "text-color",
+        category: "Colour",
+        element: "",
+        property: "text-color",
+        designToken: "sgds/color-fixed-light",
+        rawValue: "#F3F3F3",
+      },
+      {
+        mapKey: "border-radius",
+        category: "Border",
+        element: "Border",
+        property: "border-radius",
+        designToken: "sgds/border-radius/md",
+        rawValue: "8px",
+      },
+      {
+        mapKey: "border-width",
+        category: "Border",
+        element: "",
+        property: "border-width",
+        designToken: "sgds/border-width/1",
+        rawValue: "1px",
+      },
+      {
+        mapKey: "padding-x",
+        category: "Spacing",
+        element: "Spacing",
+        property: "padding-x",
+        designToken: "sgds/padding/lg",
+        rawValue: "20px",
+      },
+      {
+        mapKey: "gap",
+        category: "Spacing",
+        element: "",
+        property: "gap",
+        designToken: "sgds/gap/2-xs",
+        rawValue: "4px",
+      },
+      {
+        mapKey: "height",
+        category: "Size",
+        element: "Size",
+        property: "height",
+        designToken: "sgds/dimension/48",
+        rawValue: "48px",
+      },
+      {
+        mapKey: "min-width",
+        category: "Size",
+        element: "",
+        property: "min-width",
+        designToken: "sgds/dimension/96",
+        rawValue: "96px",
+      },
+      {
+        mapKey: "font-size",
+        category: "Typography",
+        element: "Typography",
+        property: "font-size",
+        designToken: "sgds/font-size/16",
+        rawValue: "16px",
+      },
+      {
+        mapKey: "line-height",
+        category: "Typography",
+        element: "",
+        property: "line-height",
+        designToken: "sgds/line-height/24",
+        rawValue: "24px",
+      },
+    ],
+    globalTokens: [
+      {
+        mapKey: "leading-icon-color",
+        category: "Colour",
+        element: "Leading icon",
+        property: "",
+        designToken: "sgds/color-fixed-light",
+        rawValue: "#F3F3F3",
+      },
+      {
+        mapKey: "trailing-icon-color",
+        category: "Colour",
+        element: "Trailing icon",
+        property: "",
+        designToken: "sgds/color-fixed-light",
+        rawValue: "#F3F3F3",
+      },
+    ],
     configurationDemos: [
       {
         title: "Variants",
@@ -4400,6 +4548,41 @@ const componentDocs: Record<string, ComponentDoc> = {
         ],
       },
     ],
+    componentTokenGroups: [
+      {
+        title: "sgds / card",
+        rows: [
+          {
+            category: "Padding",
+            name: "padding-x",
+            value: "sgds/padding/xl",
+            mapKey: "padding-x",
+            usage:
+              "Horizontal inset of the card body from its left and right edges",
+          },
+          {
+            category: "Padding",
+            name: "padding-y",
+            value: "sgds/padding/xl",
+            mapKey: "padding-y",
+            usage:
+              "Vertical inset of the card body from its top and bottom edges",
+          },
+          {
+            category: "Colour",
+            name: "bg-translucent-subtle",
+            value: "sgds/bg-translucent-subtle",
+            usage: "Background colour of the card tinted bg",
+          },
+          {
+            category: "Opacity",
+            name: "opacity-50",
+            value: "sgds/opacity/50",
+            usage: "Transparency of the card tinted bg",
+          },
+        ],
+      },
+    ],
   },
   checkbox: {
     key: "checkbox",
@@ -4718,6 +4901,27 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-checkbox>Email</sgds-checkbox>
             <sgds-checkbox>SMS</sgds-checkbox>
             <sgds-checkbox>Phone call</sgds-checkbox>
+          </sgds-checkbox-group>`,
+        },
+        {
+          title: "Use checkbox groups for multi-select choices",
+          description:
+            "Use checkboxes when users can select more than one option from the same set.",
+          tone: "do",
+          markup: `<sgds-checkbox-group label="Delivery options">
+            <sgds-checkbox checked>Email</sgds-checkbox>
+            <sgds-checkbox>SMS</sgds-checkbox>
+            <sgds-checkbox>Phone call</sgds-checkbox>
+          </sgds-checkbox-group>`,
+        },
+        {
+          title: "Do not use two checkboxes for a yes-or-no decision",
+          description:
+            "A pair of Yes and No checkboxes lets users select both. Use radio buttons or one clearly labelled checkbox instead.",
+          tone: "dont",
+          markup: `<sgds-checkbox-group label="Do you want to receive updates?">
+            <sgds-checkbox>Yes</sgds-checkbox>
+            <sgds-checkbox>No</sgds-checkbox>
           </sgds-checkbox-group>`,
         },
         {
@@ -13225,6 +13429,16 @@ const componentDocs: Record<string, ComponentDoc> = {
         </sgds-radio-group>`,
       ),
     ],
+    measurements: [
+      demo(
+        "Structure",
+        "Radio structure shows the label, hint text, radio options, and the gaps between them.",
+        `<sgds-radio-group label="Would you like to receive SMS reminders?" hintText="We will send reminders before your appointment.">
+          <sgds-radio value="yes">Yes</sgds-radio>
+          <sgds-radio value="no">No</sgds-radio>
+        </sgds-radio-group>`,
+      ),
+    ],
     configurationDemos: [
       {
         title: "Hint text",
@@ -14276,6 +14490,26 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Closes the focused expandable group, or returns focus to the parent group from a nested item.",
         },
+        {
+          key: "↓ Down",
+          description:
+            "Moves focus to the next sidebar item, or to the first child item when an expanded group is focused.",
+        },
+        {
+          key: "↑ Up",
+          description:
+            "Moves focus to the previous sidebar item, or to the last child of the previous group.",
+        },
+        {
+          key: "→ Right",
+          description:
+            "Opens the focused expandable group, or moves focus into its first child when already open.",
+        },
+        {
+          key: "← Left",
+          description:
+            "Closes the focused expandable group, or returns focus to the parent group from a nested item.",
+        },
       ],
     },
     props: [
@@ -15012,6 +15246,14 @@ const componentDocs: Record<string, ComponentDoc> = {
         targetShadowSelector: ".spinner-label",
         targetX: "right",
         targetY: "center",
+      },
+    ],
+    measurements: [
+      {
+        title: "Spinner structure",
+        description:
+          "Spinner structure shows the spinner glyph, label, and the size, gap, and typography tokens used by the component.",
+        markup: `<div class="portal-demo-row"><sgds-spinner label="Loading"></sgds-spinner></div>`,
       },
     ],
     measurements: [
