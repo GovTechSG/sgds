@@ -11,7 +11,7 @@ defineOptions({
 });
 
 const props = defineProps<{
-  pageKey: "overview" | "about-sgds" | "design" | "develop";
+  pageKey: "overview" | "about-sgds" | "design" | "develop" | "content";
 }>();
 
 const page = props.pageKey === "design" ? designTabs[0].page : getStartedPages[props.pageKey];
@@ -20,6 +20,7 @@ const isCurrentNavGroup = (label: string) => {
   if (props.pageKey === "design") return label === "Design";
   if (props.pageKey === "develop") return label === "Develop";
   if (props.pageKey === "about-sgds") return label === "About SGDS";
+  if (props.pageKey === "content") return label === "Content";
   return false;
 };
 
@@ -30,7 +31,7 @@ const isCurrentNavGroup = (label: string) => {
     <aside class="sgds-col-4 sgds-col-lg-3 sgds:pt-layout-xs sgds:pr-layout-md sgds:pb-0 sgds:pl-0">
       <div>
         <div class="sgds:mb-text-sm sgds:inline-flex sgds:items-center sgds:gap-text-xs">
-          <h5 class="sgds:mb-0">Get Started</h5>
+          <h5 class="sgds:mb-0">Get started</h5>
         </div>
         <sgds-sidenav>
           <sgds-sidenav-item
