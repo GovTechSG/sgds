@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Overview
-description: AI coding assistants can write SGDS code for you — correctly, first time. Here's how to set them up.
+description: AI coding assistants can use SGDS agent skills for clearer design system context. Here is how to set them up.
 headerAlert:
   description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
   variant: danger
@@ -10,9 +10,9 @@ headerAlert:
 
 ## What are agent skills?
 
-If you've ever asked an AI assistant to help you build something, you've probably gotten code that almost works — wrong component names, made-up class names, outdated patterns.
+If you have ever asked an AI assistant to help you build something, you may have received code that almost works: wrong component names, made-up class names, or outdated patterns.
 
-**Agent skills fix that.** They're a set of knowledge files you install once into your project. Your AI assistant reads them automatically and learns exactly how SGDS works — the right components, the right tokens, the right patterns.
+**Agent skills help with that.** They are a set of instruction files you install into your project. Compatible AI coding tools can read them for clearer SGDS context, including the right components, tokens, utilities, and patterns.
 
 If you're unsure where to begin, start with <code>sgds-workflow</code>. It maps the full SGDS skill set and points you to the right skill for the task at hand.
 
@@ -24,19 +24,19 @@ Once installed, you can ask things like:
   <div class="example-prompt">💬 "How do I prevent a modal from closing when clicking the background?"</div>
 </div>
 
-And it will just work — no guessing, no wrong names, no hallucinations.
+The assistant still needs human review, but it starts with SGDS-specific context instead of relying on generic web examples.
 
-Works with **GitHub Copilot**, **Claude Code**, **Cursor**, **Windsurf**, and other AI coding tools.
+Use these skills with compatible AI coding tools that can read local agent skill files.
 
 ## Installation
 
 It takes one command. Run it in your project root:
 <CopyCommand command="npx skills add govtechsg/sgds-web-component" />
-When prompted, select all skills from the list. This creates a local `.agents/` folder that your AI tools pick up automatically.
+When prompted, select all SGDS skills from the list. This creates a local `.agents/` folder that compatible AI coding tools can read from your project.
 
 ## Available skills
 
-Each skill covers a different area of SGDS. You don't need to remember what's in them — your AI reads them for you.
+Each skill covers a different area of SGDS. You do not need to remember what is in them. The assistant can read the relevant skill when the task calls for it.
 
 <SkillsTable />
 
@@ -46,7 +46,7 @@ Each skill covers a different area of SGDS. You don't need to remember what's in
 
 ## How it works
 
-Skills are plain Markdown files written for AI consumption. Your AI reads them at query time — they don't add any code or dependencies to your project.
+Skills are plain Markdown files written for AI assistants. The assistant reads them at query time. They do not add runtime code or dependencies to your product.
 
 Each skill includes:
 
@@ -57,8 +57,8 @@ Each skill includes:
 
 ## Keeping skills up to date
 
-After upgrading `@govtechsg/sgds-web-component`, refresh the SGDS skills from the source repository:
-<CopyCommand command="npx skills add https://github.com/govtechsg/sgds-web-component.git -g -y" />
+After upgrading `@govtechsg/sgds-web-component`, refresh the SGDS skills installed in your project:
+<CopyCommand command="npx skills update --project -y" />
 
 <style>
 h2,

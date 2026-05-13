@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { blockTemplateCategoryOrder, templateOverviewGroups, type PatternGroup } from "../../data/pattern-docs";
+import {
+  blockTemplateCategoryOrder,
+  pageTemplateCategoryOrder,
+  pageTemplateRecommendedOrder,
+  templateOverviewGroups,
+  type PatternGroup,
+} from "../../data/pattern-docs";
 
 const { group } = defineProps<{
   group: PatternGroup;
@@ -10,17 +16,38 @@ const selectedGroup = ref("all");
 const selectedSort = ref("recommended");
 
 const isBlockOverview = computed(() => group === "block templates");
-const filterHeading = computed(() => isBlockOverview.value ? "Block type" : "Category");
-const typeSortLabel = computed(() => isBlockOverview.value ? "Block type" : "Template type");
+const filterHeading = computed(() => isBlockOverview.value ? "Block type" : "Template purpose");
+const typeSortLabel = computed(() => isBlockOverview.value ? "Block type" : "Template purpose");
 const itemNoun = computed(() => isBlockOverview.value ? "block" : "template");
+const categoryOrder = computed(() =>
+  isBlockOverview.value ? blockTemplateCategoryOrder : pageTemplateCategoryOrder,
+);
 
 const templateItems = computed(() =>
   templateOverviewGroups.find((templateGroup) => templateGroup.group === group)?.items ?? [],
 );
 
 const getGroupOrder = (label: string) => {
-  const index = blockTemplateCategoryOrder.indexOf(label);
-  return index === -1 ? blockTemplateCategoryOrder.length : index;
+  const index = categoryOrder.value.indexOf(label);
+  return index === -1 ? categoryOrder.value.length : index;
+};
+
+const getTemplateOrder = (key: string) => {
+  const index = pageTemplateRecommendedOrder.indexOf(key);
+  return index === -1 ? pageTemplateRecommendedOrder.length : index;
+};
+
+const sortRecommended = (
+  current: { key: string; groupLabel: string; title: string },
+  next: { key: string; groupLabel: string; title: string },
+) => {
+  if (!isBlockOverview.value) {
+    return getTemplateOrder(current.key) - getTemplateOrder(next.key) || current.title.localeCompare(next.title);
+  }
+
+  return getGroupOrder(current.groupLabel) - getGroupOrder(next.groupLabel) ||
+    current.groupLabel.localeCompare(next.groupLabel) ||
+    current.title.localeCompare(next.title);
 };
 
 const sortByGroup = (current: { groupLabel: string; title: string }, next: { groupLabel: string; title: string }) =>
@@ -37,9 +64,7 @@ const categoryOptions = computed(() => {
       count: templateItems.value.filter((item) => item.groupLabel === label).length,
     }))
     .sort((current, next) =>
-      isBlockOverview.value
-        ? getGroupOrder(current.label) - getGroupOrder(next.label) || current.label.localeCompare(next.label)
-        : current.label.localeCompare(next.label),
+      getGroupOrder(current.label) - getGroupOrder(next.label) || current.label.localeCompare(next.label),
     );
 });
 
@@ -49,7 +74,7 @@ const filteredTemplateItems = computed(() => {
   });
 
   return [...filtered].sort((current, next) => {
-    if (selectedSort.value === "recommended" && isBlockOverview.value) return sortByGroup(current, next);
+    if (selectedSort.value === "recommended") return sortRecommended(current, next);
     if (selectedSort.value === "title-asc") return current.title.localeCompare(next.title);
     if (selectedSort.value === "title-desc") return next.title.localeCompare(current.title);
     if (selectedSort.value === "type") return sortByGroup(current, next);

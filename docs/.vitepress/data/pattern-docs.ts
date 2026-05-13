@@ -4,7 +4,9 @@ import {
   applicationManagementMarkup,
   blogMarkup,
   catalogueMarkup,
+  formPageMarkup,
   landingMarkup,
+  multiStepFormPageMarkup,
   reportIssueMarkup,
 } from "./template-markup";
 import {
@@ -130,6 +132,24 @@ export const blockTemplateCategoryOrder: string[] = [
   "Form sections",
   "Form fields",
   "Form flows",
+];
+
+export const pageTemplateCategoryOrder: string[] = [
+  "Landing pages",
+  "Content pages",
+  "Browse and manage",
+  "Forms",
+];
+
+export const pageTemplateRecommendedOrder: string[] = [
+  "landing",
+  "about-us",
+  "blog",
+  "catalogue",
+  "application-management",
+  "form-page",
+  "multi-step-form",
+  "report-issue",
 ];
 
 const formBlockVariantDocs: Record<string, PatternDoc> = {
@@ -470,6 +490,7 @@ const patternDocs: Record<string, PatternDoc> = {
   "form-page": {
     title: "Form page",
     group: "page templates",
+    categoryLabel: "Forms",
     usedComponents: ["sgds-input", "sgds-select", "sgds-button", "sgds-breadcrumb"],
     whenToUse: [
       "For single-topic forms where all fields can be shown on one screen",
@@ -483,29 +504,14 @@ const patternDocs: Record<string, PatternDoc> = {
       {
         title: "Default",
         description: "A simple form page with a heading, description, fields, and submission actions.",
-        markup: `<div style="max-width: 600px; padding: 32px;">
-  <h2 style="font-size: var(--sgds-font-size-6); font-weight: var(--sgds-font-weight-semibold); color: var(--sgds-heading-color-default); margin-bottom: 8px;">Contact details</h2>
-  <p style="color: var(--sgds-body-color-subtle); margin-bottom: 32px;">All fields are required unless marked optional.</p>
-  <div style="display: flex; flex-direction: column; gap: 20px;">
-    <sgds-input label="Full name" placeholder="Enter your full name"></sgds-input>
-    <sgds-input label="Email address" type="email" placeholder="email@example.gov.sg"></sgds-input>
-    <sgds-input label="Phone number (optional)" type="tel" placeholder="+65"></sgds-input>
-    <sgds-select label="Agency">
-      <sgds-option value="">Select agency</sgds-option>
-      <sgds-option value="gds">GovTech</sgds-option>
-    </sgds-select>
-  </div>
-  <div style="display: flex; gap: 12px; margin-top: 32px;">
-    <sgds-button variant="primary">Submit</sgds-button>
-    <sgds-button variant="outline">Cancel</sgds-button>
-  </div>
-</div>`,
+        markup: formPageMarkup,
       },
     ],
   },
   "multi-step-form": {
     title: "Multi-step form",
     group: "page templates",
+    categoryLabel: "Forms",
     usedComponents: ["sgds-stepper", "sgds-input", "sgds-button", "sgds-breadcrumb"],
     whenToUse: [
       "When a form has more than 8 fields and benefits from being broken into logical steps",
@@ -519,26 +525,14 @@ const patternDocs: Record<string, PatternDoc> = {
       {
         title: "Default",
         description: "A multi-step form with a stepper indicator, step content, and navigation buttons.",
-        markup: `<div style="max-width: 680px; padding: 32px;">
-  <sgds-stepper data-portal-stepper="default"></sgds-stepper>
-  <div style="margin: 32px 0; padding: 24px; background: var(--sgds-surface-raised); border: 1px solid var(--sgds-border-color-muted); border-radius: 8px;">
-    <h3 style="font-size: var(--sgds-font-size-4); font-weight: var(--sgds-font-weight-semibold); color: var(--sgds-heading-color-default); margin-bottom: 20px;">Personal details</h3>
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      <sgds-input label="Full name"></sgds-input>
-      <sgds-input label="NRIC / FIN" placeholder="S0000000A"></sgds-input>
-    </div>
-  </div>
-  <div style="display: flex; justify-content: space-between;">
-    <sgds-button variant="outline" disabled>Back</sgds-button>
-    <sgds-button variant="primary">Next</sgds-button>
-  </div>
-</div>`,
+        markup: multiStepFormPageMarkup,
       },
     ],
   },
   "report-issue": {
     title: "Report an issue",
     group: "page templates",
+    categoryLabel: "Forms",
     usedComponents: [
       "sgds-masthead",
       "sgds-mainnav",
@@ -568,6 +562,7 @@ const patternDocs: Record<string, PatternDoc> = {
   "application-management": {
     title: "Application management",
     group: "page templates",
+    categoryLabel: "Browse and manage",
     usedComponents: [
       "sgds-masthead",
       "sgds-mainnav",
@@ -599,6 +594,7 @@ const patternDocs: Record<string, PatternDoc> = {
   catalogue: {
     title: "Catalogue",
     group: "page templates",
+    categoryLabel: "Browse and manage",
     usedComponents: [
       "sgds-masthead",
       "sgds-mainnav",
@@ -629,6 +625,7 @@ const patternDocs: Record<string, PatternDoc> = {
   "about-us": {
     title: "About us",
     group: "page templates",
+    categoryLabel: "Content pages",
     usedComponents: [
       "sgds-masthead",
       "sgds-mainnav",
@@ -656,6 +653,7 @@ const patternDocs: Record<string, PatternDoc> = {
   landing: {
     title: "Landing page",
     group: "page templates",
+    categoryLabel: "Landing pages",
     usedComponents: [
       "sgds-masthead",
       "sgds-mainnav",
@@ -684,6 +682,7 @@ const patternDocs: Record<string, PatternDoc> = {
   blog: {
     title: "Blog",
     group: "page templates",
+    categoryLabel: "Content pages",
     usedComponents: [
       "sgds-masthead",
       "sgds-mainnav",

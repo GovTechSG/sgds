@@ -2208,10 +2208,14 @@ const openStructureDropdowns = async () => {
   const datepickers = Array.from(
     root.querySelectorAll("sgds-datepicker") as NodeListOf<HTMLElement & {
       showMenu?: () => Promise<void> | void;
+      hideMenu?: (isOutside?: boolean) => void;
       menuIsOpen?: boolean;
       updateComplete?: Promise<unknown>;
       noFlip?: boolean;
       drop?: string;
+      _handleClickOutOfElement?: (event: Event) => void;
+      _handleCloseMenu?: () => void;
+      _handleOpenMenu?: () => void;
     }>,
   );
 
@@ -2251,6 +2255,20 @@ const openStructureDropdowns = async () => {
          pointer-events: none !important;
        }`,
     );
+    // The structure preview keeps the datepicker calendar open as a static
+    // measurement diagram. Detach the production outside-click and focus
+    // handlers so clicks in Configuration do not close this preview calendar
+    // and then scroll the page down by focusing the structure input.
+    if (el._handleClickOutOfElement) {
+      document.removeEventListener("click", el._handleClickOutOfElement);
+    }
+    if (el._handleCloseMenu) {
+      el.removeEventListener("sgds-hide", el._handleCloseMenu as EventListener);
+    }
+    if (el._handleOpenMenu) {
+      el.removeEventListener("sgds-show", el._handleOpenMenu as EventListener);
+    }
+    el.hideMenu = () => {};
     el.noFlip = true;
     el.drop = "down";
     if (typeof el.showMenu === "function" && !el.menuIsOpen) {
@@ -6080,7 +6098,6 @@ const getCollapsedCategory = (
         <p class="sgds:m-0 sgds:max-w-[var(--sgds-dimension-760)] sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
           Each row is a colour, spacing, or size value the component uses, and
           the right-most column tells you where in the component you'll see it.
-          Hover any row to highlight that part in the demo above.
         </p>
       </div>
       <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-2-xs)]">

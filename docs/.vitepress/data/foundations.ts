@@ -13,6 +13,16 @@ export interface FoundationItem {
 
 export const foundations: FoundationItem[] = [
   {
+    id: "design-tokens",
+    title: "Design tokens",
+    url: getFoundationEntryUrl("design-tokens"),
+    image: "/foundations/design-tokens.svg",
+    imageFit: "contain",
+    imageClass: "sgds:w-[34%] sgds:h-[45%]",
+    phase: 1,
+    status: "stable",
+  },
+  {
     id: "colour",
     title: "Colour",
     url: getFoundationEntryUrl("colour"),
@@ -89,16 +99,6 @@ export const foundations: FoundationItem[] = [
     image: "/foundations/layer.svg",
     imageFit: "contain",
     imageClass: "sgds:w-[34%] sgds:h-[57%]",
-    phase: 1,
-    status: "stable",
-  },
-  {
-    id: "design-tokens",
-    title: "Design tokens",
-    url: getFoundationEntryUrl("design-tokens"),
-    image: "/foundations/design-tokens.svg",
-    imageFit: "contain",
-    imageClass: "sgds:w-[34%] sgds:h-[45%]",
     phase: 1,
     status: "stable",
   },

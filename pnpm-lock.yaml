@@ -14,8 +14,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       "@govtechsg/sgds-web-component":
-        specifier: ^3.18.1
-        version: 3.18.1(@types/react@19.2.14)
+        specifier: ^3.19.0
+        version: 3.19.0(@types/react@19.2.14)
       gsap:
         specifier: ^3.13.0
         version: 3.14.2
@@ -346,10 +346,10 @@ packages:
         integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==,
       }
 
-  "@govtechsg/sgds-web-component@3.18.1":
+  "@govtechsg/sgds-web-component@3.19.0":
     resolution:
       {
-        integrity: sha512-5IQIbBRZM38YjPz+POJxkzxj/ARgUd0gB8XEBh35k29hgGuotdyEo8dx0VWMIbN52FnCjlCzcxnzWvHpBKS37A==,
+        integrity: sha512-PWg09aqEngo08tYor0KuQPuPyu6o0fM1I79w+2k2cEZRZWTfUWoM4B4RZMcVYmt6VbETHeD4jxfeg9gE6USFkQ==,
       }
 
   "@iconify-json/simple-icons@1.2.78":
@@ -2038,7 +2038,7 @@ snapshots:
 
   "@floating-ui/utils@0.2.11": {}
 
-  "@govtechsg/sgds-web-component@3.18.1(@types/react@19.2.14)":
+  "@govtechsg/sgds-web-component@3.19.0(@types/react@19.2.14)":
     dependencies:
       "@floating-ui/dom": 1.7.6
       "@lit/context": 1.1.6

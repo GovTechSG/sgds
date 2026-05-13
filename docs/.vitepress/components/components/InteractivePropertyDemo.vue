@@ -42,9 +42,15 @@ const activeNote = computed(() =>
 const isWidePreview = computed(() =>
   activeOption.value?.markup.includes("sgds-footer") ||
   activeOption.value?.markup.includes("portal-masthead-width-demo") ||
+  activeOption.value?.markup.includes("portal-mainnav-width-demo") ||
+  activeOption.value?.markup.includes("portal-system-banner-width-demo") ||
   activeOption.value?.markup.includes("portal-modal-preview-xl") ||
   activeOption.value?.markup.includes("portal-modal-preview-fullscreen") ||
   false,
+);
+
+const isFullscreenModalPreview = computed(() =>
+  activeOption.value?.markup.includes("portal-modal-preview-fullscreen") ?? false,
 );
 
 const renderMarkup = (markup: string) => {
@@ -59,7 +65,7 @@ const renderMarkup = (markup: string) => {
       `<div class="portal-demo-overlay">
         <div class="portal-demo-drawer-scrim" aria-hidden="true"></div>
         <div class="sgds:absolute sgds:left-1/2 sgds:top-1/2 sgds:z-[1] sgds:-translate-x-1/2 sgds:-translate-y-1/2">
-          <sgds-button data-drawer-trigger>Open drawer</sgds-button>
+          <sgds-button data-drawer-trigger>Click to open drawer demo</sgds-button>
         </div>`,
     );
 };
@@ -335,12 +341,96 @@ const setupStepperDemos = async () => {
   });
 };
 
+const setupTextareaDemos = async () => {
+  await nextTick();
+  await customElements.whenDefined("sgds-textarea");
+
+  const root = rootRef.value;
+  if (!root) return;
+
+  for (const el of root.querySelectorAll<HTMLElement & {
+    resize?: string;
+    updateComplete?: Promise<unknown>;
+  }>("sgds-textarea.portal-textarea-api-demo")) {
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "textarea-api-demo",
+      `:host {
+         display: block !important;
+         width: var(--sgds-dimension-320) !important;
+       }
+       .form-control-container {
+         width: 100% !important;
+       }
+       textarea.form-control-group {
+         box-sizing: border-box !important;
+         width: 100% !important;
+       }
+       textarea.form-control-group.textarea-resize-none,
+       textarea.form-control-group.textarea-resize-vertical {
+         height: auto !important;
+       }`,
+    );
+
+    const textarea = el.shadowRoot?.querySelector("textarea.form-control-group") as HTMLTextAreaElement | null;
+    if (!textarea || textarea.dataset.portalResizeReady === "true") continue;
+
+    textarea.dataset.portalResizeReady = "true";
+
+    const getResizeMode = () => (el.getAttribute("resize") || el.resize || "vertical").toLowerCase();
+    const isInResizeGrip = (event: PointerEvent) => {
+      const rect = textarea.getBoundingClientRect();
+      return event.clientY >= rect.bottom - 18 && event.clientX >= rect.right - 28;
+    };
+
+    textarea.addEventListener("pointermove", (event) => {
+      textarea.style.cursor = getResizeMode() === "vertical" && isInResizeGrip(event)
+        ? "ns-resize"
+        : "";
+    });
+
+    textarea.addEventListener("pointerleave", () => {
+      textarea.style.cursor = "";
+    });
+
+    textarea.addEventListener("pointerdown", (event) => {
+      if (getResizeMode() !== "vertical" || !isInResizeGrip(event)) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const startY = event.clientY;
+      const startHeight = textarea.getBoundingClientRect().height;
+      const minHeight = 136;
+      const maxHeight = 320;
+
+      const onPointerMove = (moveEvent: PointerEvent) => {
+        const nextHeight = Math.min(
+          maxHeight,
+          Math.max(minHeight, startHeight + moveEvent.clientY - startY),
+        );
+        textarea.style.setProperty("height", `${nextHeight}px`, "important");
+      };
+
+      const onPointerUp = () => {
+        window.removeEventListener("pointermove", onPointerMove);
+        textarea.style.cursor = "";
+      };
+
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerup", onPointerUp, { once: true });
+    });
+  }
+};
+
 onMounted(() => {
   void applyStateEffects();
   void setupDrawerDemos();
   void setupOverflowMenuDemos();
   void setupSidebarDemos();
   void setupStepperDemos();
+  void setupTextareaDemos();
 });
 
 watch(activeValue, () => {
@@ -349,6 +439,7 @@ watch(activeValue, () => {
   void setupOverflowMenuDemos();
   void setupSidebarDemos();
   void setupStepperDemos();
+  void setupTextareaDemos();
 });
 </script>
 
@@ -367,7 +458,10 @@ watch(activeValue, () => {
       </p>
     </div>
 
-    <div class="interactive-demo sgds:flex sgds:flex-col sgds:min-h-[var(--sgds-dimension-320)] sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-xs sgds:py-component-xs sgds:gap-component-md">
+    <div
+      class="interactive-demo sgds:flex sgds:flex-col sgds:min-h-[var(--sgds-dimension-320)] sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-xs sgds:py-component-xs sgds:gap-component-md"
+      :class="{ 'interactive-demo--fullscreen-modal': isFullscreenModalPreview }"
+    >
       <CardContentSlotsDemo v-if="demo.interactionMode === 'content-slots'" :demo="demo" />
       <template v-else>
         <!-- Select variant: rendered when option count is too high for a
@@ -496,6 +590,21 @@ watch(activeValue, () => {
   background: var(--sgds-bg-alternate);
 }
 
+/* Fullscreen modal markup is injected through v-html, so this preview needs global selectors. */
+.interactive-demo--fullscreen-modal {
+  background: var(--sgds-surface-default);
+}
+
+.interactive-demo--fullscreen-modal .behaviour-demo-markup,
+.interactive-demo--fullscreen-modal .portal-modal-preview,
+.interactive-demo--fullscreen-modal .portal-modal-panel {
+  min-height: 100%;
+}
+
+.interactive-demo--fullscreen-modal .portal-modal-preview-fullscreen .portal-modal-panel {
+  border-radius: 0;
+}
+
 .portal-demo-drawer-scrim {
   background: var(--sgds-bg-overlay);
   inset: 0;
@@ -546,6 +655,11 @@ watch(activeValue, () => {
   width: var(--sgds-dimension-320);
 }
 
+.behaviour-demo-markup > sgds-textarea {
+  display: block;
+  width: var(--sgds-dimension-320);
+}
+
 .behaviour-demo-markup > sgds-progress-bar {
   display: block;
   width: var(--sgds-dimension-480);
@@ -566,6 +680,14 @@ watch(activeValue, () => {
   inline-size: calc(var(--sgds-dimension-688) + var(--sgds-dimension-96));
   transform: scale(0.86);
   transform-origin: top center;
+}
+
+.portal-mainnav-width-demo {
+  --sgds-mainnav-max-width: var(--sgds-dimension-480);
+}
+
+.portal-system-banner-width-demo {
+  --sgds-mainnav-max-width: var(--sgds-dimension-480);
 }
 
 .behaviour-demo-markup sgds-alert-link {

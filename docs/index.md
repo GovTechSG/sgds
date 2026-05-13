@@ -4,8 +4,7 @@ layout: default
 
 <script setup lang="ts">
 import Hero, { Button } from "./.vitepress/components/landing/Hero.vue";
-import ColourGridImage from "./.vitepress/components/landing/ColourGridImage.vue";
-import LayoutGridImage from "./.vitepress/components/landing/LayoutGridImage.vue";
+import LandingWorkflowVisual from "./.vitepress/components/landing/LandingWorkflowVisual.vue";
 import PortalImageCard from "./.vitepress/components/landing/PortalImageCard.vue";
 import { FoundationItem } from "./.vitepress/data/foundations";
 
@@ -136,52 +135,7 @@ const showCommunitySection = false;
     <section :class="$style['feature-section']">
       <h2 :class="$style.header">Building together,<br>designing better.</h2>
       <div :class="$style['feature-grid']" class="sgds-grid">
-        <img
-          src="/landing/placeholder5.png"
-          alt="Placeholder 5"
-          width="872"
-          height="752"
-          :class="$style.image"
-          class="sgds-col-4 sgds-col-sm-5 sgds-col-lg-8"
-        >
-        <img
-          src="/landing/placeholder6.png"
-          alt="Placeholder 6"
-          width="400"
-          height="752"
-          :class="$style.image"
-          class="sgds-col-4 sgds-col-sm-3 sgds-col-lg-4"
-        >
-      </div>
-    </section>
-    <section :class="$style['feature-section']">
-      <h2 :class="$style.header">Building together,<br>designing better.</h2>
-      <div :class="$style['feature-grid']" class="sgds-grid">
-        <div
-          :class="$style['description-container']"
-          class="sgds-col-4 sgds-col-sm-3 sgds-col-lg-5"
-        >
-          <p :class="$style.description">With a common foundation of colour, typography, and components, our design system helps teams create consistent, accessible, and reliable services across government.</p>
-          <img
-            src="/landing/placeholder7.png"
-            alt="Placeholder 7"
-            width="536"
-            height="576"
-            :class="$style.image"
-          />
-        </div>
-        <div
-          :class="$style.image"
-          class="sgds-col-4 sgds-col-sm-5 sgds-col-lg-7 sgds:overflow-hidden"
-        >
-          <ColourGridImage />
-        </div>
-        <div
-          :class="$style.image"
-          class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-12 sgds:overflow-hidden"
-        >
-          <LayoutGridImage />
-        </div>
+        <LandingWorkflowVisual class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-12" />
       </div>
     </section>
     <section v-if="showCommunitySection" :class="$style['feature-section']">

@@ -482,7 +482,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     anatomyMarkup: `<div class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)] sgds:mx-auto">
-      <sgds-accordion variant="border" class="portal-anatomy-accordion">
+      <sgds-accordion class="portal-anatomy-accordion">
         <sgds-accordion-item class="portal-anatomy-accordion-item" open>
           <sgds-icon slot="icon" class="portal-anatomy-accordion-icon" name="info-circle-fill"></sgds-icon>
           <span slot="header" class="portal-anatomy-accordion-title">Accordion title</span>
@@ -2088,108 +2088,6 @@ const componentDocs: Record<string, ComponentDoc> = {
               "The default filled style uses a solid background. Use when badges need to read strongly at a glance across the full variant set.",
           },
           {
-            label: "Warning",
-            value: "warning",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="warning">Warning</sgds-badge></div>`,
-            description:
-              "Use to flag items needing attention without blocking the user — for example, pending review or nearing a threshold.",
-          },
-          {
-            label: "Danger",
-            value: "danger",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="danger">Danger</sgds-badge></div>`,
-            description:
-              "Use to communicate an error, failure, or critical state that should draw the user's attention immediately.",
-          },
-          {
-            label: "Cyan",
-            value: "cyan",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="cyan">Cyan</sgds-badge></div>`,
-            description:
-              "A supplementary category tone. Use to differentiate labels when a status colour is not appropriate.",
-          },
-          {
-            label: "Purple",
-            value: "purple",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="purple">Purple</sgds-badge></div>`,
-            description:
-              "Another supplementary category tone. Pair with cyan to separate two or more non-status categories.",
-          },
-          {
-            label: "White",
-            value: "white",
-            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-badge variant="white">White</sgds-badge></div>`,
-            description:
-              "Use on dark or coloured backgrounds where the other variants would lack contrast.",
-          },
-        ],
-      },
-      {
-        title: "Outlined",
-        description:
-          "Controls whether the badge uses a filled or outlined style. Outlined gives the badge a lighter visual presence.",
-        controlLabel: "Badge outlined options",
-        defaultValue: "filled",
-        options: [
-          {
-            label: "Filled",
-            value: "filled",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="accent">Filled</sgds-badge></div>`,
-            description:
-              "The default filled style uses a solid background. Use when the badge needs to read strongly at a glance.",
-          },
-          {
-            label: "Warning",
-            value: "warning",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="warning">Warning</sgds-badge></div>`,
-            description:
-              "Use to flag items needing attention without blocking the user — for example, pending review or nearing a threshold.",
-          },
-          {
-            label: "Danger",
-            value: "danger",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="danger">Danger</sgds-badge></div>`,
-            description:
-              "Use to communicate an error, failure, or critical state that should draw the user's attention immediately.",
-          },
-          {
-            label: "Cyan",
-            value: "cyan",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="cyan">Cyan</sgds-badge></div>`,
-            description:
-              "A supplementary category tone. Use to differentiate labels when a status colour is not appropriate.",
-          },
-          {
-            label: "Purple",
-            value: "purple",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="purple">Purple</sgds-badge></div>`,
-            description:
-              "Another supplementary category tone. Pair with cyan to separate two or more non-status categories.",
-          },
-          {
-            label: "White",
-            value: "white",
-            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-badge variant="white">White</sgds-badge></div>`,
-            description:
-              "Use on dark or coloured backgrounds where the other variants would lack contrast.",
-          },
-        ],
-      },
-      {
-        title: "Outlined",
-        description:
-          "Controls whether the badge uses a filled or outlined style. Outlined gives the badge a lighter visual presence.",
-        controlLabel: "Badge outlined options",
-        defaultValue: "filled",
-        options: [
-          {
-            label: "Filled",
-            value: "filled",
-            markup: `<div class="portal-demo-row"><sgds-badge variant="accent">Filled</sgds-badge></div>`,
-            description:
-              "The default filled style uses a solid background. Use when the badge needs to read strongly at a glance.",
-          },
-          {
             label: "Outlined",
             value: "outlined",
             markup: `<div class="portal-demo-row portal-demo-row-center">
@@ -3601,9 +3499,9 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Fixed light",
             value: "fixed-light",
-            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-button tone="fixed-light">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button tone="fixed-light">Button label</sgds-button></div>`,
             description:
-              "Use on dark or strongly coloured surfaces where the button needs a fixed light treatment for contrast.",
+              "Only use on fixed dark or strongly coloured backgrounds. If it does not stand out on the page surface, use a standard tone instead.",
           },
         ],
       },
@@ -5037,16 +4935,16 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Fixed light",
             value: "fixed-light",
-            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-close-button tone="fixed-light"></sgds-close-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-close-button tone="fixed-light"></sgds-close-button></div>`,
             description:
-              "Use on dark or strongly coloured surfaces where the icon needs a fixed light treatment for contrast.",
+              "Only use on fixed dark or strongly coloured backgrounds. It may be hard to see on this page surface because the icon always stays light.",
           },
           {
             label: "Fixed dark",
             value: "fixed-dark",
             markup: `<div class="portal-demo-row"><sgds-close-button tone="fixed-dark"></sgds-close-button></div>`,
             description:
-              "Use on light fixed surfaces where a darker icon is needed for sufficient contrast regardless of theme.",
+              "Only use on fixed light backgrounds. It may be hard to see in dark mode because the icon always stays dark.",
           },
         ],
       },
@@ -5501,11 +5399,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Multi select",
             value: "multi",
-            markup: `<sgds-combo-box label="Countries" multiSelect>
-          <sgds-combo-box-option value="sg">Singapore</sgds-combo-box-option>
-          <sgds-combo-box-option value="my">Malaysia</sgds-combo-box-option>
-          <sgds-combo-box-option value="id">Indonesia</sgds-combo-box-option>
-        </sgds-combo-box>`,
+            markup: `<div class="sgds:w-full sgds:max-w-full sgds:min-w-0">
+          <sgds-combo-box class="sgds:w-full sgds:max-w-full sgds:min-w-0" label="Countries" multiSelect badgeFullWidth>
+            <sgds-combo-box-option value="sg">Singapore</sgds-combo-box-option>
+            <sgds-combo-box-option value="my">Malaysia</sgds-combo-box-option>
+            <sgds-combo-box-option value="id">Indonesia</sgds-combo-box-option>
+          </sgds-combo-box>
+        </div>`,
             description:
               "Each option becomes a checkbox; selected values appear as badges that wrap to new lines instead of stretching the field horizontally.",
           },
@@ -5693,7 +5593,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         markup: `<sgds-datepicker class="portal-structure-datepicker" label="Appointment date" value="22/12/2024" menuisopen noflip></sgds-datepicker>`,
       },
     ],
-    anatomyMarkup: `<sgds-datepicker class="portal-anatomy-datepicker" mode="range" label="Label" hintText="Use the format DD/MM/YYYY - DD/MM/YYYY" value="12/05/2026 - 25/05/2026"></sgds-datepicker>`,
+    anatomyMarkup: `<sgds-datepicker class="portal-anatomy-datepicker" mode="range" label="Label" value="12/05/2026 - 25/05/2026"></sgds-datepicker>`,
     anatomyParts: [
       { title: "Label" },
       { title: "Value" },
@@ -5721,7 +5621,8 @@ const componentDocs: Record<string, ComponentDoc> = {
         number: 2,
         direction: "left",
         targetSelector: ".portal-anatomy-datepicker",
-        targetShadowSelector: "sgds-datepicker-input >>> input.form-control",
+        targetShadowSelector:
+          "sgds-datepicker-input >>> .datepicker-input-container",
         targetX: "left",
         targetY: "center",
         alignBadgeWithCallout: 1,
@@ -6650,7 +6551,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         targetY: "center",
       },
     ],
-    anatomyMarkup: `<div class="portal-divider-anatomy"><sgds-divider></sgds-divider></div>`,
+    anatomyMarkup: `<sgds-divider class="sgds:w-[var(--sgds-dimension-280)]"></sgds-divider>`,
     measurements: [
       {
         title: "Default",
@@ -9205,9 +9106,9 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Fixed light",
             value: "fixed-light",
-            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-icon-button name="search" tone="fixed-light"></sgds-icon-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-icon-button name="search" tone="fixed-light"></sgds-icon-button></div>`,
             description:
-              "Use on dark or strongly coloured surfaces where the icon button needs a fixed light treatment for contrast.",
+              "Only use on fixed dark or strongly coloured backgrounds. If it is hard to see on the page surface, use a standard tone instead.",
           },
         ],
       },
@@ -9468,7 +9369,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<sgds-icon-card class="portal-demo-card">
-          <sgds-icon slot="icon" name="shield-check"></sgds-icon>
+          <sgds-icon slot="icon" name="calendar-check"></sgds-icon>
           <span slot="title">Secure access</span>
           <span slot="description">Sign in with Singpass for verified identity.</span>
         </sgds-icon-card>`,
@@ -9478,7 +9379,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Tinted",
             value: "tinted",
             markup: `<sgds-icon-card class="portal-demo-card" tinted>
-          <sgds-icon slot="icon" name="shield-check"></sgds-icon>
+          <sgds-icon slot="icon" name="calendar-check"></sgds-icon>
           <span slot="title">Secure access</span>
           <span slot="description">Sign in with Singpass for verified identity.</span>
         </sgds-icon-card>`,
@@ -9537,14 +9438,111 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Footer link",
             value: "with-footer",
+            markup: `<sgds-icon-card class="portal-demo-card">
+          <sgds-icon slot="icon" name="file-earmark-text"></sgds-icon>
+          <span slot="title">Application form</span>
+          <span slot="description">Complete your details to start your application.</span>
+          <sgds-link slot="footer"><a href="#">Start application</a></sgds-link>
+        </sgds-icon-card>`,
+            description:
+              "Adds a visible link in the footer for a clear next step.",
+          },
+        ],
+      },
+      {
+        title: "Stretched link",
+        description:
+          "Use `stretchedLink` when the whole card should behave as one larger navigation target. The href is taken from the anchor inside the footer link.",
+        controlLabel: "Icon card stretched link options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-icon-card class="portal-demo-card">
+          <sgds-icon slot="icon" name="file-earmark-text"></sgds-icon>
+          <span slot="title">Application form</span>
+          <span slot="description">Complete your details to start your application.</span>
+          <sgds-link slot="footer"><a href="#">Start application</a></sgds-link>
+        </sgds-icon-card>`,
+            description:
+              "Only the visible footer link is clickable. Use when users should choose the explicit link.",
+          },
+          {
+            label: "Stretched",
+            value: "stretched",
             markup: `<sgds-icon-card class="portal-demo-card" stretchedLink>
           <sgds-icon slot="icon" name="file-earmark-text"></sgds-icon>
           <span slot="title">Application form</span>
           <span slot="description">Complete your details to start your application.</span>
-          <a slot="footer" href="#">Start application</a>
+          <sgds-link slot="footer"><a href="#">Start application</a></sgds-link>
         </sgds-icon-card>`,
             description:
-              "Adds a link in the footer. With `stretchedLink`, the entire card becomes clickable.",
+              "Extends the footer link so the entire card becomes the navigation target.",
+          },
+        ],
+      },
+      {
+        title: "Padding",
+        description:
+          "Use `noPadding` to remove the card's internal padding when the surrounding layout provides its own spacing.",
+        controlLabel: "Icon card padding options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-icon-card class="portal-demo-card">
+          <sgds-icon slot="icon" name="grid-fill"></sgds-icon>
+          <span slot="title">Dashboard modules</span>
+          <span slot="description">Choose the modules you want to review.</span>
+        </sgds-icon-card>`,
+            description:
+              "Keeps the standard icon card spacing for most content cards.",
+          },
+          {
+            label: "No padding",
+            value: "no-padding",
+            markup: `<sgds-icon-card class="portal-demo-card" noPadding>
+          <sgds-icon slot="icon" name="grid-fill"></sgds-icon>
+          <span slot="title">Dashboard modules</span>
+          <span slot="description">Choose the modules you want to review.</span>
+        </sgds-icon-card>`,
+            description:
+              "Removes internal padding. Use carefully when the card is placed inside a custom layout that already controls spacing.",
+          },
+        ],
+      },
+      {
+        title: "Disabled",
+        description:
+          "Use `disabled` when the card should be visible but unavailable.",
+        controlLabel: "Icon card disabled options",
+        defaultValue: "enabled",
+        options: [
+          {
+            label: "Enabled",
+            value: "enabled",
+            markup: `<sgds-icon-card class="portal-demo-card">
+          <sgds-icon slot="icon" name="calendar-check"></sgds-icon>
+          <span slot="title">Book appointment</span>
+          <span slot="description">Choose a date and time for your visit.</span>
+          <sgds-link slot="footer"><a href="#">Book now</a></sgds-link>
+        </sgds-icon-card>`,
+            description:
+              "Default interactive state when the card's content or action is available.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-icon-card class="portal-demo-card" disabled>
+          <sgds-icon slot="icon" name="calendar-check"></sgds-icon>
+          <span slot="title">Book appointment</span>
+          <span slot="description">Choose a date and time for your visit.</span>
+          <sgds-link slot="footer"><a href="#">Book now</a></sgds-link>
+        </sgds-icon-card>`,
+            description:
+              "Applies disabled styling when the card is not currently available.",
           },
         ],
       },
@@ -9571,7 +9569,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-icon slot="icon" name="building"></sgds-icon>
             <span slot="title">Business grants</span>
             <span slot="description">Find financial support for growing local businesses.</span>
-            <a slot="footer" href="#">Learn more</a>
+            <sgds-link slot="footer"><a href="#">Learn more</a></sgds-link>
           </sgds-icon-card>`,
         },
         {
@@ -9605,7 +9603,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-icon slot="icon" name="file-earmark-text"></sgds-icon>
             <span slot="title">Apply for a permit</span>
             <span slot="description">Start a new application for an event permit.</span>
-            <a slot="footer" href="#">Start application</a>
+            <sgds-link slot="footer"><a href="#">Start application</a></sgds-link>
           </sgds-icon-card>`,
         },
         {
@@ -9616,7 +9614,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           markup: `<sgds-icon-card class="portal-demo-card" stretchedLink>
             <sgds-icon slot="icon" name="download"></sgds-icon>
             <span slot="title">Download</span>
-            <a slot="footer" href="#">Download</a>
+            <sgds-link slot="footer"><a href="#">Download</a></sgds-link>
           </sgds-icon-card>`,
         },
       ],
@@ -10692,16 +10690,16 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Fixed light",
             value: "fixed-light",
-            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-link tone="fixed-light"><a href="#">Visit related guidance</a></sgds-link></div>`,
+            markup: `<sgds-link tone="fixed-light"><a href="#">Visit related guidance</a></sgds-link>`,
             description:
-              "Use on dark or strongly coloured surfaces where the link needs a fixed light treatment for contrast.",
+              "Only use on fixed dark or strongly coloured backgrounds. It may be hard to see on this page surface because the link always stays light.",
           },
           {
             label: "Fixed dark",
             value: "fixed-dark",
             markup: `<sgds-link tone="fixed-dark"><a href="#">Visit related guidance</a></sgds-link>`,
             description:
-              "Use on light fixed surfaces where a darker link colour is needed for sufficient contrast regardless of theme.",
+              "Only use on fixed light backgrounds. It may be hard to see in dark mode because the link always stays dark.",
           },
         ],
       },
@@ -11087,11 +11085,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Constrained width",
             value: "constrained",
-            markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
+            markup: `<div class="portal-demo-nav portal-mainnav-width-demo sgds:w-full">
+          <sgds-mainnav expand="always" brandHref="/">
             <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
+            <sgds-mainnav-item>Services</sgds-mainnav-item>
+            <sgds-mainnav-item>Contact</sgds-mainnav-item>
           </sgds-mainnav>
         </div>`,
             description:
@@ -11100,11 +11100,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Full-bleed (fluid)",
             value: "fluid",
-            markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/" fluid>
+            markup: `<div class="portal-demo-nav portal-mainnav-width-demo sgds:w-full">
+          <sgds-mainnav expand="always" brandHref="/" fluid>
             <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
+            <sgds-mainnav-item>Services</sgds-mainnav-item>
+            <sgds-mainnav-item>Contact</sgds-mainnav-item>
           </sgds-mainnav>
         </div>`,
             description:
@@ -11509,7 +11511,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     anatomyMarkup: `<div class="portal-demo-nav sgds:w-full">
-      <sgds-masthead fluid class="portal-anatomy-masthead"></sgds-masthead>
+      <sgds-masthead class="portal-anatomy-masthead"></sgds-masthead>
     </div>`,
     anatomyParts: [
       { title: "Icon", note: "(Merlion)" },
@@ -11564,7 +11566,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Container width",
         description:
-          "Toggle the fluid prop to remove the max-width constraint and stretch the masthead across the viewport.",
+          "Use the default constrained masthead container so it aligns with the standard page shell.",
         controlLabel: "Masthead container width options",
         defaultValue: "constrained",
         options: [
@@ -11580,6 +11582,21 @@ const componentDocs: Record<string, ComponentDoc> = {
               "Default. Content is bounded by the standard SGDS container max-width.",
           },
           {
+            label: "Constrained with navigation",
+            value: "with-navigation",
+            markup: `<div class="portal-masthead-width-demo">
+              <div class="portal-masthead-width-demo__viewport">
+                <sgds-masthead></sgds-masthead>
+                <sgds-mainnav brandHref="/">
+                  <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+                  <sgds-mainnav-item active>Home</sgds-mainnav-item>
+                </sgds-mainnav>
+              </div>
+            </div>`,
+            description:
+              "Masthead and navigation share the same constrained page shell.",
+          },
+          {
             label: "Full-bleed (fluid)",
             value: "fluid",
             markup: `<div class="portal-masthead-width-demo">
@@ -11588,7 +11605,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               </div>
             </div>`,
             description:
-              "Stretches the masthead bar to the full viewport width. Pair with a fluid mainnav.",
+              "Use `fluid` when the page shell stretches across the full viewport.",
           },
         ],
       },
@@ -11597,7 +11614,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       demo(
         "Default",
         "Use the official government banner at the top of every service page.",
-        `<div class="portal-demo-nav"><sgds-masthead fluid></sgds-masthead></div>`,
+        `<div class="portal-demo-nav"><sgds-masthead></sgds-masthead></div>`,
       ),
     ],
     usage: {
@@ -11624,11 +11641,11 @@ const componentDocs: Record<string, ComponentDoc> = {
         {
           title: "Match the masthead width to the page shell",
           description:
-            "Use fluid when the app shell is full-bleed, and constrained when the navigation below is constrained too.",
+            "Keep the masthead constrained when the navigation below uses the standard page shell.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
-            <sgds-masthead fluid></sgds-masthead>
-            <sgds-mainnav fluid brandHref="/">
+            <sgds-masthead></sgds-masthead>
+            <sgds-mainnav brandHref="/">
               <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
             </sgds-mainnav>
@@ -15288,16 +15305,16 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Fixed light",
             value: "fixed-light",
-            markup: `<div class="portal-demo-row portal-demo-row-inverse"><sgds-spinner tone="fixed-light"></sgds-spinner></div>`,
+            markup: `<div class="portal-demo-row"><sgds-spinner tone="fixed-light"></sgds-spinner></div>`,
             description:
-              "Always renders light. Use over photography or fixed-dark surfaces.",
+              "Only use on fixed dark, strongly coloured, or photographic backgrounds. It may be hard to see on this page surface because it always stays light.",
           },
           {
             label: "Fixed dark",
             value: "fixed-dark",
             markup: `<div class="portal-demo-row"><sgds-spinner tone="fixed-dark"></sgds-spinner></div>`,
             description:
-              "Always renders dark. Use over light surfaces regardless of theme.",
+              "Only use on fixed light backgrounds. It may be hard to see in dark mode because it always stays dark.",
           },
         ],
       },
@@ -16907,24 +16924,28 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Constrained",
             value: "constrained",
-            markup: `<sgds-system-banner show>
+            markup: `<div class="portal-system-banner-width-demo sgds:w-full">
+          <sgds-system-banner show>
           <sgds-system-banner-item>
             <sgds-icon slot="icon" name="info-circle"></sgds-icon>
             Scheduled maintenance from 1am to 3am on Sunday.
           </sgds-system-banner-item>
-        </sgds-system-banner>`,
+        </sgds-system-banner>
+        </div>`,
             description:
               "Default. Content is constrained to the standard application width.",
           },
           {
             label: "Fluid",
             value: "fluid",
-            markup: `<sgds-system-banner show fluid>
+            markup: `<div class="portal-system-banner-width-demo sgds:w-full">
+          <sgds-system-banner show fluid>
           <sgds-system-banner-item>
             <sgds-icon slot="icon" name="info-circle"></sgds-icon>
             Scheduled maintenance from 1am to 3am on Sunday.
           </sgds-system-banner-item>
-        </sgds-system-banner>`,
+        </sgds-system-banner>
+        </div>`,
             description:
               "Removes the max-width so the banner stretches to the screen edges.",
           },
@@ -18298,6 +18319,28 @@ const componentDocs: Record<string, ComponentDoc> = {
         ],
       },
       {
+        title: "Character count",
+        description:
+          "Set maxlength to show the character count below the textarea.",
+        controlLabel: "Textarea character count options",
+        defaultValue: "no-count",
+        options: [
+          {
+            label: "No count",
+            value: "no-count",
+            markup: `<sgds-textarea label="Comments" value="Great service overall."></sgds-textarea>`,
+            description: "Default. No count appears when maxlength is not set.",
+          },
+          {
+            label: "Max length",
+            value: "max-length",
+            markup: `<sgds-textarea label="Comments" maxlength="200" value="Great service overall."></sgds-textarea>`,
+            description:
+              "The character count appears when maxlength is set.",
+          },
+        ],
+      },
+      {
         title: "Rows",
         description:
           "Use the rows attribute to set the visible height of the textarea.",
@@ -18307,13 +18350,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Default (3 rows)",
             value: "default",
-            markup: `<sgds-textarea label="Comments" rows="3"></sgds-textarea>`,
+            markup: `<sgds-textarea class="portal-textarea-api-demo" label="Comments" rows="3"></sgds-textarea>`,
             description: "Compact textarea suited to short responses.",
           },
           {
-            label: "Tall (6 rows)",
+            label: "Tall (10 rows)",
             value: "tall",
-            markup: `<sgds-textarea label="Comments" rows="6"></sgds-textarea>`,
+            markup: `<sgds-textarea class="portal-textarea-api-demo" label="Comments" rows="10"></sgds-textarea>`,
             description: "Taller textarea encourages longer answers.",
           },
         ],
@@ -18327,20 +18370,20 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Vertical",
             value: "vertical",
-            markup: `<sgds-textarea label="Comments" resize="vertical"></sgds-textarea>`,
-            description: "User can drag to resize the textarea vertically.",
+            markup: `<sgds-textarea class="portal-textarea-api-demo" label="Comments" resize="vertical"></sgds-textarea>`,
+            description: "Drag the bottom-right corner to resize vertically.",
           },
           {
             label: "None",
             value: "none",
-            markup: `<sgds-textarea label="Comments" resize="none"></sgds-textarea>`,
+            markup: `<sgds-textarea class="portal-textarea-api-demo" label="Comments" resize="none"></sgds-textarea>`,
             description:
               "Textarea height is fixed and cannot be resized by the user.",
           },
           {
             label: "Auto",
             value: "auto",
-            markup: `<sgds-textarea label="Comments" resize="auto"></sgds-textarea>`,
+            markup: `<sgds-textarea class="portal-textarea-api-demo" label="Comments" resize="auto" value="First point&#10;Second point&#10;Third point"></sgds-textarea>`,
             description: "Textarea grows automatically to fit its content.",
           },
         ],
@@ -18385,6 +18428,51 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "disabled",
             markup: `<sgds-textarea label="Comments" value="Great experience overall." disabled></sgds-textarea>`,
             description: "Textarea appears muted and cannot receive focus.",
+          },
+        ],
+      },
+      {
+        title: "Required",
+        description:
+          "Mark the textarea as required when the form cannot be submitted without a value.",
+        controlLabel: "Textarea required options",
+        defaultValue: "optional",
+        options: [
+          {
+            label: "Optional",
+            value: "optional",
+            markup: `<sgds-textarea label="Comments"></sgds-textarea>`,
+            description: "Default. The textarea can be left blank.",
+          },
+          {
+            label: "Required",
+            value: "required",
+            markup: `<sgds-textarea label="Comments" required hasFeedback invalid invalidFeedback="Enter your comments"></sgds-textarea>`,
+            description:
+              "Required textareas should show clear feedback when left blank.",
+          },
+        ],
+      },
+      {
+        title: "Length validation",
+        description:
+          "Use minlength and maxlength to validate the allowed response length.",
+        controlLabel: "Textarea length validation options",
+        defaultValue: "min-length",
+        options: [
+          {
+            label: "Minimum length",
+            value: "min-length",
+            markup: `<sgds-textarea label="Comments" minlength="20" required hasFeedback invalid invalidFeedback="Enter at least 20 characters" value="Too short"></sgds-textarea>`,
+            description:
+              "Use minlength when the response needs enough detail.",
+          },
+          {
+            label: "Maximum length",
+            value: "max-length",
+            markup: `<sgds-textarea label="Comments" maxlength="80" value="This response stays within the character limit."></sgds-textarea>`,
+            description:
+              "Use maxlength to limit long responses and show the count.",
           },
         ],
       },
@@ -21681,9 +21769,9 @@ const accessibilityDemoMarkupOverrides: Record<
     </div>`,
   },
   masthead: {
-    builtIn: `<div class="portal-demo-nav"><sgds-masthead fluid></sgds-masthead></div>`,
-    author: `<div class="portal-demo-nav"><sgds-masthead fluid></sgds-masthead></div>`,
-    focus: `<div class="portal-demo-nav"><sgds-masthead fluid></sgds-masthead></div>`,
+    builtIn: `<div class="portal-demo-nav"><sgds-masthead></sgds-masthead></div>`,
+    author: `<div class="portal-demo-nav"><sgds-masthead></sgds-masthead></div>`,
+    focus: `<div class="portal-demo-nav"><sgds-masthead></sgds-masthead></div>`,
   },
   modal: {
     builtIn: `<div class="portal-modal-preview">

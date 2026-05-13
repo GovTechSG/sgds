@@ -2,7 +2,11 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { withBase } from "vitepress";
 import TemplatePreviewToolbar from "./TemplatePreviewToolbar.vue";
-import { blockTemplateCategoryOrder, templateOverviewGroups } from "../../data/pattern-docs";
+import {
+  blockTemplateCategoryOrder,
+  pageTemplateRecommendedOrder,
+  templateOverviewGroups,
+} from "../../data/pattern-docs";
 import { isDarkTheme } from "../../theme/composables/sgds-theming";
 import { currentPaletteId } from "../../theme/composables/sgds-palette";
 
@@ -57,16 +61,22 @@ const iframeSrc = computed(() =>
 // block templates share one menu — the kind is used to derive the URL.
 type DropdownOption = { key: string; title: string; kind: "template" | "block"; groupLabel?: string };
 
-const templateOptions: DropdownOption[] = [
-  { key: "about-us", title: "About us", kind: "template" },
-  { key: "application-management", title: "Application management", kind: "template" },
-  { key: "blog", title: "Blog", kind: "template" },
-  { key: "catalogue", title: "Catalogue", kind: "template" },
-  { key: "form-page", title: "Form page", kind: "template" },
-  { key: "landing", title: "Landing page", kind: "template" },
-  { key: "multi-step-form", title: "Multi-step form", kind: "template" },
-  { key: "report-issue", title: "Report an issue", kind: "template" },
-];
+const getPageTemplateOrder = (key: string) => {
+  const index = pageTemplateRecommendedOrder.indexOf(key);
+  return index === -1 ? pageTemplateRecommendedOrder.length : index;
+};
+
+const pageOverviewItems =
+  templateOverviewGroups.find((templateGroup) => templateGroup.group === "page templates")?.items ?? [];
+
+const templateOptions: DropdownOption[] = [...pageOverviewItems]
+  .sort((current, next) => getPageTemplateOrder(current.key) - getPageTemplateOrder(next.key))
+  .map((item) => ({
+    key: item.key,
+    title: item.title,
+    kind: "template" as const,
+    groupLabel: item.groupLabel,
+  }));
 
 const getBlockCategoryOrder = (label: string) => {
   const index = blockTemplateCategoryOrder.indexOf(label);
@@ -89,6 +99,25 @@ const blockOptions = [...blockOverviewItems]
 // scrolls. The parent page handles all scrolling. ResizeObserver inside the
 // iframe document keeps the height in sync when the inner layout reflows.
 let activeResizeObserver: ResizeObserver | null = null;
+
+const syncMeasurementStylesToIframe = () => {
+  const iframe = iframeRef.value;
+  const doc = iframe?.contentDocument;
+  if (!doc) return;
+  let measurementStyle = doc.getElementById("template-preview-measurement-fix") as HTMLStyleElement | null;
+
+  if (!measurementStyle) {
+    measurementStyle = doc.createElement("style");
+    measurementStyle.id = "template-preview-measurement-fix";
+    doc.head.appendChild(measurementStyle);
+  }
+
+  measurementStyle.textContent = `
+    .sgds\\:min-h-screen {
+      min-height: auto !important;
+    }
+  `;
+};
 
 const measureContent = () => {
   const iframe = iframeRef.value;
@@ -134,6 +163,7 @@ const handleIframeLoad = () => {
 
   syncThemeToIframe();
   syncPaletteToIframe();
+  syncMeasurementStylesToIframe();
 
   measureContent();
   activeResizeObserver?.disconnect();
@@ -143,6 +173,11 @@ const handleIframeLoad = () => {
 
 watch(isDarkTheme, syncThemeToIframe);
 watch(currentPaletteId, syncPaletteToIframe);
+watch([() => props.templateKey, viewport], () => {
+  iframeHeight.value = 800;
+  activeResizeObserver?.disconnect();
+  activeResizeObserver = null;
+});
 
 const navigateToOption = (opt: DropdownOption) => {
   if (typeof window === "undefined") return;

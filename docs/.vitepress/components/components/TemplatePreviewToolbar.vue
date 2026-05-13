@@ -68,7 +68,9 @@ const selectedOption = computed(() =>
   [...props.templateOptions, ...props.blockOptions].find((option) => isActiveOption(option)),
 );
 
-const selectedTitle = computed(() => selectedOption.value?.title ?? "Template");
+const selectedTitle = computed(
+  () => selectedOption.value?.title ?? (props.activeKind === "template" ? "Page templates" : "Block templates"),
+);
 
 const selectedGroupLabel = computed(() => selectedOption.value?.groupLabel ?? "");
 
@@ -185,7 +187,7 @@ onBeforeUnmount(() => {
           size="sm"
           class="template-preview-template-button"
         >
-          <span class="template-preview-toolbar-label">Page templates</span>
+          <span class="template-preview-toolbar-label">{{ selectedTitle }}</span>
           <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
         </sgds-button>
         <sgds-dropdown-item
@@ -213,7 +215,7 @@ onBeforeUnmount(() => {
           size="sm"
           class="template-preview-template-button"
         >
-          <span class="template-preview-toolbar-label">Block templates</span>
+          <span class="template-preview-toolbar-label">{{ selectedTitle }}</span>
           <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
         </sgds-button>
         <template v-for="blockGroup in blockOptionGroups" :key="blockGroup.label">

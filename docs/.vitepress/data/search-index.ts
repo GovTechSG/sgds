@@ -96,6 +96,7 @@ export const searchIndex: SearchItem[] = [
   { title: "Mainnav", category: "Component", url: "/components/mainnav", keywords: ["navbar", "navigation", "header"] },
   { title: "Masthead", category: "Component", url: "/components/masthead", keywords: ["header", "top bar"] },
   { title: "Overflow menu", category: "Component", url: "/components/overflow-menu", keywords: ["kebab", "more", "menu", "actions"] },
+  { title: "Sidebar", category: "Component", url: "/components/sidebar", keywords: ["side bar", "navigation", "layout"] },
   { title: "Sidenav", category: "Component", url: "/components/sidenav", keywords: ["sidebar", "navigation"] },
   { title: "Stepper", category: "Component", url: "/components/stepper", keywords: ["steps", "progress", "wizard"] },
   { title: "Subnav", category: "Component", url: "/components/subnav", keywords: ["sub navigation", "secondary nav", "tabs"] },
