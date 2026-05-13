@@ -346,7 +346,7 @@ const defaultPartTitleMap: Record<string, AnatomyInput> = {
 
 const purposeThemeByGroup: Record<
   ComponentGroup,
-  {
+      {
     secondTitle: string;
     secondDescription: string;
     thirdTitle: string;
@@ -783,6 +783,191 @@ const componentDocs: Record<string, ComponentDoc> = {
         designToken: "sgds/color-default",
         rawValue: "#1A1A1A",
         usage: "Text colour of the leading icon",
+      },
+    ],
+    configurationDemos: [
+      {
+        title: "Variant",
+        description:
+          "Accordion variant controls whether the group is rendered as a plain list or with an enclosing border.",
+        controlLabel: "Accordion variant options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]">
+              <sgds-accordion-item open>
+                <span slot="header">Application details</span>
+                <div slot="content">Review your saved application details.</div>
+              </sgds-accordion-item>
+            </sgds-accordion>`,
+            description:
+              "Use the default variant when the accordion sits naturally in page content.",
+          },
+          {
+            label: "Border",
+            value: "border",
+            markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]" variant="border">
+              <sgds-accordion-item open>
+                <span slot="header">Application details</span>
+                <div slot="content">Review your saved application details.</div>
+              </sgds-accordion-item>
+            </sgds-accordion>`,
+            description:
+              "Use the border variant when the accordion needs clearer separation from surrounding content.",
+          },
+        ],
+      },
+      {
+        title: "Density",
+        description:
+          "Accordion density adjusts the spacing inside each item to suit compact or roomy layouts.",
+        controlLabel: "Accordion density options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]">
+              <sgds-accordion-item open>
+                <span slot="header">Default density</span>
+                <div slot="content">Use for most page layouts.</div>
+              </sgds-accordion-item>
+            </sgds-accordion>`,
+            description: "Use for most accordions.",
+          },
+          {
+            label: "Compact",
+            value: "compact",
+            markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]" density="compact">
+              <sgds-accordion-item open>
+                <span slot="header">Compact density</span>
+                <div slot="content">Use where vertical space is limited.</div>
+              </sgds-accordion-item>
+            </sgds-accordion>`,
+            description: "Use in dense panels, tables, or sidebars.",
+          },
+          {
+            label: "Spacious",
+            value: "spacious",
+            markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]" density="spacious">
+              <sgds-accordion-item open>
+                <span slot="header">Spacious density</span>
+                <div slot="content">Use where the accordion needs more breathing room.</div>
+              </sgds-accordion-item>
+            </sgds-accordion>`,
+            description: "Use in content-heavy pages with generous spacing.",
+          },
+        ],
+      },
+      {
+        title: "Multiple open items",
+        description:
+          "Use allowMultiple when users may need to compare content across more than one section.",
+        controlLabel: "Accordion multiple open options",
+        defaultValue: "single",
+        options: [
+          {
+            label: "Single",
+            value: "single",
+            markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]">
+              <sgds-accordion-item open>
+                <span slot="header">Eligibility</span>
+                <div slot="content">Only one item remains open.</div>
+              </sgds-accordion-item>
+              <sgds-accordion-item>
+                <span slot="header">Documents</span>
+                <div slot="content">Supporting details.</div>
+              </sgds-accordion-item>
+            </sgds-accordion>`,
+            description:
+              "Use the default single-open behaviour when each item is read independently.",
+          },
+          {
+            label: "Multiple",
+            value: "multiple",
+            markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]" allowMultiple>
+              <sgds-accordion-item open>
+                <span slot="header">Eligibility</span>
+                <div slot="content">Users can keep this section open.</div>
+              </sgds-accordion-item>
+              <sgds-accordion-item open>
+                <span slot="header">Documents</span>
+                <div slot="content">Users can compare this with eligibility.</div>
+              </sgds-accordion-item>
+            </sgds-accordion>`,
+            description:
+              "Use when comparing expanded details is useful to the task.",
+          },
+        ],
+      },
+      {
+        title: "Item state",
+        description:
+          "Accordion items can be opened by default or disabled when a section is not available.",
+        controlLabel: "Accordion item state options",
+        defaultValue: "open",
+        options: [
+          {
+            label: "Open",
+            value: "open",
+            markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]">
+              <sgds-accordion-item open>
+                <span slot="header">Open item</span>
+                <div slot="content">This panel is expanded by default.</div>
+              </sgds-accordion-item>
+            </sgds-accordion>`,
+            description:
+              "Use an open item when one section needs to be surfaced immediately.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]">
+              <sgds-accordion-item disabled>
+                <span slot="header">Disabled item</span>
+                <div slot="content">Unavailable content.</div>
+              </sgds-accordion-item>
+            </sgds-accordion>`,
+            description:
+              "Use disabled only when the item is temporarily unavailable and that state is explained nearby.",
+          },
+        ],
+      },
+      {
+        title: "Icon and badge",
+        description:
+          "Accordion items support icon and badge slots for compact status or category cues.",
+        controlLabel: "Accordion slot options",
+        defaultValue: "with-slots",
+        options: [
+          {
+            label: "With slots",
+            value: "with-slots",
+            markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]">
+              <sgds-accordion-item open>
+                <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
+                <span slot="header">Application status</span>
+                <sgds-badge slot="badge" variant="success">Ready</sgds-badge>
+                <div slot="content">The status badge stays close to the section label.</div>
+              </sgds-accordion-item>
+            </sgds-accordion>`,
+            description:
+              "Use icon and badge slots only when they add useful recognition or status.",
+          },
+          {
+            label: "Text only",
+            value: "text-only",
+            markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]">
+              <sgds-accordion-item open>
+                <span slot="header">Application status</span>
+                <div slot="content">Keep the item simple when text is enough.</div>
+              </sgds-accordion-item>
+            </sgds-accordion>`,
+            description: "Use text-only items when no extra visual cue is needed.",
+          },
+        ],
       },
     ],
     demos: [
@@ -2148,6 +2333,32 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-row"><sgds-badge variant="success">Active</sgds-badge></div>`,
             description:
               "Use when the text label is enough to convey the badge's meaning.",
+          },
+        ],
+      },
+      {
+        title: "Full width",
+        description:
+          "Use full width when the badge needs to align to the width of its container.",
+        controlLabel: "Badge full width options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="sgds:flex sgds:w-full sgds:justify-center">
+              <sgds-badge variant="neutral">Application review in progress</sgds-badge>
+            </div>`,
+            description: "Use the default width for short inline labels.",
+          },
+          {
+            label: "Full width",
+            value: "full-width",
+            markup: `<div class="sgds:flex sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:justify-center">
+              <sgds-badge variant="neutral" fullWidth>Application review in progress</sgds-badge>
+            </div>`,
+            description:
+              "Use fullWidth when the badge is part of a stacked layout or needs to fill a narrow container.",
           },
         ],
       },
@@ -3588,6 +3799,68 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "State",
+        description:
+          "Buttons expose disabled, loading, and active states for common interaction feedback.",
+        controlLabel: "Button state options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            description: "Use for actions that are available immediately.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<div class="portal-demo-row"><sgds-button disabled>Button label</sgds-button></div>`,
+            description:
+              "Use disabled when the action is unavailable and the page explains how to enable it.",
+          },
+          {
+            label: "Loading",
+            value: "loading",
+            markup: `<div class="portal-demo-row"><sgds-button loading>Button label</sgds-button></div>`,
+            description:
+              "Use loading after an action has been submitted and the user should wait.",
+          },
+          {
+            label: "Active",
+            value: "active",
+            markup: `<div class="portal-demo-row"><sgds-button variant="outline" active>Button label</sgds-button></div>`,
+            description:
+              "Use active when the button represents a selected or pressed state.",
+          },
+        ],
+      },
+      {
+        title: "Full width",
+        description:
+          "Full width makes the button fill its parent container for stacked or narrow layouts.",
+        controlLabel: "Button full width options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="sgds:flex sgds:w-full sgds:justify-center">
+              <sgds-button>Button label</sgds-button>
+            </div>`,
+            description: "Use the default width for inline actions.",
+          },
+          {
+            label: "Full width",
+            value: "full-width",
+            markup: `<div class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)]">
+              <sgds-button fullWidth>Button label</sgds-button>
+            </div>`,
+            description:
+              "Use fullWidth on mobile, forms, or stacked actions where the button should span the available width.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -4021,7 +4294,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             description:
               "Stacks the media above the content. Use when the card should follow a more traditional vertical layout.",
             markup: `<sgds-card class="portal-demo-card">
-              <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+              <img slot="image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" alt="Service preview" width="760" height="480" />
               <span slot="title">Card title</span>
               <span slot="description">Media sits above the content in the default vertical layout.</span>
             </sgds-card>`,
@@ -4032,7 +4305,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             description:
               "Places the media beside the content. Use when you need a denser layout with media next to the body instead of above it.",
             markup: `<sgds-card class="portal-demo-card" orientation="horizontal" imagePosition="before">
-              <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+              <img slot="image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" alt="Service preview" width="760" height="480" />
               <span slot="title">Card title</span>
               <span slot="description">Media moves to the left when the card uses a horizontal layout.</span>
             </sgds-card>`,
@@ -4053,12 +4326,12 @@ const componentDocs: Record<string, ComponentDoc> = {
               "Places the image before the content. Use when the image should appear above in vertical cards or to the left in horizontal cards.",
             markup: `<div class="sgds:grid sgds:grid-cols-2 sgds:gap-layout-md sgds:max-sm:grid-cols-1">
               <sgds-card class="portal-demo-card">
-                <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+                <img slot="image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" alt="Service preview" width="760" height="480" />
                 <span slot="title">Card title</span>
                 <span slot="description">The image appears above the content in a vertical card.</span>
               </sgds-card>
               <sgds-card class="portal-demo-card" orientation="horizontal" imagePosition="before">
-                <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+                <img slot="image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" alt="Service preview" width="760" height="480" />
                 <span slot="title">Card title</span>
                 <span slot="description">The image appears to the left of the content in a horizontal card.</span>
               </sgds-card>
@@ -4071,12 +4344,12 @@ const componentDocs: Record<string, ComponentDoc> = {
               "Places the image after the content. Use when the image should appear below in vertical cards or to the right in horizontal cards.",
             markup: `<div class="sgds:grid sgds:grid-cols-2 sgds:gap-layout-md sgds:max-sm:grid-cols-1">
               <sgds-card class="portal-demo-card" imagePosition="after">
-                <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+                <img slot="image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" alt="Service preview" width="760" height="480" />
                 <span slot="title">Card title</span>
                 <span slot="description">The image appears below the content in a vertical card.</span>
               </sgds-card>
               <sgds-card class="portal-demo-card" orientation="horizontal" imagePosition="after">
-                <img slot="image" src="/landing/placeholder1.png" alt="Service preview" width="760" height="480" />
+                <img slot="image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" alt="Service preview" width="760" height="480" />
                 <span slot="title">Card title</span>
                 <span slot="description">The image appears to the right of the content in a horizontal card.</span>
               </sgds-card>
@@ -4338,6 +4611,158 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: "",
             description:
               "The lower slot sits below the description. Use it for badges, metadata, or other supporting information.",
+          },
+        ],
+      },
+  {
+        title: "State",
+        description:
+          "Cards can be disabled when their primary action or destination is unavailable.",
+        controlLabel: "Card state options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Application guide</span>
+              <span slot="description">Review the latest guidance.</span>
+            </sgds-card>`,
+            description: "Use the default state for available content.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-card class="portal-demo-card" disabled>
+              <span slot="title">Application guide</span>
+              <span slot="description">This content is temporarily unavailable.</span>
+            </sgds-card>`,
+            description:
+              "Use disabled only when the card cannot be acted on and the surrounding page explains why.",
+          },
+        ],
+      },
+      {
+        title: "Stretched link",
+        description:
+          "Stretched link makes the card's link cover the whole card area while keeping the visual structure unchanged.",
+        controlLabel: "Card stretched link options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default link",
+            value: "default",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Service overview</span>
+              <span slot="description">Open the overview from the footer link.</span>
+              <sgds-link slot="footer"><a href="#">Read more</a></sgds-link>
+            </sgds-card>`,
+            description:
+              "Use when only the explicit link should be interactive.",
+          },
+          {
+            label: "Stretched link",
+            value: "stretched",
+            markup: `<sgds-card class="portal-demo-card" stretchedLink>
+              <span slot="title">Service overview</span>
+              <span slot="description">The whole card behaves as the link target.</span>
+              <sgds-link slot="footer"><a href="#">Read more</a></sgds-link>
+            </sgds-card>`,
+            description:
+              "Use when the card is a single destination and there are no competing actions inside it.",
+          },
+        ],
+      },
+      {
+        title: "Menu slot",
+        description:
+          "Use the menu slot for compact secondary actions associated with the card.",
+        controlLabel: "Card menu options",
+        defaultValue: "with-menu",
+        options: [
+          {
+            label: "With menu",
+            value: "with-menu",
+            markup: `<sgds-card class="portal-demo-card">
+              <sgds-overflow-menu slot="menu" size="sm">
+                <sgds-overflow-menu-item>Edit</sgds-overflow-menu-item>
+                <sgds-overflow-menu-item>Archive</sgds-overflow-menu-item>
+              </sgds-overflow-menu>
+              <span slot="title">Case file</span>
+              <span slot="description">Menu actions stay visually separate from card content.</span>
+            </sgds-card>`,
+            description:
+              "Use for secondary actions that should not dominate the card.",
+          },
+          {
+            label: "No menu",
+            value: "no-menu",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Case file</span>
+              <span slot="description">No secondary actions are shown.</span>
+            </sgds-card>`,
+            description: "Omit the menu when the card has no secondary actions.",
+          },
+        ],
+      },
+      {
+        title: "Upper and lower slots",
+        description:
+          "Upper and lower slots add supporting metadata above or below the main content.",
+        controlLabel: "Card metadata slot options",
+        defaultValue: "with-metadata",
+        options: [
+          {
+            label: "With metadata",
+            value: "with-metadata",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="upper">Updated today</span>
+              <span slot="title">Grant application</span>
+              <span slot="description">Track the progress of this application.</span>
+              <span slot="lower">Owner: Service team</span>
+            </sgds-card>`,
+            description:
+              "Use metadata slots for short supporting details that help users scan cards.",
+          },
+          {
+            label: "Content only",
+            value: "content-only",
+            markup: `<sgds-card class="portal-demo-card">
+              <span slot="title">Grant application</span>
+              <span slot="description">Track the progress of this application.</span>
+            </sgds-card>`,
+            description: "Keep the card simpler when metadata is not needed.",
+          },
+        ],
+      },
+      {
+        title: "Image adjustment",
+        description:
+          "Image adjustment controls how image content is fitted within the card image area.",
+        controlLabel: "Card image adjustment options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-card class="portal-demo-card" imageAdjustment="default">
+              <img slot="image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" alt="Scenic preview">
+              <span slot="title">Default image</span>
+              <span slot="description">The image sits flush with the top edge of the card.</span>
+            </sgds-card>`,
+            description:
+              "Use the default image treatment when the image should connect directly to the card edge.",
+          },
+          {
+            label: "Padding around",
+            value: "padding-around",
+            markup: `<sgds-card class="portal-demo-card" imageAdjustment="padding around">
+              <img slot="image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" alt="Scenic preview">
+              <span slot="title">Padded image</span>
+              <span slot="description">The image has spacing around it inside the card.</span>
+            </sgds-card>`,
+            description:
+              "Use padding around when the image needs separation from the card edge.",
           },
         ],
       },
@@ -4971,6 +5396,28 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Disabled",
+        description:
+          "Use disabled only when the close action is temporarily unavailable and the reason is clear.",
+        controlLabel: "Close button disabled options",
+        defaultValue: "enabled",
+        options: [
+          {
+            label: "Enabled",
+            value: "enabled",
+            markup: `<div class="portal-demo-row"><sgds-close-button ariaLabel="Close"></sgds-close-button></div>`,
+            description: "Use when the close action is available.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<div class="portal-demo-row"><sgds-close-button disabled="true"></sgds-close-button></div>`,
+            description:
+              "Use sparingly because users usually expect close actions to remain available.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -5466,6 +5913,115 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Clearable",
+        description:
+          "Clearable combo boxes let users remove the selected value without deleting text manually.",
+        controlLabel: "Combo box clearable options",
+        defaultValue: "clearable",
+        options: [
+          {
+            label: "Clearable",
+            value: "clearable",
+            markup: `<sgds-combo-box label="Agency" value="govtech" clearable>
+              <sgds-combo-box-option value="govtech">GovTech</sgds-combo-box-option>
+              <sgds-combo-box-option value="mci">MCI</sgds-combo-box-option>
+            </sgds-combo-box>`,
+            description:
+              "Use clearable when users commonly need to reset a selected value.",
+          },
+          {
+            label: "Not clearable",
+            value: "not-clearable",
+            markup: `<sgds-combo-box label="Agency" value="govtech">
+              <sgds-combo-box-option value="govtech">GovTech</sgds-combo-box-option>
+              <sgds-combo-box-option value="mci">MCI</sgds-combo-box-option>
+            </sgds-combo-box>`,
+            description: "Use the default when clearing is not a common action.",
+          },
+        ],
+      },
+      {
+        title: "Loading and empty state",
+        description:
+          "Use loading and empty async menu states when combo box options are retrieved after the user searches.",
+        controlLabel: "Combo box async options",
+        defaultValue: "loading",
+        options: [
+          {
+            label: "Loading",
+            value: "loading",
+            markup: `<sgds-combo-box label="Agency" placeholder="Search agency" loading>
+              <sgds-combo-box-option value="govtech">GovTech</sgds-combo-box-option>
+            </sgds-combo-box>`,
+            description: "Use loading while options are being fetched.",
+          },
+          {
+            label: "Empty async",
+            value: "empty",
+            markup: `<sgds-combo-box label="Agency" placeholder="Search agency" async emptyMenuAsync></sgds-combo-box>`,
+            description:
+              "Use an empty async state when the search returns no available options.",
+          },
+        ],
+      },
+      {
+        title: "Multi-select badge width",
+        description:
+          "Multi-select selections can use full-width badges when labels need to align in a stacked layout.",
+        controlLabel: "Combo box badge width options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-combo-box label="Topics" multiSelect value="finance;health">
+              <sgds-combo-box-option value="finance">Finance and procurement services</sgds-combo-box-option>
+              <sgds-combo-box-option value="health">Health support services</sgds-combo-box-option>
+            </sgds-combo-box>`,
+            description:
+              "Use the default badge width for short selected labels.",
+          },
+          {
+            label: "Full width",
+            value: "full-width",
+            markup: `<sgds-combo-box label="Topics" multiSelect value="finance;health" badgeFullWidth>
+              <sgds-combo-box-option value="finance">Finance and procurement services</sgds-combo-box-option>
+              <sgds-combo-box-option value="health">Health support services</sgds-combo-box-option>
+            </sgds-combo-box>`,
+            description:
+              "Use full-width badges when selected labels need a stronger stacked rhythm.",
+          },
+        ],
+      },
+      {
+        title: "Disabled option",
+        description:
+          "Individual combo box items can be disabled when an option is unavailable.",
+        controlLabel: "Combo box option state",
+        defaultValue: "available",
+        options: [
+          {
+            label: "Available",
+            value: "available",
+            markup: `<sgds-combo-box label="Agency" value="govtech">
+              <sgds-combo-box-option value="govtech">GovTech</sgds-combo-box-option>
+              <sgds-combo-box-option value="mci">MCI</sgds-combo-box-option>
+            </sgds-combo-box>`,
+            description: "Use available options for selectable values.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-combo-box label="Agency">
+              <sgds-combo-box-option value="govtech">GovTech</sgds-combo-box-option>
+              <sgds-combo-box-option value="mci" disabled>MCI unavailable</sgds-combo-box-option>
+            </sgds-combo-box>`,
+            description:
+              "Use disabled options when the choice should remain visible but cannot be selected.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -5844,6 +6400,73 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<sgds-datepicker class="portal-demo-datepicker" label="Date" required hasFeedback invalidFeedback="Enter a valid date"></sgds-datepicker>`,
             description:
               "Datepicker is configured to show the feedback message when validation fails.",
+          },
+        ],
+      },
+  {
+        title: "Pre-selected value",
+        description:
+          "Use a value when the datepicker should open with an existing date or date range.",
+        controlLabel: "Datepicker value options",
+        defaultValue: "empty",
+        options: [
+          {
+            label: "Empty",
+            value: "empty",
+            markup: `<sgds-datepicker label="Travel dates" mode="range"></sgds-datepicker>`,
+            description: "Use empty when the user must provide a new date.",
+          },
+          {
+            label: "Selected",
+            value: "selected",
+            markup: `<sgds-datepicker label="Travel dates" mode="range" value="12/05/2026 - 25/05/2026"></sgds-datepicker>`,
+            description:
+              "Use a selected value when editing an existing date or range.",
+          },
+        ],
+      },
+      {
+        title: "Required",
+        description:
+          "Mark datepicker as required when the form cannot be submitted without a date.",
+        controlLabel: "Datepicker required options",
+        defaultValue: "optional",
+        options: [
+          {
+            label: "Optional",
+            value: "optional",
+            markup: `<sgds-datepicker label="Appointment date"></sgds-datepicker>`,
+            description: "Use optional when the date is not mandatory.",
+          },
+          {
+            label: "Required",
+            value: "required",
+            markup: `<sgds-datepicker label="Appointment date" required></sgds-datepicker>`,
+            description:
+              "Use required only when the date is necessary to complete the task.",
+          },
+        ],
+      },
+      {
+        title: "Auto-flipping",
+        description:
+          "Use noFlip to prevent the calendar from changing direction automatically.",
+        controlLabel: "Datepicker auto-flipping options",
+        defaultValue: "auto",
+        options: [
+          {
+            label: "Auto",
+            value: "auto",
+            markup: `<sgds-datepicker label="Appointment date"></sgds-datepicker>`,
+            description:
+              "Allow the calendar to choose the best direction based on available space.",
+          },
+          {
+            label: "No flip",
+            value: "no-flip",
+            markup: `<sgds-datepicker label="Appointment date" noFlip></sgds-datepicker>`,
+            description:
+              "Use noFlip only when the menu direction must remain fixed for layout reasons.",
           },
         ],
       },
@@ -6952,6 +7575,75 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Contained",
+        description:
+          "Contained drawers stay within their parent surface instead of covering the full viewport.",
+        controlLabel: "Drawer containment options",
+        defaultValue: "viewport",
+        options: [
+          {
+            label: "Viewport",
+            value: "viewport",
+            markup: `<div class="portal-demo-overlay">
+              <sgds-drawer open size="sm">
+                <span slot="title">Drawer title</span>
+                <span slot="description">This drawer is positioned against the viewport.</span>
+              </sgds-drawer>
+            </div>`,
+            description:
+              "Use the default viewport drawer for page-level tasks.",
+          },
+          {
+            label: "Contained",
+            value: "contained",
+            markup: `<div class="portal-demo-overlay">
+              <sgds-drawer open contained size="sm">
+                <span slot="title">Drawer title</span>
+                <span slot="description">This drawer is constrained to its parent demo area.</span>
+              </sgds-drawer>
+            </div>`,
+            description:
+              "Use contained only inside a bounded application surface that owns the drawer interaction.",
+          },
+        ],
+      },
+      {
+        title: "Footer slot",
+        description:
+          "Use the footer slot for the primary actions that complete or dismiss the drawer task.",
+        controlLabel: "Drawer footer options",
+        defaultValue: "with-footer",
+        options: [
+          {
+            label: "With footer",
+            value: "with-footer",
+            markup: `<div class="portal-demo-overlay">
+              <sgds-drawer open contained size="sm">
+                <span slot="title">Review details</span>
+                <span slot="description">Confirm the information before continuing.</span>
+                <div slot="footer" class="portal-demo-row">
+                  <sgds-button>Confirm</sgds-button>
+                  <sgds-button variant="outline">Cancel</sgds-button>
+                </div>
+              </sgds-drawer>
+            </div>`,
+            description:
+              "Use a footer when the drawer contains a task that needs actions.",
+          },
+          {
+            label: "No footer",
+            value: "no-footer",
+            markup: `<div class="portal-demo-overlay">
+              <sgds-drawer open contained size="sm">
+                <span slot="title">Information</span>
+                <span slot="description">Use this layout for read-only drawer content.</span>
+              </sgds-drawer>
+            </div>`,
+            description: "Omit the footer for read-only supporting content.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -7397,6 +8089,68 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Item state",
+        description:
+          "Dropdown items can show active or disabled states inside the menu.",
+        controlLabel: "Dropdown item state options",
+        defaultValue: "active",
+        options: [
+          {
+            label: "Active",
+            value: "active",
+            markup: `<sgds-dropdown class="portal-demo-dropdown-active">
+              <sgds-button slot="toggler" variant="outline">Open menu</sgds-button>
+              <sgds-dropdown-item active><a href="#">Active item</a></sgds-dropdown-item>
+              <sgds-dropdown-item><a href="#">Default item</a></sgds-dropdown-item>
+            </sgds-dropdown>`,
+            description:
+              "Use active to identify the currently selected destination or value.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-dropdown class="portal-demo-dropdown-active">
+              <sgds-button slot="toggler" variant="outline">Open menu</sgds-button>
+              <sgds-dropdown-item><a href="#">Available item</a></sgds-dropdown-item>
+              <sgds-dropdown-item disabled><a href="#">Disabled item</a></sgds-dropdown-item>
+            </sgds-dropdown>`,
+            description:
+              "Use disabled when an item must remain visible but unavailable.",
+          },
+        ],
+      },
+      {
+        title: "Close behaviour",
+        description:
+          "Use close behaviour to decide whether selecting an item should dismiss the dropdown menu.",
+        controlLabel: "Dropdown close options",
+        defaultValue: "close",
+        options: [
+          {
+            label: "Close on select",
+            value: "close",
+            markup: `<sgds-dropdown close>
+              <sgds-button slot="toggler" variant="outline">Actions</sgds-button>
+              <sgds-dropdown-item><a href="#">Archive</a></sgds-dropdown-item>
+              <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
+            </sgds-dropdown>`,
+            description:
+              "Use close when selecting an item completes the menu interaction.",
+          },
+          {
+            label: "Stay open",
+            value: "stay-open",
+            markup: `<sgds-dropdown close="false">
+              <sgds-button slot="toggler" variant="outline">Filters</sgds-button>
+              <sgds-dropdown-item><a href="#">Status</a></sgds-dropdown-item>
+              <sgds-dropdown-item><a href="#">Owner</a></sgds-dropdown-item>
+            </sgds-dropdown>`,
+            description:
+              "Use stay-open behaviour when users may need to make repeated selections.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -7705,6 +8459,29 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     configurationDemos: [
+      {
+        title: "Variant",
+        description:
+          "File upload supports a default button-style picker and a drag-and-drop surface.",
+        controlLabel: "File upload variant options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-file-upload class="portal-demo-file-upload-default" label="Upload documents" hintText="PDF, JPG, or PNG. Max 5 MB per file.">Choose file</sgds-file-upload>`,
+            description:
+              "Use the default variant for compact forms or single file inputs.",
+          },
+          {
+            label: "Drag and drop",
+            value: "drag-and-drop",
+            markup: `<sgds-file-upload class="portal-demo-file-upload-drag" label="Upload documents" hintText="PDF, JPG, or PNG. Max 5 MB per file." variant="drag-and-drop" multiple>Choose files</sgds-file-upload>`,
+            description:
+              "Use drag-and-drop when uploading files is a prominent part of the task.",
+          },
+        ],
+      },
       {
         title: "Multiple files",
         description: "Allow more than one file to be selected at once.",
@@ -8245,6 +9022,50 @@ const componentDocs: Record<string, ComponentDoc> = {
         </sgds-footer>`,
             description:
               "Group related links under named sections to help users scan a richer footer.",
+          },
+        ],
+      },
+  {
+        title: "Tone",
+        description:
+          "Footer tone controls whether the footer uses a neutral or fixed dark surface.",
+        controlLabel: "Footer tone options",
+        defaultValue: "neutral",
+        options: [
+          {
+            label: "Neutral",
+            value: "neutral",
+            markup: `<sgds-footer tone="neutral"></sgds-footer>`,
+            description: "Use neutral footer tone in standard light layouts.",
+          },
+          {
+            label: "Fixed dark",
+            value: "fixed-dark",
+            markup: `<sgds-footer tone="fixed-dark"></sgds-footer>`,
+            description:
+              "Use fixed dark when the footer should retain a dark brand surface across themes.",
+          },
+        ],
+      },
+      {
+        title: "Layout",
+        description:
+          "Footer layout supports standard page footers and sidebar application shells.",
+        controlLabel: "Footer layout options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-footer layout="default"></sgds-footer>`,
+            description: "Use the default layout for full-width pages.",
+          },
+          {
+            label: "Sidebar",
+            value: "sidebar",
+            markup: `<sgds-footer layout="sidebar"></sgds-footer>`,
+            description:
+              "Use sidebar layout when the footer needs to align with an application shell.",
           },
         ],
       },
@@ -9195,6 +10016,28 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Active",
+        description:
+          "Use active when an icon button represents a selected tool or toggled state.",
+        controlLabel: "Icon button active options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-row"><sgds-icon-button name="search" ariaLabel="Search"></sgds-icon-button></div>`,
+            description: "Use for available actions that are not selected.",
+          },
+          {
+            label: "Active",
+            value: "active",
+            markup: `<div class="portal-demo-row"><sgds-icon-button name="search" ariaLabel="Search" active></sgds-icon-button></div>`,
+            description:
+              "Use active to show that a tool, filter, or mode is currently applied.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -10104,6 +10947,163 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Padding",
+        description:
+          "Use noPadding when the image card content should sit flush inside the card surface.",
+        controlLabel: "Image card padding options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
+              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">Default padding</span>
+              <span slot="description">Content uses the default inset spacing.</span>
+            </sgds-image-card>`,
+            description: "Use default padding for most image cards.",
+          },
+          {
+            label: "No padding",
+            value: "no-padding",
+            markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" noPadding>
+              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">No padding</span>
+              <span slot="description">Content can sit closer to the card edge.</span>
+            </sgds-image-card>`,
+            description:
+              "Use noPadding only when the surrounding composition already provides enough spacing.",
+          },
+        ],
+      },
+      {
+        title: "Border and disabled",
+        description:
+          "Image cards can remove the border or show a disabled state when unavailable.",
+        controlLabel: "Image card state options",
+        defaultValue: "border",
+        options: [
+          {
+            label: "Border",
+            value: "border",
+            markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
+              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">With border</span>
+            </sgds-image-card>`,
+            description: "Use the default border for clearer separation.",
+          },
+          {
+            label: "No border",
+            value: "no-border",
+            markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" hideBorder>
+              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">No border</span>
+            </sgds-image-card>`,
+            description:
+              "Use no border only when the card sits inside a surface that already creates separation.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" disabled>
+              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">Disabled card</span>
+            </sgds-image-card>`,
+            description:
+              "Use disabled when the card destination or action is temporarily unavailable.",
+          },
+        ],
+      },
+      {
+        title: "Image adjustment",
+        description:
+          "Image adjustment controls how the thumbnail image fits inside the image area.",
+        controlLabel: "Image card adjustment options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-image-card class="portal-demo-card" imageAdjustment="default">
+              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">Default image</span>
+            </sgds-image-card>`,
+            description:
+              "Use the default treatment when the image should connect directly to the card edge.",
+          },
+          {
+            label: "Padding around",
+            value: "padding-around",
+            markup: `<sgds-image-card class="portal-demo-card" imageAdjustment="padding around">
+              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">Padded image</span>
+            </sgds-image-card>`,
+            description:
+              "Use padding around when the image needs separation from the card edge.",
+          },
+        ],
+      },
+      {
+        title: "Image slots",
+        description:
+          "Image badge and action slots add compact metadata or controls on top of the image.",
+        controlLabel: "Image card image slot options",
+        defaultValue: "with-slots",
+        options: [
+          {
+            label: "With slots",
+            value: "with-slots",
+            markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
+              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <sgds-badge slot="image-badge" variant="success">New</sgds-badge>
+              <sgds-icon-button slot="image-action" name="bookmark" ariaLabel="Save"></sgds-icon-button>
+              <span slot="title">Image slots</span>
+            </sgds-image-card>`,
+            description:
+              "Use these slots for concise image-level status or actions.",
+          },
+          {
+            label: "Image only",
+            value: "image-only",
+            markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
+              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">Image only</span>
+            </sgds-image-card>`,
+            description: "Keep the image area clean when no overlay is needed.",
+          },
+        ],
+      },
+      {
+        title: "Footer link and stretched link",
+        description:
+          "Image cards support footer links and stretched link behaviour for navigational cards.",
+        controlLabel: "Image card link options",
+        defaultValue: "footer",
+        options: [
+          {
+            label: "Footer link",
+            value: "footer",
+            markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
+              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">Article</span>
+              <sgds-link slot="footer"><a href="#">Read more</a></sgds-link>
+            </sgds-image-card>`,
+            description: "Use a footer link when only the link should navigate.",
+          },
+          {
+            label: "Stretched link",
+            value: "stretched",
+            markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" stretchedLink>
+              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">Article</span>
+              <sgds-link slot="footer"><a href="#">Read more</a></sgds-link>
+            </sgds-image-card>`,
+            description:
+              "Use stretchedLink when the entire card is one destination.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -10508,6 +11508,146 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<sgds-input label="Email" type="email" required hasFeedback="both" invalid invalidFeedback="Enter a valid email"></sgds-input>`,
             description:
               "Input shows error styling and feedback message below.",
+          },
+        ],
+      },
+  {
+        title: "Prefix and suffix",
+        description:
+          "Prefix and suffix text add fixed context to the value users enter.",
+        controlLabel: "Input prefix and suffix options",
+        defaultValue: "prefix-suffix",
+        options: [
+          {
+            label: "Prefix and suffix",
+            value: "prefix-suffix",
+            markup: `<sgds-input label="Amount" prefix="$" suffix="SGD" value="120"></sgds-input>`,
+            description:
+              "Use when the unit or symbol is part of understanding the value.",
+          },
+          {
+            label: "No adornment",
+            value: "none",
+            markup: `<sgds-input label="Amount" value="120"></sgds-input>`,
+            description: "Omit prefix and suffix when the label is enough.",
+          },
+        ],
+      },
+      {
+        title: "Character count and length",
+        description:
+          "Use character count with minimum or maximum length requirements when input length matters.",
+        controlLabel: "Input length options",
+        defaultValue: "count",
+        options: [
+          {
+            label: "Count",
+            value: "count",
+            markup: `<sgds-input label="Short name" value="Portal" maxlength="20" characterCount></sgds-input>`,
+            description:
+              "Use character count to help users stay within a length limit.",
+          },
+          {
+            label: "Length rule",
+            value: "length",
+            markup: `<sgds-input label="Reference code" minlength="6" maxlength="12" hasFeedback invalid invalidFeedback="Use 6 to 12 characters."></sgds-input>`,
+            description:
+              "Use length validation when the submitted value must meet a fixed rule.",
+          },
+        ],
+      },
+      {
+        title: "Required",
+        description:
+          "Mark an input as required when the form cannot be completed without a value.",
+        controlLabel: "Input required options",
+        defaultValue: "optional",
+        options: [
+          {
+            label: "Optional",
+            value: "optional",
+            markup: `<sgds-input label="Middle name"></sgds-input>`,
+            description: "Use optional inputs only when the value is not needed.",
+          },
+          {
+            label: "Required",
+            value: "required",
+            markup: `<sgds-input label="Full name" required></sgds-input>`,
+            description:
+              "Use required for fields that must be completed before submission.",
+          },
+        ],
+      },
+      {
+        title: "Loading and valid",
+        description:
+          "Inputs can show asynchronous checking and successful validation states.",
+        controlLabel: "Input async state options",
+        defaultValue: "loading",
+        options: [
+          {
+            label: "Loading",
+            value: "loading",
+            markup: `<sgds-input label="Username" value="maya.lim" loading></sgds-input>`,
+            description:
+              "Use loading while checking a value against a service.",
+          },
+          {
+            label: "Valid",
+            value: "valid",
+            markup: `<sgds-input label="Username" value="maya.lim" hasFeedback valid></sgds-input>`,
+            description:
+              "Use valid feedback only when confirming a value helps users continue confidently.",
+          },
+        ],
+      },
+      {
+        title: "Slots",
+        description:
+          "Trailing icon and action slots add contextual controls to the input.",
+        controlLabel: "Input slot options",
+        defaultValue: "trailing-icon",
+        options: [
+          {
+            label: "Trailing icon",
+            value: "trailing-icon",
+            markup: `<sgds-input label="Search" placeholder="Search services">
+              <sgds-icon slot="trailing-icon" name="search"></sgds-icon>
+            </sgds-input>`,
+            description:
+              "Use a trailing icon for a passive visual cue or status icon.",
+          },
+          {
+            label: "Action",
+            value: "action",
+            markup: `<sgds-input label="Search" placeholder="Search services">
+              <sgds-button slot="action">Search</sgds-button>
+            </sgds-input>`,
+            description:
+              "Use an action slot when the input has a directly associated command.",
+          },
+        ],
+      },
+      {
+        title: "Number constraints",
+        description:
+          "Number inputs support minimum, maximum, and step constraints.",
+        controlLabel: "Input number constraint options",
+        defaultValue: "step",
+        options: [
+          {
+            label: "Constrained",
+            value: "step",
+            markup: `<sgds-input label="Quantity" type="number" min="1" max="10" step="1" value="12" hasFeedback invalid invalidFeedback="Enter a number from 1 to 10."></sgds-input>`,
+            description:
+              "Use min, max, and step when numeric values must stay within a known range.",
+          },
+          {
+            label: "No constraints",
+            value: "none",
+            markup: `<sgds-input label="Quantity" type="number" value="4"></sgds-input>`,
+            description:
+              "Use unconstrained number input only when any number is valid.",
           },
         ],
       },
@@ -11242,6 +12382,36 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Non-collapsible slot",
+        description:
+          "The non-collapsible slot keeps critical actions visible even when navigation items collapse.",
+        controlLabel: "Main navigation persistent action options",
+        defaultValue: "with-action",
+        options: [
+          {
+            label: "With action",
+            value: "with-action",
+            markup: `<sgds-mainnav class="sgds:w-full">
+              <a slot="brand" href="#">Agency portal</a>
+              <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+              <sgds-button slot="non-collapsible" size="sm">Log in</sgds-button>
+            </sgds-mainnav>`,
+            description:
+              "Use for actions that must stay visible across responsive states.",
+          },
+          {
+            label: "No action",
+            value: "no-action",
+            markup: `<sgds-mainnav class="sgds:w-full">
+              <a slot="brand" href="#">Agency portal</a>
+              <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+            </sgds-mainnav>`,
+            description:
+              "Omit the slot when there is no persistent action.",
+          },
+        ],
+      },
     ],
     measurements: [
       demo(
@@ -11958,6 +13128,55 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Footer slot",
+        description:
+          "Use the modal footer for actions that confirm, cancel, or complete the modal task.",
+        controlLabel: "Modal footer options",
+        defaultValue: "with-footer",
+        options: [
+          {
+            label: "With footer",
+            value: "with-footer",
+            markup: `<div class="portal-modal-preview">
+              <div class="portal-modal-panel">
+                <div class="portal-modal-header">
+                  <div class="portal-modal-header-copy">
+                    <div class="portal-modal-title">Submit application?</div>
+                    <div class="portal-modal-description">Review your details before submitting.</div>
+                  </div>
+                  <sgds-close-button aria-label="Close"></sgds-close-button>
+                </div>
+                <div class="portal-modal-body"><p>The footer contains the actions that complete the modal task.</p></div>
+                <div class="portal-modal-footer">
+                  <sgds-button variant="outline">Cancel</sgds-button>
+                  <sgds-button>Submit</sgds-button>
+                </div>
+              </div>
+            </div>`,
+            description:
+              "Use a footer when the modal asks the user to make a decision.",
+          },
+          {
+            label: "No footer",
+            value: "no-footer",
+            markup: `<div class="portal-modal-preview">
+              <div class="portal-modal-panel">
+                <div class="portal-modal-header">
+                  <div class="portal-modal-header-copy">
+                    <div class="portal-modal-title">Information</div>
+                    <div class="portal-modal-description">This modal contains read-only supporting information.</div>
+                  </div>
+                  <sgds-close-button aria-label="Close"></sgds-close-button>
+                </div>
+                <div class="portal-modal-body"><p>Omit the footer when no modal-level action is required.</p></div>
+              </div>
+            </div>`,
+            description:
+              "Omit the footer when the modal is informational and close is enough.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -12410,6 +13629,64 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Item state",
+        description:
+          "Overflow menu items can show active and disabled states.",
+        controlLabel: "Overflow menu item state options",
+        defaultValue: "active",
+        options: [
+          {
+            label: "Active",
+            value: "active",
+            markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
+              <sgds-overflow-menu-item active>Active item</sgds-overflow-menu-item>
+              <sgds-overflow-menu-item>Default item</sgds-overflow-menu-item>
+            </sgds-overflow-menu>`,
+            description:
+              "Use active for the currently selected item in the menu.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
+              <sgds-overflow-menu-item>Available item</sgds-overflow-menu-item>
+              <sgds-overflow-menu-item disabled>Disabled item</sgds-overflow-menu-item>
+            </sgds-overflow-menu>`,
+            description:
+              "Use disabled when the item must remain visible but unavailable.",
+          },
+        ],
+      },
+      {
+        title: "Item icon",
+        description:
+          "Use item icons when they help users recognise menu actions quickly.",
+        controlLabel: "Overflow menu icon options",
+        defaultValue: "with-icon",
+        options: [
+          {
+            label: "With icon",
+            value: "with-icon",
+            markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
+              <sgds-overflow-menu-item><sgds-icon slot="icon" name="pencil"></sgds-icon>Edit</sgds-overflow-menu-item>
+              <sgds-overflow-menu-item><sgds-icon slot="icon" name="trash"></sgds-icon>Delete</sgds-overflow-menu-item>
+            </sgds-overflow-menu>`,
+            description:
+              "Use icons for familiar actions where the icon reinforces the label.",
+          },
+          {
+            label: "Text only",
+            value: "text-only",
+            markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
+              <sgds-overflow-menu-item>Edit</sgds-overflow-menu-item>
+              <sgds-overflow-menu-item>Delete</sgds-overflow-menu-item>
+            </sgds-overflow-menu>`,
+            description:
+              "Use text-only menu items when labels are clear on their own.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -12707,6 +13984,52 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<sgds-pagination dataLength="100" itemsPerPage="10" currentPage="10"></sgds-pagination>`,
             description:
               "Active state on the last page disables the next-page affordance.",
+          },
+        ],
+      },
+  {
+        title: "Navigation",
+        description:
+          "Pagination can show number-only navigation or include previous and next controls.",
+        controlLabel: "Pagination navigation options",
+        defaultValue: "page-numbers",
+        options: [
+          {
+            label: "Page numbers",
+            value: "page-numbers",
+            markup: `<sgds-pagination currentPage="2" dataLength="80" itemsPerPage="10" variant="number"></sgds-pagination>`,
+            description:
+              "Use page numbers when direct page access matters and previous/next controls are not needed.",
+          },
+          {
+            label: "Previous and next",
+            value: "previous-next",
+            markup: `<sgds-pagination currentPage="2" dataLength="80" itemsPerPage="10" variant="default" navigation="icon-button"></sgds-pagination>`,
+            description:
+              "Use previous and next controls when users move sequentially through the result set.",
+          },
+        ],
+      },
+      {
+        title: "Result count",
+        description:
+          "Data length and items per page determine how many pages are rendered.",
+        controlLabel: "Pagination result options",
+        defaultValue: "many",
+        options: [
+          {
+            label: "Many pages",
+            value: "many",
+            markup: `<sgds-pagination currentPage="3" dataLength="120" itemsPerPage="10" variant="number"></sgds-pagination>`,
+            description:
+              "Use dataLength and itemsPerPage to match the number of records being paginated.",
+          },
+          {
+            label: "Few pages",
+            value: "few",
+            markup: `<sgds-pagination currentPage="1" dataLength="24" itemsPerPage="10" variant="number"></sgds-pagination>`,
+            description:
+              "Fewer records render fewer page links from the same component.",
           },
         ],
       },
@@ -13887,6 +15210,58 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Loading",
+        description:
+          "Use loading while select options are being retrieved or refreshed.",
+        controlLabel: "Select loading options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-select label="Agency" placeholder="Choose agency">
+              <sgds-select-option value="govtech">GovTech</sgds-select-option>
+              <sgds-select-option value="mci">MCI</sgds-select-option>
+            </sgds-select>`,
+            description: "Use default when options are ready.",
+          },
+          {
+            label: "Loading",
+            value: "loading",
+            markup: `<sgds-select label="Agency" placeholder="Choose agency" loading>
+              <sgds-select-option value="govtech">GovTech</sgds-select-option>
+            </sgds-select>`,
+            description: "Use loading while options are being prepared.",
+          },
+        ],
+      },
+      {
+        title: "Required",
+        description:
+          "Mark select as required when the form cannot be submitted without a selected option.",
+        controlLabel: "Select required options",
+        defaultValue: "optional",
+        options: [
+          {
+            label: "Optional",
+            value: "optional",
+            markup: `<sgds-select label="Preferred agency" placeholder="Choose agency">
+              <sgds-select-option value="govtech">GovTech</sgds-select-option>
+            </sgds-select>`,
+            description: "Use optional selects for non-essential choices.",
+          },
+          {
+            label: "Required",
+            value: "required",
+            markup: `<sgds-select label="Agency" placeholder="Choose agency" required>
+              <sgds-select-option value="govtech">GovTech</sgds-select-option>
+            </sgds-select>`,
+            description:
+              "Use required for choices that must be completed before submission.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -14226,6 +15601,212 @@ const componentDocs: Record<string, ComponentDoc> = {
             </sgds-sidebar>`,
             description:
               "Use icon-only mode when users need more room for the main workspace.",
+          },
+        ],
+      },
+  {
+        title: "Collapsed",
+        description:
+          "Sidebar can collapse to a narrower state when space is limited.",
+        controlLabel: "Sidebar collapsed options",
+        defaultValue: "expanded",
+        options: [
+          {
+            label: "Expanded",
+            value: "expanded",
+            markup: `<sgds-sidebar active="applications" aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
+              <div slot="upper" class="sgds:px-md sgds:py-sm sgds:font-semibold">Service portal</div>
+              <sgds-sidebar-section title="Workspace" name="workspace">
+                <sgds-sidebar-item title="Dashboard" name="dashboard">
+                  <sgds-icon name="house" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Applications" name="applications">
+                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Reports" name="reports">
+                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+              </sgds-sidebar-section>
+              <sgds-sidebar-section title="Admin" name="admin">
+                <sgds-sidebar-item title="Settings" name="settings">
+                  <sgds-icon name="gear" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+              </sgds-sidebar-section>
+            </sgds-sidebar>`,
+            description: "Use expanded sidebars when labels should stay visible.",
+          },
+          {
+            label: "Collapsed",
+            value: "collapsed",
+            markup: `<sgds-sidebar active="applications" aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]" collapsed>
+              <div slot="upper" class="sgds:px-md sgds:py-sm sgds:font-semibold">Service portal</div>
+              <sgds-sidebar-section title="Workspace" name="workspace">
+                <sgds-sidebar-item title="Dashboard" name="dashboard">
+                  <sgds-icon name="house" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Applications" name="applications">
+                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Reports" name="reports">
+                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+              </sgds-sidebar-section>
+              <sgds-sidebar-section title="Admin" name="admin">
+                <sgds-sidebar-item title="Settings" name="settings">
+                  <sgds-icon name="gear" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+              </sgds-sidebar-section>
+            </sgds-sidebar>`,
+            description:
+              "Use collapsed when preserving horizontal workspace is more important.",
+          },
+        ],
+      },
+      {
+        title: "Active item",
+        description:
+          "Use active sidebar items to show the current page or section.",
+        controlLabel: "Sidebar active item options",
+        defaultValue: "active",
+        options: [
+          {
+            label: "Active",
+            value: "active",
+            markup: `<sgds-sidebar active="applications" aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
+              <sgds-sidebar-section title="Workspace" name="workspace">
+                <sgds-sidebar-item title="Dashboard" name="dashboard">
+                  <sgds-icon name="house" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Applications" name="applications">
+                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Reports" name="reports">
+                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+              </sgds-sidebar-section>
+            </sgds-sidebar>`,
+            description: "Use active to orient users in the current navigation.",
+          },
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-sidebar aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
+              <sgds-sidebar-section title="Workspace" name="workspace">
+                <sgds-sidebar-item title="Dashboard" name="dashboard">
+                  <sgds-icon name="house" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Applications" name="applications">
+                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Reports" name="reports">
+                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+              </sgds-sidebar-section>
+            </sgds-sidebar>`,
+            description: "Use default items for inactive destinations.",
+          },
+        ],
+      },
+      {
+        title: "Scrim",
+        description:
+          "Scrim adds an overlay treatment for temporary sidebar states on smaller screens.",
+        controlLabel: "Sidebar scrim options",
+        defaultValue: "without-scrim",
+        options: [
+          {
+            label: "No scrim",
+            value: "without-scrim",
+            markup: `<sgds-sidebar active="applications" variant="persistent" aria-label="Persistent application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
+              <sgds-sidebar-section title="Workspace" name="workspace">
+                <sgds-sidebar-item title="Dashboard" name="dashboard">
+                  <sgds-icon name="house" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Applications" name="applications">
+                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Reports" name="reports">
+                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+              </sgds-sidebar-section>
+            </sgds-sidebar>`,
+            description: "Use no scrim for persistent sidebars.",
+          },
+          {
+            label: "Scrim",
+            value: "scrim",
+            markup: `<div class="sgds:relative sgds:h-[var(--sgds-dimension-360)] sgds:w-full sgds:overflow-hidden sgds:rounded-md sgds:border sgds:border-muted sgds:bg-bg-alternate">
+              <div class="sgds:absolute sgds:inset-0 sgds:bg-overlay" aria-hidden="true"></div>
+              <sgds-sidebar active="applications" variant="overlay" aria-label="Overlay application navigation" class="portal-demo-sidebar-open sgds:absolute sgds:left-0 sgds:top-0 sgds:z-[1] sgds:h-full" scrim>
+                <sgds-sidebar-section title="Workspace" name="workspace">
+                  <sgds-sidebar-item title="Dashboard" name="dashboard">
+                    <sgds-icon name="house" slot="icon"></sgds-icon>
+                  </sgds-sidebar-item>
+                  <sgds-sidebar-group title="Applications" name="applications">
+                    <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
+                    <sgds-sidebar-item title="New applications" name="new-applications">
+                      <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
+                    </sgds-sidebar-item>
+                    <sgds-sidebar-item title="Submitted" name="submitted">
+                      <sgds-icon name="folder" slot="icon"></sgds-icon>
+                    </sgds-sidebar-item>
+                  </sgds-sidebar-group>
+                  <sgds-sidebar-item title="Reports" name="reports">
+                    <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
+                  </sgds-sidebar-item>
+                </sgds-sidebar-section>
+              </sgds-sidebar>
+            </div>`,
+            description:
+              "Use scrim when the sidebar behaves as a temporary overlay.",
+          },
+        ],
+      },
+      {
+        title: "Upper and lower slots",
+        description:
+          "Sidebar supports upper and lower slots for fixed content around the navigation list.",
+        controlLabel: "Sidebar slot options",
+        defaultValue: "with-slots",
+        options: [
+          {
+            label: "With slots",
+            value: "with-slots",
+            markup: `<sgds-sidebar active="applications" aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
+              <div slot="upper" class="sgds:p-md sgds:font-semibold">Portal</div>
+              <sgds-sidebar-section title="Workspace" name="workspace">
+                <sgds-sidebar-item title="Dashboard" name="dashboard">
+                  <sgds-icon name="house" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Applications" name="applications">
+                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Reports" name="reports">
+                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+              </sgds-sidebar-section>
+              <div slot="lower" class="sgds:p-md"><sgds-button size="sm" fullWidth>Help</sgds-button></div>
+            </sgds-sidebar>`,
+            description:
+              "Use slots for persistent header or footer content connected to the sidebar.",
+          },
+          {
+            label: "Navigation only",
+            value: "navigation-only",
+            markup: `<sgds-sidebar active="applications" aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
+              <sgds-sidebar-section title="Workspace" name="workspace">
+                <sgds-sidebar-item title="Dashboard" name="dashboard">
+                  <sgds-icon name="house" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Applications" name="applications">
+                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+                <sgds-sidebar-item title="Reports" name="reports">
+                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
+                </sgds-sidebar-item>
+              </sgds-sidebar-section>
+            </sgds-sidebar>`,
+            description: "Use navigation only when no supporting content is needed.",
           },
         ],
       },
@@ -14769,6 +16350,108 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Sticky",
+        description:
+          "Sticky sidenav stays visible while the user scrolls through related page content.",
+        controlLabel: "Sidenav sticky options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-nav-sm">
+              <sgds-sidenav>
+                <sgds-sidenav-link active><a href="#">Overview</a></sgds-sidenav-link>
+                <sgds-sidenav-link><a href="#">Details</a></sgds-sidenav-link>
+              </sgds-sidenav>
+            </div>`,
+            description: "Use default when the sidenav scrolls with content.",
+          },
+          {
+            label: "Sticky",
+            value: "sticky",
+            markup: `<div class="portal-demo-nav-sm">
+              <sgds-sidenav sticky>
+                <sgds-sidenav-link active><a href="#">Overview</a></sgds-sidenav-link>
+                <sgds-sidenav-link><a href="#">Details</a></sgds-sidenav-link>
+              </sgds-sidenav>
+            </div>`,
+            description:
+              "Use sticky when section navigation should remain available on long pages.",
+          },
+        ],
+      },
+      {
+        title: "Icon slot",
+        description:
+          "Sidenav links can include an icon to support recognition in dense navigation.",
+        controlLabel: "Sidenav icon options",
+        defaultValue: "with-icon",
+        options: [
+          {
+            label: "With icon",
+            value: "with-icon",
+            markup: `<div class="portal-demo-nav-sm">
+              <sgds-sidenav>
+                <sgds-sidenav-link active>
+                  <sgds-icon slot="icon" name="house"></sgds-icon>
+                  <a href="#">Overview</a>
+                </sgds-sidenav-link>
+              </sgds-sidenav>
+            </div>`,
+            description:
+              "Use icons when they help users scan repeated navigation items.",
+          },
+          {
+            label: "Text only",
+            value: "text-only",
+            markup: `<div class="portal-demo-nav-sm">
+              <sgds-sidenav>
+                <sgds-sidenav-link active><a href="#">Overview</a></sgds-sidenav-link>
+              </sgds-sidenav>
+            </div>`,
+            description: "Use text-only links when labels are clear on their own.",
+          },
+        ],
+      },
+      {
+        title: "Caret icon",
+        description:
+          "Nested sidenav items can customise the caret icon used for expansion.",
+        controlLabel: "Sidenav caret options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-nav-sm">
+              <sgds-sidenav>
+                <sgds-sidenav-item active>
+                  <span slot="title">Section</span>
+                  <sgds-sidenav-link active><a href="#">Overview</a></sgds-sidenav-link>
+                </sgds-sidenav-item>
+              </sgds-sidenav>
+            </div>`,
+            description: "Use the default caret for standard nested navigation.",
+          },
+          {
+            label: "Custom",
+            value: "custom",
+            markup: `<div class="portal-demo-nav-sm">
+              <sgds-sidenav>
+                <sgds-sidenav-item active>
+                  <span slot="title">Section</span>
+                  <sgds-icon slot="caret" name="chevron-down"></sgds-icon>
+                  <sgds-sidenav-link active><a href="#">Overview</a></sgds-sidenav-link>
+                </sgds-sidenav-item>
+              </sgds-sidenav>
+            </div>`,
+            description:
+              "Use a custom caret only when matching a specific icon system requirement.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -15141,6 +16824,50 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Dimensions",
+        description:
+          "Skeleton supports custom width and height for matching the loading placeholder to the final content.",
+        controlLabel: "Skeleton dimension options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-skeleton width="240px" height="16px"></sgds-skeleton>`,
+            description: "Use a simple line-sized skeleton for text placeholders.",
+          },
+          {
+            label: "Custom",
+            value: "custom",
+            markup: `<sgds-skeleton width="240px" height="96px"></sgds-skeleton>`,
+            description:
+              "Use custom dimensions when the placeholder should match a card, thumbnail, or media region.",
+          },
+        ],
+      },
+      {
+        title: "Border radius",
+        description:
+          "Border radius lets the skeleton match rounded controls or media shapes.",
+        controlLabel: "Skeleton radius options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-skeleton width="240px" height="16px"></sgds-skeleton>`,
+            description: "Use default radius for text-like placeholders.",
+          },
+          {
+            label: "Rounded",
+            value: "rounded",
+            markup: `<sgds-skeleton width="96px" height="96px" borderRadius="999px"></sgds-skeleton>`,
+            description:
+              "Use rounded placeholders for avatars or circular image regions.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -15372,6 +17099,29 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-row"><sgds-spinner label="Loading"></sgds-spinner></div>`,
             description:
               "Adds a descriptive label so users know what is being loaded.",
+          },
+        ],
+      },
+  {
+        title: "Orientation",
+        description:
+          "Spinner orientation controls whether the label sits beside or below the spinner.",
+        controlLabel: "Spinner orientation options",
+        defaultValue: "horizontal",
+        options: [
+          {
+            label: "Horizontal",
+            value: "horizontal",
+            markup: `<sgds-spinner label="Loading" orientation="horizontal"></sgds-spinner>`,
+            description:
+              "Use horizontal orientation when space allows the label to sit beside the spinner.",
+          },
+          {
+            label: "Vertical",
+            value: "vertical",
+            markup: `<sgds-spinner label="Loading" orientation="vertical"></sgds-spinner>`,
+            description:
+              "Use vertical orientation in centred loading states or narrow containers.",
           },
         ],
       },
@@ -16127,6 +17877,34 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Disabled item",
+        description:
+          "Subnav items can be disabled when a section is visible but unavailable.",
+        controlLabel: "Subnav disabled options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-subnav>
+              <sgds-subnav-item active><a href="#">Overview</a></sgds-subnav-item>
+              <sgds-subnav-item><a href="#">Details</a></sgds-subnav-item>
+            </sgds-subnav>`,
+            description: "Use default items for available sections.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-subnav>
+              <sgds-subnav-item active><a href="#">Overview</a></sgds-subnav-item>
+              <sgds-subnav-item disabled><a href="#">Details</a></sgds-subnav-item>
+            </sgds-subnav>`,
+            description:
+              "Use disabled only when the unavailable section needs to remain visible.",
+          },
+        ],
+      },
     ],
     measurements: [
       demo(
@@ -16531,6 +18309,31 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<sgds-switch checked disabled>Enable notifications</sgds-switch>`,
             description:
               "Use when the setting is temporarily unavailable. Disabled switches appear muted and cannot be focused or toggled.",
+          },
+        ],
+      },
+  {
+        title: "Label placement",
+        description:
+          "Switch labels can sit on the default side or in the left label slot depending on the form layout.",
+        controlLabel: "Switch label placement options",
+        defaultValue: "right",
+        options: [
+          {
+            label: "Right label",
+            value: "right",
+            markup: `<sgds-switch checked>Receive updates</sgds-switch>`,
+            description:
+              "Use the default label position for simple stacked forms.",
+          },
+          {
+            label: "Left label",
+            value: "left",
+            markup: `<sgds-switch checked>
+              <span slot="leftLabel">Receive updates</span>
+            </sgds-switch>`,
+            description:
+              "Use the left label slot when the label should precede the control.",
           },
         ],
       },
@@ -17421,6 +19224,38 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Density",
+        description:
+          "Tab density adjusts the spacing of tab items for compact or standard layouts.",
+        controlLabel: "Tab density options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-tab-group density="default">
+              <sgds-tab slot="nav" panel="overview" active>Overview</sgds-tab>
+              <sgds-tab slot="nav" panel="details">Details</sgds-tab>
+              <sgds-tab-panel name="overview">Overview content</sgds-tab-panel>
+              <sgds-tab-panel name="details">Details content</sgds-tab-panel>
+            </sgds-tab-group>`,
+            description: "Use default density for most tab groups.",
+          },
+          {
+            label: "Compact",
+            value: "compact",
+            markup: `<sgds-tab-group density="compact">
+              <sgds-tab slot="nav" panel="overview" active>Overview</sgds-tab>
+              <sgds-tab slot="nav" panel="details">Details</sgds-tab>
+              <sgds-tab-panel name="overview">Overview content</sgds-tab-panel>
+              <sgds-tab-panel name="details">Details content</sgds-tab-panel>
+            </sgds-tab-group>`,
+            description:
+              "Use compact density when tabs sit in dense product interfaces.",
+          },
+        ],
+      },
     ],
     // Structure-section preview uses a slimmer tab nav without panel content,
     // so the demo focuses on the bordered nav strip + active indicator that the
@@ -17829,6 +19664,64 @@ const componentDocs: Record<string, ComponentDoc> = {
         ></sgds-table>`,
             description:
               "Borders around every cell aid scanning for tables packed with values.",
+          },
+        ],
+      },
+  {
+        title: "Responsive",
+        description:
+          "Responsive tables can change layout at smaller breakpoints.",
+        controlLabel: "Table responsive options",
+        defaultValue: "responsive",
+        options: [
+          {
+            label: "Responsive",
+            value: "responsive",
+            markup: `<sgds-table responsive
+              rowHeader='["Name","Status","Owner"]'
+              tableData='[["Alpha","Active","Team A"],["Beta","Pending","Team B"]]'
+            ></sgds-table>`,
+            description:
+              "Use responsive tables when the table must remain readable on smaller screens.",
+          },
+          {
+            label: "Static",
+            value: "static",
+            markup: `<sgds-table
+              rowHeader='["Name","Status","Owner"]'
+              tableData='[["Alpha","Active","Team A"],["Beta","Pending","Team B"]]'
+            ></sgds-table>`,
+            description:
+              "Use static layout only when the table fits comfortably in its container.",
+          },
+        ],
+      },
+      {
+        title: "Table layout",
+        description:
+          "Table layout controls whether columns size automatically or use fixed distribution.",
+        controlLabel: "Table layout options",
+        defaultValue: "auto",
+        options: [
+          {
+            label: "Auto",
+            value: "auto",
+            markup: `<sgds-table layout="auto"
+              rowHeader='["Name","Status","Owner"]'
+              tableData='[["Alpha","Active","Team A"],["Beta","Pending","Team B"]]'
+            ></sgds-table>`,
+            description:
+              "Use auto layout when content length should influence column sizing.",
+          },
+          {
+            label: "Fixed",
+            value: "fixed",
+            markup: `<sgds-table layout="fixed"
+              rowHeader='["Name","Status","Owner"]'
+              tableData='[["Alpha","Active","Team A"],["Beta","Pending","Team B"]]'
+            ></sgds-table>`,
+            description:
+              "Use fixed layout when columns should distribute predictably.",
           },
         ],
       },
@@ -18651,7 +20544,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Vertical",
             value: "vertical",
             markup: `<sgds-thumbnail-card class="portal-demo-card" orientation="vertical">
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=192&q=80" style="width: 96px; height: 96px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 96px; height: 96px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Annual report 2025</span>
           <span slot="description">Highlights and metrics from the past year.</span>
         </sgds-thumbnail-card>`,
@@ -18718,6 +20611,66 @@ const componentDocs: Record<string, ComponentDoc> = {
           <a slot="footer" href="#">Open</a>
         </sgds-thumbnail-card>`,
             description: "Greys out the card and disables its actions.",
+          },
+        ],
+      },
+      {
+        title: "Padding",
+        description:
+          "Thumbnail cards can remove internal padding when used in compact media lists.",
+        controlLabel: "Thumbnail card padding options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-thumbnail-card class="portal-demo-card">
+              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <span slot="title">Default padding</span>
+              <span slot="description">Content uses default card padding.</span>
+            </sgds-thumbnail-card>`,
+            description: "Use default padding for most thumbnail cards.",
+          },
+          {
+            label: "No padding",
+            value: "no-padding",
+            markup: `<sgds-thumbnail-card class="portal-demo-card" noPadding>
+              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <span slot="title">No padding</span>
+              <span slot="description">Content sits closer to the edge.</span>
+            </sgds-thumbnail-card>`,
+            description:
+              "Use noPadding only when the surrounding layout provides enough spacing.",
+          },
+        ],
+      },
+      {
+        title: "Footer and stretched link",
+        description:
+          "Thumbnail cards support footer links and stretched link behaviour for navigational cards.",
+        controlLabel: "Thumbnail card link options",
+        defaultValue: "footer",
+        options: [
+          {
+            label: "Footer link",
+            value: "footer",
+            markup: `<sgds-thumbnail-card class="portal-demo-card">
+              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <span slot="title">Guide</span>
+              <sgds-link slot="footer"><a href="#">Read guide</a></sgds-link>
+            </sgds-thumbnail-card>`,
+            description: "Use a footer link when only the link should navigate.",
+          },
+          {
+            label: "Stretched link",
+            value: "stretched",
+            markup: `<sgds-thumbnail-card class="portal-demo-card" stretchedLink>
+              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <span slot="title">Guide</span>
+              <sgds-link slot="footer"><a href="#">Read guide</a></sgds-link>
+            </sgds-thumbnail-card>`,
+            description:
+              "Use stretchedLink when the whole thumbnail card is one destination.",
           },
         ],
       },
@@ -19317,6 +21270,88 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Position",
+        description:
+          "Toast position controls where the toast stack appears in the viewport.",
+        controlLabel: "Toast position options",
+        defaultValue: "top-end",
+        options: [
+          {
+            label: "Top end",
+            value: "top-end",
+            markup: `<div class="sgds:relative sgds:h-[var(--sgds-dimension-256)] sgds:w-full sgds:rounded-md sgds:border sgds:border-muted sgds:bg-bg-alternate sgds:p-md">
+              <div class="sgds:absolute sgds:right-md sgds:top-md sgds:flex sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:items-start sgds:gap-sm sgds:rounded-md sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-md">
+                <sgds-icon name="check-circle-fill" class="sgds:shrink-0 sgds:text-success"></sgds-icon>
+                <span class="sgds:text-body-sm sgds:text-default">Saved successfully.</span>
+              </div>
+            </div>`,
+            description:
+              "Use top end for common non-blocking status updates.",
+          },
+          {
+            label: "Bottom end",
+            value: "bottom-end",
+            markup: `<div class="sgds:relative sgds:h-[var(--sgds-dimension-256)] sgds:w-full sgds:rounded-md sgds:border sgds:border-muted sgds:bg-bg-alternate sgds:p-md">
+              <div class="sgds:absolute sgds:bottom-md sgds:right-md sgds:flex sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:items-start sgds:gap-sm sgds:rounded-md sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-md">
+                <sgds-icon name="check-circle-fill" class="sgds:shrink-0 sgds:text-success"></sgds-icon>
+                <span class="sgds:text-body-sm sgds:text-default">Saved successfully.</span>
+              </div>
+            </div>`,
+            description:
+              "Use bottom end when top-level chrome or banners occupy the top area.",
+          },
+        ],
+      },
+      {
+        title: "Action and icon slots",
+        description:
+          "Toast supports action and icon slots for brief follow-up actions and visual context.",
+        controlLabel: "Toast slot options",
+        defaultValue: "with-slots",
+        options: [
+          {
+            label: "With slots",
+            value: "with-slots",
+            markup: `<sgds-toast show>
+              <div slot="icon" class="portal-slot-example sgds:p-sm"><span>Icon slot content</span></div>
+              Draft saved.
+              <div slot="action" class="portal-slot-example sgds:p-sm"><span>Action slot content</span></div>
+            </sgds-toast>`,
+            description:
+              "Use slots only when the action or icon adds clear value to the message.",
+          },
+          {
+            label: "Message only",
+            value: "message-only",
+            markup: `<sgds-toast show>Draft saved.</sgds-toast>`,
+            description: "Use message-only to keep routine updates simple.",
+          },
+        ],
+      },
+      {
+        title: "Delay",
+        description:
+          "Delay controls how long an autohide toast remains visible.",
+        controlLabel: "Toast delay options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-toast show autohide>Saved successfully.</sgds-toast>`,
+            description:
+              "Use the default 5000ms (5 seconds) delay for short, routine messages.",
+          },
+          {
+            label: "Longer",
+            value: "longer",
+            markup: `<sgds-toast show autohide delay="8000">Saved successfully.</sgds-toast>`,
+            description:
+              "Use the 8000ms (8 seconds) delay when the message needs slightly more reading time.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -19638,6 +21673,33 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+  {
+        title: "Content length",
+        description:
+          "Tooltip content should stay short enough to read quickly without covering important UI.",
+        controlLabel: "Tooltip content length options",
+        defaultValue: "short",
+        options: [
+          {
+            label: "Short",
+            value: "short",
+            markup: `<sgds-tooltip content="Save draft" open>
+              <sgds-button variant="outline">Hover me</sgds-button>
+            </sgds-tooltip>`,
+            description:
+              "Use short content for quick clarification of a control or icon.",
+          },
+          {
+            label: "Long",
+            value: "long",
+            markup: `<sgds-tooltip content="This longer tooltip wraps within the component max width and should still remain supplementary." open>
+              <sgds-button variant="outline">Hover me</sgds-button>
+            </sgds-tooltip>`,
+            description:
+              "Avoid long tooltip content when the information is essential or needs interaction.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -19710,6 +21772,8 @@ const componentDocs: Record<string, ComponentDoc> = {
     },
   },
 };
+
+
 
 type GeneratedUsagePattern = {
   use: string[];

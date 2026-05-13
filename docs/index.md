@@ -8,7 +8,7 @@ import LandingWorkflowVisual from "./.vitepress/components/landing/LandingWorkfl
 import PortalImageCard from "./.vitepress/components/landing/PortalImageCard.vue";
 import { FoundationItem } from "./.vitepress/data/foundations";
 
-const title = "Unifying Government through Design and Code."
+const title = "Unifying Government through Design and\u00A0Code."
 
 const buttons: Button = [
   {

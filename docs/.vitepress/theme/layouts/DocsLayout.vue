@@ -268,7 +268,7 @@ watch(
             @click="mobileSideNavOpen = true"
           >
             <sgds-icon slot="leftIcon" name="menu"></sgds-icon>
-            Browse {{ header }}
+            Browse <span class="sgds:font-semibold">{{ header }}</span>
           </sgds-button>
         </div>
 

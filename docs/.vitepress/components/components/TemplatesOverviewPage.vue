@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { withBase } from "vitepress";
 import {
   blockTemplateCategoryOrder,
   pageTemplateCategoryOrder,
@@ -14,6 +15,9 @@ const { group } = defineProps<{
 
 const selectedGroup = ref("all");
 const selectedSort = ref("recommended");
+const mobileFiltersOpen = ref(false);
+const isSmallScreen = ref(false);
+let removeSmallScreenListener: (() => void) | undefined;
 
 const isBlockOverview = computed(() => group === "block templates");
 const filterHeading = computed(() => isBlockOverview.value ? "Block type" : "Template purpose");
@@ -90,6 +94,46 @@ const clearFilters = () => {
   selectedGroup.value = "all";
 };
 
+onMounted(() => {
+  const mediaQuery = window.matchMedia("(max-width: 1023px)");
+  const syncSmallScreen = () => {
+    isSmallScreen.value = mediaQuery.matches;
+  };
+
+  syncSmallScreen();
+  mediaQuery.addEventListener("change", syncSmallScreen);
+  removeSmallScreenListener = () => {
+    mediaQuery.removeEventListener("change", syncSmallScreen);
+  };
+});
+
+onBeforeUnmount(() => {
+  removeSmallScreenListener?.();
+});
+
+watch(isSmallScreen, (smallScreen) => {
+  if (!smallScreen) {
+    mobileFiltersOpen.value = false;
+  }
+});
+
+const blockThumbnailKeys = new Set([
+  "cards",
+  "cta",
+  "feature",
+  "form",
+  "header",
+  "hero",
+  "stats",
+]);
+
+const placeholderThumbnailKeys = new Set(["form-page"]);
+
+const hasThumbnail = (key: string) =>
+  !placeholderThumbnailKeys.has(key) && (!isBlockOverview.value || blockThumbnailKeys.has(key));
+
+const getThumbnailSrc = (key: string) =>
+  withBase(`/templates/thumbnails/${key}.png`);
 </script>
 
 <template>
@@ -97,7 +141,7 @@ const clearFilters = () => {
     <section class="sgds:bg-default sgds:pb-layout-md">
       <div class="sgds-container">
         <div class="sgds-grid sgds:items-start">
-          <aside class="sgds-col-4 sgds-col-lg-3 sgds:mr-layout-md">
+          <aside v-if="!isSmallScreen" class="sgds-col-lg-3">
             <div class="sgds:flex sgds:flex-col sgds:gap-2-xl sgds:pt-sm">
               <div class="sgds:flex sgds:items-center sgds:justify-between">
                 <span class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default">Filters</span>
@@ -125,12 +169,73 @@ const clearFilters = () => {
             </div>
           </aside>
 
-          <div class="sgds-col-4 sgds-col-lg-9">
-            <div class="sgds:mb-xl sgds:flex sgds:items-center sgds:justify-between sgds:gap-component-md">
-              <h2 class="sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default">
+          <div class="sgds-col-4 sgds-col-sm-8 sgds-col-md-8 sgds-col-lg-9">
+            <div
+              :class="[
+                'sgds:mb-xl sgds:items-center',
+                isSmallScreen ? 'sgds-grid' : 'sgds:flex sgds:justify-between sgds:gap-component-md',
+              ]"
+            >
+              <div v-if="isSmallScreen" class="sgds-col-4 sgds-col-sm-8 sgds-col-md-8 sgds:flex sgds:items-center sgds:gap-component-sm">
+                <sgds-button
+                  variant="outline"
+                  tone="neutral"
+                  class="sgds:flex-none"
+                  :aria-expanded="mobileFiltersOpen ? 'true' : 'false'"
+                  aria-controls="template-overview-filter-drawer"
+                  @click="mobileFiltersOpen = !mobileFiltersOpen"
+                >
+                  <sgds-icon slot="leftIcon" name="bi-funnel"></sgds-icon>
+                  Filters
+                </sgds-button>
+                <sgds-select
+                  class="sgds:min-w-0 sgds:flex-1"
+                  label=""
+                  placeholder="Sort by"
+                  :value="selectedSort"
+                  @sgds-change="selectedSort = $event.target.value"
+                >
+                  <sgds-select-option value="recommended">Recommended</sgds-select-option>
+                  <sgds-select-option value="title-asc">Name: A-Z</sgds-select-option>
+                  <sgds-select-option value="title-desc">Name: Z-A</sgds-select-option>
+                  <sgds-select-option value="type">{{ typeSortLabel }}</sgds-select-option>
+                </sgds-select>
+              </div>
+              <sgds-drawer
+                v-if="isSmallScreen"
+                id="template-overview-filter-drawer"
+                placement="end"
+                size="sm"
+                ariaLabel="Filter templates"
+                :open="mobileFiltersOpen"
+                @sgds-request-close="mobileFiltersOpen = false"
+                @sgds-after-hide="mobileFiltersOpen = false"
+              >
+                <span slot="title" class="sgds:text-heading-xs sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Filters</span>
+                <span slot="description" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">{{ filterHeading }}</span>
+                <div class="sgds:flex sgds:flex-col sgds:gap-component-md">
+                  <sgds-checkbox-group>
+                    <sgds-checkbox
+                      v-for="option in categoryOptions"
+                      :key="option.value"
+                      :value="option.value"
+                      :checked="selectedGroup === option.value ? '' : null"
+                      @sgds-change="selectGroup(option.value)"
+                    >
+                      {{ option.label }} ({{ option.count }})
+                    </sgds-checkbox>
+                  </sgds-checkbox-group>
+                </div>
+                <div slot="footer" class="sgds:flex sgds:justify-between sgds:gap-component-sm">
+                  <sgds-button variant="ghost" tone="neutral" @click="clearFilters">Clear all</sgds-button>
+                  <sgds-button @click="mobileFiltersOpen = false">Done</sgds-button>
+                </div>
+              </sgds-drawer>
+              <h2 class="sgds-col-4 sgds-col-sm-8 sgds-col-md-8 sgds-col-lg-5 sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default">
                 Showing {{ filteredTemplateItems.length }} result<span v-if="filteredTemplateItems.length !== 1">s</span>
               </h2>
               <sgds-select
+                v-if="!isSmallScreen"
                 class="sgds:min-w-[var(--sgds-dimension-200)]"
                 label=""
                 placeholder="Sort by"
@@ -148,11 +253,23 @@ const clearFilters = () => {
               <div
                 v-for="item in filteredTemplateItems"
                 :key="item.key"
-                class="sgds-col-4 sgds-col-md-4 sgds-col-lg-4"
+                class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds-col-lg-4"
               >
                 <sgds-link class="sgds:block">
                   <a :href="item.previewHref" class="sgds:flex sgds:flex-col sgds:gap-component-sm sgds:no-underline">
-                    <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-[32px] sgds:bg-surface-raised" aria-hidden="true"></div>
+                    <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-[32px] sgds:bg-alternate" aria-hidden="true">
+                      <img
+                        v-if="hasThumbnail(item.key)"
+                        :src="getThumbnailSrc(item.key)"
+                        alt=""
+                        loading="lazy"
+                        class="sgds:h-full sgds:w-full sgds:object-cover"
+                      />
+                      <div
+                        v-else
+                        class="sgds:h-full sgds:w-full sgds:bg-muted"
+                      ></div>
+                    </div>
                     <div class="sgds:flex sgds:items-center sgds:gap-component-xs sgds:w-full">
                       <h4 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:flex-1 sgds:mb-0 sgds:text-heading-default sgds:text-left">{{ item.title }}</h4>
                       <sgds-icon name="arrow-right" size="2-xl" class="sgds:text-default sgds:flex-shrink-0"></sgds-icon>

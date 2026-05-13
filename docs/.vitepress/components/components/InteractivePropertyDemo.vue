@@ -44,6 +44,7 @@ const isWidePreview = computed(() =>
   activeOption.value?.markup.includes("portal-masthead-width-demo") ||
   activeOption.value?.markup.includes("portal-mainnav-width-demo") ||
   activeOption.value?.markup.includes("portal-system-banner-width-demo") ||
+  activeOption.value?.markup.includes("portal-demo-sidebar-open") ||
   activeOption.value?.markup.includes("portal-modal-preview-xl") ||
   activeOption.value?.markup.includes("portal-modal-preview-fullscreen") ||
   false,
@@ -257,6 +258,75 @@ const setupOverflowMenuDemos = async () => {
   }
 };
 
+const setupDropdownDemos = async () => {
+  await nextTick();
+  await customElements.whenDefined("sgds-dropdown");
+
+  const root = rootRef.value;
+  if (!root) return;
+
+  const dropdowns = Array.from(
+    root.querySelectorAll(".portal-demo-dropdown-active") as NodeListOf<HTMLElement & {
+      showMenu?: () => Promise<void> | void;
+      hideMenu?: (isOutside?: boolean) => void;
+      menuIsOpen?: boolean;
+      updateComplete?: Promise<unknown>;
+      _handleClickOutOfElement?: (e: Event) => void;
+      _handleCloseMenu?: () => void;
+      noFlip?: boolean;
+      drop?: string;
+    }>,
+  );
+
+  for (const dropdown of dropdowns) {
+    await dropdown.updateComplete;
+    injectShadowStyles(
+      dropdown,
+      "dropdown-standalone-active-demo",
+      `:host {
+         display: inline-block !important;
+         pointer-events: none !important;
+       }
+       .dropdown {
+         align-items: flex-start !important;
+         flex-direction: column !important;
+         gap: var(--sgds-gap-2-xs) !important;
+       }
+       .toggler-container {
+         display: inline-flex !important;
+       }
+       .dropdown-menu {
+         display: block !important;
+         left: auto !important;
+         max-height: none !important;
+         min-width: var(--sgds-dimension-280) !important;
+         position: relative !important;
+         top: auto !important;
+         transform: none !important;
+         z-index: auto !important;
+       }`,
+    );
+    if (dropdown._handleClickOutOfElement) {
+      document.removeEventListener("click", dropdown._handleClickOutOfElement);
+    }
+    if (dropdown._handleCloseMenu) {
+      dropdown.removeEventListener("sgds-hide", dropdown._handleCloseMenu as EventListener);
+    }
+    dropdown.noFlip = true;
+    dropdown.drop = "down";
+    dropdown.hideMenu = () => {};
+    const open = async () => {
+      if (typeof dropdown.showMenu === "function" && !dropdown.menuIsOpen) {
+        try { await dropdown.showMenu(); } catch { /* noop */ }
+      }
+    };
+    await open();
+    dropdown.addEventListener("sgds-after-hide", () => {
+      void open();
+    });
+  }
+};
+
 const setupSidebarDemos = async () => {
   await nextTick();
   await customElements.whenDefined("sgds-sidebar");
@@ -427,6 +497,7 @@ const setupTextareaDemos = async () => {
 onMounted(() => {
   void applyStateEffects();
   void setupDrawerDemos();
+  void setupDropdownDemos();
   void setupOverflowMenuDemos();
   void setupSidebarDemos();
   void setupStepperDemos();
@@ -436,6 +507,7 @@ onMounted(() => {
 watch(activeValue, () => {
   void applyStateEffects();
   void setupDrawerDemos();
+  void setupDropdownDemos();
   void setupOverflowMenuDemos();
   void setupSidebarDemos();
   void setupStepperDemos();
@@ -517,7 +589,11 @@ watch(activeValue, () => {
           <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
             <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
               <div class="sgds:w-full sgds:mx-auto sgds:max-w-[var(--sgds-dimension-768)]">
-                <div class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="renderMarkup(activeMarkup)"></div>
+                <div
+                  :key="activeValue"
+                  class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
+                  v-html="renderMarkup(activeMarkup)"
+                ></div>
               </div>
             </div>
             <p v-if="activeDescription" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
@@ -540,46 +616,50 @@ watch(activeValue, () => {
             </p>
           </div>
         </div>
-        <div
-          v-else
-          v-for="opt in demo.options"
-          v-show="opt.value === activeValue"
-          :key="opt.value"
-          :data-state-effect="opt.stateEffect"
-          class="sgds:flex sgds:flex-1"
-          role="tabpanel"
-        >
-          <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
-            <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
-              <div
-                :class="[
-                  'sgds:w-full sgds:mx-auto',
-                  isWidePreview ? 'sgds:max-w-[var(--sgds-dimension-1312)]' : 'sgds:max-w-[var(--sgds-dimension-768)]',
-                ]"
-              >
-                <div class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="renderMarkup(opt.markup)"></div>
+        <template v-else>
+          <div
+            v-if="activeOption"
+            :key="activeOption.value"
+            :data-state-effect="activeOption.stateEffect"
+            class="sgds:flex sgds:flex-1"
+            role="tabpanel"
+          >
+            <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
+              <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
+                <div
+                  :class="[
+                    'sgds:w-full sgds:mx-auto',
+                    isWidePreview ? 'sgds:max-w-[var(--sgds-dimension-1312)]' : 'sgds:max-w-[var(--sgds-dimension-768)]',
+                  ]"
+                >
+                  <div
+                    :key="activeOption.value"
+                    class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
+                    v-html="renderMarkup(activeOption.markup)"
+                  ></div>
+                </div>
               </div>
+              <p v-if="activeOption.description" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                <template
+                  v-for="(part, index) in textParts(activeOption.description)"
+                  :key="`${part.text}-${index}`"
+                >
+                  <CodeToken v-if="part.isCode" :label="part.text" />
+                  <template v-else>{{ part.text }}</template>
+                </template>
+              </p>
+              <p v-if="activeOption.note" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                <template
+                  v-for="(part, index) in textParts(activeOption.note)"
+                  :key="`${part.text}-${index}`"
+                >
+                  <CodeToken v-if="part.isCode" :label="part.text" />
+                  <template v-else>{{ part.text }}</template>
+                </template>
+              </p>
             </div>
-            <p v-if="opt.description" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-              <template
-                v-for="(part, index) in textParts(opt.description)"
-                :key="`${part.text}-${index}`"
-              >
-                <CodeToken v-if="part.isCode" :label="part.text" />
-                <template v-else>{{ part.text }}</template>
-              </template>
-            </p>
-            <p v-if="opt.note" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-              <template
-                v-for="(part, index) in textParts(opt.note)"
-                :key="`${part.text}-${index}`"
-              >
-                <CodeToken v-if="part.isCode" :label="part.text" />
-                <template v-else>{{ part.text }}</template>
-              </template>
-            </p>
           </div>
-        </div>
+        </template>
       </template>
     </div>
   </article>
@@ -658,6 +738,17 @@ watch(activeValue, () => {
 .behaviour-demo-markup > sgds-textarea {
   display: block;
   width: var(--sgds-dimension-320);
+}
+
+.behaviour-demo-markup > sgds-file-upload {
+  display: block;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+}
+
+.behaviour-demo-markup > sgds-file-upload.portal-demo-file-upload-drag {
+  inline-size: 100%;
+  min-inline-size: min(var(--sgds-dimension-320), 100%);
 }
 
 .behaviour-demo-markup > sgds-progress-bar {

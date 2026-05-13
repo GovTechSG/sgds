@@ -235,14 +235,14 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="template-preview-toolbar-actions">
-      <sgds-tooltip content="Open in Storybook" placement="bottom" trigger="hover focus">
+      <sgds-tooltip content="View code in Storybook" placement="bottom" trigger="hover focus">
         <a
           class="template-preview-storybook-button sgds:inline-flex sgds:items-center sgds:justify-center sgds:bg-transparent sgds:border sgds:border-transparent sgds:rounded-sm sgds:text-default sgds:cursor-pointer sgds:h-[var(--sgds-dimension-40)] sgds:w-[var(--sgds-dimension-40)] sgds:p-0 sgds:hover:bg-translucent-subtle sgds:focus:outline-none sgds:focus-visible:outline sgds:focus-visible:outline-[var(--sgds-outline-focus)] sgds:focus-visible:outline-offset-[var(--sgds-outline-offset-focus)]"
           :href="storybookHref"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Open in Storybook"
-          title="Open in Storybook"
+          aria-label="View code in Storybook"
+          title="View code in Storybook"
         >
           <span aria-hidden="true" class="template-preview-storybook-icon"></span>
         </a>
