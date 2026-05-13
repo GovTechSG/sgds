@@ -43,6 +43,61 @@ const linkForItem = (section: GetStartedSection, index: number): GetStartedLink 
         </p>
       </div>
 
+      <div v-if="section.codeTabs?.length">
+        <sgds-tab-group variant="underlined">
+          <sgds-tab
+            v-for="(tab, i) in section.codeTabs"
+            :key="tab.label"
+            slot="nav"
+            :panel="tab.label"
+            :active="i === 0 || null"
+          >
+            {{ tab.label }}
+          </sgds-tab>
+          <sgds-tab-panel v-for="tab in section.codeTabs" :key="tab.label" :name="tab.label">
+            <CodeBlock v-if="tab.code" :code="tab.code" :lang="tab.lang ?? 'bash'" :hide-line-numbers="!section.codeTabsShowLineNumbers" />
+            <div v-if="tab.steps?.length" class="sgds:flex sgds:flex-col sgds:gap-text-md">
+              <div v-for="(step, i) in tab.steps" :key="i" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+                <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                  <strong>Step {{ i + 1 }}:</strong> {{ step.description }}
+                </p>
+                <CodeBlock :code="step.code" :lang="step.lang ?? 'ts'" :filename="step.filename" />
+              </div>
+            </div>
+            <div v-if="tab.stepGroups?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xl">
+              <div v-for="group in tab.stepGroups" :key="group.title" class="sgds:flex sgds:flex-col sgds:gap-text-md">
+                <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+                  {{ group.title }}
+                </h4>
+                <div v-for="(step, i) in group.steps" :key="i" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+                  <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                    <strong>Step {{ i + 1 }}:</strong> {{ step.description }}
+                  </p>
+                  <CodeBlock :code="step.code" :lang="step.lang ?? 'ts'" :filename="step.filename" />
+                </div>
+              </div>
+            </div>
+            <div v-if="tab.message" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+              <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                {{ tab.message }}
+              </p>
+              <sgds-link v-if="tab.messageLink">
+                <a :href="tab.messageLink.href" target="_blank" rel="noopener noreferrer">
+                  {{ tab.messageLink.label }}
+                </a>
+              </sgds-link>
+            </div>
+          </sgds-tab-panel>
+        </sgds-tab-group>
+      </div>
+
+      <CodeBlock
+        v-if="section.codeBlock"
+        :code="section.codeBlock.code"
+        :lang="section.codeBlock.lang ?? 'html'"
+        :filename="section.codeBlock.filename"
+      />
+
       <div v-if="section.eyebrow || section.paragraphs?.length" class="sgds:flex sgds:flex-col sgds:gap-text-sm">
         <h3
           v-if="section.eyebrow"
@@ -93,9 +148,13 @@ const linkForItem = (section: GetStartedSection, index: number): GetStartedLink 
 
       <div v-if="visibleLinks(section).length && !section.orderedItems?.length && !section.subsections?.length" class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
         <sgds-link v-for="link in visibleLinks(section)" :key="link.label">
-          <a :href="link.href">
+          <a
+            :href="link.href"
+            :target="link.external ? '_blank' : undefined"
+            :rel="link.external ? 'noopener noreferrer' : undefined"
+          >
             {{ link.label }}
-            <sgds-icon name="arrow-right"></sgds-icon>
+            <sgds-icon v-if="!link.external" name="arrow-right"></sgds-icon>
           </a>
         </sgds-link>
       </div>

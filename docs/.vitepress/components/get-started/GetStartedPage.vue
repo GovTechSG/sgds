@@ -63,6 +63,31 @@ const isCurrentNavGroup = (label: string) => {
         >
           {{ page.description }}
         </p>
+        <div v-if="page.headerLinks?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+          <div
+            v-for="link in page.headerLinks"
+            :key="link.label"
+            class="sgds:grid sgds:grid-cols-[var(--sgds-dimension-96)_minmax(0,1fr)] sgds:items-center sgds:gap-x-text-xs"
+          >
+            <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              {{ link.label }}
+            </span>
+            <sgds-link tone="neutral">
+              <a
+                :href="link.href"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="get-started-source-link sgds:inline-flex sgds:items-center sgds:gap-text-2-xs"
+              >
+                <span
+                  aria-hidden="true"
+                  :class="`get-started-brand-icon get-started-brand-icon--${link.label.toLowerCase()}`"
+                ></span>
+                <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ link.path }}</span>
+              </a>
+            </sgds-link>
+          </div>
+        </div>
         <div v-if="page.intro?.length" class="sgds:flex sgds:flex-col sgds:gap-text-md">
           <p
             v-for="paragraph in page.intro"
@@ -136,3 +161,34 @@ const isCurrentNavGroup = (label: string) => {
     </main>
   </div>
 </template>
+
+<style>
+/* Brand icon masks — reuses the same SVG assets as PageHeader */
+.get-started-brand-icon {
+  display: block;
+  height: var(--sgds-dimension-16);
+  width: var(--sgds-dimension-16);
+}
+
+.get-started-brand-icon--github {
+  background-color: #181717;
+  mask: url("/brands/github.svg") center / contain no-repeat;
+}
+
+.get-started-brand-icon--storybook {
+  background-color: #ff4785;
+  mask: url("/brands/storybook.svg") center / contain no-repeat;
+}
+
+.sgds-night-theme .get-started-brand-icon--github,
+.sgds-night-theme .get-started-brand-icon--storybook {
+  background-color: var(--sgds-color-fixed-light);
+}
+
+/* Hide redundant external-link icon on source links */
+.get-started-source-link::after,
+.get-started-source-link .external-link-icon {
+  content: none !important;
+  display: none !important;
+}
+</style>

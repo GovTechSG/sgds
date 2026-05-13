@@ -6,8 +6,9 @@ const props = withDefaults(
     code: string;
     lang?: string;
     filename?: string;
+    hideLineNumbers?: boolean;
   }>(),
-  { lang: "html" },
+  { lang: "html", hideLineNumbers: false },
 );
 
 const copied = ref(false);
@@ -397,7 +398,7 @@ const highlightedLines = computed<string[]>(() => {
 
   let highlighted: string;
   if (lang === "html" || lang === "vue") highlighted = highlightHtml(raw);
-  else if (["js", "javascript", "ts", "typescript"].includes(lang))
+  else if (["js", "javascript", "ts", "typescript", "jsx", "tsx", "json"].includes(lang))
     highlighted = highlightJs(raw);
   else if (["css", "scss", "less"].includes(lang))
     highlighted = highlightCss(raw);
@@ -411,8 +412,8 @@ const highlightedLines = computed<string[]>(() => {
 const langLabel = computed(() => {
   const l = (props.lang ?? "").toLowerCase();
   const map: Record<string, string> = {
-    js: "JavaScript", javascript: "JavaScript",
-    ts: "TypeScript", typescript: "TypeScript",
+    js: "JavaScript", javascript: "JavaScript", jsx: "JSX",
+    ts: "TypeScript", typescript: "TypeScript", tsx: "TSX",
     html: "HTML", vue: "Vue",
     css: "CSS", scss: "SCSS", less: "LESS",
     bash: "Bash", shell: "Shell", sh: "Shell", zsh: "Zsh",
@@ -446,7 +447,7 @@ const langLabel = computed(() => {
             :key="idx"
             class="cb-row"
           >
-            <td class="cb-ln" aria-hidden="true">{{ idx + 1 }}</td>
+            <td v-if="!hideLineNumbers" class="cb-ln" aria-hidden="true">{{ idx + 1 }}</td>
             <!-- v-html is safe: content is produced by our own escHtml + tok pipeline above -->
             <td class="cb-code" v-html="line || ' '" />
           </tr>
@@ -552,8 +553,8 @@ const langLabel = computed(() => {
   color: #484f58;
   font-family: var(--sgds-font-family-mono, ui-monospace, monospace);
   font-size: 0.8125rem;
-  min-width: 2.75rem;
-  padding: 0 1rem 0 1.25rem;
+  width: 2rem;
+  padding: 0 0.75rem;
   text-align: right;
   user-select: none;
   vertical-align: top;
@@ -564,7 +565,7 @@ const langLabel = computed(() => {
   color: #e6edf3;
   font-family: var(--sgds-font-family-mono, ui-monospace, monospace);
   font-size: 0.875rem;
-  padding: 0 2rem 0 1.25rem;
+  padding: 0 1rem 0 0.75rem;
   vertical-align: top;
   white-space: pre;
 }

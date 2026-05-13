@@ -195,7 +195,7 @@ const escapedCommand = computed(() => escapeHtml(props.command))
 </script>
 
 <template>
-  <div class="sgds:flex sgds:items-start sgds:justify-between sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-md sgds:min-h-12 sgds:px-component-xs sgds:py-2 sgds:gap-component-xs">
+  <div class="sgds:flex sgds:items-center sgds:justify-between sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-md sgds:px-component-xs sgds:py-2 sgds:gap-component-xs">
     <code
       v-if="formattedCommand || isMultiline"
       class="il-command-code sgds:text-default sgds:font-mono sgds:flex-1 sgds:min-w-0"
@@ -219,7 +219,7 @@ const escapedCommand = computed(() => escapeHtml(props.command))
  * tokens so the palette tracks day/night themes — no hardcoded hex values. */
 .il-command-code {
   font-size: 0.875em;
-  line-height: 1.4;
+  line-height: var(--leading-20);
   white-space: pre;
   overflow-x: auto;
   padding-block: 0.125rem;

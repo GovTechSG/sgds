@@ -1,11 +1,40 @@
 export type GetStartedLink = {
   label: string;
   href: string;
+  external?: boolean;
 };
 
 export type GetStartedListItem = {
   title: string;
   description: string;
+};
+
+export type GetStartedCodeStep = {
+  description: string;
+  code: string;
+  lang?: string;
+  filename?: string;
+};
+
+export type GetStartedCodeStepGroup = {
+  title: string;
+  steps: GetStartedCodeStep[];
+};
+
+export type GetStartedCodeTab = {
+  label: string;
+  code?: string;
+  lang?: string;
+  steps?: GetStartedCodeStep[];
+  stepGroups?: GetStartedCodeStepGroup[];
+  message?: string;
+  messageLink?: { label: string; href: string };
+};
+
+export type GetStartedCodeBlock = {
+  code: string;
+  lang?: string;
+  filename?: string;
 };
 
 export type GetStartedSection = {
@@ -17,6 +46,9 @@ export type GetStartedSection = {
   subsections?: GetStartedListItem[];
   links?: GetStartedLink[];
   video?: boolean;
+  codeTabs?: GetStartedCodeTab[];
+  codeTabsShowLineNumbers?: boolean;
+  codeBlock?: GetStartedCodeBlock;
 };
 
 export type GetStartedTableRow = {
@@ -31,11 +63,18 @@ export type GetStartedPagerLink = {
   direction: "previous" | "next";
 };
 
+export type GetStartedHeaderLink = {
+  label: string;
+  href: string;
+  path: string;
+};
+
 export type GetStartedPageData = {
   key: string;
   title: string;
   description?: string;
   intro?: string[];
+  headerLinks?: GetStartedHeaderLink[];
   sections?: GetStartedSection[];
   reasons?: GetStartedListItem[];
   table?: {
@@ -164,11 +203,105 @@ export const developPage: GetStartedPageData = {
   key: "develop",
   title: "Develop",
   description: "Install SGDS, use the component library, and build interfaces with shared foundations.",
+  headerLinks: [
+    { label: "GitHub", href: "https://github.com/GovTechSG/sgds-web-component", path: "GovTechSG/sgds-web-component" },
+    { label: "Storybook", href: "https://webcomponent.designsystem.tech.gov.sg/", path: "webcomponent.designsystem.tech.gov.sg" },
+  ],
   sections: [
     {
-      title: "Install SGDS web components",
-      description: "Add the SGDS web component package to your project before building interfaces.",
-      links: [{ label: "Read the component setup guide", href: "/components/accordion" }],
+      title: "Install SGDS",
+      description: "Add the SGDS web component package to your project.",
+      codeTabs: [
+        { label: "npm", code: "npm install @govtechsg/sgds-web-component", lang: "bash" },
+        { label: "pnpm", code: "pnpm add @govtechsg/sgds-web-component", lang: "bash" },
+        { label: "yarn", code: "yarn add @govtechsg/sgds-web-component", lang: "bash" },
+        { label: "bun", code: "bun add @govtechsg/sgds-web-component", lang: "bash" },
+      ],
+    },
+    {
+      title: "Set up Tailwind CSS",
+      description: "SGDS utility classes require Tailwind CSS v4. Follow the official Tailwind installation guide for your framework.",
+      links: [{ label: "Tailwind CSS framework guides", href: "https://tailwindcss.com/docs/installation/framework-guides" }],
+    },
+    {
+      title: "Import styles",
+      description: "Import the theme tokens, foundation styles, and utility classes in your main CSS file. The order matters — theme tokens must come first.",
+      codeBlock: {
+        code: `@import "@govtechsg/sgds-web-component/themes/day.css";\n@import "@govtechsg/sgds-web-component/themes/night.css";\n@import "@govtechsg/sgds-web-component/css/sgds.css";\n@import "@govtechsg/sgds-web-component/css/utility.css"; /* SGDS Tailwind v4 config file */`,
+        lang: "css",
+        filename: "globals.css",
+      },
+    },
+    {
+      title: "Import the component library",
+      description: "Import the library once at your app entry point. This registers all <sgds-*> custom elements globally.",
+      codeTabsShowLineNumbers: true,
+      codeTabs: [
+        {
+          label: "React",
+          stepGroups: [
+            {
+              title: "React 19 and above",
+              steps: [
+                { description: "Import the library once at your app entry point.", code: `import "@govtechsg/sgds-web-component";`, lang: "ts", filename: "src/main.tsx" },
+                { description: "Use web component tags directly in any component.", code: `const App = () => {\n  return (\n    <form>\n      <sgds-input label="Full name" name="fullName"></sgds-input>\n      <sgds-button type="submit">Submit</sgds-button>\n    </form>\n  );\n};\nexport default App;`, lang: "tsx", filename: "src/App.tsx" },
+              ],
+            },
+            {
+              title: "React 18 and below",
+              steps: [
+                { description: "Use the React wrapper components for proper event handling.", code: `import { SgdsButton, SgdsInput } from "@govtechsg/sgds-web-component/react";`, lang: "ts", filename: "src/App.tsx" },
+                { description: "Use the wrapper components in JSX.", code: `import { SgdsButton, SgdsInput } from "@govtechsg/sgds-web-component/react";\n\nconst App = () => {\n  return (\n    <form>\n      <SgdsInput label="Full name" name="fullName" />\n      <SgdsButton type="submit">Submit</SgdsButton>\n    </form>\n  );\n};\nexport default App;`, lang: "tsx", filename: "src/App.tsx" },
+              ],
+            },
+            {
+              title: "TypeScript support",
+              steps: [
+                { description: "Add a type declaration file at your project root to enable IntelliSense for all component props and typed event handlers.", code: `import "@govtechsg/sgds-web-component/types/react";`, lang: "ts", filename: "types.d.ts" },
+                { description: "Ensure the file is included by your tsconfig.json.", code: `{\n  "include": ["types.d.ts", "**/*.ts", "**/*.tsx"]\n}`, lang: "json", filename: "tsconfig.json" },
+              ],
+            },
+          ],
+        },
+        {
+          label: "Vue",
+          steps: [
+            { description: "Tell Vue to treat sgds-* tags as custom elements.", code: `import { defineConfig } from "vite";\nimport vue from "@vitejs/plugin-vue";\n\nexport default defineConfig({\n  plugins: [\n    vue({\n      template: {\n        compilerOptions: {\n          isCustomElement: (tag) => tag.startsWith("sgds-"),\n        },\n      },\n    }),\n  ],\n});`, lang: "ts", filename: "vite.config.ts" },
+            { description: "Import the library in your app entry.", code: `import "@govtechsg/sgds-web-component";`, lang: "ts", filename: "src/main.ts" },
+          ],
+        },
+        {
+          label: "Angular",
+          steps: [
+            { description: "Add CUSTOM_ELEMENTS_SCHEMA to your standalone component.", code: `import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";\n\n@Component({\n  selector: "app-root",\n  templateUrl: "./app.component.html",\n  schemas: [CUSTOM_ELEMENTS_SCHEMA] // Step 1\n})\nexport class AppComponent {}`, lang: "ts", filename: "app.component.ts" },
+            { description: "Import the library in your root component to register all custom elements globally.", code: `import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";\nimport "@govtechsg/sgds-web-component"; // Step 2\n\n@Component({\n  selector: "app-root",\n  templateUrl: "./app.component.html",\n  schemas: [CUSTOM_ELEMENTS_SCHEMA]\n})\nexport class AppComponent {}`, lang: "ts", filename: "app.component.ts" },
+          ],
+        },
+        {
+          label: "Next.js",
+          stepGroups: [
+            {
+              title: "Setup",
+              steps: [
+                { description: "Create a client-side library loader.", code: `"use client";\nimport { useEffect } from "react";\n\nexport default function SgdsLoader() {\n  useEffect(() => {\n    import("@govtechsg/sgds-web-component");\n  }, []);\n  return null;\n}`, lang: "ts", filename: "src/app/sgds.tsx" },
+                { description: "Import the loader in your root layout.", code: `import SgdsLoader from "./sgds";\n\nexport default function RootLayout({ children }: { children: React.ReactNode }) {\n  return (\n    <html lang="en">\n      <head>\n        <SgdsLoader />\n      </head>\n      <body>{children}</body>\n    </html>\n  );\n}`, lang: "tsx", filename: "src/app/layout.tsx" },
+              ],
+            },
+            {
+              title: "TypeScript support",
+              steps: [
+                { description: "Add a type declaration file at your project root to enable IntelliSense for all component props and typed event handlers.", code: `import "@govtechsg/sgds-web-component/types/react";`, lang: "ts", filename: "types.d.ts" },
+                { description: "Ensure the file is included by your tsconfig.json.", code: `{\n  "include": ["types.d.ts", "**/*.ts", "**/*.tsx"]\n}`, lang: "json", filename: "tsconfig.json" },
+              ],
+            },
+          ],
+        },
+        {
+          label: "Others",
+          message: "Cannot find your frontend framework integration?",
+          messageLink: { label: "Raise an issue to propose for more integration guides", href: "https://github.com/GovTechSG/sgds-web-component/issues" },
+        },
+      ],
     },
     {
       title: "Start from shared building blocks",
@@ -187,7 +320,7 @@ export const developPage: GetStartedPageData = {
     {
       title: "Use SGDS utilities",
       description: "Apply SGDS utility classes for spacing, layout, typography, colour, and responsive behaviour instead of custom CSS.",
-      links: [{ label: "Explore foundations", href: "/foundations/" }],
+      links: [{ label: "Explore in Storybook", href: "https://webcomponent.designsystem.tech.gov.sg/?path=/docs/utilities-introduction--docs", external: true }],
     },
   ],
   pager: [
