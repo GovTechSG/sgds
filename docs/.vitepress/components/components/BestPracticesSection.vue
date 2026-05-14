@@ -210,7 +210,7 @@ onUpdated(showIllustrativeComponents);
     >
       <article v-if="row.do" :key="row.do.title" class="best-practice-card">
         <div :class="[
-          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
+          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-alternate sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
           compactSidePadding ? 'sgds:px-component-sm' : 'sgds:px-component-md',
         ]">
           <span
@@ -257,7 +257,7 @@ onUpdated(showIllustrativeComponents);
 
       <article v-if="row.dont" :key="row.dont.title" class="best-practice-card">
         <div :class="[
-          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
+          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-alternate sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
           compactSidePadding ? 'sgds:px-component-sm' : 'sgds:px-component-md',
         ]">
           <span
