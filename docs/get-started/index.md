@@ -1,5 +1,10 @@
 ---
-layout: page
+layout: default
 title: Get started
-description: Everything you need to begin building with SGDS is coming soon.
 ---
+
+<script setup>
+import GetStartedPage from "../.vitepress/components/get-started/GetStartedPage.vue";
+</script>
+
+<GetStartedPage page-key="overview" />

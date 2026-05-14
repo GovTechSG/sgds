@@ -3,6 +3,7 @@ import { withSidebar } from "vitepress-sidebar";
 import tailwindcss from "@tailwindcss/vite";
 import { fileSort } from "./data/file-management";
 import { foundationsSidebar } from "./data/foundations-sidebar";
+import { blocksSidebar } from "./data/blocks-sidebar";
 
 const vitePressConfig = {
   title: "Singapore Government Design System",
@@ -133,8 +134,7 @@ config.themeConfig.sidebar["/templates/"] = {
   items: [{ text: "Overview", link: "/templates/" }],
 };
 config.themeConfig.sidebar["/blocks/"] = {
-  base: "/blocks/",
-  items: [{ text: "Overview", link: "/blocks/" }],
+  ...blocksSidebar,
 };
 config.themeConfig.sidebar["/guidelines/"] = {
   base: "/guidelines/",

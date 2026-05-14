@@ -81,6 +81,7 @@ const formatSidebarLabel = (text?: string) => {
   if (!trimmed) return ""
 
   if (/[.]/.test(trimmed)) return trimmed
+  if (/[A-Z]/.test(trimmed.slice(1))) return trimmed
 
   const words = trimmed.split(/\s+/)
 

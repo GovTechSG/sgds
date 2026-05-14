@@ -1368,9 +1368,9 @@ export const landingMarkup = `<style>
 
       <div>
         <img
-          src="https://placehold.co/512x512/e8f0fe/1f69ff?text=Government+Services"
-          alt="Government digital services"
-          style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; border-radius: var(--sgds-border-radius-xl);"
+          src="https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png"
+          alt=""
+          class="sgds:block sgds:aspect-square sgds:w-full sgds:rounded-xl sgds:object-cover"
         />
       </div>
     </div>
@@ -1481,5 +1481,4 @@ export const pageTemplateMarkupByKey: Record<string, string> = {
   "form-page": formPageMarkup,
   landing: landingMarkup,
   "multi-step-form": multiStepFormPageMarkup,
-  "report-issue": reportIssueMarkup,
 };

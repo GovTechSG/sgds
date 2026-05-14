@@ -4,6 +4,7 @@ import { withBase } from "vitepress";
 import TemplatePreviewToolbar from "./TemplatePreviewToolbar.vue";
 import {
   blockTemplateCategoryOrder,
+  blockTemplateRecommendedOrder,
   pageTemplateRecommendedOrder,
   templateOverviewGroups,
 } from "../../data/pattern-docs";
@@ -83,11 +84,19 @@ const getBlockCategoryOrder = (label: string) => {
   return index === -1 ? blockTemplateCategoryOrder.length : index;
 };
 
+const getBlockTemplateOrder = (key: string) => {
+  const index = blockTemplateRecommendedOrder.indexOf(key);
+  return index === -1 ? blockTemplateRecommendedOrder.length : index;
+};
+
 const blockOverviewItems =
   templateOverviewGroups.find((templateGroup) => templateGroup.group === "block templates")?.items ?? [];
 
 const blockOptions = [...blockOverviewItems]
-  .sort((current, next) => getBlockCategoryOrder(current.groupLabel) - getBlockCategoryOrder(next.groupLabel))
+  .sort((current, next) =>
+    getBlockCategoryOrder(current.groupLabel) - getBlockCategoryOrder(next.groupLabel) ||
+    getBlockTemplateOrder(current.key) - getBlockTemplateOrder(next.key),
+  )
   .map((item) => ({
     key: item.key,
     title: item.title,

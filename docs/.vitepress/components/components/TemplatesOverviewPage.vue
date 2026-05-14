@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { withBase } from "vitepress";
 import {
   blockTemplateCategoryOrder,
+  blockTemplateRecommendedOrder,
   pageTemplateCategoryOrder,
   pageTemplateRecommendedOrder,
   templateOverviewGroups,
@@ -13,7 +14,7 @@ const { group } = defineProps<{
   group: PatternGroup;
 }>();
 
-const selectedGroup = ref("all");
+const selectedGroups = ref<string[]>([]);
 const selectedSort = ref("recommended");
 const mobileFiltersOpen = ref(false);
 const isSmallScreen = ref(false);
@@ -41,6 +42,11 @@ const getTemplateOrder = (key: string) => {
   return index === -1 ? pageTemplateRecommendedOrder.length : index;
 };
 
+const getBlockTemplateOrder = (key: string) => {
+  const index = blockTemplateRecommendedOrder.indexOf(key);
+  return index === -1 ? blockTemplateRecommendedOrder.length : index;
+};
+
 const sortRecommended = (
   current: { key: string; groupLabel: string; title: string },
   next: { key: string; groupLabel: string; title: string },
@@ -51,6 +57,7 @@ const sortRecommended = (
 
   return getGroupOrder(current.groupLabel) - getGroupOrder(next.groupLabel) ||
     current.groupLabel.localeCompare(next.groupLabel) ||
+    getBlockTemplateOrder(current.key) - getBlockTemplateOrder(next.key) ||
     current.title.localeCompare(next.title);
 };
 
@@ -74,7 +81,7 @@ const categoryOptions = computed(() => {
 
 const filteredTemplateItems = computed(() => {
   const filtered = templateItems.value.filter((item) => {
-    return selectedGroup.value === "all" || item.groupLabel === selectedGroup.value;
+    return !selectedGroups.value.length || selectedGroups.value.includes(item.groupLabel);
   });
 
   return [...filtered].sort((current, next) => {
@@ -87,12 +94,16 @@ const filteredTemplateItems = computed(() => {
 });
 
 const selectGroup = (value: string) => {
-  selectedGroup.value = selectedGroup.value === value ? "all" : value;
+  selectedGroups.value = selectedGroups.value.includes(value)
+    ? selectedGroups.value.filter((selectedGroup) => selectedGroup !== value)
+    : [...selectedGroups.value, value];
 };
 
 const clearFilters = () => {
-  selectedGroup.value = "all";
+  selectedGroups.value = [];
 };
+
+const isGroupSelected = (value: string) => selectedGroups.value.includes(value);
 
 onMounted(() => {
   const mediaQuery = window.matchMedia("(max-width: 1023px)");
@@ -119,21 +130,60 @@ watch(isSmallScreen, (smallScreen) => {
 
 const blockThumbnailKeys = new Set([
   "cards",
+  "cards-3-per-column",
+  "cards-4-per-column",
   "cta",
+  "cta-contained-primary-center",
+  "cta-contained-primary",
+  "cta-contained-raised-center",
+  "cta-contained-raised",
+  "cta-full-bleed-alternate-center",
+  "cta-full-bleed-alternate",
+  "cta-full-bleed-primary-center",
+  "cta-full-bleed-primary",
   "feature",
+  "feature-image-left-4-8",
+  "feature-image-right-4-8",
+  "feature-component-left-6-6",
+  "feature-component-right-6-6",
+  "feature-image-left-6-6",
+  "feature-image-right-6-6",
+  "feature-image-left-8-4",
+  "feature-image-right-8-4",
+  "feature-cards-below",
+  "feature-no-image-center",
+  "feature-no-image-left",
+  "filter",
+  "filter-checkboxes",
   "form",
   "header",
+  "header-page-header-with-breadcrumb",
+  "header-page-header",
   "hero",
+  "hero-background-image-light",
+  "hero-background-image",
+  "hero-center",
+  "hero-fullbleed",
+  "hero-image",
+  "hero-basic",
   "stats",
+  "stats-3-statistics",
+  "stats-4-statistics",
+  "stats-5-statistics",
+  "stats-right-6-column",
+  "stats-right-8-columns",
 ]);
 
-const placeholderThumbnailKeys = new Set(["form-page"]);
+const placeholderThumbnailKeys = new Set<string>();
 
 const hasThumbnail = (key: string) =>
-  !placeholderThumbnailKeys.has(key) && (!isBlockOverview.value || blockThumbnailKeys.has(key));
+  !placeholderThumbnailKeys.has(key) &&
+  (!isBlockOverview.value || blockThumbnailKeys.has(key) || key.startsWith("form-"));
+
+const thumbnailVersion = "20260514-template-padding";
 
 const getThumbnailSrc = (key: string) =>
-  withBase(`/templates/thumbnails/${key}.png`);
+  `${withBase(`/templates/thumbnails/${key}.png`)}?v=${thumbnailVersion}`;
 </script>
 
 <template>
@@ -159,7 +209,7 @@ const getThumbnailSrc = (key: string) =>
                     v-for="option in categoryOptions"
                     :key="option.value"
                     :value="option.value"
-                    :checked="selectedGroup === option.value ? '' : null"
+                    :checked="isGroupSelected(option.value) ? '' : null"
                     @sgds-change="selectGroup(option.value)"
                   >
                     {{ option.label }} ({{ option.count }})
@@ -219,7 +269,7 @@ const getThumbnailSrc = (key: string) =>
                       v-for="option in categoryOptions"
                       :key="option.value"
                       :value="option.value"
-                      :checked="selectedGroup === option.value ? '' : null"
+                      :checked="isGroupSelected(option.value) ? '' : null"
                       @sgds-change="selectGroup(option.value)"
                     >
                       {{ option.label }} ({{ option.count }})
