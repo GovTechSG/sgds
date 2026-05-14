@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 
 
 // ─── Primitive resolution map (mobile / tablet ≥1024px / desktop ≥1440px) ───
@@ -187,7 +188,7 @@ const marginRows: MarginRow[] = [
     <!-- ── Spacer scale ──────────────────────────────────────────────────── -->
     <section v-if="props.section === 'spacer-scale'" class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Spacer scale tokens</h2>
+        <SectionHeader title="Spacer scale tokens" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           The spacer scale is the primitive foundation of the SGDS spacing system. Semantic spacing tokens reference these
           values. Use the numbered spacer tokens only when no semantic token fits the context.
@@ -242,7 +243,7 @@ const marginRows: MarginRow[] = [
         <!-- Primitive gap -->
         <article v-if="props.section === 'gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Gap tokens</h2>
+            <SectionHeader title="Gap tokens" />
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Gap tokens define the space between layout regions, component elements, and text content.
             </p>
@@ -275,7 +276,7 @@ const marginRows: MarginRow[] = [
         <!-- Layout gap -->
         <article v-if="props.section === 'gap' || props.section === 'layout-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Responsive layout gap tokens</h2>
+            <SectionHeader title="Responsive layout gap tokens" />
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Use for spacing between page sections and major layout regions. Utility: <CodeToken label="sgds:gap-layout-{size}" />.
             </p>
@@ -324,7 +325,7 @@ const marginRows: MarginRow[] = [
         <!-- Component gap -->
         <article v-if="props.section === 'gap' || props.section === 'component-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Responsive component gap tokens</h2>
+            <SectionHeader title="Responsive component gap tokens" />
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Use for spacing between elements within a component. Utility: <CodeToken label="sgds:gap-component-{size}" />.
             </p>
@@ -373,7 +374,7 @@ const marginRows: MarginRow[] = [
         <!-- Text gap -->
         <article v-if="props.section === 'gap' || props.section === 'text-gap'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Responsive text gap tokens</h2>
+            <SectionHeader title="Responsive text gap tokens" />
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Use for spacing between text elements and inline content. Utility: <CodeToken label="sgds:gap-text-{size}" />.
             </p>
@@ -431,7 +432,7 @@ const marginRows: MarginRow[] = [
         <!-- Primitive padding -->
         <article v-if="props.section === 'padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Padding tokens</h2>
+            <SectionHeader title="Padding tokens" />
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Padding tokens map semantic padding sizes to the SGDS spacer scale.
             </p>
@@ -464,7 +465,7 @@ const marginRows: MarginRow[] = [
         <!-- Layout padding -->
         <article v-if="props.section === 'padding' || props.section === 'layout-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Responsive layout padding tokens</h2>
+            <SectionHeader title="Responsive layout padding tokens" />
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Padding for page-level containers and layout regions. Utility: <CodeToken label="sgds:p-layout-{size}" />.
             </p>
@@ -513,7 +514,7 @@ const marginRows: MarginRow[] = [
         <!-- Component padding -->
         <article v-if="props.section === 'padding' || props.section === 'component-padding'" class="sgds:flex sgds:flex-col sgds:gap-layout-md">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Responsive component padding tokens</h2>
+            <SectionHeader title="Responsive component padding tokens" />
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Internal padding for UI components. Utility: <CodeToken label="sgds:p-component-{size}" />.
             </p>
@@ -564,7 +565,7 @@ const marginRows: MarginRow[] = [
     <!-- ── Margin tokens ─────────────────────────────────────────────────── -->
     <section v-if="props.section === 'margin'" class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Margin tokens</h2>
+        <SectionHeader title="Margin tokens" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Margin tokens map directly to fixed spacer primitives. Unlike gap and padding tokens, margin values do not
           change across breakpoints.

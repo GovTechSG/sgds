@@ -4,6 +4,7 @@ import {
   getStartedNavItems,
   getStartedPages,
 } from "../../data/get-started";
+import SectionHeader from "../foundations/SectionHeader.vue";
 import GetStartedPageSections from "./GetStartedPageSections.vue";
 
 defineOptions({
@@ -100,9 +101,7 @@ const isCurrentNavGroup = (label: string) => {
       </section>
 
       <section v-if="page.reasons?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xl">
-        <h2 class="sgds:m-0 sgds:text-heading-lg sgds:font-semibold sgds:leading-lg sgds:tracking-tight">
-          Why use SGDS v3?
-        </h2>
+        <SectionHeader title="Why use SGDS v3?" />
         <div class="sgds:flex sgds:flex-col sgds:gap-text-lg">
           <div v-for="reason in page.reasons" :key="reason.title" class="sgds:flex sgds:flex-col sgds:gap-text-2-xs">
             <h3 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
@@ -116,14 +115,7 @@ const isCurrentNavGroup = (label: string) => {
       </section>
 
       <section v-if="page.table" class="sgds:flex sgds:flex-col sgds:gap-text-lg">
-        <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-          <h2 class="sgds:m-0 sgds:text-heading-lg sgds:font-semibold sgds:leading-lg sgds:tracking-tight">
-            {{ page.table.title }}
-          </h2>
-          <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-            {{ page.table.description }}
-          </p>
-        </div>
+        <SectionHeader :title="page.table.title" :description="page.table.description" header-gap="sgds:gap-text-xs" />
         <sgds-table tableBorder headerBackground responsive="md">
           <sgds-table-row>
             <sgds-table-head>Feature</sgds-table-head>

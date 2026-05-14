@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import AiInstructionStepper from "./AiInstructionStepper.vue";
+import SectionHeader from "../foundations/SectionHeader.vue";
 import CodeToken from "../ui/CodeToken.vue";
 import CodeBlock from "../ui/CodeBlock.vue";
 import PromptBox from "../ui/PromptBox.vue";
@@ -40,7 +41,7 @@ const openFigmaToCodeTab = (event: Event) => {
   <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
     <div class="sgds:flex sgds:flex-col">
     <section class="sgds:flex sgds:flex-col sgds:gap-text-md" aria-labelledby="figma-workflow-options">
-      <h2 id="figma-workflow-options" class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Work from Figma context</h2>
+      <SectionHeader id="figma-workflow-options" title="Work from Figma context" />
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
           Use Figma MCP when you need AI to work with real Figma context, selected frames, or live UI captures. Use Figma Make when you want to explore interface ideas from prompts before refining them with SGDS guidance.
@@ -104,7 +105,7 @@ const openFigmaToCodeTab = (event: Event) => {
     <sgds-divider class="sgds:my-layout-sm"></sgds-divider>
 
     <section class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-      <h2 id="figma-mcp" class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Figma MCP</h2>
+      <SectionHeader id="figma-mcp" title="Figma MCP" />
       <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
           MCP stands for <strong>Model Context Protocol</strong>. It is a standard way for an AI tool to connect to another tool and use live information from it.
@@ -348,7 +349,7 @@ const openFigmaToCodeTab = (event: Event) => {
     </section>
 
     <section class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-      <h2 id="figma-make" class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Figma Make</h2>
+      <SectionHeader id="figma-make" title="Figma Make" />
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
         <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
           <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What is Figma Make?</h4>

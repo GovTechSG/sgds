@@ -2,6 +2,7 @@
 import FoundationPrinciplesList from "./FoundationPrinciplesList.vue";
 import FoundationRulesGuidanceList from "./FoundationRulesGuidanceList.vue";
 import Section from "./Section.vue";
+import SectionHeader from "./SectionHeader.vue";
 
 const colourPrinciples = [
   {
@@ -200,12 +201,7 @@ const systemSections = [
         class="sgds:flex sgds:flex-col sgds:gap-layout-lg"
       >
         <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-          <h2
-            id="colour-system-title"
-            class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:text-heading-default sgds:m-0"
-          >
-            Colour system
-          </h2>
+          <SectionHeader id="colour-system-title" title="Colour system" />
           <p class="sgds:text-body-md sgds:leading-xs sgds:tracking-normal sgds:text-body-default sgds:m-0">
             SGDS uses 10 tints and shades of gray per color theme. These grays are neutral gray.
           </p>

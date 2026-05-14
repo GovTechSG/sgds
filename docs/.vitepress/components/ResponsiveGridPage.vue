@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 
 type GridPreset = {
   title: string;
@@ -165,7 +166,7 @@ const gridStyle = (preset: GridPreset) => ({
   <TypographyPageTemplate class="rg-page">
     <section class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Responsive grid presets</h2>
+        <SectionHeader title="Responsive grid presets" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           SGDS have six main grid presets to consolidate margin and gutter adjustments across breakpoints.
         </p>
@@ -700,9 +701,7 @@ const gridStyle = (preset: GridPreset) => ({
 
     <section class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">
-          Responsive grid with sticky sidebar
-        </h2>
+        <SectionHeader title="Responsive grid with sticky sidebar" />
         <div class="typography-page-template__copy-block">
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
             A responsive grid with a sticky sidebar is a layout where the main content uses a flexible grid system,

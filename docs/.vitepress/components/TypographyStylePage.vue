@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 
 const codeExample = `:root {
   --sgds-font-size-heading-xl: 32px;
@@ -133,7 +134,7 @@ const updateDisplayMdBoldToggle = (
     </section>
 
     <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Responsive typography system</h2>
+      <SectionHeader title="Responsive typography system" />
       <div class="typography-page-template__body typography-page-template__body--prose">
         <div class="typography-page-template__content-block">
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -153,7 +154,7 @@ const updateDisplayMdBoldToggle = (
     </section>
 
     <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Key features</h2>
+      <SectionHeader title="Key features" />
       <div class="typography-page-template__body typography-page-template__body--prose">
         <div class="typography-page-template__content-block">
           <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
@@ -187,7 +188,7 @@ const updateDisplayMdBoldToggle = (
     </section>
 
     <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">Typography variables</h2>
+      <SectionHeader title="Typography variables" />
       <div class="typography-page-template__body typography-page-template__body--prose">
         <div class="typography-page-template__content-block">
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
@@ -228,7 +229,7 @@ const updateDisplayMdBoldToggle = (
     </section>
 
     <section class="typography-page-template__section">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight">How responsive typography works</h2>
+      <SectionHeader title="How responsive typography works" />
       <div class="typography-page-template__body typography-page-template__body--prose">
         <div class="typography-page-template__copy-block">
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 import CodeToken from "./ui/CodeToken.vue";
 
 const props = defineProps<{
@@ -51,7 +52,7 @@ const formRadiusTokens: BorderToken[] = [
   <TypographyPageTemplate>
     <section v-if="isWidthPage" class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Border width tokens</h2>
+        <SectionHeader title="Border width tokens" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Width tokens define the stroke thickness of borders applied to components and custom surfaces.
         </p>
@@ -92,7 +93,7 @@ const formRadiusTokens: BorderToken[] = [
     </section>
 
     <section v-if="isRadiusPage" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Border radius tokens</h2>
+      <SectionHeader title="Border radius tokens" />
       <div class="typography-page-template__body typography-page-template__body--prose">
 
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AiInstructionStepper from "./AiInstructionStepper.vue";
+import SectionHeader from "../foundations/SectionHeader.vue";
 import CodeToken from "../ui/CodeToken.vue";
 import CodeBlock from "../ui/CodeBlock.vue";
 import PromptBox from "../ui/PromptBox.vue";
@@ -38,7 +39,7 @@ const developmentWorkflowCards = [
   <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg sgds:w-full">
     <div class="sgds:flex sgds:flex-col">
       <section class="sgds:flex sgds:flex-col sgds:gap-text-md sgds:w-full">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Build with SGDS in code</h2>
+        <SectionHeader title="Build with SGDS in code" />
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md sgds:w-full">
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
           Use this page when you are building or improving SGDS code with an AI coding tool. Start with a new SGDS project, or use an existing codebase that needs to adopt SGDS components, utilities, and layout guidance.
@@ -94,7 +95,7 @@ const developmentWorkflowCards = [
 
     <section id="new-project" class="sgds:flex sgds:flex-col sgds:gap-layout-md sgds:w-full">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">New project</h2>
+        <SectionHeader title="New project" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
           Use this path when you are starting a new product or service and want SGDS to be the design system from the start.
         </p>
@@ -199,7 +200,7 @@ const developmentWorkflowCards = [
 
     <section id="existing-project" class="sgds:flex sgds:flex-col sgds:gap-layout-md sgds:w-full">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Existing project</h2>
+        <SectionHeader title="Existing project" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
           Use this path when you already have a codebase, product, or interface that needs to adopt SGDS or improve its SGDS alignment.
         </p>

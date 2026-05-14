@@ -4,6 +4,7 @@ import type {
   GetStartedPageData,
   GetStartedSection,
 } from "../../data/get-started";
+import SectionHeader from "../foundations/SectionHeader.vue";
 
 defineProps<{
   page: GetStartedPageData;
@@ -23,9 +24,7 @@ const linkForItem = (section: GetStartedSection, index: number): GetStartedLink 
       class="sgds:flex sgds:flex-col sgds:gap-text-md"
     >
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-        <h2 class="sgds:m-0 sgds:text-heading-lg sgds:font-semibold sgds:leading-lg sgds:tracking-tight">
-          {{ section.title }}
-        </h2>
+        <SectionHeader :title="section.title" header-gap="sgds:gap-text-xs" />
         <p
           v-if="section.descriptionHtml"
           class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle"
