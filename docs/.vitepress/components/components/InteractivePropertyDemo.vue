@@ -572,7 +572,7 @@ watch(activeValue, () => {
     </div>
 
     <div
-      class="interactive-demo sgds:flex sgds:flex-col sgds:min-h-[var(--sgds-dimension-320)] sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-xs sgds:py-component-xs sgds:gap-component-md"
+      class="interactive-demo sgds:flex sgds:flex-col sgds:min-h-[var(--sgds-dimension-320)] sgds:min-w-0 sgds:max-w-full sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-xs sgds:py-component-xs sgds:gap-component-md"
       :class="{ 'interactive-demo--fullscreen-modal': isFullscreenModalPreview }"
     >
       <CardContentSlotsDemo v-if="demo.interactionMode === 'content-slots'" :demo="demo" />
@@ -624,12 +624,12 @@ watch(activeValue, () => {
 
         <div
           v-if="demo.controlType === 'number'"
-          class="sgds:flex sgds:flex-1"
+          class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:w-full"
           role="tabpanel"
         >
-          <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
-            <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
-              <div class="sgds:w-full sgds:mx-auto sgds:max-w-[var(--sgds-dimension-768)]">
+          <div class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:w-full sgds:flex-col sgds:justify-center sgds:gap-component-md">
+            <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full">
+              <div class="sgds:w-full sgds:min-w-0 sgds:max-w-full sgds:mx-auto sgds:max-w-[var(--sgds-dimension-768)]">
                 <div
                   :key="activeValue"
                   class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
@@ -637,7 +637,7 @@ watch(activeValue, () => {
                 ></div>
               </div>
             </div>
-            <p v-if="activeDescription" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+            <p v-if="activeDescription" class="sgds:m-0 sgds:max-w-full sgds:min-w-0 sgds:break-words sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               <template
                 v-for="(part, index) in textParts(activeDescription, configurationCodeTerms)"
                 :key="`${part.text}-${index}`"
@@ -646,7 +646,7 @@ watch(activeValue, () => {
                 <template v-else>{{ part.text }}</template>
               </template>
             </p>
-            <p v-if="activeNote" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+            <p v-if="activeNote" class="sgds:m-0 sgds:max-w-full sgds:min-w-0 sgds:break-words sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               <template
                 v-for="(part, index) in textParts(activeNote, configurationCodeTerms)"
                 :key="`${part.text}-${index}`"
@@ -662,14 +662,14 @@ watch(activeValue, () => {
             v-if="activeOption"
             :key="activeOption.value"
             :data-state-effect="activeOption.stateEffect"
-            class="sgds:flex sgds:flex-1"
+            class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:w-full"
             role="tabpanel"
           >
-            <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
-              <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
+            <div class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:w-full sgds:flex-col sgds:justify-center sgds:gap-component-md">
+              <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full">
                 <div
                   :class="[
-                    'sgds:w-full sgds:mx-auto',
+                    'sgds:w-full sgds:min-w-0 sgds:max-w-full sgds:mx-auto',
                     isWidePreview ? 'sgds:max-w-[var(--sgds-dimension-1312)]' : 'sgds:max-w-[var(--sgds-dimension-768)]',
                   ]"
                 >
@@ -680,7 +680,7 @@ watch(activeValue, () => {
                   ></div>
                 </div>
               </div>
-              <p v-if="activeOption.description" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              <p v-if="activeOption.description" class="sgds:m-0 sgds:max-w-full sgds:min-w-0 sgds:break-words sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
                 <template
                   v-for="(part, index) in textParts(activeOption.description, configurationCodeTerms)"
                   :key="`${part.text}-${index}`"
@@ -689,7 +689,7 @@ watch(activeValue, () => {
                   <template v-else>{{ part.text }}</template>
                 </template>
               </p>
-              <p v-if="activeOption.note" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              <p v-if="activeOption.note" class="sgds:m-0 sgds:max-w-full sgds:min-w-0 sgds:break-words sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
                 <template
                   v-for="(part, index) in textParts(activeOption.note, configurationCodeTerms)"
                   :key="`${part.text}-${index}`"
