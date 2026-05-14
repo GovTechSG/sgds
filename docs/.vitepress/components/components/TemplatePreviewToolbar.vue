@@ -323,7 +323,7 @@ onBeforeUnmount(() => {
           v-if="promptOpen"
           class="sgds:absolute sgds:z-[60] sgds:top-[calc(100%+var(--sgds-gap-xs))] sgds:right-0 sgds:w-[min(var(--sgds-dimension-400),calc(100vw-var(--sgds-padding-xl)))]"
         >
-          <PromptBox label="Prompt example" :prompt="promptExample" />
+          <PromptBox label="Example prompt" :prompt="promptExample" />
         </div>
       </div>
 

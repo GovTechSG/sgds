@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import type {
+  GetStartedDemoExample,
   GetStartedLink,
   GetStartedPageData,
   GetStartedSection,
 } from "../../data/get-started";
+import type { BestPractice } from "../../data/component-docs";
+import BestPracticesSection from "../components/BestPracticesSection.vue";
 import SectionHeader from "../foundations/SectionHeader.vue";
+import CodeToken from "../ui/CodeToken.vue";
+import { textParts } from "../../utils/text-parts";
 
-defineProps<{
+const props = defineProps<{
   page: GetStartedPageData;
 }>();
 
@@ -14,17 +19,88 @@ const visibleLinks = (section: GetStartedSection) => section.links ?? [];
 
 const linkForItem = (section: GetStartedSection, index: number): GetStartedLink | undefined =>
   visibleLinks(section)[index];
+
+const hasStandaloneLinks = (section: GetStartedSection) =>
+  visibleLinks(section).length > 0 &&
+  !section.orderedItems?.length &&
+  !section.unorderedItems?.length &&
+  !section.demoExamples?.length &&
+  !section.copyPatterns?.length &&
+  !section.subsections?.length;
+
+const contentGapClass = (section: GetStartedSection) =>
+  section.contentGap ??
+  props.page.sectionGap ??
+  (section.orderedItems?.length || section.unorderedItems?.length || section.paragraphs?.length || hasStandaloneLinks(section)
+    ? "sgds:gap-sm"
+    : "sgds:gap-layout-lg");
+
+const subsectionGapClass = (section: GetStartedSection) =>
+  section.subsectionGap ?? "sgds:gap-layout-lg";
+
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+const demoExampleMarkup = (example: GetStartedDemoExample) => {
+  const title = escapeHtml(example.demoTitle);
+  const text = escapeHtml(example.demoText);
+
+  if (example.kind === "alert") {
+    return `<sgds-alert show variant="${example.alertVariant ?? "info"}" title="${title}"><div>${text}</div></sgds-alert>`;
+  }
+
+  if (example.kind === "button") {
+    return `<div class="sgds:flex sgds:w-full sgds:items-center sgds:justify-center">
+      <sgds-button>${text}</sgds-button>
+    </div>`;
+  }
+
+  if (example.kind === "empty-state") {
+    const button = example.demoButtonLabel
+      ? `<sgds-button size="sm">${escapeHtml(example.demoButtonLabel)}</sgds-button>`
+      : "";
+
+    return `<div class="sgds:flex sgds:w-full sgds:flex-col sgds:items-center sgds:gap-component-sm sgds:rounded-lg sgds:border sgds:border-muted sgds:bg-default sgds:p-layout-sm sgds:text-center">
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-2-xs">
+        <p class="sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default">${title}</p>
+        <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">${text}</p>
+      </div>
+      ${button}
+    </div>`;
+  }
+
+  return `<div class="sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-xs sgds:rounded-lg sgds:border sgds:border-muted sgds:bg-default sgds:p-component-md">
+    <p class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default">${title}</p>
+    <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">${text}</p>
+  </div>`;
+};
+
+const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestPractice[] =>
+  examples.map((example) => ({
+    title: example.title,
+    description: example.description,
+    tone: example.tone === "avoid" ? "dont" : "do",
+    markup: demoExampleMarkup(example),
+  }));
 </script>
 
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
     <section
-      v-for="section in page.sections"
+      v-for="section in props.page.sections"
       :key="section.title"
-      class="sgds:flex sgds:flex-col sgds:gap-text-md"
+      :class="['sgds:flex sgds:flex-col', contentGapClass(section)]"
     >
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-        <SectionHeader :title="section.title" header-gap="sgds:gap-text-xs" />
+        <SectionHeader
+          :title="section.title"
+          :heading-level="section.headingLevel"
+          header-gap="sgds:gap-text-xs"
+        />
         <p
           v-if="section.descriptionHtml"
           class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle"
@@ -34,7 +110,13 @@ const linkForItem = (section: GetStartedSection, index: number): GetStartedLink 
           v-else-if="section.description"
           class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle"
         >
-          {{ section.description }}
+          <template
+            v-for="(part, index) in textParts(section.description)"
+            :key="`${part.text}-${index}`"
+          >
+            <CodeToken v-if="part.isCode" :label="part.text" />
+            <template v-else>{{ part.text }}</template>
+          </template>
         </p>
       </div>
 
@@ -118,12 +200,15 @@ const linkForItem = (section: GetStartedSection, index: number): GetStartedLink 
         </p>
       </div>
 
-      <ol v-if="section.orderedItems?.length" class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:pl-layout-xs">
-        <li v-for="(item, index) in section.orderedItems" :key="item.title">
-          <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-            <strong>{{ item.title }}:</strong>
-            {{ item.description }}
-          </p>
+      <ol v-if="section.orderedItems?.length" class="sgds:list-decimal sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-6 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+        <li v-for="(item, index) in section.orderedItems" :key="item.title" class="sgds:m-0">
+          <span>
+            <strong>{{ item.title }}:</strong>{{ " " }}
+            <span v-if="item.descriptionHtml" v-html="item.descriptionHtml"></span>
+            <template v-else>
+              {{ item.description }}
+            </template>
+          </span>
           <sgds-link v-if="linkForItem(section, index)" class="sgds:mt-text-2-xs">
             <a :href="linkForItem(section, index)?.href">
               {{ linkForItem(section, index)?.label }}
@@ -133,7 +218,25 @@ const linkForItem = (section: GetStartedSection, index: number): GetStartedLink 
         </li>
       </ol>
 
-      <div v-if="section.subsections?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xl">
+      <ul v-if="section.unorderedItems?.length" class="sgds:list-disc sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-6 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+        <li v-for="(item, index) in section.unorderedItems" :key="item.title" class="sgds:m-0">
+          <span>
+            <strong>{{ item.title }}:</strong>{{ " " }}
+            <span v-if="item.descriptionHtml" v-html="item.descriptionHtml"></span>
+            <template v-else>
+              {{ item.description }}
+            </template>
+          </span>
+          <sgds-link v-if="linkForItem(section, index)" class="sgds:mt-text-2-xs">
+            <a :href="linkForItem(section, index)?.href">
+              {{ linkForItem(section, index)?.label }}
+              <sgds-icon name="arrow-right"></sgds-icon>
+            </a>
+          </sgds-link>
+        </li>
+      </ul>
+
+      <div v-if="section.subsections?.length" :class="['sgds:flex sgds:flex-col', subsectionGapClass(section)]">
         <div v-for="(item, index) in section.subsections" :key="item.title" class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
           <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
             {{ item.title }}
@@ -150,7 +253,48 @@ const linkForItem = (section: GetStartedSection, index: number): GetStartedLink 
         </div>
       </div>
 
-      <div v-if="visibleLinks(section).length && !section.orderedItems?.length && !section.subsections?.length" class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
+      <BestPracticesSection
+        v-if="section.demoExamples?.length"
+        :best-practices="bestPracticesForExamples(section.demoExamples)"
+        show-titles
+        icons-in-box
+        title-tag="h6"
+        compact-titles
+        compact-side-padding
+      />
+
+      <div v-if="section.copyPatterns?.length" class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+        <article
+          v-for="pattern in section.copyPatterns"
+          :key="pattern.title"
+          class="sgds:flex sgds:flex-col sgds:gap-text-md"
+        >
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+            <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+              {{ pattern.title }}
+            </h4>
+            <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              {{ pattern.description }}
+            </p>
+          </div>
+          <BestPracticesSection
+            :best-practices="bestPracticesForExamples(pattern.examples)"
+            show-titles
+            icons-in-box
+            title-tag="h6"
+            compact-titles
+            compact-side-padding
+          />
+        </article>
+      </div>
+
+      <p
+        v-if="section.footerHtml"
+        class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle"
+        v-html="section.footerHtml"
+      ></p>
+
+      <div v-if="hasStandaloneLinks(section)" class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
         <sgds-link v-for="link in visibleLinks(section)" :key="link.label">
           <a
             :href="link.href"
@@ -165,12 +309,12 @@ const linkForItem = (section: GetStartedSection, index: number): GetStartedLink 
     </section>
 
     <nav
-      v-if="page.pager?.length"
+      v-if="props.page.pager?.length"
       class="sgds:grid sgds:grid-cols-2 sgds:gap-layout-md sgds:max-md:grid-cols-1"
       aria-label="Get started pagination"
     >
       <a
-        v-for="item in page.pager"
+        v-for="item in props.page.pager"
         :key="item.href"
         :href="item.href"
         :class="[

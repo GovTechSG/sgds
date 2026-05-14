@@ -221,13 +221,31 @@ const footerPreviewWidthClass = computed(() =>
   footerBreakpointWidthClasses[activeVariant.value ?? ""] ?? footerBreakpointWidthClasses["320"],
 );
 
+const rowTextMentionsVariant = (row: MeasurementTokenRow, variant: string) => {
+  const label = variant.toLowerCase();
+  const haystack = [
+    row.element,
+    row.property,
+    row.designToken,
+    row.rawValue,
+    row.usage,
+  ].filter(Boolean).join(" ").toLowerCase();
+
+  return new RegExp(`\\b${label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(haystack);
+};
+
+const inferredRowVariant = (row: MeasurementTokenRow) =>
+  structureRowVariants.value.find((variant) => rowTextMentionsVariant(row, variant)) ?? null;
+
 // True when a token row should be visible given the currently selected variant.
-// Rows with no `variant` are shared and always show. Rows with a `variant`
-// only show when it matches the active variant.
+// Rows with an explicit `variant` only show when it matches the active variant.
+// Rows without `variant` are shared, unless their copy clearly names one of
+// the available variants (for example "compact accordion body text").
 const isRowVisibleForActiveVariant = (row: MeasurementTokenRow) => {
   if (!activeVariant.value) return true;
-  if (!row.variant) return true;
-  return row.variant === activeVariant.value;
+  const rowVariant = row.variant ?? inferredRowVariant(row);
+  if (!rowVariant) return true;
+  return rowVariant === activeVariant.value;
 };
 // The OUTER SGDS element in the preview markup determines the structure kind.
 // Picking the first match in the string would mis-classify components like
@@ -542,9 +560,7 @@ const alertBorderHoverBands = computed(() => {
 
 // Thin proxy bands that follow the button's border edge. Hovering any of them
 // sets hoverKey to a shared "border" key so both border-width and border-radius
-// rows in the token list light up together (see getRelatedRowKeys + the CSS
-// at the bottom of the file). Without these proxies the user can only hover
-// the two stacked surface hotspots which each highlight a single token.
+// overlays are inspected together.
 const buttonBorderHoverBands = computed(() => {
   if (structureKind.value !== "button") return [];
   if (!isHoverableStructureKey("border-width")) return [];
@@ -1006,8 +1022,13 @@ const getPaddingBands = (rect: HotspotRect | null, axis: PaddingAxis = "all"): P
   return [...topBand, ...bottomBand, ...leftBand, ...rightBand];
 };
 
-const getPaddingBandsForKey = (key: string, rect: HotspotRect | null) =>
-  getPaddingBands(rect, getPaddingAxisFromToken(getTooltipTokenRowByKey(key), key));
+const getPaddingBandsForKey = (key: string, rect: HotspotRect | null) => {
+  if (structureKind.value === "accordion" && key === "content-padding") {
+    return getPaddingBands(rect, "all");
+  }
+
+  return getPaddingBands(rect, getPaddingAxisFromToken(getTooltipTokenRowByKey(key), key));
+};
 
 const getRelatedPaddingBandsForKey = (key: string) => {
   const relatedPaddingKeys = getRelatedRowKeys(key).filter(isPaddingOverlayKey);
@@ -1760,26 +1781,26 @@ const inspectMeta = computed<Record<string, InspectMeta>>(() => {
     "border-radius": { label: "border-radius", value: tokenDisplay(accordionBaseTokenMap.value.get("border-radius")), valueSuffix: tokenValue(accordionBaseTokenMap.value.get("border-radius")), aria: "Inspect accordion border radius" },
     "padding-x-default": {
       label: "padding-x",
-      value: tokenDisplay(densityTokenMap.value.get("padding-x")),
-      valueSuffix: tokenValue(densityTokenMap.value.get("padding-x")),
+      value: tokenDisplay(densityTokenMap.value.get("padding-x-default")),
+      valueSuffix: tokenValue(densityTokenMap.value.get("padding-x-default")),
       rows: [
         {
           label: "padding-y",
-          value: tokenDisplay(densityTokenMap.value.get("padding-y")),
-          valueSuffix: tokenValue(densityTokenMap.value.get("padding-y")),
+          value: tokenDisplay(densityTokenMap.value.get("padding-y-default")),
+          valueSuffix: tokenValue(densityTokenMap.value.get("padding-y-default")),
         },
       ],
       aria: "Inspect accordion header padding x",
     },
     "padding-y-default": {
       label: "padding-x",
-      value: tokenDisplay(densityTokenMap.value.get("padding-x")),
-      valueSuffix: tokenValue(densityTokenMap.value.get("padding-x")),
+      value: tokenDisplay(densityTokenMap.value.get("padding-x-default")),
+      valueSuffix: tokenValue(densityTokenMap.value.get("padding-x-default")),
       rows: [
         {
           label: "padding-y",
-          value: tokenDisplay(densityTokenMap.value.get("padding-y")),
-          valueSuffix: tokenValue(densityTokenMap.value.get("padding-y")),
+          value: tokenDisplay(densityTokenMap.value.get("padding-y-default")),
+          valueSuffix: tokenValue(densityTokenMap.value.get("padding-y-default")),
         },
       ],
       aria: "Inspect accordion header padding y",
@@ -1790,14 +1811,9 @@ const inspectMeta = computed<Record<string, InspectMeta>>(() => {
       valueSuffix: tokenValue(densityTokenMap.value.get("padding-top")),
       rows: [
         {
-          label: "padding-bottom",
-          value: tokenDisplay(densityTokenMap.value.get("padding-bottom")),
-          valueSuffix: tokenValue(densityTokenMap.value.get("padding-bottom")),
-        },
-        {
-          label: "padding-y",
-          value: tokenDisplay(densityTokenMap.value.get("padding-bottom")),
-          valueSuffix: tokenValue(densityTokenMap.value.get("padding-bottom")),
+          label: "padding-x",
+          value: tokenDisplay(densityTokenMap.value.get("content-padding")),
+          valueSuffix: tokenValue(densityTokenMap.value.get("content-padding")),
         },
       ],
       aria: "Inspect accordion content padding",
@@ -1929,41 +1945,20 @@ const getRelatedRowKeys = (key: string) => {
   if (structureKind.value === "accordion" && ["padding-x-default", "padding-y-default"].includes(key)) {
     return ["padding-x-default", "padding-y-default"];
   }
-  if (structureKind.value === "accordion" && key === "content-padding") return ["content-padding", "padding-y-default"];
+  if (structureKind.value === "accordion" && key === "content-padding") return ["content-padding"];
   if (structureKind.value === "breadcrumb" && key === "group-gap") return ["group-gap", "gap-xs"];
   return [key];
 };
 
-// Cross-table design-token highlighting. Any row whose `designToken` value
-// matches the currently hovered/selected row's `designToken` lights up too —
-// this is what pairs up rows like `page-link-color` (component token) with
-// `sgds/link-color-default` (semantic token), or `title-color` and
-// `secondary-text-color` that both resolve to `sgds/body-color-default`.
+const activeRowKeys = computed(() => new Set(selectedKeys.value));
+
 const activeDesignTokens = computed(() => {
   const tokens = new Set<string>();
-  const collect = (key: string | null) => {
-    if (!key) return;
+  selectedKeys.value.forEach((key) => {
     const row = allStructureTokenMap.value.get(key);
     if (row?.designToken) tokens.add(row.designToken);
-  };
-  selectedKeys.value.forEach(collect);
-  // Propagate related row keys on hover too — so hovering one border token
-  // lights up the other border row without requiring a click.
-  if (hoverKey.value) {
-    getRelatedRowKeys(hoverKey.value).forEach(collect);
-  }
+  });
   return tokens;
-});
-
-// Same as activeDesignTokens but for row `mapKey` values — used by isRowActive
-// to light up related rows on hover (e.g. border-width ↔ border-radius).
-const activeRowKeys = computed(() => {
-  const keys = new Set<string>();
-  selectedKeys.value.forEach((k) => keys.add(k));
-  if (hoverKey.value) {
-    getRelatedRowKeys(hoverKey.value).forEach((k) => keys.add(k));
-  }
-  return keys;
 });
 
 const isRowActive = (key: string | null, designToken?: string | null) => {
@@ -5142,13 +5137,16 @@ const measureHotspots = async () => {
 
   if (contentSlot && assignedContent) {
     const slotRect = getRelativeRect(contentSlot, shell);
-    const contentRect = getRelativeRect(assignedContent, shell);
+    const contentPaddingX = 16;
+    const contentPaddingTop = 4;
+    const contentPaddingBottom = 16;
+
     nextRects["content-padding"] = {
       ...slotRect,
-      insetLeft: Math.max(0, contentRect.left - slotRect.left),
-      insetTop: Math.max(0, contentRect.top - slotRect.top),
-      insetWidth: contentRect.width,
-      insetHeight: contentRect.height,
+      insetLeft: contentPaddingX,
+      insetTop: contentPaddingTop,
+      insetWidth: Math.max(0, slotRect.width - contentPaddingX * 2),
+      insetHeight: Math.max(0, slotRect.height - contentPaddingTop - contentPaddingBottom),
     };
   }
 
@@ -5213,10 +5211,10 @@ const getCollapsedCategory = (
       @mouseleave="clearPreviewHover"
     >
       <SegmentedControl
-        v-if="variantSegmentOptions.length >= 2 && variantAttributeName && activeVariant"
+        v-if="variantSegmentOptions.length >= 2 && activeVariant"
         :model-value="activeVariant"
         :options="variantSegmentOptions"
-        :aria-label="`${variantAttributeName} variant`"
+        :aria-label="variantAttributeName ? `${variantAttributeName} variant` : 'Design token variant'"
         @update:model-value="(value: string) => activeVariant = value"
       />
 
@@ -6115,8 +6113,6 @@ const getCollapsedCategory = (
             :data-structure-row-key="getRowMapKey(row, row.groupTitle) || row.mapKey || null"
             :data-structure-tone="getStructureTone(getRowMapKey(row, row.groupTitle) || row.mapKey || null)"
             tabindex="-1"
-            @mouseenter="(getRowMapKey(row, row.groupTitle) || row.mapKey) && isHoverableStructureKey(getRowMapKey(row, row.groupTitle) || row.mapKey || null) && !isBackgroundOverlayKey(getRowMapKey(row, row.groupTitle) || row.mapKey || null) ? (hoverKey = getRowMapKey(row, row.groupTitle) || row.mapKey || null) : null"
-            @mouseleave="hoverKey = null"
           >
             <sgds-table-cell>{{ getCollapsedCategory(designTokenRows, row, index) }}</sgds-table-cell>
             <sgds-table-cell><CodeToken :label="formatToken(row.designToken)" /></sgds-table-cell>
@@ -6158,10 +6154,6 @@ sgds-table-row.structure-row-active[data-structure-tone="border"] {
 
 sgds-table-row.structure-row-active[data-structure-tone="semantic"] {
   background: color-mix(in srgb, var(--sgds-neutral-surface-muted) 52%, transparent);
-}
-
-sgds-table-row.structure-row-clickable {
-  cursor: pointer;
 }
 
 /* Make the rendered component non-interactive so hover events fall through

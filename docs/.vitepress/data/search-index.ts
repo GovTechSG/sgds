@@ -21,7 +21,7 @@ export interface SearchResult extends SearchItem {
 export const searchIndex: SearchItem[] = [
   // Get started
   { title: "Get started", category: "Get started", url: "/get-started/", keywords: ["overview", "sgds v3", "start"] },
-  { title: "About SGDS", category: "Get started", url: "/get-started/about-sgds", keywords: ["vision", "principles", "values"] },
+  { title: "About us", category: "Get started", url: "/get-started/about-sgds", keywords: ["vision", "principles", "values"] },
   { title: "Design", category: "Get started", url: "/get-started/design", keywords: ["figma", "design", "libraries", "tokens"] },
   { title: "Develop", category: "Get started", url: "/get-started/develop", keywords: ["install", "components", "templates", "blocks"] },
   { title: "Content", category: "Get started", url: "/get-started/content", keywords: ["writing", "copy", "tone", "content", "guidelines"] },

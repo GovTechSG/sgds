@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About SGDS
+title: About us
 ---
 
 <script setup>

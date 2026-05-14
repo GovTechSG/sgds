@@ -39,6 +39,47 @@ const activeNote = computed(() =>
     : activeOption.value?.note,
 );
 
+const ignoredMarkupAttributes = new Set([
+  "aria-hidden",
+  "aria-label",
+  "class",
+  "data-drawer-trigger",
+  "href",
+  "id",
+  "rel",
+  "role",
+  "slot",
+  "style",
+  "target",
+]);
+
+const configurationCodeTerms = computed(() => {
+  const terms = new Set<string>();
+  const tagPattern = /<sgds-[\w-]+([^>]*)>/g;
+  const attributePattern = /(?:^|\s)([A-Za-z_:][\w:.-]*)(?:=(?:"[^"]*"|'[^']*'|[^\s>]+))?/g;
+
+  props.demo.options.forEach((option) => {
+    option.markup.replace(tagPattern, (_, attributes: string) => {
+      let attributeMatch: RegExpExecArray | null;
+      while ((attributeMatch = attributePattern.exec(attributes)) !== null) {
+        const attributeName = attributeMatch[1];
+        if (
+          attributeName &&
+          !ignoredMarkupAttributes.has(attributeName) &&
+          !attributeName.startsWith("data-") &&
+          !attributeName.startsWith("aria-")
+        ) {
+          terms.add(attributeName);
+        }
+      }
+
+      return "";
+    });
+  });
+
+  return Array.from(terms).sort((current, next) => next.length - current.length);
+});
+
 const isWidePreview = computed(() =>
   activeOption.value?.markup.includes("sgds-footer") ||
   activeOption.value?.markup.includes("portal-masthead-width-demo") ||
@@ -521,7 +562,7 @@ watch(activeValue, () => {
       <component :is="demo.titleTag || 'h3'" class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ demo.title }}</component>
       <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
         <template
-          v-for="(part, index) in textParts(demo.description)"
+          v-for="(part, index) in textParts(demo.description, configurationCodeTerms)"
           :key="`${part.text}-${index}`"
         >
           <CodeToken v-if="part.isCode" :label="part.text" />
@@ -598,7 +639,7 @@ watch(activeValue, () => {
             </div>
             <p v-if="activeDescription" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               <template
-                v-for="(part, index) in textParts(activeDescription)"
+                v-for="(part, index) in textParts(activeDescription, configurationCodeTerms)"
                 :key="`${part.text}-${index}`"
               >
                 <CodeToken v-if="part.isCode" :label="part.text" />
@@ -607,7 +648,7 @@ watch(activeValue, () => {
             </p>
             <p v-if="activeNote" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               <template
-                v-for="(part, index) in textParts(activeNote)"
+                v-for="(part, index) in textParts(activeNote, configurationCodeTerms)"
                 :key="`${part.text}-${index}`"
               >
                 <CodeToken v-if="part.isCode" :label="part.text" />
@@ -641,7 +682,7 @@ watch(activeValue, () => {
               </div>
               <p v-if="activeOption.description" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
                 <template
-                  v-for="(part, index) in textParts(activeOption.description)"
+                  v-for="(part, index) in textParts(activeOption.description, configurationCodeTerms)"
                   :key="`${part.text}-${index}`"
                 >
                   <CodeToken v-if="part.isCode" :label="part.text" />
@@ -650,7 +691,7 @@ watch(activeValue, () => {
               </p>
               <p v-if="activeOption.note" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
                 <template
-                  v-for="(part, index) in textParts(activeOption.note)"
+                  v-for="(part, index) in textParts(activeOption.note, configurationCodeTerms)"
                   :key="`${part.text}-${index}`"
                 >
                   <CodeToken v-if="part.isCode" :label="part.text" />

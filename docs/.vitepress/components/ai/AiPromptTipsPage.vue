@@ -77,7 +77,7 @@ import {
       </ul>
 
       <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-        <PromptBox v-for="example in textPromptExamples" :key="example.label" :label="example.label" :prompt="example.prompt" />
+        <PromptBox v-for="example in textPromptExamples" :key="example.prompt" :prompt="example.prompt" />
       </div>
     </section>
 
@@ -105,7 +105,7 @@ import {
       </ul>
 
       <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-        <PromptBox v-for="example in figmaPromptExamples" :key="example.label" :label="example.label" :prompt="example.prompt" />
+        <PromptBox v-for="example in figmaPromptExamples" :key="example.prompt" :prompt="example.prompt" />
       </div>
     </section>
 
