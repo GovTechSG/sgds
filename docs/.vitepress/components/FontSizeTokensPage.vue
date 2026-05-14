@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 import CodeToken from "./ui/CodeToken.vue";
 
 type FontSizeToken = {
@@ -35,7 +36,7 @@ const fontSizeTokens: FontSizeToken[] = [
   <TypographyPageTemplate>
     <section class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Font size tokens</h2>
+        <SectionHeader title="Font size tokens" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">Font size tokens define every step of the type scale. Use these tokens to build custom text styles that remain in sync with system typography.</p>
       </div>
       <div class="typography-page-template__body typography-page-template__body--prose">

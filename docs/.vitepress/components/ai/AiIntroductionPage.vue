@@ -1,12 +1,11 @@
+<script setup lang="ts">
+import SectionHeader from "../foundations/SectionHeader.vue";
+</script>
+
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg sgds:w-full">
     <section class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:w-full">
-      <div class="sgds:flex sgds:items-center sgds:gap-text-xs sgds:w-full">
-        <h2 id="the-role-of-ai-in-design-systems" class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">The role of AI in design systems</h2>
-        <a href="#the-role-of-ai-in-design-systems" class="sgds:ml-2 sgds:inline-flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded-sm sgds:align-middle sgds:text-subtle sgds:no-underline sgds:hover:text-default sgds:focus:text-default sgds:focus-visible:text-default sgds:focus-visible:outline sgds:focus-visible:outline-[var(--sgds-outline-focus)] sgds:focus-visible:outline-offset-[var(--sgds-outline-offset-focus)]" aria-label="Link to The role of AI in design systems">
-          <sgds-icon name="link" size="sm"></sgds-icon>
-        </a>
-      </div>
+      <SectionHeader title="The role of AI in design systems" />
       <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
         AI is now part of everyday design and engineering work. Coding assistants can read codebases, edit files, run commands, and connect to tools such as Figma through MCP. Their output still depends on the context they receive. Without SGDS context, the result may look plausible while drifting from how government digital services should work.
       </p>

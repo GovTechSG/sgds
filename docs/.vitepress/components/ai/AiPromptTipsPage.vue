@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SectionHeader from "../foundations/SectionHeader.vue";
 import PromptBox from "../ui/PromptBox.vue";
 import {
   figmaPromptExamples,
@@ -13,7 +14,7 @@ import {
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
     <section class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Prompting with SGDS agent skills</h2>
+      <SectionHeader title="Prompting with SGDS agent skills" />
       <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
         SGDS agent skills help an AI agent understand the design system. They tell the agent which components, utilities, layouts, and setup steps to use.
       </p>

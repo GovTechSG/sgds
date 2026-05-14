@@ -9,58 +9,50 @@ const inlineCodeClass = "sgds:inline-block sgds:whitespace-nowrap sgds:bg-surfac
 export const skills: Skill[] = [
   {
     name: "sgds-workflow",
-    descriptionHtml: "Mandatory starting point for SGDS work. Maps the skill set and points the assistant to the right setup, component, utility, layout, template, form, theming, data visualisation, or writing guidance.",
+    descriptionHtml: "Start here when unsure. Maps all SGDS agent skills, when to use them, and the order to read them in.",
   },
   {
     name: "sgds-getting-started",
-    descriptionHtml: "Starting point for new SGDS apps. Covers Inter font setup, foundation CSS import order, utility CSS, component registration, and base app layout.",
+    descriptionHtml: "Mandatory first step for new apps: font setup, CSS import order, component registration, and app layout.",
   },
   {
     name: "sgds-components",
-    descriptionHtml: `Reference for all <code class="${inlineCodeClass}">&lt;sgds-*&gt;</code> web components, including installation, attributes, slots, events, and framework integration for React, Vue, Angular, and Next.js.`,
+    descriptionHtml: `All 47 <code class="${inlineCodeClass}">&lt;sgds-*&gt;</code> web components, including attributes, slots, events, and framework integration (React 19+, React ≤18, Vue, Angular, Next.js).`,
   },
   {
     name: "sgds-utilities",
-    descriptionHtml: `Reference for <code class="${inlineCodeClass}">sgds:</code> Tailwind utility classes, including setup, spacing, grid, typography, colours, borders, dimensions, opacity, and theme switching.`,
-  },
-  {
-    name: "sgds-layouts",
-    descriptionHtml: "Page layout patterns for SGDS applications, including full-width pages, sidebar layouts, split views, aside panels, breadcrumbs, and viewport-height layouts.",
+    descriptionHtml: `All <code class="${inlineCodeClass}">sgds:</code> Tailwind utility classes: grid, spacing, typography, colours, borders, and more.`,
   },
   {
     name: "sgds-theming",
-    descriptionHtml: "Theme customisation for product brand colours, GovTech colour themes, day and night modes, font changes, and CSS token overrides.",
+    descriptionHtml: "Brand colour overrides, dark mode setup, and font customisation. Read alongside components and utilities when needed.",
   },
   {
     name: "sgds-forms",
-    descriptionHtml: `Form validation guidance for SGDS form components, including <code class="${inlineCodeClass}">hasFeedback</code>, constraint validation, custom validation, <code class="${inlineCodeClass}">FormData</code>, <code class="${inlineCodeClass}">noValidate</code>, and <code class="${inlineCodeClass}">setInvalid</code>.`,
+    descriptionHtml: `Form validation, constraint validation, <code class="${inlineCodeClass}">FormData</code>, and <code class="${inlineCodeClass}">setInvalid</code>.`,
   },
   {
     name: "sgds-patterns",
-    descriptionHtml: "Reusable typography and text patterns for headings, display text, content headers, lists, paragraphs, and consistent page text hierarchy.",
+    descriptionHtml: "Typography and content patterns for headings, display text, paragraphs, lists, and page text hierarchy.",
+  },
+  {
+    name: "sgds-layouts",
+    descriptionHtml: "Page layout patterns that define content arrangement for public-facing pages and internal tools and dashboards.",
   },
   {
     name: "sgds-blocks",
-    descriptionHtml: "Reusable page sections and shell structures such as application shell, hero sections, cards, feature blocks, statistics, filters, forms, and calls to action. Compose with sgds-templates.",
+    descriptionHtml: "Reusable page sections such as hero sections, cards, feature blocks, statistics, filters, forms, and calls to action.",
   },
   {
     name: "sgds-templates",
-    descriptionHtml: "Ready-made full-page templates for common product flows such as dashboards, login pages, list pages, forms, settings pages, catalogue pages, landing pages, and content pages.",
-  },
-  {
-    name: "sgds-pattern-block-templates",
-    descriptionHtml: "Pattern block templates for self-contained UI sections, including application shell, page headers, sticky headers, filter panels, sidebar filters, and other blocks that slot into page templates.",
-  },
-  {
-    name: "sgds-pattern-page-templates",
-    descriptionHtml: "Pattern page templates for full-page SGDS screens such as dashboards, login pages, list pages, form pages, settings pages, admin portals, authentication flows, and data table views.",
+    descriptionHtml: "Ready-made full-page layouts for common product flows such as dashboards, login pages, list pages, forms, and settings.",
   },
   {
     name: "sgds-data-visualisation",
-    descriptionHtml: "Data visualisation guidance for SGDS apps. Covers installing ECharts separately and applying the SGDS colour palette to charts and dashboards.",
+    descriptionHtml: "Charts and dashboards using ECharts with the SGDS colour palette.",
   },
   {
     name: "sgds-writing",
-    descriptionHtml: "SGDS writing guidance for documentation, UI copy, labels, error messages, tooltips, prompts, tone, grammar, spelling, casing, punctuation, and plain language.",
+    descriptionHtml: "SGDS writing guidance for clear, direct, and consistent documentation, UI copy, labels, and prompts.",
   },
 ];

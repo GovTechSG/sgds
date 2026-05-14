@@ -2,6 +2,7 @@
 import FoundationPrinciplesList from "./foundations/FoundationPrinciplesList.vue";
 import FoundationPrincipleTemplate from "./foundations/FoundationPrincipleTemplate.vue";
 import Section from "./foundations/Section.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 
 type Principle = {
@@ -167,7 +168,7 @@ const radiusExamples: Example[] = [
         </section>
 
         <section class="sgds:flex sgds:flex-col sgds:gap-text-lg">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Characteristics (radius)</h2>
+        <SectionHeader title="Characteristics (radius)" />
         <div class="typography-page-template__body">
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">

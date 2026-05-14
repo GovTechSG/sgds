@@ -53,6 +53,14 @@ export const codeToFigmaSteps: FigmaStep[] = [
 ];
 
 export const setupSteps: FigmaStep[] = [
+  { number: 0, title: "Install Node.js" },
+  { number: 1, title: "Install the SGDS agent skills" },
+  { number: 2, title: "Select the full skill set" },
+  { number: 3, title: "Keep the agent skills updated" },
+];
+
+export const setupStepsGtCli: FigmaStep[] = [
+  { number: 0, title: "Setup GT CLI" },
   { number: 1, title: "Install the SGDS agent skills" },
   { number: 2, title: "Select the full skill set" },
   { number: 3, title: "Keep the agent skills updated" },

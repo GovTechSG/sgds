@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import CodeToken from "../ui/CodeToken.vue";
+import SectionHeader from "./SectionHeader.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -83,7 +84,7 @@ const edgeRows: EdgeRow[] = [
     <template v-if="props.section === 'all' || props.section === 'surface'">
     <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Surface elevation tokens</h2>
+        <SectionHeader title="Surface elevation tokens" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">Surface shadows lift elements above the page. Use progressively higher levels as elements sit further from the base surface.</p>
       </div>
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
@@ -113,7 +114,7 @@ const edgeRows: EdgeRow[] = [
     <template v-if="props.section === 'all' || props.section === 'edge'">
     <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Edge elevation tokens</h2>
+        <SectionHeader title="Edge elevation tokens" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">Edge shadows are directional and indicate that an element is pinned to a viewport edge, casting a shadow toward the content beneath.</p>
       </div>
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">

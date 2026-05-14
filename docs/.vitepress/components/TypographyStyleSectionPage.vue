@@ -3,6 +3,7 @@ import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import { typographyStyleSections } from "../data/typography-style-tokens";
 import { typographyTokenDocs } from "../data/typography-token-docs";
 import CodeToken from "./ui/CodeToken.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 
 const sectionUsageCopy: Record<string, string> = {
   display:
@@ -95,9 +96,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
           class="ts-style-section"
         >
           <div class="ts-style-section-copy">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:mb-0">
-              When to use {{ sectionUsageHeadingLabel[section.key] }}
-            </h2>
+            <SectionHeader :title="`When to use ${sectionUsageHeadingLabel[section.key]}`" />
 
             <p
               class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal"

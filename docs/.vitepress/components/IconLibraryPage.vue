@@ -3,6 +3,7 @@ import { computed, ref } from "vue";
 import { iconRegistry } from "@govtechsg/sgds-web-component/components/Icon/icon-registry.js";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 import SegmentedControl from "./components/SegmentedControl.vue";
 
 const searchQuery = ref("");
@@ -230,9 +231,7 @@ async function copyIconName(iconName: string) {
 
           <!-- API -->
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">
-              API
-            </h2>
+            <SectionHeader title="API" />
             <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0 sgds:font-mono">
               sgds-icon
@@ -278,9 +277,7 @@ async function copyIconName(iconName: string) {
 
           <!-- Icon list -->
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">
-              List of icons
-            </h2>
+            <SectionHeader title="List of icons" />
 
             <!-- Style tabs + size select + search row -->
             <div class="il-toolbar sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-component-xs">

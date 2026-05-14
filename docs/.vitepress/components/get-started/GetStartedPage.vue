@@ -4,6 +4,7 @@ import {
   getStartedNavItems,
   getStartedPages,
 } from "../../data/get-started";
+import SectionHeader from "../foundations/SectionHeader.vue";
 import GetStartedPageSections from "./GetStartedPageSections.vue";
 
 defineOptions({
@@ -15,8 +16,6 @@ const props = defineProps<{
 }>();
 
 const page = props.pageKey === "design" ? designTabs[0].page : getStartedPages[props.pageKey];
-
-const brandIconForLink = (label: string) => `/brands/${label.toLowerCase()}.svg`;
 
 const isCurrentNavGroup = (label: string) => {
   if (props.pageKey === "design") return label === "Design";
@@ -79,14 +78,12 @@ const isCurrentNavGroup = (label: string) => {
                 :href="link.href"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs"
+                class="get-started-source-link sgds:inline-flex sgds:items-center sgds:gap-text-2-xs"
               >
-                <img
-                  :src="brandIconForLink(link.label)"
-                  alt=""
+                <span
                   aria-hidden="true"
-                  class="sgds:block sgds:h-[var(--sgds-dimension-16)] sgds:w-[var(--sgds-dimension-16)]"
-                />
+                  :class="`get-started-brand-icon get-started-brand-icon--${link.label.toLowerCase()}`"
+                ></span>
                 <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ link.path }}</span>
               </a>
             </sgds-link>
@@ -104,9 +101,7 @@ const isCurrentNavGroup = (label: string) => {
       </section>
 
       <section v-if="page.reasons?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xl">
-        <h2 class="sgds:m-0 sgds:text-heading-lg sgds:font-semibold sgds:leading-lg sgds:tracking-tight">
-          Why use SGDS v3?
-        </h2>
+        <SectionHeader title="Why use SGDS v3?" />
         <div class="sgds:flex sgds:flex-col sgds:gap-text-lg">
           <div v-for="reason in page.reasons" :key="reason.title" class="sgds:flex sgds:flex-col sgds:gap-text-2-xs">
             <h3 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
@@ -120,14 +115,7 @@ const isCurrentNavGroup = (label: string) => {
       </section>
 
       <section v-if="page.table" class="sgds:flex sgds:flex-col sgds:gap-text-lg">
-        <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-          <h2 class="sgds:m-0 sgds:text-heading-lg sgds:font-semibold sgds:leading-lg sgds:tracking-tight">
-            {{ page.table.title }}
-          </h2>
-          <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-            {{ page.table.description }}
-          </p>
-        </div>
+        <SectionHeader :title="page.table.title" :description="page.table.description" header-gap="sgds:gap-text-xs" />
         <sgds-table tableBorder headerBackground responsive="md">
           <sgds-table-row>
             <sgds-table-head>Feature</sgds-table-head>
@@ -165,3 +153,34 @@ const isCurrentNavGroup = (label: string) => {
     </main>
   </div>
 </template>
+
+<style>
+/* Brand icon masks — reuses the same SVG assets as PageHeader */
+.get-started-brand-icon {
+  display: block;
+  height: var(--sgds-dimension-16);
+  width: var(--sgds-dimension-16);
+}
+
+.get-started-brand-icon--github {
+  background-color: #181717;
+  mask: url("/brands/github.svg") center / contain no-repeat;
+}
+
+.get-started-brand-icon--storybook {
+  background-color: #ff4785;
+  mask: url("/brands/storybook.svg") center / contain no-repeat;
+}
+
+.sgds-night-theme .get-started-brand-icon--github,
+.sgds-night-theme .get-started-brand-icon--storybook {
+  background-color: var(--sgds-color-fixed-light);
+}
+
+/* Hide redundant external-link icon on source links */
+.get-started-source-link::after,
+.get-started-source-link .external-link-icon {
+  content: none !important;
+  display: none !important;
+}
+</style>

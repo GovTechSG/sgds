@@ -41,6 +41,7 @@ export type GetStartedSection = {
   title: string;
   eyebrow?: string;
   description?: string;
+  descriptionHtml?: string;
   paragraphs?: string[];
   orderedItems?: GetStartedListItem[];
   subsections?: GetStartedListItem[];
@@ -321,6 +322,11 @@ export const developPage: GetStartedPageData = {
       title: "Use SGDS utilities",
       description: "Apply SGDS utility classes for spacing, layout, typography, colour, and responsive behaviour instead of custom CSS.",
       links: [{ label: "Explore in Storybook", href: "https://webcomponent.designsystem.tech.gov.sg/?path=/docs/utilities-introduction--docs", external: true }],
+    },
+    {
+      title: "Use SGDS AI",
+      descriptionHtml: `Accelerate development with AI-assisted workflows and <a href="/ai/skills#how-to-install-sgds-agent-skills">agent skills</a> that understand SGDS components, utilities, and patterns.`,
+      links: [{ label: "Explore SGDS AI", href: "/ai/introduction" }],
     },
   ],
   pager: [

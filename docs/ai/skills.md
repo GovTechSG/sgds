@@ -11,12 +11,13 @@ headerAlert:
 <script setup>
 import AiSkillsSetupSteps from "../.vitepress/components/ai/AiSkillsSetupSteps.vue";
 import CodeToken from "../.vitepress/components/ui/CodeToken.vue";
+import SectionHeader from "../.vitepress/components/foundations/SectionHeader.vue";
 import SkillsTable from "../.vitepress/components/ui/SkillsTable.vue";
 </script>
 
 <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg sgds:w-full">
   <section class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:w-full">
-    <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">What are agent skills?</h2>
+    <SectionHeader title="What are agent skills?" />
     <div class="sgds:flex sgds:flex-col sgds:gap-text-md sgds:w-full">
       <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
         Agent skills are markdown instruction files that help compatible AI coding tools work with SGDS in a more consistent way. They explain which skills to read, which components and utilities to use, how SGDS pages are structured, and which rules to follow when generating design, code, or content.
@@ -84,7 +85,7 @@ import SkillsTable from "../.vitepress/components/ui/SkillsTable.vue";
   </section>
 
   <section class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:w-full">
-    <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">How to install SGDS agent skills</h3>
+    <SectionHeader title="How to install SGDS agent skills" />
     <AiSkillsSetupSteps />
   </section>
 
