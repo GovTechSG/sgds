@@ -78,7 +78,7 @@ const displayRows = computed(() =>
         </h3>
         <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
           {{ updates.feedback.prefix }}
-          <sgds-link><a :href="updates.feedback.href">{{ updates.feedback.linkLabel }}</a></sgds-link>
+          <a :href="updates.feedback.href">{{ updates.feedback.linkLabel }}</a>
         </p>
       </div>
     </Section>
@@ -90,7 +90,7 @@ const displayRows = computed(() =>
         </h3>
         <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
           {{ updates.bugReports.prefix }}
-          <sgds-link><a :href="updates.bugReports.href">{{ updates.bugReports.linkLabel }}</a></sgds-link>
+          <a :href="updates.bugReports.href">{{ updates.bugReports.linkLabel }}</a>
         </p>
       </div>
     </Section>
