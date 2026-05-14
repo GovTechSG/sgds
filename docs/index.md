@@ -161,17 +161,18 @@ const showCommunitySection = false;
             width="536"
             height="576"
             :class="$style.image"
+            class="sgds:rounded-3-xl"
           />
         </div>
         <div
           :class="$style.image"
-          class="sgds-col-4 sgds-col-sm-5 sgds-col-lg-7 sgds:overflow-hidden"
+          class="sgds-col-4 sgds-col-sm-5 sgds-col-lg-7 sgds:overflow-hidden sgds:rounded-3-xl"
         >
           <ColourGridImage />
         </div>
         <div
           :class="$style.image"
-          class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-12 sgds:overflow-hidden"
+          class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-12 sgds:overflow-hidden sgds:rounded-3-xl"
         >
           <LayoutGridImage />
         </div>
