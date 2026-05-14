@@ -152,8 +152,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="heroRoot" class="sgds:relative hero-root">
-    <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-spacer-10)] sgds:pt-[var(--sgds-padding-2-xl)] sgds:max-w-[var(--sgds-dimension-640)] hero-text">
+  <div ref="heroRoot" class="sgds-grid sgds:relative">
+    <div class="sgds-col-4 sgds-col-sm-6 sgds-col-md-4 sgds-col-lg-5 sgds:flex sgds:flex-col sgds:gap-layout-xl sgds:pt-[var(--sgds-padding-2-xl)] sgds:max-w-text">
       <h1 class="sgds:text-[5rem] sgds:leading-[100%] sgds:font-semibold sgds:mb-0 hero-title">{{ title }}</h1>
       <div
         v-for="button in buttons"
@@ -169,7 +169,7 @@ onBeforeUnmount(() => {
         </sgds-button>
       </div>
     </div>
-    <div class="image-container">
+    <div class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds:lg:absolute sgds:lg:right-0 sgds:mt-2-xl image-container">
       <svg class="landing-hero-art sgds:overflow-visible sgds:opacity-0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="756" height="744" viewBox="0 0 756 744" fill="none">
         <path d="M345 34.0978C345 14.1602 328.82 -2.23543 309.092 0.249924C245.95 8.20511 186.83 36.9823 141.353 82.5857C87.3428 136.747 57 210.204 57 286.799C57 363.395 87.3428 436.852 141.353 491.013C186.83 536.617 245.95 565.394 309.092 573.349C328.82 575.834 345 559.439 345 539.501V34.0978Z" fill="var(--landing-hero-dark-shape)" />
         <path class="landing-hero-primary-shape" d="M397 683.902C397 703.84 413.18 720.235 432.908 717.75C496.05 709.795 555.17 681.018 600.647 635.414C654.657 581.254 685 507.796 685 431.201C685 354.605 654.657 281.148 600.647 226.987C555.17 181.383 496.05 152.606 432.908 144.651C413.18 142.165 397 158.561 397 178.499L397 683.902Z" />
@@ -406,13 +406,6 @@ onBeforeUnmount(() => {
 <style>
 /* Hero responsive layout — @media required, no SGDS responsive utility classes exist */
 
-/* Default (mobile-first): image below text */
-.image-container {
-  width: 100%;
-  max-width: none;
-  margin: 40px auto 0;
-}
-
 .image-container svg.landing-hero-art {
   display: block;
   width: 100%;
@@ -421,65 +414,39 @@ onBeforeUnmount(() => {
 }
 
 .hero-title {
-  font-size: 3.5rem;
+  font-size: 3rem;
   letter-spacing: -0.05em;
 }
 
-/* Tablet (768px-1279px): side by side with a smaller illustration than desktop */
-@media screen and (min-width: 768px) and (max-width: 1279px) {
-  .hero-root {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: clamp(20px, 3vw, 40px);
-  }
-
-  .hero-text {
-    flex: 1 1 0;
-    min-width: 0;
-    max-width: none;
-  }
-
-  .image-container {
-    flex: 0 0 clamp(320px, 42vw, 560px);
-    width: clamp(320px, 42vw, 560px);
-    max-width: clamp(320px, 42vw, 560px);
-    margin: 0;
-    align-self: flex-start;
+@media (min-width: 512px) {
+  .hero-title {
+    font-size: 3.5rem;
   }
 }
 
-@media screen and (min-width: 768px) {
+/* Tablet (768px-1279px): side by side with a smaller illustration than desktop */
+
+
+@media (min-width: 768px) {
   .hero-title {
     font-size: 4rem;
   }
 }
 
-/* Desktop (≥1280px): restore the original hero composition */
-@media screen and (min-width: 1280px) {
-  .hero-root {
-    display: block;
-    min-height: 0;
-  }
-
-  .hero-text {
-    width: auto;
-    max-width: 640px;
-  }
-
-  .image-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    flex: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-  }
-
+@media (min-width: 1024px) {
   .image-container svg.landing-hero-art {
-    width: 756px;
-    height: 744px;
+    width: 550px;
+    height: auto;
+    top: 50px;
+    transform: translateX(50px);
+  }
+}
+
+/* Desktop (≥1280px): restore the original hero composition */
+@media (min-width: 1280px) {
+  .image-container svg.landing-hero-art {
+    width: 700px;
+    transform: translateX(0px);
   }
 
   .hero-title {
@@ -487,14 +454,9 @@ onBeforeUnmount(() => {
   }
 }
 
-@media screen and (min-width: 1280px) and (max-width: 1439px) {
-  .hero-text {
-    max-width: 540px;
-  }
-
+@media screen and (min-width: 1440px) {
   .image-container svg.landing-hero-art {
-    width: 700px;
-    height: auto;
+    width: 670px;
   }
 }
 

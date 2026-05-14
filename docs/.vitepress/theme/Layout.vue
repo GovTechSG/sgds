@@ -15,7 +15,7 @@ const { frontmatter } = useData()
   <BareLayout v-if="frontmatter.layout === 'bare'" />
   <PreviewLayout v-else-if="frontmatter.layout === 'preview'" />
   <template v-else>
-    <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl sgds:mb-[var(--sgds-dimension-128)]">
+    <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl sgds:mb-layout-xl">
       <Mainnav />
       <div class="sgds-container">
         <DefaultLayout v-if="frontmatter.layout === 'default'" />
