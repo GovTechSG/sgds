@@ -8,7 +8,7 @@ type Rule = {
   demo?: string;
 };
 
-const { rules, title = "Rules and guidance" } = defineProps<{
+const { rules, title = "Rules and guidelines" } = defineProps<{
   title?: string;
   rules: Rule[];
 }>();

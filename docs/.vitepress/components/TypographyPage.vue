@@ -259,7 +259,7 @@ const typePairingExamples: TypePairingExample[] = [
   <TypographyPageTemplate stacked-examples>
     <FoundationPrincipleTemplate>
       <FoundationPrinciplesList :principles="principles" />
-      <FoundationRulesGuidanceList title="Rules and guide" :rules="rules" />
+      <FoundationRulesGuidanceList title="Rules and guidelines" :rules="rules" />
 
       <Section title="Typeface">
         <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
