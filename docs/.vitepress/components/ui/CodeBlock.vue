@@ -6,8 +6,9 @@ const props = withDefaults(
     code: string;
     lang?: string;
     filename?: string;
+    hideLineNumbers?: boolean;
   }>(),
-  { lang: "html" },
+  { lang: "html", hideLineNumbers: false },
 );
 
 const copied = ref(false);
@@ -397,7 +398,7 @@ const highlightedLines = computed<string[]>(() => {
 
   let highlighted: string;
   if (lang === "html" || lang === "vue") highlighted = highlightHtml(raw);
-  else if (["js", "javascript", "ts", "typescript"].includes(lang))
+  else if (["js", "javascript", "ts", "typescript", "jsx", "tsx", "json"].includes(lang))
     highlighted = highlightJs(raw);
   else if (["css", "scss", "less"].includes(lang))
     highlighted = highlightCss(raw);
@@ -408,11 +409,13 @@ const highlightedLines = computed<string[]>(() => {
   return highlighted.split("\n");
 });
 
+const isBash = computed(() => ["bash", "shell", "sh", "zsh"].includes((props.lang ?? "").toLowerCase()));
+
 const langLabel = computed(() => {
   const l = (props.lang ?? "").toLowerCase();
   const map: Record<string, string> = {
-    js: "JavaScript", javascript: "JavaScript",
-    ts: "TypeScript", typescript: "TypeScript",
+    js: "JavaScript", javascript: "JavaScript", jsx: "JSX",
+    ts: "TypeScript", typescript: "TypeScript", tsx: "TSX",
     html: "HTML", vue: "Vue",
     css: "CSS", scss: "SCSS", less: "LESS",
     bash: "Bash", shell: "Shell", sh: "Shell", zsh: "Zsh",
@@ -423,32 +426,34 @@ const langLabel = computed(() => {
 </script>
 
 <template>
-  <div class="cb-root">
+  <div class="sgds:bg-surface-default sgds:border sgds:border-muted sgds:rounded-xl sgds:box-border sgds:font-mono sgds:overflow-hidden sgds:w-full">
     <!-- Header -->
-    <div class="cb-header">
-      <span class="cb-label">{{ filename ?? langLabel }}</span>
-      <button
-        class="cb-copy"
+    <div class="sgds:flex sgds:items-center sgds:bg-surface-default sgds:border-b sgds:border-muted sgds:gap-md sgds:justify-between sgds:min-h-[2.75rem] sgds:py-0 sgds:pl-[1rem] sgds:pr-[0.75rem]">
+      <span class="sgds:text-default sgds:font-mono sgds:text-[0.75rem] sgds:font-regular sgds:tracking-[0.04em] sgds:leading-none sgds:uppercase sgds:select-none">{{ filename ?? langLabel }}</span>
+      <sgds-button
+        size="xs"
+        variant="ghost"
+        tone="neutral"
         :aria-label="copied ? 'Copied!' : 'Copy code'"
         @click="copy"
       >
-        <sgds-icon :name="copied ? 'check' : 'copy'" size="sm" />
-        <span class="cb-copy-text">{{ copied ? "Copied" : "Copy" }}</span>
-      </button>
+        <sgds-icon :name="copied ? 'check' : 'files'" size="sm" slot="leftIcon"></sgds-icon>
+        {{ copied ? "Copied" : "Copy" }}
+      </sgds-button>
     </div>
 
     <!-- Code area -->
-    <div class="cb-body" role="region" aria-label="Code example">
-      <table class="cb-table">
+    <div class="sgds:overflow-x-auto sgds:py-[1rem]" role="region" aria-label="Code example">
+      <table class="sgds:min-w-full sgds:[border-collapse:collapse]">
         <tbody>
           <tr
             v-for="(line, idx) in highlightedLines"
             :key="idx"
-            class="cb-row"
+            class="sgds:leading-[1.6]"
           >
-            <td class="cb-ln" aria-hidden="true">{{ idx + 1 }}</td>
+            <td v-if="!hideLineNumbers || isBash" class="sgds:bg-surface-default sgds:border-r sgds:border-muted sgds:text-subtle sgds:font-mono sgds:text-[0.8125rem] sgds:w-[2rem] sgds:px-[0.75rem] sgds:text-right sgds:select-none sgds:align-top" aria-hidden="true">{{ isBash ? '$' : idx + 1 }}</td>
             <!-- v-html is safe: content is produced by our own escHtml + tok pipeline above -->
-            <td class="cb-code" v-html="line || ' '" />
+            <td class="sgds:text-default sgds:font-mono sgds:text-[0.875rem] sgds:pl-[0.75rem] sgds:pr-[1rem] sgds:align-top sgds:whitespace-pre" v-html="line || ' '" />
           </tr>
         </tbody>
       </table>
@@ -457,129 +462,17 @@ const langLabel = computed(() => {
 </template>
 
 <style>
-/* ── Fixed dark theme ──────────────────────────────────────────────────────────
-   CodeBlock must always appear dark regardless of the site day/night palette.
-   Using SGDS semantic tokens for "surface" would yield a near-white background
-   in day mode, defeating the IDE aesthetic. Hardcoded GitHub Dark values are
-   intentional here. All other properties use SGDS tokens where applicable.
-────────────────────────────────────────────────────────────────────────────── */
-
-.cb-root {
-  background: #0d1117;
-  border: 1px solid #30363d;
-  border-radius: var(--sgds-border-radius-xl);
-  font-family: var(--sgds-font-family-mono, ui-monospace, "SFMono-Regular", Menlo, monospace);
-  overflow: hidden;
-  width: 100%;
-}
-
-/* Header */
-.cb-header {
-  align-items: center;
-  background: #161b22;
-  border-bottom: 1px solid #30363d;
-  display: flex;
-  gap: var(--sgds-gap-md);
-  justify-content: space-between;
-  min-height: 2.75rem;
-  padding: 0 0.75rem 0 1rem;
-}
-
-.cb-label {
-  color: #8b949e;
-  font-family: var(--sgds-font-family-mono, ui-monospace, monospace);
-  font-size: 0.75rem;
-  font-weight: var(--sgds-font-weight-regular);
-  letter-spacing: 0.04em;
-  line-height: 1;
-  text-transform: uppercase;
-  user-select: none;
-}
-
-/* Copy button */
-.cb-copy {
-  align-items: center;
-  appearance: none;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--sgds-border-radius-md);
-  color: #8b949e;
-  cursor: pointer;
-  display: flex;
-  font-family: var(--sgds-font-family-brand);
-  font-size: 0.75rem;
-  gap: 0.3rem;
-  line-height: 1;
-  padding: 0.3rem 0.5rem;
-  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
-}
-
-.cb-copy:hover {
-  background: #21262d;
-  border-color: #30363d;
-  color: #c9d1d9;
-}
-
-.cb-copy:focus-visible {
-  outline: 2px solid var(--sgds-outline-focus, #0d6efd);
-  outline-offset: 2px;
-}
-
-/* Code body */
-.cb-body {
-  overflow-x: auto;
-  padding: 1rem 0;
-}
-
-.cb-table {
-  border-collapse: collapse;
-  min-width: 100%;
-}
-
-/* Rows */
-.cb-row {
-  line-height: 1.6;
-  transition: background 80ms ease;
-}
-
-.cb-row:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-/* Line number gutter */
-.cb-ln {
-  border-right: 1px solid #21262d;
-  color: #484f58;
-  font-family: var(--sgds-font-family-mono, ui-monospace, monospace);
-  font-size: 0.8125rem;
-  min-width: 2.75rem;
-  padding: 0 1rem 0 1.25rem;
-  text-align: right;
-  user-select: none;
-  vertical-align: top;
-}
-
-/* Code cell */
-.cb-code {
-  color: #e6edf3;
-  font-family: var(--sgds-font-family-mono, ui-monospace, monospace);
-  font-size: 0.875rem;
-  padding: 0 2rem 0 1.25rem;
-  vertical-align: top;
-  white-space: pre;
-}
-
-/* ── Syntax token colours (GitHub Dark palette) ──────────────────────────── */
-.cb-keyword    { color: #ff7b72; }                       /* keywords         */
-.cb-string     { color: #a5d6ff; }                       /* strings          */
-.cb-comment    { color: #6e7681; font-style: italic; }   /* comments         */
-.cb-tag        { color: #7ee787; }                       /* HTML tag names   */
-.cb-attr       { color: #79c0ff; }                       /* HTML attributes  */
-.cb-vue-attr   { color: #ffa657; }                       /* Vue :prop @event */
-.cb-vue-brace  { color: #e2c08d; }                       /* {{ }} mustaches  */
-.cb-number     { color: #ffa657; }                       /* numbers          */
-.cb-type       { color: #ffa657; }                       /* TS types/classes */
-.cb-css-prop   { color: #79c0ff; }                       /* CSS property     */
-.cb-css-var    { color: #a5d6ff; }                       /* --custom-props   */
-.cb-punct      { color: #8b949e; }                       /* punctuation      */
+/* Syntax token colours — applied via v-html, must remain as CSS */
+.cb-keyword    { color: var(--sgds-warning-color-default); }
+.cb-string     { color: var(--sgds-accent-color-default); }
+.cb-comment    { color: #6e7681; font-style: italic; }
+.cb-tag        { color: #7ee787; }
+.cb-attr       { color: var(--sgds-cyan-color-default); }
+.cb-vue-attr   { color: #ffa657; }
+.cb-vue-brace  { color: #e2c08d; }
+.cb-number     { color: #ffa657; }
+.cb-type       { color: var(--sgds-purple-color-default); }
+.cb-css-prop   { color: #79c0ff; }
+.cb-css-var    { color: #a5d6ff; }
+.cb-punct      { color: #8b949e; }
 </style>

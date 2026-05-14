@@ -807,7 +807,7 @@ function setScenario(id: ScenarioFilter) {
                     </li>
                   </ol>
 
-                  <div v-if="detailForStep(item)?.examples?.length" class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-text-gap-xs)]">
+                  <div v-if="detailForStep(item)?.examples?.length" class="sgds:flex sgds:flex-col sgds:gap-component-xs">
                     <PromptBox
                       v-for="(ex, ei) in detailForStep(item)?.examples" :key="ei"
                       :prompt="promptText(ex)"

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Get started
+title: Design
 ---
 
 <script setup>
 import GetStartedPage from "../.vitepress/components/get-started/GetStartedPage.vue";
 </script>
 
-<GetStartedPage page-key="overview" />
+<GetStartedPage page-key="design" />

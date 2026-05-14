@@ -219,7 +219,7 @@ const escapedCommand = computed(() => escapeHtml(props.command))
  * tokens so the palette tracks day/night themes — no hardcoded hex values. */
 .il-command-code {
   font-size: 0.875em;
-  line-height: 1.4;
+  line-height: var(--leading-20);
   white-space: pre;
   overflow-x: auto;
   padding-block: 0.125rem;

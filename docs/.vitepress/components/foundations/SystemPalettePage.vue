@@ -4,6 +4,7 @@ import {
   type SemanticColorItem,
 } from "../../data/system-palette";
 import Section from "./Section.vue";
+import SectionHeader from "./SectionHeader.vue";
 
 const toRgb = (hex: string) => {
   const value = hex.replace("#", "");
@@ -59,9 +60,7 @@ const tokenCardClass = (item: SemanticColorItem) => [
   <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
     <!-- Intro: what this page is and what's on it -->
     <section class="sgds:flex sgds:flex-col sgds:gap-text-md">
-      <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">
-        What the system palette is
-      </h2>
+      <SectionHeader title="What the system palette is" />
       <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
         The system palette is the complete set of colour values that ship with SGDS. Every card below shows a colour you can use in product UI, with its token name, hex value, HSL, and RGB so it can be referenced from code, design tools, or third-party libraries.
       </p>
@@ -81,7 +80,7 @@ const tokenCardClass = (item: SemanticColorItem) => [
           class="sgds:flex sgds:flex-col sgds:gap-layout-md"
         >
           <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">{{ set.title }}</h2>
+            <SectionHeader :title="set.title" />
             <p class="sgds:text-body-md sgds:text-subtle sgds:max-w-[56rem] sgds:m-0">{{ set.description }}</p>
           </div>
 

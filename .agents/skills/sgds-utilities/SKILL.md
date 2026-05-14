@@ -158,6 +158,7 @@ Not listed? See the full list at https://tailwindcss.com/docs/installation/frame
 | **Typography** | Font size, weight, line height, letter spacing, font family                      | No                   | [→ reference/typography.md](reference/typography.md)               |
 | **Visual**     | Opacity (`sgds:opacity-*`)                                                       | No                   | [→ reference/opacity.md](reference/opacity.md)                     |
 | **Visual**     | Elevation / box shadows (`sgds:shadow-*`, `sgds:shadow-edge-*`)                  | No                   | [→ reference/elevation.md](reference/elevation.md)                 |
+| **Responsive** | Breakpoint prefixes (`sgds:xs:`, `sgds:sm:`, `sgds:md:`, `sgds:lg:`, `sgds:xl:`, `sgds:2-xl:`) | No                   | [→ reference/breakpoint.md](reference/breakpoint.md)               |
 | **Patterns**   | Cross-category component patterns (card, alert, form, modal)                     | —                    | [→ reference/overview-patterns.md](reference/overview-patterns.md) |
 
 ---
@@ -174,6 +175,7 @@ Not listed? See the full list at https://tailwindcss.com/docs/installation/frame
 **Headings, body text, font sizes** → [reference/typography.md](reference/typography.md)
 **Transparent overlays, disabled states** → [reference/opacity.md](reference/opacity.md)
 **Card shadows, modal depth, sticky header/footer edges** → [reference/elevation.md](reference/elevation.md)
+**Responsive breakpoints, show/hide at viewport sizes** → [reference/breakpoint.md](reference/breakpoint.md)
 
 ---
 

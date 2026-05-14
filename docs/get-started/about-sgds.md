@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Get started
+title: About SGDS
 ---
 
 <script setup>
 import GetStartedPage from "../.vitepress/components/get-started/GetStartedPage.vue";
 </script>
 
-<GetStartedPage page-key="overview" />
+<GetStartedPage page-key="about-sgds" />

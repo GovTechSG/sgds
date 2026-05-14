@@ -2,6 +2,7 @@ export const categoryColorClass: Record<string, string> = {
   Component: "sgds:text-primary-default",
   Foundation: "sgds:text-success-default",
   Template: "sgds:text-warning-default",
+  "Get started": "sgds:text-primary-default",
   Guideline: "sgds:text-purple-default",
   AI: "sgds:text-cyan-default",
 };
@@ -18,18 +19,19 @@ export interface SearchResult extends SearchItem {
 }
 
 export const searchIndex: SearchItem[] = [
+  // Get started
+  { title: "Get started", category: "Get started", url: "/get-started/", keywords: ["overview", "sgds v3", "start"] },
+  { title: "About SGDS", category: "Get started", url: "/get-started/about-sgds", keywords: ["vision", "principles", "values"] },
+  { title: "Design", category: "Get started", url: "/get-started/design", keywords: ["figma", "design", "libraries", "tokens"] },
+  { title: "Develop", category: "Get started", url: "/get-started/develop", keywords: ["install", "components", "templates", "blocks"] },
+
   // Foundations
-  { title: "Overview", category: "Foundation", url: "/foundations/design-tokens", keywords: ["tokens", "semantic tokens", "primitive tokens", "design system tokens", "design tokens"] },
-  { title: "Token architecture", category: "Foundation", url: "/foundations/token-architecture", keywords: ["token layers", "primitive tokens", "semantic tokens", "component tokens"] },
-  { title: "Token naming", category: "Foundation", url: "/foundations/token-naming", keywords: ["naming", "naming convention", "token structure", "semantic naming"] },
-  { title: "Overview", category: "Foundation", url: "/foundations/colour", keywords: ["colour", "color", "colour principles"] },
-  { title: "Brand colour", category: "Foundation", url: "/foundations/colour/brand-colour", keywords: ["colour", "color", "palette", "brand colour", "govtech colour", "extended colour", "custom brand", "colour generator", "product colour"] },
+  { title: "Colour", category: "Foundation", url: "/foundations/colour" },
   { title: "Iconography", category: "Foundation", url: "/foundations/iconography" },
   { title: "Typography", category: "Foundation", url: "/foundations/typography" },
   { title: "Layout", category: "Foundation", url: "/foundations/layout" },
   { title: "Border", category: "Foundation", url: "/foundations/border" },
   { title: "Spacing", category: "Foundation", url: "/foundations/spacing" },
-  { title: "Layer", category: "Foundation", url: "/foundations/layer", keywords: ["z-index", "stacking", "overlay"] },
   { title: "Motion", category: "Foundation", url: "/foundations/motion" },
   { title: "Interaction", category: "Foundation", url: "/foundations/interaction" },
   { title: "Accessibility", category: "Foundation", url: "/foundations/accessibility" },
@@ -164,8 +166,9 @@ const categoryOrder: Record<string, number> = {
   Component: 0,
   Foundation: 1,
   Template: 2,
-  Guideline: 3,
-  AI: 4,
+  "Get started": 3,
+  Guideline: 4,
+  AI: 5,
 };
 
 function getExcerpt(text: string, query: string, maxLen = 110): string {
