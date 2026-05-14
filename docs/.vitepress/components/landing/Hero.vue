@@ -20,6 +20,7 @@ const { title, buttons } = defineProps<Page>();
 
 const heroRoot = ref<HTMLElement | null>(null);
 const codeEl = ref<HTMLElement | null>(null);
+const typeCursorEl = ref<HTMLElement | null>(null);
 let animationContext: gsap.Context | undefined;
 
 onMounted(() => {
@@ -64,14 +65,82 @@ onMounted(() => {
       .to(".black-disk", { x: 40, y: 45, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0)
       .to(".white-compass", { x: 15, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0);
 
-    // Typewriter effect on the code snippet — reveal 3 chars at a time
-    if (split?.chars?.length) {
+    // Typewriter effect on the code snippet with moving cursor (human-like typing)
+    if (split?.chars?.length && typeCursorEl.value) {
       const chars = split.chars;
-      const tl = gsap.timeline();
-      for (let i = 0; i < chars.length; i += 3) {
-        const batch = chars.slice(i, i + 3);
-        tl.to(batch, { opacity: 1, duration: 0.01, ease: "none" }, "+=0.06");
+      const lines = split.lines;
+      const cursorSpan = typeCursorEl.value;
+
+      // Build a set of first-char-of-each-line for detecting line breaks
+      const lineStartChars = new Set<HTMLElement>();
+      lines.forEach((line: HTMLElement) => {
+        const firstChar = line.querySelector("[style]") as HTMLElement;
+        if (firstChar) lineStartChars.add(firstChar);
+      });
+
+      // Position cursor at the start and make it blink
+      chars[0].before(cursorSpan);
+      gsap.set(cursorSpan, { opacity: 1 });
+      const blink = gsap.to(cursorSpan, {
+        opacity: 0,
+        duration: 0.53,
+        repeat: -1,
+        yoyo: true,
+        ease: "steps(1)",
+      });
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          blink.kill();
+          gsap.to(cursorSpan, { opacity: 0, duration: 0.3 });
+        },
+      });
+
+      let time = 0;
+      let i = 0;
+      while (i < chars.length) {
+        const char = chars[i] as HTMLElement;
+        const isLineStart = i > 0 && lineStartChars.has(char);
+
+        // Pause before a new line (simulates pressing Enter + thinking)
+        if (isLineStart) {
+          time += 0.3 + Math.random() * 0.2; // 0.3–0.5s pause for "Enter"
+        }
+
+        // Intellisense autocomplete: ~25% chance to burst 4–8 chars instantly (like pressing Tab)
+        const remainingInLine = !isLineStart && i > 0;
+        const charsLeft = chars.length - i;
+        const shouldAutocomplete = remainingInLine && Math.random() < 0.25 && charsLeft > 4;
+
+        if (shouldAutocomplete) {
+          const burstSize = Math.min(4 + Math.floor(Math.random() * 5), charsLeft); // 4–8 chars
+          const burst = chars.slice(i, i + burstSize);
+          const lastBurstChar = burst[burst.length - 1] as HTMLElement;
+
+          // Small pause before autocomplete (selecting from menu)
+          time += 0.12 + Math.random() * 0.08;
+
+          // All burst chars appear at once
+          burst.forEach((c: HTMLElement) => {
+            tl.to(c, { opacity: 1, duration: 0.01, ease: "none" }, time);
+          });
+          tl.call(() => { lastBurstChar.after(cursorSpan); }, [], time + 0.01);
+
+          time += 0.05; // tiny pause after autocomplete
+          i += burstSize;
+        } else {
+          tl.to(char, { opacity: 1, duration: 0.01, ease: "none" }, time);
+          tl.call(() => { char.after(cursorSpan); }, [], time + 0.01);
+
+          // Human-like variable speed
+          const baseDelay = 0.04 + Math.random() * 0.04; // 0.04–0.08s normal typing
+          // Occasional longer pause (thinking hesitation)
+          const hesitation = Math.random() < 0.08 ? 0.15 + Math.random() * 0.15 : 0;
+          time += baseDelay + hesitation;
+          i++;
+        }
       }
+
       animateOut.add(tl, 0.3);
     }
   }, heroRoot.value ?? undefined);
@@ -126,13 +195,13 @@ onBeforeUnmount(() => {
                     <span class="sgds:text-[#c5cad3]">sgds.js</span>
                   </div>
                 </div>
-                <pre aria-label="JavaScript snippet" contenteditable="false" spellcheck="false" class="sgds:m-0 sgds:h-[161px] sgds:w-full sgds:overflow-auto sgds:bg-[#161c24] sgds:px-[16px] sgds:pb-[7px] sgds:pt-[14px] sgds:font-mono sgds:text-[12px] sgds:leading-[1.55] sgds:text-[#d4d4d4] focus:sgds:outline-none"><code ref="codeEl"><span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>Write once. Ship anywhere.<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>
+                <pre aria-label="JavaScript snippet" contenteditable="false" spellcheck="false" class="sgds:m-0 sgds:h-[161px] sgds:w-full sgds:overflow-auto sgds:bg-[#161c24] sgds:px-[16px] sgds:pb-[7px] sgds:pt-[14px] sgds:font-mono sgds:text-[12px] sgds:leading-[1.55] sgds:text-[#d4d4d4] focus:sgds:outline-none"><code><span ref="codeEl"><span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>Write once. Ship anywhere.<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>
 <span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">p</span> <span class="sgds:text-[#9cdcfe]">class</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"sgds:text-subtitle-sm sgds:font-light"</span><span class="sgds:text-[#569cd6]">&gt;</span>
  SGDS Design tokens → Tailwind v4
 <span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">p</span><span class="sgds:text-[#569cd6]">&gt;</span>
 <span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span> <span class="sgds:text-[#9cdcfe]">label</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"Drop into any stack"</span>
     <span class="sgds:text-[#9cdcfe]">value</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"react;vue;angular;svelte;vanilla"</span> <span class="sgds:text-[#9cdcfe]">multiSelect</span><span class="sgds:text-[#569cd6]">&gt;</span>
-<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span><span class="sgds:text-[#569cd6]">&gt;</span></code></pre>
+<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span><span class="sgds:text-[#569cd6]">&gt;</span></span><span ref="typeCursorEl" class="sgds:opacity-0 sgds:text-[#d4d4d4]">|</span></code></pre>
               </div>
             </foreignObject>
           </g>
