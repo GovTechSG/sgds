@@ -85,6 +85,12 @@ export const foundationsSidebar = {
       ],
     },
     {
+      text: "Motion",
+      items: [
+        { text: "Overview", link: "/foundations/motion" },
+      ],
+    },
+    {
       text: "Spacing",
       items: [
         { text: "Overview", link: "/foundations/spacing" },
@@ -192,7 +198,7 @@ function findFirstLeafLink(
  */
 export function getFoundationEntryUrl(id: string): string {
   const section = foundationsSidebar.items.find(
-    (item) => item.text.toLowerCase() === id
+    (item) => item.text.toLowerCase().replace(/\s+/g, "-") === id
   );
   if (!section) return "";
   return findFirstLeafLink(section.items) ?? "";

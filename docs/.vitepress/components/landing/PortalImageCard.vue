@@ -30,10 +30,15 @@ function handleDisabledClick(e: MouseEvent) {
   >
     <a
       :href="item.status !== 'draft' ? item.url : undefined"
-      :class="['sgds:flex sgds:flex-col sgds:gap-6', item.status === 'draft' ? 'sgds:cursor-not-allowed' : '']"
+      :class="['sgds:group sgds:flex sgds:flex-col sgds:gap-6', item.status === 'draft' ? 'sgds:cursor-not-allowed' : '']"
       @click="item.status === 'draft' ? handleDisabledClick($event) : undefined"
     >
-      <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-[32px]">
+      <div
+        :class="[
+          'sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-[32px]',
+          item.imageFit === 'contain' ? 'sgds:items-center sgds:justify-center sgds:bg-surface-raised' : '',
+        ]"
+      >
         <div
           v-if="isPlaceholder && item.status === 'stable'"
           class="sgds:absolute sgds:inset-0 sgds:flex sgds:flex-col sgds:items-center sgds:justify-center sgds:gap-text-sm sgds:bg-surface-raised sgds:p-layout-md sgds:text-center"
@@ -50,7 +55,12 @@ function handleDisabledClick(e: MouseEvent) {
           :alt="item.title"
           width="424"
           height="300"
-          class="sgds:w-full sgds:h-full sgds:object-cover"
+          :class="item.imageFit === 'contain'
+            ? [
+              item.imageClass,
+              'sgds:object-contain sgds:transition-transform sgds:duration-500 sgds:ease-in-out sgds:group-hover:-translate-y-2 sgds:group-hover:scale-[1.04] sgds:group-focus-visible:-translate-y-2 sgds:group-focus-visible:scale-[1.04] sgds:motion-reduce:transition-none sgds:motion-reduce:group-hover:translate-y-0 sgds:motion-reduce:group-hover:scale-100 sgds:motion-reduce:group-focus-visible:translate-y-0 sgds:motion-reduce:group-focus-visible:scale-100',
+            ]
+            : 'sgds:h-full sgds:w-full sgds:object-cover'"
         >
       </div>
       <div class="sgds:flex sgds:items-center sgds:gap-component-xs sgds:w-full">
@@ -93,4 +103,5 @@ function handleDisabledClick(e: MouseEvent) {
 .portal-toast-element {
   bottom: calc(100% + 8px);
 }
+
 </style>

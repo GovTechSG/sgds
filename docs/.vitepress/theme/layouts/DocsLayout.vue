@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Content, withBase } from "vitepress";
-import { computed, ref, watch } from 'vue';
+import { computed, nextTick, ref, watch } from 'vue';
 import { useData } from 'vitepress';
 import PageHeader from "../../components/page/PageHeader.vue";
 import DocFooter from "../../components/page/DocFooter.vue";
@@ -137,6 +137,67 @@ const pageMetadata = computed(() => {
 watch(currentPath, () => {
   mobileSideNavOpen.value = false
 })
+
+const slugifyHeading = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+
+const addAiHeadingAnchors = async () => {
+  if (currentSection.value !== "ai" || typeof document === "undefined") return
+
+  await nextTick()
+
+  document
+    .querySelectorAll<HTMLHeadingElement>(".docs-layout-content-ai h2")
+    .forEach((heading) => {
+      if (heading.dataset.aiAnchorEnhanced === "true") return
+      if (!heading.classList.contains("sgds:text-heading-lg")) return
+
+      const title = heading.textContent?.trim() ?? ""
+      const closestSection = heading.closest("section")
+      const sectionId = closestSection?.id ?? ""
+      const sectionFirstHeading = closestSection?.querySelector("h2") === heading
+      const targetId = heading.id || (sectionFirstHeading ? sectionId : "") || slugifyHeading(title)
+      if (!targetId) return
+      if (!heading.id && targetId !== sectionId) heading.id = targetId
+
+      const existingAnchor = Array.from(heading.querySelectorAll("a")).some(
+        (anchor) => anchor.getAttribute("href") === `#${targetId}`,
+      )
+      const siblingAnchor = Array.from(heading.parentElement?.querySelectorAll("a") ?? []).some(
+        (anchor) => anchor.getAttribute("href") === `#${targetId}`,
+      )
+      if (existingAnchor || siblingAnchor) return
+
+      const anchor = document.createElement("a")
+      anchor.href = `#${targetId}`
+      anchor.className = "sgds:ml-2 sgds:inline-flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded-sm sgds:align-middle sgds:text-subtle sgds:no-underline sgds:hover:text-default sgds:focus:text-default sgds:focus-visible:text-default sgds:focus-visible:outline sgds:focus-visible:outline-[var(--sgds-outline-focus)] sgds:focus-visible:outline-offset-[var(--sgds-outline-offset-focus)]"
+      anchor.setAttribute("aria-label", `Link to ${title}`)
+
+      const icon = document.createElement("sgds-icon")
+      icon.setAttribute("name", "link")
+      icon.setAttribute("size", "sm")
+      anchor.appendChild(icon)
+
+      const wrapper = document.createElement("div")
+      wrapper.className = "sgds:flex sgds:gap-2 sgds:items-center"
+      heading.before(wrapper)
+      wrapper.appendChild(heading)
+      wrapper.appendChild(anchor)
+      heading.dataset.aiAnchorEnhanced = "true"
+    })
+}
+
+watch(
+  () => page.value.relativePath,
+  () => {
+    void addAiHeadingAnchors()
+  },
+  { immediate: true, flush: "post" },
+)
 
 </script>
 

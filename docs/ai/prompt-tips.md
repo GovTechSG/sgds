@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Prompt tips
-description: This guide helps you craft effective prompts for AI coding agents using the SGDS agent skills. Use these tips to get the best results, whether you are starting a new project or migrating an existing app to SGDS V3.
+description: This guide helps you write clearer prompts for AI coding agents using the SGDS agent skills. Use these tips when starting a new project, working from Figma, or migrating an existing app to SGDS v3.
 headerAlert:
   description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
   variant: danger

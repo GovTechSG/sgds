@@ -21,4 +21,4 @@ Designers can use AI to support SGDS workflows in a few practical ways:
 
 - [What AI can do](/ai/what-ai-can-do)
 - [What is MCP?](/ai/what-is-mcp)
-- [Figma to code](/ai/figma-to-code)
+- [Figma workflows](/ai/figma-and-code-workflows)
