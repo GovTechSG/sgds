@@ -4,6 +4,8 @@ layout: default
 
 <script setup lang="ts">
 import Hero, { Button } from "./.vitepress/components/landing/Hero.vue";
+import ColourGridImage from "./.vitepress/components/landing/ColourGridImage.vue";
+import LayoutGridImage from "./.vitepress/components/landing/LayoutGridImage.vue";
 import LandingWorkflowVisual from "./.vitepress/components/landing/LandingWorkflowVisual.vue";
 import PortalImageCard from "./.vitepress/components/landing/PortalImageCard.vue";
 import { FoundationItem } from "./.vitepress/data/foundations";
@@ -142,14 +144,47 @@ const showCommunitySection = false;
         <LandingWorkflowVisual class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-12" />
       </div>
     </section>
+    <section class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+      <h2 class="sgds:text-display-md sgds:font-light sgds:leading-2-xl sgds:tracking-tighter sgds:mb-0">
+        Shared foundation,<br>stronger services.
+      </h2>
+      <div class="sgds-grid">
+        <div
+          class="sgds-col-4 sgds-col-sm-3 sgds-col-lg-5 sgds:flex sgds:flex-col sgds:gap-3-xl"
+        >
+          <p class="sgds:text-body-subtle sgds:text-body-lg sgds:leading-md sgds:mb-0">
+            With a common foundation of colour, typography, and components, our design system helps teams create consistent, accessible, and reliable services across government.
+          </p>
+          <img
+            src="/landing/placeholder7.png"
+            alt="Placeholder 7"
+            width="536"
+            height="576"
+            :class="$style.image"
+          />
+        </div>
+        <div
+          :class="$style.image"
+          class="sgds-col-4 sgds-col-sm-5 sgds-col-lg-7 sgds:overflow-hidden"
+        >
+          <ColourGridImage />
+        </div>
+        <div
+          :class="$style.image"
+          class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-12 sgds:overflow-hidden"
+        >
+          <LayoutGridImage />
+        </div>
+      </div>
+    </section>
     <section v-if="showCommunitySection" class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
       <h2 class="sgds:text-display-md sgds:font-light sgds:leading-2-xl sgds:tracking-tighter sgds:mb-0">
         Built by the community
       </h2>
-      <p :class="$style.description">
+      <p class="sgds:text-body-subtle sgds:text-body-lg sgds:leading-md sgds:mb-0">
         SGDS is free and open-source, welcoming contributions from developers and designers across government and beyond.
       </p>
-      <div class="sgds:flex sgds:w-full sgds:flex-wrap sgds:gap-[var(--sgds-gap-xs)]">
+      <div class="sgds:flex sgds:w-full sgds:flex-wrap sgds:gap-xs">
         <a
           v-for="contributor in contributorCloud"
           :key="contributor.key"
@@ -241,12 +276,6 @@ const showCommunitySection = false;
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  .description-container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sgds-gap-3-xl);
   }
 
   .description {
