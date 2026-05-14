@@ -111,7 +111,7 @@ const copyTokenValue = async (sizeName: string, text: string) => {
         <sgds-table-cell class="typography-page-template__table-utility-column">
           <div class="ts-snippet-row">
             <code class="ts-snippet-code">
-              <span>{{ size.utilityClass }}</span>
+              <span class="sgds:self-start sgds:text-default sgds:whitespace-nowrap">{{ size.utilityClass }}</span>
             </code>
             <button
               class="ts-snippet-copy-btn"
@@ -221,12 +221,6 @@ const copyTokenValue = async (sizeName: string, text: string) => {
   min-width: 0;
   overflow: visible;
   white-space: normal;
-}
-
-.ts-snippet-code span {
-  align-self: flex-start;
-  color: var(--sgds-body-color-default);
-  white-space: nowrap;
 }
 
 .ts-snippet-copy-btn {

@@ -143,109 +143,109 @@ const references = [
 </script>
 
 <template>
-  <div :class="$style.page">
-    <div :class="$style.sectionStack">
+  <div class="cbp-page">
+    <div class="cbp-section-stack">
       <div
         v-for="section in sections"
         :key="section.title"
-        :class="$style.pageSection"
+        class="cbp-page-section"
       >
         <Section :title="section.title" :description="section.description">
-          <div :class="$style.practiceGrid">
+          <div class="cbp-practice-grid">
             <article
               v-for="item in section.items"
               :key="item.title"
-              :class="$style.practiceCard"
+              class="cbp-practice-card"
             >
-              <div :class="$style.demoBox">
-                <div v-if="item.demo === 'neutral-surfaces'" :class="$style.demoCanvas">
-                  <div :class="$style.surfaceStack">
-                    <div :class="$style.surfaceHeader"></div>
-                    <div :class="$style.surfaceBody">
-                      <div :class="$style.surfaceCard"></div>
-                      <div :class="[$style.surfaceCard, $style.surfaceCardAccent]"></div>
+              <div class="cbp-demo-box">
+                <div v-if="item.demo === 'neutral-surfaces'" class="cbp-demo-canvas">
+                  <div class="cbp-surface-stack">
+                    <div class="cbp-surface-header"></div>
+                    <div class="cbp-surface-body">
+                      <div class="cbp-surface-card"></div>
+                      <div class="cbp-surface-card cbp-surface-card-accent"></div>
                     </div>
                   </div>
                 </div>
-                <div v-else-if="item.demo === 'saturated-panel'" :class="[$style.demoCanvas, $style.panelBad]">
-                  <div :class="$style.panelLines">
-                    <span v-for="n in 4" :key="n" :class="$style.panelLine"></span>
+                <div v-else-if="item.demo === 'saturated-panel'" class="cbp-demo-canvas cbp-panel-bad">
+                  <div class="cbp-panel-lines">
+                    <span v-for="n in 4" :key="n" class="cbp-panel-line"></span>
                   </div>
                 </div>
-                <div v-else-if="item.demo === 'emphasis'" :class="$style.demoCanvas">
-                  <div :class="$style.emphasisLayout">
-                    <span :class="$style.emphasisTag"></span>
-                    <span :class="$style.emphasisLine"></span>
-                    <span :class="[$style.emphasisButton, $style.emphasisButtonStrong]"></span>
-                    <span :class="$style.emphasisButton"></span>
+                <div v-else-if="item.demo === 'emphasis'" class="cbp-demo-canvas">
+                  <div class="cbp-emphasis-layout">
+                    <span class="cbp-emphasis-tag"></span>
+                    <span class="cbp-emphasis-line"></span>
+                    <span class="cbp-emphasis-button cbp-emphasis-button-strong"></span>
+                    <span class="cbp-emphasis-button"></span>
                   </div>
                 </div>
-                <div v-else-if="item.demo === 'too-many-hues'" :class="$style.demoCanvas">
-                  <div :class="$style.hueGrid">
-                    <span v-for="n in 8" :key="n" :class="[$style.hueTile, $style[`hueTile${n}`]]"></span>
+                <div v-else-if="item.demo === 'too-many-hues'" class="cbp-demo-canvas">
+                  <div class="cbp-hue-grid">
+                    <span v-for="n in 8" :key="n" :class="['cbp-hue-tile', `cbp-hue-tile-${n}`]"></span>
                   </div>
                 </div>
-                <div v-else-if="item.demo === 'accessible-text'" :class="$style.demoCanvas">
-                  <div :class="$style.textPanel">
-                    <span :class="$style.textHeading"></span>
-                    <span v-for="n in 3" :key="n" :class="$style.textLine"></span>
+                <div v-else-if="item.demo === 'accessible-text'" class="cbp-demo-canvas">
+                  <div class="cbp-text-panel">
+                    <span class="cbp-text-heading"></span>
+                    <span v-for="n in 3" :key="n" class="cbp-text-line"></span>
                   </div>
                 </div>
-                <div v-else-if="item.demo === 'accent-body'" :class="$style.demoCanvas">
-                  <div :class="$style.textPanel">
-                    <span :class="$style.textHeading"></span>
-                    <span v-for="n in 3" :key="n" :class="[$style.textLine, $style.textLineAccent]"></span>
+                <div v-else-if="item.demo === 'accent-body'" class="cbp-demo-canvas">
+                  <div class="cbp-text-panel">
+                    <span class="cbp-text-heading"></span>
+                    <span v-for="n in 3" :key="n" class="cbp-text-line cbp-text-line-accent"></span>
                   </div>
                 </div>
-                <div v-else-if="item.demo === 'paired-cue'" :class="$style.demoCanvas">
-                  <div :class="$style.cueRow">
-                    <span :class="$style.cueDot"></span>
-                    <span :class="$style.cueLabel"></span>
-                    <span :class="$style.cueBadge"></span>
+                <div v-else-if="item.demo === 'paired-cue'" class="cbp-demo-canvas">
+                  <div class="cbp-cue-row">
+                    <span class="cbp-cue-dot"></span>
+                    <span class="cbp-cue-label"></span>
+                    <span class="cbp-cue-badge"></span>
                   </div>
                 </div>
-                <div v-else-if="item.demo === 'colour-alone'" :class="$style.demoCanvas">
-                  <div :class="$style.cueRow">
-                    <span :class="[$style.cueLabel, $style.cueLabelOnly]"></span>
-                    <span :class="[$style.cueLabel, $style.cueLabelOnly, $style.cueLabelOnlyMuted]"></span>
+                <div v-else-if="item.demo === 'colour-alone'" class="cbp-demo-canvas">
+                  <div class="cbp-cue-row">
+                    <span class="cbp-cue-label cbp-cue-label-only"></span>
+                    <span class="cbp-cue-label cbp-cue-label-only cbp-cue-label-only-muted"></span>
                   </div>
                 </div>
-                <div v-else-if="item.demo === 'semantic-consistent'" :class="$style.demoCanvas">
-                  <div :class="$style.semanticStack">
-                    <span :class="[$style.semanticChip, $style.semanticSuccess]"></span>
-                    <span :class="[$style.semanticChip, $style.semanticWarning]"></span>
-                    <span :class="[$style.semanticChip, $style.semanticDanger]"></span>
+                <div v-else-if="item.demo === 'semantic-consistent'" class="cbp-demo-canvas">
+                  <div class="cbp-semantic-stack">
+                    <span class="cbp-semantic-chip cbp-semantic-success"></span>
+                    <span class="cbp-semantic-chip cbp-semantic-warning"></span>
+                    <span class="cbp-semantic-chip cbp-semantic-danger"></span>
                   </div>
                 </div>
-                <div v-else-if="item.demo === 'semantic-reassigned'" :class="$style.demoCanvas">
-                  <div :class="$style.semanticStack">
-                    <span :class="[$style.semanticChip, $style.semanticWarning]"></span>
-                    <span :class="[$style.semanticChip, $style.semanticSuccess]"></span>
-                    <span :class="[$style.semanticChip, $style.semanticDanger]"></span>
+                <div v-else-if="item.demo === 'semantic-reassigned'" class="cbp-demo-canvas">
+                  <div class="cbp-semantic-stack">
+                    <span class="cbp-semantic-chip cbp-semantic-warning"></span>
+                    <span class="cbp-semantic-chip cbp-semantic-success"></span>
+                    <span class="cbp-semantic-chip cbp-semantic-danger"></span>
                   </div>
                 </div>
-                <div v-else-if="item.demo === 'semantic-pairing'" :class="$style.demoCanvas">
-                  <div :class="$style.alertCard">
-                    <span :class="$style.alertStripe"></span>
-                    <div :class="$style.alertContent">
-                      <span :class="$style.alertTitle"></span>
-                      <span v-for="n in 2" :key="n" :class="$style.alertLine"></span>
+                <div v-else-if="item.demo === 'semantic-pairing'" class="cbp-demo-canvas">
+                  <div class="cbp-alert-card">
+                    <span class="cbp-alert-stripe"></span>
+                    <div class="cbp-alert-content">
+                      <span class="cbp-alert-title"></span>
+                      <span v-for="n in 2" :key="n" class="cbp-alert-line"></span>
                     </div>
                   </div>
                 </div>
-                <div v-else-if="item.demo === 'semantic-decorative'" :class="$style.demoCanvas">
-                  <div :class="$style.decorativeRow">
-                    <span v-for="n in 4" :key="n" :class="[$style.decorativeDot, $style[`decorativeDot${n}`]]"></span>
+                <div v-else-if="item.demo === 'semantic-decorative'" class="cbp-demo-canvas">
+                  <div class="cbp-decorative-row">
+                    <span v-for="n in 4" :key="n" :class="['cbp-decorative-dot', `cbp-decorative-dot-${n}`]"></span>
                   </div>
                 </div>
               </div>
-              <div :class="$style.practiceDescription">
+              <div class="cbp-practice-description">
                 <sgds-icon
                   :name="item.tone === 'do' ? 'check-circle-fill' : 'xcircle-fill'"
                   size="lg"
-                  :class="item.tone === 'do' ? $style.doIcon : $style.dontIcon"
+                  :class="item.tone === 'do' ? 'cbp-do-icon' : 'cbp-dont-icon'"
                 ></sgds-icon>
-                <p :class="$style.practiceText">{{ item.description }}</p>
+                <p class="cbp-practice-text">{{ item.description }}</p>
               </div>
             </article>
           </div>
@@ -256,36 +256,36 @@ const references = [
   </div>
 </template>
 
-<style module>
-.page {
+<style>
+.cbp-page {
   width: 100%;
 }
 
-.sectionStack {
+.cbp-section-stack {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-layout-gap-lg);
 }
 
-.pageSection {
+.cbp-page-section {
   display: flex;
   flex-direction: column;
 }
 
-.practiceGrid {
+.cbp-practice-grid {
   display: grid;
   gap: var(--sgds-layout-gap-lg) var(--sgds-gap-2-xl);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.practiceCard {
+.cbp-practice-card {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-gap-md);
   min-width: 0;
 }
 
-.demoBox {
+.cbp-demo-box {
   align-items: center;
   background: var(--sgds-surface-raised);
   border: 1px solid var(--sgds-border-color-muted);
@@ -296,7 +296,7 @@ const references = [
   padding: var(--sgds-component-padding-md);
 }
 
-.demoCanvas {
+.cbp-demo-canvas {
   align-items: center;
   display: flex;
   height: 100%;
@@ -304,69 +304,69 @@ const references = [
   width: 100%;
 }
 
-.surfaceStack,
-.textPanel {
+.cbp-surface-stack,
+.cbp-text-panel {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-gap-sm);
   width: min(100%, 16rem);
 }
 
-.surfaceHeader,
-.textHeading,
-.cueLabel,
-.cueBadge,
-.panelLine,
-.alertTitle,
-.alertLine {
+.cbp-surface-header,
+.cbp-text-heading,
+.cbp-cue-label,
+.cbp-cue-badge,
+.cbp-panel-line,
+.cbp-alert-title,
+.cbp-alert-line {
   background: var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-pill);
   display: block;
 }
 
-.surfaceHeader,
-.textHeading {
+.cbp-surface-header,
+.cbp-text-heading {
   height: 0.875rem;
   width: 48%;
 }
 
-.surfaceBody {
+.cbp-surface-body {
   display: grid;
   gap: var(--sgds-gap-sm);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.surfaceCard {
+.cbp-surface-card {
   background: var(--sgds-bg-color-default);
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-lg);
   height: 6rem;
 }
 
-.surfaceCardAccent {
+.cbp-surface-card-accent {
   background: var(--sgds-primary-surface-muted);
   border-color: var(--sgds-primary-border-color-default);
 }
 
-.panelBad {
+.cbp-panel-bad {
   background: var(--sgds-primary-surface-default);
   border-radius: var(--sgds-border-radius-lg);
   min-height: 100%;
 }
 
-.panelLines {
+.cbp-panel-lines {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-gap-sm);
   width: min(100%, 14rem);
 }
 
-.panelLine {
+.cbp-panel-line {
   background: var(--sgds-body-color-fixed-light);
   height: 0.75rem;
 }
 
-.emphasisLayout {
+.cbp-emphasis-layout {
   align-items: center;
   display: grid;
   gap: var(--sgds-gap-sm);
@@ -374,76 +374,76 @@ const references = [
   width: min(100%, 14rem);
 }
 
-.emphasisTag {
+.cbp-emphasis-tag {
   background: var(--sgds-accent-surface-muted);
   border-radius: var(--sgds-border-radius-pill);
   height: 1rem;
   width: 3rem;
 }
 
-.emphasisLine {
+.cbp-emphasis-line {
   background: var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-pill);
   height: 0.75rem;
   width: 100%;
 }
 
-.emphasisButton,
-.emphasisButtonStrong {
+.cbp-emphasis-button,
+.cbp-emphasis-button-strong {
   border-radius: var(--sgds-border-radius-pill);
   grid-column: span 2;
   height: 2rem;
 }
 
-.emphasisButton {
+.cbp-emphasis-button {
   background: var(--sgds-surface-default);
   border: 1px solid var(--sgds-border-color-muted);
 }
 
-.emphasisButtonStrong {
+.cbp-emphasis-button-strong {
   background: var(--sgds-primary-color-default);
 }
 
-.hueGrid {
+.cbp-hue-grid {
   display: grid;
   gap: var(--sgds-gap-sm);
   grid-template-columns: repeat(4, minmax(0, 1fr));
   width: min(100%, 14rem);
 }
 
-.hueTile {
+.cbp-hue-tile {
   aspect-ratio: 1;
   border-radius: var(--sgds-border-radius-lg);
 }
 
-.hueTile1 { background: var(--sgds-primary-surface-default); }
-.hueTile2 { background: var(--sgds-success-surface-default); }
-.hueTile3 { background: var(--sgds-warning-surface-default); }
-.hueTile4 { background: var(--sgds-danger-surface-default); }
-.hueTile5 { background: var(--sgds-accent-surface-default); }
-.hueTile6 { background: var(--sgds-primary-surface-muted); }
-.hueTile7 { background: var(--sgds-success-surface-muted); }
-.hueTile8 { background: var(--sgds-warning-surface-muted); }
+.cbp-hue-tile-1 { background: var(--sgds-primary-surface-default); }
+.cbp-hue-tile-2 { background: var(--sgds-success-surface-default); }
+.cbp-hue-tile-3 { background: var(--sgds-warning-surface-default); }
+.cbp-hue-tile-4 { background: var(--sgds-danger-surface-default); }
+.cbp-hue-tile-5 { background: var(--sgds-accent-surface-default); }
+.cbp-hue-tile-6 { background: var(--sgds-primary-surface-muted); }
+.cbp-hue-tile-7 { background: var(--sgds-success-surface-muted); }
+.cbp-hue-tile-8 { background: var(--sgds-warning-surface-muted); }
 
-.textLine {
+.cbp-text-line {
   background: var(--sgds-body-color-default);
   border-radius: var(--sgds-border-radius-pill);
   height: 0.75rem;
 }
 
-.textLineAccent {
+.cbp-text-line-accent {
   background: var(--sgds-primary-color-default);
 }
 
-.cueRow {
+.cbp-cue-row {
   align-items: center;
   display: flex;
   gap: var(--sgds-gap-sm);
   width: min(100%, 14rem);
 }
 
-.cueDot,
-.decorativeDot {
+.cbp-cue-dot,
+.cbp-decorative-dot {
   background: var(--sgds-primary-color-default);
   border-radius: var(--sgds-border-radius-pill);
   display: block;
@@ -452,43 +452,43 @@ const references = [
   width: 0.875rem;
 }
 
-.cueLabel {
+.cbp-cue-label {
   background: var(--sgds-body-color-default);
   flex: 1;
   height: 0.875rem;
 }
 
-.cueBadge {
+.cbp-cue-badge {
   background: var(--sgds-primary-surface-muted);
   width: 3rem;
   height: 1.25rem;
 }
 
-.cueLabelOnly {
+.cbp-cue-label-only {
   background: var(--sgds-success-color-default);
 }
 
-.cueLabelOnlyMuted {
+.cbp-cue-label-only-muted {
   background: var(--sgds-danger-color-default);
 }
 
-.semanticStack {
+.cbp-semantic-stack {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-gap-sm);
   width: min(100%, 12rem);
 }
 
-.semanticChip {
+.cbp-semantic-chip {
   border-radius: var(--sgds-border-radius-pill);
   height: 2rem;
 }
 
-.semanticSuccess { background: var(--sgds-success-surface-muted); }
-.semanticWarning { background: var(--sgds-warning-surface-muted); }
-.semanticDanger { background: var(--sgds-danger-surface-muted); }
+.cbp-semantic-success { background: var(--sgds-success-surface-muted); }
+.cbp-semantic-warning { background: var(--sgds-warning-surface-muted); }
+.cbp-semantic-danger { background: var(--sgds-danger-surface-muted); }
 
-.alertCard {
+.cbp-alert-card {
   align-items: stretch;
   background: var(--sgds-success-surface-muted);
   border: 1px solid var(--sgds-success-border-color-default);
@@ -498,12 +498,12 @@ const references = [
   width: min(100%, 15rem);
 }
 
-.alertStripe {
+.cbp-alert-stripe {
   background: var(--sgds-success-color-default);
   width: 0.375rem;
 }
 
-.alertContent {
+.cbp-alert-content {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -511,49 +511,49 @@ const references = [
   padding: var(--sgds-padding-md);
 }
 
-.alertTitle {
+.cbp-alert-title {
   background: var(--sgds-body-color-default);
   height: 0.875rem;
   width: 40%;
 }
 
-.alertLine {
+.cbp-alert-line {
   background: var(--sgds-body-color-subtle);
   height: 0.75rem;
 }
 
-.decorativeRow {
+.cbp-decorative-row {
   display: flex;
   gap: var(--sgds-gap-md);
 }
 
-.decorativeDot1 { background: var(--sgds-success-color-default); }
-.decorativeDot2 { background: var(--sgds-warning-color-default); }
-.decorativeDot3 { background: var(--sgds-danger-color-default); }
-.decorativeDot4 { background: var(--sgds-accent-color-default); }
+.cbp-decorative-dot-1 { background: var(--sgds-success-color-default); }
+.cbp-decorative-dot-2 { background: var(--sgds-warning-color-default); }
+.cbp-decorative-dot-3 { background: var(--sgds-danger-color-default); }
+.cbp-decorative-dot-4 { background: var(--sgds-accent-color-default); }
 
-.decorativeDot {
+.cbp-decorative-dot {
   height: 2rem;
   width: 2rem;
 }
 
-.practiceDescription {
+.cbp-practice-description {
   align-items: flex-start;
   display: flex;
   gap: var(--sgds-gap-sm);
 }
 
-.doIcon {
+.cbp-do-icon {
   color: var(--sgds-success-color-default);
   flex-shrink: 0;
 }
 
-.dontIcon {
+.cbp-dont-icon {
   color: var(--sgds-danger-color-default);
   flex-shrink: 0;
 }
 
-.practiceText {
+.cbp-practice-text {
   color: var(--sgds-body-color-subtle);
   font-size: var(--sgds-font-size-2);
   font-weight: var(--sgds-font-weight-regular);
@@ -562,7 +562,7 @@ const references = [
   margin: 0;
 }
 
-.resourcesCard {
+.cbp-resources-card {
   background: var(--sgds-surface-raised);
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-2-xl);
@@ -570,7 +570,7 @@ const references = [
   padding: var(--sgds-component-padding-md);
 }
 
-.resourceList {
+.cbp-resource-list {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-text-gap-xs);
@@ -579,7 +579,7 @@ const references = [
   padding: 0;
 }
 
-.resourceLink {
+.cbp-resource-link {
   color: var(--sgds-link-color-default);
   font-size: var(--sgds-font-size-2);
   font-weight: var(--sgds-font-weight-regular);
@@ -590,21 +590,21 @@ const references = [
 }
 
 @media (max-width: 1023px) {
-  .practiceGrid {
+  .cbp-practice-grid {
     gap: var(--sgds-layout-gap-md);
   }
 }
 
 @media (max-width: 767px) {
-  .practiceGrid {
+  .cbp-practice-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .demoBox {
+  .cbp-demo-box {
     min-height: 14rem;
   }
 
-  .resourcesCard {
+  .cbp-resources-card {
     border-radius: var(--sgds-border-radius-xl);
   }
 }

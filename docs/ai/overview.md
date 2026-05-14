@@ -60,7 +60,7 @@ Each skill includes:
 After upgrading `@govtechsg/sgds-web-component`, refresh the SGDS skills installed in your project:
 <CopyCommand command="npx skills update --project -y" />
 
-<style>
+<style scoped>
 h2,
 p,
 ul,

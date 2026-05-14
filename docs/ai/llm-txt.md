@@ -48,7 +48,7 @@ import CodeToken from "../.vitepress/components/ui/CodeToken.vue";
   <a href="/ai/skills">→ Learn about agent skills</a>
 </p>
 
-<style>
+<style scoped>
   h3,
   h4,
   p {
