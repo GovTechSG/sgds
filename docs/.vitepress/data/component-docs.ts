@@ -10023,7 +10023,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               <div class="portal-masthead-width-demo__viewport">
                 <sgds-masthead></sgds-masthead>
                 <sgds-mainnav brandHref="/">
-                  <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+                  <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot portal-masthead-mainnav-brand-slot"><span>Slot content</span></div>
                   <sgds-mainnav-item active>Home</sgds-mainnav-item>
                 </sgds-mainnav>
               </div>
@@ -10035,7 +10035,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Full-bleed (fluid)",
             value: "fluid",
             markup: `<div class="portal-masthead-width-demo">
-              <div class="portal-masthead-width-demo__viewport">
+              <div class="portal-masthead-width-demo__viewport portal-masthead-width-demo__viewport--fluid">
                 <sgds-masthead fluid></sgds-masthead>
               </div>
             </div>`,
@@ -10099,7 +10099,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "sgds / masthead",
         rows: [
-          { category: "Mainnav Max Width", name: "mainnav-max-width", value: "sgds/mainnav/max-width", usage: "Value used by the component" },
+          { category: "Mainnav Max Width", name: "mainnav-max-width", value: "sgds/mainnav/max-width", rawValue: "1440px", usage: "Maximum width of the masthead container" },
           { category: "Padding", name: "mainnav-mobile-padding-x", value: "sgds/mainnav/mobile-padding-x", usage: "Left and right padding of the masthead container (mobile)" },
           { category: "Padding", name: "mainnav-padding-x", value: "sgds/mainnav/padding-x", usage: "Left and right padding of the masthead container (desktop)" },
           { category: "Size", name: "icon-size-sm", value: "sgds/icon-size/sm", usage: "Size of the masthead external-link icon" },

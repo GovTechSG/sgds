@@ -852,20 +852,30 @@ watch([activeValue, responsiveRenderKey], () => {
 }
 
 .portal-masthead-width-demo {
-  align-items: flex-start;
+  align-items: center;
   block-size: var(--sgds-dimension-112);
   display: flex;
   inline-size: 100%;
   justify-content: center;
   overflow: hidden;
-  --sgds-mainnav-max-width: calc(var(--sgds-dimension-480) + var(--sgds-dimension-96));
 }
 
 .portal-masthead-width-demo__viewport {
-  flex: 0 0 calc(var(--sgds-dimension-688) + var(--sgds-dimension-96));
-  inline-size: calc(var(--sgds-dimension-688) + var(--sgds-dimension-96));
-  transform: scale(0.86);
-  transform-origin: top center;
+  flex: 0 1 calc(var(--sgds-dimension-688) + var(--sgds-dimension-96));
+  inline-size: min(100%, calc(var(--sgds-dimension-688) + var(--sgds-dimension-96)));
+}
+
+.portal-masthead-width-demo__viewport--fluid {
+  flex-basis: 100%;
+  inline-size: 100%;
+}
+
+.portal-masthead-width-demo .portal-masthead-mainnav-brand-slot {
+  align-self: center;
+  block-size: var(--sgds-dimension-48);
+  display: flex;
+  line-height: var(--sgds-line-height-24);
+  padding-block: var(--sgds-padding-xs);
 }
 
 .portal-mainnav-width-demo {
