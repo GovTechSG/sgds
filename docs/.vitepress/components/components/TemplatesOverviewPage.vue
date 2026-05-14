@@ -306,7 +306,7 @@ const getThumbnailSrc = (key: string) =>
                 class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds-col-lg-4"
               >
                 <sgds-link class="sgds:block">
-                  <a :href="item.previewHref" class="sgds:flex sgds:flex-col sgds:gap-component-sm sgds:no-underline">
+                  <a :href="item.previewHref" class="sgds:flex sgds:flex-col sgds:gap-component-sm">
                     <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-[32px] sgds:bg-alternate" aria-hidden="true">
                       <img
                         v-if="hasThumbnail(item.key)"
