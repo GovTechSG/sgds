@@ -426,9 +426,9 @@ const langLabel = computed(() => {
 </script>
 
 <template>
-  <div class="sgds:bg-surface-default sgds:border sgds:border-default sgds:rounded-xl sgds:box-border sgds:font-mono sgds:overflow-hidden sgds:w-full">
+  <div class="sgds:bg-surface-default sgds:border sgds:border-muted sgds:rounded-xl sgds:box-border sgds:font-mono sgds:overflow-hidden sgds:w-full">
     <!-- Header -->
-    <div class="sgds:flex sgds:items-center sgds:bg-surface-default sgds:border-b sgds:border-default sgds:gap-md sgds:justify-between sgds:min-h-[2.75rem] sgds:py-0 sgds:pl-[1rem] sgds:pr-[0.75rem]">
+    <div class="sgds:flex sgds:items-center sgds:bg-surface-default sgds:border-b sgds:border-muted sgds:gap-md sgds:justify-between sgds:min-h-[2.75rem] sgds:py-0 sgds:pl-[1rem] sgds:pr-[0.75rem]">
       <span class="sgds:text-default sgds:font-mono sgds:text-[0.75rem] sgds:font-regular sgds:tracking-[0.04em] sgds:leading-none sgds:uppercase sgds:select-none">{{ filename ?? langLabel }}</span>
       <sgds-button
         size="xs"
@@ -451,7 +451,7 @@ const langLabel = computed(() => {
             :key="idx"
             class="sgds:leading-[1.6]"
           >
-            <td v-if="!hideLineNumbers || isBash" class="sgds:bg-surface-default sgds:border-r sgds:border-default sgds:text-subtle sgds:font-mono sgds:text-[0.8125rem] sgds:w-[2rem] sgds:px-[0.75rem] sgds:text-right sgds:select-none sgds:align-top" aria-hidden="true">{{ isBash ? '$' : idx + 1 }}</td>
+            <td v-if="!hideLineNumbers || isBash" class="sgds:bg-surface-default sgds:border-r sgds:border-muted sgds:text-subtle sgds:font-mono sgds:text-[0.8125rem] sgds:w-[2rem] sgds:px-[0.75rem] sgds:text-right sgds:select-none sgds:align-top" aria-hidden="true">{{ isBash ? '$' : idx + 1 }}</td>
             <!-- v-html is safe: content is produced by our own escHtml + tok pipeline above -->
             <td class="sgds:text-default sgds:font-mono sgds:text-[0.875rem] sgds:pl-[0.75rem] sgds:pr-[1rem] sgds:align-top sgds:whitespace-pre" v-html="line || ' '" />
           </tr>
