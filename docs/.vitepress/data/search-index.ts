@@ -21,9 +21,10 @@ export interface SearchResult extends SearchItem {
 export const searchIndex: SearchItem[] = [
   // Get started
   { title: "Get started", category: "Get started", url: "/get-started/", keywords: ["overview", "sgds v3", "start"] },
-  { title: "About SGDS", category: "Get started", url: "/get-started/about-sgds", keywords: ["vision", "principles", "values"] },
+  { title: "About us", category: "Get started", url: "/get-started/about-sgds", keywords: ["vision", "principles", "values"] },
   { title: "Design", category: "Get started", url: "/get-started/design", keywords: ["figma", "design", "libraries", "tokens"] },
   { title: "Develop", category: "Get started", url: "/get-started/develop", keywords: ["install", "components", "templates", "blocks"] },
+  { title: "Content", category: "Get started", url: "/get-started/content", keywords: ["writing", "copy", "tone", "content", "guidelines"] },
 
   // Foundations
   { title: "Colour", category: "Foundation", url: "/foundations/colour" },
@@ -98,6 +99,7 @@ export const searchIndex: SearchItem[] = [
   { title: "Mainnav", category: "Component", url: "/components/mainnav", keywords: ["navbar", "navigation", "header"] },
   { title: "Masthead", category: "Component", url: "/components/masthead", keywords: ["header", "top bar"] },
   { title: "Overflow menu", category: "Component", url: "/components/overflow-menu", keywords: ["kebab", "more", "menu", "actions"] },
+  { title: "Sidebar", category: "Component", url: "/components/sidebar", keywords: ["side bar", "navigation", "layout"] },
   { title: "Sidenav", category: "Component", url: "/components/sidenav", keywords: ["sidebar", "navigation"] },
   { title: "Stepper", category: "Component", url: "/components/stepper", keywords: ["steps", "progress", "wizard"] },
   { title: "Subnav", category: "Component", url: "/components/subnav", keywords: ["sub navigation", "secondary nav", "tabs"] },
@@ -111,7 +113,6 @@ export const searchIndex: SearchItem[] = [
   { title: "Form page", category: "Template", url: "/templates/page-templates/preview/form-page", keywords: ["template", "form", "page"] },
   { title: "Landing page", category: "Template", url: "/templates/page-templates/preview/landing", keywords: ["hero", "marketing", "campaign", "launch"] },
   { title: "Multi-step form", category: "Template", url: "/templates/page-templates/preview/multi-step-form", keywords: ["wizard", "steps", "form"] },
-  { title: "Report an issue", category: "Template", url: "/templates/page-templates/preview/report-issue", keywords: ["form", "feedback", "complaint", "incident"] },
 
   // Templates — Block templates
   { title: "Cards", category: "Block", url: "/blocks/preview/cards", keywords: ["grid", "cards", "layout", "tiles"] },

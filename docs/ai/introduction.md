@@ -3,7 +3,7 @@ layout: docs
 title: Introduction
 description: SGDS helps teams use AI with clearer context, shared standards, and design system guidance.
 headerAlert:
-  description: This AI section is still being developed. Treat the content as contextual guidance while the workflows continue to evolve.
+  description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
   variant: danger
   icon: exclamation-circle-fill
 ---

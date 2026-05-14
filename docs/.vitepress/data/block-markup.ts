@@ -582,7 +582,7 @@ export const featureFeature48ImgLeftMarkup = `<style>
         <!-- Image — 4 cols -->
         <div class="feature-img sgds-col-4 sgds-col-sm-8 sgds-col-lg-4">
           <img
-            src="/placeholder-sgds.png"
+            src="https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png"
             alt=""
             style="width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-radius: var(--sgds-border-radius-xl);"
           />
@@ -666,7 +666,7 @@ export const featureFeature48ImgRightMarkup = `<style>
         <!-- Image — 4 cols -->
         <div class="feature-img sgds-col-4 sgds-col-sm-8 sgds-col-lg-4">
           <img
-            src="/placeholder-sgds.png"
+            src="https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png"
             alt=""
             style="width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-radius: var(--sgds-border-radius-xl);"
           />
@@ -821,7 +821,7 @@ export const featureFeature66ImgLeftMarkup = `<style>
         <!-- Image — 6 cols -->
         <div class="feature-img sgds-col-4 sgds-col-sm-8 sgds-col-lg-6">
           <img
-            src="/placeholder-sgds.png"
+            src="https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png"
             alt=""
             style="width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-radius: var(--sgds-border-radius-xl);"
           />
@@ -905,7 +905,7 @@ export const featureFeature66ImgRightMarkup = `<style>
         <!-- Image — 6 cols -->
         <div class="feature-img sgds-col-4 sgds-col-sm-8 sgds-col-lg-6">
           <img
-            src="/placeholder-sgds.png"
+            src="https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png"
             alt=""
             style="width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-radius: var(--sgds-border-radius-xl);"
           />
@@ -938,7 +938,7 @@ export const featureFeature84ImgLeftMarkup = `<style>
         <!-- Image — 8 cols -->
         <div class="feature-img sgds-col-4 sgds-col-sm-8 sgds-col-lg-8">
           <img
-            src="/placeholder-sgds.png"
+            src="https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png"
             alt=""
             style="width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-radius: var(--sgds-border-radius-xl);"
           />
@@ -1022,7 +1022,7 @@ export const featureFeature84ImgRightMarkup = `<style>
         <!-- Image — 8 cols -->
         <div class="feature-img sgds-col-4 sgds-col-sm-8 sgds-col-lg-8">
           <img
-            src="/placeholder-sgds.png"
+            src="https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png"
             alt=""
             style="width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-radius: var(--sgds-border-radius-xl);"
           />
@@ -2424,7 +2424,7 @@ export const heroHeroBgImageLightMarkup = `<!-- Hero Block (background image —
     class="sgds:flex sgds:items-center sgds:min-h-[640px]"
     style="
       position: relative;
-      background-image: url('placeholder-sgds.png');
+      background-image: url('https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png');
       background-size: cover;
       background-position: center;
     "
@@ -2480,7 +2480,7 @@ export const heroHeroBgImageMarkup = `<!-- Hero Block (background image)
     class="sgds:flex sgds:items-center sgds:min-h-[640px]"
     style="
       position: relative;
-      background-image: url('placeholder-dark-sgds.png');
+      background-image: url('https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png');
       background-size: cover;
       background-position: center;
     "
@@ -2586,7 +2586,7 @@ export const heroHeroFullbleedMarkup = `<!-- Hero Block (full-bleed image right)
     <!-- Right: image — absolute, covers right half, full height -->
     <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 50%;">
       <img
-        src="/placeholder-sgds.png"
+        src="https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png"
         alt="Government digital services"
         style="width: 100%; height: 100%; object-fit: cover; display: block;"
       />
@@ -2682,7 +2682,7 @@ export const heroHeroImageMarkup = `<!-- Hero Block (image right)
         <!-- Right: image (50%), 1:1 ratio -->
         <div style="width: 50%;">
           <img
-            src="/placeholder-sgds.png"
+            src="https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png"
             alt="Government digital services"
             style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; border-radius: var(--sgds-border-radius-xl);"
           />
@@ -3320,4 +3320,3 @@ export const statsStatsRight8Markup = `<style>
       </div>
     </div>
   </section>`;
-

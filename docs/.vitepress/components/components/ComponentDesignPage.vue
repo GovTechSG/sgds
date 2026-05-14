@@ -609,11 +609,11 @@ onBeforeUnmount(() => {
 
 .portal-slot-example {
   align-items: center;
-  background: var(--sgds-accent-surface-muted);
-  border: var(--sgds-border-width-1) dashed var(--sgds-link-color-default);
+  background: var(--sgds-accent-bg-muted);
+  border: var(--sgds-border-width-1) dashed var(--sgds-accent-border-color-default);
   border-radius: var(--sgds-border-radius-none);
   box-sizing: border-box;
-  color: var(--sgds-link-color-default) !important;
+  color: var(--sgds-accent-color-fixed-dark) !important;
   display: flex;
   gap: var(--sgds-gap-sm);
   justify-content: flex-start;
@@ -866,10 +866,6 @@ onBeforeUnmount(() => {
 
 .portal-icon-anatomy-container sgds-icon {
   color: inherit;
-}
-
-.portal-divider-anatomy {
-  inline-size: var(--sgds-dimension-280);
 }
 
 .portal-footer-anatomy {

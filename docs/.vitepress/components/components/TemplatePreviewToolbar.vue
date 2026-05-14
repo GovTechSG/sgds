@@ -35,9 +35,31 @@ const storybookStoryIds: Record<string, string> = {
   "template:multi-step-form": "templates-form-multi-step-form--multi-step-form",
   "template:report-issue": "templates-form-report-issue--report-issue",
   "block:cards": "blocks-cards--cards-3",
+  "block:cards-3-per-column": "blocks-cards--cards-3",
+  "block:cards-4-per-column": "blocks-cards--cards-4",
   "block:cta": "blocks-call-to-action-contained-primary--default",
+  "block:cta-contained-primary-center": "blocks-call-to-action-contained-primary-center--default",
+  "block:cta-contained-primary": "blocks-call-to-action-contained-primary--default",
+  "block:cta-contained-raised-center": "blocks-call-to-action-contained-raised-center--default",
+  "block:cta-contained-raised": "blocks-call-to-action-contained-raised--default",
+  "block:cta-full-bleed-alternate-center": "blocks-call-to-action-full-bleed-alternate-center--default",
+  "block:cta-full-bleed-alternate": "blocks-call-to-action-full-bleed-alternate--default",
+  "block:cta-full-bleed-primary-center": "blocks-call-to-action-full-bleed-primary-center--default",
+  "block:cta-full-bleed-primary": "blocks-call-to-action-full-bleed-primary--default",
   "block:feature": "blocks-feature--feature-image-left-48",
+  "block:feature-image-left-4-8": "blocks-feature--feature-image-left-48",
+  "block:feature-image-right-4-8": "blocks-feature--feature-image-right-48",
+  "block:feature-component-left-6-6": "blocks-feature--feature-component-left-66",
+  "block:feature-component-right-6-6": "blocks-feature--feature-component-right-66",
+  "block:feature-image-left-6-6": "blocks-feature--feature-image-left-66",
+  "block:feature-image-right-6-6": "blocks-feature--feature-image-right-66",
+  "block:feature-image-left-8-4": "blocks-feature--feature-image-left-84",
+  "block:feature-image-right-8-4": "blocks-feature--feature-image-right-84",
+  "block:feature-cards-below": "blocks-feature--feature-cards-below",
+  "block:feature-no-image-center": "blocks-feature--feature-no-image-center",
+  "block:feature-no-image-left": "blocks-feature--feature-no-image-left",
   "block:filter": "blocks-filter--filter-checkboxes",
+  "block:filter-checkboxes": "blocks-filter--filter-checkboxes",
   "block:form-all-types": "blocks-form--all-types",
   "block:form-basic-center": "blocks-form--basic-center",
   "block:form-basic-left": "blocks-form--basic-left",
@@ -55,8 +77,21 @@ const storybookStoryIds: Record<string, string> = {
   "block:form-sections-three": "blocks-form--sections-three",
   "block:form-sections-two": "blocks-form--sections-two",
   "block:header": "blocks-header--page-header",
+  "block:header-page-header-with-breadcrumb": "blocks-header--page-header-with-breadcrumb",
+  "block:header-page-header": "blocks-header--page-header",
   "block:hero": "blocks-hero--hero",
+  "block:hero-background-image-light": "blocks-hero--hero-bg-image-light",
+  "block:hero-background-image": "blocks-hero--hero-bg-image",
+  "block:hero-center": "blocks-hero--hero-center",
+  "block:hero-fullbleed": "blocks-hero--hero-fullbleed",
+  "block:hero-image": "blocks-hero--hero-image",
+  "block:hero-basic": "blocks-hero--hero",
   "block:stats": "blocks-stats--stats-3",
+  "block:stats-3-statistics": "blocks-stats--stats-3",
+  "block:stats-4-statistics": "blocks-stats--stats-4",
+  "block:stats-5-statistics": "blocks-stats--stats-5",
+  "block:stats-right-6-column": "blocks-stats--stats-right-6",
+  "block:stats-right-8-columns": "blocks-stats--stats-right-8",
 };
 
 const promptOpen = ref(false);
@@ -68,7 +103,9 @@ const selectedOption = computed(() =>
   [...props.templateOptions, ...props.blockOptions].find((option) => isActiveOption(option)),
 );
 
-const selectedTitle = computed(() => selectedOption.value?.title ?? "Template");
+const selectedTitle = computed(
+  () => selectedOption.value?.title ?? (props.activeKind === "template" ? "Page templates" : "Block templates"),
+);
 
 const selectedGroupLabel = computed(() => selectedOption.value?.groupLabel ?? "");
 
@@ -185,7 +222,7 @@ onBeforeUnmount(() => {
           size="sm"
           class="template-preview-template-button"
         >
-          <span class="template-preview-toolbar-label">Page templates</span>
+          <span class="template-preview-toolbar-label">{{ selectedTitle }}</span>
           <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
         </sgds-button>
         <sgds-dropdown-item
@@ -213,11 +250,16 @@ onBeforeUnmount(() => {
           size="sm"
           class="template-preview-template-button"
         >
-          <span class="template-preview-toolbar-label">Block templates</span>
+          <span class="template-preview-toolbar-label">{{ selectedTitle }}</span>
           <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
         </sgds-button>
         <template v-for="blockGroup in blockOptionGroups" :key="blockGroup.label">
-          <sgds-dropdown-item disabled class="template-preview-dropdown-section">{{ blockGroup.label }}</sgds-dropdown-item>
+          <li
+            class="empty-menu sgds:px-lg sgds:py-sm sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-wide sgds:text-subtle sgds:uppercase"
+            role="presentation"
+          >
+            {{ blockGroup.label }}
+          </li>
           <sgds-dropdown-item
             v-for="option in blockGroup.options"
             :key="`block-${option.key}`"
@@ -233,14 +275,14 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="template-preview-toolbar-actions">
-      <sgds-tooltip content="Open in Storybook" placement="bottom" trigger="hover focus">
+      <sgds-tooltip content="View code in Storybook" placement="bottom" trigger="hover focus">
         <a
           class="template-preview-storybook-button sgds:inline-flex sgds:items-center sgds:justify-center sgds:bg-transparent sgds:border sgds:border-transparent sgds:rounded-sm sgds:text-default sgds:cursor-pointer sgds:h-[var(--sgds-dimension-40)] sgds:w-[var(--sgds-dimension-40)] sgds:p-0 sgds:hover:bg-translucent-subtle sgds:focus:outline-none sgds:focus-visible:outline sgds:focus-visible:outline-[var(--sgds-outline-focus)] sgds:focus-visible:outline-offset-[var(--sgds-outline-offset-focus)]"
           :href="storybookHref"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Open in Storybook"
-          title="Open in Storybook"
+          aria-label="View code in Storybook"
+          title="View code in Storybook"
         >
           <span aria-hidden="true" class="template-preview-storybook-icon"></span>
         </a>
@@ -281,7 +323,7 @@ onBeforeUnmount(() => {
           v-if="promptOpen"
           class="sgds:absolute sgds:z-[60] sgds:top-[calc(100%+var(--sgds-gap-xs))] sgds:right-0 sgds:w-[min(var(--sgds-dimension-400),calc(100vw-var(--sgds-padding-xl)))]"
         >
-          <PromptBox label="Prompt example" :prompt="promptExample" />
+          <PromptBox label="Example prompt" :prompt="promptExample" />
         </div>
       </div>
 
@@ -418,17 +460,6 @@ onBeforeUnmount(() => {
 .template-preview-viewport-button:focus-visible {
   outline: var(--sgds-outline-focus);
   outline-offset: var(--sgds-outline-offset-focus);
-}
-
-.template-preview-dropdown-section {
-  color: var(--sgds-body-color-subtle);
-  cursor: default;
-  font-size: var(--sgds-font-size-1);
-  font-weight: var(--sgds-font-weight-semibold);
-  letter-spacing: var(--sgds-letter-spacing-wide);
-  opacity: 1;
-  pointer-events: none;
-  text-transform: uppercase;
 }
 
 @media (max-width: 640px) {

@@ -62,7 +62,7 @@ import {
       </ul>
     </section>
 
-    <section class="sgds:flex sgds:flex-col sgds:gap-text-sm">
+    <section class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
         <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Tips for text prompts</h4>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
@@ -70,18 +70,18 @@ import {
         </p>
       </div>
 
-      <ul class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-8">
+      <ul class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:m-0 sgds:pl-8">
         <li v-for="row in textPromptTips" :key="row.tip" class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-default">
           <strong>{{ row.tip }}:</strong> {{ row.detail }}
         </li>
       </ul>
 
       <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-        <PromptBox v-for="example in textPromptExamples" :key="example.label" :label="example.label" :prompt="example.prompt" />
+        <PromptBox v-for="example in textPromptExamples" :key="example.prompt" :prompt="example.prompt" />
       </div>
     </section>
 
-    <section class="sgds:flex sgds:flex-col sgds:gap-text-sm">
+    <section class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
         <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Tips for designers using Figma</h4>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
@@ -89,7 +89,7 @@ import {
         </p>
       </div>
 
-      <ul class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-8">
+      <ul class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:m-0 sgds:pl-8">
         <li v-for="row in figmaPromptTips" :key="row.tip" class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-default">
           <strong>{{ row.tip }}:</strong> {{ row.detail }}
           <a
@@ -105,7 +105,7 @@ import {
       </ul>
 
       <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-        <PromptBox v-for="example in figmaPromptExamples" :key="example.label" :label="example.label" :prompt="example.prompt" />
+        <PromptBox v-for="example in figmaPromptExamples" :key="example.prompt" :prompt="example.prompt" />
       </div>
     </section>
 
