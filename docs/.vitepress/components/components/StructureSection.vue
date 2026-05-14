@@ -1877,9 +1877,17 @@ const preventPreviewInteractionKeyboard = (event: KeyboardEvent) => {
   preventPreviewInteraction(event);
 };
 
+const shouldScrollToTokenRow = () => {
+  if (typeof window === "undefined") return true;
+  const isMobileViewport = window.matchMedia("(max-width: 767.98px)").matches;
+  const isTouchLikePointer = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+  return !isMobileViewport && !isTouchLikePointer;
+};
+
 const scrollToTableRow = async (key: string) => {
   hoverKey.value = key;
   selectedKeys.value = getRelatedRowKeys(key);
+  if (!shouldScrollToTokenRow()) return;
   await nextTick();
   const row = selectedKeys.value
     .map((rowKey) => rootRef.value?.querySelector<HTMLElement>(`[data-structure-row-key="${rowKey}"]`))
