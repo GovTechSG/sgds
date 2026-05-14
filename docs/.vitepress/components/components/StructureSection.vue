@@ -70,6 +70,7 @@ const isDividerStructure = computed(() => props.previewMarkup.includes("<sgds-di
 const isDropdownStructure = computed(() => props.previewMarkup.includes("<sgds-dropdown"));
 const isDrawerStructure = computed(() => props.previewMarkup.includes("<sgds-drawer"));
 const isFooterStructure = computed(() => props.previewMarkup.includes("<sgds-footer"));
+const isMainnavStructure = computed(() => props.previewMarkup.includes("<sgds-mainnav"));
 const isMastheadStructure = computed(() => props.previewMarkup.includes("<sgds-masthead"));
 const isModalStructure = computed(() => props.previewMarkup.includes("<sgds-modal"));
 const isModalFullscreenStructure = computed(() => isModalStructure.value && activeVariant.value === "fullscreen");
@@ -759,6 +760,7 @@ const staticSizeAnnotations = computed(() => {
     if (isDescriptionListStructure.value && key === "dimension-280") return;
     if (isDrawerDimensionKey(key)) return;
     if (isDropdownStructure.value && key === "dimension-192") return;
+    if (isMainnavStructure.value && key === "icon-size-sm") return;
 
     // When the component is flush with the shell's right or bottom edge, the
     // default bracket placement would render outside the preview area (or on
@@ -897,6 +899,8 @@ const staticSizeAnnotations = computed(() => {
         isDrawerDimensionKey(key);
       const isFooterContentMaxWidth =
         isFooterStructure.value && key.startsWith("dimension-");
+      const isMainnavMaxWidth =
+        isMainnavStructure.value && key === "mainnav-max-width";
       const isModalPanelDimensionWidth =
         isModalStructure.value && (key === "dimension" || key.startsWith("dimension-"));
       const forceAbove = isMastheadStructure.value && key === "dimension-20";
@@ -916,14 +920,14 @@ const staticSizeAnnotations = computed(() => {
       // stay anchored to the component's left edge.
       const widthSize = isModalPanelDimensionWidth
         ? rect.width
-        : isFooterContentMaxWidth && shellWidth > 0
+        : (isFooterContentMaxWidth || isMainnavMaxWidth) && shellWidth > 0
         ? Math.min(widthConstraintPx ?? rect.width, shellWidth)
         : widthConstraintPx ?? rect.width;
       const unclampedWidthLeft = isModalPanelDimensionWidth
         ? rect.left
         : isThumbnailDimensionWidth
         ? Math.round(rect.left + rect.width / 2 - widthSize / 2)
-        : isDatepickerInputMinWidth || isDatepickerDropdownMaxWidth || isDropdownMenuMaxWidth || isFooterContentMaxWidth
+        : isDatepickerInputMinWidth || isDatepickerDropdownMaxWidth || isDropdownMenuMaxWidth || isFooterContentMaxWidth || isMainnavMaxWidth
           ? Math.round(rect.left + rect.width / 2 - widthSize / 2)
         : isDescriptionListLabelMaxWidth
           ? rect.left

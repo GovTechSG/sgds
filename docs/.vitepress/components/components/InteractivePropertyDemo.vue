@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import type { ConfigurationDemo } from "../../data/component-docs";
 import CardContentSlotsDemo from "./CardContentSlotsDemo.vue";
 import CodeToken from "../ui/CodeToken.vue";
@@ -9,6 +9,9 @@ import { textParts } from "../../utils/text-parts";
 const props = defineProps<{ demo: ConfigurationDemo }>();
 
 const rootRef = ref<HTMLElement | null>(null);
+const responsiveRenderKey = ref(0);
+
+let lastResponsiveBucket = "";
 
 const activeValue = ref<string>(
   props.demo.defaultValue || props.demo.options[0]?.value || "",
@@ -94,6 +97,46 @@ const isWidePreview = computed(() =>
 const isFullscreenModalPreview = computed(() =>
   activeOption.value?.markup.includes("portal-modal-preview-fullscreen") ?? false,
 );
+
+const shouldRemountOnBreakpointChange = computed(() =>
+  activeMarkup.value.includes("sgds-mainnav"),
+);
+
+const previewWidthClass = computed(() => {
+  return isWidePreview.value
+    ? "sgds:max-w-[var(--sgds-dimension-1312)]"
+    : "sgds:max-w-[var(--sgds-dimension-768)]";
+});
+
+const getResponsiveBucket = () => {
+  if (typeof window === "undefined") return "";
+
+  const width = window.innerWidth;
+
+  if (width < 512) return "xs";
+  if (width < 768) return "sm";
+  if (width < 1024) return "md";
+  if (width < 1280) return "lg";
+  if (width < 1440) return "xl";
+
+  return "2xl";
+};
+
+const syncResponsiveRenderKey = () => {
+  const nextBucket = getResponsiveBucket();
+  if (!nextBucket) return;
+
+  if (!shouldRemountOnBreakpointChange.value) {
+    lastResponsiveBucket = nextBucket;
+    return;
+  }
+
+  if (lastResponsiveBucket && nextBucket !== lastResponsiveBucket) {
+    responsiveRenderKey.value += 1;
+  }
+
+  lastResponsiveBucket = nextBucket;
+};
 
 const renderMarkup = (markup: string) => {
   if (!markup.includes("sgds-drawer") || !markup.includes("portal-demo-overlay")) {
@@ -536,6 +579,8 @@ const setupTextareaDemos = async () => {
 };
 
 onMounted(() => {
+  syncResponsiveRenderKey();
+  window.addEventListener("resize", syncResponsiveRenderKey);
   void applyStateEffects();
   void setupDrawerDemos();
   void setupDropdownDemos();
@@ -545,7 +590,15 @@ onMounted(() => {
   void setupTextareaDemos();
 });
 
-watch(activeValue, () => {
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", syncResponsiveRenderKey);
+});
+
+watch(activeMarkup, () => {
+  lastResponsiveBucket = getResponsiveBucket();
+});
+
+watch([activeValue, responsiveRenderKey], () => {
   void applyStateEffects();
   void setupDrawerDemos();
   void setupDropdownDemos();
@@ -631,7 +684,7 @@ watch(activeValue, () => {
             <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full">
               <div class="sgds:w-full sgds:min-w-0 sgds:max-w-full sgds:mx-auto sgds:max-w-[var(--sgds-dimension-768)]">
                 <div
-                  :key="activeValue"
+                  :key="`${activeValue}-${responsiveRenderKey}`"
                   class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
                   v-html="renderMarkup(activeMarkup)"
                 ></div>
@@ -670,11 +723,11 @@ watch(activeValue, () => {
                 <div
                   :class="[
                     'sgds:w-full sgds:min-w-0 sgds:max-w-full sgds:mx-auto',
-                    isWidePreview ? 'sgds:max-w-[var(--sgds-dimension-1312)]' : 'sgds:max-w-[var(--sgds-dimension-768)]',
+                    previewWidthClass
                   ]"
                 >
                   <div
-                    :key="activeOption.value"
+                    :key="`${activeOption.value}-${responsiveRenderKey}`"
                     class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
                     v-html="renderMarkup(activeOption.markup)"
                   ></div>
