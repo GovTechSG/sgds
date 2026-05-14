@@ -278,7 +278,9 @@ const showCommunitySection = false;
 </style>
 
 <style>
-.image-container {
-  transform: translateX(73px);
+@media (min-width: 768px) {
+  .image-container {
+    transform: translateX(73px);
+  }
 }
 </style>
