@@ -90,4 +90,18 @@ const isSingleVariant = computed(() => variants.value.length === 1);
 .block-raw-single {
   background: var(--sgds-surface-default);
 }
+
+/* Theme treatment for the stock SGDS placeholder image inside v-html previews.
+   The source image remains the original light asset; dark mode mutes it into a
+   near-black placeholder so the preview keeps the same composition. */
+.sgds-night-theme .block-raw-root img[src*="placeholder-sgds.png"],
+.sgds-night-theme .block-raw-single img[src*="placeholder-sgds.png"] {
+  filter: invert(1) brightness(0.9) contrast(1.05);
+}
+
+.sgds-night-theme .block-raw-root [style*="placeholder-sgds.png"],
+.sgds-night-theme .block-raw-single [style*="placeholder-sgds.png"] {
+  background-color: var(--sgds-bg-fixed-dark);
+  background-blend-mode: multiply;
+}
 </style>

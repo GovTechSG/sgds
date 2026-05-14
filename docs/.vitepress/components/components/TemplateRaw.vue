@@ -27,5 +27,14 @@ watch(() => props.templateKey, executeTemplateScripts);
 </script>
 
 <template>
-  <div ref="rootRef" v-html="markup"></div>
+  <div ref="rootRef" class="template-raw-root" v-html="markup"></div>
 </template>
+
+<style>
+/* Theme treatment for the stock SGDS placeholder image inside v-html previews.
+   The source image remains the original light asset; dark mode mutes it into a
+   near-black placeholder so the preview keeps the same composition. */
+.sgds-night-theme .template-raw-root img[src*="placeholder-sgds.png"] {
+  filter: invert(1) brightness(0.9) contrast(1.05);
+}
+</style>

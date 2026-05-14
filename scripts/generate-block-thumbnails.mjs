@@ -9,7 +9,7 @@ const sharp = require("/Users/petrine/.cache/codex-runtimes/codex-primary-runtim
 const chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const outputDir = new URL("../docs/public/templates/thumbnails/", import.meta.url);
 const outputDirPath = fileURLToPath(outputDir);
-const baseUrl = "http://127.0.0.1:5173";
+const baseUrl = process.env.THUMBNAIL_BASE_URL ?? "http://127.0.0.1:5173";
 const placeholderImage = "https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png";
 const placeholderBackground = "#f8f8f8";
 
@@ -75,7 +75,6 @@ const pageTemplateKeys = [
   "application-management",
   "form-page",
   "multi-step-form",
-  "report-issue",
 ];
 
 const multiStepFormThumbnailMarkup = `<!doctype html>
@@ -1304,6 +1303,162 @@ const thumbHeight = 400;
 const thumbnailInsetX = 72;
 const thumbnailInsetY = 48;
 const captureViewport = { width: 1440, height: 900 };
+const raisedDarkCanvasBackground = "#2a2a2a";
+const requestedKeys = new Set(
+  (process.env.THUMBNAIL_KEYS ?? "")
+    .split(",")
+    .map((key) => key.trim())
+    .filter(Boolean),
+);
+const requestedThemes = new Set(
+  (process.env.THUMBNAIL_THEMES ?? "")
+    .split(",")
+    .map((theme) => theme.trim())
+    .filter(Boolean),
+);
+const placeholderFixtureKeys = new Set([...blockThumbnailKeys, "landing"]);
+const needsPlaceholderFixture =
+  !requestedKeys.size || Array.from(requestedKeys).some((key) => placeholderFixtureKeys.has(key));
+// Default thumbnail generation captures both light and dark mode assets.
+// THUMBNAIL_THEMES is only for intentionally scoped maintenance runs.
+const thumbnailThemes = [
+  {
+    name: "day",
+    suffix: "",
+    isDark: false,
+    canvasBackground: "#fff",
+  },
+  {
+    name: "night",
+    suffix: "-dark",
+    isDark: true,
+    canvasBackground: "#0e0e0e",
+  },
+];
+
+const raisedDarkCanvasKeys = new Set([
+  "cta-contained-primary-center",
+  "cta-contained-primary",
+  "cta-contained-raised-center",
+  "cta-contained-raised",
+  "filter-checkboxes",
+  "multi-step-form",
+]);
+const usesRaisedDarkCanvas = (key) => key.startsWith("form") || raisedDarkCanvasKeys.has(key);
+
+const getCanvasBackground = (key, theme) =>
+  theme.isDark && usesRaisedDarkCanvas(key) ? raisedDarkCanvasBackground : theme.canvasBackground;
+
+const getDarkCustomThumbnailStyles = (canvasBackground) => `
+  <style>
+    html.sgds-night-theme,
+    html.sgds-night-theme body {
+      background: ${canvasBackground} !important;
+      color: #f3f3f3 !important;
+    }
+
+    html.sgds-night-theme main,
+    html.sgds-night-theme .multi-step-thumbnail,
+    html.sgds-night-theme .application-thumbnail,
+    html.sgds-night-theme .catalogue-thumbnail,
+    html.sgds-night-theme .about-thumbnail,
+    html.sgds-night-theme .landing-thumbnail,
+    html.sgds-night-theme .blog-thumbnail,
+    html.sgds-night-theme .hero,
+    html.sgds-night-theme .body {
+      background: ${canvasBackground} !important;
+      color: #f3f3f3 !important;
+    }
+
+    html.sgds-night-theme h1,
+    html.sgds-night-theme h2,
+    html.sgds-night-theme h3,
+    html.sgds-night-theme label,
+    html.sgds-night-theme th,
+    html.sgds-night-theme td,
+    html.sgds-night-theme .overline,
+    html.sgds-night-theme .filter-title,
+    html.sgds-night-theme .check,
+    html.sgds-night-theme .result-count,
+    html.sgds-night-theme .title-row,
+    html.sgds-night-theme .breadcrumb {
+      color: #f3f3f3 !important;
+    }
+
+    html.sgds-night-theme p,
+    html.sgds-night-theme ol,
+    html.sgds-night-theme .intro,
+    html.sgds-night-theme .description,
+    html.sgds-night-theme .hint,
+    html.sgds-night-theme .lede,
+    html.sgds-night-theme .dek,
+    html.sgds-night-theme .copy,
+    html.sgds-night-theme .card p {
+      color: #c6c6c6 !important;
+    }
+
+    html.sgds-night-theme input,
+    html.sgds-night-theme .search,
+    html.sgds-night-theme .sort,
+    html.sgds-night-theme .filter-button,
+    html.sgds-night-theme .panel,
+    html.sgds-night-theme .card,
+    html.sgds-night-theme .field,
+    html.sgds-night-theme .section,
+    html.sgds-night-theme .thumb,
+    html.sgds-night-theme .visual {
+      border-color: #525252 !important;
+      background: #1a1a1a !important;
+      color: #f3f3f3 !important;
+    }
+
+    html.sgds-night-theme .stepper::before,
+    html.sgds-night-theme th,
+    html.sgds-night-theme td {
+      border-color: #525252 !important;
+    }
+
+    html.sgds-night-theme .dot,
+    html.sgds-night-theme .box,
+    html.sgds-night-theme .icon-box {
+      border-color: #6b6b6b !important;
+      background: #2a2a2a !important;
+      color: #f3f3f3 !important;
+    }
+
+    html.sgds-night-theme .checked,
+    html.sgds-night-theme .step:first-child .dot {
+      border-color: #8d76f7 !important;
+      background: #6b4df5 !important;
+      color: #fff !important;
+    }
+
+    html.sgds-night-theme .clear,
+    html.sgds-night-theme .view,
+    html.sgds-night-theme .breadcrumb a,
+    html.sgds-night-theme .link {
+      color: #60aaf4 !important;
+    }
+
+    html.sgds-night-theme .pending {
+      color: #1a1a1a !important;
+    }
+
+    html.sgds-night-theme .hero-image,
+    html.sgds-night-theme .office-image {
+      filter: brightness(0.72) contrast(1.08);
+    }
+  </style>
+`;
+
+const prepareCustomHtml = (html, theme, key) => {
+  if (!theme.isDark) return html;
+
+  const canvasBackground = getCanvasBackground(key, theme);
+  return html
+    .replace("<html>", '<html class="sgds-night-theme">')
+    .replace("</head>", `${getDarkCustomThumbnailStyles(canvasBackground)}</head>`);
+};
 
 const roundedRect = (width, height, radius, fill) => Buffer.from(`
   <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
@@ -1311,7 +1466,34 @@ const roundedRect = (width, height, radius, fill) => Buffer.from(`
   </svg>
 `);
 
-const outerBackground = roundedRect(thumbWidth, thumbHeight, 64, "#f4f4f4");
+const toHexColor = (r, g, b) =>
+  `#${[r, g, b].map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
+
+const getSampledBackgroundColor = async (image, fallback) => {
+  const { data, info } = await sharp(image)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const counts = new Map();
+  const sampleStep = 8;
+  const edgeDepth = Math.max(1, Math.round(Math.min(info.width, info.height) * 0.04));
+  const addSample = (x, y) => {
+    const index = (y * info.width + x) * info.channels;
+    if (data[index + 3] < 128) return;
+    const color = toHexColor(data[index], data[index + 1], data[index + 2]);
+    counts.set(color, (counts.get(color) ?? 0) + 1);
+  };
+
+  for (let y = 0; y < info.height; y += sampleStep) {
+    for (let x = 0; x < info.width; x += sampleStep) {
+      if (x >= edgeDepth && x < info.width - edgeDepth && y >= edgeDepth && y < info.height - edgeDepth) continue;
+      addSample(x, y);
+    }
+  }
+
+  return [...counts.entries()].sort((current, next) => next[1] - current[1])[0]?.[0] ?? fallback;
+};
+
 const getInnerFrame = () => {
   return {
     insetX: thumbnailInsetX,
@@ -1321,7 +1503,7 @@ const getInnerFrame = () => {
   };
 };
 
-const createCenteredPlaceholderDataUrl = async () => {
+const createCenteredPlaceholderDataUrl = async (theme) => {
   const response = await fetch(placeholderImage);
   if (!response.ok) {
     throw new Error(`Unable to fetch placeholder image: ${response.status} ${response.statusText}`);
@@ -1346,7 +1528,7 @@ const createCenteredPlaceholderDataUrl = async () => {
   const canvasWidth = 1200;
   const canvasHeight = 800;
 
-  const centeredPlaceholder = await sharp({
+  let centeredPlaceholder = await sharp({
     create: {
       width: canvasWidth,
       height: canvasHeight,
@@ -1364,11 +1546,23 @@ const createCenteredPlaceholderDataUrl = async () => {
     .png()
     .toBuffer();
 
+  if (theme.isDark) {
+    centeredPlaceholder = await sharp(centeredPlaceholder)
+      .negate({ alpha: false })
+      .linear(1, 7)
+      .png()
+      .toBuffer();
+  }
+
   return `data:image/png;base64,${centeredPlaceholder.toString("base64")}`;
 };
 
 await mkdir(outputDir, { recursive: true });
-const centeredPlaceholderImage = await createCenteredPlaceholderDataUrl();
+if (needsPlaceholderFixture) {
+  for (const theme of thumbnailThemes) {
+    theme.placeholderImage = await createCenteredPlaceholderDataUrl(theme);
+  }
+}
 
 const browser = await chromium.launch({
   headless: true,
@@ -1404,7 +1598,7 @@ try {
             : key === "about-us"
               ? aboutUsThumbnailMarkup
               : key === "landing"
-                ? landingThumbnailMarkup.replace("CENTERED_PLACEHOLDER_IMAGE", centeredPlaceholderImage)
+                ? landingThumbnailMarkup
                 : key === "blog"
                   ? blogThumbnailMarkup
           : undefined,
@@ -1424,122 +1618,145 @@ try {
       preserveCanvas: key === "multi-step-form" || key === "catalogue" || key === "about-us" || key === "landing" || key === "blog",
       preserveImages: key === "about-us",
     })),
-  ];
+  ].filter((target) => !requestedKeys.size || requestedKeys.has(target.key));
+  const themesToGenerate = thumbnailThemes.filter(
+    (theme) => !requestedThemes.size || requestedThemes.has(theme.name) || requestedThemes.has(theme.suffix.replace("-", "")),
+  );
 
-  for (const target of thumbnailTargets) {
-    const { key, url, selector } = target;
-    if (target.customHtml) {
-      await page.setContent(target.customHtml, { waitUntil: "domcontentloaded" });
-    } else {
-      await page.goto(url, { waitUntil: "networkidle" });
-    }
-    await page.evaluate(async () => {
-      await document.fonts?.ready;
-      await customElements.whenDefined("sgds-button").catch(() => {});
-      await new Promise((resolve) => window.requestAnimationFrame(() => resolve(undefined)));
-    });
-
-    if (!target.preserveImages) {
-      await page.evaluate(async (imageSrc) => {
-        document.querySelectorAll("img").forEach((image) => {
-          image.src = imageSrc;
-          image.style.objectFit = "cover";
-          image.style.objectPosition = "center";
-        });
-
-        document.querySelectorAll("[style]").forEach((element) => {
-          const style = element.getAttribute("style") ?? "";
-          if (style.includes("placeholder") || style.includes("url(")) {
-            element.style.backgroundImage = `url("${imageSrc}")`;
-            element.style.backgroundSize = "cover";
-            element.style.backgroundPosition = "center";
-          }
-        });
-
-        await Promise.all(
-          Array.from(document.images).map((image) => {
-            if (image.complete && image.naturalWidth > 0) return undefined;
-            return new Promise((resolve) => {
-              image.addEventListener("load", resolve, { once: true });
-              image.addEventListener("error", resolve, { once: true });
-            });
-          }),
+  for (const theme of themesToGenerate) {
+    for (const target of thumbnailTargets) {
+      const { key, url, selector } = target;
+      if (target.customHtml) {
+        await page.setContent(
+          prepareCustomHtml(target.customHtml, theme, key).replace("CENTERED_PLACEHOLDER_IMAGE", theme.placeholderImage),
+          { waitUntil: "domcontentloaded" },
         );
-      }, centeredPlaceholderImage);
-    } else {
+      } else {
+        await page.goto(url, { waitUntil: "networkidle" });
+        await page.evaluate((isDark) => {
+          window.localStorage.setItem("sgds-docs-theme", isDark ? "dark" : "light");
+          document.documentElement.classList.toggle("sgds-night-theme", isDark);
+        }, theme.isDark);
+      }
       await page.evaluate(async () => {
-        await Promise.all(
-          Array.from(document.images).map((image) => {
-            if (image.complete && image.naturalWidth > 0) return undefined;
-            return new Promise((resolve) => {
-              image.addEventListener("load", resolve, { once: true });
-              image.addEventListener("error", resolve, { once: true });
-            });
-          }),
-        );
-      });
-    }
-
-    await page.addStyleTag({
-      content: `
-        html, body {
-          background: #fff !important;
-          margin: 0 !important;
+        await document.fonts?.ready;
+        if (customElements.get("sgds-button")) {
+          await customElements.whenDefined("sgds-button");
         }
-      `,
-    });
+        await new Promise((resolve) => window.requestAnimationFrame(() => resolve(undefined)));
+      });
 
-    const captureTarget = page.locator(target.customSelector ?? selector).first();
-    const capturedScreenshot = await captureTarget.screenshot({ type: "png" });
-    const screenshot = target.crop
-      ? await sharp(capturedScreenshot).extract(target.crop).png().toBuffer()
-      : capturedScreenshot;
+      if (!target.preserveImages) {
+        await page.evaluate(async (imageSrc) => {
+          document.querySelectorAll("img").forEach((image) => {
+            image.src = imageSrc;
+            image.style.objectFit = "cover";
+            image.style.objectPosition = "center";
+          });
 
-    const normalizedContent = target.preserveCanvas
-      ? screenshot
-      : await sharp(screenshot)
-        .trim({
-          background: "#fff",
-          threshold: 2,
+          document.querySelectorAll("[style]").forEach((element) => {
+            const style = element.getAttribute("style") ?? "";
+            if (style.includes("placeholder") || style.includes("url(")) {
+              element.style.backgroundImage = `url("${imageSrc}")`;
+              element.style.backgroundSize = "cover";
+              element.style.backgroundPosition = "center";
+            }
+          });
+
+          await Promise.all(
+            Array.from(document.images).map((image) => {
+              if (image.complete && image.naturalWidth > 0) return undefined;
+              return new Promise((resolve) => {
+                image.addEventListener("load", resolve, { once: true });
+                image.addEventListener("error", resolve, { once: true });
+              });
+            }),
+          );
+        }, theme.placeholderImage);
+      } else {
+        await page.evaluate(async () => {
+          await Promise.all(
+            Array.from(document.images).map((image) => {
+              if (image.complete && image.naturalWidth > 0) return undefined;
+              return new Promise((resolve) => {
+                image.addEventListener("load", resolve, { once: true });
+                image.addEventListener("error", resolve, { once: true });
+              });
+            }),
+          );
+        });
+      }
+
+      const captureBackground = getCanvasBackground(key, theme);
+      await page.addStyleTag({
+        content: `
+          html, body {
+            background: ${captureBackground} !important;
+            margin: 0 !important;
+          }
+
+          ${theme.isDark && usesRaisedDarkCanvas(key) ? `
+          .block-raw-single,
+          .block-raw-single > :first-child,
+          .sgds\\:bg-default {
+            background: ${captureBackground} !important;
+          }
+          ` : ""}
+        `,
+      });
+
+      const captureTarget = page.locator(target.customSelector ?? selector).first();
+      const capturedScreenshot = await captureTarget.screenshot({ type: "png" });
+      const screenshot = target.crop
+        ? await sharp(capturedScreenshot).extract(target.crop).png().toBuffer()
+        : capturedScreenshot;
+      const fillBackground = await getSampledBackgroundColor(screenshot, captureBackground);
+
+      const normalizedContent = target.preserveCanvas
+        ? screenshot
+          : await sharp(screenshot)
+          .trim({
+            background: fillBackground,
+            threshold: 2,
+          })
+          .extend({
+            top: 40,
+            right: 40,
+            bottom: 40,
+            left: 40,
+            background: fillBackground,
+          })
+          .png()
+          .toBuffer();
+
+      const { insetX, insetY, innerWidth, innerHeight } = getInnerFrame();
+      const innerMask = roundedRect(innerWidth, innerHeight, 14, "#fff");
+
+      const innerImage = await sharp(normalizedContent)
+        .resize(innerWidth, innerHeight, {
+          fit: "contain",
+          background: fillBackground,
         })
-        .extend({
-          top: 40,
-          right: 40,
-          bottom: 40,
-          left: 40,
-          background: "#fff",
-        })
+        .composite([{ input: innerMask, blend: "dest-in" }])
         .png()
         .toBuffer();
 
-    const { insetX, insetY, innerWidth, innerHeight } = getInnerFrame();
-    const innerMask = roundedRect(innerWidth, innerHeight, 14, "#fff");
-
-    const innerImage = await sharp(normalizedContent)
-      .resize(innerWidth, innerHeight, {
-        fit: "contain",
-        background: "#fff",
+      await sharp({
+        create: {
+          width: thumbWidth,
+          height: thumbHeight,
+          channels: 4,
+          background: { r: 0, g: 0, b: 0, alpha: 0 },
+        },
       })
-      .composite([{ input: innerMask, blend: "dest-in" }])
-      .png()
-      .toBuffer();
+        .composite([
+          { input: innerImage, left: insetX, top: insetY },
+        ])
+        .png()
+        .toFile(`${outputDirPath}${key}${theme.suffix}.png`);
 
-    await sharp({
-      create: {
-        width: thumbWidth,
-        height: thumbHeight,
-        channels: 4,
-        background: { r: 0, g: 0, b: 0, alpha: 0 },
-      },
-    })
-      .composite([
-        { input: outerBackground, left: 0, top: 0 },
-        { input: innerImage, left: insetX, top: insetY },
-      ])
-      .png()
-      .toFile(`${outputDirPath}${key}.png`);
-
-    console.log(`Generated ${key}.png`);
+      console.log(`Generated ${key}${theme.suffix}.png`);
+    }
   }
 } finally {
   await browser.close();

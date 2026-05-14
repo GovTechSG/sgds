@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { withBase } from "vitepress";
+import { isDarkTheme } from "../../theme/composables/sgds-theming";
 import {
   blockTemplateCategoryOrder,
   blockTemplateRecommendedOrder,
@@ -180,10 +181,12 @@ const hasThumbnail = (key: string) =>
   !placeholderThumbnailKeys.has(key) &&
   (!isBlockOverview.value || blockThumbnailKeys.has(key) || key.startsWith("form-"));
 
-const thumbnailVersion = "20260514-template-padding";
+const thumbnailVersion = "20260514-blog-dark";
 
-const getThumbnailSrc = (key: string) =>
-  `${withBase(`/templates/thumbnails/${key}.png`)}?v=${thumbnailVersion}`;
+const getThumbnailSrc = (key: string) => {
+  const themeSuffix = isDarkTheme.value ? "-dark" : "";
+  return `${withBase(`/templates/thumbnails/${key}${themeSuffix}.png`)}?v=${thumbnailVersion}`;
+};
 </script>
 
 <template>
