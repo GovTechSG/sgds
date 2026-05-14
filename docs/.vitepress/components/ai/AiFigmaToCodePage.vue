@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AiInstructionStepper from "./AiInstructionStepper.vue";
 import CodeToken from "../ui/CodeToken.vue";
-import PromptBox from "../ui/PromptBox.vue";
+import CodeBlock from "../ui/CodeBlock.vue";
 import { figmaToCodeSteps, codeToFigmaSteps } from "../../data/ai-workflow-data";
 </script>
 
@@ -68,7 +68,7 @@ import { figmaToCodeSteps, codeToFigmaSteps } from "../../data/ai-workflow-data"
                 <p class="sgds:text-label-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   Be explicit that you want SGDS-aligned output.
                 </p>
-                <PromptBox prompt="Use this Figma frame and implement it with SGDS components and patterns. Map the layout to SGDS as closely as possible and flag anything that does not have a direct SGDS match." />
+                <CodeBlock prompt code="Use this Figma frame and implement it with SGDS components and patterns. Map the layout to SGDS as closely as possible and flag anything that does not have a direct SGDS match." />
               </template>
 
               <template #step-4>
@@ -102,7 +102,7 @@ import { figmaToCodeSteps, codeToFigmaSteps } from "../../data/ai-workflow-data"
                 <p class="sgds:text-label-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   Ask the AI to capture or recreate the coded screen in Figma.
                 </p>
-                <PromptBox prompt="Take this coded page and create a Figma screen that matches it using the design system where possible." />
+                <CodeBlock prompt code="Take this coded page and create a Figma screen that matches it using the design system where possible." />
               </template>
 
               <template #step-3>

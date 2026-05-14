@@ -4,7 +4,7 @@ import AiInstructionStepper from "./AiInstructionStepper.vue";
 import SectionHeader from "../foundations/SectionHeader.vue";
 import CodeToken from "../ui/CodeToken.vue";
 import CodeBlock from "../ui/CodeBlock.vue";
-import PromptBox from "../ui/PromptBox.vue";
+
 import { figmaWorkflowCards } from "../../data/ai-workflow-data";
 
 const figmaToCodeSteps = [
@@ -284,7 +284,7 @@ const openFigmaToCodeTab = (event: Event) => {
 
               <template #step-3>
                 <p>Be explicit that you want SGDS components and patterns where possible. Ask the AI to flag anything that does not have a direct SGDS match.</p>
-                <PromptBox prompt="Build this Figma frame using SGDS web components and utility classes. Refer to the SGDS skills for the correct component APIs, utility tokens, and layout patterns. Flag anything that does not have a direct SGDS match." />
+                <CodeBlock prompt code="Build this Figma frame using SGDS web components and utility classes. Refer to the SGDS skills for the correct component APIs, utility tokens, and layout patterns. Flag anything that does not have a direct SGDS match." />
               </template>
 
               <template #step-4>
@@ -324,7 +324,7 @@ const openFigmaToCodeTab = (event: Event) => {
 
               <template #step-3>
                 <p>Be explicit about what you want sent and where it should go. Ask the AI to use SGDS components, tokens, and layout rules where possible, and to flag anything that does not have a direct SGDS match.</p>
-                <PromptBox prompt="Send my dashboard page to this Figma page or frame: <insert Figma link>. Use SGDS components, tokens, and layout rules where possible. Flag anything that does not have a direct SGDS match." />
+                <CodeBlock prompt code="Send my dashboard page to this Figma page or frame: <insert Figma link>. Use SGDS components, tokens, and layout rules where possible. Flag anything that does not have a direct SGDS match." />
               </template>
 
               <template #step-4>

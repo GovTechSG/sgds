@@ -4,6 +4,8 @@
 @import "@govtechsg/sgds-web-component/css/sgds.css";
 @import "@govtechsg/sgds-web-component/css/utility.css";
 
+* { box-sizing: border-box; }
+
 /* ─── Tab group: extend underline to full width ─────────────────────────── */
 
 sgds-tab-group[variant="underlined"] {

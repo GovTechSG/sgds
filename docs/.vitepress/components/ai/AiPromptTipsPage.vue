@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SectionHeader from "../foundations/SectionHeader.vue";
-import PromptBox from "../ui/PromptBox.vue";
+import CodeBlock from "../ui/CodeBlock.vue";
 import {
   figmaPromptExamples,
   figmaPromptTips,
@@ -77,7 +77,7 @@ import {
       </ul>
 
       <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-        <PromptBox v-for="example in textPromptExamples" :key="example.prompt" :prompt="example.prompt" />
+        <CodeBlock prompt v-for="example in textPromptExamples" :key="example.prompt" :code="example.prompt" />
       </div>
     </section>
 
@@ -105,7 +105,7 @@ import {
       </ul>
 
       <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-        <PromptBox v-for="example in figmaPromptExamples" :key="example.prompt" :prompt="example.prompt" />
+        <CodeBlock prompt v-for="example in figmaPromptExamples" :key="example.prompt" :code="example.prompt" />
       </div>
     </section>
 

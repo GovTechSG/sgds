@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import AiInstructionStepper from "./AiInstructionStepper.vue";
 import CodeToken from "../ui/CodeToken.vue";
 import CopyCommand from "../ui/CopyCommand.vue";
-import PromptBox from "../ui/PromptBox.vue";
+import CodeBlock from "../ui/CodeBlock.vue";
 import "@govtechsg/sgds-web-component/components/Badge/index.js";
 import "@govtechsg/sgds-web-component/components/Button/index.js";
 import "@govtechsg/sgds-web-component/components/Icon/index.js";
@@ -808,10 +808,9 @@ function setScenario(id: ScenarioFilter) {
                   </ol>
 
                   <div v-if="detailForStep(item)?.examples?.length" class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-                    <PromptBox
+                    <CodeBlock prompt
                       v-for="(ex, ei) in detailForStep(item)?.examples" :key="ei"
-                      :prompt="promptText(ex)"
-                      label="Example prompt"
+                      :code="promptText(ex)"
                     />
                   </div>
 
@@ -886,7 +885,7 @@ function setScenario(id: ScenarioFilter) {
 
               <template #step-3>
                 <p>Be explicit that you want the AI to implement the design using SGDS components and patterns where possible, not just produce generic front-end output.</p>
-                <PromptBox prompt="Build this Figma frame using SGDS web components and utility classes. Refer to the SGDS skills for the correct component APIs, utility tokens, and layout pattern." />
+                <CodeBlock prompt code="Build this Figma frame using SGDS web components and utility classes. Refer to the SGDS skills for the correct component APIs, utility tokens, and layout pattern." />
               </template>
 
               <template #step-4>
@@ -935,7 +934,7 @@ function setScenario(id: ScenarioFilter) {
 
               <template #step-3>
                 <p>Be explicit about what you want sent and where it should go. Ask the AI to map the result to SGDS components, tokens, and layout rules where possible, and to flag anything that does not have a direct SGDS match.</p>
-                <PromptBox prompt="Send my dashboard page to Figma at this place <insert link of figma's page or frame>. Map to SGDS as closely as possible and flag anything that does not have a direct SGDS match." />
+                <CodeBlock prompt code="Send my dashboard page to Figma at this place <insert link of figma's page or frame>. Map to SGDS as closely as possible and flag anything that does not have a direct SGDS match." />
               </template>
 
               <template #step-4>

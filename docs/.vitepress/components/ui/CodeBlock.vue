@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, useSlots } from "vue";
 
 const props = withDefaults(
   defineProps<{
@@ -7,9 +7,13 @@ const props = withDefaults(
     lang?: string;
     filename?: string;
     hideLineNumbers?: boolean;
+    prompt?: boolean;
   }>(),
-  { lang: "html", hideLineNumbers: false },
+  { lang: "html", hideLineNumbers: false, prompt: false },
 );
+
+const slots = useSlots();
+const hasSlotContent = computed(() => !!slots.default);
 
 const copied = ref(false);
 
@@ -426,15 +430,15 @@ const langLabel = computed(() => {
 </script>
 
 <template>
-  <div class="sgds:bg-surface-default sgds:border sgds:border-muted sgds:rounded-xl sgds:box-border sgds:font-mono sgds:overflow-hidden sgds:w-full">
+  <div :class="['sgds:bg-surface-default sgds:border sgds:border-muted sgds:rounded-xl sgds:box-border sgds:overflow-hidden sgds:w-full', prompt ? 'sgds:max-w-full sgds:min-w-0' : 'sgds:font-mono']">
     <!-- Header -->
     <div class="sgds:flex sgds:items-center sgds:bg-surface-default sgds:border-b sgds:border-muted sgds:gap-md sgds:justify-between sgds:min-h-[2.75rem] sgds:py-0 sgds:pl-[1rem] sgds:pr-[0.75rem]">
-      <span class="sgds:text-default sgds:font-mono sgds:text-[0.75rem] sgds:font-regular sgds:tracking-[0.04em] sgds:leading-none sgds:uppercase sgds:select-none">{{ filename ?? langLabel }}</span>
+      <span class="sgds:text-default sgds:font-mono sgds:text-body-sm sgds:font-regular sgds:tracking-[0.04em] sgds:leading-none sgds:uppercase sgds:select-none">{{ filename ?? (prompt ? 'Example prompt' : langLabel) }}</span>
       <sgds-button
         size="xs"
         variant="ghost"
         tone="neutral"
-        :aria-label="copied ? 'Copied!' : 'Copy code'"
+        :aria-label="copied ? 'Copied!' : (prompt ? 'Copy prompt' : 'Copy code')"
         @click="copy"
       >
         <sgds-icon :name="copied ? 'check' : 'files'" size="sm" slot="leftIcon"></sgds-icon>
@@ -442,8 +446,14 @@ const langLabel = computed(() => {
       </sgds-button>
     </div>
 
+    <!-- Prompt area -->
+    <div v-if="prompt" class="cb-prompt-text sgds:text-default sgds:text-body-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:min-w-0 sgds:w-full sgds:max-w-full sgds:whitespace-pre-wrap sgds:break-words sgds:[overflow-wrap:anywhere] sgds:py-[1rem] sgds:px-[1rem]" role="region" aria-label="Example prompt">
+      <slot v-if="hasSlotContent" />
+      <template v-else>{{ code }}</template>
+    </div>
+
     <!-- Code area -->
-    <div class="sgds:overflow-x-auto sgds:py-[1rem]" role="region" aria-label="Code example">
+    <div v-else class="sgds:overflow-x-auto sgds:py-[1rem]" role="region" aria-label="Code example">
       <table class="sgds:min-w-full sgds:[border-collapse:collapse]">
         <tbody>
           <tr
@@ -451,9 +461,9 @@ const langLabel = computed(() => {
             :key="idx"
             class="sgds:leading-[1.6]"
           >
-            <td v-if="!hideLineNumbers || isBash" class="sgds:bg-surface-default sgds:border-r sgds:border-muted sgds:text-subtle sgds:font-mono sgds:text-[0.8125rem] sgds:w-[2rem] sgds:px-[0.75rem] sgds:text-right sgds:select-none sgds:align-top" aria-hidden="true">{{ isBash ? '$' : idx + 1 }}</td>
+            <td v-if="!hideLineNumbers || isBash" class="sgds:bg-surface-default sgds:border-r sgds:border-muted sgds:text-subtle sgds:font-mono sgds:text-body-sm sgds:w-[2rem] sgds:px-[0.75rem] sgds:text-right sgds:select-none sgds:align-top" aria-hidden="true">{{ isBash ? '$' : idx + 1 }}</td>
             <!-- v-html is safe: content is produced by our own escHtml + tok pipeline above -->
-            <td class="sgds:text-default sgds:font-mono sgds:text-[0.875rem] sgds:pl-[0.75rem] sgds:pr-[1rem] sgds:align-top sgds:whitespace-pre" v-html="line || ' '" />
+            <td class="sgds:text-default sgds:font-mono sgds:text-body-sm sgds:pl-[0.75rem] sgds:pr-[1rem] sgds:align-top sgds:whitespace-pre" v-html="line || ' '" />
           </tr>
         </tbody>
       </table>
@@ -462,11 +472,28 @@ const langLabel = computed(() => {
 </template>
 
 <style>
+/* Prompt text wrapping — applied via v-html slots, must remain as CSS */
+.cb-prompt-text {
+  max-width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  word-break: normal;
+}
+
+/* Global selector targeting slotted p elements inside prompt — requires descendant combinator */
+.cb-prompt-text p {
+  margin: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
 /* Syntax token colours — applied via v-html, must remain as CSS */
 .cb-keyword    { color: var(--sgds-warning-color-default); }
 .cb-string     { color: var(--sgds-accent-color-default); }
-.cb-comment    { color: #6e7681; font-style: italic; }
-.cb-tag        { color: #7ee787; }
+.cb-comment    { color: var(--sgds-color-subtle); font-style: italic; }
+.cb-tag        { color: var(--sgds-color-default); }
 .cb-attr       { color: var(--sgds-cyan-color-default); }
 .cb-vue-attr   { color: #ffa657; }
 .cb-vue-brace  { color: #e2c08d; }
@@ -474,5 +501,5 @@ const langLabel = computed(() => {
 .cb-type       { color: var(--sgds-purple-color-default); }
 .cb-css-prop   { color: #79c0ff; }
 .cb-css-var    { color: #a5d6ff; }
-.cb-punct      { color: #8b949e; }
+.cb-punct      { color: var(--sgds-color-subtle); }
 </style>
