@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
 import { onBeforeUnmount, onMounted, ref } from "vue";
+
+gsap.registerPlugin(SplitText);
 
 export type Button = {
   label: string;
@@ -16,11 +19,21 @@ export type Page = {
 const { title, buttons } = defineProps<Page>();
 
 const heroRoot = ref<HTMLElement | null>(null);
+const codeEl = ref<HTMLElement | null>(null);
+const typeCursorEl = ref<HTMLElement | null>(null);
 let animationContext: gsap.Context | undefined;
 
 onMounted(() => {
   animationContext = gsap.context(() => {
     gsap.set("svg", { opacity: 1 });
+
+    // SplitText typewriter setup
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let split: SplitText | undefined;
+    if (codeEl.value && !prefersReducedMotion) {
+      split = new SplitText(codeEl.value, { type: "lines,chars", reduceWhiteSpace: false });
+      gsap.set(split.chars, { opacity: 0 });
+    }
 
     const intro = gsap.timeline();
     intro.fromTo(".image-container > *", { opacity: 0 }, { opacity: 1, duration: 1 });
@@ -51,6 +64,85 @@ onMounted(() => {
       .to(".white-camera", { x: 58, y: 40, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0)
       .to(".black-disk", { x: 40, y: 45, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0)
       .to(".white-compass", { x: 15, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0);
+
+    // Typewriter effect on the code snippet with moving cursor (human-like typing)
+    if (split?.chars?.length && typeCursorEl.value) {
+      const chars = split.chars;
+      const lines = split.lines;
+      const cursorSpan = typeCursorEl.value;
+
+      // Build a set of first-char-of-each-line for detecting line breaks
+      const lineStartChars = new Set<HTMLElement>();
+      lines.forEach((line: HTMLElement) => {
+        const firstChar = line.querySelector("[style]") as HTMLElement;
+        if (firstChar) lineStartChars.add(firstChar);
+      });
+
+      // Position cursor at the start and make it blink
+      chars[0].before(cursorSpan);
+      gsap.set(cursorSpan, { opacity: 1 });
+      const blink = gsap.to(cursorSpan, {
+        opacity: 0,
+        duration: 0.53,
+        repeat: -1,
+        yoyo: true,
+        ease: "steps(1)",
+      });
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          blink.kill();
+          gsap.to(cursorSpan, { opacity: 0, duration: 0.3 });
+        },
+      });
+
+      let time = 0;
+      let i = 0;
+      while (i < chars.length) {
+        const char = chars[i] as HTMLElement;
+        const isLineStart = i > 0 && lineStartChars.has(char);
+
+        // Pause before a new line (simulates pressing Enter + thinking)
+        if (isLineStart) {
+          time += 0.3 + Math.random() * 0.2; // 0.3–0.5s pause for "Enter"
+        }
+
+        // Intellisense autocomplete: ~25% chance to burst 4–8 chars instantly (like pressing Tab)
+        const remainingInLine = !isLineStart && i > 0;
+        const charsLeft = chars.length - i;
+        const shouldAutocomplete = remainingInLine && Math.random() < 0.25 && charsLeft > 4;
+
+        if (shouldAutocomplete) {
+          const burstSize = Math.min(4 + Math.floor(Math.random() * 5), charsLeft); // 4–8 chars
+          const burst = chars.slice(i, i + burstSize);
+          const lastBurstChar = burst[burst.length - 1] as HTMLElement;
+
+          // Small pause before autocomplete (selecting from menu)
+          time += 0.12 + Math.random() * 0.08;
+
+          // All burst chars appear at once
+          burst.forEach((c: HTMLElement) => {
+            tl.to(c, { opacity: 1, duration: 0.01, ease: "none" }, time);
+          });
+          tl.call(() => { lastBurstChar.after(cursorSpan); }, [], time + 0.01);
+
+          time += 0.05; // tiny pause after autocomplete
+          i += burstSize;
+        } else {
+          tl.to(char, { opacity: 1, duration: 0.01, ease: "none" }, time);
+          tl.call(() => { char.after(cursorSpan); }, [], time + 0.01);
+
+          // Human-like variable speed
+          const baseDelay = 0.04 + Math.random() * 0.04; // 0.04–0.08s normal typing
+          // Occasional longer pause (thinking hesitation)
+          const hesitation = Math.random() < 0.08 ? 0.15 + Math.random() * 0.15 : 0;
+          time += baseDelay + hesitation;
+          i++;
+        }
+      }
+
+      animateOut.add(tl, 0.3);
+    }
   }, heroRoot.value ?? undefined);
 });
 
@@ -60,8 +152,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="heroRoot" class="sgds:relative hero-root">
-    <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-spacer-10)] sgds:pt-[var(--sgds-padding-2-xl)] sgds:max-w-[var(--sgds-dimension-640)] hero-text">
+  <div ref="heroRoot" class="sgds-grid sgds:relative">
+    <div class="sgds-col-4 sgds-col-sm-6 sgds-col-md-4 sgds-col-lg-5 sgds:flex sgds:flex-col sgds:gap-layout-xl sgds:pt-[var(--sgds-padding-2-xl)] sgds:max-w-text">
       <h1 class="sgds:text-[5rem] sgds:leading-[100%] sgds:font-semibold sgds:mb-0 hero-title">{{ title }}</h1>
       <div
         v-for="button in buttons"
@@ -77,7 +169,7 @@ onBeforeUnmount(() => {
         </sgds-button>
       </div>
     </div>
-    <div class="image-container">
+    <div class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds:lg:absolute sgds:lg:right-0 sgds:mt-2-xl image-container">
       <svg class="landing-hero-art sgds:overflow-visible sgds:opacity-0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="756" height="744" viewBox="0 0 756 744" fill="none">
         <path d="M345 34.0978C345 14.1602 328.82 -2.23543 309.092 0.249924C245.95 8.20511 186.83 36.9823 141.353 82.5857C87.3428 136.747 57 210.204 57 286.799C57 363.395 87.3428 436.852 141.353 491.013C186.83 536.617 245.95 565.394 309.092 573.349C328.82 575.834 345 559.439 345 539.501V34.0978Z" fill="var(--landing-hero-dark-shape)" />
         <path class="landing-hero-primary-shape" d="M397 683.902C397 703.84 413.18 720.235 432.908 717.75C496.05 709.795 555.17 681.018 600.647 635.414C654.657 581.254 685 507.796 685 431.201C685 354.605 654.657 281.148 600.647 226.987C555.17 181.383 496.05 152.606 432.908 144.651C413.18 142.165 397 158.561 397 178.499L397 683.902Z" />
@@ -100,18 +192,16 @@ onBeforeUnmount(() => {
                   </div>
                   <div class="sgds:flex sgds:h-full sgds:items-center sgds:gap-[8px] sgds:rounded-t-[6px] sgds:bg-[#1b222b] sgds:px-[20px] sgds:text-[14px] sgds:font-semibold">
                     <span class="sgds:text-[#ffd21e]">JS</span>
-                    <span class="sgds:text-[#c5cad3]">snippet.js</span>
+                    <span class="sgds:text-[#c5cad3]">sgds.js</span>
                   </div>
                 </div>
-                <pre aria-label="JavaScript snippet" contenteditable="true" spellcheck="false" class="sgds:m-0 sgds:h-[161px] sgds:w-full sgds:overflow-auto sgds:bg-[#161c24] sgds:px-[20px] sgds:py-[18px] sgds:font-mono sgds:text-[12px] sgds:leading-[1.55] sgds:text-[#d4d4d4] focus:sgds:outline-none"><code><span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>Responsive Tokens<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>
-<span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">h6</span> <span class="sgds:text-[#9cdcfe]">class</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"sgds:text-subtitle-sm sgds:font-light ..."</span><span class="sgds:text-[#569cd6]">&gt;</span>
-  Stripped Tailwind of its defaults, rebuilt on our
-  design tokens
-<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">h6</span><span class="sgds:text-[#569cd6]">&gt;</span>
-
-<span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span> <span class="sgds:text-[#9cdcfe]">label</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"Framework agnostic"</span>
-    <span class="sgds:text-[#9cdcfe]">value</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"react;vue;angular;svelte;etc"</span> <span class="sgds:text-[#9cdcfe]">multiSelect</span><span class="sgds:text-[#569cd6]">&gt;</span>
-<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span><span class="sgds:text-[#569cd6]">&gt;</span></code></pre>
+                <pre aria-label="JavaScript snippet" contenteditable="false" spellcheck="false" class="sgds:m-0 sgds:h-[161px] sgds:w-full sgds:overflow-auto sgds:bg-[#161c24] sgds:px-[16px] sgds:pb-[7px] sgds:pt-[14px] sgds:font-mono sgds:text-[12px] sgds:leading-[1.55] sgds:text-[#d4d4d4] focus:sgds:outline-none"><code><span ref="codeEl"><span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>Write once. Ship anywhere.<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>
+<span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">p</span> <span class="sgds:text-[#9cdcfe]">class</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"sgds:text-subtitle-sm sgds:font-light"</span><span class="sgds:text-[#569cd6]">&gt;</span>
+ SGDS Design tokens → Tailwind v4
+<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">p</span><span class="sgds:text-[#569cd6]">&gt;</span>
+<span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span> <span class="sgds:text-[#9cdcfe]">label</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"Drop into any stack"</span>
+    <span class="sgds:text-[#9cdcfe]">value</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"react;vue;angular;svelte;vanilla"</span> <span class="sgds:text-[#9cdcfe]">multiSelect</span><span class="sgds:text-[#569cd6]">&gt;</span>
+<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span><span class="sgds:text-[#569cd6]">&gt;</span></span><span ref="typeCursorEl" class="sgds:opacity-0 sgds:text-[#d4d4d4]">|</span></code></pre>
               </div>
             </foreignObject>
           </g>
@@ -316,13 +406,6 @@ onBeforeUnmount(() => {
 <style>
 /* Hero responsive layout — @media required, no SGDS responsive utility classes exist */
 
-/* Default (mobile-first): image below text */
-.image-container {
-  width: 100%;
-  max-width: none;
-  margin: 40px auto 0;
-}
-
 .image-container svg.landing-hero-art {
   display: block;
   width: 100%;
@@ -331,65 +414,39 @@ onBeforeUnmount(() => {
 }
 
 .hero-title {
-  font-size: 3.5rem;
+  font-size: 3rem;
   letter-spacing: -0.05em;
 }
 
-/* Tablet (768px-1279px): side by side with a smaller illustration than desktop */
-@media screen and (min-width: 768px) and (max-width: 1279px) {
-  .hero-root {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: clamp(20px, 3vw, 40px);
-  }
-
-  .hero-text {
-    flex: 1 1 0;
-    min-width: 0;
-    max-width: none;
-  }
-
-  .image-container {
-    flex: 0 0 clamp(320px, 42vw, 560px);
-    width: clamp(320px, 42vw, 560px);
-    max-width: clamp(320px, 42vw, 560px);
-    margin: 0;
-    align-self: flex-start;
+@media (min-width: 512px) {
+  .hero-title {
+    font-size: 3.5rem;
   }
 }
 
-@media screen and (min-width: 768px) {
+/* Tablet (768px-1279px): side by side with a smaller illustration than desktop */
+
+
+@media (min-width: 768px) {
   .hero-title {
     font-size: 4rem;
   }
 }
 
-/* Desktop (≥1280px): restore the original hero composition */
-@media screen and (min-width: 1280px) {
-  .hero-root {
-    display: block;
-    min-height: 0;
-  }
-
-  .hero-text {
-    width: auto;
-    max-width: 640px;
-  }
-
-  .image-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    flex: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-  }
-
+@media (min-width: 1024px) {
   .image-container svg.landing-hero-art {
-    width: 756px;
-    height: 744px;
+    width: 550px;
+    height: auto;
+    top: 50px;
+    transform: translateX(50px);
+  }
+}
+
+/* Desktop (≥1280px): restore the original hero composition */
+@media (min-width: 1280px) {
+  .image-container svg.landing-hero-art {
+    width: 700px;
+    transform: translateX(0px);
   }
 
   .hero-title {
@@ -397,14 +454,9 @@ onBeforeUnmount(() => {
   }
 }
 
-@media screen and (min-width: 1280px) and (max-width: 1439px) {
-  .hero-text {
-    max-width: 540px;
-  }
-
+@media screen and (min-width: 1440px) {
   .image-container svg.landing-hero-art {
-    width: 700px;
-    height: auto;
+    width: 670px;
   }
 }
 
