@@ -27,7 +27,7 @@ import SectionHeader from "../foundations/SectionHeader.vue";
     </section>
 
     <section class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:w-full">
-      <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Better context leads to better AI output</h3>
+      <h3 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:m-0">Clearer context leads to better output</h3>
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md sgds:w-full">
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
           AI output improves when the assistant can work from clear, shared context. A local component set can provide reusable parts, but a design system also explains how those parts work together, when to use them, and what standards they meet.

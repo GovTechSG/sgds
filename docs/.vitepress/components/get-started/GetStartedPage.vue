@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { computed, ref, watch } from "vue";
+import { useData, withBase } from "vitepress";
 import {
   designTabs,
   getStartedNavItems,
   getStartedPages,
 } from "../../data/get-started";
 import SectionHeader from "../foundations/SectionHeader.vue";
+import PageHeader from "../page/PageHeader.vue";
 import GetStartedPageSections from "./GetStartedPageSections.vue";
 
 defineOptions({
@@ -12,36 +15,57 @@ defineOptions({
 });
 
 const props = defineProps<{
-  pageKey: "overview" | "about-sgds" | "design" | "develop";
+  pageKey: "overview" | "about-sgds" | "design" | "develop" | "content";
 }>();
+
+const { page: vitePressPage } = useData();
+const mobileSideNavOpen = ref(false);
 
 const page = props.pageKey === "design" ? designTabs[0].page : getStartedPages[props.pageKey];
 
-const isCurrentNavGroup = (label: string) => {
-  if (props.pageKey === "design") return label === "Design";
-  if (props.pageKey === "develop") return label === "Develop";
-  if (props.pageKey === "about-sgds") return label === "About SGDS";
-  return false;
-};
+const headerLinks = computed(() =>
+  page.headerLinks?.map((link) => ({
+    ...link,
+    iconSrc: `/brands/${link.label.toLowerCase()}.svg`,
+  })),
+);
+
+const pageHeaderDescription = computed(() =>
+  page.description ?? page.intro?.join(" "),
+);
+
+const bodyIntro = computed(() =>
+  page.description ? page.intro : undefined,
+);
+
+const currentPath = computed(() =>
+  `/${vitePressPage.value.relativePath.replace(/\.md$/, "")}`.replace(/\/index$/, "/"),
+);
+
+const isCurrentNavItem = (href: string) => currentPath.value === href;
+
+watch(currentPath, () => {
+  mobileSideNavOpen.value = false;
+});
 
 </script>
 
 <template>
   <div class="sgds-grid">
-    <aside class="sgds-col-4 sgds-col-lg-3 sgds:pt-layout-xs sgds:pr-layout-md sgds:pb-0 sgds:pl-0">
+    <aside class="get-started-desktop-sidenav sgds-col-4 sgds-col-lg-3 sgds:pt-[var(--sgds-padding-xs)] sgds:pr-[var(--sgds-padding-2-xl)] sgds:pb-0 sgds:pl-0">
       <div>
-        <div class="sgds:mb-text-sm sgds:inline-flex sgds:items-center sgds:gap-text-xs">
-          <h5 class="sgds:mb-0">Get Started</h5>
+        <div class="sgds:inline-flex sgds:items-center sgds:gap-[var(--sgds-gap-xs)] sgds:mb-[var(--sgds-margin-sm)]">
+          <h5 class="sgds:mb-0">Get started</h5>
         </div>
         <sgds-sidenav>
           <sgds-sidenav-item
             v-for="item in getStartedNavItems"
             :key="item.label"
-            :active="isCurrentNavGroup(item.label) || null"
+            :active="isCurrentNavItem(item.href) || null"
             :disabled="!item.href || null"
           >
             <a
-              :href="item.href || '#'"
+              :href="item.href ? withBase(item.href) : '#'"
               class="sgds:flex sgds:items-center sgds:gap-text-xs"
               @click="!item.href && $event.preventDefault()"
             >
@@ -53,134 +77,135 @@ const isCurrentNavGroup = (label: string) => {
       </div>
     </aside>
 
-    <main class="sgds-col-4 sgds-col-lg-9 sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-layout-xl">
-      <section class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h1 class="sgds:m-0 sgds:text-display-md sgds:font-bold sgds:leading-2-xl sgds:tracking-tighter">
-          {{ page.title }}
-        </h1>
-        <p
-          v-if="page.description"
-          class="sgds:m-0 sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-tight sgds:text-heading-subtle"
+    <main class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-9">
+      <div class="get-started-mobile-sidenav-trigger sgds:mb-component-md">
+        <sgds-button
+          variant="outline"
+          tone="neutral"
+          @click="mobileSideNavOpen = true"
         >
-          {{ page.description }}
-        </p>
-        <div v-if="page.headerLinks?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-          <div
-            v-for="link in page.headerLinks"
-            :key="link.label"
-            class="sgds:grid sgds:grid-cols-[var(--sgds-dimension-96)_minmax(0,1fr)] sgds:items-center sgds:gap-x-text-xs"
-          >
-            <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-              {{ link.label }}
-            </span>
-            <sgds-link tone="neutral">
-              <a
-                :href="link.href"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="get-started-source-link sgds:inline-flex sgds:items-center sgds:gap-text-2-xs"
-              >
-                <span
-                  aria-hidden="true"
-                  :class="`get-started-brand-icon get-started-brand-icon--${link.label.toLowerCase()}`"
-                ></span>
-                <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ link.path }}</span>
-              </a>
-            </sgds-link>
-          </div>
-        </div>
-        <div v-if="page.intro?.length" class="sgds:flex sgds:flex-col sgds:gap-text-md">
-          <p
-            v-for="paragraph in page.intro"
-            :key="paragraph"
-            class="sgds:m-0 sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-tight sgds:text-heading-subtle"
-          >
-            {{ paragraph }}
-          </p>
-        </div>
-      </section>
+          <sgds-icon slot="leftIcon" name="menu"></sgds-icon>
+          Browse <span class="sgds:font-semibold">Get started</span>
+        </sgds-button>
+      </div>
 
-      <section v-if="page.reasons?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xl">
-        <SectionHeader title="Why use SGDS v3?" />
-        <div class="sgds:flex sgds:flex-col sgds:gap-text-lg">
-          <div v-for="reason in page.reasons" :key="reason.title" class="sgds:flex sgds:flex-col sgds:gap-text-2-xs">
-            <h3 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
-              {{ reason.title }}
-            </h3>
-            <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-              {{ reason.description }}
+      <sgds-drawer
+        class="get-started-mobile-sidenav"
+        placement="start"
+        size="sm"
+        :open="mobileSideNavOpen || null"
+        @sgds-request-close="mobileSideNavOpen = false"
+      >
+        <h2 slot="title" class="sgds:text-heading-md sgds:mb-0">
+          Get started
+        </h2>
+        <sgds-sidenav>
+          <sgds-sidenav-item
+            v-for="item in getStartedNavItems"
+            :key="item.label"
+            :active="isCurrentNavItem(item.href) || null"
+            :disabled="!item.href || null"
+          >
+            <a
+              :href="item.href ? withBase(item.href) : '#'"
+              class="sgds:flex sgds:items-center sgds:gap-text-xs"
+              @click="item.href ? mobileSideNavOpen = false : $event.preventDefault()"
+            >
+              {{ item.label }}
+              <sgds-badge v-if="item.badge" variant="accent" outlined>{{ item.badge }}</sgds-badge>
+            </a>
+          </sgds-sidenav-item>
+        </sgds-sidenav>
+      </sgds-drawer>
+
+      <PageHeader
+        :title="page.title"
+        :description="pageHeaderDescription"
+        :header-links="headerLinks"
+        bottom-gap-class="sgds:mb-layout-md"
+      />
+
+      <div class="sgds:flex sgds:w-full sgds:flex-col sgds:gap-layout-xl">
+        <section v-if="bodyIntro?.length" class="sgds:flex sgds:flex-col sgds:gap-text-md">
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
+            <p
+              v-for="paragraph in bodyIntro"
+              :key="paragraph"
+              class="sgds:m-0 sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-tight sgds:text-heading-subtle"
+            >
+              {{ paragraph }}
             </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section v-if="page.table" class="sgds:flex sgds:flex-col sgds:gap-text-lg">
-        <SectionHeader :title="page.table.title" :description="page.table.description" header-gap="sgds:gap-text-xs" />
-        <sgds-table tableBorder headerBackground responsive="md">
-          <sgds-table-row>
-            <sgds-table-head>Feature</sgds-table-head>
-            <sgds-table-head>What’s changed?</sgds-table-head>
-          </sgds-table-row>
-          <sgds-table-row v-for="row in page.table.rows" :key="row.feature">
-            <sgds-table-cell>
-              <strong>{{ row.feature }}</strong>
-            </sgds-table-cell>
-            <sgds-table-cell>{{ row.change }}</sgds-table-cell>
-          </sgds-table-row>
-        </sgds-table>
-      </section>
-
-      <template v-if="props.pageKey === 'design'">
-        <sgds-tab-group variant="underlined" class="sgds:block sgds:w-full">
-          <sgds-tab
-            v-for="tab in designTabs"
-            :key="tab.key"
-            slot="nav"
-            :panel="tab.key"
-            :active="tab.key === designTabs[0].key || null"
-          >
-            {{ tab.label }}
-          </sgds-tab>
-          <sgds-tab-panel v-for="tab in designTabs" :key="tab.key" :name="tab.key">
-            <div class="sgds:pt-layout-lg">
-              <GetStartedPageSections :page="tab.page" />
+        <section v-if="page.reasons?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xl">
+          <SectionHeader title="Why use SGDS v3?" />
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-lg">
+            <div v-for="reason in page.reasons" :key="reason.title" class="sgds:flex sgds:flex-col sgds:gap-text-2-xs">
+              <h3 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+                {{ reason.title }}
+              </h3>
+              <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                {{ reason.description }}
+              </p>
             </div>
-          </sgds-tab-panel>
-        </sgds-tab-group>
-      </template>
+          </div>
+        </section>
 
-      <GetStartedPageSections v-else :page="page" />
+        <section v-if="page.table" class="sgds:flex sgds:flex-col sgds:gap-text-lg">
+          <SectionHeader :title="page.table.title" :description="page.table.description" header-gap="sgds:gap-text-xs" />
+          <sgds-table tableBorder headerBackground responsive="md">
+            <sgds-table-row>
+              <sgds-table-head>Feature</sgds-table-head>
+              <sgds-table-head>What’s changed?</sgds-table-head>
+            </sgds-table-row>
+            <sgds-table-row v-for="row in page.table.rows" :key="row.feature">
+              <sgds-table-cell>
+                <strong>{{ row.feature }}</strong>
+              </sgds-table-cell>
+              <sgds-table-cell>{{ row.change }}</sgds-table-cell>
+            </sgds-table-row>
+          </sgds-table>
+        </section>
+
+        <template v-if="props.pageKey === 'design'">
+          <sgds-tab-group variant="underlined" class="sgds:block sgds:w-full">
+            <sgds-tab
+              v-for="tab in designTabs"
+              :key="tab.key"
+              slot="nav"
+              :panel="tab.key"
+              :active="tab.key === designTabs[0].key || null"
+            >
+              {{ tab.label }}
+            </sgds-tab>
+            <sgds-tab-panel v-for="tab in designTabs" :key="tab.key" :name="tab.key">
+              <div class="sgds:pt-[var(--sgds-text-gap-2-xl)]">
+                <GetStartedPageSections :page="tab.page" />
+              </div>
+            </sgds-tab-panel>
+          </sgds-tab-group>
+        </template>
+
+        <GetStartedPageSections v-else :page="page" />
+      </div>
     </main>
   </div>
 </template>
 
 <style>
-/* Brand icon masks — reuses the same SVG assets as PageHeader */
-.get-started-brand-icon {
-  display: block;
-  height: var(--sgds-dimension-16);
-  width: var(--sgds-dimension-16);
+/* Match the docs layout sidenav behaviour until SGDS ships an official mobile sidenav pattern. */
+.get-started-mobile-sidenav-trigger {
+  display: none;
 }
 
-.get-started-brand-icon--github {
-  background-color: #181717;
-  mask: url("/brands/github.svg") center / contain no-repeat;
-}
+@media screen and (max-width: 1023px) {
+  .get-started-desktop-sidenav {
+    display: none;
+  }
 
-.get-started-brand-icon--storybook {
-  background-color: #ff4785;
-  mask: url("/brands/storybook.svg") center / contain no-repeat;
-}
-
-.sgds-night-theme .get-started-brand-icon--github,
-.sgds-night-theme .get-started-brand-icon--storybook {
-  background-color: var(--sgds-color-fixed-light);
-}
-
-/* Hide redundant external-link icon on source links */
-.get-started-source-link::after,
-.get-started-source-link .external-link-icon {
-  content: none !important;
-  display: none !important;
+  .get-started-mobile-sidenav-trigger {
+    display: block;
+  }
 }
 </style>

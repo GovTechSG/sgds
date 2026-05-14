@@ -1,28 +1,31 @@
 <script setup lang="ts">
-import {
-  aboutUsMarkup,
-  applicationManagementMarkup,
-  blogMarkup,
-  catalogueMarkup,
-  landingMarkup,
-  reportIssueMarkup,
-} from "../../data/template-markup";
-import { getPatternDoc } from "../../data/pattern-docs";
+import { computed, nextTick, onMounted, ref, watch } from "vue";
+import { pageTemplateMarkupByKey } from "../../data/template-markup";
 
 const props = defineProps<{ templateKey: string }>();
 
-const markupByKey: Record<string, string> = {
-  "about-us": aboutUsMarkup,
-  "application-management": applicationManagementMarkup,
-  blog: blogMarkup,
-  catalogue: catalogueMarkup,
-  landing: landingMarkup,
-  "report-issue": reportIssueMarkup,
+const markup = computed(() => pageTemplateMarkupByKey[props.templateKey] ?? "");
+const rootRef = ref<HTMLElement | null>(null);
+
+const executeTemplateScripts = async () => {
+  await nextTick();
+  const root = rootRef.value;
+  if (!root) return;
+
+  root.querySelectorAll("script").forEach((oldScript) => {
+    const script = document.createElement("script");
+    Array.from(oldScript.attributes).forEach((attribute) => {
+      script.setAttribute(attribute.name, attribute.value);
+    });
+    script.textContent = oldScript.textContent;
+    oldScript.replaceWith(script);
+  });
 };
 
-const markup = markupByKey[props.templateKey] ?? getPatternDoc(props.templateKey)?.demos[0]?.markup ?? "";
+onMounted(executeTemplateScripts);
+watch(() => props.templateKey, executeTemplateScripts);
 </script>
 
 <template>
-  <div v-html="markup"></div>
+  <div ref="rootRef" v-html="markup"></div>
 </template>

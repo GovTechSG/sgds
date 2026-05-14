@@ -1,6 +1,6 @@
 ---
 layout: bare
-title: Paired only
+title: Paired Only
 ---
 
 <script setup>

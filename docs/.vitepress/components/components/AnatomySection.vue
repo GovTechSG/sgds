@@ -1025,7 +1025,7 @@ onBeforeUnmount(() => {
   <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xl)]">
     <div
       :class="[
-        'sgds:flex sgds:flex-col sgds:gap-component-md sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-xl',
+        'sgds:flex sgds:flex-col sgds:gap-component-md sgds:bg-alternate sgds:border sgds:border-muted sgds:rounded-xl',
         isSystemBannerAnatomy ? 'sgds:px-2xs sgds:py-2xs' : 'sgds:py-component-xs',
         isSystemBannerAnatomy ? '' : isSidebarAnatomy ? 'sgds:px-xs' : isSidenavAnatomy ? 'sgds:px-2xs' : 'sgds:px-component-xs',
       ]"

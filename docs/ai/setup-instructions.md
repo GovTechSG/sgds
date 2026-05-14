@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Setup instructions
-description: SGDS skills are knowledge packs that teach AI assistants how to use the design system correctly.
+description: SGDS skills are instruction files that give compatible AI coding tools clearer design system context.
 headerAlert:
   description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
   variant: danger
@@ -16,9 +16,9 @@ import AiWorkflowPaths from "../.vitepress/components/ai/AiWorkflowPaths.vue";
 
 ## Setup instructions
 
-If you've ever asked an AI assistant to help you build something, you've probably gotten code that almost works — wrong component names, made-up class names, outdated patterns.
+If you have ever asked an AI assistant to help you build something, you may have received code that almost works: wrong component names, made-up class names, or outdated patterns.
 
-**Skills fix that.** They are a set of knowledge files you install once into your project. Your AI assistant reads them automatically and learns exactly how SGDS works — the right components, the right tokens, the right patterns.
+**Skills help with that.** They are a set of instruction files you install into your project. Compatible AI coding tools can read them for clearer SGDS context, including the right components, tokens, utilities, and patterns.
 
 Once installed, you can ask things like:
 
@@ -28,15 +28,15 @@ Once installed, you can ask things like:
   <div class="example-prompt">💬 "How do I prevent a modal from closing when clicking the background?"</div>
 </div>
 
-And it will just work — no guessing, no wrong names, no hallucinations.
+The assistant still needs human review, but it starts with SGDS-specific context instead of relying on generic web examples.
 
-Works with **GitHub Copilot**, **Claude Code**, **Cursor**, **Windsurf**, and other AI coding tools.
+Use these skills with compatible AI coding tools that can read local agent skill files.
 
 <AiSkillsSetupSteps />
 
 <h2 class="sgds:text-4 sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Available skills</h2>
 
-Each skill covers a different area of SGDS. You don't need to remember what's in them — your AI reads them for you.
+Each skill covers a different area of SGDS. You do not need to remember what is in them. The assistant can read the relevant skill when the task calls for it.
 
 <SkillsTable />
 

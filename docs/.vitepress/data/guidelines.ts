@@ -19,10 +19,10 @@ export const guidelines: GuidelineItem[] = [
   {
     id: "content-guidelines",
     title: "Content guidance",
-    url: "/guidelines/overview",
+    url: "/guidelines/content-guidance",
     image: "/guidelines/coming-soon-preview.svg",
-    phase: 2,
-    status: "draft",
+    phase: 1,
+    status: "stable",
   },
   {
     id: "interaction-guidelines",

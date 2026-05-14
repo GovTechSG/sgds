@@ -1,6 +1,6 @@
 ---
 layout: bare
-title: Basic center
+title: Basic Center
 ---
 
 <script setup>

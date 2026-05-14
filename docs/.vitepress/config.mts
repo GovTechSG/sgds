@@ -3,11 +3,42 @@ import { withSidebar } from "vitepress-sidebar";
 import tailwindcss from "@tailwindcss/vite";
 import { fileSort } from "./data/file-management";
 import { foundationsSidebar } from "./data/foundations-sidebar";
+import { blocksSidebar } from "./data/blocks-sidebar";
 
 const vitePressConfig = {
   title: "Singapore Government Design System",
   description: "Unifying Government through Design and Code.",
   cleanUrls: true,
+  markdown: {
+    anchor: {
+      permalink: (slug, _, state, idx) => {
+        if (state.tokens[idx]?.tag !== "h2") return;
+
+        const title =
+          state.tokens[idx + 1]?.children
+            ?.filter((token) => ["text", "code_inline"].includes(token.type))
+            .reduce((acc, token) => acc + token.content, "")
+            .trim() || "";
+        const linkTokens = [
+          Object.assign(new state.Token("text", "", 0), { content: " " }),
+          Object.assign(new state.Token("link_open", "a", 1), {
+            attrs: [
+              ["class", "header-anchor"],
+              ["href", `#${slug}`],
+              ["aria-label", `Permalink to “${title}”`],
+            ],
+          }),
+          Object.assign(new state.Token("html_inline", "", 0), {
+            content: "&#8203;",
+            meta: { isPermalinkSymbol: true },
+          }),
+          new state.Token("link_close", "a", -1),
+        ];
+
+        state.tokens[idx + 1].children?.push(...linkTokens);
+      },
+    },
+  },
   head: [
     ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
     [
@@ -133,8 +164,7 @@ config.themeConfig.sidebar["/templates/"] = {
   items: [{ text: "Overview", link: "/templates/" }],
 };
 config.themeConfig.sidebar["/blocks/"] = {
-  base: "/blocks/",
-  items: [{ text: "Overview", link: "/blocks/" }],
+  ...blocksSidebar,
 };
 config.themeConfig.sidebar["/guidelines/"] = {
   base: "/guidelines/",

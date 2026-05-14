@@ -39,12 +39,60 @@ const activeNote = computed(() =>
     : activeOption.value?.note,
 );
 
+const ignoredMarkupAttributes = new Set([
+  "aria-hidden",
+  "aria-label",
+  "class",
+  "data-drawer-trigger",
+  "href",
+  "id",
+  "rel",
+  "role",
+  "slot",
+  "style",
+  "target",
+]);
+
+const configurationCodeTerms = computed(() => {
+  const terms = new Set<string>();
+  const tagPattern = /<sgds-[\w-]+([^>]*)>/g;
+  const attributePattern = /(?:^|\s)([A-Za-z_:][\w:.-]*)(?:=(?:"[^"]*"|'[^']*'|[^\s>]+))?/g;
+
+  props.demo.options.forEach((option) => {
+    option.markup.replace(tagPattern, (_, attributes: string) => {
+      let attributeMatch: RegExpExecArray | null;
+      while ((attributeMatch = attributePattern.exec(attributes)) !== null) {
+        const attributeName = attributeMatch[1];
+        if (
+          attributeName &&
+          !ignoredMarkupAttributes.has(attributeName) &&
+          !attributeName.startsWith("data-") &&
+          !attributeName.startsWith("aria-")
+        ) {
+          terms.add(attributeName);
+        }
+      }
+
+      return "";
+    });
+  });
+
+  return Array.from(terms).sort((current, next) => next.length - current.length);
+});
+
 const isWidePreview = computed(() =>
   activeOption.value?.markup.includes("sgds-footer") ||
   activeOption.value?.markup.includes("portal-masthead-width-demo") ||
+  activeOption.value?.markup.includes("portal-mainnav-width-demo") ||
+  activeOption.value?.markup.includes("portal-system-banner-width-demo") ||
+  activeOption.value?.markup.includes("portal-demo-sidebar-open") ||
   activeOption.value?.markup.includes("portal-modal-preview-xl") ||
   activeOption.value?.markup.includes("portal-modal-preview-fullscreen") ||
   false,
+);
+
+const isFullscreenModalPreview = computed(() =>
+  activeOption.value?.markup.includes("portal-modal-preview-fullscreen") ?? false,
 );
 
 const renderMarkup = (markup: string) => {
@@ -59,7 +107,7 @@ const renderMarkup = (markup: string) => {
       `<div class="portal-demo-overlay">
         <div class="portal-demo-drawer-scrim" aria-hidden="true"></div>
         <div class="sgds:absolute sgds:left-1/2 sgds:top-1/2 sgds:z-[1] sgds:-translate-x-1/2 sgds:-translate-y-1/2">
-          <sgds-button data-drawer-trigger>Open drawer</sgds-button>
+          <sgds-button data-drawer-trigger>Click to open drawer demo</sgds-button>
         </div>`,
     );
 };
@@ -251,6 +299,75 @@ const setupOverflowMenuDemos = async () => {
   }
 };
 
+const setupDropdownDemos = async () => {
+  await nextTick();
+  await customElements.whenDefined("sgds-dropdown");
+
+  const root = rootRef.value;
+  if (!root) return;
+
+  const dropdowns = Array.from(
+    root.querySelectorAll(".portal-demo-dropdown-active") as NodeListOf<HTMLElement & {
+      showMenu?: () => Promise<void> | void;
+      hideMenu?: (isOutside?: boolean) => void;
+      menuIsOpen?: boolean;
+      updateComplete?: Promise<unknown>;
+      _handleClickOutOfElement?: (e: Event) => void;
+      _handleCloseMenu?: () => void;
+      noFlip?: boolean;
+      drop?: string;
+    }>,
+  );
+
+  for (const dropdown of dropdowns) {
+    await dropdown.updateComplete;
+    injectShadowStyles(
+      dropdown,
+      "dropdown-standalone-active-demo",
+      `:host {
+         display: inline-block !important;
+         pointer-events: none !important;
+       }
+       .dropdown {
+         align-items: flex-start !important;
+         flex-direction: column !important;
+         gap: var(--sgds-gap-2-xs) !important;
+       }
+       .toggler-container {
+         display: inline-flex !important;
+       }
+       .dropdown-menu {
+         display: block !important;
+         left: auto !important;
+         max-height: none !important;
+         min-width: var(--sgds-dimension-280) !important;
+         position: relative !important;
+         top: auto !important;
+         transform: none !important;
+         z-index: auto !important;
+       }`,
+    );
+    if (dropdown._handleClickOutOfElement) {
+      document.removeEventListener("click", dropdown._handleClickOutOfElement);
+    }
+    if (dropdown._handleCloseMenu) {
+      dropdown.removeEventListener("sgds-hide", dropdown._handleCloseMenu as EventListener);
+    }
+    dropdown.noFlip = true;
+    dropdown.drop = "down";
+    dropdown.hideMenu = () => {};
+    const open = async () => {
+      if (typeof dropdown.showMenu === "function" && !dropdown.menuIsOpen) {
+        try { await dropdown.showMenu(); } catch { /* noop */ }
+      }
+    };
+    await open();
+    dropdown.addEventListener("sgds-after-hide", () => {
+      void open();
+    });
+  }
+};
+
 const setupSidebarDemos = async () => {
   await nextTick();
   await customElements.whenDefined("sgds-sidebar");
@@ -335,20 +452,107 @@ const setupStepperDemos = async () => {
   });
 };
 
+const setupTextareaDemos = async () => {
+  await nextTick();
+  await customElements.whenDefined("sgds-textarea");
+
+  const root = rootRef.value;
+  if (!root) return;
+
+  for (const el of root.querySelectorAll<HTMLElement & {
+    resize?: string;
+    updateComplete?: Promise<unknown>;
+  }>("sgds-textarea.portal-textarea-api-demo")) {
+    await el.updateComplete;
+    injectShadowStyles(
+      el,
+      "textarea-api-demo",
+      `:host {
+         display: block !important;
+         width: var(--sgds-dimension-320) !important;
+       }
+       .form-control-container {
+         width: 100% !important;
+       }
+       textarea.form-control-group {
+         box-sizing: border-box !important;
+         width: 100% !important;
+       }
+       textarea.form-control-group.textarea-resize-none,
+       textarea.form-control-group.textarea-resize-vertical {
+         height: auto !important;
+       }`,
+    );
+
+    const textarea = el.shadowRoot?.querySelector("textarea.form-control-group") as HTMLTextAreaElement | null;
+    if (!textarea || textarea.dataset.portalResizeReady === "true") continue;
+
+    textarea.dataset.portalResizeReady = "true";
+
+    const getResizeMode = () => (el.getAttribute("resize") || el.resize || "vertical").toLowerCase();
+    const isInResizeGrip = (event: PointerEvent) => {
+      const rect = textarea.getBoundingClientRect();
+      return event.clientY >= rect.bottom - 18 && event.clientX >= rect.right - 28;
+    };
+
+    textarea.addEventListener("pointermove", (event) => {
+      textarea.style.cursor = getResizeMode() === "vertical" && isInResizeGrip(event)
+        ? "ns-resize"
+        : "";
+    });
+
+    textarea.addEventListener("pointerleave", () => {
+      textarea.style.cursor = "";
+    });
+
+    textarea.addEventListener("pointerdown", (event) => {
+      if (getResizeMode() !== "vertical" || !isInResizeGrip(event)) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const startY = event.clientY;
+      const startHeight = textarea.getBoundingClientRect().height;
+      const minHeight = 136;
+      const maxHeight = 320;
+
+      const onPointerMove = (moveEvent: PointerEvent) => {
+        const nextHeight = Math.min(
+          maxHeight,
+          Math.max(minHeight, startHeight + moveEvent.clientY - startY),
+        );
+        textarea.style.setProperty("height", `${nextHeight}px`, "important");
+      };
+
+      const onPointerUp = () => {
+        window.removeEventListener("pointermove", onPointerMove);
+        textarea.style.cursor = "";
+      };
+
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerup", onPointerUp, { once: true });
+    });
+  }
+};
+
 onMounted(() => {
   void applyStateEffects();
   void setupDrawerDemos();
+  void setupDropdownDemos();
   void setupOverflowMenuDemos();
   void setupSidebarDemos();
   void setupStepperDemos();
+  void setupTextareaDemos();
 });
 
 watch(activeValue, () => {
   void applyStateEffects();
   void setupDrawerDemos();
+  void setupDropdownDemos();
   void setupOverflowMenuDemos();
   void setupSidebarDemos();
   void setupStepperDemos();
+  void setupTextareaDemos();
 });
 </script>
 
@@ -358,7 +562,7 @@ watch(activeValue, () => {
       <component :is="demo.titleTag || 'h3'" class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ demo.title }}</component>
       <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
         <template
-          v-for="(part, index) in textParts(demo.description)"
+          v-for="(part, index) in textParts(demo.description, configurationCodeTerms)"
           :key="`${part.text}-${index}`"
         >
           <CodeToken v-if="part.isCode" :label="part.text" />
@@ -367,7 +571,10 @@ watch(activeValue, () => {
       </p>
     </div>
 
-    <div class="interactive-demo sgds:flex sgds:flex-col sgds:min-h-[var(--sgds-dimension-320)] sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-xs sgds:py-component-xs sgds:gap-component-md">
+    <div
+      class="interactive-demo sgds:flex sgds:flex-col sgds:min-h-[var(--sgds-dimension-320)] sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-xs sgds:py-component-xs sgds:gap-component-md"
+      :class="{ 'interactive-demo--fullscreen-modal': isFullscreenModalPreview }"
+    >
       <CardContentSlotsDemo v-if="demo.interactionMode === 'content-slots'" :demo="demo" />
       <template v-else>
         <!-- Select variant: rendered when option count is too high for a
@@ -423,12 +630,16 @@ watch(activeValue, () => {
           <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
             <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
               <div class="sgds:w-full sgds:mx-auto sgds:max-w-[var(--sgds-dimension-768)]">
-                <div class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="renderMarkup(activeMarkup)"></div>
+                <div
+                  :key="activeValue"
+                  class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
+                  v-html="renderMarkup(activeMarkup)"
+                ></div>
               </div>
             </div>
             <p v-if="activeDescription" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               <template
-                v-for="(part, index) in textParts(activeDescription)"
+                v-for="(part, index) in textParts(activeDescription, configurationCodeTerms)"
                 :key="`${part.text}-${index}`"
               >
                 <CodeToken v-if="part.isCode" :label="part.text" />
@@ -437,7 +648,7 @@ watch(activeValue, () => {
             </p>
             <p v-if="activeNote" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               <template
-                v-for="(part, index) in textParts(activeNote)"
+                v-for="(part, index) in textParts(activeNote, configurationCodeTerms)"
                 :key="`${part.text}-${index}`"
               >
                 <CodeToken v-if="part.isCode" :label="part.text" />
@@ -446,46 +657,50 @@ watch(activeValue, () => {
             </p>
           </div>
         </div>
-        <div
-          v-else
-          v-for="opt in demo.options"
-          v-show="opt.value === activeValue"
-          :key="opt.value"
-          :data-state-effect="opt.stateEffect"
-          class="sgds:flex sgds:flex-1"
-          role="tabpanel"
-        >
-          <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
-            <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
-              <div
-                :class="[
-                  'sgds:w-full sgds:mx-auto',
-                  isWidePreview ? 'sgds:max-w-[var(--sgds-dimension-1312)]' : 'sgds:max-w-[var(--sgds-dimension-768)]',
-                ]"
-              >
-                <div class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="renderMarkup(opt.markup)"></div>
+        <template v-else>
+          <div
+            v-if="activeOption"
+            :key="activeOption.value"
+            :data-state-effect="activeOption.stateEffect"
+            class="sgds:flex sgds:flex-1"
+            role="tabpanel"
+          >
+            <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
+              <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
+                <div
+                  :class="[
+                    'sgds:w-full sgds:mx-auto',
+                    isWidePreview ? 'sgds:max-w-[var(--sgds-dimension-1312)]' : 'sgds:max-w-[var(--sgds-dimension-768)]',
+                  ]"
+                >
+                  <div
+                    :key="activeOption.value"
+                    class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
+                    v-html="renderMarkup(activeOption.markup)"
+                  ></div>
+                </div>
               </div>
+              <p v-if="activeOption.description" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                <template
+                  v-for="(part, index) in textParts(activeOption.description, configurationCodeTerms)"
+                  :key="`${part.text}-${index}`"
+                >
+                  <CodeToken v-if="part.isCode" :label="part.text" />
+                  <template v-else>{{ part.text }}</template>
+                </template>
+              </p>
+              <p v-if="activeOption.note" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                <template
+                  v-for="(part, index) in textParts(activeOption.note, configurationCodeTerms)"
+                  :key="`${part.text}-${index}`"
+                >
+                  <CodeToken v-if="part.isCode" :label="part.text" />
+                  <template v-else>{{ part.text }}</template>
+                </template>
+              </p>
             </div>
-            <p v-if="opt.description" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-              <template
-                v-for="(part, index) in textParts(opt.description)"
-                :key="`${part.text}-${index}`"
-              >
-                <CodeToken v-if="part.isCode" :label="part.text" />
-                <template v-else>{{ part.text }}</template>
-              </template>
-            </p>
-            <p v-if="opt.note" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-              <template
-                v-for="(part, index) in textParts(opt.note)"
-                :key="`${part.text}-${index}`"
-              >
-                <CodeToken v-if="part.isCode" :label="part.text" />
-                <template v-else>{{ part.text }}</template>
-              </template>
-            </p>
           </div>
-        </div>
+        </template>
       </template>
     </div>
   </article>
@@ -494,6 +709,21 @@ watch(activeValue, () => {
 <style>
 .interactive-demo {
   background: var(--sgds-bg-alternate);
+}
+
+/* Fullscreen modal markup is injected through v-html, so this preview needs global selectors. */
+.interactive-demo--fullscreen-modal {
+  background: var(--sgds-surface-default);
+}
+
+.interactive-demo--fullscreen-modal .behaviour-demo-markup,
+.interactive-demo--fullscreen-modal .portal-modal-preview,
+.interactive-demo--fullscreen-modal .portal-modal-panel {
+  min-height: 100%;
+}
+
+.interactive-demo--fullscreen-modal .portal-modal-preview-fullscreen .portal-modal-panel {
+  border-radius: 0;
 }
 
 .portal-demo-drawer-scrim {
@@ -546,6 +776,22 @@ watch(activeValue, () => {
   width: var(--sgds-dimension-320);
 }
 
+.behaviour-demo-markup > sgds-textarea {
+  display: block;
+  width: var(--sgds-dimension-320);
+}
+
+.behaviour-demo-markup > sgds-file-upload {
+  display: block;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+}
+
+.behaviour-demo-markup > sgds-file-upload.portal-demo-file-upload-drag {
+  inline-size: 100%;
+  min-inline-size: min(var(--sgds-dimension-320), 100%);
+}
+
 .behaviour-demo-markup > sgds-progress-bar {
   display: block;
   width: var(--sgds-dimension-480);
@@ -566,6 +812,14 @@ watch(activeValue, () => {
   inline-size: calc(var(--sgds-dimension-688) + var(--sgds-dimension-96));
   transform: scale(0.86);
   transform-origin: top center;
+}
+
+.portal-mainnav-width-demo {
+  --sgds-mainnav-max-width: var(--sgds-dimension-480);
+}
+
+.portal-system-banner-width-demo {
+  --sgds-mainnav-max-width: var(--sgds-dimension-480);
 }
 
 .behaviour-demo-markup sgds-alert-link {

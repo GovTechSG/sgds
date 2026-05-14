@@ -1,6 +1,6 @@
 ---
 layout: bare
-title: Form fields checkbox
+title: Form Fields Checkbox
 ---
 
 <script setup>

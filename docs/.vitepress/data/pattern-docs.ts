@@ -4,8 +4,9 @@ import {
   applicationManagementMarkup,
   blogMarkup,
   catalogueMarkup,
+  formPageMarkup,
   landingMarkup,
-  reportIssueMarkup,
+  multiStepFormPageMarkup,
 } from "./template-markup";
 import {
   cardsCards3Markup,
@@ -106,6 +107,34 @@ type PatternDoc = {
   categoryLabel?: string;
 };
 
+type BlockVariantDocInput = {
+  title: string;
+  categoryLabel: string;
+  markup: string;
+  usedComponents: string[];
+  description: string;
+  whenToUse: string;
+  whenNotToUse?: string;
+};
+
+const createBlockVariantDoc = ({
+  title,
+  categoryLabel,
+  markup,
+  usedComponents,
+  description,
+  whenToUse,
+  whenNotToUse,
+}: BlockVariantDocInput): PatternDoc => ({
+  title,
+  group: "block templates",
+  categoryLabel,
+  usedComponents,
+  whenToUse: [whenToUse],
+  whenNotToUse: whenNotToUse ? [whenNotToUse] : undefined,
+  demos: [{ title, description, markup }],
+});
+
 const formBlockComponents = [
   "sgds-input",
   "sgds-textarea",
@@ -122,21 +151,92 @@ const formBlockComponents = [
 ];
 
 export const blockTemplateCategoryOrder: string[] = [
-  "Page intro",
-  "Content sections",
-  "Conversion",
-  "Search and browse",
-  "Form layouts",
-  "Form sections",
-  "Form fields",
-  "Form flows",
+  "Cards",
+  "Call to action",
+  "Feature",
+  "Filter",
+  "Form",
+  "Header",
+  "Hero",
+  "Stats",
+];
+
+export const blockTemplateRecommendedOrder: string[] = [
+  "cards-3-per-column",
+  "cards-4-per-column",
+  "cta-contained-primary-center",
+  "cta-contained-primary",
+  "cta-contained-raised-center",
+  "cta-contained-raised",
+  "cta-full-bleed-alternate-center",
+  "cta-full-bleed-alternate",
+  "cta-full-bleed-primary-center",
+  "cta-full-bleed-primary",
+  "feature-image-left-4-8",
+  "feature-image-right-4-8",
+  "feature-component-left-6-6",
+  "feature-component-right-6-6",
+  "feature-image-left-6-6",
+  "feature-image-right-6-6",
+  "feature-image-left-8-4",
+  "feature-image-right-8-4",
+  "feature-cards-below",
+  "feature-no-image-center",
+  "feature-no-image-left",
+  "filter-checkboxes",
+  "form-all-types",
+  "form-basic-center",
+  "form-basic-left",
+  "form-basic-right",
+  "form-fields-checkbox",
+  "form-fields-dates-quantities",
+  "form-fields-file-upload",
+  "form-fields-radio",
+  "form-fields-selects",
+  "form-fields-textarea",
+  "form-multi-step",
+  "form-full-width-only",
+  "form-paired-only",
+  "form-sections-single",
+  "form-sections-three",
+  "form-sections-two",
+  "header-page-header-with-breadcrumb",
+  "header-page-header",
+  "hero-background-image-light",
+  "hero-background-image",
+  "hero-center",
+  "hero-fullbleed",
+  "hero-image",
+  "hero-basic",
+  "stats-3-statistics",
+  "stats-4-statistics",
+  "stats-5-statistics",
+  "stats-right-6-column",
+  "stats-right-8-columns",
+];
+
+export const pageTemplateCategoryOrder: string[] = [
+  "Landing pages",
+  "Content pages",
+  "Browse and manage",
+  "Forms",
+];
+
+export const pageTemplateRecommendedOrder: string[] = [
+  "landing",
+  "about-us",
+  "blog",
+  "catalogue",
+  "application-management",
+  "form-page",
+  "multi-step-form",
 ];
 
 const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-all-types": {
     title: "All types",
     group: "block templates",
-    categoryLabel: "Form flows",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["When you need a complete reference form that shows the available SGDS field types together."],
     whenNotToUse: ["When a page needs a focused form with only the fields required for the task."],
@@ -145,7 +245,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-basic-center": {
     title: "Basic center",
     group: "block templates",
-    categoryLabel: "Form layouts",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["For short, single-section forms that should sit prominently in the centre of the page."],
     whenNotToUse: ["For long forms or forms that need supporting content beside the fields."],
@@ -154,7 +254,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-basic-left": {
     title: "Basic left",
     group: "block templates",
-    categoryLabel: "Form layouts",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["For simple forms that should align with the page container and reading flow."],
     whenNotToUse: ["When the form needs strong standalone emphasis in the centre of the page."],
@@ -163,7 +263,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-basic-right": {
     title: "Basic right",
     group: "block templates",
-    categoryLabel: "Form layouts",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["For layouts where the form sits beside explanatory content or supporting media."],
     whenNotToUse: ["When the form is the only major content on the page."],
@@ -172,7 +272,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-fields-checkbox": {
     title: "Form fields checkbox",
     group: "block templates",
-    categoryLabel: "Form fields",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["When users can select one or more options from a visible set."],
     whenNotToUse: ["When the user must choose exactly one option — use radio fields instead."],
@@ -181,7 +281,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-fields-dates-quantities": {
     title: "Form fields dates quantities",
     group: "block templates",
-    categoryLabel: "Form fields",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["When a form needs date or quantity controls with SGDS field styling."],
     whenNotToUse: ["When plain text entry would be clearer than a specialised control."],
@@ -190,7 +290,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-fields-file-upload": {
     title: "Form fields file upload",
     group: "block templates",
-    categoryLabel: "Form fields",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["When users need to attach files or supporting documents to a form."],
     whenNotToUse: ["When uploaded files are not required to complete the user task."],
@@ -199,7 +299,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-fields-radio": {
     title: "Form fields radio",
     group: "block templates",
-    categoryLabel: "Form fields",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["When users must choose exactly one option from a visible set."],
     whenNotToUse: ["When users can choose multiple options — use checkboxes instead."],
@@ -208,7 +308,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-fields-selects": {
     title: "Form fields selects",
     group: "block templates",
-    categoryLabel: "Form fields",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["When users choose from a longer list of predefined options."],
     whenNotToUse: ["When there are only a few options that should stay visible — use radio fields instead."],
@@ -217,7 +317,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-fields-textarea": {
     title: "Form fields textarea",
     group: "block templates",
-    categoryLabel: "Form fields",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["When users need to enter longer free-text responses."],
     whenNotToUse: ["When the response should be short and structured — use an input instead."],
@@ -226,7 +326,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-multi-step": {
     title: "Form multi-step",
     group: "block templates",
-    categoryLabel: "Form flows",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["For transactional forms that are easier to complete as a step-by-step flow."],
     whenNotToUse: ["For short forms that fit comfortably on one page."],
@@ -235,7 +335,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-full-width-only": {
     title: "Full-width only",
     group: "block templates",
-    categoryLabel: "Form layouts",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["When every field needs the full form width for readability."],
     whenNotToUse: ["When related short fields can be paired to reduce scanning distance."],
@@ -244,7 +344,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-paired-only": {
     title: "Paired only",
     group: "block templates",
-    categoryLabel: "Form layouts",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["When related short fields work better side-by-side on wider viewports."],
     whenNotToUse: ["When fields need long labels, hints, or validation messages."],
@@ -253,7 +353,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-sections-single": {
     title: "Sections single",
     group: "block templates",
-    categoryLabel: "Form sections",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["When a form has one clear group of related fields."],
     whenNotToUse: ["When fields belong to multiple topics that need separate headings."],
@@ -262,7 +362,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-sections-three": {
     title: "Sections three",
     group: "block templates",
-    categoryLabel: "Form sections",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["For longer forms that need three labelled sections to make scanning easier."],
     whenNotToUse: ["When one or two sections are enough to describe the task."],
@@ -271,7 +371,7 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   "form-sections-two": {
     title: "Sections two",
     group: "block templates",
-    categoryLabel: "Form sections",
+    categoryLabel: "Form",
     usedComponents: formBlockComponents,
     whenToUse: ["When a form has two clear groups of related fields."],
     whenNotToUse: ["When every field belongs to the same topic."],
@@ -279,11 +379,303 @@ const formBlockVariantDocs: Record<string, PatternDoc> = {
   },
 };
 
+const cardsBlockComponents = ["sgds-card", "sgds-badge", "sgds-link", "sgds-icon"];
+const ctaBlockComponents = ["sgds-button"];
+const featureBlockComponents = ["sgds-button", "sgds-card", "sgds-icon"];
+const filterBlockComponents = ["sgds-checkbox", "sgds-checkbox-group", "sgds-link"];
+const headerBlockComponents = ["sgds-breadcrumb", "sgds-button", "sgds-icon"];
+const heroBlockComponents = ["sgds-button", "sgds-icon"];
+const statsBlockComponents = ["sgds-icon"];
+
+const blockVariantDocs: Record<string, PatternDoc> = {
+  "cards-3-per-column": createBlockVariantDoc({
+    title: "3 per column",
+    categoryLabel: "Cards",
+    markup: cardsCards3Markup,
+    usedComponents: cardsBlockComponents,
+    description: "3-column card grid with section header and linked cards.",
+    whenToUse: "When users need to scan a medium-sized set of cards in rows of three.",
+  }),
+  "cards-4-per-column": createBlockVariantDoc({
+    title: "4 per column",
+    categoryLabel: "Cards",
+    markup: cardsCards4Markup,
+    usedComponents: cardsBlockComponents,
+    description: "4-column card grid for denser browsing layouts on wider viewports.",
+    whenToUse: "When users need to scan a larger set of cards with less vertical scrolling.",
+  }),
+  "cta-contained-primary-center": createBlockVariantDoc({
+    title: "Contained primary center",
+    categoryLabel: "Call to action",
+    markup: ctaContainedPrimaryCenterMarkup,
+    usedComponents: ctaBlockComponents,
+    description: "Contained CTA on a primary surface with centered content.",
+    whenToUse: "When a primary action needs strong emphasis inside the page container.",
+  }),
+  "cta-contained-primary": createBlockVariantDoc({
+    title: "Contained primary",
+    categoryLabel: "Call to action",
+    markup: ctaContainedPrimaryMarkup,
+    usedComponents: ctaBlockComponents,
+    description: "Contained CTA on a primary surface with left-aligned content.",
+    whenToUse: "When a primary action should sit within the normal page reading flow.",
+  }),
+  "cta-contained-raised-center": createBlockVariantDoc({
+    title: "Contained raised center",
+    categoryLabel: "Call to action",
+    markup: ctaContainedRaisedCenterMarkup,
+    usedComponents: ctaBlockComponents,
+    description: "Contained CTA on a raised surface with centered content.",
+    whenToUse: "When a CTA needs moderate emphasis without using the primary surface.",
+  }),
+  "cta-contained-raised": createBlockVariantDoc({
+    title: "Contained raised",
+    categoryLabel: "Call to action",
+    markup: ctaContainedRaisedMarkup,
+    usedComponents: ctaBlockComponents,
+    description: "Contained CTA on a raised surface with left-aligned content.",
+    whenToUse: "When a CTA should support a content section without dominating it.",
+  }),
+  "cta-full-bleed-alternate-center": createBlockVariantDoc({
+    title: "Full bleed alternate center",
+    categoryLabel: "Call to action",
+    markup: ctaFullbleedAlternateCenterMarkup,
+    usedComponents: ctaBlockComponents,
+    description: "Full-bleed alternate CTA with centered content.",
+    whenToUse: "When a lower-emphasis CTA should span the full viewport width.",
+  }),
+  "cta-full-bleed-alternate": createBlockVariantDoc({
+    title: "Full bleed alternate",
+    categoryLabel: "Call to action",
+    markup: ctaFullbleedAlternateMarkup,
+    usedComponents: ctaBlockComponents,
+    description: "Full-bleed alternate CTA with left-aligned content.",
+    whenToUse: "When a full-width CTA should read as a continuation of the page content.",
+  }),
+  "cta-full-bleed-primary-center": createBlockVariantDoc({
+    title: "Full bleed primary center",
+    categoryLabel: "Call to action",
+    markup: ctaFullbleedPrimaryCenterMarkup,
+    usedComponents: ctaBlockComponents,
+    description: "Full-bleed primary CTA with centered content.",
+    whenToUse: "When the primary action should become a major page moment.",
+  }),
+  "cta-full-bleed-primary": createBlockVariantDoc({
+    title: "Full bleed primary",
+    categoryLabel: "Call to action",
+    markup: ctaFullbleedPrimaryMarkup,
+    usedComponents: ctaBlockComponents,
+    description: "Full-bleed primary CTA with left-aligned content.",
+    whenToUse: "When the primary action should span the full viewport while following the page reading flow.",
+  }),
+  "feature-image-left-4-8": createBlockVariantDoc({
+    title: "Image left 4:8",
+    categoryLabel: "Feature",
+    markup: featureFeature48ImgLeftMarkup,
+    usedComponents: featureBlockComponents,
+    description: "Feature section with image in 4 columns and content in 8 columns.",
+    whenToUse: "When supporting imagery should introduce a wider content area.",
+  }),
+  "feature-image-right-4-8": createBlockVariantDoc({
+    title: "Image right 4:8",
+    categoryLabel: "Feature",
+    markup: featureFeature48ImgRightMarkup,
+    usedComponents: featureBlockComponents,
+    description: "Feature section with content in 8 columns and image in 4 columns.",
+    whenToUse: "When content should lead and supporting imagery should sit to the right.",
+  }),
+  "feature-component-left-6-6": createBlockVariantDoc({
+    title: "Component left 6:6",
+    categoryLabel: "Feature",
+    markup: featureFeature66ComponentLeftMarkup,
+    usedComponents: featureBlockComponents,
+    description: "Balanced feature section with an SGDS component on the left.",
+    whenToUse: "When a live component example should sit beside explanatory content.",
+  }),
+  "feature-component-right-6-6": createBlockVariantDoc({
+    title: "Component right 6:6",
+    categoryLabel: "Feature",
+    markup: featureFeature66ComponentRightMarkup,
+    usedComponents: featureBlockComponents,
+    description: "Balanced feature section with an SGDS component on the right.",
+    whenToUse: "When explanatory content should lead into a component example.",
+  }),
+  "feature-image-left-6-6": createBlockVariantDoc({
+    title: "Image left 6:6",
+    categoryLabel: "Feature",
+    markup: featureFeature66ImgLeftMarkup,
+    usedComponents: featureBlockComponents,
+    description: "Balanced feature section with image on the left.",
+    whenToUse: "When image and content need equal visual weight.",
+  }),
+  "feature-image-right-6-6": createBlockVariantDoc({
+    title: "Image right 6:6",
+    categoryLabel: "Feature",
+    markup: featureFeature66ImgRightMarkup,
+    usedComponents: featureBlockComponents,
+    description: "Balanced feature section with image on the right.",
+    whenToUse: "When content and image need equal visual weight with content first.",
+  }),
+  "feature-image-left-8-4": createBlockVariantDoc({
+    title: "Image left 8:4",
+    categoryLabel: "Feature",
+    markup: featureFeature84ImgLeftMarkup,
+    usedComponents: featureBlockComponents,
+    description: "Feature section with dominant image on the left.",
+    whenToUse: "When imagery should carry most of the visual weight.",
+  }),
+  "feature-image-right-8-4": createBlockVariantDoc({
+    title: "Image right 8:4",
+    categoryLabel: "Feature",
+    markup: featureFeature84ImgRightMarkup,
+    usedComponents: featureBlockComponents,
+    description: "Feature section with dominant image on the right.",
+    whenToUse: "When content should introduce a visually dominant image.",
+  }),
+  "feature-cards-below": createBlockVariantDoc({
+    title: "Cards below",
+    categoryLabel: "Feature",
+    markup: featureFeatureCardsBelowMarkup,
+    usedComponents: featureBlockComponents,
+    description: "Feature section with supporting cards below the heading content.",
+    whenToUse: "When a feature needs supporting points or benefits beneath the main message.",
+  }),
+  "feature-no-image-center": createBlockVariantDoc({
+    title: "No image center",
+    categoryLabel: "Feature",
+    markup: featureFeatureNoImgCenterMarkup,
+    usedComponents: featureBlockComponents,
+    description: "Centered feature section without imagery.",
+    whenToUse: "When the message should stand alone without a visual asset.",
+  }),
+  "feature-no-image-left": createBlockVariantDoc({
+    title: "No image left",
+    categoryLabel: "Feature",
+    markup: featureFeatureNoImgLeftMarkup,
+    usedComponents: featureBlockComponents,
+    description: "Left-aligned feature section without imagery.",
+    whenToUse: "When the message should stay aligned with the surrounding content flow.",
+  }),
+  "filter-checkboxes": createBlockVariantDoc({
+    title: "Filter checkboxes",
+    categoryLabel: "Filter",
+    markup: filterFilterMarkup,
+    usedComponents: filterBlockComponents,
+    description: "Faceted filter panel with grouped checkbox controls.",
+    whenToUse: "When users need to narrow search, catalogue, or list results with multiple facets.",
+  }),
+  "header-page-header-with-breadcrumb": createBlockVariantDoc({
+    title: "Page header with breadcrumb",
+    categoryLabel: "Header",
+    markup: headerPageHeaderBreadcrumbMarkup,
+    usedComponents: headerBlockComponents,
+    description: "Page header with breadcrumb, title, description, and action.",
+    whenToUse: "When a page needs hierarchical context above the title.",
+  }),
+  "header-page-header": createBlockVariantDoc({
+    title: "Page header",
+    categoryLabel: "Header",
+    markup: headerPageHeaderMarkup,
+    usedComponents: headerBlockComponents,
+    description: "Page header with title, description, and action.",
+    whenToUse: "When a page needs a clear title area and primary action.",
+  }),
+  "hero-background-image-light": createBlockVariantDoc({
+    title: "Hero background image light",
+    categoryLabel: "Hero",
+    markup: heroHeroBgImageLightMarkup,
+    usedComponents: heroBlockComponents,
+    description: "Hero with background image and light overlay treatment.",
+    whenToUse: "When a hero needs photographic context while keeping a light visual tone.",
+  }),
+  "hero-background-image": createBlockVariantDoc({
+    title: "Hero background image",
+    categoryLabel: "Hero",
+    markup: heroHeroBgImageMarkup,
+    usedComponents: heroBlockComponents,
+    description: "Hero with background image and dark overlay treatment.",
+    whenToUse: "When a hero needs a strong image-led first impression.",
+  }),
+  "hero-center": createBlockVariantDoc({
+    title: "Hero center",
+    categoryLabel: "Hero",
+    markup: heroHeroCenterMarkup,
+    usedComponents: heroBlockComponents,
+    description: "Centered hero with title, supporting text, and action.",
+    whenToUse: "When a landing section should feel formal and balanced.",
+  }),
+  "hero-fullbleed": createBlockVariantDoc({
+    title: "Hero fullbleed",
+    categoryLabel: "Hero",
+    markup: heroHeroFullbleedMarkup,
+    usedComponents: heroBlockComponents,
+    description: "Hero with content and a full-bleed image treatment.",
+    whenToUse: "When imagery should extend beyond the content container.",
+  }),
+  "hero-image": createBlockVariantDoc({
+    title: "Hero image",
+    categoryLabel: "Hero",
+    markup: heroHeroImageMarkup,
+    usedComponents: heroBlockComponents,
+    description: "Hero with content beside a right-aligned image.",
+    whenToUse: "When the hero needs a clear visual companion without full bleed.",
+  }),
+  "hero-basic": createBlockVariantDoc({
+    title: "Basic hero",
+    categoryLabel: "Hero",
+    markup: heroHeroMarkup,
+    usedComponents: heroBlockComponents,
+    description: "Basic left-aligned hero with title, text, and action.",
+    whenToUse: "When a page needs a simple introduction and primary action.",
+  }),
+  "stats-3-statistics": createBlockVariantDoc({
+    title: "3 statistics",
+    categoryLabel: "Stats",
+    markup: statsStats3Markup,
+    usedComponents: statsBlockComponents,
+    description: "Three side-by-side statistics centred on the page.",
+    whenToUse: "When three metrics are enough to support the page narrative.",
+  }),
+  "stats-4-statistics": createBlockVariantDoc({
+    title: "4 statistics",
+    categoryLabel: "Stats",
+    markup: statsStats4Markup,
+    usedComponents: statsBlockComponents,
+    description: "Four side-by-side statistics for denser numeric summaries.",
+    whenToUse: "When four metrics need equal emphasis.",
+  }),
+  "stats-5-statistics": createBlockVariantDoc({
+    title: "5 statistics",
+    categoryLabel: "Stats",
+    markup: statsStats5Markup,
+    usedComponents: statsBlockComponents,
+    description: "Five-column statistics for wider viewports.",
+    whenToUse: "When a larger metric set needs to stay in one row on desktop.",
+  }),
+  "stats-right-6-column": createBlockVariantDoc({
+    title: "Statistic right 6 column",
+    categoryLabel: "Stats",
+    markup: statsStatsRight6Markup,
+    usedComponents: statsBlockComponents,
+    description: "Right-aligned six-column statistics grouping.",
+    whenToUse: "When metrics should sit as a compact panel alongside content.",
+  }),
+  "stats-right-8-columns": createBlockVariantDoc({
+    title: "Statistic right 8 columns",
+    categoryLabel: "Stats",
+    markup: statsStatsRight8Markup,
+    usedComponents: statsBlockComponents,
+    description: "Right-aligned eight-column statistics grouping.",
+    whenToUse: "When a dense metric group needs more horizontal space.",
+  }),
+};
+
 const patternDocs: Record<string, PatternDoc> = {
   hero: {
     title: "Hero",
     group: "block templates",
-    categoryLabel: "Page intro",
+    categoryLabel: "Hero",
+    hideFromOverview: true,
     usedComponents: ["sgds-button", "sgds-icon"],
     whenToUse: [
       "At the top of a landing page to communicate the primary value proposition",
@@ -305,7 +697,8 @@ const patternDocs: Record<string, PatternDoc> = {
   cards: {
     title: "Cards",
     group: "block templates",
-    categoryLabel: "Content sections",
+    categoryLabel: "Cards",
+    hideFromOverview: true,
     usedComponents: ["sgds-card", "sgds-badge", "sgds-link", "sgds-icon"],
     whenToUse: [
       "To display a collection of items of equal importance",
@@ -324,7 +717,8 @@ const patternDocs: Record<string, PatternDoc> = {
   cta: {
     title: "Call to action",
     group: "block templates",
-    categoryLabel: "Conversion",
+    categoryLabel: "Call to action",
+    hideFromOverview: true,
     usedComponents: ["sgds-button"],
     whenToUse: [
       "To convert visitors at the end of a marketing page",
@@ -349,7 +743,8 @@ const patternDocs: Record<string, PatternDoc> = {
   feature: {
     title: "Feature",
     group: "block templates",
-    categoryLabel: "Content sections",
+    categoryLabel: "Feature",
+    hideFromOverview: true,
     usedComponents: ["sgds-button", "sgds-card", "sgds-icon"],
     whenToUse: [
       "To showcase a product capability or service benefit",
@@ -377,7 +772,8 @@ const patternDocs: Record<string, PatternDoc> = {
   filter: {
     title: "Filter",
     group: "block templates",
-    categoryLabel: "Search and browse",
+    categoryLabel: "Filter",
+    hideFromOverview: true,
     usedComponents: ["sgds-checkbox", "sgds-checkbox-group", "sgds-link"],
     whenToUse: [
       "On catalogue, search, or admin list pages where users narrow down results",
@@ -426,10 +822,12 @@ const patternDocs: Record<string, PatternDoc> = {
     ],
   },
   ...formBlockVariantDocs,
+  ...blockVariantDocs,
   header: {
     title: "Page header",
     group: "block templates",
-    categoryLabel: "Page intro",
+    categoryLabel: "Header",
+    hideFromOverview: true,
     usedComponents: ["sgds-breadcrumb", "sgds-button", "sgds-icon"],
     whenToUse: [
       "At the top of internal-tool pages and content pages alike",
@@ -448,7 +846,8 @@ const patternDocs: Record<string, PatternDoc> = {
   stats: {
     title: "Stats",
     group: "block templates",
-    categoryLabel: "Content sections",
+    categoryLabel: "Stats",
+    hideFromOverview: true,
     usedComponents: ["sgds-icon"],
     whenToUse: [
       "On about pages and reports to highlight quantitative outcomes",
@@ -470,6 +869,7 @@ const patternDocs: Record<string, PatternDoc> = {
   "form-page": {
     title: "Form page",
     group: "page templates",
+    categoryLabel: "Forms",
     usedComponents: ["sgds-input", "sgds-select", "sgds-button", "sgds-breadcrumb"],
     whenToUse: [
       "For single-topic forms where all fields can be shown on one screen",
@@ -483,29 +883,14 @@ const patternDocs: Record<string, PatternDoc> = {
       {
         title: "Default",
         description: "A simple form page with a heading, description, fields, and submission actions.",
-        markup: `<div style="max-width: 600px; padding: 32px;">
-  <h2 style="font-size: var(--sgds-font-size-6); font-weight: var(--sgds-font-weight-semibold); color: var(--sgds-heading-color-default); margin-bottom: 8px;">Contact details</h2>
-  <p style="color: var(--sgds-body-color-subtle); margin-bottom: 32px;">All fields are required unless marked optional.</p>
-  <div style="display: flex; flex-direction: column; gap: 20px;">
-    <sgds-input label="Full name" placeholder="Enter your full name"></sgds-input>
-    <sgds-input label="Email address" type="email" placeholder="email@example.gov.sg"></sgds-input>
-    <sgds-input label="Phone number (optional)" type="tel" placeholder="+65"></sgds-input>
-    <sgds-select label="Agency">
-      <sgds-option value="">Select agency</sgds-option>
-      <sgds-option value="gds">GovTech</sgds-option>
-    </sgds-select>
-  </div>
-  <div style="display: flex; gap: 12px; margin-top: 32px;">
-    <sgds-button variant="primary">Submit</sgds-button>
-    <sgds-button variant="outline">Cancel</sgds-button>
-  </div>
-</div>`,
+        markup: formPageMarkup,
       },
     ],
   },
   "multi-step-form": {
     title: "Multi-step form",
     group: "page templates",
+    categoryLabel: "Forms",
     usedComponents: ["sgds-stepper", "sgds-input", "sgds-button", "sgds-breadcrumb"],
     whenToUse: [
       "When a form has more than 8 fields and benefits from being broken into logical steps",
@@ -519,55 +904,14 @@ const patternDocs: Record<string, PatternDoc> = {
       {
         title: "Default",
         description: "A multi-step form with a stepper indicator, step content, and navigation buttons.",
-        markup: `<div style="max-width: 680px; padding: 32px;">
-  <sgds-stepper data-portal-stepper="default"></sgds-stepper>
-  <div style="margin: 32px 0; padding: 24px; background: var(--sgds-surface-raised); border: 1px solid var(--sgds-border-color-muted); border-radius: 8px;">
-    <h3 style="font-size: var(--sgds-font-size-4); font-weight: var(--sgds-font-weight-semibold); color: var(--sgds-heading-color-default); margin-bottom: 20px;">Personal details</h3>
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      <sgds-input label="Full name"></sgds-input>
-      <sgds-input label="NRIC / FIN" placeholder="S0000000A"></sgds-input>
-    </div>
-  </div>
-  <div style="display: flex; justify-content: space-between;">
-    <sgds-button variant="outline" disabled>Back</sgds-button>
-    <sgds-button variant="primary">Next</sgds-button>
-  </div>
-</div>`,
-      },
-    ],
-  },
-  "report-issue": {
-    title: "Report an issue",
-    group: "page templates",
-    usedComponents: [
-      "sgds-masthead",
-      "sgds-mainnav",
-      "sgds-input",
-      "sgds-textarea",
-      "sgds-file-upload",
-      "sgds-button",
-      "sgds-footer",
-    ],
-    whenToUse: [
-      "For public-facing forms that collect a single issue or report from citizens",
-      "When the form needs file attachments alongside text fields",
-      "For feedback, complaint, or incident-reporting flows that fit on one page",
-    ],
-    whenNotToUse: [
-      "For multi-section data entry — use the multi-step form template instead",
-      "For internal tools where the form lives inside a wider settings layout",
-    ],
-    demos: [
-      {
-        title: "Default",
-        description: "Public report-an-issue form with location, description, and optional photo upload.",
-        markup: reportIssueMarkup,
+        markup: multiStepFormPageMarkup,
       },
     ],
   },
   "application-management": {
     title: "Application management",
     group: "page templates",
+    categoryLabel: "Browse and manage",
     usedComponents: [
       "sgds-masthead",
       "sgds-mainnav",
@@ -599,6 +943,7 @@ const patternDocs: Record<string, PatternDoc> = {
   catalogue: {
     title: "Catalogue",
     group: "page templates",
+    categoryLabel: "Browse and manage",
     usedComponents: [
       "sgds-masthead",
       "sgds-mainnav",
@@ -629,6 +974,7 @@ const patternDocs: Record<string, PatternDoc> = {
   "about-us": {
     title: "About us",
     group: "page templates",
+    categoryLabel: "Content pages",
     usedComponents: [
       "sgds-masthead",
       "sgds-mainnav",
@@ -656,6 +1002,7 @@ const patternDocs: Record<string, PatternDoc> = {
   landing: {
     title: "Landing page",
     group: "page templates",
+    categoryLabel: "Landing pages",
     usedComponents: [
       "sgds-masthead",
       "sgds-mainnav",
@@ -684,6 +1031,7 @@ const patternDocs: Record<string, PatternDoc> = {
   blog: {
     title: "Blog",
     group: "page templates",
+    categoryLabel: "Content pages",
     usedComponents: [
       "sgds-masthead",
       "sgds-mainnav",

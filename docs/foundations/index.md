@@ -17,7 +17,7 @@ const currentPhase = 99
     :key="foundation.id"
     :item="foundation"
     :currentPhase
-    class="sgds-col-4"
+    class="sgds-col-4 sgds-col-sm-4 sgds-col-lg-4"
   >
   </PortalImageCard>
 </div>

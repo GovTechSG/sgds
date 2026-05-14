@@ -26,6 +26,8 @@ const headingClass = computed(() =>
     ? "sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:mb-0"
     : "sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0",
 );
+
+const showAnchorLink = computed(() => (headingLevel ?? "h2") === "h2");
 </script>
 
 <template>
@@ -40,6 +42,7 @@ const headingClass = computed(() =>
       </component>
       <slot name="title-suffix"></slot>
       <a
+        v-if="showAnchorLink"
         :href="`#${sectionId}`"
         class="sgds:inline-flex sgds:h-8 sgds:w-8 sgds:items-center sgds:justify-center sgds:rounded-sm sgds:text-subtle sgds:no-underline sgds:hover:text-default sgds:focus:text-default sgds:focus-visible:text-default sgds:focus-visible:outline sgds:focus-visible:outline-[var(--sgds-outline-focus)] sgds:focus-visible:outline-offset-[var(--sgds-outline-offset-focus)]"
         :aria-label="`Link to ${title}`"

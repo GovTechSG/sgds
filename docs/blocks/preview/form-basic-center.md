@@ -1,10 +1,10 @@
 ---
 layout: preview
-title: Basic center preview
+title: Basic Center preview
 ---
 
 <script setup>
 import TemplatePreview from "../../.vitepress/components/components/TemplatePreview.vue";
 </script>
 
-<TemplatePreview kind="block" template-key="form-basic-center" template-title="Basic center" />
+<TemplatePreview kind="block" template-key="form-basic-center" template-title="Basic Center" />

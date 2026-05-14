@@ -81,6 +81,7 @@ const formatSidebarLabel = (text?: string) => {
   if (!trimmed) return ""
 
   if (/[.]/.test(trimmed)) return trimmed
+  if (/[A-Z]/.test(trimmed.slice(1))) return trimmed
 
   const words = trimmed.split(/\s+/)
 
@@ -253,9 +254,6 @@ watch(
               <sgds-sidenav-item v-else-if="group.link" :active="(currentPath === withBase(group.link)) || null">
                 <a :href="withBase(group.link)">{{ formatSidebarLabel(group.text) }}</a>
               </sgds-sidenav-item>
-              <sgds-sidenav-item v-else>
-                <span>{{ formatSidebarLabel(group.text) }}</span>
-              </sgds-sidenav-item>
             </template>
           </sgds-sidenav>
         </div>
@@ -271,7 +269,7 @@ watch(
             @click="mobileSideNavOpen = true"
           >
             <sgds-icon slot="leftIcon" name="menu"></sgds-icon>
-            Browse {{ header }}
+            Browse <span class="sgds:font-semibold">{{ header }}</span>
           </sgds-button>
         </div>
 
@@ -334,9 +332,6 @@ watch(
                 </sgds-sidenav-item>
                 <sgds-sidenav-item v-else-if="group.link" :active="(currentPath === withBase(group.link)) || null">
                   <a :href="withBase(group.link)" @click="mobileSideNavOpen = false">{{ formatSidebarLabel(group.text) }}</a>
-                </sgds-sidenav-item>
-                <sgds-sidenav-item v-else>
-                  <span>{{ formatSidebarLabel(group.text) }}</span>
                 </sgds-sidenav-item>
               </template>
             </sgds-sidenav>

@@ -1,6 +1,6 @@
 ---
 layout: bare
-title: Basic right
+title: Basic Right
 ---
 
 <script setup>
