@@ -102,37 +102,37 @@ export const getStartedNavItems: readonly GetStartedNavItem[] = [
   { label: "About SGDS", href: "/get-started/about-sgds" },
   { label: "Design", href: "/get-started/design" },
   { label: "Develop", href: "/get-started/develop" },
-  { label: "Content", href: "", badge: "Coming soon" },
+  { label: "Content", href: "/get-started/content" },
 ];
 
 export const getStartedOverview: GetStartedPageData = {
   key: "overview",
-  title: "Get Started",
+  title: "Get started",
   intro: [
-    "SGDS v3 is the next evolution of the Singapore Government Design System. It is a shared foundation of principles, reusable components, and design tokens built to help teams deliver digital services with greater clarity, flexibility, and confidence.",
-    "Rather than solving the same UI problems repeatedly, SGDS v3 allows your team to focus on what matters most: user needs and service experiences.",
+    "SGDS v3 is the latest version of the Singapore Government Design System. It provides reusable components, design tokens, and shared foundations so government teams can build trusted digital services faster.",
+    "Your team can spend less time on common UI problems and more time on what matters: the citizen experience.",
   ],
   reasons: [
     {
       title: "Move faster",
-      description: "Access a library of pre-built, production-ready components.",
+      description: "Use ready-made templates, blocks, and 40+ components instead of building common UI from scratch.",
     },
     {
       title: "Stay consistent",
-      description: "Align with the unified visual language of the Singapore Government.",
+      description: "Shared design tokens, typography, and colour scales keep all .gov.sg services recognisable as one government.",
     },
     {
-      title: "Accessibility first",
-      description: "Build inclusive experiences using components designed to meet government accessibility standards by default.",
+      title: "Accessibility built in",
+      description: "Every component ships with keyboard navigation, ARIA attributes, and screen-reader support. Your team does not need to add these manually.",
     },
     {
-      title: "Bridge the gap",
-      description: "Shared design tokens ensure a smoother handoff between designers and engineers.",
+      title: "Design to code in sync",
+      description: "The same tokens power both Figma libraries and the code. Changes in design are reflected in the codebase without manual translation.",
     },
   ],
   table: {
-    title: "What’s new in version 3?",
-    description: "We’ve rebuilt the system from the ground up to support modern product development.",
+    title: "What is new in version 3?",
+    description: "We rebuilt the system from the ground up to support modern product development.",
     rows: [
       {
         feature: "Design tokens",
@@ -170,15 +170,15 @@ export const aboutSgdsPage: GetStartedPageData = {
       title: "Our philosophy",
       eyebrow: "Designing government experiences people can trust",
       paragraphs: [
-        "At SGDS, we build trust by making government feel like one entity. We design for connectivity so journeys across agencies are seamless, and we prioritise familiarity to remove friction for every citizen. By championing consistency and accessibility, we ensure our services are not just predictable, but inclusive by default.",
-        "Our shared foundations are not just about pixels. They provide a coherent, dependable experience that allows us to stop reinventing the wheel and focus on what matters most: the citizen.",
+        "At SGDS, we build trust by making government feel like one entity. We design for connectivity so journeys across agencies are seamless, and we prioritise familiarity to remove friction for every citizen. By championing consistency and accessibility, we ensure our services are predictable and inclusive by default.",
+        "Our shared foundations go beyond pixels. They provide a coherent, dependable experience that allows us to stop reinventing the wheel and focus on what matters most: the citizen.",
       ],
     },
     {
       title: "Our principles",
       subsections: [
         { title: "Consistency builds trust", description: "Familiar patterns create reliable experiences across government services." },
-        { title: "Accessibility by default", description: "Accessibility is a shared responsibility, not a team-specific effort or afterthought." },
+        { title: "Accessibility by default", description: "Accessibility is a shared responsibility built into every component and pattern from the start." },
         { title: "Solve once, benefit all", description: "Shared foundations reduce duplication and help teams focus on unique citizen needs." },
         { title: "Flexibility within standards", description: "Teams can adapt experiences to their service and operational context without breaking the ecosystem." },
         { title: "Governed for scale", description: "Design systems are living infrastructure that must evolve with changing needs." },
@@ -195,7 +195,7 @@ export const aboutSgdsPage: GetStartedPageData = {
     },
   ],
   pager: [
-    { label: "Previous", title: "Get Started", href: "/get-started/", direction: "previous" },
+    { label: "Previous", title: "Get started", href: "/get-started/", direction: "previous" },
     { label: "Next", title: "Design", href: "/get-started/design", direction: "next" },
   ],
 };
@@ -331,6 +331,7 @@ export const developPage: GetStartedPageData = {
   ],
   pager: [
     { label: "Previous", title: "Design", href: "/get-started/design", direction: "previous" },
+    { label: "Next", title: "Content", href: "/get-started/content", direction: "next" },
   ],
 };
 
@@ -375,7 +376,7 @@ export const designTabs: GetStartedDesignTab[] = [
     page: {
       key: "design-govtechies",
       title: "Design",
-      description: "Explore design guidelines, access Figma libraries, and leverage plugins to build GovTech products.",
+      description: "Explore design guidelines, access Figma libraries, and use plugins to build GovTech products.",
       sections: [
         {
           title: "Set up your Figma workspace",
@@ -410,7 +411,7 @@ export const designTabs: GetStartedDesignTab[] = [
       sections: [
         {
           title: "Get started with SGDS v3",
-          description: "Agencies and vendors can jumpstart their design process by using our public UI kits.",
+          description: "Agencies and vendors can start their design process using our public UI kits.",
           orderedItems: [
             { title: "Access the UI kit", description: "Visit the SGDS Figma Community Page." },
             { title: "Duplicate to Drafts", description: "Copy the latest SGDS v3 Web UI Kit to your own workspace." },
@@ -431,8 +432,132 @@ export const designTabs: GetStartedDesignTab[] = [
   },
 ];
 
+export const contentPage: GetStartedPageData = {
+  key: "content",
+  title: "Content",
+  description:
+    "Write clear, consistent copy for government digital services using SGDS content standards.",
+  sections: [
+    {
+      title: "Why content standards matter",
+      paragraphs: [
+        "Every label, error message, and heading is part of the user experience. Inconsistent or unclear copy erodes trust and slows users down.",
+        "SGDS content standards give writers, designers, and developers a shared set of rules. When everyone follows the same conventions, government services feel like one organisation.",
+      ],
+    },
+    {
+      title: "Writing principles",
+      description:
+        "Four principles guide all content across SGDS products.",
+      subsections: [
+        {
+          title: "Clear",
+          description:
+            "Say exactly what you mean in as few words as needed. Remove filler phrases and unnecessary qualifiers.",
+        },
+        {
+          title: "Direct",
+          description:
+            "Address the reader as \"you\" and use active voice. Put the most relevant information first.",
+        },
+        {
+          title: "Respectful",
+          description:
+            "Treat readers as capable adults. Do not over-explain or use patronising language.",
+        },
+        {
+          title: "Purposeful",
+          description:
+            "Every sentence earns its place. If a word does not help the reader act, remove it.",
+        },
+      ],
+    },
+    {
+      title: "Rules to apply first",
+      description:
+        "These five rules have the highest impact on readability and consistency across government services.",
+      orderedItems: [
+        {
+          title: "Use UK English spelling",
+          description:
+            "Write \"colour\", \"organisation\", and \"recognise\". Set your spell checker to en-GB.",
+        },
+        {
+          title: "Use sentence case for all headings",
+          description:
+            "Capitalise the first word and proper nouns only. Write \"Submit your application\", not \"Submit Your Application\".",
+        },
+        {
+          title: "Do not use contractions",
+          description:
+            "Write \"do not\" instead of \"don't\" and \"you will\" instead of \"you'll\". This applies to all UI copy.",
+        },
+        {
+          title: "Write in active voice",
+          description:
+            "The subject performs the action. Write \"The system sends a confirmation\" instead of \"A confirmation is sent\".",
+        },
+        {
+          title: "Use plain language",
+          description:
+            "Choose short, common words. Write \"use\" instead of \"utilise\", \"help\" instead of \"facilitate\", and \"start\" instead of \"commence\".",
+        },
+      ],
+    },
+    {
+      title: "UI copy patterns",
+      description:
+        "Apply these patterns when writing copy for SGDS components.",
+      subsections: [
+        {
+          title: "Buttons",
+          description:
+            "Use verb phrases: \"Submit form\", \"Download report\". Do not use vague labels such as \"Click here\" or \"OK\".",
+        },
+        {
+          title: "Error messages",
+          description:
+            "State what happened and what the user should do next. Write \"The file is too large. Upload a file under 5 MB.\" Do not blame the user.",
+        },
+        {
+          title: "Empty states",
+          description:
+            "Explain why the space is empty and offer a next step. Write \"No applications yet. Start your first application.\"",
+        },
+        {
+          title: "Tooltips and helper text",
+          description:
+            "Keep tooltips to one sentence. Helper text explains the format or constraint, not a restatement of the label.",
+        },
+        {
+          title: "Loading and status messages",
+          description:
+            "Use present progressive for loading: \"Saving changes…\". Confirm success with past tense: \"Changes saved.\"",
+        },
+      ],
+    },
+    {
+      title: "Full writing reference",
+      description:
+        "The SGDS writing guide covers spelling, grammar, punctuation, word choice, and accessibility in detail.",
+      links: [
+        { label: "Read the full content guidance", href: "/guidelines/content-guidance" },
+      ],
+    },
+  ],
+  pager: [
+    {
+      label: "Previous",
+      title: "Develop",
+      href: "/get-started/develop",
+      direction: "previous",
+    },
+  ],
+};
+
 export const getStartedPages = {
   overview: getStartedOverview,
   "about-sgds": aboutSgdsPage,
   develop: developPage,
+  content: contentPage,
 };
