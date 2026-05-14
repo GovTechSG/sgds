@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 import CodeToken from "./ui/CodeToken.vue";
 
 type LayerToken = {
@@ -25,7 +26,7 @@ const globalLayerTokens: LayerToken[] = [
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
             <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Z-index tokens</h2>
+              <SectionHeader title="Z-index tokens" />
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 Use these tokens to apply consistent stacking order across the design system. Values increase from base content to top-level modals.
               </p>

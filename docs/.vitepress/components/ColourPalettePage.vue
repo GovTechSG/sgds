@@ -4,6 +4,7 @@ import { BackgroundColor, Color, Theme } from "@adobe/leonardo-contrast-colors";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
 import ThemeRevealDiagram from "./foundations/ThemeRevealDiagram.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 import {
   brandPalettes,
   currentPaletteId,
@@ -878,7 +879,7 @@ const openContrastInfo = () => {
     <!-- Product primary colour -->
     <section v-if="showProductSection" class="typography-page-template__section typography-page-template__section--spaced">
       <div v-if="showProductChrome" class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Product colour tokens</h2>
+        <SectionHeader title="Product colour tokens" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Choose a GovTech brand palette or enter a custom hex code for your <strong>600</strong> token. The table below uses the same SGDS primary token structure either way, so teams can compare a pre-approved palette with a generated custom ramp.
         </p>
@@ -1121,7 +1122,7 @@ const openContrastInfo = () => {
 
           <!-- Intro: what primitive colour tokens are -->
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">How primitive colour tokens work</h2>
+            <SectionHeader title="How primitive colour tokens work" />
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               A primitive colour token is the foundation layer of the SGDS colour system. It pairs a raw hex value with a name that identifies the shade. Every other colour token in the system resolves down to a primitive.
             </p>
@@ -1190,7 +1191,7 @@ const openContrastInfo = () => {
 
           <!-- When to use primitives -->
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">When to use primitives</h2>
+            <SectionHeader title="When to use primitives" />
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Using primitives directly in product code or design files is not recommended. It leads to inconsistencies when themes or brand palettes change. Always reach for <a href="/foundations/colour/semantic-colour" class="sgds:underline">semantic colour tokens</a> first.
             </p>
@@ -1206,7 +1207,7 @@ const openContrastInfo = () => {
 
           <!-- Existing token table -->
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-            <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Primitive colour tokens</h2>
+            <SectionHeader title="Primitive colour tokens" />
 
             <!-- Subsection: how to read the shade scale used in the table below -->
             <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
@@ -1300,7 +1301,7 @@ const openContrastInfo = () => {
         <div class="typography-page-template__body typography-page-template__body--prose">
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">How semantic colour tokens work</h2>
+              <SectionHeader title="How semantic colour tokens work" />
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 A primitive colour token names a hex value. A semantic colour token names the job that value performs in the interface. Where <CodeToken label="--sgds-blue-600" /> names a specific shade, a semantic token like <CodeToken label="--sgds-link-color-default" /> names the role "default colour for a link". The system maps each role to the right primitive behind the scenes.
               </p>
@@ -1405,7 +1406,7 @@ const openContrastInfo = () => {
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Background colour tokens</h2>
+              <SectionHeader title="Background colour tokens" />
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Background tokens set the base canvas colour for pages, panels, and overlays. They adapt between light and dark themes.
               </p>
@@ -1457,7 +1458,7 @@ const openContrastInfo = () => {
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Foreground colour tokens</h2>
+              <SectionHeader title="Foreground colour tokens" />
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Foreground colour tokens for icons and UI elements across semantic categories. Each token resolves to a different primitive value in light and dark modes.
               </p>
@@ -1509,7 +1510,7 @@ const openContrastInfo = () => {
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Surface colour tokens</h2>
+              <SectionHeader title="Surface colour tokens" />
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Surface tokens define fill colours for elevated containers such as cards, drawers, and dropdowns. They adapt between light and dark themes.
               </p>
@@ -1561,7 +1562,7 @@ const openContrastInfo = () => {
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Border colour tokens</h2>
+              <SectionHeader title="Border colour tokens" />
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Border colour tokens define outline and divider colours for components across semantic categories. They adapt between light and dark themes.
               </p>
@@ -1613,7 +1614,7 @@ const openContrastInfo = () => {
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Text colour tokens</h2>
+              <SectionHeader title="Text colour tokens" />
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Typography colour tokens define the foreground colours for display, heading, body, label, and link text. They adapt between light and dark themes.
               </p>
@@ -1667,7 +1668,7 @@ const openContrastInfo = () => {
           <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Form colour tokens</h2>
+              <SectionHeader title="Form colour tokens" />
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 Form colour tokens cover surfaces, text, and validation states within input fields, checkboxes, radios, and other form controls.
               </p>

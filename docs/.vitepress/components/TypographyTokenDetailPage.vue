@@ -3,6 +3,7 @@ import { computed } from "vue";
 import { typographyTokenDocs } from "../data/typography-token-docs";
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
 import CodeToken from "./ui/CodeToken.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 
 const props = defineProps<{
   tokenKey: string;
@@ -23,7 +24,7 @@ const getResponsiveTokenValue = (token: string): string => {
     <section v-if="doc" class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
         <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-text-xs">
-          <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">{{ doc.title }}</h2>
+          <SectionHeader :title="doc.title" />
           <sgds-badge v-if="hasWipBadge" variant="accent" outlined>WIP</sgds-badge>
         </div>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">{{ doc.description }}</p>

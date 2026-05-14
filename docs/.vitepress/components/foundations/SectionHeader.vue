@@ -3,14 +3,16 @@ import { computed } from "vue";
 
 export type Section = {
   title: string;
+  id?: string;
   description?: string;
   headingLevel?: "h2" | "h3" | "h4";
   headerGap?: string;
 }
-const { title, description, headingLevel, headerGap = "sgds:gap-text-md" } = defineProps<Section>();
+const props = defineProps<Section>();
+const { title, id, description, headingLevel, headerGap = "sgds:gap-text-md" } = props;
 
 const sectionId = computed(() =>
-  title
+  id ?? title
     .toLowerCase()
     .replace(/&/g, "and")
     .replace(/[^a-z0-9]+/g, "-")

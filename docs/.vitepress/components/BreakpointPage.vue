@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TypographyPageTemplate from "./TypographyPageTemplate.vue";
+import SectionHeader from "./foundations/SectionHeader.vue";
 import CodeToken from "./ui/CodeToken.vue";
 
 const tokenColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[12rem] sgds:max-w-[clamp(12rem,22vw,16rem)]";
@@ -124,7 +125,7 @@ const stickySidebarTokens = [
   <TypographyPageTemplate>
     <section class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Screen sizes</h2>
+        <SectionHeader title="Screen sizes" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Designers should create outputs for at least three key sizes: mobile (320px), tablet (768px), and desktop
           (1440px) for development.
@@ -211,7 +212,7 @@ const stickySidebarTokens = [
 
     <section class="typography-page-template__section typography-page-template__section--spaced">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0">Breakpoint tokens</h2>
+        <SectionHeader title="Breakpoint tokens" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Breakpoints maintain layout integrity across screen sizes. Each breakpoint range determines the number of
           columns, recommended margins and gutters for each display size.

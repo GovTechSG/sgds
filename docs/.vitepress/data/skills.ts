@@ -36,20 +36,16 @@ export const skills: Skill[] = [
     descriptionHtml: "Typography and content patterns for headings, display text, paragraphs, lists, and page text hierarchy.",
   },
   {
+    name: "sgds-layouts",
+    descriptionHtml: "Page layout patterns that define content arrangement for public-facing pages and internal tools and dashboards.",
+  },
+  {
     name: "sgds-blocks",
     descriptionHtml: "Reusable page sections such as hero sections, cards, feature blocks, statistics, filters, forms, and calls to action.",
   },
   {
     name: "sgds-templates",
     descriptionHtml: "Ready-made full-page layouts for common product flows such as dashboards, login pages, list pages, forms, and settings.",
-  },
-  {
-    name: "sgds-pattern-block-templates",
-    descriptionHtml: "Self-contained UI blocks that slot into any page, including application shell, page header, details card, filter sidebar, session detail, and table filter.",
-  },
-  {
-    name: "sgds-pattern-page-templates",
-    descriptionHtml: "Full-page layouts: dashboard, login, list page, form page, and about us.",
   },
   {
     name: "sgds-data-visualisation",

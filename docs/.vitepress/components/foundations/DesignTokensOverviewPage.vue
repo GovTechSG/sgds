@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ComposedTypographyDiagram from "./ComposedTypographyDiagram.vue";
 import DesignIntentDiagram from "./DesignIntentDiagram.vue";
+import SectionHeader from "./SectionHeader.vue";
 import SystemUpdateFlowDiagram from "./SystemUpdateFlowDiagram.vue";
 import ThemeRevealDiagram from "./ThemeRevealDiagram.vue";
 import CodeToken from "../ui/CodeToken.vue";
@@ -10,7 +11,7 @@ import CodeToken from "../ui/CodeToken.vue";
   <article class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
     <section class="sgds:flex sgds:flex-col sgds:gap-layout-md">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-normal sgds:m-0">What are design tokens?</h2>
+        <SectionHeader title="What are design tokens?" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Design tokens are shared names for the visual choices in SGDS. They cover things like colours, text sizes, spacing, border radius, and motion. When a team uses a token, they use the same design decision everywhere without needing to know or copy the raw value behind it.
         </p>
@@ -22,7 +23,7 @@ import CodeToken from "../ui/CodeToken.vue";
 
     <section class="sgds:flex sgds:flex-col sgds:gap-layout-md">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h2 class="sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-normal sgds:m-0">Why SGDS uses tokens</h2>
+        <SectionHeader title="Why SGDS uses tokens" />
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           SGDS uses tokens to keep products consistent as the system grows. Tokens give design and code a shared way to refer to visual decisions, such as colour, spacing, typography, and shape. Instead of recreating these decisions in each product or component, teams use the same token names across the system.
         </p>

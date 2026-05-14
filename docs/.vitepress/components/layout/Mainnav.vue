@@ -14,7 +14,7 @@ const searchOpen = ref(false);
 
 <template>
   <div class="sgds:flex sgds:flex-col mainnav-container">
-    <sgds-masthead fluid></sgds-masthead>
+    <sgds-masthead></sgds-masthead>
     <sgds-mainnav expand="lg" brandHref="/">
       <span slot="brand" class="sgds:block sgds:text-default mainnav-brand-logo" v-html="logoSvg"></span>
 
