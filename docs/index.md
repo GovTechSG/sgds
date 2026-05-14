@@ -322,3 +322,9 @@ const showCommunitySection = false;
     margin-bottom: var(--sgds-margin-none);
   }
 </style>
+
+<style>
+.image-container {
+  transform: translateX(73px);
+}
+</style>
