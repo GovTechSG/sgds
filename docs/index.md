@@ -7,6 +7,7 @@ import Hero, { Button } from "./.vitepress/components/landing/Hero.vue";
 import LandingWorkflowVisual from "./.vitepress/components/landing/LandingWorkflowVisual.vue";
 import PortalImageCard from "./.vitepress/components/landing/PortalImageCard.vue";
 import { FoundationItem } from "./.vitepress/data/foundations";
+import { getFoundationEntryUrl } from "./.vitepress/data/foundations-sidebar";
 
 const title = "Unifying Government through Design and\u00A0Code."
 
@@ -21,29 +22,35 @@ const buttons: Button = [
 
 const featureFoundations: FoundationItem[] = [
   {
-    id: "colour-system",
-    title: "Colour system",
-    url: "/foundations/colour",
-    image: "/landing/colour_system.png",
-    phase: 1,
-    status: "stable",
-  },
-  {
-    id: "icon-library",
-    title: "Icon library",
-    url: "/foundations/iconography/icon-library",
-    image: "/landing/icon_library.png",
-    phase: 1,
-    status: "stable",
-  },
-  {
     id: "design-tokens",
     title: "Design tokens",
-    url: "/foundations/design-tokens",
-    image: "/landing/design_token.png",
+    url: getFoundationEntryUrl("design-tokens"),
+    image: "/foundations/design-tokens.svg",
+    imageFit: "contain",
+    imageClass: "sgds:w-[34%] sgds:h-[45%]",
     phase: 1,
     status: "stable",
   },
+  {
+    id: "colour",
+    title: "Colour",
+    url: getFoundationEntryUrl("colour"),
+    image: "/foundations/colour.svg",
+    imageFit: "contain",
+    imageClass: "sgds:w-[56%] sgds:h-[48%]",
+    phase: 1,
+    status: "stable",
+  },
+  {
+    id: "iconography",
+    title: "Iconography",
+    url: getFoundationEntryUrl("iconography"),
+    image: "/foundations/iconography.svg",
+    imageFit: "contain",
+    imageClass: "sgds:w-[36%] sgds:h-[48%]",
+    phase: 1,
+    status: "stable",
+  }
 ]
 
 const contributors = [
