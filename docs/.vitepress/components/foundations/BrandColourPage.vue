@@ -313,7 +313,7 @@ const paletteRows: PaletteRow[] = [
 }
 
 .our-colours-brand-card:hover {
-  transform: translateY(-0.5rem) scale(1.01);
+  transform: translateY(-0.5rem);
 }
 
 /* Dark theme border for fixed-light (black) brand card */
