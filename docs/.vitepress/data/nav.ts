@@ -10,7 +10,5 @@ export const mainNavItems: NavItem[] = [
   { text: "Components", link: "/components/accordion", activeMatch: "/components" },
   { text: "Templates", link: "/templates/", activeMatch: "/templates" },
   { text: "Blocks", link: "/blocks/", activeMatch: "/blocks" },
-  { text: "Guidelines", link: "/guidelines/", activeMatch: "/guidelines" },
-  { text: "Resources", link: "/resources/", activeMatch: "/resources" },
   { text: "AI", link: "/ai/introduction", activeMatch: "/ai" },
 ];

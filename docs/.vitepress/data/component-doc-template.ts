@@ -152,7 +152,8 @@ export const componentDocTemplate: ComponentDoc = {
   purposeCards: [
     {
       title: "TODO: first value prop",
-      description: "TODO: 1–2 sentence description of the first reason to use this component.",
+      description:
+        "TODO: 1–2 sentence description of the first reason to use this component.",
     },
     {
       title: "TODO: second value prop",
@@ -382,10 +383,10 @@ export const componentDocTemplate: ComponentDoc = {
     sections: [],
 
     keyboardInteractions: [
-      { key: "Tab",         description: "TODO: what Tab does." },
+      { key: "Tab", description: "TODO: what Tab does." },
       { key: "Shift + Tab", description: "TODO: what Shift+Tab does." },
-      { key: "Enter",       description: "TODO: what Enter does." },
-      { key: "Space",       description: "TODO: what Space does." },
+      { key: "Enter", description: "TODO: what Enter does." },
+      { key: "Space", description: "TODO: what Space does." },
     ],
   },
   accessibilityNotes: [

@@ -27,7 +27,12 @@ const linkForItem = (section: GetStartedSection, index: number): GetStartedLink 
           {{ section.title }}
         </h2>
         <p
-          v-if="section.description"
+          v-if="section.descriptionHtml"
+          class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle"
+          v-html="section.descriptionHtml"
+        ></p>
+        <p
+          v-else-if="section.description"
           class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle"
         >
           {{ section.description }}

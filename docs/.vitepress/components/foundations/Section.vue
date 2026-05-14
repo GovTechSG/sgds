@@ -15,7 +15,7 @@ const { title, description, headingLevel, headerGap, gap = 'sgds:gap-text-lg' } 
       <template v-if="$slots['title-suffix']" #title-suffix>
         <slot name="title-suffix"></slot>
       </template>
-    </SectionHeader>  
+    </SectionHeader>
     <div class="sgds:flex sgds:flex-col">
       <slot></slot>
     </div>

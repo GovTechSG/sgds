@@ -635,7 +635,6 @@ onBeforeUnmount(() => {
                 </div>
               </template>
             </template>
-
           </div>
         </div>
       </div>
@@ -700,5 +699,4 @@ onBeforeUnmount(() => {
 .component-playground-markup sgds-alert-link {
   vertical-align: baseline;
 }
-
 </style>

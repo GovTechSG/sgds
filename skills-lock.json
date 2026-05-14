@@ -11,7 +11,7 @@
       "source": "govtechsg/sgds-web-component",
       "sourceType": "github",
       "skillPath": "skills/sgds-components/SKILL.md",
-      "computedHash": "88cd570b0b4a7b87009504c5f8f6490bb33a4a54d2b9c01fd71f1cee0114ad14"
+      "computedHash": "ff0d48f9630fe1eef160dcc9413d8911ff32ee211fa54cb6bb14cc04f35b1ccf"
     },
     "sgds-data-visualisation": {
       "source": "govtechsg/sgds-web-component",
@@ -30,6 +30,12 @@
       "sourceType": "github",
       "skillPath": "skills/sgds-getting-started/SKILL.md",
       "computedHash": "db91ec394f4a8887fc18bb6a7c4b694dbd508261eef24d62e184c81a0ce27b05"
+    },
+    "sgds-layouts": {
+      "source": "govtechsg/sgds-web-component",
+      "sourceType": "github",
+      "skillPath": "skills/sgds-layouts/SKILL.md",
+      "computedHash": "c705cf86c2ad542dffc3e33ba42a2bfd2e622f79d222e721d34ad4f7e5498b6e"
     },
     "sgds-pattern-block-templates": {
       "source": "govtechsg/sgds-web-component",
@@ -63,7 +69,7 @@
       "source": "govtechsg/sgds-web-component",
       "sourceType": "github",
       "skillPath": "skills/sgds-utilities/SKILL.md",
-      "computedHash": "228ad3e8ca0dc30c496e1e0d297815c9264c3945adf796e27b79b0e5ee3c8a53"
+      "computedHash": "61d0f336dc0b5a8bc7e0d64b1ca69cdb0f4c2ae81514c9360a119bf1dc60e441"
     },
     "sgds-workflow": {
       "source": "govtechsg/sgds-web-component",

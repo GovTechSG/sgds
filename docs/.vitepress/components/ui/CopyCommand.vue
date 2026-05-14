@@ -195,7 +195,7 @@ const escapedCommand = computed(() => escapeHtml(props.command))
 </script>
 
 <template>
-  <div class="sgds:flex sgds:items-center sgds:justify-between sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-md sgds:px-component-xs sgds:py-2 sgds:gap-component-xs">
+  <div class="sgds:flex sgds:items-center sgds:justify-between sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-md sgds:min-h-12 sgds:px-component-xs sgds:py-2 sgds:gap-component-xs">
     <code
       v-if="formattedCommand || isMultiline"
       class="il-command-code sgds:text-default sgds:font-mono sgds:flex-1 sgds:min-w-0"
