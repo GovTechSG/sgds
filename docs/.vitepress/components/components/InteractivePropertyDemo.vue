@@ -794,7 +794,8 @@ watch(activeValue, () => {
 
 .behaviour-demo-markup > sgds-progress-bar {
   display: block;
-  width: var(--sgds-dimension-480);
+  max-width: var(--sgds-dimension-480);
+  width: 100%;
 }
 
 .portal-masthead-width-demo {
