@@ -60,7 +60,7 @@ Each skill includes:
 After upgrading `@govtechsg/sgds-web-component`, refresh the SGDS skills from the source repository:
 <CopyCommand command="npx skills add https://github.com/govtechsg/sgds-web-component.git -g -y" />
 
-<style>
+<style scoped>
 h2,
 p,
 ul,

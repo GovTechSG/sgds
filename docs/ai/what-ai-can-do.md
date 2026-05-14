@@ -112,7 +112,7 @@ Screen review notes
   <li>Product requirements</li>
 </ul>
 
-<style>
+<style scoped>
 h2,
 h3,
 p,
@@ -208,14 +208,14 @@ li {
   background: var(--sgds-primary-surface-translucent);
 }
 
-.ai-example-block :global(pre) {
+.ai-example-block :deep(pre) {
   background: transparent;
   border: none;
   margin: 0;
   padding: 0;
 }
 
-.ai-example-block :global(code) {
+.ai-example-block :deep(code) {
   color: var(--sgds-body-color-default);
 }
 

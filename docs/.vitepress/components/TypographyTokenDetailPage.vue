@@ -46,7 +46,7 @@ const getResponsiveTokenValue = (token: string): string => {
               <sgds-table-row
                 v-for="row in subgroup.rows"
                 :key="`${subgroup.label}-${row.token}`"
-                :class="row.isDefault ? 'typography-token-default-row' : undefined"
+                :class="row.isDefault ? 'typography-token-default-row sgds:text-fixed-dark' : undefined"
               >
                 <sgds-table-cell class="typography-token-table__token-column">
                   <div class="typography-token-table__token-cell sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -107,7 +107,7 @@ const getResponsiveTokenValue = (token: string): string => {
             <sgds-table-row
               v-for="row in doc.rows"
               :key="`${doc.key}-${row.token}-${row.value}-${row.exampleClass ?? ''}`"
-              :class="row.note ? 'typography-token-default-row' : undefined"
+              :class="row.note ? 'typography-token-default-row sgds:text-fixed-dark' : undefined"
             >
               <sgds-table-cell class="typography-token-table__token-column">
                 <div class="typography-token-table__token-cell sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -186,11 +186,6 @@ const getResponsiveTokenValue = (token: string): string => {
 <style>
 .typography-token-default-row {
   background: var(--sgds-primary-surface-muted);
-}
-
-.typography-token-default-row span,
-.typography-token-default-row p {
-  color: var(--sgds-color-fixed-dark);
 }
 
 .typography-token-table__token-column,
@@ -287,12 +282,6 @@ const getResponsiveTokenValue = (token: string): string => {
   min-width: 0;
   overflow: visible;
   white-space: normal;
-}
-
-.ts-snippet-code span {
-  align-self: flex-start;
-  color: var(--sgds-body-color-default);
-  white-space: nowrap;
 }
 
 .ts-snippet-copy-btn {
