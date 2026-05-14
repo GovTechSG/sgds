@@ -3,7 +3,6 @@ import AiInstructionStepper from "./AiInstructionStepper.vue";
 import SectionHeader from "../foundations/SectionHeader.vue";
 import CodeToken from "../ui/CodeToken.vue";
 import CodeBlock from "../ui/CodeBlock.vue";
-import PromptBox from "../ui/PromptBox.vue";
 import { migrationSteps } from "../../data/ai-prompt-tips";
 
 const beforeStartSteps = [
@@ -85,7 +84,7 @@ const developmentWorkflowCards = [
           <CodeBlock code="npx skills add govtechsg/sgds-web-component" lang="bash" />
           <p>Select all SGDS skills when prompted. This creates a local <CodeToken label=".agents/" /> folder with SGDS guidance for setup, components, utilities, templates, forms, and writing. Compatible AI tools can use this guidance when you ask them to build or review SGDS code.</p>
           <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-            <PromptBox prompt="Read sgds-workflow first, then use the SGDS skills in this repository to create a sidebar dashboard with SGDS web components and SGDS utility classes." label="Example prompt" />
+            <CodeBlock prompt code="Read sgds-workflow first, then use the SGDS skills in this repository to create a sidebar dashboard with SGDS web components and SGDS utility classes." />
           </div>
         </template>
       </AiInstructionStepper>
@@ -119,7 +118,7 @@ const developmentWorkflowCards = [
           </p>
         </div>
 
-        <PromptBox prompt="Set up a new frontend app using [your framework]. Run npm install @govtechsg/sgds-web-component and install the skills with npx skills add govtechsg/sgds-web-component. Use SGDS as the sole design system for the application.">
+        <CodeBlock prompt code="Set up a new frontend app using [your framework]. Run npm install @govtechsg/sgds-web-component and install the skills with npx skills add govtechsg/sgds-web-component. Use SGDS as the sole design system for the application.">
           Set up a new frontend app using
           <CodeToken label="[your framework]" wrap />.
           Run
@@ -127,7 +126,7 @@ const developmentWorkflowCards = [
           and install the skills with
           <CodeToken label="npx skills add govtechsg/sgds-web-component" wrap />.
           Use SGDS as the sole design system for the application.
-        </PromptBox>
+        </CodeBlock>
       </article>
 
       <article class="sgds:flex sgds:flex-col sgds:gap-layout-md">
@@ -143,9 +142,9 @@ const developmentWorkflowCards = [
               <li class="sgds:m-0">Ask for SGDS components, SGDS utilities, and accessible markup.</li>
             </ol>
             <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-              <PromptBox prompt="Create an SGDS login page for a government service. Include email and password fields, a submit button, validation states, and accessible form labels." label="Example prompt" />
-              <PromptBox prompt="Create an SGDS dashboard with sidebar navigation, summary cards, filters, a data table, loading state, and empty state." label="Example prompt" />
-              <PromptBox prompt="Create a multi-step SGDS application form with a stepper, applicant details, supporting documents, review, and submission states." label="Example prompt" />
+              <CodeBlock prompt code="Create an SGDS login page for a government service. Include email and password fields, a submit button, validation states, and accessible form labels." />
+              <CodeBlock prompt code="Create an SGDS dashboard with sidebar navigation, summary cards, filters, a data table, loading state, and empty state." />
+              <CodeBlock prompt code="Create a multi-step SGDS application form with a stepper, applicant details, supporting documents, review, and submission states." />
             </div>
           </template>
 
@@ -160,7 +159,7 @@ const developmentWorkflowCards = [
               <li class="sgds:m-0">For full pages or reusable sections, use <CodeToken label="sgds-templates" /> and <CodeToken label="sgds-blocks" />.</li>
             </ol>
             <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-              <PromptBox prompt="Read sgds-workflow first. Then build a sidebar dashboard layout using SGDS components, utilities, and the recommended app layout." label="Example prompt" />
+              <CodeBlock prompt code="Read sgds-workflow first. Then build a sidebar dashboard layout using SGDS components, utilities, and the recommended app layout." />
             </div>
           </template>
 
@@ -176,7 +175,7 @@ const developmentWorkflowCards = [
               <li class="sgds:m-0">Use <CodeToken label="<sgds-*>" /> components and <CodeToken label="sgds:" /> utility classes instead of custom CSS where possible.</li>
             </ol>
             <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-              <PromptBox prompt="Create a new SGDS application for a service request dashboard. Complete the SGDS setup first, then use SGDS web components, SGDS utility classes, and the SGDS application shell. Include a sidebar, summary cards, a filterable table, and an empty state." label="Example prompt" />
+              <CodeBlock prompt code="Create a new SGDS application for a service request dashboard. Complete the SGDS setup first, then use SGDS web components, SGDS utility classes, and the SGDS application shell. Include a sidebar, summary cards, a filterable table, and an empty state." />
             </div>
           </template>
 
@@ -190,7 +189,7 @@ const developmentWorkflowCards = [
               <li class="sgds:m-0">Compare against any product brief, wireframe, or Figma design for remaining gaps.</li>
             </ol>
             <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
-              <PromptBox prompt="Review the generated page against SGDS guidance. Flag any incorrect components, missing states, spacing issues, or accessibility gaps before making changes." label="Example prompt" />
+              <CodeBlock prompt code="Review the generated page against SGDS guidance. Flag any incorrect components, missing states, spacing issues, or accessibility gaps before making changes." />
             </div>
           </template>
         </AiInstructionStepper>
@@ -236,7 +235,7 @@ const developmentWorkflowCards = [
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
                 Start with this prompt:
               </p>
-              <PromptBox prompt="I want to migrate my app to SGDS v3 incrementally." />
+              <CodeBlock prompt code="I want to migrate my app to SGDS v3 incrementally." />
             </div>
             <div class="sgds:flex sgds:flex-col sgds:gap-component-xs">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
@@ -246,22 +245,22 @@ const developmentWorkflowCards = [
               <AiInstructionStepper :steps="migrationSteps">
                 <template #step-1>
                   <p>Ask the agent to analyse your codebase first and produce a migration plan before touching any code:</p>
-                  <PromptBox prompt="Analyse my codebase and generate a migration plan to SGDS v3 before making any changes." />
+                  <CodeBlock prompt code="Analyse my codebase and generate a migration plan to SGDS v3 before making any changes." />
                 </template>
 
                 <template #step-2>
                   <p>Tell the agent to replace existing UI components with their SGDS equivalents, one by one:</p>
-                  <PromptBox prompt="Replace the existing button component with &lt;sgds-button&gt;. Do not change anything else." />
+                  <CodeBlock prompt code="Replace the existing button component with &lt;sgds-button&gt;. Do not change anything else." />
                 </template>
 
                 <template #step-3>
                   <p>Ask the agent to swap your old design system's typography, spacing, and colour foundations with SGDS v3:</p>
-                  <PromptBox prompt="Replace the old foundation styles (typography, spacing, colours) with SGDS v3 equivalents." />
+                  <CodeBlock prompt code="Replace the old foundation styles (typography, spacing, colours) with SGDS v3 equivalents." />
                 </template>
 
                 <template #step-4>
                   <p>Request the agent to recommend the appropriate SGDS semantic CSS utility tokens to replace existing styles:</p>
-                  <PromptBox prompt="Look at the components and recommend the appropriate SGDS semantic CSS utility tokens to replace existing styles, including inline styles, CSS classes, or old utility classes." />
+                  <CodeBlock prompt code="Look at the components and recommend the appropriate SGDS semantic CSS utility tokens to replace existing styles, including inline styles, CSS classes, or old utility classes." />
                 </template>
               </AiInstructionStepper>
             </div>
@@ -270,7 +269,7 @@ const developmentWorkflowCards = [
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
                 Use this prompt when you want the agent to review a page and migrate it safely:
               </p>
-              <PromptBox prompt="Review this existing form page and migrate it to SGDS. Check the SGDS setup, replace custom inputs, buttons, alerts, and layout styles with SGDS web components and utilities where appropriate, and keep the current validation behaviour unless it conflicts with SGDS guidance." />
+              <CodeBlock prompt code="Review this existing form page and migrate it to SGDS. Check the SGDS setup, replace custom inputs, buttons, alerts, and layout styles with SGDS web components and utilities where appropriate, and keep the current validation behaviour unless it conflicts with SGDS guidance." />
             </div>
           </div>
         </article>

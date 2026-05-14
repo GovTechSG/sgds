@@ -4,7 +4,6 @@ import Layout from "./Layout.vue";
 import SkillsTable from "../components/ui/SkillsTable.vue";
 import CopyCommand from "../components/ui/CopyCommand.vue";
 import CodeToken from "../components/ui/CodeToken.vue";
-import PromptBox from "../components/ui/PromptBox.vue";
 import AiWorkflowPaths from "../components/ai/AiWorkflowPaths.vue";
 import DesignPageWrapper from "../components/components/DesignPageWrapper.vue";
 import CodeBlock from "../components/ui/CodeBlock.vue";
@@ -18,7 +17,6 @@ export default {
     app.component("SkillsTable", SkillsTable);
     app.component("CopyCommand", CopyCommand);
     app.component("CodeToken", CodeToken);
-    app.component("PromptBox", PromptBox);
     app.component("AiWorkflowPaths", AiWorkflowPaths);
     app.component("DesignPageWrapper", DesignPageWrapper);
     app.component("CodeBlock", CodeBlock);

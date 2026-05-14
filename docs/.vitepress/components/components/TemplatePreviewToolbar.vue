@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, ref } from "vue";
-import PromptBox from "../ui/PromptBox.vue";
+import CodeBlock from "../ui/CodeBlock.vue";
 import ThemeControls from "../ui/ThemeControls.vue";
 
 type Viewport = "mobile" | "tablet" | "desktop";
@@ -323,7 +323,7 @@ onBeforeUnmount(() => {
           v-if="promptOpen"
           class="sgds:absolute sgds:z-[60] sgds:top-[calc(100%+var(--sgds-gap-xs))] sgds:right-0 sgds:w-[min(var(--sgds-dimension-400),calc(100vw-var(--sgds-padding-xl)))]"
         >
-          <PromptBox label="Example prompt" :prompt="promptExample" />
+          <CodeBlock prompt :code="promptExample" />
         </div>
       </div>
 

@@ -234,7 +234,6 @@ export const developPage: GetStartedPageData = {
   key: "develop",
   title: "Develop",
   description: "Install SGDS, use the component library, and build interfaces with shared foundations.",
-  sectionGap: "sgds:gap-sm",
   headerLinks: [
     { label: "GitHub", href: "https://github.com/GovTechSG/sgds-web-component", path: "GovTechSG/sgds-web-component" },
     { label: "Storybook", href: "https://webcomponent.designsystem.tech.gov.sg/", path: "webcomponent.designsystem.tech.gov.sg" },
@@ -251,26 +250,26 @@ export const developPage: GetStartedPageData = {
       ],
     },
     {
-      title: "Set the font",
-      description: "SGDS foundation styles use Inter by default. Add the font link in your HTML head before importing SGDS CSS.",
-      codeBlock: {
-        code: `<head>\n  <link rel="preconnect" href="https://fonts.googleapis.com" />\n  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n  <link\n    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400;1,14..32,600;1,14..32,700&display=swap"\n    rel="stylesheet"\n  />\n</head>`,
-        lang: "html",
-        filename: "index.html",
-      },
-    },
-    {
       title: "Set up Tailwind CSS",
       description: "SGDS utility classes require Tailwind CSS v4. Follow the official Tailwind installation guide for your framework.",
       links: [{ label: "Tailwind CSS framework guides", href: "https://tailwindcss.com/docs/installation/framework-guides" }],
     },
     {
       title: "Import styles",
-      description: "Import the theme tokens, foundation styles, and utility classes in the CSS file processed by your build tool. The order matters: theme tokens must come first.",
+      description: "Import the theme tokens, foundation styles, and utility classes in your main CSS file. The order matters — theme tokens must come first.",
       codeBlock: {
-        code: `/* 1. Theme tokens */\n@import "@govtechsg/sgds-web-component/themes/day.css";\n/* Optional: add only if your app supports night mode */\n@import "@govtechsg/sgds-web-component/themes/night.css";\n\n/* 2. Foundation styles */\n@import "@govtechsg/sgds-web-component/css/sgds.css";\n\n/* 3. SGDS utility classes. This file must be processed by Tailwind v4. */\n@import "@govtechsg/sgds-web-component/css/utility.css";`,
+        code: `@import "@govtechsg/sgds-web-component/themes/day.css";\n@import "@govtechsg/sgds-web-component/themes/night.css";\n@import "@govtechsg/sgds-web-component/css/sgds.css";\n@import "@govtechsg/sgds-web-component/css/utility.css"; /* SGDS Tailwind v4 config file */`,
         lang: "css",
         filename: "globals.css",
+      },
+    },
+    {
+      title: "Set up font",
+      description: "SGDS foundation styles use Inter by default. Add the Google Fonts link in your HTML head before any SGDS CSS. This loads only the four weights defined by the SGDS design tokens (300, 400, 600, 700) in both normal and italic styles.",
+      codeBlock: {
+        code: `<head>\n  <link rel="preconnect" href="https://fonts.googleapis.com" />\n  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n  <link\n    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400;1,14..32,600;1,14..32,700&display=swap"\n    rel="stylesheet"\n  />\n</head>`,
+        lang: "html",
+        filename: "index.html",
       },
     },
     {
@@ -314,8 +313,8 @@ export const developPage: GetStartedPageData = {
         {
           label: "Angular",
           steps: [
-            { description: "Add CUSTOM_ELEMENTS_SCHEMA to your standalone component.", code: `import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";\n\n@Component({\n  selector: "app-root",\n  templateUrl: "./app.component.html",\n  schemas: [CUSTOM_ELEMENTS_SCHEMA]\n})\nexport class AppComponent {}`, lang: "ts", filename: "app.component.ts" },
-            { description: "Import the library in your root component to register all custom elements globally.", code: `import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";\nimport "@govtechsg/sgds-web-component";\n\n@Component({\n  selector: "app-root",\n  templateUrl: "./app.component.html",\n  schemas: [CUSTOM_ELEMENTS_SCHEMA]\n})\nexport class AppComponent {}`, lang: "ts", filename: "app.component.ts" },
+            { description: "Add CUSTOM_ELEMENTS_SCHEMA to your standalone component.", code: `import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";\n\n@Component({\n  selector: "app-root",\n  templateUrl: "./app.component.html",\n  schemas: [CUSTOM_ELEMENTS_SCHEMA] // Step 1\n})\nexport class AppComponent {}`, lang: "ts", filename: "app.component.ts" },
+            { description: "Import the library in your root component to register all custom elements globally.", code: `import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";\nimport "@govtechsg/sgds-web-component"; // Step 2\n\n@Component({\n  selector: "app-root",\n  templateUrl: "./app.component.html",\n  schemas: [CUSTOM_ELEMENTS_SCHEMA]\n})\nexport class AppComponent {}`, lang: "ts", filename: "app.component.ts" },
           ],
         },
         {
@@ -326,8 +325,6 @@ export const developPage: GetStartedPageData = {
               steps: [
                 { description: "Create a client-side library loader.", code: `"use client";\nimport { useEffect } from "react";\n\nexport default function SgdsLoader() {\n  useEffect(() => {\n    import("@govtechsg/sgds-web-component");\n  }, []);\n  return null;\n}`, lang: "ts", filename: "src/app/sgds.tsx" },
                 { description: "Import the loader in your root layout.", code: `import SgdsLoader from "./sgds";\n\nexport default function RootLayout({ children }: { children: React.ReactNode }) {\n  return (\n    <html lang="en">\n      <head>\n        <SgdsLoader />\n      </head>\n      <body>{children}</body>\n    </html>\n  );\n}`, lang: "tsx", filename: "src/app/layout.tsx" },
-                { description: "Use SGDS components with suppressHydrationWarning where server rendering may differ from client registration.", code: `<sgds-masthead suppressHydrationWarning></sgds-masthead>`, lang: "tsx", filename: "src/app/page.tsx" },
-                { description: "For SGDS custom events in Next.js, bind listeners in a client component after hydration.", code: `"use client";\nimport { useEffect, useRef } from "react";\n\nexport default function SgdsInputExample() {\n  const inputRef = useRef<HTMLElement | null>(null);\n\n  useEffect(() => {\n    const input = inputRef.current;\n    if (!input) return;\n\n    const handleInput = (event: Event) => console.log(event);\n    input.addEventListener("sgds-input", handleInput);\n    return () => input.removeEventListener("sgds-input", handleInput);\n  }, []);\n\n  return <sgds-input ref={inputRef} suppressHydrationWarning></sgds-input>;\n}`, lang: "tsx", filename: "src/app/SgdsInputExample.tsx" },
               ],
             },
             {
@@ -347,31 +344,8 @@ export const developPage: GetStartedPageData = {
       ],
     },
     {
-      title: "Use an SGDS app layout",
-      description: "Every SGDS app needs the mandatory page chrome: masthead, main navigation, content container, and footer. Choose the container by app type.",
-      codeTabs: [
-        {
-          label: "Simple app",
-          code: `<div>\n  <sgds-masthead fluid></sgds-masthead>\n  <sgds-mainnav fluid>\n    <strong slot="brand">My app</strong>\n  </sgds-mainnav>\n</div>\n<div class="sgds:flex sgds:flex-col sgds:w-full">\n  <div class="sgds-container sgds:py-2-xl">\n    <!-- Page content -->\n  </div>\n  <sgds-footer></sgds-footer>\n</div>`,
-          lang: "html",
-        },
-        {
-          label: "Sidebar app",
-          code: `<div class="sgds:sticky sgds:top-0">\n  <sgds-masthead fluid></sgds-masthead>\n  <sgds-mainnav fluid>\n    <strong slot="brand">My app</strong>\n  </sgds-mainnav>\n</div>\n<div class="sgds:flex sgds:flex-row">\n  <div class="sgds:sticky sgds:top-27 sgds:h-[calc(100vh-108px)] sgds:overflow-y-scroll sgds:border-r sgds:border-muted">\n    <!-- Sidebar navigation -->\n  </div>\n  <div class="sgds:flex sgds:flex-col sgds:w-full">\n    <div class="sgds-container-sidebar sgds:py-2-xl">\n      <!-- Page content -->\n    </div>\n    <sgds-footer></sgds-footer>\n  </div>\n</div>`,
-          lang: "html",
-        },
-      ],
-      links: [{ label: "Read layout foundations", href: "/foundations/layout" }],
-    },
-    {
-      title: "Use SGDS utilities",
-      description: "Apply SGDS utility classes for spacing, layout, typography, colour, and responsive behaviour instead of custom CSS.",
-      links: [{ label: "Explore in Storybook", href: "https://webcomponent.designsystem.tech.gov.sg/?path=/docs/utilities-introduction--docs", external: true }],
-    },
-    {
       title: "Start from shared building blocks",
       description: "Use templates, blocks, and components when you need to move from product intent to working UI quickly.",
-      contentGap: "sgds:gap-layout-lg",
       subsections: [
         { title: "Templates", description: "Use full-page layouts for common service journeys and admin workflows." },
         { title: "Blocks", description: "Compose reusable sections such as headers, forms, filters, and stats." },
@@ -384,9 +358,13 @@ export const developPage: GetStartedPageData = {
       ],
     },
     {
+      title: "Use SGDS utilities",
+      description: "Apply SGDS utility classes for spacing, layout, typography, colour, and responsive behaviour instead of custom CSS.",
+      links: [{ label: "Explore in Storybook", href: "https://webcomponent.designsystem.tech.gov.sg/?path=/docs/utilities-introduction--docs", external: true }],
+    },
+    {
       title: "Use SGDS AI",
-      description:
-        "Install the SGDS agent skills when using an AI coding assistant. Ask the assistant to read `sgds-workflow` first, then `sgds-getting-started` for new apps before moving into components, utilities, layouts, templates, theming, forms, data visualisation, or writing guidance.",
+      descriptionHtml: `Accelerate development with AI-assisted workflows and <a href="/ai/skills#how-to-install-sgds-agent-skills">agent skills</a> that understand SGDS components, utilities, and patterns.`,
       links: [{ label: "Explore SGDS AI", href: "/ai/introduction" }],
     },
   ],
