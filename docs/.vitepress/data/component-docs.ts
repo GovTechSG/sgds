@@ -1423,8 +1423,8 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "Feedback",
         heading: "Have suggestions or feedback?",
         prefix: "Share them with us on ",
-        linkLabel: "Slack → #design-system-feedback",
-        href: "#",
+        linkLabel: "Slack → #ask-sgds-v3",
+        href: "https://govtech.slack.com/archives/C07VD8Z5QKS",
       },
       bugReports: {
         title: "Bug Reports",
@@ -19140,8 +19140,8 @@ const buildResolvedUpdates = (doc: ComponentDoc): UpdatesContent => {
       title: "Feedback",
       heading: "Have suggestions or feedback?",
       prefix: "Share them with us on ",
-      linkLabel: "Slack → #design-system-feedback",
-      href: "#",
+      linkLabel: "Slack → #ask-sgds-v3",
+      href: "https://govtech.slack.com/archives/C07VD8Z5QKS",
     },
     bugReports: {
       title: "Bug Reports",
