@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
 import { onBeforeUnmount, onMounted, ref } from "vue";
+
+gsap.registerPlugin(SplitText);
 
 export type Button = {
   label: string;
@@ -16,11 +19,20 @@ export type Page = {
 const { title, buttons } = defineProps<Page>();
 
 const heroRoot = ref<HTMLElement | null>(null);
+const codeEl = ref<HTMLElement | null>(null);
 let animationContext: gsap.Context | undefined;
 
 onMounted(() => {
   animationContext = gsap.context(() => {
     gsap.set("svg", { opacity: 1 });
+
+    // SplitText typewriter setup
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let split: SplitText | undefined;
+    if (codeEl.value && !prefersReducedMotion) {
+      split = new SplitText(codeEl.value, { type: "lines,chars", reduceWhiteSpace: false });
+      gsap.set(split.chars, { opacity: 0 });
+    }
 
     const intro = gsap.timeline();
     intro.fromTo(".image-container > *", { opacity: 0 }, { opacity: 1, duration: 1 });
@@ -51,6 +63,17 @@ onMounted(() => {
       .to(".white-camera", { x: 58, y: 40, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0)
       .to(".black-disk", { x: 40, y: 45, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0)
       .to(".white-compass", { x: 15, duration: 1, ease: "power1.inOut", rotation: 90, transformOrigin: "center center" }, 0);
+
+    // Typewriter effect on the code snippet — reveal 3 chars at a time
+    if (split?.chars?.length) {
+      const chars = split.chars;
+      const tl = gsap.timeline();
+      for (let i = 0; i < chars.length; i += 3) {
+        const batch = chars.slice(i, i + 3);
+        tl.to(batch, { opacity: 1, duration: 0.01, ease: "none" }, "+=0.06");
+      }
+      animateOut.add(tl, 0.3);
+    }
   }, heroRoot.value ?? undefined);
 });
 
@@ -100,17 +123,15 @@ onBeforeUnmount(() => {
                   </div>
                   <div class="sgds:flex sgds:h-full sgds:items-center sgds:gap-[8px] sgds:rounded-t-[6px] sgds:bg-[#1b222b] sgds:px-[20px] sgds:text-[14px] sgds:font-semibold">
                     <span class="sgds:text-[#ffd21e]">JS</span>
-                    <span class="sgds:text-[#c5cad3]">snippet.js</span>
+                    <span class="sgds:text-[#c5cad3]">sgds.js</span>
                   </div>
                 </div>
-                <pre aria-label="JavaScript snippet" contenteditable="true" spellcheck="false" class="sgds:m-0 sgds:h-[161px] sgds:w-full sgds:overflow-auto sgds:bg-[#161c24] sgds:px-[20px] sgds:py-[18px] sgds:font-mono sgds:text-[12px] sgds:leading-[1.55] sgds:text-[#d4d4d4] focus:sgds:outline-none"><code><span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>Responsive Tokens<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>
-<span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">h6</span> <span class="sgds:text-[#9cdcfe]">class</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"sgds:text-subtitle-sm sgds:font-light ..."</span><span class="sgds:text-[#569cd6]">&gt;</span>
-  Stripped Tailwind of its defaults, rebuilt on our
-  design tokens
-<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">h6</span><span class="sgds:text-[#569cd6]">&gt;</span>
-
-<span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span> <span class="sgds:text-[#9cdcfe]">label</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"Framework agnostic"</span>
-    <span class="sgds:text-[#9cdcfe]">value</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"react;vue;angular;svelte;etc"</span> <span class="sgds:text-[#9cdcfe]">multiSelect</span><span class="sgds:text-[#569cd6]">&gt;</span>
+                <pre aria-label="JavaScript snippet" contenteditable="false" spellcheck="false" class="sgds:m-0 sgds:h-[161px] sgds:w-full sgds:overflow-auto sgds:bg-[#161c24] sgds:px-[16px] sgds:pb-[7px] sgds:pt-[14px] sgds:font-mono sgds:text-[12px] sgds:leading-[1.55] sgds:text-[#d4d4d4] focus:sgds:outline-none"><code ref="codeEl"><span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>Write once. Ship anywhere.<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">h3</span><span class="sgds:text-[#569cd6]">&gt;</span>
+<span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">p</span> <span class="sgds:text-[#9cdcfe]">class</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"sgds:text-subtitle-sm sgds:font-light"</span><span class="sgds:text-[#569cd6]">&gt;</span>
+ SGDS Design tokens → Tailwind v4
+<span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">p</span><span class="sgds:text-[#569cd6]">&gt;</span>
+<span class="sgds:text-[#569cd6]">&lt;</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span> <span class="sgds:text-[#9cdcfe]">label</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"Drop into any stack"</span>
+    <span class="sgds:text-[#9cdcfe]">value</span><span class="sgds:text-[#d4d4d4]">=</span><span class="sgds:text-[#ce9178]">"react;vue;angular;svelte;vanilla"</span> <span class="sgds:text-[#9cdcfe]">multiSelect</span><span class="sgds:text-[#569cd6]">&gt;</span>
 <span class="sgds:text-[#569cd6]">&lt;/</span><span class="sgds:text-[#4ec9b0]">sgds-combo-box</span><span class="sgds:text-[#569cd6]">&gt;</span></code></pre>
               </div>
             </foreignObject>
