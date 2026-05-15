@@ -1355,8 +1355,4 @@ onBeforeUnmount(() => {
   flex: 1;
   width: 1px;
 }
-
-sgds-link {
-  vertical-align: unset;
-}
 </style>
