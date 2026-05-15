@@ -78,7 +78,7 @@ const displayRows = computed(() =>
         </h3>
         <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
           {{ updates.feedback.prefix }}
-          <a :href="updates.feedback.href">{{ updates.feedback.linkLabel }}</a>
+          <a :href="updates.feedback.href" target="_blank">{{ updates.feedback.linkLabel }}</a>
         </p>
       </div>
     </Section>
