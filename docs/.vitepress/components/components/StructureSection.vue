@@ -709,6 +709,12 @@ const formatConstraintLabel = (constraint: "max" | "min" | null, rawValue: strin
   return rawValue;
 };
 
+const isMastheadContainerToken = (row?: MeasurementTokenRow | null) =>
+  Boolean(isMastheadStructure.value && row?.usage?.toLowerCase().includes("masthead container"));
+
+const isMastheadContainerMaxWidthToken = (row?: MeasurementTokenRow | null) =>
+  Boolean(isMastheadContainerToken(row) && inferDimensionConstraint(row?.usage) === "max");
+
 const isDrawerDimensionKey = (key: string | null) =>
   isDrawerStructure.value && (key === "dimension" || Boolean(key?.startsWith("dimension-")));
 
@@ -718,6 +724,7 @@ const staticSizeAnnotations = computed(() => {
     id: string;
     orientation: "height" | "width";
     labelPlacement?: "default" | "left" | "above";
+    labelLeft?: number;
     label: string;
     left: number;
     top: number;
@@ -795,13 +802,20 @@ const staticSizeAnnotations = computed(() => {
     // both axes ("Height of X; width of X") still render both.
     const heightAxis = inferDimensionAxis(heightToken?.usage);
     const widthAxis = inferDimensionAxis(widthToken?.usage);
+    const isMastheadContainerMaxWidth =
+      isMastheadContainerMaxWidthToken(heightToken) ||
+      isMastheadContainerMaxWidthToken(widthToken);
+    if (isMastheadStructure.value && !isMastheadContainerMaxWidth) {
+      return;
+    }
 
     if (
       annotationKeys.heightKey &&
       heightToken?.rawValue &&
       !isZeroTokenValue(heightToken) &&
       heightAxis !== "width" &&
-      !isDrawerDimensionKey(key)
+      !isDrawerDimensionKey(key) &&
+      !(isMastheadStructure.value && (key === "dimension-20" || key === "icon-size-sm"))
     ) {
       const isThickness = isStrokeThicknessKey(key);
       // The switch's toggle sits to the LEFT of its label inside the host —
@@ -912,13 +926,16 @@ const staticSizeAnnotations = computed(() => {
       const widthRawValue = getStructureValue(allStructureTokenMap.value.get(annotationKeys.widthKey), annotationKeys.widthKey, "width");
       const widthConstraint = inferDimensionConstraint(widthToken?.usage);
       const widthConstraintPx = widthConstraint ? parseRawPxValue(widthToken?.rawValue) : null;
+      const isMastheadContainerMaxWidth = isMastheadContainerMaxWidthToken(widthToken);
       // Constraint brackets (max/min) decouple from the component's rendered
       // size — a "Max 192px" bracket on a 74px-wide badge has no obvious
       // anchor point. Centre it horizontally inside the preview shell so it
       // reads as a stand-alone measurement of the constraint, not as a
       // bracket attached to the live element. Non-constraint width brackets
       // stay anchored to the component's left edge.
-      const widthSize = isModalPanelDimensionWidth
+      const widthSize = isMastheadContainerMaxWidth && shellWidth > 0
+        ? shellWidth
+        : isModalPanelDimensionWidth
         ? rect.width
         : (isFooterContentMaxWidth || isMainnavMaxWidth) && shellWidth > 0
         ? Math.min(widthConstraintPx ?? rect.width, shellWidth)
@@ -945,6 +962,9 @@ const staticSizeAnnotations = computed(() => {
         id: `${key}-width`,
         orientation: "width",
         labelPlacement: placeAbove ? "above" : "default",
+        labelLeft: isMastheadContainerMaxWidth && shellWidth > 0
+          ? Math.round(shellWidth / 2 - widthLeft)
+          : undefined,
         label: formatConstraintLabel(widthConstraint, widthRawValue),
         left: widthLeft,
         top: widthTop,
@@ -6038,7 +6058,10 @@ const getCollapsedCategory = (
                 : { width: `${annotation.size}px` }),
             }"
           >
-            <span class="accordion-inspect-annotation__label">{{ annotation.label }}</span>
+            <span
+              class="accordion-inspect-annotation__label"
+              :style="annotation.labelLeft != null ? { left: `${annotation.labelLeft}px` } : undefined"
+            >{{ annotation.label }}</span>
           </div>
         </template>
 
