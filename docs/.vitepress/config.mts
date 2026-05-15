@@ -73,7 +73,32 @@ const vitePressConfig = {
     },
   },
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindcss(),
+      {
+        name: "storybook-proxy",
+        configureServer(server) {
+          server.middlewares.use("/__storybook", async (req, res) => {
+            const target = `https://www.webcomponent.designsystem.tech.gov.sg${req.url}`;
+            try {
+              const response = await fetch(target);
+              res.statusCode = response.status;
+              response.headers.forEach((value, key) => {
+                const lower = key.toLowerCase();
+                if (lower === "content-security-policy" || lower === "x-frame-options") return;
+                if (lower === "transfer-encoding" || lower === "content-encoding") return;
+                res.setHeader(key, value);
+              });
+              const body = Buffer.from(await response.arrayBuffer());
+              res.end(body);
+            } catch {
+              res.statusCode = 502;
+              res.end("Storybook proxy error");
+            }
+          });
+        },
+      },
+    ],
   },
 };
 
