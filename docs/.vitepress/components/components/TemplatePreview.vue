@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted } from "vue";
 import { withBase } from "vitepress";
 import TemplatePreviewToolbar from "./TemplatePreviewToolbar.vue";
 import {
@@ -10,7 +10,8 @@ import {
 } from "../../data/pattern-docs";
 import { getStorybookIframeUrl } from "../../data/storybook-ids";
 
-type Viewport = "mobile" | "tablet" | "desktop";
+// Hidden for now — viewport controls may be re-enabled later.
+// type Viewport = "mobile" | "tablet" | "desktop";
 
 const props = withDefaults(
   defineProps<{
@@ -23,22 +24,20 @@ const props = withDefaults(
   { kind: "template" },
 );
 
-const viewport = ref<Viewport>("desktop");
-
-const viewportWidth: Record<Viewport, string> = {
-  mobile: "375px",
-  tablet: "768px",
-  desktop: "100%",
-};
-
-const frameStyle = computed(() => ({
-  width: viewportWidth[viewport.value],
-  maxWidth: "100%",
-}));
-
-const stagePadding = computed(() =>
-  viewport.value === "desktop" ? "0" : "var(--sgds-spacing-layout-md)",
-);
+// Hidden for now — viewport controls may be re-enabled later.
+// const viewport = ref<Viewport>("desktop");
+// const viewportWidth: Record<Viewport, string> = {
+//   mobile: "375px",
+//   tablet: "768px",
+//   desktop: "100%",
+// };
+// const frameStyle = computed(() => ({
+//   width: viewportWidth[viewport.value],
+//   maxWidth: "100%",
+// }));
+// const stagePadding = computed(() =>
+//   viewport.value === "desktop" ? "0" : "var(--sgds-spacing-layout-md)",
+// );
 
 const overviewHref = computed(() =>
   withBase(props.kind === "block" ? "/blocks/" : "/templates/"),
@@ -130,7 +129,6 @@ onMounted(() => {
       </div>
 
       <TemplatePreviewToolbar
-        v-model:viewport="viewport"
         :template-options="templateOptions"
         :block-options="blockOptions"
         :active-key="templateKey"
@@ -139,21 +137,13 @@ onMounted(() => {
       />
     </header>
 
-    <div class="template-preview-stage" :style="{ padding: stagePadding }">
-      <div
-        class="template-preview-frame"
-        :class="{ 'template-preview-frame--framed': viewport !== 'desktop' }"
-        :style="frameStyle"
-      >
-        <!-- Re-create the iframe when viewport changes so the Storybook
-             story renders with the correct width. -->
-        <iframe
-          :key="`${templateKey}-${viewport}`"
-          class="template-preview-iframe"
-          :title="`${templateTitle} preview`"
-          :src="iframeSrc"
-        ></iframe>
-      </div>
+    <div class="template-preview-stage">
+      <iframe
+        :key="templateKey"
+        class="template-preview-iframe"
+        :title="`${templateTitle} preview`"
+        :src="iframeSrc"
+      ></iframe>
     </div>
   </div>
 </template>
@@ -186,21 +176,6 @@ onMounted(() => {
 
 .template-preview-stage {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.template-preview-frame {
-  background: var(--sgds-surface-default);
-  margin: 0 auto;
-  display: block;
-  transition: width 0.2s ease;
-}
-
-.template-preview-frame--framed {
-  /* Drop a soft shadow when the iframe is framed in mobile/tablet so the
-     device framing reads clearly against the raised stage background. */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .template-preview-iframe {
