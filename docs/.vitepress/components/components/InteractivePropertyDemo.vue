@@ -853,7 +853,7 @@ watch([activeValue, responsiveRenderKey], () => {
 
 .portal-masthead-width-demo {
   align-items: center;
-  block-size: var(--sgds-dimension-112);
+  block-size: var(--sgds-dimension-144);
   display: flex;
   inline-size: 100%;
   justify-content: center;
