@@ -1423,8 +1423,8 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "Feedback",
         heading: "Have suggestions or feedback?",
         prefix: "Share them with us on ",
-        linkLabel: "Slack → #design-system-feedback",
-        href: "#",
+        linkLabel: "Slack → #ask-sgds-v3",
+        href: "https://govtech.slack.com/archives/C07VD8Z5QKS",
       },
       bugReports: {
         title: "Bug Reports",
@@ -10826,6 +10826,13 @@ const componentDocs: Record<string, ComponentDoc> = {
       { number: 4, direction: "bottom", targetSelector: ".portal-anatomy-pagination", targetShadowSelector: ".ellipsis", targetX: "center", targetY: "bottom" },
       { number: 5, direction: "right", targetSelector: ".portal-anatomy-pagination", targetShadowSelector: "sgds-icon-button[name='arrow-right']", targetX: "right", targetY: "center" },
     ],
+    measurements: [
+      {
+        title: "",
+        description: "",
+        markup: `<sgds-pagination variant="default" dataLength="30" itemsPerPage="10" currentPage="3"></sgds-pagination>`,
+      },
+    ],
     configurationDemos: [
       {
         title: "Variant",
@@ -19133,8 +19140,8 @@ const buildResolvedUpdates = (doc: ComponentDoc): UpdatesContent => {
       title: "Feedback",
       heading: "Have suggestions or feedback?",
       prefix: "Share them with us on ",
-      linkLabel: "Slack → #design-system-feedback",
-      href: "#",
+      linkLabel: "Slack → #ask-sgds-v3",
+      href: "https://govtech.slack.com/archives/C07VD8Z5QKS",
     },
     bugReports: {
       title: "Bug Reports",
