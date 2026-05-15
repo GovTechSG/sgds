@@ -78,6 +78,7 @@ const vitePressConfig = {
       {
         name: "storybook-proxy",
         configureServer(server) {
+          // Main proxy for Storybook pages and assets loaded via /__storybook prefix.
           server.middlewares.use("/__storybook", async (req, res) => {
             const target = `https://www.webcomponent.designsystem.tech.gov.sg${req.url}`;
             try {
@@ -94,6 +95,30 @@ const vitePressConfig = {
             } catch {
               res.statusCode = 502;
               res.end("Storybook proxy error");
+            }
+          });
+
+          // Fallback proxy for root-relative assets (images, fonts) referenced
+          // inside Storybook stories. These resolve against localhost:5173/ when
+          // the iframe is loaded via /__storybook, so we intercept known patterns
+          // and forward them to the Storybook CDN.
+          const storybookAssetPatterns = /^\/(placeholder-sgds\.png|sb-common-assets\/|sb-addons\/|sb-manager\/|assets\/)/;
+          server.middlewares.use(async (req, res, next) => {
+            if (!req.url || !storybookAssetPatterns.test(req.url)) return next();
+            const target = `https://www.webcomponent.designsystem.tech.gov.sg${req.url}`;
+            try {
+              const response = await fetch(target);
+              if (!response.ok) return next();
+              res.statusCode = response.status;
+              response.headers.forEach((value, key) => {
+                const lower = key.toLowerCase();
+                if (lower === "transfer-encoding" || lower === "content-encoding") return;
+                res.setHeader(key, value);
+              });
+              const body = Buffer.from(await response.arrayBuffer());
+              res.end(body);
+            } catch {
+              next();
             }
           });
         },

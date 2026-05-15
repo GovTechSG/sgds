@@ -7,7 +7,7 @@ type Viewport = "mobile" | "tablet" | "desktop";
 type DropdownOption = { key: string; title: string; kind: "template" | "block"; groupLabel?: string };
 
 const props = defineProps<{
-  viewport: Viewport;
+  // viewport: Viewport;
   templateOptions: DropdownOption[];
   blockOptions: DropdownOption[];
   activeKey: string;
@@ -15,15 +15,16 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "update:viewport", value: Viewport): void;
+  // (e: "update:viewport", value: Viewport): void;
   (e: "navigate", option: DropdownOption): void;
 }>();
 
-const viewportOptions: Array<{ value: Viewport; label: string; icon: string }> = [
-  { value: "mobile", label: "Mobile", icon: "phone" },
-  { value: "tablet", label: "Tablet", icon: "tablet" },
-  { value: "desktop", label: "Desktop", icon: "laptop" },
-];
+// Hidden for now — may re-enable when viewport controls are needed again.
+// const viewportOptions: Array<{ value: Viewport; label: string; icon: string }> = [
+//   { value: "mobile", label: "Mobile", icon: "phone" },
+//   { value: "tablet", label: "Tablet", icon: "tablet" },
+//   { value: "desktop", label: "Desktop", icon: "laptop" },
+// ];
 
 const promptOpen = ref(false);
 const promptTipRef = ref<HTMLElement | null>(null);
@@ -255,6 +256,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
 
+      <!-- Hidden for now — viewport controls may be re-enabled later.
       <sgds-divider orientation="vertical" class="template-preview-toolbar-divider"></sgds-divider>
 
       <div class="template-preview-viewport-controls" role="tablist" aria-label="Viewport size">
@@ -279,7 +281,7 @@ onBeforeUnmount(() => {
           </button>
         </sgds-tooltip>
       </div>
-
+      -->
     </div>
   </div>
 </template>
@@ -344,6 +346,7 @@ onBeforeUnmount(() => {
   background-color: var(--sgds-color-fixed-light);
 }
 
+/* Hidden for now — viewport control styles preserved for future use.
 .template-preview-viewport-controls {
   align-items: center;
   display: inline-flex;
@@ -382,6 +385,7 @@ onBeforeUnmount(() => {
   outline: var(--sgds-outline-focus);
   outline-offset: var(--sgds-outline-offset-focus);
 }
+*/
 
 @media (max-width: 640px) {
   .template-preview-toolbar {
