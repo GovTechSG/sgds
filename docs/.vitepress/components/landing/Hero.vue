@@ -142,7 +142,7 @@ onMounted(() => {
         }
       }
 
-      animateOut.add(tl, 0.3);
+      tl.delay(0.3);
     }
   }, heroRoot.value ?? undefined);
 });
