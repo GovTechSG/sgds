@@ -27,10 +27,11 @@ onMounted(() => {
   animationContext = gsap.context(() => {
     gsap.set("svg", { opacity: 1 });
 
-    // SplitText typewriter setup
+    // SplitText typewriter setup (disabled on Safari due to foreignObject rendering bugs)
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     let split: SplitText | undefined;
-    if (codeEl.value && !prefersReducedMotion) {
+    if (codeEl.value && !prefersReducedMotion && !isSafari) {
       split = new SplitText(codeEl.value, { type: "lines,chars", reduceWhiteSpace: false });
       gsap.set(split.chars, { opacity: 0 });
     }
@@ -141,7 +142,7 @@ onMounted(() => {
         }
       }
 
-      animateOut.add(tl, 0.3);
+      tl.delay(0.3);
     }
   }, heroRoot.value ?? undefined);
 });
