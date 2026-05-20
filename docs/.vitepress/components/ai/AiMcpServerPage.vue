@@ -4,7 +4,7 @@ import AiInstructionStepper from "./AiInstructionStepper.vue";
 import SectionHeader from "../foundations/SectionHeader.vue";
 import CodeToken from "../ui/CodeToken.vue";
 import CodeBlock from "../ui/CodeBlock.vue";
-import PromptBox from "../ui/PromptBox.vue";
+
 import { figmaWorkflowCards } from "../../data/ai-workflow-data";
 
 const figmaToCodeSteps = [
@@ -125,19 +125,19 @@ const openFigmaToCodeTab = (event: Event) => {
             <div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:min-w-0">
               <p class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-heading-default sgds:m-0">Before Figma MCP</p>
               <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-component-xs sgds:w-full">
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:text-fixed-dark sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Figma screenshot</span>
                 </div>
                 <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:text-fixed-dark sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>AI reads screenshot</span>
                 </div>
                 <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:text-fixed-dark sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Intent gets lost</span>
                 </div>
               </div>
@@ -153,19 +153,19 @@ const openFigmaToCodeTab = (event: Event) => {
             <div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:min-w-0">
               <p class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-heading-default sgds:m-0">When Figma MCP first arrived</p>
               <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-component-xs sgds:w-full">
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:text-fixed-dark sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Figma frame</span>
                 </div>
                 <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:text-fixed-dark sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>AI reads design context</span>
                 </div>
                 <div class="sgds:inline-flex sgds:items-center sgds:text-[var(--sgds-border-color-emphasis)] sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:text-fixed-dark sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Code</span>
                 </div>
               </div>
@@ -181,21 +181,21 @@ const openFigmaToCodeTab = (event: Event) => {
             <div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:min-w-0">
               <p class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-heading-default sgds:m-0">What it can do now</p>
               <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-component-xs sgds:w-full">
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:text-fixed-dark sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-accent-surface-muted)] sgds:border-[var(--sgds-accent-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Figma canvas</span>
                 </div>
                 <div class="sgds:inline-flex sgds:items-center sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10 sgds:flex-col sgds:gap-component-xs" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                   <span class="flow-long-arrow-reverse"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:text-fixed-dark sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-primary-surface-muted)] sgds:border-[var(--sgds-primary-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>AI reads full design context</span>
                 </div>
                 <div class="sgds:inline-flex sgds:items-center sgds:shrink-0 sgds:grow-0 sgds:basis-10 sgds:w-10 sgds:flex-col sgds:gap-component-xs" aria-hidden="true">
                   <span class="flow-long-arrow"></span>
                   <span class="flow-long-arrow-reverse"></span>
                 </div>
-                <div class="flow-node-box sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                <div class="flow-node-box sgds:text-fixed-dark sgds:inline-flex sgds:items-center sgds:border sgds:rounded-none sgds:gap-2-xs sgds:py-2 sgds:px-6 sgds:bg-[var(--sgds-success-surface-muted)] sgds:border-[var(--sgds-success-border-color-default)] sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>Code</span>
                 </div>
               </div>
@@ -284,7 +284,7 @@ const openFigmaToCodeTab = (event: Event) => {
 
               <template #step-3>
                 <p>Be explicit that you want SGDS components and patterns where possible. Ask the AI to flag anything that does not have a direct SGDS match.</p>
-                <PromptBox prompt="Build this Figma frame using SGDS web components and utility classes. Refer to the SGDS skills for the correct component APIs, utility tokens, and layout patterns. Flag anything that does not have a direct SGDS match." />
+                <CodeBlock prompt code="Build this Figma frame using SGDS web components and utility classes. Refer to the SGDS skills for the correct component APIs, utility tokens, and layout patterns. Flag anything that does not have a direct SGDS match." />
               </template>
 
               <template #step-4>
@@ -324,7 +324,7 @@ const openFigmaToCodeTab = (event: Event) => {
 
               <template #step-3>
                 <p>Be explicit about what you want sent and where it should go. Ask the AI to use SGDS components, tokens, and layout rules where possible, and to flag anything that does not have a direct SGDS match.</p>
-                <PromptBox prompt="Send my dashboard page to this Figma page or frame: <insert Figma link>. Use SGDS components, tokens, and layout rules where possible. Flag anything that does not have a direct SGDS match." />
+                <CodeBlock prompt code="Send my dashboard page to this Figma page or frame: <insert Figma link>. Use SGDS components, tokens, and layout rules where possible. Flag anything that does not have a direct SGDS match." />
               </template>
 
               <template #step-4>
@@ -416,8 +416,4 @@ const openFigmaToCodeTab = (event: Event) => {
   transform: translateY(-50%);
 }
 
-/* Descendant combinator for flow node box text: requires fallback color value */
-.flow-node-box > span {
-  color: var(--sgds-color-fixed-dark, #161616);
-}
 </style>

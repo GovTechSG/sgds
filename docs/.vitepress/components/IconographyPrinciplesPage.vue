@@ -44,7 +44,7 @@ const rules = [
   <TypographyPageTemplate stacked-examples>
     <FoundationPrincipleTemplate>
       <FoundationPrinciplesList :principles="principles" />
-      <FoundationRulesGuidanceList title="Rules and guide" :rules="rules" />
+      <FoundationRulesGuidanceList title="Rules and guidelines" :rules="rules" />
       <Section title="Characteristics">
         <IconographyCharacteristicsPage />
       </Section>

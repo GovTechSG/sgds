@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, ref } from "vue";
-import PromptBox from "../ui/PromptBox.vue";
-import ThemeControls from "../ui/ThemeControls.vue";
+import CodeBlock from "../ui/CodeBlock.vue";
+import { getStorybookPageUrl } from "../../data/storybook-ids";
 
 type Viewport = "mobile" | "tablet" | "desktop";
 type DropdownOption = { key: string; title: string; kind: "template" | "block"; groupLabel?: string };
 
 const props = defineProps<{
-  viewport: Viewport;
+  // viewport: Viewport;
   templateOptions: DropdownOption[];
   blockOptions: DropdownOption[];
   activeKey: string;
@@ -15,84 +15,16 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "update:viewport", value: Viewport): void;
+  // (e: "update:viewport", value: Viewport): void;
   (e: "navigate", option: DropdownOption): void;
 }>();
 
-const viewportOptions: Array<{ value: Viewport; label: string; icon: string }> = [
-  { value: "mobile", label: "Mobile", icon: "phone" },
-  { value: "tablet", label: "Tablet", icon: "tablet" },
-  { value: "desktop", label: "Desktop", icon: "laptop" },
-];
-
-const storybookStoryIds: Record<string, string> = {
-  "template:about-us": "templates-about-us-basic--basic",
-  "template:application-management": "templates-application-management-application-list--application-list",
-  "template:blog": "templates-blog-success-story--success-story",
-  "template:catalogue": "templates-catalogue-search-filter--search-and-filter",
-  "template:form-page": "templates-form-basic--basic",
-  "template:landing": "templates-landing-basic--basic",
-  "template:multi-step-form": "templates-form-multi-step-form--multi-step-form",
-  "template:report-issue": "templates-form-report-issue--report-issue",
-  "block:cards": "blocks-cards--cards-3",
-  "block:cards-3-per-column": "blocks-cards--cards-3",
-  "block:cards-4-per-column": "blocks-cards--cards-4",
-  "block:cta": "blocks-call-to-action-contained-primary--default",
-  "block:cta-contained-primary-center": "blocks-call-to-action-contained-primary-center--default",
-  "block:cta-contained-primary": "blocks-call-to-action-contained-primary--default",
-  "block:cta-contained-raised-center": "blocks-call-to-action-contained-raised-center--default",
-  "block:cta-contained-raised": "blocks-call-to-action-contained-raised--default",
-  "block:cta-full-bleed-alternate-center": "blocks-call-to-action-full-bleed-alternate-center--default",
-  "block:cta-full-bleed-alternate": "blocks-call-to-action-full-bleed-alternate--default",
-  "block:cta-full-bleed-primary-center": "blocks-call-to-action-full-bleed-primary-center--default",
-  "block:cta-full-bleed-primary": "blocks-call-to-action-full-bleed-primary--default",
-  "block:feature": "blocks-feature--feature-image-left-48",
-  "block:feature-image-left-4-8": "blocks-feature--feature-image-left-48",
-  "block:feature-image-right-4-8": "blocks-feature--feature-image-right-48",
-  "block:feature-component-left-6-6": "blocks-feature--feature-component-left-66",
-  "block:feature-component-right-6-6": "blocks-feature--feature-component-right-66",
-  "block:feature-image-left-6-6": "blocks-feature--feature-image-left-66",
-  "block:feature-image-right-6-6": "blocks-feature--feature-image-right-66",
-  "block:feature-image-left-8-4": "blocks-feature--feature-image-left-84",
-  "block:feature-image-right-8-4": "blocks-feature--feature-image-right-84",
-  "block:feature-cards-below": "blocks-feature--feature-cards-below",
-  "block:feature-no-image-center": "blocks-feature--feature-no-image-center",
-  "block:feature-no-image-left": "blocks-feature--feature-no-image-left",
-  "block:filter": "blocks-filter--filter-checkboxes",
-  "block:filter-checkboxes": "blocks-filter--filter-checkboxes",
-  "block:form-all-types": "blocks-form--all-types",
-  "block:form-basic-center": "blocks-form--basic-center",
-  "block:form-basic-left": "blocks-form--basic-left",
-  "block:form-basic-right": "blocks-form--basic-right",
-  "block:form-fields-checkbox": "blocks-form--form-fields-checkbox",
-  "block:form-fields-dates-quantities": "blocks-form--form-fields-dates-quantities",
-  "block:form-fields-file-upload": "blocks-form--form-fields-file-upload",
-  "block:form-fields-radio": "blocks-form--form-fields-radio",
-  "block:form-fields-selects": "blocks-form--form-fields-selects",
-  "block:form-fields-textarea": "blocks-form--form-fields-textarea",
-  "block:form-multi-step": "blocks-form--form-multistep-stepper",
-  "block:form-full-width-only": "blocks-form--fullwidth-only",
-  "block:form-paired-only": "blocks-form--paired-only",
-  "block:form-sections-single": "blocks-form--sections-single",
-  "block:form-sections-three": "blocks-form--sections-three",
-  "block:form-sections-two": "blocks-form--sections-two",
-  "block:header": "blocks-header--page-header",
-  "block:header-page-header-with-breadcrumb": "blocks-header--page-header-with-breadcrumb",
-  "block:header-page-header": "blocks-header--page-header",
-  "block:hero": "blocks-hero--hero",
-  "block:hero-background-image-light": "blocks-hero--hero-bg-image-light",
-  "block:hero-background-image": "blocks-hero--hero-bg-image",
-  "block:hero-center": "blocks-hero--hero-center",
-  "block:hero-fullbleed": "blocks-hero--hero-fullbleed",
-  "block:hero-image": "blocks-hero--hero-image",
-  "block:hero-basic": "blocks-hero--hero",
-  "block:stats": "blocks-stats--stats-3",
-  "block:stats-3-statistics": "blocks-stats--stats-3",
-  "block:stats-4-statistics": "blocks-stats--stats-4",
-  "block:stats-5-statistics": "blocks-stats--stats-5",
-  "block:stats-right-6-column": "blocks-stats--stats-right-6",
-  "block:stats-right-8-columns": "blocks-stats--stats-right-8",
-};
+// Hidden for now — may re-enable when viewport controls are needed again.
+// const viewportOptions: Array<{ value: Viewport; label: string; icon: string }> = [
+//   { value: "mobile", label: "Mobile", icon: "phone" },
+//   { value: "tablet", label: "Tablet", icon: "tablet" },
+//   { value: "desktop", label: "Desktop", icon: "laptop" },
+// ];
 
 const promptOpen = ref(false);
 const promptTipRef = ref<HTMLElement | null>(null);
@@ -126,12 +58,9 @@ const blockOptionGroups = computed(() => {
   return Array.from(groups, ([label, options]) => ({ label, options }));
 });
 
-const storybookHref = computed(() => {
-  const storyId = storybookStoryIds[`${props.activeKind}:${props.activeKey}`];
-  return storyId
-    ? `https://www.webcomponent.designsystem.tech.gov.sg/?path=/story/${storyId}`
-    : "https://www.webcomponent.designsystem.tech.gov.sg/";
-});
+const storybookHref = computed(() =>
+  getStorybookPageUrl(props.activeKind, props.activeKey),
+);
 
 const isActiveOption = (option: DropdownOption) =>
   option.kind === props.activeKind && option.key === props.activeKey;
@@ -323,10 +252,11 @@ onBeforeUnmount(() => {
           v-if="promptOpen"
           class="sgds:absolute sgds:z-[60] sgds:top-[calc(100%+var(--sgds-gap-xs))] sgds:right-0 sgds:w-[min(var(--sgds-dimension-400),calc(100vw-var(--sgds-padding-xl)))]"
         >
-          <PromptBox label="Example prompt" :prompt="promptExample" />
+          <CodeBlock prompt :code="promptExample" />
         </div>
       </div>
 
+      <!-- Hidden for now — viewport controls may be re-enabled later.
       <sgds-divider orientation="vertical" class="template-preview-toolbar-divider"></sgds-divider>
 
       <div class="template-preview-viewport-controls" role="tablist" aria-label="Viewport size">
@@ -351,10 +281,7 @@ onBeforeUnmount(() => {
           </button>
         </sgds-tooltip>
       </div>
-
-      <sgds-divider orientation="vertical" class="template-preview-toolbar-divider"></sgds-divider>
-
-      <ThemeControls variant="ghost" tone="neutral" size="sm" class="template-preview-toolbar-theme" />
+      -->
     </div>
   </div>
 </template>
@@ -381,10 +308,6 @@ onBeforeUnmount(() => {
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-label-sm);
-}
-
-.template-preview-toolbar-theme {
-  gap: var(--sgds-gap-2-xs);
 }
 
 .template-preview-toolbar-divider {
@@ -423,6 +346,7 @@ onBeforeUnmount(() => {
   background-color: var(--sgds-color-fixed-light);
 }
 
+/* Hidden for now — viewport control styles preserved for future use.
 .template-preview-viewport-controls {
   align-items: center;
   display: inline-flex;
@@ -461,6 +385,7 @@ onBeforeUnmount(() => {
   outline: var(--sgds-outline-focus);
   outline-offset: var(--sgds-outline-offset-focus);
 }
+*/
 
 @media (max-width: 640px) {
   .template-preview-toolbar {

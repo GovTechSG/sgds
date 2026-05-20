@@ -70,6 +70,7 @@ const isDividerStructure = computed(() => props.previewMarkup.includes("<sgds-di
 const isDropdownStructure = computed(() => props.previewMarkup.includes("<sgds-dropdown"));
 const isDrawerStructure = computed(() => props.previewMarkup.includes("<sgds-drawer"));
 const isFooterStructure = computed(() => props.previewMarkup.includes("<sgds-footer"));
+const isMainnavStructure = computed(() => props.previewMarkup.includes("<sgds-mainnav"));
 const isMastheadStructure = computed(() => props.previewMarkup.includes("<sgds-masthead"));
 const isModalStructure = computed(() => props.previewMarkup.includes("<sgds-modal"));
 const isModalFullscreenStructure = computed(() => isModalStructure.value && activeVariant.value === "fullscreen");
@@ -708,6 +709,12 @@ const formatConstraintLabel = (constraint: "max" | "min" | null, rawValue: strin
   return rawValue;
 };
 
+const isMastheadContainerToken = (row?: MeasurementTokenRow | null) =>
+  Boolean(isMastheadStructure.value && row?.usage?.toLowerCase().includes("masthead container"));
+
+const isMastheadContainerMaxWidthToken = (row?: MeasurementTokenRow | null) =>
+  Boolean(isMastheadContainerToken(row) && inferDimensionConstraint(row?.usage) === "max");
+
 const isDrawerDimensionKey = (key: string | null) =>
   isDrawerStructure.value && (key === "dimension" || Boolean(key?.startsWith("dimension-")));
 
@@ -717,6 +724,7 @@ const staticSizeAnnotations = computed(() => {
     id: string;
     orientation: "height" | "width";
     labelPlacement?: "default" | "left" | "above";
+    labelLeft?: number;
     label: string;
     left: number;
     top: number;
@@ -759,6 +767,7 @@ const staticSizeAnnotations = computed(() => {
     if (isDescriptionListStructure.value && key === "dimension-280") return;
     if (isDrawerDimensionKey(key)) return;
     if (isDropdownStructure.value && key === "dimension-192") return;
+    if (isMainnavStructure.value && key === "icon-size-sm") return;
 
     // When the component is flush with the shell's right or bottom edge, the
     // default bracket placement would render outside the preview area (or on
@@ -793,13 +802,20 @@ const staticSizeAnnotations = computed(() => {
     // both axes ("Height of X; width of X") still render both.
     const heightAxis = inferDimensionAxis(heightToken?.usage);
     const widthAxis = inferDimensionAxis(widthToken?.usage);
+    const isMastheadContainerMaxWidth =
+      isMastheadContainerMaxWidthToken(heightToken) ||
+      isMastheadContainerMaxWidthToken(widthToken);
+    if (isMastheadStructure.value && !isMastheadContainerMaxWidth) {
+      return;
+    }
 
     if (
       annotationKeys.heightKey &&
       heightToken?.rawValue &&
       !isZeroTokenValue(heightToken) &&
       heightAxis !== "width" &&
-      !isDrawerDimensionKey(key)
+      !isDrawerDimensionKey(key) &&
+      !(isMastheadStructure.value && (key === "dimension-20" || key === "icon-size-sm"))
     ) {
       const isThickness = isStrokeThicknessKey(key);
       // The switch's toggle sits to the LEFT of its label inside the host —
@@ -897,6 +913,8 @@ const staticSizeAnnotations = computed(() => {
         isDrawerDimensionKey(key);
       const isFooterContentMaxWidth =
         isFooterStructure.value && key.startsWith("dimension-");
+      const isMainnavMaxWidth =
+        isMainnavStructure.value && key === "mainnav-max-width";
       const isModalPanelDimensionWidth =
         isModalStructure.value && (key === "dimension" || key.startsWith("dimension-"));
       const forceAbove = isMastheadStructure.value && key === "dimension-20";
@@ -908,22 +926,25 @@ const staticSizeAnnotations = computed(() => {
       const widthRawValue = getStructureValue(allStructureTokenMap.value.get(annotationKeys.widthKey), annotationKeys.widthKey, "width");
       const widthConstraint = inferDimensionConstraint(widthToken?.usage);
       const widthConstraintPx = widthConstraint ? parseRawPxValue(widthToken?.rawValue) : null;
+      const isMastheadContainerMaxWidth = isMastheadContainerMaxWidthToken(widthToken);
       // Constraint brackets (max/min) decouple from the component's rendered
       // size — a "Max 192px" bracket on a 74px-wide badge has no obvious
       // anchor point. Centre it horizontally inside the preview shell so it
       // reads as a stand-alone measurement of the constraint, not as a
       // bracket attached to the live element. Non-constraint width brackets
       // stay anchored to the component's left edge.
-      const widthSize = isModalPanelDimensionWidth
+      const widthSize = isMastheadContainerMaxWidth && shellWidth > 0
+        ? shellWidth
+        : isModalPanelDimensionWidth
         ? rect.width
-        : isFooterContentMaxWidth && shellWidth > 0
+        : (isFooterContentMaxWidth || isMainnavMaxWidth) && shellWidth > 0
         ? Math.min(widthConstraintPx ?? rect.width, shellWidth)
         : widthConstraintPx ?? rect.width;
       const unclampedWidthLeft = isModalPanelDimensionWidth
         ? rect.left
         : isThumbnailDimensionWidth
         ? Math.round(rect.left + rect.width / 2 - widthSize / 2)
-        : isDatepickerInputMinWidth || isDatepickerDropdownMaxWidth || isDropdownMenuMaxWidth || isFooterContentMaxWidth
+        : isDatepickerInputMinWidth || isDatepickerDropdownMaxWidth || isDropdownMenuMaxWidth || isFooterContentMaxWidth || isMainnavMaxWidth
           ? Math.round(rect.left + rect.width / 2 - widthSize / 2)
         : isDescriptionListLabelMaxWidth
           ? rect.left
@@ -941,6 +962,9 @@ const staticSizeAnnotations = computed(() => {
         id: `${key}-width`,
         orientation: "width",
         labelPlacement: placeAbove ? "above" : "default",
+        labelLeft: isMastheadContainerMaxWidth && shellWidth > 0
+          ? Math.round(shellWidth / 2 - widthLeft)
+          : undefined,
         label: formatConstraintLabel(widthConstraint, widthRawValue),
         left: widthLeft,
         top: widthTop,
@@ -1877,9 +1901,17 @@ const preventPreviewInteractionKeyboard = (event: KeyboardEvent) => {
   preventPreviewInteraction(event);
 };
 
+const shouldScrollToTokenRow = () => {
+  if (typeof window === "undefined") return true;
+  const isMobileViewport = window.matchMedia("(max-width: 767.98px)").matches;
+  const isTouchLikePointer = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+  return !isMobileViewport && !isTouchLikePointer;
+};
+
 const scrollToTableRow = async (key: string) => {
   hoverKey.value = key;
   selectedKeys.value = getRelatedRowKeys(key);
+  if (!shouldScrollToTokenRow()) return;
   await nextTick();
   const row = selectedKeys.value
     .map((rowKey) => rootRef.value?.querySelector<HTMLElement>(`[data-structure-row-key="${rowKey}"]`))
@@ -6026,7 +6058,10 @@ const getCollapsedCategory = (
                 : { width: `${annotation.size}px` }),
             }"
           >
-            <span class="accordion-inspect-annotation__label">{{ annotation.label }}</span>
+            <span
+              class="accordion-inspect-annotation__label"
+              :style="annotation.labelLeft != null ? { left: `${annotation.labelLeft}px` } : undefined"
+            >{{ annotation.label }}</span>
           </div>
         </template>
 

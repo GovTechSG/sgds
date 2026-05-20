@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUpdated, ref } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, onUpdated, ref } from "vue";
 import type { BestPractice } from "../../data/component-docs";
 import CodeToken from "../ui/CodeToken.vue";
 import { textParts } from "../../utils/text-parts";
@@ -27,6 +27,9 @@ const bestPracticeRows = computed(() => {
 const sectionRef = ref<HTMLElement | null>(null);
 const pinnedTooltips = new WeakSet<Element>();
 const pinnedToasts = new WeakSet<Element>();
+const observedMainnavWrappers = new WeakSet<Element>();
+let mainnavResizeObserver: ResizeObserver | null = null;
+let mainnavFitFrame = 0;
 
 const pinIllustrativeTooltip = (tooltip: Element) => {
   if (pinnedTooltips.has(tooltip)) return;
@@ -141,6 +144,73 @@ const setupIllustrativeSteppers = async () => {
     });
 };
 
+const fitIllustrativeMainnavs = async () => {
+  await nextTick();
+  await customElements.whenDefined("sgds-mainnav");
+
+  const navWrappers = Array.from(
+    sectionRef.value?.querySelectorAll<HTMLElement>(".portal-demo-nav") ?? [],
+  ).filter((wrapper) => wrapper.querySelector(":scope > sgds-mainnav"));
+
+  for (const wrapper of navWrappers) {
+    const mainnav = wrapper.querySelector(":scope > sgds-mainnav") as HTMLElement & {
+      updateComplete?: Promise<unknown>;
+    } | null;
+
+    if (!mainnav) continue;
+
+    wrapper.setAttribute("inert", "");
+    wrapper.style.setProperty("--portal-mainnav-scale", "1");
+    wrapper.style.setProperty("--portal-mainnav-width", "var(--sgds-dimension-768)");
+    await mainnav.updateComplete;
+
+    const availableWidth = wrapper.getBoundingClientRect().width;
+    if (availableWidth <= 0) continue;
+
+    const measuredRects = [
+      mainnav.getBoundingClientRect(),
+      ...Array.from(mainnav.children).map((child) => child.getBoundingClientRect()),
+    ].filter((rect) => rect.width > 0 && rect.height > 0);
+
+    const minLeft = Math.min(...measuredRects.map((rect) => rect.left));
+    const maxRight = Math.max(...measuredRects.map((rect) => rect.right));
+    const minTop = Math.min(...measuredRects.map((rect) => rect.top));
+    const maxBottom = Math.max(...measuredRects.map((rect) => rect.bottom));
+    const naturalWidth = Math.max(availableWidth, maxRight - minLeft);
+    const naturalHeight = Math.max(80, maxBottom - minTop);
+    const scale = naturalWidth > availableWidth
+      ? Math.max(0.24, availableWidth / naturalWidth)
+      : 1;
+
+    wrapper.style.setProperty("--portal-mainnav-width", `${naturalWidth}px`);
+    wrapper.style.setProperty("--portal-mainnav-height", `${naturalHeight}px`);
+    wrapper.style.setProperty("--portal-mainnav-scale", String(scale));
+  }
+};
+
+const scheduleFitIllustrativeMainnavs = () => {
+  if (mainnavFitFrame) return;
+
+  mainnavFitFrame = window.requestAnimationFrame(() => {
+    mainnavFitFrame = 0;
+    void fitIllustrativeMainnavs();
+  });
+};
+
+const observeIllustrativeMainnavs = () => {
+  if (typeof ResizeObserver === "undefined") return;
+
+  mainnavResizeObserver ??= new ResizeObserver(scheduleFitIllustrativeMainnavs);
+
+  Array.from(sectionRef.value?.querySelectorAll<HTMLElement>(".portal-demo-nav") ?? [])
+    .filter((wrapper) => wrapper.querySelector(":scope > sgds-mainnav"))
+    .forEach((wrapper) => {
+      if (observedMainnavWrappers.has(wrapper)) return;
+      observedMainnavWrappers.add(wrapper);
+      mainnavResizeObserver?.observe(wrapper);
+    });
+};
+
 const showIllustrativeToast = (toast: Element) => {
   toast.removeAttribute("autohide");
   toast.setAttribute("no-animation", "");
@@ -195,10 +265,25 @@ const showIllustrativeComponents = async () => {
       void restyleIllustrativeMasthead(masthead);
     });
   await setupIllustrativeSteppers();
+  observeIllustrativeMainnavs();
+  await fitIllustrativeMainnavs();
 };
 
-onMounted(showIllustrativeComponents);
+onMounted(() => {
+  void showIllustrativeComponents();
+  window.addEventListener("resize", fitIllustrativeMainnavs);
+});
 onUpdated(showIllustrativeComponents);
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", fitIllustrativeMainnavs);
+  if (mainnavFitFrame) {
+    window.cancelAnimationFrame(mainnavFitFrame);
+    mainnavFitFrame = 0;
+  }
+  mainnavResizeObserver?.disconnect();
+  mainnavResizeObserver = null;
+});
 </script>
 
 <template>
@@ -210,7 +295,7 @@ onUpdated(showIllustrativeComponents);
     >
       <article v-if="row.do" :key="row.do.title" class="best-practice-card">
         <div :class="[
-          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
+          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-alternate sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
           compactSidePadding ? 'sgds:px-component-sm' : 'sgds:px-component-md',
         ]">
           <span
@@ -257,7 +342,7 @@ onUpdated(showIllustrativeComponents);
 
       <article v-if="row.dont" :key="row.dont.title" class="best-practice-card">
         <div :class="[
-          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-surface-raised sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
+          'sgds:flex sgds:flex-col sgds:justify-center sgds:bg-alternate sgds:rounded-xl sgds:min-h-[var(--sgds-dimension-280)] sgds:relative sgds:overflow-hidden sgds:gap-[var(--sgds-gap-md)] sgds:py-component-md',
           compactSidePadding ? 'sgds:px-component-sm' : 'sgds:px-component-md',
         ]">
           <span
@@ -381,21 +466,23 @@ onUpdated(showIllustrativeComponents);
    viewport, not the card container, so best-practice cards constrain it. */
 .best-practice-demo-markup .portal-demo-nav {
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible;
+  pointer-events: none;
+  width: 100%;
 }
 
 .best-practice-demo-markup sgds-mainnav {
   display: block;
-  flex: 0 0 var(--sgds-dimension-768);
-  transform: scale(0.56);
-  transform-origin: center;
-  width: var(--sgds-dimension-768);
+  flex: 0 0 var(--portal-mainnav-width, var(--sgds-dimension-768));
+  transform: scale(var(--portal-mainnav-scale, 1));
+  transform-origin: center center;
+  width: var(--portal-mainnav-width, var(--sgds-dimension-768));
 }
 
 .best-practice-demo-markup .portal-demo-nav:has(> sgds-mainnav) {
   align-items: center;
   display: flex;
   justify-content: center;
-  min-height: var(--sgds-dimension-96);
+  min-height: calc(var(--portal-mainnav-height, 80px) * var(--portal-mainnav-scale, 1));
 }
 </style>

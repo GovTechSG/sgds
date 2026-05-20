@@ -4,9 +4,12 @@ layout: default
 
 <script setup lang="ts">
 import Hero, { Button } from "./.vitepress/components/landing/Hero.vue";
+import ColourGridImage from "./.vitepress/components/landing/ColourGridImage.vue";
+import LayoutGridImage from "./.vitepress/components/landing/LayoutGridImage.vue";
 import LandingWorkflowVisual from "./.vitepress/components/landing/LandingWorkflowVisual.vue";
 import PortalImageCard from "./.vitepress/components/landing/PortalImageCard.vue";
 import { FoundationItem } from "./.vitepress/data/foundations";
+import { getFoundationEntryUrl } from "./.vitepress/data/foundations-sidebar";
 
 const title = "Unifying Government through Design and\u00A0Code."
 
@@ -21,29 +24,35 @@ const buttons: Button = [
 
 const featureFoundations: FoundationItem[] = [
   {
-    id: "colour-system",
-    title: "Colour system",
-    url: "/foundations/colour",
-    image: "/landing/colour_system.png",
-    phase: 1,
-    status: "stable",
-  },
-  {
-    id: "icon-library",
-    title: "Icon library",
-    url: "/foundations/iconography/icon-library",
-    image: "/landing/icon_library.png",
-    phase: 1,
-    status: "stable",
-  },
-  {
     id: "design-tokens",
     title: "Design tokens",
-    url: "/foundations/design-tokens",
-    image: "/landing/design_token.png",
+    url: getFoundationEntryUrl("design-tokens"),
+    image: "/foundations/design-tokens.svg",
+    imageFit: "contain",
+    imageClass: "sgds:w-[34%] sgds:h-[45%]",
     phase: 1,
     status: "stable",
   },
+  {
+    id: "colour",
+    title: "Colour",
+    url: getFoundationEntryUrl("colour"),
+    image: "/foundations/colour.svg",
+    imageFit: "contain",
+    imageClass: "sgds:w-[56%] sgds:h-[48%]",
+    phase: 1,
+    status: "stable",
+  },
+  {
+    id: "iconography",
+    title: "Iconography",
+    url: getFoundationEntryUrl("iconography"),
+    image: "/foundations/iconography.svg",
+    imageFit: "contain",
+    imageClass: "sgds:w-[36%] sgds:h-[48%]",
+    phase: 1,
+    status: "stable",
+  }
 ]
 
 const contributors = [
@@ -87,24 +96,26 @@ const currentPhase = 1;
 const showCommunitySection = false;
 </script>
 
-<div :class="$style.homePage">
-  <div :class="$style.container">
+<div>
+  <div class="sgds:pb-layout-xl">
     <Hero
       :title
       :buttons
     />
   </div>
-  <div :class="$style['feature-container']">
-    <section :class="$style['feature-section']">
-      <h2 :class="$style.header">Design once,<br>use everywhere.</h2>
-      <div :class="$style['feature-grid']" class="sgds-grid">
+  <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-spacer-10)] sgds:lg:gap-[var(--sgds-spacer-12)]">
+    <section class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+      <h2 class="sgds:text-display-md sgds:font-light sgds:leading-2-xl sgds:tracking-tighter sgds:mb-0">
+        Design once,<br>use everywhere.
+      </h2>
+      <div class="sgds-grid">
         <img
           src="/landing/placeholder1.png"
           alt="Placeholder 1"
           width="760"
           height="480"
           :class="$style.image"
-          class="sgds-col-4 sgds-col-sm-5 sgds-col-lg-7"
+          class="sgds-col-4 sgds-col-sm-5 sgds-col-lg-7 sgds:rounded-3-xl"
         >
         <img
           src="/landing/placeholder2.png"
@@ -112,7 +123,7 @@ const showCommunitySection = false;
           width="512"
           height="480"
           :class="$style.image"
-          class="sgds-col-4 sgds-col-sm-3 sgds-col-lg-5"
+          class="sgds-col-4 sgds-col-sm-3 sgds-col-lg-5 sgds:rounded-3-xl"
         >
         <img
           src="/landing/placeholder3.png"
@@ -120,7 +131,7 @@ const showCommunitySection = false;
           width="312"
           height="480"
           :class="$style.image"
-          class="sgds-col-4 sgds-col-sm-2 sgds-col-lg-3"
+          class="sgds-col-4 sgds-col-sm-2 sgds-col-lg-3 sgds:rounded-3-xl"
         >
         <img
           src="/landing/placeholder4.png"
@@ -128,22 +139,60 @@ const showCommunitySection = false;
           width="960"
           height="480"
           :class="$style.image"
-          class="sgds-col-4 sgds-col-sm-6 sgds-col-lg-9"
+          class="sgds-col-4 sgds-col-sm-6 sgds-col-lg-9 sgds:rounded-3-xl"
         >
       </div>
     </section>
-    <section :class="$style['feature-section']">
-      <h2 :class="$style.header">Building together,<br>designing better.</h2>
-      <div :class="$style['feature-grid']" class="sgds-grid">
+    <section class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+      <h2 class="sgds:text-display-md sgds:font-light sgds:leading-2-xl sgds:tracking-tighter sgds:mb-0">
+        Building together,<br>designing better.
+      </h2>
+      <div class="sgds-grid">
         <LandingWorkflowVisual class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-12" />
       </div>
     </section>
-    <section v-if="showCommunitySection" :class="$style['feature-section']">
-      <h2 :class="$style.header">Built by the community</h2>
-      <p :class="$style.description">
+    <section class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+      <h2 class="sgds:text-display-md sgds:font-light sgds:leading-2-xl sgds:tracking-tighter sgds:mb-0">
+        Shared foundation,<br>stronger services.
+      </h2>
+      <div class="sgds-grid">
+        <div
+          class="sgds-col-4 sgds-col-sm-3 sgds-col-lg-5 sgds:flex sgds:flex-col sgds:gap-3-xl"
+        >
+          <p class="sgds:text-body-subtle sgds:text-body-lg sgds:leading-md sgds:mb-0">
+            With a common foundation of colour, typography, and components, our design system helps teams create consistent, accessible, and reliable services across government.
+          </p>
+          <img
+            src="/landing/placeholder7.png"
+            alt="Placeholder 7"
+            width="536"
+            height="576"
+            :class="$style.image"
+            class="sgds:rounded-3-xl"
+          />
+        </div>
+        <div
+          :class="$style.image"
+          class="sgds-col-4 sgds-col-sm-5 sgds-col-lg-7 sgds:overflow-hidden sgds:rounded-3-xl"
+        >
+          <ColourGridImage />
+        </div>
+        <div
+          :class="$style.image"
+          class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-12 sgds:overflow-hidden sgds:rounded-3-xl"
+        >
+          <LayoutGridImage />
+        </div>
+      </div>
+    </section>
+    <section v-if="showCommunitySection" class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+      <h2 class="sgds:text-display-md sgds:font-light sgds:leading-2-xl sgds:tracking-tighter sgds:mb-0">
+        Built by the community
+      </h2>
+      <p class="sgds:text-body-subtle sgds:text-body-lg sgds:leading-md sgds:mb-0">
         SGDS is free and open-source, welcoming contributions from developers and designers across government and beyond.
       </p>
-      <div class="sgds:flex sgds:w-full sgds:flex-wrap sgds:gap-[var(--sgds-gap-xs)]">
+      <div class="sgds:flex sgds:w-full sgds:flex-wrap sgds:gap-xs">
         <a
           v-for="contributor in contributorCloud"
           :key="contributor.key"
@@ -162,9 +211,11 @@ const showCommunitySection = false;
         </a>
       </div>
     </section>
-    <section :class="$style['feature-section']">
-      <h2 :class="$style.header">Empowering teams,<br>transforming services.</h2>
-      <div :class="$style['feature-grid']" class="sgds-grid">
+    <section class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+      <h2 class="sgds:text-display-md sgds:font-light sgds:leading-2-xl sgds:tracking-tighter sgds:mb-0">
+        Empowering teams,<br>transforming services.
+      </h2>
+      <div class="sgds-grid">
         <PortalImageCard
           v-for="foundation in featureFoundations"
           :key="foundation.id"
@@ -179,12 +230,6 @@ const showCommunitySection = false;
 </div>
 
 <style module>
-  .homePage {
-    margin-inline: calc(50% - 50vw);
-    padding-inline: calc(50vw - 50%);
-    position: relative;
-  }
-
   .homePage::before {
     background-color: var(--sgds-border-color-muted);
     content: "";
@@ -229,45 +274,16 @@ const showCommunitySection = false;
     z-index: 1;
   }
 
-  .container {
-    padding-bottom: var(--sgds-dimension-144);
-  }
-
-  .feature-container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sgds-spacer-12);
-  }
-
   .feature-section {
     display: flex;
     flex-direction: column;
     gap: var(--sgds-spacer-10);
-  }
-  
-  .header {
-    font-size: var(--sgds-font-size-8);
-    font-weight: var(--sgds-font-weight-light);
-    line-height: var(--sgds-line-height-56);
-    letter-spacing: var(--sgds-letter-spacing-tighter);
-    margin-bottom: var(--sgds-margin-none);
-  }
-
-  .feature-grid {
-    gap: var(--sgds-gap-3-xl);
   }
 
   .image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 32px;
-  }
-
-  .description-container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sgds-gap-3-xl);
   }
 
   .description {

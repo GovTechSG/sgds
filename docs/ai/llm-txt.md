@@ -29,9 +29,9 @@ import CodeToken from "../.vitepress/components/ui/CodeToken.vue";
 </p>
 
 <div class="section-block">
-  <PromptBox prompt="Read https://designsystem.tech.gov.sg/llms-full.txt and understand SGDS. Use this knowledge when writing code with SGDS">
+  <CodeBlock prompt code="Read https://designsystem.tech.gov.sg/llms-full.txt and understand SGDS. Use this knowledge when writing code with SGDS">
     Read <CodeToken label="https://designsystem.tech.gov.sg/llms-full.txt" /> and understand SGDS. Use this knowledge when writing code with SGDS
-  </PromptBox>
+  </CodeBlock>
 </div>
 
 <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal body-copy tools-copy">
@@ -48,7 +48,7 @@ import CodeToken from "../.vitepress/components/ui/CodeToken.vue";
   <a href="/ai/skills">→ Learn about agent skills</a>
 </p>
 
-<style>
+<style scoped>
   h3,
   h4,
   p {

@@ -1,8 +1,11 @@
+@import "@govtechsg/sgds-web-component/css/fouc.css";
 @import "@govtechsg/sgds-web-component/themes/day.css";
 @import "@govtechsg/sgds-web-component/themes/night.css";
 @import "@govtechsg/sgds-web-component/themes/responsive.css";
 @import "@govtechsg/sgds-web-component/css/sgds.css";
 @import "@govtechsg/sgds-web-component/css/utility.css";
+
+* { box-sizing: border-box; }
 
 /* ─── Tab group: extend underline to full width ─────────────────────────── */
 

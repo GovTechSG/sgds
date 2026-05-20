@@ -16,8 +16,8 @@ const roleRows = [
     ],
     chipTop: "sgds-bg-default",
     chipBottom: "sgds-bg-alternate",
-    topSwatchClass: "swatchDefault",
-    bottomSwatchClass: "swatchAlternate",
+    topSwatchClass: "uc-swatch-default",
+    bottomSwatchClass: "uc-swatch-alternate",
     variant: "background",
   },
   {
@@ -34,8 +34,8 @@ const roleRows = [
     ],
     chipTop: "sgds-surface-default",
     chipBottom: "sgds-surface-raised",
-    topSwatchClass: "swatchSurfaceDefault",
-    bottomSwatchClass: "swatchSurfaceRaised",
+    topSwatchClass: "uc-swatch-surface-default",
+    bottomSwatchClass: "uc-swatch-surface-raised",
     variant: "default",
   },
   {
@@ -52,69 +52,69 @@ const roleRows = [
     ],
     chipTop: "sgds-text-default",
     chipBottom: "sgds-text-subtle",
-    topSwatchClass: "swatchTextDefault",
-    bottomSwatchClass: "swatchTextSubtle",
+    topSwatchClass: "uc-swatch-text-default",
+    bottomSwatchClass: "uc-swatch-text-subtle",
     variant: "default",
   },
 ] as const;
 </script>
 
 <template>
-  <div :class="$style.page">
-    <div :class="$style.sectionStack">
-      <div :class="$style.pageSection">
+  <div class="uc-page">
+    <div class="uc-section-stack">
+      <div class="uc-page-section">
         <Section
           title="Semantic colour"
           description="Semantic colours should be reserved for meaning. Use them consistently for success, warning, danger, and information so users can recognise state and feedback quickly."
         >
-          <div :class="[$style.demoCard, $style.demoCardInset]">
-            <div :class="$style.semanticDemo">
-              <div :class="[$style.semanticAlert, $style.semanticSuccess]"></div>
-              <div :class="[$style.semanticAlert, $style.semanticWarning]"></div>
-              <div :class="[$style.semanticAlert, $style.semanticDanger]"></div>
+          <div class="uc-demo-card uc-demo-card-inset">
+            <div class="uc-semantic-demo">
+              <div class="uc-semantic-alert uc-semantic-success"></div>
+              <div class="uc-semantic-alert uc-semantic-warning"></div>
+              <div class="uc-semantic-alert uc-semantic-danger"></div>
             </div>
           </div>
         </Section>
       </div>
 
-      <div :class="$style.pageSection">
+      <div class="uc-page-section">
         <Section
           title="Colour roles"
           description="Colour roles help the same colour system behave consistently across backgrounds, surfaces, text, and icons. Instead of choosing colours ad hoc, apply the matching SGDS role token for the job."
         >
-          <div :class="$style.rolesStack">
+          <div class="uc-roles-stack">
             <article
               v-for="row in roleRows"
               :key="row.title"
-              :class="$style.roleRow"
+              class="uc-role-row"
             >
-              <div :class="$style.roleCopy">
-                <h3 :class="[$style.roleTitle, 'sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight']">{{ row.title }}</h3>
-                <div :class="$style.roleParagraphs">
+              <div class="uc-role-copy">
+                <h3 class="uc-role-title sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">{{ row.title }}</h3>
+                <div class="uc-role-paragraphs">
                   <p
                     v-for="paragraph in row.paragraphs"
                     :key="paragraph.label"
-                    :class="$style.roleText"
+                    class="uc-role-text"
                   >
-                    <span :class="$style.roleLabel">{{ paragraph.label }}</span>
+                    <span class="uc-role-label">{{ paragraph.label }}</span>
                     {{ ` ${paragraph.text}` }}
                   </p>
                 </div>
               </div>
-              <div :class="$style.rolePreview">
-                <div :class="$style.roleDemoCard">
+              <div class="uc-role-preview">
+                <div class="uc-role-demo-card">
                   <div
                     v-if="row.variant === 'background'"
-                    :class="[$style.roleCanvas, $style.backgroundCanvas]"
+                    class="uc-role-canvas uc-background-canvas"
                   >
-                    <div :class="$style.backgroundScene">
+                    <div class="uc-background-scene">
                       <img
-                        :class="[$style.backgroundImage, $style.backgroundImageLight]"
+                        class="uc-background-image uc-background-image-light"
                         src="/foundations/colour/bg-colour.svg"
                         alt=""
                       />
                       <img
-                        :class="[$style.backgroundImage, $style.backgroundImageDark]"
+                        class="uc-background-image uc-background-image-dark"
                         src="/foundations/colour/bg-colour-dark.svg"
                         alt=""
                       />
@@ -122,7 +122,7 @@ const roleRows = [
                   </div>
                   <div
                     v-else
-                    :class="$style.roleCanvas"
+                    class="uc-role-canvas"
                   ></div>
                 </div>
               </div>
@@ -131,14 +131,14 @@ const roleRows = [
         </Section>
       </div>
 
-      <div :class="$style.pageSection">
+      <div class="uc-page-section">
         <Section
           title="Modes"
           description="Use the same semantic role structure across day and night modes so colour keeps its meaning even when the palette shifts. This helps products stay familiar and accessible in both themes."
         >
-          <div :class="$style.demoCard">
-            <div :class="$style.modesDemo">
-              <span :class="$style.modeLabel">Live demo</span>
+          <div class="uc-demo-card">
+            <div class="uc-modes-demo">
+              <span class="uc-mode-label">Live demo</span>
               <sgds-icon-button name="moon" variant="ghost" size="sm"></sgds-icon-button>
             </div>
           </div>
@@ -148,42 +148,42 @@ const roleRows = [
   </div>
 </template>
 
-<style module>
-.page {
+<style>
+.uc-page {
   width: 100%;
 }
 
-.sectionStack {
+.uc-section-stack {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-layout-gap-lg);
 }
 
-.pageSection {
+.uc-page-section {
   display: flex;
   flex-direction: column;
 }
 
-.demoCard,
-.roleDemoCard {
+.uc-demo-card,
+.uc-role-demo-card {
   background: var(--sgds-surface-raised);
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-xl);
 }
 
-.demoCard {
+.uc-demo-card {
   min-height: var(--sgds-dimension-480);
   overflow: hidden;
   padding: 0 0 0 var(--sgds-component-padding-md);
   padding-top: var(--sgds-component-padding-md);
 }
 
-.demoCardInset {
+.uc-demo-card-inset {
   padding: var(--sgds-component-padding-md);
 }
 
-.semanticDemo,
-.modesDemo {
+.uc-semantic-demo,
+.uc-modes-demo {
   align-items: center;
   display: flex;
   height: 100%;
@@ -191,60 +191,60 @@ const roleRows = [
   position: relative;
 }
 
-.semanticDemo {
+.uc-semantic-demo {
   gap: var(--sgds-gap-md);
 }
 
-.semanticAlert {
+.uc-semantic-alert {
   border-radius: var(--sgds-border-radius-lg);
   height: 9rem;
   width: min(100%, 10rem);
 }
 
-.semanticSuccess {
+.uc-semantic-success {
   background: var(--sgds-success-surface-muted);
   border: 1px solid var(--sgds-success-border-color-default);
 }
 
-.semanticWarning {
+.uc-semantic-warning {
   background: var(--sgds-warning-surface-muted);
   border: 1px solid var(--sgds-warning-border-color-default);
 }
 
-.semanticDanger {
+.uc-semantic-danger {
   background: var(--sgds-danger-surface-muted);
   border: 1px solid var(--sgds-danger-border-color-default);
 }
 
-.rolesStack {
+.uc-roles-stack {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-layout-gap-lg);
 }
 
-.roleRow {
+.uc-role-row {
   display: grid;
   gap: var(--sgds-layout-gap-lg);
   grid-template-columns: minmax(0, 1fr);
 }
 
-.roleCopy {
+.uc-role-copy {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-text-gap-xs);
 }
 
-.roleTitle {
+.uc-role-title {
   margin: 0;
 }
 
-.roleParagraphs {
+.uc-role-paragraphs {
   display: flex;
   flex-direction: column;
   gap: var(--sgds-text-gap-md);
 }
 
-.roleText {
+.uc-role-text {
   color: var(--sgds-body-color-subtle);
   font-size: var(--sgds-font-size-2);
   font-weight: var(--sgds-font-weight-regular);
@@ -253,32 +253,32 @@ const roleRows = [
   margin: 0;
 }
 
-.roleLabel {
+.uc-role-label {
   color: var(--sgds-body-color-default);
   font-weight: var(--sgds-font-weight-semibold);
 }
 
-.rolePreview {
+.uc-role-preview {
   min-width: 0;
 }
 
-.roleDemoCard {
+.uc-role-demo-card {
   overflow: hidden;
   padding: 0 0 0 var(--sgds-component-padding-md);
   padding-top: var(--sgds-component-padding-md);
 }
 
-.roleCanvas {
+.uc-role-canvas {
   height: 100%;
   position: relative;
 }
 
-.backgroundCanvas {
+.uc-background-canvas {
   display: flex;
   justify-content: flex-end;
 }
 
-.backgroundScene {
+.uc-background-scene {
   align-items: flex-end;
   display: flex;
   flex: 1;
@@ -288,56 +288,58 @@ const roleRows = [
   width: 100%;
 }
 
-.backgroundImage {
+.uc-background-image {
   display: block;
   height: auto;
   max-width: min(100%, 38rem);
   width: auto;
 }
 
-.backgroundImageDark {
+.uc-background-image-dark {
   display: none;
 }
 
-:global(.sgds-night-theme) .backgroundImageLight {
+/* Dark theme image switching — requires global class selector */
+.sgds-night-theme .uc-background-image-light {
   display: none;
 }
 
-:global(.sgds-night-theme) .backgroundImageDark {
+.sgds-night-theme .uc-background-image-dark {
   display: block;
 }
 
-.swatchDefault {
+.uc-swatch-default {
   background: var(--sgds-bg-color-default);
 }
 
-.swatchAlternate {
+.uc-swatch-alternate {
   background: var(--sgds-bg-color-alternate);
 }
 
-.swatchSurfaceDefault {
+.uc-swatch-surface-default {
   background: var(--sgds-surface-default);
 }
 
-.swatchSurfaceRaised {
+.uc-swatch-surface-raised {
   background: var(--sgds-surface-raised);
 }
 
-.swatchTextDefault {
+.uc-swatch-text-default {
   background: var(--sgds-body-color-default);
 }
 
-.swatchTextSubtle {
+.uc-swatch-text-subtle {
   background: var(--sgds-body-color-subtle);
 }
 
-.modesDemo :global(sgds-icon-button) {
+/* Global selector targeting sgds-icon-button inside modes demo */
+.uc-modes-demo sgds-icon-button {
   position: absolute;
   right: 0;
   top: 0;
 }
 
-.modeLabel {
+.uc-mode-label {
   color: var(--sgds-heading-color-default);
   font-size: var(--sgds-font-size-2);
   font-weight: var(--sgds-font-weight-semibold);
@@ -346,37 +348,23 @@ const roleRows = [
 }
 
 @media (max-width: 1023px) {
-  .roleRow {
+  .uc-role-row {
     grid-template-columns: minmax(0, 1fr);
   }
 }
 
 @media (max-width: 767px) {
-  .demoCard,
-  .roleDemoCard {
+  .uc-demo-card,
+  .uc-role-demo-card {
     border-radius: var(--sgds-border-radius-xl);
   }
 
-  .semanticDemo {
+  .uc-semantic-demo {
     flex-direction: column;
   }
 
-  .semanticAlert {
+  .uc-semantic-alert {
     width: 100%;
-  }
-
-  .rolePage {
-    max-width: none;
-  }
-
-  .roleChip {
-    left: var(--sgds-gap-xs);
-    transform: scale(0.94);
-    transform-origin: left center;
-  }
-
-  .roleArrow {
-    display: none;
   }
 }
 </style>

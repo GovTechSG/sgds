@@ -194,7 +194,7 @@ const systemSections = [
     <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
       <FoundationPrinciplesList title="Colour principles" :principles="colourPrinciples" />
 
-      <FoundationRulesGuidanceList title="Rules and guidance" :rules="colourRules" />
+      <FoundationRulesGuidanceList title="Rules and guidelines" :rules="colourRules" />
 
       <section
         aria-labelledby="colour-system-title"

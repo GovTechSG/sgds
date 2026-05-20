@@ -285,12 +285,6 @@ const { stackedExamples = false } = defineProps<{
   white-space: normal;
 }
 
-.ts-snippet-code span {
-  align-self: flex-start;
-  color: var(--sgds-body-color-default);
-  white-space: nowrap;
-}
-
 .ts-snippet-copy-btn {
   background: transparent;
   border: 0;

@@ -200,15 +200,15 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
         </p>
       </div>
 
-      <ol v-if="section.orderedItems?.length" class="sgds:list-decimal sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-6 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-        <li v-for="(item, index) in section.orderedItems" :key="item.title" class="sgds:m-0">
-          <span>
-            <strong>{{ item.title }}:</strong>{{ " " }}
+      <ol v-if="section.orderedItems?.length" class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs">
+        <li v-for="(item, index) in section.orderedItems" :key="item.title">
+          <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+            <strong>{{ item.title }}:</strong>
             <span v-if="item.descriptionHtml" v-html="item.descriptionHtml"></span>
             <template v-else>
               {{ item.description }}
             </template>
-          </span>
+          </p>
           <sgds-link v-if="linkForItem(section, index)" class="sgds:mt-text-2-xs">
             <a :href="linkForItem(section, index)?.href">
               {{ linkForItem(section, index)?.label }}

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import type { ConfigurationDemo } from "../../data/component-docs";
 import CardContentSlotsDemo from "./CardContentSlotsDemo.vue";
 import CodeToken from "../ui/CodeToken.vue";
@@ -9,6 +9,9 @@ import { textParts } from "../../utils/text-parts";
 const props = defineProps<{ demo: ConfigurationDemo }>();
 
 const rootRef = ref<HTMLElement | null>(null);
+const responsiveRenderKey = ref(0);
+
+let lastResponsiveBucket = "";
 
 const activeValue = ref<string>(
   props.demo.defaultValue || props.demo.options[0]?.value || "",
@@ -94,6 +97,46 @@ const isWidePreview = computed(() =>
 const isFullscreenModalPreview = computed(() =>
   activeOption.value?.markup.includes("portal-modal-preview-fullscreen") ?? false,
 );
+
+const shouldRemountOnBreakpointChange = computed(() =>
+  activeMarkup.value.includes("sgds-mainnav"),
+);
+
+const previewWidthClass = computed(() => {
+  return isWidePreview.value
+    ? "sgds:max-w-[var(--sgds-dimension-1312)]"
+    : "sgds:max-w-[var(--sgds-dimension-768)]";
+});
+
+const getResponsiveBucket = () => {
+  if (typeof window === "undefined") return "";
+
+  const width = window.innerWidth;
+
+  if (width < 512) return "xs";
+  if (width < 768) return "sm";
+  if (width < 1024) return "md";
+  if (width < 1280) return "lg";
+  if (width < 1440) return "xl";
+
+  return "2xl";
+};
+
+const syncResponsiveRenderKey = () => {
+  const nextBucket = getResponsiveBucket();
+  if (!nextBucket) return;
+
+  if (!shouldRemountOnBreakpointChange.value) {
+    lastResponsiveBucket = nextBucket;
+    return;
+  }
+
+  if (lastResponsiveBucket && nextBucket !== lastResponsiveBucket) {
+    responsiveRenderKey.value += 1;
+  }
+
+  lastResponsiveBucket = nextBucket;
+};
 
 const renderMarkup = (markup: string) => {
   if (!markup.includes("sgds-drawer") || !markup.includes("portal-demo-overlay")) {
@@ -536,6 +579,8 @@ const setupTextareaDemos = async () => {
 };
 
 onMounted(() => {
+  syncResponsiveRenderKey();
+  window.addEventListener("resize", syncResponsiveRenderKey);
   void applyStateEffects();
   void setupDrawerDemos();
   void setupDropdownDemos();
@@ -545,7 +590,15 @@ onMounted(() => {
   void setupTextareaDemos();
 });
 
-watch(activeValue, () => {
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", syncResponsiveRenderKey);
+});
+
+watch(activeMarkup, () => {
+  lastResponsiveBucket = getResponsiveBucket();
+});
+
+watch([activeValue, responsiveRenderKey], () => {
   void applyStateEffects();
   void setupDrawerDemos();
   void setupDropdownDemos();
@@ -572,7 +625,7 @@ watch(activeValue, () => {
     </div>
 
     <div
-      class="interactive-demo sgds:flex sgds:flex-col sgds:min-h-[var(--sgds-dimension-320)] sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-xs sgds:py-component-xs sgds:gap-component-md"
+      class="interactive-demo sgds:flex sgds:flex-col sgds:min-h-[var(--sgds-dimension-320)] sgds:min-w-0 sgds:max-w-full sgds:border sgds:border-muted sgds:rounded-xl sgds:overflow-clip sgds:px-component-xs sgds:py-component-xs sgds:gap-component-md"
       :class="{ 'interactive-demo--fullscreen-modal': isFullscreenModalPreview }"
     >
       <CardContentSlotsDemo v-if="demo.interactionMode === 'content-slots'" :demo="demo" />
@@ -624,20 +677,20 @@ watch(activeValue, () => {
 
         <div
           v-if="demo.controlType === 'number'"
-          class="sgds:flex sgds:flex-1"
+          class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:w-full"
           role="tabpanel"
         >
-          <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
-            <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
-              <div class="sgds:w-full sgds:mx-auto sgds:max-w-[var(--sgds-dimension-768)]">
+          <div class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:w-full sgds:flex-col sgds:justify-center sgds:gap-component-md">
+            <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full">
+              <div class="sgds:w-full sgds:min-w-0 sgds:max-w-full sgds:mx-auto sgds:max-w-[var(--sgds-dimension-768)]">
                 <div
-                  :key="activeValue"
+                  :key="`${activeValue}-${responsiveRenderKey}`"
                   class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
                   v-html="renderMarkup(activeMarkup)"
                 ></div>
               </div>
             </div>
-            <p v-if="activeDescription" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+            <p v-if="activeDescription" class="sgds:m-0 sgds:max-w-full sgds:min-w-0 sgds:break-words sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               <template
                 v-for="(part, index) in textParts(activeDescription, configurationCodeTerms)"
                 :key="`${part.text}-${index}`"
@@ -646,7 +699,7 @@ watch(activeValue, () => {
                 <template v-else>{{ part.text }}</template>
               </template>
             </p>
-            <p v-if="activeNote" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+            <p v-if="activeNote" class="sgds:m-0 sgds:max-w-full sgds:min-w-0 sgds:break-words sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
               <template
                 v-for="(part, index) in textParts(activeNote, configurationCodeTerms)"
                 :key="`${part.text}-${index}`"
@@ -662,25 +715,25 @@ watch(activeValue, () => {
             v-if="activeOption"
             :key="activeOption.value"
             :data-state-effect="activeOption.stateEffect"
-            class="sgds:flex sgds:flex-1"
+            class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:w-full"
             role="tabpanel"
           >
-            <div class="sgds:flex sgds:flex-1 sgds:flex-col sgds:justify-center sgds:gap-component-md">
-              <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center">
+            <div class="sgds:flex sgds:flex-1 sgds:min-w-0 sgds:w-full sgds:flex-col sgds:justify-center sgds:gap-component-md">
+              <div class="sgds:flex sgds:flex-1 sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full">
                 <div
                   :class="[
-                    'sgds:w-full sgds:mx-auto',
-                    isWidePreview ? 'sgds:max-w-[var(--sgds-dimension-1312)]' : 'sgds:max-w-[var(--sgds-dimension-768)]',
+                    'sgds:w-full sgds:min-w-0 sgds:max-w-full sgds:mx-auto',
+                    previewWidthClass
                   ]"
                 >
                   <div
-                    :key="activeOption.value"
+                    :key="`${activeOption.value}-${responsiveRenderKey}`"
                     class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
                     v-html="renderMarkup(activeOption.markup)"
                   ></div>
                 </div>
               </div>
-              <p v-if="activeOption.description" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              <p v-if="activeOption.description" class="sgds:m-0 sgds:max-w-full sgds:min-w-0 sgds:break-words sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
                 <template
                   v-for="(part, index) in textParts(activeOption.description, configurationCodeTerms)"
                   :key="`${part.text}-${index}`"
@@ -689,7 +742,7 @@ watch(activeValue, () => {
                   <template v-else>{{ part.text }}</template>
                 </template>
               </p>
-              <p v-if="activeOption.note" class="sgds:m-0 sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              <p v-if="activeOption.note" class="sgds:m-0 sgds:max-w-full sgds:min-w-0 sgds:break-words sgds:text-center sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
                 <template
                   v-for="(part, index) in textParts(activeOption.note, configurationCodeTerms)"
                   :key="`${part.text}-${index}`"
@@ -794,24 +847,35 @@ watch(activeValue, () => {
 
 .behaviour-demo-markup > sgds-progress-bar {
   display: block;
-  width: var(--sgds-dimension-480);
+  max-width: var(--sgds-dimension-480);
+  width: 100%;
 }
 
 .portal-masthead-width-demo {
-  align-items: flex-start;
-  block-size: var(--sgds-dimension-112);
+  align-items: center;
+  block-size: var(--sgds-dimension-144);
   display: flex;
   inline-size: 100%;
   justify-content: center;
   overflow: hidden;
-  --sgds-mainnav-max-width: calc(var(--sgds-dimension-480) + var(--sgds-dimension-96));
 }
 
 .portal-masthead-width-demo__viewport {
-  flex: 0 0 calc(var(--sgds-dimension-688) + var(--sgds-dimension-96));
-  inline-size: calc(var(--sgds-dimension-688) + var(--sgds-dimension-96));
-  transform: scale(0.86);
-  transform-origin: top center;
+  flex: 0 1 calc(var(--sgds-dimension-688) + var(--sgds-dimension-96));
+  inline-size: min(100%, calc(var(--sgds-dimension-688) + var(--sgds-dimension-96)));
+}
+
+.portal-masthead-width-demo__viewport--fluid {
+  flex-basis: 100%;
+  inline-size: 100%;
+}
+
+.portal-masthead-width-demo .portal-masthead-mainnav-brand-slot {
+  align-self: center;
+  block-size: var(--sgds-dimension-48);
+  display: flex;
+  line-height: var(--sgds-line-height-24);
+  padding-block: var(--sgds-padding-xs);
 }
 
 .portal-mainnav-width-demo {

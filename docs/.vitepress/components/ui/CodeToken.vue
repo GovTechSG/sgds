@@ -20,7 +20,7 @@ const displayLabel = computed(() => props.label.replace(/^--sgds-/, "sgds-"));
 <template>
   <code
     :class="[
-      'sgds:text-default sgds:font-mono sgds:text-[0.875em] sgds:leading-[1.4]',
+      'sgds:text-default sgds:font-mono sgds:text-size-xs sgds:leading-[1.4]',
       props.wrap
         ? 'sgds:inline sgds:whitespace-normal sgds:break-all'
         : 'sgds:inline-block sgds:whitespace-nowrap',

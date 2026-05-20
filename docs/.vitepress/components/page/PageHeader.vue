@@ -66,15 +66,12 @@ const brandIconClass = (label: string) =>
         {{ description }}
       </p>
     </div>
-    <div v-if="headerLinks?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+    <div v-if="headerLinks?.length" class="sgds:flex sgds:flex-col sgds:md:flex-row sgds:gap-text-xs">
       <div
         v-for="link in headerLinks"
         :key="link.label"
         class="sgds:grid sgds:grid-cols-[var(--sgds-dimension-96)_minmax(0,1fr)] sgds:items-center sgds:gap-x-text-xs"
       >
-        <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-          {{ link.label }}
-        </span>
         <sgds-link tone="neutral">
           <a
             :href="link.href"
@@ -94,7 +91,10 @@ const brandIconClass = (label: string) =>
               class="sgds:block sgds:h-4 sgds:w-4"
             />
             <sgds-icon v-else-if="link.icon" :name="link.icon"></sgds-icon>
-            <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ link.path }}</span>
+            <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              {{ link.label }}
+            </span>
+            <!-- <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ link.path }}</span> -->
           </a>
         </sgds-link>
       </div>

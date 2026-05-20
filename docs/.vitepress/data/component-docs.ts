@@ -1423,8 +1423,8 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "Feedback",
         heading: "Have suggestions or feedback?",
         prefix: "Share them with us on ",
-        linkLabel: "Slack → #design-system-feedback",
-        href: "#",
+        linkLabel: "Slack → #ask-sgds-v3",
+        href: "https://govtech.slack.com/archives/C07VD8Z5QKS",
       },
       bugReports: {
         title: "Bug Reports",
@@ -9593,7 +9593,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "The navigation adapts from desktop layouts to smaller screens.",
       },
     ],
-    anatomyMarkup: `<sgds-mainnav fluid brandHref="/" class="portal-mainnav-anatomy">
+    anatomyMarkup: `<sgds-mainnav fluid expand="always" brandHref="/" class="portal-mainnav-anatomy sgds:w-[var(--sgds-dimension-688)]">
       <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
       <sgds-mainnav-item active><a href="#">Services</a></sgds-mainnav-item>
       <sgds-mainnav-item><a href="#">Resources</a></sgds-mainnav-item>
@@ -9624,7 +9624,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Constrained width",
             value: "constrained",
             markup: `<div class="portal-demo-nav portal-mainnav-width-demo sgds:w-full">
-          <sgds-mainnav expand="always" brandHref="/">
+          <sgds-mainnav brandHref="/">
             <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
@@ -9639,7 +9639,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Full-bleed (fluid)",
             value: "fluid",
             markup: `<div class="portal-demo-nav portal-mainnav-width-demo sgds:w-full">
-          <sgds-mainnav expand="always" brandHref="/" fluid>
+          <sgds-mainnav brandHref="/" fluid>
             <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
@@ -9780,7 +9780,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
-  {
+      {
         title: "Non-collapsible slot",
         description:
           "The non-collapsible slot keeps critical actions visible even when navigation items collapse.",
@@ -9790,21 +9790,29 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "With action",
             value: "with-action",
-            markup: `<sgds-mainnav class="sgds:w-full">
-              <a slot="brand" href="#">Agency portal</a>
+            markup: `<div class="portal-demo-nav">
+          <sgds-mainnav brandHref="/">
+              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
               <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
               <sgds-button slot="non-collapsible" size="sm">Log in</sgds-button>
-            </sgds-mainnav>`,
+            </sgds-mainnav>
+        </div>`,
             description:
               "Use for actions that must stay visible across responsive states.",
           },
           {
             label: "No action",
             value: "no-action",
-            markup: `<sgds-mainnav class="sgds:w-full">
-              <a slot="brand" href="#">Agency portal</a>
+            markup: `<div class="portal-demo-nav">
+          <sgds-mainnav brandHref="/">
+              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
               <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
-            </sgds-mainnav>`,
+              <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
+            </sgds-mainnav>
+        </div>`,
             description:
               "Omit the slot when there is no persistent action.",
           },
@@ -10015,7 +10023,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               <div class="portal-masthead-width-demo__viewport">
                 <sgds-masthead></sgds-masthead>
                 <sgds-mainnav brandHref="/">
-                  <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+                  <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot portal-masthead-mainnav-brand-slot"><span>Slot content</span></div>
                   <sgds-mainnav-item active>Home</sgds-mainnav-item>
                 </sgds-mainnav>
               </div>
@@ -10027,7 +10035,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Full-bleed (fluid)",
             value: "fluid",
             markup: `<div class="portal-masthead-width-demo">
-              <div class="portal-masthead-width-demo__viewport">
+              <div class="portal-masthead-width-demo__viewport portal-masthead-width-demo__viewport--fluid">
                 <sgds-masthead fluid></sgds-masthead>
               </div>
             </div>`,
@@ -10091,7 +10099,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "sgds / masthead",
         rows: [
-          { category: "Mainnav Max Width", name: "mainnav-max-width", value: "sgds/mainnav/max-width", usage: "Value used by the component" },
+          { category: "Mainnav Max Width", name: "mainnav-max-width", value: "sgds/mainnav/max-width", rawValue: "1440px", usage: "Maximum width of the masthead container" },
           { category: "Padding", name: "mainnav-mobile-padding-x", value: "sgds/mainnav/mobile-padding-x", usage: "Left and right padding of the masthead container (mobile)" },
           { category: "Padding", name: "mainnav-padding-x", value: "sgds/mainnav/padding-x", usage: "Left and right padding of the masthead container (desktop)" },
           { category: "Size", name: "icon-size-sm", value: "sgds/icon-size/sm", usage: "Size of the masthead external-link icon" },
@@ -10825,6 +10833,13 @@ const componentDocs: Record<string, ComponentDoc> = {
       { number: 3, direction: "bottom", targetSelector: ".portal-anatomy-pagination", targetShadowSelector: "li[key='5'] .page-link", targetX: "center", targetY: "bottom" },
       { number: 4, direction: "bottom", targetSelector: ".portal-anatomy-pagination", targetShadowSelector: ".ellipsis", targetX: "center", targetY: "bottom" },
       { number: 5, direction: "right", targetSelector: ".portal-anatomy-pagination", targetShadowSelector: "sgds-icon-button[name='arrow-right']", targetX: "right", targetY: "center" },
+    ],
+    measurements: [
+      {
+        title: "",
+        description: "",
+        markup: `<sgds-pagination variant="default" dataLength="30" itemsPerPage="10" currentPage="3"></sgds-pagination>`,
+      },
     ],
     configurationDemos: [
       {
@@ -19133,8 +19148,8 @@ const buildResolvedUpdates = (doc: ComponentDoc): UpdatesContent => {
       title: "Feedback",
       heading: "Have suggestions or feedback?",
       prefix: "Share them with us on ",
-      linkLabel: "Slack → #design-system-feedback",
-      href: "#",
+      linkLabel: "Slack → #ask-sgds-v3",
+      href: "https://govtech.slack.com/archives/C07VD8Z5QKS",
     },
     bugReports: {
       title: "Bug Reports",

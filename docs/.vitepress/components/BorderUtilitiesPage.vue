@@ -425,7 +425,7 @@ const isColourPage = computed(() => props.section === "colour");
             <sgds-table-cell class="typography-page-template__table-utility-column">
               <div class="ts-snippet-row">
                 <code class="ts-snippet-code">
-                  <span v-for="token in item.utilityClass.split(' ')" :key="`${item.utilityClass}-${token}`">{{ token }}</span>
+                  <span v-for="token in item.utilityClass.split(' ')" :key="`${item.utilityClass}-${token}`" class="sgds:self-start sgds:text-default sgds:whitespace-nowrap">{{ token }}</span>
                 </code>
                 <button
                   class="ts-snippet-copy-btn"
@@ -483,7 +483,7 @@ const isColourPage = computed(() => props.section === "colour");
               <sgds-table-cell class="typography-page-template__table-utility-column">
                 <div class="ts-snippet-row">
                   <code class="ts-snippet-code">
-                    <span>{{ item.utilityClass }}</span>
+                    <span class="sgds:self-start sgds:text-default sgds:whitespace-nowrap">{{ item.utilityClass }}</span>
                   </code>
                   <button
                     class="ts-snippet-copy-btn"
@@ -600,7 +600,7 @@ const isColourPage = computed(() => props.section === "colour");
               <sgds-table-cell class="typography-page-template__table-utility-column">
                 <div class="ts-snippet-row">
                   <code class="ts-snippet-code">
-                    <span>{{ item.utilityClass }}</span>
+                    <span class="sgds:self-start sgds:text-default sgds:whitespace-nowrap">{{ item.utilityClass }}</span>
                   </code>
                   <button
                     class="ts-snippet-copy-btn"
@@ -657,12 +657,6 @@ const isColourPage = computed(() => props.section === "colour");
   min-width: 0;
   overflow: visible;
   white-space: normal;
-}
-
-.ts-snippet-code span {
-  align-self: flex-start;
-  color: var(--sgds-body-color-default);
-  white-space: nowrap;
 }
 
 .ts-snippet-copy-btn {

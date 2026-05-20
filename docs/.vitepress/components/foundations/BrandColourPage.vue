@@ -277,7 +277,7 @@ const paletteRows: PaletteRow[] = [
             <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
               <SectionHeader title="GovTech primary tokens" />
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-                The tables below map the GovTech brand onto SGDS primary tokens. These ship with the system by default, ready for any product to use as-is. If your product has its own brand colour, switch to the <sgds-link><a role="button" tabindex="0" @click="switchToCustomTab" @keydown.enter="switchToCustomTab" @keydown.space.prevent="switchToCustomTab" class="sgds:cursor-pointer">Custom colour</a></sgds-link> tab to generate the same primary structure from your hex value instead.
+                The tables below map the GovTech brand onto SGDS primary tokens. These ship with the system by default, ready for any product to use as-is. If your product has its own brand colour, switch to the <a role="button" tabindex="0" @click="switchToCustomTab" @keydown.enter="switchToCustomTab" @keydown.space.prevent="switchToCustomTab" class="sgds:cursor-pointer">Custom colour</a> tab to generate the same primary structure from your hex value instead.
               </p>
             </div>
             <ColourPalettePage section="brand-govtech" />
@@ -313,7 +313,7 @@ const paletteRows: PaletteRow[] = [
 }
 
 .our-colours-brand-card:hover {
-  transform: translateY(-0.5rem) scale(1.01);
+  transform: translateY(-0.5rem);
 }
 
 /* Dark theme border for fixed-light (black) brand card */
