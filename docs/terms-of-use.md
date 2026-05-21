@@ -1,9 +1,11 @@
 ---
-layout: page
-title: Terms of Use
+layout: default
 ---
 
 <style scoped>
+h1 {
+   margin-bottom: var(--sgds-paragraph-spacing-xl)
+}
 ol:not(:last-child):has(li:only-child) {
    margin-bottom: var(--sgds-paragraph-spacing-xl);
 }
@@ -13,19 +15,16 @@ ol li > p:has(+ ul) {
 ol li > ul:last-child {
    margin-bottom: var(--sgds-paragraph-spacing-xl);
 }
-
-.section:not(:first-child) {
+.section {
    margin-top: var(--sgds-layout-padding-md);
 }
 </style>
 
-<section class="section">
+# Terms of Use
 
 1. Thank you for visiting this website ("Website") which is owned and operated by the Government Technology Agency ("GovTech"). By accessing and using this Website, you unconditionally accept and agree to be bound by these Terms of Use. If you do not agree to these Terms of Use, please do not use this Website.
 
 2. GovTech reserves the right to change these Terms of Use from time to time. All changes will be posted on this page, and your use of this Website after such changes have been posted will constitute your unconditional agreement to the modified Terms of Use and all of the changes.
-
-</section>
 
 <section class="section">
 

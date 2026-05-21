@@ -1,9 +1,11 @@
 ---
-layout: page
-title: Government Agency Privacy Statement
+layout: default
 ---
 
 <style scoped>
+h1 {
+   margin-bottom: var(--sgds-paragraph-spacing-xl)
+}
 ol:has(li:only-child) {
    margin-bottom: var(--sgds-paragraph-spacing-xl);
 }
@@ -14,6 +16,8 @@ ol li:not(:last-child) > ul:last-child {
    margin-bottom: var(--sgds-paragraph-spacing-xl);
 }
 </style>
+
+# Government Agency Privacy Statement
 
 1. This is a Government Agency digital service.
 
