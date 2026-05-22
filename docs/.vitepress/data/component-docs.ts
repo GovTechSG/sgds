@@ -3732,8 +3732,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "with-menu",
             markup: `<sgds-card class="portal-demo-card">
               <sgds-overflow-menu slot="menu" size="sm">
-                <sgds-dropdown-item>Edit</sgds-dropdown-item>
-                <sgds-dropdown-item>Archive</sgds-dropdown-item>
+                <sgds-overflow-menu-item>Edit</sgds-overflow-menu-item>
+                <sgds-overflow-menu-item>Archive</sgds-overflow-menu-item>
               </sgds-overflow-menu>
               <span slot="title">Case file</span>
               <span slot="description">Menu actions stay visually separate from card content.</span>
@@ -10658,8 +10658,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Active",
             value: "active",
             markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
-              <sgds-dropdown-item active>Active item</sgds-dropdown-item>
-              <sgds-dropdown-item>Default item</sgds-dropdown-item>
+              <sgds-overflow-menu-item active>Active item</sgds-overflow-menu-item>
+              <sgds-overflow-menu-item>Default item</sgds-overflow-menu-item>
             </sgds-overflow-menu>`,
             description:
               "Use active for the currently selected item in the menu.",
@@ -10668,8 +10668,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Disabled",
             value: "disabled",
             markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
-              <sgds-dropdown-item>Available item</sgds-dropdown-item>
-              <sgds-dropdown-item disabled>Disabled item</sgds-dropdown-item>
+              <sgds-overflow-menu-item>Available item</sgds-overflow-menu-item>
+              <sgds-overflow-menu-item disabled>Disabled item</sgds-overflow-menu-item>
             </sgds-overflow-menu>`,
             description:
               "Use disabled when the item must remain visible but unavailable.",
@@ -10687,8 +10687,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With icon",
             value: "with-icon",
             markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
-              <sgds-dropdown-item><sgds-icon slot="icon" name="pencil"></sgds-icon>Edit</sgds-dropdown-item>
-              <sgds-dropdown-item><sgds-icon slot="icon" name="trash"></sgds-icon>Delete</sgds-dropdown-item>
+              <sgds-overflow-menu-item><sgds-icon slot="icon" name="pencil"></sgds-icon>Edit</sgds-overflow-menu-item>
+              <sgds-overflow-menu-item><sgds-icon slot="icon" name="trash"></sgds-icon>Delete</sgds-overflow-menu-item>
             </sgds-overflow-menu>`,
             description:
               "Use icons for familiar actions where the icon reinforces the label.",
@@ -10697,8 +10697,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Text only",
             value: "text-only",
             markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
-              <sgds-dropdown-item>Edit</sgds-dropdown-item>
-              <sgds-dropdown-item>Delete</sgds-dropdown-item>
+              <sgds-overflow-menu-item>Edit</sgds-overflow-menu-item>
+              <sgds-overflow-menu-item>Delete</sgds-overflow-menu-item>
             </sgds-overflow-menu>`,
             description:
               "Use text-only menu items when labels are clear on their own.",
