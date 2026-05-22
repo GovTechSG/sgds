@@ -12120,7 +12120,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       { number: 1, direction: "left", targetSelector: ".portal-anatomy-sidebar", targetShadowSelector: ".sidebar-main", targetX: "left", targetY: "center" },
       { number: 2, direction: "top", targetSelector: ".portal-anatomy-sidebar", targetShadowSelector: "sgds-icon-button", targetX: "center", targetY: "top" },
       { number: 3, direction: "top", targetSelector: ".portal-anatomy-sidebar", targetShadowSelector: ".sidebar-nested-overlay", targetX: "center", targetY: "top" },
-      { number: 4, direction: "right", targetSelector: ".portal-anatomy-sidebar", targetShadowSelector: ".sidebar--overlay.show", targetX: "right", targetY: "center" },
+      { number: 4, direction: "right", targetSelector: ".portal-anatomy-sidebar", targetX: "right", targetY: "center" },
       { number: 5, direction: "left", targetSelector: ".portal-sidebar-lower-slot", targetX: "left", targetY: "center" },
       { number: 6, direction: "left", targetSelector: "sgds-sidebar-group[name='selected-label']", targetX: "left", targetY: "center" },
       { number: 7, direction: "top", targetSelector: ".portal-sidebar-upper-slot", targetX: "center", targetY: "top" },
@@ -12345,7 +12345,6 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Scrim",
             value: "scrim",
             markup: `<div class="sgds:relative sgds:h-[var(--sgds-dimension-360)] sgds:w-full sgds:overflow-hidden sgds:rounded-md sgds:border sgds:border-muted sgds:bg-bg-alternate">
-              <div class="sgds:absolute sgds:inset-0 sgds:bg-overlay" aria-hidden="true"></div>
               <sgds-sidebar active="applications" variant="overlay" aria-label="Overlay application navigation" class="portal-demo-sidebar-open sgds:absolute sgds:left-0 sgds:top-0 sgds:z-[1] sgds:h-full" scrim>
                 <sgds-sidebar-section title="Workspace" name="workspace">
                   <sgds-sidebar-item title="Dashboard" name="dashboard">
@@ -13490,16 +13489,13 @@ const componentDocs: Record<string, ComponentDoc> = {
       { title: "Slot (optional)" },
       { title: "Connection line" },
     ],
-    anatomyPreviewMarkup: `<div class="portal-demo-stepper sgds:flex sgds:w-[var(--sgds-dimension-480)] sgds:max-w-full sgds:flex-col sgds:gap-md">
+    anatomyPreviewMarkup: `<div class="portal-demo-stepper sgds:flex sgds:w-[var(--sgds-dimension-480)] sgds:max-w-full sgds:flex-col">
       <sgds-stepper class="portal-anatomy-stepper" data-portal-stepper="default"></sgds-stepper>
-      <div class="portal-anatomy-stepper-content sgds:rounded-md sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-md sgds:text-body-sm">
-        Slot content
-      </div>
     </div>`,
     anatomyCallouts: [
       { number: 1, direction: "top", targetSelector: ".portal-anatomy-stepper", targetShadowSelector: ".stepper-item-container:first-child .stepper-marker", targetX: "center", targetY: "top" },
-      { number: 2, direction: "left", targetSelector: ".portal-anatomy-stepper", targetShadowSelector: ".stepper-item-container:first-child .stepper-detail", targetX: "left", targetY: "center" },
-      { number: 3, direction: "bottom", targetSelector: ".portal-anatomy-stepper-content", targetX: "center", targetY: "bottom" },
+      { number: 2, direction: "left", targetSelector: ".portal-anatomy-stepper", targetShadowSelector: ".stepper-item-container:first-child .portal-anatomy-stepper-label", targetX: "left", targetY: "center" },
+      { number: 3, direction: "bottom", targetSelector: ".portal-anatomy-stepper", targetShadowSelector: ".stepper-item-container:first-child .portal-anatomy-stepper-slot", targetX: "center", targetY: "bottom" },
       { number: 4, direction: "top", targetSelector: ".portal-anatomy-stepper", targetShadowSelector: ".stepper-item-container:nth-child(2) .stepper-item", targetX: "left", targetY: "top", targetXOffset: -30, targetYOffset: 15 },
     ],
     configurationDemos: [

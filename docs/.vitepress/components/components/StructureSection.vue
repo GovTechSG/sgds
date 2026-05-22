@@ -768,6 +768,7 @@ const staticSizeAnnotations = computed(() => {
     if (isDrawerDimensionKey(key)) return;
     if (isDropdownStructure.value && key === "dimension-192") return;
     if (isMainnavStructure.value && key === "icon-size-sm") return;
+    if (isSidebarStructure.value && key === "icon-size-sm") return;
 
     // When the component is flush with the shell's right or bottom edge, the
     // default bracket placement would render outside the preview area (or on
@@ -2919,6 +2920,13 @@ const setupStructureSidebars = async () => {
 
   const sidebars = Array.from(
     root.querySelectorAll("sgds-sidebar") as NodeListOf<HTMLElement & {
+      collapsed?: boolean;
+      _handleClickOutOfElement?: (event: Event) => void;
+      _isNarrowViewport?: boolean;
+      _isOverlay?: boolean;
+      _sidebarCollapsed?: boolean;
+      _showDrawer?: boolean;
+      requestUpdate?: () => void;
       updateComplete?: Promise<unknown>;
     }>,
   );
@@ -2928,21 +2936,67 @@ const setupStructureSidebars = async () => {
     await customElements.whenDefined("sgds-sidebar-group");
     await customElements.whenDefined("sgds-sidebar-item");
     await sidebar.updateComplete;
+    const isMobileViewport = typeof window !== "undefined" && window.innerWidth < 768;
 
     injectShadowStyles(
       sidebar,
       "sidebar-structure-inspect-layers",
       `:host {
+         display: block !important;
+         inline-size: var(--sgds-dimension-288) !important;
+         max-inline-size: 100% !important;
          position: relative;
          z-index: 0 !important;
        }
-       .sidebar,
+       .sidebar {
+         display: flex !important;
+         height: 100% !important;
+         inline-size: var(--sgds-dimension-288) !important;
+         max-inline-size: 100% !important;
+         position: relative !important;
+         width: var(--sgds-dimension-288) !important;
+         z-index: 0 !important;
+       }
        .sidebar-main,
        .sidebar-nested-overlay,
        .sidebar--overlay {
+         opacity: 1 !important;
+         transform: none !important;
+         translate: none !important;
+         visibility: visible !important;
          z-index: 0 !important;
+       }
+       .sidebar-main {
+         left: 0 !important;
+         position: relative !important;
+         width: var(--sgds-dimension-288) !important;
+       }
+       .sidebar-wrapper {
+         width: var(--sgds-dimension-288) !important;
+       }
+       @media screen and (max-width: 767px) {
+       .sidebar {
+         overflow: hidden !important;
+         width: min(100%, var(--sgds-dimension-288)) !important;
+       }
+       .sidebar-nested-overlay,
+       .sidebar--overlay {
+         display: none !important;
+       }
        }`,
     );
+    if (typeof sidebar._handleClickOutOfElement === "function") {
+      document.removeEventListener("click", sidebar._handleClickOutOfElement);
+      sidebar._handleClickOutOfElement = () => {};
+    }
+    sidebar.collapsed = false;
+    sidebar._isNarrowViewport = false;
+    sidebar._isOverlay = false;
+    sidebar._sidebarCollapsed = false;
+    sidebar._showDrawer = false;
+    sidebar.requestUpdate?.();
+    await sidebar.updateComplete;
+    if (isMobileViewport) continue;
 
     const activeGroup =
       (sidebar.querySelector("sgds-sidebar-group[active]") as HTMLElement | null) ??

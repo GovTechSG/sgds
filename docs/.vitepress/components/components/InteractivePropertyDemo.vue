@@ -99,7 +99,8 @@ const isFullscreenModalPreview = computed(() =>
 );
 
 const shouldRemountOnBreakpointChange = computed(() =>
-  activeMarkup.value.includes("sgds-mainnav"),
+  activeMarkup.value.includes("sgds-mainnav") ||
+  activeMarkup.value.includes("sgds-sidebar"),
 );
 
 const previewWidthClass = computed(() => {
@@ -419,7 +420,12 @@ const setupSidebarDemos = async () => {
   if (!root) return;
 
   const sidebars = Array.from(
-    root.querySelectorAll(".portal-demo-sidebar-open") as NodeListOf<HTMLElement & {
+    root.querySelectorAll("sgds-sidebar") as NodeListOf<HTMLElement & {
+      collapsed?: boolean;
+      _handleClickOutOfElement?: (e: Event) => void;
+      _isNarrowViewport?: boolean;
+      _isOverlay?: boolean;
+      _sidebarCollapsed?: boolean;
       _showDrawer?: boolean;
       requestUpdate?: () => void;
       updateComplete?: Promise<unknown>;
@@ -428,39 +434,132 @@ const setupSidebarDemos = async () => {
 
   for (const el of sidebars) {
     await el.updateComplete;
-    const columnCount = el.hasAttribute("scrim") ? 3 : 2;
+    const isOpenOverlayDemo = el.classList.contains("portal-demo-sidebar-open");
+    const shouldStayCollapsed = el.hasAttribute("collapsed") || el.collapsed === true;
+    const hasScrim = el.hasAttribute("scrim");
+    const viewportWidth = typeof window === "undefined" ? 1440 : window.innerWidth;
+    const isMobileViewport = viewportWidth < 768;
+    const variant = el.getAttribute("variant") || "collapsible";
+    const previewCollapsed = isMobileViewport ? false : shouldStayCollapsed;
+    const previewIsOverlay =
+      variant === "overlay" ||
+      (variant === "collapsible" && isMobileViewport);
+    const defaultWidth = isOpenOverlayDemo
+      ? `calc(var(--sgds-dimension-288)${hasScrim ? " + var(--sgds-dimension-96)" : ""})`
+      : "var(--sgds-dimension-288)";
     injectShadowStyles(
       el,
       "sidebar-open-demo",
       `:host {
          display: block !important;
+         max-width: 100% !important;
          pointer-events: none !important;
-         width: calc(var(--sgds-dimension-288) * ${columnCount}) !important;
+       }
+       @media screen and (min-width: 768px) {
+       :host {
+         width: ${defaultWidth} !important;
        }
        .sidebar {
-         width: calc(var(--sgds-dimension-288) * ${columnCount}) !important;
+         display: block !important;
+         height: 100% !important;
+         overflow: hidden !important;
+         position: relative !important;
+         width: ${defaultWidth} !important;
        }
        .sidebar-main {
+         background: var(--sgds-surface-default) !important;
+         display: block !important;
+         height: 100% !important;
+         inset: 0 auto auto 0 !important;
+         left: 0 !important;
+         opacity: 1 !important;
+         overflow: hidden !important;
          position: relative !important;
+         top: 0 !important;
+         transform: none !important;
+         translate: none !important;
+         visibility: visible !important;
          width: var(--sgds-dimension-288) !important;
          z-index: 3 !important;
        }
+       .sidebar-wrapper {
+         height: 100% !important;
+         width: var(--sgds-dimension-288) !important;
+       }
        .sidebar-nested-overlay {
+         height: 100% !important;
+         left: var(--sgds-dimension-288) !important;
+         opacity: 1 !important;
+         pointer-events: none !important;
+         top: 0 !important;
          width: var(--sgds-dimension-288) !important;
          z-index: 2 !important;
        }
        .sidebar--overlay {
          background-color: var(--sgds-bg-overlay) !important;
+         display: block !important;
+         height: 100% !important;
+         inset: 0 auto auto 0 !important;
          opacity: 0.32 !important;
          pointer-events: none !important;
-         width: calc(var(--sgds-dimension-288) * ${columnCount}) !important;
+         position: absolute !important;
+         width: ${defaultWidth} !important;
          z-index: 1 !important;
        }
        .sidebar--overlay.show {
          opacity: 0.32 !important;
+       }
+       :host([collapsed]) {
+         width: var(--sgds-dimension-72) !important;
+       }
+       :host([collapsed]) .sidebar,
+       :host([collapsed]) .sidebar-main,
+       :host([collapsed]) .sidebar-wrapper {
+         width: var(--sgds-dimension-72) !important;
+       }
+       }
+       @media screen and (max-width: 767px) {
+       :host {
+         width: var(--sgds-dimension-256) !important;
+       }
+       .sidebar {
+         height: 100% !important;
+         overflow: hidden !important;
+         position: relative !important;
+       }
+       .sidebar-main {
+         opacity: 1 !important;
+         transform: none !important;
+         translate: none !important;
+         visibility: visible !important;
+       }
+       .sidebar--overlay {
+         pointer-events: none !important;
+         width: 100% !important;
+       }
+       }
+       @media screen and (max-width: 511px) {
+       :host {
+         width: 100% !important;
+       }
+       .sidebar {
+         position: relative !important;
+         width: 100% !important;
+       }
+       .sidebar--overlay {
+         display: none !important;
+       }
        }`,
     );
-    el._showDrawer = true;
+    if (typeof el._handleClickOutOfElement === "function") {
+      document.removeEventListener("click", el._handleClickOutOfElement);
+      el._handleClickOutOfElement = () => {};
+    }
+    el.collapsed = previewCollapsed;
+    el._isNarrowViewport = viewportWidth < 1280;
+    el._isOverlay = previewIsOverlay || isOpenOverlayDemo;
+    el._sidebarCollapsed = variant === "persistent" ? false : previewCollapsed;
+    el._showDrawer = false;
     el.requestUpdate?.();
     await el.updateComplete;
   }
