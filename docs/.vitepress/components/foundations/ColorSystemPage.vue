@@ -284,7 +284,7 @@ const gsLabelCX = (left: number, right: number) =>
           <svg
             :viewBox="`0 0 ${SVG_W} ${SVG_H}`"
             xmlns="http://www.w3.org/2000/svg"
-            class="cs-backgroundCardSvg"
+            class="sgds:block sgds:h-auto sgds:overflow-hidden sgds:w-full"
             preserveAspectRatio="xMidYMid meet"
             role="img"
             :aria-label="`${section.title} colour scale`"
@@ -379,7 +379,7 @@ const gsLabelCX = (left: number, right: number) =>
           <svg
             :viewBox="`0 0 ${GS_W} ${GS_H}`"
             xmlns="http://www.w3.org/2000/svg"
-            class="cs-greyscaleCardSvg"
+            class="sgds:block sgds:h-auto sgds:overflow-hidden sgds:w-full"
             preserveAspectRatio="xMidYMid meet"
             role="img"
             aria-label="Greyscale contrast scale"
@@ -485,23 +485,23 @@ const gsLabelCX = (left: number, right: number) =>
           header-gap="sgds:gap-text-xs"
           gap="sgds:gap-text-xl"
         >
-          <div class="cs-chartCard">
-            <div class="cs-chartFrame">
-              <div class="cs-lightnessChart">
-                <div class="cs-lightnessYAxis">
+          <div class="cs-chartCard sgds:bg-surface-raised sgds:border-1 sgds:border-muted sgds:overflow-hidden">
+            <div class="cs-chartFrame sgds:mx-auto sgds:w-full sgds:py-layout-md">
+              <div class="cs-lightnessChart sgds:flex sgds:mx-auto sgds:w-full">
+                <div class="cs-lightnessYAxis sgds:flex sgds:flex-col sgds:items-end sgds:justify-between sgds:shrink-0">
                   <span
                     v-for="label in section.yAxis"
                     :key="`${section.title}-${label}`"
-                    class="cs-lightnessLabel"
+                    class="cs-lightnessLabel sgds:text-label-md sgds:leading-xs sgds:tracking-normal sgds:whitespace-nowrap"
                   >
                     {{ label }}
                   </span>
                 </div>
-                <div class="cs-lightnessChartWrap">
-                  <div class="cs-lightnessChartBox">
-                    <div class="cs-lightnessChartHalf"></div>
+                <div class="sgds:flex-1 sgds:min-w-0">
+                  <div class="cs-lightnessChartBox sgds:bg-surface-default sgds:border-1 sgds:border-muted sgds:relative sgds:w-full">
+                    <div class="sgds:border-b sgds:border-muted sgds:h-1/2 sgds:w-full"></div>
                     <svg
-                      class="cs-lightnessCurve"
+                      class="sgds:block sgds:absolute sgds:top-0 sgds:left-0 sgds:w-full sgds:h-full"
                       preserveAspectRatio="none"
                       viewBox="0 0 624.894 220.458"
                       fill="none"
@@ -517,11 +517,11 @@ const gsLabelCX = (left: number, right: number) =>
                       />
                     </svg>
                   </div>
-                  <div class="cs-lightnessXAxis">
+                  <div class="sgds:flex sgds:justify-between sgds:mt-sm">
                     <span
                       v-for="label in section.xAxis"
                       :key="`${section.title}-${label}`"
-                      class="cs-lightnessLabel"
+                      class="cs-lightnessLabel sgds:text-label-md sgds:leading-xs sgds:tracking-normal sgds:whitespace-nowrap"
                     >
                       {{ label }}
                     </span>
@@ -538,395 +538,56 @@ const gsLabelCX = (left: number, right: number) =>
 </template>
 
 <style>
-.cs-card {
-  background: var(--sgds-bg-default);
-  border: 1px solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-2-xl);
-  overflow: hidden;
-  padding: var(--sgds-padding-3-xl);
-}
-
-.cs-backgroundCardSvg {
-  display: block;
-  height: auto;
-  overflow: hidden;
-  width: 100%;
-}
-
-.cs-greyscaleCardSvg {
-  display: block;
-  height: auto;
-  overflow: hidden;
-  width: 100%;
-}
-
-.cs-backgroundCard {
-  background: var(--sgds-bg-default);
-  border: 1px solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-2-xl);
-  min-height: 25rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.cs-backgroundHalf {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  height: 100%;
-  min-height: 25rem;
-}
-
-.cs-backgroundStage {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sgds-gap-sm);
-  inset: 0;
-  justify-content: center;
-  padding-inline: clamp(1rem, 4vw, 3rem);
-  position: absolute;
-}
-
-.cs-backgroundTop {
-  background: var(--sgds-bg-fixed-light);
-  min-height: 0;
-  width: 100%;
-}
-
-.cs-backgroundBottom {
-  background: var(--sgds-bg-fixed-dark);
-  min-height: 0;
-  width: 100%;
-}
-
-.cs-backgroundCaptionRail,
-.cs-backgroundSwatchRail {
-  align-items: center;
-  box-sizing: border-box;
-  display: grid;
-  gap: var(--sgds-gap-xs);
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  max-width: 61rem;
-  width: min(100%, 61rem);
-}
-
-.cs-backgroundCaptionSlot,
-.cs-backgroundSwatchSlot {
-  align-items: center;
-  display: flex;
-  flex: 1 1 0;
-  justify-content: center;
-  min-width: 0;
-}
-
-.cs-backgroundSwatch {
-  align-items: center;
-  aspect-ratio: 1;
-  border-radius: min(var(--sgds-border-radius-xl), 30%);
-  display: flex;
-  justify-content: center;
-  min-width: 0;
-  width: 100%;
-}
-
-.cs-backgroundSwatchBordered {
-  border: 1px solid var(--sgds-border-color-muted);
-}
-
-.cs-backgroundSwatchDark {
-  color: var(--sgds-color-fixed-light);
-}
-
-.cs-backgroundSwatchLabel {
-  color: var(--sgds-color-fixed-dark);
-  font-size: var(--sgds-font-size-label-xs);
-  font-weight: var(--sgds-font-weight-regular);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-16);
-  text-align: center;
-}
-
-.cs-backgroundSwatchDark .cs-backgroundSwatchLabel {
-  color: var(--sgds-color-fixed-light);
-}
-
-.cs-backgroundCaptionDark {
-  color: var(--sgds-color-fixed-light);
-}
-
-.cs-backgroundCaptionFixedDark {
-  color: var(--sgds-color-fixed-dark);
-}
-
-.cs-backgroundCaption {
-  align-items: center;
-  display: flex;
-  font-size: var(--sgds-font-size-label-xs);
-  font-weight: var(--sgds-font-weight-regular);
-  justify-content: center;
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-16);
-  text-align: center;
-  white-space: pre-line;
-  width: 100%;
-}
-
-.cs-backgroundCaptionTop {
-  color: var(--sgds-color-fixed-dark);
-  min-height: calc(var(--sgds-line-height-16) * 2);
-}
-
-.cs-backgroundCaptionBottom {
-  color: var(--sgds-color-fixed-light);
-  min-height: calc(var(--sgds-line-height-16) * 2);
-}
-
-.cs-backgroundCaptionHidden {
-  visibility: hidden;
-}
-
-.cs-backgroundCaptionBottom.cs-backgroundCaptionDark {
-  color: var(--sgds-color-fixed-light);
-}
-
-.cs-backgroundCaptionTop.cs-backgroundCaptionDark {
-  color: var(--sgds-color-fixed-dark);
-}
-
+/* calc() padding values not expressible as utilities */
 .cs-chartCard {
-  background: var(--sgds-surface-raised);
-  border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-2-xl);
-  overflow: hidden;
   padding-top: calc(var(--sgds-layout-padding-sm) + var(--sgds-padding-sm));
   padding-bottom: var(--sgds-layout-padding-sm);
   padding-inline: var(--sgds-component-padding-md);
 }
 
-.cs-scaleFrame {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sgds-layout-gap-lg);
-  margin: 0 auto;
-  max-width: 61rem;
-  padding-block: var(--sgds-padding-4-xl);
-  position: relative;
-}
-
+/* non-standard max-width */
 .cs-chartFrame {
-  margin: 0 auto;
   max-width: 84.5rem;
-  padding-block: var(--sgds-layout-gap-lg);
-  width: 100%;
 }
 
+/* non-standard max-width and raw gap token */
 .cs-lightnessChart {
-  display: flex;
   gap: var(--sgds-gap-xs);
-  margin: 0 auto;
   max-width: 36rem;
-  width: 100%;
 }
 
+/* calc() padding and specific width */
 .cs-lightnessYAxis {
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  justify-content: space-between;
   padding-bottom: calc(var(--sgds-line-height-24) + var(--sgds-gap-xs));
   width: 2rem;
 }
 
+/* color token without direct utility equivalent */
 .cs-lightnessLabel {
   color: var(--sgds-label-color-subtle);
-  font-size: var(--sgds-font-size-label-md);
-  font-weight: var(--sgds-font-weight-regular);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-leading-xs);
-  white-space: nowrap;
 }
 
-.cs-lightnessChartWrap {
-  flex: 1;
-  min-width: 0;
-}
-
+/* custom aspect ratio not expressible as utility */
 .cs-lightnessChartBox {
   aspect-ratio: 624 / 252;
-  background: var(--sgds-surface-default);
-  border: 1px solid var(--sgds-border-color-muted);
-  position: relative;
-  width: 100%;
 }
 
-.cs-lightnessChartHalf {
-  border-bottom: 1px solid var(--sgds-border-color-muted);
-  height: 50%;
-  width: 100%;
-}
-
-.cs-lightnessCurve {
-  display: block;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
-.cs-lightnessXAxis {
-  display: flex;
-  justify-content: space-between;
-  margin-top: var(--sgds-gap-xs);
-}
-
-.cs-swatchRow {
-  align-items: center;
-  display: grid;
-  gap: var(--sgds-gap-xs);
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  position: relative;
-  z-index: 2;
-}
-
-.cs-swatch {
-  align-items: center;
-  aspect-ratio: 1;
-  border-radius: min(var(--sgds-border-radius-xl), 30%);
-  display: flex;
-  justify-content: center;
-  min-width: 0;
-}
-
-.cs-swatchBordered {
-  border: 1px solid var(--sgds-border-color-muted);
-}
-
-.cs-swatchDark {
-  color: var(--sgds-body-color-fixed-light);
-}
-
-.cs-swatchLabel {
-  color: inherit;
-  font-size: var(--sgds-font-size-label-xs);
-  font-weight: var(--sgds-font-weight-regular);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-16);
-  text-align: center;
-}
-
-.cs-connector {
-  border-color: var(--sgds-border-color-muted);
-  border-style: solid;
-  border-width: 1px 1px 0;
-  border-top-left-radius: var(--sgds-border-radius-xl);
-  border-top-right-radius: var(--sgds-border-radius-xl);
-  height: clamp(1.5rem, 4vw, 4rem);
-  pointer-events: none;
-  position: absolute;
-  z-index: 1;
-}
-
-.cs-connectorBottom {
-  border-radius: 0 0 var(--sgds-border-radius-xl) var(--sgds-border-radius-xl);
-  border-width: 0 1px 1px;
-}
-
-.cs-connectorLabel {
-  background: var(--sgds-surface-raised);
-  color: var(--sgds-body-color-default);
-  font-size: var(--sgds-font-size-label-xs);
-  font-weight: var(--sgds-font-weight-regular);
-  left: 50%;
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-16);
-  padding-inline: var(--sgds-padding-xs);
-  position: absolute;
-  transform: translateX(-50%);
-  white-space: nowrap;
-}
-
-.cs-connectorTop .cs-connectorLabel {
-  top: -0.5rem;
-}
-
-.cs-connectorBottom .cs-connectorLabel {
-  bottom: -0.5rem;
-}
 
 @media (max-width: 1023px) {
-  .cs-card {
-    padding: var(--sgds-padding-2-xl);
-  }
-
   .cs-chartCard {
     padding-top: calc(var(--sgds-layout-padding-sm) + var(--sgds-padding-xs));
     padding-bottom: var(--sgds-layout-padding-sm);
     padding-inline: var(--sgds-component-padding-sm);
   }
-
-  .cs-backgroundSwatchRail {
-    left: var(--sgds-component-padding-sm);
-    right: var(--sgds-component-padding-sm);
-  }
-
-
 }
 
 @media (max-width: 767px) {
-  .cs-card {
-    border-radius: var(--sgds-border-radius-xl);
-    padding: var(--sgds-padding-xl);
-  }
-
-  .cs-scaleFrame {
-    gap: var(--sgds-layout-gap-md);
-    padding-block: var(--sgds-padding-3-xl);
-  }
-
   .cs-chartCard {
     border-radius: var(--sgds-border-radius-xl);
     padding-top: calc(var(--sgds-layout-padding-xs) + var(--sgds-padding-xs));
     padding-bottom: var(--sgds-layout-padding-xs);
     padding-inline: var(--sgds-component-padding-xs);
-  }
-
-
-  .cs-backgroundCard {
-    border-radius: var(--sgds-border-radius-xl);
-    min-height: 22rem;
-  }
-
-  .cs-backgroundHalf {
-    min-height: 22rem;
-  }
-
-
-  .cs-backgroundStage {
-    box-sizing: border-box;
-    padding-inline: var(--sgds-component-padding-xs);
-  }
-
-  .cs-backgroundSwatchLabel {
-    font-size: var(--sgds-font-size-label-xs);
-    line-height: var(--sgds-line-height-16);
-  }
-
-  .cs-backgroundCaption {
-    font-size: var(--sgds-font-size-label-xs);
-    line-height: var(--sgds-line-height-16);
-  }
-
-  .cs-backgroundCaptionTop,
-  .cs-backgroundCaptionBottom {
-    min-height: calc(var(--sgds-line-height-16) * 2);
-  }
-
-  .cs-connectorLabel {
-    font-size: var(--sgds-font-size-label-2-xs);
-    line-height: var(--sgds-line-height-16);
   }
 }
 </style>
