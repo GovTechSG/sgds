@@ -1127,62 +1127,85 @@ const openContrastInfo = () => {
               A primitive colour token is the foundation layer of the SGDS colour system. It pairs a raw hex value with a name that identifies the shade. Every other colour token in the system resolves down to a primitive.
             </p>
 
-            <!-- Anatomy of a primitive token: raw value, primitive name.
-                 Multiple rows show the same pattern across colour families. -->
-            <div class="cp-token-anatomy">
-              <span class="cp-token-anatomy__label">Raw hex value</span>
-              <span aria-hidden="true"></span>
-              <span class="cp-token-anatomy__label">Primitive colour</span>
+            <!-- Anatomy of a primitive token: raw value → primitive name (SVG version). -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 144" fill="none" class="sgds:block sgds:my-layout-xs sgds:w-full sgds:max-w-[420px]">
+              <!-- Column headers -->
+              <text x="32" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="var(--sgds-color-default, #333333)" letter-spacing="0">Raw hex value</text>
+              <text x="214" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="var(--sgds-color-default, #333333)" letter-spacing="0">Primitive colour</text>
 
-              <span class="cp-token-anatomy__pill">
-                <span class="cp-token-anatomy__swatch" style="background:#e98b8b;" aria-hidden="true"></span>
-                <code class="cp-token-anatomy__code">#E98B8B</code>
-              </span>
-              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
-              <span class="cp-token-anatomy__pill">
-                <span class="cp-token-anatomy__swatch" style="background:#e98b8b;" aria-hidden="true"></span>
-                <code class="cp-token-anatomy__code">sgds-red-400</code>
-              </span>
+              <!-- Row 1: #E98B8B → sgds-red-400 -->
+              <rect x="32" y="26" width="110" height="34" rx="17" fill="var(--sgds-surface-raised, #FFFFFF)" />
+              <circle cx="55" cy="43" r="7" fill="#e98b8b" />
+              <text x="66" y="48" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" fill="var(--sgds-color-default, #333333)">#E98B8B</text>
+              <line x1="150" y1="43" x2="194" y2="43" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1.5" stroke-linecap="round" />
+              <polygon points="194,39 200,43 194,47" fill="var(--sgds-border-color-default, #AAAAAA)" />
+              <rect x="214" y="26" width="152" height="34" rx="17" fill="var(--sgds-surface-raised, #FFFFFF)" />
+              <circle cx="237" cy="43" r="7" fill="#e98b8b" />
+              <text x="248" y="48" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" fill="var(--sgds-color-default, #333333)">sgds-red-400</text>
 
-              <span class="cp-token-anatomy__pill">
-                <span class="cp-token-anatomy__swatch" style="background:#129a4d;" aria-hidden="true"></span>
-                <code class="cp-token-anatomy__code">#129A4D</code>
-              </span>
-              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
-              <span class="cp-token-anatomy__pill">
-                <span class="cp-token-anatomy__swatch" style="background:#129a4d;" aria-hidden="true"></span>
-                <code class="cp-token-anatomy__code">sgds-green-500</code>
-              </span>
+              <!-- Row 2: #129A4D → sgds-green-500 -->
+              <rect x="32" y="68" width="110" height="34" rx="17" fill="var(--sgds-surface-raised, #FFFFFF)" />
+              <circle cx="55" cy="85" r="7" fill="#129a4d" />
+              <text x="66" y="90" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" fill="var(--sgds-color-default, #333333)">#129A4D</text>
+              <line x1="150" y1="85" x2="194" y2="85" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1.5" stroke-linecap="round" />
+              <polygon points="194,81 200,85 194,89" fill="var(--sgds-border-color-default, #AAAAAA)" />
+              <rect x="214" y="68" width="168" height="34" rx="17" fill="var(--sgds-surface-raised, #FFFFFF)" />
+              <circle cx="237" cy="85" r="7" fill="#129a4d" />
+              <text x="248" y="90" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" fill="var(--sgds-color-default, #333333)">sgds-green-500</text>
 
-              <span class="cp-token-anatomy__pill">
-                <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
-                <code class="cp-token-anatomy__code">#0269D0</code>
-              </span>
-              <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
-              <span class="cp-token-anatomy__pill">
-                <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
-                <code class="cp-token-anatomy__code">sgds-blue-600</code>
-              </span>
-            </div>
+              <!-- Row 3: #0269D0 → sgds-blue-600 -->
+              <rect x="32" y="110" width="110" height="34" rx="17" fill="var(--sgds-surface-raised, #FFFFFF)" />
+              <circle cx="55" cy="127" r="7" fill="#0269d0" />
+              <text x="66" y="132" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" fill="var(--sgds-color-default, #333333)">#0269D0</text>
+              <line x1="150" y1="127" x2="194" y2="127" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1.5" stroke-linecap="round" />
+              <polygon points="194,123 200,127 194,131" fill="var(--sgds-border-color-default, #AAAAAA)" />
+              <rect x="214" y="110" width="160" height="34" rx="17" fill="var(--sgds-surface-raised, #FFFFFF)" />
+              <circle cx="237" cy="127" r="7" fill="#0269d0" />
+              <text x="248" y="132" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" fill="var(--sgds-color-default, #333333)">sgds-blue-600</text>
+            </svg>
 
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Each primitive colour has two parts: the <strong>base</strong> (colour) and the <strong>modifier</strong> (scale). The token <CodeToken label="sgds-blue-600" /> sits at step 600 on the blue ramp, and every other primitive follows the same pattern.
             </p>
 
-            <!-- Naming anatomy: colour family + scale parts of the token.
-                 Compact pill with a swatch; "Colour" label drops to the
-                 family segment, "Scale" label points across to the scale step. -->
-            <div class="cp-name-anatomy">
-              <div class="cp-name-anatomy__inner">
-                <span class="cp-name-anatomy__call cp-name-anatomy__call--family"><strong class="cp-name-anatomy__call-label">Base</strong> (Colour)</span>
-                <code class="cp-name-anatomy__token">
-                  <span class="cp-name-anatomy__text">
-                    <span class="cp-name-anatomy__seg cp-name-anatomy__seg--prefix">sgds-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--family sgds:rounded-sm sgds:bg-primary-surface-muted sgds:text-fixed-dark sgds:px-1">blue</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--separator">-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--scale sgds:rounded-sm sgds:bg-success-surface-muted sgds:text-fixed-dark sgds:px-1">600</span>
-                  </span>
-                </code>
-                <span class="cp-name-anatomy__call cp-name-anatomy__call--scale"><strong class="cp-name-anatomy__call-label">Modifier</strong> (Scale)</span>
-              </div>
-            </div>
+            <!-- Naming anatomy: colour family + scale parts of the token (SVG version). -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 136" fill="none" class="sgds:block sgds:my-layout-xs sgds:w-full sgds:max-w-[460px]">
+              <!-- "Base (Colour)" label — centered above "blue" segment -->
+              <text x="166" y="16" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="var(--sgds-color-default, #333333)">
+                <tspan font-weight="600">Base</tspan><tspan font-weight="400"> (Colour)</tspan>
+              </text>
+
+              <!-- Vertical connector line from label down to dot -->
+              <line x1="166" y1="22" x2="166" y2="62" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1" />
+
+              <!-- Dot at end of vertical connector -->
+              <circle cx="166" cy="65" r="4" fill="var(--sgds-border-color-default, #AAAAAA)" />
+
+              <!-- Pill background (surface-raised, full border-radius) -->
+              <rect x="66" y="72" width="188" height="52" rx="26" ry="26" fill="var(--sgds-surface-raised, #FFFFFF)" />
+
+              <!-- "blue" segment highlight (primary-surface-muted, rounded-sm, px-1) -->
+              <rect x="138" y="83" width="56" height="30" rx="4" ry="4" fill="var(--sgds-primary-surface-muted, #F4F2FE)" />
+
+              <!-- "600" segment highlight (success-surface-muted, rounded-sm, px-1) -->
+              <rect x="198" y="83" width="44" height="30" rx="4" ry="4" fill="var(--sgds-success-surface-muted, #E3F9ED)" />
+
+              <!-- Token text: sgds-blue-600 -->
+              <text y="104" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="20" letter-spacing="0">
+                <tspan x="82" fill="var(--sgds-color-default, #333333)" font-weight="400">sgds-</tspan><tspan fill="var(--sgds-color-fixed-dark, #1F1F1F)" font-weight="600">blue</tspan><tspan fill="var(--sgds-color-default, #333333)" font-weight="400">-</tspan><tspan fill="var(--sgds-color-fixed-dark, #1F1F1F)" font-weight="600">600</tspan>
+              </text>
+
+              <!-- Horizontal connector dot (just past pill right edge) -->
+              <circle cx="258" cy="98" r="4" fill="var(--sgds-border-color-default, #AAAAAA)" />
+
+              <!-- Horizontal connector line from dot to "Modifier" label -->
+              <line x1="262" y1="98" x2="332" y2="98" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1" />
+
+              <!-- "Modifier (Scale)" label — to the right of the pill -->
+              <text x="340" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="var(--sgds-color-default, #333333)">
+                <tspan font-weight="600">Modifier</tspan><tspan font-weight="400"> (Scale)</tspan>
+              </text>
+            </svg>
 
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
               Beyond naming, each primitive is a stable reference for a single hex value. Across the seven colour families, the SGDS palette covers every shade the system needs, from the lightest tints to the deepest darks.
@@ -1306,45 +1329,55 @@ const openContrastInfo = () => {
                 A primitive colour token names a hex value. A semantic colour token names the job that value performs in the interface. Where <CodeToken label="--sgds-blue-600" /> names a specific shade, a semantic token like <CodeToken label="--sgds-link-color-default" /> names the role "default colour for a link". The system maps each role to the right primitive behind the scenes.
               </p>
 
-              <!-- Mapping: Raw hex → Primitive → Semantic. Two themed primitives
-                   converge on the same semantic token, illustrating that one
-                   semantic role can resolve to different primitives across
-                   day and night themes. -->
-              <div class="cp-token-anatomy cp-token-anatomy--theme-mapping">
-                <span aria-hidden="true"></span>
-                <span class="cp-token-anatomy__label">Raw hex value</span>
-                <span aria-hidden="true"></span>
-                <span class="cp-token-anatomy__label">Primitive colour</span>
-                <span aria-hidden="true"></span>
-                <span class="cp-token-anatomy__label">Semantic colour</span>
+              <!-- Mapping: Raw hex → Primitive → Semantic (SVG version).
+                   Two themed primitives converge on a single semantic token. -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 112" fill="none" class="sgds:block sgds:my-layout-xs sgds:w-full sgds:max-w-[760px]">
+                <defs>
+                  <!-- Split swatch gradient: day (blue-600) / night (blue-400) -->
+                  <linearGradient id="swatch-split" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="50%" stop-color="#0269d0" />
+                    <stop offset="50%" stop-color="#60aaf4" />
+                  </linearGradient>
+                </defs>
 
-                <span class="cp-token-anatomy__theme">Day theme</span>
-                <span class="cp-token-anatomy__pill">
-                  <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
-                  <code class="cp-token-anatomy__code">#0269D0</code>
-                </span>
-                <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
-                <span class="cp-token-anatomy__pill">
-                  <span class="cp-token-anatomy__swatch" style="background:#0269d0;" aria-hidden="true"></span>
-                  <code class="cp-token-anatomy__code">sgds-blue-600</code>
-                </span>
-                <svg class="cp-token-anatomy__arrow cp-token-anatomy__arrow--merge" width="56" height="80" viewBox="0 0 56 80" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M0 18 C 16 18, 16 40, 28 40"/><path d="M0 62 C 16 62, 16 40, 28 40"/><line x1="28" y1="40" x2="44" y2="40"/><polygon points="44,36 50,40 44,44" fill="currentColor" stroke="none"/></svg>
-                <span class="cp-token-anatomy__pill cp-token-anatomy__pill--span-2">
-                  <span class="cp-token-anatomy__swatch cp-token-anatomy__swatch--split" aria-hidden="true"></span>
-                  <code class="cp-token-anatomy__code">sgds-link-color-default</code>
-                </span>
+                <!-- Column headers -->
+                <text x="100" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="var(--sgds-color-default, #333333)">Raw hex value</text>
+                <text x="276" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="var(--sgds-color-default, #333333)">Primitive colour</text>
+                <text x="504" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="var(--sgds-color-default, #333333)">Semantic colour</text>
 
-                <span class="cp-token-anatomy__theme">Night theme</span>
-                <span class="cp-token-anatomy__pill">
-                  <span class="cp-token-anatomy__swatch" style="background:#60aaf4;" aria-hidden="true"></span>
-                  <code class="cp-token-anatomy__code">#60AAF4</code>
-                </span>
-                <svg class="cp-token-anatomy__arrow" width="56" height="14" viewBox="0 0 56 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="7" x2="44" y2="7"/><polygon points="44,3 50,7 44,11" fill="currentColor" stroke="none"/></svg>
-                <span class="cp-token-anatomy__pill">
-                  <span class="cp-token-anatomy__swatch" style="background:#60aaf4;" aria-hidden="true"></span>
-                  <code class="cp-token-anatomy__code">sgds-blue-400</code>
-                </span>
-              </div>
+                <!-- Row 1: Day theme — #0269D0 → sgds-blue-600 -->
+                <text x="16" y="49" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="var(--sgds-color-default, #333333)">Day theme</text>
+                <rect x="100" y="28" width="110" height="34" rx="17" fill="var(--sgds-surface-raised, #FFFFFF)" />
+                <circle cx="123" cy="45" r="7" fill="#0269d0" />
+                <text x="134" y="50" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" fill="var(--sgds-color-default, #333333)">#0269D0</text>
+                <line x1="218" y1="45" x2="262" y2="45" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1.5" stroke-linecap="round" />
+                <polygon points="262,41 268,45 262,49" fill="var(--sgds-border-color-default, #AAAAAA)" />
+                <rect x="276" y="28" width="160" height="34" rx="17" fill="var(--sgds-surface-raised, #FFFFFF)" />
+                <circle cx="299" cy="45" r="7" fill="#0269d0" />
+                <text x="310" y="50" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" fill="var(--sgds-color-default, #333333)">sgds-blue-600</text>
+
+                <!-- Row 2: Night theme — #60AAF4 → sgds-blue-400 -->
+                <text x="16" y="93" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="var(--sgds-color-default, #333333)">Night theme</text>
+                <rect x="100" y="72" width="110" height="34" rx="17" fill="var(--sgds-surface-raised, #FFFFFF)" />
+                <circle cx="123" cy="89" r="7" fill="#60aaf4" />
+                <text x="134" y="94" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" fill="var(--sgds-color-default, #333333)">#60AAF4</text>
+                <line x1="218" y1="89" x2="262" y2="89" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1.5" stroke-linecap="round" />
+                <polygon points="262,85 268,89 262,93" fill="var(--sgds-border-color-default, #AAAAAA)" />
+                <rect x="276" y="72" width="160" height="34" rx="17" fill="var(--sgds-surface-raised, #FFFFFF)" />
+                <circle cx="299" cy="89" r="7" fill="#60aaf4" />
+                <text x="310" y="94" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" fill="var(--sgds-color-default, #333333)">sgds-blue-400</text>
+
+                <!-- Merge arrow: two curves converging into one arrowhead -->
+                <path d="M444 45 C 460 45, 460 67, 472 67" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                <path d="M444 89 C 460 89, 460 67, 472 67" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                <line x1="472" y1="67" x2="488" y2="67" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1.5" stroke-linecap="round" />
+                <polygon points="488,63 494,67 488,71" fill="var(--sgds-border-color-default, #AAAAAA)" />
+
+                <!-- Semantic pill (spans both rows, vertically centred) -->
+                <rect x="504" y="50" width="244" height="34" rx="17" fill="var(--sgds-surface-raised, #FFFFFF)" />
+                <circle cx="527" cy="67" r="7" fill="url(#swatch-split)" />
+                <text x="538" y="72" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="14" fill="var(--sgds-color-default, #333333)">sgds-link-color-default</text>
+              </svg>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 <CodeToken label="--sgds-link-color-default" /> resolves to <strong>two</strong> primitives, one for each theme. Switching themes swaps the underlying primitive while every component using the link role stays unchanged.
               </p>
@@ -1363,19 +1396,40 @@ const openContrastInfo = () => {
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 SGDS semantic colour names follow a role-based structure. The name tells you what the colour is for before it tells you the visual value.
               </p>
-              <div class="cp-name-anatomy cp-name-anatomy--semantic">
-                <div class="cp-name-anatomy__inner">
-                  <span class="cp-name-anatomy__call cp-name-anatomy__call--base-element">
-                    <strong class="cp-name-anatomy__call-label">Base</strong>
-                  </span>
-                  <code class="cp-name-anatomy__token">
-                    <span class="cp-name-anatomy__text"><span class="cp-name-anatomy__seg cp-name-anatomy__seg--prefix">sgds-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--group sgds:rounded-sm sgds:bg-primary-surface-muted sgds:text-fixed-dark sgds:px-1">primary-bg</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--separator">-</span><span class="cp-name-anatomy__seg cp-name-anatomy__seg--modifier sgds:rounded-sm sgds:bg-success-surface-muted sgds:text-fixed-dark sgds:px-1">muted</span></span>
-                  </code>
-                  <span class="cp-name-anatomy__call cp-name-anatomy__call--modifier">
-                    <strong class="cp-name-anatomy__call-label">Modifier</strong>
-                  </span>
-                </div>
-              </div>
+              <!-- Semantic token naming anatomy (SVG version): sgds-primary-bg-muted -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 136" fill="none" class="sgds:block sgds:my-layout-xs sgds:w-full sgds:max-w-[500px]">
+                <!-- "Base" label — centered above "primary-bg" segment -->
+                <text x="202" y="16" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="var(--sgds-color-default, #333333)">Base</text>
+
+                <!-- Vertical connector line from label to dot -->
+                <line x1="202" y1="22" x2="202" y2="62" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1" />
+
+                <!-- Dot at end of vertical connector -->
+                <circle cx="202" cy="65" r="4" fill="var(--sgds-border-color-default, #AAAAAA)" />
+
+                <!-- Pill background (surface-raised, full border-radius) -->
+                <rect x="66" y="72" width="284" height="52" rx="26" ry="26" fill="var(--sgds-surface-raised, #FFFFFF)" />
+
+                <!-- "primary-bg" segment highlight (primary-surface-muted, rounded-sm, px-1) -->
+                <rect x="138" y="83" width="128" height="30" rx="4" ry="4" fill="var(--sgds-primary-surface-muted, #F4F2FE)" />
+
+                <!-- "muted" segment highlight (success-surface-muted, rounded-sm, px-1) -->
+                <rect x="270" y="83" width="68" height="30" rx="4" ry="4" fill="var(--sgds-success-surface-muted, #E3F9ED)" />
+
+                <!-- Token text: sgds-primary-bg-muted -->
+                <text y="104" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace" font-size="20" letter-spacing="0">
+                  <tspan x="82" fill="var(--sgds-color-default, #333333)" font-weight="400">sgds-</tspan><tspan fill="var(--sgds-color-fixed-dark, #1F1F1F)" font-weight="600">primary-bg</tspan><tspan fill="var(--sgds-color-default, #333333)" font-weight="400">-</tspan><tspan fill="var(--sgds-color-fixed-dark, #1F1F1F)" font-weight="600">muted</tspan>
+                </text>
+
+                <!-- Horizontal connector dot (just past pill right edge) -->
+                <circle cx="354" cy="98" r="4" fill="var(--sgds-border-color-default, #AAAAAA)" />
+
+                <!-- Horizontal connector line from dot to "Modifier" label -->
+                <line x1="358" y1="98" x2="420" y2="98" stroke="var(--sgds-border-color-default, #AAAAAA)" stroke-width="1" />
+
+                <!-- "Modifier" label — to the right of the pill -->
+                <text x="428" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="var(--sgds-color-default, #333333)">Modifier</text>
+              </svg>
               <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 <li><strong>Base design element or property</strong> combines the colour role and where it is applied, such as danger surface, success text, primary border, or neutral icon.</li>
                 <li><strong>Modifier</strong> identifies emphasis or state, such as default, subtle, muted, inverse, fixed light, fixed dark, hover, or selected.</li>
@@ -1747,21 +1801,6 @@ const openContrastInfo = () => {
 <style>
 /* ─── Product primary / Primitive shared styles ────────────────────────────── */
 
-.cp-token-column {
-}
-
-.cp-hex-column {
-}
-
-.cp-value-column {
-}
-
-.cp-contrast-column {
-}
-
-.cp-example-column {
-}
-
 .cp-segmented-control {
   background: var(--sgds-bg-default);
   position: relative;
@@ -1817,10 +1856,6 @@ const openContrastInfo = () => {
 .cp-source-panel__control--custom {
   max-inline-size: 24rem;
   position: relative;
-}
-
-.cp-colour-select {
-  min-width: 10rem;
 }
 
 .cp-custom-picker-field {
@@ -1939,519 +1974,6 @@ const openContrastInfo = () => {
   block-size: var(--sgds-dimension-40);
   inline-size: var(--sgds-dimension-80);
 }
-
-/* Token anatomy: horizontal Value / Primitive flow that maps a raw
-   colour value to its primitive token name. Labels sit above their pill;
-   arrows live in the same row as the pills so they centre with them. */
-.cp-token-anatomy {
-  align-items: center;
-  background: transparent;
-  column-gap: var(--sgds-padding-xs);
-  display: grid;
-  grid-template-columns: max-content max-content max-content;
-  justify-content: start;
-  margin-block: var(--sgds-layout-gap-xs);
-  padding-inline: var(--sgds-padding-2-xl);
-  row-gap: var(--sgds-text-gap-sm);
-  width: fit-content;
-}
-
-/* Theme-mapping variant: 6-column grid that pairs hex → primitive across
-   day and night themes, both feeding into a single semantic token on the
-   right (which spans both rows). */
-.cp-token-anatomy--theme-mapping {
-  grid-template-columns: max-content max-content max-content max-content max-content max-content;
-  row-gap: var(--sgds-text-gap-md);
-}
-
-.cp-token-anatomy__theme {
-  color: var(--sgds-color-default);
-  font-weight: var(--sgds-font-weight-semibold);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-xs);
-  padding-inline-end: var(--sgds-padding-xs);
-}
-
-.cp-token-anatomy__pill--span-2 {
-  align-self: center;
-  grid-row: span 2;
-}
-
-/* Merge arrow: two lines from the day/night primitives converge in the
-   middle, then a single arrow extends right to the semantic pill. Width
-   matches the regular arrow column so the gap on either side of the
-   semantic pill is consistent with the rest of the diagram. */
-.cp-token-anatomy__arrow--merge {
-  block-size: 100%;
-  grid-row: span 2;
-  inline-size: 56px;
-  justify-self: center;
-  min-block-size: 4.5rem;
-}
-
-/* Split swatch: half day-mode primitive, half night-mode primitive. Visual
-   shorthand for "this semantic token resolves to two primitives". */
-.cp-token-anatomy__swatch--split {
-  background: linear-gradient(135deg, #0269d0 50%, #60aaf4 50%);
-}
-
-.cp-token-anatomy__label {
-  color: var(--sgds-color-default);
-  font-size: var(--sgds-font-size-label-md);
-  font-weight: var(--sgds-font-weight-semibold);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-xs);
-}
-
-.cp-token-anatomy__pill {
-  align-items: center;
-  background: var(--sgds-surface-raised);
-  border-radius: var(--sgds-border-radius-full);
-  color: var(--sgds-color-default);
-  display: inline-flex;
-  font-family: var(--sgds-font-family-brand);
-  font-size: var(--sgds-font-size-label-sm);
-  gap: var(--sgds-padding-2-xs);
-  justify-self: start;
-  line-height: var(--sgds-line-height-xs);
-  padding: var(--sgds-padding-xs) var(--sgds-padding-md);
-}
-
-.cp-token-anatomy__swatch {
-  block-size: 0.875rem;
-  border-radius: var(--sgds-border-radius-full);
-  display: inline-block;
-  flex-shrink: 0;
-  inline-size: 0.875rem;
-}
-
-.cp-token-anatomy__code {
-  background: transparent;
-  border: 0;
-  color: inherit;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  padding: 0;
-}
-
-.cp-token-anatomy__arrow {
-  color: var(--sgds-border-color-default);
-  justify-self: center;
-}
-
-/* Naming anatomy: compact pill with a swatch, plus two short callouts —
-   "Colour" drops to the family segment, "Scale" points across to the scale
-   step. Coordinates use ch units so callouts stay aligned to the monospace
-   token regardless of viewport width. */
-.cp-name-anatomy {
-  /* Theme-aware accents using SGDS semantic colour tokens. Family ("blue")
-     uses primary (brand purple); scale ("600") uses success (green). Both
-     tokens flip automatically between day and night themes. */
-  --cp-callout-family-color: var(--sgds-primary-color-default);
-  --cp-callout-scale-color: var(--sgds-success-color-default);
-  background: transparent;
-  display: block;
-  margin-block: var(--sgds-layout-gap-xs);
-  padding-inline: var(--sgds-padding-2-xl);
-  width: max-content;
-}
-
-.cp-name-anatomy__inner {
-  display: inline-block;
-  padding-block-end: var(--sgds-layout-gap-sm);
-  padding-block-start: 4.25rem;
-  /* Reserve room for the "Modifier (Scale)" callout (~7rem wide) plus
-     the connector line (5rem) so the line/dot land just past the pill. */
-  padding-inline-end: 12.5rem;
-  position: relative;
-}
-
-.cp-name-anatomy__token {
-  align-items: center;
-  background: var(--sgds-surface-raised);
-  border-radius: var(--sgds-border-radius-full);
-  color: var(--sgds-color-default);
-  display: inline-flex;
-  font-family: var(--sgds-font-family-brand);
-  font-size: var(--sgds-font-size-label-lg);
-  gap: var(--sgds-padding-sm);
-  letter-spacing: 0;
-  line-height: var(--sgds-line-height-xs);
-  padding: var(--sgds-padding-sm) var(--sgds-padding-lg);
-  white-space: nowrap;
-}
-
-.cp-name-anatomy__swatch {
-  background: var(--sgds-blue-600, #0269d0);
-  block-size: 1.5rem;
-  border-radius: var(--sgds-border-radius-full);
-  display: inline-block;
-  flex-shrink: 0;
-  inline-size: 1.5rem;
-}
-
-.cp-name-anatomy__swatch--danger {
-  background: var(--sgds-red-600, #cf2323);
-}
-
-.cp-name-anatomy__text {
-  display: inline-block;
-}
-
-.cp-name-anatomy__seg {
-  display: inline-block;
-}
-
-.cp-name-anatomy__seg--prefix,
-.cp-name-anatomy__seg--separator {
-  color: var(--sgds-color-default);
-}
-
-.cp-name-anatomy__seg--group,
-.cp-name-anatomy__seg--family,
-.cp-name-anatomy__seg--scale,
-.cp-name-anatomy__seg--property,
-.cp-name-anatomy__seg--modifier {
-  font-weight: var(--sgds-font-weight-semibold);
-}
-
-.cp-name-anatomy__call {
-  color: var(--sgds-color-default);
-  font-size: var(--sgds-font-size-label-md);
-  font-weight: var(--sgds-font-weight-regular);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-xs);
-  position: absolute;
-  white-space: nowrap;
-}
-
-.cp-name-anatomy__call-label {
-  font-weight: var(--sgds-font-weight-semibold);
-}
-
-.cp-name-anatomy__call::after {
-  content: "";
-  position: absolute;
-}
-
-.cp-name-anatomy__call--family {
-  /* Sits above the pill, centred over the "blue" segment.
-     Offset = pill's left padding + 7 monospace chars (prefix "sgds-" + half
-     "blue") at label-lg 20px ≈ 5.25rem. We use rem instead of ch because
-     the callout's own font is sans-serif (label-md), so its ch unit doesn't
-     match the pill's monospace advance width. */
-  left: calc(var(--sgds-padding-lg) + 5.25rem);
-  top: 0;
-  transform: translateX(-50%);
-}
-
-.cp-name-anatomy__call--family::after {
-  /* Vertical drop from just below the label down to the pill's top edge,
-     directly above the "blue" segment. Stops at the top of the letterforms
-     so the dot touches the word's bounding box without covering it. */
-  background: var(--sgds-border-color-default);
-  block-size: 2.625rem;
-  inline-size: var(--sgds-border-width-1, 1px);
-  left: 50%;
-  top: calc(100% + 0.25rem);
-}
-
-.cp-name-anatomy__call--family::before {
-  /* Anchor dot at the bottom of the stem, sitting at the top edge of the
-     "blue" word without blocking it. */
-  background: var(--sgds-border-color-default);
-  block-size: 0.5rem;
-  border-radius: 50%;
-  content: "";
-  inline-size: 0.5rem;
-  left: 50%;
-  position: absolute;
-  top: calc(100% + 2.625rem);
-  transform: translateX(-50%);
-}
-
-.cp-name-anatomy__call--scale {
-  /* Sits to the right of the pill, vertically centred on the row.
-     Top = pill top (padding-block-start = 4.25rem) + half pill height.
-     With label-lg font + line-height-xs (~28px) and padding-sm (12px)
-     top/bottom the pill is ~52px tall, so half ≈ 1.625rem. */
-  right: 0;
-  top: calc(4.25rem + 1.625rem);
-  transform: translateY(-50%);
-}
-
-.cp-name-anatomy--semantic {
-  --cp-callout-base-color: var(--sgds-purple-color-default);
-  --cp-callout-modifier-color: var(--sgds-success-color-default);
-}
-
-.cp-name-anatomy--semantic .cp-name-anatomy__inner {
-  padding-inline-end: 8.75rem;
-}
-
-
-.cp-name-anatomy__call--base-element {
-  left: calc(var(--sgds-padding-lg) + 10ch);
-  top: 0;
-  transform: translateX(-50%);
-}
-
-.cp-name-anatomy__call--base-element::after {
-  background: var(--sgds-border-color-default);
-  block-size: 2.625rem;
-  inline-size: var(--sgds-border-width-1, 1px);
-  left: 50%;
-  top: calc(100% + 0.25rem);
-}
-
-.cp-name-anatomy__call--base-element::before {
-  background: var(--sgds-border-color-default);
-  block-size: 0.5rem;
-  border-radius: 50%;
-  content: "";
-  inline-size: 0.5rem;
-  left: 50%;
-  position: absolute;
-  top: calc(100% + 2.625rem);
-  transform: translateX(-50%);
-}
-
-.cp-name-anatomy__call--modifier {
-  right: 0;
-  top: calc(4.25rem + 1.625rem);
-  transform: translateY(-50%);
-}
-
-.cp-name-anatomy__call--modifier::after {
-  background: var(--sgds-border-color-default);
-  block-size: var(--sgds-border-width-1, 1px);
-  inline-size: 4.5rem;
-  right: calc(100% + 0.5rem);
-  top: 50%;
-}
-
-.cp-name-anatomy__call--modifier::before {
-  background: var(--sgds-border-color-default);
-  block-size: 0.5rem;
-  border-radius: 50%;
-  content: "";
-  inline-size: 0.5rem;
-  position: absolute;
-  right: calc(100% + 4.75rem);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.cp-name-anatomy__call--scale::after {
-  /* Horizontal stem from just left of the label across to the pill's right
-     edge, beside the "600" segment. Width matches the gap between pill end
-     (padding-inline-end = 12.5rem) and label-left (~7.6rem) minus the
-     0.5rem gap to the label = 4.4rem. */
-  background: var(--sgds-border-color-default);
-  block-size: var(--sgds-border-width-1, 1px);
-  inline-size: 4.4rem;
-  right: calc(100% + 0.5rem);
-  top: 50%;
-}
-
-.cp-name-anatomy__call--scale::before {
-  /* Anchor dot at the left end of the stem, sitting just past the right
-     edge of the "600" number. Offset = pill-end (12.5rem from inner-right)
-     minus label-width (~7.6rem) = 4.9rem from label-right. */
-  background: var(--sgds-border-color-default);
-  block-size: 0.5rem;
-  border-radius: 50%;
-  content: "";
-  inline-size: 0.5rem;
-  position: absolute;
-  right: calc(100% + 4.9rem);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* Small-screen responsive: scale the callout pill and labels down so the
-   diagram fits within mobile viewports. Uses smaller SGDS tokens for the
-   pill text, swatch, and padding, and recalculates the absolute callout
-   offsets so the lines and dots still land on the right segments. */
-@media (max-width: 640px) {
-  .cp-name-anatomy {
-    width: auto;
-    max-inline-size: 100%;
-    padding-inline: var(--sgds-padding-md);
-  }
-
-  .cp-name-anatomy__inner {
-    padding-block-end: var(--sgds-layout-gap-xs);
-    padding-block-start: 3rem;
-    padding-inline-end: 4.5rem;
-  }
-
-  .cp-name-anatomy__token {
-    font-size: var(--sgds-font-size-label-xs);
-    gap: var(--sgds-padding-2-xs);
-    padding: var(--sgds-padding-2-xs) var(--sgds-padding-sm);
-  }
-
-  .cp-name-anatomy__swatch {
-    block-size: 0.875rem;
-    inline-size: 0.875rem;
-  }
-
-  .cp-name-anatomy__call {
-    font-size: var(--sgds-font-size-label-xs);
-  }
-
-  .cp-name-anatomy__call--family {
-    /* 7 monospace chars at label-xs 12px ≈ 3.15rem (pill text shrinks on
-       mobile per the .cp-name-anatomy__token override above). */
-    left: calc(var(--sgds-padding-sm) + 3.15rem);
-  }
-
-  .cp-name-anatomy__call--family::after {
-    block-size: 1.875rem;
-  }
-
-  .cp-name-anatomy__call--family::before {
-    top: calc(100% + 1.875rem);
-  }
-
-  .cp-name-anatomy__call--scale {
-    top: calc(3rem + 0.875rem);
-  }
-
-  .cp-name-anatomy__call--scale::after {
-    inline-size: 3rem;
-  }
-
-  .cp-name-anatomy__call--scale::before {
-    right: calc(100% + 3.25rem);
-  }
-
-  .cp-name-anatomy--semantic .cp-name-anatomy__inner {
-    padding-inline-end: 4.5rem;
-  }
-
-  .cp-name-anatomy__call--base-element {
-    left: calc(var(--sgds-padding-sm) + 0.875rem + var(--sgds-padding-2-xs) + 14ch);
-  }
-
-  .cp-name-anatomy__call--base-element::after {
-    block-size: 1.875rem;
-  }
-
-  .cp-name-anatomy__call--base-element::before {
-    top: calc(100% + 1.875rem);
-  }
-
-  .cp-name-anatomy__call--modifier {
-    top: calc(3rem + 0.875rem);
-  }
-
-  .cp-name-anatomy__call--modifier::after {
-    inline-size: 3rem;
-  }
-
-  .cp-name-anatomy__call--modifier::before {
-    right: calc(100% + 3.25rem);
-  }
-}
-
-/* Primitive palette role-mapped cards — each card shows a family ramp with
-   light/dark theme captions stacked vertically. Mirrors the visual treatment
-   used on the colour principles page. */
-.cp-scale-card {
-  background: var(--sgds-bg-default);
-  border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-2-xl);
-  min-block-size: 25rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.cp-scale-card__halves {
-  block-size: 100%;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  inline-size: 100%;
-  min-block-size: 25rem;
-}
-
-.cp-scale-card__half--light { background: #ffffff; }
-.cp-scale-card__half--dark  { background: #0e0e0e; }
-
-.cp-scale-card__stage {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sgds-gap-sm);
-  inset: 0;
-  justify-content: center;
-  padding-inline: clamp(1rem, 4vw, 3rem);
-  position: absolute;
-}
-
-.cp-scale-card__rail {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  gap: var(--sgds-gap-xs);
-  inline-size: min(100%, 61rem);
-  max-inline-size: 61rem;
-}
-
-.cp-scale-card__slot {
-  align-items: center;
-  display: flex;
-  flex: 1 1 0;
-  justify-content: center;
-  min-inline-size: 0;
-}
-
-.cp-scale-card__swatch {
-  align-items: center;
-  aspect-ratio: 1;
-  border-radius: min(var(--sgds-border-radius-xl), 30%);
-  display: flex;
-  inline-size: 100%;
-  justify-content: center;
-  min-inline-size: 0;
-}
-
-.cp-scale-card__swatch--bordered {
-  border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
-}
-
-.cp-scale-card__swatch-label {
-  color: var(--sgds-color-fixed-dark);
-  font-size: var(--sgds-font-size-label-xs);
-  font-weight: var(--sgds-font-weight-regular);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-16);
-  text-align: center;
-}
-
-.cp-scale-card__swatch--dark .cp-scale-card__swatch-label {
-  color: var(--sgds-color-fixed-light);
-}
-
-.cp-scale-card__caption {
-  align-items: center;
-  display: flex;
-  font-size: var(--sgds-font-size-label-xs);
-  font-weight: var(--sgds-font-weight-regular);
-  inline-size: 100%;
-  justify-content: center;
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-16);
-  min-block-size: calc(var(--sgds-line-height-16) * 2);
-  text-align: center;
-  white-space: pre-line;
-}
-
-.cp-scale-card__caption--top    { color: var(--sgds-color-fixed-dark); }
-.cp-scale-card__caption--bottom { color: var(--sgds-color-fixed-light); }
 
 .cp-example-ag {
   font-family: var(--sgds-font-family-brand);
