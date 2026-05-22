@@ -984,12 +984,12 @@ const openContrastInfo = () => {
               <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 GovTech {{ palette.shortLabel.toLowerCase() }} colour
               </h4>
-              <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+              <sgds-table tableBorder headerBackground responsive="always" layout="fixed" class="typography-page-template__utility-table">
                 <sgds-table-row>
-                  <sgds-table-head class="cp-token-column">Token</sgds-table-head>
-                  <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
-                  <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
-                  <sgds-table-head class="cp-contrast-column">
+                  <sgds-table-head class="cp-token-column" style="width: 291.29px">Token</sgds-table-head>
+                  <sgds-table-head class="cp-hex-column" style="width: 105.24px">Hex</sgds-table-head>
+                  <sgds-table-head class="cp-value-column" style="width: 258.2px">RGBA</sgds-table-head>
+                  <sgds-table-head class="cp-contrast-column" style="width: 150px">
                   <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
                     Contrast
                     <sgds-icon-button
@@ -1002,7 +1002,7 @@ const openContrastInfo = () => {
                     ></sgds-icon-button>
                   </span>
                 </sgds-table-head>
-                  <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
+                  <sgds-table-head class="cp-example-column" style="width: 169px">Preview</sgds-table-head>
                 </sgds-table-row>
 
                 <sgds-table-row v-for="row in palette.rows" :key="`${palette.id}-${row.token}`">
@@ -1049,12 +1049,12 @@ const openContrastInfo = () => {
             </div>
           </template>
 
-          <sgds-table v-else-if="showCustomGenerator" tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+          <sgds-table v-else-if="showCustomGenerator" tableBorder headerBackground responsive="always" layout="fixed" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="cp-token-column">Token</sgds-table-head>
-              <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
-              <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
-              <sgds-table-head class="cp-contrast-column">
+              <sgds-table-head class="cp-token-column" style="width: 291.29px">Token</sgds-table-head>
+              <sgds-table-head class="cp-hex-column" style="width: 105.24px">Hex</sgds-table-head>
+              <sgds-table-head class="cp-value-column" style="width: 258.2px">RGBA</sgds-table-head>
+              <sgds-table-head class="cp-contrast-column" style="width: 150px">
                   <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
                     Contrast
                     <sgds-icon-button
@@ -1067,7 +1067,7 @@ const openContrastInfo = () => {
                     ></sgds-icon-button>
                   </span>
                 </sgds-table-head>
-              <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
+              <sgds-table-head class="cp-example-column" style="width: 169px">Preview</sgds-table-head>
             </sgds-table-row>
 
             <sgds-table-row v-for="row in activeProductRows" :key="`${productPrimaryMode}-${row.token}`">
@@ -1231,12 +1231,12 @@ const openContrastInfo = () => {
             <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
               {{ family.label }}
             </h4>
-            <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
+            <sgds-table tableBorder headerBackground responsive="always" layout="fixed" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="cp-token-column">Token</sgds-table-head>
-                <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
-                <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
-                <sgds-table-head class="cp-contrast-column">
+                <sgds-table-head class="cp-token-column" style="width: 291.29px">Token</sgds-table-head>
+                <sgds-table-head class="cp-hex-column" style="width: 105.24px">Hex</sgds-table-head>
+                <sgds-table-head class="cp-value-column" style="width: 258.2px">RGBA</sgds-table-head>
+                <sgds-table-head class="cp-contrast-column" style="width: 150px">
                   <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
                     Contrast
                     <sgds-icon-button
@@ -1249,7 +1249,7 @@ const openContrastInfo = () => {
                     ></sgds-icon-button>
                   </span>
                 </sgds-table-head>
-                <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
+                <sgds-table-head class="cp-example-column" style="width: 169px">Preview</sgds-table-head>
               </sgds-table-row>
 
               <sgds-table-row v-for="row in family.rows" :key="`${family.id}-${row.token}`">
@@ -1748,38 +1748,18 @@ const openContrastInfo = () => {
 /* ─── Product primary / Primitive shared styles ────────────────────────────── */
 
 .cp-token-column {
-  box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: none;
-  min-inline-size: 13rem;
 }
 
 .cp-hex-column {
-  box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: 8rem;
-  min-inline-size: 6rem;
 }
 
 .cp-value-column {
-  box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: 12rem;
-  min-inline-size: 8rem;
 }
 
 .cp-contrast-column {
-  box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: 6rem;
-  min-inline-size: 4rem;
 }
 
 .cp-example-column {
-  box-sizing: border-box;
-  inline-size: max-content;
-  max-inline-size: 16rem;
-  min-inline-size: 10rem;
 }
 
 .cp-segmented-control {

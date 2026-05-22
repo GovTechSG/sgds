@@ -227,7 +227,7 @@ const paletteRows: PaletteRow[] = [
                     <span
                       v-for="(color, index) in extendedColors"
                       :key="color"
-                      class="our-colours-extended-swatch sgds:rounded-xl sgds:block sgds:h-[clamp(2.75rem,6vw,4rem)] sgds:w-[clamp(2.75rem,6vw,4rem)]"
+                      class="our-colours-extended-swatch sgds:rounded-xl sgds:block sgds:aspect-square sgds:w-[clamp(2.75rem,6vw,4rem)]"
                       :style="{ backgroundColor: color, '--swatch-index': index }"
                     ></span>
                   </div>
@@ -248,7 +248,7 @@ const paletteRows: PaletteRow[] = [
                       <span
                         v-for="color in accentSwatches"
                         :key="color"
-                        :class="['our-colours-palette-swatch sgds:rounded-[min(var(--sgds-border-radius-xl),30%)] sgds:block sgds:h-[clamp(2rem,5.3vw,4rem)] sgds:w-[clamp(2rem,5.3vw,4rem)]', color === '#FFFFFF' ? 'sgds:border sgds:border-muted' : '']"
+                        :class="['our-colours-palette-swatch sgds:rounded-[min(var(--sgds-border-radius-xl),30%)] sgds:block sgds:aspect-square sgds:w-[clamp(2rem,5.3vw,4rem)]', color === '#FFFFFF' ? 'sgds:border sgds:border-muted' : '']"
                         :style="{ backgroundColor: color }"
                       ></span>
                     </div>
@@ -261,7 +261,7 @@ const paletteRows: PaletteRow[] = [
                       <span
                         v-for="color in row.colors"
                         :key="`${row.label}-${color}`"
-                        :class="['our-colours-palette-swatch sgds:rounded-[min(var(--sgds-border-radius-xl),30%)] sgds:block sgds:h-[clamp(2rem,5.3vw,4rem)] sgds:w-[clamp(2rem,5.3vw,4rem)]', color === '#FFFFFF' ? 'sgds:border sgds:border-muted' : '']"
+                        :class="['our-colours-palette-swatch sgds:rounded-[min(var(--sgds-border-radius-xl),30%)] sgds:block sgds:aspect-square sgds:w-[clamp(2rem,5.3vw,4rem)]', color === '#FFFFFF' ? 'sgds:border sgds:border-muted' : '']"
                         :style="{ backgroundColor: color }"
                       ></span>
                     </div>
