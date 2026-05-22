@@ -588,20 +588,6 @@ onMounted(() => {
   void setupSidebarDemos();
   void setupStepperDemos();
   void setupTextareaDemos();
-
-  // Force badges to re-check truncation after paint — the web component's
-  // slotchange-driven check fires before layout is complete on first load.
-  void customElements.whenDefined("sgds-badge").then(() => {
-    requestAnimationFrame(() => {
-      const root = rootRef.value;
-      if (!root) return;
-      root.querySelectorAll<any>("sgds-badge").forEach((badge) => {
-        if (typeof badge._handleTruncation === "function") {
-          badge._handleTruncation();
-        }
-      });
-    });
-  });
 });
 
 onBeforeUnmount(() => {
