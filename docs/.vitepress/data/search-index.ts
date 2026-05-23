@@ -1,3 +1,5 @@
+import { storyPosts } from "./stories";
+
 export const categoryColorClass: Record<string, string> = {
   Component: "sgds:text-primary-default",
   Foundation: "sgds:text-success-default",
@@ -5,6 +7,7 @@ export const categoryColorClass: Record<string, string> = {
   "Get started": "sgds:text-primary-default",
   Guideline: "sgds:text-purple-default",
   AI: "sgds:text-cyan-default",
+  Stories: "sgds:text-cyan-default",
 };
 
 export interface SearchItem {
@@ -18,7 +21,17 @@ export interface SearchResult extends SearchItem {
   excerpt?: string;
 }
 
+const storySearchItems: SearchItem[] = storyPosts.map((post) => ({
+  title: post.title,
+  category: "Stories",
+  url: post.href,
+  keywords: ["agent skills", "AI", "story", post.category],
+}));
+
 export const searchIndex: SearchItem[] = [
+  { title: "Stories", category: "Stories", url: "/stories", keywords: ["updates", "news", "story", "case study", "post"] },
+  ...storySearchItems,
+
   // Get started
   { title: "Get started", category: "Get started", url: "/get-started/", keywords: ["overview", "sgds v3", "start"] },
   { title: "About us", category: "Get started", url: "/get-started/about-sgds", keywords: ["vision", "principles", "values"] },

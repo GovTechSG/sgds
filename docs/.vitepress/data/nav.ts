@@ -11,4 +11,5 @@ export const mainNavItems: NavItem[] = [
   { text: "Templates", link: "/templates/", activeMatch: "/templates" },
   { text: "Blocks", link: "/blocks/", activeMatch: "/blocks" },
   { text: "AI", link: "/ai/introduction", activeMatch: "/ai" },
+  { text: "Stories", link: "/stories", activeMatch: "/stories" },
 ];

@@ -4,10 +4,18 @@ import tailwindcss from "@tailwindcss/vite";
 import { fileSort } from "./data/file-management";
 import { foundationsSidebar } from "./data/foundations-sidebar";
 import { blocksSidebar } from "./data/blocks-sidebar";
+import { storyPosts } from "./data/stories";
 
 const vitePressConfig = {
   title: "Singapore Government Design System",
   description: "Unifying Government through Design and Code.",
+  transformPageData(pageData) {
+    const story = storyPosts.find((post) => pageData.relativePath === `stories/${post.key}.md`);
+    if (!story) return;
+
+    pageData.title = story.title;
+    pageData.description = story.description;
+  },
   cleanUrls: true,
   markdown: {
     anchor: {
