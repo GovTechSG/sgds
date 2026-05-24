@@ -139,8 +139,10 @@ export const storyPosts: StoryPost[] = [
     description:
       "SGDS agent skills encode our design, development, and UX writing guidance so AI can produce SGDS-aligned, accessible UI from the start.",
     href: "/stories/introducing-sgds-agent-skills",
-    imageSrc: "/stories/introducing-sgds-agent-skills-thumbnail.png",
-    imageAlt: "Prompt card reading Build a trusted and accessible government experience using SGDS V3",
+    imageSrc: "/stories/introducing-sgds-agent-skills-thumbnail.svg",
+    imageAlt: "SGDS skill cards connected by dotted lines to a central AI design work card",
+    videoSrc: "/stories/sgds-agent-skills-knowledge-flow.mp4",
+    posterSrc: "/stories/introducing-sgds-agent-skills-thumbnail.svg",
     published: "May 2026",
     author: "Singapore Government Design System team",
     intro: [],
@@ -156,9 +158,9 @@ export const storyPosts: StoryPost[] = [
       {
         title: "A design system, packed into skills",
         titleVisual: {
-          src: "/stories/introducing-sgds-agent-skills-thumbnail.png",
+          src: "/stories/introducing-sgds-agent-skills-thumbnail.svg",
           videoSrc: "/stories/sgds-agent-skills-knowledge-flow.mp4",
-          posterSrc: "/stories/introducing-sgds-agent-skills-thumbnail.png",
+          posterSrc: "/stories/introducing-sgds-agent-skills-thumbnail.svg",
           alt: "Prompt card reading Build a trusted and accessible government experience using SGDS V3",
           caption:
             "SGDS skills turn design, development, and writing guidance into AI-readable context.",
@@ -260,7 +262,8 @@ export const storyPosts: StoryPost[] = [
               "The timing is useful context, but it is not the most important finding. The two runs started from the same product direction. The difference was whether the assistant had a shared design system to work from.",
               "The bigger issue appeared during refinement. Without a shared system, the interface became harder to guide over time. Buttons, layouts, and interaction patterns started to drift. Each change needed more explanation because there was no common set of components, tokens, and patterns for the assistant to return to.",
               "That can become difficult to manage in a larger enterprise product. Inconsistent patterns can make the service harder to use and maintain. They also leave teams with more design debt to clean up later.",
-              "This matches our first-hand experience. AI can produce a quick prototype without a design system, but the work can become harder to refine as the product grows.",
+              "This matches our first-hand experience. After the first generation, we spent a significant amount of time trying to standardise the layout, colours, and patterns. Even after hours of refinement, the result was still not entirely consistent.",
+              "Designers may notice these small differences more quickly because we are trained to look for them. Some differences may be acceptable in a quick prototype, but they still show the same pattern: AI can produce a quick prototype without a design system, but the work can become harder to refine as the product grows.",
             ],
             visual: {
               src: "/stories/sgds-agent-skills-without-system.png",
@@ -764,8 +767,8 @@ export const storyPosts: StoryPost[] = [
     description:
       "How AI-assisted workflows can narrow the translation gap between design intent and implementation.",
     href: "/stories/design-and-code-finally-speaking-the-same-language",
-    imageSrc: "/stories/design-code-speaking-thumbnail.svg",
-    imageAlt: "SGDS mark on a soft gradient background",
+    imageSrc: "/stories/introducing-sgds-agent-skills-thumbnail.svg",
+    imageAlt: "AI prompt box connected to SGDS agent skill cards",
     published: "May 2026",
     author: "Singapore Government Design System team",
     intro: [],
@@ -908,124 +911,241 @@ export const storyPosts: StoryPost[] = [
   {
     key: "near-term-promise-of-sgds-v3",
     category: "AI",
-    title: "The short to mid term vision for SGDS v3",
+    title: "Building the next phase of SGDS",
     description:
-      "How SGDS v3 can reduce repeated effort and help teams spend more time on service quality.",
+      "What SGDS is focusing on next: stronger foundations, flexible theming, contribution pathways, and accessibility across new interaction models.",
     href: "/stories/near-term-promise-of-sgds-v3",
     imageSrc: "/stories/sgds-agent-skills-knowledge-flow-poster.jpg",
-    imageAlt: "SGDS v3 foundations reducing repeated product work",
+    imageAlt: "SGDS guidance flowing into AI agents and product teams",
     published: "May 2026",
     author: "Singapore Government Design System team",
-    intro: [],
+    intro: [
+      "This post focuses on the next phase of SGDS itself.",
+      "The work ahead focuses less on adding more components and more on strengthening the system underneath them, while making SGDS easier to adopt, adapt, contribute to, and scale across different delivery environments.",
+    ],
     sections: [
       {
-        title: "Less repeated effort",
+        title: "What stays the same",
         paragraphs: [
-          "Many product teams solve similar interface problems.",
-          "They need page layouts, forms, navigation, search, filters, tables, and clear content.",
-          "SGDS v3 helps teams reuse proven decisions instead of rebuilding them for every service.",
+          "As workflows evolve, the principles behind SGDS continue guiding the work.",
+          "We still prioritise:",
+        ],
+        list: [
+          "clarity over unnecessary complexity",
+          "understanding over visual novelty",
+          "accessibility by default",
+          "familiarity as a way to build trust",
+          "empowering teams instead of restricting them",
+          "reusable decisions that teams can adapt",
+        ],
+        subsections: [
+          {
+            paragraphs: [
+              "These principles help shape what we improve first.",
+              "The goal is to give teams enough structure to move confidently while still leaving room for product context and operational flexibility.",
+            ],
+          },
         ],
       },
       {
-        title: "More time for service quality",
+        title: "Strengthening the foundations",
         paragraphs: [
-          "When common decisions are already handled, teams can spend more time on what makes the service work.",
-          "That includes user needs, policy details, edge cases, accessibility, and operational fit.",
-          "The goal is not only faster screens. The goal is better services.",
+          "Before SGDS expands further into new delivery workflows, the foundation layer itself needs to remain reliable in everyday product work.",
+          "Current work focuses on:",
+        ],
+        list: [
+          "improving component quality",
+          "tightening alignment between design assets and web components",
+          "making implementation guidance clearer",
+          "reducing avoidable drift across repeated patterns",
+          "making adoption easier for teams with existing constraints",
+        ],
+        subsections: [
+          {
+            paragraphs: [
+              "One recurring challenge teams raised was flexibility.",
+              "Some teams felt:",
+            ],
+            list: [
+              "the system was difficult to customise",
+              "branding needs were harder to support",
+              "migration required significant effort",
+              "components did not always fit existing workflows naturally",
+            ],
+            postVisualParagraphs: [
+              "These are valid concerns for teams operating within real delivery timelines and operational constraints.",
+              "The intention is to make the system fit more naturally into real product workflows.",
+            ],
+          },
         ],
       },
       {
-        title: "AI makes reuse easier",
+        title: "Making flexibility clearer",
         paragraphs: [
-          "AI can help teams find and apply SGDS patterns faster.",
-          "It can suggest a layout, review a form, or draft content using SGDS guidance.",
-          "That gives teams a stronger starting point with less manual searching.",
+          "Teams have also asked for more room to express product identity while keeping common service patterns recognisable.",
+          "This is shaping current explorations around:",
+        ],
+        list: [
+          "broader colour flexibility beyond the default government palette",
+          "multiple neutral palettes such as cool, warm, and default greys",
+          "typography flexibility",
+          "support for custom brand fonts",
+          "controlled gradient generation",
+          "clearer guidance around where and how these styles should be used",
+        ],
+        subsections: [
+          {
+            paragraphs: [
+              "The goal is to define where flexibility makes sense and where common patterns should remain aligned.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Making contribution easier",
+        paragraphs: [
+          "Long-term adoption also depends on making contribution pathways clearer.",
+          "The next phase of SGDS includes exploring:",
+        ],
+        list: [
+          "a public roadmap",
+          "clearer contribution pathways",
+          "more direct support for teams",
+          "encouraging asynchronous learning and contribution",
+          "recognising contributors across the ecosystem",
+        ],
+        subsections: [
+          {
+            paragraphs: [
+              "As more teams contribute improvements, implementation learnings, and delivery feedback back into SGDS, the system becomes more reflective of real operational needs across government services.",
+              "This also helps reduce duplicated effort across teams working on similar problems.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Accessibility continues evolving",
+        paragraphs: [
+          "Accessibility remains part of the foundation work.",
+          "Today, much of accessibility guidance still focuses heavily on graphical interfaces.",
+          "As interaction models evolve, accessibility practices may also need to expand into:",
+        ],
+        list: [
+          "conversational interfaces",
+          "voice interactions",
+          "AI-assisted workflows",
+          "multimodal systems",
+        ],
+        subsections: [
+          {
+            paragraphs: [
+              "These areas require careful research, testing, and iteration.",
+              "The next phase is about ensuring accessibility guidance continues evolving alongside the ways people interact with services.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "What this changes for SGDS",
+        paragraphs: [
+          "This phase is about making the system easier to maintain with the teams who use it.",
+          "That means improving the foundations, documenting flexibility more clearly, opening contribution pathways, and extending accessibility practice as interaction models change.",
+          "The work is quieter than launching a new component, but it affects how well SGDS fits real product delivery.",
         ],
       },
     ],
-    metrics: [
-      {
-        value: "Less",
-        title: "Repeated setup",
-        description: "Teams can start from shared patterns and templates.",
-      },
-      {
-        value: "More",
-        title: "Product focus",
-        description: "Teams can spend more effort on service-specific problems.",
-      },
-      {
-        value: "Better",
-        title: "First drafts",
-        description: "AI can apply SGDS guidance earlier in the process.",
-      },
-    ],
-    closing: [
-      "The short-term promise of SGDS v3 is practical: reduce repeated work and improve the starting point.",
-      "That gives teams more space to focus on the work that affects users most.",
-    ],
-    ctaLabel: "View templates",
-    ctaHref: "/templates/",
+    metrics: [],
+    closing: [],
+    ctaLabel: "Explore SGDS and AI",
+    ctaHref: "/ai/overview",
   },
   {
     key: "role-of-a-design-system-in-the-agentic-ai-era",
     category: "AI",
     title: "The role of a design system in the agentic AI era",
     description:
-      "A longer-term view of how SGDS can guide agents, tools, and teams as AI becomes part of delivery.",
+      "A longer-term view of how design systems may support more coherent behaviour as AI becomes part of delivery.",
     href: "/stories/role-of-a-design-system-in-the-agentic-ai-era",
-    imageSrc: "/stories/sgds-agent-skills-knowledge-flow-poster.jpg",
-    imageAlt: "SGDS guidance flowing into AI agents and product teams",
+    imageSrc: "/stories/design-code-speaking-thumbnail.svg",
+    imageAlt: "SGDS mark on a soft gradient background",
     published: "May 2026",
     author: "Singapore Government Design System team",
     intro: [],
     sections: [
       {
-        title: "From documentation to decision support",
-        paragraphs: [
-          "Design systems have usually been written for people to read.",
-          "In the agentic AI era, parts of the system also need to be readable by tools.",
-          "The system has to guide decisions as work happens, not only sit in documentation.",
+        title: "What happens when design systems move beyond interfaces?",
+        paragraphs: [],
+        paragraphsHtml: [
+          "For decades, digital products were built around screens. UI sat at the centre of how people interacted with digital products and services. Open an app. Navigate a menu. Click a button. Complete a form. Submit a workflow.",
+          "Today, that assumption is starting to shift as agentic workflows become more capable of handling transactional services, with execution happening quietly behind the scenes. Instead of navigating software manually, users increasingly express intent: \"Book this.\" \"Help me renew this.\"",
+          "This does not mean interfaces disappear or become less important. When people interact with fewer screens directly, the experience surrounding those moments becomes even more important. The question gradually shifts from:",
+          "<span class=\"sgds:text-body-lg sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:text-body-default\">\"What should the interface look like?\"</span>",
+          "towards",
+          "<span class=\"sgds:text-body-lg sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:text-body-default\">\"What should the interaction feel like when systems are acting on behalf of users?\"</span>",
         ],
       },
       {
-        title: "Agents need guardrails",
-        paragraphs: [
-          "AI agents can plan, draft, review, and change interfaces across many steps.",
-          "That makes clear guardrails more valuable.",
-          "SGDS can help agents understand what good looks like for public services in Singapore.",
+        title: "Less UI, more intentional",
+        headingLevel: "h3",
+        paragraphs: [],
+        paragraphsHtml: [
+          "Agentic workflows may separate digital products into different kinds of experiences.",
+          "Some screens exist because people need to complete a task. If an agent can handle those steps reliably, the better experience may be one where people spend less time in the interface.",
+          "Other products are opened by choice. Creative tools, learning experiences, entertainment, reading, music, and social spaces are valuable because people want to spend time with them. For these products, the interface is not just a surface. It is where the experience happens.",
+          "This makes the design question more direct:",
+          "<span class=\"sgds:text-body-lg sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:text-body-default\">\"Is the product trying to reduce effort, or create an experience worth spending time with?\"</span>",
+          "For services where agents act on a user's behalf, the visible moments become the point of contact between system action and human judgement. The interface matters most when people need to make a decision, check an action, or change a setting.",
+          "For products people choose to spend time with, the challenge moves in the other direction. The interface has to justify the time people spend with it. It needs to offer an experience that feels useful, engaging, and worth returning to.",
         ],
       },
       {
-        title: "The system becomes more active",
+        title: "New workflows create new design questions",
+        headingLevel: "h3",
         paragraphs: [
-          "The longer-term opportunity is a design system that is more active in delivery.",
-          "It can guide prompts, check output, connect design and code, and help teams maintain consistency over time.",
-          "As AI grows more capable, SGDS should help teams stay aligned around users, accessibility, and trust.",
+          "Traditional digital systems are often deterministic. Users click a button and expect a predictable result.",
+          "Agentic systems behave differently because they are probabilistic by nature. This introduces a different category of design problem because users are no longer only evaluating screens, but questions like:",
+        ],
+        list: [
+          "When should people intervene?",
+          "What information should remain visible to users?",
+          "What actions need explicit approval?",
+          "How should users review or undo an action?",
+          "What decisions should never be fully automated?",
+        ],
+        postVisualParagraphs: ["etc..."],
+      },
+      {
+        title: "The future role is still unfolding",
+        paragraphs: [],
+        paragraphsHtml: [
+          "Interfaces may change significantly over time as natural language becomes a primary interaction layer for some workflows. Some systems may become almost invisible to users altogether.",
+          "The role of design systems may have to expand beyond visual consistency.",
+          "For years, design systems helped answer questions like:",
+          "<span class=\"sgds:text-body-lg sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:text-body-default\">\"How should interfaces look so experiences remain consistent across the ecosystem?\"</span>",
+          "Over time, the question may become:",
+          "<span class=\"sgds:text-body-lg sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:text-body-default\">\"How should services behave when fewer screens are visible?\"</span>",
+          "This shift is still uncertain. That is what makes this moment interesting for design systems.",
         ],
       },
     ],
     metrics: [
       {
-        value: "People",
-        title: "Use the system",
-        description: "Teams still make product decisions and review the output.",
+        value: "UI",
+        title: "Appears with intent",
+        description: "Interfaces can focus on decisions, review, approval, and recovery.",
       },
       {
-        value: "Agents",
-        title: "Read the system",
-        description: "AI tools can use SGDS guidance while they work.",
+        value: "Behaviour",
+        title: "Needs guidance",
+        description: "Teams need patterns for uncertainty, escalation, and review.",
       },
       {
-        value: "Services",
+        value: "Systems",
         title: "Stay coherent",
-        description: "Shared foundations help experiences scale consistently.",
+        description: "Shared foundations can help AI-assisted workflows remain understandable.",
       },
     ],
-    closing: [
-      "SGDS can become a stronger bridge between people, agents, and public services.",
-      "That is the longer-term direction: a design system that guides work wherever delivery happens.",
-    ],
+    closing: [],
     ctaLabel: "Explore AI guidance",
     ctaHref: "/ai/overview",
   },
@@ -1037,7 +1157,7 @@ const storyOverviewOrder = [
   "what-sgds-is-often-mistaken-for",
   "the-learning-curve-before-ai",
   "ai-can-scale-delivery-and-inconsistency",
-  "design-and-code-speaking-the-same-language",
+  "design-and-code-finally-speaking-the-same-language",
   "near-term-promise-of-sgds-v3",
   "role-of-a-design-system-in-the-agentic-ai-era",
 ];

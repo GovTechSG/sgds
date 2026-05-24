@@ -726,7 +726,7 @@
                   >
                     {{ post.matrix.title }}
                   </h2>
-                  <p class="sgds:mb-0 sgds:text-body-md sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
+                  <p class="sgds:mb-0 sgds:text-body-md sgds:leading-xs sgds:tracking-normal sgds:text-body-default">
                     {{ post.matrix.description }}
                   </p>
                 </div>
@@ -745,7 +745,7 @@
                       v-for="column in post.matrix.columns"
                       :key="column"
                     >
-                      <span class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-192)] sgds:text-center sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+                      <span class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-192)] sgds:text-center sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
                         {{ column }}
                       </span>
                     </sgds-table-head>
@@ -756,7 +756,7 @@
                     :key="rowGroup.row"
                   >
                     <sgds-table-head>
-                      <span class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-128)] sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+                      <span class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-128)] sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
                         {{ rowGroup.row }}
                       </span>
                     </sgds-table-head>

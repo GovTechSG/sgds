@@ -6,7 +6,7 @@
           title="Stories"
           description="Perspectives on design systems, connected workflows, and digital delivery"
           title-class="sgds:text-display-md sgds:font-bold sgds:leading-2-xl sgds:tracking-tighter sgds:text-center sgds:text-display-default"
-          description-class="sgds:mx-auto sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-normal sgds:text-heading-subtle"
+          description-class="sgds:mx-auto sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-normal sgds:text-body-subtle"
           bottom-gap-class="sgds:mb-0"
         />
       </div>
@@ -53,7 +53,7 @@
               <h2 class="sgds:mb-0 sgds:text-heading-xl sgds:font-bold sgds:leading-xl sgds:tracking-normal sgds:text-heading-default">
                 {{ featuredStory.title }}
               </h2>
-              <p class="sgds:mb-0 sgds:text-subtitle-md sgds:font-light sgds:leading-xs sgds:tracking-normal sgds:text-heading-subtle">
+              <p class="sgds:mb-0 sgds:text-subtitle-md sgds:font-light sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
                 {{ featuredStory.description }}
               </p>
             </div>
@@ -95,10 +95,16 @@
                     class="sgds:h-full sgds:w-full sgds:object-cover sgds:transition-transform sgds:duration-500 sgds:ease-in-out sgds:group-hover:scale-[1.04] sgds:group-focus-visible:scale-[1.04] sgds:motion-reduce:transition-none sgds:motion-reduce:group-hover:scale-100 sgds:motion-reduce:group-focus-visible:scale-100"
                   />
                 </div>
-                <div class="sgds:flex sgds:w-full sgds:items-center sgds:gap-component-xs">
+                <div class="sgds:flex sgds:w-full sgds:flex-1 sgds:flex-col sgds:gap-text-xs">
+                  <p class="sgds:m-0 sgds:text-left sgds:text-overline-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-wide sgds:uppercase sgds:text-body-subtle">
+                    {{ card.category }}
+                  </p>
                   <h3 class="sgds:mb-0 sgds:flex-1 sgds:text-left sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
                     {{ card.title }}
                   </h3>
+                  <p class="sgds:m-0 sgds:mt-auto sgds:text-left sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
+                    {{ card.published }}
+                  </p>
                 </div>
               </a>
             </sgds-link>
