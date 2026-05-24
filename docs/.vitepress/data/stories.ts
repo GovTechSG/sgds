@@ -946,6 +946,13 @@ export const storyPosts: StoryPost[] = [
           "reducing avoidable drift in repeated patterns",
           "supporting teams with existing constraints",
         ],
+        subsections: [
+          {
+            paragraphs: [
+              "This foundation work makes SGDS easier to rely on. It also sets up the next question: how the system can give teams more flexibility without making familiar service patterns harder to maintain.",
+            ],
+          },
+        ],
       },
       {
         title: "Making flexibility easier to adopt",
@@ -953,7 +960,7 @@ export const storyPosts: StoryPost[] = [
         paragraphs: [
           "A recurring challenge is flexibility. Many product teams have asked for more room to express product identity while keeping common service patterns recognisable.",
           "Some have found SGDS difficult to customise. Branding, migration, and existing workflows can also be hard to reconcile with a shared system. These are valid concerns within real delivery timelines and operational constraints.",
-          "We hear this. Our intention is to help SGDS fit more naturally into product workflows. We are exploring:",
+          "We hear you. Our intention is to help SGDS fit more naturally into product workflows. Therefore, we are exploring:",
         ],
         labelledList: [
           {
@@ -1018,8 +1025,7 @@ export const storyPosts: StoryPost[] = [
           {
             title: "1. Core",
             paragraphs: [
-              "The SGDS team maintains the core system.",
-              "This covers:",
+              "The SGDS team maintains the core system. This covers:",
             ],
             list: [
               "foundations",
@@ -1043,8 +1049,7 @@ export const storyPosts: StoryPost[] = [
             title: "3. Product",
             paragraphs: [
               "Individual products still need flexibility for service-specific needs.",
-              "Some workflows or interaction patterns are intentionally product-specific. They may be tied to operational context, requirements, user needs, or service workflows.",
-              "This layer gives teams room to adapt experiences without needing to fork or replace the system underneath.",
+              "Some workflows or interaction patterns are intentionally product-specific. They may be tied to operational context, requirements, user needs, or service workflows. This layer gives teams room to adapt experiences without needing to fork or replace the system underneath.",
             ],
           },
         ],
@@ -1056,21 +1061,14 @@ export const storyPosts: StoryPost[] = [
         paragraphs: [
           "Accessibility remains one of the foundations SGDS cannot compromise on.",
           "Today, much of our accessibility guidance focuses on graphical interfaces and keyboard use. As services include new ways of interacting, SGDS may also need to consider natural language, AI-assisted interactions, voice, multimodal interactions, and automated or assisted service flows.",
-        ],
-        subsections: [
-          {
-            paragraphs: [
-              "These areas require careful research, testing, and iteration.",
-              "The goal is to keep accessibility close to how people actually use services, so SGDS can remain accessible by default.",
-            ],
-          },
+          "These areas require careful research, testing, and iteration. The goal is to keep accessibility close to how people actually use services, so SGDS can remain accessible by default.",
         ],
       },
       {
         title: "What this supports",
         paragraphs: [
           "The aim is to make SGDS easier to maintain with the people who use it.",
-          "Together, these priorities help the system stay practical as products, workflows, and interaction models change.",
+          "This helps the system stay practical as products, workflows, and interaction models change.",
           "These improvements may be quieter than launching a new component, but they affect how well the system fits real product delivery.",
         ],
       },
@@ -1098,7 +1096,7 @@ export const storyPosts: StoryPost[] = [
         paragraphs: [],
         paragraphsHtml: [
           "For decades, digital products were built around screens. UI sat at the centre of how people interacted with digital products and services. Open an app. Navigate a menu. Click a button. Complete a form. Submit a workflow.",
-          "Today, that assumption is starting to shift as agentic workflows become more capable of handling transactional services, with execution happening quietly behind the scenes. Instead of navigating software manually, users increasingly express intent: \"Book this.\" \"Help me renew this.\"",
+          "Today, agentic workflows are becoming more capable of handling transactional services, with execution happening quietly behind the scenes. Instead of navigating software manually, users increasingly express intent: \"Book this.\" \"Help me renew this.\"",
           "This does not mean interfaces disappear or become less important. When people interact with fewer screens directly, the experience surrounding those moments becomes even more important. The question gradually shifts from:",
           "<span class=\"sgds:text-body-lg sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:text-body-default\">\"What should the interface look like?\"</span>",
           "towards",
@@ -1124,7 +1122,7 @@ export const storyPosts: StoryPost[] = [
         headingLevel: "h3",
         paragraphs: [
           "Traditional digital systems are often deterministic. Users click a button and expect a predictable result.",
-          "Agentic systems behave differently because they are probabilistic by nature. This introduces a different category of design problem because users are no longer only evaluating screens, but questions like:",
+          "Agentic systems behave differently because they are probabilistic by nature. This introduces a different category of design problem. Users are no longer only evaluating screens. Teams also need to decide:",
         ],
         list: [
           "When should people intervene?",

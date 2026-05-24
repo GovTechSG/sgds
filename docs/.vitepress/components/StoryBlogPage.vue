@@ -28,7 +28,7 @@
 
     <section class="sgds:bg-default">
       <div class="sgds-container">
-        <div class="sgds:grid sgds:grid-cols-[minmax(0,1fr)_var(--sgds-dimension-320)] sgds:items-start sgds:gap-layout-lg sgds:max-md:block">
+        <div class="sgds:block sgds:lg:grid sgds:lg:grid-cols-[minmax(0,1fr)_var(--sgds-dimension-320)] sgds:lg:items-start sgds:lg:gap-layout-lg">
           <div class="sgds:flex sgds:min-w-0 sgds:flex-col">
             <section v-if="post.intro.length" class="sgds:py-layout-md">
               <div class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md">
@@ -792,70 +792,130 @@
                   </p>
                 </div>
 
-                <sgds-table
-                  tableBorder
-                  headerBackground
-                  responsive="always"
-                  class="sgds:w-full"
-                >
-                  <sgds-table-row>
-                    <sgds-table-head>
-                      <span class="sgds:sr-only">AI and SGDS combination</span>
-                    </sgds-table-head>
-                    <sgds-table-head
-                      v-for="column in post.matrix.columns"
-                      :key="column"
-                    >
-                      <span class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-192)] sgds:text-center sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
-                        {{ column }}
-                      </span>
-                    </sgds-table-head>
-                  </sgds-table-row>
-
-                  <sgds-table-row
-                    v-for="rowGroup in matrixRows"
-                    :key="rowGroup.row"
+                <div class="sgds:grid sgds:grid-cols-[5.75rem_minmax(0,1fr)_minmax(0,1fr)] sgds:border sgds:border-muted sgds:md:hidden">
+                  <div class="sgds:bg-alternate sgds:p-component-xs">
+                    <span class="sgds:sr-only">AI and SGDS combination</span>
+                  </div>
+                  <div
+                    v-for="column in post.matrix.columns"
+                    :key="`${column}-mobile`"
+                    class="sgds:flex sgds:min-w-0 sgds:items-center sgds:justify-center sgds:border-l sgds:border-muted sgds:bg-alternate sgds:p-component-xs sgds:text-center"
                   >
-                    <sgds-table-head>
-                      <span class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-128)] sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                    <span class="sgds:block sgds:min-w-0 sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default">
+                      {{ column }}
+                    </span>
+                  </div>
+
+                  <template
+                    v-for="rowGroup in matrixRows"
+                    :key="`${rowGroup.row}-mobile`"
+                  >
+                    <div class="sgds:flex sgds:min-w-0 sgds:items-center sgds:border-t sgds:border-muted sgds:bg-alternate sgds:p-component-xs">
+                      <span class="sgds:block sgds:min-w-0 sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default">
                         {{ rowGroup.row }}
                       </span>
-                    </sgds-table-head>
-                    <sgds-table-cell
+                    </div>
+                    <div
                       v-for="cell in rowGroup.cells"
-                      :key="`${cell.row}-${cell.column}`"
+                      :key="`${cell.row}-${cell.column}-mobile`"
+                      class="sgds:flex sgds:min-h-[var(--sgds-dimension-144)] sgds:min-w-0 sgds:flex-col sgds:items-center sgds:justify-center sgds:gap-text-xs sgds:border-l sgds:border-t sgds:border-muted sgds:bg-surface-default sgds:p-component-xs sgds:text-center"
                     >
-                      <div class="sgds:flex sgds:min-h-[var(--sgds-dimension-128)] sgds:w-full sgds:min-w-[var(--sgds-dimension-256)] sgds:flex-col sgds:items-center sgds:justify-center sgds:gap-text-xs sgds:text-center">
-                        <h3 class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
-                          {{ cell.title }}
-                        </h3>
-                        <p
-                          v-if="cell.description"
-                          class="sgds:m-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                      <h3 class="sgds:m-0 sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default">
+                        {{ cell.title }}
+                      </h3>
+                      <p
+                        v-if="cell.description"
+                        class="sgds:m-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                      >
+                        {{ cell.description }}
+                      </p>
+                      <ul
+                        v-if="cell.outcomes?.length"
+                        class="sgds:m-0 sgds:flex sgds:w-full sgds:list-none sgds:flex-col sgds:items-center sgds:gap-text-2-xs sgds:p-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-default"
+                      >
+                        <li
+                          v-for="outcome in cell.outcomes"
+                          :key="outcome.text"
+                          class="sgds:flex sgds:w-full sgds:items-center sgds:justify-center sgds:gap-text-2-xs"
                         >
-                          {{ cell.description }}
-                        </p>
-                        <ul
-                          v-if="cell.outcomes?.length"
-                          class="sgds:m-0 sgds:flex sgds:w-full sgds:list-none sgds:flex-col sgds:items-center sgds:gap-text-2-xs sgds:p-0 sgds:text-body-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-default"
-                        >
-                          <li
-                            v-for="outcome in cell.outcomes"
-                            :key="outcome.text"
-                            class="sgds:flex sgds:w-full sgds:items-center sgds:justify-center sgds:gap-text-2-xs"
+                          <sgds-icon
+                            :name="outcome.status === 'positive' ? 'check-circle-fill' : 'xcircle-fill'"
+                            size="sm"
+                            :class="outcome.status === 'positive' ? 'sgds:text-success-default' : 'sgds:text-danger-default'"
+                          ></sgds-icon>
+                          <span class="sgds:min-w-0">{{ outcome.text }}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </template>
+                </div>
+
+                <div class="sgds:hidden sgds:md:block">
+                  <sgds-table
+                    tableBorder
+                    headerBackground
+                    responsive="always"
+                    class="sgds:w-full"
+                  >
+                    <sgds-table-row>
+                      <sgds-table-head>
+                        <span class="sgds:sr-only">AI and SGDS combination</span>
+                      </sgds-table-head>
+                      <sgds-table-head
+                        v-for="column in post.matrix.columns"
+                        :key="column"
+                      >
+                        <span class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-192)] sgds:text-center sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                          {{ column }}
+                        </span>
+                      </sgds-table-head>
+                    </sgds-table-row>
+
+                    <sgds-table-row
+                      v-for="rowGroup in matrixRows"
+                      :key="rowGroup.row"
+                    >
+                      <sgds-table-head>
+                        <span class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-128)] sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                          {{ rowGroup.row }}
+                        </span>
+                      </sgds-table-head>
+                      <sgds-table-cell
+                        v-for="cell in rowGroup.cells"
+                        :key="`${cell.row}-${cell.column}`"
+                      >
+                        <div class="sgds:flex sgds:min-h-[var(--sgds-dimension-128)] sgds:w-full sgds:min-w-[var(--sgds-dimension-256)] sgds:flex-col sgds:items-center sgds:justify-center sgds:gap-text-xs sgds:text-center">
+                          <h3 class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                            {{ cell.title }}
+                          </h3>
+                          <p
+                            v-if="cell.description"
+                            class="sgds:m-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
                           >
-                            <sgds-icon
-                              :name="outcome.status === 'positive' ? 'check-circle-fill' : 'xcircle-fill'"
-                              size="md"
-                              :class="outcome.status === 'positive' ? 'sgds:text-success-default' : 'sgds:text-danger-default'"
-                            ></sgds-icon>
-                            <span>{{ outcome.text }}</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </sgds-table-cell>
-                  </sgds-table-row>
-                </sgds-table>
+                            {{ cell.description }}
+                          </p>
+                          <ul
+                            v-if="cell.outcomes?.length"
+                            class="sgds:m-0 sgds:flex sgds:w-full sgds:list-none sgds:flex-col sgds:items-center sgds:gap-text-2-xs sgds:p-0 sgds:text-body-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-default"
+                          >
+                            <li
+                              v-for="outcome in cell.outcomes"
+                              :key="outcome.text"
+                              class="sgds:flex sgds:w-full sgds:items-center sgds:justify-center sgds:gap-text-2-xs"
+                            >
+                              <sgds-icon
+                                :name="outcome.status === 'positive' ? 'check-circle-fill' : 'xcircle-fill'"
+                                size="md"
+                                :class="outcome.status === 'positive' ? 'sgds:text-success-default' : 'sgds:text-danger-default'"
+                              ></sgds-icon>
+                              <span>{{ outcome.text }}</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </sgds-table-cell>
+                    </sgds-table-row>
+                  </sgds-table>
+                </div>
               </div>
             </section>
 
@@ -902,11 +962,13 @@
 
           <aside
             v-if="tocItems.length"
-            class="sgds:sticky sgds:top-[var(--sgds-layout-padding-md)] sgds:z-[var(--sgds-z-index-sticky)] sgds:ml-auto sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:self-start sgds:pt-layout-md sgds:max-md:hidden"
+            class="sgds:sticky sgds:top-[var(--sgds-layout-padding-md)] sgds:z-[var(--sgds-z-index-sticky)] sgds:ml-auto sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:self-start sgds:pt-[calc(var(--sgds-layout-padding-md)+var(--sgds-text-gap-sm))] sgds:max-lg:hidden"
             aria-label="Story sections"
           >
             <sgds-table-of-contents class="sgds:w-full">
-              <h3>On this page</h3>
+              <h3 class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                On this page
+              </h3>
               <li
                 v-for="item in tocItems"
                 :key="item.id"

@@ -14,7 +14,7 @@
       <section class="sgds:bg-default">
         <div class="sgds-grid sgds:items-center sgds:gap-layout-md">
           <div class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-6">
-            <div class="sgds:relative sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-lg sgds:bg-alternate">
+            <div class="sgds:relative sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-3-xl sgds:bg-alternate">
               <video
                 v-if="featuredStory.videoSrc"
                 autoplay
@@ -83,7 +83,7 @@
                 :href="card.href"
                 class="sgds:group sgds:flex sgds:h-full sgds:flex-col sgds:gap-component-sm"
               >
-                <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-[32px] sgds:bg-surface-raised">
+                <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-3-xl sgds:bg-surface-raised">
                   <img
                     :src="card.imageSrc"
                     :alt="card.imageAlt"
