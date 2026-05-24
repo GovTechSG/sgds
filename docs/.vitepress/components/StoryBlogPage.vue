@@ -4,21 +4,33 @@
 
     <section class="sgds:bg-alternate sgds:py-layout-md">
       <div class="sgds-container">
-        <div class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:items-start sgds:gap-layout-md sgds:text-left">
+        <div
+          class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:items-start sgds:gap-layout-md sgds:text-left"
+        >
           <sgds-breadcrumb>
             <sgds-breadcrumb-item><a href="/">Home</a></sgds-breadcrumb-item>
-            <sgds-breadcrumb-item><a href="/stories">Stories</a></sgds-breadcrumb-item>
-            <sgds-breadcrumb-item active><a :href="post.href">{{ post.title }}</a></sgds-breadcrumb-item>
+            <sgds-breadcrumb-item
+              ><a href="/stories">Stories</a></sgds-breadcrumb-item
+            >
+            <sgds-breadcrumb-item active
+              ><a :href="post.href">{{ post.title }}</a></sgds-breadcrumb-item
+            >
           </sgds-breadcrumb>
 
           <div>
-            <div class="sgds:mb-text-xs sgds:text-overline-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-wide sgds:uppercase sgds:text-label-default">
+            <div
+              class="sgds:mb-text-xs sgds:text-overline-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-wide sgds:uppercase sgds:text-label-default"
+            >
               {{ post.category }}
             </div>
-            <h1 class="sgds:text-heading-xl sgds:font-bold sgds:leading-xl sgds:tracking-tight sgds:text-heading-default">
+            <h1
+              class="sgds:text-heading-xl sgds:font-bold sgds:leading-xl sgds:tracking-tight sgds:text-heading-default"
+            >
               {{ post.title }}
             </h1>
-            <p class="sgds:mb-0 sgds:text-body-lg sgds:leading-md sgds:tracking-normal sgds:text-body-subtle">
+            <p
+              class="sgds:mb-0 sgds:text-body-lg sgds:leading-md sgds:tracking-normal sgds:text-body-subtle"
+            >
               {{ post.description }}
             </p>
           </div>
@@ -28,10 +40,14 @@
 
     <section class="sgds:bg-default">
       <div class="sgds-container">
-        <div class="sgds:block sgds:lg:grid sgds:lg:grid-cols-[minmax(0,1fr)_var(--sgds-dimension-320)] sgds:lg:items-start sgds:lg:gap-layout-lg">
+        <div
+          class="sgds:block sgds:lg:grid sgds:lg:grid-cols-[minmax(0,1fr)_var(--sgds-dimension-320)] sgds:lg:items-start sgds:lg:gap-layout-lg"
+        >
           <div class="sgds:flex sgds:min-w-0 sgds:flex-col">
             <section v-if="post.intro.length" class="sgds:py-layout-md">
-              <div class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md">
+              <div
+                class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md"
+              >
                 <p
                   v-for="paragraph in post.intro"
                   :key="paragraph"
@@ -54,50 +70,818 @@
               :class="storySectionClass(section, sectionIndex)"
             >
               <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
-          <div class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md">
-            <div class="sgds:flex sgds:items-center sgds:gap-text-xs">
-              <h3
-                v-if="section.headingLevel === 'h3'"
-                :id="sectionId(section.title)"
-                class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default"
-              >
-                {{ section.title }}
-              </h3>
-              <h2
-                v-else
-                :id="sectionId(section.title)"
-                class="sgds:m-0 sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:text-heading-default"
-              >
-                {{ section.title }}
-              </h2>
-            </div>
-            <h3
-              v-if="section.subheading"
-              class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default"
-            >
-              {{ section.subheading }}
-            </h3>
-          </div>
-          <template v-if="section.subsections?.length && !section.paragraphs.length">
-            <template
-              v-for="subsection in section.subsections"
-              :key="subsection.title ?? subsection.paragraphs.join('-')"
-            >
-              <div
-                v-if="subsection.title || subsection.paragraphs.length || subsection.paragraphsHtml?.length || subsection.list?.length || subsection.labelledList?.length"
-                class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md sgds:pt-layout-xs"
-              >
-                <h3
-                  v-if="subsection.title"
-                  class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default"
+                <div
+                  class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md"
                 >
-                  {{ subsection.title }}
-                </h3>
+                  <div class="sgds:flex sgds:items-center sgds:gap-text-xs">
+                    <h3
+                      v-if="section.headingLevel === 'h3'"
+                      :id="sectionId(section.title)"
+                      class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default"
+                    >
+                      {{ section.title }}
+                    </h3>
+                    <h2
+                      v-else
+                      :id="sectionId(section.title)"
+                      class="sgds:m-0 sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:text-heading-default"
+                    >
+                      {{ section.title }}
+                    </h2>
+                  </div>
+                  <h3
+                    v-if="section.subheading"
+                    class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default"
+                  >
+                    {{ section.subheading }}
+                  </h3>
+                </div>
                 <template
-                  v-for="(paragraph, paragraphIndex) in subsection.paragraphs"
-                  :key="paragraph"
+                  v-if="
+                    section.subsections?.length && !section.paragraphs.length
+                  "
                 >
-                  <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default">
+                  <template
+                    v-for="subsection in section.subsections"
+                    :key="subsection.title ?? subsection.paragraphs.join('-')"
+                  >
+                    <div
+                      v-if="
+                        subsection.title ||
+                        subsection.paragraphs.length ||
+                        subsection.paragraphsHtml?.length ||
+                        subsection.list?.length ||
+                        subsection.labelledList?.length
+                      "
+                      class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md sgds:pt-layout-xs"
+                    >
+                      <h3
+                        v-if="subsection.title"
+                        class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default"
+                      >
+                        {{ subsection.title }}
+                      </h3>
+                      <template
+                        v-for="(
+                          paragraph, paragraphIndex
+                        ) in subsection.paragraphs"
+                        :key="paragraph"
+                      >
+                        <p
+                          class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                        >
+                          <span
+                            v-for="part in highlightedTimingParts(paragraph)"
+                            :key="part.key"
+                            :class="
+                              part.highlighted ? 'sgds:font-semibold' : ''
+                            "
+                          >
+                            {{ part.text }}
+                          </span>
+                        </p>
+                        <figure
+                          v-if="
+                            subsection.visual &&
+                            subsection.visualAfterParagraph ===
+                              paragraphIndex + 1
+                          "
+                          class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
+                        >
+                          <div
+                            :class="[
+                              'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                              framedVisualClass(subsection.visual),
+                            ]"
+                          >
+                            <StoryVisualMedia :visual="subsection.visual" />
+                          </div>
+                          <figcaption
+                            class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                          >
+                            <span
+                              v-for="part in highlightedTimingParts(
+                                subsection.visual.caption,
+                              )"
+                              :key="part.key"
+                              :class="
+                                part.highlighted ? 'sgds:font-semibold' : ''
+                              "
+                            >
+                              {{ part.text }}
+                            </span>
+                          </figcaption>
+                        </figure>
+                      </template>
+                      <p
+                        v-for="paragraph in subsection.paragraphsHtml"
+                        :key="paragraph"
+                        class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                        v-html="paragraph"
+                      ></p>
+                      <component
+                        :is="subsection.listType === 'ordered' ? 'ol' : 'ul'"
+                        v-if="subsection.list?.length"
+                        class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                      >
+                        <li
+                          v-for="item in subsection.list"
+                          :key="item"
+                          class="sgds:m-0"
+                        >
+                          {{ item }}
+                        </li>
+                      </component>
+                      <ul
+                        v-if="subsection.labelledList?.length"
+                        class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                      >
+                        <li
+                          v-for="item in subsection.labelledList"
+                          :key="item.label ?? item.text"
+                          class="sgds:m-0"
+                        >
+                          <span
+                            v-if="item.label"
+                            class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default"
+                          >
+                            {{ item.label }}:
+                          </span>
+                          {{ item.text }}
+                        </li>
+                      </ul>
+                    </div>
+                    <figure
+                      v-if="
+                        subsection.visual && !subsection.visualAfterParagraph
+                      "
+                      class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
+                    >
+                      <div
+                        :class="[
+                          'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                          framedVisualClass(subsection.visual),
+                        ]"
+                      >
+                        <StoryVisualMedia :visual="subsection.visual" />
+                      </div>
+                      <figcaption
+                        class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                      >
+                        <span
+                          v-for="part in highlightedTimingParts(
+                            subsection.visual.caption,
+                          )"
+                          :key="part.key"
+                          :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                        >
+                          {{ part.text }}
+                        </span>
+                      </figcaption>
+                    </figure>
+                    <figure
+                      v-if="subsection.postVisual"
+                      class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
+                    >
+                      <div
+                        :class="[
+                          'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                          framedVisualClass(subsection.postVisual),
+                        ]"
+                      >
+                        <StoryVisualMedia :visual="subsection.postVisual" />
+                      </div>
+                      <figcaption
+                        class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                      >
+                        <span
+                          v-for="part in highlightedTimingParts(
+                            subsection.postVisual.caption,
+                          )"
+                          :key="part.key"
+                          :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                        >
+                          {{ part.text }}
+                        </span>
+                      </figcaption>
+                    </figure>
+                    <div
+                      v-if="
+                        subsection.postVisualParagraphs?.length ||
+                        subsection.postVisualList?.length
+                      "
+                      class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md sgds:pt-layout-xs"
+                    >
+                      <p
+                        v-for="paragraph in subsection.postVisualParagraphs"
+                        :key="paragraph"
+                        class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                      >
+                        <span
+                          v-for="part in highlightedTimingParts(paragraph)"
+                          :key="part.key"
+                          :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                        >
+                          {{ part.text }}
+                        </span>
+                      </p>
+                      <ul
+                        v-if="subsection.postVisualList?.length"
+                        class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                      >
+                        <li
+                          v-for="item in subsection.postVisualList"
+                          :key="item"
+                          class="sgds:m-0"
+                        >
+                          {{ item }}
+                        </li>
+                      </ul>
+                    </div>
+                  </template>
+                </template>
+                <figure
+                  v-if="section.titleVisual"
+                  class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
+                >
+                  <div
+                    :class="[
+                      'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                      section.titleVisual.verticalPadding
+                        ? 'sgds:py-component-xs'
+                        : '',
+                    ]"
+                  >
+                    <video
+                      v-if="section.titleVisual.videoSrc"
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      :poster="section.titleVisual.posterSrc"
+                      :aria-label="section.titleVisual.alt"
+                      class="sgds:block sgds:aspect-video sgds:w-full sgds:rounded-lg sgds:object-cover"
+                    >
+                      <source
+                        :src="section.titleVisual.videoSrc"
+                        type="video/mp4"
+                      />
+                    </video>
+                    <img
+                      v-else
+                      :src="section.titleVisual.src"
+                      :alt="section.titleVisual.alt"
+                      class="sgds:block sgds:h-auto sgds:max-h-[var(--sgds-dimension-512)] sgds:w-full sgds:object-contain"
+                    />
+                  </div>
+                  <figcaption
+                    class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                  >
+                    <span
+                      v-for="part in highlightedTimingParts(
+                        section.titleVisual.caption,
+                      )"
+                      :key="part.key"
+                      :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                    >
+                      {{ part.text }}
+                    </span>
+                  </figcaption>
+                </figure>
+                <div
+                  class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md"
+                >
+                  <template
+                    v-for="(paragraph, paragraphIndex) in section.paragraphs"
+                    :key="paragraph"
+                  >
+                    <p
+                      class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                    >
+                      <span
+                        v-for="part in highlightedTimingParts(paragraph)"
+                        :key="part.key"
+                        :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                      >
+                        {{ part.text }}
+                      </span>
+                    </p>
+                    <p
+                      v-for="item in paragraphIndex === 0
+                        ? section.emphasis
+                        : []"
+                      :key="item"
+                      class="sgds:m-0 sgds:text-body-lg sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:text-body-default"
+                    >
+                      {{ item }}
+                    </p>
+                    <figure
+                      v-if="paragraphIndex === 0 && section.bodyVisual"
+                      class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
+                    >
+                      <div
+                        :class="[
+                          'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                          section.bodyVisual.verticalPadding
+                            ? 'sgds:py-component-xs'
+                            : '',
+                        ]"
+                      >
+                        <img
+                          :src="section.bodyVisual.src"
+                          :alt="section.bodyVisual.alt"
+                          :width="section.bodyVisual.width"
+                          :height="section.bodyVisual.height"
+                          class="sgds:block sgds:h-auto sgds:w-full sgds:object-contain"
+                        />
+                      </div>
+                      <figcaption
+                        class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                      >
+                        <span
+                          v-for="part in highlightedTimingParts(
+                            section.bodyVisual.caption,
+                          )"
+                          :key="part.key"
+                          :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                        >
+                          {{ part.text }}
+                        </span>
+                      </figcaption>
+                    </figure>
+                    <figure
+                      v-if="
+                        section.visual &&
+                        section.visualAfterParagraph === paragraphIndex + 1
+                      "
+                      class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
+                    >
+                      <div
+                        :class="[
+                          'sgds:block sgds:w-full sgds:overflow-hidden',
+                          section.visual.fullWidth && !section.visual.videoSrc
+                            ? 'sgds:aspect-[976/656]'
+                            : '',
+                          section.visual.verticalPadding
+                            ? 'sgds:py-component-xs'
+                            : '',
+                        ]"
+                      >
+                        <video
+                          v-if="section.visual.videoSrc"
+                          :autoplay="
+                            section.visual.videoAutoplay ||
+                            !section.visual.videoControls
+                          "
+                          :muted="
+                            section.visual.videoAutoplay ||
+                            !section.visual.videoControls
+                          "
+                          :loop="!section.visual.videoControls"
+                          :controls="section.visual.videoControls"
+                          playsinline
+                          preload="metadata"
+                          :poster="section.visual.posterSrc"
+                          :aria-label="section.visual.alt"
+                          :width="section.visual.width"
+                          :height="section.visual.height"
+                          class="sgds:block sgds:h-auto sgds:max-w-full"
+                        >
+                          <source
+                            :src="section.visual.videoSrc"
+                            type="video/mp4"
+                          />
+                        </video>
+                        <img
+                          v-else
+                          :src="section.visual.src"
+                          :alt="section.visual.alt"
+                          :width="section.visual.width"
+                          :height="section.visual.height"
+                          :class="[
+                            'sgds:block sgds:w-full',
+                            section.visual.fullWidth
+                              ? 'sgds:h-full sgds:object-contain'
+                              : 'sgds:h-auto sgds:max-h-[var(--sgds-dimension-512)] sgds:object-contain',
+                          ]"
+                        />
+                      </div>
+                      <figcaption
+                        class="sgds:m-0 sgds:block sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                      >
+                        <span
+                          v-for="part in highlightedTimingParts(
+                            section.visual.caption,
+                          )"
+                          :key="part.key"
+                          :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                        >
+                          {{ part.text }}
+                        </span>
+                      </figcaption>
+                    </figure>
+                  </template>
+                  <template
+                    v-for="(
+                      paragraph, paragraphIndex
+                    ) in section.paragraphsHtml"
+                    :key="paragraph"
+                  >
+                    <p
+                      class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                      v-html="paragraph"
+                    ></p>
+                    <figure
+                      v-if="
+                        !section.paragraphs.length &&
+                        paragraphIndex === 0 &&
+                        section.bodyVisual
+                      "
+                      class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
+                    >
+                      <div
+                        :class="[
+                          'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                          section.bodyVisual.verticalPadding
+                            ? 'sgds:py-component-xs'
+                            : '',
+                        ]"
+                      >
+                        <img
+                          :src="section.bodyVisual.src"
+                          :alt="section.bodyVisual.alt"
+                          :width="section.bodyVisual.width"
+                          :height="section.bodyVisual.height"
+                          class="sgds:block sgds:h-auto sgds:w-full sgds:object-contain"
+                        />
+                      </div>
+                      <figcaption
+                        class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                      >
+                        <span
+                          v-for="part in highlightedTimingParts(
+                            section.bodyVisual.caption,
+                          )"
+                          :key="part.key"
+                          :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                        >
+                          {{ part.text }}
+                        </span>
+                      </figcaption>
+                    </figure>
+                  </template>
+                  <component
+                    :is="section.listType === 'ordered' ? 'ol' : 'ul'"
+                    v-if="section.list?.length"
+                    class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                  >
+                    <li
+                      v-for="item in section.list"
+                      :key="item"
+                      class="sgds:m-0"
+                    >
+                      {{ item }}
+                    </li>
+                  </component>
+                  <ul
+                    v-if="section.labelledList?.length"
+                    class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                  >
+                    <li
+                      v-for="item in section.labelledList"
+                      :key="item.label ?? item.text"
+                      class="sgds:m-0"
+                    >
+                      <span
+                        v-if="item.label"
+                        class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default"
+                      >
+                        {{ item.label }}:
+                      </span>
+                      {{ item.text }}
+                    </li>
+                  </ul>
+                </div>
+                <template
+                  v-if="
+                    section.subsections?.length && section.paragraphs.length
+                  "
+                >
+                  <template
+                    v-for="subsection in section.subsections"
+                    :key="subsection.title ?? subsection.paragraphs.join('-')"
+                  >
+                    <div
+                      v-if="
+                        subsection.title ||
+                        subsection.paragraphs.length ||
+                        subsection.paragraphsHtml?.length ||
+                        subsection.list?.length ||
+                        subsection.labelledList?.length
+                      "
+                      class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md sgds:pt-layout-xs"
+                    >
+                      <h3
+                        v-if="subsection.title"
+                        class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default"
+                      >
+                        {{ subsection.title }}
+                      </h3>
+                      <template
+                        v-for="(
+                          paragraph, paragraphIndex
+                        ) in subsection.paragraphs"
+                        :key="paragraph"
+                      >
+                        <p
+                          class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                        >
+                          <span
+                            v-for="part in highlightedTimingParts(paragraph)"
+                            :key="part.key"
+                            :class="
+                              part.highlighted ? 'sgds:font-semibold' : ''
+                            "
+                          >
+                            {{ part.text }}
+                          </span>
+                        </p>
+                        <figure
+                          v-if="
+                            subsection.visual &&
+                            subsection.visualAfterParagraph ===
+                              paragraphIndex + 1
+                          "
+                          class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
+                        >
+                          <div
+                            :class="[
+                              'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                              framedVisualClass(subsection.visual),
+                            ]"
+                          >
+                            <StoryVisualMedia :visual="subsection.visual" />
+                          </div>
+                          <figcaption
+                            class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                          >
+                            <span
+                              v-for="part in highlightedTimingParts(
+                                subsection.visual.caption,
+                              )"
+                              :key="part.key"
+                              :class="
+                                part.highlighted ? 'sgds:font-semibold' : ''
+                              "
+                            >
+                              {{ part.text }}
+                            </span>
+                          </figcaption>
+                        </figure>
+                      </template>
+                      <p
+                        v-for="paragraph in subsection.paragraphsHtml"
+                        :key="paragraph"
+                        class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                        v-html="paragraph"
+                      ></p>
+                      <component
+                        :is="subsection.listType === 'ordered' ? 'ol' : 'ul'"
+                        v-if="subsection.list?.length"
+                        class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                      >
+                        <li
+                          v-for="item in subsection.list"
+                          :key="item"
+                          class="sgds:m-0"
+                        >
+                          {{ item }}
+                        </li>
+                      </component>
+                      <ul
+                        v-if="subsection.labelledList?.length"
+                        class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                      >
+                        <li
+                          v-for="item in subsection.labelledList"
+                          :key="item.label ?? item.text"
+                          class="sgds:m-0"
+                        >
+                          <span
+                            v-if="item.label"
+                            class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default"
+                          >
+                            {{ item.label }}:
+                          </span>
+                          {{ item.text }}
+                        </li>
+                      </ul>
+                    </div>
+                    <figure
+                      v-if="
+                        subsection.visual && !subsection.visualAfterParagraph
+                      "
+                      class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
+                    >
+                      <div
+                        :class="[
+                          'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                          framedVisualClass(subsection.visual),
+                        ]"
+                      >
+                        <StoryVisualMedia :visual="subsection.visual" />
+                      </div>
+                      <figcaption
+                        class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                      >
+                        <span
+                          v-for="part in highlightedTimingParts(
+                            subsection.visual.caption,
+                          )"
+                          :key="part.key"
+                          :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                        >
+                          {{ part.text }}
+                        </span>
+                      </figcaption>
+                    </figure>
+                    <figure
+                      v-if="subsection.postVisual"
+                      class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
+                    >
+                      <div
+                        :class="[
+                          'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                          framedVisualClass(subsection.postVisual),
+                        ]"
+                      >
+                        <StoryVisualMedia :visual="subsection.postVisual" />
+                      </div>
+                      <figcaption
+                        class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                      >
+                        <span
+                          v-for="part in highlightedTimingParts(
+                            subsection.postVisual.caption,
+                          )"
+                          :key="part.key"
+                          :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                        >
+                          {{ part.text }}
+                        </span>
+                      </figcaption>
+                    </figure>
+                    <div
+                      v-if="
+                        subsection.postVisualParagraphs?.length ||
+                        subsection.postVisualList?.length
+                      "
+                      class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md"
+                    >
+                      <p
+                        v-for="paragraph in subsection.postVisualParagraphs"
+                        :key="paragraph"
+                        class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                      >
+                        <span
+                          v-for="part in highlightedTimingParts(paragraph)"
+                          :key="part.key"
+                          :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                        >
+                          {{ part.text }}
+                        </span>
+                      </p>
+                      <ul
+                        v-if="subsection.postVisualList?.length"
+                        class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                      >
+                        <li
+                          v-for="item in subsection.postVisualList"
+                          :key="item"
+                          class="sgds:m-0"
+                        >
+                          {{ item }}
+                        </li>
+                      </ul>
+                    </div>
+                  </template>
+                </template>
+                <div
+                  v-if="section.comparisonTable"
+                  class="sgds:flex sgds:w-full sgds:max-w-container-lg sgds:flex-col sgds:gap-component-md"
+                >
+                  <sgds-table
+                    :tableBorder="section.comparisonTable.tableBorder"
+                    :headerBackground="section.comparisonTable.headerBackground"
+                    :responsive="section.comparisonTable.responsive ?? 'always'"
+                  >
+                    <sgds-table-row>
+                      <sgds-table-head
+                        v-for="column in section.comparisonTable.columns"
+                        :key="column"
+                      >
+                        {{ column }}
+                      </sgds-table-head>
+                    </sgds-table-row>
+                    <sgds-table-row
+                      v-for="row in section.comparisonTable.rows"
+                      :key="row.join('-')"
+                    >
+                      <sgds-table-cell v-for="cell in row" :key="cell">
+                        {{ cell }}
+                      </sgds-table-cell>
+                    </sgds-table-row>
+                  </sgds-table>
+                  <p
+                    v-if="section.comparisonTable.callout"
+                    class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                  >
+                    {{ section.comparisonTable.callout }}
+                  </p>
+                </div>
+                <div
+                  v-if="section.diagram === 'figmaMcpFlow'"
+                  class="sgds:w-full sgds:max-w-container-md sgds:bg-transparent sgds:py-component-xs"
+                >
+                  <FigmaMcpFlowDiagram />
+                </div>
+                <figure
+                  v-if="section.visual && !section.visualAfterParagraph"
+                  class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
+                >
+                  <div
+                    :class="[
+                      'sgds:block sgds:w-full sgds:overflow-hidden',
+                      section.visual.fullWidth && !section.visual.videoSrc
+                        ? 'sgds:aspect-[976/656]'
+                        : '',
+                      section.visual.verticalPadding
+                        ? 'sgds:py-component-xs'
+                        : '',
+                    ]"
+                  >
+                    <video
+                      v-if="section.visual.videoSrc"
+                      :autoplay="
+                        section.visual.videoAutoplay ||
+                        !section.visual.videoControls
+                      "
+                      :muted="
+                        section.visual.videoAutoplay ||
+                        !section.visual.videoControls
+                      "
+                      :loop="!section.visual.videoControls"
+                      :controls="section.visual.videoControls"
+                      playsinline
+                      preload="metadata"
+                      :poster="section.visual.posterSrc"
+                      :aria-label="section.visual.alt"
+                      :width="section.visual.width"
+                      :height="section.visual.height"
+                      class="sgds:block sgds:h-auto sgds:max-w-full"
+                    >
+                      <source :src="section.visual.videoSrc" type="video/mp4" />
+                    </video>
+                    <img
+                      v-else
+                      :src="section.visual.src"
+                      :alt="section.visual.alt"
+                      :width="section.visual.width"
+                      :height="section.visual.height"
+                      :class="[
+                        'sgds:block sgds:w-full',
+                        section.visual.fullWidth
+                          ? 'sgds:h-full sgds:object-contain'
+                          : 'sgds:h-auto sgds:max-h-[var(--sgds-dimension-512)] sgds:object-contain',
+                      ]"
+                    />
+                  </div>
+                  <figcaption
+                    class="sgds:m-0 sgds:block sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                  >
+                    <span
+                      v-for="part in highlightedTimingParts(
+                        section.visual.caption,
+                      )"
+                      :key="part.key"
+                      :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                    >
+                      {{ part.text }}
+                    </span>
+                  </figcaption>
+                </figure>
+                <div
+                  v-if="
+                    section.postVisualParagraphs?.length ||
+                    section.postVisualList?.length
+                  "
+                  class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md"
+                >
+                  <p
+                    v-for="paragraph in section.postVisualParagraphs"
+                    :key="paragraph"
+                    class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                  >
                     <span
                       v-for="part in highlightedTimingParts(paragraph)"
                       :key="part.key"
@@ -106,680 +890,135 @@
                       {{ part.text }}
                     </span>
                   </p>
-                  <figure
-                    v-if="subsection.visual && subsection.visualAfterParagraph === paragraphIndex + 1"
-                    class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
+                  <ul
+                    v-if="section.postVisualList?.length"
+                    class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
                   >
-                    <div
-                      :class="[
-                        'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
-                        framedVisualClass(subsection.visual),
-                      ]"
+                    <li
+                      v-for="item in section.postVisualList"
+                      :key="item"
+                      class="sgds:m-0"
                     >
-                      <StoryVisualMedia :visual="subsection.visual" />
-                    </div>
-                    <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
+                      {{ item }}
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  v-if="section.postVisualSubsections?.length"
+                  class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-layout-xs"
+                >
+                  <section
+                    v-for="subsection in section.postVisualSubsections"
+                    :key="subsection.title ?? subsection.paragraphs.join('-')"
+                    class="sgds:flex sgds:flex-col sgds:gap-text-md"
+                  >
+                    <h4
+                      v-if="subsection.title"
+                      class="sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default"
+                    >
+                      {{ subsection.title }}
+                    </h4>
+                    <p
+                      v-for="paragraph in subsection.paragraphs"
+                      :key="paragraph"
+                      class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                    >
                       <span
-                        v-for="part in highlightedTimingParts(subsection.visual.caption)"
+                        v-for="part in highlightedTimingParts(paragraph)"
                         :key="part.key"
                         :class="part.highlighted ? 'sgds:font-semibold' : ''"
                       >
                         {{ part.text }}
                       </span>
-                    </figcaption>
-                  </figure>
-                </template>
-                <p
-                  v-for="paragraph in subsection.paragraphsHtml"
-                  :key="paragraph"
-                  class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-                  v-html="paragraph"
-                ></p>
-                <component
-                  :is="subsection.listType === 'ordered' ? 'ol' : 'ul'"
-                  v-if="subsection.list?.length"
-                  class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-                >
-                  <li v-for="item in subsection.list" :key="item" class="sgds:m-0">{{ item }}</li>
-                </component>
-                <ul
-                  v-if="subsection.labelledList?.length"
-                  class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-                >
-                  <li v-for="item in subsection.labelledList" :key="item.label ?? item.text" class="sgds:m-0">
-                    <span v-if="item.label" class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
-                      {{ item.label }}:
-                    </span>
-                    {{ item.text }}
-                  </li>
-                </ul>
-              </div>
-              <figure
-                v-if="subsection.visual && !subsection.visualAfterParagraph"
-                class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
-              >
-                <div
-                  :class="[
-                    'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
-                    framedVisualClass(subsection.visual),
-                  ]"
-                >
-                  <StoryVisualMedia :visual="subsection.visual" />
-                </div>
-                <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
-                  <span
-                    v-for="part in highlightedTimingParts(subsection.visual.caption)"
-                    :key="part.key"
-                    :class="part.highlighted ? 'sgds:font-semibold' : ''"
-                  >
-                    {{ part.text }}
-                  </span>
-                </figcaption>
-              </figure>
-              <figure
-                v-if="subsection.postVisual"
-                class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
-              >
-                <div
-                  :class="[
-                    'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
-                    framedVisualClass(subsection.postVisual),
-                  ]"
-                >
-                  <StoryVisualMedia :visual="subsection.postVisual" />
-                </div>
-                <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
-                  <span
-                    v-for="part in highlightedTimingParts(subsection.postVisual.caption)"
-                    :key="part.key"
-                    :class="part.highlighted ? 'sgds:font-semibold' : ''"
-                  >
-                    {{ part.text }}
-                  </span>
-                </figcaption>
-              </figure>
-              <div
-                v-if="subsection.postVisualParagraphs?.length || subsection.postVisualList?.length"
-                class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md sgds:pt-layout-xs"
-              >
-                <p
-                  v-for="paragraph in subsection.postVisualParagraphs"
-                  :key="paragraph"
-                  class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-                >
-                  <span
-                    v-for="part in highlightedTimingParts(paragraph)"
-                    :key="part.key"
-                    :class="part.highlighted ? 'sgds:font-semibold' : ''"
-                  >
-                    {{ part.text }}
-                  </span>
-                </p>
-                <ul
-                  v-if="subsection.postVisualList?.length"
-                  class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-                >
-                  <li v-for="item in subsection.postVisualList" :key="item" class="sgds:m-0">{{ item }}</li>
-                </ul>
-              </div>
-            </template>
-          </template>
-          <figure
-            v-if="section.titleVisual"
-            class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
-          >
-            <div
-              :class="[
-                'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
-                section.titleVisual.verticalPadding ? 'sgds:py-component-xs' : '',
-              ]"
-            >
-              <video
-                v-if="section.titleVisual.videoSrc"
-                autoplay
-                muted
-                loop
-                playsinline
-                :poster="section.titleVisual.posterSrc"
-                :aria-label="section.titleVisual.alt"
-                class="sgds:block sgds:aspect-video sgds:w-full sgds:rounded-lg sgds:object-cover"
-              >
-                <source :src="section.titleVisual.videoSrc" type="video/mp4" />
-              </video>
-              <img
-                v-else
-                :src="section.titleVisual.src"
-                :alt="section.titleVisual.alt"
-                class="sgds:block sgds:h-auto sgds:max-h-[var(--sgds-dimension-512)] sgds:w-full sgds:object-contain"
-              />
-            </div>
-            <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
-              <span
-                v-for="part in highlightedTimingParts(section.titleVisual.caption)"
-                :key="part.key"
-                :class="part.highlighted ? 'sgds:font-semibold' : ''"
-              >
-                {{ part.text }}
-              </span>
-            </figcaption>
-          </figure>
-          <div class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md">
-          <template
-            v-for="(paragraph, paragraphIndex) in section.paragraphs"
-            :key="paragraph"
-          >
-            <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default">
-              <span
-                v-for="part in highlightedTimingParts(paragraph)"
-                :key="part.key"
-                :class="part.highlighted ? 'sgds:font-semibold' : ''"
-              >
-                {{ part.text }}
-              </span>
-            </p>
-            <p
-              v-for="item in paragraphIndex === 0 ? section.emphasis : []"
-              :key="item"
-              class="sgds:m-0 sgds:text-body-lg sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:text-body-default"
-            >
-              {{ item }}
-            </p>
-            <figure
-              v-if="paragraphIndex === 0 && section.bodyVisual"
-              class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
-            >
-              <div
-                :class="[
-                  'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
-                  section.bodyVisual.verticalPadding ? 'sgds:py-component-xs' : '',
-                ]"
-              >
-                <img
-                  :src="section.bodyVisual.src"
-                  :alt="section.bodyVisual.alt"
-                  :width="section.bodyVisual.width"
-                  :height="section.bodyVisual.height"
-                  class="sgds:block sgds:h-auto sgds:w-full sgds:object-contain"
-                />
-              </div>
-              <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
-                <span
-                  v-for="part in highlightedTimingParts(section.bodyVisual.caption)"
-                  :key="part.key"
-                  :class="part.highlighted ? 'sgds:font-semibold' : ''"
-                >
-                  {{ part.text }}
-                </span>
-              </figcaption>
-            </figure>
-            <figure
-              v-if="section.visual && section.visualAfterParagraph === paragraphIndex + 1"
-              class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
-            >
-              <div
-                :class="[
-                  'sgds:block sgds:w-full sgds:overflow-hidden',
-                  section.visual.fullWidth && !section.visual.videoSrc ? 'sgds:aspect-[976/656]' : '',
-                  section.visual.verticalPadding ? 'sgds:py-component-xs' : '',
-                ]"
-              >
-                <video
-                  v-if="section.visual.videoSrc"
-                  :autoplay="section.visual.videoAutoplay || !section.visual.videoControls"
-                  :muted="section.visual.videoAutoplay || !section.visual.videoControls"
-                  :loop="!section.visual.videoControls"
-                  :controls="section.visual.videoControls"
-                  playsinline
-                  preload="metadata"
-                  :poster="section.visual.posterSrc"
-                  :aria-label="section.visual.alt"
-                  :width="section.visual.width"
-                  :height="section.visual.height"
-                  class="sgds:block sgds:h-auto sgds:max-w-full"
-                >
-                  <source :src="section.visual.videoSrc" type="video/mp4" />
-                </video>
-                <img
-                  v-else
-                  :src="section.visual.src"
-                  :alt="section.visual.alt"
-                  :width="section.visual.width"
-                  :height="section.visual.height"
-                  :class="[
-                    'sgds:block sgds:w-full',
-                    section.visual.fullWidth ? 'sgds:h-full sgds:object-contain' : 'sgds:h-auto sgds:max-h-[var(--sgds-dimension-512)] sgds:object-contain',
-                  ]"
-                />
-              </div>
-              <figcaption class="sgds:m-0 sgds:block sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
-                <span
-                  v-for="part in highlightedTimingParts(section.visual.caption)"
-                  :key="part.key"
-                  :class="part.highlighted ? 'sgds:font-semibold' : ''"
-                >
-                  {{ part.text }}
-                </span>
-              </figcaption>
-            </figure>
-          </template>
-          <template
-            v-for="(paragraph, paragraphIndex) in section.paragraphsHtml"
-            :key="paragraph"
-          >
-            <p
-              class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-              v-html="paragraph"
-            ></p>
-            <figure
-              v-if="!section.paragraphs.length && paragraphIndex === 0 && section.bodyVisual"
-              class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
-            >
-              <div
-                :class="[
-                  'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
-                  section.bodyVisual.verticalPadding ? 'sgds:py-component-xs' : '',
-                ]"
-              >
-                <img
-                  :src="section.bodyVisual.src"
-                  :alt="section.bodyVisual.alt"
-                  :width="section.bodyVisual.width"
-                  :height="section.bodyVisual.height"
-                  class="sgds:block sgds:h-auto sgds:w-full sgds:object-contain"
-                />
-              </div>
-              <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
-                <span
-                  v-for="part in highlightedTimingParts(section.bodyVisual.caption)"
-                  :key="part.key"
-                  :class="part.highlighted ? 'sgds:font-semibold' : ''"
-                >
-                  {{ part.text }}
-                </span>
-              </figcaption>
-            </figure>
-          </template>
-          <component
-            :is="section.listType === 'ordered' ? 'ol' : 'ul'"
-            v-if="section.list?.length"
-            class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-          >
-            <li v-for="item in section.list" :key="item" class="sgds:m-0">{{ item }}</li>
-          </component>
-          <ul
-            v-if="section.labelledList?.length"
-            class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-          >
-            <li v-for="item in section.labelledList" :key="item.label ?? item.text" class="sgds:m-0">
-              <span v-if="item.label" class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
-                {{ item.label }}:
-              </span>
-              {{ item.text }}
-            </li>
-          </ul>
-          </div>
-          <template v-if="section.subsections?.length && section.paragraphs.length">
-            <template
-              v-for="subsection in section.subsections"
-              :key="subsection.title ?? subsection.paragraphs.join('-')"
-            >
-              <div
-                v-if="subsection.title || subsection.paragraphs.length || subsection.paragraphsHtml?.length || subsection.list?.length || subsection.labelledList?.length"
-                class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md sgds:pt-layout-xs"
-              >
-                <h3
-                  v-if="subsection.title"
-                  class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default"
-                >
-                  {{ subsection.title }}
-                </h3>
-                <template
-                  v-for="(paragraph, paragraphIndex) in subsection.paragraphs"
-                  :key="paragraph"
-                >
-                  <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default">
-                    <span
-                      v-for="part in highlightedTimingParts(paragraph)"
-                      :key="part.key"
-                      :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                    </p>
+                    <component
+                      :is="subsection.listType === 'ordered' ? 'ol' : 'ul'"
+                      v-if="subsection.list?.length"
+                      class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
                     >
-                      {{ part.text }}
-                    </span>
+                      <li
+                        v-for="item in subsection.list"
+                        :key="item"
+                        class="sgds:m-0"
+                      >
+                        {{ item }}
+                      </li>
+                    </component>
+                    <p
+                      v-for="paragraph in subsection.postVisualParagraphs"
+                      :key="paragraph"
+                      class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                    >
+                      <span
+                        v-for="part in highlightedTimingParts(paragraph)"
+                        :key="part.key"
+                        :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                      >
+                        {{ part.text }}
+                      </span>
+                    </p>
+                  </section>
+                </div>
+                <div
+                  v-if="section.postVisualConclusion"
+                  class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md"
+                >
+                  <p
+                    class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                  >
+                    {{ section.postVisualConclusion }}
                   </p>
-                  <figure
-                    v-if="subsection.visual && subsection.visualAfterParagraph === paragraphIndex + 1"
-                    class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
-                  >
-                    <div
-                      :class="[
-                        'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
-                        framedVisualClass(subsection.visual),
-                      ]"
+                </div>
+                <aside
+                  v-if="section.boxedContent"
+                  class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-component-sm sgds:rounded-lg sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-component-md"
+                >
+                  <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+                    <h3
+                      class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default"
                     >
-                      <StoryVisualMedia :visual="subsection.visual" />
-                    </div>
-                    <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
+                      {{ section.boxedContent.title }}
+                    </h3>
+                    <p
+                      v-for="paragraph in section.boxedContent.paragraphs"
+                      :key="paragraph"
+                      class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                    >
                       <span
-                        v-for="part in highlightedTimingParts(subsection.visual.caption)"
+                        v-for="part in highlightedTimingParts(paragraph)"
                         :key="part.key"
                         :class="part.highlighted ? 'sgds:font-semibold' : ''"
                       >
                         {{ part.text }}
                       </span>
-                    </figcaption>
-                  </figure>
-                </template>
-                <p
-                  v-for="paragraph in subsection.paragraphsHtml"
-                  :key="paragraph"
-                  class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-                  v-html="paragraph"
-                ></p>
-                <component
-                  :is="subsection.listType === 'ordered' ? 'ol' : 'ul'"
-                  v-if="subsection.list?.length"
-                  class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-                >
-                  <li v-for="item in subsection.list" :key="item" class="sgds:m-0">{{ item }}</li>
-                </component>
-                <ul
-                  v-if="subsection.labelledList?.length"
-                  class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-                >
-                  <li v-for="item in subsection.labelledList" :key="item.label ?? item.text" class="sgds:m-0">
-                    <span v-if="item.label" class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
-                      {{ item.label }}:
-                    </span>
-                    {{ item.text }}
-                  </li>
-                </ul>
-              </div>
-              <figure
-                v-if="subsection.visual && !subsection.visualAfterParagraph"
-                class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
-              >
-                <div
-                  :class="[
-                    'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
-                    framedVisualClass(subsection.visual),
-                  ]"
-                >
-                  <StoryVisualMedia :visual="subsection.visual" />
-                </div>
-                <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
-                  <span
-                    v-for="part in highlightedTimingParts(subsection.visual.caption)"
-                    :key="part.key"
-                    :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                    </p>
+                  </div>
+                  <ul
+                    v-if="section.boxedContent.labelledList?.length"
+                    class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
                   >
-                    {{ part.text }}
-                  </span>
-                </figcaption>
-              </figure>
-              <figure
-                v-if="subsection.postVisual"
-                class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
-              >
-                <div
-                  :class="[
-                    'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
-                    framedVisualClass(subsection.postVisual),
-                  ]"
-                >
-                  <StoryVisualMedia :visual="subsection.postVisual" />
-                </div>
-                <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
-                  <span
-                    v-for="part in highlightedTimingParts(subsection.postVisual.caption)"
-                    :key="part.key"
-                    :class="part.highlighted ? 'sgds:font-semibold' : ''"
-                  >
-                    {{ part.text }}
-                  </span>
-                </figcaption>
-              </figure>
-              <div
-                v-if="subsection.postVisualParagraphs?.length || subsection.postVisualList?.length"
-                class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md"
-              >
-                <p
-                  v-for="paragraph in subsection.postVisualParagraphs"
-                  :key="paragraph"
-                  class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-                >
-                  <span
-                    v-for="part in highlightedTimingParts(paragraph)"
-                    :key="part.key"
-                    :class="part.highlighted ? 'sgds:font-semibold' : ''"
-                  >
-                    {{ part.text }}
-                  </span>
-                </p>
-                <ul
-                  v-if="subsection.postVisualList?.length"
-                  class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-                >
-                  <li v-for="item in subsection.postVisualList" :key="item" class="sgds:m-0">{{ item }}</li>
-                </ul>
-              </div>
-            </template>
-          </template>
-          <div
-            v-if="section.comparisonTable"
-            class="sgds:flex sgds:w-full sgds:max-w-container-lg sgds:flex-col sgds:gap-component-md"
-          >
-            <sgds-table
-              :tableBorder="section.comparisonTable.tableBorder"
-              :headerBackground="section.comparisonTable.headerBackground"
-              :responsive="section.comparisonTable.responsive ?? 'always'"
-            >
-              <sgds-table-row>
-                <sgds-table-head
-                  v-for="column in section.comparisonTable.columns"
-                  :key="column"
-                >
-                  {{ column }}
-                </sgds-table-head>
-              </sgds-table-row>
-              <sgds-table-row
-                v-for="row in section.comparisonTable.rows"
-                :key="row.join('-')"
-              >
-                <sgds-table-cell
-                  v-for="cell in row"
-                  :key="cell"
-                >
-                  {{ cell }}
-                </sgds-table-cell>
-              </sgds-table-row>
-            </sgds-table>
-            <p
-              v-if="section.comparisonTable.callout"
-              class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-            >
-              {{ section.comparisonTable.callout }}
-            </p>
-          </div>
-          <div
-            v-if="section.diagram === 'figmaMcpFlow'"
-            class="sgds:w-full sgds:max-w-container-md sgds:bg-transparent sgds:py-component-xs"
-          >
-            <FigmaMcpFlowDiagram />
-          </div>
-          <figure
-            v-if="section.visual && !section.visualAfterParagraph"
-            class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
-          >
-            <div
-              :class="[
-                'sgds:block sgds:w-full sgds:overflow-hidden',
-                section.visual.fullWidth && !section.visual.videoSrc ? 'sgds:aspect-[976/656]' : '',
-                section.visual.verticalPadding ? 'sgds:py-component-xs' : '',
-              ]"
-            >
-              <video
-                v-if="section.visual.videoSrc"
-                :autoplay="section.visual.videoAutoplay || !section.visual.videoControls"
-                :muted="section.visual.videoAutoplay || !section.visual.videoControls"
-                :loop="!section.visual.videoControls"
-                :controls="section.visual.videoControls"
-                playsinline
-                preload="metadata"
-                :poster="section.visual.posterSrc"
-                :aria-label="section.visual.alt"
-                :width="section.visual.width"
-                :height="section.visual.height"
-                class="sgds:block sgds:h-auto sgds:max-w-full"
-              >
-                <source :src="section.visual.videoSrc" type="video/mp4" />
-              </video>
-              <img
-                v-else
-                :src="section.visual.src"
-                :alt="section.visual.alt"
-                :width="section.visual.width"
-                :height="section.visual.height"
-                :class="[
-                  'sgds:block sgds:w-full',
-                  section.visual.fullWidth ? 'sgds:h-full sgds:object-contain' : 'sgds:h-auto sgds:max-h-[var(--sgds-dimension-512)] sgds:object-contain',
-                ]"
-              />
-            </div>
-            <figcaption class="sgds:m-0 sgds:block sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
-              <span
-                v-for="part in highlightedTimingParts(section.visual.caption)"
-                :key="part.key"
-                :class="part.highlighted ? 'sgds:font-semibold' : ''"
-              >
-                {{ part.text }}
-              </span>
-            </figcaption>
-          </figure>
-          <div
-            v-if="section.postVisualParagraphs?.length || section.postVisualList?.length"
-            class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md"
-          >
-            <p
-              v-for="paragraph in section.postVisualParagraphs"
-              :key="paragraph"
-              class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-            >
-              <span
-                v-for="part in highlightedTimingParts(paragraph)"
-                :key="part.key"
-                :class="part.highlighted ? 'sgds:font-semibold' : ''"
-              >
-                {{ part.text }}
-              </span>
-            </p>
-            <ul
-              v-if="section.postVisualList?.length"
-              class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-            >
-              <li v-for="item in section.postVisualList" :key="item" class="sgds:m-0">{{ item }}</li>
-            </ul>
-          </div>
-          <div
-            v-if="section.postVisualSubsections?.length"
-            class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-layout-xs"
-          >
-            <section
-              v-for="subsection in section.postVisualSubsections"
-              :key="subsection.title ?? subsection.paragraphs.join('-')"
-              class="sgds:flex sgds:flex-col sgds:gap-text-md"
-            >
-              <h4
-                v-if="subsection.title"
-                class="sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default"
-              >
-                {{ subsection.title }}
-              </h4>
-              <p
-                v-for="paragraph in subsection.paragraphs"
-                :key="paragraph"
-                class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-              >
-                <span
-                  v-for="part in highlightedTimingParts(paragraph)"
-                  :key="part.key"
-                  :class="part.highlighted ? 'sgds:font-semibold' : ''"
-                >
-                  {{ part.text }}
-                </span>
-              </p>
-              <component
-                :is="subsection.listType === 'ordered' ? 'ol' : 'ul'"
-                v-if="subsection.list?.length"
-                class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-              >
-                <li v-for="item in subsection.list" :key="item" class="sgds:m-0">{{ item }}</li>
-              </component>
-              <p
-                v-for="paragraph in subsection.postVisualParagraphs"
-                :key="paragraph"
-                class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-              >
-                <span
-                  v-for="part in highlightedTimingParts(paragraph)"
-                  :key="part.key"
-                  :class="part.highlighted ? 'sgds:font-semibold' : ''"
-                >
-                  {{ part.text }}
-                </span>
-              </p>
-            </section>
-          </div>
-          <div
-            v-if="section.postVisualConclusion"
-            class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md"
-          >
-            <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default">
-              {{ section.postVisualConclusion }}
-            </p>
-          </div>
-          <aside
-            v-if="section.boxedContent"
-            class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-component-sm sgds:rounded-lg sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-component-md"
-          >
-            <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-              <h3 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
-                {{ section.boxedContent.title }}
-              </h3>
-              <p
-                v-for="paragraph in section.boxedContent.paragraphs"
-                :key="paragraph"
-                class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-              >
-                <span
-                  v-for="part in highlightedTimingParts(paragraph)"
-                  :key="part.key"
-                  :class="part.highlighted ? 'sgds:font-semibold' : ''"
-                >
-                  {{ part.text }}
-                </span>
-              </p>
-            </div>
-            <ul
-              v-if="section.boxedContent.labelledList?.length"
-              class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
-            >
-              <li
-                v-for="item in section.boxedContent.labelledList"
-                :key="item.label ?? item.text"
-                class="sgds:m-0"
-              >
-                <span v-if="item.label" class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
-                  {{ item.label }}:
-                </span>
-                {{ item.text }}
-              </li>
-            </ul>
-          </aside>
+                    <li
+                      v-for="item in section.boxedContent.labelledList"
+                      :key="item.label ?? item.text"
+                      class="sgds:m-0"
+                    >
+                      <span
+                        v-if="item.label"
+                        class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default"
+                      >
+                        {{ item.label }}:
+                      </span>
+                      {{ item.text }}
+                    </li>
+                  </ul>
+                </aside>
               </div>
             </section>
 
             <section v-if="post.matrix" class="sgds:py-layout-md">
-              <div class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-layout-md">
+              <div
+                class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-layout-md"
+              >
                 <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
                   <h2
                     :id="sectionId(post.matrix.title)"
@@ -787,12 +1026,16 @@
                   >
                     {{ post.matrix.title }}
                   </h2>
-                  <p class="sgds:mb-0 sgds:text-body-md sgds:leading-xs sgds:tracking-normal sgds:text-body-default">
+                  <p
+                    class="sgds:mb-0 sgds:text-body-md sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+                  >
                     {{ post.matrix.description }}
                   </p>
                 </div>
 
-                <div class="sgds:grid sgds:grid-cols-[5.75rem_minmax(0,1fr)_minmax(0,1fr)] sgds:border sgds:border-muted sgds:md:hidden">
+                <div
+                  class="sgds:grid sgds:grid-cols-[5.75rem_minmax(0,1fr)_minmax(0,1fr)] sgds:border sgds:border-muted sgds:md:hidden"
+                >
                   <div class="sgds:bg-alternate sgds:p-component-xs">
                     <span class="sgds:sr-only">AI and SGDS combination</span>
                   </div>
@@ -801,7 +1044,9 @@
                     :key="`${column}-mobile`"
                     class="sgds:flex sgds:min-w-0 sgds:items-center sgds:justify-center sgds:border-l sgds:border-muted sgds:bg-alternate sgds:p-component-xs sgds:text-center"
                   >
-                    <span class="sgds:block sgds:min-w-0 sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default">
+                    <span
+                      class="sgds:block sgds:min-w-0 sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default"
+                    >
                       {{ column }}
                     </span>
                   </div>
@@ -810,8 +1055,12 @@
                     v-for="rowGroup in matrixRows"
                     :key="`${rowGroup.row}-mobile`"
                   >
-                    <div class="sgds:flex sgds:min-w-0 sgds:items-center sgds:border-t sgds:border-muted sgds:bg-alternate sgds:p-component-xs">
-                      <span class="sgds:block sgds:min-w-0 sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default">
+                    <div
+                      class="sgds:flex sgds:min-w-0 sgds:items-center sgds:border-t sgds:border-muted sgds:bg-alternate sgds:p-component-xs"
+                    >
+                      <span
+                        class="sgds:block sgds:min-w-0 sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default"
+                      >
                         {{ rowGroup.row }}
                       </span>
                     </div>
@@ -820,7 +1069,9 @@
                       :key="`${cell.row}-${cell.column}-mobile`"
                       class="sgds:flex sgds:min-h-[var(--sgds-dimension-144)] sgds:min-w-0 sgds:flex-col sgds:items-center sgds:justify-center sgds:gap-text-xs sgds:border-l sgds:border-t sgds:border-muted sgds:bg-surface-default sgds:p-component-xs sgds:text-center"
                     >
-                      <h3 class="sgds:m-0 sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default">
+                      <h3
+                        class="sgds:m-0 sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default"
+                      >
                         {{ cell.title }}
                       </h3>
                       <p
@@ -839,9 +1090,17 @@
                           class="sgds:flex sgds:w-full sgds:items-center sgds:justify-center sgds:gap-text-2-xs"
                         >
                           <sgds-icon
-                            :name="outcome.status === 'positive' ? 'check-circle-fill' : 'xcircle-fill'"
+                            :name="
+                              outcome.status === 'positive'
+                                ? 'check-circle-fill'
+                                : 'xcircle-fill'
+                            "
                             size="sm"
-                            :class="outcome.status === 'positive' ? 'sgds:text-success-default' : 'sgds:text-danger-default'"
+                            :class="
+                              outcome.status === 'positive'
+                                ? 'sgds:text-success-default'
+                                : 'sgds:text-danger-default'
+                            "
                           ></sgds-icon>
                           <span class="sgds:min-w-0">{{ outcome.text }}</span>
                         </li>
@@ -859,13 +1118,17 @@
                   >
                     <sgds-table-row>
                       <sgds-table-head>
-                        <span class="sgds:sr-only">AI and SGDS combination</span>
+                        <span class="sgds:sr-only"
+                          >AI and SGDS combination</span
+                        >
                       </sgds-table-head>
                       <sgds-table-head
                         v-for="column in post.matrix.columns"
                         :key="column"
                       >
-                        <span class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-192)] sgds:text-center sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                        <span
+                          class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-192)] sgds:text-center sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default"
+                        >
                           {{ column }}
                         </span>
                       </sgds-table-head>
@@ -876,7 +1139,9 @@
                       :key="rowGroup.row"
                     >
                       <sgds-table-head>
-                        <span class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-128)] sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                        <span
+                          class="sgds:block sgds:w-full sgds:min-w-[var(--sgds-dimension-128)] sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default"
+                        >
                           {{ rowGroup.row }}
                         </span>
                       </sgds-table-head>
@@ -884,8 +1149,12 @@
                         v-for="cell in rowGroup.cells"
                         :key="`${cell.row}-${cell.column}`"
                       >
-                        <div class="sgds:flex sgds:min-h-[var(--sgds-dimension-128)] sgds:w-full sgds:min-w-[var(--sgds-dimension-256)] sgds:flex-col sgds:items-center sgds:justify-center sgds:gap-text-xs sgds:text-center">
-                          <h3 class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                        <div
+                          class="sgds:flex sgds:min-h-[var(--sgds-dimension-128)] sgds:w-full sgds:min-w-[var(--sgds-dimension-256)] sgds:flex-col sgds:items-center sgds:justify-center sgds:gap-text-xs sgds:text-center"
+                        >
+                          <h3
+                            class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default"
+                          >
                             {{ cell.title }}
                           </h3>
                           <p
@@ -904,9 +1173,17 @@
                               class="sgds:flex sgds:w-full sgds:items-center sgds:justify-center sgds:gap-text-2-xs"
                             >
                               <sgds-icon
-                                :name="outcome.status === 'positive' ? 'check-circle-fill' : 'xcircle-fill'"
+                                :name="
+                                  outcome.status === 'positive'
+                                    ? 'check-circle-fill'
+                                    : 'xcircle-fill'
+                                "
                                 size="md"
-                                :class="outcome.status === 'positive' ? 'sgds:text-success-default' : 'sgds:text-danger-default'"
+                                :class="
+                                  outcome.status === 'positive'
+                                    ? 'sgds:text-success-default'
+                                    : 'sgds:text-danger-default'
+                                "
                               ></sgds-icon>
                               <span>{{ outcome.text }}</span>
                             </li>
@@ -919,8 +1196,13 @@
               </div>
             </section>
 
-            <section v-if="post.closing.length" class="sgds:pt-0 sgds:pb-layout-md">
-              <div class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md">
+            <section
+              v-if="post.closing.length"
+              class="sgds:pt-0 sgds:pb-layout-md"
+            >
+              <div
+                class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md"
+              >
                 <p
                   v-for="paragraph in post.closing"
                   :key="paragraph"
@@ -943,9 +1225,13 @@
             </section>
 
             <section v-if="post.disclaimer" class="sgds:py-layout-md">
-              <div class="sgds:max-w-container-md sgds:bg-alternate sgds:p-component-sm">
+              <div
+                class="sgds:max-w-container-md sgds:bg-alternate sgds:p-component-sm"
+              >
                 <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-                  <h2 class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                  <h2
+                    class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default"
+                  >
                     {{ post.disclaimer.title }}
                   </h2>
                   <p
@@ -962,19 +1248,19 @@
 
           <aside
             v-if="tocItems.length"
-            class="sgds:sticky sgds:top-[var(--sgds-layout-padding-md)] sgds:z-[var(--sgds-z-index-sticky)] sgds:ml-auto sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:self-start sgds:pt-[calc(var(--sgds-layout-padding-md)+var(--sgds-text-gap-sm))] sgds:max-lg:hidden"
+            class="sgds:sticky sgds:top-[var(--sgds-layout-padding-md)] sgds:lg:pl-layout-md sgds:z-[var(--sgds-z-index-sticky)] sgds:ml-auto sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:self-start sgds:pt-[calc(var(--sgds-layout-padding-md)+var(--sgds-text-gap-sm))] sgds:max-lg:hidden"
             aria-label="Story sections"
           >
             <sgds-table-of-contents class="sgds:w-full">
-              <h3 class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+              <h3
+                class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default"
+              >
                 On this page
               </h3>
-              <li
-                v-for="item in tocItems"
-                :key="item.id"
-                slot="contents"
-              >
-                <sgds-link><a :href="`#${item.id}`">{{ item.title }}</a></sgds-link>
+              <li v-for="item in tocItems" :key="item.id" slot="contents">
+                <sgds-link
+                  ><a :href="`#${item.id}`">{{ item.title }}</a></sgds-link
+                >
               </li>
             </sgds-table-of-contents>
           </aside>
@@ -984,18 +1270,19 @@
 
     <section class="sgds:bg-default sgds:py-layout-md">
       <div class="sgds-container">
-        <div class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:items-start sgds:gap-component-md">
+        <div
+          class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:items-start sgds:gap-component-md"
+        >
           <div
             v-if="relatedArticles.length"
             class="sgds:flex sgds:flex-col sgds:gap-text-xs"
           >
-            <p class="sgds:m-0 sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-body-default">
+            <p
+              class="sgds:m-0 sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+            >
               {{ post.relatedHeading ?? "We explored this shift further in:" }}
             </p>
-            <sgds-link
-              v-for="article in relatedArticles"
-              :key="article.href"
-            >
+            <sgds-link v-for="article in relatedArticles" :key="article.href">
               <a
                 :href="article.href"
                 :target="isExternalHref(article.href) ? '_blank' : undefined"
@@ -1005,7 +1292,9 @@
               </a>
             </sgds-link>
           </div>
-          <p class="sgds:m-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
+          <p
+            class="sgds:m-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+          >
             Published {{ post.published }}
           </p>
         </div>
@@ -1016,7 +1305,9 @@
   </article>
 
   <div v-else class="sgds:flex sgds:flex-col sgds:gap-component-sm">
-    <h1 class="sgds:m-0 sgds:text-heading-xl sgds:font-bold sgds:leading-xl sgds:tracking-tight sgds:text-heading-default">
+    <h1
+      class="sgds:m-0 sgds:text-heading-xl sgds:font-bold sgds:leading-xl sgds:tracking-tight sgds:text-heading-default"
+    >
       Story not found
     </h1>
     <sgds-link><a href="/stories">Back to stories</a></sgds-link>
@@ -1025,7 +1316,13 @@
 
 <script setup lang="ts">
 import { computed, defineComponent, h, ref, watch, type PropType } from "vue";
-import { getStoryPost, type StoryMatrixCell, type StoryRelatedArticle, type StorySection, type StoryVisual } from "../data/stories";
+import {
+  getStoryPost,
+  type StoryMatrixCell,
+  type StoryRelatedArticle,
+  type StorySection,
+  type StoryVisual,
+} from "../data/stories";
 import FigmaMcpFlowDiagram from "./ai/FigmaMcpFlowDiagram.vue";
 import Footer from "./layout/Footer.vue";
 import Mainnav from "./layout/Mainnav.vue";
@@ -1041,7 +1338,8 @@ const inlineSvgMarkupBySrc = ref<Record<string, string>>({});
 const isInlineSvgVisual = (visual?: StoryVisual) =>
   Boolean(visual?.inlineSvg && visual.src.endsWith(".svg"));
 
-const inlineSvgMarkup = (visual: StoryVisual) => inlineSvgMarkupBySrc.value[visual.src] ?? "";
+const inlineSvgMarkup = (visual: StoryVisual) =>
+  inlineSvgMarkupBySrc.value[visual.src] ?? "";
 
 const framedVisualClass = (visual?: StoryVisual) => {
   if (!visual?.framed) return "";
@@ -1080,7 +1378,8 @@ const StoryVisualMedia = defineComponent({
   setup(componentProps) {
     return () => {
       const markup = inlineSvgMarkup(componentProps.visual);
-      const mediaClass = "sgds:block sgds:h-auto sgds:w-full sgds:object-contain";
+      const mediaClass =
+        "sgds:block sgds:h-auto sgds:w-full sgds:object-contain";
 
       if (markup) {
         return h("div", {
@@ -1239,7 +1538,9 @@ const matrixRows = computed(() => {
   return matrix.rows.map((row) => ({
     row,
     cells: matrix.columns
-      .map((column) => matrix.cells.find((cell) => cell.row === row && cell.column === column))
+      .map((column) =>
+        matrix.cells.find((cell) => cell.row === row && cell.column === column),
+      )
       .filter((cell): cell is StoryMatrixCell => Boolean(cell)),
   }));
 });

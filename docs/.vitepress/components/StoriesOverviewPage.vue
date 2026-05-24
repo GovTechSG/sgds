@@ -1,6 +1,8 @@
 <template>
-  <div class="sgds-container">
-    <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl sgds:bg-default sgds:text-body-default">
+  <div>
+    <div
+      class="sgds:flex sgds:flex-col sgds:gap-layout-xl sgds:bg-default sgds:text-body-default"
+    >
       <div>
         <PageHeader
           title="Stories"
@@ -12,7 +14,9 @@
       <section class="sgds:bg-default">
         <div class="sgds-grid sgds:items-center sgds:gap-layout-md">
           <div class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-6">
-            <div class="sgds:relative sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-3-xl sgds:bg-alternate">
+            <div
+              class="sgds:relative sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-3-xl sgds:bg-alternate"
+            >
               <video
                 v-if="featuredStory.videoSrc"
                 autoplay
@@ -43,29 +47,47 @@
             </div>
           </div>
 
-          <div class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-6 sgds:flex sgds:flex-col sgds:items-start sgds:gap-component-sm sgds:text-left">
+          <div
+            class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-6 sgds:lg:pl-layout-md sgds:flex sgds:flex-col sgds:items-start sgds:gap-component-sm sgds:text-left"
+          >
             <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-              <p class="sgds:m-0 sgds:text-left sgds:text-overline-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-wide sgds:uppercase sgds:text-body-subtle">
+              <p
+                class="sgds:m-0 sgds:text-left sgds:text-overline-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-wide sgds:uppercase sgds:text-body-subtle"
+              >
                 {{ featuredStory.category }}
               </p>
-              <h2 class="sgds:mb-0 sgds:text-heading-xl sgds:font-bold sgds:leading-xl sgds:tracking-normal sgds:text-heading-default">
+              <h2
+                class="sgds:mb-0 sgds:text-heading-xl sgds:font-bold sgds:leading-xl sgds:tracking-normal sgds:text-heading-default"
+              >
                 {{ featuredStory.title }}
               </h2>
-              <p class="sgds:mb-0 sgds:text-subtitle-md sgds:font-light sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
+              <p
+                class="sgds:mb-0 sgds:text-subtitle-md sgds:font-light sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle"
+              >
                 {{ featuredStory.description }}
               </p>
             </div>
-            <sgds-button :href="featuredStory.href" variant="primary" tone="neutral" size="md">Read post</sgds-button>
+            <sgds-button
+              :href="featuredStory.href"
+              variant="primary"
+              tone="neutral"
+              size="md"
+              >Read post</sgds-button
+            >
           </div>
         </div>
       </section>
 
       <section class="sgds:bg-default sgds:pt-layout-sm">
         <div class="sgds:mb-layout-md sgds:flex sgds:flex-col sgds:gap-text-sm">
-          <h2 class="sgds:mb-0 sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-normal sgds:text-heading-default">
+          <h2
+            class="sgds:mb-0 sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-normal sgds:text-heading-default"
+          >
             More stories
           </h2>
-          <p class="sgds:mb-0 sgds:text-body-md sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
+          <p
+            class="sgds:mb-0 sgds:text-body-md sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle"
+          >
             Explore stories and practical notes from our design system work.
           </p>
         </div>
@@ -74,14 +96,16 @@
           <div
             v-for="card in storyOverviewCards"
             :key="card.title"
-            class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds-col-lg-4 sgds:flex sgds:flex-col"
+            class="sgds-col-4 sgds:flex sgds:flex-col"
           >
             <sgds-link class="sgds:block sgds:h-full">
               <a
                 :href="card.href"
                 class="sgds:group sgds:flex sgds:h-full sgds:flex-col sgds:gap-component-sm"
               >
-                <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-3-xl sgds:bg-surface-raised">
+                <div
+                  class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-3-xl sgds:bg-surface-raised"
+                >
                   <img
                     :src="card.imageSrc"
                     :alt="card.imageAlt"
@@ -90,14 +114,22 @@
                     class="sgds:h-full sgds:w-full sgds:object-cover sgds:transition-transform sgds:duration-500 sgds:ease-in-out sgds:group-hover:scale-[1.04] sgds:group-focus-visible:scale-[1.04] sgds:motion-reduce:transition-none sgds:motion-reduce:group-hover:scale-100 sgds:motion-reduce:group-focus-visible:scale-100"
                   />
                 </div>
-                <div class="sgds:flex sgds:w-full sgds:flex-1 sgds:flex-col sgds:gap-text-xs">
-                  <p class="sgds:m-0 sgds:text-left sgds:text-overline-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-wide sgds:uppercase sgds:text-body-subtle">
+                <div
+                  class="sgds:flex sgds:w-full sgds:flex-1 sgds:flex-col sgds:gap-text-xs"
+                >
+                  <p
+                    class="sgds:m-0 sgds:text-left sgds:text-overline-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-wide sgds:uppercase sgds:text-body-subtle"
+                  >
                     {{ card.category }}
                   </p>
-                  <h3 class="sgds:mb-0 sgds:flex-1 sgds:text-left sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
+                  <h3
+                    class="sgds:mb-0 sgds:flex-1 sgds:text-left sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default"
+                  >
                     {{ card.title }}
                   </h3>
-                  <p class="sgds:m-0 sgds:mt-auto sgds:text-left sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
+                  <p
+                    class="sgds:m-0 sgds:mt-auto sgds:text-left sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                  >
                     {{ card.published }}
                   </p>
                 </div>
