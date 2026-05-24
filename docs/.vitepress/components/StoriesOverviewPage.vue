@@ -1,12 +1,10 @@
 <template>
   <div class="sgds-container">
-    <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg sgds:bg-default sgds:text-body-default">
-      <div class="sgds:text-center">
+    <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl sgds:bg-default sgds:text-body-default">
+      <div>
         <PageHeader
           title="Stories"
-          description="Perspectives on design systems, connected workflows, and digital delivery"
-          title-class="sgds:text-display-md sgds:font-bold sgds:leading-2-xl sgds:tracking-tighter sgds:text-center sgds:text-display-default"
-          description-class="sgds:mx-auto sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-normal sgds:text-body-subtle"
+          description="A collection of perspectives and notes on building, using, and evolving design systems."
           bottom-gap-class="sgds:mb-0"
         />
       </div>
@@ -62,7 +60,7 @@
         </div>
       </section>
 
-      <section class="sgds:bg-default">
+      <section class="sgds:bg-default sgds:pt-layout-sm">
         <div class="sgds:mb-layout-md sgds:flex sgds:flex-col sgds:gap-text-sm">
           <h2 class="sgds:mb-0 sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-normal sgds:text-heading-default">
             More stories
