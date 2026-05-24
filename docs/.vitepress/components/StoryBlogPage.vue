@@ -49,9 +49,9 @@
             </section>
 
             <section
-              v-for="section in post.sections"
+              v-for="(section, sectionIndex) in post.sections"
               :key="section.title"
-              class="sgds:py-layout-md"
+              :class="storySectionClass(section, sectionIndex)"
             >
               <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
           <div class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md">
@@ -110,14 +110,13 @@
                     v-if="subsection.visual && subsection.visualAfterParagraph === paragraphIndex + 1"
                     class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
                   >
-                    <div class="sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden">
-                      <img
-                        :src="subsection.visual.src"
-                        :alt="subsection.visual.alt"
-                        :width="subsection.visual.width"
-                        :height="subsection.visual.height"
-                        class="sgds:block sgds:h-auto sgds:w-full sgds:object-contain"
-                      />
+                    <div
+                      :class="[
+                        'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                        framedVisualClass(subsection.visual),
+                      ]"
+                    >
+                      <StoryVisualMedia :visual="subsection.visual" />
                     </div>
                     <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
                       <span
@@ -158,18 +157,39 @@
                 v-if="subsection.visual && !subsection.visualAfterParagraph"
                 class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
               >
-                <div class="sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden">
-                  <img
-                    :src="subsection.visual.src"
-                    :alt="subsection.visual.alt"
-                    :width="subsection.visual.width"
-                    :height="subsection.visual.height"
-                    class="sgds:block sgds:h-auto sgds:w-full sgds:object-contain"
-                  />
+                <div
+                  :class="[
+                    'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                    framedVisualClass(subsection.visual),
+                  ]"
+                >
+                  <StoryVisualMedia :visual="subsection.visual" />
                 </div>
                 <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
                   <span
                     v-for="part in highlightedTimingParts(subsection.visual.caption)"
+                    :key="part.key"
+                    :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                  >
+                    {{ part.text }}
+                  </span>
+                </figcaption>
+              </figure>
+              <figure
+                v-if="subsection.postVisual"
+                class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
+              >
+                <div
+                  :class="[
+                    'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                    framedVisualClass(subsection.postVisual),
+                  ]"
+                >
+                  <StoryVisualMedia :visual="subsection.postVisual" />
+                </div>
+                <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
+                  <span
+                    v-for="part in highlightedTimingParts(subsection.postVisual.caption)"
                     :key="part.key"
                     :class="part.highlighted ? 'sgds:font-semibold' : ''"
                   >
@@ -298,7 +318,7 @@
               <div
                 :class="[
                   'sgds:block sgds:w-full sgds:overflow-hidden',
-                  section.visual.fullWidth ? 'sgds:aspect-[976/656]' : '',
+                  section.visual.fullWidth && !section.visual.videoSrc ? 'sgds:aspect-[976/656]' : '',
                   section.visual.verticalPadding ? 'sgds:py-component-xs' : '',
                 ]"
               >
@@ -312,7 +332,9 @@
                   preload="metadata"
                   :poster="section.visual.posterSrc"
                   :aria-label="section.visual.alt"
-                  class="sgds:block sgds:aspect-video sgds:w-full sgds:rounded-lg sgds:object-contain"
+                  :width="section.visual.width"
+                  :height="section.visual.height"
+                  class="sgds:block sgds:h-auto sgds:max-w-full"
                 >
                   <source :src="section.visual.videoSrc" type="video/mp4" />
                 </video>
@@ -426,14 +448,13 @@
                     v-if="subsection.visual && subsection.visualAfterParagraph === paragraphIndex + 1"
                     class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
                   >
-                    <div class="sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden">
-                      <img
-                        :src="subsection.visual.src"
-                        :alt="subsection.visual.alt"
-                        :width="subsection.visual.width"
-                        :height="subsection.visual.height"
-                        class="sgds:block sgds:h-auto sgds:w-full sgds:object-contain"
-                      />
+                    <div
+                      :class="[
+                        'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                        framedVisualClass(subsection.visual),
+                      ]"
+                    >
+                      <StoryVisualMedia :visual="subsection.visual" />
                     </div>
                     <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
                       <span
@@ -474,18 +495,39 @@
                 v-if="subsection.visual && !subsection.visualAfterParagraph"
                 class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
               >
-                <div class="sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden">
-                  <img
-                    :src="subsection.visual.src"
-                    :alt="subsection.visual.alt"
-                    :width="subsection.visual.width"
-                    :height="subsection.visual.height"
-                    class="sgds:block sgds:h-auto sgds:w-full sgds:object-contain"
-                  />
+                <div
+                  :class="[
+                    'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                    framedVisualClass(subsection.visual),
+                  ]"
+                >
+                  <StoryVisualMedia :visual="subsection.visual" />
                 </div>
                 <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
                   <span
                     v-for="part in highlightedTimingParts(subsection.visual.caption)"
+                    :key="part.key"
+                    :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                  >
+                    {{ part.text }}
+                  </span>
+                </figcaption>
+              </figure>
+              <figure
+                v-if="subsection.postVisual"
+                class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
+              >
+                <div
+                  :class="[
+                    'sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden',
+                    framedVisualClass(subsection.postVisual),
+                  ]"
+                >
+                  <StoryVisualMedia :visual="subsection.postVisual" />
+                </div>
+                <figcaption class="sgds:m-0 sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
+                  <span
+                    v-for="part in highlightedTimingParts(subsection.postVisual.caption)"
                     :key="part.key"
                     :class="part.highlighted ? 'sgds:font-semibold' : ''"
                   >
@@ -523,7 +565,11 @@
             v-if="section.comparisonTable"
             class="sgds:flex sgds:w-full sgds:max-w-container-lg sgds:flex-col sgds:gap-component-md"
           >
-            <sgds-table tableBorder headerBackground>
+            <sgds-table
+              :tableBorder="section.comparisonTable.tableBorder"
+              :headerBackground="section.comparisonTable.headerBackground"
+              :responsive="section.comparisonTable.responsive"
+            >
               <sgds-table-row>
                 <sgds-table-head
                   v-for="column in section.comparisonTable.columns"
@@ -546,7 +592,7 @@
             </sgds-table>
             <p
               v-if="section.comparisonTable.callout"
-              class="sgds:m-0 sgds:text-body-lg sgds:font-semibold sgds:leading-md sgds:tracking-normal sgds:text-body-default"
+              class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
             >
               {{ section.comparisonTable.callout }}
             </p>
@@ -564,7 +610,7 @@
             <div
               :class="[
                 'sgds:block sgds:w-full sgds:overflow-hidden',
-                section.visual.fullWidth ? 'sgds:aspect-[976/656]' : '',
+                section.visual.fullWidth && !section.visual.videoSrc ? 'sgds:aspect-[976/656]' : '',
                 section.visual.verticalPadding ? 'sgds:py-component-xs' : '',
               ]"
             >
@@ -578,7 +624,9 @@
                 preload="metadata"
                 :poster="section.visual.posterSrc"
                 :aria-label="section.visual.alt"
-                class="sgds:block sgds:aspect-video sgds:w-full sgds:rounded-lg sgds:object-contain"
+                :width="section.visual.width"
+                :height="section.visual.height"
+                class="sgds:block sgds:h-auto sgds:max-w-full"
               >
                 <source :src="section.visual.videoSrc" type="video/mp4" />
               </video>
@@ -750,7 +798,7 @@
               </div>
             </section>
 
-            <section v-if="post.closing.length" class="sgds:py-layout-md">
+            <section v-if="post.closing.length" class="sgds:pt-0 sgds:pb-layout-md">
               <div class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md">
                 <p
                   v-for="paragraph in post.closing"
@@ -770,6 +818,23 @@
                     {{ part.text }}
                   </span>
                 </p>
+              </div>
+            </section>
+
+            <section v-if="post.disclaimer" class="sgds:py-layout-md">
+              <div class="sgds:max-w-container-md sgds:bg-alternate sgds:p-component-sm">
+                <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+                  <h2 class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                    {{ post.disclaimer.title }}
+                  </h2>
+                  <p
+                    v-for="paragraph in post.disclaimer.paragraphs"
+                    :key="paragraph"
+                    class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle"
+                  >
+                    {{ paragraph }}
+                  </p>
+                </div>
               </div>
             </section>
           </div>
@@ -798,14 +863,23 @@
       <div class="sgds-container">
         <div class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:items-start sgds:gap-component-md">
           <div
-            v-if="post.relatedArticle"
+            v-if="relatedArticles.length"
             class="sgds:flex sgds:flex-col sgds:gap-text-xs"
           >
             <p class="sgds:m-0 sgds:text-body-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-body-default">
-              We explored this shift further in:
+              {{ post.relatedHeading ?? "We explored this shift further in:" }}
             </p>
-            <sgds-link>
-              <a :href="post.relatedArticle.href">→ {{ post.relatedArticle.title }}</a>
+            <sgds-link
+              v-for="article in relatedArticles"
+              :key="article.href"
+            >
+              <a
+                :href="article.href"
+                :target="isExternalHref(article.href) ? '_blank' : undefined"
+                :rel="isExternalHref(article.href) ? 'noreferrer' : undefined"
+              >
+                → {{ article.title }}
+              </a>
             </sgds-link>
           </div>
           <p class="sgds:m-0 sgds:text-body-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle">
@@ -827,8 +901,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { getStoryPost, type StoryMatrixCell } from "../data/stories";
+import { computed, defineComponent, h, ref, watch, type PropType } from "vue";
+import { getStoryPost, type StoryMatrixCell, type StoryRelatedArticle, type StorySection, type StoryVisual } from "../data/stories";
 import FigmaMcpFlowDiagram from "./ai/FigmaMcpFlowDiagram.vue";
 import Footer from "./layout/Footer.vue";
 import Mainnav from "./layout/Mainnav.vue";
@@ -838,6 +912,133 @@ const props = defineProps<{
 }>();
 
 const post = computed(() => getStoryPost(props.storyKey));
+
+const inlineSvgMarkupBySrc = ref<Record<string, string>>({});
+
+const isInlineSvgVisual = (visual?: StoryVisual) =>
+  Boolean(visual?.inlineSvg && visual.src.endsWith(".svg"));
+
+const inlineSvgMarkup = (visual: StoryVisual) => inlineSvgMarkupBySrc.value[visual.src] ?? "";
+
+const framedVisualClass = (visual?: StoryVisual) => {
+  if (!visual?.framed) return "";
+
+  return [
+    "sgds:rounded-lg sgds:border sgds:border-muted sgds:bg-alternate",
+    visual.compactFrame ? "sgds:p-2" : "sgds:p-component-xs",
+  ].join(" ");
+};
+
+const storySectionClass = (section: StorySection, sectionIndex: number) => {
+  const story = post.value;
+  const isLastSectionBeforeClosing = Boolean(
+    story?.closing.length && sectionIndex === story.sections.length - 1,
+  );
+
+  if (section.headingLevel === "h3") {
+    return isLastSectionBeforeClosing
+      ? "sgds:pt-layout-xs sgds:pb-layout-xs"
+      : "sgds:py-layout-xs";
+  }
+
+  return isLastSectionBeforeClosing
+    ? "sgds:pt-layout-md sgds:pb-layout-xs"
+    : "sgds:py-layout-md";
+};
+
+const StoryVisualMedia = defineComponent({
+  name: "StoryVisualMedia",
+  props: {
+    visual: {
+      type: Object as PropType<StoryVisual>,
+      required: true,
+    },
+  },
+  setup(componentProps) {
+    return () => {
+      const markup = inlineSvgMarkup(componentProps.visual);
+      const mediaClass = "sgds:block sgds:h-auto sgds:w-full sgds:object-contain";
+
+      if (markup) {
+        return h("div", {
+          class: mediaClass,
+          role: "img",
+          "aria-label": componentProps.visual.alt,
+          innerHTML: markup,
+        });
+      }
+
+      return h("img", {
+        src: componentProps.visual.src,
+        alt: componentProps.visual.alt,
+        width: componentProps.visual.width,
+        height: componentProps.visual.height,
+        class: mediaClass,
+      });
+    };
+  },
+});
+
+const inlineSvgSources = computed(() => {
+  const story = post.value;
+  const sources = new Set<string>();
+  const collect = (visual?: StoryVisual) => {
+    if (isInlineSvgVisual(visual)) sources.add(visual.src);
+  };
+
+  if (!story) return [];
+
+  story.sections.forEach((section) => {
+    collect(section.titleVisual);
+    collect(section.bodyVisual);
+    collect(section.visual);
+    section.subsections?.forEach((subsection) => {
+      collect(subsection.visual);
+      collect(subsection.postVisual);
+    });
+  });
+
+  return [...sources];
+});
+
+const loadInlineSvg = async (src: string) => {
+  if (typeof window === "undefined" || inlineSvgMarkupBySrc.value[src]) return;
+
+  try {
+    const response = await fetch(src);
+    if (!response.ok) return;
+
+    const markup = await response.text();
+    if (!markup.trimStart().startsWith("<svg")) return;
+
+    inlineSvgMarkupBySrc.value = {
+      ...inlineSvgMarkupBySrc.value,
+      [src]: markup,
+    };
+  } catch {
+    // Keep the image fallback if a local SVG cannot be fetched.
+  }
+};
+
+watch(
+  inlineSvgSources,
+  (sources) => {
+    sources.forEach((src) => void loadInlineSvg(src));
+  },
+  { immediate: true },
+);
+
+const relatedArticles = computed<StoryRelatedArticle[]>(() => {
+  const story = post.value;
+
+  if (!story) return [];
+  if (story.relatedArticles?.length) return story.relatedArticles;
+  if (story.relatedArticle) return [story.relatedArticle];
+
+  return [];
+});
+
+const isExternalHref = (href: string) => /^https?:\/\//.test(href);
 
 const sectionId = (title: string) =>
   title

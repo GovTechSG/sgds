@@ -27,6 +27,7 @@ export type StorySubsection = {
   labelledList?: StoryLabelledListItem[];
   visual?: StoryVisual;
   visualAfterParagraph?: number;
+  postVisual?: StoryVisual;
   postVisualParagraphs?: string[];
   postVisualList?: string[];
 };
@@ -40,6 +41,9 @@ export type StoryComparisonTable = {
   columns: string[];
   rows: string[][];
   callout?: string;
+  tableBorder?: boolean;
+  headerBackground?: boolean;
+  responsive?: "sm" | "md" | "lg" | "xl" | "always";
 };
 
 export type StoryBoxedContent = {
@@ -60,6 +64,9 @@ export type StoryVisual = {
   videoAutoplay?: boolean;
   fullWidth?: boolean;
   verticalPadding?: boolean;
+  framed?: boolean;
+  compactFrame?: boolean;
+  inlineSvg?: boolean;
 };
 
 export type StoryMetric = {
@@ -106,9 +113,17 @@ export type StoryPost = {
   metrics: StoryMetric[];
   closing: string[];
   closingEmphasis?: boolean;
+  disclaimer?: StoryDisclaimer;
   ctaLabel?: string;
   ctaHref?: string;
+  relatedHeading?: string;
   relatedArticle?: StoryRelatedArticle;
+  relatedArticles?: StoryRelatedArticle[];
+};
+
+export type StoryDisclaimer = {
+  title: string;
+  paragraphs: string[];
 };
 
 export type StoryRelatedArticle = {
@@ -124,8 +139,8 @@ export const storyPosts: StoryPost[] = [
     description:
       "SGDS agent skills encode our design, development, and UX writing guidance so AI can produce SGDS-aligned, accessible UI from the start.",
     href: "/stories/introducing-sgds-agent-skills",
-    imageSrc: "/stories/sgds-agent-skills-knowledge-flow-poster.jpg",
-    imageAlt: "SGDS knowledge files flowing into an AI agent",
+    imageSrc: "/stories/introducing-sgds-agent-skills-thumbnail.png",
+    imageAlt: "Prompt card reading Build a trusted and accessible government experience using SGDS V3",
     published: "May 2026",
     author: "Singapore Government Design System team",
     intro: [],
@@ -141,10 +156,10 @@ export const storyPosts: StoryPost[] = [
       {
         title: "A design system, packed into skills",
         titleVisual: {
-          src: "/stories/sgds-agent-skills-knowledge-flow-poster.jpg",
+          src: "/stories/introducing-sgds-agent-skills-thumbnail.png",
           videoSrc: "/stories/sgds-agent-skills-knowledge-flow.mp4",
-          posterSrc: "/stories/sgds-agent-skills-knowledge-flow-poster.jpg",
-          alt: "SGDS knowledge files flowing into an AI agent",
+          posterSrc: "/stories/introducing-sgds-agent-skills-thumbnail.png",
+          alt: "Prompt card reading Build a trusted and accessible government experience using SGDS V3",
           caption:
             "SGDS skills turn design, development, and writing guidance into AI-readable context.",
         },
@@ -231,8 +246,8 @@ export const storyPosts: StoryPost[] = [
           alt: "Screen recording of an SGDS helpdesk site created with SGDS agent skills",
           caption:
             "Reviewing the generated helpdesk site for responsive layouts and SGDS compliance.",
-          width: 1600,
-          height: 690,
+          width: 1248,
+          height: 688,
           videoControls: true,
           videoAutoplay: true,
         },
@@ -263,7 +278,7 @@ export const storyPosts: StoryPost[] = [
     matrix: {
       title: "Speed changes the risk",
       description:
-        "AI helps teams produce interfaces faster. That speed can reduce effort when a design system guides the work. Without a design system, the same speed can also multiply inconsistent and less compliant services.",
+        "When AI works with SGDS guidance, teams can spend less time correcting basic inconsistencies and more time reviewing the service experience.",
       columns: ["With SGDS", "Without SGDS"],
       rows: ["With AI", "Without AI"],
       cells: [
@@ -323,12 +338,13 @@ export const storyPosts: StoryPost[] = [
         description: "The skills guide AI. They do not add code to your product.",
       },
     ],
-    closing: [
-      "In simple terms, using SGDS leads to more compliant designs. That, in turn, helps build trust in government digital services.",
-    ],
-    closingEmphasis: true,
+    closing: [],
     ctaLabel: "View implementation guide",
     ctaHref: "/ai/skills",
+    relatedArticle: {
+      title: "AI can scale delivery. It can also scale inconsistency.",
+      href: "/stories/ai-can-scale-delivery-and-inconsistency",
+    },
   },
   {
     key: "what-sgds-is-often-mistaken-for",
@@ -337,8 +353,8 @@ export const storyPosts: StoryPost[] = [
     description:
       "Why SGDS is more than a component library, and how shared foundations support coherent government services at scale.",
     href: "/stories/what-sgds-is-often-mistaken-for",
-    imageSrc: "/stories/sgds-agent-skills-knowledge-flow-poster.jpg",
-    imageAlt: "SGDS guidance cards arranged around a central idea",
+    imageSrc: "/stories/sgds-mistaken-for-thumbnail.png",
+    imageAlt: "Layered translucent planes representing SGDS foundations",
     published: "May 2026",
     author: "Singapore Government Design System team",
     intro: [],
@@ -372,6 +388,8 @@ export const storyPosts: StoryPost[] = [
             ["Flexible UI patterns", "Standardised interactions"],
           ],
           callout: "Without shared foundations, speed scales inconsistency.",
+          tableBorder: true,
+          headerBackground: true,
         },
       },
       {
@@ -474,88 +492,106 @@ export const storyPosts: StoryPost[] = [
     description:
       "How teams can use shared foundations to scale speed without scaling fragmented government services.",
     href: "/stories/ai-can-scale-delivery-and-inconsistency",
-    imageSrc: "/stories/sgds-agent-skills-knowledge-flow-poster.jpg",
-    imageAlt: "AI-generated interface drafts branching into different directions",
+    imageSrc: "/stories/ai-scale-delivery-thumbnail.svg",
+    imageAlt: "AI can scale delivery title on a soft gradient background",
     published: "May 2026",
     author: "Singapore Government Design System team",
-    intro: [
-      "AI is changing how digital services are built.",
-      "Interfaces that once took weeks to prototype can now be scaffolded in minutes. Teams can generate layouts, frontend structures, and workflows much faster than before.",
-      "The barrier to building digital products is rapidly decreasing. This creates new opportunities for teams to experiment, iterate, and deliver services more quickly.",
-      "As delivery accelerates, another challenge becomes more visible.",
-      "AI scales implementation decisions alongside delivery speed.",
-    ],
+    intro: [],
     sections: [
       {
-        title: "Every generated interface contains many decisions",
+        title: "The challenge of consistency at scale",
         paragraphs: [
-          "Every generated interface contains hundreds of small decisions, including layout structures, interaction patterns, accessibility handling, validation behaviour, content hierarchy, responsive behaviour, and error states.",
-          "When teams build manually, these differences emerge gradually over time.",
-          "With AI-assisted development, variation can multiply much more quickly.",
-          "Two teams solving similar problems may now generate different implementations, even when the underlying user need is similar.",
-          "Over time, this can lead to fragmentation across services.",
-        ],
-        list: [
-          "Inconsistent interaction patterns",
-          "Uneven accessibility quality",
-          "Duplicated frontend decisions",
-          "Fragmented experiences across services",
+          "The barrier to building digital products is decreasing with AI-assisted workflows, creating new opportunities for teams to experiment more quickly, iterate more freely, and reduce repetitive implementation work.",
+          "Consistency was already a challenge before AI. Different teams often make different decisions about layout, components, content, validation, and service behaviour because they are working with different constraints.",
+          "AI changes the pace and volume of those decisions. As interfaces become easier and faster to generate, existing inconsistencies can multiply and spread more quickly across products and teams. In this post, we will look at how faster generation affects consistency across government services, and why shared foundations become increasingly important as delivery continues to scale.",
         ],
       },
       {
-        title: "The challenge is speed with coherence",
+        title: "When small differences multiply",
         paragraphs: [
-          "The challenge increasingly becomes how teams can scale delivery speed while maintaining coherent experiences across the ecosystem.",
+          "AI-assisted workflows produce more than screens. They also make decisions about layout, spacing, forms, validation, accessibility handling, content hierarchy, responsive behaviour, and interaction patterns. Those decisions may be reasonable in isolation. Without shared guidance, similar service problems can still produce different answers.",
+          "At a smaller scale, teams can review and align those differences manually. At AI-assisted delivery speed, the same differences can appear across more screens, prototypes, and code changes in a shorter time.",
+          "This often shows up in everyday interface details.",
+        ],
+        subsections: [
+          {
+            title: "Interaction behaviour",
+            paragraphs: [
+              "One place this appears is the form error experience. Teams decide validation rules, when errors appear, and how users recover from mistakes. SGDS provides components and patterns for what users see, including error placement, labels, helper text, and visual treatment.",
+              "When these visible patterns differ across services, similar tasks can feel less predictable across touchpoints.",
+            ],
+            visual: {
+              src: "/stories/ai-scale-interaction-behaviour-many.svg",
+              alt: "Diagram showing different generated interaction behaviours for similar form tasks",
+              caption:
+                "Examples of form error states with different placements, labels, and visual treatments.",
+              width: 1070,
+              height: 626,
+              framed: true,
+              compactFrame: true,
+              inlineSvg: true,
+            },
+            postVisualParagraphs: [
+              "These differences may look minute on one screen, but across many services, they affect how easily users recognise an error state and understand what to do next.",
+            ],
+          },
+          {
+            title: "Action patterns",
+            paragraphs: [
+              "Even simple actions carry design decisions. A form may have the same goal, but teams still decide where to place submit and cancel actions, which action appears first, and how the primary action is styled.",
+              "Without a shared pattern, AI-generated screens can produce many versions of the same task. Users may need to re-learn the order, placement, and hierarchy of actions across services.",
+              "With a common foundation, teams can create experiences that feel familiar to users while still adapting the visual style to their product identity. SGDS keeps common patterns consistent without requiring every product to look the same.",
+            ],
+            visual: {
+              src: "/stories/ai-scale-action-patterns-many.svg",
+              alt: "Diagram showing an SGDS action pattern branching into many generated variations",
+              caption:
+                "Examples of submit and cancel actions with different order and placement.",
+              width: 1030,
+              height: 780,
+              framed: true,
+              inlineSvg: true,
+            },
+            visualAfterParagraph: 1,
+            postVisual: {
+              src: "/stories/ai-scale-action-patterns-one.svg",
+              alt: "Diagram showing products retaining their own style while following the same SGDS action pattern",
+              caption:
+                "Product examples using the same action placement and hierarchy with different visual styles.",
+              width: 1030,
+              height: 700,
+              framed: true,
+              inlineSvg: true,
+            },
+            postVisualParagraphs: [
+              "The visual identity can change from product to product, while the underlying action pattern remains recognisable. This helps users understand the task without needing every service to look identical.",
+            ],
+          },
+          {
+            title: "Variation becomes harder to manage",
+            paragraphs: [
+              "Before AI, these differences already needed review and alignment. AI increases the pace at which they appear, and more generated interfaces can also mean more generated decisions about patterns, tokens, content, and behaviour.",
+              "If teams only review after those decisions have spread, correction effort grows. The work shifts from designing one interface to keeping many variations aligned.",
+            ],
+          },
         ],
       },
       {
-        title: "AI is very good at generating patterns",
-        paragraphs: [
-          "Modern AI tools are trained across large collections of products, frameworks, and frontend conventions.",
-          "As a result, AI is highly effective at producing plausible interfaces, polished UI patterns, reusable frontend structures, and modern interaction models.",
-          "Government services operate within a more specific context.",
-          "They require experiences that are accessible, coherent, trustworthy, maintainable, and recognisably government.",
-          "These are behavioural and operational expectations. They shape how citizens experience digital services across agencies over time.",
-          "Without shared foundations, AI naturally optimises towards locally generated outputs. This can gradually introduce variation across the broader ecosystem.",
+        title: "Consistency in the workflow, but how?",
+        paragraphs: [],
+        paragraphsHtml: [
+          "By the time a generated interface reaches review, many design and implementation decisions may already be in place. Teams can still correct them, but the work becomes harder when the same differences have already spread across screens, prototypes, and code.",
+          "Ideally, teams bring guidance in before generation starts. For teams on other design systems, or teams without a design system, the SGDS team is exploring migration skills as part of <a href=\"/ai/skills\">SGDS agent skills</a>. The aim is to lower the barrier to adopting SGDS later. This needs careful consideration, because migration is more than a component swap. It should protect the product experience and avoid introducing changes that disrupt the codebase.",
+          "When guidance is available earlier, review can focus less on basic alignment and more on whether the service works well for its users.",
         ],
       },
       {
-        title: "Existing coordination challenges become more visible at scale",
+        title: "Keep product identity, align repeated tasks",
         paragraphs: [
-          "Even before AI-assisted workflows became common, teams were already navigating different implementation approaches, accessibility handling, frontend workflows, delivery timelines, and design system interpretation.",
-          "As delivery becomes faster and more distributed, these differences can scale more quickly across teams and services.",
-          "This increases the importance of shared systems and connected workflows.",
-          "Traditionally, design systems helped teams standardise interfaces. Today, they also help teams coordinate implementation decisions across workflows.",
-          "Shared foundations provide common interaction patterns, accessibility guidance, reusable implementation structures, and familiar experiences across services.",
-          "These foundations become especially important when interfaces can be generated rapidly at scale.",
-          "When every team can build quickly, consistency needs to be intentionally supported through connected systems, reusable patterns, and shared guidance.",
-        ],
-      },
-      {
-        title: "The future challenge is coordination at scale",
-        paragraphs: [
-          "The industry is entering a phase where generating interfaces and workflows is becoming significantly easier.",
-          "As AI reduces the effort required to produce implementation outputs, the focus increasingly shifts towards maintaining coherence, accessibility, predictability, and trust across distributed delivery environments.",
-          "This is particularly important in government services. Citizens experience services collectively as part of one broader ecosystem.",
-          "Citizens experience the overall quality and consistency of government services as a whole, regardless of agency, implementation approach, frontend framework, or delivery team.",
-        ],
-      },
-      {
-        title: "Building faster together",
-        paragraphs: [
-          "AI creates opportunities for teams to move faster, experiment more, and reduce repetitive work.",
-          "Shared operational foundations help teams maintain consistency, accessibility, and coherence as delivery scales.",
-          "Strong systems reduce the need to repeatedly solve common implementation problems from scratch.",
-          "This creates more space for teams to focus on service-specific needs and meaningful product improvements.",
-        ],
-      },
-      {
-        title: "Designing for the AI era",
-        paragraphs: [
-          "As AI becomes increasingly embedded into digital delivery workflows, the role of design systems continues evolving alongside it.",
-          "Design systems are becoming shared coordination layers that help experiences remain coherent, accessible, trustworthy, and recognisably part of the same ecosystem, even as delivery speed continues increasing.",
-          "AI can scale delivery.",
-          "Shared foundations help experiences scale coherently alongside it.",
+          "Government products can maintain their own service identity while aligning on common patterns across repeated service tasks. Many parts of digital services are inherently reusable and help support more consistent implementation across teams.",
+          "Services do not need to look identical. Teams should still make decisions based on their users, policies, operational requirements, and service context.",
+          "The goal is to provide clearer foundations and implementation guidance so teams and AI-assisted workflows can make better first decisions before inconsistencies scale across products and services.",
+          "As interface generation becomes faster, consistency increasingly depends on the quality of the shared systems, guidance, and reusable patterns embedded within delivery workflows.",
         ],
       },
     ],
@@ -576,10 +612,7 @@ export const storyPosts: StoryPost[] = [
         description: "Shared guidance helps teams scale speed with consistency.",
       },
     ],
-    closing: [
-      "AI changes the speed of delivery. It also changes the speed at which decisions spread.",
-      "Shared foundations help teams use that speed responsibly, so government services remain coherent, accessible, and trusted.",
-    ],
+    closing: [],
     ctaLabel: "Explore SGDS and AI",
     ctaHref: "/ai/overview",
   },
@@ -588,204 +621,160 @@ export const storyPosts: StoryPost[] = [
     category: "Research",
     title: "The learning curve before AI",
     description:
-      "Research notes on how teams adopted SGDS before AI-assisted workflows became part of everyday product delivery.",
+      "What our research showed about how teams adopted SGDS before AI-assisted delivery became part of the workflow.",
     href: "/stories/the-learning-curve-before-ai",
-    imageSrc: "/stories/sgds-agent-skills-knowledge-flow-poster.jpg",
-    imageAlt: "Research notes showing SGDS adoption questions",
+    imageSrc: "/stories/learning-curve-before-ai-thumbnail.svg",
+    imageAlt: "The learning curve before AI title on a soft gradient background",
     published: "May 2026",
     author: "Singapore Government Design System team",
-    intro: [
-      "Before AI-assisted workflows became part of product delivery conversations, we wanted to better understand how teams were using SGDS in real project environments.",
-      "The research focused on practical questions.",
-      "Which parts of SGDS felt intuitive? Which parts took more effort to apply? How well did design and development workflows connect during actual delivery work?",
-      "Most teams already understood the importance of accessibility, consistency, responsiveness, and DSS compliance.",
-      "Teams were actively trying to build services aligned with these principles while balancing delivery timelines, existing workflows, and project constraints.",
-    ],
+    intro: [],
     sections: [
       {
-        title: "The reality of government delivery",
+        title: "What we wanted to learn",
         paragraphs: [
-          "Many government product teams work within tight timelines and small team sizes.",
-          "Frontend resources can also vary significantly across projects.",
-          "At the same time, services are expected to meet high standards for accessibility, responsiveness, readability, consistency, and DSS compliance.",
-          "For some teams, applying SGDS meant navigating multiple layers of information across design, frontend implementation, accessibility, responsive behaviour, and component usage while delivering active projects.",
-        ],
-      },
-      {
-        title: "What we observed",
-        paragraphs: [
-          "We ran multiple rounds of usability testing and workflow studies across design and development workflows.",
-          "One pattern became increasingly visible over time.",
-          "Teams were often figuring out how to apply guidance consistently within day-to-day delivery work.",
-          "Designers and developers were frequently operating within different tools and workflows.",
-          "Designers expected components in Figma to behave close to real implementation. They also needed components to remain visually editable and support quick iteration.",
+          "Before AI-assisted workflows became part of product delivery conversations, we wanted to understand how teams adopted and used SGDS during real project work.",
+          "Most teams already recognised the value of accessibility, consistency, and compliance. They were also trying to build services aligned with those principles.",
+          "From there, we focused on the delivery experience:",
         ],
         list: [
-          "Components behave close to real implementation",
-          "Components remain visually editable",
-          "Workflows support quick iteration",
+          "Which parts of SGDS felt intuitive?",
+          "Which parts took more effort to apply?",
+          "How well did design and development workflows connect?",
+          "Where did teams spend the most coordination effort during delivery?",
+        ],
+        postVisualParagraphs: [
+          "The larger effort came from applying guidance consistently within active delivery environments.",
         ],
       },
       {
-        title: "Developers were navigating different constraints",
+        title: "The findings",
         paragraphs: [
-          "Developers were navigating a different set of constraints.",
-        ],
-        list: [
-          "Framework constraints",
-          "Responsive logic",
-          "Accessibility requirements",
-          "Component APIs",
-          "Token systems",
+          "The main finding was that adoption depended on how SGDS worked within everyday delivery.",
+          "Design intent, implementation behaviour, team capability, documentation, and local workflows all had to align before a service could feel coherent.",
         ],
       },
       {
-        title: "Manual interpretation still sat between both sides",
+        title: "Designers and developers were often operating in separate systems",
+        headingLevel: "h3",
         paragraphs: [
-          "Both disciplines were working towards the same outcome.",
-          "Connecting design intent to implementation still required significant manual interpretation across the workflow.",
+          "Designers and developers often worked in different tools, workflows, and implementation contexts.",
+          "The clearest gap was between design intent and implementation. Designers expected SGDS components to behave in one context. Developers had to rebuild that behaviour in another.",
+          "The SGDS component sat between visual design context and development context. Teams still had to translate intent into working code.",
+        ],
+        comparisonTable: {
+          columns: ["Topic", "Designers expected", "Developers executed"],
+          rows: [
+            [
+              "Learning curve",
+              "Use visual templates and compose screens quickly.",
+              "Find working code examples and implementation patterns.",
+            ],
+            [
+              "Customisation",
+              "Adjust layouts visually, sometimes detaching components to fit the scenario.",
+              "Map those changes to tokens, component APIs, and SGDS utilities.",
+            ],
+            [
+              "Responsive UX",
+              "Expect designs to reflect responsive behaviour clearly.",
+              "Implement dynamic resizing and states that static designs do not show.",
+            ],
+          ],
+          responsive: "always",
+          headerBackground: true,
+          callout:
+            "Documentation helped teams understand the system. Teams still needed a better bridge between design intent and implementation.",
+        },
+        postVisualParagraphs: [
+          "Even though teams used documentation regularly, guidance often sat outside the moment of delivery. Teams had to move between design files, documentation, code examples, accessibility references, and project requirements.",
+          "Each switch added interpretation work. Across larger projects, that coordination effort became part of the learning curve.",
         ],
       },
       {
-        title: "Earlier tooling limitations also shaped the workflow",
+        title: "Standards still had to fit delivery",
+        headingLevel: "h3",
         paragraphs: [
-          "At the time, earlier Figma workflows also introduced some practical limitations.",
-          "Using components directly from the library was not always flexible enough for every product scenario.",
-          "Designers sometimes detached components to adapt layouts, customise interactions, or move faster within project constraints.",
-          "This meant teams were not always working with components in the most reusable or intended way, even while trying to maintain consistency across products.",
-          "Over time, this improved significantly.",
-          "Newer Figma capabilities made it easier for teams to stay closer to shared system foundations while still adapting designs to their product needs.",
-        ],
-        list: [
-          "Variables",
-          "Improved component properties",
-          "More flexible component workflows",
+          "Teams understood the value of SGDS. The challenge was applying shared standards while working within timelines, frontend capacity, inherited patterns, and product constraints.",
+          "This meant adoption depended on how well SGDS fit into day-to-day delivery work.",
         ],
       },
       {
-        title: "Documentation was one part of a much larger workflow",
+        title: "Skill gaps increased delivery effort",
+        headingLevel: "h3",
         paragraphs: [
-          "Another observation from the research was that teams were already using documentation regularly.",
-          "Applying the guidance during active project work still required teams to move between several sources.",
-        ],
-        list: [
-          "Design files",
-          "Implementation examples",
-          "Accessibility references",
-          "Frontend frameworks",
-          "Delivery requirements",
+          "The research also showed how much delivery depended on available frontend and design expertise.",
+          "Some teams had limited in-house support to interpret standards across design and code. Others relied heavily on engineers for small UI changes.",
+          "Guidelines still had to be translated manually into working interfaces. Teams also had limited low-code or no-code tools that understood government compliance needs.",
+          "This increased the effort needed to build consistent, user-friendly digital services efficiently.",
         ],
       },
       {
-        title: "Context switching added coordination effort",
+        title: "Local workflows solved immediate problems",
+        headingLevel: "h3",
         paragraphs: [
-          "Each transition required additional context switching and interpretation.",
-          "Across larger projects and multiple teams, this coordination effort accumulated over time.",
+          "Under delivery pressure, teams sometimes used local workarounds.",
+          "Some adapted SGDS components. Some detached design components. Others built custom patterns or used familiar implementation approaches.",
+          "These decisions often made sense within a single project. Over time, they could make services less aligned across the wider ecosystem.",
         ],
       },
       {
-        title: "Why local workflows sometimes felt easier",
+        title: "What the research taught us",
         paragraphs: [
-          "Under delivery pressure, some teams adopted local workflows.",
-        ],
-        list: [
-          "Internal design systems",
-          "Custom implementations",
-          "Static component libraries",
-          "Alternative UI frameworks",
-        ],
-      },
-      {
-        title: "Adoption depended on fit",
-        paragraphs: [
-          "In many cases, local workflows simply felt more familiar or easier to apply within existing project setups and timelines.",
-          "The research showed that adoption was closely tied to how naturally SGDS fit into day-to-day workflows, tooling environments, and implementation practices.",
-        ],
-      },
-      {
-        title: "Much of the learning curve was coordination work",
-        paragraphs: [
-          "One of the strongest findings from the research was that many challenges were operational and cross-functional in nature.",
-          "Teams frequently had to manually connect several parts of delivery work.",
-        ],
-        list: [
-          "Design intent",
-          "Implementation behaviour",
-          "Accessibility expectations",
-          "Compliance guidance",
-        ],
-      },
-      {
-        title: "The information was spread across the workflow",
-        paragraphs: [
-          "These pieces of information often existed across different tools, documents, and workflows.",
-          "Looking back, much of the SGDS learning curve before AI came from the amount of coordination required between design and code, guidance and implementation, and standards and delivery timelines.",
-        ],
-      },
-      {
-        title: "AI changes the conversation",
-        paragraphs: [
-          "This is also why AI changes the conversation today.",
-          "AI introduces opportunities for more connected workflows between designers, developers, documentation, and implementation systems.",
-          "What previously required searching across multiple systems can increasingly become more direct support.",
-        ],
-        list: [
-          "Contextual guidance",
-          "Implementation assistance",
-          "Connected workflows",
-          "System-aware generation",
-        ],
-      },
-      {
-        title: "The path is becoming more connected",
-        paragraphs: [
-          "The learning curve does not disappear.",
-          "It remains part of adopting any shared system.",
-          "The workflow around it, however, is becoming significantly more connected.",
+          "The learning curve was about more than learning components. It was about applying shared decisions under real delivery conditions.",
+          "Teams needed SGDS guidance to be available in the tools they used and consistent across design and code.",
+          "AI-assisted SGDS workflows can start to reduce this gap by bringing guidance closer to active delivery. Human review remains part of the work.",
         ],
       },
     ],
     metrics: [
       {
-        value: "Many",
-        title: "Knowledge layers",
-        description: "Teams had to connect design, code, accessibility, and compliance guidance.",
+        value: "Standards",
+        title: "Shared expectations",
+        description: "Teams understood the value of accessibility, consistency, and DSS compliance.",
       },
       {
-        value: "High",
-        title: "Translation effort",
-        description: "Design intent still needed to become compliant implementation.",
+        value: "Translation",
+        title: "Execution gap",
+        description: "Design intent still had to be translated into compliant implementation.",
       },
       {
-        value: "Lower",
-        title: "Future friction",
-        description: "AI can bring SGDS guidance closer to delivery work.",
+        value: "Workflow",
+        title: "Adoption depended on fit",
+        description: "SGDS worked best when guidance fit naturally into delivery work.",
       },
     ],
-    closing: [
-      "The pre-AI learning curve showed us where SGDS knowledge was hard to apply under real delivery constraints.",
-      "AI-assisted workflows can bring that knowledge closer to the moment of delivery.",
+    closing: [],
+    ctaLabel: "Explore SGDS and AI",
+    ctaHref: "/ai/overview",
+    relatedArticles: [
+      {
+        title: "Introducing SGDS agent skills",
+        href: "/stories/introducing-sgds-agent-skills",
+      },
+      {
+        title: "Design and code, finally speaking the same language",
+        href: "/stories/design-and-code-finally-speaking-the-same-language",
+      },
     ],
-    ctaLabel: "View agent skills",
-    ctaHref: "/ai/skills",
   },
   {
-    key: "design-and-code-speaking-the-same-language",
+    key: "design-and-code-finally-speaking-the-same-language",
     category: "AI",
     title: "Design and code, finally speaking the same language",
     description:
-      "How SGDS v3, Figma MCP, Code Connect, and SGDS agent skills help design and development work from shared system context.",
-    href: "/stories/design-and-code-speaking-the-same-language",
-    imageSrc: "/stories/sgds-agent-skills-knowledge-flow-poster.jpg",
-    imageAlt: "Design and code connected through SGDS v3 foundations",
+      "How AI-assisted workflows can narrow the translation gap between design intent and implementation.",
+    href: "/stories/design-and-code-finally-speaking-the-same-language",
+    imageSrc: "/stories/design-code-speaking-thumbnail.svg",
+    imageAlt: "SGDS mark on a soft gradient background",
     published: "May 2026",
     author: "Singapore Government Design System team",
     intro: [],
     sections: [
       {
         title: "From handoff to shared systems",
-        paragraphs: [
-          "Traditionally, design handoff relied heavily on screenshots, annotations, walkthroughs, and manual interpretation.",
+        paragraphs: [],
+        paragraphsHtml: [
+          "Traditionally, design handoff relied heavily on screenshots, annotations, walkthroughs, and manual interpretation, as discussed in <a href=\"/stories/the-learning-curve-before-ai\">The learning curve before AI</a>.",
           "Designers created screens in Figma while thinking about hierarchy, interaction behaviour, accessibility, and user flows. Developers then translated those screens into implementation by interpreting spacing, responsive behaviour, component usage, and frontend logic.",
           "Over time, small differences naturally appeared across the workflow. Interaction patterns drifted, accessibility handling varied, and responsive behaviour changed between implementations.",
         ],
@@ -795,7 +784,7 @@ export const storyPosts: StoryPost[] = [
         paragraphs: [
           "One major shift in AI-assisted delivery is the move from static handoff to connected system context.",
           "Instead of relying only on screenshots and annotations, teams can give AI tools access to structured design information.",
-          "Figma MCP is one example. It allows coding agents to read information directly from the design file. This becomes more useful when the design file is built with SGDS v3 components, tokens, and patterns.",
+          "Figma MCP is one example. It allows coding agents to read information directly from the design file. When the design file uses SGDS v3 components, tokens, and patterns, the agent can read that system context as part of the design.",
         ],
         diagram: "figmaMcpFlow",
       },
@@ -805,7 +794,7 @@ export const storyPosts: StoryPost[] = [
         bodyVisual: {
           src: "/ai/figma-to-code.svg",
           alt: "Diagram showing design context flowing from Figma into SGDS implementation code",
-          caption: "Figma MCP helps carry structured design context into implementation.",
+          caption: "Figma MCP carries structured design context into implementation.",
           width: 976,
           height: 109,
           verticalPadding: true,
@@ -813,19 +802,19 @@ export const storyPosts: StoryPost[] = [
         paragraphs: [],
         paragraphsHtml: [
           "A designer working with SGDS can hand over screens through Figma MCP. This means that components inside Figma are no longer isolated from implementation.",
-          "With <a href=\"https://developers.figma.com/docs/code-connect/\" target=\"_blank\" rel=\"noreferrer\">Figma Code Connect</a>, those components also carry structured system context linked much more closely to implementation behaviour.",
+          "With <a href=\"https://developers.figma.com/docs/code-connect/\" target=\"_blank\" rel=\"noreferrer\">Figma Code Connect</a>, those components can carry structured system context that is linked to implementation behaviour.",
         ],
         visual: {
           src: "/stories/figma-code-connect-sgds-alert.png",
           alt: "Figma Code Connect view showing an SGDS alert design component beside its linked code component",
           caption:
-            "The design system is already connected across both design and development environments.",
+            "The design system can be connected across design and development environments.",
           width: 976,
           height: 656,
           fullWidth: true,
         },
         postVisualParagraphs: [
-          "This connection gives AI agents access to the same foundations:",
+          "This connection gives AI agents access to shared foundations:",
         ],
         postVisualList: [
           "Design tokens for colours, spacing, and other foundations",
@@ -834,23 +823,22 @@ export const storyPosts: StoryPost[] = [
         ],
       },
       {
-        title: "SGDS skills help coding agents understand the system",
+        title: "SGDS skills give coding agents system context",
         headingLevel: "h3",
         paragraphs: [],
         paragraphsHtml: [
-          "Implementation is the next part of the workflow. It becomes stronger when <a href=\"/ai/skills\">SGDS agent skills</a> are installed.",
-          "These skills give coding agents guidance on component usage, token foundations, layout patterns, content, and implementation structure.",
-          "Agents can then work with SGDS guidance instead of guessing. They can map components to patterns, reference tokens and utilities, and generate code that follows intended behaviour more closely.",
-          "This works best when designers and developers are both using SGDS.",
+          "Implementation is the next part of the workflow. When <a href=\"/ai/skills\">SGDS agent skills</a> are installed, these skills give coding agents guidance on component usage, token foundations, layout patterns, content, and implementation structure.",
+          "Agents can then reference SGDS guidance while working. They can map components to patterns, reference tokens and utilities, and generate code based on the intended behaviour.",
+          "This assumes that designers and developers are both using SGDS in the workflow.",
         ],
       },
       {
         title: "Sending code back to Figma",
         headingLevel: "h3",
         paragraphs: [
-          "Modern product development is gradually moving away from handoff as a one-way process.",
           "Implementation often evolves faster than design files. A developer may ship a feature, adjust a layout based on user feedback, or introduce new sections during development. Over time, the Figma file can drift away from what is running in production.",
-          "With Figma MCP, designers can bring implementation back into Figma when needed. A team can ask a coding agent to send the interface back to Figma and map it to SGDS components. The result can become editable layers that designers can review and refine.",
+          "This is one reason product development is gradually moving away from handoff as a one-way process.",
+          "With Figma MCP, designers can bring implementation back into Figma when needed. A team can ask a coding agent to send the interface back to Figma and map it to SGDS components. The result can be reviewed as editable layers in Figma.",
         ],
         visual: {
           src: "/ai/code-to-figma.svg",
@@ -861,14 +849,17 @@ export const storyPosts: StoryPost[] = [
           height: 50,
           verticalPadding: true,
         },
+        postVisualParagraphs: [
+          "Designers can then edit the parts needed for the task. When the design is ready, the updated direction can also be sent back to code.",
+        ],
       },
       {
         title: "A shared language for design, code, and AI",
         paragraphs: [
-          "The value of this workflow is consistency as much as speed.",
-          "SGDS components, tokens, Figma MCP, Code Connect, and agent skills help design and implementation use the same system context. Designers can create with components that reflect the codebase. Developers can build with clearer design intent. Agents can work from the same foundations instead of guessing.",
-          "Teams still need to review accessibility, interaction quality, content, and production behaviour. The difference is that less effort is spent translating decisions by hand.",
-          "That is where SGDS becomes more than a component library. It becomes a shared language for teams and the AI tools working with them.",
+          "This workflow is about keeping design and implementation context connected.",
+          "SGDS components, tokens, Figma MCP, Code Connect, and agent skills allow design and implementation to refer to the same system context. Designers can create with components that correspond to the codebase. Developers can refer to structured design intent. Agents can use the same component, token, and pattern references.",
+          "Teams still need to review accessibility, interaction quality, content, and production behaviour. The translation work between design and code still exists, but more of the context can be carried through the workflow.",
+          "In this model, SGDS acts as a shared reference across design, code, and AI-assisted work.",
         ],
       },
     ],
@@ -886,16 +877,33 @@ export const storyPosts: StoryPost[] = [
       {
         value: "SGDS v3",
         title: "Shared language",
-        description: "The system helps both sides work from the same decisions.",
+        description: "The system gives both sides a shared set of decisions.",
       },
     ],
     closing: [],
+    disclaimer: {
+      title: "Note",
+      paragraphs: [
+        "This post describes the general direction for how design and development collaboration can work with shared system context. MCP is still blocked for GovTech's Claude Code at the time of writing.",
+      ],
+    },
     ctaLabel: "View agent skills",
     ctaHref: "/ai/skills",
-    relatedArticle: {
-      title: "AI can scale delivery. It can also scale inconsistency",
-      href: "/stories/ai-can-scale-delivery-and-inconsistency",
-    },
+    relatedHeading: "Understand how it works:",
+    relatedArticles: [
+      {
+        title: "Claude Code + Figma, no MCP",
+        href: "https://www.intodesignsystems.com/blog/claude-code-figma-no-mcp",
+      },
+      {
+        title: "The Figma canvas is now open to agents",
+        href: "https://www.figma.com/blog/the-figma-canvas-is-now-open-to-agents/",
+      },
+      {
+        title: "SGDS agent skills",
+        href: "/ai/skills",
+      },
+    ],
   },
   {
     key: "near-term-promise-of-sgds-v3",

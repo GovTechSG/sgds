@@ -17,7 +17,7 @@
             >
               <div
                 :class="[
-                  'flow-node-box sgds:inline-flex sgds:w-full sgds:items-center sgds:justify-center sgds:gap-text-2-xs sgds:rounded-none sgds:border sgds:px-component-xs sgds:py-2 sgds:text-center sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default sgds:md:w-auto',
+                  'flow-node-box sgds:inline-flex sgds:w-full sgds:items-center sgds:justify-center sgds:gap-text-2-xs sgds:rounded-none sgds:border sgds:px-component-xs sgds:py-2 sgds:text-center sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-fixed-dark sgds:md:w-auto',
                   node.tone === 'accent'
                     ? 'sgds:border-accent-default sgds:bg-accent-surface-muted'
                     : node.tone === 'primary'
@@ -37,10 +37,16 @@
                 ]"
                 aria-hidden="true"
               >
-                <span class="flow-mobile-arrow sgds:md:hidden"></span>
-                <span v-if="item.bidirectional" class="flow-mobile-arrow-reverse sgds:md:hidden"></span>
-                <span class="flow-long-arrow sgds:hidden sgds:md:block"></span>
-                <span v-if="item.bidirectional" class="flow-long-arrow-reverse sgds:hidden sgds:md:block"></span>
+                <span class="figma-mcp-flow-mobile-arrow sgds:block sgds:md:hidden"></span>
+                <span
+                  v-if="item.bidirectional"
+                  class="figma-mcp-flow-mobile-arrow-reverse sgds:block sgds:md:hidden"
+                ></span>
+                <span class="figma-mcp-flow-long-arrow sgds:hidden sgds:md:block"></span>
+                <span
+                  v-if="item.bidirectional"
+                  class="figma-mcp-flow-long-arrow-reverse sgds:hidden sgds:md:block"
+                ></span>
               </div>
             </template>
           </div>
@@ -98,16 +104,14 @@ const flowItems = [
 
 <style>
 /* Arrow pseudo-elements: cannot be expressed as utility classes */
-.flow-long-arrow {
+.figma-mcp-flow-long-arrow {
   border-top: var(--sgds-border-width-1) solid var(--sgds-border-color-emphasis);
-  display: block;
-  flex: 1 1 auto;
   height: 0;
   position: relative;
   width: 100%;
 }
 
-.flow-long-arrow::after {
+.figma-mcp-flow-long-arrow::after {
   border-bottom: 4px solid transparent;
   border-left: 6px solid var(--sgds-border-color-emphasis);
   border-top: 4px solid transparent;
@@ -118,16 +122,14 @@ const flowItems = [
   transform: translateY(-50%);
 }
 
-.flow-long-arrow-reverse {
+.figma-mcp-flow-long-arrow-reverse {
   border-top: var(--sgds-border-width-1) solid var(--sgds-border-color-emphasis);
-  display: block;
-  flex: 1 1 auto;
   height: 0;
   position: relative;
   width: 100%;
 }
 
-.flow-long-arrow-reverse::before {
+.figma-mcp-flow-long-arrow-reverse::before {
   border-bottom: 4px solid transparent;
   border-right: 6px solid var(--sgds-border-color-emphasis);
   border-top: 4px solid transparent;
@@ -138,15 +140,14 @@ const flowItems = [
   transform: translateY(-50%);
 }
 
-.flow-mobile-arrow {
+.figma-mcp-flow-mobile-arrow {
   border-left: var(--sgds-border-width-1) solid var(--sgds-border-color-emphasis);
-  display: block;
   height: 100%;
   position: relative;
   width: 0;
 }
 
-.flow-mobile-arrow::after {
+.figma-mcp-flow-mobile-arrow::after {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 6px solid var(--sgds-border-color-emphasis);
@@ -157,15 +158,14 @@ const flowItems = [
   transform: translateX(-50%);
 }
 
-.flow-mobile-arrow-reverse {
+.figma-mcp-flow-mobile-arrow-reverse {
   border-left: var(--sgds-border-width-1) solid var(--sgds-border-color-emphasis);
-  display: block;
   height: 100%;
   position: relative;
   width: 0;
 }
 
-.flow-mobile-arrow-reverse::before {
+.figma-mcp-flow-mobile-arrow-reverse::before {
   border-bottom: 6px solid var(--sgds-border-color-emphasis);
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;

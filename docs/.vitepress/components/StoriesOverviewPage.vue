@@ -62,7 +62,7 @@
         </div>
       </section>
 
-      <section class="sgds:bg-default">
+      <section class="sgds:bg-default sgds:mt-layout-md">
         <div class="sgds:mb-layout-md sgds:flex sgds:flex-col sgds:gap-text-sm">
           <p class="sgds:mb-0 sgds:text-overline-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-wide sgds:uppercase sgds:text-label-default">
             More stories
@@ -81,21 +81,27 @@
             :key="card.title"
             class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds-col-lg-4 sgds:flex sgds:flex-col"
           >
-            <sgds-image-card stretchedLink class="sgds:h-full">
-              <img
-                slot="image"
-                :src="card.imageSrc"
-                :alt="card.imageAlt"
-                width="1200"
-                height="675"
-              />
-              <sgds-badge slot="image-badge" outlined>{{ card.category }}</sgds-badge>
-              <span slot="title" class="sgds:line-clamp-2">{{ card.title }}</span>
-              <span slot="description">{{ card.description }}</span>
-              <sgds-link slot="footer">
-                <a :href="card.href">Read post <sgds-icon name="arrow-right"></sgds-icon></a>
-              </sgds-link>
-            </sgds-image-card>
+            <sgds-link class="sgds:block sgds:h-full">
+              <a
+                :href="card.href"
+                class="sgds:group sgds:flex sgds:h-full sgds:flex-col sgds:gap-6"
+              >
+                <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-[32px] sgds:bg-surface-raised">
+                  <img
+                    :src="card.imageSrc"
+                    :alt="card.imageAlt"
+                    width="1200"
+                    height="675"
+                    class="sgds:h-full sgds:w-full sgds:object-cover sgds:transition-transform sgds:duration-500 sgds:ease-in-out sgds:group-hover:scale-[1.04] sgds:group-focus-visible:scale-[1.04] sgds:motion-reduce:transition-none sgds:motion-reduce:group-hover:scale-100 sgds:motion-reduce:group-focus-visible:scale-100"
+                  />
+                </div>
+                <div class="sgds:flex sgds:w-full sgds:items-center sgds:gap-component-xs">
+                  <h3 class="sgds:mb-0 sgds:flex-1 sgds:text-left sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
+                    {{ card.title }}
+                  </h3>
+                </div>
+              </a>
+            </sgds-link>
           </div>
         </div>
       </section>
