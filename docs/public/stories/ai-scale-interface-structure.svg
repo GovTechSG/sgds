@@ -1,0 +1,75 @@
+<svg class="story-token-svg sgds:block sgds:h-auto sgds:w-full" width="976" height="360" viewBox="0 0 976 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<style>
+.story-token-svg {
+  color-scheme: light dark;
+  --story-svg-bg: var(--sgds-bg-alternate, #F7F7F7);
+  --story-svg-surface: var(--sgds-bg-fixed-light, #FFFFFF);
+  --story-svg-surface-muted: var(--sgds-neutral-surface-muted, #F3F3F3);
+  --story-svg-border-muted: var(--sgds-border-color-muted, #DFDFDF);
+  --story-svg-border-default: var(--sgds-border-color-default, #868686);
+  --story-svg-text: var(--sgds-color-default, #1A1A1A);
+  --story-svg-text-subtle: var(--sgds-color-subtle, #525252);
+  --story-svg-text-muted: var(--sgds-color-muted, #C6C6C6);
+  --story-svg-on-action: var(--sgds-color-fixed-light, #F3F3F3);
+  --story-svg-action: var(--sgds-bg-fixed-dark, #0E0E0E);
+  --story-svg-primary-bg-muted: var(--sgds-primary-bg-muted, #F4F2FE);
+  --story-svg-primary-surface: var(--sgds-primary-surface-default, #6B4FEB);
+  --story-svg-primary-text: var(--sgds-primary-color-emphasis, #523ABC);
+  --story-svg-primary-border: var(--sgds-primary-border-color-default, #6B4FEB);
+  --story-svg-success-bg-muted: var(--sgds-success-bg-muted, #E3F9ED);
+  --story-svg-success-surface: var(--sgds-success-surface-default, #0E7C3D);
+  --story-svg-success-text: var(--sgds-success-color-emphasis, #0B5E2F);
+  --story-svg-success-border: var(--sgds-success-border-color-default, #0E7C3D);
+  --story-svg-danger-bg-muted: var(--sgds-danger-bg-muted, #FCF1F1);
+  --story-svg-danger-surface: var(--sgds-danger-surface-default, #CF2323);
+  --story-svg-danger-text: var(--sgds-danger-color-emphasis, #A11B1B);
+  --story-svg-danger-border: var(--sgds-danger-border-color-default, #CF2323);
+}
+</style>
+  <title id="title">Responsive layout structure diagram</title>
+  <desc id="desc">Three generated layouts show desktop, tablet, and mobile structures using the same content.</desc>
+  <rect width="976" height="360" fill="var(--story-svg-bg)"/>
+  <rect x="1" y="1" width="974" height="358" stroke="var(--story-svg-border-muted)" stroke-width="2"/>
+  <text x="56" y="58" fill="var(--story-svg-text)" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Interface structure</text>
+  <text x="56" y="88" fill="var(--story-svg-text-subtle)" font-family="Inter, Arial, sans-serif" font-size="15">The same content can be arranged into different page structures.</text>
+
+  <g transform="translate(64 126)">
+    <text x="0" y="-16" fill="var(--story-svg-text)" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Desktop</text>
+    <rect x="0" y="0" width="270" height="160" rx="8" fill="var(--story-svg-surface)" stroke="var(--story-svg-border-muted)" stroke-width="2"/>
+    <rect x="16" y="16" width="238" height="22" rx="4" fill="var(--story-svg-primary-bg-muted)" stroke="var(--story-svg-primary-border)"/>
+    <rect x="16" y="54" width="94" height="90" rx="4" fill="var(--story-svg-surface-muted)" stroke="var(--story-svg-border-default)"/>
+    <rect x="126" y="54" width="128" height="44" rx="4" fill="var(--story-svg-primary-bg-muted)" stroke="var(--story-svg-primary-border)"/>
+    <rect x="126" y="114" width="84" height="30" rx="4" fill="var(--story-svg-success-bg-muted)" stroke="var(--story-svg-success-border)"/>
+  </g>
+
+  <g transform="translate(380 126)">
+    <text x="0" y="-16" fill="var(--story-svg-text)" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Tablet</text>
+    <rect x="0" y="0" width="190" height="160" rx="8" fill="var(--story-svg-surface)" stroke="var(--story-svg-border-muted)" stroke-width="2"/>
+    <rect x="16" y="16" width="158" height="22" rx="4" fill="var(--story-svg-primary-bg-muted)" stroke="var(--story-svg-primary-border)"/>
+    <rect x="16" y="52" width="158" height="48" rx="4" fill="var(--story-svg-surface-muted)" stroke="var(--story-svg-border-default)"/>
+    <rect x="16" y="114" width="92" height="30" rx="4" fill="var(--story-svg-success-bg-muted)" stroke="var(--story-svg-success-border)"/>
+    <rect x="122" y="114" width="52" height="30" rx="4" fill="var(--story-svg-primary-bg-muted)" stroke="var(--story-svg-primary-border)"/>
+  </g>
+
+  <g transform="translate(626 126)">
+    <text x="0" y="-16" fill="var(--story-svg-text)" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Mobile</text>
+    <rect x="0" y="0" width="118" height="160" rx="8" fill="var(--story-svg-surface)" stroke="var(--story-svg-border-muted)" stroke-width="2"/>
+    <rect x="14" y="16" width="90" height="18" rx="4" fill="var(--story-svg-primary-bg-muted)" stroke="var(--story-svg-primary-border)"/>
+    <rect x="14" y="48" width="90" height="44" rx="4" fill="var(--story-svg-surface-muted)" stroke="var(--story-svg-border-default)"/>
+    <rect x="14" y="106" width="90" height="22" rx="4" fill="var(--story-svg-primary-bg-muted)" stroke="var(--story-svg-primary-border)"/>
+    <rect x="14" y="138" width="64" height="14" rx="4" fill="var(--story-svg-success-bg-muted)" stroke="var(--story-svg-success-border)"/>
+  </g>
+
+  <path d="M344 205H370" stroke="var(--story-svg-text-subtle)" stroke-width="2"/>
+  <path d="M364 199L370 205L364 211" stroke="var(--story-svg-text-subtle)" stroke-width="2"/>
+  <path d="M580 205H616" stroke="var(--story-svg-text-subtle)" stroke-width="2"/>
+  <path d="M610 199L616 205L610 211" stroke="var(--story-svg-text-subtle)" stroke-width="2"/>
+
+  <g transform="translate(784 144)">
+    <rect x="0" y="0" width="128" height="112" rx="8" fill="var(--story-svg-surface)" stroke="var(--story-svg-border-muted)"/>
+    <text x="18" y="34" fill="var(--story-svg-text)" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">AI decides</text>
+    <text x="18" y="58" fill="var(--story-svg-text-subtle)" font-family="Inter, Arial, sans-serif" font-size="12">order</text>
+    <text x="18" y="78" fill="var(--story-svg-text-subtle)" font-family="Inter, Arial, sans-serif" font-size="12">spacing</text>
+    <text x="18" y="98" fill="var(--story-svg-text-subtle)" font-family="Inter, Arial, sans-serif" font-size="12">stacking</text>
+  </g>
+</svg>

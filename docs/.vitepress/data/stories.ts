@@ -6,6 +6,7 @@ export type StorySection = {
   paragraphsHtml?: string[];
   emphasis?: string[];
   list?: string[];
+  listType?: "bullet" | "ordered";
   labelledList?: StoryLabelledListItem[];
   postVisualParagraphs?: string[];
   postVisualList?: string[];
@@ -17,6 +18,8 @@ export type StorySection = {
   bodyVisual?: StoryVisual;
   visual?: StoryVisual;
   visualAfterParagraph?: number;
+  postVisualSubsections?: StorySubsection[];
+  postVisualConclusion?: string;
 };
 
 export type StorySubsection = {
@@ -24,6 +27,7 @@ export type StorySubsection = {
   paragraphs: string[];
   paragraphsHtml?: string[];
   list?: string[];
+  listType?: "bullet" | "ordered";
   labelledList?: StoryLabelledListItem[];
   visual?: StoryVisual;
   visualAfterParagraph?: number;
@@ -33,7 +37,7 @@ export type StorySubsection = {
 };
 
 export type StoryLabelledListItem = {
-  label: string;
+  label?: string;
   text: string;
 };
 
@@ -139,10 +143,10 @@ export const storyPosts: StoryPost[] = [
     description:
       "SGDS agent skills encode our design, development, and UX writing guidance so AI can produce SGDS-aligned, accessible UI from the start.",
     href: "/stories/introducing-sgds-agent-skills",
-    imageSrc: "/stories/introducing-sgds-agent-skills-thumbnail.svg",
+    imageSrc: "/stories/introducing-sgds-agent-skills-thumbnail.png",
     imageAlt: "SGDS skill cards connected by dotted lines to a central AI design work card",
     videoSrc: "/stories/sgds-agent-skills-knowledge-flow.mp4",
-    posterSrc: "/stories/introducing-sgds-agent-skills-thumbnail.svg",
+    posterSrc: "/stories/introducing-sgds-agent-skills-thumbnail.png",
     published: "May 2026",
     author: "Singapore Government Design System team",
     intro: [],
@@ -158,9 +162,9 @@ export const storyPosts: StoryPost[] = [
       {
         title: "A design system, packed into skills",
         titleVisual: {
-          src: "/stories/introducing-sgds-agent-skills-thumbnail.svg",
+          src: "/stories/introducing-sgds-agent-skills-thumbnail.png",
           videoSrc: "/stories/sgds-agent-skills-knowledge-flow.mp4",
-          posterSrc: "/stories/introducing-sgds-agent-skills-thumbnail.svg",
+          posterSrc: "/stories/introducing-sgds-agent-skills-thumbnail.png",
           alt: "Prompt card reading Build a trusted and accessible government experience using SGDS V3",
           caption:
             "SGDS skills turn design, development, and writing guidance into AI-readable context.",
@@ -261,9 +265,9 @@ export const storyPosts: StoryPost[] = [
               "We also tested the same prototype direction without asking the assistant to use SGDS or the SGDS skills. That version took 27 minutes and 47 seconds to generate.",
               "The timing is useful context, but it is not the most important finding. The two runs started from the same product direction. The difference was whether the assistant had a shared design system to work from.",
               "The bigger issue appeared during refinement. Without a shared system, the interface became harder to guide over time. Buttons, layouts, and interaction patterns started to drift. Each change needed more explanation because there was no common set of components, tokens, and patterns for the assistant to return to.",
-              "That can become difficult to manage in a larger enterprise product. Inconsistent patterns can make the service harder to use and maintain. They also leave teams with more design debt to clean up later.",
+              "This may be manageable for a small product or project with only a few pages. Some differences may only be visible to designers at first, or to people reviewing the interface closely. As more pages and flows are added, those inconsistencies become easier to notice and harder to manage. They can make the service harder to use and maintain, and leave teams with more design debt to clean up later.",
               "This matches our first-hand experience. After the first generation, we spent a significant amount of time trying to standardise the layout, colours, and patterns. Even after hours of refinement, the result was still not entirely consistent.",
-              "Designers may notice these small differences more quickly because we are trained to look for them. Some differences may be acceptable in a quick prototype, but they still show the same pattern: AI can produce a quick prototype without a design system, but the work can become harder to refine as the product grows.",
+              "A quick prototype can still be useful without a design system, but the work can become harder to refine as the product grows.",
             ],
             visual: {
               src: "/stories/sgds-agent-skills-without-system.png",
@@ -725,7 +729,7 @@ export const storyPosts: StoryPost[] = [
         paragraphs: [
           "The learning curve was about more than learning components. It was about applying shared decisions under real delivery conditions.",
           "Teams needed SGDS guidance to be available in the tools they used and consistent across design and code.",
-          "AI-assisted SGDS workflows can start to reduce this gap by bringing guidance closer to active delivery. Human review remains part of the work.",
+          "Today, we are in a better position to narrow that gap. SGDS agent skills help bring system context into the tools teams already use to design, build, and review services. With the current technology, design and code can finally work from a more shared language.",
         ],
       },
     ],
@@ -909,148 +913,165 @@ export const storyPosts: StoryPost[] = [
     ],
   },
   {
-    key: "near-term-promise-of-sgds-v3",
-    category: "AI",
-    title: "Building the next phase of SGDS",
+    key: "strengthening-the-system-from-within",
+    category: "Foundations",
+    title: "Strengthening the system from within",
     description:
-      "What SGDS is focusing on next: stronger foundations, flexible theming, contribution pathways, and accessibility across new interaction models.",
-    href: "/stories/near-term-promise-of-sgds-v3",
-    imageSrc: "/stories/sgds-agent-skills-knowledge-flow-poster.jpg",
-    imageAlt: "SGDS guidance flowing into AI agents and product teams",
+      "How SGDS is strengthening its foundations, flexibility, contribution model, and accessibility guidance so the system fits real product delivery.",
+    href: "/stories/strengthening-the-system-from-within",
+    imageSrc: "/stories/strengthening-system-thumbnail.svg",
+    imageAlt: "Layered SGDS foundations and system priorities",
     published: "May 2026",
     author: "Singapore Government Design System team",
-    intro: [
-      "This post focuses on the next phase of SGDS itself.",
-      "The work ahead focuses less on adding more components and more on strengthening the system underneath them, while making SGDS easier to adopt, adapt, contribute to, and scale across different delivery environments.",
-    ],
+    intro: [],
     sections: [
       {
-        title: "What stays the same",
+        title: "Grounded in the same purpose",
         paragraphs: [
-          "As workflows evolve, the principles behind SGDS continue guiding the work.",
-          "We still prioritise:",
-        ],
-        list: [
-          "clarity over unnecessary complexity",
-          "understanding over visual novelty",
-          "accessibility by default",
-          "familiarity as a way to build trust",
-          "empowering teams instead of restricting them",
-          "reusable decisions that teams can adapt",
-        ],
-        subsections: [
-          {
-            paragraphs: [
-              "These principles help shape what we improve first.",
-              "The goal is to give teams enough structure to move confidently while still leaving room for product context and operational flexibility.",
-            ],
-          },
+          "Even as SGDS continues to evolve, the philosophy and purpose remain the same: shared foundations that help teams build government services that feel connected, familiar, accessible, and trustworthy.",
+          "The areas below are about making the system more useful in real delivery: improving core quality, supporting responsible flexibility, opening clearer contribution pathways, and extending accessibility guidance as interaction models change.",
         ],
       },
       {
         title: "Strengthening the foundations",
+        headingLevel: "h3",
         paragraphs: [
-          "Before SGDS expands further into new delivery workflows, the foundation layer itself needs to remain reliable in everyday product work.",
-          "Current work focuses on:",
+          "Before SGDS supports more delivery workflows, its foundation layer needs to stay dependable in everyday product work.",
+          "This means:",
         ],
         list: [
           "improving component quality",
-          "tightening alignment between design assets and web components",
-          "making implementation guidance clearer",
-          "reducing avoidable drift across repeated patterns",
-          "making adoption easier for teams with existing constraints",
-        ],
-        subsections: [
-          {
-            paragraphs: [
-              "One recurring challenge teams raised was flexibility.",
-              "Some teams felt:",
-            ],
-            list: [
-              "the system was difficult to customise",
-              "branding needs were harder to support",
-              "migration required significant effort",
-              "components did not always fit existing workflows naturally",
-            ],
-            postVisualParagraphs: [
-              "These are valid concerns for teams operating within real delivery timelines and operational constraints.",
-              "The intention is to make the system fit more naturally into real product workflows.",
-            ],
-          },
+          "aligning design assets and web components more tightly",
+          "clarifying implementation guidance",
+          "reducing avoidable drift in repeated patterns",
+          "supporting teams with existing constraints",
         ],
       },
       {
-        title: "Making flexibility clearer",
+        title: "Making flexibility easier to adopt",
+        headingLevel: "h3",
         paragraphs: [
-          "Teams have also asked for more room to express product identity while keeping common service patterns recognisable.",
-          "This is shaping current explorations around:",
+          "A recurring challenge is flexibility. Many product teams have asked for more room to express product identity while keeping common service patterns recognisable.",
+          "Some have found SGDS difficult to customise. Branding, migration, and existing workflows can also be hard to reconcile with a shared system. These are valid concerns within real delivery timelines and operational constraints.",
+          "We hear this. Our intention is to help SGDS fit more naturally into product workflows. We are exploring:",
         ],
-        list: [
-          "broader colour flexibility beyond the default government palette",
-          "multiple neutral palettes such as cool, warm, and default greys",
-          "typography flexibility",
-          "support for custom brand fonts",
-          "controlled gradient generation",
-          "clearer guidance around where and how these styles should be used",
+        labelledList: [
+          {
+            label: "Broader colour flexibility",
+            text: "Allow teams to use colours beyond the default GovTech palette, while keeping accessibility as the priority.",
+          },
+          {
+            label: "Multiple neutral palettes",
+            text: "Provide more neutral options, such as cool, warm, and default greys, so products can choose a better fit.",
+          },
+          {
+            label: "System typography expansion",
+            text: "Provide clearer typography options, including serif, sans serif, and monospace choices where they support the product experience.",
+          },
+          {
+            label: "Support for custom brand fonts",
+            text: "Make it easier for teams to use preferred brand fonts while staying aligned with SGDS guidance.",
+          },
+          {
+            label: "Controlled gradient generation",
+            text: "Define safer ways to generate gradients with clearer constraints around contrast, accessibility, and usage.",
+          },
+          {
+            label: "Clearer guidance",
+            text: "Make style decisions easier to apply, including where and how visual flexibility should be used. Where possible, this should feel like a guided setup flow that lowers the barrier to adoption.",
+          },
+          {
+            label: "Migration skills",
+            text: "Explore migration support as part of SGDS agent skills. These skills could help teams understand what can move towards SGDS and what needs product judgement. This needs careful design because migration affects product experience and code structure, not only component names.",
+          },
         ],
         subsections: [
           {
             paragraphs: [
-              "The goal is to define where flexibility makes sense and where common patterns should remain aligned.",
+              "The goal is responsible flexibility: product identity without losing familiar service patterns.",
+              "This should not create another learning curve. If these choices are easier to configure and understand, adoption becomes less heavy. That matters because SGDS should stay accessible by default, even as it becomes more adaptable.",
             ],
           },
         ],
       },
       {
         title: "Making contribution easier",
+        headingLevel: "h3",
         paragraphs: [
-          "Long-term adoption also depends on making contribution pathways clearer.",
-          "The next phase of SGDS includes exploring:",
+          "Long-term adoption also depends on clearer contribution pathways.",
+          "The model we are exploring has three layers:",
         ],
         list: [
-          "a public roadmap",
-          "clearer contribution pathways",
-          "more direct support for teams",
-          "encouraging asynchronous learning and contribution",
-          "recognising contributors across the ecosystem",
+          "Core",
+          "Shared",
+          "Product",
         ],
-        subsections: [
+        listType: "ordered",
+        visual: {
+          src: "/stories/sgds-contribution-layers.svg",
+          alt: "A three-layer contribution model labelled Core, Shared, and Product.",
+          caption: "A three-layer contribution model for core foundations, shared patterns, and product-specific work.",
+          width: 1920,
+          height: 1080,
+        },
+        postVisualSubsections: [
           {
+            title: "1. Core",
             paragraphs: [
-              "As more teams contribute improvements, implementation learnings, and delivery feedback back into SGDS, the system becomes more reflective of real operational needs across government services.",
-              "This also helps reduce duplicated effort across teams working on similar problems.",
+              "The SGDS team maintains the core system.",
+              "This covers:",
+            ],
+            list: [
+              "foundations",
+              "components",
+              "accessibility standards",
+              "implementation guidance",
+              "reusable patterns",
+            ],
+            postVisualParagraphs: [
+              "This layer gives product teams a stable base to build on.",
+            ],
+          },
+          {
+            title: "2. Shared",
+            paragraphs: [
+              "Teams across government may build patterns, workflows, or components on top of the core system. Some of these could also benefit other products. When a pattern proves useful beyond one context, it can move into a shared layer for broader reuse.",
+              "This creates a feedback loop between product delivery and real implementation needs. It also reduces the need to solve similar problems separately.",
+            ],
+          },
+          {
+            title: "3. Product",
+            paragraphs: [
+              "Individual products still need flexibility for service-specific needs.",
+              "Some workflows or interaction patterns are intentionally product-specific. They may be tied to operational context, requirements, user needs, or service workflows.",
+              "This layer gives teams room to adapt experiences without needing to fork or replace the system underneath.",
             ],
           },
         ],
+        postVisualConclusion: "Together, these layers keep the core stable, create space for shared reuse, and leave room for product-specific work.",
       },
       {
-        title: "Accessibility continues evolving",
+        title: "Accessibility beyond graphical interfaces",
+        headingLevel: "h3",
         paragraphs: [
-          "Accessibility remains part of the foundation work.",
-          "Today, much of accessibility guidance still focuses heavily on graphical interfaces.",
-          "As interaction models evolve, accessibility practices may also need to expand into:",
-        ],
-        list: [
-          "conversational interfaces",
-          "voice interactions",
-          "AI-assisted workflows",
-          "multimodal systems",
+          "Accessibility remains one of the foundations SGDS cannot compromise on.",
+          "Today, much of our accessibility guidance focuses on graphical interfaces and keyboard use. As services include new ways of interacting, SGDS may also need to consider natural language, AI-assisted interactions, voice, multimodal interactions, and automated or assisted service flows.",
         ],
         subsections: [
           {
             paragraphs: [
               "These areas require careful research, testing, and iteration.",
-              "The next phase is about ensuring accessibility guidance continues evolving alongside the ways people interact with services.",
+              "The goal is to keep accessibility close to how people actually use services, so SGDS can remain accessible by default.",
             ],
           },
         ],
       },
       {
-        title: "What this changes for SGDS",
+        title: "What this supports",
         paragraphs: [
-          "This phase is about making the system easier to maintain with the teams who use it.",
-          "That means improving the foundations, documenting flexibility more clearly, opening contribution pathways, and extending accessibility practice as interaction models change.",
-          "The work is quieter than launching a new component, but it affects how well SGDS fits real product delivery.",
+          "The aim is to make SGDS easier to maintain with the people who use it.",
+          "Together, these priorities help the system stay practical as products, workflows, and interaction models change.",
+          "These improvements may be quieter than launching a new component, but they affect how well the system fits real product delivery.",
         ],
       },
     ],
@@ -1158,7 +1179,7 @@ const storyOverviewOrder = [
   "the-learning-curve-before-ai",
   "ai-can-scale-delivery-and-inconsistency",
   "design-and-code-finally-speaking-the-same-language",
-  "near-term-promise-of-sgds-v3",
+  "strengthening-the-system-from-within",
   "role-of-a-design-system-in-the-agentic-ai-era",
 ];
 

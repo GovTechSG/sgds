@@ -6,4 +6,4 @@ layout: bare
 import StoryBlogPage from "../.vitepress/components/StoryBlogPage.vue";
 </script>
 
-<StoryBlogPage story-key="near-term-promise-of-sgds-v3" />
+<StoryBlogPage story-key="strengthening-the-system-from-within" />

@@ -1,0 +1,70 @@
+<svg class="story-token-svg sgds:block sgds:h-auto sgds:w-full" width="976" height="360" viewBox="0 0 976 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<style>
+.story-token-svg {
+  color-scheme: light dark;
+  --story-svg-bg: var(--sgds-bg-alternate, #F7F7F7);
+  --story-svg-surface: var(--sgds-bg-fixed-light, #FFFFFF);
+  --story-svg-surface-muted: var(--sgds-neutral-surface-muted, #F3F3F3);
+  --story-svg-border-muted: var(--sgds-border-color-muted, #DFDFDF);
+  --story-svg-border-default: var(--sgds-border-color-default, #868686);
+  --story-svg-text: var(--sgds-color-default, #1A1A1A);
+  --story-svg-text-subtle: var(--sgds-color-subtle, #525252);
+  --story-svg-text-muted: var(--sgds-color-muted, #C6C6C6);
+  --story-svg-on-action: var(--sgds-color-fixed-light, #F3F3F3);
+  --story-svg-action: var(--sgds-bg-fixed-dark, #0E0E0E);
+  --story-svg-primary-bg-muted: var(--sgds-primary-bg-muted, #F4F2FE);
+  --story-svg-primary-surface: var(--sgds-primary-surface-default, #6B4FEB);
+  --story-svg-primary-text: var(--sgds-primary-color-emphasis, #523ABC);
+  --story-svg-primary-border: var(--sgds-primary-border-color-default, #6B4FEB);
+  --story-svg-success-bg-muted: var(--sgds-success-bg-muted, #E3F9ED);
+  --story-svg-success-surface: var(--sgds-success-surface-default, #0E7C3D);
+  --story-svg-success-text: var(--sgds-success-color-emphasis, #0B5E2F);
+  --story-svg-success-border: var(--sgds-success-border-color-default, #0E7C3D);
+  --story-svg-danger-bg-muted: var(--sgds-danger-bg-muted, #FCF1F1);
+  --story-svg-danger-surface: var(--sgds-danger-surface-default, #CF2323);
+  --story-svg-danger-text: var(--sgds-danger-color-emphasis, #A11B1B);
+  --story-svg-danger-border: var(--sgds-danger-border-color-default, #CF2323);
+}
+</style>
+  <title id="title">System alignment diagram</title>
+  <desc id="desc">Generated interface decisions connect to SGDS components, tokens, patterns, and code.</desc>
+  <rect width="976" height="360" fill="var(--story-svg-bg)"/>
+  <rect x="1" y="1" width="974" height="358" stroke="var(--story-svg-border-muted)" stroke-width="2"/>
+  <text x="56" y="58" fill="var(--story-svg-text)" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">System alignment</text>
+  <text x="56" y="88" fill="var(--story-svg-text-subtle)" font-family="Inter, Arial, sans-serif" font-size="15">Shared foundations help generated work connect back to the same system.</text>
+
+  <g transform="translate(68 132)">
+    <rect x="0" y="0" width="210" height="128" rx="8" fill="var(--story-svg-surface)" stroke="var(--story-svg-border-muted)" stroke-width="2"/>
+    <text x="20" y="34" fill="var(--story-svg-text)" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Generated screen</text>
+    <rect x="20" y="52" width="170" height="18" rx="4" fill="var(--story-svg-primary-bg-muted)" stroke="var(--story-svg-primary-border)"/>
+    <rect x="20" y="84" width="94" height="26" rx="4" fill="var(--story-svg-primary-bg-muted)" stroke="var(--story-svg-primary-border)"/>
+    <rect x="128" y="84" width="62" height="26" rx="4" fill="var(--story-svg-success-bg-muted)" stroke="var(--story-svg-success-border)"/>
+  </g>
+
+  <g transform="translate(382 112)">
+    <rect x="0" y="0" width="212" height="168" rx="10" fill="var(--story-svg-surface)" stroke="var(--story-svg-border-muted)" stroke-width="2"/>
+    <text x="24" y="34" fill="var(--story-svg-text)" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">SGDS foundations</text>
+    <rect x="24" y="52" width="164" height="22" rx="4" fill="var(--story-svg-primary-bg-muted)" stroke="var(--story-svg-primary-border)"/>
+    <text x="40" y="68" fill="var(--story-svg-primary-text)" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700">Components</text>
+    <rect x="24" y="84" width="164" height="22" rx="4" fill="var(--story-svg-primary-bg-muted)" stroke="var(--story-svg-primary-border)"/>
+    <text x="40" y="100" fill="var(--story-svg-primary-text)" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700">Tokens</text>
+    <rect x="24" y="116" width="164" height="22" rx="4" fill="var(--story-svg-success-bg-muted)" stroke="var(--story-svg-success-border)"/>
+    <text x="40" y="132" fill="var(--story-svg-success-text)" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700">Patterns</text>
+    <rect x="24" y="148" width="164" height="4" rx="2" fill="var(--story-svg-border-muted)"/>
+  </g>
+
+  <g transform="translate(704 132)">
+    <rect x="0" y="0" width="204" height="128" rx="8" fill="var(--story-svg-action)"/>
+    <text x="20" y="34" fill="var(--story-svg-on-action)" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Implementation</text>
+    <text x="20" y="62" fill="var(--story-svg-primary-border)" font-family="SFMono-Regular, Consolas, monospace" font-size="12">&lt;sgds-button&gt;</text>
+    <text x="20" y="86" fill="var(--story-svg-primary-border)" font-family="SFMono-Regular, Consolas, monospace" font-size="12">var(--sgds-*)</text>
+    <text x="20" y="110" fill="var(--story-svg-success-border)" font-family="SFMono-Regular, Consolas, monospace" font-size="12">shared layout</text>
+  </g>
+
+  <path d="M294 196H366" stroke="var(--story-svg-text-subtle)" stroke-width="2"/>
+  <path d="M360 190L366 196L360 202" stroke="var(--story-svg-text-subtle)" stroke-width="2"/>
+  <path d="M610 196H688" stroke="var(--story-svg-text-subtle)" stroke-width="2"/>
+  <path d="M682 190L688 196L682 202" stroke="var(--story-svg-text-subtle)" stroke-width="2"/>
+
+  <text x="68" y="310" fill="var(--story-svg-text-subtle)" font-family="Inter, Arial, sans-serif" font-size="13">Alignment reduces repeated decisions and makes later review easier.</text>
+</svg>

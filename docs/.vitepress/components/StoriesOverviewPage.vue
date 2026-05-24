@@ -14,7 +14,7 @@
       <section class="sgds:bg-default">
         <div class="sgds-grid sgds:items-center sgds:gap-layout-md">
           <div class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-6">
-            <div class="sgds:relative sgds:h-[180px] sgds:w-full sgds:overflow-hidden sgds:rounded-lg sgds:bg-alternate sgds:sm:h-[260px] sgds:lg:h-[320px]">
+            <div class="sgds:relative sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-lg sgds:bg-alternate">
               <video
                 v-if="featuredStory.videoSrc"
                 autoplay
@@ -45,11 +45,11 @@
             </div>
           </div>
 
-          <div class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-6 sgds:flex sgds:flex-col sgds:items-start sgds:gap-component-md sgds:text-left">
+          <div class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-6 sgds:flex sgds:flex-col sgds:items-start sgds:gap-component-sm sgds:text-left">
             <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-              <div>
-                <sgds-badge outlined>{{ featuredStory.category }}</sgds-badge>
-              </div>
+              <p class="sgds:m-0 sgds:text-left sgds:text-overline-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-wide sgds:uppercase sgds:text-body-subtle">
+                {{ featuredStory.category }}
+              </p>
               <h2 class="sgds:mb-0 sgds:text-heading-xl sgds:font-bold sgds:leading-xl sgds:tracking-normal sgds:text-heading-default">
                 {{ featuredStory.title }}
               </h2>
@@ -62,13 +62,10 @@
         </div>
       </section>
 
-      <section class="sgds:bg-default sgds:mt-layout-md">
+      <section class="sgds:bg-default">
         <div class="sgds:mb-layout-md sgds:flex sgds:flex-col sgds:gap-text-sm">
-          <p class="sgds:mb-0 sgds:text-overline-md sgds:font-semibold sgds:leading-2-xs sgds:tracking-wide sgds:uppercase sgds:text-label-default">
-            More stories
-          </p>
           <h2 class="sgds:mb-0 sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-normal sgds:text-heading-default">
-            From the SGDS team
+            More stories
           </h2>
           <p class="sgds:mb-0 sgds:text-body-md sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
             Explore stories and practical notes from our design system work.
@@ -84,7 +81,7 @@
             <sgds-link class="sgds:block sgds:h-full">
               <a
                 :href="card.href"
-                class="sgds:group sgds:flex sgds:h-full sgds:flex-col sgds:gap-6"
+                class="sgds:group sgds:flex sgds:h-full sgds:flex-col sgds:gap-component-sm"
               >
                 <div class="sgds:relative sgds:flex sgds:w-full sgds:aspect-[424/300] sgds:overflow-hidden sgds:rounded-[32px] sgds:bg-surface-raised">
                   <img

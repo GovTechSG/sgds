@@ -1,0 +1,56 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Core, shared, and product layers</title>
+  <desc id="desc">A three-layer contribution model labelled Core, Shared, and Product.</desc>
+  <defs>
+    <linearGradient id="background" x1="140" y1="1050" x2="1790" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7B4C8" stop-opacity="0.72" />
+      <stop offset="0.35" stop-color="#D7D4FA" stop-opacity="0.72" />
+      <stop offset="0.72" stop-color="#D8F1FA" stop-opacity="0.78" />
+      <stop offset="1" stop-color="#FFFFFF" />
+    </linearGradient>
+    <radialGradient id="pinkGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(620 850) rotate(-18) scale(720 380)">
+      <stop stop-color="#F5A4BA" stop-opacity="0.58" />
+      <stop offset="1" stop-color="#F5A4BA" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="blueGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1550 650) rotate(-28) scale(700 470)">
+      <stop stop-color="#C8ECF9" stop-opacity="0.8" />
+      <stop offset="1" stop-color="#C8ECF9" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="violetGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(700 250) rotate(18) scale(760 420)">
+      <stop stop-color="#C9C8F5" stop-opacity="0.68" />
+      <stop offset="1" stop-color="#C9C8F5" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="topLayer" x1="510" y1="320" x2="1350" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.9" />
+      <stop offset="0.54" stop-color="#FFFFFF" stop-opacity="0.98" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.84" />
+    </linearGradient>
+    <linearGradient id="middleLayer" x1="560" y1="530" x2="1320" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.52" />
+      <stop offset="0.52" stop-color="#FFFFFF" stop-opacity="0.78" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.5" />
+    </linearGradient>
+    <linearGradient id="coreLayer" x1="620" y1="735" x2="1290" y2="890" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.36" />
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.58" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.34" />
+    </linearGradient>
+    <filter id="layerShadow" x="420" y="40" width="1050" height="980" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="28" stdDeviation="28" flood-color="#7A86A5" flood-opacity="0.18" />
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#background)" />
+  <rect width="1920" height="1080" fill="url(#pinkGlow)" />
+  <rect width="1920" height="1080" fill="url(#blueGlow)" />
+  <rect width="1920" height="1080" fill="url(#violetGlow)" />
+  <g filter="url(#layerShadow)">
+    <path d="M600 297L884 123C923 99 972 99 1011 123L1296 297C1336 321 1336 358 1296 382L1011 556C972 580 923 580 884 556L600 382C560 358 560 321 600 297Z" fill="url(#topLayer)" />
+    <path d="M642 520L884 372C923 348 972 348 1011 372L1254 520C1294 544 1294 581 1254 605L1011 753C972 777 923 777 884 753L642 605C602 581 602 544 642 520Z" fill="url(#middleLayer)" />
+    <path d="M696 730L884 615C923 591 972 591 1011 615L1200 730C1240 754 1240 791 1200 815L1011 930C972 954 923 954 884 930L696 815C656 791 656 754 696 730Z" fill="url(#coreLayer)" />
+  </g>
+  <g fill="#000000" font-family="Inter, Arial, sans-serif" font-size="70" font-weight="400">
+    <text x="1390" y="340">Product</text>
+    <text x="1390" y="568">Shared</text>
+    <text x="1390" y="796">Core</text>
+  </g>
+</svg>

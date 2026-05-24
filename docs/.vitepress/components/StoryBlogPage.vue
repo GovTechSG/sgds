@@ -135,18 +135,19 @@
                   class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
                   v-html="paragraph"
                 ></p>
-                <ul
+                <component
+                  :is="subsection.listType === 'ordered' ? 'ol' : 'ul'"
                   v-if="subsection.list?.length"
                   class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
                 >
                   <li v-for="item in subsection.list" :key="item" class="sgds:m-0">{{ item }}</li>
-                </ul>
+                </component>
                 <ul
                   v-if="subsection.labelledList?.length"
                   class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
                 >
-                  <li v-for="item in subsection.labelledList" :key="item.label" class="sgds:m-0">
-                    <span class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                  <li v-for="item in subsection.labelledList" :key="item.label ?? item.text" class="sgds:m-0">
+                    <span v-if="item.label" class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
                       {{ item.label }}:
                     </span>
                     {{ item.text }}
@@ -398,18 +399,19 @@
               </figcaption>
             </figure>
           </template>
-          <ul
+          <component
+            :is="section.listType === 'ordered' ? 'ol' : 'ul'"
             v-if="section.list?.length"
             class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
           >
             <li v-for="item in section.list" :key="item" class="sgds:m-0">{{ item }}</li>
-          </ul>
+          </component>
           <ul
             v-if="section.labelledList?.length"
             class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
           >
-            <li v-for="item in section.labelledList" :key="item.label" class="sgds:m-0">
-              <span class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+            <li v-for="item in section.labelledList" :key="item.label ?? item.text" class="sgds:m-0">
+              <span v-if="item.label" class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
                 {{ item.label }}:
               </span>
               {{ item.text }}
@@ -473,18 +475,19 @@
                   class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
                   v-html="paragraph"
                 ></p>
-                <ul
+                <component
+                  :is="subsection.listType === 'ordered' ? 'ol' : 'ul'"
                   v-if="subsection.list?.length"
                   class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
                 >
                   <li v-for="item in subsection.list" :key="item" class="sgds:m-0">{{ item }}</li>
-                </ul>
+                </component>
                 <ul
                   v-if="subsection.labelledList?.length"
                   class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
                 >
-                  <li v-for="item in subsection.labelledList" :key="item.label" class="sgds:m-0">
-                    <span class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                  <li v-for="item in subsection.labelledList" :key="item.label ?? item.text" class="sgds:m-0">
+                    <span v-if="item.label" class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
                       {{ item.label }}:
                     </span>
                     {{ item.text }}
@@ -568,7 +571,7 @@
             <sgds-table
               :tableBorder="section.comparisonTable.tableBorder"
               :headerBackground="section.comparisonTable.headerBackground"
-              :responsive="section.comparisonTable.responsive"
+              :responsive="section.comparisonTable.responsive ?? 'always'"
             >
               <sgds-table-row>
                 <sgds-table-head
@@ -676,6 +679,64 @@
               <li v-for="item in section.postVisualList" :key="item" class="sgds:m-0">{{ item }}</li>
             </ul>
           </div>
+          <div
+            v-if="section.postVisualSubsections?.length"
+            class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-layout-xs"
+          >
+            <section
+              v-for="subsection in section.postVisualSubsections"
+              :key="subsection.title ?? subsection.paragraphs.join('-')"
+              class="sgds:flex sgds:flex-col sgds:gap-text-md"
+            >
+              <h4
+                v-if="subsection.title"
+                class="sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default"
+              >
+                {{ subsection.title }}
+              </h4>
+              <p
+                v-for="paragraph in subsection.paragraphs"
+                :key="paragraph"
+                class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+              >
+                <span
+                  v-for="part in highlightedTimingParts(paragraph)"
+                  :key="part.key"
+                  :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                >
+                  {{ part.text }}
+                </span>
+              </p>
+              <component
+                :is="subsection.listType === 'ordered' ? 'ol' : 'ul'"
+                v-if="subsection.list?.length"
+                class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+              >
+                <li v-for="item in subsection.list" :key="item" class="sgds:m-0">{{ item }}</li>
+              </component>
+              <p
+                v-for="paragraph in subsection.postVisualParagraphs"
+                :key="paragraph"
+                class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
+              >
+                <span
+                  v-for="part in highlightedTimingParts(paragraph)"
+                  :key="part.key"
+                  :class="part.highlighted ? 'sgds:font-semibold' : ''"
+                >
+                  {{ part.text }}
+                </span>
+              </p>
+            </section>
+          </div>
+          <div
+            v-if="section.postVisualConclusion"
+            class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-text-md"
+          >
+            <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default">
+              {{ section.postVisualConclusion }}
+            </p>
+          </div>
           <aside
             v-if="section.boxedContent"
             class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:gap-component-sm sgds:rounded-lg sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-component-md"
@@ -704,10 +765,10 @@
             >
               <li
                 v-for="item in section.boxedContent.labelledList"
-                :key="item.label"
+                :key="item.label ?? item.text"
                 class="sgds:m-0"
               >
-                <span class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                <span v-if="item.label" class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
                   {{ item.label }}:
                 </span>
                 {{ item.text }}
@@ -841,7 +902,7 @@
 
           <aside
             v-if="tocItems.length"
-            class="sgds:sticky sgds:top-[var(--sgds-padding-2-xl)] sgds:z-[var(--sgds-z-index-sticky)] sgds:ml-auto sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:self-start sgds:pt-[var(--sgds-padding-2-xl)] sgds:max-md:hidden"
+            class="sgds:sticky sgds:top-[var(--sgds-layout-padding-md)] sgds:z-[var(--sgds-z-index-sticky)] sgds:ml-auto sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:self-start sgds:pt-layout-md sgds:max-md:hidden"
             aria-label="Story sections"
           >
             <sgds-table-of-contents class="sgds:w-full">
