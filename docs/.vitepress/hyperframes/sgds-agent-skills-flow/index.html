@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1440">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1920px;
+        height: 1440px;
+        margin: 0;
+        overflow: hidden;
+        background: #f8f2fb;
+        color: #242426;
+        font-family: sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1440px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 18% 22%, rgba(143, 197, 255, 0.58), transparent 36%),
+          radial-gradient(circle at 73% 16%, rgba(255, 142, 190, 0.56), transparent 34%),
+          radial-gradient(circle at 64% 78%, rgba(143, 98, 255, 0.34), transparent 38%),
+          #f9f5fb;
+      }
+
+      .poster-base {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.88;
+        filter: saturate(1.08);
+      }
+
+      .soft-wash {
+        position: absolute;
+        inset: -80px;
+        background:
+          radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.74), transparent 24%),
+          radial-gradient(circle at 20% 36%, rgba(183, 220, 255, 0.36), transparent 30%),
+          radial-gradient(circle at 80% 58%, rgba(255, 192, 224, 0.36), transparent 32%);
+        mix-blend-mode: screen;
+        opacity: 0.72;
+      }
+
+      .scene {
+        position: absolute;
+        left: 0;
+        top: 180px;
+        width: 1920px;
+        height: 1080px;
+      }
+
+      .flow {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .flow path {
+        fill: none;
+        stroke: rgba(76, 84, 122, 0.28);
+        stroke-width: 3;
+        stroke-dasharray: 18 18;
+        stroke-linecap: round;
+      }
+
+      .title-card {
+        position: absolute;
+        left: 660px;
+        top: 370px;
+        display: flex;
+        align-items: center;
+        width: 600px;
+        height: 330px;
+        padding: 58px 50px;
+        border: 1px solid rgba(255, 255, 255, 0.78);
+        border-radius: 34px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 24px 72px rgba(106, 93, 145, 0.16);
+        backdrop-filter: blur(8px);
+      }
+
+      .title-card h1 {
+        margin: 0;
+        max-width: 500px;
+        color: #222229;
+        font-size: 56px;
+        line-height: 1.06;
+        letter-spacing: 0;
+        font-weight: 850;
+      }
+
+      .skill-card {
+        position: absolute;
+        width: 332px;
+        min-height: 140px;
+        padding: 25px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 22px 52px rgba(106, 93, 145, 0.14);
+        backdrop-filter: blur(8px);
+      }
+
+      .skill-card strong {
+        display: block;
+        color: #26262c;
+        font-family: monospace;
+        font-size: 24px;
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      .skill-card span {
+        display: block;
+        margin-top: 18px;
+        color: rgba(36, 36, 38, 0.72);
+        font-size: 20px;
+        line-height: 1.2;
+      }
+
+      .card-getting {
+        left: 120px;
+        top: 210px;
+        background: rgba(235, 247, 255, 0.7);
+      }
+
+      .card-writing {
+        left: 120px;
+        top: 446px;
+        background: rgba(238, 248, 255, 0.72);
+      }
+
+      .card-components {
+        left: 120px;
+        top: 682px;
+      }
+
+      .card-templates {
+        left: 500px;
+        top: 112px;
+      }
+
+      .card-blocks {
+        left: 880px;
+        top: 112px;
+      }
+
+      .card-layouts {
+        left: 1260px;
+        top: 112px;
+      }
+
+      .card-patterns {
+        left: 1480px;
+        top: 330px;
+      }
+
+      .card-forms {
+        left: 1480px;
+        top: 610px;
+      }
+
+      .card-utilities {
+        left: 570px;
+        top: 790px;
+      }
+
+      .card-theming {
+        left: 950px;
+        top: 790px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="5.5" data-width="1920" data-height="1440">
+      <div class="soft-wash" data-layout-ignore=""></div>
+
+      <div class="scene">
+        <svg class="flow" viewBox="0 0 1920 1080" aria-hidden="true" data-layout-ignore="">
+          <path d="M452 280 C540 296 590 382 660 454" />
+          <path d="M452 516 C540 518 590 528 660 536" />
+          <path d="M452 752 C548 732 598 660 660 614" />
+          <path d="M666 252 C706 296 730 338 760 370" />
+          <path d="M1046 252 C1028 300 1008 338 988 370" />
+          <path d="M1260 252 C1244 300 1222 338 1194 370" />
+          <path d="M1480 400 C1400 424 1320 456 1260 494" />
+          <path d="M1480 680 C1394 666 1322 634 1260 608" />
+          <path d="M736 790 C762 750 794 722 834 700" />
+          <path d="M1116 790 C1098 746 1082 720 1058 700" />
+        </svg>
+
+        <section class="title-card">
+          <h1>AI reads the skills and apply them in your design work</h1>
+        </section>
+
+        <article class="skill-card card-getting">
+          <strong>sgds-getting-started.md</strong>
+          <span>Font setup, CSS imports, component registration, app layout.</span>
+        </article>
+        <article class="skill-card card-writing">
+          <strong>sgds-writing.md</strong>
+          <span>Clear, direct copy for docs, UI labels, and prompts.</span>
+        </article>
+        <article class="skill-card card-components">
+          <strong>sgds-components.md</strong>
+          <span>Components, attributes, slots, events, framework integration.</span>
+        </article>
+        <article class="skill-card card-templates">
+          <strong>sgds-templates.md</strong>
+          <span>Dashboards, login pages, list pages, forms, settings.</span>
+        </article>
+        <article class="skill-card card-blocks">
+          <strong>sgds-blocks.md</strong>
+          <span>Heroes, cards, feature blocks, stats, filters, forms, CTAs.</span>
+        </article>
+        <article class="skill-card card-layouts">
+          <strong>sgds-layouts.md</strong>
+          <span>Public pages, internal tools, dashboards, and sidebars.</span>
+        </article>
+        <article class="skill-card card-patterns">
+          <strong>sgds-patterns.md</strong>
+          <span>Headings, paragraphs, lists, and page text hierarchy.</span>
+        </article>
+        <article class="skill-card card-forms">
+          <strong>sgds-forms.md</strong>
+          <span>Validation patterns and constraint validation.</span>
+        </article>
+        <article class="skill-card card-utilities">
+          <strong>sgds-utilities.md</strong>
+          <span>Grid, spacing, typography, colours, borders, and more.</span>
+        </article>
+        <article class="skill-card card-theming">
+          <strong>sgds-theming.md</strong>
+          <span>Brand colours, dark mode, and font customisation.</span>
+        </article>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      gsap.set(".flow path", { strokeDashoffset: 72, autoAlpha: 1 });
+      tl.to(".soft-wash", { x: 36, y: -24, scale: 1.04, duration: 5.25, ease: "sine.inOut" }, 0);
+      tl.to(".flow path", { strokeDashoffset: -72, duration: 1.8, repeat: 3, ease: "none" }, 0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

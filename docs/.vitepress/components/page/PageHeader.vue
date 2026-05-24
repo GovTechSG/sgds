@@ -61,7 +61,7 @@ const brandIconClass = (label: string) =>
       <h1 :class="[titleClass || 'sgds:text-display-md sgds:font-bold sgds:leading-2-xl sgds:tracking-tighter', 'sgds:mb-0']">{{ title }}</h1>
       <p
         v-if="description"
-        :class="[descriptionClass || 'sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-tight', 'sgds:text-heading-subtle sgds:mb-0 sgds:max-w-[var(--sgds-container-max-width-md)]']"
+        :class="[descriptionClass || 'sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-tight', 'sgds:text-body-subtle sgds:mb-0 sgds:max-w-[var(--sgds-container-max-width-md)]']"
       >
         {{ description }}
       </p>
