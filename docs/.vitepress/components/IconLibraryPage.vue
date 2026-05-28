@@ -556,16 +556,16 @@ async function copyIconName(iconName: string) {
 /* ─── Default size badge ────────────────────────────────────────────────────── */
 
 /* Matches the visual weight of CodeToken chips but uses the primary surface
- * to call out the default value. Font size/line height mirror CodeToken
- * (text-[0.875em], leading-[1.4]) so it aligns with the surrounding chips. */
+ * to call out the default value. */
 
 .il-default-size-badge {
   background: var(--sgds-primary-color-default);
   color: #fff;
-  font-size: 0.875em;
-  line-height: 1.4;
-  padding-block: 2px;
-  padding-inline: 6px;
+  font-size: var(--sgds-font-size-body-sm);
+  letter-spacing: var(--sgds-letter-spacing-normal);
+  line-height: var(--sgds-line-height-2-xs);
+  padding-block: 0;
+  padding-inline: var(--sgds-spacer-1);
 }
 
 @media (max-width: 639px) {

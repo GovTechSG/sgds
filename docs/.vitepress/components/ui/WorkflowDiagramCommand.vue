@@ -7,9 +7,9 @@ const props = defineProps<{
 
 <template>
   <code :class="[
-    'sgds:border sgds:border-muted sgds:rounded-sm sgds:text-default sgds:inline-block sgds:font-mono sgds:text-label-xs sgds:tracking-normal sgds:leading-2-xs sgds:px-[var(--sgds-padding-2-xs)] sgds:py-[1px] sgds:whitespace-nowrap',
+    'sgds:rounded-sm sgds:text-default sgds:inline-block sgds:font-mono sgds:text-body-sm sgds:tracking-normal sgds:leading-2-xs sgds:px-1 sgds:py-0 sgds:whitespace-nowrap',
     props.variant === 'skill'
-      ? 'sgds:bg-[var(--sgds-primary-surface-translucent)] sgds:border-[var(--sgds-primary-border-color-muted)] sgds:text-[var(--sgds-primary-color-emphasis)]'
+      ? 'sgds:bg-[var(--sgds-primary-surface-translucent)] sgds:text-[var(--sgds-primary-color-emphasis)]'
       : 'sgds:bg-surface-raised'
   ]">
     {{ props.label }}
