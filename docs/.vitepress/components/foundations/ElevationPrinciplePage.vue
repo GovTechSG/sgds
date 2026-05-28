@@ -82,9 +82,9 @@ const principles = [
 <style>
 /* Shared demo card container */
 .ep-demo-card {
-  background: var(--sgds-surface-raised);
+  background: var(--sgds-bg-alternate);
   border: 1px solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-2-xl);
+  border-radius: var(--sgds-border-radius-xl);
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -174,7 +174,7 @@ const principles = [
 
 @media (max-width: 767px) {
   .ep-demo-card {
-    border-radius: var(--sgds-border-radius-xl);
+    border-radius: var(--sgds-border-radius-lg);
   }
 
   .ep-shadow-tile {
