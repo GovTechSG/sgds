@@ -60,7 +60,7 @@ const formRadiusTokens: BorderToken[] = [
       <div class="typography-page-template__body typography-page-template__body--prose">
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
-            <sgds-table-head class="border-token-table-name-col">CSS variable</sgds-table-head>
+            <sgds-table-head class="border-token-table-name-col">Token</sgds-table-head>
             <sgds-table-head class="border-token-table-value-col">Value (px/rem)</sgds-table-head>
             <sgds-table-head class="border-token-table-example-col">Preview</sgds-table-head>
           </sgds-table-row>
@@ -106,7 +106,7 @@ const formRadiusTokens: BorderToken[] = [
             </div>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="border-token-table-name-col">CSS variable</sgds-table-head>
+                <sgds-table-head class="border-token-table-name-col">Token</sgds-table-head>
                 <sgds-table-head class="border-token-table-value-col">Value (px/rem)</sgds-table-head>
                 <sgds-table-head class="border-token-table-example-col">Preview</sgds-table-head>
               </sgds-table-row>
@@ -148,7 +148,7 @@ const formRadiusTokens: BorderToken[] = [
             </div>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="border-token-table-name-col">CSS variable</sgds-table-head>
+                <sgds-table-head class="border-token-table-name-col">Token</sgds-table-head>
                 <sgds-table-head class="border-token-table-value-col">Value (px/rem)</sgds-table-head>
                 <sgds-table-head class="border-token-table-example-col">Preview</sgds-table-head>
               </sgds-table-row>
