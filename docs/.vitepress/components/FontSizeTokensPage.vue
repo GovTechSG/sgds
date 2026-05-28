@@ -50,7 +50,7 @@ const fontSizeTokens: FontSizeToken[] = [
           <sgds-table-row
             v-for="row in fontSizeTokens"
             :key="row.token"
-            :class="row.note ? 'sgds:bg-primary-surface-muted' : undefined"
+            :class="row.note ? 'sgds:bg-translucent-subtle' : undefined"
           >
             <sgds-table-cell class="sgds:box-border sgds:w-max sgds:min-w-[13rem] sgds:max-w-[18rem]">
               <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">

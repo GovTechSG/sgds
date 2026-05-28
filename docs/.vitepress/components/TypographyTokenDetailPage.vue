@@ -47,7 +47,7 @@ const getResponsiveTokenValue = (token: string): string => {
               <sgds-table-row
                 v-for="row in subgroup.rows"
                 :key="`${subgroup.label}-${row.token}`"
-                :class="row.isDefault ? 'typography-token-default-row sgds:text-fixed-dark' : undefined"
+                :class="row.isDefault ? 'typography-token-default-row' : undefined"
               >
                 <sgds-table-cell class="typography-token-table__token-column">
                   <div class="typography-token-table__token-cell sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -108,7 +108,7 @@ const getResponsiveTokenValue = (token: string): string => {
             <sgds-table-row
               v-for="row in doc.rows"
               :key="`${doc.key}-${row.token}-${row.value}-${row.exampleClass ?? ''}`"
-              :class="row.note ? 'typography-token-default-row sgds:text-fixed-dark' : undefined"
+              :class="row.note ? 'typography-token-default-row' : undefined"
             >
               <sgds-table-cell class="typography-token-table__token-column">
                 <div class="typography-token-table__token-cell sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -186,7 +186,7 @@ const getResponsiveTokenValue = (token: string): string => {
 
 <style>
 .typography-token-default-row {
-  background: var(--sgds-primary-surface-muted);
+  background: var(--sgds-bg-translucent-subtle);
 }
 
 .typography-token-table__token-column,

@@ -34,7 +34,7 @@ const iconSizeTokens = [
           <sgds-table-row
             v-for="row in iconSizeTokens"
             :key="row.token"
-            :class="row.note ? 'icon-token-default-row sgds:text-fixed-dark' : undefined"
+            :class="row.note ? 'icon-token-default-row' : undefined"
           >
             <sgds-table-cell class="icon-token-table-col">
               <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -82,7 +82,7 @@ const iconSizeTokens = [
 }
 
 .icon-token-default-row {
-  background: var(--sgds-primary-surface-muted);
+  background: var(--sgds-bg-translucent-subtle);
 }
 
 </style>

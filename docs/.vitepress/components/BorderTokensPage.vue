@@ -68,7 +68,7 @@ const formRadiusTokens: BorderToken[] = [
           <sgds-table-row
             v-for="row in borderWidthTokens"
             :key="row.token"
-            :class="row.note ? 'border-token-default-row sgds:text-fixed-dark' : undefined"
+            :class="row.note ? 'border-token-default-row' : undefined"
           >
             <sgds-table-cell class="border-token-table-name-col">
               <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -114,7 +114,7 @@ const formRadiusTokens: BorderToken[] = [
               <sgds-table-row
                 v-for="row in borderRadiusTokens"
                 :key="row.token"
-                :class="row.note ? 'border-token-default-row sgds:text-fixed-dark' : undefined"
+                :class="row.note ? 'border-token-default-row' : undefined"
               >
                 <sgds-table-cell class="border-token-table-name-col">
                   <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -156,7 +156,7 @@ const formRadiusTokens: BorderToken[] = [
               <sgds-table-row
                 v-for="row in formRadiusTokens"
                 :key="row.token"
-                :class="row.note ? 'border-token-default-row sgds:text-fixed-dark' : undefined"
+                :class="row.note ? 'border-token-default-row' : undefined"
               >
                 <sgds-table-cell class="border-token-table-name-col">
                   <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -255,7 +255,7 @@ const formRadiusTokens: BorderToken[] = [
 }
 
 .border-token-default-row {
-  background: var(--sgds-primary-surface-muted);
+  background: var(--sgds-bg-translucent-subtle);
 }
 
 </style>

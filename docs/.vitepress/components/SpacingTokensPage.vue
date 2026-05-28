@@ -207,7 +207,7 @@ const marginRows: MarginRow[] = [
         <sgds-table-row
           v-for="row in spacerRows"
           :key="row.index"
-          :class="row.isBase ? 'st-base-row sgds:text-fixed-dark' : undefined"
+          :class="row.isBase ? 'st-base-row' : undefined"
         >
           <sgds-table-cell class="st-token-col">
             <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -293,7 +293,7 @@ const marginRows: MarginRow[] = [
             <sgds-table-row
               v-for="row in layoutGapRows"
               :key="row.token"
-              :class="row.isBase ? 'st-base-row sgds:text-fixed-dark' : undefined"
+              :class="row.isBase ? 'st-base-row' : undefined"
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -342,7 +342,7 @@ const marginRows: MarginRow[] = [
             <sgds-table-row
               v-for="row in componentGapRows"
               :key="row.token"
-              :class="row.isBase ? 'st-base-row sgds:text-fixed-dark' : undefined"
+              :class="row.isBase ? 'st-base-row' : undefined"
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -391,7 +391,7 @@ const marginRows: MarginRow[] = [
             <sgds-table-row
               v-for="row in textGapRows"
               :key="row.token"
-              :class="row.isBase ? 'st-base-row sgds:text-fixed-dark' : undefined"
+              :class="row.isBase ? 'st-base-row' : undefined"
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -482,7 +482,7 @@ const marginRows: MarginRow[] = [
             <sgds-table-row
               v-for="row in layoutPaddingRows"
               :key="row.token"
-              :class="row.isBase ? 'st-base-row sgds:text-fixed-dark' : undefined"
+              :class="row.isBase ? 'st-base-row' : undefined"
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -531,7 +531,7 @@ const marginRows: MarginRow[] = [
             <sgds-table-row
               v-for="row in componentPaddingRows"
               :key="row.token"
-              :class="row.isBase ? 'st-base-row sgds:text-fixed-dark' : undefined"
+              :class="row.isBase ? 'st-base-row' : undefined"
             >
               <sgds-table-cell class="st-token-col">
                 <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -581,7 +581,7 @@ const marginRows: MarginRow[] = [
           <sgds-table-row
             v-for="row in marginRows"
             :key="row.token"
-            :class="row.isBase ? 'st-base-row sgds:text-fixed-dark' : undefined"
+            :class="row.isBase ? 'st-base-row' : undefined"
           >
             <sgds-table-cell class="st-token-col">
               <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -644,7 +644,7 @@ const marginRows: MarginRow[] = [
 
 /* Base row highlight — applied to sgds-table-row host element */
 .st-base-row {
-  background: var(--sgds-primary-surface-muted);
+  background: var(--sgds-bg-translucent-subtle);
 }
 
 
