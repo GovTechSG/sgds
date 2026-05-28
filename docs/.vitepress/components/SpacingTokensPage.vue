@@ -644,7 +644,7 @@ const marginRows: MarginRow[] = [
 
 /* Base row highlight — applied to sgds-table-row host element */
 .st-base-row {
-  background: var(--sgds-bg-translucent-subtle);
+  background: var(--sgds-primary-bg-translucent);
 }
 
 

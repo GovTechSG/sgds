@@ -82,7 +82,7 @@ const iconSizeTokens = [
 }
 
 .icon-token-default-row {
-  background: var(--sgds-bg-translucent-subtle);
+  background: var(--sgds-primary-bg-translucent);
 }
 
 </style>
