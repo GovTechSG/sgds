@@ -57,7 +57,7 @@ import { newProjectSteps, existingSkills } from "../../data/ai-workflow-data";
   <div class="sgds:flex sgds:items-start sgds:gap-[var(--sgds-component-gap-sm)] sgds:bg-surface-raised sgds:border sgds:border-muted sgds:rounded-md sgds:py-[var(--sgds-component-padding-sm)] sgds:px-[var(--sgds-component-padding-md)] sgds:mt-[var(--sgds-text-gap-sm)]">
     <sgds-icon name="lightbulb" size="md" class="sgds:text-warning-default sgds:flex-shrink-0 sgds:mt-[2px]"></sgds-icon>
     <p class="sgds:text-2 sgds:text-default sgds:leading-[1.55] sgds:m-0">
-      Not sure where to start? Ask your AI to read the <code class="sgds:font-mono sgds:text-[0.875em] sgds:bg-surface-raised sgds:border sgds:border-muted sgds:text-default sgds:px-[5px] sgds:py-[1px] sgds:rounded-sm">sgds-workflow</code> skill first — it will map out everything based on what you're building.
+      Not sure where to start? Ask your AI to read the <CodeToken label="sgds-workflow" /> skill first — it will map out everything based on what you're building.
     </p>
   </div>
 </template>

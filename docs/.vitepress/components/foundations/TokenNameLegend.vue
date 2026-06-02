@@ -64,7 +64,7 @@ const descriptionParts = (description: string) =>
           >
             <code
               v-if="part.isCode"
-              class="sgds:inline-block sgds:whitespace-nowrap sgds:rounded-sm sgds:bg-neutral-surface-muted sgds:px-[6px] sgds:py-0 sgds:font-mono sgds:text-[0.875em] sgds:leading-[1.4] sgds:text-fixed-dark"
+              class="sgds:inline-block sgds:whitespace-nowrap sgds:rounded-sm sgds:bg-surface-raised sgds:px-1 sgds:py-0 sgds:font-mono sgds:text-body-sm sgds:leading-2-xs sgds:tracking-normal sgds:text-default"
             >{{ part.text }}</code>
             <span v-else>{{ part.text }}</span>
           </template>

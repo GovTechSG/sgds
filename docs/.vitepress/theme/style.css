@@ -68,15 +68,16 @@ sgds-tab-group[variant="underlined"] {
 }
 
 /* Inline code */
-.vp-doc :not(pre, h1, h2, h3, h4, h5, h6) > code {
+.vp-doc :not(pre, h1, h2, h3, h4, h5, h6) > code:not(.portal-code-token) {
   background: var(--sgds-surface-raised) !important;
   background-color: var(--sgds-surface-raised) !important;
   border-radius: var(--sgds-border-radius-sm) !important;
   color: var(--sgds-color-default) !important;
   display: inline-block !important;
   font-family: var(--sgds-font-family-mono) !important;
-  font-size: 0.875em !important;
-  line-height: 1.4 !important;
-  padding: 0 6px !important;
+  font-size: var(--sgds-font-size-body-sm) !important;
+  letter-spacing: var(--sgds-letter-spacing-normal) !important;
+  line-height: var(--sgds-line-height-2-xs) !important;
+  padding: 0 var(--sgds-spacer-1) !important;
   white-space: nowrap !important;
 }
