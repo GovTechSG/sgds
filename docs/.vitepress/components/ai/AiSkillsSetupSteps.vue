@@ -23,6 +23,13 @@ import { setupSteps as steps, setupStepsGtCli as gtCliSteps } from "../../data/a
           </sgds-link>
         </template>
 
+        <template #step-sgds-package>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+            Run the following command if the SGDS web component package is not installed:
+          </p>
+          <CodeBlock code="npm i @govtechsg/sgds-web-component" lang="bash" />
+        </template>
+
         <template #step-1>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
             Run the GT CLI installer in your project root:
@@ -59,6 +66,13 @@ import { setupSteps as steps, setupStepsGtCli as gtCliSteps } from "../../data/a
               Download Node.js
             </a>
           </sgds-link>
+        </template>
+
+        <template #step-sgds-package>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+            Run the following command if the SGDS web component package is not installed:
+          </p>
+          <CodeBlock code="npm i @govtechsg/sgds-web-component" lang="bash" />
         </template>
 
         <template #step-1>
