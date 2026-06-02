@@ -485,7 +485,7 @@ const gsLabelCX = (left: number, right: number) =>
           header-gap="sgds:gap-text-xs"
           gap="sgds:gap-text-xl"
         >
-          <div class="cs-chartCard sgds:bg-surface-raised sgds:border-1 sgds:border-muted sgds:overflow-hidden">
+          <div class="cs-chartCard sgds:bg-alternate sgds:border-1 sgds:border-muted sgds:overflow-hidden">
             <div class="cs-chartFrame sgds:mx-auto sgds:w-full sgds:py-layout-md">
               <div class="cs-lightnessChart sgds:flex sgds:mx-auto sgds:w-full">
                 <div class="cs-lightnessYAxis sgds:flex sgds:flex-col sgds:items-end sgds:justify-between sgds:shrink-0">
@@ -540,7 +540,7 @@ const gsLabelCX = (left: number, right: number) =>
 <style>
 /* calc() padding values not expressible as utilities */
 .cs-chartCard {
-  border-radius: var(--sgds-border-radius-2-xl);
+  border-radius: var(--sgds-border-radius-xl);
   padding-top: calc(var(--sgds-layout-padding-sm) + var(--sgds-padding-sm));
   padding-bottom: var(--sgds-layout-padding-sm);
   padding-inline: var(--sgds-component-padding-md);

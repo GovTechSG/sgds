@@ -1232,7 +1232,7 @@ const gridStyle = (preset: GridPreset) => ({
 
 /* Grid demo visualisation */
 .rg-grid-demo {
-  background: var(--sgds-bg-translucent-subtle);
+  background: var(--sgds-bg-alternate);
   border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-xl);
   box-sizing: border-box;
@@ -1283,7 +1283,8 @@ const gridStyle = (preset: GridPreset) => ({
 }
 
 .rg-xs-demo {
-  background: var(--sgds-bg-translucent-subtle);
+  background: var(--sgds-bg-alternate);
+  border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-xl);
   aspect-ratio: 1672 / 480;
   box-sizing: border-box;

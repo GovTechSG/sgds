@@ -139,7 +139,7 @@ const stickySidebarTokens = [
               class="sgds:h-full sgds:w-full"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect x="0" y="0" width="1672" height="480" rx="32" fill="var(--sgds-bg-translucent-subtle)" />
+              <rect x="0" y="0" width="1672" height="480" rx="32" fill="var(--sgds-bg-alternate)" stroke="var(--sgds-border-color-muted)" stroke-width="1" />
 
               <line
                 v-for="guideX in screenSizeGuideXs"

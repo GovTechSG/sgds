@@ -99,7 +99,7 @@ const { stackedExamples = false } = defineProps<{
 }
 
 .typography-page-template__card {
-  background: var(--sgds-surface-default);
+  background: var(--sgds-bg-alternate);
   border: 1px solid var(--sgds-border-color-muted);
   border-radius: var(--sgds-border-radius-xl);
   box-sizing: border-box;
