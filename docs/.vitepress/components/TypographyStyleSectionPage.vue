@@ -169,7 +169,7 @@ const aliasColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[18rem] sgds:max
 }
 
 .ts-default-row {
-  background: var(--sgds-bg-translucent-subtle);
+  background: var(--sgds-primary-bg-translucent);
 }
 
 .ts-token-name-cell {
