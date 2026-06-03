@@ -25,9 +25,6 @@ import SkillsTable from "../.vitepress/components/ui/SkillsTable.vue";
       <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
         They work like task-specific guidance for your assistant. When you ask for an SGDS app, page, component, form, chart, theme, or content change, the assistant can use the relevant skill before it makes decisions.
       </p>
-      <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-        If you are unsure where to start, begin with <CodeToken label="sgds-workflow" />. It maps the skill set and points the assistant to the right skill for the task.
-      </p>
     </div>
   </section>
 
@@ -41,7 +38,7 @@ import SkillsTable from "../.vitepress/components/ui/SkillsTable.vue";
         SGDS agent skills make that context available at the point of work. They help the assistant use SGDS as the source of truth instead of inferring patterns from generic web examples.
       </p>
       <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
-        For new applications, the workflow starts with <CodeToken label="sgds-getting-started" />. From there, the assistant moves between components, utilities, layouts, templates, theming, forms, data visualisation, and writing guidance based on the task.
+        With this context, the assistant can make better SGDS decisions before it writes code, reviews a page, or suggests an implementation approach.
       </p>
     </div>
   </section>
