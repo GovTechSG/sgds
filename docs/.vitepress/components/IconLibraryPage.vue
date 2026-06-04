@@ -261,9 +261,7 @@ async function copyIconName(iconName: string) {
                       <CodeToken label="xs" />
                       <CodeToken label="sm" />
                       <CodeToken label="md" />
-                      <sgds-tooltip content="Default size" placement="top">
-                        <span class="il-default-size-badge sgds:inline-flex sgds:items-center sgds:font-mono sgds:rounded-sm">lg</span>
-                      </sgds-tooltip>
+                      <CodeToken label="lg" />
                       <CodeToken label="xl" />
                       <CodeToken label="2-xl" />
                       <CodeToken label="3-xl" />
@@ -287,6 +285,16 @@ async function copyIconName(iconName: string) {
               :options="styleOptions"
               aria-label="Icon style filter"
             />
+            <div class="il-search-wrap">
+              <sgds-input
+                type="text"
+                placeholder="Search icons"
+                :value="searchQuery"
+                class="sgds:block sgds:w-full"
+                aria-label="Search icons"
+                @sgds-input="onSearchInput"
+              />
+            </div>
             <sgds-select
               class="il-size-select"
               aria-label="Icon size"
@@ -301,16 +309,6 @@ async function copyIconName(iconName: string) {
                 {{ option.label }}
               </sgds-select-option>
             </sgds-select>
-            <div class="il-search-wrap">
-              <sgds-input
-                type="text"
-                placeholder="Search icons"
-                :value="searchQuery"
-                class="sgds:block sgds:w-full"
-                aria-label="Search icons"
-                @sgds-input="onSearchInput"
-              />
-            </div>
             <p
               v-if="isSearching"
               class="sgds:text-body-sm sgds:leading-2-xs sgds:tracking-normal sgds:m-0 sgds:flex sgds:items-center sgds:gap-text-xs il-status"
@@ -410,18 +408,19 @@ async function copyIconName(iconName: string) {
   block-size: 100%;
 }
 
-/* sgds-select's internal .form-control-group has `min-width:
- * var(--sgds-dimension-256)`. Setting a smaller inline-size on the host lets
- * that shadow element overflow and collide with the next item. Match the
- * dimension token so host and internal widths agree. */
+.il-toolbar {
+  flex-wrap: nowrap;
+}
+
 .il-size-select {
   flex: 0 0 auto;
-  inline-size: var(--sgds-dimension-256);
+  inline-size: var(--sgds-dimension-120);
 }
 
 .il-search-wrap {
-  flex: 1 1 20rem;
-  max-inline-size: 28rem;
+  flex: 1 1 var(--sgds-dimension-160);
+  max-inline-size: none;
+  min-inline-size: 0;
 }
 
 .il-status {
@@ -553,24 +552,40 @@ async function copyIconName(iconName: string) {
 .il-api-col--name { inline-size: max-content; max-inline-size: 10rem; min-inline-size: 6rem; }
 .il-api-col--desc { inline-size: auto; }
 
-/* ─── Default size badge ────────────────────────────────────────────────────── */
-
-/* Matches the visual weight of CodeToken chips but uses the primary surface
- * to call out the default value. */
-
-.il-default-size-badge {
-  background: var(--sgds-primary-color-default);
-  color: #fff;
-  font-size: var(--sgds-font-size-body-sm);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-2-xs);
-  padding-block: 0;
-  padding-inline: var(--sgds-spacer-1);
-}
-
 @media (max-width: 639px) {
+  .il-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .il-style-tabs,
+  .il-size-select,
   .il-search-wrap {
+    flex: none;
+    inline-size: 100%;
     max-inline-size: none;
+  }
+
+  .il-style-tabs {
+    order: 1;
+  }
+
+  .il-search-wrap {
+    order: 2;
+  }
+
+  .il-size-select {
+    order: 3;
+  }
+
+  .il-status {
+    order: 4;
+  }
+
+  .il-style-tabs .segment {
+    flex: 1 1 0;
+    min-inline-size: 0;
   }
 
   .il-icon-grid {
