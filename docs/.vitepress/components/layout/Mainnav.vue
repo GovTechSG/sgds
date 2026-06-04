@@ -40,16 +40,6 @@ const searchOpen = ref(false);
       ></sgds-icon-button>
       <ThemeControls slot="non-collapsible" class="mainnav-desktop-only" />
     </sgds-mainnav>
-    <sgds-system-banner show dismissible>
-      <sgds-system-banner-item>
-        <sgds-icon slot="icon" name="info-circle-fill" size="md"></sgds-icon>
-        <strong
-          >This site is a work in progress as part of GovTech &#123;build&#125;
-          hackathon.</strong
-        >
-        Content may be incomplete or subject to change.
-      </sgds-system-banner-item>
-    </sgds-system-banner>
   </div>
 
   <SearchModal :open="searchOpen" @close="searchOpen = false" />
