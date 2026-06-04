@@ -7,6 +7,21 @@ import DesignTokenSvgViewer from "./DesignTokenSvgViewer.vue";
 // label, so crop the viewBox to start below the title text.
 const VIEWBOX_TOP_OFFSET = 100;
 const NATIVE_HEIGHT = 2352;
+const CHART_LABEL_Y_LIMIT = 260;
+
+const tokeniseDarkFill = (element: string) => {
+  if (element.startsWith("<rect") && element.includes('y="170"')) {
+    return element.replace('fill="#222222"', 'fill="var(--sgds-color-default)"');
+  }
+
+  const firstPathY = Number(element.match(/[ML][0-9.]+[ ,]([0-9.]+)/)?.[1]);
+  const fillToken =
+    Number.isFinite(firstPathY) && firstPathY < CHART_LABEL_Y_LIMIT
+      ? "var(--sgds-color-default)"
+      : "var(--sgds-color-fixed-dark)";
+
+  return element.replace('fill="#222222"', `fill="${fillToken}"`);
+};
 
 const tokenizedSvgSource = svgSource
   .replace(
@@ -16,9 +31,9 @@ const tokenizedSvgSource = svgSource
   .replace(/height="2352"/, `height="${NATIVE_HEIGHT - VIEWBOX_TOP_OFFSET}"`)
   // Box colours mirror the pill tones in the anatomy diagrams above:
   // namespace = neutral, context = accent, object = primary, scale = success.
-  // Text uses fixed-dark so it stays legible on the pastel surface-muted
-  // chips, which don't flip in dark mode.
-  .replaceAll('fill="#222222"', 'fill="var(--sgds-color-fixed-dark)"')
+  // Header and column labels adapt to the active theme; pill labels stay dark
+  // for the muted token surfaces.
+  .replace(/<(?:rect|path)[^>]*fill="#222222"[^>]*>/g, tokeniseDarkFill)
   .replaceAll('fill="#D9D9D9" fill-opacity="0.25"', 'fill="var(--sgds-neutral-surface-muted)"')
   .replaceAll('fill="#C7EFFF"', 'fill="var(--sgds-accent-surface-muted)"')
   .replaceAll('fill="#FFEBEB"', 'fill="var(--sgds-primary-surface-muted)"')
