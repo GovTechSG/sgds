@@ -285,7 +285,7 @@ const radiusExamples: Example[] = [
                    default demo, with a backdrop added via .br-modal-backdrop
                    so the panel sits on the same overlay tint the real
                    <sgds-modal> renders behind its panel. -->
-              <div class="portal-modal-preview br-modal-backdrop">
+              <div class="portal-modal-preview br-modal-backdrop sgds:box-border sgds:p-xl">
                 <div class="portal-modal-panel">
                   <div class="portal-modal-header">
                     <div class="portal-modal-header-copy">
