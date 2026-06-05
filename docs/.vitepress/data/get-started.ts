@@ -71,7 +71,6 @@ export type GetStartedSection = {
   demoExamples?: GetStartedDemoExample[];
   copyPatterns?: GetStartedCopyPattern[];
   links?: GetStartedLink[];
-  video?: boolean;
   codeTabs?: GetStartedCodeTab[];
   codeTabsShowLineNumbers?: boolean;
   codeBlock?: GetStartedCodeBlock;
@@ -100,7 +99,9 @@ export type GetStartedPageData = {
   title: string;
   description?: string;
   intro?: string[];
+  introHtml?: string;
   headerLinks?: GetStartedHeaderLink[];
+  sectionsGap?: string;
   sectionGap?: string;
   sections?: GetStartedSection[];
   reasons?: GetStartedListItem[];
@@ -138,6 +139,8 @@ export const getStartedOverview: GetStartedPageData = {
     "SGDS v3 is the latest version of the Singapore Government Design System. It provides reusable components, design tokens, and shared foundations so government teams can build trusted digital services faster.",
     "Your team can spend less time on common UI problems and more time on what matters: the citizen experience.",
   ],
+  introHtml:
+    '<span class="sgds:font-semibold">SGDS v3</span> is the latest version of the Singapore Government Design System. It provides reusable components, design tokens, and shared foundations so government teams can build trusted digital services faster.<br>Your team can spend less time on common UI problems and more time on what matters: <span class="sgds:font-semibold">the citizen experience.</span>',
   reasons: [
     {
       title: "Move faster",
@@ -148,8 +151,8 @@ export const getStartedOverview: GetStartedPageData = {
       description: "Shared design tokens, typography, and colour scales keep all .gov.sg services recognisable as one government.",
     },
     {
-      title: "Accessibility built in",
-      description: "Every component ships with keyboard navigation, ARIA attributes, and screen-reader support. Your team does not need to add these manually.",
+      title: "Accessibility first",
+      description: "Build inclusive experiences using components designed to meet government accessibility standards by default.",
     },
     {
       title: "Design to code in sync",
@@ -186,11 +189,11 @@ export const getStartedOverview: GetStartedPageData = {
 export const aboutSgdsPage: GetStartedPageData = {
   key: "about-sgds",
   title: "About us",
+  sectionsGap: "sgds:gap-layout-lg",
   sections: [
     {
       title: "Our vision",
       description: "To create a unified and accessible design foundation that enables government teams to build trusted digital services with clarity, consistency, and confidence.",
-      video: true,
     },
     {
       title: "Our philosophy",
