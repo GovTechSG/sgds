@@ -57,17 +57,17 @@ const getResponsiveTokenValue = (token: string): string => {
                 </sgds-table-cell>
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
                   <sgds-tooltip :content="row.mobile" placement="top">
-                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.mobile) }}</span>
+                    <span tabindex="0" class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.mobile) }}</span>
                   </sgds-tooltip>
                 </sgds-table-cell>
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
                   <sgds-tooltip :content="row.tablet" placement="top">
-                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.tablet) }}</span>
+                    <span tabindex="0" class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.tablet) }}</span>
                   </sgds-tooltip>
                 </sgds-table-cell>
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
                   <sgds-tooltip :content="row.desktop" placement="top">
-                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.desktop) }}</span>
+                    <span tabindex="0" class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.desktop) }}</span>
                   </sgds-tooltip>
                 </sgds-table-cell>
               </sgds-table-row>
@@ -119,22 +119,22 @@ const getResponsiveTokenValue = (token: string): string => {
               <template v-if="isResponsive">
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
                   <sgds-tooltip :content="row.mobile" placement="top">
-                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.mobile) }}</span>
+                    <span tabindex="0" class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.mobile) }}</span>
                   </sgds-tooltip>
                 </sgds-table-cell>
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
                   <sgds-tooltip :content="row.tablet" placement="top">
-                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.tablet) }}</span>
+                    <span tabindex="0" class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.tablet) }}</span>
                   </sgds-tooltip>
                 </sgds-table-cell>
                 <sgds-table-cell class="typography-token-table__breakpoint-column">
                   <sgds-tooltip :content="row.desktop" placement="top">
-                    <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.desktop) }}</span>
+                    <span tabindex="0" class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ getResponsiveTokenValue(row.desktop) }}</span>
                   </sgds-tooltip>
                 </sgds-table-cell>
               </template>
               <sgds-table-cell v-else class="typography-token-table__value-column">
-                <span class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.value }}</span>
+                <span tabindex="0" class="typography-token-table__value-text sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.value }}</span>
               </sgds-table-cell>
               <sgds-table-cell class="typography-token-table__example-column">
                 <div v-if="doc.key === 'paragraph-spacing'" class="sgds:flex sgds:flex-col sgds:gap-text-xs">

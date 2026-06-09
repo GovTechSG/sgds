@@ -303,17 +303,17 @@ const marginRows: MarginRow[] = [
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
@@ -352,17 +352,17 @@ const marginRows: MarginRow[] = [
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
@@ -401,17 +401,17 @@ const marginRows: MarginRow[] = [
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
@@ -492,17 +492,17 @@ const marginRows: MarginRow[] = [
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>
@@ -541,17 +541,17 @@ const marginRows: MarginRow[] = [
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'mobile')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.mobile }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'tablet')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.tablet }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-metric-col">
                 <sgds-tooltip :content="breakpointPrimitive(row.token, 'desktop')" placement="top" trigger="hover focus">
-                  <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
+                  <span tabindex="0" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.desktop }}</span>
                 </sgds-tooltip>
               </sgds-table-cell>
               <sgds-table-cell class="st-usage-col"><span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ row.usage }}</span></sgds-table-cell>

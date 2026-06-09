@@ -176,6 +176,7 @@ watch(currentPath, () => {
               slot="nav"
               :panel="tab.key"
               :active="tab.key === designTabs[0].key || null"
+              :ariaLabel="tab.label"
             >
               {{ tab.label }}
             </sgds-tab>

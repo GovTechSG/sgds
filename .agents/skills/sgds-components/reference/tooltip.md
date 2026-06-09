@@ -60,12 +60,12 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 ```html
 <!-- Basic tooltip on an icon -->
 <sgds-tooltip content="More information about this field" placement="bottom">
-  <sgds-icon name="info-circle" tabindex="0"></sgds-icon>
+  <sgds-icon name="info-circle" ariaLabel="Information" tabindex="0"></sgds-icon>
 </sgds-tooltip>
 
 <!-- Tooltip triggered only on click -->
 <sgds-tooltip content="Copied to clipboard!" trigger="click" placement="top">
-  <sgds-button>Copy</sgds-button>
+  <sgds-button ariaLabel="Copy">Copy</sgds-button>
 </sgds-tooltip>
 
 <!-- Tooltip with focus trigger only (keyboard accessible) -->

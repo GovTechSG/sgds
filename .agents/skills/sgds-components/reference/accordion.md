@@ -85,15 +85,15 @@ Accordion items support two expand modes:
 ```html
 <!-- Basic accordion -->
 <sgds-accordion>
-  <sgds-accordion-item>
+  <sgds-accordion-item ariaLabel="Section 1">
     <div slot="header">Section 1</div>
     <div slot="content">Content for section 1.</div>
   </sgds-accordion-item>
-  <sgds-accordion-item open>
+  <sgds-accordion-item open ariaLabel="Section 2 (starts open)">
     <div slot="header">Section 2 (starts open)</div>
     <div slot="content">Content for section 2.</div>
   </sgds-accordion-item>
-  <sgds-accordion-item disabled>
+  <sgds-accordion-item disabled ariaLabel="Section 3 (disabled)">
     <div slot="header">Section 3 (disabled)</div>
     <div slot="content">This item cannot be toggled.</div>
   </sgds-accordion-item>
@@ -101,7 +101,7 @@ Accordion items support two expand modes:
 
 <!-- Border variant -->
 <sgds-accordion variant="border">
-  <sgds-accordion-item>
+  <sgds-accordion-item ariaLabel="Bordered section">
     <div slot="header">Bordered section</div>
     <div slot="content">Content here.</div>
   </sgds-accordion-item>
@@ -109,11 +109,11 @@ Accordion items support two expand modes:
 
 <!-- Allow multiple open at once, compact density -->
 <sgds-accordion allowMultiple density="compact">
-  <sgds-accordion-item open>
+  <sgds-accordion-item open ariaLabel="Item A">
     <div slot="header">Item A</div>
     <div slot="content">Content A.</div>
   </sgds-accordion-item>
-  <sgds-accordion-item open>
+  <sgds-accordion-item open ariaLabel="Item B">
     <div slot="header">Item B</div>
     <div slot="content">Content B.</div>
   </sgds-accordion-item>
@@ -121,13 +121,13 @@ Accordion items support two expand modes:
 
 <!-- Spacious density with icon and badge slots -->
 <sgds-accordion density="spacious">
-  <sgds-accordion-item open>
+  <sgds-accordion-item open ariaLabel="Section with icon">
     <sgds-icon slot="icon" name="info-circle" size="xl"></sgds-icon>
     <div slot="header">Section with icon</div>
     <sgds-badge slot="badge" variant="primary">New</sgds-badge>
     <div slot="content">Content here.</div>
   </sgds-accordion-item>
-  <sgds-accordion-item>
+  <sgds-accordion-item ariaLabel="Another section">
     <sgds-icon slot="icon" name="info-circle" size="xl"></sgds-icon>
     <div slot="header">Another section</div>
     <sgds-badge slot="badge" variant="warning">Updated</sgds-badge>
@@ -150,6 +150,7 @@ Accordion items support two expand modes:
 
 | Attribute | Type | Default | Purpose |
 |---|---|---|---|
+| `ariaLabel` | string | `""` | **Required.** Accessible label forwarded to the internal button. Must match the header text. |
 | `open` | boolean | `false` | Controls whether the item is expanded |
 | `disabled` | boolean | `false` | Prevents the item from being toggled |
 
@@ -182,12 +183,13 @@ Accordion items support two expand modes:
 ---
 
 **For AI agents**:
-1. `variant` and `density` are set on `<sgds-accordion>` (the parent), not on individual items.
-2. `sgds-show` and `sgds-hide` are cancelable on `<sgds-accordion-item>` — call `event.preventDefault()` to stop the transition.
-3. To start an item expanded on load, add the `open` attribute to `<sgds-accordion-item>`.
-4. Without `allowMultiple`, opening one item automatically closes others.
-5. Default to the first item open (`open` on first `<sgds-accordion-item>`) only when that section contains key information users need immediately.
-6. Use `allowMultiple` when users need to compare sections; use single-expand for guided or sequential reading.
-7. Never nest accordions more than one level deep.
-8. If a form section inside an accordion item has validation errors, auto-expand that item so the user can see and fix the error.
-9. There are no events or public methods on the `<sgds-accordion>` parent element.
+1. **`ariaLabel` is mandatory** on every `<sgds-accordion-item>`. Its value must match the header text to provide an accessible label to the internal button. Never omit it.
+2. `variant` and `density` are set on `<sgds-accordion>` (the parent), not on individual items.
+3. `sgds-show` and `sgds-hide` are cancelable on `<sgds-accordion-item>` — call `event.preventDefault()` to stop the transition.
+4. To start an item expanded on load, add the `open` attribute to `<sgds-accordion-item>`.
+5. Without `allowMultiple`, opening one item automatically closes others.
+6. Default to the first item open (`open` on first `<sgds-accordion-item>`) only when that section contains key information users need immediately.
+7. Use `allowMultiple` when users need to compare sections; use single-expand for guided or sequential reading.
+8. Never nest accordions more than one level deep.
+9. If a form section inside an accordion item has validation errors, auto-expand that item so the user can see and fix the error.
+10. There are no events or public methods on the `<sgds-accordion>` parent element.

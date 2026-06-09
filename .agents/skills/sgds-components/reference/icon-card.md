@@ -116,7 +116,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 <sgds-icon-card stretchedLink>
   <sgds-icon slot="icon" name="star" size="3-xl"></sgds-icon>
   <span slot="title">Clickable Card</span>
-  <sgds-link slot="footer"><a href="/destination">Go somewhere</a></sgds-link>
+  <sgds-link slot="footer"><a href="/destination" aria-label="Go somewhere">Go somewhere</a></sgds-link>
 </sgds-icon-card>
 
 <!-- No padding -->
@@ -160,7 +160,7 @@ None.
 **For AI agents**:
 1. Always use `size="3-xl"` on the `<sgds-icon>` in the `icon` slot for the standard icon card appearance.
 2. Place the CTA in the `footer` slot using `<sgds-link>` — the `link` slot is deprecated since 3.3.2.
-3. For `stretchedLink`, the href is sourced from the `<a>` tag inside the `footer` slot.
+3. For `stretchedLink`, the href is sourced from the `<a>` tag inside the `footer` slot. Always add `aria-label` to the `<a>` for accessibility (the label is forwarded to the card's outer clickable element).
 4. `lower` slot is the correct place for tag badges below the description.
 5. `<sgds-icon-list>` in the default slot (between title and description) is the standard pattern for metadata like dates and locations.
 6. There are no custom events or public methods on this component.

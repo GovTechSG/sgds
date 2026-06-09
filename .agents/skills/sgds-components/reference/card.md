@@ -130,7 +130,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
   <img slot="image" alt="Description" src="image.jpg" />
   <span slot="title">Clickable Card</span>
   <span slot="description">Clicking anywhere on the card navigates to the footer link.</span>
-  <sgds-link slot="footer"><a href="/destination">Go somewhere</a></sgds-link>
+  <sgds-link slot="footer"><a href="/destination" aria-label="Go somewhere">Go somewhere</a></sgds-link>
 </sgds-card>
 
 <!-- Disabled state -->
@@ -183,7 +183,7 @@ None.
 
 **For AI agents**:
 1. Always place the card CTA in the `footer` slot using `<sgds-link>` — the `link` slot is deprecated since 3.3.2.
-2. For `stretchedLink`, the href is sourced from the `<a>` tag inside the `footer` slot — no `href` on the card itself.
+2. For `stretchedLink`, the href is sourced from the `<a>` tag inside the `footer` slot — no `href` on the card itself. Always add `aria-label` to the `<a>` for accessibility (the label is forwarded to the card's outer clickable element).
 3. Use `image` slot for images, `icon` slot for icons — they are mutually exclusive in layout; using both may produce unexpected results.
 4. `imageAdjustment="aspect ratio"` and `imageAdjustment="padding around"` are string values with spaces — pass them exactly.
 5. For specific card types (image-focused, icon-focused, thumbnail), prefer `<sgds-image-card>`, `<sgds-icon-card>`, or `<sgds-thumbnail-card>` respectively.

@@ -42,7 +42,7 @@ export const cardsCards3Markup = `<!-- Cards Block — 3 columns × 3 rows
               >An overview of Singapore's plans for resilient and future-ready digital infrastructure.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Digital Infrastructure for the Next Decade">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -55,7 +55,7 @@ export const cardsCards3Markup = `<!-- Cards Block — 3 columns × 3 rows
               >Panellists explore responsible AI adoption frameworks and inter-agency collaboration.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about AI Governance in the Public Sector">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -68,7 +68,7 @@ export const cardsCards3Markup = `<!-- Cards Block — 3 columns × 3 rows
               >A deep dive into implementing zero-trust principles across legacy and modern systems.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Zero-Trust Architecture for Government Systems">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -82,7 +82,7 @@ export const cardsCards3Markup = `<!-- Cards Block — 3 columns × 3 rows
               >Key takeaways from real-world cloud migration projects across the Singapore government.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Securing the Cloud: Lessons from the Field">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -95,7 +95,7 @@ export const cardsCards3Markup = `<!-- Cards Block — 3 columns × 3 rows
               >Practical frameworks for building effective incident response and recovery strategies.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Incident Response Playbooks for CISOs">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -108,7 +108,7 @@ export const cardsCards3Markup = `<!-- Cards Block — 3 columns × 3 rows
               >How agencies are building cyber talent pipelines and fostering a security-aware culture.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Workforce Upskilling for Cyber Resilience">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -122,7 +122,7 @@ export const cardsCards3Markup = `<!-- Cards Block — 3 columns × 3 rows
               >An opening address on Singapore's whole-of-government approach to digital resilience.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Building a Resilient Digital Government">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -135,7 +135,7 @@ export const cardsCards3Markup = `<!-- Cards Block — 3 columns × 3 rows
               >How people-centred design and agile delivery are shaping the next wave of government technology.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about The Future of GovTech: People, Process and Platform">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -148,7 +148,7 @@ export const cardsCards3Markup = `<!-- Cards Block — 3 columns × 3 rows
               >Using machine learning to continuously monitor systems for policy and regulatory compliance.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Automating Compliance Monitoring with AI">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -189,7 +189,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >An overview of Singapore's plans for resilient and future-ready digital infrastructure.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Digital Infrastructure for the Next Decade">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -202,7 +202,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >Panellists explore responsible AI adoption frameworks and inter-agency collaboration.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about AI Governance in the Public Sector">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -215,7 +215,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >A deep dive into implementing zero-trust principles across legacy and modern systems.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Zero-Trust Architecture for Government Systems">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -228,7 +228,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >Key takeaways from real-world cloud migration projects across the Singapore government.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Securing the Cloud: Lessons from the Field">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -242,7 +242,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >Practical frameworks for building effective incident response and recovery strategies.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Incident Response Playbooks for CISOs">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -255,7 +255,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >How agencies are building cyber talent pipelines and fostering a security-aware culture.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Workforce Upskilling for Cyber Resilience">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -268,7 +268,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >An opening address on Singapore's whole-of-government approach to digital resilience.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Building a Resilient Digital Government">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -281,7 +281,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >How people-centred design and agile delivery are shaping the next wave of government technology.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about The Future of GovTech: People, Process and Platform">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -295,7 +295,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >Using machine learning to continuously monitor systems for policy and regulatory compliance.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Automating Compliance Monitoring with AI">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -308,7 +308,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >Why cybersecurity investment is central to Singapore's long-term digital sovereignty strategy.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Cybersecurity as a National Imperative">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -321,7 +321,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >Governance models and technical standards enabling safe cross-agency data sharing.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Data Sharing Across Agencies: Challenges and Solutions">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -334,7 +334,7 @@ export const cardsCards4Markup = `<!-- Cards Block — 4 columns × 3 rows
               >Strategies for managing digital identities across thousands of government users securely.</span
             >
             <sgds-link slot="footer"
-              ><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a
+              ><a href="#" aria-label="View details about Identity and Access Management at Scale">View details <sgds-icon name="arrow-right"></sgds-icon></a
             ></sgds-link>
           </sgds-card>
         </div>
@@ -687,19 +687,19 @@ export const featureFeature66ComponentLeftMarkup = `<!-- Feature Block — compo
         <!-- Component — 6 cols (replace with any component) -->
         <div class="feature-component sgds-col-4 sgds-col-sm-8 sgds-col-lg-6">
           <sgds-accordion>
-            <sgds-accordion-item open>
+            <sgds-accordion-item open ariaLabel="Why choose us">
               <div slot="header">Why choose us</div>
               <div slot="content">
                 We deliver fast, reliable, and accessible digital services built to government standards.
               </div>
             </sgds-accordion-item>
-            <sgds-accordion-item>
+            <sgds-accordion-item ariaLabel="How it works">
               <div slot="header">How it works</div>
               <div slot="content">
                 Sign up, verify your identity, and access all your services from a single dashboard.
               </div>
             </sgds-accordion-item>
-            <sgds-accordion-item>
+            <sgds-accordion-item ariaLabel="Who can use this">
               <div slot="header">Who can use this</div>
               <div slot="content">
                 Any Singapore resident or business with a valid Singpass account can get started.
@@ -773,19 +773,19 @@ export const featureFeature66ComponentRightMarkup = `<!-- Feature Block — cont
         <!-- Component — 6 cols (replace with any component) -->
         <div class="feature-component sgds-col-4 sgds-col-sm-8 sgds-col-lg-6">
           <sgds-accordion>
-            <sgds-accordion-item open>
+            <sgds-accordion-item open ariaLabel="Why choose us">
               <div slot="header">Why choose us</div>
               <div slot="content">
                 We deliver fast, reliable, and accessible digital services built to government standards.
               </div>
             </sgds-accordion-item>
-            <sgds-accordion-item>
+            <sgds-accordion-item ariaLabel="How it works">
               <div slot="header">How it works</div>
               <div slot="content">
                 Sign up, verify your identity, and access all your services from a single dashboard.
               </div>
             </sgds-accordion-item>
-            <sgds-accordion-item>
+            <sgds-accordion-item ariaLabel="Who can use this">
               <div slot="header">Who can use this</div>
               <div slot="content">
                 Any Singapore resident or business with a valid Singpass account can get started.
@@ -1074,7 +1074,7 @@ export const featureFeatureCardsBelowMarkup = `<!-- Feature Block — content to
                 >Supporting description text that explains what this feature offers to the user.</span
               >
               <sgds-link slot="footer">
-                <a href="#">Learn more <sgds-icon name="arrow-right"></sgds-icon></a>
+                <a href="#" aria-label="Learn more about Card Title One">Learn more <sgds-icon name="arrow-right"></sgds-icon></a>
               </sgds-link>
             </sgds-card>
           </div>
@@ -1087,7 +1087,7 @@ export const featureFeatureCardsBelowMarkup = `<!-- Feature Block — content to
                 >Supporting description text that explains what this feature offers to the user.</span
               >
               <sgds-link slot="footer">
-                <a href="#">Learn more <sgds-icon name="arrow-right"></sgds-icon></a>
+                <a href="#" aria-label="Learn more about Card Title Two">Learn more <sgds-icon name="arrow-right"></sgds-icon></a>
               </sgds-link>
             </sgds-card>
           </div>
@@ -1100,7 +1100,7 @@ export const featureFeatureCardsBelowMarkup = `<!-- Feature Block — content to
                 >Supporting description text that explains what this feature offers to the user.</span
               >
               <sgds-link slot="footer">
-                <a href="#">Learn more <sgds-icon name="arrow-right"></sgds-icon></a>
+                <a href="#" aria-label="Learn more about Card Title Three">Learn more <sgds-icon name="arrow-right"></sgds-icon></a>
               </sgds-link>
             </sgds-card>
           </div>
