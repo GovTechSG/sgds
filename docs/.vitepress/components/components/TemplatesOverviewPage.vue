@@ -94,17 +94,18 @@ const filteredTemplateItems = computed(() => {
   });
 });
 
-const selectGroup = (value: string) => {
-  selectedGroups.value = selectedGroups.value.includes(value)
-    ? selectedGroups.value.filter((selectedGroup) => selectedGroup !== value)
-    : [...selectedGroups.value, value];
-};
-
 const clearFilters = () => {
   selectedGroups.value = [];
 };
 
-const isGroupSelected = (value: string) => selectedGroups.value.includes(value);
+const selectedGroupValue = computed(() => selectedGroups.value.join(";"));
+
+const syncSelectedGroups = (event: Event) => {
+  if (event.target !== event.currentTarget) return;
+
+  const checkboxGroup = event.currentTarget as HTMLInputElement;
+  selectedGroups.value = checkboxGroup.value ? checkboxGroup.value.split(";").filter(Boolean) : [];
+};
 
 onMounted(() => {
   const mediaQuery = window.matchMedia("(max-width: 1023px)");
@@ -207,13 +208,14 @@ const getThumbnailSrc = (key: string) => {
                 <div class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-heading-default">
                   {{ filterHeading }}
                 </div>
-                <sgds-checkbox-group>
+                <sgds-checkbox-group
+                  :value="selectedGroupValue"
+                  @sgds-change="syncSelectedGroups"
+                >
                   <sgds-checkbox
                     v-for="option in categoryOptions"
                     :key="option.value"
                     :value="option.value"
-                    :checked="isGroupSelected(option.value) ? '' : null"
-                    @sgds-change="selectGroup(option.value)"
                   >
                     {{ option.label }} ({{ option.count }})
                   </sgds-checkbox>
@@ -267,13 +269,14 @@ const getThumbnailSrc = (key: string) => {
                 <span slot="title" class="sgds:text-heading-xs sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Filters</span>
                 <span slot="description" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">{{ filterHeading }}</span>
                 <div class="sgds:flex sgds:flex-col sgds:gap-component-md">
-                  <sgds-checkbox-group>
+                  <sgds-checkbox-group
+                    :value="selectedGroupValue"
+                    @sgds-change="syncSelectedGroups"
+                  >
                     <sgds-checkbox
                       v-for="option in categoryOptions"
                       :key="option.value"
                       :value="option.value"
-                      :checked="isGroupSelected(option.value) ? '' : null"
-                      @sgds-change="selectGroup(option.value)"
                     >
                       {{ option.label }} ({{ option.count }})
                     </sgds-checkbox>
