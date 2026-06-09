@@ -15,8 +15,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       '@govtechsg/sgds-web-component':
-        specifier: 3.20.0-rc.4
-        version: 3.20.0-rc.4(@types/react@19.2.14)
+        specifier: 3.21.1
+        version: 3.21.1(@types/react@19.2.14)
       gsap:
         specifier: ^3.13.0
         version: 3.14.2
@@ -237,8 +237,8 @@ packages:
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
 
-  '@govtechsg/sgds-web-component@3.20.0-rc.4':
-    resolution: {integrity: sha512-CNln3QKaP8X7LKEZq74W/a762kNeXrc9PZZM8/ZtRpTlDA5CTtI8qQfMO4tTKb+fgmt+qwONdiduvX5cq+OSGw==}
+  '@govtechsg/sgds-web-component@3.21.1':
+    resolution: {integrity: sha512-2VrGGVmvrceG9jhEy/3H+vD7GXoxc+8JwsIBs69xjcuc4wy0p5saOTvggOl1Miang2Nq1Umw79MPYon3WByX+Q==}
 
   '@iconify-json/simple-icons@1.2.78':
     resolution: {integrity: sha512-I3lkNp0Qu7q2iZWkdcf/I2hqGhzK6qxdILh9T7XqowQrnpmG/BayDsiCf6PktDoWlW0U971xA5g+panm+NFrfQ==}
@@ -1300,7 +1300,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.11': {}
 
-  '@govtechsg/sgds-web-component@3.20.0-rc.4(@types/react@19.2.14)':
+  '@govtechsg/sgds-web-component@3.21.1(@types/react@19.2.14)':
     dependencies:
       '@floating-ui/dom': 1.7.6
       '@lit/context': 1.1.6
