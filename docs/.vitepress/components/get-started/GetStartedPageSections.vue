@@ -137,6 +137,7 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
             slot="nav"
             :panel="tab.label"
             :active="i === 0 || null"
+            :ariaLabel="tab.label"
           >
             {{ tab.label }}
           </sgds-tab>

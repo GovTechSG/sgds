@@ -73,25 +73,25 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 <sgds-icon-button name="plus" ariaLabel="Add item"></sgds-icon-button>
 
 <!-- Variants -->
-<sgds-icon-button variant="primary" name="placeholder"></sgds-icon-button>
-<sgds-icon-button variant="outline" name="dash"></sgds-icon-button>
-<sgds-icon-button variant="ghost" name="star"></sgds-icon-button>
+<sgds-icon-button variant="primary" name="placeholder" ariaLabel="Placeholder"></sgds-icon-button>
+<sgds-icon-button variant="outline" name="dash" ariaLabel="Remove"></sgds-icon-button>
+<sgds-icon-button variant="ghost" name="star" ariaLabel="Favourite"></sgds-icon-button>
 
 <!-- Tones -->
-<sgds-icon-button tone="brand" variant="primary" name="plus"></sgds-icon-button>
-<sgds-icon-button tone="danger" variant="outline" name="plus"></sgds-icon-button>
-<sgds-icon-button tone="neutral" variant="ghost" name="plus"></sgds-icon-button>
+<sgds-icon-button tone="brand" variant="primary" name="plus" ariaLabel="Add"></sgds-icon-button>
+<sgds-icon-button tone="danger" variant="outline" name="plus" ariaLabel="Add"></sgds-icon-button>
+<sgds-icon-button tone="neutral" variant="ghost" name="plus" ariaLabel="Add"></sgds-icon-button>
 
 <!-- On dark background -->
 <div style="background-color: #333; padding: 12px;">
-  <sgds-icon-button tone="fixed-light" variant="primary" name="plus"></sgds-icon-button>
+  <sgds-icon-button tone="fixed-light" variant="primary" name="plus" ariaLabel="Add"></sgds-icon-button>
 </div>
 
 <!-- Sizes -->
-<sgds-icon-button size="xs" name="plus"></sgds-icon-button>
-<sgds-icon-button size="sm" name="plus"></sgds-icon-button>
-<sgds-icon-button name="plus"></sgds-icon-button>
-<sgds-icon-button size="lg" name="plus"></sgds-icon-button>
+<sgds-icon-button size="xs" name="plus" ariaLabel="Add"></sgds-icon-button>
+<sgds-icon-button size="sm" name="plus" ariaLabel="Add"></sgds-icon-button>
+<sgds-icon-button name="plus" ariaLabel="Add"></sgds-icon-button>
+<sgds-icon-button size="lg" name="plus" ariaLabel="Add"></sgds-icon-button>
 
 <!-- Loading state -->
 <sgds-icon-button name="plus" loading ariaLabel="Saving..."></sgds-icon-button>

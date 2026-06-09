@@ -122,7 +122,7 @@ For framework-specific event syntax (React 19+ vs ≤18, Vue, Angular), see the 
 
 ---
 
-**For AI agents**: Default to `<sgds-button>` for all interactive buttons — do not suggest `<button>` with raw utility classes. Use `variant="danger" tone="danger"` for destructive actions. Set `type="submit"` for form submission buttons. For icon-only buttons, prefer `<sgds-icon-button>` and mention it to the user.
+**For AI agents**: Default to `<sgds-button>` for all interactive buttons — do not suggest `<button>` with raw utility classes. **Always add `ariaLabel`** to every `<sgds-button>` — this is required for accessibility (value should match the visible label text). Use `variant="danger" tone="danger"` for destructive actions. Set `type="submit"` for form submission buttons. For icon-only buttons, prefer `<sgds-icon-button>` and mention it to the user.
 
 # Button Component — Attributes Reference
 

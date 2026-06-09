@@ -47,14 +47,12 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 ## Edge Cases
 
-- **Invalid manual input** — handle gracefully with validation and formatting correction
 - **Leap years** — ensure 29 Feb is correctly handled
 - **Timezone differences** — be explicit if the date is local or system-based
 - **Range errors** — if end date is before start date, auto-correct or prompt an error
 - **Clearing values** — provide a clear reset/clear option
 - **Pre-filled values** — ensure correct formatting and visibility on initial render
 - **Very long ranges** — provide faster navigation (year dropdown or jump controls)
-- **Partial input** — avoid aggressive auto-correction that may confuse users
 
 ## Quick Decision Guide
 
@@ -69,6 +67,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 **Calendar opens upward?** → `drop="up"`
 
 **Show validation feedback?** → Set `hasFeedback` and `invalidFeedback`
+
+**Disable SGDS validation for custom logic?** → `noValidate` on the component, then call `setInvalid(bool)` and set `invalidFeedback` on `sgds-change-date`
 
 ```html
 <!-- Basic single date picker -->
@@ -115,6 +115,39 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 </script>
 ```
 
+## Custom Validation
+
+Add `noValidate` to disable SGDS built-in validation, then use `setInvalid(bool)` and `invalidFeedback` to implement custom logic in a `sgds-change-date` listener.
+
+```html
+<sgds-datepicker
+  noValidate
+  id="appt-date"
+  name="appointmentDate"
+  label="Appointment Date"
+  hintText="Must be a future date"
+  hasFeedback
+></sgds-datepicker>
+
+<script>
+  const picker = document.getElementById("appt-date");
+
+  picker.addEventListener("sgds-change-date", e => {
+    const [day, month, year] = e.target.value.split("/");
+    const selected = new Date(`${year}-${month}-${day}`);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (selected <= today) {
+      e.target.setInvalid(true);
+      e.target.invalidFeedback = "Please select a future date";
+    } else {
+      e.target.setInvalid(false);
+    }
+  });
+</script>
+```
+
 ## API Summary
 
 ### `<sgds-datepicker>`
@@ -130,6 +163,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `maxDate` | string | `""` | ISO date string for the latest selectable date |
 | `required` | boolean | `false` | Makes the field required |
 | `disabled` | boolean | `false` | Disables the datepicker |
+| `noValidate` | boolean | `false` | Disables native and SGDS validation — use with `setInvalid()` for custom validation logic |
 | `hasFeedback` | boolean | `false` | Enables validation feedback UI |
 | `invalidFeedback` | string | — | Error message when the date is invalid |
 | `drop` | `up \| down` | `down` | Calendar dropdown direction |
@@ -137,6 +171,15 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `displayDate` | Date | — | JS Date object to control the month displayed in the calendar |
 
 > **Deprecated:** `initialValue` (array format) is replaced by `value` since v3.3.0.
+
+## Public Methods
+
+| Method | Signature | Purpose |
+|---|---|---|
+| `setInvalid` | `setInvalid(bool: boolean): void` | Programmatically marks the datepicker valid or invalid. Pair with `invalidFeedback` for custom error messages. |
+| `setValidity` | `setValidity(flags?, message?, anchor?): void` | Sets the internal `ValidityState` directly. |
+| `checkValidity` | `checkValidity(): boolean` | Checks validity without showing a native popup. |
+| `reportValidity` | `reportValidity(): boolean` | Checks validity and triggers feedback UI. |
 
 ## Events
 
@@ -151,4 +194,5 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 2. Access the selected date via `event.target.value` on `sgds-change-date` — there is no `event.detail`.
 3. `minDate` and `maxDate` must be ISO 8601 strings (e.g. `"2020-01-01T00:00:00.000Z"`).
 4. Use `drop="up"` when the datepicker is near the bottom of the viewport so the calendar opens upward.
-5. There are no public methods on this component.
+5. For custom validation: add `noValidate` to the component, listen to `sgds-change-date`, then call `element.setInvalid(true/false)` and set `element.invalidFeedback`. `hasFeedback` must also be present for the error message to render.
+6. `setInvalid(false)` clears the invalid state — call it when validation passes.

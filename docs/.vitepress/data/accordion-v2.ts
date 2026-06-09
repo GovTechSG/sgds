@@ -87,15 +87,15 @@ const designBehaviour: UsageBehaviour[] = [
     description:
       "Use the default behaviour when users should compare one section at a time. Opening a new item closes the previously expanded one to keep the page compact and easier to scan.",
     markup: `<sgds-accordion>
-      <sgds-accordion-item open>
+      <sgds-accordion-item open ariaLabel="Application details">
         <span slot="header">Application details</span>
         <div slot="content">Only one section stays open by default.</div>
       </sgds-accordion-item>
-      <sgds-accordion-item>
+      <sgds-accordion-item ariaLabel="Supporting documents">
         <span slot="header">Supporting documents</span>
         <div slot="content">Opening this item closes the previous one.</div>
       </sgds-accordion-item>
-      <sgds-accordion-item>
+      <sgds-accordion-item ariaLabel="Declaration">
         <span slot="header">Declaration</span>
         <div slot="content">Accordion content</div>
       </sgds-accordion-item>
@@ -106,15 +106,15 @@ const designBehaviour: UsageBehaviour[] = [
     description:
       "Allow multiple items to stay open when users need to compare sections side by side or keep several references visible while completing a task.",
     markup: `<sgds-accordion allowMultiple>
-      <sgds-accordion-item open>
+      <sgds-accordion-item open ariaLabel="Eligibility">
         <span slot="header">Eligibility</span>
         <div slot="content">This item stays open.</div>
       </sgds-accordion-item>
-      <sgds-accordion-item open>
+      <sgds-accordion-item open ariaLabel="Fees and timelines">
         <span slot="header">Fees and timelines</span>
         <div slot="content">This item can stay open too.</div>
       </sgds-accordion-item>
-      <sgds-accordion-item>
+      <sgds-accordion-item ariaLabel="Required documents">
         <span slot="header">Required documents</span>
         <div slot="content">Accordion content</div>
       </sgds-accordion-item>
@@ -162,7 +162,7 @@ const stateDemos: UsageBehaviour[] = [
     description: "Default resting state. The content stays hidden and the header remains available as the primary trigger.",
     markup: `<div class="accordion-v2-static-demo">
       <sgds-accordion>
-        <sgds-accordion-item>
+        <sgds-accordion-item ariaLabel="Collapsed item">
           <span slot="header">Collapsed item</span>
           <div slot="content">This content stays hidden.</div>
         </sgds-accordion-item>
@@ -174,7 +174,7 @@ const stateDemos: UsageBehaviour[] = [
     description: "Open state surfaces the content directly beneath the header so users keep their place while reading.",
     markup: `<div class="accordion-v2-static-demo">
       <sgds-accordion>
-        <sgds-accordion-item open>
+        <sgds-accordion-item open ariaLabel="Expanded item">
           <span slot="header">Expanded item</span>
           <div slot="content">Expanded content is visible and remains grouped with its trigger.</div>
         </sgds-accordion-item>
@@ -186,7 +186,7 @@ const stateDemos: UsageBehaviour[] = [
     description: "Use sparingly when a section is temporarily unavailable. The label remains visible, but the item cannot be expanded.",
     markup: `<div class="accordion-v2-static-demo">
       <sgds-accordion>
-        <sgds-accordion-item disabled>
+        <sgds-accordion-item disabled ariaLabel="Disabled item">
           <span slot="header">Disabled item</span>
           <div slot="content">Disabled content</div>
         </sgds-accordion-item>
@@ -354,7 +354,7 @@ const buildBaseItems = (openIndexes: number[] = []) =>
   [1, 2, 3]
     .map((n, i) => {
       const isOpen = openIndexes.includes(i);
-      return `<sgds-accordion-item${isOpen ? " open" : ""}>
+      return `<sgds-accordion-item${isOpen ? " open" : ""} ariaLabel="Accordion item ${n}">
         <span slot="header">Accordion item ${n}</span>
         <div slot="content">Content of accordion item ${n}</div>
       </sgds-accordion-item>`;
@@ -451,17 +451,17 @@ const variantPropertyDemos: AccordionV2PropertyDemo[] = [
         label: "Icon slot",
         value: "icon-slot",
         markup: `<sgds-accordion>
-          <sgds-accordion-item open>
+          <sgds-accordion-item open ariaLabel="Accordion item with icon">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
             <span slot="header">Accordion item with icon</span>
             <div slot="content">Content of accordion item 1</div>
           </sgds-accordion-item>
-          <sgds-accordion-item>
+          <sgds-accordion-item ariaLabel="Accordion item 2">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
             <span slot="header">Accordion item 2</span>
             <div slot="content">Content of accordion item 2</div>
           </sgds-accordion-item>
-          <sgds-accordion-item>
+          <sgds-accordion-item ariaLabel="Accordion item 3">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
             <span slot="header">Accordion item 3</span>
             <div slot="content">Content of accordion item 3</div>
@@ -473,17 +473,17 @@ const variantPropertyDemos: AccordionV2PropertyDemo[] = [
         label: "Badge slot",
         value: "badge-slot",
         markup: `<sgds-accordion>
-          <sgds-accordion-item open>
+          <sgds-accordion-item open ariaLabel="Accordion item with badge">
             <span slot="header">Accordion item with badge</span>
             <sgds-badge slot="badge" variant="neutral" outlined>Badge</sgds-badge>
             <div slot="content">Content of accordion item 1</div>
           </sgds-accordion-item>
-          <sgds-accordion-item>
+          <sgds-accordion-item ariaLabel="Accordion item 2">
             <span slot="header">Accordion item 2</span>
             <sgds-badge slot="badge" variant="neutral" outlined>Badge</sgds-badge>
             <div slot="content">Content of accordion item 2</div>
           </sgds-accordion-item>
-          <sgds-accordion-item>
+          <sgds-accordion-item ariaLabel="Accordion item 3">
             <span slot="header">Accordion item 3</span>
             <sgds-badge slot="badge" variant="neutral" outlined>Badge</sgds-badge>
             <div slot="content">Content of accordion item 3</div>
@@ -495,17 +495,17 @@ const variantPropertyDemos: AccordionV2PropertyDemo[] = [
         label: "Custom caret",
         value: "custom-caret",
         markup: `<sgds-accordion>
-          <sgds-accordion-item open>
+          <sgds-accordion-item open ariaLabel="Accordion with custom caret">
             <span slot="header">Accordion with custom caret</span>
             <sgds-icon slot="caret" name="plus"></sgds-icon>
             <div slot="content">Content of accordion item 1</div>
           </sgds-accordion-item>
-          <sgds-accordion-item>
+          <sgds-accordion-item ariaLabel="Accordion item 2">
             <span slot="header">Accordion item 2</span>
             <sgds-icon slot="caret" name="plus"></sgds-icon>
             <div slot="content">Content of accordion item 2</div>
           </sgds-accordion-item>
-          <sgds-accordion-item>
+          <sgds-accordion-item ariaLabel="Accordion item 3">
             <span slot="header">Accordion item 3</span>
             <sgds-icon slot="caret" name="plus"></sgds-icon>
             <div slot="content">Content of accordion item 3</div>
