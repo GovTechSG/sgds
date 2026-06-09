@@ -7,7 +7,7 @@
         <div
           class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:items-start sgds:gap-layout-md sgds:text-left"
         >
-          <sgds-breadcrumb>
+          <sgds-breadcrumb class="sgds:hidden sgds:w-full sgds:min-w-0 sgds:md:block">
             <sgds-breadcrumb-item><a href="/">Home</a></sgds-breadcrumb-item>
             <sgds-breadcrumb-item
               ><a href="/stories">Stories</a></sgds-breadcrumb-item
@@ -15,6 +15,26 @@
             <sgds-breadcrumb-item active
               ><a :href="post.href">{{ post.title }}</a></sgds-breadcrumb-item
             >
+          </sgds-breadcrumb>
+          <sgds-breadcrumb class="sgds:block sgds:w-full sgds:min-w-0 sgds:md:hidden">
+            <sgds-breadcrumb-item class="sgds:flex-none">
+              <a href="/">Home</a>
+            </sgds-breadcrumb-item>
+            <sgds-breadcrumb-item class="sgds:flex-none">
+              <sgds-overflow-menu aria-haspopup="menu" size="sm">
+                <sgds-dropdown-item>
+                  <a href="/stories">Stories</a>
+                </sgds-dropdown-item>
+              </sgds-overflow-menu>
+            </sgds-breadcrumb-item>
+            <sgds-breadcrumb-item active class="sgds:min-w-0 sgds:flex-1">
+              <a
+                :href="post.href"
+                class="sgds:block sgds:max-w-full sgds:overflow-hidden sgds:text-ellipsis sgds:whitespace-nowrap"
+              >
+                {{ post.title }}
+              </a>
+            </sgds-breadcrumb-item>
           </sgds-breadcrumb>
 
           <div>
