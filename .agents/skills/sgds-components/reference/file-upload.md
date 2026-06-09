@@ -155,6 +155,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `noValidate` | boolean | `false` | Disables native and SGDS constraint validation |
 | `invalid` | boolean | `false` | Manually sets the invalid state |
 | `invalidFeedback` | string | — | Error message when validation fails |
+| `ariaLabel` | string | `"Choose files"` | Accessible label for the upload button. Forwarded to the internal `<sgds-button>`. Override when slot text differs from the desired screen reader announcement |
 
 ## Methods & Getters
 
@@ -196,3 +197,4 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 5. If the user cancels the file picker, no events fire and `el.files` is unchanged.
 6. `sgds-files-selected` is Deprecated since 3.19.0 in favour of `sgds-change` — do not recommend it for new code.
 7. `accept` values follow standard HTML `accept` syntax: `"image/*"`, `".pdf"`, `"image/jpeg,image/png"`.
+8. `ariaLabel` defaults to `"Choose files"` and is forwarded to the internal button. Set it when the slot text is customised (e.g. `ariaLabel="Upload photo"`).

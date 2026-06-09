@@ -112,7 +112,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 <sgds-thumbnail-card stretchedLink>
   <img slot="thumbnail" alt="Logo" width="64" height="64" src="logo.svg" />
   <span slot="title">Clickable Card</span>
-  <sgds-link slot="footer"><a href="/destination">Go somewhere</a></sgds-link>
+  <sgds-link slot="footer"><a href="/destination" aria-label="Go somewhere">Go somewhere</a></sgds-link>
 </sgds-thumbnail-card>
 ```
 
@@ -151,6 +151,6 @@ None.
 1. Use the `thumbnail` slot (not `image`) — this is the unique slot name for this component.
 2. Always set explicit `width` and `height` on the thumbnail image (typically 64×64 px) to prevent layout shift.
 3. Place the CTA in the `footer` slot using `<sgds-link>` — the `link` slot is deprecated since 3.3.2.
-4. For `stretchedLink`, the href comes from the `<a>` inside the `footer` slot.
+4. For `stretchedLink`, the href comes from the `<a>` inside the `footer` slot. Always add `aria-label` to the `<a>` for accessibility (the label is forwarded to the card's outer clickable element).
 5. `<sgds-icon-list>` in the default slot (between title and description) is the standard pattern for metadata.
 6. There are no custom events or public methods on this component.

@@ -124,7 +124,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 <sgds-image-card stretchedLink>
   <img slot="image" alt="Photo" src="photo.jpg" />
   <span slot="title">Clickable Card</span>
-  <sgds-link slot="footer"><a href="/destination">Go somewhere</a></sgds-link>
+  <sgds-link slot="footer"><a href="/destination" aria-label="Go somewhere">Go somewhere</a></sgds-link>
 </sgds-image-card>
 ```
 
@@ -166,7 +166,7 @@ None.
 **For AI agents**:
 1. `image-badge` and `image-action` are unique to `<sgds-image-card>` — they overlay the image area.
 2. Always place the CTA in the `footer` slot using `<sgds-link>` — the `link` slot is deprecated since 3.3.2.
-3. For `stretchedLink`, the href comes from the `<a>` inside the `footer` slot.
+3. For `stretchedLink`, the href comes from the `<a>` inside the `footer` slot. Always add `aria-label` to the `<a>` for accessibility (the label is forwarded to the card's outer clickable element).
 4. `imageAdjustment` values `"padding around"` and `"aspect ratio"` contain spaces — pass them exactly.
 5. The `image` slot accepts only a single element — never pass multiple images.
 6. There are no custom events or public methods on this component.

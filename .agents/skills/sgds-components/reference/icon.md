@@ -55,22 +55,28 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 > When used inside `<sgds-link>`, icon sizing is managed automatically — do not set `size` manually.
 
 ```html
-<!-- Basic icon -->
-<sgds-icon name="announcement"></sgds-icon>
+<!-- Standalone informative icon (add ariaLabel) -->
+<sgds-icon name="announcement" ariaLabel="Announcement"></sgds-icon>
 
 <!-- Specific size -->
-<sgds-icon name="arrow-right" size="sm"></sgds-icon>
+<sgds-icon name="arrow-right" size="sm" ariaLabel="Arrow right"></sgds-icon>
 
-<!-- Large decorative icon -->
-<sgds-icon name="star" size="xl"></sgds-icon>
+<!-- Large standalone icon -->
+<sgds-icon name="star" size="xl" ariaLabel="Star"></sgds-icon>
 
-<!-- Icon inside a link (size managed automatically) -->
+<!-- Icon inside a link (decorative - no ariaLabel needed, parent provides context) -->
 <sgds-link>
   <a href="#">
     <sgds-icon name="arrow-right"></sgds-icon>
     Next page
   </a>
 </sgds-link>
+
+<!-- Icon inside a button (decorative - no ariaLabel needed) -->
+<sgds-button ariaLabel="Download">
+  <sgds-icon name="download" slot="leftIcon"></sgds-icon>
+  Download
+</sgds-button>
 ```
 
 ## API Summary
@@ -79,6 +85,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 |---|---|---|---|
 | `name` | string | — | **Required.** Icon name from the SGDS icon registry |
 | `size` | `xs \| sm \| md \| lg \| xl \| 2-xl \| 3-xl` | `lg` | Rendered size of the icon |
+| `ariaLabel` | string | — | Accessible label. When set, the SVG is informative (announces to screen readers). When omitted, the SVG is decorative (`aria-hidden="true"`) |
 
 ## Slots
 
@@ -156,4 +163,5 @@ xcircle, xcircle-fill, youtube, zoom-in, zoom-out
 4. Icons render from the internal SGDS SVG registry — they are not `<img>` tags and do not accept `src`.
 5. Default size is `lg` — if a user needs a smaller inline icon, explicitly set `size="sm"` or `size="md"`.
 6. Inside `<sgds-link>`, `<sgds-badge>`, and similar components, icon size is managed automatically; do not override it with `size`.
-7. There are no slots, events, or public methods on this component.
+7. **Accessibility**: by default, the SVG is decorative (`aria-hidden="true"`). When the icon IS the content (standalone, no surrounding text label), add `ariaLabel` to make it informative. When used inside a labelled parent (e.g. `<sgds-button>`, `<sgds-icon-button>`), omit `ariaLabel` — the parent provides the accessible name.
+8. There are no slots, events, or public methods on this component.

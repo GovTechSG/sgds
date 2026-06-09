@@ -55,12 +55,12 @@ On most form components (`<sgds-input>`, `<sgds-textarea>`, `<sgds-select>`, `<s
 
 Constraint validation runs regardless of `hasFeedback`, but the **visible error message only renders when `hasFeedback` is present**. The `hasFeedback` prop accepts:
 
-| Value | Behaviour |
-|-------|-----------|
+| Value                   | Behaviour                                              |
+| ----------------------- | ------------------------------------------------------ |
 | `hasFeedback` (boolean) | Shows the native HTML validation message as error text |
-| `hasFeedback="text"` | Same as boolean — shows text feedback only |
-| `hasFeedback="style"` | Shows invalid border/colour styling only, no text |
-| `hasFeedback="both"` | Shows both invalid styling and text feedback |
+| `hasFeedback="text"`    | Same as boolean — shows text feedback only             |
+| `hasFeedback="style"`   | Shows invalid border/colour styling only, no text      |
+| `hasFeedback="both"`    | Shows both invalid styling and text feedback           |
 
 You can also override the displayed message with `invalidFeedback`:
 
@@ -77,18 +77,18 @@ You can also override the displayed message with `invalidFeedback`:
 
 ## Constraint Validations by Component
 
-| Component | Supported constraints |
-|-----------|----------------------|
-| `<sgds-input>` | `required`, `pattern`, `min`, `max`, `minlength`, `maxlength` |
-| `<sgds-textarea>` | `required`, `minlength`, `maxlength` |
-| `<sgds-quantity-toggle>` | `min`, `max` |
-| `<sgds-datepicker>` | `required`, `minDate`, `maxDate` |
-| `<sgds-select>` | `required` |
-| `<sgds-combo-box>` | `required` |
-| `<sgds-radio-group>` | `required` |
-| `<sgds-checkbox-group>` | `required` |
-| `<sgds-checkbox>` (standalone) | `required` |
-| `<sgds-file-upload>` | `required` (file size limit WIP) |
+| Component                      | Supported constraints                                         |
+| ------------------------------ | ------------------------------------------------------------- |
+| `<sgds-input>`                 | `required`, `pattern`, `min`, `max`, `minlength`, `maxlength` |
+| `<sgds-textarea>`              | `required`, `minlength`, `maxlength`                          |
+| `<sgds-quantity-toggle>`       | `min`, `max`                                                  |
+| `<sgds-datepicker>`            | `required`, `minDate`, `maxDate`                              |
+| `<sgds-select>`                | `required`                                                    |
+| `<sgds-combo-box>`             | `required`                                                    |
+| `<sgds-radio-group>`           | `required`                                                    |
+| `<sgds-checkbox-group>`        | `required`                                                    |
+| `<sgds-checkbox>` (standalone) | `required`                                                    |
+| `<sgds-file-upload>`           | `required` (file size limit WIP)                              |
 
 ## Full Form Example
 
@@ -103,36 +103,19 @@ You can also override the displayed message with `invalidFeedback`:
     invalidFeedback="Letters only"
   ></sgds-input>
 
-  <sgds-datepicker
-    label="Appointment Date"
-    name="appointmentDate"
-    required
-    hasFeedback
-  ></sgds-datepicker>
+  <sgds-datepicker label="Appointment Date" name="appointmentDate" required hasFeedback></sgds-datepicker>
 
   <sgds-radio-group label="Gender" name="gender" required hasFeedback>
     <sgds-radio value="female">Female</sgds-radio>
     <sgds-radio value="male">Male</sgds-radio>
   </sgds-radio-group>
 
-  <sgds-checkbox-group
-    label="Food Preference"
-    name="food"
-    required
-    hasFeedback
-    hintText="Select at least one option"
-  >
+  <sgds-checkbox-group label="Food Preference" name="food" required hasFeedback hintText="Select at least one option">
     <sgds-checkbox value="vegetarian">Vegetarian</sgds-checkbox>
     <sgds-checkbox value="halal">Halal</sgds-checkbox>
   </sgds-checkbox-group>
 
-  <sgds-textarea
-    label="Comments"
-    name="comments"
-    required
-    minlength="3"
-    hasFeedback
-  ></sgds-textarea>
+  <sgds-textarea label="Comments" name="comments" required minlength="3" hasFeedback></sgds-textarea>
 
   <sgds-button type="submit">Submit</sgds-button>
   <sgds-button type="reset" variant="ghost">Reset</sgds-button>
@@ -172,7 +155,7 @@ For 3rd-party validation libraries (e.g. Zod) or fully custom logic, disable SGD
 
 ### Option 1 — Disable per component with `noValidate`
 
-Currently supported on **`<sgds-input>`** and **`<sgds-textarea>`** only. Other components are WIP.
+Currently supported on **`<sgds-input>`**, **`<sgds-textarea>`**, **`<sgds-combo-box>`** and **`<sgds-datepicker>`. Other components are WIP.
 
 ```html
 <sgds-input
@@ -204,19 +187,9 @@ Adding `novalidate` to the `<form>` element disables constraint validation and S
 
 ```html
 <form id="custom-form" novalidate class="d-flex-column">
-  <sgds-input
-    id="keys-input"
-    name="keys"
-    label="Keys"
-    hasFeedback="both"
-  ></sgds-input>
+  <sgds-input id="keys-input" name="keys" label="Keys" hasFeedback="both"></sgds-input>
 
-  <sgds-textarea
-    id="bio-textarea"
-    name="bio"
-    label="Bio"
-    hasFeedback
-  ></sgds-textarea>
+  <sgds-textarea id="bio-textarea" name="bio" label="Bio" hasFeedback></sgds-textarea>
 </form>
 
 <script>
@@ -242,25 +215,25 @@ Adding `novalidate` to the `<form>` element disables constraint validation and S
 
 ### `setInvalid(bool)` Method
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `bool` | `boolean` | `true` marks the component invalid and shows `invalidFeedback`; `false` clears the invalid state |
+| Parameter | Type      | Description                                                                                      |
+| --------- | --------- | ------------------------------------------------------------------------------------------------ |
+| `bool`    | `boolean` | `true` marks the component invalid and shows `invalidFeedback`; `false` clears the invalid state |
 
 Pair `setInvalid(true)` with setting the `invalidFeedback` property on the element to control the displayed message.
 
 ## Custom Validation Support Status
 
-| Component | Status |
-|-----------|--------|
-| `<sgds-input>` | ✅ Implemented |
-| `<sgds-textarea>` | ✅ Implemented |
-| `<sgds-checkbox>` / `<sgds-checkbox-group>` | WIP |
-| `<sgds-datepicker>` | WIP |
-| `<sgds-quantity-toggle>` | WIP |
-| `<sgds-radio-group>` | WIP |
-| `<sgds-file-upload>` | WIP |
-| `<sgds-select>` | WIP |
-| `<sgds-combo-box>` | WIP |
+| Component                                   | Status         |
+| ------------------------------------------- | -------------- |
+| `<sgds-input>`                              | ✅ Implemented |
+| `<sgds-textarea>`                           | ✅ Implemented |
+| `<sgds-datepicker>`                         | ✅ Implemented |
+| `<sgds-checkbox>` / `<sgds-checkbox-group>` | WIP            |
+| `<sgds-quantity-toggle>`                    | WIP            |
+| `<sgds-radio-group>`                        | WIP            |
+| `<sgds-file-upload>`                        | WIP            |
+| `<sgds-select>`                             | WIP            |
+| `<sgds-combo-box>`                          | WIP            |
 
 ---
 
@@ -272,7 +245,7 @@ Pair `setInvalid(true)` with setting the `invalidFeedback` property on the eleme
 4. Use `invalidFeedback` to override the browser's native constraint validation message with a custom string.
 5. Constraint validation and form submission blocking are built-in — do not add extra submit event listeners to replicate this behaviour.
 6. Use `new FormData(event.target)` in the submit handler to read values. For file uploads, read `selectedFiles` directly from the `<sgds-file-upload>` element.
-7. When using custom/3rd-party validation on `<sgds-input>` or `<sgds-textarea>`, add `noValidate` on the component (or `novalidate` on the form), then call `element.setInvalid(true/false)` and set `element.invalidFeedback` inside the `sgds-input` event listener.
-8. Only `<sgds-input>` and `<sgds-textarea>` fully support custom validation via `noValidate` + `setInvalid`. All other form components have this feature as WIP.
+7. When using custom/3rd-party validation on `<sgds-input>`, `<sgds-textarea>`, or `<sgds-datepicker>`, add `noValidate` on the component (or `novalidate` on the form), then call `element.setInvalid(true/false)` and set `element.invalidFeedback` inside the relevant event listener (`sgds-input` for inputs/textareas, `sgds-change-date` for datepicker).
+8. Only `<sgds-input>`, `<sgds-textarea>`, and `<sgds-datepicker>` fully support custom validation via `noValidate` + `setInvalid`. All other form components have this feature as WIP.
 9. The reset button (`type="reset"`) automatically clears all validity states and values — no extra reset logic is needed.
 10. Disabled components are excluded from constraint validation and will never block form submission.

@@ -81,9 +81,9 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 ```html
 <!-- Basic tab group -->
 <sgds-tab-group>
-  <sgds-tab slot="nav" panel="home">Home</sgds-tab>
-  <sgds-tab slot="nav" panel="profile">Profile</sgds-tab>
-  <sgds-tab slot="nav" panel="settings" disabled>Settings</sgds-tab>
+  <sgds-tab slot="nav" panel="home" ariaLabel="Home">Home</sgds-tab>
+  <sgds-tab slot="nav" panel="profile" ariaLabel="Profile">Profile</sgds-tab>
+  <sgds-tab slot="nav" panel="settings" ariaLabel="Settings" disabled>Settings</sgds-tab>
 
   <sgds-tab-panel name="home">
     <p>Welcome to the home tab content.</p>
@@ -98,24 +98,24 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 <!-- Solid variant, compact density -->
 <sgds-tab-group variant="solid" density="compact">
-  <sgds-tab slot="nav" panel="tab1">Tab One</sgds-tab>
-  <sgds-tab slot="nav" panel="tab2" active>Tab Two (starts active)</sgds-tab>
+  <sgds-tab slot="nav" panel="tab1" ariaLabel="Tab One">Tab One</sgds-tab>
+  <sgds-tab slot="nav" panel="tab2" ariaLabel="Tab Two" active>Tab Two (starts active)</sgds-tab>
   <sgds-tab-panel name="tab1">Content for tab one.</sgds-tab-panel>
   <sgds-tab-panel name="tab2">Content for tab two.</sgds-tab-panel>
 </sgds-tab-group>
 
 <!-- Vertical orientation -->
 <sgds-tab-group orientation="vertical">
-  <sgds-tab slot="nav" panel="section1">Section 1</sgds-tab>
-  <sgds-tab slot="nav" panel="section2">Section 2</sgds-tab>
+  <sgds-tab slot="nav" panel="section1" ariaLabel="Section 1">Section 1</sgds-tab>
+  <sgds-tab slot="nav" panel="section2" ariaLabel="Section 2">Section 2</sgds-tab>
   <sgds-tab-panel name="section1">Section 1 content.</sgds-tab-panel>
   <sgds-tab-panel name="section2">Section 2 content.</sgds-tab-panel>
 </sgds-tab-group>
 
 <!-- Listen to tab change -->
 <sgds-tab-group id="my-tabs">
-  <sgds-tab slot="nav" panel="a">Tab A</sgds-tab>
-  <sgds-tab slot="nav" panel="b">Tab B</sgds-tab>
+  <sgds-tab slot="nav" panel="a" ariaLabel="Tab A">Tab A</sgds-tab>
+  <sgds-tab slot="nav" panel="b" ariaLabel="Tab B">Tab B</sgds-tab>
   <sgds-tab-panel name="a">Content A</sgds-tab-panel>
   <sgds-tab-panel name="b">Content B</sgds-tab-panel>
 </sgds-tab-group>
@@ -144,6 +144,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `panel` | string | `""` | **Required** — must match the `name` of a `<sgds-tab-panel>` |
 | `active` | boolean | `false` | Sets this tab as active on initial load |
 | `disabled` | boolean | `false` | Prevents the tab from being selected |
+| `ariaLabel` | string | — | Accessible label for the tab. **Required** for accessibility — always provide this to describe the tab's purpose |
 
 ### `<sgds-tab-panel>`
 
@@ -171,7 +172,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 **For AI agents**:
 1. `<sgds-tab>` must have `slot="nav"` and its `panel` must exactly match a `<sgds-tab-panel>`'s `name`.
-2. `variant`, `orientation`, and `density` are set on `<sgds-tab-group>` — they propagate automatically to all child `<sgds-tab>` elements.
-3. `sgds-tab-show` and `sgds-tab-hide` both carry `event.detail.name` which is the panel name string.
-4. To set the initially active tab, add `active` to one `<sgds-tab>` — if none are active, the first non-disabled tab is selected.
-5. There are no public methods on the tab group.
+2. **Always add `ariaLabel`** to every `<sgds-tab>` — this is required for accessibility. The value should describe the tab's purpose (usually matches the visible label text).
+3. `variant`, `orientation`, and `density` are set on `<sgds-tab-group>` — they propagate automatically to all child `<sgds-tab>` elements.
+4. `sgds-tab-show` and `sgds-tab-hide` both carry `event.detail.name` which is the panel name string.
+5. To set the initially active tab, add `active` to one `<sgds-tab>` — if none are active, the first non-disabled tab is selected.
+6. There are no public methods on the tab group.
