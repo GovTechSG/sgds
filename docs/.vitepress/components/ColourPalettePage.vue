@@ -1788,10 +1788,10 @@ const openContrastInfo = () => {
     </p>
     <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
       <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-        <strong>WCAG (Web Content Accessibility Guidelines)</strong> is the international accessibility standard most government services follow. It scores contrast as a single ratio between 1 (no contrast) and 21 (black on white). Body text needs at least 4.5 to meet the AA conformance level. Large text needs at least 3, since bigger letters are easier to read.
+        <strong>WCAG (Web Content Accessibility Guidelines)</strong> is the international accessibility standard most government services follow. It scores contrast as a single ratio between 1 (no contrast) and 21 (black on white). Body text needs at least <span class="sgds:font-semibold">4.5</span> to meet the AA conformance level. Large text needs at least <span class="sgds:font-semibold">3</span>, since bigger letters are easier to read.
       </p>
       <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-        <strong>APCA (Accessible Perceptual Contrast Algorithm)</strong> is a newer model that's more accurate for real reading. As a rough guide, body text needs an absolute value around 60 or higher.
+        <strong>APCA (Accessible Perceptual Contrast Algorithm)</strong> is a newer model that's more accurate for real reading. As a rough guide, body text needs an absolute value around <span class="sgds:font-semibold">60</span> or higher.
       </p>
     </div>
     <sgds-button slot="footer" variant="primary" @click="contrastInfoOpen = false">Got it</sgds-button>
