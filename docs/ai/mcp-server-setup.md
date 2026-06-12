@@ -2,10 +2,6 @@
 layout: docs
 title: MCP server setup
 description: Connect Figma to Claude Code and turn your designs into working SGDS code automatically.
-headerAlert:
-  description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
-  variant: danger
-  icon: exclamation-circle-fill
 ---
 
 ## What is this?

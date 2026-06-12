@@ -58,13 +58,20 @@ const brandIconClass = (label: string) =>
         <sgds-icon v-if="headerAlert.icon" slot="icon" :name="headerAlert.icon"></sgds-icon>
         <span>{{ headerAlert.description }}</span>
       </sgds-alert>
-      <h1 :class="[titleClass || 'sgds:text-display-md sgds:font-bold sgds:leading-2-xl sgds:tracking-tighter', 'sgds:mb-0']">{{ title }}</h1>
-      <p
-        v-if="description"
-        :class="[descriptionClass || 'sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-tight', 'sgds:text-body-subtle sgds:mb-0 sgds:max-w-[var(--sgds-container-max-width-md)]']"
-      >
-        {{ description }}
-      </p>
+      <div class="sgds:flex sgds:flex-col sgds:gap-text-sm sgds:min-w-0">
+        <div class="sgds:flex sgds:flex-col sgds:gap-component-md sgds:md:flex-row sgds:md:items-center sgds:md:justify-between">
+          <h1 :class="[titleClass || 'sgds:text-display-md sgds:font-bold sgds:leading-2-xl sgds:tracking-tighter', 'sgds:mb-0']">{{ title }}</h1>
+          <div v-if="$slots.action" class="sgds:flex sgds:flex-shrink-0 sgds:items-center">
+            <slot name="action"></slot>
+          </div>
+        </div>
+        <p
+          v-if="description"
+          :class="[descriptionClass || 'sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-tight', 'sgds:text-body-subtle sgds:mb-0 sgds:max-w-[var(--sgds-container-max-width-md)]']"
+        >
+          {{ description }}
+        </p>
+      </div>
     </div>
     <div v-if="headerLinks?.length" class="sgds:flex sgds:flex-col sgds:md:flex-row sgds:gap-text-xs">
       <div

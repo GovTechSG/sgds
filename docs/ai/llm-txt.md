@@ -2,10 +2,6 @@
 layout: docs
 title: LLMs.txt
 description: This page explains what LLMs.txt is and how it helps AI tools understand SGDS.
-headerAlert:
-  description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
-  variant: danger
-  icon: exclamation-circle-fill
 ---
 
 <script setup>

@@ -2,15 +2,10 @@
 layout: docs
 title: Agent skills
 description: SGDS agent skills give AI assistants task-specific instructions for building with the design system.
-headerAlert:
-  description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
-  variant: danger
-  icon: exclamation-circle-fill
 ---
 
 <script setup>
 import AiSkillsSetupSteps from "../.vitepress/components/ai/AiSkillsSetupSteps.vue";
-import CodeToken from "../.vitepress/components/ui/CodeToken.vue";
 import SectionHeader from "../.vitepress/components/foundations/SectionHeader.vue";
 import SkillsTable from "../.vitepress/components/ui/SkillsTable.vue";
 </script>

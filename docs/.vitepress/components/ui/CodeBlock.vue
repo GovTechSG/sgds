@@ -8,8 +8,10 @@ const props = withDefaults(
     filename?: string;
     hideLineNumbers?: boolean;
     prompt?: boolean;
+    wrap?: boolean;
+    codeRegionClass?: string;
   }>(),
-  { lang: "html", hideLineNumbers: false, prompt: false },
+  { lang: "html", hideLineNumbers: false, prompt: false, wrap: false },
 );
 
 const slots = useSlots();
@@ -453,8 +455,8 @@ const langLabel = computed(() => {
     </div>
 
     <!-- Code area -->
-    <div v-else class="sgds:overflow-x-auto sgds:py-[1rem]" role="region" aria-label="Code example">
-      <table class="sgds:min-w-full sgds:[border-collapse:collapse]">
+    <div v-else :class="[wrap ? 'sgds:overflow-x-hidden' : 'sgds:overflow-x-auto', 'sgds:py-[1rem]', codeRegionClass]" role="region" aria-label="Code example">
+      <table :class="[wrap ? 'sgds:w-full sgds:table-fixed' : 'sgds:min-w-full', 'sgds:[border-collapse:collapse]']">
         <tbody>
           <tr
             v-for="(line, idx) in highlightedLines"
@@ -463,7 +465,7 @@ const langLabel = computed(() => {
           >
             <td v-if="!hideLineNumbers || isBash" class="sgds:bg-surface-default sgds:border-r sgds:border-muted sgds:text-subtle sgds:font-mono sgds:text-body-sm sgds:w-[2rem] sgds:px-[0.75rem] sgds:text-right sgds:select-none sgds:align-top" aria-hidden="true">{{ isBash ? '$' : idx + 1 }}</td>
             <!-- v-html is safe: content is produced by our own escHtml + tok pipeline above -->
-            <td class="sgds:text-default sgds:font-mono sgds:text-body-sm sgds:pl-[0.75rem] sgds:pr-[1rem] sgds:align-top sgds:whitespace-pre" v-html="line || ' '" />
+            <td :class="['sgds:text-default sgds:font-mono sgds:text-body-sm sgds:pl-[0.75rem] sgds:pr-[1rem] sgds:align-top', wrap ? 'sgds:whitespace-pre-wrap sgds:break-words sgds:[overflow-wrap:anywhere]' : 'sgds:whitespace-pre']" v-html="line || ' '" />
           </tr>
         </tbody>
       </table>

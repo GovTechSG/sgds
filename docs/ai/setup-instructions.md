@@ -2,10 +2,6 @@
 layout: docs
 title: Setup instructions
 description: SGDS skills are instruction files that give compatible AI coding tools clearer design system context.
-headerAlert:
-  description: This AI section is still being developed. Please treat the content as contextual guidance only, as information may be largely incomplete and inaccurate at the time of reading.
-  variant: danger
-  icon: exclamation-circle-fill
 ---
 
 <script setup>
