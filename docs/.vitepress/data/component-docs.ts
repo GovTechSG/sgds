@@ -11141,7 +11141,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       demo(
         "Label",
         "Use progress bars to indicate how far a task or workflow has progressed.",
-        `<sgds-progress-bar value="64" label="Submission progress"></sgds-progress-bar>`,
+        `<sgds-progress-bar value="64" label="Submission progress" arialabel="Submission progress"></sgds-progress-bar>`,
       ),
     ],
     usage: {
@@ -18718,13 +18718,13 @@ const accessibilityDemoMarkupOverrides: Record<
     focus: `<sgds-pagination currentPage="2" dataLength="120" itemsPerPage="10" variant="number"></sgds-pagination>`,
   },
   "progress-bar": {
-    builtIn: `<sgds-progress-bar value="64" label="Submission progress"></sgds-progress-bar>`,
+    builtIn: `<sgds-progress-bar value="64" label="Submission progress" arialabel="Submission progress"></sgds-progress-bar>`,
     author: `<div class="portal-demo-stack-sm">
-      <sgds-progress-bar value="3" max="4" label="Step 3 of 4"></sgds-progress-bar>
+      <sgds-progress-bar value="3" max="4" label="Step 3 of 4" arialabel="Step 3 of 4"></sgds-progress-bar>
       <span class="sgds:text-subtle">Uploading supporting documents.</span>
     </div>`,
     focus: `<div class="portal-demo-stack-sm">
-      <sgds-progress-bar value="64" label="Submission progress"></sgds-progress-bar>
+      <sgds-progress-bar value="64" label="Submission progress" arialabel="Submission progress"></sgds-progress-bar>
       <sgds-link><a href="#">Cancel upload</a></sgds-link>
     </div>`,
   },
