@@ -2370,7 +2370,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "Number of links",
         description:
           "Control how many breadcrumb items are shown. When 5 or more items are present, the middle items automatically collapse into an overflow menu placed as the second link.",
-        controlLabel: "Breadcrumb number of links",
+        controlLabel: "Number of links",
         controlType: "select",
         defaultValue: "3",
         options: [
@@ -6999,7 +6999,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "Device",
         description:
           "Footer layout responds to the available viewport width. Use the device presets to check how links and copyright wrap across common breakpoints.",
-        controlLabel: "Footer device width presets",
+        controlLabel: "Viewport size (px)",
         defaultValue: "1440",
         controlType: "select",
         options: [

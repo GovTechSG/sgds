@@ -140,7 +140,6 @@ const canZoomOut = computed(() => zoomLevel.value > ZOOM_MIN);
   <sgds-modal
     :open="fullscreenOpen"
     size="fullscreen"
-    :aria-label="title"
     @sgds-after-hide="closeFullscreen"
   >
     <div class="dts-fullscreen">

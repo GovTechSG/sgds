@@ -280,48 +280,46 @@ async function copyIconName(iconName: string) {
             <SectionHeader title="List of icons" />
 
             <!-- Style tabs + size select + search row -->
-            <div class="il-toolbar sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-component-xs">
-            <SegmentedControl
-              class="il-style-tabs"
-              v-model="activeStyle"
-              :options="styleOptions"
-              aria-label="Icon style filter"
-            />
-            <sgds-select
-              class="il-size-select"
-              aria-label="Icon size"
-              :value="iconSize"
-              @sgds-change="onSizeSelectChange"
-            >
-              <sgds-select-option
-                v-for="option in iconSizeOptions"
-                :key="option.value"
-                :value="option.value"
+            <div class="sgds-grid">
+              <SegmentedControl
+                class="il-style-tabs sgds-col-4 sgds-col-sm-8 sgds-col-lg-12 sgds:w-fit"
+                v-model="activeStyle"
+                :options="styleOptions"
+                aria-label="Icon style filter"
+              />
+              <sgds-select
+                class="sgds-col-4 sgds-col-sm-3 sgds-col-lg-4"
+                label="Size"
+                :value="iconSize"
+                @sgds-change="onSizeSelectChange"
               >
-                {{ option.label }}
-              </sgds-select-option>
-            </sgds-select>
-            <div class="il-search-wrap">
+                <sgds-select-option
+                  v-for="option in iconSizeOptions"
+                  :key="option.value"
+                  :value="option.value"
+                >
+                  {{ option.label }}
+                </sgds-select-option>
+              </sgds-select>
               <sgds-input
                 type="text"
                 placeholder="Search icons"
+                label="Search"
                 :value="searchQuery"
-                class="sgds:block sgds:w-full"
-                aria-label="Search icons"
+                class="sgds-col-4 sgds-col-sm-5 sgds-col-lg-8"
                 @sgds-input="onSearchInput"
               />
-            </div>
-            <p
-              v-if="isSearching"
-              class="sgds:text-body-sm sgds:leading-2-xs sgds:tracking-normal sgds:m-0 sgds:flex sgds:items-center sgds:gap-text-xs il-status"
-              role="status"
-              aria-live="polite"
-            >
-              <template v-if="isSearching">
-                {{ totalFiltered }} result{{ totalFiltered === 1 ? "" : "s" }} for
-                "{{ searchQuery }}"
-              </template>
-            </p>
+              <p
+                v-if="isSearching"
+                class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-12 sgds:text-body-sm sgds:leading-2-xs sgds:tracking-normal sgds:m-0 sgds:flex sgds:items-center sgds:gap-text-xs il-status"
+                role="status"
+                aria-live="polite"
+              >
+                <template v-if="isSearching">
+                  {{ totalFiltered }} result{{ totalFiltered === 1 ? "" : "s" }} for
+                  "{{ searchQuery }}"
+                </template>
+              </p>
             </div>
 
             <!-- Empty state -->
@@ -410,19 +408,6 @@ async function copyIconName(iconName: string) {
   block-size: 100%;
 }
 
-/* sgds-select's internal .form-control-group has `min-width:
- * var(--sgds-dimension-256)`. Setting a smaller inline-size on the host lets
- * that shadow element overflow and collide with the next item. Match the
- * dimension token so host and internal widths agree. */
-.il-size-select {
-  flex: 0 0 auto;
-  inline-size: var(--sgds-dimension-256);
-}
-
-.il-search-wrap {
-  flex: 1 1 20rem;
-  max-inline-size: 28rem;
-}
 
 .il-status {
   /* Muted body text colour — no SGDS text-color utility available without theme files */
@@ -569,10 +554,6 @@ async function copyIconName(iconName: string) {
 }
 
 @media (max-width: 639px) {
-  .il-search-wrap {
-    max-inline-size: none;
-  }
-
   .il-icon-grid {
     grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
   }
