@@ -34,7 +34,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 ## Component Composition
 
-**`toggler` slot (`<sgds-dropdown>`)** — the element that opens the menu. Standard pattern: `<sgds-button slot="toggler" role="button">` with a label and `<sgds-icon name="chevron-down" slot="rightIcon">`. Always provide toggler content — without it, the dropdown has no visible trigger.
+**`toggler` slot (`<sgds-dropdown>`)** — the element that opens the menu. Standard pattern: `<sgds-button slot="toggler">` with a label and `<sgds-icon name="chevron-down" slot="rightIcon">`. Always provide toggler content — without it, the dropdown has no visible trigger.
 
 **Default slot (`<sgds-dropdown>`)** — only `<sgds-dropdown-item>` elements. Do not place raw `<a>` or `<li>` tags directly.
 
@@ -80,7 +80,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 ```html
 <!-- Basic navigation dropdown -->
 <sgds-dropdown>
-  <sgds-button slot="toggler" role="button">
+  <sgds-button slot="toggler" ariaLabel="Options">
     Options
     <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
   </sgds-button>
@@ -91,7 +91,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 <!-- Action dropdown (no navigation) -->
 <sgds-dropdown>
-  <sgds-button slot="toggler" role="button">
+  <sgds-button slot="toggler" ariaLabel="Actions">
     Actions <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
   </sgds-button>
   <sgds-dropdown-item>View</sgds-dropdown-item>
@@ -101,7 +101,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 <!-- React to selection -->
 <sgds-dropdown id="my-dropdown">
-  <sgds-button slot="toggler" role="button">Choose <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon></sgds-button>
+  <sgds-button slot="toggler" ariaLabel="Choose">Choose <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon></sgds-button>
   <sgds-dropdown-item>Option A</sgds-dropdown-item>
   <sgds-dropdown-item>Option B</sgds-dropdown-item>
   <sgds-dropdown-item>Option C</sgds-dropdown-item>
@@ -115,7 +115,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 <!-- Dropdown opens upward -->
 <sgds-dropdown drop="up">
-  <sgds-button slot="toggler" role="button">Menu above <sgds-icon name="chevron-up" slot="rightIcon"></sgds-icon></sgds-button>
+  <sgds-button slot="toggler" ariaLabel="Menu above">Menu above <sgds-icon name="chevron-up" slot="rightIcon"></sgds-icon></sgds-button>
   <sgds-dropdown-item>Item 1</sgds-dropdown-item>
   <sgds-dropdown-item>Item 2</sgds-dropdown-item>
 </sgds-dropdown>
@@ -171,7 +171,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 **For AI agents**:
 1. Always place the toggler element in the `toggler` slot — it can be any element but `<sgds-button>` is typical.
-2. For navigation, slot an `<a>` tag inside `<sgds-dropdown-item>`. For actions (no navigation), slot plain text directly.
-3. `sgds-select` fires on `<sgds-dropdown>` when any item is clicked — `event.detail.item` is the clicked `<sgds-dropdown-item>`.
-4. Disabled items do not fire `sgds-select`.
-5. For a three-dot overflow menu, use `<sgds-overflow-menu>` which is a pre-built convenience wrapper.
+2. **Always add `ariaLabel`** to the `<sgds-button>` toggler — this is required for accessibility.
+3. For navigation, slot an `<a>` tag inside `<sgds-dropdown-item>`. For actions (no navigation), slot plain text directly.
+4. `sgds-select` fires on `<sgds-dropdown>` when any item is clicked — `event.detail.item` is the clicked `<sgds-dropdown-item>`.
+5. Disabled items do not fire `sgds-select`.
+6. For a three-dot overflow menu, use `<sgds-overflow-menu>` which is a pre-built convenience wrapper.

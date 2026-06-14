@@ -740,7 +740,7 @@ watch([activeValue, responsiveRenderKey], () => {
         >
           <sgds-select
             :value="activeValue"
-            :aria-label="demo.controlLabel || demo.title"
+            :label="demo.controlLabel || demo.title"
             @sgds-change="onSelectChange"
           >
             <sgds-select-option

@@ -223,7 +223,7 @@ const paletteRows: PaletteRow[] = [
                 description="Our colour system starts with three primary GovTech colours, which form the foundation of our visual identity. These core colours extend into ten colour families, providing flexibility for applications such as data visualisation, illustration, and other expressive uses while maintaining harmony with our brand foundation."
               >
                 <div class="sgds:flex sgds:items-center sgds:justify-center sgds:bg-surface-default sgds:border sgds:border-muted sgds:rounded-[var(--sgds-border-radius-2-xl)] sgds:min-h-[20rem] sgds:p-layout-md sgds:max-lg:min-h-[auto]">
-                  <div class="sgds:flex sgds:flex-wrap sgds:gap-[var(--sgds-gap-xs)] sgds:justify-center" aria-label="Extended colour families">
+                  <div role="group" class="sgds:flex sgds:flex-wrap sgds:gap-[var(--sgds-gap-xs)] sgds:justify-center" aria-label="Extended colour families">
                     <span
                       v-for="(color, index) in extendedColors"
                       :key="color"

@@ -145,7 +145,6 @@ onBeforeUnmount(() => {
       >
         <sgds-button
           slot="toggler"
-          role="button"
           variant="primary"
           tone="fixed-light"
           size="sm"
@@ -173,7 +172,6 @@ onBeforeUnmount(() => {
       >
         <sgds-button
           slot="toggler"
-          role="button"
           variant="primary"
           tone="fixed-light"
           size="sm"
