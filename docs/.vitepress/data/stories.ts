@@ -416,12 +416,13 @@ export const storyPosts: StoryPost[] = [
             title: "Connecting decisions across the delivery workflow",
             paragraphs: [],
             visual: {
-              src: "/stories/sgds-v3-layered-decisions.png",
+              src: "/stories/sgds-v3-layered-decisions.svg",
               alt: "Layered SGDS v3 model showing foundation, component, block, pattern, layout, template, and product page from universal to unique decisions",
               caption:
                 "SGDS v3 connects these decisions across the delivery workflow through a layered architecture.",
-              width: 1535,
-              height: 1024,
+              width: 1000,
+              height: 700,
+              inlineSvg: true,
             },
           },
           {
