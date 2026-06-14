@@ -26,18 +26,6 @@ const sectionUsageCopy: Record<string, string> = {
     "Overline styles are used for <strong>short categorical labels and compact pre-heading text</strong>. They help <strong>introduce a section or content type without taking on the weight of a full heading</strong>.",
 };
 
-const sectionUsageHeadingLabel: Record<string, string> = {
-  display: "display",
-  heading: "heading",
-  subtitle: "subtitle",
-  "paragraph-body": "paragraph body",
-  caption: "caption",
-  label: "label",
-  link: "link",
-  list: "list",
-  overline: "overline",
-};
-
 const getCssVariables = (row: { aliases: readonly string[] }) =>
   row.aliases.filter((alias) => alias.startsWith("--"));
 
@@ -83,6 +71,10 @@ const props = defineProps<{
 }>();
 
 const sections = typographyStyleSections.filter((section) => props.sectionKeys.includes(section.key));
+
+const styleColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[14rem] sgds:max-w-[22rem]";
+const usageColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[18rem] sgds:max-w-[22rem]";
+const aliasColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[18rem] sgds:max-w-[22rem]";
 </script>
 
 <template>
@@ -96,7 +88,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
           class="ts-style-section"
         >
           <div class="ts-style-section-copy">
-            <SectionHeader :title="`When to use ${sectionUsageHeadingLabel[section.key]}`" />
+            <SectionHeader title="Usage" />
 
             <p
               class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal"
@@ -108,12 +100,12 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
             tableBorder
             headerBackground
             responsive="always"
-            class="typography-page-template__utility-table ts-type-token-table"
+            class="typography-page-template__utility-table ts-type-token-table sgds:w-max sgds:max-w-full"
           >
             <sgds-table-row>
-              <sgds-table-head class="typography-page-template__table-preview-column">Style</sgds-table-head>
-              <sgds-table-head class="typography-page-template__table-usage-column">When to use</sgds-table-head>
-              <sgds-table-head>Alias token</sgds-table-head>
+              <sgds-table-head :class="styleColumnClass">Style</sgds-table-head>
+              <sgds-table-head :class="usageColumnClass">Usage</sgds-table-head>
+              <sgds-table-head :class="aliasColumnClass">Alias token</sgds-table-head>
             </sgds-table-row>
 
             <sgds-table-row
@@ -121,7 +113,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
               :key="row.tokenNames.join('-')"
               :class="{ 'ts-default-row': Boolean(row.note) }"
             >
-              <sgds-table-cell :class="['ts-preview-cell', section.key === 'display' ? 'ts-preview-cell--display' : '', section.key === 'caption' ? 'ts-preview-cell--caption' : '']">
+              <sgds-table-cell :class="[styleColumnClass, 'ts-preview-cell', section.key === 'display' ? 'ts-preview-cell--display' : '', section.key === 'caption' ? 'ts-preview-cell--caption' : '']">
                 <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-2-xs">
                   <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
                     <p :class="['ts-token-example', 'ts-' + row.exampleClass]">
@@ -132,12 +124,12 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
                   </div>
                 </div>
               </sgds-table-cell>
-              <sgds-table-cell class="typography-page-template__table-usage-column">
+              <sgds-table-cell :class="usageColumnClass">
                 <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:mb-0">
                   {{ row.description }}
                 </p>
               </sgds-table-cell>
-              <sgds-table-cell>
+              <sgds-table-cell :class="aliasColumnClass">
                 <div class="ts-alias-token-list">
                   <sgds-tooltip
                     v-for="variable in getCssVariables(row)"
@@ -177,13 +169,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
 }
 
 .ts-default-row {
-  background: var(--sgds-primary-surface-muted);
-}
-
-.ts-default-row span,
-.ts-default-row p,
-.ts-default-row .ts-token-example {
-  color: var(--sgds-color-fixed-dark);
+  background: var(--sgds-primary-bg-translucent);
 }
 
 .ts-token-name-cell {
@@ -523,6 +509,7 @@ const sections = typographyStyleSections.filter((section) => props.sectionKeys.i
   font-weight: var(--sgds-font-weight-regular);
   letter-spacing: var(--sgds-letter-spacing-normal);
   line-height: var(--sgds-line-height-xs);
+  list-style-position: inside;
 }
 
 .ts-tokenExampleListUnordered {

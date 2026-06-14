@@ -1,6 +1,7 @@
 export interface FigmaStep {
   number: number;
   title: string;
+  slotName?: string;
 }
 
 export interface WorkflowStep {
@@ -54,6 +55,7 @@ export const codeToFigmaSteps: FigmaStep[] = [
 
 export const setupSteps: FigmaStep[] = [
   { number: 0, title: "Install Node.js" },
+  { number: 0, title: "Install SGDS web component package", slotName: "step-sgds-package" },
   { number: 1, title: "Install the SGDS agent skills" },
   { number: 2, title: "Select the full skill set" },
   { number: 3, title: "Keep the agent skills updated" },
@@ -61,6 +63,7 @@ export const setupSteps: FigmaStep[] = [
 
 export const setupStepsGtCli: FigmaStep[] = [
   { number: 0, title: "Setup GT CLI" },
+  { number: 0, title: "Install SGDS web component package", slotName: "step-sgds-package" },
   { number: 1, title: "Install the SGDS agent skills" },
   { number: 2, title: "Select the full skill set" },
   { number: 3, title: "Keep the agent skills updated" },

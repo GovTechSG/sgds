@@ -274,7 +274,7 @@ export const developPage: GetStartedPageData = {
     },
     {
       title: "Import the component library",
-      description: "Import the library once at your app entry point. This registers all <sgds-*> custom elements globally.",
+      description: "Import the library once at your app entry point. This registers all `<sgds-*>` custom elements globally.",
       codeTabsShowLineNumbers: true,
       codeTabs: [
         {

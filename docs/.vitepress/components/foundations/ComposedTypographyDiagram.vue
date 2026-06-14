@@ -33,7 +33,7 @@ const tokenizedTypographyDiagram = typographyDiagramWithReadableHighlightLabels
     class="typography-diagram sgds:m-0 sgds:block sgds:w-full sgds:max-w-full sgds:min-w-0"
     aria-label="Display medium bold typography token composition with responsive raw values"
   >
-    <div class="sgds:box-border sgds:block sgds:w-full sgds:max-w-full sgds:min-w-0 sgds:overflow-hidden sgds:rounded-lg sgds:bg-surface-raised sgds:p-component-md">
+    <div class="sgds:box-border sgds:block sgds:w-full sgds:max-w-full sgds:min-w-0 sgds:overflow-hidden sgds:rounded-xl sgds:bg-alternate sgds:p-component-md sgds:border sgds:border-muted">
       <div
         class="sgds:block sgds:w-full sgds:max-w-full"
         v-html="tokenizedTypographyDiagram"

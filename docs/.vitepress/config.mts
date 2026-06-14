@@ -4,11 +4,25 @@ import tailwindcss from "@tailwindcss/vite";
 import { fileSort } from "./data/file-management";
 import { foundationsSidebar } from "./data/foundations-sidebar";
 import { blocksSidebar } from "./data/blocks-sidebar";
+import { storyPosts } from "./data/stories";
 
 const vitePressConfig = {
   title: "Singapore Government Design System",
   description: "Unifying Government through Design and Code.",
+  transformPageData(pageData) {
+    const story = storyPosts.find((post) => pageData.relativePath === `stories/${post.key}.md`);
+    if (!story) return;
+
+    pageData.title = story.title;
+    pageData.description = story.description;
+  },
   cleanUrls: true,
+  transformHtml(code) {
+    return code.replace(
+      /(<body[^>]*>)/,
+      `$1\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T6NDG85M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->`
+    );
+  },
   markdown: {
     anchor: {
       permalink: (slug, _, state, idx) => {
@@ -40,6 +54,15 @@ const vitePressConfig = {
     },
   },
   head: [
+    [
+      "script",
+      {},
+      `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T6NDG85M');`,
+    ],
     ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
     [
       "link",
@@ -52,6 +75,11 @@ const vitePressConfig = {
         href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400;1,14..32,600;1,14..32,700&display=swap",
       },
     ],
+    ["link", { rel: "icon", type: "image/png", href: "/favicon-96x96.png", sizes: "96x96" }],
+    ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+    ["link", { rel: "shortcut icon", href: "/favicon.ico" }],
+    ["link", { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" }],
+    ["link", { rel: "manifest", href: "/site.webmanifest" }],
     ...(process.env.NODE_ENV !== "production"
       ? [
           [

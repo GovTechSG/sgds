@@ -15,9 +15,14 @@ import CodeToken from "../ui/CodeToken.vue";
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Design tokens are shared names for the visual choices in SGDS. They cover things like colours, text sizes, spacing, border radius, and motion. When a team uses a token, they use the same design decision everywhere without needing to know or copy the raw value behind it.
         </p>
-        <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
-          <a href="/foundations/token-architecture" class="sgds:underline">Token architecture</a> shows how tokens are organised. <a href="/foundations/token-naming" class="sgds:underline">Token naming</a> shows how each token name reads.
-        </p>
+        <ul class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
+          <li>
+            <a href="/foundations/token-architecture" class="sgds:font-semibold sgds:underline">Token architecture</a>: how tokens are organised
+          </li>
+          <li>
+            <a href="/foundations/token-naming" class="sgds:font-semibold sgds:underline">Token naming</a>: how each token name reads
+          </li>
+        </ul>
       </div>
     </section>
 

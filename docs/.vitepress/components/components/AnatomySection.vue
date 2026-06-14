@@ -39,6 +39,7 @@ const anatomyCalloutPositions = ref<CalloutPosition[]>([]);
 // sits at the scale-layer's centre, so the demo box's internal padding wraps
 // the whole group symmetrically instead of just the component.
 const anatomyGroupOffset = ref<{ x: number; y: number }>({ x: 0, y: 0 });
+const anatomyScaleOrigin = ref<{ x: number; y: number }>({ x: 0, y: 0 });
 // Proportional scale applied to the whole anatomy group (component + callouts)
 // when the natural content width exceeds the available canvas width. Keeps the
 // component's layout intact at narrow widths — instead of the component
@@ -199,6 +200,7 @@ const updateCallouts = async () => {
   if (!canvas || !scaleLayer || !callouts?.length) {
     anatomyCalloutPositions.value = [];
     anatomyGroupOffset.value = { x: 0, y: 0 };
+    anatomyScaleOrigin.value = { x: 0, y: 0 };
     anatomyScale.value = 1;
     return;
   }
@@ -223,7 +225,19 @@ const updateCallouts = async () => {
   const badgeSize = parseFloat(styles.getPropertyValue("--sgds-dimension-24")) || 24;
   const badgeRadius = badgeSize / 2;
   const canvasRect = canvas.getBoundingClientRect();
+  const visibleCanvasWidth = Math.max(
+    0,
+    Math.min(canvasRect.right, window.innerWidth) - Math.max(canvasRect.left, 0),
+  );
+  const availableCanvasWidth = visibleCanvasWidth > 0
+    ? Math.min(canvasRect.width, visibleCanvasWidth)
+    : canvasRect.width;
   const layerRect = scaleLayer.getBoundingClientRect();
+  const visibleCanvasCenterX = (Math.max(canvasRect.left, 0) + Math.min(canvasRect.right, window.innerWidth)) / 2;
+  const scaleOriginX = visibleCanvasWidth > 0
+    ? visibleCanvasCenterX - layerRect.left
+    : layerRect.width / 2;
+  const scaleOriginY = layerRect.height / 2;
   const measuredMarkupTarget = markupEl?.children.length === 1
     ? (markupEl.firstElementChild as HTMLElement | null) ?? markupEl
     : markupEl;
@@ -340,18 +354,45 @@ const updateCallouts = async () => {
   // the diagram shrinks as a unit instead of the component reflowing while
   // callouts overflow. Never scale up.
   const naturalWidth = hasBounds ? maxX - minX : 0;
+  const naturalHeight = hasBounds ? maxY - minY : 0;
   const compactSidePadding = 12;
   const comfortableSidePadding = 24;
-  const comfortableAvailableWidth = Math.max(0, canvasRect.width - comfortableSidePadding * 2);
-  const compactAvailableWidth = Math.max(0, canvasRect.width - compactSidePadding * 2);
+  const comfortableAvailableWidth = Math.max(0, availableCanvasWidth - comfortableSidePadding * 2);
+  const compactAvailableWidth = Math.max(0, availableCanvasWidth - compactSidePadding * 2);
   // Skip the update when the canvas hasn't been laid out yet — measuring
   // against a zero-width canvas collapses scale to 0 and leaves the diagram
   // invisible until the next mutation. Restore the transition we suspended
   // for measurement so future updates animate normally.
-  if (canvasRect.width <= 0) {
+  if (availableCanvasWidth <= 0) {
     scaleLayer.style.transition = prevLayerTransition;
     return;
   }
+
+  if (isSidebarAnatomy.value && hasBounds && availableCanvasWidth < 640) {
+    const mobilePadding = 16;
+    const mobileAvailableWidth = Math.max(0, availableCanvasWidth - mobilePadding * 2);
+    const mobileScale = naturalWidth > mobileAvailableWidth
+      ? Math.max(0.1, mobileAvailableWidth / naturalWidth)
+      : 1;
+    const groupOffsetX = mobilePadding / mobileScale - minX;
+    const groupOffsetY = mobilePadding / mobileScale - minY;
+    const scaledHeight = naturalHeight * mobileScale;
+
+    anatomyScale.value = mobileScale;
+    anatomyScaleOrigin.value = { x: 0, y: 0 };
+    anatomyGroupOffset.value = { x: groupOffsetX, y: groupOffsetY };
+    anatomyCanvasMinHeight.value = Math.max(320, Math.ceil(scaledHeight + mobilePadding * 2));
+    anatomyCalloutPositions.value = alignedPositions.map((position) => ({
+      ...position,
+      badgeLeft: position.badgeLeft + groupOffsetX,
+      badgeTop: position.badgeTop + groupOffsetY,
+      strokeLeft: position.strokeLeft + groupOffsetX,
+      strokeTop: position.strokeTop + groupOffsetY,
+    }));
+    scaleLayer.style.transition = prevLayerTransition;
+    return;
+  }
+
   const availableWidth = naturalWidth <= comfortableAvailableWidth
     ? comfortableAvailableWidth
     : compactAvailableWidth;
@@ -360,21 +401,21 @@ const updateCallouts = async () => {
     : 1;
 
   const boundsCenterX = hasBounds ? minX + naturalWidth / 2 : layerRect.width / 2;
-  const naturalHeight = hasBounds ? maxY - minY : 0;
   const boundsCenterY = hasBounds ? minY + naturalHeight / 2 : layerRect.height / 2;
-  const groupOffsetX = layerRect.width / 2 - boundsCenterX;
-  const groupOffsetY = layerRect.height / 2 - boundsCenterY;
+  const groupOffsetX = scaleOriginX - boundsCenterX;
+  const groupOffsetY = scaleOriginY - boundsCenterY;
 
   // Grow the canvas to fit content + callouts when the natural height (after
   // any width-based scaling) exceeds the 320 px default. Padding ensures the
   // top/bottom badges aren't flush against the box edge. Below 320 px we keep
   // the class-based min-h-320 floor by leaving the inline style unset.
   const scaledHeight = naturalHeight * anatomyScale.value;
-  const verticalPadding = canvasRect.width < 520 ? 48 : 80;
+  const verticalPadding = availableCanvasWidth < 520 ? 48 : 80;
   const computedMinHeight = scaledHeight > 0 ? Math.ceil(scaledHeight + verticalPadding) : 0;
   anatomyCanvasMinHeight.value = computedMinHeight > 320 ? computedMinHeight : null;
 
   anatomyGroupOffset.value = { x: groupOffsetX, y: groupOffsetY };
+  anatomyScaleOrigin.value = { x: scaleOriginX, y: scaleOriginY };
   anatomyCalloutPositions.value = alignedPositions.map((position) => ({
     ...position,
     badgeLeft: position.badgeLeft + groupOffsetX,
@@ -824,30 +865,56 @@ const openAnatomyDropdowns = async () => {
       el,
       "sidebar-open-anatomy",
       `:host {
+         --portal-sidebar-anatomy-main-width: var(--sgds-dimension-288);
+         --portal-sidebar-anatomy-scrim-width: var(--sgds-dimension-96);
          display: block !important;
          pointer-events: none !important;
-         width: calc(var(--sgds-dimension-288) * 2 + var(--sgds-dimension-96)) !important;
+         width: calc(var(--portal-sidebar-anatomy-main-width) * 2 + var(--portal-sidebar-anatomy-scrim-width)) !important;
        }
        .sidebar {
-         width: calc(var(--sgds-dimension-288) * 2 + var(--sgds-dimension-96)) !important;
+         display: block !important;
+         height: 100% !important;
+         overflow: hidden !important;
+         position: relative !important;
+         width: calc(var(--portal-sidebar-anatomy-main-width) * 2 + var(--portal-sidebar-anatomy-scrim-width)) !important;
        }
        .sidebar-main {
+         background: var(--sgds-surface-default) !important;
+         display: block !important;
+         height: 100% !important;
+         inset: 0 auto auto 0 !important;
+         left: 0 !important;
+         opacity: 1 !important;
+         overflow: hidden !important;
          position: relative !important;
-         width: var(--sgds-dimension-288) !important;
+         top: 0 !important;
+         transform: none !important;
+         translate: none !important;
+         visibility: visible !important;
+         width: var(--portal-sidebar-anatomy-main-width) !important;
          z-index: 3 !important;
        }
+       .sidebar-wrapper {
+         height: 100% !important;
+         width: var(--portal-sidebar-anatomy-main-width) !important;
+       }
        .sidebar-nested-overlay {
+         height: 100% !important;
+         left: var(--portal-sidebar-anatomy-main-width) !important;
          opacity: 1 !important;
-         left: var(--sgds-dimension-288) !important;
          pointer-events: none !important;
-         width: var(--sgds-dimension-288) !important;
+         top: 0 !important;
+         width: var(--portal-sidebar-anatomy-main-width) !important;
          z-index: 2 !important;
        }
        .sidebar--overlay {
          background-color: var(--sgds-bg-overlay) !important;
+         height: 100% !important;
+         inset: 0 auto auto 0 !important;
          opacity: 0.32 !important;
          pointer-events: none !important;
-         width: calc(var(--sgds-dimension-288) * 2 + var(--sgds-dimension-96)) !important;
+         position: absolute !important;
+         width: calc(var(--portal-sidebar-anatomy-main-width) * 2 + var(--portal-sidebar-anatomy-scrim-width)) !important;
          z-index: 1 !important;
        }
        .sidebar--overlay.show {
@@ -873,6 +940,9 @@ const openAnatomyDropdowns = async () => {
     // would otherwise close it the first time the user interacts with the
     // page, hiding the nested overlay we want the anatomy to keep showing.
     type SidebarPrivate = HTMLElement & {
+      _isNarrowViewport?: boolean;
+      _isOverlay?: boolean;
+      _sidebarCollapsed?: boolean;
       _showDrawer?: boolean;
       _handleClickOutOfElement?: (e: Event) => void;
       requestUpdate?: () => void;
@@ -883,6 +953,9 @@ const openAnatomyDropdowns = async () => {
       document.removeEventListener("click", sidebarPrivate._handleClickOutOfElement);
       sidebarPrivate._handleClickOutOfElement = () => {};
     }
+    sidebarPrivate._isNarrowViewport = false;
+    sidebarPrivate._isOverlay = false;
+    sidebarPrivate._sidebarCollapsed = false;
     sidebarPrivate._showDrawer = true;
     sidebarPrivate.requestUpdate?.();
     await sidebarPrivate.updateComplete;
@@ -936,6 +1009,7 @@ const openAnatomyDropdowns = async () => {
   const steppers = Array.from(
     root.querySelectorAll(".portal-anatomy-stepper") as NodeListOf<HTMLElement & {
       updateComplete?: Promise<unknown>;
+      shadowRoot?: ShadowRoot | null;
     }>,
   );
   for (const el of steppers) {
@@ -948,6 +1022,7 @@ const openAnatomyDropdowns = async () => {
       { stepHeader: "Confirm", component: "Step three" },
     ];
     (el as HTMLElement & { activeStep?: number; steps?: unknown[] }).activeStep = 0;
+    await el.updateComplete;
     injectShadowStyles(
       el,
       "stepper-anatomy-width",
@@ -960,8 +1035,44 @@ const openAnatomyDropdowns = async () => {
        }
        .stepper:not(.vertical) .stepper-detail {
          max-width: var(--sgds-dimension-192) !important;
+       }
+       .stepper-item-container:first-child .stepper-detail {
+         align-items: center !important;
+         display: flex !important;
+         flex-direction: column !important;
+         gap: var(--sgds-gap-2-xs) !important;
+       }
+       .portal-anatomy-stepper-label {
+         display: block !important;
+       }
+       .portal-anatomy-stepper-slot {
+         align-items: center !important;
+         background: var(--sgds-surface-default) !important;
+         border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted) !important;
+         border-radius: var(--sgds-border-radius-md) !important;
+         color: var(--sgds-color-subtle) !important;
+         display: inline-flex !important;
+         font-size: var(--sgds-font-size-label-sm) !important;
+         justify-content: center !important;
+         line-height: var(--sgds-line-height-20) !important;
+         margin-top: var(--sgds-margin-2-xs) !important;
+         min-width: var(--sgds-dimension-112) !important;
+         padding: var(--sgds-padding-3-xs) var(--sgds-padding-2-xs) !important;
        }`,
     );
+    const firstDetail = el.shadowRoot?.querySelector(".stepper-item-container:first-child .stepper-detail") as HTMLElement | null;
+    if (firstDetail && !firstDetail.querySelector(".portal-anatomy-stepper-slot")) {
+      const labelText = firstDetail.textContent?.trim() || "Start";
+      firstDetail.textContent = "";
+      const label = document.createElement("span");
+      label.className = "portal-anatomy-stepper-label";
+      label.textContent = labelText;
+      const slotContent = document.createElement("span");
+      slotContent.className = "portal-anatomy-stepper-slot";
+      slotContent.textContent = "Slot content";
+      firstDetail.appendChild(label);
+      firstDetail.appendChild(slotContent);
+    }
   }
 
   const systemBanners = Array.from(
@@ -1028,6 +1139,7 @@ onBeforeUnmount(() => {
         'sgds:flex sgds:flex-col sgds:gap-component-md sgds:bg-alternate sgds:border sgds:border-muted sgds:rounded-xl',
         isSystemBannerAnatomy ? 'sgds:px-2xs sgds:py-2xs' : 'sgds:py-component-xs',
         isSystemBannerAnatomy ? '' : isSidebarAnatomy ? 'sgds:px-xs' : isSidenavAnatomy ? 'sgds:px-2xs' : 'sgds:px-component-xs',
+        isSidebarAnatomy ? 'sgds:overflow-hidden' : '',
       ]"
     >
       <SegmentedControl
@@ -1061,7 +1173,10 @@ onBeforeUnmount(() => {
           <div
             ref="anatomyScaleLayerRef"
             class="anatomy-scale-layer sgds:absolute sgds:inset-0 sgds:flex sgds:items-center sgds:justify-center"
-            :style="{ transform: `scale(${anatomyScale})`, transformOrigin: 'center center' }"
+            :style="{
+              transform: `scale(${anatomyScale})`,
+              transformOrigin: `${anatomyScaleOrigin.x}px ${anatomyScaleOrigin.y}px`,
+            }"
           >
             <div
               class="anatomy-demo-markup sgds:inline-flex sgds:items-center sgds:justify-center sgds:min-w-0"

@@ -3,6 +3,7 @@ defineProps<{
   steps: Array<{
     number: number;
     title: string;
+    slotName?: string;
   }>;
 }>();
 </script>
@@ -12,7 +13,7 @@ defineProps<{
     <div class="sgds:flex sgds:flex-col sgds:gap-component-md sgds:w-full">
       <div
         v-for="(step, index) in steps"
-        :key="step.number"
+        :key="`${step.number}-${index}`"
         class="sgds:grid sgds:items-stretch sgds:gap-component-xs sgds:grid-cols-[var(--sgds-dimension-32)_minmax(0,1fr)]"
       >
         <div class="sgds:flex sgds:flex-col sgds:items-center sgds:h-full">
@@ -26,7 +27,7 @@ defineProps<{
           <h4 class="sgds:text-heading-default sgds:m-0 sgds:pt-1 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
             {{ step.title }}
           </h4>
-          <slot :name="`step-${step.number}`" />
+          <slot :name="step.slotName ?? `step-${step.number}`" />
         </div>
       </div>
     </div>

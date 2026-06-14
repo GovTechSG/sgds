@@ -23,11 +23,18 @@ import { setupSteps as steps, setupStepsGtCli as gtCliSteps } from "../../data/a
           </sgds-link>
         </template>
 
+        <template #step-sgds-package>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+            Run the following command if the SGDS web component package is not installed:
+          </p>
+          <CodeBlock code="npm i @govtechsg/sgds-web-component" lang="bash" />
+        </template>
+
         <template #step-1>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
             Run the GT CLI installer in your project root:
           </p>
-          <CodeBlock code="gt apd install sgds" lang="bash" />
+          <CodeBlock code="gt apd install gto-desp" lang="bash" />
         </template>
 
         <template #step-2>
@@ -40,7 +47,7 @@ import { setupSteps as steps, setupStepsGtCli as gtCliSteps } from "../../data/a
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
             After upgrading <CodeToken label="@govtechsg/sgds-web-component" />, refresh the SGDS agent skills:
           </p>
-          <CodeBlock code="gt apd install sgds" lang="bash" />
+          <CodeBlock code="gt apd install gto-desp" lang="bash" />
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
             This keeps the installed SGDS agent skills aligned with the latest workflow, setup guidance, and component instructions.
           </p>
@@ -59,6 +66,13 @@ import { setupSteps as steps, setupStepsGtCli as gtCliSteps } from "../../data/a
               Download Node.js
             </a>
           </sgds-link>
+        </template>
+
+        <template #step-sgds-package>
+          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
+            Run the following command if the SGDS web component package is not installed:
+          </p>
+          <CodeBlock code="npm i @govtechsg/sgds-web-component" lang="bash" />
         </template>
 
         <template #step-1>

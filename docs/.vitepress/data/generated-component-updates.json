@@ -1,4 +1,102 @@
 {
+  "alert": [
+    {
+      "Date": "19 May 2026",
+      "Version": "v3.19.1",
+      "Description": "Text color token in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/668\" target=\"_blank\" rel=\"noopener noreferrer\">#668</a>."
+    },
+    {
+      "Date": "29 Apr 2026",
+      "Version": "v3.18.0",
+      "Description": "Visual refinement on border and new action slot in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/604\" target=\"_blank\" rel=\"noopener noreferrer\">#604</a>."
+    },
+    {
+      "Date": "17 Apr 2026",
+      "Version": "v3.17.0",
+      "Description": "Close button colour fixed dark in warning filled in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/594\" target=\"_blank\" rel=\"noopener noreferrer\">#594</a>."
+    }
+  ],
+  "table": [
+    {
+      "Date": "19 May 2026",
+      "Version": "v3.19.1",
+      "Description": "Sgds-table prop not reflected, causing layout not to work in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/670\" target=\"_blank\" rel=\"noopener noreferrer\">#670</a>."
+    },
+    {
+      "Date": "13 May 2026",
+      "Version": "v3.19.0",
+      "Description": "Update table and textarea styling in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/651\" target=\"_blank\" rel=\"noopener noreferrer\">#651</a>."
+    },
+    {
+      "Date": "13 May 2026",
+      "Version": "v3.19.0",
+      "Description": "Created new prop for table-layout in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/659\" target=\"_blank\" rel=\"noopener noreferrer\">#659</a>."
+    },
+    {
+      "Date": "16 Feb 2026",
+      "Version": "v3.10.0",
+      "Description": "New static table styles in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/537\" target=\"_blank\" rel=\"noopener noreferrer\">#537</a>."
+    },
+    {
+      "Date": "04 Apr 2025",
+      "Version": "v3.0.0",
+      "Description": "- **Table of Contents** – Useful for the navigation for long content."
+    }
+  ],
+  "modal": [
+    {
+      "Date": "19 May 2026",
+      "Version": "v3.19.1",
+      "Description": "Add margin to fullscreen mobile view for alignment in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/673\" target=\"_blank\" rel=\"noopener noreferrer\">#673</a>."
+    },
+    {
+      "Date": "15 Apr 2026",
+      "Version": "v3.16.0",
+      "Description": "Make close button optional in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/583\" target=\"_blank\" rel=\"noopener noreferrer\">#583</a>."
+    },
+    {
+      "Date": "27 Jan 2026",
+      "Version": "v3.8.0",
+      "Description": "New size extra large in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/527\" target=\"_blank\" rel=\"noopener noreferrer\">#527</a>."
+    },
+    {
+      "Date": "22 Sept 2025",
+      "Version": "v3.4.0",
+      "Description": "Replace modal with position static to avoid clashes with components like tooltip in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/393\" target=\"_blank\" rel=\"noopener noreferrer\">#393</a>."
+    },
+    {
+      "Date": "03 Sept 2025",
+      "Version": "v3.3.1",
+      "Description": "Modal size prop UI bug fix @clukhei in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/347\" target=\"_blank\" rel=\"noopener noreferrer\">#347</a>."
+    }
+  ],
+  "system-banner": [
+    {
+      "Date": "19 May 2026",
+      "Version": "v3.19.1",
+      "Description": "Vertical center align icon on desktop in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/675\" target=\"_blank\" rel=\"noopener noreferrer\">#675</a>."
+    },
+    {
+      "Date": "12 Mar 2026",
+      "Version": "v3.14.0",
+      "Description": "Update the alignment of the header components in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/566\" target=\"_blank\" rel=\"noopener noreferrer\">#566</a>."
+    },
+    {
+      "Date": "02 Mar 2026",
+      "Version": "v3.12.0",
+      "Description": "New badge slot in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/550\" target=\"_blank\" rel=\"noopener noreferrer\">#550</a>."
+    },
+    {
+      "Date": "16 Feb 2026",
+      "Version": "v3.10.0",
+      "Description": "NoClampAction prop to make show more clamped action optional in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/539\" target=\"_blank\" rel=\"noopener noreferrer\">#539</a>."
+    },
+    {
+      "Date": "18 Dec 2025",
+      "Version": "v3.6.0",
+      "Description": "New system banner component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/475\" target=\"_blank\" rel=\"noopener noreferrer\">#475</a>."
+    }
+  ],
   "footer": [
     {
       "Date": "13 May 2026",
@@ -131,28 +229,6 @@
       "Description": "Value becomes a prop over initialValu, add deprecation notice to initialValue prop and prevent `sgds-change-date `from running on first load @clukhei in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/297\" target=\"_blank\" rel=\"noopener noreferrer\">#297</a>."
     }
   ],
-  "table": [
-    {
-      "Date": "13 May 2026",
-      "Version": "v3.19.0",
-      "Description": "Update table and textarea styling in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/651\" target=\"_blank\" rel=\"noopener noreferrer\">#651</a>."
-    },
-    {
-      "Date": "13 May 2026",
-      "Version": "v3.19.0",
-      "Description": "Created new prop for table-layout in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/659\" target=\"_blank\" rel=\"noopener noreferrer\">#659</a>."
-    },
-    {
-      "Date": "16 Feb 2026",
-      "Version": "v3.10.0",
-      "Description": "New static table styles in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/537\" target=\"_blank\" rel=\"noopener noreferrer\">#537</a>."
-    },
-    {
-      "Date": "04 Apr 2025",
-      "Version": "v3.0.0",
-      "Description": "- **Table of Contents** – Useful for the navigation for long content."
-    }
-  ],
   "file-upload": [
     {
       "Date": "13 May 2026",
@@ -282,18 +358,6 @@
       "Description": "Visual enhancement, neutral outline button, min-width reduced in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/610\" target=\"_blank\" rel=\"noopener noreferrer\">#610</a>."
     }
   ],
-  "alert": [
-    {
-      "Date": "29 Apr 2026",
-      "Version": "v3.18.0",
-      "Description": "Visual refinement on border and new action slot in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/604\" target=\"_blank\" rel=\"noopener noreferrer\">#604</a>."
-    },
-    {
-      "Date": "17 Apr 2026",
-      "Version": "v3.17.0",
-      "Description": "Close button colour fixed dark in warning filled in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/594\" target=\"_blank\" rel=\"noopener noreferrer\">#594</a>."
-    }
-  ],
   "sidebar": [
     {
       "Date": "29 Apr 2026",
@@ -408,28 +472,6 @@
       "Description": "New autofocus prop on Radio in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/602\" target=\"_blank\" rel=\"noopener noreferrer\">#602</a>."
     }
   ],
-  "modal": [
-    {
-      "Date": "15 Apr 2026",
-      "Version": "v3.16.0",
-      "Description": "Make close button optional in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/583\" target=\"_blank\" rel=\"noopener noreferrer\">#583</a>."
-    },
-    {
-      "Date": "27 Jan 2026",
-      "Version": "v3.8.0",
-      "Description": "New size extra large in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/527\" target=\"_blank\" rel=\"noopener noreferrer\">#527</a>."
-    },
-    {
-      "Date": "22 Sept 2025",
-      "Version": "v3.4.0",
-      "Description": "Replace modal with position static to avoid clashes with components like tooltip in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/393\" target=\"_blank\" rel=\"noopener noreferrer\">#393</a>."
-    },
-    {
-      "Date": "03 Sept 2025",
-      "Version": "v3.3.1",
-      "Description": "Modal size prop UI bug fix @clukhei in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/347\" target=\"_blank\" rel=\"noopener noreferrer\">#347</a>."
-    }
-  ],
   "pagination": [
     {
       "Date": "12 Mar 2026",
@@ -440,28 +482,6 @@
       "Date": "04 Sept 2025",
       "Version": "v3.3.2",
       "Description": "Next button to disable where pages length is less than 2 in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/370\" target=\"_blank\" rel=\"noopener noreferrer\">#370</a>."
-    }
-  ],
-  "system-banner": [
-    {
-      "Date": "12 Mar 2026",
-      "Version": "v3.14.0",
-      "Description": "Update the alignment of the header components in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/566\" target=\"_blank\" rel=\"noopener noreferrer\">#566</a>."
-    },
-    {
-      "Date": "02 Mar 2026",
-      "Version": "v3.12.0",
-      "Description": "New badge slot in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/550\" target=\"_blank\" rel=\"noopener noreferrer\">#550</a>."
-    },
-    {
-      "Date": "16 Feb 2026",
-      "Version": "v3.10.0",
-      "Description": "NoClampAction prop to make show more clamped action optional in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/539\" target=\"_blank\" rel=\"noopener noreferrer\">#539</a>."
-    },
-    {
-      "Date": "18 Dec 2025",
-      "Version": "v3.6.0",
-      "Description": "New system banner component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/475\" target=\"_blank\" rel=\"noopener noreferrer\">#475</a>."
     }
   ],
   "drawer": [

@@ -5,25 +5,17 @@ const { site } = useData()
 </script>
 
 <template>
-  <sgds-footer>
+  <sgds-footer privacyHref="/privacy" termsOfUseHref="/terms-of-use">
     <h2 slot="title">{{ site.title }}</h2>
     <p slot="description">The Singapore Government Design System was developed to empower teams in creating fast, accessible and mobile-friendly digital services.</p>
-    <div class="sgds:flex sgds:flex-wrap sgds:gap-component-sm">
-      <a href="#" aria-label="Instagram">
-        <span></span>
-        <sgds-icon size="xl" name="instagram" class="sgds:text-fixed-light"></sgds-icon>
-        <span></span>
-      </a>
-      <a href="#" aria-label="LinkedIn">
-        <span></span>
-        <sgds-icon size="xl" name="linkedin" class="sgds:text-fixed-light"></sgds-icon>
-        <span></span>
-      </a>
-      <a href="#" aria-label="Youtube">
-        <span></span>
-        <sgds-icon size="xl" name="youtube" class="sgds:text-fixed-light"></sgds-icon>
-        <span></span>
-      </a>
-    </div>
+    <sgds-footer-item slot="items">
+      <span slot="title">Past Versions</span>
+      <sgds-link>
+        <a href="https://v1.designsystem.tech.gov.sg/" target="_blank">SGDS v1</a>
+      </sgds-link>
+      <sgds-link>
+        <a href="https://v2.designsystem.tech.gov.sg/" target="_blank">SGDS v2</a>
+      </sgds-link>
+    </sgds-footer-item>
   </sgds-footer>
 </template>

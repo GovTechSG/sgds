@@ -60,7 +60,7 @@ const formRadiusTokens: BorderToken[] = [
       <div class="typography-page-template__body typography-page-template__body--prose">
         <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
           <sgds-table-row>
-            <sgds-table-head class="border-token-table-name-col">CSS variable</sgds-table-head>
+            <sgds-table-head class="border-token-table-name-col">Token</sgds-table-head>
             <sgds-table-head class="border-token-table-value-col">Value (px/rem)</sgds-table-head>
             <sgds-table-head class="border-token-table-example-col">Preview</sgds-table-head>
           </sgds-table-row>
@@ -68,7 +68,7 @@ const formRadiusTokens: BorderToken[] = [
           <sgds-table-row
             v-for="row in borderWidthTokens"
             :key="row.token"
-            :class="row.note ? 'border-token-default-row sgds:text-fixed-dark' : undefined"
+            :class="row.note ? 'border-token-default-row' : undefined"
           >
             <sgds-table-cell class="border-token-table-name-col">
               <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -106,7 +106,7 @@ const formRadiusTokens: BorderToken[] = [
             </div>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="border-token-table-name-col">CSS variable</sgds-table-head>
+                <sgds-table-head class="border-token-table-name-col">Token</sgds-table-head>
                 <sgds-table-head class="border-token-table-value-col">Value (px/rem)</sgds-table-head>
                 <sgds-table-head class="border-token-table-example-col">Preview</sgds-table-head>
               </sgds-table-row>
@@ -114,7 +114,7 @@ const formRadiusTokens: BorderToken[] = [
               <sgds-table-row
                 v-for="row in borderRadiusTokens"
                 :key="row.token"
-                :class="row.note ? 'border-token-default-row sgds:text-fixed-dark' : undefined"
+                :class="row.note ? 'border-token-default-row' : undefined"
               >
                 <sgds-table-cell class="border-token-table-name-col">
                   <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -148,7 +148,7 @@ const formRadiusTokens: BorderToken[] = [
             </div>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="border-token-table-name-col">CSS variable</sgds-table-head>
+                <sgds-table-head class="border-token-table-name-col">Token</sgds-table-head>
                 <sgds-table-head class="border-token-table-value-col">Value (px/rem)</sgds-table-head>
                 <sgds-table-head class="border-token-table-example-col">Preview</sgds-table-head>
               </sgds-table-row>
@@ -156,7 +156,7 @@ const formRadiusTokens: BorderToken[] = [
               <sgds-table-row
                 v-for="row in formRadiusTokens"
                 :key="row.token"
-                :class="row.note ? 'border-token-default-row sgds:text-fixed-dark' : undefined"
+                :class="row.note ? 'border-token-default-row' : undefined"
               >
                 <sgds-table-cell class="border-token-table-name-col">
                   <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
@@ -255,7 +255,7 @@ const formRadiusTokens: BorderToken[] = [
 }
 
 .border-token-default-row {
-  background: var(--sgds-primary-surface-muted);
+  background: var(--sgds-primary-bg-translucent);
 }
 
 </style>

@@ -5,7 +5,7 @@ import CodeToken from "./ui/CodeToken.vue";
 
 const tokenColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[12rem] sgds:max-w-[clamp(12rem,22vw,16rem)]";
 const valueColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[7.5rem] sgds:max-w-[11rem]";
-const numericColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[4.5rem] sgds:max-w-[6rem]";
+const numericColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[6.5rem] sgds:max-w-[7.5rem] sgds:whitespace-nowrap";
 
 const screenSizeGuideXs = [211, 467, 723, 979, 1235, 1491] as const;
 const screenSizeViewBoxWidth = 1672;
@@ -132,14 +132,14 @@ const stickySidebarTokens = [
         </p>
 
         <div class="br-screen-size-diagram-wrap sgds:w-full">
-          <div class="sgds:relative sgds:h-[18.5rem] sgds:w-full">
+          <div class="br-screen-size-diagram sgds:relative sgds:h-[18.5rem] sgds:w-full">
             <svg
               viewBox="0 0 1672 480"
               aria-label="Screen size breakpoint diagram"
               class="sgds:h-full sgds:w-full"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect x="0" y="0" width="1672" height="480" rx="32" fill="var(--sgds-bg-translucent-subtle)" />
+              <rect x="0" y="0" width="1672" height="480" rx="32" fill="var(--sgds-bg-alternate)" stroke="var(--sgds-border-color-muted)" stroke-width="1" />
 
               <line
                 v-for="guideX in screenSizeGuideXs"
@@ -323,29 +323,14 @@ const stickySidebarTokens = [
 </template>
 
 <style>
-/* Screen-size diagram: the underlying SVG scales with width, but the
- * absolute-positioned breakpoint badges and numeric labels are rendered in
- * normal DOM with fixed font sizes. On narrow viewports the badges/labels
- * collide because the horizontal gaps between them shrink faster than the
- * label text does. Scale the whole diagram down on smaller widths so the
- * labels shrink in lockstep with the diagram and everything stays inside
- * the demo card. transform-origin: top left keeps the left edge anchored so
- * we can compensate the lost width with a larger container inline-size. */
+/* The screen-size diagram uses absolute-positioned DOM labels over an SVG.
+ * Keep a readable minimum canvas width so nearby marker labels do not collide
+ * on narrow viewports; the wrapper provides horizontal overflow instead. */
 .br-screen-size-diagram-wrap {
-  transform-origin: top left;
+  overflow-x: auto;
 }
 
-@media (max-width: 48rem) {
-  .br-screen-size-diagram-wrap {
-    inline-size: calc(100% / 0.8);
-    transform: scale(0.8);
-  }
-}
-
-@media (max-width: 32rem) {
-  .br-screen-size-diagram-wrap {
-    inline-size: calc(100% / 0.65);
-    transform: scale(0.65);
-  }
+.br-screen-size-diagram {
+  min-inline-size: var(--sgds-dimension-1024);
 }
 </style>

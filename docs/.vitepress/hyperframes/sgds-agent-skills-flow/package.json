@@ -1,0 +1,9 @@
+{
+  "name": "sgds-agent-skills-flow",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "npx --yes hyperframes@0.6.38 lint && npx --yes hyperframes@0.6.38 validate && npx --yes hyperframes@0.6.38 inspect",
+    "render": "npx --yes hyperframes@0.6.38 render --output ../../../public/stories/sgds-agent-skills-knowledge-flow.mp4 --quality standard"
+  }
+}
