@@ -5343,7 +5343,7 @@ const getCollapsedCategory = (
           v-html="resolvedPreviewMarkup"
         ></div>
 
-        <button
+        <div
           v-for="(meta, key) in inspectMeta"
           :key="key"
           v-show="
@@ -5366,8 +5366,8 @@ const getCollapsedCategory = (
             !(structureKind === 'alert' && ['border-color', 'border-width', 'border-radius'].includes(key as string)) &&
             !(structureKind === 'button' && ['height', 'min-width', 'border-width', 'border-radius', 'gap'].includes(key as string))
           "
-          type="button"
-          class="accordion-inspect-hotspot"
+
+          tabindex="0" class="accordion-inspect-hotspot"
           :data-active="hoverKey === key ? 'true' : null"
           :data-structure-tone="getStructureTone(key as string)"
           :style="{
@@ -5384,21 +5384,21 @@ const getCollapsedCategory = (
           @mouseleave="clearPreviewHover"
           @focus="hoverKey = key"
           @blur="clearPreviewHover"
-          @click="scrollToTableRow(key as string)"
+          @click="scrollToTableRow(key as string)" @keydown.enter="scrollToTableRow(key as string)"
           :aria-label="meta.aria"
         >
           <span class="sgds:sr-only">{{ meta.aria }}</span>
-        </button>
+        </div>
 
         <template
           v-if="structureKind === 'breadcrumb'"
         >
-          <button
+          <div
             v-if="isHoverableStructureKey('icon-color')"
             v-for="(band, index) in breadcrumbIconBands"
             :key="`breadcrumb-icon-${index}`"
-            type="button"
-            class="accordion-inspect-padding-proxy"
+  
+            tabindex="0" class="accordion-inspect-padding-proxy"
             :style="{
               left: `${band.left}px`,
               top: `${band.top}px`,
@@ -5409,17 +5409,17 @@ const getCollapsedCategory = (
             @mouseleave="clearPreviewHover"
             @focus="hoverKey = 'icon-color'"
             @blur="clearPreviewHover"
-            @click="scrollToTableRow('icon-color')"
+            @click="scrollToTableRow('icon-color')" @keydown.enter="scrollToTableRow('icon-color')"
             aria-label="Inspect breadcrumb icon colour"
           >
             <span class="sgds:sr-only">Inspect breadcrumb icon colour</span>
-          </button>
+          </div>
 
-          <button
+          <div
             v-for="(band, index) in breadcrumbGroupGapBands"
             :key="`breadcrumb-group-gap-${index}`"
-            type="button"
-            class="accordion-inspect-padding-proxy"
+  
+            tabindex="0" class="accordion-inspect-padding-proxy"
             :style="{
               left: `${band.left}px`,
               top: `${band.top}px`,
@@ -5430,16 +5430,16 @@ const getCollapsedCategory = (
             @mouseleave="clearPreviewHover"
             @focus="hoverKey = 'group-gap'"
             @blur="clearPreviewHover"
-            @click="scrollToTableRow('group-gap')"
+            @click="scrollToTableRow('group-gap')" @keydown.enter="scrollToTableRow('group-gap')"
             aria-label="Inspect breadcrumb group gap"
           >
             <span class="sgds:sr-only">Inspect breadcrumb group gap</span>
-          </button>
+          </div>
         </template>
 
         <div
           v-if="activeBreadcrumbGroupGapBands.length"
-          class="accordion-inspect-padding-visual"
+          tabindex="0" class="accordion-inspect-padding-visual"
           aria-hidden="true"
         >
           <div
@@ -5458,7 +5458,7 @@ const getCollapsedCategory = (
 
         <div
           v-if="activeBreadcrumbIconBands.length"
-          class="accordion-inspect-padding-visual"
+          tabindex="0" class="accordion-inspect-padding-visual"
           aria-hidden="true"
         >
           <div
@@ -5478,11 +5478,11 @@ const getCollapsedCategory = (
           v-for="group in accordionPaddingHoverBandGroups"
           :key="`accordion-padding-${group.key}`"
         >
-          <button
+          <div
             v-for="(band, index) in group.bands"
             :key="`accordion-padding-${group.key}-${index}`"
-            type="button"
-            class="accordion-inspect-padding-proxy"
+  
+            tabindex="0" class="accordion-inspect-padding-proxy"
             :style="{
               left: `${band.left}px`,
               top: `${band.top}px`,
@@ -5493,16 +5493,16 @@ const getCollapsedCategory = (
             @mouseleave="clearPreviewHover"
             @focus="hoverKey = group.key"
             @blur="clearPreviewHover"
-            @click="scrollToTableRow(group.key)"
+            @click="scrollToTableRow(group.key)" @keydown.enter="scrollToTableRow(group.key)"
             :aria-label="inspectMeta[group.key].aria"
           >
             <span class="sgds:sr-only">{{ inspectMeta[group.key].aria }}</span>
-          </button>
+          </div>
         </template>
 
         <div
           v-if="activeAccordionPaddingBands.length"
-          class="accordion-inspect-padding-visual"
+          tabindex="0" class="accordion-inspect-padding-visual"
           aria-hidden="true"
         >
           <div
@@ -5522,11 +5522,11 @@ const getCollapsedCategory = (
           v-for="group in alertPaddingHoverBandGroups"
           :key="`alert-padding-${group.key}`"
         >
-          <button
+          <div
             v-for="(band, index) in group.bands"
             :key="`alert-padding-${group.key}-${index}`"
-            type="button"
-            class="accordion-inspect-padding-proxy"
+  
+            tabindex="0" class="accordion-inspect-padding-proxy"
             :style="{
               left: `${band.left}px`,
               top: `${band.top}px`,
@@ -5537,16 +5537,16 @@ const getCollapsedCategory = (
             @mouseleave="clearPreviewHover"
             @focus="hoverKey = group.key"
             @blur="clearPreviewHover"
-            @click="scrollToTableRow(group.key)"
+            @click="scrollToTableRow(group.key)" @keydown.enter="scrollToTableRow(group.key)"
             :aria-label="inspectMeta[group.key].aria"
           >
             <span class="sgds:sr-only">{{ inspectMeta[group.key].aria }}</span>
-          </button>
+          </div>
         </template>
 
         <div
           v-if="activeAlertPaddingBands.length"
-          class="accordion-inspect-padding-visual"
+          tabindex="0" class="accordion-inspect-padding-visual"
           aria-hidden="true"
         >
           <div
@@ -5562,11 +5562,11 @@ const getCollapsedCategory = (
           ></div>
         </div>
 
-        <button
+        <div
           v-for="(band, index) in cardPaddingXHoverBands"
           :key="`card-padding-x-band-${index}`"
-          type="button"
-          class="accordion-inspect-padding-proxy"
+
+          tabindex="0" class="accordion-inspect-padding-proxy"
           :style="{
             left: `${band.left}px`,
             top: `${band.top}px`,
@@ -5577,15 +5577,15 @@ const getCollapsedCategory = (
           @mouseleave="clearPreviewHover"
           @focus="hoverKey = 'padding-x'"
           @blur="clearPreviewHover"
-          @click="scrollToTableRow('padding-x')"
+          @click="scrollToTableRow('padding-x')" @keydown.enter="scrollToTableRow('padding-x')"
           aria-label="Inspect card padding x"
         >
           <span class="sgds:sr-only">Inspect card padding x</span>
-        </button>
+        </div>
 
         <div
           v-if="hoverKey === 'padding-x' || hoverKey === 'padding-y'"
-          class="accordion-inspect-padding-visual"
+          tabindex="0" class="accordion-inspect-padding-visual"
           aria-hidden="true"
         >
           <div
@@ -5612,11 +5612,11 @@ const getCollapsedCategory = (
           ></div>
         </div>
 
-        <button
+        <div
           v-for="(band, index) in cardPaddingYHoverBands"
           :key="`card-padding-y-band-${index}`"
-          type="button"
-          class="accordion-inspect-padding-proxy"
+
+          tabindex="0" class="accordion-inspect-padding-proxy"
           :style="{
             left: `${band.left}px`,
             top: `${band.top}px`,
@@ -5627,11 +5627,11 @@ const getCollapsedCategory = (
           @mouseleave="clearPreviewHover"
           @focus="hoverKey = 'padding-y'"
           @blur="clearPreviewHover"
-          @click="scrollToTableRow('padding-y')"
+          @click="scrollToTableRow('padding-y')" @keydown.enter="scrollToTableRow('padding-y')"
           aria-label="Inspect card padding y"
         >
           <span class="sgds:sr-only">Inspect card padding y</span>
-        </button>
+        </div>
 
         <!-- Universal generic-component padding bands. Replaces the
              full-surface hotspot with thin perimeter strips for every padding
@@ -5641,10 +5641,10 @@ const getCollapsedCategory = (
           v-for="(bands, key) in genericPaddingBandsByKey"
           :key="`generic-padding-${key}`"
         >
-          <button
+          <div
             v-for="(band, index) in bands"
             :key="`generic-padding-${key}-band-${index}`"
-            type="button"
+  
             :class="[
               'accordion-inspect-padding-proxy',
               key === 'padding-x' || key === 'padding-xs' ? 'accordion-inspect-padding-proxy--priority' : '',
@@ -5659,16 +5659,16 @@ const getCollapsedCategory = (
             @mouseleave="clearPreviewHover"
             @focus="hoverKey = key"
             @blur="clearPreviewHover"
-            @click="scrollToTableRow(key as string)"
+            @click="scrollToTableRow(key as string)" @keydown.enter="scrollToTableRow(key as string)"
             :aria-label="inspectMeta[key]?.aria || `Inspect component ${key}`"
           >
             <span class="sgds:sr-only">{{ inspectMeta[key]?.aria || `Inspect component ${key}` }}</span>
-          </button>
+          </div>
         </template>
 
         <div
           v-if="activeGenericPaddingBands.length"
-          class="accordion-inspect-padding-visual"
+          tabindex="0" class="accordion-inspect-padding-visual"
           aria-hidden="true"
         >
           <div
@@ -5688,11 +5688,11 @@ const getCollapsedCategory = (
           v-for="(bands, key) in genericGapBandsByKey"
           :key="`generic-gap-${key}`"
         >
-          <button
+          <div
             v-for="(band, index) in bands"
             :key="`generic-gap-${key}-band-${index}`"
-            type="button"
-            class="accordion-inspect-padding-proxy"
+  
+            tabindex="0" class="accordion-inspect-padding-proxy"
             :style="{
               left: `${band.left}px`,
               top: `${band.top}px`,
@@ -5703,16 +5703,16 @@ const getCollapsedCategory = (
             @mouseleave="clearPreviewHover"
             @focus="hoverKey = key"
             @blur="clearPreviewHover"
-            @click="scrollToTableRow(key as string)"
+            @click="scrollToTableRow(key as string)" @keydown.enter="scrollToTableRow(key as string)"
             :aria-label="inspectMeta[key]?.aria || `Inspect component ${key}`"
           >
             <span class="sgds:sr-only">{{ inspectMeta[key]?.aria || `Inspect component ${key}` }}</span>
-          </button>
+          </div>
         </template>
 
         <div
           v-if="activeGenericGapBands.length"
-          class="accordion-inspect-padding-visual"
+          tabindex="0" class="accordion-inspect-padding-visual"
           aria-hidden="true"
         >
           <div
@@ -5732,12 +5732,12 @@ const getCollapsedCategory = (
              that highlight only the border edge for any border-width or
              border-radius token. Without this, hovering border tokens would
              tint the entire surface. -->
-        <button
+        <div
           v-if="genericBorderRectKey"
           v-for="(band, index) in genericBorderHoverBands"
           :key="`generic-border-band-${index}`"
-          type="button"
-          class="accordion-inspect-border-proxy"
+
+          tabindex="0" class="accordion-inspect-border-proxy"
           :style="{
             left: `${band.left}px`,
             top: `${band.top}px`,
@@ -5748,11 +5748,11 @@ const getCollapsedCategory = (
           @mouseleave="clearPreviewHover"
           @focus="hoverKey = genericBorderRectKey"
           @blur="clearPreviewHover"
-          @click="genericBorderRectKey && scrollToTableRow(genericBorderRectKey)"
+          @click="genericBorderRectKey && scrollToTableRow(genericBorderRectKey)" @keydown.enter="genericBorderRectKey && scrollToTableRow(genericBorderRectKey)"
           :aria-label="`Inspect component ${genericBorderRectKey}`"
         >
           <span class="sgds:sr-only">{{ `Inspect component ${genericBorderRectKey}` }}</span>
-        </button>
+        </div>
 
         <div
           v-if="genericBorderRectKey && hoverKey === genericBorderRectKey && hotspotRects[genericBorderRectKey]"
@@ -5776,10 +5776,10 @@ const getCollapsedCategory = (
           v-for="(bands, key) in customBorderBandsByKey"
           :key="`custom-border-${key}`"
         >
-          <button
+          <div
             v-for="(band, index) in bands"
             :key="`custom-border-${key}-band-${index}`"
-            type="button"
+  
             :class="key.includes('border-radius') ? 'accordion-inspect-border-proxy' : 'accordion-inspect-padding-proxy'"
             :style="{
               left: `${band.left}px`,
@@ -5791,16 +5791,16 @@ const getCollapsedCategory = (
             @mouseleave="clearPreviewHover"
             @focus="hoverKey = key"
             @blur="clearPreviewHover"
-            @click="scrollToTableRow(key as string)"
+            @click="scrollToTableRow(key as string)" @keydown.enter="scrollToTableRow(key as string)"
             :aria-label="inspectMeta[key]?.aria || `Inspect component ${key}`"
           >
             <span class="sgds:sr-only">{{ inspectMeta[key]?.aria || `Inspect component ${key}` }}</span>
-          </button>
+          </div>
         </template>
 
         <div
           v-if="hoverKey && customBorderBandsByKey[hoverKey]?.length"
-          class="accordion-inspect-padding-visual"
+          tabindex="0" class="accordion-inspect-padding-visual"
           aria-hidden="true"
         >
           <div
@@ -5817,11 +5817,11 @@ const getCollapsedCategory = (
           ></div>
         </div>
 
-        <button
+        <div
           v-for="(band, index) in tooltipPaddingXBands"
           :key="`tooltip-padding-x-band-${index}`"
-          type="button"
-          class="accordion-inspect-padding-proxy"
+
+          tabindex="0" class="accordion-inspect-padding-proxy"
           :style="{
             left: `${band.left}px`,
             top: `${band.top}px`,
@@ -5832,17 +5832,17 @@ const getCollapsedCategory = (
           @mouseleave="clearPreviewHover"
           @focus="hoverKey = 'padding-x'"
           @blur="clearPreviewHover"
-          @click="scrollToTableRow('padding-x')"
+          @click="scrollToTableRow('padding-x')" @keydown.enter="scrollToTableRow('padding-x')"
           aria-label="Inspect tooltip padding x"
         >
           <span class="sgds:sr-only">Inspect tooltip padding x</span>
-        </button>
+        </div>
 
-        <button
+        <div
           v-for="(band, index) in tooltipPaddingYBands"
           :key="`tooltip-padding-y-band-${index}`"
-          type="button"
-          class="accordion-inspect-padding-proxy"
+
+          tabindex="0" class="accordion-inspect-padding-proxy"
           :style="{
             left: `${band.left}px`,
             top: `${band.top}px`,
@@ -5853,15 +5853,15 @@ const getCollapsedCategory = (
           @mouseleave="clearPreviewHover"
           @focus="hoverKey = 'padding-y'"
           @blur="clearPreviewHover"
-          @click="scrollToTableRow('padding-y')"
+          @click="scrollToTableRow('padding-y')" @keydown.enter="scrollToTableRow('padding-y')"
           aria-label="Inspect tooltip padding y"
         >
           <span class="sgds:sr-only">Inspect tooltip padding y</span>
-        </button>
+        </div>
 
         <div
           v-if="isTooltipStructure && structureKind === 'generic' && (hoverKey === 'padding-x' || hoverKey === 'padding-y')"
-          class="accordion-inspect-padding-visual"
+          tabindex="0" class="accordion-inspect-padding-visual"
           aria-hidden="true"
         >
           <div
@@ -5888,11 +5888,11 @@ const getCollapsedCategory = (
           ></div>
         </div>
 
-        <button
+        <div
           v-for="(band, index) in cardBorderHoverBands"
           :key="`card-border-band-${index}`"
-          type="button"
-          class="accordion-inspect-border-proxy"
+
+          tabindex="0" class="accordion-inspect-border-proxy"
           :style="{
             left: `${band.left}px`,
             top: `${band.top}px`,
@@ -5903,17 +5903,17 @@ const getCollapsedCategory = (
           @mouseleave="clearPreviewHover"
           @focus="hoverKey = 'border-radius'"
           @blur="clearPreviewHover"
-          @click="scrollToTableRow('border-radius')"
+          @click="scrollToTableRow('border-radius')" @keydown.enter="scrollToTableRow('border-radius')"
           aria-label="Inspect card border"
         >
           <span class="sgds:sr-only">Inspect card border</span>
-        </button>
+        </div>
 
-        <button
+        <div
           v-for="(band, index) in accordionBorderHoverBands"
           :key="`accordion-border-band-${index}`"
-          type="button"
-          class="accordion-inspect-border-proxy"
+
+          tabindex="0" class="accordion-inspect-border-proxy"
           :style="{
             left: `${band.left}px`,
             top: `${band.top}px`,
@@ -5924,17 +5924,17 @@ const getCollapsedCategory = (
           @mouseleave="clearPreviewHover"
           @focus="hoverKey = 'border-radius'"
           @blur="clearPreviewHover"
-          @click="scrollToTableRow('border-radius')"
+          @click="scrollToTableRow('border-radius')" @keydown.enter="scrollToTableRow('border-radius')"
           aria-label="Inspect accordion border"
         >
           <span class="sgds:sr-only">Inspect accordion border</span>
-        </button>
+        </div>
 
-        <button
+        <div
           v-for="(band, index) in alertBorderHoverBands"
           :key="`alert-border-band-${index}`"
-          type="button"
-          class="accordion-inspect-border-proxy"
+
+          tabindex="0" class="accordion-inspect-border-proxy"
           :style="{
             left: `${band.left}px`,
             top: `${band.top}px`,
@@ -5945,17 +5945,17 @@ const getCollapsedCategory = (
           @mouseleave="clearPreviewHover"
           @focus="hoverKey = 'border-radius'"
           @blur="clearPreviewHover"
-          @click="scrollToTableRow('border-radius')"
+          @click="scrollToTableRow('border-radius')" @keydown.enter="scrollToTableRow('border-radius')"
           aria-label="Inspect alert border"
         >
           <span class="sgds:sr-only">Inspect alert border</span>
-        </button>
+        </div>
 
-        <button
+        <div
           v-for="(band, index) in buttonBorderHoverBands"
           :key="`button-border-band-${index}`"
-          type="button"
-          class="accordion-inspect-border-proxy"
+
+          tabindex="0" class="accordion-inspect-border-proxy"
           :style="{
             left: `${band.left}px`,
             top: `${band.top}px`,
@@ -5966,11 +5966,11 @@ const getCollapsedCategory = (
           @mouseleave="clearPreviewHover"
           @focus="hoverKey = 'border-width'"
           @blur="clearPreviewHover"
-          @click="scrollToTableRow('border-width')"
+          @click="scrollToTableRow('border-width')" @keydown.enter="scrollToTableRow('border-width')"
           aria-label="Inspect button border"
         >
           <span class="sgds:sr-only">Inspect button border</span>
-        </button>
+        </div>
 
         <!-- Button gap hover proxies: one per void (leftIcon↔label,
              label↔rightIcon). Each proxy sets hoverKey='gap' so the tooltip
@@ -5978,11 +5978,11 @@ const getCollapsedCategory = (
              meta, while the overlay bands below paint only the true gap
              strips rather than one wide band across the label. -->
         <template v-if="structureKind === 'button'">
-          <button
+          <div
             v-for="(band, index) in buttonGapBands"
             :key="`button-gap-band-${index}`"
-            type="button"
-            class="accordion-inspect-padding-proxy"
+  
+            tabindex="0" class="accordion-inspect-padding-proxy"
             :style="{
               left: `${band.left}px`,
               top: `${band.top}px`,
@@ -5993,11 +5993,11 @@ const getCollapsedCategory = (
             @mouseleave="clearPreviewHover"
             @focus="hoverKey = 'gap'"
             @blur="clearPreviewHover"
-            @click="scrollToTableRow('gap')"
+            @click="scrollToTableRow('gap')" @keydown.enter="scrollToTableRow('gap')"
             aria-label="Inspect button gap"
           >
             <span class="sgds:sr-only">Inspect button gap</span>
-          </button>
+          </div>
         </template>
 
         <div
