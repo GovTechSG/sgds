@@ -2370,7 +2370,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "Number of links",
         description:
           "Control how many breadcrumb items are shown. When 5 or more items are present, the middle items automatically collapse into an overflow menu placed as the second link.",
-        controlLabel: "Breadcrumb number of links",
+        controlLabel: "Number of links",
         controlType: "select",
         defaultValue: "3",
         options: [
@@ -6999,7 +6999,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         title: "Device",
         description:
           "Footer layout responds to the available viewport width. Use the device presets to check how links and copyright wrap across common breakpoints.",
-        controlLabel: "Footer device width presets",
+        controlLabel: "Viewport size (px)",
         defaultValue: "1440",
         controlType: "select",
         options: [
@@ -11141,7 +11141,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       demo(
         "Label",
         "Use progress bars to indicate how far a task or workflow has progressed.",
-        `<sgds-progress-bar value="64" label="Submission progress"></sgds-progress-bar>`,
+        `<sgds-progress-bar value="64" label="Submission progress" arialabel="Submission progress"></sgds-progress-bar>`,
       ),
     ],
     usage: {
@@ -18718,13 +18718,13 @@ const accessibilityDemoMarkupOverrides: Record<
     focus: `<sgds-pagination currentPage="2" dataLength="120" itemsPerPage="10" variant="number"></sgds-pagination>`,
   },
   "progress-bar": {
-    builtIn: `<sgds-progress-bar value="64" label="Submission progress"></sgds-progress-bar>`,
+    builtIn: `<sgds-progress-bar value="64" label="Submission progress" arialabel="Submission progress"></sgds-progress-bar>`,
     author: `<div class="portal-demo-stack-sm">
-      <sgds-progress-bar value="3" max="4" label="Step 3 of 4"></sgds-progress-bar>
+      <sgds-progress-bar value="3" max="4" label="Step 3 of 4" arialabel="Step 3 of 4"></sgds-progress-bar>
       <span class="sgds:text-subtle">Uploading supporting documents.</span>
     </div>`,
     focus: `<div class="portal-demo-stack-sm">
-      <sgds-progress-bar value="64" label="Submission progress"></sgds-progress-bar>
+      <sgds-progress-bar value="64" label="Submission progress" arialabel="Submission progress"></sgds-progress-bar>
       <sgds-link><a href="#">Cancel upload</a></sgds-link>
     </div>`,
   },
