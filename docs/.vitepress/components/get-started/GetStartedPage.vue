@@ -86,6 +86,7 @@ watch(currentPath, () => {
         <sgds-button
           variant="outline"
           tone="neutral"
+          ariaLabel="Browse Get started"
           @click="mobileSideNavOpen = true"
         >
           <sgds-icon slot="leftIcon" name="menu"></sgds-icon>

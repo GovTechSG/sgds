@@ -440,7 +440,7 @@ const langLabel = computed(() => {
         size="xs"
         variant="ghost"
         tone="neutral"
-        :aria-label="copied ? 'Copied!' : (prompt ? 'Copy prompt' : 'Copy code')"
+        :ariaLabel="copied ? 'Copied!' : (prompt ? 'Copy prompt' : 'Copy code')"
         @click="copy"
       >
         <sgds-icon :name="copied ? 'check' : 'files'" size="sm" slot="leftIcon"></sgds-icon>
@@ -449,7 +449,7 @@ const langLabel = computed(() => {
     </div>
 
     <!-- Prompt area -->
-    <div v-if="prompt" class="cb-prompt-text sgds:text-default sgds:text-body-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:min-w-0 sgds:w-full sgds:max-w-full sgds:whitespace-pre-wrap sgds:break-words sgds:[overflow-wrap:anywhere] sgds:py-[1rem] sgds:px-[1rem]" aria-label="Example prompt" tabindex="0">
+    <div v-if="prompt" class="cb-prompt-text sgds:text-default sgds:text-body-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:min-w-0 sgds:w-full sgds:max-w-full sgds:whitespace-pre-wrap sgds:break-words sgds:[overflow-wrap:anywhere] sgds:py-[1rem] sgds:px-[1rem]" tabindex="0">
       <slot v-if="hasSlotContent" />
       <template v-else>{{ code }}</template>
     </div>

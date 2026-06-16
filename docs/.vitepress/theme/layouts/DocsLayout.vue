@@ -267,6 +267,7 @@ watch(
           <sgds-button
             variant="outline"
             tone="neutral"
+            :ariaLabel="`Browse ${header}`"
             @click="mobileSideNavOpen = true"
           >
             <sgds-icon slot="leftIcon" name="menu"></sgds-icon>
