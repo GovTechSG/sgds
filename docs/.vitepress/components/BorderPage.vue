@@ -228,10 +228,10 @@ const radiusExamples: Example[] = [
                    button is transparent by default), and pointer-events:none
                    makes the demo non-interactive. -->
               <span class="br-hover-frozen br-hover-frozen--close">
-                <sgds-close-button aria-hidden="true" tabindex="-1"></sgds-close-button>
+                <sgds-close-button inert></sgds-close-button>
               </span>
               <span class="br-hover-frozen br-hover-frozen--overflow">
-                <sgds-overflow-menu aria-hidden="true" tabindex="-1"></sgds-overflow-menu>
+                <sgds-overflow-menu inert></sgds-overflow-menu>
               </span>
             </div>
           </div>
@@ -292,7 +292,7 @@ const radiusExamples: Example[] = [
                       <div class="portal-modal-title">Modal title</div>
                       <div class="portal-modal-description">Modal description</div>
                     </div>
-                    <sgds-close-button aria-hidden="true" tabindex="-1"></sgds-close-button>
+                    <sgds-close-button inert></sgds-close-button>
                   </div>
                   <div class="portal-modal-footer">
                     <sgds-button variant="outline" tabindex="-1">Button</sgds-button>
