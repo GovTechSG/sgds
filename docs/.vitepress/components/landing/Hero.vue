@@ -165,6 +165,7 @@ onBeforeUnmount(() => {
           :variant="button.variant"
           :tone="button.tone"
           :href="button.link"
+          :ariaLabel="button.label"
         >
           {{ button.label }}
         </sgds-button>

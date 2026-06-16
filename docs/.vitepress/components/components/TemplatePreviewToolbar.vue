@@ -128,7 +128,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="template-preview-toolbar" aria-label="Live preview toolbar">
+  <div class="template-preview-toolbar">
     <button
       v-if="promptOpen"
       type="button"
@@ -149,6 +149,7 @@ onBeforeUnmount(() => {
           tone="fixed-light"
           size="sm"
           class="template-preview-template-button"
+          ariaLabel="Select template"
         >
           <span class="template-preview-toolbar-label">{{ selectedTitle }}</span>
           <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
@@ -176,6 +177,7 @@ onBeforeUnmount(() => {
           tone="fixed-light"
           size="sm"
           class="template-preview-template-button"
+          ariaLabel="Select block"
         >
           <span class="template-preview-toolbar-label">{{ selectedTitle }}</span>
           <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>

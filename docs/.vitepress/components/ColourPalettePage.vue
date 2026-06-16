@@ -1782,7 +1782,7 @@ const openContrastInfo = () => {
         <strong>APCA (Accessible Perceptual Contrast Algorithm)</strong> is a newer model that's more accurate for real reading. As a rough guide, body text needs an absolute value around <span class="sgds:font-semibold">60</span> or higher.
       </p>
     </div>
-    <sgds-button slot="footer" variant="primary" @click="contrastInfoOpen = false">Got it</sgds-button>
+    <sgds-button slot="footer" variant="primary" ariaLabel="Got it" @click="contrastInfoOpen = false">Got it</sgds-button>
   </sgds-modal>
 </template>
 

@@ -43,7 +43,7 @@ const developmentWorkflowCards = [
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0 sgds:text-subtle">
           Use this page when you are building or improving SGDS code with an AI coding tool. Start with a new SGDS project, or use an existing codebase that needs to adopt SGDS components, utilities, and layout guidance.
         </p>
-        <div class="sgds-grid sgds:gap-layout-md" aria-label="Development workflow paths">
+        <div class="sgds-grid sgds:gap-layout-md">
           <a
             v-for="card in developmentWorkflowCards"
             :key="card.title"

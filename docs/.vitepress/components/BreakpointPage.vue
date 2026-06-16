@@ -131,7 +131,7 @@ const stickySidebarTokens = [
           (1440px) for development.
         </p>
 
-        <div class="br-screen-size-diagram-wrap sgds:w-full" aria-label="Screen size breakpoint diagram" tabindex="0">
+        <div class="br-screen-size-diagram-wrap sgds:w-full" tabindex="0">
           <div class="br-screen-size-diagram sgds:relative sgds:h-[18.5rem] sgds:w-full">
             <svg
               viewBox="0 0 1672 480"
