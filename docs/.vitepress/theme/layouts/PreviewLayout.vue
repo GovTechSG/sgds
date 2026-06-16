@@ -3,9 +3,9 @@ import { Content } from "vitepress";
 </script>
 
 <template>
-  <div class="preview-layout">
+  <main class="preview-layout">
     <Content />
-  </div>
+  </main>
 </template>
 
 <style>
