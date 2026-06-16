@@ -7,7 +7,9 @@
         <div
           class="sgds:flex sgds:max-w-container-md sgds:flex-col sgds:items-start sgds:gap-layout-md sgds:text-left"
         >
-          <sgds-breadcrumb class="sgds:hidden sgds:w-full sgds:min-w-0 sgds:md:block">
+          <sgds-breadcrumb
+            class="sgds:hidden sgds:w-full sgds:min-w-0 sgds:md:block"
+          >
             <sgds-breadcrumb-item><a href="/">Home</a></sgds-breadcrumb-item>
             <sgds-breadcrumb-item
               ><a href="/stories">Stories</a></sgds-breadcrumb-item
@@ -16,7 +18,9 @@
               ><a :href="post.href">{{ post.title }}</a></sgds-breadcrumb-item
             >
           </sgds-breadcrumb>
-          <sgds-breadcrumb class="sgds:block sgds:w-full sgds:min-w-0 sgds:md:hidden">
+          <sgds-breadcrumb
+            class="sgds:block sgds:w-full sgds:min-w-0 sgds:md:hidden"
+          >
             <sgds-breadcrumb-item class="sgds:flex-none">
               <a href="/">Home</a>
             </sgds-breadcrumb-item>
@@ -1268,7 +1272,7 @@
 
           <aside
             v-if="tocItems.length"
-            class="sgds:sticky sgds:top-[var(--sgds-layout-padding-md)] sgds:lg:pl-layout-md sgds:z-[var(--sgds-z-index-sticky)] sgds:ml-auto sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:self-start sgds:pt-[calc(var(--sgds-layout-padding-md)+var(--sgds-text-gap-sm))] sgds:max-lg:hidden"
+            class="sgds:sticky sgds:top-[var(--sgds-layout-padding-md)] sgds:lg:ml-layout-md sgds:z-[var(--sgds-z-index-sticky)] sgds:ml-auto sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:self-start sgds:mt-[calc(var(--sgds-layout-padding-md)+var(--sgds-text-gap-sm))] sgds:max-lg:hidden"
             aria-label="Story sections"
           >
             <sgds-table-of-contents class="sgds:w-full">
