@@ -10,8 +10,10 @@ const props = defineProps<{ demo: ConfigurationDemo }>();
 
 const rootRef = ref<HTMLElement | null>(null);
 const responsiveRenderKey = ref(0);
+const mobileBreadcrumbOverflowActive = ref(false);
 
 let lastResponsiveBucket = "";
+const MOBILE_BREADCRUMB_BREAKPOINT = 768;
 
 const activeValue = ref<string>(
   props.demo.defaultValue || props.demo.options[0]?.value || "",
@@ -24,10 +26,53 @@ const activeOption = computed(() =>
 const renderRangeText = (text = "") =>
   text.replace(/\{\{value\}\}/g, activeValue.value);
 
-const activeMarkup = computed(() =>
+const baseActiveMarkup = computed(() =>
   props.demo.controlType === "number"
     ? renderRangeText(activeOption.value?.markup ?? "")
     : activeOption.value?.markup ?? "",
+);
+
+const buildMobileBreadcrumbOverflowMarkup = (markup: string) => {
+  if (!markup.trim() || typeof DOMParser === "undefined") return markup;
+
+  const document = new DOMParser().parseFromString(`<div data-demo-root>${markup}</div>`, "text/html");
+  const root = document.body.firstElementChild;
+  const breadcrumb = root?.querySelector("sgds-breadcrumb");
+  if (!root || !breadcrumb) return markup;
+
+  const items = Array.from(breadcrumb.children)
+    .filter((child) => child.tagName.toLowerCase() === "sgds-breadcrumb-item");
+  if (items.length < 3) return markup;
+
+  const firstItem = items[0];
+  const lastItem = items[items.length - 1];
+  const overflowItem = document.createElement("sgds-breadcrumb-item");
+  const overflowMenu = document.createElement("sgds-overflow-menu");
+  overflowMenu.setAttribute("aria-haspopup", "menu");
+  overflowMenu.setAttribute("size", "sm");
+
+  items.slice(1, -1).forEach((item) => {
+    const link = item.querySelector("a");
+    if (!link) return;
+
+    const dropdownItem = document.createElement("sgds-dropdown-item");
+    dropdownItem.appendChild(link.cloneNode(true));
+    overflowMenu.appendChild(dropdownItem);
+  });
+
+  if (!overflowMenu.children.length) return markup;
+
+  overflowItem.classList.add("overflow-menu");
+  overflowItem.appendChild(overflowMenu);
+  breadcrumb.replaceChildren(firstItem, overflowItem, lastItem);
+
+  return root.innerHTML;
+};
+
+const activeMarkup = computed(() =>
+  baseActiveMarkup.value.includes("sgds-breadcrumb") && mobileBreadcrumbOverflowActive.value
+    ? buildMobileBreadcrumbOverflowMarkup(baseActiveMarkup.value)
+    : baseActiveMarkup.value,
 );
 
 const activeDescription = computed(() =>
@@ -137,6 +182,46 @@ const syncResponsiveRenderKey = () => {
   }
 
   lastResponsiveBucket = nextBucket;
+};
+
+const syncMobileBreadcrumbOverflow = async () => {
+  if (!baseActiveMarkup.value.includes("sgds-breadcrumb") || typeof window === "undefined") {
+    mobileBreadcrumbOverflowActive.value = false;
+    return;
+  }
+
+  if (window.innerWidth >= MOBILE_BREADCRUMB_BREAKPOINT) {
+    mobileBreadcrumbOverflowActive.value = false;
+    return;
+  }
+
+  if (mobileBreadcrumbOverflowActive.value) return;
+
+  await nextTick();
+  const preview = rootRef.value?.querySelector(".behaviour-demo-markup") as HTMLElement | null;
+  const breadcrumb = preview?.querySelector("sgds-breadcrumb") as HTMLElement | null;
+  if (!preview || !breadcrumb) return;
+
+  const items = Array.from(breadcrumb.children)
+    .filter((child): child is HTMLElement => child instanceof HTMLElement && child.tagName.toLowerCase() === "sgds-breadcrumb-item");
+  const hasTruncatedMiddleItem = items.slice(1, -1).some((item) => {
+    const link = item.querySelector("a") as HTMLElement | null;
+    return Boolean(link && link.scrollWidth > link.clientWidth + 1);
+  });
+
+  if (
+    hasTruncatedMiddleItem ||
+    preview.scrollWidth > preview.clientWidth + 1 ||
+    breadcrumb.scrollWidth > breadcrumb.clientWidth + 1
+  ) {
+    mobileBreadcrumbOverflowActive.value = true;
+  }
+};
+
+const handleWindowResize = () => {
+  syncResponsiveRenderKey();
+  mobileBreadcrumbOverflowActive.value = false;
+  void syncMobileBreadcrumbOverflow();
 };
 
 const renderMarkup = (markup: string) => {
@@ -679,7 +764,7 @@ const setupTextareaDemos = async () => {
 
 onMounted(() => {
   syncResponsiveRenderKey();
-  window.addEventListener("resize", syncResponsiveRenderKey);
+  window.addEventListener("resize", handleWindowResize);
   void applyStateEffects();
   void setupDrawerDemos();
   void setupDropdownDemos();
@@ -687,14 +772,21 @@ onMounted(() => {
   void setupSidebarDemos();
   void setupStepperDemos();
   void setupTextareaDemos();
+  void syncMobileBreadcrumbOverflow();
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener("resize", syncResponsiveRenderKey);
+  window.removeEventListener("resize", handleWindowResize);
+});
+
+watch(baseActiveMarkup, () => {
+  mobileBreadcrumbOverflowActive.value = false;
+  void syncMobileBreadcrumbOverflow();
 });
 
 watch(activeMarkup, () => {
   lastResponsiveBucket = getResponsiveBucket();
+  void syncMobileBreadcrumbOverflow();
 });
 
 watch([activeValue, responsiveRenderKey], () => {
@@ -705,6 +797,7 @@ watch([activeValue, responsiveRenderKey], () => {
   void setupSidebarDemos();
   void setupStepperDemos();
   void setupTextareaDemos();
+  void syncMobileBreadcrumbOverflow();
 });
 </script>
 
@@ -828,7 +921,7 @@ watch([activeValue, responsiveRenderKey], () => {
                   <div
                     :key="`${activeOption.value}-${responsiveRenderKey}`"
                     class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
-                    v-html="renderMarkup(activeOption.markup)"
+                    v-html="renderMarkup(activeMarkup)"
                   ></div>
                 </div>
               </div>
@@ -876,6 +969,20 @@ watch([activeValue, responsiveRenderKey], () => {
 
 .interactive-demo--fullscreen-modal .portal-modal-preview-fullscreen .portal-modal-panel {
   border-radius: 0;
+}
+
+/* Breadcrumb previews are injected through v-html and the SGDS breadcrumb
+   internals use shadow DOM flex layout. These selectors keep long mobile
+   trails inside the demo and let the current page item truncate. */
+.behaviour-demo-markup > sgds-breadcrumb {
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
+}
+
+.behaviour-demo-markup > sgds-breadcrumb sgds-breadcrumb-item:last-child {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .portal-demo-drawer-scrim {
