@@ -17,6 +17,7 @@ type HeaderLink = {
 export type Page = {
   title: string;
   description?: string;
+  descriptionHtml?: string;
   metadata?: MetadataItem[];
   headerLinks?: HeaderLink[];
   titleClass?: string;
@@ -30,7 +31,7 @@ export type Page = {
     icon?: string;
   };
 }
-const { title, description, metadata, headerLinks, titleClass, descriptionClass, bottomGapClass, headerAlert } = defineProps<Page>();
+const { title, description, descriptionHtml, metadata, headerLinks, titleClass, descriptionClass, bottomGapClass, headerAlert } = defineProps<Page>();
 
 const isMaskedBrandIcon = (label: string) =>
   ["github", "storybook"].includes(label.toLowerCase());
@@ -98,7 +99,7 @@ const brandIconClass = (label: string) =>
               class="sgds:block sgds:h-4 sgds:w-4"
             />
             <sgds-icon v-else-if="link.icon" :name="link.icon"></sgds-icon>
-            <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+            <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
               {{ link.label }}
             </span>
             <!-- <span class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">{{ link.path }}</span> -->

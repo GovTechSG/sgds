@@ -31,7 +31,11 @@ const headerLinks = computed(() =>
 );
 
 const pageHeaderDescription = computed(() =>
-  page.description ?? page.intro?.join(" "),
+  page.description ?? (page.introHtml ? undefined : page.intro?.join(" ")),
+);
+
+const pageHeaderDescriptionHtml = computed(() =>
+  page.introHtml,
 );
 
 const bodyIntro = computed(() =>
@@ -55,7 +59,7 @@ watch(currentPath, () => {
     <aside class="get-started-desktop-sidenav sgds-col-4 sgds-col-lg-3 sgds:pt-[var(--sgds-padding-xs)] sgds:pr-[var(--sgds-padding-2-xl)] sgds:pb-0 sgds:pl-0">
       <div>
         <div class="sgds:inline-flex sgds:items-center sgds:gap-[var(--sgds-gap-xs)] sgds:mb-[var(--sgds-margin-sm)]">
-          <h5 class="sgds:mb-0">Get started</h5>
+          <h5 class="sgds:mb-0 sgds:text-heading-default">Get started</h5>
         </div>
         <sgds-sidenav>
           <sgds-sidenav-item
@@ -96,7 +100,7 @@ watch(currentPath, () => {
         :open="mobileSideNavOpen || null"
         @sgds-request-close="mobileSideNavOpen = false"
       >
-        <h2 slot="title" class="sgds:text-heading-md sgds:mb-0">
+        <h2 slot="title" class="sgds:text-heading-md sgds:text-heading-default sgds:mb-0">
           Get started
         </h2>
         <sgds-sidenav>
@@ -121,6 +125,9 @@ watch(currentPath, () => {
       <PageHeader
         :title="page.title"
         :description="pageHeaderDescription"
+        :description-html="pageHeaderDescriptionHtml"
+        title-class="sgds:text-display-md sgds:font-bold sgds:leading-2-xl sgds:tracking-tighter sgds:text-display-default"
+        description-class="sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-tight sgds:text-body-subtle"
         :header-links="headerLinks"
         bottom-gap-class="sgds:mb-layout-md"
       />
@@ -131,7 +138,7 @@ watch(currentPath, () => {
             <p
               v-for="paragraph in bodyIntro"
               :key="paragraph"
-              class="sgds:m-0 sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-tight sgds:text-heading-subtle"
+              class="sgds:m-0 sgds:text-heading-sm sgds:font-light sgds:leading-sm sgds:tracking-tight sgds:text-body-subtle"
             >
               {{ paragraph }}
             </p>
@@ -142,10 +149,10 @@ watch(currentPath, () => {
           <SectionHeader title="Why use SGDS v3?" />
           <div class="sgds:flex sgds:flex-col sgds:gap-text-lg">
             <div v-for="reason in page.reasons" :key="reason.title" class="sgds:flex sgds:flex-col sgds:gap-text-2-xs">
-              <h3 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+              <h3 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
                 {{ reason.title }}
               </h3>
-              <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
                 {{ reason.description }}
               </p>
             </div>
@@ -156,12 +163,14 @@ watch(currentPath, () => {
           <SectionHeader :title="page.table.title" :description="page.table.description" header-gap="sgds:gap-text-xs" />
           <sgds-table tableBorder headerBackground responsive="md">
             <sgds-table-row>
-              <sgds-table-head>Feature</sgds-table-head>
+              <sgds-table-head class="sgds:w-[14rem] sgds:min-w-[14rem] sgds:whitespace-nowrap">Feature</sgds-table-head>
               <sgds-table-head>What’s changed?</sgds-table-head>
             </sgds-table-row>
             <sgds-table-row v-for="row in page.table.rows" :key="row.feature">
-              <sgds-table-cell>
-                <strong>{{ row.feature }}</strong>
+              <sgds-table-cell class="sgds:w-[14rem] sgds:min-w-[14rem] sgds:whitespace-nowrap">
+                <span class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-label-default">
+                  {{ row.feature }}
+                </span>
               </sgds-table-cell>
               <sgds-table-cell>{{ row.change }}</sgds-table-cell>
             </sgds-table-row>
