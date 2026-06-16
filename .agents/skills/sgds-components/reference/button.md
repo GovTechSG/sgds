@@ -94,6 +94,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `href` | string | — | Renders as `<a>`, navigates to URL |
 | `target` | string | — | `_blank`, `_self`, etc. (with `href`) |
 | `download` | string | — | Triggers file download (with `href`) |
+| `name` | string | — | Name submitted with form data (only with `type="submit"`) |
+| `value` | string | — | Value submitted with form data (only with `type="submit"`) |
 | `form` | string | — | Associates with a form by id |
 | `formaction` | string | — | Overrides form `action` |
 | `formmethod` | `post \| get` | — | Overrides form `method` |
@@ -221,6 +223,14 @@ When `href` is set, the element renders as `<a role="button">` instead of `<butt
 ```
 
 `target="_blank"` automatically adds `rel="noreferrer noopener"`.
+
+## `name` and `value`
+
+Works identically to the native `<button>` `name`/`value` attributes. Only the clicked submit button's name/value pair is included in FormData.
+
+- Only works with `type="submit"`. Has no effect on `type="button"` or `type="reset"`.
+- Has no effect when the button is rendered as a link (i.e. when `href` is set).
+- The button is **not** a form control — it does not persist state in FormData like `<sgds-input>`. Its value is only submitted when it is the submitter.
 
 ## Form Override Attributes
 

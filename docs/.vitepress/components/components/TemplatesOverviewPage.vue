@@ -94,17 +94,33 @@ const filteredTemplateItems = computed(() => {
   });
 });
 
-const selectGroup = (value: string) => {
-  selectedGroups.value = selectedGroups.value.includes(value)
-    ? selectedGroups.value.filter((selectedGroup) => selectedGroup !== value)
-    : [...selectedGroups.value, value];
+const sortOptions = computed(() => [
+  { value: "recommended", label: "Recommended" },
+  { value: "title-asc", label: "Name: A-Z" },
+  { value: "title-desc", label: "Name: Z-A" },
+  { value: "type", label: typeSortLabel.value },
+]);
+
+const selectedSortLabel = computed(
+  () => sortOptions.value.find((opt) => opt.value === selectedSort.value)?.label ?? "Sort by",
+);
+
+const selectSort = (value: string) => {
+  selectedSort.value = value;
 };
 
 const clearFilters = () => {
   selectedGroups.value = [];
 };
 
-const isGroupSelected = (value: string) => selectedGroups.value.includes(value);
+const selectedGroupValue = computed(() => selectedGroups.value.join(";"));
+
+const syncSelectedGroups = (event: Event) => {
+  if (event.target !== event.currentTarget) return;
+
+  const checkboxGroup = event.currentTarget as HTMLInputElement;
+  selectedGroups.value = checkboxGroup.value ? checkboxGroup.value.split(";").filter(Boolean) : [];
+};
 
 onMounted(() => {
   const mediaQuery = window.matchMedia("(max-width: 1023px)");
@@ -207,13 +223,14 @@ const getThumbnailSrc = (key: string) => {
                 <div class="sgds:text-subtitle-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-heading-default">
                   {{ filterHeading }}
                 </div>
-                <sgds-checkbox-group>
+                <sgds-checkbox-group
+                  :value="selectedGroupValue"
+                  @sgds-change="syncSelectedGroups"
+                >
                   <sgds-checkbox
                     v-for="option in categoryOptions"
                     :key="option.value"
                     :value="option.value"
-                    :checked="isGroupSelected(option.value) ? '' : null"
-                    @sgds-change="selectGroup(option.value)"
                   >
                     {{ option.label }} ({{ option.count }})
                   </sgds-checkbox>
@@ -241,18 +258,23 @@ const getThumbnailSrc = (key: string) => {
                   <sgds-icon slot="leftIcon" name="bi-funnel"></sgds-icon>
                   Filters
                 </sgds-button>
-                <sgds-select
-                  class="sgds:min-w-0 sgds:flex-1"
-                  label=""
-                  placeholder="Sort by"
-                  :value="selectedSort"
-                  @sgds-change="selectedSort = $event.target.value"
-                >
-                  <sgds-select-option value="recommended">Recommended</sgds-select-option>
-                  <sgds-select-option value="title-asc">Name: A-Z</sgds-select-option>
-                  <sgds-select-option value="title-desc">Name: Z-A</sgds-select-option>
-                  <sgds-select-option value="type">{{ typeSortLabel }}</sgds-select-option>
-                </sgds-select>
+                <sgds-dropdown class="sgds:min-w-0 sgds:flex-1">
+                  <sgds-button slot="toggler" tone="neutral" variant="outline" ariaLabel="Sort by">
+                    {{ selectedSortLabel }}
+                    <sgds-icon slot="rightIcon" name="chevron-down"></sgds-icon>
+                  </sgds-button>
+                  <sgds-dropdown-item
+                    v-for="opt in sortOptions"
+                    :key="opt.value"
+                    :active="selectedSort === opt.value"
+                    @click="selectSort(opt.value)"
+                  >
+                    <div class="sgds:flex sgds:grow sgds:items-center">
+                      <span class="sgds:text-label-sm sgds:leading-2-xs sgds:font-regular sgds:tracking-normal sgds:grow">{{ opt.label }}</span>
+                      <sgds-icon v-if="selectedSort === opt.value" name="check"></sgds-icon>
+                    </div>
+                  </sgds-dropdown-item>
+                </sgds-dropdown>
               </div>
               <sgds-drawer
                 v-if="isSmallScreen"
@@ -267,13 +289,14 @@ const getThumbnailSrc = (key: string) => {
                 <span slot="title" class="sgds:text-heading-xs sgds:font-semibold sgds:leading-xs sgds:tracking-normal">Filters</span>
                 <span slot="description" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">{{ filterHeading }}</span>
                 <div class="sgds:flex sgds:flex-col sgds:gap-component-md">
-                  <sgds-checkbox-group>
+                  <sgds-checkbox-group
+                    :value="selectedGroupValue"
+                    @sgds-change="syncSelectedGroups"
+                  >
                     <sgds-checkbox
                       v-for="option in categoryOptions"
                       :key="option.value"
                       :value="option.value"
-                      :checked="isGroupSelected(option.value) ? '' : null"
-                      @sgds-change="selectGroup(option.value)"
                     >
                       {{ option.label }} ({{ option.count }})
                     </sgds-checkbox>
@@ -287,19 +310,23 @@ const getThumbnailSrc = (key: string) => {
               <h2 class="sgds-col-4 sgds-col-sm-8 sgds-col-md-8 sgds-col-lg-5 sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default">
                 Showing {{ filteredTemplateItems.length }} result<span v-if="filteredTemplateItems.length !== 1">s</span>
               </h2>
-              <sgds-select
-                v-if="!isSmallScreen"
-                class="sgds:min-w-[var(--sgds-dimension-200)]"
-                label=""
-                placeholder="Sort by"
-                :value="selectedSort"
-                @sgds-change="selectedSort = $event.target.value"
-              >
-                <sgds-select-option value="recommended">Recommended</sgds-select-option>
-                <sgds-select-option value="title-asc">Name: A-Z</sgds-select-option>
-                <sgds-select-option value="title-desc">Name: Z-A</sgds-select-option>
-                <sgds-select-option value="type">{{ typeSortLabel }}</sgds-select-option>
-              </sgds-select>
+              <sgds-dropdown v-if="!isSmallScreen" class="sgds:min-w-[var(--sgds-dimension-200)]">
+                <sgds-button slot="toggler" tone="neutral" variant="outline" ariaLabel="Sort by">
+                  {{ selectedSortLabel }}
+                  <sgds-icon slot="rightIcon" name="chevron-down"></sgds-icon>
+                </sgds-button>
+                <sgds-dropdown-item
+                  v-for="opt in sortOptions"
+                  :key="opt.value"
+                  :active="selectedSort === opt.value"
+                  @click="selectSort(opt.value)"
+                >
+                  <div class="sgds:flex sgds:grow sgds:items-center">
+                    <span class="sgds:text-label-sm sgds:leading-2-xs sgds:font-regular sgds:tracking-normal sgds:grow">{{ opt.label }}</span>
+                    <sgds-icon v-if="selectedSort === opt.value" name="check"></sgds-icon>
+                  </div>
+                </sgds-dropdown-item>
+              </sgds-dropdown>
             </div>
 
             <div class="sgds-grid sgds:items-start">

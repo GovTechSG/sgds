@@ -21,10 +21,10 @@ const sectionId = computed(() =>
 
 const headingClass = computed(() =>
   headingLevel === "h4"
-    ? "sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:mb-0"
+    ? "sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:mb-0"
     : headingLevel === "h3"
-    ? "sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:mb-0"
-    : "sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:m-0",
+    ? "sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight sgds:text-heading-default sgds:mb-0"
+    : "sgds:text-heading-lg sgds:font-bold sgds:leading-lg sgds:tracking-tight sgds:text-heading-default sgds:m-0",
 );
 
 const showAnchorLink = computed(() => (headingLevel ?? "h2") === "h2");
@@ -52,7 +52,7 @@ const showAnchorLink = computed(() => (headingLevel ?? "h2") === "h2");
     </div>
     <p
       v-if="description"
-      class="sgds:text-subtle sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:max-w-[864px] sgds:mb-0"
+      class="sgds:text-body-subtle sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:max-w-[864px] sgds:mb-0"
     >{{ description }}</p>
   </div>
 </template>

@@ -137,7 +137,7 @@ const aliasColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[18rem] sgds:max
                     :content="variableToTooltip(variable)"
                     placement="top"
                   >
-                    <CodeToken :label="variable" />
+                    <CodeToken tabindex="0" :label="variable" />
                   </sgds-tooltip>
                 </div>
               </sgds-table-cell>

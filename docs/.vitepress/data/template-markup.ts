@@ -252,7 +252,7 @@ export const catalogueMarkup = `<style>
               <sgds-badge slot="upper" outlined>Keynote</sgds-badge>
               <span slot="title" class="catalogue-title-clamp">Digital Infrastructure for the Next Decade</span>
               <span slot="description">An overview of Singapore's plans for resilient and future-ready digital infrastructure.</span>
-              <sgds-link slot="footer"><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
+              <sgds-link slot="footer"><a href="#" aria-label="View details about Digital Infrastructure for the Next Decade">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
             </sgds-card>
           </div>
           <div class="sgds-col-12 sgds-col-md-6 sgds-col-lg-4 sgds:flex sgds:flex-col">
@@ -260,7 +260,7 @@ export const catalogueMarkup = `<style>
               <sgds-badge slot="upper" outlined>Panel Discussion</sgds-badge>
               <span slot="title" class="catalogue-title-clamp">AI Governance in the Public Sector</span>
               <span slot="description">Panellists explore responsible AI adoption frameworks and inter-agency collaboration.</span>
-              <sgds-link slot="footer"><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
+              <sgds-link slot="footer"><a href="#" aria-label="View details about AI Governance in the Public Sector">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
             </sgds-card>
           </div>
           <div class="sgds-col-12 sgds-col-md-6 sgds-col-lg-4 sgds:flex sgds:flex-col">
@@ -268,7 +268,7 @@ export const catalogueMarkup = `<style>
               <sgds-badge slot="upper" outlined>Presentation</sgds-badge>
               <span slot="title" class="catalogue-title-clamp">Zero-Trust Architecture for Government Systems</span>
               <span slot="description">A deep dive into implementing zero-trust principles across legacy and modern systems.</span>
-              <sgds-link slot="footer"><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
+              <sgds-link slot="footer"><a href="#" aria-label="View details about Zero-Trust Architecture for Government Systems">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
             </sgds-card>
           </div>
           <div class="sgds-col-12 sgds-col-md-6 sgds-col-lg-4 sgds:flex sgds:flex-col">
@@ -276,7 +276,7 @@ export const catalogueMarkup = `<style>
               <sgds-badge slot="upper" outlined>Keynote</sgds-badge>
               <span slot="title" class="catalogue-title-clamp">Securing the Cloud: Lessons from the Field</span>
               <span slot="description">Key takeaways from real-world cloud migration projects across the Singapore government.</span>
-              <sgds-link slot="footer"><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
+              <sgds-link slot="footer"><a href="#" aria-label="View details about Securing the Cloud: Lessons from the Field">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
             </sgds-card>
           </div>
           <div class="sgds-col-12 sgds-col-md-6 sgds-col-lg-4 sgds:flex sgds:flex-col">
@@ -284,7 +284,7 @@ export const catalogueMarkup = `<style>
               <sgds-badge slot="upper" outlined>Presentation</sgds-badge>
               <span slot="title" class="catalogue-title-clamp">Incident Response Playbooks for CISOs</span>
               <span slot="description">Practical frameworks for building effective incident response and recovery strategies.</span>
-              <sgds-link slot="footer"><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
+              <sgds-link slot="footer"><a href="#" aria-label="View details about Incident Response Playbooks for CISOs">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
             </sgds-card>
           </div>
           <div class="sgds-col-12 sgds-col-md-6 sgds-col-lg-4 sgds:flex sgds:flex-col">
@@ -292,7 +292,7 @@ export const catalogueMarkup = `<style>
               <sgds-badge slot="upper" outlined>Panel Discussion</sgds-badge>
               <span slot="title" class="catalogue-title-clamp">Workforce Upskilling for Cyber Resilience</span>
               <span slot="description">How agencies are building cyber talent pipelines and fostering a security-aware culture.</span>
-              <sgds-link slot="footer"><a href="#">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
+              <sgds-link slot="footer"><a href="#" aria-label="View details about Workforce Upskilling for Cyber Resilience">View details <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
             </sgds-card>
           </div>
         </div>
@@ -1396,7 +1396,7 @@ export const landingMarkup = `<style>
             <span slot="subtitle">FAMILY</span>
             <span slot="title">Family and Relationships</span>
             <span slot="description">Register births, apply for child development grants, and access parenting resources all in one place.</span>
-            <sgds-link slot="footer"><a href="#">Learn more <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
+            <sgds-link slot="footer"><a href="#" aria-label="Learn more about Family and Relationships">Learn more <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
           </sgds-card>
         </div>
         <div class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-4">
@@ -1404,7 +1404,7 @@ export const landingMarkup = `<style>
             <span slot="subtitle">HOUSING</span>
             <span slot="title">Home and Housing</span>
             <span slot="description">Check eligibility, apply for flats, and manage your property-related transactions with HDB and other agencies.</span>
-            <sgds-link slot="footer"><a href="#">Learn more <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
+            <sgds-link slot="footer"><a href="#" aria-label="Learn more about Home and Housing">Learn more <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
           </sgds-card>
         </div>
         <div class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-4">
@@ -1412,7 +1412,7 @@ export const landingMarkup = `<style>
             <span slot="subtitle">EMPLOYMENT</span>
             <span slot="title">Work and Employment</span>
             <span slot="description">Search for jobs, upskill through SkillsFuture, and access employment support schemes tailored to your needs.</span>
-            <sgds-link slot="footer"><a href="#">Learn more <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
+            <sgds-link slot="footer"><a href="#" aria-label="Learn more about Work and Employment">Learn more <sgds-icon name="arrow-right"></sgds-icon></a></sgds-link>
           </sgds-card>
         </div>
       </div>

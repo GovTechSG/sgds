@@ -4,6 +4,7 @@ import { computed, nextTick, ref, watch } from 'vue';
 import { useData } from 'vitepress';
 import PageHeader from "../../components/page/PageHeader.vue";
 import DocFooter from "../../components/page/DocFooter.vue";
+import AiAgentSetupCopy from "../../components/ai/AiAgentSetupCopy.vue";
 import { isDraft } from "../../utils/page-status";
 import { getComponentDoc, getComponentHeaderLinks } from "../../data/component-docs";
 import { getFoundationHeaderLinks } from "../../data/foundation-docs";
@@ -345,7 +346,11 @@ watch(
           :header-links="resolvedHeaderLinks"
           :bottom-gap-class="pageHeaderBottomGapClass"
           :header-alert="page.frontmatter.headerAlert"
-        />
+        >
+          <template v-if="currentPath === '/ai/skills'" #action>
+            <AiAgentSetupCopy />
+          </template>
+        </PageHeader>
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
           <div :class="currentSection === 'ai' ? 'docs-layout-content-ai' : 'docs-layout-content'">
             <Content />

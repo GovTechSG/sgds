@@ -262,7 +262,7 @@ async function copyIconName(iconName: string) {
                       <CodeToken label="sm" />
                       <CodeToken label="md" />
                       <sgds-tooltip content="Default size" placement="top">
-                        <span class="il-default-size-badge sgds:inline-flex sgds:items-center sgds:font-mono sgds:rounded-sm">lg</span>
+                        <span tabindex="0" class="il-default-size-badge sgds:inline-flex sgds:items-center sgds:font-mono sgds:rounded-sm">lg</span>
                       </sgds-tooltip>
                       <CodeToken label="xl" />
                       <CodeToken label="2-xl" />

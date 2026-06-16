@@ -15,7 +15,7 @@ const searchOpen = ref(false);
 <template>
   <div class="sgds:flex sgds:flex-col mainnav-container">
     <sgds-masthead></sgds-masthead>
-    <sgds-mainnav expand="xl" brandHref="/">
+    <sgds-mainnav expand="lg" brandHref="/">
       <span
         slot="brand"
         class="sgds:block sgds:text-default mainnav-brand-logo"
@@ -27,7 +27,7 @@ const searchOpen = ref(false);
         :key="navItem.link"
         :active="route.path.startsWith(navItem.activeMatch) || null"
       >
-        <a :href="navItem.link">{{ navItem.text }}</a>
+        <a :href="navItem.link" class="sgds:whitespace-nowrap">{{ navItem.text }}</a>
       </sgds-mainnav-item>
 
       <sgds-icon-button

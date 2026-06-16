@@ -242,7 +242,8 @@ const paletteRows: PaletteRow[] = [
                 title="Colour palette"
                 description="Our colour palette consists of 11 colour families, including Neutral, each with 10 shades. In total, the palette includes 112 colours, comprising all shades plus white and black."
               >
-                <div class="sgds:flex sgds:items-center sgds:justify-center sgds:bg-surface-default sgds:border sgds:border-muted sgds:rounded-[var(--sgds-border-radius-2-xl)] sgds:min-h-[var(--sgds-dimension-1024)] sgds:p-layout-md sgds:max-lg:min-h-[auto]" aria-label="SGDS colour palette">
+                <div class="sgds:flex sgds:items-center sgds:justify-center sgds:bg-surface-default sgds:border sgds:border-muted sgds:rounded-[var(--sgds-border-radius-2-xl)] sgds:min-h-[var(--sgds-dimension-1024)] sgds:p-layout-md sgds:max-lg:min-h-[auto]">
+                  <span class="sgds:sr-only">SGDS colour palette</span>
                   <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xs)] sgds:w-fit sgds:max-w-full sgds:max-lg:w-full">
                     <div class="sgds:flex sgds:gap-[var(--sgds-gap-xs)]">
                       <span
@@ -256,8 +257,8 @@ const paletteRows: PaletteRow[] = [
                       v-for="row in paletteRows"
                       :key="row.label"
                       class="sgds:flex sgds:gap-[var(--sgds-gap-xs)]"
-                      :aria-label="row.label"
                     >
+                      <span class="sgds:sr-only">{{ row.label }}</span>
                       <span
                         v-for="color in row.colors"
                         :key="`${row.label}-${color}`"

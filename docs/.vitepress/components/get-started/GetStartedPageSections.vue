@@ -67,7 +67,7 @@ const demoExampleMarkup = (example: GetStartedDemoExample) => {
     return `<div class="sgds:flex sgds:w-full sgds:flex-col sgds:items-center sgds:gap-component-sm sgds:rounded-lg sgds:border sgds:border-muted sgds:bg-default sgds:p-layout-sm sgds:text-center">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-2-xs">
         <p class="sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default">${title}</p>
-        <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">${text}</p>
+        <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">${text}</p>
       </div>
       ${button}
     </div>`;
@@ -75,7 +75,7 @@ const demoExampleMarkup = (example: GetStartedDemoExample) => {
 
   return `<div class="sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-xs sgds:rounded-lg sgds:border sgds:border-muted sgds:bg-default sgds:p-component-md">
     <p class="sgds:m-0 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default">${title}</p>
-    <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">${text}</p>
+    <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">${text}</p>
   </div>`;
 };
 
@@ -89,7 +89,7 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
 </script>
 
 <template>
-  <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
+  <div :class="['sgds:flex sgds:flex-col', props.page.sectionsGap ?? 'sgds:gap-layout-xl']">
     <section
       v-for="section in props.page.sections"
       :key="section.title"
@@ -103,12 +103,12 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
         />
         <p
           v-if="section.descriptionHtml"
-          class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle"
+          class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle"
           v-html="section.descriptionHtml"
         ></p>
         <p
           v-else-if="section.description"
-          class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle"
+          class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle"
         >
           <template
             v-for="(part, index) in textParts(section.description)"
@@ -120,15 +120,6 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
         </p>
       </div>
 
-      <div
-        v-if="section.video"
-        class="sgds:flex sgds:aspect-video sgds:w-full sgds:flex-col sgds:items-center sgds:justify-center sgds:gap-component-md sgds:rounded-lg sgds:border sgds:border-muted sgds:bg-surface-raised sgds:p-layout-md"
-      >
-        <p class="sgds:m-0 sgds:text-center sgds:text-label-sm sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-          Placeholder video.
-        </p>
-      </div>
-
       <div v-if="section.codeTabs?.length">
         <sgds-tab-group variant="underlined">
           <sgds-tab
@@ -137,6 +128,7 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
             slot="nav"
             :panel="tab.label"
             :active="i === 0 || null"
+            :ariaLabel="tab.label"
           >
             {{ tab.label }}
           </sgds-tab>
@@ -144,7 +136,7 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
             <CodeBlock v-if="tab.code" :code="tab.code" :lang="tab.lang ?? 'bash'" :hide-line-numbers="!section.codeTabsShowLineNumbers" />
             <div v-if="tab.steps?.length" class="sgds:flex sgds:flex-col sgds:gap-text-md">
               <div v-for="(step, i) in tab.steps" :key="i" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-                <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
                   <strong>Step {{ i + 1 }}:</strong> {{ step.description }}
                 </p>
                 <CodeBlock :code="step.code" :lang="step.lang ?? 'ts'" :filename="step.filename" />
@@ -152,11 +144,11 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
             </div>
             <div v-if="tab.stepGroups?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xl">
               <div v-for="group in tab.stepGroups" :key="group.title" class="sgds:flex sgds:flex-col sgds:gap-text-md">
-                <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+                <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
                   {{ group.title }}
                 </h4>
                 <div v-for="(step, i) in group.steps" :key="i" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-                  <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+                  <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
                     <strong>Step {{ i + 1 }}:</strong> {{ step.description }}
                   </p>
                   <CodeBlock :code="step.code" :lang="step.lang ?? 'ts'" :filename="step.filename" />
@@ -164,7 +156,7 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
               </div>
             </div>
             <div v-if="tab.message" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-              <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+              <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
                 {{ tab.message }}
               </p>
               <sgds-link v-if="tab.messageLink">
@@ -187,14 +179,14 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
       <div v-if="section.eyebrow || section.paragraphs?.length" class="sgds:flex sgds:flex-col sgds:gap-text-sm">
         <h3
           v-if="section.eyebrow"
-          class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight"
+          class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default"
         >
           {{ section.eyebrow }}
         </h3>
         <p
           v-for="paragraph in section.paragraphs"
           :key="paragraph"
-          class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle"
+          class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle"
         >
           {{ paragraph }}
         </p>
@@ -202,8 +194,8 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
 
       <ol v-if="section.orderedItems?.length" class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs">
         <li v-for="(item, index) in section.orderedItems" :key="item.title">
-          <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
-            <strong>{{ item.title }}:</strong>
+          <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
+            <strong>{{ item.title }}:</strong>{{ " " }}
             <span v-if="item.descriptionHtml" v-html="item.descriptionHtml"></span>
             <template v-else>
               {{ item.description }}
@@ -218,7 +210,7 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
         </li>
       </ol>
 
-      <ul v-if="section.unorderedItems?.length" class="sgds:list-disc sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-6 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+      <ul v-if="section.unorderedItems?.length" class="sgds:list-disc sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-6 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
         <li v-for="(item, index) in section.unorderedItems" :key="item.title" class="sgds:m-0">
           <span>
             <strong>{{ item.title }}:</strong>{{ " " }}
@@ -238,10 +230,10 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
 
       <div v-if="section.subsections?.length" :class="['sgds:flex sgds:flex-col', subsectionGapClass(section)]">
         <div v-for="(item, index) in section.subsections" :key="item.title" class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
-          <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+          <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
             {{ item.title }}
           </h4>
-          <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+          <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
             {{ item.description }}
           </p>
           <sgds-link v-if="linkForItem(section, index)">
@@ -270,10 +262,10 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
           class="sgds:flex sgds:flex-col sgds:gap-text-md"
         >
           <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-            <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+            <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
               {{ pattern.title }}
             </h4>
-            <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+            <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
               {{ pattern.description }}
             </p>
           </div>
@@ -290,7 +282,7 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
 
       <p
         v-if="section.footerHtml"
-        class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle"
+        class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle"
         v-html="section.footerHtml"
       ></p>
 
@@ -324,7 +316,7 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
       >
         <sgds-icon v-if="item.direction === 'previous'" name="arrow-circle-left" size="2-xl"></sgds-icon>
         <span class="sgds:flex sgds:min-w-0 sgds:flex-1 sgds:flex-col sgds:gap-text-2-xs">
-          <span class="sgds:mb-0 sgds:text-1 sgds:font-regular sgds:leading-20 sgds:tracking-normal sgds:text-subtle">
+          <span class="sgds:mb-0 sgds:text-1 sgds:font-regular sgds:leading-20 sgds:tracking-normal sgds:text-body-subtle">
             {{ item.label }}
           </span>
           <span class="sgds:mb-0 sgds:text-heading-default sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-normal">
