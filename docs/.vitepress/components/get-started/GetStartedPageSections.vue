@@ -55,13 +55,13 @@ const demoExampleMarkup = (example: GetStartedDemoExample) => {
 
   if (example.kind === "button") {
     return `<div class="sgds:flex sgds:w-full sgds:items-center sgds:justify-center">
-      <sgds-button>${text}</sgds-button>
+      <sgds-button ariaLabel="${text}">${text}</sgds-button>
     </div>`;
   }
 
   if (example.kind === "empty-state") {
     const button = example.demoButtonLabel
-      ? `<sgds-button size="sm">${escapeHtml(example.demoButtonLabel)}</sgds-button>`
+      ? `<sgds-button size="sm" ariaLabel="${escapeHtml(example.demoButtonLabel)}">${escapeHtml(example.demoButtonLabel)}</sgds-button>`
       : "";
 
     return `<div class="sgds:flex sgds:w-full sgds:flex-col sgds:items-center sgds:gap-component-sm sgds:rounded-lg sgds:border sgds:border-muted sgds:bg-default sgds:p-layout-sm sgds:text-center">
