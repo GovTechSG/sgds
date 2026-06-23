@@ -220,13 +220,13 @@ watch(
               v-for="group in currentSidebar.items"
               :key="group.text"
             >
-              <sgds-sidenav-item v-if="group.items && group.items.length" :active="isSideNavGroupActive(group, currentPath) || null">
+              <sgds-sidenav-item v-if="group.items && group.items.length" :active="isSideNavGroupActive(group, currentPath) || null" :ariaLabel="group.text">
                 <span slot="title">{{ formatSidebarLabel(group.text) }}</span>
                 <template
                   v-for="item in group.items"
                   :key="item.link ?? item.text"
                 >
-                  <sgds-sidenav-item v-if="item.items && item.items.length" :active="isSideNavGroupActive(item, currentPath) || null">
+                  <sgds-sidenav-item v-if="item.items && item.items.length" :active="isSideNavGroupActive(item, currentPath) || null" :ariaLabel="item.text">
                     <span slot="title">{{ formatSidebarLabel(item.text) }}</span>
                     <template
                       v-for="secondLevelItem in item.items"
@@ -252,7 +252,7 @@ watch(
                   </sgds-sidenav-link>
                 </template>
               </sgds-sidenav-item>
-              <sgds-sidenav-item v-else-if="group.link" :active="(currentPath === withBase(group.link)) || null">
+              <sgds-sidenav-item v-else-if="group.link" :active="(currentPath === withBase(group.link)) || null" :ariaLabel="group.text">
                 <a :href="withBase(group.link)">{{ formatSidebarLabel(group.text) }}</a>
               </sgds-sidenav-item>
             </template>
@@ -298,13 +298,13 @@ watch(
                 v-for="group in currentSidebar.items"
                 :key="group.text"
               >
-                <sgds-sidenav-item v-if="group.items && group.items.length" :active="isSideNavGroupActive(group, currentPath) || null">
+                <sgds-sidenav-item v-if="group.items && group.items.length" :active="isSideNavGroupActive(group, currentPath) || null" :ariaLabel="group.text">
                   <span slot="title">{{ formatSidebarLabel(group.text) }}</span>
                   <template
                     v-for="item in group.items"
                     :key="item.link ?? item.text"
                   >
-                    <sgds-sidenav-item v-if="item.items && item.items.length" :active="isSideNavGroupActive(item, currentPath) || null">
+                    <sgds-sidenav-item v-if="item.items && item.items.length" :active="isSideNavGroupActive(item, currentPath) || null" :ariaLabel="item.text">
                       <span slot="title">{{ formatSidebarLabel(item.text) }}</span>
                       <template
                         v-for="secondLevelItem in item.items"
@@ -332,7 +332,7 @@ watch(
                     </sgds-sidenav-link>
                   </template>
                 </sgds-sidenav-item>
-                <sgds-sidenav-item v-else-if="group.link" :active="(currentPath === withBase(group.link)) || null">
+                <sgds-sidenav-item v-else-if="group.link" :active="(currentPath === withBase(group.link)) || null" :ariaLabel="group.text">
                   <a :href="withBase(group.link)" @click="mobileSideNavOpen = false">{{ formatSidebarLabel(group.text) }}</a>
                 </sgds-sidenav-item>
               </template>

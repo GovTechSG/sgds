@@ -165,12 +165,19 @@ async function scanPage(browser, pageUrl, oobeeA11y) {
       const count = v.nodes?.length ?? 1;
       const isMustFix = v.impact === "critical" || v.impact === "serious";
 
+      const nodes = (v.nodes ?? []).map((n) => ({
+        target: Array.isArray(n.target) ? n.target.join(" > ") : String(n.target ?? ""),
+        html: n.html ?? "",
+        failureSummary: n.failureSummary ?? "",
+      }));
+
       const rule = {
         rule: v.id,
         description: v.description ?? v.help ?? "",
         impact: v.impact ?? "unknown",
         count,
         helpUrl: v.helpUrl ?? "",
+        nodes,
       };
 
       if (isMustFix) {
@@ -215,6 +222,18 @@ function printPageResult(result) {
     );
     if (rule.helpUrl) {
       console.log(`           ${COLORS.dim}→ ${rule.helpUrl}${COLORS.reset}`);
+    }
+    for (const node of (rule.nodes || []).slice(0, 5)) {
+      if (node.html) {
+        const truncated = node.html.length > 150 ? node.html.slice(0, 150) + "..." : node.html;
+        console.log(`           ${COLORS.dim}HTML: ${truncated}${COLORS.reset}`);
+      }
+      if (node.target) {
+        console.log(`           ${COLORS.dim}Target: ${node.target}${COLORS.reset}`);
+      }
+    }
+    if ((rule.nodes || []).length > 5) {
+      console.log(`           ${COLORS.dim}... and ${rule.nodes.length - 5} more${COLORS.reset}`);
     }
   }
 

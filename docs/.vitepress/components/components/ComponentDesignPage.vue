@@ -380,10 +380,10 @@ onBeforeUnmount(() => {
 <template>
   <div v-if="doc" class="sgds:flex sgds:flex-col" :data-component-page="currentPageKey">
     <sgds-tab-group ref="tabGroupRef" class="sgds:block sgds:w-full" variant="underlined">
-      <sgds-tab slot="nav" panel="design" active @click="handleTabClick('design')">Design</sgds-tab>
-      <sgds-tab slot="nav" panel="usage" @click="handleTabClick('usage')">Usage</sgds-tab>
-      <sgds-tab slot="nav" panel="accessibility" @click="handleTabClick('accessibility')">Accessibility</sgds-tab>
-      <sgds-tab slot="nav" panel="updates" @click="handleTabClick('updates')">Updates</sgds-tab>
+      <sgds-tab slot="nav" panel="design" active ariaLabel="Design" @click="handleTabClick('design')">Design</sgds-tab>
+      <sgds-tab slot="nav" panel="usage" ariaLabel="Usage" @click="handleTabClick('usage')">Usage</sgds-tab>
+      <sgds-tab slot="nav" panel="accessibility" ariaLabel="Accessibility" @click="handleTabClick('accessibility')">Accessibility</sgds-tab>
+      <sgds-tab slot="nav" panel="updates" ariaLabel="Updates" @click="handleTabClick('updates')">Updates</sgds-tab>
 
       <!-- Design tab -->
       <sgds-tab-panel name="design">

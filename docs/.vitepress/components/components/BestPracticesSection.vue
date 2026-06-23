@@ -305,7 +305,7 @@ onBeforeUnmount(() => {
             <sgds-icon name="check-circle-fill" size="lg"></sgds-icon>
           </span>
           <div class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full">
-            <div class="best-practice-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="row.do.markup"></div>
+            <div class="best-practice-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" inert v-html="row.do.markup"></div>
           </div>
         </div>
         <div :class="[
@@ -352,7 +352,7 @@ onBeforeUnmount(() => {
             <sgds-icon name="xcircle-fill" size="lg"></sgds-icon>
           </span>
           <div class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full">
-            <div class="best-practice-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" v-html="row.dont.markup"></div>
+            <div class="best-practice-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" inert v-html="row.dont.markup"></div>
           </div>
         </div>
         <div :class="[
