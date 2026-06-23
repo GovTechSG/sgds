@@ -140,8 +140,8 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
 
           <div class="typography-page-template__demo-pane">
             <div class="typography-page-template__card spacing-page__demo-card spacing-page__progression-card sgds:min-h-[20rem] sgds:max-md:min-h-[14rem]">
-              <div class="spacing-page__chart" aria-label="Spacing progression from 2 px to 128 px" tabindex="0">
-                <svg class="spacing-page__chart-line" :viewBox="`0 0 ${chartWidth} ${chartHeight}`" aria-hidden="true">
+              <div class="spacing-page__chart" tabindex="0">
+                <svg class="spacing-page__chart-line" :viewBox="`0 0 ${chartWidth} ${chartHeight}`" role="img" aria-label="Spacing progression from 2 px to 128 px">
                   <path :d="progressionCurvePath" />
                 </svg>
 

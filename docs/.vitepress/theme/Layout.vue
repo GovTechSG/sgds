@@ -17,11 +17,11 @@ const { frontmatter } = useData()
   <template v-else>
     <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl sgds:mb-layout-xl">
       <Mainnav />
-      <div class="sgds-container">
+      <main class="sgds-container">
         <DefaultLayout v-if="frontmatter.layout === 'default'" />
         <DocsLayout v-if="frontmatter.layout === 'docs'" />
         <PageLayout v-if="frontmatter.layout === 'page'" />
-      </div>
+      </main>
     </div>
     <Footer />
   </template>

@@ -72,6 +72,7 @@
               variant="primary"
               tone="neutral"
               size="md"
+              ariaLabel="Read post"
               >Read post</sgds-button
             >
           </div>

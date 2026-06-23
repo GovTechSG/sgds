@@ -47,7 +47,7 @@ const openFigmaToCodeTab = (event: Event) => {
           Use Figma MCP when you need AI to work with real Figma context, selected frames, or live UI captures. Use Figma Make when you want to explore interface ideas from prompts before refining them with SGDS guidance.
         </p>
 
-        <div class="sgds-grid sgds:gap-layout-md" aria-label="Figma workflow options">
+        <div class="sgds-grid sgds:gap-layout-md">
         <a
           v-for="card in figmaWorkflowCards"
           :key="card.title"

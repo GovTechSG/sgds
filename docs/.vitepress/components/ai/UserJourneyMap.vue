@@ -701,6 +701,7 @@ function setScenario(id: ScenarioFilter) {
             size="sm"
             :variant="activePersona === f.id ? 'primary' : 'outline'"
             :tone="activePersona === f.id ? undefined : 'neutral'"
+            :ariaLabel="f.label"
             :aria-pressed="activePersona === f.id"
             @click="setPersona(f.id)"
           >{{ f.label }}</sgds-button>
@@ -712,6 +713,7 @@ function setScenario(id: ScenarioFilter) {
             size="sm"
             :variant="activeScenario === f.id ? 'primary' : 'outline'"
             :tone="activeScenario === f.id ? undefined : 'neutral'"
+            :ariaLabel="f.label"
             :aria-pressed="activeScenario === f.id"
             @click="setScenario(f.id)"
           >{{ f.label }}</sgds-button>

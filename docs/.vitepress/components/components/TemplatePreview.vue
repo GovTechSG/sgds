@@ -120,6 +120,7 @@ onMounted(() => {
           variant="ghost"
           tone="neutral"
           size="sm"
+          :ariaLabel="kind === 'block' ? 'Back to blocks' : 'Back to templates'"
           :title="kind === 'block' ? 'Back to blocks' : 'Back to templates'"
           @click="navigateToOverview"
         >

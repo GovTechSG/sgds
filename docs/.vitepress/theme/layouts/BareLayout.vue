@@ -3,7 +3,9 @@ import { Content } from "vitepress";
 </script>
 
 <template>
-  <Content />
+  <main>
+    <Content />
+  </main>
 </template>
 
 <style>
