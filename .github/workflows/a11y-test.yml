@@ -26,7 +26,7 @@ jobs:
         run: pnpm install
 
       - name: Build Oobee
-        run: cd node_modules/@govtechsg/oobee && pnpm install && pnpm run build
+        run: pnpm run test:a11y:setup
 
       - name: Run accessibility tests
         run: pnpm run test:a11y
