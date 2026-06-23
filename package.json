@@ -10,6 +10,7 @@
     }
   },
   "devDependencies": {
+    "@govtechsg/oobee": "^0.10.93",
     "@tailwindcss/vite": "^4.2.2",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3",
@@ -20,7 +21,8 @@
   "scripts": {
     "docs:dev": "node scripts/generate-component-updates.mjs && vitepress dev docs",
     "docs:build": "node scripts/generate-component-updates.mjs && vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "test:a11y": "pnpm docs:build && node scripts/a11y-test.mjs"
   },
   "dependencies": {
     "@adobe/leonardo-contrast-colors": "^1.1.0",
