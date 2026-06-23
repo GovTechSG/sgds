@@ -42,6 +42,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 - **Manual state override**: use `invalid` or `valid` to programmatically set the field's validation state — useful when validation logic lives outside the component (e.g. server-side errors).
 - **Custom validation flow**: set `noValidate` to disable browser-native constraint validation and take full control with your own logic; combine with `invalid` and `setInvalid()` for server-driven error states.
 - **Autofocus**: use `autofocus` to focus the input on page load — limit to one field per page to avoid disorienting keyboard and screen reader users.
+- **Autocomplete**: use `autocomplete="off"` to disable browser autocomplete for sensitive fields (e.g. password reset, NRIC, OTP codes). Defaults to `"on"` to allow browser autofill for common fields (email, name, address). Use specific autocomplete hints like `"email"`, `"tel"`, `"url"` for form auto-fill (see [MDN autocomplete](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for full list).
 
 ## Edge Cases
 
@@ -66,6 +67,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 **Show validation feedback?** → Set `hasFeedback="both"` (border + message), `"style"` (border only), or `"text"` (message only), and `invalidFeedback`
 
 **Show inline loading spinner?** → `loading`
+
+**Disable browser autocomplete?** → `autocomplete="off"`
 
 **Icon action button after the field?** → Use the `action` slot with `<sgds-icon-button>`
 
@@ -124,6 +127,29 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 <!-- Loading state -->
 <sgds-input type="text" label="Lookup" loading></sgds-input>
+
+<!-- Password field with autocomplete disabled -->
+<sgds-input
+  type="password"
+  label="New Password"
+  name="password"
+  placeholder="Enter new password"
+  autocomplete="new-password"
+  required
+  hasFeedback="both"
+  invalidFeedback="Password must be at least 8 characters"
+></sgds-input>
+
+<!-- OTP input with autocomplete disabled -->
+<sgds-input
+  type="text"
+  label="One-Time Password"
+  name="otp"
+  placeholder="000000"
+  maxlength="6"
+  autocomplete="off"
+  required
+></sgds-input>
 ```
 
 ## API Summary
@@ -154,6 +180,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `disabled` | boolean | `false` | Disables the input |
 | `readonly` | boolean | `false` | Makes the input read-only |
 | `autofocus` | boolean | `false` | Focuses the input on load |
+| `autocomplete` | string | `"on"` | Controls browser autocomplete behavior — set to `"off"` to disable autocomplete for sensitive fields (e.g. password, NRIC, OTP) |
 | `loading` | boolean | `false` | Shows a loading spinner inside the input |
 | `noValidate` | boolean | `false` | Disables browser-native validation |
 

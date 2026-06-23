@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@adobe/leonardo-contrast-colors": "^1.1.0",
-    "@govtechsg/sgds-web-component": "3.21.2-rc.3",
+    "@govtechsg/sgds-web-component": "3.22.0",
     "gsap": "^3.13.0"
   }
 }
