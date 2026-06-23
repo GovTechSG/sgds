@@ -6,3 +6,6 @@ docs/.vitepress/dist
 docs/.vitepress/cache
 .claude/worktrees
 .claude/settings.local.json
+results
+# oobee scan output directories
+*_localhost_*/

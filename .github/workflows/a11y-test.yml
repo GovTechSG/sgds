@@ -1,0 +1,37 @@
+name: Accessibility Test
+
+on:
+  pull_request:
+    branches: [v3]
+
+permissions:
+  contents: read
+
+jobs:
+  a11y:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run accessibility tests
+        run: pnpm run test:a11y
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-results
+          path: |
+            a11y-results.zip
+            results/
+          if-no-files-found: ignore
