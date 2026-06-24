@@ -48,14 +48,12 @@ const openFigmaToCodeTab = (event: Event) => {
         </p>
 
         <div class="sgds-grid sgds:gap-layout-md">
-        <a
-          v-for="card in figmaWorkflowCards"
-          :key="card.title"
-          :href="card.href"
-          class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds-col-lg-6 sgds:block sgds:h-full sgds:text-default sgds:no-underline"
-          :aria-label="`Go to ${card.title} section`"
-        >
-          <sgds-icon-card class="sgds:h-full">
+          <sgds-icon-card
+            v-for="card in figmaWorkflowCards"
+            :key="card.title"
+            stretchedLink
+            class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds-col-lg-6 sgds:h-full"
+          >
             <svg
               v-if="card.icon === 'figma-mcp'"
               slot="icon"
@@ -96,8 +94,10 @@ const openFigmaToCodeTab = (event: Event) => {
             </svg>
             <span slot="title">{{ card.title }}</span>
             <span slot="description">{{ card.description }}</span>
+            <sgds-link slot="footer">
+              <a :href="card.href" :aria-label="`Go to ${card.title} section`">{{ card.title }}</a>
+            </sgds-link>
           </sgds-icon-card>
-        </a>
         </div>
       </div>
     </section>

@@ -44,19 +44,19 @@ const developmentWorkflowCards = [
           Use this page when you are building or improving SGDS code with an AI coding tool. Start with a new SGDS project, or use an existing codebase that needs to adopt SGDS components, utilities, and layout guidance.
         </p>
         <div class="sgds-grid sgds:gap-layout-md">
-          <a
+          <sgds-icon-card
             v-for="card in developmentWorkflowCards"
             :key="card.title"
-            :href="card.href"
-            class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds-col-lg-6 sgds:block sgds:h-full sgds:text-default sgds:no-underline"
-            :aria-label="`Go to ${card.title} section`"
+            stretchedLink
+            class="sgds-col-4 sgds-col-sm-8 sgds-col-md-4 sgds-col-lg-6 sgds:h-full"
           >
-            <sgds-icon-card class="sgds:h-full">
-              <sgds-icon slot="icon" :name="card.icon" size="xl" class="sgds:text-primary-default" aria-hidden="true" />
-              <span slot="title">{{ card.title }}</span>
-              <span slot="description">{{ card.description }}</span>
-            </sgds-icon-card>
-          </a>
+            <sgds-icon slot="icon" :name="card.icon" size="3-xl" class="sgds:text-primary-default" aria-hidden="true" />
+            <span slot="title">{{ card.title }}</span>
+            <span slot="description">{{ card.description }}</span>
+            <sgds-link slot="footer">
+              <a :href="card.href" :aria-label="`Go to ${card.title} section`">{{ card.title }}</a>
+            </sgds-link>
+          </sgds-icon-card>
         </div>
       </div>
       </section>
@@ -101,7 +101,7 @@ const developmentWorkflowCards = [
       </div>
 
       <sgds-alert show variant="info" outlined title="Have Figma screens already?">
-        <div>Use <sgds-alert-link href="/ai/figma-and-code-workflows">Figma workflows</sgds-alert-link> instead if you are building from an existing Figma screen or using Figma MCP to move designs into code.</div>
+        <div>Use <sgds-alert-link href="/ai/figma-and-code-workflows" ariaLabel="Go to Figma workflows page">Figma workflows</sgds-alert-link> instead if you are building from an existing Figma screen or using Figma MCP to move designs into code.</div>
       </sgds-alert>
 
       <article class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
@@ -207,7 +207,7 @@ const developmentWorkflowCards = [
 
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
         <sgds-alert show variant="info" outlined title="Have Figma screens already?">
-          <div>Use <sgds-alert-link href="/ai/figma-and-code-workflows">Figma workflows</sgds-alert-link> instead if you are building from an existing Figma screen or using Figma MCP to move designs into code.</div>
+          <div>Use <sgds-alert-link href="/ai/figma-and-code-workflows" ariaLabel="Go to Figma workflows page">Figma workflows</sgds-alert-link> instead if you are building from an existing Figma screen or using Figma MCP to move designs into code.</div>
         </sgds-alert>
 
         <sgds-alert show variant="warning" outlined title="Migration skills are in progress">
