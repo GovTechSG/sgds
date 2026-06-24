@@ -901,7 +901,7 @@ function setScenario(id: ScenarioFilter) {
                 <li>Keep your Figma frames clean and well-structured for the best results.</li>
                 <li>Name your Figma layers descriptively. The agent uses layer names to infer intent.</li>
                 <li>If the output is not accurate, refine your prompt by specifying which section or component to focus on.</li>
-                <li>See <sgds-alert-link href="/ai/prompt-tips">Prompt tips</sgds-alert-link> for more effective results.</li>
+                <li>See <a href="/ai/prompt-tips">Prompt tips</a> for more effective results.</li>
               </ul>
             </sgds-alert>
           </div>
@@ -950,7 +950,7 @@ function setScenario(id: ScenarioFilter) {
                 <li>Keep your Figma frames clean and well-structured for the best results.</li>
                 <li>Name your Figma layers descriptively. The agent uses layer names to infer intent.</li>
                 <li>If the output is not accurate, refine your prompt by specifying which section or component to focus on.</li>
-                <li>See <sgds-alert-link href="/ai/prompt-tips">Prompt tips</sgds-alert-link> for more effective results.</li>
+                <li>See <a href="/ai/prompt-tips">Prompt tips</a> for more effective results.</li>
               </ul>
             </sgds-alert>
 

@@ -101,7 +101,7 @@ const developmentWorkflowCards = [
       </div>
 
       <sgds-alert show variant="info" outlined title="Have Figma screens already?">
-        <div>Use <sgds-alert-link href="/ai/figma-and-code-workflows" ariaLabel="Go to Figma workflows page">Figma workflows</sgds-alert-link> instead if you are building from an existing Figma screen or using Figma MCP to move designs into code.</div>
+        Use <a href="/ai/figma-and-code-workflows" aria-label="Go to Figma workflows page">Figma workflows</a> instead if you are building from an existing Figma screen or using Figma MCP to move designs into code.
       </sgds-alert>
 
       <article class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
@@ -207,7 +207,7 @@ const developmentWorkflowCards = [
 
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
         <sgds-alert show variant="info" outlined title="Have Figma screens already?">
-          <div>Use <sgds-alert-link href="/ai/figma-and-code-workflows" ariaLabel="Go to Figma workflows page">Figma workflows</sgds-alert-link> instead if you are building from an existing Figma screen or using Figma MCP to move designs into code.</div>
+          Use <a href="/ai/figma-and-code-workflows" aria-label="Go to Figma workflows page">Figma workflows</a> instead if you are building from an existing Figma screen or using Figma MCP to move designs into code.
         </sgds-alert>
 
         <sgds-alert show variant="warning" outlined title="Migration skills are in progress">
