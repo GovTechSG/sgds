@@ -35,7 +35,7 @@ const searchOpen = ref(false);
         name="search"
         variant="ghost"
         tone="neutral"
-        ariaLabel="Search"
+        :ariaLabel.prop="'Search'"
         @click="searchOpen = true"
       ></sgds-icon-button>
       <ThemeControls slot="non-collapsible" class="mainnav-desktop-only" />

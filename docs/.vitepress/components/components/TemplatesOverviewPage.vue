@@ -251,7 +251,7 @@ const getThumbnailSrc = (key: string) => {
                   variant="outline"
                   tone="neutral"
                   class="sgds:flex-none"
-                  ariaLabel="Filters"
+                  :ariaLabel.prop="'Filters'"
                   :aria-expanded="mobileFiltersOpen ? 'true' : 'false'"
                   aria-controls="template-overview-filter-drawer"
                   @click="mobileFiltersOpen = !mobileFiltersOpen"
@@ -260,7 +260,7 @@ const getThumbnailSrc = (key: string) => {
                   Filters
                 </sgds-button>
                 <sgds-dropdown class="sgds:min-w-0 sgds:flex-1">
-                  <sgds-button slot="toggler" tone="neutral" variant="outline" ariaLabel="Sort by">
+                  <sgds-button slot="toggler" tone="neutral" variant="outline" :ariaLabel.prop="'Sort by'">
                     {{ selectedSortLabel }}
                     <sgds-icon slot="rightIcon" name="chevron-down"></sgds-icon>
                   </sgds-button>
@@ -282,7 +282,7 @@ const getThumbnailSrc = (key: string) => {
                 id="template-overview-filter-drawer"
                 placement="end"
                 size="sm"
-                ariaLabel="Filter templates"
+                :ariaLabel.prop="'Filter templates'"
                 :open="mobileFiltersOpen"
                 @sgds-request-close="mobileFiltersOpen = false"
                 @sgds-after-hide="mobileFiltersOpen = false"
@@ -304,15 +304,15 @@ const getThumbnailSrc = (key: string) => {
                   </sgds-checkbox-group>
                 </div>
                 <div slot="footer" class="sgds:flex sgds:justify-between sgds:gap-component-sm">
-                  <sgds-button variant="ghost" tone="neutral" ariaLabel="Clear all" @click="clearFilters">Clear all</sgds-button>
-                  <sgds-button ariaLabel="Done" @click="mobileFiltersOpen = false">Done</sgds-button>
+                  <sgds-button variant="ghost" tone="neutral" :ariaLabel.prop="'Clear all'" @click="clearFilters">Clear all</sgds-button>
+                  <sgds-button :ariaLabel.prop="'Done'" @click="mobileFiltersOpen = false">Done</sgds-button>
                 </div>
               </sgds-drawer>
               <h2 class="sgds-col-4 sgds-col-sm-8 sgds-col-md-8 sgds-col-lg-5 sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default">
                 Showing {{ filteredTemplateItems.length }} result<span v-if="filteredTemplateItems.length !== 1">s</span>
               </h2>
               <sgds-dropdown v-if="!isSmallScreen" class="sgds:min-w-[var(--sgds-dimension-200)]">
-                <sgds-button slot="toggler" tone="neutral" variant="outline" ariaLabel="Sort by">
+                <sgds-button slot="toggler" tone="neutral" variant="outline" :ariaLabel.prop="'Sort by'">
                   {{ selectedSortLabel }}
                   <sgds-icon slot="rightIcon" name="chevron-down"></sgds-icon>
                 </sgds-button>
@@ -366,7 +366,7 @@ const getThumbnailSrc = (key: string) => {
             >
               <h3 class="sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:text-heading-default">No {{ itemNoun }}s found</h3>
               <p class="sgds:m-0 sgds:text-body-md sgds:text-body-subtle">Try clearing the filters.</p>
-              <sgds-button variant="outline" tone="neutral" ariaLabel="Clear filters" @click="clearFilters">Clear filters</sgds-button>
+              <sgds-button variant="outline" tone="neutral" :ariaLabel.prop="'Clear filters'" @click="clearFilters">Clear filters</sgds-button>
             </div>
 
             <div class="sgds:mt-layout-sm sgds:flex sgds:justify-end">

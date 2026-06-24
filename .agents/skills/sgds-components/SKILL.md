@@ -98,7 +98,7 @@ function StepperComponent() {
 }
 ```
 
-> **Note**: The React wrappers will be phased out in a future major version. Migrate to React 19+ native usage when possible.
+> **Note**: For Next.js and SSR frameworks, React wrappers are the recommended approach as they resolve hydration timing issues on initial load.
 
 Official docs: https://webcomponent.designsystem.tech.gov.sg/?path=/docs/frameworks-react--docs
 
@@ -106,146 +106,33 @@ Official docs: https://webcomponent.designsystem.tech.gov.sg/?path=/docs/framewo
 
 ### Next.js
 
-Next.js is an SSR framework — web components rely on browser APIs and will error if imported at the module level during server-side rendering.
+Next.js is an SSR framework — web components rely on browser APIs and can cause hydration issues when imported at the module level during server-side rendering.
 
-**Step 1 — Create `sgds.tsx` (library loader)**
+**Recommended approach: Use React wrapper components.** The React wrappers resolve hydration timing issues that cause event listeners to fail on initial page load — just import and use:
 
 ```tsx
 'use client';
+import { SgdsInput, SgdsButton } from "@govtechsg/sgds-web-component/react";
 
-import { useEffect } from 'react';
-
-const SgdsLibraryLoader = () => {
-  useEffect(() => {
-    (async () => {
-      await import('@govtechsg/sgds-web-component');
-    })();
-  }, []);
-
-  return null;
-};
-
-export default SgdsLibraryLoader;
-```
-
-**Step 2 — Add to root layout `<head>`**
-
-```tsx
-// src/app/layout.tsx
-import SgdsLibraryLoader from './sgds';
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function MyForm() {
   return (
-    <html lang="en">
-      <head>
-        <SgdsLibraryLoader />
-      </head>
-      <body>
-        {children}
-      </body>
-    </html>
+    <>
+      <SgdsInput label="Name" onSgdsChange={(e) => console.log(e)} />
+      <SgdsButton variant="primary">Submit</SgdsButton>
+    </>
   );
 }
 ```
 
-**Step 3 — Use components directly** with `suppressHydrationWarning`
+Event naming follows the camelCase convention: `sgds-change` → `onSgdsChange`, `sgds-after-show` → `onSgdsAfterShow`.
 
-```tsx
-<sgds-masthead suppressHydrationWarning></sgds-masthead>
-```
-
-**Step 4 — TypeScript support** — add a `types.d.ts` at the project root and reference the SGDS React type definitions. This gives full IntelliSense for props and typed `CustomEvent` detail payloads on all `sgds-*` elements:
+**TypeScript support** — add a `types.d.ts` at the project root and reference the SGDS React type definitions. This gives full IntelliSense for props and typed `CustomEvent` detail payloads on all `sgds-*` elements:
 
 Use an ES import in any `.d.ts` file included by your `tsconfig`:
 
 ```ts
 import "@govtechsg/sgds-web-component/types/react";
 ```
-
-**Events in Next.js** — due to hydration timing, wire custom events via `useEffect` + `addEventListener` rather than declarative React props:
-
-```tsx
-'use client';
-import { useEffect, useRef } from 'react';
-
-export default function MyInput() {
-  const ref = useRef<any>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const handler = (e: Event) => console.log((e.target as any).value);
-    el.addEventListener('sgds-input', handler);
-    return () => el.removeEventListener('sgds-input', handler);
-  }, []);
-
-  return <sgds-input ref={ref} suppressHydrationWarning />;
-}
-```
-
-**Organise into reusable React components** — do not inline `useEffect` / `addEventListener` alongside business logic. Wrap each SGDS element in a dedicated client component that exposes typed props and forwards events via callbacks:
-
-```tsx
-// components/sgds/SgdsInput.tsx
-'use client';
-import { useEffect, useRef, useCallback } from 'react';
-
-interface SgdsInputProps {
-  label?: string;
-  placeholder?: string;
-  value?: string;
-  onSgdsInput?: (value: string) => void;
-  onSgdsChange?: (value: string) => void;
-}
-
-export default function SgdsInput({ label, placeholder, value, onSgdsInput, onSgdsChange }: SgdsInputProps) {
-  const ref = useRef<any>(null);
-  const onSgdsInputRef = useRef(onSgdsInput);
-  const onSgdsChangeRef = useRef(onSgdsChange);
-  onSgdsInputRef.current = onSgdsInput;
-  onSgdsChangeRef.current = onSgdsChange;
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const handleInput = (e: Event) => onSgdsInputRef.current?.((e.target as any).value);
-    const handleChange = (e: Event) => onSgdsChangeRef.current?.((e.target as any).value);
-
-    el.addEventListener('sgds-input', handleInput);
-    el.addEventListener('sgds-change', handleChange);
-    return () => {
-      el.removeEventListener('sgds-input', handleInput);
-      el.removeEventListener('sgds-change', handleChange);
-    };
-  }, []);
-
-  return (
-    <sgds-input
-      ref={ref}
-      label={label}
-      placeholder={placeholder}
-      value={value}
-      suppressHydrationWarning
-    />
-  );
-}
-```
-
-Then consume it like any React component — no event wiring in the page:
-
-```tsx
-// app/contact/page.tsx
-'use client';
-import SgdsInput from '@/components/sgds/SgdsInput';
-
-export default function ContactPage() {
-  const [name, setName] = useState('');
-  return <SgdsInput label="Name" placeholder="Enter name" onSgdsInput={setName} />;
-}
-```
-
-Place all SGDS wrappers under a shared directory (e.g. `components/sgds/`) so they are discoverable and reusable across pages.
 
 See the [official Next.js integration docs](https://webcomponent.designsystem.tech.gov.sg/?path=/docs/frameworks-react--docs) for more detail.
 
@@ -282,9 +169,9 @@ Replace `Accordion/sgds-accordion` with the relevant component folder and file n
 ---
 
 **For AI agents**: The primary decision tree is React version + rendering mode:
-- **React 19+ CSR (Vite etc.)**: native `<sgds-*>` tag + direct import, event props lowercase with `on` prefix (`onsgds-change`)
-- **Next.js (SSR)**: `SgdsLibraryLoader` + `useEffect` dynamic import — never a top-level import; wire events via `addEventListener` in `useEffect`
-- **React ≤18**: SGDS React wrapper package, camelCase event props (`onSgdsChange`)
+- **Next.js (SSR)**: Use React wrapper components (`SgdsInput`, `SgdsButton`, etc. from `@govtechsg/sgds-web-component/react`) — they resolve hydration timing issues on initial load. Event props use camelCase (`onSgdsChange`).
+- **React 19+ CSR (Vite etc.)**: Either native `<sgds-*>` tags with `onsgds-change` syntax, or React wrappers with `onSgdsChange` — both work equally well.
+- **React ≤18**: SGDS React wrapper components, camelCase event props (`onSgdsChange`)
 - **Vue / Angular**: standard web component integration; SGDS-specific detail for Vue is `tag.startsWith("sgds-")` to suppress unknown element warnings
 
 When a user reports unexpected component behaviour (wrong event, property not reflecting, slot not rendering), direct them to read the compiled source before trying anything else — see the **Troubleshooting Component Behaviour** section above.
