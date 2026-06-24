@@ -86,7 +86,7 @@ watch(currentPath, () => {
         <sgds-button
           variant="outline"
           tone="neutral"
-          ariaLabel="Browse Get started"
+          :ariaLabel.prop="'Browse Get started'"
           @click="mobileSideNavOpen = true"
         >
           <sgds-icon slot="leftIcon" name="menu"></sgds-icon>
@@ -186,7 +186,7 @@ watch(currentPath, () => {
               slot="nav"
               :panel="tab.key"
               :active="tab.key === designTabs[0].key || null"
-              :ariaLabel="tab.label"
+              :ariaLabel.prop="tab.label"
             >
               {{ tab.label }}
             </sgds-tab>
