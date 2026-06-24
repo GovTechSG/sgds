@@ -39,6 +39,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 - **Custom filter**: set `filterFunction` as a JS property — not an HTML attribute — to implement prefix, fuzzy, or custom matching logic. Ignored when `async` is true.
 - **Async data**: set `async`, listen to `sgds-input` for `event.detail.displayValue`, fetch results, then replace `<sgds-combo-box-option>` children. Set `loading` to indicate fetch in progress.
+- **Browser autocomplete**: `autocomplete` is set to `"off"` by default to prevent browser autofill from interfering with the dropdown filtering and selection. Change to `"on"` only if you want browser autocomplete suggestions — not recommended for most use cases.
 - **Multi-select**: add `multiSelect`; `element.value` becomes a comma-separated string of selected values. Use `badgeFullWidth` to make badges span the full input width.
 - **Empty async menu**: use `emptyMenuAsync` to show an open (empty) menu immediately when in async mode before the user types.
 - **Programmatic control**: `menuIsOpen` lets you open or close the dropdown from JavaScript without user interaction.
@@ -152,6 +153,7 @@ For detailed form pattern guidance (when to pair fields, spacing, responsive beh
 | `async` | boolean | `false` | Disables client-side filtering for server-side async filtering |
 | `emptyMenuAsync` | boolean | `false` | Shows an empty menu on open when in async mode |
 | `menuIsOpen` | boolean | `false` | Programmatically controls the dropdown menu open state |
+| `autocomplete` | string | `"off"` | Controls browser autocomplete behavior — typically set to `"off"` to prevent browser autofill interference with the dropdown list |
 | `filterFunction` | `(inputValue: string, item) => boolean` | contains filter | Custom filter function (ignored when `async` is true) |
 | `floatingOpts` | object | — | Options for Floating UI positioning (advanced) |
 
