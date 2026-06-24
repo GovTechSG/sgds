@@ -61,7 +61,7 @@ function handleSetupAction(event: CustomEvent<{ item: HTMLElement }>) {
 
 <template>
   <sgds-dropdown menuAlignRight @sgds-select="handleSetupAction">
-    <sgds-button slot="toggler" size="sm" variant="outline" tone="neutral" ariaLabel="AI setup">
+    <sgds-button slot="toggler" size="sm" variant="outline" tone="neutral" :ariaLabel.prop="'AI setup'">
       AI setup
       <sgds-icon name="chevron-down" size="sm" slot="rightIcon"></sgds-icon>
     </sgds-button>

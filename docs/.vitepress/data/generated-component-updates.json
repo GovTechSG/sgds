@@ -1,4 +1,31 @@
 {
+  "card": [
+    {
+      "Date": "24 Jun 2026",
+      "Version": "v3.22.1",
+      "Description": "Only stretchedLink cards get hover effects in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/718\" target=\"_blank\" rel=\"noopener noreferrer\">#718</a>."
+    },
+    {
+      "Date": "13 May 2026",
+      "Version": "v3.19.0",
+      "Description": "Replace typography css variables and update the gaps in the card in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/641\" target=\"_blank\" rel=\"noopener noreferrer\">#641</a>."
+    },
+    {
+      "Date": "29 Apr 2026",
+      "Version": "v3.18.0",
+      "Description": "Stretched link cards forward anchor tag's attribute in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/628\" target=\"_blank\" rel=\"noopener noreferrer\">#628</a>."
+    },
+    {
+      "Date": "02 Mar 2026",
+      "Version": "v3.12.0",
+      "Description": "Card should have hover effects in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/551\" target=\"_blank\" rel=\"noopener noreferrer\">#551</a>."
+    },
+    {
+      "Date": "06 Oct 2025",
+      "Version": "v3.5.0",
+      "Description": "StretchedLink variant's compatibility with ssr in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/387\" target=\"_blank\" rel=\"noopener noreferrer\">#387</a>."
+    }
+  ],
   "combo-box": [
     {
       "Date": "23 Jun 2026",
@@ -495,33 +522,6 @@
       "Date": "03 Sept 2025",
       "Version": "v3.3.1",
       "Description": "Dropdown Menu to flow outside of document flow @clukhei in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/348\" target=\"_blank\" rel=\"noopener noreferrer\">#348</a>."
-    }
-  ],
-  "card": [
-    {
-      "Date": "13 May 2026",
-      "Version": "v3.19.0",
-      "Description": "Replace typography css variables and update the gaps in the card in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/641\" target=\"_blank\" rel=\"noopener noreferrer\">#641</a>."
-    },
-    {
-      "Date": "29 Apr 2026",
-      "Version": "v3.18.0",
-      "Description": "Stretched link cards forward anchor tag's attribute in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/628\" target=\"_blank\" rel=\"noopener noreferrer\">#628</a>."
-    },
-    {
-      "Date": "02 Mar 2026",
-      "Version": "v3.12.0",
-      "Description": "Card should have hover effects in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/551\" target=\"_blank\" rel=\"noopener noreferrer\">#551</a>."
-    },
-    {
-      "Date": "06 Oct 2025",
-      "Version": "v3.5.0",
-      "Description": "StretchedLink variant's compatibility with ssr in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/387\" target=\"_blank\" rel=\"noopener noreferrer\">#387</a>."
-    },
-    {
-      "Date": "22 Sept 2025",
-      "Version": "v3.4.0",
-      "Description": "New upper slot in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/378\" target=\"_blank\" rel=\"noopener noreferrer\">#378</a>."
     }
   ],
   "checkbox": [

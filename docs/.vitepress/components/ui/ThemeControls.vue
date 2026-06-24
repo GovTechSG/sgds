@@ -109,7 +109,7 @@ function selectPalette(id: PaletteId) {
       :variant="variant"
       :tone="tone"
       :size="size"
-      ariaLabel="Change theme colour"
+      :ariaLabel.prop="'Change theme colour'"
       title="Change theme colour"
       @click.stop="togglePalette"
     ></sgds-icon-button>
@@ -118,7 +118,7 @@ function selectPalette(id: PaletteId) {
       :variant="variant"
       :tone="tone"
       :size="size"
-      :ariaLabel="activeDark ? 'Switch to light mode' : 'Switch to dark mode'"
+      :ariaLabel.prop="activeDark ? 'Switch to light mode' : 'Switch to dark mode'"
       :title="activeDark ? 'Switch to light mode' : 'Switch to dark mode'"
       @click="handleToggleTheme"
     ></sgds-icon-button>

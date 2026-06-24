@@ -120,7 +120,7 @@ const canZoomOut = computed(() => zoomLevel.value > ZOOM_MIN);
           tone="neutral"
           size="md"
           class="dts-scroll-cue"
-          ariaLabel="Scroll right"
+          :ariaLabel.prop="'Scroll right'"
           @click.stop="scrollRight"
         ></sgds-icon-button>
       </transition>
@@ -131,7 +131,7 @@ const canZoomOut = computed(() => zoomLevel.value > ZOOM_MIN);
         tone="neutral"
         size="md"
         class="dts-expand-cue"
-        ariaLabel="Open at full size"
+        :ariaLabel.prop="'Open at full size'"
         @click.stop="openFullscreen"
       ></sgds-icon-button>
     </div>
@@ -149,7 +149,7 @@ const canZoomOut = computed(() => zoomLevel.value > ZOOM_MIN);
           variant="ghost"
           tone="neutral"
           size="sm"
-          ariaLabel="Zoom out"
+          :ariaLabel.prop="'Zoom out'"
           :disabled="!canZoomOut"
           @click="zoomOut"
         ></sgds-icon-button>
@@ -166,7 +166,7 @@ const canZoomOut = computed(() => zoomLevel.value > ZOOM_MIN);
           variant="ghost"
           tone="neutral"
           size="sm"
-          ariaLabel="Zoom in"
+          :ariaLabel.prop="'Zoom in'"
           :disabled="!canZoomIn"
           @click="zoomIn"
         ></sgds-icon-button>

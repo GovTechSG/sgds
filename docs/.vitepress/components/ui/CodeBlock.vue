@@ -440,7 +440,7 @@ const langLabel = computed(() => {
         size="xs"
         variant="ghost"
         tone="neutral"
-        :ariaLabel="copied ? 'Copied!' : (prompt ? 'Copy prompt' : 'Copy code')"
+        :ariaLabel.prop="copied ? 'Copied!' : (prompt ? 'Copy prompt' : 'Copy code')"
         @click="copy"
       >
         <sgds-icon :name="copied ? 'check' : 'files'" size="sm" slot="leftIcon"></sgds-icon>
