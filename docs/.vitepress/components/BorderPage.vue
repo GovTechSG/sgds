@@ -260,7 +260,7 @@ const radiusExamples: Example[] = [
                   </span>
                 </div>
               </div>
-              <sgds-button variant="primary">Button label</sgds-button>
+              <sgds-button variant="primary" ariaLabel="Button label">Button label</sgds-button>
             </div>
           </div>
         </article>
@@ -295,8 +295,8 @@ const radiusExamples: Example[] = [
                     <sgds-close-button inert></sgds-close-button>
                   </div>
                   <div class="portal-modal-footer">
-                    <sgds-button variant="outline" tabindex="-1">Button</sgds-button>
-                    <sgds-button variant="primary" tabindex="-1">Button</sgds-button>
+                    <sgds-button variant="outline" tabindex="-1" ariaLabel="Button">Button</sgds-button>
+                    <sgds-button variant="primary" tabindex="-1" ariaLabel="Button">Button</sgds-button>
                   </div>
                 </div>
               </div>

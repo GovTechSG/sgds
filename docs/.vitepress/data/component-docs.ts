@@ -2573,7 +2573,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "Loading, `disabled`, and focus states keep button behaviour predictable.",
       },
     ],
-    anatomyMarkup: `<div class="portal-demo-row"><sgds-button class="portal-anatomy-button"><sgds-icon slot="leftIcon" name="house"></sgds-icon><span class="portal-anatomy-button-label">Button label</span><sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon></sgds-button></div>`,
+    anatomyMarkup: `<div class="portal-demo-row"><sgds-button class="portal-anatomy-button" ariaLabel="Button label"><sgds-icon slot="leftIcon" name="house"></sgds-icon><span class="portal-anatomy-button-label">Button label</span><sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon></sgds-button></div>`,
     anatomyParts: [
       { title: "Container" },
       { title: "Label" },
@@ -2590,7 +2590,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "",
         description: "",
-        markup: `<sgds-button class="portal-structure-button" variant="outline">
+        markup: `<sgds-button class="portal-structure-button" variant="outline" ariaLabel="Button label">
           <sgds-icon slot="leftIcon" name="house"></sgds-icon>
           Button label
           <sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon>
@@ -2733,7 +2733,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "",
         description: "",
-        markup: `<sgds-button class="portal-structure-button">
+        markup: `<sgds-button class="portal-structure-button" ariaLabel="Button label">
           <sgds-icon slot="leftIcon" name="house"></sgds-icon>
           Button label
           <sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon>
@@ -2875,21 +2875,21 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Primary",
             value: "primary",
-            markup: `<div class="portal-demo-row"><sgds-button>Primary action</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Primary action">Primary action</sgds-button></div>`,
             description:
               "Use for the main action on a screen. Each view should have only one primary button to communicate the next step.",
           },
           {
             label: "Outline",
             value: "outline",
-            markup: `<div class="portal-demo-row"><sgds-button variant="outline">Secondary action</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button variant="outline" ariaLabel="Secondary action">Secondary action</sgds-button></div>`,
             description:
               "Use for secondary actions that support the primary action, such as cancelling, going back, or choosing an alternative.",
           },
           {
             label: "Ghost",
             value: "ghost",
-            markup: `<div class="portal-demo-row"><sgds-button variant="ghost">Tertiary action</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button variant="ghost" ariaLabel="Tertiary action">Tertiary action</sgds-button></div>`,
             description:
               "Use for tertiary or low-priority actions that should not compete visually with the primary or secondary button.",
           },
@@ -2905,28 +2905,28 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Brand",
             value: "brand",
-            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "The default button tone. Use for standard actions in the main SGDS brand colour system.",
           },
           {
             label: "Neutral",
             value: "neutral",
-            markup: `<div class="portal-demo-row"><sgds-button tone="neutral">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button tone="neutral" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use when the button should feel quieter or sit inside a more neutral interface context.",
           },
           {
             label: "Danger",
             value: "danger",
-            markup: `<div class="portal-demo-row"><sgds-button tone="danger">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button tone="danger" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use for destructive or high-risk actions that need stronger visual warning.",
           },
           {
             label: "Fixed light",
             value: "fixed-light",
-            markup: `<div class="portal-demo-row"><sgds-button tone="fixed-light">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button tone="fixed-light" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Only use on fixed dark or strongly coloured backgrounds. If it does not stand out on the page surface, use a standard tone instead.",
           },
@@ -2942,28 +2942,28 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Extra small",
             value: "xs",
-            markup: `<div class="portal-demo-row"><sgds-button size="xs">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button size="xs" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use in tight, compact surfaces such as table rows, toolbars, or dense list items where space is limited.",
           },
           {
             label: "Small",
             value: "sm",
-            markup: `<div class="portal-demo-row"><sgds-button size="sm">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button size="sm" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use in secondary contexts such as inline actions, cards, or alongside other compact controls.",
           },
           {
             label: "Medium",
             value: "md",
-            markup: `<div class="portal-demo-row"><sgds-button size="md">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button size="md" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "The default size. Use for most primary actions across forms, dialogs, and general page content.",
           },
           {
             label: "Large",
             value: "lg",
-            markup: `<div class="portal-demo-row"><sgds-button size="lg">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button size="lg" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use for prominent calls to action, such as hero sections or landing pages, where the button needs extra visual weight.",
           },
@@ -2986,7 +2986,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "No leading icon",
             value: "none",
-            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Omit the leading icon when the label alone is clear and no visual reinforcement is needed.",
           },
@@ -3009,7 +3009,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "No trailing icon",
             value: "none",
-            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Omit the trailing icon when the action does not imply movement, navigation, or a follow-up interaction.",
           },
@@ -3025,27 +3025,27 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Default",
             value: "default",
-            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label">Button label</sgds-button></div>`,
             description: "Use for actions that are available immediately.",
           },
           {
             label: "Disabled",
             value: "disabled",
-            markup: `<div class="portal-demo-row"><sgds-button disabled>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button disabled ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use disabled when the action is unavailable and the page explains how to enable it.",
           },
           {
             label: "Loading",
             value: "loading",
-            markup: `<div class="portal-demo-row"><sgds-button loading>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button loading ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use loading after an action has been submitted and the user should wait.",
           },
           {
             label: "Active",
             value: "active",
-            markup: `<div class="portal-demo-row"><sgds-button variant="outline" active>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button variant="outline" active ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use active when the button represents a selected or pressed state.",
           },
@@ -3062,7 +3062,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<div class="sgds:flex sgds:w-full sgds:justify-center">
-              <sgds-button>Button label</sgds-button>
+              <sgds-button ariaLabel="Button label">Button label</sgds-button>
             </div>`,
             description: "Use the default width for inline actions.",
           },
@@ -3070,7 +3070,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Full width",
             value: "full-width",
             markup: `<div class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)]">
-              <sgds-button fullWidth>Button label</sgds-button>
+              <sgds-button fullWidth ariaLabel="Button label">Button label</sgds-button>
             </div>`,
             description:
               "Use fullWidth on mobile, forms, or stacked actions where the button should span the available width.",
@@ -3083,9 +3083,9 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Variants",
         "Use the default and alternate variants to express priority and supporting actions.",
         `<div class="portal-demo-row">
-          <sgds-button>Primary action</sgds-button>
-          <sgds-button variant="outline">Secondary action</sgds-button>
-          <sgds-button variant="ghost">Tertiary action</sgds-button>
+          <sgds-button ariaLabel="Primary action">Primary action</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Secondary action">Secondary action</sgds-button>
+          <sgds-button variant="ghost" ariaLabel="Tertiary action">Tertiary action</sgds-button>
         </div>`,
       ),
     ],
@@ -3104,13 +3104,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           title: "Use a clear action label",
           description: "Specific labels help users understand the outcome before they act.",
           tone: "do",
-          markup: `<div class="portal-demo-row"><sgds-button>Save changes</sgds-button></div>`,
+          markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Save changes">Save changes</sgds-button></div>`,
         },
         {
           title: "Do not use vague labels",
           description: "Generic labels such as Click here force users to read surrounding text to understand what happens.",
           tone: "dont",
-          markup: `<div class="portal-demo-row"><sgds-button>Click here</sgds-button></div>`,
+          markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Click here">Click here</sgds-button></div>`,
         },
       ],
     },
@@ -3500,7 +3500,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<sgds-card class="portal-demo-card">
               <span slot="title">Card title</span>
               <span slot="description">Use a footer button when the action needs stronger emphasis.</span>
-              <sgds-button slot="footer" variant="outline">Take action</sgds-button>
+              <sgds-button slot="footer" variant="outline" ariaLabel="Take action">Take action</sgds-button>
             </sgds-card>`,
           },
           {
@@ -3512,7 +3512,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               <span slot="title">Card title</span>
               <span slot="description">Use a full-width footer button when the primary action needs strong emphasis.</span>
               <div slot="footer" class="portal-card-footer-full-width">
-                <sgds-button variant="primary" fullWidth>Take action</sgds-button>
+                <sgds-button variant="primary" fullWidth ariaLabel="Take action">Take action</sgds-button>
               </div>
             </sgds-card>`,
           },
@@ -6049,8 +6049,8 @@ const componentDocs: Record<string, ComponentDoc> = {
                 <span slot="title">Review details</span>
                 <span slot="description">Confirm the information before continuing.</span>
                 <div slot="footer" class="portal-demo-row">
-                  <sgds-button>Confirm</sgds-button>
-                  <sgds-button variant="outline">Cancel</sgds-button>
+                  <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
+                  <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
                 </div>
               </sgds-drawer>
             </div>`,
@@ -6081,8 +6081,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             <span slot="description">Review the information before saving.</span>
             <p>Drawers are useful for secondary tasks that need more space than a popover.</p>
             <div slot="footer" class="portal-demo-row">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Save</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Save">Save</sgds-button>
             </div>
           </sgds-drawer>
         </div>`,
@@ -6100,8 +6100,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             <span slot="description">Refine the list without leaving the page.</span>
             <p>Adjust filters and apply them when you are done.</p>
             <div slot="footer" class="portal-demo-row">
-              <sgds-button variant="outline">Reset</sgds-button>
-              <sgds-button>Apply filters</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Reset">Reset</sgds-button>
+              <sgds-button ariaLabel="Apply filters">Apply filters</sgds-button>
             </div>
           </sgds-drawer>`,
         },
@@ -6115,8 +6115,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             <span slot="description">This action cannot be undone.</span>
             <p>Are you sure you want to permanently delete your account?</p>
             <div slot="footer" class="portal-demo-row">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button variant="danger">Delete account</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button variant="danger" ariaLabel="Delete account">Delete account</sgds-button>
             </div>
           </sgds-drawer>`,
         },
@@ -6157,8 +6157,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             <span slot="description">Update and save your changes.</span>
             <p>Make changes to the form below.</p>
             <div slot="footer" class="portal-demo-row">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Save changes</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Save changes">Save changes</sgds-button>
             </div>
           </sgds-drawer>`,
         },
@@ -7520,7 +7520,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Use icons to reinforce meaning already clear from nearby text. They aid recognition on later visits.",
           tone: "do",
-          markup: `<sgds-button>
+          markup: `<sgds-button ariaLabel="Download report">
             <sgds-icon slot="leftIcon" name="download"></sgds-icon>
             Download report
           </sgds-button>`,
@@ -7542,11 +7542,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Pick one icon per concept and reuse it across the product. Switching icons for the same idea hurts recognition.",
           tone: "do",
           markup: `<div class="portal-demo-row">
-            <sgds-button variant="ghost">
+            <sgds-button variant="ghost" ariaLabel="Settings">
               <sgds-icon slot="leftIcon" name="gear"></sgds-icon>
               Settings
             </sgds-button>
-            <sgds-button variant="ghost">
+            <sgds-button variant="ghost" ariaLabel="Account settings">
               <sgds-icon slot="leftIcon" name="gear"></sgds-icon>
               Account settings
             </sgds-button>
@@ -9239,7 +9239,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Action",
             value: "action",
             markup: `<sgds-input label="Search" placeholder="Search services">
-              <sgds-button slot="action">Search</sgds-button>
+              <sgds-button slot="action" ariaLabel="Search">Search</sgds-button>
             </sgds-input>`,
             description:
               "Use an action slot when the input has a directly associated command.",
@@ -9598,7 +9598,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       <sgds-mainnav-item active><a href="#">Services</a></sgds-mainnav-item>
       <sgds-mainnav-item><a href="#">Resources</a></sgds-mainnav-item>
       <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
-      <sgds-button slot="end">Log in</sgds-button>
+      <sgds-button slot="end" ariaLabel="Log in">Log in</sgds-button>
     </sgds-mainnav>`,
     anatomyParts: [
       { title: "Slot content" },
@@ -9772,7 +9772,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
-            <sgds-button slot="end" variant="primary">Sign in</sgds-button>
+            <sgds-button slot="end" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
           </sgds-mainnav>
         </div>`,
             description:
@@ -9796,7 +9796,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
-              <sgds-button slot="non-collapsible" size="sm">Log in</sgds-button>
+              <sgds-button slot="non-collapsible" size="sm" ariaLabel="Log in">Log in</sgds-button>
             </sgds-mainnav>
         </div>`,
             description:
@@ -9907,7 +9907,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <sgds-mainnav-item>About</sgds-mainnav-item>
-              <sgds-button slot="end" variant="primary">Sign in</sgds-button>
+              <sgds-button slot="end" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
             </sgds-mainnav>
           </div>`,
         },
@@ -9922,8 +9922,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <div slot="end">
                 <sgds-badge>New</sgds-badge>
-                <sgds-button variant="primary">Get started</sgds-button>
-                <sgds-button variant="outline">Sign in</sgds-button>
+                <sgds-button variant="primary" ariaLabel="Get started">Get started</sgds-button>
+                <sgds-button variant="outline" ariaLabel="Sign in">Sign in</sgds-button>
               </div>
             </sgds-mainnav>
           </div>`,
@@ -10141,7 +10141,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <div class="portal-slot-example portal-modal-slot-content"><span>Slot content</span></div>
         </div>
         <div class="portal-modal-footer">
-          <sgds-button>Confirm</sgds-button>
+          <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
         </div>
       </div>
     </div>`,
@@ -10183,8 +10183,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Are you sure you want to continue?</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10204,8 +10204,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Use this size for typical messages and short forms.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10225,8 +10225,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Use this size for richer content such as multi-field forms.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10246,8 +10246,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Use this size for content-heavy focused tasks that still belong in a modal.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10267,8 +10267,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Use this for focused tasks that need more space while still blocking the page behind it.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10298,7 +10298,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Users can dismiss the modal from the header.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button>Got it</sgds-button>
+              <sgds-button ariaLabel="Got it">Got it</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10317,8 +10317,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Use only when explicit choice is required.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10348,8 +10348,8 @@ const componentDocs: Record<string, ComponentDoc> = {
                 </div>
                 <div class="portal-modal-body"><p>The footer contains the actions that complete the modal task.</p></div>
                 <div class="portal-modal-footer">
-                  <sgds-button variant="outline">Cancel</sgds-button>
-                  <sgds-button>Submit</sgds-button>
+                  <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+                  <sgds-button ariaLabel="Submit">Submit</sgds-button>
                 </div>
               </div>
             </div>`,
@@ -10394,8 +10394,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               <p>The modal can contain short supporting content and clear actions.</p>
             </div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10409,8 +10409,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           <h2 slot="title">Confirm submission</h2>
           <p slot="description">Review the information before you continue.</p>
           <p>The modal can contain short supporting content and clear actions.</p>
-          <sgds-button slot="footer" variant="outline">Cancel</sgds-button>
-          <sgds-button slot="footer">Confirm</sgds-button>
+          <sgds-button slot="footer" variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+          <sgds-button slot="footer" ariaLabel="Confirm">Confirm</sgds-button>
         </sgds-modal>`,
       },
     ],
@@ -10432,8 +10432,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               </div>
               <div class="portal-modal-body"><p>Removing this draft will permanently delete its contents.</p></div>
               <div class="portal-modal-footer">
-                <sgds-button variant="outline">Keep draft</sgds-button>
-                <sgds-button variant="danger">Delete draft</sgds-button>
+                <sgds-button variant="outline" ariaLabel="Keep draft">Keep draft</sgds-button>
+                <sgds-button variant="danger" ariaLabel="Delete draft">Delete draft</sgds-button>
               </div>
             </div>
           </div>`,
@@ -10453,7 +10453,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               </div>
               <div class="portal-modal-body"><p>Your changes have been saved.</p></div>
               <div class="portal-modal-footer">
-                <sgds-button>OK</sgds-button>
+                <sgds-button ariaLabel="OK">OK</sgds-button>
               </div>
             </div>
           </div>`,
@@ -10474,8 +10474,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               </div>
               <div class="portal-modal-body"><p>Confirm that the information is correct before you continue.</p></div>
               <div class="portal-modal-footer">
-                <sgds-button variant="outline">Review again</sgds-button>
-                <sgds-button>Submit application</sgds-button>
+                <sgds-button variant="outline" ariaLabel="Review again">Review again</sgds-button>
+                <sgds-button ariaLabel="Submit application">Submit application</sgds-button>
               </div>
             </div>
           </div>`,
@@ -10520,8 +10520,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               </div>
               <div class="portal-modal-body"><p>You will need to sign in again to continue.</p></div>
               <div class="portal-modal-footer">
-                <sgds-button variant="outline">Cancel</sgds-button>
-                <sgds-button>Sign out</sgds-button>
+                <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+                <sgds-button ariaLabel="Sign out">Sign out</sgds-button>
               </div>
             </div>
           </div>`,
@@ -10541,7 +10541,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               </div>
               <div class="portal-modal-body"><p>We have updated the dashboard with new charts.</p></div>
               <div class="portal-modal-footer">
-                <sgds-button>Got it</sgds-button>
+                <sgds-button ariaLabel="Got it">Got it</sgds-button>
               </div>
             </div>
           </div>`,
@@ -12393,7 +12393,7 @@ const componentDocs: Record<string, ComponentDoc> = {
                   <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
                 </sgds-sidebar-item>
               </sgds-sidebar-section>
-              <div slot="lower" class="sgds:p-md"><sgds-button size="sm" fullWidth>Help</sgds-button></div>
+              <div slot="lower" class="sgds:p-md"><sgds-button size="sm" fullWidth ariaLabel="Help">Help</sgds-button></div>
             </sgds-sidebar>`,
             description:
               "Use slots for persistent header or footer content connected to the sidebar.",
@@ -13635,8 +13635,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             <div class="sgds:flex sgds:flex-col sgds:gap-xs sgds:rounded-md sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-md">
               <span class="sgds:text-subtitle-sm sgds:font-semibold">Review details</span>
               <div class="sgds:flex sgds:justify-between sgds:gap-sm">
-                <sgds-button variant="outline" size="sm">Back</sgds-button>
-                <sgds-button size="sm">Continue</sgds-button>
+                <sgds-button variant="outline" size="sm" ariaLabel="Back">Back</sgds-button>
+                <sgds-button size="sm" ariaLabel="Continue">Continue</sgds-button>
               </div>
             </div>
           </div>`,
@@ -13742,8 +13742,8 @@ const componentDocs: Record<string, ComponentDoc> = {
     anatomyMarkup: `<div class="sgds:w-[var(--sgds-dimension-688)] sgds:max-w-full">
       <sgds-subnav class="portal-anatomy-subnav">
         <h5 slot="header">Header</h5>
-        <sgds-button slot="actions" size="sm">Register</sgds-button>
-        <sgds-button slot="actions" size="sm">Exhibit</sgds-button>
+        <sgds-button slot="actions" size="sm" ariaLabel="Register">Register</sgds-button>
+        <sgds-button slot="actions" size="sm" ariaLabel="Exhibit">Exhibit</sgds-button>
         <sgds-subnav-item active><a href="#">Overview</a></sgds-subnav-item>
         <sgds-subnav-item disabled><a href="#">On-site Activities</a></sgds-subnav-item>
         <sgds-subnav-item><a href="#">Programme</a></sgds-subnav-item>
@@ -13859,8 +13859,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-subnav-item active>Overview</sgds-subnav-item>
             <sgds-subnav-item>Tasks</sgds-subnav-item>
             <div slot="actions">
-              <sgds-button size="sm" variant="outline">Share</sgds-button>
-              <sgds-button size="sm" variant="primary">New task</sgds-button>
+              <sgds-button size="sm" variant="outline" ariaLabel="Share">Share</sgds-button>
+              <sgds-button size="sm" variant="primary" ariaLabel="New task">New task</sgds-button>
             </div>
           </sgds-subnav>
         </div>`,
@@ -13905,7 +13905,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         `<div class="portal-demo-nav">
           <sgds-subnav>
             <h5 slot="header">Header</h5>
-            <sgds-button slot="actions" size="sm" variant="primary">Manage</sgds-button>
+            <sgds-button slot="actions" size="sm" variant="primary" ariaLabel="Manage">Manage</sgds-button>
             <sgds-subnav-item active><a href="#">Overview</a></sgds-subnav-item>
             <sgds-subnav-item><a href="#">History</a></sgds-subnav-item>
             <sgds-subnav-item><a href="#">Settings</a></sgds-subnav-item>
@@ -13920,7 +13920,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         `<div class="portal-demo-nav">
           <sgds-subnav>
             <span slot="header">Applications</span>
-            <sgds-button slot="actions" size="sm" variant="ghost">Manage</sgds-button>
+            <sgds-button slot="actions" size="sm" variant="ghost" ariaLabel="Manage">Manage</sgds-button>
             <sgds-subnav-item active><a href="#">Overview</a></sgds-subnav-item>
             <sgds-subnav-item><a href="#">History</a></sgds-subnav-item>
             <sgds-subnav-item><a href="#">Settings</a></sgds-subnav-item>
@@ -13970,8 +13970,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               <sgds-subnav-item active>Tasks</sgds-subnav-item>
               <sgds-subnav-item>Members</sgds-subnav-item>
               <div slot="actions">
-                <sgds-button size="sm" variant="outline">Share</sgds-button>
-                <sgds-button size="sm" variant="primary">New task</sgds-button>
+                <sgds-button size="sm" variant="outline" ariaLabel="Share">Share</sgds-button>
+                <sgds-button size="sm" variant="primary" ariaLabel="New task">New task</sgds-button>
               </div>
             </sgds-subnav>
           </div>`,
@@ -16452,7 +16452,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Top",
             value: "top",
             markup: `<sgds-tooltip content="Tooltip on top" placement="top">
-          <sgds-button variant="outline">Hover me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
         </sgds-tooltip>`,
             description:
               "Anchors above the target. This is the default placement.",
@@ -16461,7 +16461,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Bottom",
             value: "bottom",
             markup: `<sgds-tooltip content="Tooltip on bottom" placement="bottom">
-          <sgds-button variant="outline">Hover me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
         </sgds-tooltip>`,
             description:
               "Drops below the target. Useful when there is little headroom above.",
@@ -16470,7 +16470,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Left",
             value: "left",
             markup: `<sgds-tooltip content="Tooltip on left" placement="left">
-          <sgds-button variant="outline">Hover me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
         </sgds-tooltip>`,
             description: "Sits to the leading side of the target.",
           },
@@ -16478,7 +16478,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Right",
             value: "right",
             markup: `<sgds-tooltip content="Tooltip on right" placement="right">
-          <sgds-button variant="outline">Hover me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
         </sgds-tooltip>`,
             description: "Sits to the trailing side of the target.",
           },
@@ -16495,7 +16495,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Hover and focus",
             value: "hover-focus",
             markup: `<sgds-tooltip content="Opens on hover or keyboard focus" trigger="hover focus">
-          <sgds-button variant="outline">Hover or focus me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover or focus me">Hover or focus me</sgds-button>
         </sgds-tooltip>`,
             description:
               "Default behaviour, open through mouse hover or keyboard focus.",
@@ -16504,7 +16504,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Hover",
             value: "hover",
             markup: `<sgds-tooltip content="Opens on hover only" trigger="hover">
-          <sgds-button variant="outline">Hover me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
         </sgds-tooltip>`,
             description: "Opens only on mouse hover.",
           },
@@ -16512,7 +16512,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Focus",
             value: "focus",
             markup: `<sgds-tooltip content="Opens on keyboard focus only" trigger="focus">
-          <sgds-button variant="outline">Focus me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Focus me">Focus me</sgds-button>
         </sgds-tooltip>`,
             description: "Opens only when the target receives keyboard focus.",
           },
@@ -16520,7 +16520,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Click",
             value: "click",
             markup: `<sgds-tooltip content="Opens and stays on click" trigger="click">
-          <sgds-button variant="outline">Click me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Click me">Click me</sgds-button>
         </sgds-tooltip>`,
             description: "Toggles open on click and stays until clicked again.",
           },
@@ -16537,7 +16537,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Short",
             value: "short",
             markup: `<sgds-tooltip content="Save draft" open>
-              <sgds-button variant="outline">Hover me</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
             </sgds-tooltip>`,
             description:
               "Use short content for quick clarification of a control or icon.",
@@ -16546,7 +16546,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Long",
             value: "long",
             markup: `<sgds-tooltip content="This longer tooltip wraps within the component max width and should still remain supplementary." open>
-              <sgds-button variant="outline">Hover me</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
             </sgds-tooltip>`,
             description:
               "Avoid long tooltip content when the information is essential or needs interaction.",
@@ -16559,7 +16559,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Hover and focus",
         "Use tooltips for short supplementary explanations, not essential instructions.",
         `<sgds-tooltip content="More details about this action" trigger="hover focus">
-          <sgds-button variant="outline">Hover to view</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover to view">Hover to view</sgds-button>
         </sgds-tooltip>`,
       ),
     ],
@@ -16599,7 +16599,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Only use a tooltip when it explains something the label or icon does not already convey.",
           tone: "dont",
           markup: `<sgds-tooltip content="Submit" trigger="hover focus" open>
-            <sgds-button>Submit</sgds-button>
+            <sgds-button ariaLabel="Submit">Submit</sgds-button>
           </sgds-tooltip>`,
         },
         {
@@ -17189,7 +17189,7 @@ const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
         <sgds-breadcrumb-item><a href="#">Page</a></sgds-breadcrumb-item>
       </sgds-breadcrumb>`;
     case "button":
-      return `<div class="portal-demo-row"><sgds-button>Click here</sgds-button></div>`;
+      return `<div class="portal-demo-row"><sgds-button ariaLabel="Click here">Click here</sgds-button></div>`;
     case "card":
       return `<sgds-card class="portal-demo-card">
         <span slot="subtitle">General</span>
@@ -17197,7 +17197,7 @@ const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
         <div class="portal-slot-example"><span>First block of content</span></div>
         <span slot="description">Supporting description that repeats the title instead of adding useful context.</span>
         <span slot="lower">Secondary text</span>
-        <sgds-button slot="footer" variant="outline">Action one</sgds-button>
+        <sgds-button slot="footer" variant="outline" ariaLabel="Action one">Action one</sgds-button>
       </sgds-card>`;
     case "checkbox":
       return `<sgds-checkbox-group label="Choose">
@@ -17222,8 +17222,8 @@ const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
           <span slot="description">Task two and another decision in the same drawer.</span>
           <p>Long content and multiple unrelated tasks make the drawer harder to complete.</p>
           <div slot="footer" class="portal-demo-row">
-            <sgds-button>Continue</sgds-button>
-            <sgds-button variant="outline">Open something else</sgds-button>
+            <sgds-button ariaLabel="Continue">Continue</sgds-button>
+            <sgds-button variant="outline" ariaLabel="Open something else">Open something else</sgds-button>
           </div>
         </sgds-drawer>
       </div>`;
@@ -18386,30 +18386,30 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   button: {
     builtIn: `<div class="portal-demo-row sgds:gap-sm">
-      <sgds-button>Submit application</sgds-button>
-      <sgds-button disabled>Submitting</sgds-button>
+      <sgds-button ariaLabel="Submit application">Submit application</sgds-button>
+      <sgds-button disabled ariaLabel="Submitting">Submitting</sgds-button>
     </div>`,
-    author: `<div class="portal-demo-row"><sgds-button>Pay application fee</sgds-button></div>`,
+    author: `<div class="portal-demo-row"><sgds-button ariaLabel="Pay application fee">Pay application fee</sgds-button></div>`,
     focus: `<div class="portal-demo-row sgds:gap-sm">
-      <sgds-button variant="outline">Back</sgds-button>
-      <sgds-button>Continue</sgds-button>
+      <sgds-button variant="outline" ariaLabel="Back">Back</sgds-button>
+      <sgds-button ariaLabel="Continue">Continue</sgds-button>
     </div>`,
   },
   card: {
     builtIn: `<sgds-card class="portal-demo-card">
       <span slot="title">Renew your passport</span>
       <span slot="description">Check the documents you need before applying.</span>
-      <sgds-button slot="footer" variant="outline">View details</sgds-button>
+      <sgds-button slot="footer" variant="outline" ariaLabel="View details">View details</sgds-button>
     </sgds-card>`,
     author: `<sgds-card class="portal-demo-card">
       <span slot="title">Housing grant</span>
       <span slot="description">Find out if your household is eligible.</span>
-      <sgds-button slot="footer">Check eligibility</sgds-button>
+      <sgds-button slot="footer" ariaLabel="Check eligibility">Check eligibility</sgds-button>
     </sgds-card>`,
     focus: `<sgds-card class="portal-demo-card">
       <span slot="title">Application draft</span>
       <span slot="description">Continue where you left off.</span>
-      <sgds-button slot="footer">Resume</sgds-button>
+      <sgds-button slot="footer" ariaLabel="Resume">Resume</sgds-button>
     </sgds-card>`,
   },
   checkbox: {
@@ -18435,7 +18435,7 @@ const accessibilityDemoMarkupOverrides: Record<
       Read this update before continuing.
     </sgds-alert>`,
     focus: `<div class="portal-demo-row sgds:gap-sm">
-      <sgds-button variant="outline">Open panel</sgds-button>
+      <sgds-button variant="outline" ariaLabel="Open panel">Open panel</sgds-button>
       <sgds-close-button></sgds-close-button>
     </div>`,
   },
@@ -18505,13 +18505,13 @@ const accessibilityDemoMarkupOverrides: Record<
       <sgds-drawer open contained size="sm">
         <span slot="title" class="sgds:font-semibold">Update address</span>
         <span slot="description">Make changes for this application only.</span>
-        <sgds-button slot="footer">Save changes</sgds-button>
+        <sgds-button slot="footer" ariaLabel="Save changes">Save changes</sgds-button>
       </sgds-drawer>
     </div>`,
     focus: `<div class="portal-demo-overlay">
       <sgds-drawer open contained size="sm">
         <span slot="title" class="sgds:font-semibold">Review details</span>
-        <sgds-button slot="footer">Confirm</sgds-button>
+        <sgds-button slot="footer" ariaLabel="Confirm">Confirm</sgds-button>
       </sgds-drawer>
     </div>`,
   },
@@ -18683,7 +18683,7 @@ const accessibilityDemoMarkupOverrides: Record<
           <sgds-close-button aria-label="Close modal"></sgds-close-button>
         </div>
         <div class="portal-modal-body"><p>This draft will be removed from your applications.</p></div>
-        <div class="portal-modal-footer"><sgds-button variant="danger">Delete draft</sgds-button></div>
+        <div class="portal-modal-footer"><sgds-button variant="danger" ariaLabel="Delete draft">Delete draft</sgds-button></div>
       </div>
     </div>`,
     focus: `<div class="portal-modal-preview">
@@ -18694,7 +18694,7 @@ const accessibilityDemoMarkupOverrides: Record<
           </div>
           <sgds-close-button aria-label="Close modal"></sgds-close-button>
         </div>
-        <div class="portal-modal-footer"><sgds-button>Confirm</sgds-button></div>
+        <div class="portal-modal-footer"><sgds-button ariaLabel="Confirm">Confirm</sgds-button></div>
       </div>
     </div>`,
   },
@@ -18800,7 +18800,7 @@ const accessibilityDemoMarkupOverrides: Record<
     </div>`,
     focus: `<div class="portal-demo-stack-sm">
       <sgds-skeleton></sgds-skeleton>
-      <sgds-button variant="outline">Cancel loading</sgds-button>
+      <sgds-button variant="outline" ariaLabel="Cancel loading">Cancel loading</sgds-button>
     </div>`,
   },
   spinner: {
@@ -18814,7 +18814,7 @@ const accessibilityDemoMarkupOverrides: Record<
     </div>`,
     focus: `<div class="portal-demo-row sgds:gap-sm">
       <sgds-spinner></sgds-spinner>
-      <sgds-button variant="outline">Cancel</sgds-button>
+      <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
     </div>`,
   },
   stepper: {
@@ -18968,13 +18968,13 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   tooltip: {
     builtIn: `<sgds-tooltip content="Your Singpass name will be used for this application." trigger="hover focus">
-      <sgds-button variant="outline">Why we need this</sgds-button>
+      <sgds-button variant="outline" ariaLabel="Why we need this">Why we need this</sgds-button>
     </sgds-tooltip>`,
     author: `<sgds-tooltip content="Maximum file size is 5 MB." trigger="hover focus">
-      <sgds-button variant="outline">File size</sgds-button>
+      <sgds-button variant="outline" ariaLabel="File size">File size</sgds-button>
     </sgds-tooltip>`,
     focus: `<sgds-tooltip content="More details about this action" trigger="hover focus">
-      <sgds-button variant="outline">More information</sgds-button>
+      <sgds-button variant="outline" ariaLabel="More information">More information</sgds-button>
     </sgds-tooltip>`,
   },
 };

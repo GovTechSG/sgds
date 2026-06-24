@@ -60,7 +60,7 @@
             </div>
           </div>
 
-          <sgds-button class="sgds:absolute sgds:left-[243px] sgds:top-[75px] sgds:z-20" variant="primary">Button</sgds-button>
+          <sgds-button class="sgds:absolute sgds:left-[243px] sgds:top-[75px] sgds:z-20" variant="primary" ariaLabel="Button">Button</sgds-button>
 
           <span class="sgds:absolute sgds:left-[271px] sgds:top-[40px] sgds:z-10 sgds:block sgds:h-[42px] sgds:w-[var(--sgds-border-width-1)] sgds:bg-[var(--sgds-color-default)]" aria-hidden="true"></span>
           <span class="sgds:absolute sgds:left-[216px] sgds:top-[86px] sgds:z-10 sgds:block sgds:h-[var(--sgds-border-width-1)] sgds:w-[39px] sgds:bg-[var(--sgds-color-default)]" aria-hidden="true"></span>

@@ -287,7 +287,7 @@ export const developPage: GetStartedPageData = {
               title: "React 19 and above",
               steps: [
                 { description: "Import the library once at your app entry point.", code: `import "@govtechsg/sgds-web-component";`, lang: "ts", filename: "src/main.tsx" },
-                { description: "Use web component tags directly in any component.", code: `const App = () => {\n  return (\n    <form>\n      <sgds-input label="Full name" name="fullName"></sgds-input>\n      <sgds-button type="submit">Submit</sgds-button>\n    </form>\n  );\n};\nexport default App;`, lang: "tsx", filename: "src/App.tsx" },
+                { description: "Use web component tags directly in any component.", code: `const App = () => {\n  return (\n    <form>\n      <sgds-input label="Full name" name="fullName"></sgds-input>\n      <sgds-button type="submit" ariaLabel="Submit">Submit</sgds-button>\n    </form>\n  );\n};\nexport default App;`, lang: "tsx", filename: "src/App.tsx" },
               ],
             },
             {
