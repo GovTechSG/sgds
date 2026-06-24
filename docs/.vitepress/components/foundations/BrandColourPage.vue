@@ -166,8 +166,8 @@ const paletteRows: PaletteRow[] = [
     <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
       <sgds-tab-group ref="tabGroupRef">
-        <sgds-tab slot="nav" panel="govtech">GovTech colour</sgds-tab>
-        <sgds-tab slot="nav" panel="custom">
+        <sgds-tab slot="nav" panel="govtech" :ariaLabel.prop="'GovTech colour'">GovTech colour</sgds-tab>
+        <sgds-tab slot="nav" panel="custom" :ariaLabel.prop="'Custom colour'">
           Custom colour
           <sgds-badge variant="accent" outlined size="sm">BETA</sgds-badge>
         </sgds-tab>

@@ -7,8 +7,8 @@ import { setupSteps as steps, setupStepsGtCli as gtCliSteps } from "../../data/a
 
 <template>
   <sgds-tab-group variant="underlined">
-    <sgds-tab slot="nav" panel="npx" active>Skills CLI</sgds-tab>
-    <sgds-tab slot="nav" panel="gt-cli">GovTech CLI</sgds-tab>
+    <sgds-tab slot="nav" panel="npx" active :ariaLabel.prop="'Skills CLI'">Skills CLI</sgds-tab>
+    <sgds-tab slot="nav" panel="gt-cli" :ariaLabel.prop="'GovTech CLI'">GovTech CLI</sgds-tab>
 
     <sgds-tab-panel name="gt-cli">
       <AiInstructionStepper :steps="gtCliSteps">

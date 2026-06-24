@@ -252,8 +252,8 @@ const openFigmaToCodeTab = (event: Event) => {
       </sgds-alert>
 
       <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined">
-        <sgds-tab ref="figmaToCodeTab" slot="nav" panel="figma-to-code" active>Figma to code</sgds-tab>
-        <sgds-tab slot="nav" panel="code-to-figma">Code to Figma</sgds-tab>
+        <sgds-tab ref="figmaToCodeTab" slot="nav" panel="figma-to-code" active :ariaLabel.prop="'Figma to code'">Figma to code</sgds-tab>
+        <sgds-tab slot="nav" panel="code-to-figma" :ariaLabel.prop="'Code to Figma'">Code to Figma</sgds-tab>
 
         <sgds-tab-panel name="figma-to-code">
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
