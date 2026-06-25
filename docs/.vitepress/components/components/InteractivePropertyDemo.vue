@@ -56,6 +56,7 @@ const buildMobileBreadcrumbOverflowMarkup = (markup: string) => {
     if (!link) return;
 
     const dropdownItem = document.createElement("sgds-dropdown-item");
+    (dropdownItem as any).ariaLabel = link.textContent?.trim() || "";
     dropdownItem.appendChild(link.cloneNode(true));
     overflowMenu.appendChild(dropdownItem);
   });

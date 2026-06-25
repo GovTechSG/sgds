@@ -7,6 +7,7 @@ import { blocksSidebar } from "./data/blocks-sidebar";
 import { storyPosts } from "./data/stories";
 
 const vitePressConfig = {
+  lang: "en",
   title: "Singapore Government Design System",
   description: "Unifying Government through Design and Code.",
   transformPageData(pageData) {

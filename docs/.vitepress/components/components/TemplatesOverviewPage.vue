@@ -268,6 +268,7 @@ const getThumbnailSrc = (key: string) => {
                     v-for="opt in sortOptions"
                     :key="opt.value"
                     :active="selectedSort === opt.value"
+                    :ariaLabel.prop="opt.label"
                     @click="selectSort(opt.value)"
                   >
                     <div class="sgds:flex sgds:grow sgds:items-center">
@@ -320,6 +321,7 @@ const getThumbnailSrc = (key: string) => {
                   v-for="opt in sortOptions"
                   :key="opt.value"
                   :active="selectedSort === opt.value"
+                  :ariaLabel.prop="opt.label"
                   @click="selectSort(opt.value)"
                 >
                   <div class="sgds:flex sgds:grow sgds:items-center">

@@ -26,7 +26,7 @@
             </sgds-breadcrumb-item>
             <sgds-breadcrumb-item class="sgds:flex-none">
               <sgds-overflow-menu aria-haspopup="menu" size="sm">
-                <sgds-dropdown-item>
+                <sgds-dropdown-item :ariaLabel.prop="'Stories'">
                   <a href="/stories">Stories</a>
                 </sgds-dropdown-item>
               </sgds-overflow-menu>
