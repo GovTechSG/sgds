@@ -29,7 +29,7 @@ const principles = [
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
         <section class="sgds:flex sgds:flex-col sgds:gap-text-lg">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:mb-0">Surface</h4>
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:mb-0">Surface</h3>
             <p class="sgds:text-subtle sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:max-w-[864px] sgds:mb-0">
               Default elevation level that elevates navigation or information temporarily appearing in front of other surfaces, such as dropdown menu and tooltips. The elevation level is also applied to actionable elements after hovering over like cards and tiles.
             </p>
@@ -47,7 +47,7 @@ const principles = [
 
         <section class="sgds:flex sgds:flex-col sgds:gap-text-lg">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:mb-0">Edge</h4>
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:mb-0">Edge</h3>
             <p class="sgds:text-subtle sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:max-w-[864px] sgds:mb-0">
               A drop shadow on the edge of a top or bottom component, allowing surfaces to move behind when scrolled such as header and action bar.
             </p>
@@ -62,7 +62,7 @@ const principles = [
 
         <section class="sgds:flex sgds:flex-col sgds:gap-text-lg">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:mb-0">Opacities</h4>
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:mb-0">Opacities</h3>
             <p class="sgds:text-subtle sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:max-w-[864px] sgds:mb-0">
               An opacity background can bring focus by increasing the visual contrast of a layered surface like modals and sheets.
             </p>

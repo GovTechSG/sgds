@@ -354,7 +354,7 @@ const getThumbnailSrc = (key: string) => {
                       ></div>
                     </div>
                     <div class="sgds:flex sgds:items-center sgds:gap-component-xs sgds:w-full">
-                      <h4 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:flex-1 sgds:mb-0 sgds:text-heading-default sgds:text-left">{{ item.title }}</h4>
+                      <h3 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:flex-1 sgds:mb-0 sgds:text-heading-default sgds:text-left">{{ item.title }}</h3>
                       <sgds-icon name="arrow-right" size="2-xl" class="sgds:text-default sgds:flex-shrink-0"></sgds-icon>
                     </div>
                   </a>

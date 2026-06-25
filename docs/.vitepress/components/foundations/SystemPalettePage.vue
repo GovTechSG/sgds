@@ -89,7 +89,7 @@ const tokenCardClass = (item: SemanticColorItem) => [
             :key="`${set.title}-${group.title}`"
             class="sgds:flex sgds:flex-col sgds:gap-md"
           >
-            <h4 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-sm sgds:tracking-normal sgds:m-0">{{ group.title }}</h4>
+            <h3 class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-sm sgds:tracking-normal sgds:m-0">{{ group.title }}</h3>
             <div class="sgds-grid">
               <article
                 v-for="item in group.items"

@@ -348,7 +348,7 @@ const openFigmaToCodeTab = (event: Event) => {
       </section>
 
       <section class="sgds:mt-layout-sm sgds:flex sgds:flex-col sgds:gap-text-sm">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What is Figma Code Connect?</h4>
+        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What is Figma Code Connect?</h3>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
           <a href="https://developers.figma.com/docs/code-connect/" target="_blank" rel="noreferrer">Code Connect</a>
           links Figma components to their real code implementations. Instead of treating a selected component as a generic visual object, Figma can show the component's production code, props, variants, and implementation details in Dev Mode. Figma MCP can also use those connections to give AI agents more accurate code context.
@@ -411,7 +411,7 @@ const openFigmaToCodeTab = (event: Event) => {
       <SectionHeader id="figma-make" title="Figma Make" />
       <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
         <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What is Figma Make?</h4>
+          <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What is Figma Make?</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
             <a href="https://www.figma.com/make/" target="_blank" rel="noreferrer">Figma Make</a>
             is an AI tool for turning prompts, designs, and product context into functional prototypes. You can start from an existing design, prompt changes, edit the output, and bring the result back into Figma Design as editable layers.
@@ -419,7 +419,7 @@ const openFigmaToCodeTab = (event: Event) => {
         </div>
 
         <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">SGDS Make Kit</h4>
+          <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">SGDS Make Kit</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
             SGDS intends to build a <a href="https://help.figma.com/hc/en-us/articles/39241689698839-Get-started-with-Make-kits" target="_blank" rel="noreferrer">Make kit</a> for SGDS workflows. A Make kit gives Figma Make design system context, such as npm package references, published Figma library styles and variables, and guidelines for how components, tokens, and patterns should be used.
           </p>

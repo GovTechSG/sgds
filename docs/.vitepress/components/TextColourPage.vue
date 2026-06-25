@@ -106,7 +106,7 @@ const copyTokenValue = async (key: string, text: string) => {
         </sgds-table>
 
         <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Typography roles</h4>
+          <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Typography roles</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">Purpose-specific tokens for structured document content. Prefer these over base tokens when the element has a clear typographic role.</p>
         </div>
 
@@ -149,7 +149,7 @@ const copyTokenValue = async (key: string, text: string) => {
         </sgds-table>
 
         <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-          <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Semantic</h4>
+          <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Semantic</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">State and brand tokens that carry meaning. Use these when colour communicates a specific intent — status, feedback, or brand identity.</p>
         </div>
 

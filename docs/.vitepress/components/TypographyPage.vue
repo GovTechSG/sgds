@@ -213,9 +213,9 @@ const typePairingExamples: TypePairingExample[] = [
             class="typography-page-template__split-row"
           >
             <div class="typography-page-template__copy-pane">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
                 {{ variant.title }}
-              </h4>
+              </h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 <template v-for="(part, index) in variant.descriptionParts" :key="index">
                   <strong v-if="part.emphasised" class="sgds:font-semibold sgds:text-default">{{ part.text }}</strong>
@@ -256,9 +256,9 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Base size
-              </h4>
+              </h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 The default text size in browsers is 16px/1rem.
               </p>
@@ -282,9 +282,9 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Type scale aspect ratio
-              </h4>
+              </h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 The aspect ratio of the type system is Minor Third (1.200).
               </p>
@@ -309,9 +309,9 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Line height aspect ratio
-              </h4>
+              </h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 In the type system there is 2 aspect ratio for the line height:
               </p>
@@ -360,9 +360,9 @@ const typePairingExamples: TypePairingExample[] = [
 
           <article class="typography-page-template__split-row">
             <div class="typography-page-template__copy-pane">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 Spacing formula
-              </h4>
+              </h3>
               <div class="typography-page__formula-chip">
                 <code class="sgds:text-label-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   Font size / 4

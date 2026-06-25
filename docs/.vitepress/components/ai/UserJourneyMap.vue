@@ -795,9 +795,9 @@ function setScenario(id: ScenarioFilter) {
                 </div>
 
                 <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xs)] sgds:min-w-0 sgds:w-full">
-                  <h4 class="sgds:text-heading-default sgds:m-0 sgds:pt-[var(--sgds-padding-2-xs)] sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+                  <h3 class="sgds:text-heading-default sgds:m-0 sgds:pt-[var(--sgds-padding-2-xs)] sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
                     {{ item.label }}
-                  </h4>
+                  </h3>
                   <p v-if="detailForStep(item)?.body" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
                     {{ detailForStep(item)?.body }}
                   </p>

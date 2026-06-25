@@ -1490,11 +1490,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="info" title="Info alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+                Review the latest guidance before submitting your application. <a href="#">Read the details</a>
               </sgds-alert>
               <sgds-alert show variant="info" outlined title="Info alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+                Review the latest guidance before submitting your application. <a href="#">Read the details</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1506,11 +1506,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="success" title="Success alert">
                 <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+                Your application has been submitted successfully. <a href="#">View confirmation</a>
               </sgds-alert>
               <sgds-alert show variant="success" outlined title="Success alert">
                 <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+                Your application has been submitted successfully. <a href="#">View confirmation</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1522,11 +1522,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="danger" title="Danger alert">
                 <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+                We could not save your changes because the session expired. <a href="#">Sign in again</a>
               </sgds-alert>
               <sgds-alert show variant="danger" outlined title="Danger alert">
                 <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+                We could not save your changes because the session expired. <a href="#">Sign in again</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1538,11 +1538,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="warning" title="Warning alert">
                 <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+                Some required documents are missing from your application. <a href="#">Check requirements</a>
               </sgds-alert>
               <sgds-alert show variant="warning" outlined title="Warning alert">
                 <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+                Some required documents are missing from your application. <a href="#">Check requirements</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1554,11 +1554,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="neutral" title="Neutral alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+                This service will save your progress automatically while you complete the form. <a href="#">Learn more</a>
               </sgds-alert>
               <sgds-alert show variant="neutral" outlined title="Neutral alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+                This service will save your progress automatically while you complete the form. <a href="#">Learn more</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1578,23 +1578,23 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="info" title="Info alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+                Review the latest guidance before submitting your application. <a href="#">Read the details</a>
               </sgds-alert>
               <sgds-alert show variant="success" title="Success alert">
                 <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+                Your application has been submitted successfully. <a href="#">View confirmation</a>
               </sgds-alert>
               <sgds-alert show variant="danger" title="Danger alert">
                 <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+                We could not save your changes because the session expired. <a href="#">Sign in again</a>
               </sgds-alert>
               <sgds-alert show variant="warning" title="Warning alert">
                 <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+                Some required documents are missing from your application. <a href="#">Check requirements</a>
               </sgds-alert>
               <sgds-alert show variant="neutral" title="Neutral alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+                This service will save your progress automatically while you complete the form. <a href="#">Learn more</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1606,23 +1606,23 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="info" outlined title="Info alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+                Review the latest guidance before submitting your application. <a href="#">Read the details</a>
               </sgds-alert>
               <sgds-alert show variant="success" outlined title="Success alert">
                 <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+                Your application has been submitted successfully. <a href="#">View confirmation</a>
               </sgds-alert>
               <sgds-alert show variant="danger" outlined title="Danger alert">
                 <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+                We could not save your changes because the session expired. <a href="#">Sign in again</a>
               </sgds-alert>
               <sgds-alert show variant="warning" outlined title="Warning alert">
                 <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+                Some required documents are missing from your application. <a href="#">Check requirements</a>
               </sgds-alert>
               <sgds-alert show variant="neutral" outlined title="Neutral alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+                This service will save your progress automatically while you complete the form. <a href="#">Learn more</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1641,7 +1641,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "non-dismissible",
             markup: `<sgds-alert show variant="info" title="A non-dismissible alert">
               <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>This notice remains visible because it affects how users complete the current task. <sgds-alert-link href="#">Read notice</sgds-alert-link></div>
+              This notice remains visible because it affects how users complete the current task. <a href="#">Read notice</a>
             </sgds-alert>`,
             description:
               "Use for persistent messages that must remain visible, such as system statuses or warnings the user needs to act on.",
@@ -1651,7 +1651,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "dismissible",
             markup: `<sgds-alert show dismissible variant="info" title="A dismissible alert">
               <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>You can dismiss this message after reading the update. <sgds-alert-link href="#">View update</sgds-alert-link></div>
+              You can dismiss this message after reading the update. <a href="#">View update</a>
             </sgds-alert>`,
             description:
               "Use for non-critical messages the user can close after reading, such as informational banners or one-time notices.",
@@ -1754,23 +1754,23 @@ const componentDocs: Record<string, ComponentDoc> = {
         `<div class="portal-demo-stack">
           <sgds-alert show variant="info" title="Info alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+            Review the latest guidance before submitting your application. <a href="#">Read the details</a>
           </sgds-alert>
           <sgds-alert show variant="success" title="Success alert">
             <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-            <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+            Your application has been submitted successfully. <a href="#">View confirmation</a>
           </sgds-alert>
           <sgds-alert show variant="danger" title="Danger alert">
             <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-            <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+            We could not save your changes because the session expired. <a href="#">Sign in again</a>
           </sgds-alert>
           <sgds-alert show variant="warning" title="Warning alert">
             <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-            <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+            Some required documents are missing from your application. <a href="#">Check requirements</a>
           </sgds-alert>
           <sgds-alert show variant="neutral" title="Neutral alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+            This service will save your progress automatically while you complete the form. <a href="#">Learn more</a>
           </sgds-alert>
         </div>`,
       ),
@@ -1780,11 +1780,11 @@ const componentDocs: Record<string, ComponentDoc> = {
         `<div class="portal-demo-stack">
           <sgds-alert show dismissible variant="info" title="A dismissible alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>You can dismiss this message after reading the update. <sgds-alert-link href="#">View update</sgds-alert-link></div>
+            You can dismiss this message after reading the update. <a href="#">View update</a>
           </sgds-alert>
           <sgds-alert show variant="info" title="A non-dismissible alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>This notice remains visible because it affects how users complete the current task. <sgds-alert-link href="#">Read notice</sgds-alert-link></div>
+            This notice remains visible because it affects how users complete the current task. <a href="#">Read notice</a>
           </sgds-alert>
         </div>`,
       ),
@@ -1987,7 +1987,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "do",
           markup: `<sgds-alert show variant="info" title="Info alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+            Review the latest guidance before submitting your application. <a href="#">Read the details</a>
           </sgds-alert>`,
         },
         {
@@ -2979,7 +2979,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Leading icon",
             value: "leading",
-            markup: `<div class="portal-demo-row"><sgds-button><sgds-icon slot="leftIcon" name="house"></sgds-icon>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label"><sgds-icon slot="leftIcon" name="house"></sgds-icon>Button label</sgds-button></div>`,
             description:
               "Use a leading icon when the icon adds clarity to the action. For example, a download icon before a download label.",
           },
@@ -3002,7 +3002,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Trailing icon",
             value: "trailing",
-            markup: `<div class="portal-demo-row"><sgds-button>Button label<sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon></sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label">Button label<sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon></sgds-button></div>`,
             description:
               "Use a trailing icon to indicate navigation, forward movement, or that a menu or panel will open.",
           },
@@ -3553,7 +3553,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             description:
               "Uses a larger heading level for the title. Use when the card title needs stronger emphasis in the layout.",
             markup: `<sgds-card class="portal-demo-card portal-card-title-h4-demo">
-              <h4 slot="title" class="portal-card-title-h4 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Card title</h4>
+              <h3 slot="title" class="portal-card-title-h4 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Card title</h3>
               <span slot="description">Use a higher emphasis when the title needs more prominence.</span>
             </sgds-card>`,
           },
@@ -15781,7 +15781,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Browse datasets</span>
           <span slot="description">Open data published by Singapore agencies.</span>
-          <a slot="footer" href="#">Open</a>
+          <a slot="footer" href="#" aria-label="Browse datasets">Open</a>
         </sgds-thumbnail-card>`,
             description: "Default interactive state.",
           },
@@ -15792,7 +15792,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Browse datasets</span>
           <span slot="description">Open data published by Singapore agencies.</span>
-          <a slot="footer" href="#">Open</a>
+          <a slot="footer" href="#" aria-label="Browse datasets">Open</a>
         </sgds-thumbnail-card>`,
             description: "Greys out the card and disables its actions.",
           },
@@ -15851,7 +15851,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<sgds-thumbnail-card class="portal-demo-card" stretchedLink>
               <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
               <span slot="title">Guide</span>
-              <sgds-link slot="footer"><a href="#">Read guide</a></sgds-link>
+              <sgds-link slot="footer"><a href="#" aria-label="Read guide">Read guide</a></sgds-link>
             </sgds-thumbnail-card>`,
             description:
               "Use stretchedLink when the whole thumbnail card is one destination.",
@@ -15919,7 +15919,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             <img slot="thumbnail" alt="Open data icon" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
             <span slot="title">Browse datasets</span>
             <span slot="description">Open data published by Singapore agencies.</span>
-            <a slot="footer" href="#">Open</a>
+            <a slot="footer" href="#" aria-label="Browse datasets">Open</a>
           </sgds-thumbnail-card>`,
         },
         {
@@ -18293,7 +18293,7 @@ const accessibilityDemoMarkupOverrides: Record<
       The payment service is unavailable. Try again later.
     </sgds-alert>`,
     author: `<sgds-alert show variant="info" title="Application saved">
-      Your progress has been saved. <sgds-alert-link href="#">View draft</sgds-alert-link>
+      Your progress has been saved. <a href="#">View draft</a>
     </sgds-alert>`,
     focus: `<sgds-alert show dismissible variant="success" title="Changes saved">
       You can continue editing this page.
@@ -18309,7 +18309,7 @@ const accessibilityDemoMarkupOverrides: Record<
       <span>Documents are being checked.</span>
     </div>`,
     focus: `<div class="portal-demo-row sgds:gap-sm">
-      <sgds-button variant="outline">View application <sgds-badge slot="rightIcon" variant="neutral">2</sgds-badge></sgds-button>
+      <sgds-button variant="outline" ariaLabel="View application"><sgds-badge slot="rightIcon" variant="neutral">2</sgds-badge>View application</sgds-button>
     </div>`,
   },
   breadcrumb: {
@@ -18423,9 +18423,9 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   divider: {
     builtIn: `<div class="portal-demo-stack-sm">
-      <h4 class="sgds:m-0">Personal details</h4>
+      <h3 class="sgds:m-0">Personal details</h3>
       <sgds-divider></sgds-divider>
-      <h4 class="sgds:m-0">Contact details</h4>
+      <h3 class="sgds:m-0">Contact details</h3>
     </div>`,
     author: `<div class="portal-demo-stack-sm">
       <p class="sgds:m-0">Group related content before separating the next section.</p>
@@ -18508,7 +18508,7 @@ const accessibilityDemoMarkupOverrides: Record<
       <sgds-icon name="check-circle-fill" size="lg"></sgds-icon>
       <span>Application approved</span>
     </div>`,
-    focus: `<sgds-button><sgds-icon slot="leftIcon" name="search"></sgds-icon>Search</sgds-button>`,
+    focus: `<sgds-button ariaLabel="Search"><sgds-icon slot="leftIcon" name="search"></sgds-icon>Search</sgds-button>`,
   },
   "icon-list": {
     builtIn: `<sgds-icon-list>

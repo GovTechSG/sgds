@@ -99,7 +99,7 @@ const formRadiusTokens: BorderToken[] = [
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
             <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">General radius</h4>
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">General radius</h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 Radius tokens define the corner rounding applied to components, surfaces, and form controls.
               </p>
@@ -141,7 +141,7 @@ const formRadiusTokens: BorderToken[] = [
 
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
             <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Form radius</h4>
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">Form radius</h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 Use form radius tokens only on native HTML form controls. When SGDS web components are available, prefer the component over styling custom form controls yourself.
               </p>

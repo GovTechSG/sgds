@@ -144,9 +144,9 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
             </div>
             <div v-if="tab.stepGroups?.length" class="sgds:flex sgds:flex-col sgds:gap-text-xl">
               <div v-for="group in tab.stepGroups" :key="group.title" class="sgds:flex sgds:flex-col sgds:gap-text-md">
-                <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
+                <h3 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
                   {{ group.title }}
-                </h4>
+                </h3>
                 <div v-for="(step, i) in group.steps" :key="i" class="sgds:flex sgds:flex-col sgds:gap-text-xs">
                   <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
                     <strong>Step {{ i + 1 }}:</strong> {{ step.description }}
@@ -230,9 +230,9 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
 
       <div v-if="section.subsections?.length" :class="['sgds:flex sgds:flex-col', subsectionGapClass(section)]">
         <div v-for="(item, index) in section.subsections" :key="item.title" class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-text-xs">
-          <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
+          <h3 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
             {{ item.title }}
-          </h4>
+          </h3>
           <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
             {{ item.description }}
           </p>
@@ -262,9 +262,9 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
           class="sgds:flex sgds:flex-col sgds:gap-text-md"
         >
           <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-            <h4 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
+            <h3 class="sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">
               {{ pattern.title }}
-            </h4>
+            </h3>
             <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
               {{ pattern.description }}
             </p>
