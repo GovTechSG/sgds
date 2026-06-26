@@ -81,7 +81,7 @@ watch(currentPath, () => {
       </div>
     </aside>
 
-    <main class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-9">
+    <section class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-9">
       <div class="get-started-mobile-sidenav-trigger sgds:mb-component-md">
         <sgds-button
           variant="outline"
@@ -200,7 +200,7 @@ watch(currentPath, () => {
 
         <GetStartedPageSections v-else :page="page" />
       </div>
-    </main>
+    </section>
   </div>
 </template>
 
