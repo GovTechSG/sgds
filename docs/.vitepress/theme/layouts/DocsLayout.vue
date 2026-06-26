@@ -280,6 +280,7 @@ watch(
           class="docs-layout-mobile-sidenav"
           placement="start"
           size="sm"
+          :ariaLabel.prop="header"
           :open="mobileSideNavOpen || null"
           @sgds-request-close="mobileSideNavOpen = false"
         >

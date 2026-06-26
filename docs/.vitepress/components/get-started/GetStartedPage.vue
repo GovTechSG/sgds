@@ -67,6 +67,7 @@ watch(currentPath, () => {
             :key="item.label"
             :active="isCurrentNavItem(item.href) || null"
             :disabled="!item.href || null"
+            :ariaLabel.prop="item.label"
           >
             <a
               :href="item.href ? withBase(item.href) : '#'"
@@ -98,6 +99,7 @@ watch(currentPath, () => {
         class="get-started-mobile-sidenav"
         placement="start"
         size="sm"
+        :ariaLabel.prop="'Get started navigation'"
         :open="mobileSideNavOpen || null"
         @sgds-request-close="mobileSideNavOpen = false"
       >
@@ -110,6 +112,7 @@ watch(currentPath, () => {
             :key="item.label"
             :active="isCurrentNavItem(item.href) || null"
             :disabled="!item.href || null"
+            :ariaLabel.prop="item.label"
           >
             <a
               :href="item.href ? withBase(item.href) : '#'"

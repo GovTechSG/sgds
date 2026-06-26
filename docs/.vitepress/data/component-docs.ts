@@ -5907,7 +5907,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Start",
             value: "start",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="start">
+          <sgds-drawer open contained placement="start" ariaLabel="Start drawer">
             <span slot="title" class="sgds:font-semibold">Start drawer</span>
             <span slot="description">Slides in from the leading edge.</span>
             <p>Useful for navigation or filters.</p>
@@ -5920,7 +5920,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "End",
             value: "end",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="end">
+          <sgds-drawer open contained placement="end" ariaLabel="End drawer">
             <span slot="title" class="sgds:font-semibold">End drawer</span>
             <span slot="description">Slides in from the trailing edge.</span>
             <p>Common for detail panels or settings.</p>
@@ -5933,7 +5933,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Top",
             value: "top",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="top">
+          <sgds-drawer open contained placement="top" ariaLabel="Top drawer">
             <span slot="title" class="sgds:font-semibold">Top drawer</span>
             <span slot="description">Drops down from the top edge.</span>
             <p>Useful for short alerts or system messages.</p>
@@ -5945,7 +5945,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Bottom",
             value: "bottom",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="bottom">
+          <sgds-drawer open contained placement="bottom" ariaLabel="Bottom drawer">
             <span slot="title" class="sgds:font-semibold">Bottom drawer</span>
             <span slot="description">Rises from the bottom edge.</span>
             <p>Commonly used on mobile for short actions.</p>
@@ -5966,7 +5966,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Small",
             value: "sm",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="end" size="sm">
+          <sgds-drawer open contained placement="end" size="sm" ariaLabel="Small drawer">
             <span slot="title" class="sgds:font-semibold">Small drawer</span>
             <span slot="description">Compact panel for short content.</span>
             <p>Suits short actions or summaries.</p>
@@ -5978,7 +5978,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Medium",
             value: "md",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="end" size="md">
+          <sgds-drawer open contained placement="end" size="md" ariaLabel="Medium drawer">
             <span slot="title" class="sgds:font-semibold">Medium drawer</span>
             <span slot="description">Balanced panel for typical detail views.</span>
             <p>Suits forms and rich content.</p>
@@ -5990,7 +5990,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Large",
             value: "lg",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="end" size="lg">
+          <sgds-drawer open contained placement="end" size="lg" ariaLabel="Large drawer">
             <span slot="title" class="sgds:font-semibold">Large drawer</span>
             <span slot="description">Spacious panel for dense content.</span>
             <p>Use when the drawer needs to feel like a workspace.</p>
@@ -6012,7 +6012,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Viewport",
             value: "viewport",
             markup: `<div class="portal-demo-overlay">
-              <sgds-drawer open size="sm">
+              <sgds-drawer open size="sm" ariaLabel="Drawer title">
                 <span slot="title">Drawer title</span>
                 <span slot="description">This drawer is positioned against the viewport.</span>
               </sgds-drawer>
@@ -6024,7 +6024,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Contained",
             value: "contained",
             markup: `<div class="portal-demo-overlay">
-              <sgds-drawer open contained size="sm">
+              <sgds-drawer open contained size="sm" ariaLabel="Drawer title">
                 <span slot="title">Drawer title</span>
                 <span slot="description">This drawer is constrained to its parent demo area.</span>
               </sgds-drawer>
@@ -6045,7 +6045,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With footer",
             value: "with-footer",
             markup: `<div class="portal-demo-overlay">
-              <sgds-drawer open contained size="sm">
+              <sgds-drawer open contained size="sm" ariaLabel="Review details">
                 <span slot="title">Review details</span>
                 <span slot="description">Confirm the information before continuing.</span>
                 <div slot="footer" class="portal-demo-row">
@@ -6061,7 +6061,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No footer",
             value: "no-footer",
             markup: `<div class="portal-demo-overlay">
-              <sgds-drawer open contained size="sm">
+              <sgds-drawer open contained size="sm" ariaLabel="Information">
                 <span slot="title">Information</span>
                 <span slot="description">Use this layout for read-only drawer content.</span>
               </sgds-drawer>
@@ -6076,7 +6076,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Contained",
         "Use drawers to reveal supporting tasks while keeping the main page in view.",
         `<div class="portal-demo-overlay">
-          <sgds-drawer open contained size="sm">
+          <sgds-drawer open contained size="sm" ariaLabel="Edit details">
             <span slot="title" class="sgds:font-semibold">Edit details</span>
             <span slot="description">Review the information before saving.</span>
             <p>Drawers are useful for secondary tasks that need more space than a popover.</p>
@@ -6095,7 +6095,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Drawers work best for filters, settings, or detail panels. Users keep the page in view while they work.",
           tone: "do",
-          markup: `<sgds-drawer open contained placement="end" size="sm">
+          markup: `<sgds-drawer open contained placement="end" size="sm" ariaLabel="Filter results">
             <span slot="title" class="sgds:font-semibold">Filter results</span>
             <span slot="description">Refine the list without leaving the page.</span>
             <p>Adjust filters and apply them when you are done.</p>
@@ -6110,7 +6110,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Decisions that block progress or are irreversible belong in a modal, where users must respond first.",
           tone: "dont",
-          markup: `<sgds-drawer open contained placement="end" size="sm">
+          markup: `<sgds-drawer open contained placement="end" size="sm" ariaLabel="Delete account">
             <span slot="title" class="sgds:font-semibold">Delete account</span>
             <span slot="description">This action cannot be undone.</span>
             <p>Are you sure you want to permanently delete your account?</p>
@@ -6125,7 +6125,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Use end for detail panels, start for navigation, and bottom for mobile sheets so placement matches purpose.",
           tone: "do",
-          markup: `<sgds-drawer open contained placement="end" size="md">
+          markup: `<sgds-drawer open contained placement="end" size="md" ariaLabel="Booking details">
             <span slot="title" class="sgds:font-semibold">Booking details</span>
             <span slot="description">Reference number SG-20260427</span>
             <p>Reviewing details on the right keeps the booking list visible.</p>
@@ -6137,11 +6137,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Opening a second drawer from inside another hides the first context. Resolve the current one first.",
           tone: "dont",
           markup: `<div class="portal-demo-overlay">
-            <sgds-drawer open contained placement="end" size="sm">
+            <sgds-drawer open contained placement="end" size="sm" ariaLabel="Edit profile">
               <span slot="title" class="sgds:font-semibold">Edit profile</span>
               <p>Update your details below.</p>
             </sgds-drawer>
-            <sgds-drawer open contained placement="end" size="sm">
+            <sgds-drawer open contained placement="end" size="sm" ariaLabel="Change password">
               <span slot="title" class="sgds:font-semibold">Change password</span>
               <p>Enter your new password.</p>
             </sgds-drawer>
@@ -6152,7 +6152,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Include a footer action such as Save or Cancel, paired with the built-in close, so users have an obvious exit.",
           tone: "do",
-          markup: `<sgds-drawer open contained placement="end" size="sm">
+          markup: `<sgds-drawer open contained placement="end" size="sm" ariaLabel="Edit details">
             <span slot="title" class="sgds:font-semibold">Edit details</span>
             <span slot="description">Update and save your changes.</span>
             <p>Make changes to the form below.</p>
@@ -6167,7 +6167,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "If the content is a full task or page on its own, send users to a dedicated page instead of a drawer.",
           tone: "dont",
-          markup: `<sgds-drawer open contained placement="end" size="lg">
+          markup: `<sgds-drawer open contained placement="end" size="lg" ariaLabel="Submit a new application">
             <span slot="title" class="sgds:font-semibold">Submit a new application</span>
             <span slot="description">A multi-step form with eligibility checks.</span>
             <p>This long task includes uploads, multiple steps, and a review screen.</p>
@@ -9731,7 +9731,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-mainnav brandHref="/">
             <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
-            <sgds-mainnav-dropdown>
+            <sgds-mainnav-dropdown ariaLabel="Services">
               <span slot="toggler">Services</span>
               <sgds-dropdown-item arialabel="Apply">Apply</sgds-dropdown-item>
               <sgds-dropdown-item arialabel="Renew">Renew</sgds-dropdown-item>
@@ -9827,7 +9827,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-mainnav fluid expand="always" brandHref="/">
             <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item><a href="#">Overview</a></sgds-mainnav-item>
-            <sgds-mainnav-dropdown active>
+            <sgds-mainnav-dropdown active ariaLabel="Services">
               <span slot="toggler">Services</span>
               <sgds-dropdown-item arialabel="Apply"><a href="#">Apply</a></sgds-dropdown-item>
             </sgds-mainnav-dropdown>
@@ -9851,7 +9851,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             />
             <sgds-mainnav-item href="#">Overview</sgds-mainnav-item>
             <sgds-mainnav-item href="#" active>Services</sgds-mainnav-item>
-            <sgds-mainnav-dropdown slot="end">
+            <sgds-mainnav-dropdown slot="end" ariaLabel="Account">
               <span slot="toggler">Account</span>
               <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
               <sgds-dropdown-item arialabel="Sign out"><a href="#">Sign out</a></sgds-dropdown-item>
@@ -12687,9 +12687,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "link-items",
             markup: `<div class="portal-demo-nav-sm">
           <sgds-sidenav>
-            <sgds-sidenav-item active><a href="#">Overview</a></sgds-sidenav-item>
-            <sgds-sidenav-item><a href="#">Activity</a></sgds-sidenav-item>
-            <sgds-sidenav-item><a href="#">Settings</a></sgds-sidenav-item>
+            <sgds-sidenav-item active ariaLabel="Overview"><a href="#">Overview</a></sgds-sidenav-item>
+            <sgds-sidenav-item ariaLabel="Activity"><a href="#">Activity</a></sgds-sidenav-item>
+            <sgds-sidenav-item ariaLabel="Settings"><a href="#">Settings</a></sgds-sidenav-item>
           </sgds-sidenav>
         </div>`,
             description:
@@ -12954,10 +12954,10 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "dont",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-sidenav>
-              <sgds-sidenav-item><a href="#">Home</a></sgds-sidenav-item>
-              <sgds-sidenav-item><a href="#">Services</a></sgds-sidenav-item>
-              <sgds-sidenav-item><a href="#">About</a></sgds-sidenav-item>
-              <sgds-sidenav-item><a href="#">Contact</a></sgds-sidenav-item>
+              <sgds-sidenav-item ariaLabel="Home"><a href="#">Home</a></sgds-sidenav-item>
+              <sgds-sidenav-item ariaLabel="Services"><a href="#">Services</a></sgds-sidenav-item>
+              <sgds-sidenav-item ariaLabel="About"><a href="#">About</a></sgds-sidenav-item>
+              <sgds-sidenav-item ariaLabel="Contact"><a href="#">Contact</a></sgds-sidenav-item>
             </sgds-sidenav>
           </div>`,
         },
@@ -17167,7 +17167,7 @@ const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
       </div>`;
     case "drawer":
       return `<div class="portal-demo-overlay">
-        <sgds-drawer open contained size="sm">
+        <sgds-drawer open contained size="sm" ariaLabel="Task one">
           <span slot="title" class="sgds:font-semibold">Task one</span>
           <span slot="description">Task two and another decision in the same drawer.</span>
           <p>Long content and multiple unrelated tasks make the drawer harder to complete.</p>
@@ -18440,21 +18440,21 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   drawer: {
     builtIn: `<div class="portal-demo-overlay">
-      <sgds-drawer open contained size="sm">
+      <sgds-drawer open contained size="sm" ariaLabel="Edit contact details">
         <span slot="title" class="sgds:font-semibold">Edit contact details</span>
         <span slot="description">Update your phone number and email address.</span>
         <sgds-input placeholder="Email address"></sgds-input>
       </sgds-drawer>
     </div>`,
     author: `<div class="portal-demo-overlay">
-      <sgds-drawer open contained size="sm">
+      <sgds-drawer open contained size="sm" ariaLabel="Update address">
         <span slot="title" class="sgds:font-semibold">Update address</span>
         <span slot="description">Make changes for this application only.</span>
         <sgds-button slot="footer" ariaLabel="Save changes">Save changes</sgds-button>
       </sgds-drawer>
     </div>`,
     focus: `<div class="portal-demo-overlay">
-      <sgds-drawer open contained size="sm">
+      <sgds-drawer open contained size="sm" ariaLabel="Review details">
         <span slot="title" class="sgds:font-semibold">Review details</span>
         <sgds-button slot="footer" ariaLabel="Confirm">Confirm</sgds-button>
       </sgds-drawer>
