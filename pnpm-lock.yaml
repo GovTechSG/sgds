@@ -15,8 +15,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       '@govtechsg/sgds-web-component':
-        specifier: 3.23.0-rc.2
-        version: 3.23.0-rc.2(@types/react@19.2.14)
+        specifier: 3.23.0-rc.4
+        version: 3.23.0-rc.4(@types/react@19.2.14)
       gsap:
         specifier: ^3.13.0
         version: 3.14.2
@@ -568,8 +568,8 @@ packages:
     resolution: {integrity: sha512-uhUEcuqIkdLU+J2VSQPFFXkYGPtm2kAbLLnygiWONtJC2OOneFP1C6nkNKO3fh0caxglweFkiZyHXC9crD/0iA==}
     hasBin: true
 
-  '@govtechsg/sgds-web-component@3.23.0-rc.2':
-    resolution: {integrity: sha512-X1uETwyMQCgZy8ToQEXfWspOFSJSdZAqw2K2JPSqsApaNlcFHYvRGYU2mVT7TCz46PFs7bhEPQlG9I4tpqQ2qQ==}
+  '@govtechsg/sgds-web-component@3.23.0-rc.4':
+    resolution: {integrity: sha512-x8AbosyQxI3kvxJZbYNp0bEf9zYtr1IlhbUkmJSApJZhSa2laVJLIrQLg4agHAGMiZ2U0fnDXflFnmd3F0zHaw==}
 
   '@iconify-json/simple-icons@1.2.78':
     resolution: {integrity: sha512-I3lkNp0Qu7q2iZWkdcf/I2hqGhzK6qxdILh9T7XqowQrnpmG/BayDsiCf6PktDoWlW0U971xA5g+panm+NFrfQ==}
@@ -4118,7 +4118,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@govtechsg/sgds-web-component@3.23.0-rc.2(@types/react@19.2.14)':
+  '@govtechsg/sgds-web-component@3.23.0-rc.4(@types/react@19.2.14)':
     dependencies:
       '@floating-ui/dom': 1.7.6
       '@lit/context': 1.1.6
