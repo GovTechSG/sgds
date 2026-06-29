@@ -38,8 +38,8 @@ import { figmaToCodeSteps, codeToFigmaSteps } from "../../data/ai-workflow-data"
       <h2 class="sgds:text-heading-md sgds:font-semibold sgds:leading-md sgds:tracking-tight">Choose your workflow</h2>
 
       <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined">
-        <sgds-tab slot="nav" panel="figma-to-code" active>Figma to code</sgds-tab>
-        <sgds-tab slot="nav" panel="code-to-figma">Code to figma</sgds-tab>
+        <sgds-tab slot="nav" panel="figma-to-code" active :ariaLabel.prop="'Figma to code'">Figma to code</sgds-tab>
+        <sgds-tab slot="nav" panel="code-to-figma" :ariaLabel.prop="'Code to Figma'">Code to Figma</sgds-tab>
 
         <sgds-tab-panel name="figma-to-code">
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">

@@ -233,9 +233,9 @@ async function copyIconName(iconName: string) {
           <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
             <SectionHeader title="API" />
             <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0 sgds:font-mono">
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0 sgds:font-mono">
               sgds-icon
-            </h4>
+            </h3>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
                 <sgds-table-head class="il-api-col--name">Name</sgds-table-head>

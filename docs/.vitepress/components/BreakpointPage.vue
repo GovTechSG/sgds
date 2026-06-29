@@ -221,7 +221,7 @@ const stickySidebarTokens = [
       <div class="typography-page-template__body typography-page-template__body--prose">
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
           <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Standard breakpoint</h4>
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Standard breakpoint</h3>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
                 <sgds-table-head :class="tokenColumnClass">Token</sgds-table-head>
@@ -266,7 +266,7 @@ const stickySidebarTokens = [
           </div>
 
           <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Breakpoint with sticky sidebar</h4>
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Breakpoint with sticky sidebar</h3>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
               <sgds-table-row>
                 <sgds-table-head :class="tokenColumnClass">Token</sgds-table-head>

@@ -64,7 +64,7 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
       <div class="spacing-page__body">
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Base size</h4>
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Base size</h3>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               SGDS follows a 4-point system. This allows us to create consistency across the user interface while decreasing
               design complexity.
@@ -82,7 +82,7 @@ const progressionCurvePath = "M 16 144 C 84 142 152 136 226 128 C 292 120 348 10
 
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Progression</h4>
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Progression</h3>
 
             <div class="typography-page-template__copy-block">
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">

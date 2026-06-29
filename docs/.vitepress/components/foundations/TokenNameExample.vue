@@ -69,9 +69,9 @@ const rowsWithCallouts = rows.map((row) => ({
 
 <template>
   <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-    <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+    <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
       Example breakdown
-    </h4>
+    </h3>
 
     <div class="sgds:flex sgds:flex-col sgds:gap-text-lg sgds:px-component-md sgds:py-component-xs">
       <div

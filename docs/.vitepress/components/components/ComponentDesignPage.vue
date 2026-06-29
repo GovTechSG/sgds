@@ -455,7 +455,7 @@ onBeforeUnmount(() => {
                   <span :class="['sgds:self-start sgds:inline-flex sgds:items-center sgds:justify-center sgds:flex-none sgds:h-8 sgds:w-8', section.tone === 'do' ? 'sgds:text-success-default' : 'sgds:text-danger-default']">
                     <sgds-icon :name="section.tone === 'do' ? 'check-circle-fill' : 'xcircle-fill'" size="lg"></sgds-icon>
                   </span>
-                  <h4 class="sgds:m-0">{{ section.title }}</h4>
+                  <h3 class="sgds:m-0">{{ section.title }}</h3>
                 </div>
                 <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
                   <li v-for="item in section.items" :key="item" class="sgds:mt-0">

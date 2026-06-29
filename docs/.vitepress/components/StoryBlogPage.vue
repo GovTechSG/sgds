@@ -26,7 +26,7 @@
             </sgds-breadcrumb-item>
             <sgds-breadcrumb-item class="sgds:flex-none">
               <sgds-overflow-menu aria-haspopup="menu" size="sm">
-                <sgds-dropdown-item>
+                <sgds-dropdown-item :ariaLabel.prop="'Stories'">
                   <a href="/stories">Stories</a>
                 </sgds-dropdown-item>
               </sgds-overflow-menu>
@@ -936,12 +936,12 @@
                     :key="subsection.title ?? subsection.paragraphs.join('-')"
                     class="sgds:flex sgds:flex-col sgds:gap-text-md"
                   >
-                    <h4
+                    <h3
                       v-if="subsection.title"
                       class="sgds:m-0 sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default"
                     >
                       {{ subsection.title }}
-                    </h4>
+                    </h3>
                     <p
                       v-for="paragraph in subsection.paragraphs"
                       :key="paragraph"

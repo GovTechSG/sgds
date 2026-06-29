@@ -981,9 +981,9 @@ const openContrastInfo = () => {
               :key="palette.id"
               class="sgds:flex sgds:flex-col sgds:gap-text-md"
             >
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 GovTech {{ palette.shortLabel.toLowerCase() }} colour
-              </h4>
+              </h3>
               <sgds-table tableBorder headerBackground responsive="always" layout="fixed" class="typography-page-template__utility-table">
                 <sgds-table-row>
                   <sgds-table-head class="cp-token-column" style="width: 291.29px">Token</sgds-table-head>
@@ -1226,7 +1226,7 @@ const openContrastInfo = () => {
 
             <!-- Subsection: how to read the shade scale used in the table below -->
             <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Understanding our colour scale</h4>
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Understanding our colour scale</h3>
               <ul class="sgds:list-disc sgds:pl-6 sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-sm sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                 <li><strong>100</strong> is lightest, <strong>900</strong> is darkest. Grey adds <strong>000</strong> and <strong>1100</strong> for dark-mode surfaces.</li>
                 <li>Shade <strong>600</strong> is the brand input each family scales around.</li>
@@ -1243,9 +1243,9 @@ const openContrastInfo = () => {
             :key="family.id"
             class="sgds:flex sgds:flex-col sgds:gap-text-md"
           >
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
               {{ family.label }}
-            </h4>
+            </h3>
             <sgds-table tableBorder headerBackground responsive="always" layout="fixed" class="typography-page-template__utility-table">
               <sgds-table-row>
                 <sgds-table-head class="cp-token-column" style="width: 291.29px">Token</sgds-table-head>
@@ -1380,7 +1380,7 @@ const openContrastInfo = () => {
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">How we structure semantic colours</h4>
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">How we structure semantic colours</h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 SGDS semantic colour names follow a role-based structure. The name tells you what the colour is for before it tells you the visual value.
               </p>
@@ -1425,7 +1425,7 @@ const openContrastInfo = () => {
             </div>
 
             <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">When we use semantic colours</h4>
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">When we use semantic colours</h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 SGDS uses semantic colours wherever a colour decision needs to stay meaningful across components, themes, and product brands. They let us describe the job a colour performs once, then remap the primitive values behind that job as the system grows.
               </p>
@@ -1459,7 +1459,7 @@ const openContrastInfo = () => {
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`bg-group-${group.id}`">
                 <div v-if="filterGroupRows(group, 'bg').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
-                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
+                  <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h3>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
                       <sgds-table-head class="sc-token-column">Token</sgds-table-head>
@@ -1511,7 +1511,7 @@ const openContrastInfo = () => {
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`fg-group-${group.id}`">
                 <div v-if="filterGroupRows(group, 'color').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
-                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
+                  <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h3>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
                       <sgds-table-head class="sc-token-column">Token</sgds-table-head>
@@ -1563,7 +1563,7 @@ const openContrastInfo = () => {
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`surface-group-${group.id}`">
                 <div v-if="filterGroupRows(group, 'surface').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
-                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
+                  <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h3>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
                       <sgds-table-head class="sc-token-column">Token</sgds-table-head>
@@ -1615,7 +1615,7 @@ const openContrastInfo = () => {
             <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
               <template v-for="group in semanticColourGroups" :key="`border-group-${group.id}`">
                 <div v-if="filterGroupRows(group, 'border-color').length > 0" class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
-                  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
+                  <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h3>
                   <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                     <sgds-table-row>
                       <sgds-table-head class="sc-token-column">Token</sgds-table-head>
@@ -1670,7 +1670,7 @@ const openContrastInfo = () => {
                 :key="sub.id"
                 class="sgds:flex sgds:flex-col sgds:gap-layout-xs"
               >
-                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ sub.label }}</h4>
+                <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ sub.label }}</h3>
                 <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table">
                   <sgds-table-row>
                     <sgds-table-head class="sc-token-column">Token</sgds-table-head>
@@ -1724,7 +1724,7 @@ const openContrastInfo = () => {
                 :key="group.id"
                 class="sgds:flex sgds:flex-col sgds:gap-layout-xs"
               >
-                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h4>
+                <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ group.label }}</h3>
                 <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table sc-form-table">
                   <sgds-table-row>
                     <sgds-table-head class="sc-token-column">Token</sgds-table-head>

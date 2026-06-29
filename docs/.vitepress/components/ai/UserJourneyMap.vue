@@ -795,9 +795,9 @@ function setScenario(id: ScenarioFilter) {
                 </div>
 
                 <div class="sgds:flex sgds:flex-col sgds:gap-[var(--sgds-gap-xs)] sgds:min-w-0 sgds:w-full">
-                  <h4 class="sgds:text-heading-default sgds:m-0 sgds:pt-[var(--sgds-padding-2-xs)] sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+                  <h3 class="sgds:text-heading-default sgds:m-0 sgds:pt-[var(--sgds-padding-2-xs)] sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
                     {{ item.label }}
-                  </h4>
+                  </h3>
                   <p v-if="detailForStep(item)?.body" class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
                     {{ detailForStep(item)?.body }}
                   </p>
@@ -855,8 +855,8 @@ function setScenario(id: ScenarioFilter) {
       </p>
 
       <sgds-tab-group class="sgds:block sgds:w-full" variant="underlined">
-        <sgds-tab ref="figmaToCodeTab" slot="nav" panel="figma-to-code" active>Figma to code</sgds-tab>
-        <sgds-tab slot="nav" panel="code-to-figma">Code to Figma</sgds-tab>
+        <sgds-tab ref="figmaToCodeTab" slot="nav" panel="figma-to-code" active :ariaLabel.prop="'Figma to code'">Figma to code</sgds-tab>
+        <sgds-tab slot="nav" panel="code-to-figma" :ariaLabel.prop="'Code to Figma'">Code to Figma</sgds-tab>
 
         <sgds-tab-panel name="figma-to-code">
           <div class="sgds:flex sgds:flex-col sgds:gap-layout-md">
@@ -901,7 +901,7 @@ function setScenario(id: ScenarioFilter) {
                 <li>Keep your Figma frames clean and well-structured for the best results.</li>
                 <li>Name your Figma layers descriptively. The agent uses layer names to infer intent.</li>
                 <li>If the output is not accurate, refine your prompt by specifying which section or component to focus on.</li>
-                <li>See <sgds-alert-link href="/ai/prompt-tips">Prompt tips</sgds-alert-link> for more effective results.</li>
+                <li>See <a href="/ai/prompt-tips">Prompt tips</a> for more effective results.</li>
               </ul>
             </sgds-alert>
           </div>
@@ -950,7 +950,7 @@ function setScenario(id: ScenarioFilter) {
                 <li>Keep your Figma frames clean and well-structured for the best results.</li>
                 <li>Name your Figma layers descriptively. The agent uses layer names to infer intent.</li>
                 <li>If the output is not accurate, refine your prompt by specifying which section or component to focus on.</li>
-                <li>See <sgds-alert-link href="/ai/prompt-tips">Prompt tips</sgds-alert-link> for more effective results.</li>
+                <li>See <a href="/ai/prompt-tips">Prompt tips</a> for more effective results.</li>
               </ul>
             </sgds-alert>
 

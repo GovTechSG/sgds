@@ -160,6 +160,7 @@ onBeforeUnmount(() => {
           :active="isActiveOption(option) ? '' : null"
           :aria-current="isActiveOption(option) ? 'page' : null"
           :data-template-preview-active="isActiveOption(option) ? 'true' : null"
+          :ariaLabel.prop="option.title"
           @click="emit('navigate', option)"
         >
           {{ option.title }}
@@ -195,6 +196,7 @@ onBeforeUnmount(() => {
             :active="isActiveOption(option) ? '' : null"
             :aria-current="isActiveOption(option) ? 'page' : null"
             :data-template-preview-active="isActiveOption(option) ? 'true' : null"
+            :ariaLabel.prop="option.title"
             @click="emit('navigate', option)"
           >
             {{ option.title }}

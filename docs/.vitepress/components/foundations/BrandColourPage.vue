@@ -166,8 +166,8 @@ const paletteRows: PaletteRow[] = [
     <div class="sgds:flex sgds:flex-col sgds:gap-layout-lg">
 
       <sgds-tab-group ref="tabGroupRef">
-        <sgds-tab slot="nav" panel="govtech">GovTech colour</sgds-tab>
-        <sgds-tab slot="nav" panel="custom">
+        <sgds-tab slot="nav" panel="govtech" :ariaLabel.prop="'GovTech colour'">GovTech colour</sgds-tab>
+        <sgds-tab slot="nav" panel="custom" :ariaLabel.prop="'Custom colour'">
           Custom colour
           <sgds-badge variant="accent" outlined size="sm">BETA</sgds-badge>
         </sgds-tab>
@@ -196,7 +196,7 @@ const paletteRows: PaletteRow[] = [
               ]"
               :style="{ backgroundColor: color.background }"
             >
-              <h4 class="sgds:text-[inherit] sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ color.name }}</h4>
+              <h3 class="sgds:text-[inherit] sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ color.name }}</h3>
               <div class="sgds:flex sgds:items-start sgds:gap-[var(--sgds-gap-xl)] sgds:text-[inherit]">
                 <div class="sgds:flex sgds:flex-col sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
                   <span>HEX</span>

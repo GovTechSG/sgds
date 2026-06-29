@@ -65,11 +65,11 @@ function handleSetupAction(event: CustomEvent<{ item: HTMLElement }>) {
       AI setup
       <sgds-icon name="chevron-down" size="sm" slot="rightIcon"></sgds-icon>
     </sgds-button>
-    <sgds-dropdown-item data-action="copy">
+    <sgds-dropdown-item data-action="copy" :ariaLabel.prop="'Copy Markdown'">
       <sgds-icon class="sgds:items-center" name="copy" size="sm"></sgds-icon>
       <span>Copy Markdown</span>
     </sgds-dropdown-item>
-    <sgds-dropdown-item>
+    <sgds-dropdown-item :ariaLabel.prop="'View Markdown'">
       <a class="agent-setup-markdown-link" href="/ai/agent-setup.md" target="_blank" rel="noopener noreferrer">
         <sgds-icon class="sgds:items-center" name="eye" size="sm"></sgds-icon>
         <span>View Markdown</span>

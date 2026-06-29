@@ -198,9 +198,9 @@ const gridStyle = (preset: GridPreset) => ({
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
           <article v-for="preset in gridPresets" :key="preset.title" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
             <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 {{ preset.title }} ({{ preset.screenSize }})
-              </h4>
+              </h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 {{ preset.usage }}
               </p>
@@ -742,9 +742,9 @@ const gridStyle = (preset: GridPreset) => ({
         <div class="sgds:flex sgds:flex-col sgds:gap-layout-xl">
           <article v-for="preset in stickySidebarPresets" :key="preset.title" class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
             <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-              <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
+              <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
                 {{ preset.title }} ({{ preset.screenSize }})
-              </h4>
+              </h3>
               <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
                 {{ preset.usage }}
               </p>

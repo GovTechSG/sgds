@@ -36,7 +36,7 @@ const getResponsiveTokenValue = (token: string): string => {
             :key="`rfs-${subgroup.label}`"
             class="sgds:flex sgds:flex-col sgds:gap-layout-xs"
           >
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ subgroup.label }}</h4>
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">{{ subgroup.label }}</h3>
             <sgds-table tableBorder headerBackground responsive="always" class="typography-page-template__utility-table typography-token-table">
               <sgds-table-row>
                 <sgds-table-head class="typography-token-table__token-column">Token name</sgds-table-head>
@@ -78,10 +78,10 @@ const getResponsiveTokenValue = (token: string): string => {
             v-if="doc.rows && doc.rows.length"
             :class="doc.subgroupLabel ? 'sgds:flex sgds:flex-col sgds:gap-layout-xs' : null"
           >
-          <h4
+          <h3
             v-if="doc.subgroupLabel"
             class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0"
-          >{{ doc.subgroupLabel }}</h4>
+          >{{ doc.subgroupLabel }}</h3>
           <sgds-table
             tableBorder
             headerBackground
