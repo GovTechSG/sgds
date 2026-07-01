@@ -7,7 +7,9 @@ import { blocksSidebar } from "./data/blocks-sidebar";
 import { storyPosts } from "./data/stories";
 
 const vitePressConfig = {
+  lang: "en",
   title: "Singapore Government Design System",
+  titleTemplate: ":title – Singapore Government Design System",
   description: "Unifying Government through Design and Code.",
   transformPageData(pageData) {
     const story = storyPosts.find((post) => pageData.relativePath === `stories/${post.key}.md`);
@@ -18,10 +20,17 @@ const vitePressConfig = {
   },
   cleanUrls: true,
   transformHtml(code) {
-    return code.replace(
+    code = code.replace(
       /(<body[^>]*>)/,
-      `$1\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T6NDG85M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->`
+      `$1\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T6NDG85M" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->`
     );
+    // Add accessible label to the VitePress app root so click-outside listeners
+    // from web components don't trigger oobee-accessible-label violations.
+    code = code.replace(
+      '<div id="app">',
+      '<div id="app" role="document" aria-label="Page content">'
+    );
+    return code;
   },
   markdown: {
     anchor: {

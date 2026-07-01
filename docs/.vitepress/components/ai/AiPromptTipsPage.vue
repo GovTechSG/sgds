@@ -25,7 +25,7 @@ import {
 
     <section class="sgds:flex sgds:flex-col sgds:gap-text-sm">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What the agent can extract vs what you provide</h4>
+        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What the agent can extract vs what you provide</h3>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
           SGDS agent skills give the agent reliable system knowledge, and tools like Figma MCP or codebase access can add live context. You still need to describe the intent and rules that only your team knows.
         </p>
@@ -49,7 +49,7 @@ import {
 
     <section class="sgds:flex sgds:flex-col sgds:gap-text-sm">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">A useful prompt has five parts</h4>
+        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">A useful prompt has five parts</h3>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
           You do not need to write a long prompt. You need to give enough context for the agent to make the right SGDS decisions.
         </p>
@@ -64,7 +64,7 @@ import {
 
     <section class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Tips for text prompts</h4>
+        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Tips for text prompts</h3>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
           These tips work when you are starting from an idea, an existing codebase, or a written requirement.
         </p>
@@ -83,7 +83,7 @@ import {
 
     <section class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Tips for designers using Figma</h4>
+        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Tips for designers using Figma</h3>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
           Figma gives the agent visual structure. You still need to explain the behaviour and intent behind the design.
         </p>

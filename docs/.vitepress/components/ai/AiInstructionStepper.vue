@@ -24,9 +24,9 @@ defineProps<{
           ></span>
         </div>
         <div class="instruction-step-content sgds:flex sgds:flex-col sgds:gap-text-xs sgds:min-w-0 sgds:w-full">
-          <h4 class="sgds:text-heading-default sgds:m-0 sgds:pt-1 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
+          <h3 class="sgds:text-heading-default sgds:m-0 sgds:pt-1 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
             {{ step.title }}
-          </h4>
+          </h3>
           <slot :name="step.slotName ?? `step-${step.number}`" />
         </div>
       </div>

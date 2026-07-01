@@ -40,7 +40,7 @@ import CodeToken from "../ui/CodeToken.vue";
 
     <section class="sgds:flex sgds:flex-col sgds:gap-layout-md">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Easier system updates</h4>
+        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Easier system updates</h3>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           When a token changes, every component that uses it can receive the update. This helps SGDS improve themes, accessibility, and brand styles without updating each component by hand.
         </p>
@@ -51,7 +51,7 @@ import CodeToken from "../ui/CodeToken.vue";
 
     <section class="sgds:flex sgds:flex-col sgds:gap-layout-md">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Clearer design intent</h4>
+        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Clearer design intent</h3>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Tokens make each part of a component easier to understand. A button may look simple, but its fill, text colour, typography, padding, border, and shape are all controlled by named decisions.
         </p>
@@ -62,7 +62,7 @@ import CodeToken from "../ui/CodeToken.vue";
 
     <section class="sgds:flex sgds:flex-col sgds:gap-layout-md">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Theme switching without component changes</h4>
+        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Theme switching without component changes</h3>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           A semantic token can resolve to different primitive colours in day and night themes. The component keeps the same token name, while the rendered value changes to suit the theme.
         </p>
@@ -73,7 +73,7 @@ import CodeToken from "../ui/CodeToken.vue";
 
     <section class="sgds:flex sgds:flex-col sgds:gap-layout-md">
       <div class="sgds:flex sgds:flex-col sgds:gap-text-md">
-        <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Responsive scaling</h4>
+        <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">Responsive scaling</h3>
         <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:m-0">
           Typography is more than choosing a size. A heading also needs the right weight, line height, and letter spacing to feel clear and balanced.
         </p>

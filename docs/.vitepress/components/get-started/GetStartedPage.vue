@@ -67,6 +67,7 @@ watch(currentPath, () => {
             :key="item.label"
             :active="isCurrentNavItem(item.href) || null"
             :disabled="!item.href || null"
+            :ariaLabel.prop="item.label"
           >
             <a
               :href="item.href ? withBase(item.href) : '#'"
@@ -81,7 +82,7 @@ watch(currentPath, () => {
       </div>
     </aside>
 
-    <main class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-9">
+    <section class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-9">
       <div class="get-started-mobile-sidenav-trigger sgds:mb-component-md">
         <sgds-button
           variant="outline"
@@ -98,6 +99,7 @@ watch(currentPath, () => {
         class="get-started-mobile-sidenav"
         placement="start"
         size="sm"
+        :ariaLabel.prop="'Get started navigation'"
         :open="mobileSideNavOpen || null"
         @sgds-request-close="mobileSideNavOpen = false"
       >
@@ -110,6 +112,7 @@ watch(currentPath, () => {
             :key="item.label"
             :active="isCurrentNavItem(item.href) || null"
             :disabled="!item.href || null"
+            :ariaLabel.prop="item.label"
           >
             <a
               :href="item.href ? withBase(item.href) : '#'"
@@ -200,7 +203,7 @@ watch(currentPath, () => {
 
         <GetStartedPageSections v-else :page="page" />
       </div>
-    </main>
+    </section>
   </div>
 </template>
 

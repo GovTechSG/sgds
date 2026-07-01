@@ -304,7 +304,7 @@ const buttonPlaygroundMarkup = computed(() => {
     : "";
   const wrapperClass = tone === "fixed-light" ? "portal-demo-row portal-demo-row-inverse" : "portal-demo-row";
 
-  return `<div class="${wrapperClass}"><sgds-button${variantAttr}${toneAttr}${sizeAttr}>${leftIconMarkup}Button label${rightIconMarkup}</sgds-button></div>`;
+  return `<div class="${wrapperClass}"><sgds-button${variantAttr}${toneAttr}${sizeAttr} ariaLabel="Button label">${leftIconMarkup}Button label${rightIconMarkup}</sgds-button></div>`;
 });
 
 const baseActiveMarkup = computed(() => {

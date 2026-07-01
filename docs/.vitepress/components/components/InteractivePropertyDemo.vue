@@ -56,6 +56,7 @@ const buildMobileBreadcrumbOverflowMarkup = (markup: string) => {
     if (!link) return;
 
     const dropdownItem = document.createElement("sgds-dropdown-item");
+    (dropdownItem as any).ariaLabel = link.textContent?.trim() || "";
     dropdownItem.appendChild(link.cloneNode(true));
     overflowMenu.appendChild(dropdownItem);
   });
@@ -236,7 +237,7 @@ const renderMarkup = (markup: string) => {
       `<div class="portal-demo-overlay">
         <div class="portal-demo-drawer-scrim" aria-hidden="true"></div>
         <div class="sgds:absolute sgds:left-1/2 sgds:top-1/2 sgds:z-[1] sgds:-translate-x-1/2 sgds:-translate-y-1/2">
-          <sgds-button data-drawer-trigger>Click to open drawer demo</sgds-button>
+          <sgds-button data-drawer-trigger ariaLabel="Click to open drawer demo">Click to open drawer demo</sgds-button>
         </div>`,
     );
 };

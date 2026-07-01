@@ -107,7 +107,7 @@ const roleRows = [
                     v-if="row.variant === 'background'"
                     class="uc-role-canvas uc-background-canvas"
                   >
-                    <div class="uc-background-scene">
+                    <div class="uc-background-scene" aria-hidden="true">
                       <img
                         class="uc-background-image uc-background-image-light"
                         src="/foundations/colour/bg-colour.svg"

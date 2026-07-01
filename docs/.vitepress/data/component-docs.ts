@@ -1490,11 +1490,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="info" title="Info alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+                Review the latest guidance before submitting your application. <a href="#">Read the details</a>
               </sgds-alert>
               <sgds-alert show variant="info" outlined title="Info alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+                Review the latest guidance before submitting your application. <a href="#">Read the details</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1506,11 +1506,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="success" title="Success alert">
                 <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+                Your application has been submitted successfully. <a href="#">View confirmation</a>
               </sgds-alert>
               <sgds-alert show variant="success" outlined title="Success alert">
                 <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+                Your application has been submitted successfully. <a href="#">View confirmation</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1522,11 +1522,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="danger" title="Danger alert">
                 <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+                We could not save your changes because the session expired. <a href="#">Sign in again</a>
               </sgds-alert>
               <sgds-alert show variant="danger" outlined title="Danger alert">
                 <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+                We could not save your changes because the session expired. <a href="#">Sign in again</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1538,11 +1538,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="warning" title="Warning alert">
                 <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+                Some required documents are missing from your application. <a href="#">Check requirements</a>
               </sgds-alert>
               <sgds-alert show variant="warning" outlined title="Warning alert">
                 <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+                Some required documents are missing from your application. <a href="#">Check requirements</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1554,11 +1554,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="neutral" title="Neutral alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+                This service will save your progress automatically while you complete the form. <a href="#">Learn more</a>
               </sgds-alert>
               <sgds-alert show variant="neutral" outlined title="Neutral alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+                This service will save your progress automatically while you complete the form. <a href="#">Learn more</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1578,23 +1578,23 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="info" title="Info alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+                Review the latest guidance before submitting your application. <a href="#">Read the details</a>
               </sgds-alert>
               <sgds-alert show variant="success" title="Success alert">
                 <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+                Your application has been submitted successfully. <a href="#">View confirmation</a>
               </sgds-alert>
               <sgds-alert show variant="danger" title="Danger alert">
                 <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+                We could not save your changes because the session expired. <a href="#">Sign in again</a>
               </sgds-alert>
               <sgds-alert show variant="warning" title="Warning alert">
                 <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+                Some required documents are missing from your application. <a href="#">Check requirements</a>
               </sgds-alert>
               <sgds-alert show variant="neutral" title="Neutral alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+                This service will save your progress automatically while you complete the form. <a href="#">Learn more</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1606,23 +1606,23 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-demo-stack">
               <sgds-alert show variant="info" outlined title="Info alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+                Review the latest guidance before submitting your application. <a href="#">Read the details</a>
               </sgds-alert>
               <sgds-alert show variant="success" outlined title="Success alert">
                 <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-                <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+                Your application has been submitted successfully. <a href="#">View confirmation</a>
               </sgds-alert>
               <sgds-alert show variant="danger" outlined title="Danger alert">
                 <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-                <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+                We could not save your changes because the session expired. <a href="#">Sign in again</a>
               </sgds-alert>
               <sgds-alert show variant="warning" outlined title="Warning alert">
                 <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-                <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+                Some required documents are missing from your application. <a href="#">Check requirements</a>
               </sgds-alert>
               <sgds-alert show variant="neutral" outlined title="Neutral alert">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-                <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+                This service will save your progress automatically while you complete the form. <a href="#">Learn more</a>
               </sgds-alert>
             </div>`,
             description:
@@ -1641,7 +1641,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "non-dismissible",
             markup: `<sgds-alert show variant="info" title="A non-dismissible alert">
               <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>This notice remains visible because it affects how users complete the current task. <sgds-alert-link href="#">Read notice</sgds-alert-link></div>
+              This notice remains visible because it affects how users complete the current task. <a href="#">Read notice</a>
             </sgds-alert>`,
             description:
               "Use for persistent messages that must remain visible, such as system statuses or warnings the user needs to act on.",
@@ -1651,7 +1651,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "dismissible",
             markup: `<sgds-alert show dismissible variant="info" title="A dismissible alert">
               <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-              <div>You can dismiss this message after reading the update. <sgds-alert-link href="#">View update</sgds-alert-link></div>
+              You can dismiss this message after reading the update. <a href="#">View update</a>
             </sgds-alert>`,
             description:
               "Use for non-critical messages the user can close after reading, such as informational banners or one-time notices.",
@@ -1754,23 +1754,23 @@ const componentDocs: Record<string, ComponentDoc> = {
         `<div class="portal-demo-stack">
           <sgds-alert show variant="info" title="Info alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+            Review the latest guidance before submitting your application. <a href="#">Read the details</a>
           </sgds-alert>
           <sgds-alert show variant="success" title="Success alert">
             <sgds-icon slot="icon" name="check-circle-fill"></sgds-icon>
-            <div>Your application has been submitted successfully. <sgds-alert-link href="#">View confirmation</sgds-alert-link></div>
+            Your application has been submitted successfully. <a href="#">View confirmation</a>
           </sgds-alert>
           <sgds-alert show variant="danger" title="Danger alert">
             <sgds-icon slot="icon" name="exclamation-circle-fill"></sgds-icon>
-            <div>We could not save your changes because the session expired. <sgds-alert-link href="#">Sign in again</sgds-alert-link></div>
+            We could not save your changes because the session expired. <a href="#">Sign in again</a>
           </sgds-alert>
           <sgds-alert show variant="warning" title="Warning alert">
             <sgds-icon slot="icon" name="exclamation-triangle-fill"></sgds-icon>
-            <div>Some required documents are missing from your application. <sgds-alert-link href="#">Check requirements</sgds-alert-link></div>
+            Some required documents are missing from your application. <a href="#">Check requirements</a>
           </sgds-alert>
           <sgds-alert show variant="neutral" title="Neutral alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>This service will save your progress automatically while you complete the form. <sgds-alert-link href="#">Learn more</sgds-alert-link></div>
+            This service will save your progress automatically while you complete the form. <a href="#">Learn more</a>
           </sgds-alert>
         </div>`,
       ),
@@ -1780,11 +1780,11 @@ const componentDocs: Record<string, ComponentDoc> = {
         `<div class="portal-demo-stack">
           <sgds-alert show dismissible variant="info" title="A dismissible alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>You can dismiss this message after reading the update. <sgds-alert-link href="#">View update</sgds-alert-link></div>
+            You can dismiss this message after reading the update. <a href="#">View update</a>
           </sgds-alert>
           <sgds-alert show variant="info" title="A non-dismissible alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>This notice remains visible because it affects how users complete the current task. <sgds-alert-link href="#">Read notice</sgds-alert-link></div>
+            This notice remains visible because it affects how users complete the current task. <a href="#">Read notice</a>
           </sgds-alert>
         </div>`,
       ),
@@ -1987,7 +1987,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "do",
           markup: `<sgds-alert show variant="info" title="Info alert">
             <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
-            <div>Review the latest guidance before submitting your application. <sgds-alert-link href="#">Read the details</sgds-alert-link></div>
+            Review the latest guidance before submitting your application. <a href="#">Read the details</a>
           </sgds-alert>`,
         },
         {
@@ -2573,7 +2573,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "Loading, `disabled`, and focus states keep button behaviour predictable.",
       },
     ],
-    anatomyMarkup: `<div class="portal-demo-row"><sgds-button class="portal-anatomy-button"><sgds-icon slot="leftIcon" name="house"></sgds-icon><span class="portal-anatomy-button-label">Button label</span><sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon></sgds-button></div>`,
+    anatomyMarkup: `<div class="portal-demo-row"><sgds-button class="portal-anatomy-button" ariaLabel="Button label"><sgds-icon slot="leftIcon" name="house"></sgds-icon><span class="portal-anatomy-button-label">Button label</span><sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon></sgds-button></div>`,
     anatomyParts: [
       { title: "Container" },
       { title: "Label" },
@@ -2590,7 +2590,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "",
         description: "",
-        markup: `<sgds-button class="portal-structure-button" variant="outline">
+        markup: `<sgds-button class="portal-structure-button" variant="outline" ariaLabel="Button label">
           <sgds-icon slot="leftIcon" name="house"></sgds-icon>
           Button label
           <sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon>
@@ -2733,7 +2733,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "",
         description: "",
-        markup: `<sgds-button class="portal-structure-button">
+        markup: `<sgds-button class="portal-structure-button" ariaLabel="Button label">
           <sgds-icon slot="leftIcon" name="house"></sgds-icon>
           Button label
           <sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon>
@@ -2875,21 +2875,21 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Primary",
             value: "primary",
-            markup: `<div class="portal-demo-row"><sgds-button>Primary action</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Primary action">Primary action</sgds-button></div>`,
             description:
               "Use for the main action on a screen. Each view should have only one primary button to communicate the next step.",
           },
           {
             label: "Outline",
             value: "outline",
-            markup: `<div class="portal-demo-row"><sgds-button variant="outline">Secondary action</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button variant="outline" ariaLabel="Secondary action">Secondary action</sgds-button></div>`,
             description:
               "Use for secondary actions that support the primary action, such as cancelling, going back, or choosing an alternative.",
           },
           {
             label: "Ghost",
             value: "ghost",
-            markup: `<div class="portal-demo-row"><sgds-button variant="ghost">Tertiary action</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button variant="ghost" ariaLabel="Tertiary action">Tertiary action</sgds-button></div>`,
             description:
               "Use for tertiary or low-priority actions that should not compete visually with the primary or secondary button.",
           },
@@ -2905,28 +2905,28 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Brand",
             value: "brand",
-            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "The default button tone. Use for standard actions in the main SGDS brand colour system.",
           },
           {
             label: "Neutral",
             value: "neutral",
-            markup: `<div class="portal-demo-row"><sgds-button tone="neutral">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button tone="neutral" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use when the button should feel quieter or sit inside a more neutral interface context.",
           },
           {
             label: "Danger",
             value: "danger",
-            markup: `<div class="portal-demo-row"><sgds-button tone="danger">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button tone="danger" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use for destructive or high-risk actions that need stronger visual warning.",
           },
           {
             label: "Fixed light",
             value: "fixed-light",
-            markup: `<div class="portal-demo-row"><sgds-button tone="fixed-light">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button tone="fixed-light" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Only use on fixed dark or strongly coloured backgrounds. If it does not stand out on the page surface, use a standard tone instead.",
           },
@@ -2942,28 +2942,28 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Extra small",
             value: "xs",
-            markup: `<div class="portal-demo-row"><sgds-button size="xs">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button size="xs" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use in tight, compact surfaces such as table rows, toolbars, or dense list items where space is limited.",
           },
           {
             label: "Small",
             value: "sm",
-            markup: `<div class="portal-demo-row"><sgds-button size="sm">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button size="sm" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use in secondary contexts such as inline actions, cards, or alongside other compact controls.",
           },
           {
             label: "Medium",
             value: "md",
-            markup: `<div class="portal-demo-row"><sgds-button size="md">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button size="md" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "The default size. Use for most primary actions across forms, dialogs, and general page content.",
           },
           {
             label: "Large",
             value: "lg",
-            markup: `<div class="portal-demo-row"><sgds-button size="lg">Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button size="lg" ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use for prominent calls to action, such as hero sections or landing pages, where the button needs extra visual weight.",
           },
@@ -2979,14 +2979,14 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Leading icon",
             value: "leading",
-            markup: `<div class="portal-demo-row"><sgds-button><sgds-icon slot="leftIcon" name="house"></sgds-icon>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label"><sgds-icon slot="leftIcon" name="house"></sgds-icon>Button label</sgds-button></div>`,
             description:
               "Use a leading icon when the icon adds clarity to the action. For example, a download icon before a download label.",
           },
           {
             label: "No leading icon",
             value: "none",
-            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Omit the leading icon when the label alone is clear and no visual reinforcement is needed.",
           },
@@ -3002,14 +3002,14 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Trailing icon",
             value: "trailing",
-            markup: `<div class="portal-demo-row"><sgds-button>Button label<sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon></sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label">Button label<sgds-icon slot="rightIcon" name="chevron-right"></sgds-icon></sgds-button></div>`,
             description:
               "Use a trailing icon to indicate navigation, forward movement, or that a menu or panel will open.",
           },
           {
             label: "No trailing icon",
             value: "none",
-            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Omit the trailing icon when the action does not imply movement, navigation, or a follow-up interaction.",
           },
@@ -3025,27 +3025,27 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Default",
             value: "default",
-            markup: `<div class="portal-demo-row"><sgds-button>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Button label">Button label</sgds-button></div>`,
             description: "Use for actions that are available immediately.",
           },
           {
             label: "Disabled",
             value: "disabled",
-            markup: `<div class="portal-demo-row"><sgds-button disabled>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button disabled ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use disabled when the action is unavailable and the page explains how to enable it.",
           },
           {
             label: "Loading",
             value: "loading",
-            markup: `<div class="portal-demo-row"><sgds-button loading>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button loading ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use loading after an action has been submitted and the user should wait.",
           },
           {
             label: "Active",
             value: "active",
-            markup: `<div class="portal-demo-row"><sgds-button variant="outline" active>Button label</sgds-button></div>`,
+            markup: `<div class="portal-demo-row"><sgds-button variant="outline" active ariaLabel="Button label">Button label</sgds-button></div>`,
             description:
               "Use active when the button represents a selected or pressed state.",
           },
@@ -3062,7 +3062,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<div class="sgds:flex sgds:w-full sgds:justify-center">
-              <sgds-button>Button label</sgds-button>
+              <sgds-button ariaLabel="Button label">Button label</sgds-button>
             </div>`,
             description: "Use the default width for inline actions.",
           },
@@ -3070,7 +3070,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Full width",
             value: "full-width",
             markup: `<div class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)]">
-              <sgds-button fullWidth>Button label</sgds-button>
+              <sgds-button fullWidth ariaLabel="Button label">Button label</sgds-button>
             </div>`,
             description:
               "Use fullWidth on mobile, forms, or stacked actions where the button should span the available width.",
@@ -3083,9 +3083,9 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Variants",
         "Use the default and alternate variants to express priority and supporting actions.",
         `<div class="portal-demo-row">
-          <sgds-button>Primary action</sgds-button>
-          <sgds-button variant="outline">Secondary action</sgds-button>
-          <sgds-button variant="ghost">Tertiary action</sgds-button>
+          <sgds-button ariaLabel="Primary action">Primary action</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Secondary action">Secondary action</sgds-button>
+          <sgds-button variant="ghost" ariaLabel="Tertiary action">Tertiary action</sgds-button>
         </div>`,
       ),
     ],
@@ -3104,13 +3104,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           title: "Use a clear action label",
           description: "Specific labels help users understand the outcome before they act.",
           tone: "do",
-          markup: `<div class="portal-demo-row"><sgds-button>Save changes</sgds-button></div>`,
+          markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Save changes">Save changes</sgds-button></div>`,
         },
         {
           title: "Do not use vague labels",
           description: "Generic labels such as Click here force users to read surrounding text to understand what happens.",
           tone: "dont",
-          markup: `<div class="portal-demo-row"><sgds-button>Click here</sgds-button></div>`,
+          markup: `<div class="portal-demo-row"><sgds-button ariaLabel="Click here">Click here</sgds-button></div>`,
         },
       ],
     },
@@ -3500,7 +3500,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<sgds-card class="portal-demo-card">
               <span slot="title">Card title</span>
               <span slot="description">Use a footer button when the action needs stronger emphasis.</span>
-              <sgds-button slot="footer" variant="outline">Take action</sgds-button>
+              <sgds-button slot="footer" variant="outline" ariaLabel="Take action">Take action</sgds-button>
             </sgds-card>`,
           },
           {
@@ -3512,7 +3512,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               <span slot="title">Card title</span>
               <span slot="description">Use a full-width footer button when the primary action needs strong emphasis.</span>
               <div slot="footer" class="portal-card-footer-full-width">
-                <sgds-button variant="primary" fullWidth>Take action</sgds-button>
+                <sgds-button variant="primary" fullWidth ariaLabel="Take action">Take action</sgds-button>
               </div>
             </sgds-card>`,
           },
@@ -3553,7 +3553,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             description:
               "Uses a larger heading level for the title. Use when the card title needs stronger emphasis in the layout.",
             markup: `<sgds-card class="portal-demo-card portal-card-title-h4-demo">
-              <h4 slot="title" class="portal-card-title-h4 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Card title</h4>
+              <h3 slot="title" class="portal-card-title-h4 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">Card title</h3>
               <span slot="description">Use a higher emphasis when the title needs more prominence.</span>
             </sgds-card>`,
           },
@@ -3732,8 +3732,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "with-menu",
             markup: `<sgds-card class="portal-demo-card">
               <sgds-overflow-menu slot="menu" size="sm">
-                <sgds-dropdown-item>Edit</sgds-dropdown-item>
-                <sgds-dropdown-item>Archive</sgds-dropdown-item>
+                <sgds-dropdown-item arialabel="Edit">Edit</sgds-dropdown-item>
+                <sgds-dropdown-item arialabel="Archive">Archive</sgds-dropdown-item>
               </sgds-overflow-menu>
               <span slot="title">Case file</span>
               <span slot="description">Menu actions stay visually separate from card content.</span>
@@ -5907,7 +5907,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Start",
             value: "start",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="start">
+          <sgds-drawer open contained placement="start" ariaLabel="Start drawer">
             <span slot="title" class="sgds:font-semibold">Start drawer</span>
             <span slot="description">Slides in from the leading edge.</span>
             <p>Useful for navigation or filters.</p>
@@ -5920,7 +5920,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "End",
             value: "end",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="end">
+          <sgds-drawer open contained placement="end" ariaLabel="End drawer">
             <span slot="title" class="sgds:font-semibold">End drawer</span>
             <span slot="description">Slides in from the trailing edge.</span>
             <p>Common for detail panels or settings.</p>
@@ -5933,7 +5933,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Top",
             value: "top",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="top">
+          <sgds-drawer open contained placement="top" ariaLabel="Top drawer">
             <span slot="title" class="sgds:font-semibold">Top drawer</span>
             <span slot="description">Drops down from the top edge.</span>
             <p>Useful for short alerts or system messages.</p>
@@ -5945,7 +5945,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Bottom",
             value: "bottom",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="bottom">
+          <sgds-drawer open contained placement="bottom" ariaLabel="Bottom drawer">
             <span slot="title" class="sgds:font-semibold">Bottom drawer</span>
             <span slot="description">Rises from the bottom edge.</span>
             <p>Commonly used on mobile for short actions.</p>
@@ -5966,7 +5966,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Small",
             value: "sm",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="end" size="sm">
+          <sgds-drawer open contained placement="end" size="sm" ariaLabel="Small drawer">
             <span slot="title" class="sgds:font-semibold">Small drawer</span>
             <span slot="description">Compact panel for short content.</span>
             <p>Suits short actions or summaries.</p>
@@ -5978,7 +5978,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Medium",
             value: "md",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="end" size="md">
+          <sgds-drawer open contained placement="end" size="md" ariaLabel="Medium drawer">
             <span slot="title" class="sgds:font-semibold">Medium drawer</span>
             <span slot="description">Balanced panel for typical detail views.</span>
             <p>Suits forms and rich content.</p>
@@ -5990,7 +5990,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Large",
             value: "lg",
             markup: `<div class="portal-demo-overlay">
-          <sgds-drawer open contained placement="end" size="lg">
+          <sgds-drawer open contained placement="end" size="lg" ariaLabel="Large drawer">
             <span slot="title" class="sgds:font-semibold">Large drawer</span>
             <span slot="description">Spacious panel for dense content.</span>
             <p>Use when the drawer needs to feel like a workspace.</p>
@@ -6012,7 +6012,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Viewport",
             value: "viewport",
             markup: `<div class="portal-demo-overlay">
-              <sgds-drawer open size="sm">
+              <sgds-drawer open size="sm" ariaLabel="Drawer title">
                 <span slot="title">Drawer title</span>
                 <span slot="description">This drawer is positioned against the viewport.</span>
               </sgds-drawer>
@@ -6024,7 +6024,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Contained",
             value: "contained",
             markup: `<div class="portal-demo-overlay">
-              <sgds-drawer open contained size="sm">
+              <sgds-drawer open contained size="sm" ariaLabel="Drawer title">
                 <span slot="title">Drawer title</span>
                 <span slot="description">This drawer is constrained to its parent demo area.</span>
               </sgds-drawer>
@@ -6045,12 +6045,12 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With footer",
             value: "with-footer",
             markup: `<div class="portal-demo-overlay">
-              <sgds-drawer open contained size="sm">
+              <sgds-drawer open contained size="sm" ariaLabel="Review details">
                 <span slot="title">Review details</span>
                 <span slot="description">Confirm the information before continuing.</span>
                 <div slot="footer" class="portal-demo-row">
-                  <sgds-button>Confirm</sgds-button>
-                  <sgds-button variant="outline">Cancel</sgds-button>
+                  <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
+                  <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
                 </div>
               </sgds-drawer>
             </div>`,
@@ -6061,7 +6061,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No footer",
             value: "no-footer",
             markup: `<div class="portal-demo-overlay">
-              <sgds-drawer open contained size="sm">
+              <sgds-drawer open contained size="sm" ariaLabel="Information">
                 <span slot="title">Information</span>
                 <span slot="description">Use this layout for read-only drawer content.</span>
               </sgds-drawer>
@@ -6076,13 +6076,13 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Contained",
         "Use drawers to reveal supporting tasks while keeping the main page in view.",
         `<div class="portal-demo-overlay">
-          <sgds-drawer open contained size="sm">
+          <sgds-drawer open contained size="sm" ariaLabel="Edit details">
             <span slot="title" class="sgds:font-semibold">Edit details</span>
             <span slot="description">Review the information before saving.</span>
             <p>Drawers are useful for secondary tasks that need more space than a popover.</p>
             <div slot="footer" class="portal-demo-row">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Save</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Save">Save</sgds-button>
             </div>
           </sgds-drawer>
         </div>`,
@@ -6095,13 +6095,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Drawers work best for filters, settings, or detail panels. Users keep the page in view while they work.",
           tone: "do",
-          markup: `<sgds-drawer open contained placement="end" size="sm">
+          markup: `<sgds-drawer open contained placement="end" size="sm" ariaLabel="Filter results">
             <span slot="title" class="sgds:font-semibold">Filter results</span>
             <span slot="description">Refine the list without leaving the page.</span>
             <p>Adjust filters and apply them when you are done.</p>
             <div slot="footer" class="portal-demo-row">
-              <sgds-button variant="outline">Reset</sgds-button>
-              <sgds-button>Apply filters</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Reset">Reset</sgds-button>
+              <sgds-button ariaLabel="Apply filters">Apply filters</sgds-button>
             </div>
           </sgds-drawer>`,
         },
@@ -6110,13 +6110,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Decisions that block progress or are irreversible belong in a modal, where users must respond first.",
           tone: "dont",
-          markup: `<sgds-drawer open contained placement="end" size="sm">
+          markup: `<sgds-drawer open contained placement="end" size="sm" ariaLabel="Delete account">
             <span slot="title" class="sgds:font-semibold">Delete account</span>
             <span slot="description">This action cannot be undone.</span>
             <p>Are you sure you want to permanently delete your account?</p>
             <div slot="footer" class="portal-demo-row">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button variant="danger">Delete account</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button variant="danger" ariaLabel="Delete account">Delete account</sgds-button>
             </div>
           </sgds-drawer>`,
         },
@@ -6125,7 +6125,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Use end for detail panels, start for navigation, and bottom for mobile sheets so placement matches purpose.",
           tone: "do",
-          markup: `<sgds-drawer open contained placement="end" size="md">
+          markup: `<sgds-drawer open contained placement="end" size="md" ariaLabel="Booking details">
             <span slot="title" class="sgds:font-semibold">Booking details</span>
             <span slot="description">Reference number SG-20260427</span>
             <p>Reviewing details on the right keeps the booking list visible.</p>
@@ -6137,11 +6137,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Opening a second drawer from inside another hides the first context. Resolve the current one first.",
           tone: "dont",
           markup: `<div class="portal-demo-overlay">
-            <sgds-drawer open contained placement="end" size="sm">
+            <sgds-drawer open contained placement="end" size="sm" ariaLabel="Edit profile">
               <span slot="title" class="sgds:font-semibold">Edit profile</span>
               <p>Update your details below.</p>
             </sgds-drawer>
-            <sgds-drawer open contained placement="end" size="sm">
+            <sgds-drawer open contained placement="end" size="sm" ariaLabel="Change password">
               <span slot="title" class="sgds:font-semibold">Change password</span>
               <p>Enter your new password.</p>
             </sgds-drawer>
@@ -6152,13 +6152,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Include a footer action such as Save or Cancel, paired with the built-in close, so users have an obvious exit.",
           tone: "do",
-          markup: `<sgds-drawer open contained placement="end" size="sm">
+          markup: `<sgds-drawer open contained placement="end" size="sm" ariaLabel="Edit details">
             <span slot="title" class="sgds:font-semibold">Edit details</span>
             <span slot="description">Update and save your changes.</span>
             <p>Make changes to the form below.</p>
             <div slot="footer" class="portal-demo-row">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Save changes</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Save changes">Save changes</sgds-button>
             </div>
           </sgds-drawer>`,
         },
@@ -6167,7 +6167,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "If the content is a full task or page on its own, send users to a dedicated page instead of a drawer.",
           tone: "dont",
-          markup: `<sgds-drawer open contained placement="end" size="lg">
+          markup: `<sgds-drawer open contained placement="end" size="lg" ariaLabel="Submit a new application">
             <span slot="title" class="sgds:font-semibold">Submit a new application</span>
             <span slot="description">A multi-step form with eligibility checks.</span>
             <p>This long task includes uploads, multiple steps, and a review screen.</p>
@@ -6221,25 +6221,25 @@ const componentDocs: Record<string, ComponentDoc> = {
     ],
     anatomyMarkup: `<sgds-dropdown class="portal-anatomy-dropdown" menuisopen noFlip>
       <sgds-icon-button class="portal-anatomy-dropdown-action" slot="toggler" name="chevron-down" variant="outline" ariaLabel="Open menu" active></sgds-icon-button>
-      <sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Menu label">
         <a href="#">
           <sgds-icon class="portal-anatomy-dropdown-menu-icon" name="gear" size="md" aria-hidden="true"></sgds-icon>
           <span class="portal-anatomy-dropdown-menu-label">Menu label</span>
         </a>
       </sgds-dropdown-item>
-      <sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Menu label">
         <a href="#">
           <sgds-icon name="gear" size="md" aria-hidden="true"></sgds-icon>
           <span>Menu label</span>
         </a>
       </sgds-dropdown-item>
-      <sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Menu label">
         <a href="#">
           <sgds-icon name="gear" size="md" aria-hidden="true"></sgds-icon>
           <span>Menu label</span>
         </a>
       </sgds-dropdown-item>
-      <sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Menu label">
         <a href="#">
           <sgds-icon name="gear" size="md" aria-hidden="true"></sgds-icon>
           <span class="portal-anatomy-dropdown-bottom-menu-label">Menu label</span>
@@ -6297,9 +6297,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "down",
             markup: `<sgds-dropdown drop="down">
           <sgds-button slot="toggler" ariaLabel="Open menu">Open menu</sgds-button>
-          <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Sign out</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Settings"><a href="#">Settings</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Sign out"><a href="#">Sign out</a></sgds-dropdown-item>
         </sgds-dropdown>`,
             description:
               "Menu opens below the trigger. This is the default behaviour.",
@@ -6309,9 +6309,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "up",
             markup: `<sgds-dropdown drop="up">
           <sgds-button slot="toggler" ariaLabel="Open menu">Open menu</sgds-button>
-          <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Sign out</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Settings"><a href="#">Settings</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Sign out"><a href="#">Sign out</a></sgds-dropdown-item>
         </sgds-dropdown>`,
             description:
               "Menu opens above the trigger, useful near the bottom of the page.",
@@ -6321,8 +6321,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "left",
             markup: `<sgds-dropdown drop="left">
           <sgds-button slot="toggler" ariaLabel="Open menu">Open menu</sgds-button>
-          <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Settings"><a href="#">Settings</a></sgds-dropdown-item>
         </sgds-dropdown>`,
             description: "Menu opens to the leading side of the trigger.",
           },
@@ -6331,8 +6331,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "right",
             markup: `<sgds-dropdown drop="right">
           <sgds-button slot="toggler" ariaLabel="Open menu">Open menu</sgds-button>
-          <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Settings"><a href="#">Settings</a></sgds-dropdown-item>
         </sgds-dropdown>`,
             description: "Menu opens to the trailing side of the trigger.",
           },
@@ -6350,8 +6350,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "start",
             markup: `<sgds-dropdown>
           <sgds-button slot="toggler" ariaLabel="Open menu">Open menu</sgds-button>
-          <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Settings"><a href="#">Settings</a></sgds-dropdown-item>
         </sgds-dropdown>`,
             description:
               "Default alignment, menu lines up with the trigger's leading edge.",
@@ -6361,8 +6361,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "end",
             markup: `<sgds-dropdown menuAlignRight>
           <sgds-button slot="toggler" ariaLabel="Open menu">Open menu</sgds-button>
-          <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Settings"><a href="#">Settings</a></sgds-dropdown-item>
         </sgds-dropdown>`,
             description:
               "Menu's right edge lines up with the trigger's right edge.",
@@ -6381,8 +6381,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "flip",
             markup: `<sgds-dropdown>
           <sgds-button slot="toggler" ariaLabel="Open menu">Open menu</sgds-button>
-          <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Settings"><a href="#">Settings</a></sgds-dropdown-item>
         </sgds-dropdown>`,
             description:
               "Menu flips to the opposite side when there is not enough space.",
@@ -6392,8 +6392,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "no-flip",
             markup: `<sgds-dropdown noFlip>
           <sgds-button slot="toggler" ariaLabel="Open menu">Open menu</sgds-button>
-          <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Settings"><a href="#">Settings</a></sgds-dropdown-item>
         </sgds-dropdown>`,
             description:
               "Menu always opens in the configured direction, even if it overflows.",
@@ -6412,8 +6412,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "not-disabled",
             markup: `<sgds-dropdown>
           <sgds-button slot="toggler" ariaLabel="Open menu">Open menu</sgds-button>
-          <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Settings"><a href="#">Settings</a></sgds-dropdown-item>
         </sgds-dropdown>`,
             description: "Default state. The toggler opens the menu on click.",
           },
@@ -6422,8 +6422,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "disabled",
             markup: `<sgds-dropdown disabled>
           <sgds-button slot="toggler" disabled ariaLabel="Open menu">Open menu</sgds-button>
-          <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Settings"><a href="#">Settings</a></sgds-dropdown-item>
         </sgds-dropdown>`,
             description: "The toggler is inert and the menu cannot be opened.",
           },
@@ -6441,8 +6441,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "active",
             markup: `<sgds-dropdown class="portal-demo-dropdown-active">
               <sgds-button slot="toggler" variant="outline" ariaLabel="Open menu">Open menu</sgds-button>
-              <sgds-dropdown-item active><a href="#">Active item</a></sgds-dropdown-item>
-              <sgds-dropdown-item><a href="#">Default item</a></sgds-dropdown-item>
+              <sgds-dropdown-item active arialabel="Active item"><a href="#">Active item</a></sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Default item"><a href="#">Default item</a></sgds-dropdown-item>
             </sgds-dropdown>`,
             description:
               "Use active to identify the currently selected destination or value.",
@@ -6452,8 +6452,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "disabled",
             markup: `<sgds-dropdown class="portal-demo-dropdown-active">
               <sgds-button slot="toggler" variant="outline" ariaLabel="Open menu">Open menu</sgds-button>
-              <sgds-dropdown-item><a href="#">Available item</a></sgds-dropdown-item>
-              <sgds-dropdown-item disabled><a href="#">Disabled item</a></sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Available item"><a href="#">Available item</a></sgds-dropdown-item>
+              <sgds-dropdown-item disabled arialabel="Disabled item"><a href="#">Disabled item</a></sgds-dropdown-item>
             </sgds-dropdown>`,
             description:
               "Use disabled when an item must remain visible but unavailable.",
@@ -6472,8 +6472,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "close",
             markup: `<sgds-dropdown close>
               <sgds-button slot="toggler" variant="outline" ariaLabel="Actions">Actions</sgds-button>
-              <sgds-dropdown-item><a href="#">Archive</a></sgds-dropdown-item>
-              <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Archive"><a href="#">Archive</a></sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Duplicate"><a href="#">Duplicate</a></sgds-dropdown-item>
             </sgds-dropdown>`,
             description:
               "Use close when selecting an item completes the menu interaction.",
@@ -6483,8 +6483,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "stay-open",
             markup: `<sgds-dropdown close="false">
               <sgds-button slot="toggler" variant="outline" ariaLabel="Filters">Filters</sgds-button>
-              <sgds-dropdown-item><a href="#">Status</a></sgds-dropdown-item>
-              <sgds-dropdown-item><a href="#">Owner</a></sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Status"><a href="#">Status</a></sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Owner"><a href="#">Owner</a></sgds-dropdown-item>
             </sgds-dropdown>`,
             description:
               "Use stay-open behaviour when users may need to make repeated selections.",
@@ -6498,9 +6498,9 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Use dropdowns to collect related actions under a single trigger.",
         `<sgds-dropdown>
           <sgds-button slot="toggler" variant="outline" ariaLabel="Actions">Actions</sgds-button>
-          <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Archive</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Edit"><a href="#">Edit</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Duplicate"><a href="#">Duplicate</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Archive"><a href="#">Archive</a></sgds-dropdown-item>
         </sgds-dropdown>`,
       ),
     ],
@@ -6513,9 +6513,9 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "do",
           markup: `<sgds-dropdown>
             <sgds-button slot="toggler" variant="outline" ariaLabel="Actions">Actions</sgds-button>
-            <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Archive</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Edit"><a href="#">Edit</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Duplicate"><a href="#">Duplicate</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Archive"><a href="#">Archive</a></sgds-dropdown-item>
           </sgds-dropdown>`,
         },
         {
@@ -6525,7 +6525,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "dont",
           markup: `<sgds-dropdown>
             <sgds-button slot="toggler" variant="primary" ariaLabel="More">More</sgds-button>
-            <sgds-dropdown-item><a href="#">Submit application</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Submit application"><a href="#">Submit application</a></sgds-dropdown-item>
           </sgds-dropdown>`,
         },
         {
@@ -6535,9 +6535,9 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "do",
           markup: `<sgds-dropdown>
             <sgds-button slot="toggler" variant="outline" ariaLabel="Manage record">Manage record</sgds-button>
-            <sgds-dropdown-item><a href="#">Edit details</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Change owner</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Delete</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Edit details"><a href="#">Edit details</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Change owner"><a href="#">Change owner</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Delete"><a href="#">Delete</a></sgds-dropdown-item>
           </sgds-dropdown>`,
         },
         {
@@ -6547,9 +6547,9 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "dont",
           markup: `<sgds-dropdown>
             <sgds-button slot="toggler" variant="outline" ariaLabel="Country">Country</sgds-button>
-            <sgds-dropdown-item><a href="#">Singapore</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Malaysia</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Indonesia</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Singapore"><a href="#">Singapore</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Malaysia"><a href="#">Malaysia</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Indonesia"><a href="#">Indonesia</a></sgds-dropdown-item>
           </sgds-dropdown>`,
         },
         {
@@ -6559,9 +6559,9 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "do",
           markup: `<sgds-dropdown>
             <sgds-button slot="toggler" variant="outline" ariaLabel="Account">Account</sgds-button>
-            <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Settings</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Sign out</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Settings"><a href="#">Settings</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Sign out"><a href="#">Sign out</a></sgds-dropdown-item>
           </sgds-dropdown>`,
         },
         {
@@ -6571,11 +6571,11 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "dont",
           markup: `<sgds-dropdown>
             <sgds-button slot="toggler" variant="outline" ariaLabel="Actions">Actions</sgds-button>
-            <sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Export">
               <sgds-dropdown>
                 <sgds-button slot="toggler" variant="ghost" ariaLabel="Export">Export</sgds-button>
-                <sgds-dropdown-item><a href="#">CSV</a></sgds-dropdown-item>
-                <sgds-dropdown-item><a href="#">PDF</a></sgds-dropdown-item>
+                <sgds-dropdown-item arialabel="CSV"><a href="#">CSV</a></sgds-dropdown-item>
+                <sgds-dropdown-item arialabel="PDF"><a href="#">PDF</a></sgds-dropdown-item>
               </sgds-dropdown>
             </sgds-dropdown-item>
           </sgds-dropdown>`,
@@ -6619,9 +6619,9 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "do",
           markup: `<sgds-dropdown menuisopen noFlip>
             <sgds-button slot="toggler" variant="outline" ariaLabel="Export">Export</sgds-button>
-            <sgds-dropdown-item><a href="#">Download CSV</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Download PDF</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Email report</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Download CSV"><a href="#">Download CSV</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Download PDF"><a href="#">Download PDF</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Email report"><a href="#">Email report</a></sgds-dropdown-item>
           </sgds-dropdown>`,
         },
         {
@@ -6630,9 +6630,9 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "dont",
           markup: `<sgds-dropdown menuisopen noFlip>
             <sgds-button slot="toggler" variant="outline" ariaLabel="More">More</sgds-button>
-            <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Item"><a href="#">Item</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Item"><a href="#">Item</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Item"><a href="#">Item</a></sgds-dropdown-item>
           </sgds-dropdown>`,
         },
       ],
@@ -7520,7 +7520,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Use icons to reinforce meaning already clear from nearby text. They aid recognition on later visits.",
           tone: "do",
-          markup: `<sgds-button>
+          markup: `<sgds-button ariaLabel="Download report">
             <sgds-icon slot="leftIcon" name="download"></sgds-icon>
             Download report
           </sgds-button>`,
@@ -7542,11 +7542,11 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Pick one icon per concept and reuse it across the product. Switching icons for the same idea hurts recognition.",
           tone: "do",
           markup: `<div class="portal-demo-row">
-            <sgds-button variant="ghost">
+            <sgds-button variant="ghost" ariaLabel="Settings">
               <sgds-icon slot="leftIcon" name="gear"></sgds-icon>
               Settings
             </sgds-button>
-            <sgds-button variant="ghost">
+            <sgds-button variant="ghost" ariaLabel="Account settings">
               <sgds-icon slot="leftIcon" name="gear"></sgds-icon>
               Account settings
             </sgds-button>
@@ -8470,7 +8470,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     anatomyMarkup: `<sgds-image-card class="portal-anatomy-image-card portal-demo-card">
-      <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+      <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
       <span slot="title">Image card title</span>
       <span slot="description">Supporting description with detail to explain image card content clearly.</span>
     </sgds-image-card>`,
@@ -8522,7 +8522,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Vertical",
             value: "vertical",
             markup: `<sgds-image-card class="portal-demo-card" orientation="vertical">
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">National Day Parade</span>
           <span slot="description">Celebrate Singapore's birthday with the nation.</span>
         </sgds-image-card>`,
@@ -8533,7 +8533,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Horizontal",
             value: "horizontal",
             markup: `<sgds-image-card class="portal-demo-card" orientation="horizontal">
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">National Day Parade</span>
           <span slot="description">Celebrate Singapore's birthday with the nation.</span>
         </sgds-image-card>`,
@@ -8553,7 +8553,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Before content",
             value: "before",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="before">
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">Career fair</span>
           <span slot="description">Meet hiring agencies and explore new roles.</span>
         </sgds-image-card>`,
@@ -8564,7 +8564,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "After content",
             value: "after",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="after">
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">Career fair</span>
           <span slot="description">Meet hiring agencies and explore new roles.</span>
         </sgds-image-card>`,
@@ -8584,7 +8584,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<sgds-image-card class="portal-demo-card">
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">Featured story</span>
           <span slot="description">A look at this month's highlights.</span>
         </sgds-image-card>`,
@@ -8594,7 +8594,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Tinted",
             value: "tinted",
             markup: `<sgds-image-card class="portal-demo-card" tinted>
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">Featured story</span>
           <span slot="description">A look at this month's highlights.</span>
         </sgds-image-card>`,
@@ -8614,7 +8614,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Default padding</span>
               <span slot="description">Content uses the default inset spacing.</span>
             </sgds-image-card>`,
@@ -8624,7 +8624,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No padding",
             value: "no-padding",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" noPadding>
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">No padding</span>
               <span slot="description">Content can sit closer to the card edge.</span>
             </sgds-image-card>`,
@@ -8644,7 +8644,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Border",
             value: "border",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">With border</span>
             </sgds-image-card>`,
             description: "Use the default border for clearer separation.",
@@ -8653,7 +8653,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No border",
             value: "no-border",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" hideBorder>
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">No border</span>
             </sgds-image-card>`,
             description:
@@ -8663,7 +8663,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Disabled",
             value: "disabled",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" disabled>
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Disabled card</span>
             </sgds-image-card>`,
             description:
@@ -8682,7 +8682,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<sgds-image-card class="portal-demo-card" imageAdjustment="default">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Default image</span>
             </sgds-image-card>`,
             description:
@@ -8692,7 +8692,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Padding around",
             value: "padding-around",
             markup: `<sgds-image-card class="portal-demo-card" imageAdjustment="padding around">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Padded image</span>
             </sgds-image-card>`,
             description:
@@ -8711,7 +8711,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With slots",
             value: "with-slots",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <sgds-badge slot="image-badge" variant="success">New</sgds-badge>
               <sgds-icon-button slot="image-action" name="bookmark" ariaLabel="Save"></sgds-icon-button>
               <span slot="title">Image slots</span>
@@ -8723,7 +8723,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Image only",
             value: "image-only",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Image only</span>
             </sgds-image-card>`,
             description: "Keep the image area clean when no overlay is needed.",
@@ -8741,7 +8741,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Footer link",
             value: "footer",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Article</span>
               <sgds-link slot="footer"><a href="#">Read more</a></sgds-link>
             </sgds-image-card>`,
@@ -8751,7 +8751,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Stretched link",
             value: "stretched",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" stretchedLink>
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Article</span>
               <sgds-link slot="footer"><a href="#">Read more</a></sgds-link>
             </sgds-image-card>`,
@@ -8806,7 +8806,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             "If the image is purely decorative or interchangeable, drop it. Icon or text cards will scan better.",
           tone: "dont",
           markup: `<sgds-image-card class="portal-demo-card">
-            <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+            <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
             <span slot="title">Frequently asked questions</span>
             <span slot="description">Answers to common questions about our service.</span>
           </sgds-image-card>`,
@@ -9239,7 +9239,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Action",
             value: "action",
             markup: `<sgds-input label="Search" placeholder="Search services">
-              <sgds-button slot="action">Search</sgds-button>
+              <sgds-button slot="action" ariaLabel="Search">Search</sgds-button>
             </sgds-input>`,
             description:
               "Use an action slot when the input has a directly associated command.",
@@ -9598,7 +9598,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       <sgds-mainnav-item active><a href="#">Services</a></sgds-mainnav-item>
       <sgds-mainnav-item><a href="#">Resources</a></sgds-mainnav-item>
       <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
-      <sgds-button slot="end">Log in</sgds-button>
+      <sgds-button slot="end" ariaLabel="Log in">Log in</sgds-button>
     </sgds-mainnav>`,
     anatomyParts: [
       { title: "Slot content" },
@@ -9731,11 +9731,11 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-mainnav brandHref="/">
             <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
-            <sgds-mainnav-dropdown>
+            <sgds-mainnav-dropdown ariaLabel="Services">
               <span slot="toggler">Services</span>
-              <sgds-dropdown-item>Apply</sgds-dropdown-item>
-              <sgds-dropdown-item>Renew</sgds-dropdown-item>
-              <sgds-dropdown-item>Track status</sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Apply">Apply</sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Renew">Renew</sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Track status">Track status</sgds-dropdown-item>
             </sgds-mainnav-dropdown>
             <sgds-mainnav-item>Contact</sgds-mainnav-item>
           </sgds-mainnav>
@@ -9772,7 +9772,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
-            <sgds-button slot="end" variant="primary">Sign in</sgds-button>
+            <sgds-button slot="end" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
           </sgds-mainnav>
         </div>`,
             description:
@@ -9796,7 +9796,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
-              <sgds-button slot="non-collapsible" size="sm">Log in</sgds-button>
+              <sgds-button slot="non-collapsible" size="sm" ariaLabel="Log in">Log in</sgds-button>
             </sgds-mainnav>
         </div>`,
             description:
@@ -9827,9 +9827,9 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-mainnav fluid expand="always" brandHref="/">
             <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
             <sgds-mainnav-item><a href="#">Overview</a></sgds-mainnav-item>
-            <sgds-mainnav-dropdown active>
+            <sgds-mainnav-dropdown active ariaLabel="Services">
               <span slot="toggler">Services</span>
-              <sgds-dropdown-item><a href="#">Apply</a></sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Apply"><a href="#">Apply</a></sgds-dropdown-item>
             </sgds-mainnav-dropdown>
             <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
             <div slot="end" class="portal-slot-example"><span>Slot content</span></div>
@@ -9851,10 +9851,10 @@ const componentDocs: Record<string, ComponentDoc> = {
             />
             <sgds-mainnav-item href="#">Overview</sgds-mainnav-item>
             <sgds-mainnav-item href="#" active>Services</sgds-mainnav-item>
-            <sgds-mainnav-dropdown slot="end">
+            <sgds-mainnav-dropdown slot="end" ariaLabel="Account">
               <span slot="toggler">Account</span>
-              <sgds-dropdown-item><a href="#">Profile</a></sgds-dropdown-item>
-              <sgds-dropdown-item><a href="#">Sign out</a></sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Sign out"><a href="#">Sign out</a></sgds-dropdown-item>
             </sgds-mainnav-dropdown>
           </sgds-mainnav>
         </div>`,
@@ -9907,7 +9907,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <sgds-mainnav-item>About</sgds-mainnav-item>
-              <sgds-button slot="end" variant="primary">Sign in</sgds-button>
+              <sgds-button slot="end" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
             </sgds-mainnav>
           </div>`,
         },
@@ -9922,8 +9922,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <div slot="end">
                 <sgds-badge>New</sgds-badge>
-                <sgds-button variant="primary">Get started</sgds-button>
-                <sgds-button variant="outline">Sign in</sgds-button>
+                <sgds-button variant="primary" ariaLabel="Get started">Get started</sgds-button>
+                <sgds-button variant="outline" ariaLabel="Sign in">Sign in</sgds-button>
               </div>
             </sgds-mainnav>
           </div>`,
@@ -10141,7 +10141,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           <div class="portal-slot-example portal-modal-slot-content"><span>Slot content</span></div>
         </div>
         <div class="portal-modal-footer">
-          <sgds-button>Confirm</sgds-button>
+          <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
         </div>
       </div>
     </div>`,
@@ -10183,8 +10183,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Are you sure you want to continue?</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10204,8 +10204,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Use this size for typical messages and short forms.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10225,8 +10225,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Use this size for richer content such as multi-field forms.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10246,8 +10246,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Use this size for content-heavy focused tasks that still belong in a modal.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10267,8 +10267,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Use this for focused tasks that need more space while still blocking the page behind it.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10298,7 +10298,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Users can dismiss the modal from the header.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button>Got it</sgds-button>
+              <sgds-button ariaLabel="Got it">Got it</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10317,8 +10317,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             </div>
             <div class="portal-modal-body"><p>Use only when explicit choice is required.</p></div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10348,8 +10348,8 @@ const componentDocs: Record<string, ComponentDoc> = {
                 </div>
                 <div class="portal-modal-body"><p>The footer contains the actions that complete the modal task.</p></div>
                 <div class="portal-modal-footer">
-                  <sgds-button variant="outline">Cancel</sgds-button>
-                  <sgds-button>Submit</sgds-button>
+                  <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+                  <sgds-button ariaLabel="Submit">Submit</sgds-button>
                 </div>
               </div>
             </div>`,
@@ -10394,8 +10394,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               <p>The modal can contain short supporting content and clear actions.</p>
             </div>
             <div class="portal-modal-footer">
-              <sgds-button variant="outline">Cancel</sgds-button>
-              <sgds-button>Confirm</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+              <sgds-button ariaLabel="Confirm">Confirm</sgds-button>
             </div>
           </div>
         </div>`,
@@ -10409,8 +10409,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           <h2 slot="title">Confirm submission</h2>
           <p slot="description">Review the information before you continue.</p>
           <p>The modal can contain short supporting content and clear actions.</p>
-          <sgds-button slot="footer" variant="outline">Cancel</sgds-button>
-          <sgds-button slot="footer">Confirm</sgds-button>
+          <sgds-button slot="footer" variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+          <sgds-button slot="footer" ariaLabel="Confirm">Confirm</sgds-button>
         </sgds-modal>`,
       },
     ],
@@ -10432,8 +10432,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               </div>
               <div class="portal-modal-body"><p>Removing this draft will permanently delete its contents.</p></div>
               <div class="portal-modal-footer">
-                <sgds-button variant="outline">Keep draft</sgds-button>
-                <sgds-button variant="danger">Delete draft</sgds-button>
+                <sgds-button variant="outline" ariaLabel="Keep draft">Keep draft</sgds-button>
+                <sgds-button variant="danger" ariaLabel="Delete draft">Delete draft</sgds-button>
               </div>
             </div>
           </div>`,
@@ -10453,7 +10453,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               </div>
               <div class="portal-modal-body"><p>Your changes have been saved.</p></div>
               <div class="portal-modal-footer">
-                <sgds-button>OK</sgds-button>
+                <sgds-button ariaLabel="OK">OK</sgds-button>
               </div>
             </div>
           </div>`,
@@ -10474,8 +10474,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               </div>
               <div class="portal-modal-body"><p>Confirm that the information is correct before you continue.</p></div>
               <div class="portal-modal-footer">
-                <sgds-button variant="outline">Review again</sgds-button>
-                <sgds-button>Submit application</sgds-button>
+                <sgds-button variant="outline" ariaLabel="Review again">Review again</sgds-button>
+                <sgds-button ariaLabel="Submit application">Submit application</sgds-button>
               </div>
             </div>
           </div>`,
@@ -10520,8 +10520,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               </div>
               <div class="portal-modal-body"><p>You will need to sign in again to continue.</p></div>
               <div class="portal-modal-footer">
-                <sgds-button variant="outline">Cancel</sgds-button>
-                <sgds-button>Sign out</sgds-button>
+                <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
+                <sgds-button ariaLabel="Sign out">Sign out</sgds-button>
               </div>
             </div>
           </div>`,
@@ -10541,7 +10541,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               </div>
               <div class="portal-modal-body"><p>We have updated the dashboard with new charts.</p></div>
               <div class="portal-modal-footer">
-                <sgds-button>Got it</sgds-button>
+                <sgds-button ariaLabel="Got it">Got it</sgds-button>
               </div>
             </div>
           </div>`,
@@ -10607,9 +10607,9 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     anatomyMarkup: `<sgds-overflow-menu class="portal-anatomy-overflow-menu">
-      <sgds-dropdown-item>Edit</sgds-dropdown-item>
-      <sgds-dropdown-item>Duplicate</sgds-dropdown-item>
-      <sgds-dropdown-item>Delete</sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Edit">Edit</sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Duplicate">Duplicate</sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Delete">Delete</sgds-dropdown-item>
     </sgds-overflow-menu>`,
     anatomyParts: [{ title: "Trigger button" }, { title: "Menu" }],
     anatomyCallouts: [
@@ -10628,9 +10628,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Small",
             value: "sm",
             markup: `<sgds-overflow-menu size="sm">
-          <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Archive</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Edit"><a href="#">Edit</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Duplicate"><a href="#">Duplicate</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Archive"><a href="#">Archive</a></sgds-dropdown-item>
         </sgds-overflow-menu>`,
             description:
               "Compact trigger that fits in dense rows and toolbars.",
@@ -10639,9 +10639,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Medium",
             value: "md",
             markup: `<sgds-overflow-menu size="md">
-          <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Archive</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Edit"><a href="#">Edit</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Duplicate"><a href="#">Duplicate</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Archive"><a href="#">Archive</a></sgds-dropdown-item>
         </sgds-overflow-menu>`,
             description: "Default size with a comfortable touch target.",
           },
@@ -10658,8 +10658,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Active",
             value: "active",
             markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
-              <sgds-dropdown-item active>Active item</sgds-dropdown-item>
-              <sgds-dropdown-item>Default item</sgds-dropdown-item>
+              <sgds-dropdown-item active arialabel="Active item">Active item</sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Default item">Default item</sgds-dropdown-item>
             </sgds-overflow-menu>`,
             description:
               "Use active for the currently selected item in the menu.",
@@ -10668,8 +10668,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Disabled",
             value: "disabled",
             markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
-              <sgds-dropdown-item>Available item</sgds-dropdown-item>
-              <sgds-dropdown-item disabled>Disabled item</sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Available item">Available item</sgds-dropdown-item>
+              <sgds-dropdown-item disabled arialabel="Disabled item">Disabled item</sgds-dropdown-item>
             </sgds-overflow-menu>`,
             description:
               "Use disabled when the item must remain visible but unavailable.",
@@ -10687,8 +10687,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With icon",
             value: "with-icon",
             markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
-              <sgds-dropdown-item><sgds-icon slot="icon" name="pencil"></sgds-icon>Edit</sgds-dropdown-item>
-              <sgds-dropdown-item><sgds-icon slot="icon" name="trash"></sgds-icon>Delete</sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Edit"><sgds-icon slot="icon" name="pencil"></sgds-icon>Edit</sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Delete"><sgds-icon slot="icon" name="trash"></sgds-icon>Delete</sgds-dropdown-item>
             </sgds-overflow-menu>`,
             description:
               "Use icons for familiar actions where the icon reinforces the label.",
@@ -10697,8 +10697,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Text only",
             value: "text-only",
             markup: `<sgds-overflow-menu class="portal-demo-overflow-active">
-              <sgds-dropdown-item>Edit</sgds-dropdown-item>
-              <sgds-dropdown-item>Delete</sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Edit">Edit</sgds-dropdown-item>
+              <sgds-dropdown-item arialabel="Delete">Delete</sgds-dropdown-item>
             </sgds-overflow-menu>`,
             description:
               "Use text-only menu items when labels are clear on their own.",
@@ -10711,9 +10711,9 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Default",
         "Use overflow menus to collect less-prominent actions behind a compact trigger.",
         `<sgds-overflow-menu>
-          <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
-          <sgds-dropdown-item><a href="#">Delete</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Edit"><a href="#">Edit</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Duplicate"><a href="#">Duplicate</a></sgds-dropdown-item>
+          <sgds-dropdown-item arialabel="Delete"><a href="#">Delete</a></sgds-dropdown-item>
         </sgds-overflow-menu>`,
       ),
     ],
@@ -10725,9 +10725,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Tuck infrequent or row-level actions behind the overflow trigger so primary actions stay visible.",
           tone: "do",
           markup: `<sgds-overflow-menu>
-            <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Archive</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Edit"><a href="#">Edit</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Duplicate"><a href="#">Duplicate</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Archive"><a href="#">Archive</a></sgds-dropdown-item>
           </sgds-overflow-menu>`,
         },
         {
@@ -10736,9 +10736,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Surface the most-used row action directly, hiding it behind the menu adds an extra step.",
           tone: "dont",
           markup: `<sgds-overflow-menu>
-            <sgds-dropdown-item><a href="#">Submit application</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Save draft</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Discard</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Submit application"><a href="#">Submit application</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Save draft"><a href="#">Save draft</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Discard"><a href="#">Discard</a></sgds-dropdown-item>
           </sgds-overflow-menu>`,
         },
         {
@@ -10747,9 +10747,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Use short verb-led phrases so users can scan the available choices. Match the wording to the outcome.",
           tone: "do",
           markup: `<sgds-overflow-menu>
-            <sgds-dropdown-item><a href="#">Rename</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Move to folder</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Download</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Rename"><a href="#">Rename</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Move to folder"><a href="#">Move to folder</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Download"><a href="#">Download</a></sgds-dropdown-item>
           </sgds-overflow-menu>`,
         },
         {
@@ -10758,16 +10758,16 @@ const componentDocs: Record<string, ComponentDoc> = {
             "A long overflow list is hard to scan. Group options into sections or rethink the structure of the page.",
           tone: "dont",
           markup: `<sgds-overflow-menu>
-            <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Move</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Rename</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Share</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Star</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Archive</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Delete</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Export</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Print</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Edit"><a href="#">Edit</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Duplicate"><a href="#">Duplicate</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Move"><a href="#">Move</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Rename"><a href="#">Rename</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Share"><a href="#">Share</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Star"><a href="#">Star</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Archive"><a href="#">Archive</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Delete"><a href="#">Delete</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Export"><a href="#">Export</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Print"><a href="#">Print</a></sgds-dropdown-item>
           </sgds-overflow-menu>`,
         },
         {
@@ -10776,9 +10776,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Use small in dense rows or toolbars, and medium when it shares space with full-size buttons.",
           tone: "do",
           markup: `<sgds-overflow-menu size="sm">
-            <sgds-dropdown-item><a href="#">Edit</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Duplicate</a></sgds-dropdown-item>
-            <sgds-dropdown-item><a href="#">Archive</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Edit"><a href="#">Edit</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Duplicate"><a href="#">Duplicate</a></sgds-dropdown-item>
+            <sgds-dropdown-item arialabel="Archive"><a href="#">Archive</a></sgds-dropdown-item>
           </sgds-overflow-menu>`,
         },
       ],
@@ -12393,7 +12393,7 @@ const componentDocs: Record<string, ComponentDoc> = {
                   <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
                 </sgds-sidebar-item>
               </sgds-sidebar-section>
-              <div slot="lower" class="sgds:p-md"><sgds-button size="sm" fullWidth>Help</sgds-button></div>
+              <div slot="lower" class="sgds:p-md"><sgds-button size="sm" fullWidth ariaLabel="Help">Help</sgds-button></div>
             </sgds-sidebar>`,
             description:
               "Use slots for persistent header or footer content connected to the sidebar.",
@@ -12656,7 +12656,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     ],
     anatomyMarkup: `<div class="portal-demo-nav-sm portal-sidenav-anatomy-demo">
       <sgds-sidenav class="sgds:block sgds:w-full">
-        <sgds-sidenav-item active>
+        <sgds-sidenav-item active arialabel="Reports">
           <sgds-icon name="file-text" slot="icon" class="portal-sidenav-leading-icon"></sgds-icon>
           <span slot="title" class="portal-sidenav-label">Reports</span>
           <sgds-sidenav-link active class="portal-sidenav-active-link"><a href="#">Monthly summary</a></sgds-sidenav-link>
@@ -12687,9 +12687,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "link-items",
             markup: `<div class="portal-demo-nav-sm">
           <sgds-sidenav>
-            <sgds-sidenav-item active><a href="#">Overview</a></sgds-sidenav-item>
-            <sgds-sidenav-item><a href="#">Activity</a></sgds-sidenav-item>
-            <sgds-sidenav-item><a href="#">Settings</a></sgds-sidenav-item>
+            <sgds-sidenav-item active ariaLabel="Overview"><a href="#">Overview</a></sgds-sidenav-item>
+            <sgds-sidenav-item ariaLabel="Activity"><a href="#">Activity</a></sgds-sidenav-item>
+            <sgds-sidenav-item ariaLabel="Settings"><a href="#">Settings</a></sgds-sidenav-item>
           </sgds-sidenav>
         </div>`,
             description:
@@ -12700,12 +12700,12 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "menu-items",
             markup: `<div class="portal-demo-nav-sm">
           <sgds-sidenav>
-            <sgds-sidenav-item active>
+            <sgds-sidenav-item active arialabel="Reports">
               <span slot="title">Reports</span>
               <sgds-sidenav-link active><a href="#">Monthly summary</a></sgds-sidenav-link>
               <sgds-sidenav-link><a href="#">Annual report</a></sgds-sidenav-link>
             </sgds-sidenav-item>
-            <sgds-sidenav-item>
+            <sgds-sidenav-item arialabel="Settings">
               <span slot="title">Settings</span>
               <sgds-sidenav-link><a href="#">Profile</a></sgds-sidenav-link>
               <sgds-sidenav-link><a href="#">Notifications</a></sgds-sidenav-link>
@@ -12729,12 +12729,12 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "all-collapsed",
             markup: `<div class="portal-demo-nav-sm">
           <sgds-sidenav>
-            <sgds-sidenav-item>
+            <sgds-sidenav-item arialabel="Reports">
               <span slot="title">Reports</span>
               <sgds-sidenav-link><a href="#">Monthly summary</a></sgds-sidenav-link>
               <sgds-sidenav-link><a href="#">Annual report</a></sgds-sidenav-link>
             </sgds-sidenav-item>
-            <sgds-sidenav-item>
+            <sgds-sidenav-item arialabel="Settings">
               <span slot="title">Settings</span>
               <sgds-sidenav-link><a href="#">Profile</a></sgds-sidenav-link>
             </sgds-sidenav-item>
@@ -12747,12 +12747,12 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "with-active",
             markup: `<div class="portal-demo-nav-sm">
           <sgds-sidenav>
-            <sgds-sidenav-item active>
+            <sgds-sidenav-item active arialabel="Reports">
               <span slot="title">Reports</span>
               <sgds-sidenav-link active><a href="#">Monthly summary</a></sgds-sidenav-link>
               <sgds-sidenav-link><a href="#">Annual report</a></sgds-sidenav-link>
             </sgds-sidenav-item>
-            <sgds-sidenav-item>
+            <sgds-sidenav-item arialabel="Settings">
               <span slot="title">Settings</span>
               <sgds-sidenav-link><a href="#">Profile</a></sgds-sidenav-link>
             </sgds-sidenav-item>
@@ -12775,7 +12775,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "all-enabled",
             markup: `<div class="portal-demo-nav-sm">
           <sgds-sidenav>
-            <sgds-sidenav-item active>
+            <sgds-sidenav-item active arialabel="Reports">
               <span slot="title">Reports</span>
               <sgds-sidenav-link active><a href="#">Monthly summary</a></sgds-sidenav-link>
               <sgds-sidenav-link><a href="#">Annual report</a></sgds-sidenav-link>
@@ -12789,7 +12789,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "with-disabled-link",
             markup: `<div class="portal-demo-nav-sm">
           <sgds-sidenav>
-            <sgds-sidenav-item active>
+            <sgds-sidenav-item active arialabel="Reports">
               <span slot="title">Reports</span>
               <sgds-sidenav-link active><a href="#">Monthly summary</a></sgds-sidenav-link>
               <sgds-sidenav-link disabled><a href="#">Annual report</a></sgds-sidenav-link>
@@ -12878,7 +12878,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "default",
             markup: `<div class="portal-demo-nav-sm">
               <sgds-sidenav>
-                <sgds-sidenav-item active>
+                <sgds-sidenav-item active arialabel="Section">
                   <span slot="title">Section</span>
                   <sgds-sidenav-link active><a href="#">Overview</a></sgds-sidenav-link>
                 </sgds-sidenav-item>
@@ -12891,7 +12891,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             value: "custom",
             markup: `<div class="portal-demo-nav-sm">
               <sgds-sidenav>
-                <sgds-sidenav-item active>
+                <sgds-sidenav-item active arialabel="Section">
                   <span slot="title">Section</span>
                   <sgds-icon slot="caret" name="chevron-down"></sgds-icon>
                   <sgds-sidenav-link active><a href="#">Overview</a></sgds-sidenav-link>
@@ -12910,12 +12910,12 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Use sidenav to help users move between related pages within the same section.",
         `<div class="portal-demo-nav-sm">
           <sgds-sidenav>
-            <sgds-sidenav-item active>
+            <sgds-sidenav-item active arialabel="Getting started">
               <span slot="title">Getting started</span>
               <sgds-sidenav-link active><a href="#">Overview</a></sgds-sidenav-link>
               <sgds-sidenav-link><a href="#">Installation</a></sgds-sidenav-link>
             </sgds-sidenav-item>
-            <sgds-sidenav-item>
+            <sgds-sidenav-item arialabel="Components">
               <span slot="title">Components</span>
               <sgds-sidenav-link><a href="#">Accordion</a></sgds-sidenav-link>
               <sgds-sidenav-link><a href="#">Button</a></sgds-sidenav-link>
@@ -12933,13 +12933,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "do",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-sidenav>
-              <sgds-sidenav-item active>
+              <sgds-sidenav-item active arialabel="Account">
                 <span slot="title">Account</span>
                 <sgds-sidenav-link active><a href="#">Profile</a></sgds-sidenav-link>
                 <sgds-sidenav-link><a href="#">Notifications</a></sgds-sidenav-link>
                 <sgds-sidenav-link><a href="#">Privacy</a></sgds-sidenav-link>
               </sgds-sidenav-item>
-              <sgds-sidenav-item>
+              <sgds-sidenav-item arialabel="Billing">
                 <span slot="title">Billing</span>
                 <sgds-sidenav-link><a href="#">Plans</a></sgds-sidenav-link>
                 <sgds-sidenav-link><a href="#">Invoices</a></sgds-sidenav-link>
@@ -12954,10 +12954,10 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "dont",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-sidenav>
-              <sgds-sidenav-item><a href="#">Home</a></sgds-sidenav-item>
-              <sgds-sidenav-item><a href="#">Services</a></sgds-sidenav-item>
-              <sgds-sidenav-item><a href="#">About</a></sgds-sidenav-item>
-              <sgds-sidenav-item><a href="#">Contact</a></sgds-sidenav-item>
+              <sgds-sidenav-item ariaLabel="Home"><a href="#">Home</a></sgds-sidenav-item>
+              <sgds-sidenav-item ariaLabel="Services"><a href="#">Services</a></sgds-sidenav-item>
+              <sgds-sidenav-item ariaLabel="About"><a href="#">About</a></sgds-sidenav-item>
+              <sgds-sidenav-item ariaLabel="Contact"><a href="#">Contact</a></sgds-sidenav-item>
             </sgds-sidenav>
           </div>`,
         },
@@ -12968,12 +12968,12 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "do",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-sidenav>
-              <sgds-sidenav-item>
+              <sgds-sidenav-item arialabel="Reports">
                 <span slot="title">Reports</span>
                 <sgds-sidenav-link><a href="#">Monthly summary</a></sgds-sidenav-link>
                 <sgds-sidenav-link><a href="#">Annual report</a></sgds-sidenav-link>
               </sgds-sidenav-item>
-              <sgds-sidenav-item>
+              <sgds-sidenav-item arialabel="Settings">
                 <span slot="title">Settings</span>
                 <sgds-sidenav-link><a href="#">Profile</a></sgds-sidenav-link>
                 <sgds-sidenav-link><a href="#">Notifications</a></sgds-sidenav-link>
@@ -12988,7 +12988,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "dont",
           markup: `<div class="portal-demo-nav-sm">
             <sgds-sidenav>
-              <sgds-sidenav-item active>
+              <sgds-sidenav-item active arialabel="Reports">
                 <span slot="title">Reports</span>
                 <sgds-sidenav-link active>
                   <a href="#">Monthly</a>
@@ -13635,8 +13635,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             <div class="sgds:flex sgds:flex-col sgds:gap-xs sgds:rounded-md sgds:border sgds:border-muted sgds:bg-surface-default sgds:p-md">
               <span class="sgds:text-subtitle-sm sgds:font-semibold">Review details</span>
               <div class="sgds:flex sgds:justify-between sgds:gap-sm">
-                <sgds-button variant="outline" size="sm">Back</sgds-button>
-                <sgds-button size="sm">Continue</sgds-button>
+                <sgds-button variant="outline" size="sm" ariaLabel="Back">Back</sgds-button>
+                <sgds-button size="sm" ariaLabel="Continue">Continue</sgds-button>
               </div>
             </div>
           </div>`,
@@ -13742,8 +13742,8 @@ const componentDocs: Record<string, ComponentDoc> = {
     anatomyMarkup: `<div class="sgds:w-[var(--sgds-dimension-688)] sgds:max-w-full">
       <sgds-subnav class="portal-anatomy-subnav">
         <h5 slot="header">Header</h5>
-        <sgds-button slot="actions" size="sm">Register</sgds-button>
-        <sgds-button slot="actions" size="sm">Exhibit</sgds-button>
+        <sgds-button slot="actions" size="sm" ariaLabel="Register">Register</sgds-button>
+        <sgds-button slot="actions" size="sm" ariaLabel="Exhibit">Exhibit</sgds-button>
         <sgds-subnav-item active><a href="#">Overview</a></sgds-subnav-item>
         <sgds-subnav-item disabled><a href="#">On-site Activities</a></sgds-subnav-item>
         <sgds-subnav-item><a href="#">Programme</a></sgds-subnav-item>
@@ -13859,8 +13859,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             <sgds-subnav-item active>Overview</sgds-subnav-item>
             <sgds-subnav-item>Tasks</sgds-subnav-item>
             <div slot="actions">
-              <sgds-button size="sm" variant="outline">Share</sgds-button>
-              <sgds-button size="sm" variant="primary">New task</sgds-button>
+              <sgds-button size="sm" variant="outline" ariaLabel="Share">Share</sgds-button>
+              <sgds-button size="sm" variant="primary" ariaLabel="New task">New task</sgds-button>
             </div>
           </sgds-subnav>
         </div>`,
@@ -13905,7 +13905,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         `<div class="portal-demo-nav">
           <sgds-subnav>
             <h5 slot="header">Header</h5>
-            <sgds-button slot="actions" size="sm" variant="primary">Manage</sgds-button>
+            <sgds-button slot="actions" size="sm" variant="primary" ariaLabel="Manage">Manage</sgds-button>
             <sgds-subnav-item active><a href="#">Overview</a></sgds-subnav-item>
             <sgds-subnav-item><a href="#">History</a></sgds-subnav-item>
             <sgds-subnav-item><a href="#">Settings</a></sgds-subnav-item>
@@ -13920,7 +13920,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         `<div class="portal-demo-nav">
           <sgds-subnav>
             <span slot="header">Applications</span>
-            <sgds-button slot="actions" size="sm" variant="ghost">Manage</sgds-button>
+            <sgds-button slot="actions" size="sm" variant="ghost" ariaLabel="Manage">Manage</sgds-button>
             <sgds-subnav-item active><a href="#">Overview</a></sgds-subnav-item>
             <sgds-subnav-item><a href="#">History</a></sgds-subnav-item>
             <sgds-subnav-item><a href="#">Settings</a></sgds-subnav-item>
@@ -13970,8 +13970,8 @@ const componentDocs: Record<string, ComponentDoc> = {
               <sgds-subnav-item active>Tasks</sgds-subnav-item>
               <sgds-subnav-item>Members</sgds-subnav-item>
               <div slot="actions">
-                <sgds-button size="sm" variant="outline">Share</sgds-button>
-                <sgds-button size="sm" variant="primary">New task</sgds-button>
+                <sgds-button size="sm" variant="outline" ariaLabel="Share">Share</sgds-button>
+                <sgds-button size="sm" variant="primary" ariaLabel="New task">New task</sgds-button>
               </div>
             </sgds-subnav>
           </div>`,
@@ -14954,7 +14954,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "Tables can include selection, sorting, filtering, and actions where needed.",
       },
     ],
-    anatomyMarkup: `<sgds-table tableBorder headerBackground rowHeader='["Service","Owner","Status"]' tableData='[["Citizen portal","GovTech","Live"],["Booking system","NLB","Beta"]]'></sgds-table>`,
+    anatomyMarkup: `<sgds-table tableBorder headerBackground><sgds-table-row><sgds-table-head>Service</sgds-table-head><sgds-table-head>Owner</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Citizen portal</sgds-table-cell><sgds-table-cell>GovTech</sgds-table-cell><sgds-table-cell>Live</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Booking system</sgds-table-cell><sgds-table-cell>NLB</sgds-table-cell><sgds-table-cell>Beta</sgds-table-cell></sgds-table-row></sgds-table>`,
     anatomyParts: [
       { title: "Header row" },
       { title: "Data row" },
@@ -14984,30 +14984,21 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Horizontal",
             value: "horizontal",
-            markup: `<sgds-table headerPosition="horizontal"
-          rowHeader='["Service","Owner","Status"]'
-          tableData='[["Citizen portal","GovTech","Live"],["Booking system","NLB","Beta"]]'
-        ></sgds-table>`,
+            markup: `<sgds-table><sgds-table-row><sgds-table-head>Service</sgds-table-head><sgds-table-head>Owner</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Citizen portal</sgds-table-cell><sgds-table-cell>GovTech</sgds-table-cell><sgds-table-cell>Live</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Booking system</sgds-table-cell><sgds-table-cell>NLB</sgds-table-cell><sgds-table-cell>Beta</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
               "Headers across the top. Most common arrangement for tabular data.",
           },
           {
             label: "Vertical",
             value: "vertical",
-            markup: `<sgds-table headerPosition="vertical"
-          rowHeader='["Service","Owner","Status"]'
-          tableData='[["Citizen portal","GovTech","Live"],["Booking system","NLB","Beta"]]'
-        ></sgds-table>`,
+            markup: `<sgds-table><sgds-table-row><sgds-table-head>Service</sgds-table-head><sgds-table-cell>Citizen portal</sgds-table-cell><sgds-table-cell>Booking system</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-head>Owner</sgds-table-head><sgds-table-cell>GovTech</sgds-table-cell><sgds-table-cell>NLB</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-head>Status</sgds-table-head><sgds-table-cell>Live</sgds-table-cell><sgds-table-cell>Beta</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
               "Headers down the left side. Helpful when comparing a few items across many attributes.",
           },
           {
             label: "Both",
             value: "both",
-            markup: `<sgds-table headerPosition="both"
-          rowHeader='["Service","Owner","Status"]'
-          tableData='[["Citizen portal","GovTech","Live"],["Booking system","NLB","Beta"]]'
-        ></sgds-table>`,
+            markup: `<sgds-table><sgds-table-row><sgds-table-head></sgds-table-head><sgds-table-head>Service</sgds-table-head><sgds-table-head>Owner</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-head>Row 1</sgds-table-head><sgds-table-cell>Citizen portal</sgds-table-cell><sgds-table-cell>GovTech</sgds-table-cell><sgds-table-cell>Live</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-head>Row 2</sgds-table-head><sgds-table-cell>Booking system</sgds-table-cell><sgds-table-cell>NLB</sgds-table-cell><sgds-table-cell>Beta</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
               "Headers along both axes. Use for cross-tabulated data such as metrics by period.",
           },
@@ -15023,20 +15014,14 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "No background",
             value: "no-background",
-            markup: `<sgds-table
-          rowHeader='["Application ID","Submitted","Status"]'
-          tableData='[["APP-0421","12 Mar 2026","In review"],["APP-0422","13 Mar 2026","Approved"]]'
-        ></sgds-table>`,
+            markup: `<sgds-table><sgds-table-row><sgds-table-head>Application ID</sgds-table-head><sgds-table-head>Submitted</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>APP-0421</sgds-table-cell><sgds-table-cell>12 Mar 2026</sgds-table-cell><sgds-table-cell>In review</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>APP-0422</sgds-table-cell><sgds-table-cell>13 Mar 2026</sgds-table-cell><sgds-table-cell>Approved</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
               "Plain header. Suits tables embedded in low-contrast surfaces.",
           },
           {
             label: "Header background",
             value: "header-background",
-            markup: `<sgds-table headerBackground
-          rowHeader='["Application ID","Submitted","Status"]'
-          tableData='[["APP-0421","12 Mar 2026","In review"],["APP-0422","13 Mar 2026","Approved"]]'
-        ></sgds-table>`,
+            markup: `<sgds-table headerBackground><sgds-table-row><sgds-table-head>Application ID</sgds-table-head><sgds-table-head>Submitted</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>APP-0421</sgds-table-cell><sgds-table-cell>12 Mar 2026</sgds-table-cell><sgds-table-cell>In review</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>APP-0422</sgds-table-cell><sgds-table-cell>13 Mar 2026</sgds-table-cell><sgds-table-cell>Approved</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
               "Tinted header band makes column titles easier to scan.",
           },
@@ -15052,20 +15037,14 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "No cell borders",
             value: "no-borders",
-            markup: `<sgds-table
-          rowHeader='["Region","Population","Area"]'
-          tableData='[["Central","950,000","132.7"],["East","720,000","93.1"]]'
-        ></sgds-table>`,
+            markup: `<sgds-table><sgds-table-row><sgds-table-head>Region</sgds-table-head><sgds-table-head>Population</sgds-table-head><sgds-table-head>Area</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Central</sgds-table-cell><sgds-table-cell>950,000</sgds-table-cell><sgds-table-cell>132.7</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>East</sgds-table-cell><sgds-table-cell>720,000</sgds-table-cell><sgds-table-cell>93.1</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
               "Default borderless cells keep the table light and uncluttered.",
           },
           {
             label: "Cell borders",
             value: "table-border",
-            markup: `<sgds-table tableBorder
-          rowHeader='["Region","Population","Area"]'
-          tableData='[["Central","950,000","132.7"],["East","720,000","93.1"]]'
-        ></sgds-table>`,
+            markup: `<sgds-table tableBorder><sgds-table-row><sgds-table-head>Region</sgds-table-head><sgds-table-head>Population</sgds-table-head><sgds-table-head>Area</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Central</sgds-table-cell><sgds-table-cell>950,000</sgds-table-cell><sgds-table-cell>132.7</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>East</sgds-table-cell><sgds-table-cell>720,000</sgds-table-cell><sgds-table-cell>93.1</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
               "Borders around every cell aid scanning for tables packed with values.",
           },
@@ -15081,20 +15060,14 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Responsive",
             value: "responsive",
-            markup: `<sgds-table responsive
-              rowHeader='["Name","Status","Owner"]'
-              tableData='[["Alpha","Active","Team A"],["Beta","Pending","Team B"]]'
-            ></sgds-table>`,
+            markup: `<sgds-table responsive><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Owner</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell>Team A</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Beta</sgds-table-cell><sgds-table-cell>Pending</sgds-table-cell><sgds-table-cell>Team B</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
               "Use responsive tables when the table must remain readable on smaller screens.",
           },
           {
             label: "Static",
             value: "static",
-            markup: `<sgds-table
-              rowHeader='["Name","Status","Owner"]'
-              tableData='[["Alpha","Active","Team A"],["Beta","Pending","Team B"]]'
-            ></sgds-table>`,
+            markup: `<sgds-table><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Owner</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell>Team A</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Beta</sgds-table-cell><sgds-table-cell>Pending</sgds-table-cell><sgds-table-cell>Team B</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
               "Use static layout only when the table fits comfortably in its container.",
           },
@@ -15110,20 +15083,14 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Auto",
             value: "auto",
-            markup: `<sgds-table layout="auto"
-              rowHeader='["Name","Status","Owner"]'
-              tableData='[["Alpha","Active","Team A"],["Beta","Pending","Team B"]]'
-            ></sgds-table>`,
+            markup: `<sgds-table layout="auto"><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Owner</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell>Team A</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Beta</sgds-table-cell><sgds-table-cell>Pending</sgds-table-cell><sgds-table-cell>Team B</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
               "Use auto layout when content length should influence column sizing.",
           },
           {
             label: "Fixed",
             value: "fixed",
-            markup: `<sgds-table layout="fixed"
-              rowHeader='["Name","Status","Owner"]'
-              tableData='[["Alpha","Active","Team A"],["Beta","Pending","Team B"]]'
-            ></sgds-table>`,
+            markup: `<sgds-table layout="fixed"><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Owner</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell>Team A</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Beta</sgds-table-cell><sgds-table-cell>Pending</sgds-table-cell><sgds-table-cell>Team B</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
               "Use fixed layout when columns should distribute predictably.",
           },
@@ -15134,12 +15101,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       demo(
         "Structured data",
         "Use tables when users need to compare repeated values across rows and columns.",
-        `<sgds-table
-          rowHeader='["Name","Status","Owner"]'
-          tableData='[["Alpha","Active","Team A"],["Beta","Pending","Team B"],["Gamma","Closed","Team C"]]'
-          headerBackground
-          tableBorder
-        ></sgds-table>`,
+        `<sgds-table headerBackground tableBorder><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Owner</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell>Team A</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Beta</sgds-table-cell><sgds-table-cell>Pending</sgds-table-cell><sgds-table-cell>Team B</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Gamma</sgds-table-cell><sgds-table-cell>Closed</sgds-table-cell><sgds-table-cell>Team C</sgds-table-cell></sgds-table-row></sgds-table>`,
       ),
     ],
     usage: {
@@ -15149,40 +15111,28 @@ const componentDocs: Record<string, ComponentDoc> = {
           description:
             "Tables are for repeating data with shared attributes. Applications, transactions, devices.",
           tone: "do",
-          markup: `<sgds-table headerBackground
-            rowHeader='["Application ID","Submitted","Status"]'
-            tableData='[["APP-0421","12 Mar 2026","In review"],["APP-0422","13 Mar 2026","Approved"],["APP-0423","14 Mar 2026","Rejected"]]'
-          ></sgds-table>`,
+          markup: `<sgds-table headerBackground><sgds-table-row><sgds-table-head>Application ID</sgds-table-head><sgds-table-head>Submitted</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>APP-0421</sgds-table-cell><sgds-table-cell>12 Mar 2026</sgds-table-cell><sgds-table-cell>In review</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>APP-0422</sgds-table-cell><sgds-table-cell>13 Mar 2026</sgds-table-cell><sgds-table-cell>Approved</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>APP-0423</sgds-table-cell><sgds-table-cell>14 Mar 2026</sgds-table-cell><sgds-table-cell>Rejected</sgds-table-cell></sgds-table-row></sgds-table>`,
         },
         {
           title: "Do not use a table for a single record",
           description:
             "For attributes of a single item, a description list shows the label–value relationship more clearly.",
           tone: "dont",
-          markup: `<sgds-table
-            rowHeader='["Name","Email","Role"]'
-            tableData='[["Lim Wei Ming","wei.ming@example.gov.sg","Officer"]]'
-          ></sgds-table>`,
+          markup: `<sgds-table><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Email</sgds-table-head><sgds-table-head>Role</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Lim Wei Ming</sgds-table-cell><sgds-table-cell>wei.ming@example.gov.sg</sgds-table-cell><sgds-table-cell>Officer</sgds-table-cell></sgds-table-row></sgds-table>`,
         },
         {
           title: "Use clear, consistent column headers",
           description:
             "Keep headers short and consistent, 'Submitted' for a date, 'Status' for a state, so users know each column.",
           tone: "do",
-          markup: `<sgds-table headerBackground
-            rowHeader='["Service","Owner","Status"]'
-            tableData='[["Citizen portal","GovTech","Live"],["Booking system","NLB","Beta"]]'
-          ></sgds-table>`,
+          markup: `<sgds-table headerBackground><sgds-table-row><sgds-table-head>Service</sgds-table-head><sgds-table-head>Owner</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Citizen portal</sgds-table-cell><sgds-table-cell>GovTech</sgds-table-cell><sgds-table-cell>Live</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Booking system</sgds-table-cell><sgds-table-cell>NLB</sgds-table-cell><sgds-table-cell>Beta</sgds-table-cell></sgds-table-row></sgds-table>`,
         },
         {
           title: "Do not pack actions into too many columns",
           description:
             "If every row needs three or more controls, move secondary actions into an overflow menu.",
           tone: "dont",
-          markup: `<sgds-table
-            rowHeader='["Name","Status","Edit","Delete","Share","Archive"]'
-            tableData='[["Alpha","Active","Edit","Delete","Share","Archive"]]'
-          ></sgds-table>`,
+          markup: `<sgds-table><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Edit</sgds-table-head><sgds-table-head>Delete</sgds-table-head><sgds-table-head>Share</sgds-table-head><sgds-table-head>Archive</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell>Edit</sgds-table-cell><sgds-table-cell>Delete</sgds-table-cell><sgds-table-cell>Share</sgds-table-cell><sgds-table-cell>Archive</sgds-table-cell></sgds-table-row></sgds-table>`,
         },
       ],
     },
@@ -15767,7 +15717,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Horizontal",
             value: "horizontal",
             markup: `<sgds-thumbnail-card class="portal-demo-card" orientation="horizontal">
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Annual report 2025</span>
           <span slot="description">Highlights and metrics from the past year.</span>
         </sgds-thumbnail-card>`,
@@ -15778,7 +15728,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Vertical",
             value: "vertical",
             markup: `<sgds-thumbnail-card class="portal-demo-card" orientation="vertical">
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 96px; height: 96px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 96px; height: 96px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Annual report 2025</span>
           <span slot="description">Highlights and metrics from the past year.</span>
         </sgds-thumbnail-card>`,
@@ -15798,7 +15748,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<sgds-thumbnail-card class="portal-demo-card">
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Tax filing guide</span>
           <span slot="description">Step-by-step instructions for residents.</span>
         </sgds-thumbnail-card>`,
@@ -15808,7 +15758,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Tinted",
             value: "tinted",
             markup: `<sgds-thumbnail-card class="portal-demo-card" tinted>
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Tax filing guide</span>
           <span slot="description">Step-by-step instructions for residents.</span>
         </sgds-thumbnail-card>`,
@@ -15828,10 +15778,10 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Not disabled",
             value: "not-disabled",
             markup: `<sgds-thumbnail-card class="portal-demo-card" stretchedLink>
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Browse datasets</span>
           <span slot="description">Open data published by Singapore agencies.</span>
-          <a slot="footer" href="#">Open</a>
+          <a slot="footer" href="#" aria-label="Browse datasets">Open</a>
         </sgds-thumbnail-card>`,
             description: "Default interactive state.",
           },
@@ -15839,10 +15789,10 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Disabled",
             value: "disabled",
             markup: `<sgds-thumbnail-card class="portal-demo-card" disabled stretchedLink>
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Browse datasets</span>
           <span slot="description">Open data published by Singapore agencies.</span>
-          <a slot="footer" href="#">Open</a>
+          <a slot="footer" href="#" aria-label="Browse datasets">Open</a>
         </sgds-thumbnail-card>`,
             description: "Greys out the card and disables its actions.",
           },
@@ -15859,7 +15809,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<sgds-thumbnail-card class="portal-demo-card">
-              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
               <span slot="title">Default padding</span>
               <span slot="description">Content uses default card padding.</span>
             </sgds-thumbnail-card>`,
@@ -15869,7 +15819,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No padding",
             value: "no-padding",
             markup: `<sgds-thumbnail-card class="portal-demo-card" noPadding>
-              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
               <span slot="title">No padding</span>
               <span slot="description">Content sits closer to the edge.</span>
             </sgds-thumbnail-card>`,
@@ -15889,7 +15839,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Footer link",
             value: "footer",
             markup: `<sgds-thumbnail-card class="portal-demo-card">
-              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
               <span slot="title">Guide</span>
               <sgds-link slot="footer"><a href="#">Read guide</a></sgds-link>
             </sgds-thumbnail-card>`,
@@ -15899,9 +15849,9 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Stretched link",
             value: "stretched",
             markup: `<sgds-thumbnail-card class="portal-demo-card" stretchedLink>
-              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
               <span slot="title">Guide</span>
-              <sgds-link slot="footer"><a href="#">Read guide</a></sgds-link>
+              <sgds-link slot="footer"><a href="#" aria-label="Read guide">Read guide</a></sgds-link>
             </sgds-thumbnail-card>`,
             description:
               "Use stretchedLink when the whole thumbnail card is one destination.",
@@ -15969,7 +15919,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             <img slot="thumbnail" alt="Open data icon" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
             <span slot="title">Browse datasets</span>
             <span slot="description">Open data published by Singapore agencies.</span>
-            <a slot="footer" href="#">Open</a>
+            <a slot="footer" href="#" aria-label="Browse datasets">Open</a>
           </sgds-thumbnail-card>`,
         },
         {
@@ -15978,7 +15928,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             "The thumbnail still carries meaning. Provide concise alt text describing the picture, not the title.",
           tone: "dont",
           markup: `<sgds-thumbnail-card class="portal-demo-card">
-            <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+            <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
             <span slot="title">Census 2025 results</span>
             <span slot="description">Key statistics from the latest national census.</span>
           </sgds-thumbnail-card>`,
@@ -16452,7 +16402,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Top",
             value: "top",
             markup: `<sgds-tooltip content="Tooltip on top" placement="top">
-          <sgds-button variant="outline">Hover me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
         </sgds-tooltip>`,
             description:
               "Anchors above the target. This is the default placement.",
@@ -16461,7 +16411,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Bottom",
             value: "bottom",
             markup: `<sgds-tooltip content="Tooltip on bottom" placement="bottom">
-          <sgds-button variant="outline">Hover me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
         </sgds-tooltip>`,
             description:
               "Drops below the target. Useful when there is little headroom above.",
@@ -16470,7 +16420,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Left",
             value: "left",
             markup: `<sgds-tooltip content="Tooltip on left" placement="left">
-          <sgds-button variant="outline">Hover me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
         </sgds-tooltip>`,
             description: "Sits to the leading side of the target.",
           },
@@ -16478,7 +16428,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Right",
             value: "right",
             markup: `<sgds-tooltip content="Tooltip on right" placement="right">
-          <sgds-button variant="outline">Hover me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
         </sgds-tooltip>`,
             description: "Sits to the trailing side of the target.",
           },
@@ -16495,7 +16445,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Hover and focus",
             value: "hover-focus",
             markup: `<sgds-tooltip content="Opens on hover or keyboard focus" trigger="hover focus">
-          <sgds-button variant="outline">Hover or focus me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover or focus me">Hover or focus me</sgds-button>
         </sgds-tooltip>`,
             description:
               "Default behaviour, open through mouse hover or keyboard focus.",
@@ -16504,7 +16454,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Hover",
             value: "hover",
             markup: `<sgds-tooltip content="Opens on hover only" trigger="hover">
-          <sgds-button variant="outline">Hover me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
         </sgds-tooltip>`,
             description: "Opens only on mouse hover.",
           },
@@ -16512,7 +16462,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Focus",
             value: "focus",
             markup: `<sgds-tooltip content="Opens on keyboard focus only" trigger="focus">
-          <sgds-button variant="outline">Focus me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Focus me">Focus me</sgds-button>
         </sgds-tooltip>`,
             description: "Opens only when the target receives keyboard focus.",
           },
@@ -16520,7 +16470,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Click",
             value: "click",
             markup: `<sgds-tooltip content="Opens and stays on click" trigger="click">
-          <sgds-button variant="outline">Click me</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Click me">Click me</sgds-button>
         </sgds-tooltip>`,
             description: "Toggles open on click and stays until clicked again.",
           },
@@ -16537,7 +16487,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Short",
             value: "short",
             markup: `<sgds-tooltip content="Save draft" open>
-              <sgds-button variant="outline">Hover me</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
             </sgds-tooltip>`,
             description:
               "Use short content for quick clarification of a control or icon.",
@@ -16546,7 +16496,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Long",
             value: "long",
             markup: `<sgds-tooltip content="This longer tooltip wraps within the component max width and should still remain supplementary." open>
-              <sgds-button variant="outline">Hover me</sgds-button>
+              <sgds-button variant="outline" ariaLabel="Hover me">Hover me</sgds-button>
             </sgds-tooltip>`,
             description:
               "Avoid long tooltip content when the information is essential or needs interaction.",
@@ -16559,7 +16509,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Hover and focus",
         "Use tooltips for short supplementary explanations, not essential instructions.",
         `<sgds-tooltip content="More details about this action" trigger="hover focus">
-          <sgds-button variant="outline">Hover to view</sgds-button>
+          <sgds-button variant="outline" ariaLabel="Hover to view">Hover to view</sgds-button>
         </sgds-tooltip>`,
       ),
     ],
@@ -16599,7 +16549,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Only use a tooltip when it explains something the label or icon does not already convey.",
           tone: "dont",
           markup: `<sgds-tooltip content="Submit" trigger="hover focus" open>
-            <sgds-button>Submit</sgds-button>
+            <sgds-button ariaLabel="Submit">Submit</sgds-button>
           </sgds-tooltip>`,
         },
         {
@@ -17189,7 +17139,7 @@ const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
         <sgds-breadcrumb-item><a href="#">Page</a></sgds-breadcrumb-item>
       </sgds-breadcrumb>`;
     case "button":
-      return `<div class="portal-demo-row"><sgds-button>Click here</sgds-button></div>`;
+      return `<div class="portal-demo-row"><sgds-button ariaLabel="Click here">Click here</sgds-button></div>`;
     case "card":
       return `<sgds-card class="portal-demo-card">
         <span slot="subtitle">General</span>
@@ -17197,7 +17147,7 @@ const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
         <div class="portal-slot-example"><span>First block of content</span></div>
         <span slot="description">Supporting description that repeats the title instead of adding useful context.</span>
         <span slot="lower">Secondary text</span>
-        <sgds-button slot="footer" variant="outline">Action one</sgds-button>
+        <sgds-button slot="footer" variant="outline" ariaLabel="Action one">Action one</sgds-button>
       </sgds-card>`;
     case "checkbox":
       return `<sgds-checkbox-group label="Choose">
@@ -17217,22 +17167,22 @@ const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
       </div>`;
     case "drawer":
       return `<div class="portal-demo-overlay">
-        <sgds-drawer open contained size="sm">
+        <sgds-drawer open contained size="sm" ariaLabel="Task one">
           <span slot="title" class="sgds:font-semibold">Task one</span>
           <span slot="description">Task two and another decision in the same drawer.</span>
           <p>Long content and multiple unrelated tasks make the drawer harder to complete.</p>
           <div slot="footer" class="portal-demo-row">
-            <sgds-button>Continue</sgds-button>
-            <sgds-button variant="outline">Open something else</sgds-button>
+            <sgds-button ariaLabel="Continue">Continue</sgds-button>
+            <sgds-button variant="outline" ariaLabel="Open something else">Open something else</sgds-button>
           </div>
         </sgds-drawer>
       </div>`;
     case "dropdown":
       return `<sgds-dropdown>
         <sgds-button slot="toggler" variant="outline" ariaLabel="More">More</sgds-button>
-        <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
-        <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
-        <sgds-dropdown-item><a href="#">Item</a></sgds-dropdown-item>
+        <sgds-dropdown-item arialabel="Item"><a href="#">Item</a></sgds-dropdown-item>
+        <sgds-dropdown-item arialabel="Item"><a href="#">Item</a></sgds-dropdown-item>
+        <sgds-dropdown-item arialabel="Item"><a href="#">Item</a></sgds-dropdown-item>
       </sgds-dropdown>`;
     case "footer":
       return buildRepeatedMarkup(primaryMarkup);
@@ -17266,7 +17216,7 @@ const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
     case "sidenav":
       return `<div class="portal-demo-nav-sm">
         <sgds-sidenav>
-          <sgds-sidenav-item active>
+          <sgds-sidenav-item active arialabel="Section">
             <span slot="title">Section</span>
             <sgds-sidenav-link active><a href="#">Item</a></sgds-sidenav-link>
             <sgds-sidenav-link><a href="#">Item</a></sgds-sidenav-link>
@@ -17281,12 +17231,7 @@ const buildAntiPatternMarkup = (doc: ComponentDoc): string => {
     case "tab":
       return buildRepeatedMarkup(primaryMarkup);
     case "table":
-      return `<sgds-table
-        rowHeader='["Name","Status","Owner","Notes","Updated"]'
-        tableData='[["Alpha","Active","Team A","Long repeated detail","Today"],["Beta","Pending","Team B","Long repeated detail","Today"],["Gamma","Closed","Team C","Long repeated detail","Today"]]'
-        headerBackground
-        tableBorder
-      ></sgds-table>`;
+      return `<sgds-table headerBackground tableBorder><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Owner</sgds-table-head><sgds-table-head>Notes</sgds-table-head><sgds-table-head>Updated</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell>Team A</sgds-table-cell><sgds-table-cell>Long repeated detail</sgds-table-cell><sgds-table-cell>Today</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Beta</sgds-table-cell><sgds-table-cell>Pending</sgds-table-cell><sgds-table-cell>Team B</sgds-table-cell><sgds-table-cell>Long repeated detail</sgds-table-cell><sgds-table-cell>Today</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Gamma</sgds-table-cell><sgds-table-cell>Closed</sgds-table-cell><sgds-table-cell>Team C</sgds-table-cell><sgds-table-cell>Long repeated detail</sgds-table-cell><sgds-table-cell>Today</sgds-table-cell></sgds-table-row></sgds-table>`;
     case "textarea":
       return `<sgds-textarea rows="4" placeholder="Write here"></sgds-textarea>`;
     case "toast":
@@ -18348,7 +18293,7 @@ const accessibilityDemoMarkupOverrides: Record<
       The payment service is unavailable. Try again later.
     </sgds-alert>`,
     author: `<sgds-alert show variant="info" title="Application saved">
-      Your progress has been saved. <sgds-alert-link href="#">View draft</sgds-alert-link>
+      Your progress has been saved. <a href="#">View draft</a>
     </sgds-alert>`,
     focus: `<sgds-alert show dismissible variant="success" title="Changes saved">
       You can continue editing this page.
@@ -18364,7 +18309,7 @@ const accessibilityDemoMarkupOverrides: Record<
       <span>Documents are being checked.</span>
     </div>`,
     focus: `<div class="portal-demo-row sgds:gap-sm">
-      <sgds-button variant="outline">View application <sgds-badge slot="rightIcon" variant="neutral">2</sgds-badge></sgds-button>
+      <sgds-button variant="outline" ariaLabel="View application"><sgds-badge slot="rightIcon" variant="neutral">2</sgds-badge>View application</sgds-button>
     </div>`,
   },
   breadcrumb: {
@@ -18386,30 +18331,30 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   button: {
     builtIn: `<div class="portal-demo-row sgds:gap-sm">
-      <sgds-button>Submit application</sgds-button>
-      <sgds-button disabled>Submitting</sgds-button>
+      <sgds-button ariaLabel="Submit application">Submit application</sgds-button>
+      <sgds-button disabled ariaLabel="Submitting">Submitting</sgds-button>
     </div>`,
-    author: `<div class="portal-demo-row"><sgds-button>Pay application fee</sgds-button></div>`,
+    author: `<div class="portal-demo-row"><sgds-button ariaLabel="Pay application fee">Pay application fee</sgds-button></div>`,
     focus: `<div class="portal-demo-row sgds:gap-sm">
-      <sgds-button variant="outline">Back</sgds-button>
-      <sgds-button>Continue</sgds-button>
+      <sgds-button variant="outline" ariaLabel="Back">Back</sgds-button>
+      <sgds-button ariaLabel="Continue">Continue</sgds-button>
     </div>`,
   },
   card: {
     builtIn: `<sgds-card class="portal-demo-card">
       <span slot="title">Renew your passport</span>
       <span slot="description">Check the documents you need before applying.</span>
-      <sgds-button slot="footer" variant="outline">View details</sgds-button>
+      <sgds-button slot="footer" variant="outline" ariaLabel="View details">View details</sgds-button>
     </sgds-card>`,
     author: `<sgds-card class="portal-demo-card">
       <span slot="title">Housing grant</span>
       <span slot="description">Find out if your household is eligible.</span>
-      <sgds-button slot="footer">Check eligibility</sgds-button>
+      <sgds-button slot="footer" ariaLabel="Check eligibility">Check eligibility</sgds-button>
     </sgds-card>`,
     focus: `<sgds-card class="portal-demo-card">
       <span slot="title">Application draft</span>
       <span slot="description">Continue where you left off.</span>
-      <sgds-button slot="footer">Resume</sgds-button>
+      <sgds-button slot="footer" ariaLabel="Resume">Resume</sgds-button>
     </sgds-card>`,
   },
   checkbox: {
@@ -18435,7 +18380,7 @@ const accessibilityDemoMarkupOverrides: Record<
       Read this update before continuing.
     </sgds-alert>`,
     focus: `<div class="portal-demo-row sgds:gap-sm">
-      <sgds-button variant="outline">Open panel</sgds-button>
+      <sgds-button variant="outline" ariaLabel="Open panel">Open panel</sgds-button>
       <sgds-close-button></sgds-close-button>
     </div>`,
   },
@@ -18478,9 +18423,9 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   divider: {
     builtIn: `<div class="portal-demo-stack-sm">
-      <h4 class="sgds:m-0">Personal details</h4>
+      <h3 class="sgds:m-0">Personal details</h3>
       <sgds-divider></sgds-divider>
-      <h4 class="sgds:m-0">Contact details</h4>
+      <h3 class="sgds:m-0">Contact details</h3>
     </div>`,
     author: `<div class="portal-demo-stack-sm">
       <p class="sgds:m-0">Group related content before separating the next section.</p>
@@ -18495,41 +18440,41 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   drawer: {
     builtIn: `<div class="portal-demo-overlay">
-      <sgds-drawer open contained size="sm">
+      <sgds-drawer open contained size="sm" ariaLabel="Edit contact details">
         <span slot="title" class="sgds:font-semibold">Edit contact details</span>
         <span slot="description">Update your phone number and email address.</span>
         <sgds-input placeholder="Email address"></sgds-input>
       </sgds-drawer>
     </div>`,
     author: `<div class="portal-demo-overlay">
-      <sgds-drawer open contained size="sm">
+      <sgds-drawer open contained size="sm" ariaLabel="Update address">
         <span slot="title" class="sgds:font-semibold">Update address</span>
         <span slot="description">Make changes for this application only.</span>
-        <sgds-button slot="footer">Save changes</sgds-button>
+        <sgds-button slot="footer" ariaLabel="Save changes">Save changes</sgds-button>
       </sgds-drawer>
     </div>`,
     focus: `<div class="portal-demo-overlay">
-      <sgds-drawer open contained size="sm">
+      <sgds-drawer open contained size="sm" ariaLabel="Review details">
         <span slot="title" class="sgds:font-semibold">Review details</span>
-        <sgds-button slot="footer">Confirm</sgds-button>
+        <sgds-button slot="footer" ariaLabel="Confirm">Confirm</sgds-button>
       </sgds-drawer>
     </div>`,
   },
   dropdown: {
     builtIn: `<sgds-dropdown>
       <sgds-button slot="toggler" variant="outline" ariaLabel="More actions">More actions</sgds-button>
-      <sgds-dropdown-item><button>Edit</button></sgds-dropdown-item>
-      <sgds-dropdown-item><button>Download</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Edit"><button>Edit</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Download"><button>Download</button></sgds-dropdown-item>
     </sgds-dropdown>`,
     author: `<sgds-dropdown>
       <sgds-button slot="toggler" variant="outline" ariaLabel="Application actions">Application actions</sgds-button>
-      <sgds-dropdown-item><button>View details</button></sgds-dropdown-item>
-      <sgds-dropdown-item><button>Cancel application</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="View details"><button>View details</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Cancel application"><button>Cancel application</button></sgds-dropdown-item>
     </sgds-dropdown>`,
     focus: `<sgds-dropdown open>
       <sgds-button slot="toggler" variant="outline" ariaLabel="More actions">More actions</sgds-button>
-      <sgds-dropdown-item><button>Edit</button></sgds-dropdown-item>
-      <sgds-dropdown-item><button>Download</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Edit"><button>Edit</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Download"><button>Download</button></sgds-dropdown-item>
     </sgds-dropdown>`,
   },
   "file-upload": {
@@ -18563,7 +18508,7 @@ const accessibilityDemoMarkupOverrides: Record<
       <sgds-icon name="check-circle-fill" size="lg"></sgds-icon>
       <span>Application approved</span>
     </div>`,
-    focus: `<sgds-button><sgds-icon slot="leftIcon" name="search"></sgds-icon>Search</sgds-button>`,
+    focus: `<sgds-button ariaLabel="Search"><sgds-icon slot="leftIcon" name="search"></sgds-icon>Search</sgds-button>`,
   },
   "icon-list": {
     builtIn: `<sgds-icon-list>
@@ -18606,17 +18551,17 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   "image-card": {
     builtIn: `<sgds-image-card class="portal-demo-card">
-      <img slot="image" src="/landing/card-media-placement.svg" alt="">
+      <img slot="image" src="/landing/card-media-placement.svg" alt="Placeholder image">
       <span slot="title">Community support</span>
       <span slot="description">Find help available near you.</span>
     </sgds-image-card>`,
     author: `<sgds-image-card class="portal-demo-card">
-      <img slot="image" src="/landing/card-media-placement.svg" alt="">
+      <img slot="image" src="/landing/card-media-placement.svg" alt="Placeholder image">
       <span slot="title">Apply for support</span>
       <span slot="description">Check eligibility before applying.</span>
     </sgds-image-card>`,
     focus: `<sgds-image-card class="portal-demo-card" href="#">
-      <img slot="image" src="/landing/card-media-placement.svg" alt="">
+      <img slot="image" src="/landing/card-media-placement.svg" alt="Placeholder image">
       <span slot="title">View support schemes</span>
     </sgds-image-card>`,
   },
@@ -18683,7 +18628,7 @@ const accessibilityDemoMarkupOverrides: Record<
           <sgds-close-button aria-label="Close modal"></sgds-close-button>
         </div>
         <div class="portal-modal-body"><p>This draft will be removed from your applications.</p></div>
-        <div class="portal-modal-footer"><sgds-button variant="danger">Delete draft</sgds-button></div>
+        <div class="portal-modal-footer"><sgds-button variant="danger" ariaLabel="Delete draft">Delete draft</sgds-button></div>
       </div>
     </div>`,
     focus: `<div class="portal-modal-preview">
@@ -18694,22 +18639,22 @@ const accessibilityDemoMarkupOverrides: Record<
           </div>
           <sgds-close-button aria-label="Close modal"></sgds-close-button>
         </div>
-        <div class="portal-modal-footer"><sgds-button>Confirm</sgds-button></div>
+        <div class="portal-modal-footer"><sgds-button ariaLabel="Confirm">Confirm</sgds-button></div>
       </div>
     </div>`,
   },
   "overflow-menu": {
     builtIn: `<sgds-overflow-menu>
-      <sgds-dropdown-item><button>Rename</button></sgds-dropdown-item>
-      <sgds-dropdown-item><button>Download</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Rename"><button>Rename</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Download"><button>Download</button></sgds-dropdown-item>
     </sgds-overflow-menu>`,
     author: `<sgds-overflow-menu>
-      <sgds-dropdown-item><button>View details</button></sgds-dropdown-item>
-      <sgds-dropdown-item><button>Cancel application</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="View details"><button>View details</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Cancel application"><button>Cancel application</button></sgds-dropdown-item>
     </sgds-overflow-menu>`,
     focus: `<sgds-overflow-menu open>
-      <sgds-dropdown-item><button>Rename</button></sgds-dropdown-item>
-      <sgds-dropdown-item><button>Download</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Rename"><button>Rename</button></sgds-dropdown-item>
+      <sgds-dropdown-item arialabel="Download"><button>Download</button></sgds-dropdown-item>
     </sgds-overflow-menu>`,
   },
   pagination: {
@@ -18767,7 +18712,7 @@ const accessibilityDemoMarkupOverrides: Record<
   sidenav: {
     builtIn: `<div class="portal-demo-nav-sm">
       <sgds-sidenav>
-        <sgds-sidenav-item active>
+        <sgds-sidenav-item active arialabel="Applications">
           <span slot="title">Applications</span>
           <sgds-sidenav-link active><a href="#">Current applications</a></sgds-sidenav-link>
           <sgds-sidenav-link><a href="#">Past applications</a></sgds-sidenav-link>
@@ -18782,7 +18727,7 @@ const accessibilityDemoMarkupOverrides: Record<
     </div>`,
     focus: `<div class="portal-demo-nav-sm">
       <sgds-sidenav>
-        <sgds-sidenav-item active>
+        <sgds-sidenav-item active arialabel="Services">
           <span slot="title">Services</span>
           <sgds-sidenav-link><a href="#">Housing</a></sgds-sidenav-link>
         </sgds-sidenav-item>
@@ -18800,7 +18745,7 @@ const accessibilityDemoMarkupOverrides: Record<
     </div>`,
     focus: `<div class="portal-demo-stack-sm">
       <sgds-skeleton></sgds-skeleton>
-      <sgds-button variant="outline">Cancel loading</sgds-button>
+      <sgds-button variant="outline" ariaLabel="Cancel loading">Cancel loading</sgds-button>
     </div>`,
   },
   spinner: {
@@ -18814,7 +18759,7 @@ const accessibilityDemoMarkupOverrides: Record<
     </div>`,
     focus: `<div class="portal-demo-row sgds:gap-sm">
       <sgds-spinner></sgds-spinner>
-      <sgds-button variant="outline">Cancel</sgds-button>
+      <sgds-button variant="outline" ariaLabel="Cancel">Cancel</sgds-button>
     </div>`,
   },
   stepper: {
@@ -18891,25 +18836,9 @@ const accessibilityDemoMarkupOverrides: Record<
     </sgds-tab-group>`,
   },
   table: {
-    builtIn: `<sgds-table
-      rowHeader='["Name","Status"]'
-      tableData='[["Application A","Pending"],["Application B","Approved"]]'
-      headerBackground
-      tableBorder
-    ></sgds-table>`,
-    author: `<sgds-table
-      rowHeader='["Application","Status","Updated"]'
-      tableData='[["Passport renewal","Pending","23 Apr 2026"],["Grant application","Approved","22 Apr 2026"]]'
-      headerBackground
-      tableBorder
-    ></sgds-table>`,
-    focus: `<sgds-table
-      rowHeader='["Document","Action"]'
-      tableData='[["NRIC","View"],["Proof of address","Download"]]'
-      headerBackground
-      tableBorder
-      responsive="always"
-    ></sgds-table>`,
+    builtIn: `<sgds-table headerBackground tableBorder><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Application A</sgds-table-cell><sgds-table-cell>Pending</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Application B</sgds-table-cell><sgds-table-cell>Approved</sgds-table-cell></sgds-table-row></sgds-table>`,
+    author: `<sgds-table headerBackground tableBorder><sgds-table-row><sgds-table-head>Application</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Updated</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Passport renewal</sgds-table-cell><sgds-table-cell>Pending</sgds-table-cell><sgds-table-cell>23 Apr 2026</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Grant application</sgds-table-cell><sgds-table-cell>Approved</sgds-table-cell><sgds-table-cell>22 Apr 2026</sgds-table-cell></sgds-table-row></sgds-table>`,
+    focus: `<sgds-table headerBackground tableBorder responsive="always"><sgds-table-row><sgds-table-head>Document</sgds-table-head><sgds-table-head>Action</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>NRIC</sgds-table-cell><sgds-table-cell>View</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Proof of address</sgds-table-cell><sgds-table-cell>Download</sgds-table-cell></sgds-table-row></sgds-table>`,
   },
   "table-of-contents": {
     builtIn: `<sgds-table-of-contents>
@@ -18938,17 +18867,17 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   "thumbnail-card": {
     builtIn: `<sgds-thumbnail-card class="portal-demo-card">
-      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="">
+      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="Placeholder thumbnail">
       <span slot="title">Required documents</span>
       <span slot="description">Prepare files before starting.</span>
     </sgds-thumbnail-card>`,
     author: `<sgds-thumbnail-card class="portal-demo-card">
-      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="">
+      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="Placeholder thumbnail">
       <span slot="title">Proof of address</span>
       <span slot="description">Upload a recent utility bill or bank statement.</span>
     </sgds-thumbnail-card>`,
     focus: `<sgds-thumbnail-card class="portal-demo-card" href="#">
-      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="">
+      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="Placeholder thumbnail">
       <span slot="title">View document guide</span>
     </sgds-thumbnail-card>`,
   },
@@ -18968,13 +18897,13 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   tooltip: {
     builtIn: `<sgds-tooltip content="Your Singpass name will be used for this application." trigger="hover focus">
-      <sgds-button variant="outline">Why we need this</sgds-button>
+      <sgds-button variant="outline" ariaLabel="Why we need this">Why we need this</sgds-button>
     </sgds-tooltip>`,
     author: `<sgds-tooltip content="Maximum file size is 5 MB." trigger="hover focus">
-      <sgds-button variant="outline">File size</sgds-button>
+      <sgds-button variant="outline" ariaLabel="File size">File size</sgds-button>
     </sgds-tooltip>`,
     focus: `<sgds-tooltip content="More details about this action" trigger="hover focus">
-      <sgds-button variant="outline">More information</sgds-button>
+      <sgds-button variant="outline" ariaLabel="More information">More information</sgds-button>
     </sgds-tooltip>`,
   },
 };

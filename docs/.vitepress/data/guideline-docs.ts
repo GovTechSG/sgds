@@ -93,7 +93,7 @@ const guidelineDocs: Record<string, GuidelineDocInput> = {
     <p style="margin: 0; font-size: var(--sgds-font-size-2); color: var(--sgds-body-color-subtle);">Select a PDF or image file under 5 MB. You do not need to compress the file.</p>
   </div>
   <div class="portal-content-button" style="padding: 0 24px 8px;">
-    <sgds-button variant="primary" size="sm">Upload file</sgds-button>
+    <sgds-button variant="primary" size="sm" ariaLabel="Upload file">Upload file</sgds-button>
   </div>
   <div class="portal-content-error" style="padding: 8px 24px 20px;">
     <p style="margin: 0; font-size: var(--sgds-font-size-1); color: var(--sgds-danger-default);">The file is too large. Upload a file under 5 MB.</p>
@@ -133,7 +133,7 @@ const guidelineDocs: Record<string, GuidelineDocInput> = {
         markup: `<div style="max-width: 400px; margin: 0 auto; padding: 32px; text-align: center; border: 1px solid var(--sgds-border-color-muted); border-radius: var(--sgds-border-radius-lg); background: var(--sgds-surface-default);">
   <p style="margin: 0 0 4px; font-weight: var(--sgds-font-weight-semibold); color: var(--sgds-heading-color-default);">No applications yet</p>
   <p style="margin: 0 0 16px; font-size: var(--sgds-font-size-2); color: var(--sgds-body-color-subtle);">Start your first application to see it here.</p>
-  <sgds-button variant="primary" size="sm">Start application</sgds-button>
+  <sgds-button variant="primary" size="sm" ariaLabel="Start application">Start application</sgds-button>
 </div>`,
       },
     ],

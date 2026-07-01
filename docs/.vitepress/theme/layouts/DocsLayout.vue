@@ -11,6 +11,7 @@ import { getFoundationHeaderLinks } from "../../data/foundation-docs";
 
 const { theme, page } = useData()
 const mobileSideNavOpen = ref(false)
+const navigationGuard = ref(false)
 const currentPath = computed(() =>
   `/${page.value.relativePath.replace(/\.md$/, '')}`
 )
@@ -138,6 +139,8 @@ const pageMetadata = computed(() => {
 
 watch(currentPath, () => {
   mobileSideNavOpen.value = false
+  navigationGuard.value = true
+  setTimeout(() => { navigationGuard.value = false }, 300)
 })
 
 const slugifyHeading = (text: string) =>
@@ -268,7 +271,7 @@ watch(
             variant="outline"
             tone="neutral"
             :ariaLabel.prop="`Browse ${header}`"
-            @click="mobileSideNavOpen = true"
+            @click="!navigationGuard && (mobileSideNavOpen = true)"
           >
             <sgds-icon slot="leftIcon" name="menu"></sgds-icon>
             Browse <span class="sgds:font-semibold">{{ header }}</span>
@@ -280,6 +283,7 @@ watch(
           class="docs-layout-mobile-sidenav"
           placement="start"
           size="sm"
+          :ariaLabel.prop="header"
           :open="mobileSideNavOpen || null"
           @sgds-request-close="mobileSideNavOpen = false"
         >

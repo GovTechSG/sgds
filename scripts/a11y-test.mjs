@@ -90,9 +90,10 @@ async function discoverPages(browser, entryUrl) {
       await page.goto(normalized, { waitUntil: "domcontentloaded", timeout: 15000 });
 
       const links = await page.evaluate((origin) => {
+        const NON_HTML_EXT = /\.(md|json|txt|svg|pdf|png|jpg|xml)$/i;
         return [...document.querySelectorAll("a[href]")]
           .map((a) => a.href)
-          .filter((href) => href.startsWith(origin) && !href.includes("#"));
+          .filter((href) => href.startsWith(origin) && !href.includes("#") && !NON_HTML_EXT.test(href));
       }, baseUrl.origin);
 
       for (const link of links) {

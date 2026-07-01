@@ -100,9 +100,9 @@ const radiusExamples: Example[] = [
           <div class="typography-page-template__body">
             <article class="typography-page-template__split-row">
               <div class="typography-page-template__copy-pane">
-                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+                <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
                   {{ borderWidthExamples[0]?.title }}
-                </h4>
+                </h3>
                 <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   {{ borderWidthExamples[0]?.description }}
                 </p>
@@ -125,9 +125,9 @@ const radiusExamples: Example[] = [
 
             <article class="typography-page-template__split-row">
               <div class="typography-page-template__copy-pane">
-                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+                <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
                   {{ borderWidthExamples[1]?.title }}
-                </h4>
+                </h3>
                 <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   {{ borderWidthExamples[1]?.description }}
                 </p>
@@ -150,9 +150,9 @@ const radiusExamples: Example[] = [
 
             <article class="typography-page-template__split-row">
               <div class="typography-page-template__copy-pane">
-                <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+                <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
                   {{ borderWidthExamples[2]?.title }}
-                </h4>
+                </h3>
                 <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   {{ borderWidthExamples[2]?.description }}
                 </p>
@@ -172,9 +172,9 @@ const radiusExamples: Example[] = [
         <div class="typography-page-template__body">
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
               {{ radiusExamples[0]?.title }}
-            </h4>
+            </h3>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[0]?.description }}
             </p>
@@ -209,9 +209,9 @@ const radiusExamples: Example[] = [
 
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
               {{ radiusExamples[1]?.title }}
-            </h4>
+            </h3>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[1]?.description }}
             </p>
@@ -239,9 +239,9 @@ const radiusExamples: Example[] = [
 
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
               {{ radiusExamples[2]?.title }}
-            </h4>
+            </h3>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[2]?.description }}
             </p>
@@ -260,16 +260,16 @@ const radiusExamples: Example[] = [
                   </span>
                 </div>
               </div>
-              <sgds-button variant="primary">Button label</sgds-button>
+              <sgds-button variant="primary" ariaLabel="Button label">Button label</sgds-button>
             </div>
           </div>
         </article>
 
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
               {{ radiusExamples[3]?.title }}
-            </h4>
+            </h3>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[3]?.description }}
             </p>
@@ -295,8 +295,8 @@ const radiusExamples: Example[] = [
                     <sgds-close-button inert></sgds-close-button>
                   </div>
                   <div class="portal-modal-footer">
-                    <sgds-button variant="outline" tabindex="-1">Button</sgds-button>
-                    <sgds-button variant="primary" tabindex="-1">Button</sgds-button>
+                    <sgds-button variant="outline" tabindex="-1" ariaLabel="Button">Button</sgds-button>
+                    <sgds-button variant="primary" tabindex="-1" ariaLabel="Button">Button</sgds-button>
                   </div>
                 </div>
               </div>
@@ -319,9 +319,9 @@ const radiusExamples: Example[] = [
 
         <article class="typography-page-template__split-row">
           <div class="typography-page-template__copy-pane">
-            <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:m-0">
               {{ radiusExamples[4]?.title }}
-            </h4>
+            </h3>
             <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               {{ radiusExamples[4]?.description }}
             </p>
