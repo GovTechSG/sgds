@@ -55,7 +55,7 @@ const brandColors: BrandColor[] = [
     rgb: "244 / 51 / 61",
     cmyk: "0 / 79 / 75 / 4",
     background: "#F4333D",
-    textTone: "fixed-light",
+    textTone: "fixed-dark",
   },
   {
     name: "GovTech magenta",
