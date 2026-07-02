@@ -8470,7 +8470,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
     ],
     anatomyMarkup: `<sgds-image-card class="portal-anatomy-image-card portal-demo-card">
-      <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+      <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
       <span slot="title">Image card title</span>
       <span slot="description">Supporting description with detail to explain image card content clearly.</span>
     </sgds-image-card>`,
@@ -8522,7 +8522,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Vertical",
             value: "vertical",
             markup: `<sgds-image-card class="portal-demo-card" orientation="vertical">
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">National Day Parade</span>
           <span slot="description">Celebrate Singapore's birthday with the nation.</span>
         </sgds-image-card>`,
@@ -8533,7 +8533,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Horizontal",
             value: "horizontal",
             markup: `<sgds-image-card class="portal-demo-card" orientation="horizontal">
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">National Day Parade</span>
           <span slot="description">Celebrate Singapore's birthday with the nation.</span>
         </sgds-image-card>`,
@@ -8553,7 +8553,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Before content",
             value: "before",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="before">
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">Career fair</span>
           <span slot="description">Meet hiring agencies and explore new roles.</span>
         </sgds-image-card>`,
@@ -8564,7 +8564,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "After content",
             value: "after",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="after">
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">Career fair</span>
           <span slot="description">Meet hiring agencies and explore new roles.</span>
         </sgds-image-card>`,
@@ -8584,7 +8584,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<sgds-image-card class="portal-demo-card">
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">Featured story</span>
           <span slot="description">A look at this month's highlights.</span>
         </sgds-image-card>`,
@@ -8594,7 +8594,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Tinted",
             value: "tinted",
             markup: `<sgds-image-card class="portal-demo-card" tinted>
-          <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+          <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
           <span slot="title">Featured story</span>
           <span slot="description">A look at this month's highlights.</span>
         </sgds-image-card>`,
@@ -8614,7 +8614,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Default padding</span>
               <span slot="description">Content uses the default inset spacing.</span>
             </sgds-image-card>`,
@@ -8624,7 +8624,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No padding",
             value: "no-padding",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" noPadding>
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">No padding</span>
               <span slot="description">Content can sit closer to the card edge.</span>
             </sgds-image-card>`,
@@ -8644,7 +8644,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Border",
             value: "border",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">With border</span>
             </sgds-image-card>`,
             description: "Use the default border for clearer separation.",
@@ -8653,7 +8653,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No border",
             value: "no-border",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" hideBorder>
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">No border</span>
             </sgds-image-card>`,
             description:
@@ -8663,7 +8663,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Disabled",
             value: "disabled",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" disabled>
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Disabled card</span>
             </sgds-image-card>`,
             description:
@@ -8682,7 +8682,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<sgds-image-card class="portal-demo-card" imageAdjustment="default">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Default image</span>
             </sgds-image-card>`,
             description:
@@ -8692,7 +8692,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Padding around",
             value: "padding-around",
             markup: `<sgds-image-card class="portal-demo-card" imageAdjustment="padding around">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Padded image</span>
             </sgds-image-card>`,
             description:
@@ -8711,7 +8711,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With slots",
             value: "with-slots",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <sgds-badge slot="image-badge" variant="success">New</sgds-badge>
               <sgds-icon-button slot="image-action" name="bookmark" ariaLabel="Save"></sgds-icon-button>
               <span slot="title">Image slots</span>
@@ -8723,7 +8723,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Image only",
             value: "image-only",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Image only</span>
             </sgds-image-card>`,
             description: "Keep the image area clean when no overlay is needed.",
@@ -8741,7 +8741,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Footer link",
             value: "footer",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top">
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Article</span>
               <sgds-link slot="footer"><a href="#">Read more</a></sgds-link>
             </sgds-image-card>`,
@@ -8751,7 +8751,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Stretched link",
             value: "stretched",
             markup: `<sgds-image-card class="portal-demo-card" imagePosition="top" stretchedLink>
-              <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
               <span slot="title">Article</span>
               <sgds-link slot="footer"><a href="#">Read more</a></sgds-link>
             </sgds-image-card>`,
@@ -8806,7 +8806,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             "If the image is purely decorative or interchangeable, drop it. Icon or text cards will scan better.",
           tone: "dont",
           markup: `<sgds-image-card class="portal-demo-card">
-            <img slot="image" alt="" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
+            <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80" />
             <span slot="title">Frequently asked questions</span>
             <span slot="description">Answers to common questions about our service.</span>
           </sgds-image-card>`,
@@ -15717,7 +15717,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Horizontal",
             value: "horizontal",
             markup: `<sgds-thumbnail-card class="portal-demo-card" orientation="horizontal">
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Annual report 2025</span>
           <span slot="description">Highlights and metrics from the past year.</span>
         </sgds-thumbnail-card>`,
@@ -15728,7 +15728,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Vertical",
             value: "vertical",
             markup: `<sgds-thumbnail-card class="portal-demo-card" orientation="vertical">
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 96px; height: 96px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 96px; height: 96px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Annual report 2025</span>
           <span slot="description">Highlights and metrics from the past year.</span>
         </sgds-thumbnail-card>`,
@@ -15748,7 +15748,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<sgds-thumbnail-card class="portal-demo-card">
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Tax filing guide</span>
           <span slot="description">Step-by-step instructions for residents.</span>
         </sgds-thumbnail-card>`,
@@ -15758,7 +15758,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Tinted",
             value: "tinted",
             markup: `<sgds-thumbnail-card class="portal-demo-card" tinted>
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Tax filing guide</span>
           <span slot="description">Step-by-step instructions for residents.</span>
         </sgds-thumbnail-card>`,
@@ -15778,7 +15778,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Not disabled",
             value: "not-disabled",
             markup: `<sgds-thumbnail-card class="portal-demo-card" stretchedLink>
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Browse datasets</span>
           <span slot="description">Open data published by Singapore agencies.</span>
           <a slot="footer" href="#" aria-label="Browse datasets">Open</a>
@@ -15789,7 +15789,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Disabled",
             value: "disabled",
             markup: `<sgds-thumbnail-card class="portal-demo-card" disabled stretchedLink>
-          <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+          <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
           <span slot="title">Browse datasets</span>
           <span slot="description">Open data published by Singapore agencies.</span>
           <a slot="footer" href="#" aria-label="Browse datasets">Open</a>
@@ -15809,7 +15809,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default",
             value: "default",
             markup: `<sgds-thumbnail-card class="portal-demo-card">
-              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
               <span slot="title">Default padding</span>
               <span slot="description">Content uses default card padding.</span>
             </sgds-thumbnail-card>`,
@@ -15819,7 +15819,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No padding",
             value: "no-padding",
             markup: `<sgds-thumbnail-card class="portal-demo-card" noPadding>
-              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
               <span slot="title">No padding</span>
               <span slot="description">Content sits closer to the edge.</span>
             </sgds-thumbnail-card>`,
@@ -15839,7 +15839,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Footer link",
             value: "footer",
             markup: `<sgds-thumbnail-card class="portal-demo-card">
-              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
               <span slot="title">Guide</span>
               <sgds-link slot="footer"><a href="#">Read guide</a></sgds-link>
             </sgds-thumbnail-card>`,
@@ -15849,7 +15849,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Stretched link",
             value: "stretched",
             markup: `<sgds-thumbnail-card class="portal-demo-card" stretchedLink>
-              <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
               <span slot="title">Guide</span>
               <sgds-link slot="footer"><a href="#" aria-label="Read guide">Read guide</a></sgds-link>
             </sgds-thumbnail-card>`,
@@ -15928,7 +15928,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             "The thumbnail still carries meaning. Provide concise alt text describing the picture, not the title.",
           tone: "dont",
           markup: `<sgds-thumbnail-card class="portal-demo-card">
-            <img slot="thumbnail" alt="" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+            <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
             <span slot="title">Census 2025 results</span>
             <span slot="description">Key statistics from the latest national census.</span>
           </sgds-thumbnail-card>`,
@@ -18551,17 +18551,17 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   "image-card": {
     builtIn: `<sgds-image-card class="portal-demo-card">
-      <img slot="image" src="/landing/card-media-placement.svg" alt="">
+      <img slot="image" src="/landing/card-media-placement.svg" alt="Placeholder image">
       <span slot="title">Community support</span>
       <span slot="description">Find help available near you.</span>
     </sgds-image-card>`,
     author: `<sgds-image-card class="portal-demo-card">
-      <img slot="image" src="/landing/card-media-placement.svg" alt="">
+      <img slot="image" src="/landing/card-media-placement.svg" alt="Placeholder image">
       <span slot="title">Apply for support</span>
       <span slot="description">Check eligibility before applying.</span>
     </sgds-image-card>`,
     focus: `<sgds-image-card class="portal-demo-card" href="#">
-      <img slot="image" src="/landing/card-media-placement.svg" alt="">
+      <img slot="image" src="/landing/card-media-placement.svg" alt="Placeholder image">
       <span slot="title">View support schemes</span>
     </sgds-image-card>`,
   },
@@ -18867,17 +18867,17 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   "thumbnail-card": {
     builtIn: `<sgds-thumbnail-card class="portal-demo-card">
-      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="">
+      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="Placeholder thumbnail">
       <span slot="title">Required documents</span>
       <span slot="description">Prepare files before starting.</span>
     </sgds-thumbnail-card>`,
     author: `<sgds-thumbnail-card class="portal-demo-card">
-      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="">
+      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="Placeholder thumbnail">
       <span slot="title">Proof of address</span>
       <span slot="description">Upload a recent utility bill or bank statement.</span>
     </sgds-thumbnail-card>`,
     focus: `<sgds-thumbnail-card class="portal-demo-card" href="#">
-      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="">
+      <img slot="thumbnail" src="/landing/card-media-placement.svg" alt="Placeholder thumbnail">
       <span slot="title">View document guide</span>
     </sgds-thumbnail-card>`,
   },

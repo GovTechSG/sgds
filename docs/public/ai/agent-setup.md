@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>SGDS Agent Setup Instructions</title></head>
+<body>
+
 You are helping this project use the Singapore Government Design System (SGDS).
 
 Follow these instructions before generating or editing SGDS code.
@@ -39,3 +44,6 @@ Use the GovTech CLI path only if the user is from GovTech Singapore or the proje
 - Do not use inline styles unless a runtime dynamic value is required.
 - For new apps, follow sgds-getting-started before writing UI code.
 - For existing apps, use sgds-workflow to pick the right skill for the task.
+
+</body>
+</html>
