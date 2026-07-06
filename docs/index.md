@@ -97,7 +97,7 @@ const currentPhase = 1;
 const showCommunitySection = false;
 </script>
 
-<div :class="$style.homePage" class="sgds:relative">
+<div :class="$style.homePage" class="sgds:relative sgds:overflow-visible">
   <div class="sgds:pb-layout-xl">
     <Hero
       :title
@@ -234,17 +234,16 @@ const showCommunitySection = false;
   .homePage::before {
     background-color: var(--sgds-border-color-muted);
     content: "";
-    height: 100%;
+    top: 0;
+    bottom: 0;
     left: 50%;
     margin-left: -50vw;
     mask-image: url("/landing/background.svg");
     mask-position: top center;
     mask-repeat: repeat-y;
     mask-size: 100% auto;
-    opacity: 0.56;
     pointer-events: none;
     position: absolute;
-    top: 0;
     width: 100vw;
     -webkit-mask-image: url("/landing/background.svg");
     -webkit-mask-position: top center;
