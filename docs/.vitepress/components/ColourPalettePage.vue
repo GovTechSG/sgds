@@ -986,10 +986,10 @@ const openContrastInfo = () => {
               </h3>
               <sgds-table tableBorder headerBackground responsive="always" layout="fixed" class="typography-page-template__utility-table">
                 <sgds-table-row>
-                  <sgds-table-head class="cp-token-column" style="width: 291.29px">Token</sgds-table-head>
-                  <sgds-table-head class="cp-hex-column" style="width: 105.24px">Hex</sgds-table-head>
-                  <sgds-table-head class="cp-value-column" style="width: 258.2px">RGBA</sgds-table-head>
-                  <sgds-table-head class="cp-contrast-column" style="width: 150px">
+                  <sgds-table-head class="cp-token-column">Token</sgds-table-head>
+                  <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
+                  <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
+                  <sgds-table-head class="cp-contrast-column">
                   <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
                     Contrast
                     <sgds-icon-button
@@ -1002,7 +1002,7 @@ const openContrastInfo = () => {
                     ></sgds-icon-button>
                   </span>
                 </sgds-table-head>
-                  <sgds-table-head class="cp-example-column" style="width: 169px">Preview</sgds-table-head>
+                  <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
                 </sgds-table-row>
 
                 <sgds-table-row v-for="row in palette.rows" :key="`${palette.id}-${row.token}`">
@@ -1047,10 +1047,10 @@ const openContrastInfo = () => {
 
           <sgds-table v-else-if="showCustomGenerator" tableBorder headerBackground responsive="always" layout="fixed" class="typography-page-template__utility-table">
             <sgds-table-row>
-              <sgds-table-head class="cp-token-column" style="width: 291.29px">Token</sgds-table-head>
-              <sgds-table-head class="cp-hex-column" style="width: 105.24px">Hex</sgds-table-head>
-              <sgds-table-head class="cp-value-column" style="width: 258.2px">RGBA</sgds-table-head>
-              <sgds-table-head class="cp-contrast-column" style="width: 150px">
+              <sgds-table-head class="cp-token-column">Token</sgds-table-head>
+              <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
+              <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
+              <sgds-table-head class="cp-contrast-column">
                   <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
                     Contrast
                     <sgds-icon-button
@@ -1063,7 +1063,7 @@ const openContrastInfo = () => {
                     ></sgds-icon-button>
                   </span>
                 </sgds-table-head>
-              <sgds-table-head class="cp-example-column" style="width: 169px">Preview</sgds-table-head>
+              <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
             </sgds-table-row>
 
             <sgds-table-row v-for="row in activeProductRows" :key="`${productPrimaryMode}-${row.token}`">
@@ -1248,10 +1248,10 @@ const openContrastInfo = () => {
             </h3>
             <sgds-table tableBorder headerBackground responsive="always" layout="fixed" class="typography-page-template__utility-table">
               <sgds-table-row>
-                <sgds-table-head class="cp-token-column" style="width: 291.29px">Token</sgds-table-head>
-                <sgds-table-head class="cp-hex-column" style="width: 105.24px">Hex</sgds-table-head>
-                <sgds-table-head class="cp-value-column" style="width: 258.2px">RGBA</sgds-table-head>
-                <sgds-table-head class="cp-contrast-column" style="width: 150px">
+                <sgds-table-head class="cp-token-column">Token</sgds-table-head>
+                <sgds-table-head class="cp-hex-column">Hex</sgds-table-head>
+                <sgds-table-head class="cp-value-column">RGBA</sgds-table-head>
+                <sgds-table-head class="cp-contrast-column">
                   <span class="sgds:inline-flex sgds:items-center sgds:gap-text-2-xs">
                     Contrast
                     <sgds-icon-button
@@ -1264,7 +1264,7 @@ const openContrastInfo = () => {
                     ></sgds-icon-button>
                   </span>
                 </sgds-table-head>
-                <sgds-table-head class="cp-example-column" style="width: 169px">Preview</sgds-table-head>
+                <sgds-table-head class="cp-example-column">Preview</sgds-table-head>
               </sgds-table-row>
 
               <sgds-table-row v-for="row in family.rows" :key="`${family.id}-${row.token}`">
@@ -1948,6 +1948,26 @@ const openContrastInfo = () => {
 .cp-custom-hint {
   color: var(--sgds-body-color-muted);
   margin: 0;
+}
+
+.cp-token-column {
+  width: 291.29px;
+}
+
+.cp-hex-column {
+  width: 105.24px;
+}
+
+.cp-value-column {
+  width: 258.2px;
+}
+
+.cp-contrast-column {
+  width: 150px;
+}
+
+.cp-example-column {
+  width: 169px;
 }
 
 .cp-swatch,
