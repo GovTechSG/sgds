@@ -97,7 +97,7 @@ const currentPhase = 1;
 const showCommunitySection = false;
 </script>
 
-<div>
+<div :class="$style.homePage" class="sgds:relative">
   <div class="sgds:pb-layout-xl">
     <Hero
       :title
@@ -234,39 +234,22 @@ const showCommunitySection = false;
   .homePage::before {
     background-color: var(--sgds-border-color-muted);
     content: "";
-    height: min(2200px, 58%);
-    left: 0;
-    mask-composite: intersect;
-    mask-image:
-      url("/landing/background.svg"),
-      linear-gradient(
-      to bottom,
-      transparent 0,
-      black var(--sgds-dimension-144),
-      black 68%,
-      transparent 100%
-    );
-    mask-position: top center, top center;
-    mask-repeat: no-repeat, no-repeat;
-    mask-size: 100% auto, 100% 100%;
+    height: 100%;
+    left: 50%;
+    margin-left: -50vw;
+    mask-image: url("/landing/background.svg");
+    mask-position: top center;
+    mask-repeat: repeat-y;
+    mask-size: 100% auto;
     opacity: 0.56;
     pointer-events: none;
     position: absolute;
-    right: 0;
     top: 0;
-    -webkit-mask-composite: source-in;
-    -webkit-mask-image:
-      url("/landing/background.svg"),
-      linear-gradient(
-      to bottom,
-      transparent 0,
-      black var(--sgds-dimension-144),
-      black 68%,
-      transparent 100%
-    );
-    -webkit-mask-position: top center, top center;
-    -webkit-mask-repeat: no-repeat, no-repeat;
-    -webkit-mask-size: 100% auto, 100% 100%;
+    width: 100vw;
+    -webkit-mask-image: url("/landing/background.svg");
+    -webkit-mask-position: top center;
+    -webkit-mask-repeat: repeat-y;
+    -webkit-mask-size: 100% auto;
     z-index: 0;
   }
 
