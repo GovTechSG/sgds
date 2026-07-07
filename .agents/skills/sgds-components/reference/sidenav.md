@@ -42,7 +42,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 ## Edge Cases
 
-- **Menu type without `title` slot**: the collapsible trigger has no label — always provide `<span slot="title">` for menu-type items.
+- **Menu type without `ariaLabel`**: the internal button has no accessible name — always provide `ariaLabel` on menu-type `<sgds-sidenav-item>` to pass WCAG accessible-label checks.
+- **Menu type without `title` slot**: the collapsible trigger has no visible label — always provide `<span slot="title">` for menu-type items.
 - **Link type with `title` slot**: placing both `<span slot="title">` and `<a>` in the default slot creates ambiguous behaviour — use one mode consistently per item.
 - **No `active` set**: all sections render collapsed and no link is highlighted — set `active` on the item and link matching the current page.
 - **`sticky` parent without height**: the sidenav scrolls with the page instead of sticking — ensure the layout parent has a defined height.
@@ -63,7 +64,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 <!-- Basic sidenav with menu sections and links -->
 <sgds-sidenav>
   <!-- Menu type: collapsible section with child links -->
-  <sgds-sidenav-item>
+  <sgds-sidenav-item ariaLabel="Getting Started">
     <span slot="title">Getting Started</span>
     <sgds-sidenav-link active><a href="/overview">Overview</a></sgds-sidenav-link>
     <sgds-sidenav-link><a href="/installation">Installation</a></sgds-sidenav-link>
@@ -71,10 +72,10 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
   </sgds-sidenav-item>
 
   <!-- Nested menu (L3 level) -->
-  <sgds-sidenav-item>
+  <sgds-sidenav-item ariaLabel="Components">
     <span slot="title">Components</span>
     <sgds-sidenav-link><a href="/components/button">Buttons</a></sgds-sidenav-link>
-    <sgds-sidenav-item>
+    <sgds-sidenav-item ariaLabel="Forms">
       <span slot="title">Forms</span>
       <sgds-sidenav-link><a href="/components/input">Input</a></sgds-sidenav-link>
       <sgds-sidenav-link><a href="/components/select">Select</a></sgds-sidenav-link>
@@ -89,7 +90,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 <!-- Sticky sidenav -->
 <sgds-sidenav sticky>
-  <sgds-sidenav-item active>
+  <sgds-sidenav-item active ariaLabel="Active Section">
     <span slot="title">Active Section</span>
     <sgds-sidenav-link active><a href="/page">Current Page</a></sgds-sidenav-link>
   </sgds-sidenav-item>
@@ -110,6 +111,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 |---|---|---|---|
 | `active` | boolean | `false` | Opens the section and applies active styles; for link type, marks it as current |
 | `disabled` | boolean | `false` | Disables the item |
+| `ariaLabel` | string | — | Accessible label forwarded to the internal menu button. Required for menu-type items to pass WCAG accessible-label checks. |
 
 ### `<sgds-sidenav-link>`
 
@@ -146,8 +148,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 ---
 
 **For AI agents**:
-1. **Menu type** (collapsible): Use `<span slot="title">` + `<sgds-sidenav-link>` children inside `<sgds-sidenav-item>`.
-2. **Link type** (direct): Place `<a>` directly inside `<sgds-sidenav-item>` with no `title` slot and no `<sgds-sidenav-link>` children.
+1. **Menu type** (collapsible): Use `<span slot="title">` + `<sgds-sidenav-link>` children inside `<sgds-sidenav-item>`. Always add `ariaLabel` matching the title text.
+2. **Link type** (direct): Place `<a>` directly inside `<sgds-sidenav-item>` with no `title` slot and no `<sgds-sidenav-link>` children. No `ariaLabel` needed — the anchor text provides the accessible name.
 3. Events only fire on **menu type** items — not on link type items.
 4. Setting `active` on a menu-type `<sgds-sidenav-item>` opens it automatically on load.
 5. Nesting is supported up to L3 (sidenav-item inside sidenav-item).

@@ -3,6 +3,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue"
 import PortalNumberedItem from "./PortalNumberedItem.vue";
 import SegmentedControl from "./SegmentedControl.vue";
 import type { ThemedImageAsset, AnatomyCallout, AnatomyVariant } from "../../data/component-docs";
+import { setupPortalSteppers } from "../../utils/portal-stepper";
 
 type AnatomyPart = {
   number: number;
@@ -1006,6 +1007,8 @@ const openAnatomyDropdowns = async () => {
     await el.updateComplete;
   }
 
+  await setupPortalSteppers(root);
+
   const steppers = Array.from(
     root.querySelectorAll(".portal-anatomy-stepper") as NodeListOf<HTMLElement & {
       updateComplete?: Promise<unknown>;
@@ -1015,13 +1018,6 @@ const openAnatomyDropdowns = async () => {
   for (const el of steppers) {
     if (el.localName !== "sgds-stepper") continue;
     await customElements.whenDefined(el.localName);
-    await el.updateComplete;
-    (el as HTMLElement & { activeStep?: number; steps?: unknown[] }).steps = [
-      { stepHeader: "Start", component: "Step one" },
-      { stepHeader: "Review", component: "Step two" },
-      { stepHeader: "Confirm", component: "Step three" },
-    ];
-    (el as HTMLElement & { activeStep?: number; steps?: unknown[] }).activeStep = 0;
     await el.updateComplete;
     injectShadowStyles(
       el,
@@ -1037,42 +1033,9 @@ const openAnatomyDropdowns = async () => {
          max-width: var(--sgds-dimension-192) !important;
        }
        .stepper-item-container:first-child .stepper-detail {
-         align-items: center !important;
-         display: flex !important;
-         flex-direction: column !important;
-         gap: var(--sgds-gap-2-xs) !important;
-       }
-       .portal-anatomy-stepper-label {
-         display: block !important;
-       }
-       .portal-anatomy-stepper-slot {
-         align-items: center !important;
-         background: var(--sgds-surface-default) !important;
-         border: var(--sgds-border-width-1) solid var(--sgds-border-color-muted) !important;
-         border-radius: var(--sgds-border-radius-md) !important;
-         color: var(--sgds-color-subtle) !important;
-         display: inline-flex !important;
-         font-size: var(--sgds-font-size-label-sm) !important;
-         justify-content: center !important;
-         line-height: var(--sgds-line-height-20) !important;
-         margin-top: var(--sgds-margin-2-xs) !important;
-         min-width: var(--sgds-dimension-112) !important;
-         padding: var(--sgds-padding-3-xs) var(--sgds-padding-2-xs) !important;
+         min-width: var(--sgds-dimension-128) !important;
        }`,
     );
-    const firstDetail = el.shadowRoot?.querySelector(".stepper-item-container:first-child .stepper-detail") as HTMLElement | null;
-    if (firstDetail && !firstDetail.querySelector(".portal-anatomy-stepper-slot")) {
-      const labelText = firstDetail.textContent?.trim() || "Start";
-      firstDetail.textContent = "";
-      const label = document.createElement("span");
-      label.className = "portal-anatomy-stepper-label";
-      label.textContent = labelText;
-      const slotContent = document.createElement("span");
-      slotContent.className = "portal-anatomy-stepper-slot";
-      slotContent.textContent = "Slot content";
-      firstDetail.appendChild(label);
-      firstDetail.appendChild(slotContent);
-    }
   }
 
   const systemBanners = Array.from(
