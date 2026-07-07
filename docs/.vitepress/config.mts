@@ -7,6 +7,9 @@ import { blocksSidebar } from "./data/blocks-sidebar";
 import { storyPosts } from "./data/stories";
 
 const vitePressConfig = {
+  sitemap: {
+    hostname: "https://www.designsystem.tech.gov.sg",
+  },
   lang: "en",
   title: "Singapore Government Design System",
   titleTemplate: ":title – Singapore Government Design System",
