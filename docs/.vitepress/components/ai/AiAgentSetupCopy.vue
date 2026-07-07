@@ -69,12 +69,6 @@ function handleSetupAction(event: CustomEvent<{ item: HTMLElement }>) {
       <sgds-icon class="sgds:items-center" name="copy" size="sm"></sgds-icon>
       <span>Copy Markdown</span>
     </sgds-dropdown-item>
-    <sgds-dropdown-item :ariaLabel.prop="'View Markdown'">
-      <a class="agent-setup-markdown-link" href="/ai/agent-setup.md" target="_blank" rel="noopener noreferrer">
-        <sgds-icon class="sgds:items-center" name="eye" size="sm"></sgds-icon>
-        <span>View Markdown</span>
-      </a>
-    </sgds-dropdown-item>
   </sgds-dropdown>
 
   <sgds-modal ref="markdownModal" size="lg">
@@ -84,12 +78,3 @@ function handleSetupAction(event: CustomEvent<{ item: HTMLElement }>) {
   </sgds-modal>
 </template>
 
-<style>
-/* The menu label already describes the new-tab Markdown view, so suppress the
-   generic external-link glyph added to target-blank anchors. */
-.agent-setup-markdown-link::after,
-.agent-setup-markdown-link .external-link-icon {
-  content: none !important;
-  display: none !important;
-}
-</style>
