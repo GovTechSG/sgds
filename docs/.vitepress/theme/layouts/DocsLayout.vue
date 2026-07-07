@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Content, withBase } from "vitepress";
-import { computed, nextTick, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { useData } from 'vitepress';
 import PageHeader from "../../components/page/PageHeader.vue";
 import DocFooter from "../../components/page/DocFooter.vue";
@@ -143,6 +143,51 @@ watch(currentPath, () => {
   setTimeout(() => { navigationGuard.value = false }, 300)
 })
 
+type SgdsSidenavItemElement = HTMLElement & {
+  ariaLabel?: string;
+  updateComplete?: Promise<unknown>;
+}
+
+const getSidenavItemLabel = (item: SgdsSidenavItemElement) => {
+  const propLabel = item.ariaLabel?.trim()
+  if (propLabel) return propLabel
+
+  const attrLabel =
+    item.getAttribute("ariaLabel")?.trim() ||
+    item.getAttribute("arialabel")?.trim() ||
+    item.getAttribute("aria-label")?.trim()
+  if (attrLabel) return attrLabel
+
+  return item.querySelector<HTMLElement>('[slot="title"]')?.textContent?.trim() ?? ""
+}
+
+const syncSidenavButtonLabels = async () => {
+  if (typeof document === "undefined") return
+
+  await nextTick()
+
+  const items = Array.from(
+    document.querySelectorAll<SgdsSidenavItemElement>("sgds-sidenav-item"),
+  )
+
+  for (const item of items) {
+    if (!item.querySelector('[slot="title"]')) continue
+
+    const label = getSidenavItemLabel(item)
+    if (!label) continue
+
+    item.ariaLabel = label
+    item.setAttribute("ariaLabel", label)
+
+    await item.updateComplete?.catch(() => {})
+
+    const button = item.shadowRoot?.querySelector<HTMLButtonElement>("button.sidenav-btn")
+    if (!button || button.getAttribute("aria-label")) continue
+
+    button.setAttribute("aria-label", label)
+  }
+}
+
 const slugifyHeading = (text: string) =>
   text
     .toLowerCase()
@@ -200,9 +245,14 @@ watch(
   () => page.value.relativePath,
   () => {
     void addAiHeadingAnchors()
+    void syncSidenavButtonLabels()
   },
   { immediate: true, flush: "post" },
 )
+
+onMounted(() => {
+  void syncSidenavButtonLabels()
+})
 
 </script>
 
