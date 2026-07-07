@@ -109,6 +109,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `hasFeedback` | boolean | `false` | Enables validation feedback UI |
 | `invalidFeedback` | string | `""` | Error message when no option is selected |
 | `invalid` | boolean | `false` | Manually sets the invalid state |
+| `noValidate` | boolean | `false` | Disables native and SGDS validation |
 | `autofocus` | boolean | `false` | When true, the checked radio automatically receives focus (improves keyboard navigation) |
 
 ### `<sgds-radio>`
@@ -127,11 +128,21 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `<sgds-radio-group>` | *(default)* | `<sgds-radio>` elements |
 | `<sgds-radio>` | *(default)* | Radio button label text |
 
+## Methods (`<sgds-radio-group>`)
+
+| Method | Description |
+|---|---|
+| `setInvalid(bool)` | Programmatically sets the invalid state. Pass `true` to mark invalid, `false` to clear. |
+| `reportValidity()` | Checks validity and returns boolean |
+| `checkValidity()` | Checks validity without native error popup |
+
 ## Events
 
 | Component | Event | Detail | When |
 |---|---|---|---|
 | `<sgds-radio-group>` | `sgds-change` | `{ value: string }` | A radio in the group is selected |
+| `<sgds-radio-group>` | `sgds-invalid` | — | The group's invalid state is set to true |
+| `<sgds-radio-group>` | `sgds-valid` | — | The group's invalid state is set to false |
 | `<sgds-radio>` | `sgds-focus` | — | Radio gains focus |
 | `<sgds-radio>` | `sgds-blur` | — | Radio loses focus |
 
@@ -143,3 +154,5 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 3. Listen to `sgds-change` on the group (not on individual radios) to get the selected value via `event.detail.value`.
 4. `hasFeedback` and `invalidFeedback` are set on the group, not on individual radios.
 5. To pre-select an option, prefer setting `value` on `<sgds-radio-group>`. The `checked` attribute on `<sgds-radio>` also pre-checks that radio on render, but avoid using both simultaneously — `value` on the group takes precedence and may conflict with `checked` on a child.
+6. For custom validation, add `noValidate` and `hasFeedback` to the group, then call `setInvalid(true/false)` and set `invalidFeedback` inside the `sgds-change` event listener.
+7. `setInvalid(true)` emits `sgds-invalid`; `setInvalid(false)` emits `sgds-valid`.

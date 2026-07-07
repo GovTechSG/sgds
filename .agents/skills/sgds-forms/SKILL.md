@@ -26,7 +26,7 @@ All form components must be placed inside a `<form>` element and given a `name` 
 
 **Read submitted field values?** → Use `new FormData(event.target)` in the submit handler
 
-**Disable SGDS validation per component?** → `noValidate` prop on `<sgds-input>` or `<sgds-textarea>` (others WIP)
+**Disable SGDS validation per component?** → `noValidate` prop on `<sgds-input>`, `<sgds-textarea>`, `<sgds-combo-box>`, `<sgds-select>`, `<sgds-datepicker>`, or `<sgds-file-upload>`
 
 **Disable SGDS validation for the whole form?** → `novalidate` on the `<form>` element
 
@@ -155,7 +155,7 @@ For 3rd-party validation libraries (e.g. Zod) or fully custom logic, disable SGD
 
 ### Option 1 — Disable per component with `noValidate`
 
-Currently supported on **`<sgds-input>`**, **`<sgds-textarea>`**, **`<sgds-combo-box>`** and **`<sgds-datepicker>`. Other components are WIP.
+Currently supported on **`<sgds-input>`**, **`<sgds-textarea>`**, **`<sgds-combo-box>`**, **`<sgds-datepicker>`**, **`<sgds-file-upload>`**, **`<sgds-select>`**, and **`<sgds-radio-group>`, **`<sgds-checkbox>`**, and **`<sgds-checkbox-group>`**. Other components are WIP.
 
 ```html
 <sgds-input
@@ -228,12 +228,12 @@ Pair `setInvalid(true)` with setting the `invalidFeedback` property on the eleme
 | `<sgds-input>`                              | ✅ Implemented |
 | `<sgds-textarea>`                           | ✅ Implemented |
 | `<sgds-datepicker>`                         | ✅ Implemented |
-| `<sgds-checkbox>` / `<sgds-checkbox-group>` | WIP            |
+| `<sgds-checkbox>` / `<sgds-checkbox-group>` | ✅ Implemented |
 | `<sgds-quantity-toggle>`                    | WIP            |
-| `<sgds-radio-group>`                        | WIP            |
-| `<sgds-file-upload>`                        | WIP            |
-| `<sgds-select>`                             | WIP            |
-| `<sgds-combo-box>`                          | WIP            |
+| `<sgds-radio-group>`                        | ✅ Implemented |
+| `<sgds-file-upload>`                        | ✅ Implemented |
+| `<sgds-select>`                             | ✅ Implemented |
+| `<sgds-combo-box>`                          | ✅ Implemented |
 
 ---
 
@@ -245,7 +245,7 @@ Pair `setInvalid(true)` with setting the `invalidFeedback` property on the eleme
 4. Use `invalidFeedback` to override the browser's native constraint validation message with a custom string.
 5. Constraint validation and form submission blocking are built-in — do not add extra submit event listeners to replicate this behaviour.
 6. Use `new FormData(event.target)` in the submit handler to read values. For file uploads, read `selectedFiles` directly from the `<sgds-file-upload>` element.
-7. When using custom/3rd-party validation on `<sgds-input>`, `<sgds-textarea>`, or `<sgds-datepicker>`, add `noValidate` on the component (or `novalidate` on the form), then call `element.setInvalid(true/false)` and set `element.invalidFeedback` inside the relevant event listener (`sgds-input` for inputs/textareas, `sgds-change-date` for datepicker).
-8. Only `<sgds-input>`, `<sgds-textarea>`, and `<sgds-datepicker>` fully support custom validation via `noValidate` + `setInvalid`. All other form components have this feature as WIP.
+7. When using custom/3rd-party validation, add `noValidate` on the component (or `novalidate` on the form), then call `element.setInvalid(true/false)` and set `element.invalidFeedback` inside the relevant event listener (`sgds-input` for inputs/textareas, `sgds-change-date` for datepicker, `sgds-change` for select/combo-box/radio-group/checkbox-group, `sgds-add-files`/`sgds-remove-file` for file-upload).
+8. `<sgds-input>`, `<sgds-textarea>`, `<sgds-datepicker>`, `<sgds-combo-box>`, `<sgds-select>`, `<sgds-radio-group>`, `<sgds-checkbox>`, `<sgds-checkbox-group>`, and `<sgds-file-upload>` fully support custom validation via `noValidate` + `setInvalid`. Only `<sgds-quantity-toggle>` has this feature as WIP.
 9. The reset button (`type="reset"`) automatically clears all validity states and values — no extra reset logic is needed.
 10. Disabled components are excluded from constraint validation and will never block form submission.
