@@ -286,15 +286,14 @@ export const developPage: GetStartedPageData = {
             {
               title: "React 19 and above",
               steps: [
-                { description: "Import the library once at your app entry point.", code: `import "@govtechsg/sgds-web-component";`, lang: "ts", filename: "src/main.tsx" },
-                { description: "Use web component tags directly in any component.", code: `const App = () => {\n  return (\n    <form>\n      <sgds-input label="Full name" name="fullName"></sgds-input>\n      <sgds-button type="submit" ariaLabel="Submit">Submit</sgds-button>\n    </form>\n  );\n};\nexport default App;`, lang: "tsx", filename: "src/App.tsx" },
+                { description: "For client-side only React 19+ apps (e.g. Vite), you can use native web component tags directly. Import the library once at your app entry point.", code: `import "@govtechsg/sgds-web-component";`, lang: "ts", filename: "src/main.tsx" },
+                { description: "Use web component tags in any component. Custom events use the on prefix with the original event name.", code: `const App = () => {\n  return (\n    <form>\n      <sgds-input label="Full name" name="fullName" onsgds-change={(e: CustomEvent) => console.log(e)}></sgds-input>\n      <sgds-button type="submit" ariaLabel="Submit">Submit</sgds-button>\n    </form>\n  );\n};\nexport default App;`, lang: "tsx", filename: "src/App.tsx" },
               ],
             },
             {
-              title: "React 18 and below",
+              title: "React wrapper components (recommended for SSR)",
               steps: [
-                { description: "Use the React wrapper components for proper event handling.", code: `import { SgdsButton, SgdsInput } from "@govtechsg/sgds-web-component/react";`, lang: "ts", filename: "src/App.tsx" },
-                { description: "Use the wrapper components in JSX.", code: `import { SgdsButton, SgdsInput } from "@govtechsg/sgds-web-component/react";\n\nconst App = () => {\n  return (\n    <form>\n      <SgdsInput label="Full name" name="fullName" />\n      <SgdsButton type="submit">Submit</SgdsButton>\n    </form>\n  );\n};\nexport default App;`, lang: "tsx", filename: "src/App.tsx" },
+                { description: "For SSR frameworks (Next.js, Remix) or React 18 and below, use the React-wrapped SGDS components. The wrappers resolve hydration timing issues and provide camelCase event naming.", code: `import { SgdsButton, SgdsInput } from "@govtechsg/sgds-web-component/react";\n\nconst App = () => {\n  return (\n    <form>\n      <SgdsInput label="Full name" name="fullName" onSgdsChange={(e) => console.log(e)} />\n      <SgdsButton type="submit">Submit</SgdsButton>\n    </form>\n  );\n};\nexport default App;`, lang: "tsx", filename: "src/App.tsx" },
               ],
             },
             {
@@ -326,15 +325,14 @@ export const developPage: GetStartedPageData = {
             {
               title: "Setup",
               steps: [
-                { description: "Create a client-side library loader.", code: `"use client";\nimport { useEffect } from "react";\n\nexport default function SgdsLoader() {\n  useEffect(() => {\n    import("@govtechsg/sgds-web-component");\n  }, []);\n  return null;\n}`, lang: "ts", filename: "src/app/sgds.tsx" },
-                { description: "Import the loader in your root layout.", code: `import SgdsLoader from "./sgds";\n\nexport default function RootLayout({ children }: { children: React.ReactNode }) {\n  return (\n    <html lang="en">\n      <head>\n        <SgdsLoader />\n      </head>\n      <body>{children}</body>\n    </html>\n  );\n}`, lang: "tsx", filename: "src/app/layout.tsx" },
+                { description: "Import the React-wrapped SGDS components in your client components. The React wrappers resolve hydration timing issues that cause event listeners to fail on initial page load.", code: `'use client';\nimport { SgdsInput, SgdsButton } from "@govtechsg/sgds-web-component/react";\n\nexport default function MyForm() {\n  return (\n    <>\n      <SgdsInput label="Name" onSgdsChange={(e) => console.log(e)} />\n      <SgdsButton variant="primary" onSgdsBlur={(e) => console.log(e)}>Submit</SgdsButton>\n    </>\n  );\n}`, lang: "tsx", filename: "src/app/my-form.tsx" },
               ],
             },
             {
               title: "TypeScript support",
               steps: [
                 { description: "Add a type declaration file at your project root to enable IntelliSense for all component props and typed event handlers.", code: `import "@govtechsg/sgds-web-component/types/react";`, lang: "ts", filename: "types.d.ts" },
-                { description: "Ensure the file is included by your tsconfig.json.", code: `{\n  "include": ["types.d.ts", "**/*.ts", "**/*.tsx"]\n}`, lang: "json", filename: "tsconfig.json" },
+                { description: "Ensure the file is included by your tsconfig.json.", code: `{\n  "include": ["types.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"]\n}`, lang: "json", filename: "tsconfig.json" },
               ],
             },
           ],

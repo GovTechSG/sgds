@@ -264,7 +264,7 @@ watch(
       </aside>
       <div class="sgds-col-4 sgds-col-sm-8 sgds-col-lg-9">
         <div
-          v-if="currentSidebar.items.length"
+          v-show="currentSidebar.items.length"
           class="docs-layout-mobile-sidenav-trigger sgds:mb-component-md"
         >
           <sgds-button
@@ -279,7 +279,7 @@ watch(
         </div>
 
         <sgds-drawer
-          v-if="currentSidebar.items.length"
+          v-show="currentSidebar.items.length"
           class="docs-layout-mobile-sidenav"
           placement="start"
           size="sm"

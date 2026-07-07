@@ -89,6 +89,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     ["link", { rel: "shortcut icon", href: "/favicon.ico" }],
     ["link", { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" }],
     ["link", { rel: "manifest", href: "/site.webmanifest" }],
+    [
+      "script",
+      {
+        defer: "",
+        src:
+          process.env.NODE_ENV === "production"
+            ? "https://assets.wogaa.sg/scripts/wogaa.js"
+            : "https://assets.dcube.cloud/scripts/wogaa.js",
+      },
+    ],
     ...(process.env.NODE_ENV !== "production"
       ? [
           [
