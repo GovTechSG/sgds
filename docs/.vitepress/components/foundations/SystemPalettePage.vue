@@ -12,7 +12,7 @@ const toRgb = (hex: string) => {
   const green = parseInt(value.slice(2, 4), 16);
   const blue = parseInt(value.slice(4, 6), 16);
 
-  return `${red} / ${green} / ${blue}`;
+  return `${red}, ${green}, ${blue}`;
 };
 
 const toHsl = (hex: string) => {
@@ -25,7 +25,7 @@ const toHsl = (hex: string) => {
   const lightness = (max + min) / 2;
   const delta = max - min;
 
-  if (delta === 0) return `0deg / 0% / ${Math.round(lightness * 100)}%`;
+  if (delta === 0) return `0deg, 0%, ${Math.round(lightness * 100)}%`;
 
   const saturation = delta / (1 - Math.abs(2 * lightness - 1));
   let hue = 0;
@@ -34,7 +34,7 @@ const toHsl = (hex: string) => {
   else if (max === green) hue = (blue - red) / delta + 2;
   else hue = (red - green) / delta + 4;
 
-  return `${Math.round(hue * 60 < 0 ? hue * 60 + 360 : hue * 60)}deg / ${Math.round(saturation * 100)}% / ${Math.round(lightness * 100)}%`;
+  return `${Math.round(hue * 60 < 0 ? hue * 60 + 360 : hue * 60)}deg, ${Math.round(saturation * 100)}%, ${Math.round(lightness * 100)}%`;
 };
 
 const getCardTone = (hex: string) => {
