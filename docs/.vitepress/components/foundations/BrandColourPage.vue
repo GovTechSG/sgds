@@ -82,15 +82,21 @@ const colourCardClass = (colour: GovtechColourCard) => [
                         :style="{ backgroundColor: colour.hex }"
                         aria-hidden="true"
                       ></div>
-                      <div class="sgds:flex sgds:flex-col sgds:gap-0">
+                      <div class="sgds:flex sgds:flex-col sgds:gap-text-2-xs">
                         <h4 class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default sgds:m-0">{{ colour.name }}</h4>
                         <dl class="sgds:grid sgds:grid-cols-[var(--sgds-dimension-52)_1fr] sgds:gap-x-component-sm sgds:gap-y-0 sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-default sgds:m-0">
                           <dt>HEX</dt>
-                          <dd class="sgds:m-0">{{ colour.hex }}</dd>
+                          <dd class="sgds:m-0">
+                            <code class="portal-code-token sgds:font-mono sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-default">{{ colour.hex }}</code>
+                          </dd>
                           <dt>RGB</dt>
-                          <dd class="sgds:m-0">{{ colour.rgb }}</dd>
-                          <dt>CMYK</dt>
-                          <dd class="sgds:m-0">{{ colour.cmyk }}</dd>
+                          <dd class="sgds:m-0">
+                            <code class="portal-code-token sgds:font-mono sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-default">{{ colour.rgb }}</code>
+                          </dd>
+                          <dt>HSL</dt>
+                          <dd class="sgds:m-0">
+                            <code class="portal-code-token sgds:font-mono sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-default">{{ colour.hsl }}</code>
+                          </dd>
                         </dl>
                       </div>
                     </article>

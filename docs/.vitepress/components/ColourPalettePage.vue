@@ -68,6 +68,14 @@ const customPickerRef = ref<HTMLElement | null>(null);
 const pickerCanvasRef = ref<HTMLElement | null>(null);
 const pickerDragging = ref(false);
 const shadeKeys = ["100", "200", "300", "400", "500", "600", "700", "800", "900"] as const;
+const govtechTablePaletteOrder = [
+  "red",
+  "magenta",
+  "cyan",
+  "blue",
+  "purple",
+  "pink",
+] as const satisfies readonly Exclude<PaletteId, "default">[];
 
 // Contrast ratios against white for shades 100–900.
 const SHADE_RATIOS = [1.1, 1.33, 1.78, 2.46, 3.64, 5.33, 7.81, 10.86, 14.35] as const;
@@ -303,11 +311,13 @@ const currentColours = computed<ProductPrimaryRow[]>(() => {
 });
 
 const allGovtechPaletteRows = computed<{ id: string; shortLabel: string; rows: ProductPrimaryRow[] }[]>(() =>
-  brandPalettes.map((palette) => ({
-    id: palette.id,
-    shortLabel: palette.shortLabel,
-    rows: createProductPrimaryRows(palette.shades),
-  }))
+  govtechTablePaletteOrder
+    .map((id) => brandPalettes.find((palette) => palette.id === id)!)
+    .map((palette) => ({
+      id: palette.id,
+      shortLabel: palette.shortLabel,
+      rows: createProductPrimaryRows(palette.shades),
+    }))
 );
 
 function onTabShow(e: Event) {
@@ -982,7 +992,7 @@ const openContrastInfo = () => {
               class="sgds:flex sgds:flex-col sgds:gap-text-md"
             >
               <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">
-                GovTech {{ palette.shortLabel.toLowerCase() }} colour
+                {{ palette.shortLabel }}
               </h3>
               <sgds-table tableBorder headerBackground responsive="always" layout="fixed" class="typography-page-template__utility-table">
                 <sgds-table-row>

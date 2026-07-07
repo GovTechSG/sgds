@@ -2,7 +2,7 @@ export type GovtechColourCard = {
   name: string;
   hex: string;
   rgb: string;
-  cmyk: string;
+  hsl: string;
   bordered?: boolean;
 };
 
@@ -18,20 +18,20 @@ export const govtechColourPaletteGroups: GovtechColourGroup[] = [
       {
         name: "Red",
         hex: "#F4333D",
-        rgb: "244 / 51 / 61",
-        cmyk: "0 / 93 / 82 / 0",
+        rgb: "244, 51, 61",
+        hsl: "357deg, 90%, 58%",
       },
       {
         name: "Magenta",
         hex: "#BA2FA2",
-        rgb: "186 / 47 / 162",
-        cmyk: "27 / 89 / 0 / 0",
+        rgb: "186, 47, 162",
+        hsl: "310deg, 60%, 46%",
       },
       {
         name: "Cyan",
         hex: "#00C0F3",
-        rgb: "0 / 192 / 243",
-        cmyk: "76 / 0 / 0 / 0",
+        rgb: "0, 192, 243",
+        hsl: "193deg, 100%, 48%",
       },
     ],
   },
@@ -41,20 +41,20 @@ export const govtechColourPaletteGroups: GovtechColourGroup[] = [
       {
         name: "Blue",
         hex: "#448DDD",
-        rgb: "68 / 141 / 221",
-        cmyk: "69 / 34 / 0 / 0",
+        rgb: "68, 141, 221",
+        hsl: "211deg, 69%, 57%",
       },
       {
         name: "Purple",
         hex: "#885AC6",
-        rgb: "136 / 90 / 198",
-        cmyk: "65 / 73 / 0 / 0",
+        rgb: "136, 90, 198",
+        hsl: "266deg, 49%, 56%",
       },
       {
         name: "Pink",
         hex: "#E02D77",
-        rgb: "224 / 45 / 119",
-        cmyk: "0 / 95 / 9 / 0",
+        rgb: "224, 45, 119",
+        hsl: "335deg, 74%, 53%",
       },
     ],
   },
@@ -64,15 +64,15 @@ export const govtechColourPaletteGroups: GovtechColourGroup[] = [
       {
         name: "White",
         hex: "#FFFFFF",
-        rgb: "255 / 255 / 255",
-        cmyk: "0 / 0 / 0 / 0",
+        rgb: "255, 255, 255",
+        hsl: "0deg, 0%, 100%",
         bordered: true,
       },
       {
         name: "Black",
         hex: "#0E0E0E",
-        rgb: "14 / 14 / 14",
-        cmyk: "0 / 0 / 0 / 95",
+        rgb: "14, 14, 14",
+        hsl: "0deg, 0%, 5%",
         bordered: true,
       },
     ],
