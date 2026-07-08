@@ -15,8 +15,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       '@govtechsg/sgds-web-component':
-        specifier: 3.23.0-rc.5
-        version: 3.23.0-rc.5(@types/react@19.2.14)
+        specifier: 3.23.0
+        version: 3.23.0(@types/react@19.2.14)
       gsap:
         specifier: ^3.13.0
         version: 3.14.2
@@ -568,8 +568,8 @@ packages:
     resolution: {integrity: sha512-uhUEcuqIkdLU+J2VSQPFFXkYGPtm2kAbLLnygiWONtJC2OOneFP1C6nkNKO3fh0caxglweFkiZyHXC9crD/0iA==}
     hasBin: true
 
-  '@govtechsg/sgds-web-component@3.23.0-rc.5':
-    resolution: {integrity: sha512-xcS6zNiW2Kv0Vi9QiyQ7vj8yyRkhfCLTkiJUScMJclg/DScrL2HvI2ct2pHZgPvYzXW5AntQ5nrY9jQLEOl0PQ==}
+  '@govtechsg/sgds-web-component@3.23.0':
+    resolution: {integrity: sha512-2YVEUspMeWk7ghwyqr5hRz9GYw0oll2Syc5HoVXl9CInaq/BsK7f/6QX/X0TxpZ+tw8thORLXsU2Ns9uUeF2+A==}
 
   '@iconify-json/simple-icons@1.2.78':
     resolution: {integrity: sha512-I3lkNp0Qu7q2iZWkdcf/I2hqGhzK6qxdILh9T7XqowQrnpmG/BayDsiCf6PktDoWlW0U971xA5g+panm+NFrfQ==}
@@ -2503,8 +2503,8 @@ packages:
     resolution: {integrity: sha512-avsJQhyd+680gKXyG/sQc0nXaC6rBkPOfyHYcFb9+hdkqQkR9bdnkJ0AMZhke0oesPqIO+mFFJ+IdBc7mst4IA==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  nan@2.27.0:
-    resolution: {integrity: sha512-hC+0LidcL3XE4rp1C4H54KujgXKzbfyTngZTwBByQxsOxCEKZT0MPQ4hOKUH2jU1OYstqdDH4onyHPDzcV0XdQ==}
+  nan@2.28.0:
+    resolution: {integrity: sha512-fTsDz99OTq2sVePhGdp4qQhggZFtKr64ZNVyVajRKtMOkJxYekplBh577PiJB12v/D3s2E5cGtOI45LWp6rnLQ==}
 
   nanoid@3.3.11:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
@@ -2852,8 +2852,8 @@ packages:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
 
-  semver@7.8.4:
-    resolution: {integrity: sha512-rUCObTnP32Q08R2uuIrt7r9PlEonuTmtuXYcW6s5kjdlj3xbnwe+21yXptAUYcMAABLkYYTtnmzb3w3EDZfueA==}
+  semver@7.8.5:
+    resolution: {integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -4118,7 +4118,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@govtechsg/sgds-web-component@3.23.0-rc.5(@types/react@19.2.14)':
+  '@govtechsg/sgds-web-component@3.23.0(@types/react@19.2.14)':
     dependencies:
       '@floating-ui/dom': 1.7.6
       '@lit/context': 1.1.6
@@ -4202,7 +4202,7 @@ snapshots:
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
-      semver: 7.8.4
+      semver: 7.8.5
       tar: 6.2.1
     transitivePeerDependencies:
       - encoding
@@ -4924,7 +4924,7 @@ snapshots:
   canvas@2.11.2:
     dependencies:
       '@mapbox/node-pre-gyp': 1.0.11
-      nan: 2.27.0
+      nan: 2.28.0
       simple-get: 3.1.1
     transitivePeerDependencies:
       - encoding
@@ -6060,7 +6060,7 @@ snapshots:
 
   mute-stream@1.0.0: {}
 
-  nan@2.27.0:
+  nan@2.28.0:
     optional: true
 
   nanoid@3.3.11: {}
@@ -6415,7 +6415,7 @@ snapshots:
   semver@6.3.1:
     optional: true
 
-  semver@7.8.4:
+  semver@7.8.5:
     optional: true
 
   set-blocking@2.0.0:
