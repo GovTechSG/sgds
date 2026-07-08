@@ -59,6 +59,17 @@ const searchOpen = ref(false);
   margin: 0;
 }
 
+/* Reserve space for web components before shadow DOM upgrades — prevents CLS */
+.mainnav-container sgds-masthead:not(:defined) {
+  display: block;
+  min-height: 28px;
+}
+
+.mainnav-container sgds-mainnav:not(:defined) {
+  display: block;
+  min-height: 80px;
+}
+
 .mainnav-container sgds-mainnav-item:not([active]) a:focus-visible {
   color: var(--sgds-color-default);
 }
