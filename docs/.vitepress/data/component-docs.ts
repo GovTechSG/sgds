@@ -4161,6 +4161,35 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+      {
+        title: "Native validation",
+        description:
+          "Use `noValidate` to disable the component's built-in constraint validation. The component emits `sgds-invalid` when validation fails and `sgds-valid` when it passes.",
+        controlLabel: "Checkbox native validation options",
+        defaultValue: "enabled",
+        options: [
+          {
+            label: "Enabled",
+            value: "enabled",
+            markup: `<sgds-checkbox-group label="Delivery options" required hasFeedback invalid invalidFeedback="Select at least one option">
+          <sgds-checkbox>Email</sgds-checkbox>
+          <sgds-checkbox>SMS</sgds-checkbox>
+        </sgds-checkbox-group>`,
+            description:
+              "Built-in validation runs on form submission and emits `sgds-invalid` or `sgds-valid` events. Error feedback appears when the field is invalid.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-checkbox-group label="Delivery options" required noValidate>
+          <sgds-checkbox>Email</sgds-checkbox>
+          <sgds-checkbox>SMS</sgds-checkbox>
+        </sgds-checkbox-group>`,
+            description:
+              "Use `noValidate` when handling validation externally. No constraint checks or validation events fire.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -4784,7 +4813,36 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
-  {
+      {
+        title: "Native validation",
+        description:
+          "Use `noValidate` to disable the component's built-in constraint validation. The component emits `sgds-invalid` when validation fails and `sgds-valid` when it passes.",
+        controlLabel: "Combo box native validation options",
+        defaultValue: "enabled",
+        options: [
+          {
+            label: "Enabled",
+            value: "enabled",
+            markup: `<sgds-combo-box label="Country" required hasFeedback invalid invalidFeedback="Select a country">
+          <sgds-combo-box-option value="sg">Singapore</sgds-combo-box-option>
+          <sgds-combo-box-option value="my">Malaysia</sgds-combo-box-option>
+        </sgds-combo-box>`,
+            description:
+              "Built-in validation runs on form submission and emits `sgds-invalid` or `sgds-valid` events. Error feedback appears when the field is invalid.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-combo-box label="Country" required noValidate>
+          <sgds-combo-box-option value="sg">Singapore</sgds-combo-box-option>
+          <sgds-combo-box-option value="my">Malaysia</sgds-combo-box-option>
+        </sgds-combo-box>`,
+            description:
+              "Use `noValidate` when handling validation externally. No constraint checks or validation events fire.",
+          },
+        ],
+      },
+      {
         title: "Clearable",
         description:
           "Clearable combo boxes let users remove the selected value without deleting text manually.",
@@ -5172,7 +5230,30 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
-  {
+      {
+        title: "Native validation",
+        description:
+          "Use `noValidate` to disable the component's built-in constraint validation. The component emits `sgds-invalid` when validation fails and `sgds-valid` when it passes.",
+        controlLabel: "Datepicker native validation options",
+        defaultValue: "enabled",
+        options: [
+          {
+            label: "Enabled",
+            value: "enabled",
+            markup: `<sgds-datepicker class="portal-demo-datepicker" label="Date" required hasFeedback invalid invalidFeedback="Enter a valid date"></sgds-datepicker>`,
+            description:
+              "Built-in validation runs on form submission and emits `sgds-invalid` or `sgds-valid` events. Error feedback appears when the field is invalid.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-datepicker class="portal-demo-datepicker" label="Date" required noValidate></sgds-datepicker>`,
+            description:
+              "Use `noValidate` when handling validation externally. No constraint checks or validation events fire.",
+          },
+        ],
+      },
+      {
         title: "Pre-selected value",
         description:
           "Use a value when the datepicker should open with an existing date or date range.",
@@ -5182,13 +5263,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Empty",
             value: "empty",
-            markup: `<sgds-datepicker label="Travel dates" mode="range"></sgds-datepicker>`,
+            markup: `<sgds-datepicker class="portal-demo-datepicker" label="Travel dates" mode="range"></sgds-datepicker>`,
             description: "Use empty when the user must provide a new date.",
           },
           {
             label: "Selected",
             value: "selected",
-            markup: `<sgds-datepicker label="Travel dates" mode="range" value="12/05/2026 - 25/05/2026"></sgds-datepicker>`,
+            markup: `<sgds-datepicker class="portal-demo-datepicker" label="Travel dates" mode="range" value="12/05/2026 - 25/05/2026"></sgds-datepicker>`,
             description:
               "Use a selected value when editing an existing date or range.",
           },
@@ -6809,6 +6890,29 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+      {
+        title: "Native validation",
+        description:
+          "Use `noValidate` to disable the component's built-in constraint validation. The component emits `sgds-invalid` when validation fails and `sgds-valid` when it passes.",
+        controlLabel: "File upload native validation options",
+        defaultValue: "enabled",
+        options: [
+          {
+            label: "Enabled",
+            value: "enabled",
+            markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Attach at least one file">Upload file</sgds-file-upload>`,
+            description:
+              "Built-in validation runs on form submission and emits `sgds-invalid` or `sgds-valid` events. Error feedback appears when the field is invalid.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-file-upload required noValidate>Upload file</sgds-file-upload>`,
+            description:
+              "Use `noValidate` when handling validation externally. No constraint checks or validation events fire.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -8147,6 +8251,69 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+      {
+        title: "Upper and lower slots",
+        description:
+          "Upper and lower slots add supporting metadata above or below the main content.",
+        controlLabel: "Icon card metadata slot options",
+        defaultValue: "with-metadata",
+        options: [
+          {
+            label: "With metadata",
+            value: "with-metadata",
+            markup: `<sgds-icon-card class="portal-demo-card">
+          <sgds-icon slot="icon" name="building"></sgds-icon>
+          <sgds-badge slot="upper" variant="success" outlined>New</sgds-badge>
+          <span slot="title">Business grants</span>
+          <span slot="description">Find financial support for growing local businesses.</span>
+          <span slot="lower">Enterprise SG</span>
+        </sgds-icon-card>`,
+            description:
+              "Use metadata slots for short supporting details that help users scan cards.",
+          },
+          {
+            label: "Content only",
+            value: "content-only",
+            markup: `<sgds-icon-card class="portal-demo-card">
+          <sgds-icon slot="icon" name="building"></sgds-icon>
+          <span slot="title">Business grants</span>
+          <span slot="description">Find financial support for growing local businesses.</span>
+        </sgds-icon-card>`,
+            description: "Keep the card simpler when metadata is not needed.",
+          },
+        ],
+      },
+      {
+        title: "Subtitle",
+        description:
+          "Use the `subtitle` slot to add secondary text below the title for categorisation or context.",
+        controlLabel: "Icon card subtitle options",
+        defaultValue: "with-subtitle",
+        options: [
+          {
+            label: "With subtitle",
+            value: "with-subtitle",
+            markup: `<sgds-icon-card class="portal-demo-card">
+          <sgds-icon slot="icon" name="building"></sgds-icon>
+          <span slot="title">Business grants</span>
+          <span slot="subtitle">Enterprise Singapore</span>
+          <span slot="description">Find financial support for growing local businesses.</span>
+        </sgds-icon-card>`,
+            description:
+              "Use a subtitle for category labels or source attribution.",
+          },
+          {
+            label: "No subtitle",
+            value: "no-subtitle",
+            markup: `<sgds-icon-card class="portal-demo-card">
+          <sgds-icon slot="icon" name="building"></sgds-icon>
+          <span slot="title">Business grants</span>
+          <span slot="description">Find financial support for growing local businesses.</span>
+        </sgds-icon-card>`,
+            description: "Omit the subtitle when the title alone is sufficient.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -8760,6 +8927,69 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+      {
+        title: "Upper and lower slots",
+        description:
+          "Upper and lower slots add supporting metadata above or below the main content.",
+        controlLabel: "Image card metadata slot options",
+        defaultValue: "with-metadata",
+        options: [
+          {
+            label: "With metadata",
+            value: "with-metadata",
+            markup: `<sgds-image-card class="portal-demo-card">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <sgds-badge slot="upper" variant="info" outlined>Featured</sgds-badge>
+              <span slot="title">National Day Parade</span>
+              <span slot="description">Celebrate Singapore's birthday with the nation.</span>
+              <span slot="lower">Published 9 Aug 2025</span>
+            </sgds-image-card>`,
+            description:
+              "Use metadata slots for short supporting details that help users scan cards.",
+          },
+          {
+            label: "Content only",
+            value: "content-only",
+            markup: `<sgds-image-card class="portal-demo-card">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">National Day Parade</span>
+              <span slot="description">Celebrate Singapore's birthday with the nation.</span>
+            </sgds-image-card>`,
+            description: "Keep the card simpler when metadata is not needed.",
+          },
+        ],
+      },
+      {
+        title: "Subtitle",
+        description:
+          "Use the `subtitle` slot to add secondary text below the title for categorisation or context.",
+        controlLabel: "Image card subtitle options",
+        defaultValue: "with-subtitle",
+        options: [
+          {
+            label: "With subtitle",
+            value: "with-subtitle",
+            markup: `<sgds-image-card class="portal-demo-card">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">National Day Parade</span>
+              <span slot="subtitle">Ministry of Culture</span>
+              <span slot="description">Celebrate Singapore's birthday with the nation.</span>
+            </sgds-image-card>`,
+            description:
+              "Use a subtitle for category labels or source attribution.",
+          },
+          {
+            label: "No subtitle",
+            value: "no-subtitle",
+            markup: `<sgds-image-card class="portal-demo-card">
+              <img slot="image" alt="Aerial view of a tropical beach" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=320&h=140&q=80">
+              <span slot="title">National Day Parade</span>
+              <span slot="description">Celebrate Singapore's birthday with the nation.</span>
+            </sgds-image-card>`,
+            description: "Omit the subtitle when the title alone is sufficient.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -9129,7 +9359,30 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
-  {
+      {
+        title: "Native validation",
+        description:
+          "Use `noValidate` to disable the component's built-in constraint validation. The component emits `sgds-invalid` when validation fails and `sgds-valid` when it passes.",
+        controlLabel: "Input native validation options",
+        defaultValue: "enabled",
+        options: [
+          {
+            label: "Enabled",
+            value: "enabled",
+            markup: `<sgds-input label="Email" type="email" required hasFeedback="both" invalid invalidFeedback="Enter a valid email"></sgds-input>`,
+            description:
+              "Built-in validation runs on form submission and emits `sgds-invalid` or `sgds-valid` events. Error feedback appears when the field is invalid.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-input label="Email" type="email" required noValidate></sgds-input>`,
+            description:
+              "Use `noValidate` when handling validation externally. No constraint checks or validation events fire.",
+          },
+        ],
+      },
+      {
         title: "Prefix and suffix",
         description:
           "Prefix and suffix text add fixed context to the value users enter.",
@@ -11384,6 +11637,29 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+      {
+        title: "Native validation",
+        description:
+          "Use `noValidate` to disable the component's built-in constraint validation. The component emits `sgds-invalid` when validation fails and `sgds-valid` when it passes.",
+        controlLabel: "Quantity toggle native validation options",
+        defaultValue: "enabled",
+        options: [
+          {
+            label: "Enabled",
+            value: "enabled",
+            markup: `<sgds-quantity-toggle label="Quantity" value="6" min="0" max="5" hasFeedback invalid invalidFeedback="Enter a quantity between 0 and 5"></sgds-quantity-toggle>`,
+            description:
+              "Built-in validation runs on form submission and emits `sgds-invalid` or `sgds-valid` events. Error feedback appears when the field is invalid.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-quantity-toggle label="Quantity" value="2" min="0" max="5" noValidate></sgds-quantity-toggle>`,
+            description:
+              "Use `noValidate` when handling validation externally. No constraint checks or validation events fire.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -11621,6 +11897,35 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-radio value="standard">Standard</sgds-radio>
         </sgds-radio-group>`,
             description: "Group shows the error message and invalid styling.",
+          },
+        ],
+      },
+      {
+        title: "Native validation",
+        description:
+          "Use `noValidate` to disable the component's built-in constraint validation. The component emits `sgds-invalid` when validation fails and `sgds-valid` when it passes.",
+        controlLabel: "Radio native validation options",
+        defaultValue: "enabled",
+        options: [
+          {
+            label: "Enabled",
+            value: "enabled",
+            markup: `<sgds-radio-group label="Plan" required hasFeedback invalid invalidFeedback="Choose a plan">
+          <sgds-radio value="basic">Basic</sgds-radio>
+          <sgds-radio value="standard">Standard</sgds-radio>
+        </sgds-radio-group>`,
+            description:
+              "Built-in validation runs on form submission and emits `sgds-invalid` or `sgds-valid` events. Error feedback appears when the field is invalid.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-radio-group label="Plan" required noValidate>
+          <sgds-radio value="basic">Basic</sgds-radio>
+          <sgds-radio value="standard">Standard</sgds-radio>
+        </sgds-radio-group>`,
+            description:
+              "Use `noValidate` when handling validation externally. No constraint checks or validation events fire.",
           },
         ],
       },
@@ -11909,7 +12214,36 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
-  {
+      {
+        title: "Native validation",
+        description:
+          "Use `noValidate` to disable the component's built-in constraint validation. The component emits `sgds-invalid` when validation fails and `sgds-valid` when it passes.",
+        controlLabel: "Select native validation options",
+        defaultValue: "enabled",
+        options: [
+          {
+            label: "Enabled",
+            value: "enabled",
+            markup: `<sgds-select label="Country" placeholder="Select a country" required hasFeedback invalid invalidFeedback="Select a country">
+          <sgds-select-option value="sg">Singapore</sgds-select-option>
+          <sgds-select-option value="my">Malaysia</sgds-select-option>
+        </sgds-select>`,
+            description:
+              "Built-in validation runs on form submission and emits `sgds-invalid` or `sgds-valid` events. Error feedback appears when the field is invalid.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-select label="Country" placeholder="Select a country" required noValidate>
+          <sgds-select-option value="sg">Singapore</sgds-select-option>
+          <sgds-select-option value="my">Malaysia</sgds-select-option>
+        </sgds-select>`,
+            description:
+              "Use `noValidate` when handling validation externally. No constraint checks or validation events fire.",
+          },
+        ],
+      },
+      {
         title: "Loading",
         description:
           "Use loading while select options are being retrieved or refreshed.",
@@ -15596,6 +15930,29 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+      {
+        title: "Native validation",
+        description:
+          "Use `noValidate` to disable the component's built-in constraint validation. The component emits `sgds-invalid` when validation fails and `sgds-valid` when it passes.",
+        controlLabel: "Textarea native validation options",
+        defaultValue: "enabled",
+        options: [
+          {
+            label: "Enabled",
+            value: "enabled",
+            markup: `<sgds-textarea label="Comments" required hasFeedback invalid invalidFeedback="Share your feedback"></sgds-textarea>`,
+            description:
+              "Built-in validation runs on form submission and emits `sgds-invalid` or `sgds-valid` events. Error feedback appears when the field is invalid.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<sgds-textarea label="Comments" required noValidate></sgds-textarea>`,
+            description:
+              "Use `noValidate` when handling validation externally. No constraint checks or validation events fire.",
+          },
+        ],
+      },
     ],
     demos: [
       demo(
@@ -15855,6 +16212,69 @@ const componentDocs: Record<string, ComponentDoc> = {
             </sgds-thumbnail-card>`,
             description:
               "Use stretchedLink when the whole thumbnail card is one destination.",
+          },
+        ],
+      },
+      {
+        title: "Upper and lower slots",
+        description:
+          "Upper and lower slots add supporting metadata above or below the main content.",
+        controlLabel: "Thumbnail card metadata slot options",
+        defaultValue: "with-metadata",
+        options: [
+          {
+            label: "With metadata",
+            value: "with-metadata",
+            markup: `<sgds-thumbnail-card class="portal-demo-card">
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <sgds-badge slot="upper" variant="success" outlined>New</sgds-badge>
+              <span slot="title">Annual report 2025</span>
+              <span slot="description">Highlights and metrics from the past year.</span>
+              <span slot="lower">Published Jan 2025</span>
+            </sgds-thumbnail-card>`,
+            description:
+              "Use metadata slots for short supporting details that help users scan cards.",
+          },
+          {
+            label: "Content only",
+            value: "content-only",
+            markup: `<sgds-thumbnail-card class="portal-demo-card">
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <span slot="title">Annual report 2025</span>
+              <span slot="description">Highlights and metrics from the past year.</span>
+            </sgds-thumbnail-card>`,
+            description: "Keep the card simpler when metadata is not needed.",
+          },
+        ],
+      },
+      {
+        title: "Subtitle",
+        description:
+          "Use the `subtitle` slot to add secondary text below the title for categorisation or context.",
+        controlLabel: "Thumbnail card subtitle options",
+        defaultValue: "with-subtitle",
+        options: [
+          {
+            label: "With subtitle",
+            value: "with-subtitle",
+            markup: `<sgds-thumbnail-card class="portal-demo-card">
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <span slot="title">Annual report 2025</span>
+              <span slot="subtitle">Ministry of Finance</span>
+              <span slot="description">Highlights and metrics from the past year.</span>
+            </sgds-thumbnail-card>`,
+            description:
+              "Use a subtitle for category labels or source attribution.",
+          },
+          {
+            label: "No subtitle",
+            value: "no-subtitle",
+            markup: `<sgds-thumbnail-card class="portal-demo-card">
+              <img slot="thumbnail" alt="Person working on a laptop" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=160&q=80" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px;" />
+              <span slot="title">Annual report 2025</span>
+              <span slot="description">Highlights and metrics from the past year.</span>
+            </sgds-thumbnail-card>`,
+            description: "Omit the subtitle when the title alone is sufficient.",
           },
         ],
       },

@@ -604,7 +604,7 @@ onBeforeUnmount(() => {
 
 .portal-demo-datepicker {
   display: block;
-  width: var(--sgds-dimension-288);
+  width: var(--sgds-dimension-360);
 }
 
 .portal-slot-example {
