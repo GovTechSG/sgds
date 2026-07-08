@@ -1,5 +1,11 @@
 // https://vitepress.dev/guide/custom-theme
-import "@govtechsg/sgds-web-component";
+
+// Above-the-fold components (eagerly loaded for fast FCP/LCP)
+import "@govtechsg/sgds-web-component/components/Masthead/index.js";
+import "@govtechsg/sgds-web-component/components/Mainnav/index.js";
+import "@govtechsg/sgds-web-component/components/IconButton/index.js";
+import "@govtechsg/sgds-web-component/components/Button/index.js";
+
 import Layout from "./Layout.vue";
 import SkillsTable from "../components/ui/SkillsTable.vue";
 import CopyCommand from "../components/ui/CopyCommand.vue";
@@ -29,6 +35,24 @@ export default {
         document.head.appendChild(captureScript);
       }
       initializeTheme();
+
+      // Lazy-load below-fold and interaction-only components after initial paint
+      const idle = window.requestIdleCallback || ((cb: IdleRequestCallback) => setTimeout(cb, 1));
+      idle(
+        () => {
+          import("@govtechsg/sgds-web-component/components/Footer/index.js");
+          import("@govtechsg/sgds-web-component/components/Sidenav/index.js");
+          import("@govtechsg/sgds-web-component/components/Icon/index.js");
+          import("@govtechsg/sgds-web-component/components/Badge/index.js");
+          import("@govtechsg/sgds-web-component/components/Drawer/index.js");
+          import("@govtechsg/sgds-web-component/components/Link/index.js");
+          import("@govtechsg/sgds-web-component/components/CloseButton/index.js");
+          import("@govtechsg/sgds-web-component/components/Breadcrumb/index.js");
+          import("@govtechsg/sgds-web-component/components/Divider/index.js");
+          import("@govtechsg/sgds-web-component/components/Tooltip/index.js");
+        },
+        { timeout: 3000 }
+      );
     }
   },
 } satisfies Theme;

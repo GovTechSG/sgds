@@ -88,10 +88,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [
       "link",
       {
-        rel: "stylesheet",
+        rel: "preload",
+        as: "style",
         href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400;1,14..32,600;1,14..32,700&display=optional",
       },
     ],
+    [
+      "link",
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400;1,14..32,600;1,14..32,700&display=optional",
+        media: "print",
+        onload: "this.media='all'",
+      },
+    ],
+    ["link", { rel: "preload", as: "image", type: "image/webp", href: "/landing/placeholder1.webp" }],
     ["link", { rel: "icon", type: "image/png", href: "/favicon-96x96.png", sizes: "96x96" }],
     ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
     ["link", { rel: "shortcut icon", href: "/favicon.ico" }],
