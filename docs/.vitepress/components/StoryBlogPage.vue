@@ -355,6 +355,7 @@
                       v-else
                       :src="section.titleVisual.src"
                       :alt="section.titleVisual.alt"
+                      :fetchpriority="sectionIndex === 0 ? 'high' : undefined"
                       class="sgds:block sgds:h-auto sgds:max-h-[var(--sgds-dimension-512)] sgds:w-full sgds:object-contain"
                     />
                   </div>

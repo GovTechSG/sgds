@@ -13,10 +13,11 @@ const currentPhase = 99
 
 <div class="sgds-grid sgds:gap-y-10">
   <PortalImageCard
-    v-for="foundation in foundations"
+    v-for="(foundation, index) in foundations"
     :key="foundation.id"
     :item="foundation"
     :currentPhase
+    :fetchpriority="index === 0 ? 'high' : undefined"
     class="sgds-col-4 sgds-col-sm-4 sgds-col-lg-4"
   >
   </PortalImageCard>
