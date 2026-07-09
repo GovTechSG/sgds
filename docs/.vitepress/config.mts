@@ -102,7 +102,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         onload: "this.media='all'",
       },
     ],
-    ["link", { rel: "preload", as: "image", type: "image/webp", href: "/landing/placeholder1.webp" }],
+    ["link", { rel: "preload", as: "image", type: "image/webp", href: "/landing/placeholder1.webp", fetchpriority: "high" }],
     ["link", { rel: "icon", type: "image/png", href: "/favicon-96x96.png", sizes: "96x96" }],
     ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
     ["link", { rel: "shortcut icon", href: "/favicon.ico" }],

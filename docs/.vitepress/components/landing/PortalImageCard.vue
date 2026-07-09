@@ -3,9 +3,10 @@ import { ref } from 'vue';
 import { FoundationItem } from "../../data/foundations";
 import ComingSoonAnimation from "./ComingSoonAnimation.vue";
 
-const {item, currentPhase} = defineProps<{
+const {item, currentPhase, fetchpriority} = defineProps<{
   item: FoundationItem;
   currentPhase: number;
+  fetchpriority?: "high" | "low" | "auto";
 }>();
 
 const isPlaceholder = item.image === '' || item.image?.includes('placeholder') || item.image?.includes('coming-soon');
@@ -55,6 +56,7 @@ function handleDisabledClick(e: MouseEvent) {
           :alt="item.title"
           width="424"
           height="300"
+          :fetchpriority="fetchpriority"
           :class="item.imageFit === 'contain'
             ? [
               item.imageClass,
