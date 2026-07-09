@@ -5,6 +5,7 @@ import "@govtechsg/sgds-web-component/components/Masthead/index.js";
 import "@govtechsg/sgds-web-component/components/Mainnav/index.js";
 import "@govtechsg/sgds-web-component/components/IconButton/index.js";
 import "@govtechsg/sgds-web-component/components/Button/index.js";
+import "@govtechsg/sgds-web-component/components/Drawer/index.js";
 
 import Layout from "./Layout.vue";
 import SkillsTable from "../components/ui/SkillsTable.vue";
@@ -44,7 +45,6 @@ export default {
           import("@govtechsg/sgds-web-component/components/Sidenav/index.js");
           import("@govtechsg/sgds-web-component/components/Icon/index.js");
           import("@govtechsg/sgds-web-component/components/Badge/index.js");
-          import("@govtechsg/sgds-web-component/components/Drawer/index.js");
           import("@govtechsg/sgds-web-component/components/Link/index.js");
           import("@govtechsg/sgds-web-component/components/CloseButton/index.js");
           import("@govtechsg/sgds-web-component/components/Breadcrumb/index.js");
