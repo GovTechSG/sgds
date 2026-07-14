@@ -7,6 +7,9 @@ import { blocksSidebar } from "./data/blocks-sidebar";
 import { storyPosts } from "./data/stories";
 
 const vitePressConfig = {
+  sitemap: {
+    hostname: "https://www.designsystem.tech.gov.sg",
+  },
   lang: "en",
   title: "Singapore Government Design System",
   titleTemplate: ":title – Singapore Government Design System",
@@ -72,6 +75,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-T6NDG85M');`,
     ],
+    [
+      "script",
+      {},
+      `(function(){var t=localStorage.getItem('sgds-docs-theme');if(!t)t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';if(t==='dark')document.documentElement.classList.add('sgds-night-theme');})();`,
+    ],
     ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
     [
       "link",
@@ -80,15 +88,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [
       "link",
       {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400;1,14..32,600;1,14..32,700&display=swap",
+        rel: "preload",
+        as: "style",
+        href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400;1,14..32,600;1,14..32,700&display=optional",
       },
     ],
+    [
+      "link",
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400;1,14..32,600;1,14..32,700&display=optional",
+        media: "print",
+        onload: "this.media='all'",
+      },
+    ],
+    ["link", { rel: "preload", as: "image", type: "image/webp", href: "/landing/placeholder1.webp", fetchpriority: "high" }],
     ["link", { rel: "icon", type: "image/png", href: "/favicon-96x96.png", sizes: "96x96" }],
     ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
     ["link", { rel: "shortcut icon", href: "/favicon.ico" }],
     ["link", { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" }],
     ["link", { rel: "manifest", href: "/site.webmanifest" }],
+    [
+      "script",
+      {
+        defer: "",
+        src:
+          process.env.NODE_ENV === "production"
+            ? "https://assets.wogaa.sg/scripts/wogaa.js"
+            : "https://assets.dcube.cloud/scripts/wogaa.js",
+      },
+    ],
     ...(process.env.NODE_ENV !== "production"
       ? [
           [
