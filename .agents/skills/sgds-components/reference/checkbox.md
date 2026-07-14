@@ -111,6 +111,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `hintText` | string | `""` | Hint text below the label |
 | `value` | string | `""` | Comma-separated values of checked checkboxes |
 | `required` | boolean | `false` | Makes at least one checkbox required |
+| `noValidate` | boolean | `false` | Disables native and SGDS validation |
 | `hasFeedback` | boolean | `false` | Enables validation feedback UI |
 | `invalidFeedback` | string | `"Please tick at least one box if you want to proceed"` | Error message when nothing is checked |
 
@@ -124,6 +125,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `indeterminate` | boolean | `false` | Shows the indeterminate (partial) state |
 | `disabled` | boolean | `false` | Disables the checkbox |
 | `required` | boolean | `false` | Makes the checkbox required (standalone) |
+| `noValidate` | boolean | `false` | Disables native and SGDS validation (standalone) |
 | `hasFeedback` | `style \| text \| both` | — | Validation feedback display (standalone) |
 | `invalidFeedback` | string | `""` | Error message (standalone) |
 
@@ -134,23 +136,36 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `<sgds-checkbox-group>` | *(default)* | `<sgds-checkbox>` elements |
 | `<sgds-checkbox>` | *(default)* | Checkbox label text |
 
+## Methods
+
+| Component | Method | Description |
+|---|---|---|
+| `<sgds-checkbox-group>` | `setInvalid(bool)` | Programmatically sets the invalid state |
+| `<sgds-checkbox>` | `setInvalid(bool)` | Programmatically sets the invalid state |
+
 ## Events
 
 | Component | Event | Detail | When |
 |---|---|---|---|
 | `<sgds-checkbox-group>` | `sgds-change` | — | Any checkbox in the group is checked or unchecked; read `element.value` for current checked values |
+| `<sgds-checkbox-group>` | `sgds-invalid` | — | The group's invalid state is set to true |
+| `<sgds-checkbox-group>` | `sgds-valid` | — | The group's invalid state is set to false |
 | `<sgds-checkbox>` | `sgds-change` | `{ checked: boolean, value: string }` | Checked state changes |
 | `<sgds-checkbox>` | `sgds-check` | — | Checkbox is checked |
 | `<sgds-checkbox>` | `sgds-uncheck` | — | Checkbox is unchecked |
 | `<sgds-checkbox>` | `sgds-focus` | — | Gains focus |
 | `<sgds-checkbox>` | `sgds-blur` | — | Loses focus |
+| `<sgds-checkbox>` | `sgds-invalid` | — | The checkbox's invalid state is set to true |
+| `<sgds-checkbox>` | `sgds-valid` | — | The checkbox's invalid state is set to false |
 
 ---
 
 **For AI agents**:
 1. For multi-checkbox forms, use `<sgds-checkbox-group>` — `hasFeedback` and `invalidFeedback` belong on the group.
-2. `<sgds-checkbox-group>` `value` is a comma-separated string of the values of all currently checked checkboxes.
+2. `<sgds-checkbox-group>` `value` is a semicolon-separated string of the values of all currently checked checkboxes.
 3. On `sgds-change` from a group, read `element.value` to get the current selection — no event detail for group.
 4. `indeterminate` is useful for "select all" patterns; toggling it programmatically is valid.
 5. Standalone `<sgds-checkbox>` elements (outside a group) work like a plain HTML checkbox with `name` and `value`.
 6. `hasFeedback` type differs: `<sgds-checkbox-group hasFeedback>` takes a boolean; `<sgds-checkbox hasFeedback="both">` takes a string enum (`style | text | both`). Never add `hasFeedback="both"` to a group.
+7. For custom validation, add `noValidate` and `hasFeedback` to the component, then call `setInvalid(true/false)` and set `invalidFeedback` inside the `sgds-change` event listener.
+8. `setInvalid(true)` emits `sgds-invalid`; `setInvalid(false)` emits `sgds-valid`.

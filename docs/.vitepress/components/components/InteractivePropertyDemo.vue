@@ -5,6 +5,7 @@ import CardContentSlotsDemo from "./CardContentSlotsDemo.vue";
 import CodeToken from "../ui/CodeToken.vue";
 import SegmentedControl from "./SegmentedControl.vue";
 import { textParts } from "../../utils/text-parts";
+import { setupPortalSteppers } from "../../utils/portal-stepper";
 
 const props = defineProps<{ demo: ConfigurationDemo }>();
 
@@ -653,31 +654,7 @@ const setupSidebarDemos = async () => {
 
 const setupStepperDemos = async () => {
   await nextTick();
-  await customElements.whenDefined("sgds-stepper");
-
-  const root = rootRef.value;
-  if (!root) return;
-
-  const stepperSteps: Record<string, unknown[]> = {
-    default: [
-      { stepHeader: "Start", component: "Step one" },
-      { stepHeader: "Review", component: "Step two" },
-      { stepHeader: "Confirm", component: "Step three" },
-    ],
-    icons: [
-      { stepHeader: "Start", component: "Step one", iconName: "pencil" },
-      { stepHeader: "Review", component: "Step two", iconName: "file-earmark-text" },
-      { stepHeader: "Confirm", component: "Step three", iconName: "check" },
-    ],
-  };
-
-  root.querySelectorAll<HTMLElement>("sgds-stepper[data-portal-stepper]").forEach((el) => {
-    const variant = el.dataset.portalStepper || "default";
-    const activeStep = Number(el.getAttribute("activeStep") ?? el.getAttribute("activestep") ?? el.dataset.portalActiveStep ?? 0);
-    const stepper = el as HTMLElement & { activeStep?: number; steps?: unknown[] };
-    stepper.steps = stepperSteps[variant] ?? stepperSteps.default;
-    stepper.activeStep = Number.isFinite(activeStep) ? activeStep : 0;
-  });
+  await setupPortalSteppers(rootRef.value);
 };
 
 const setupTextareaDemos = async () => {

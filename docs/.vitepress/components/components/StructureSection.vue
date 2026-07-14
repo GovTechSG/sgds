@@ -3,6 +3,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue"
 import CodeToken from "../ui/CodeToken.vue";
 import SegmentedControl from "./SegmentedControl.vue";
 import type { MeasurementTokenGroup, MeasurementTokenRow } from "../../data/component-docs";
+import { setupPortalSteppers } from "../../utils/portal-stepper";
 
 const props = defineProps<{
   previewMarkup: string;
@@ -2718,7 +2719,9 @@ const autoDetectGenericGapBands = (
   shell: HTMLElement,
   nextRects: Record<string, HotspotRect | null>,
 ) => {
-  const gapKeys = Object.keys(inspectMeta.value).filter((key) => isGapOverlayKey(key));
+  const gapKeys = Object.keys(inspectMeta.value).filter(
+    (key) => isGapOverlayKey(key) && !(component.tagName === "SGDS-STEPPER" && key === "gap-sm"),
+  );
   if (!gapKeys.length) return;
   const pendingKeys = gapKeys.filter((key) => !genericGapBandsByKey.value[key]?.length);
   if (!pendingKeys.length) return;
@@ -3015,46 +3018,7 @@ const setupStructureSidebars = async () => {
 };
 
 const setupStructureSteppers = async () => {
-  const root = previewMarkupRef.value;
-  if (!root?.querySelector("sgds-stepper[data-portal-stepper]")) return;
-
-  await customElements.whenDefined("sgds-stepper");
-
-  const stepperSteps: Record<string, unknown[]> = {
-    default: [
-      { stepHeader: "Start", component: "Step one" },
-      { stepHeader: "Review", component: "Step two" },
-      { stepHeader: "Confirm", component: "Step three" },
-    ],
-    icons: [
-      { stepHeader: "Start", component: "Step one", iconName: "pencil" },
-      { stepHeader: "Review", component: "Step two", iconName: "file-earmark-text" },
-      { stepHeader: "Confirm", component: "Step three", iconName: "check" },
-    ],
-    long: [
-      { stepHeader: "Start", component: "Step one" },
-      { stepHeader: "Profile", component: "Step two" },
-      { stepHeader: "Eligibility", component: "Step three" },
-      { stepHeader: "Documents", component: "Step four" },
-      { stepHeader: "Review", component: "Step five" },
-      { stepHeader: "Payment", component: "Step six" },
-      { stepHeader: "Submit", component: "Step seven" },
-      { stepHeader: "Confirm", component: "Step eight" },
-    ],
-  };
-
-  const steppers = Array.from(
-    root.querySelectorAll<HTMLElement>("sgds-stepper[data-portal-stepper]"),
-  );
-
-  for (const el of steppers) {
-    const variant = el.dataset.portalStepper || "default";
-    const activeStep = Number(el.getAttribute("activeStep") ?? el.getAttribute("activestep") ?? el.dataset.portalActiveStep ?? 0);
-    const stepper = el as HTMLElement & { activeStep?: number; steps?: unknown[]; updateComplete?: Promise<unknown> };
-    stepper.steps = stepperSteps[variant] ?? stepperSteps.default;
-    stepper.activeStep = Number.isFinite(activeStep) ? activeStep : 0;
-    await stepper.updateComplete;
-  }
+  await setupPortalSteppers(previewMarkupRef.value);
 };
 
 const measureHotspots = async () => {
@@ -3742,12 +3706,20 @@ const measureHotspots = async () => {
     // ring or annotating its full bounds would be wrong:
     //   • border-width-2 → 2px connector stroke between markers
     //   • dimension-32   → step 3 marker box (32x32)
+    //   • gap-sm → vertical space between each marker and its detail
+    //   • icon-size-md only applies to completed-marker icons, which are not
+    //     shown in the structure preview
     //   • other dimension tokens are listed in the table but not annotated
-    //   • padding-x/y/xl → don't apply at the horizontal-orientation preview
+    //   • padding-top/xl → vertical-only spacing; don't annotate in the
+    //     horizontal-orientation preview
     if (component.tagName === "SGDS-STEPPER") {
-      const stepperRoot = component.shadowRoot;
+      const slottedSteps = Array.from(
+        component.querySelectorAll("sgds-step"),
+      ) as HTMLElement[];
       const markers = Array.from(
-        stepperRoot?.querySelectorAll(".stepper-marker") ?? [],
+        slottedSteps.flatMap((step) =>
+          Array.from(step.shadowRoot?.querySelectorAll(".stepper-marker") ?? []),
+        ),
       ) as HTMLElement[];
       // Connector stroke: the actual line is a pseudo-element between each
       // marker pair, so synthesise the same 2px band from marker positions.
@@ -3785,17 +3757,41 @@ const measureHotspots = async () => {
         nextRects["dimension-32"] = getRelativeRect(marker, shell);
       }
 
+      const gapBands = slottedSteps
+        .map((step) => {
+          const root = step.shadowRoot;
+          const item = root?.querySelector(".stepper-item") as HTMLElement | null;
+          const marker = root?.querySelector(".stepper-marker") as HTMLElement | null;
+          const detail = root?.querySelector(".stepper-detail") as HTMLElement | null;
+          if (!item || !marker || !detail) return null;
+          const direction = getComputedStyle(item).flexDirection;
+          return direction === "row" || direction === "row-reverse"
+            ? getHorizontalGapRect(marker, detail, shell)
+            : getGapRect(marker, detail, shell);
+        })
+        .filter((band): band is PaddingBand => Boolean(band));
+
+      if (gapBands.length) {
+        genericGapBandsByKey.value = {
+          ...genericGapBandsByKey.value,
+          "gap-sm": gapBands,
+        };
+        nextRects["gap-sm"] = getUnionBandRect(gapBands);
+      } else {
+        nextRects["gap-sm"] = null;
+      }
+
       // Keep the Stepper structure preview focused: only the marker's
       // 32px dimension is annotated. Other size tokens remain in the table
       // but do not render dimension brackets in the demo.
       nextRects["dimension-128"] = null;
       nextRects["dimension-2"] = null;
+      nextRects["icon-size-md"] = null;
 
-      // padding-x / padding-y / padding-xl don't apply at the horizontal
-      // preview's viewport — clear them so no dimension annotation or
-      // surface-rect hotspot renders.
-      nextRects["padding-x"] = null;
-      nextRects["padding-y"] = null;
+      // padding-top / padding-xl don't apply at the horizontal preview's
+      // viewport — clear them so no dimension annotation or surface-rect
+      // hotspot renders.
+      nextRects["padding-top"] = null;
       nextRects["padding-xl"] = null;
     }
 
