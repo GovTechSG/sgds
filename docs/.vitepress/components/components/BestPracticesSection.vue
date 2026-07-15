@@ -3,6 +3,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, onUpdated, ref } from "
 import type { BestPractice } from "../../data/component-docs";
 import CodeToken from "../ui/CodeToken.vue";
 import { textParts } from "../../utils/text-parts";
+import { setupPortalSteppers } from "../../utils/portal-stepper";
 
 const props = defineProps<{
   bestPractices: BestPractice[];
@@ -113,35 +114,7 @@ const restyleIllustrativeMasthead = async (masthead: Element) => {
 };
 
 const setupIllustrativeSteppers = async () => {
-  await customElements.whenDefined("sgds-stepper");
-
-  const stepperSteps: Record<string, unknown[]> = {
-    default: [
-      { stepHeader: "Start", component: "Step one" },
-      { stepHeader: "Review", component: "Step two" },
-      { stepHeader: "Confirm", component: "Step three" },
-    ],
-    long: [
-      { stepHeader: "Start", component: "Step one" },
-      { stepHeader: "Details", component: "Step two" },
-      { stepHeader: "Upload", component: "Step three" },
-      { stepHeader: "Verify", component: "Step four" },
-      { stepHeader: "Review", component: "Step five" },
-      { stepHeader: "Pay", component: "Step six" },
-      { stepHeader: "Confirm", component: "Step seven" },
-      { stepHeader: "Done", component: "Step eight" },
-    ],
-  };
-
-  sectionRef.value
-    ?.querySelectorAll<HTMLElement>("sgds-stepper[data-portal-stepper]")
-    .forEach((el) => {
-      const variant = el.dataset.portalStepper || "default";
-      const activeStep = Number(el.getAttribute("activeStep") ?? el.getAttribute("activestep") ?? el.dataset.portalActiveStep ?? 0);
-      const stepper = el as HTMLElement & { activeStep?: number; steps?: unknown[] };
-      stepper.steps = stepperSteps[variant] ?? stepperSteps.default;
-      stepper.activeStep = Number.isFinite(activeStep) ? activeStep : 0;
-    });
+  await setupPortalSteppers(sectionRef.value);
 };
 
 const fitIllustrativeMainnavs = async () => {

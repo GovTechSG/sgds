@@ -13468,7 +13468,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     tag: "sgds-stepper",
     group: "navigation",
     summary:
-      "Steppers are used to inform users which step they are at in a form or a process",
+      "Steppers are used to inform users which step they are at in a form or a process.",
     purposeCards: [
       {
         title: "Show process progress",
@@ -13486,17 +13486,17 @@ const componentDocs: Record<string, ComponentDoc> = {
     anatomyParts: [
       { title: "Step indicator" },
       { title: "Label" },
-      { title: "Slot (optional)" },
+      { title: "Description", note: "(optional)" },
       { title: "Connection line" },
     ],
     anatomyPreviewMarkup: `<div class="portal-demo-stepper sgds:flex sgds:w-[var(--sgds-dimension-480)] sgds:max-w-full sgds:flex-col">
       <sgds-stepper class="portal-anatomy-stepper" data-portal-stepper="default"></sgds-stepper>
     </div>`,
     anatomyCallouts: [
-      { number: 1, direction: "top", targetSelector: ".portal-anatomy-stepper", targetShadowSelector: ".stepper-item-container:first-child .stepper-marker", targetX: "center", targetY: "top" },
-      { number: 2, direction: "left", targetSelector: ".portal-anatomy-stepper", targetShadowSelector: ".stepper-item-container:first-child .portal-anatomy-stepper-label", targetX: "left", targetY: "center" },
-      { number: 3, direction: "bottom", targetSelector: ".portal-anatomy-stepper", targetShadowSelector: ".stepper-item-container:first-child .portal-anatomy-stepper-slot", targetX: "center", targetY: "bottom" },
-      { number: 4, direction: "top", targetSelector: ".portal-anatomy-stepper", targetShadowSelector: ".stepper-item-container:nth-child(2) .stepper-item", targetX: "left", targetY: "top", targetXOffset: -30, targetYOffset: 15 },
+      { number: 1, direction: "top", targetSelector: ".portal-anatomy-stepper sgds-step:first-child", targetShadowSelector: ".stepper-marker", targetX: "center", targetY: "top" },
+      { number: 2, direction: "left", targetSelector: ".portal-anatomy-stepper sgds-step:first-child", targetShadowSelector: ".stepper-label", targetX: "left", targetY: "center", targetXOffset: 40 },
+      { number: 3, direction: "bottom", targetSelector: ".portal-anatomy-stepper sgds-step:first-child", targetShadowSelector: ".stepper-slot", targetX: "center", targetY: "bottom" },
+      { number: 4, direction: "top", targetSelector: ".portal-anatomy-stepper sgds-step:nth-child(2)", targetShadowSelector: ".stepper-item", targetX: "left", targetY: "top", targetXOffset: -30, targetYOffset: 15 },
     ],
     configurationDemos: [
       {
@@ -13529,7 +13529,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Active step",
         description:
-          "Sets the current step. Use to communicate the user's position within a multi-step process.",
+          "Sets the current step. Use with `sgds-step` descriptions to communicate the user's position within a multi-step process.",
         controlLabel: "Stepper active step options",
         defaultValue: "step-1",
         options: [
@@ -13561,10 +13561,46 @@ const componentDocs: Record<string, ComponentDoc> = {
         ],
       },
       {
-        title: "Clickable steps",
+        title: "Step state",
         description:
-          "Completed steps can be clickable so users can go back to earlier parts of the flow.",
-        controlLabel: "Stepper clickable options",
+          "Each `sgds-step` can be shown in its default, disabled, or completed state.",
+        controlLabel: "Stepper state options",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<div class="portal-demo-stepper">
+          <sgds-stepper data-portal-stepper="default" activeStep="1"></sgds-stepper>
+        </div>`,
+            description:
+              "Use the default state for available steps in the current process.",
+          },
+          {
+            label: "Disabled",
+            value: "disabled",
+            markup: `<div class="portal-demo-stepper">
+          <sgds-stepper data-portal-stepper="disabled" activeStep="1"></sgds-stepper>
+        </div>`,
+            description:
+              "Use disabled steps when a later step cannot be selected yet.",
+          },
+          {
+            label: "Completed",
+            value: "completed",
+            markup: `<div class="portal-demo-stepper">
+          <sgds-stepper data-portal-stepper="completed" activeStep="2"></sgds-stepper>
+        </div>`,
+            description:
+              "Use completed steps to show parts of the flow that have already been finished.",
+          },
+        ],
+      },
+      {
+        title: "Click behaviour",
+        description:
+          "Steps can be static, clickable, or limited to adjacent-step navigation.",
+        controlLabel: "Stepper click behaviour options",
         defaultValue: "static",
         options: [
           {
@@ -13580,17 +13616,26 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Clickable",
             value: "clickable",
             markup: `<div class="portal-demo-stepper">
-          <sgds-stepper data-portal-stepper="default" activeStep="2" clickable></sgds-stepper>
+          <sgds-stepper data-portal-stepper="default" activeStep="1" clickable></sgds-stepper>
         </div>`,
             description:
-              "Allows completed steps to be selected, so users can return to earlier steps.",
+              "Allows users to select available step indicators directly.",
+          },
+          {
+            label: "Linear clickable",
+            value: "linear-clickable",
+            markup: `<div class="portal-demo-stepper">
+          <sgds-stepper data-portal-stepper="default" activeStep="1" clickable linear></sgds-stepper>
+        </div>`,
+            description:
+              "Allows direct selection only for the previous or next step.",
           },
         ],
       },
       {
         title: "Markers",
         description:
-          "Stepper markers can use numbers or icons based on the step metadata.",
+          "Stepper markers can use numbers or icons based on each `sgds-step`.",
         controlLabel: "Stepper marker options",
         defaultValue: "numbered",
         options: [
@@ -13610,6 +13655,33 @@ const componentDocs: Record<string, ComponentDoc> = {
           <sgds-stepper data-portal-stepper="icons" activeStep="1"></sgds-stepper>
         </div>`,
             description: "Icon markers use the `iconName` value in each step.",
+          },
+        ],
+      },
+      {
+        title: "Description",
+        description:
+          "`sgds-step` supports optional description content below each step label.",
+        controlLabel: "Stepper description options",
+        defaultValue: "with-description",
+        options: [
+          {
+            label: "With description",
+            value: "with-description",
+            markup: `<div class="portal-demo-stepper">
+          <sgds-stepper data-portal-stepper="default" activeStep="1"></sgds-stepper>
+        </div>`,
+            description:
+              "Use descriptions when step labels need more context.",
+          },
+          {
+            label: "Without description",
+            value: "without-description",
+            markup: `<div class="portal-demo-stepper">
+          <sgds-stepper data-portal-stepper="no-description" activeStep="1"></sgds-stepper>
+        </div>`,
+            description:
+              "Omit descriptions when the step labels are already clear.",
           },
         ],
       },
@@ -13685,20 +13757,19 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "sgds / stepper",
         rows: [
-          { category: "Padding", name: "padding-x", value: "sgds/padding/2-xs", mapKey: "padding-x", usage: "Space between the left and right edges of the component and its content" },
-          { category: "Padding", name: "padding-y", value: "sgds/padding/2-xs", mapKey: "padding-y", usage: "Space between the top and bottom edges of the component and its content" },
-          { category: "Padding", name: "padding-xl", value: "sgds/padding/xl", usage: "Outer spacing of the stepper item" },
+          { category: "Padding", name: "padding-top", value: "sgds/padding/2-xs", usage: "Top padding of the stepper detail in vertical orientation" },
+          { category: "Padding", name: "padding-xl", value: "sgds/padding/xl", usage: "Bottom margin between vertical stepper items" },
           { category: "Gap", name: "gap-sm", value: "sgds/gap/sm", usage: "Spacing between items of the stepper item" },
-          { category: "Border", name: "border-color-translucent", value: "sgds/border-color-translucent", usage: "Background colour of the stepper item" },
-          { category: "Border", name: "border-color-transparent", value: "sgds/border-color-transparent", usage: "Border of the stepper marker; border colour of the stepper marker on hover" },
+          { category: "Border", name: "border-color-translucent", value: "sgds/border-color-translucent", usage: "Default connector colour in horizontal orientation" },
+          { category: "Border", name: "border-color-transparent", value: "sgds/border-color-transparent", usage: "Border colour of the stepper marker; border colour of the stepper marker on hover" },
           { category: "Border", name: "border-width-2", value: "sgds/border-width/2", usage: "Border of the stepper marker" },
-          { category: "Border", name: "primary-border-color-default", value: "sgds/primary/border-color/default", usage: "Background colour of the stepper item; border of the stepper marker" },
+          { category: "Border", name: "primary-border-color-default", value: "sgds/primary/border-color/default", usage: "Connector colour for active and completed steps; border colour of the completed stepper marker" },
           { category: "Size", name: "dimension-128", value: "sgds/dimension/128", usage: "Maximum width of the stepper detail" },
-          { category: "Size", name: "dimension-2", value: "sgds/dimension/2", usage: "Height of the stepper item; width of the stepper item" },
-          { category: "Size", name: "dimension-32", value: "sgds/dimension/32", usage: "Width of the stepper item; height of the stepper item" },
+          { category: "Size", name: "dimension-2", value: "sgds/dimension/2", usage: "Thickness of the stepper connector" },
+          { category: "Size", name: "dimension-32", value: "sgds/dimension/32", usage: "Width of the stepper marker; height of the stepper marker" },
           { category: "Size", name: "icon-size-md", value: "sgds/icon-size/md", usage: "Size of the completed step marker icon" },
-          { category: "Colour", name: "bg-translucent", value: "sgds/bg-translucent", usage: "Background colour of the stepper item; background colour of the stepper marker" },
-          { category: "Colour", name: "bg-transparent", value: "sgds/bg-transparent", usage: "Background colour of the stepper marker" },
+          { category: "Colour", name: "bg-translucent", value: "sgds/bg-translucent", usage: "Default background colour of the stepper marker; default connector colour in vertical orientation" },
+          { category: "Colour", name: "bg-transparent", value: "sgds/bg-transparent", usage: "Background colour of the completed stepper marker" },
           { category: "Colour", name: "color-default", value: "sgds/color-default", usage: "Text colour of the stepper marker" },
           { category: "Colour", name: "color-fixed-light", value: "sgds/color-fixed-light", usage: "Text colour of the stepper marker on hover; text colour of the stepper marker" },
           { category: "Colour", name: "color-subtle", value: "sgds/color-subtle", usage: "Text colour of the stepper detail" },
