@@ -1183,9 +1183,15 @@ export const storyPosts: StoryPost[] = [
     intro: [],
     sections: [
       {
+        title: "Accessibility as a national priority",
+        paragraphs: [],
+        paragraphsHtml: [
+          "Improving accessibility for persons with disabilities (PWDs) is a key priority under the <a href=\"https://www.msf.gov.sg/docs/default-source/enabling-masterplan/emp2030-report-(final2).pdf?sfvrsn=8032eb4d_3\" target=\"_blank\" rel=\"noopener\">Enabling Masterplan 2030</a>. One of the goals is to enhance access to information and services for PWDs. As a design infrastructure and the building blocks of web applications, SGDS has a strong commitment to accessibility to ensure that all users, regardless of ability and device, have undeterred access to the websites and applications that are built with it.",
+        ],
+      },
+      {
         title: "Built into our systems, not an afterthought",
         paragraphs: [
-          "SGDS has a strong commitment to accessibility to ensure that all users, regardless of ability and device, have undeterred access to the websites and applications that are built with it.",
           "Accessibility is built into our systems, not an afterthought. Starting from development phase, we take every possible permutation of usage in a component and run them through Oobee, a software tester that runs accessibility tests, optimised for screen readers.",
         ],
         visual: {
