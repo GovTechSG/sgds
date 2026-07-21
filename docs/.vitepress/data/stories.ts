@@ -1243,9 +1243,11 @@ export const storyPosts: StoryPost[] = [
       },
       {
         title: "How our architecture enforces it",
-        paragraphs: [
+        paragraphs: [],
+        paragraphsHtml: [
           "The advantage of web components is the strictness of the shadow DOM. While users of other light DOM libraries like ShadCN or Mantine can freely modify a component's HTML semantics and ARIA attributes, the shadow DOM keeps these internals secure. This makes it straightforward for us to control accessibility within the shadow DOM.",
           "However, we acknowledge that patterns in the light DOM are subjected to user modifications. While we cannot gate how developers use the component externally, we are dedicated to extend the accessibility testing to patterns, templates, and blocks. This includes covering various forms of component usage patterns as part of our roadmap.",
+          "For a deeper look at the engineering trade-offs behind our accessibility decisions, see our <a href=\"https://github.com/GovTechSG/sgds-web-component/blob/master/contributing/architecture-decision-record/declarative-aria-label-over-slot-inference.md\" target=\"_blank\" rel=\"noopener\">architecture decision record on declarative aria labels</a>.",
         ],
       },
       {
