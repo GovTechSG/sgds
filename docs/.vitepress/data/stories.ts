@@ -1189,7 +1189,7 @@ export const storyPosts: StoryPost[] = [
           "Accessibility is built into our systems, not an afterthought. Starting from development phase, we take every possible permutation of usage in a component and run them through Oobee, a software tester that runs accessibility tests, optimised for screen readers.",
         ],
         visual: {
-          src: "/stories/web-component-oobee-pipeline.png",
+          src: "/stories/web-component-oobee-pipeline.webp",
           alt: "Oobee A11y Scan CI pipeline results showing 47 pages scanned, 47 passing, 0 failing, with 634 total checks passed",
           caption: "Our CI pipeline runs Oobee accessibility scans across all component pages before every release.",
           width: 1701,
@@ -1202,7 +1202,7 @@ export const storyPosts: StoryPost[] = [
               "Based on the test results of Oobee, we modify and recommend the accessible way of using the components. For example, certain components require the ariaLabel property to be forwarded down to the web component's shadow DOM element in order to pass accessibility testing. Every component we build passes the accessibility testing pipeline before it is published.",
             ],
             visual: {
-              src: "/stories/ariaLabel-prop-button.png",
+              src: "/stories/ariaLabel-prop-button.webp",
               alt: "SGDS button component with ariaLabel prop declaratively defined, forwarded into the shadow DOM button element",
               caption: "The ariaLabel prop is declaratively defined on sgds-button and forwarded into its shadow DOM button element.",
               width: 888,
@@ -1210,7 +1210,7 @@ export const storyPosts: StoryPost[] = [
             },
             visualAfterParagraph: 1,
             postVisual: {
-              src: "/stories/button-shadow-dom-aria-label.png",
+              src: "/stories/button-shadow-dom-aria-label.webp",
               alt: "Browser DevTools showing the aria-label attribute on the HTML button element inside the shadow DOM, forwarded from the ariaLabel prop",
               caption: "The aria-label attribute is forwarded down to the native button element inside the shadow DOM.",
               width: 1722,
@@ -1219,6 +1219,19 @@ export const storyPosts: StoryPost[] = [
             postVisualParagraphs: [
               "We then ensure our code documentation in Storybook and agent skills are compliant with the best recommendation by default.",
             ],
+          },
+          {
+            paragraphs: [
+              "Our components are rendered on this site, where we also run Oobee accessibility testing to verify that it works for end users.",
+            ],
+            visual: {
+              src: "/stories/oobee-wcag-score.webp",
+              alt: "Oobee accessibility report for designsystem.tech.gov.sg showing a perfect WCAG score of 20 out of 20 based on automated checks",
+              caption: "Oobee accessibility report showing a perfect WCAG score for the SGDS documentation site.",
+              width: 1350,
+              height: 896,
+            },
+            visualAfterParagraph: 1,
           },
         ],
       },
