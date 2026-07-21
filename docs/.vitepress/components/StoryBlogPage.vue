@@ -77,13 +77,16 @@
                   :key="paragraph"
                   class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-default"
                 >
-                  <span
+                  <template
                     v-for="part in highlightedTimingParts(paragraph)"
                     :key="part.key"
-                    :class="part.highlighted ? 'sgds:font-semibold' : ''"
                   >
-                    {{ part.text }}
-                  </span>
+                    <span
+                      v-if="part.highlighted"
+                      class="sgds:font-semibold"
+                    >{{ part.text }}</span>
+                    <template v-else>{{ part.text }}</template>
+                  </template>
                 </p>
               </div>
             </section>
@@ -356,7 +359,7 @@
                       :src="section.titleVisual.src"
                       :alt="section.titleVisual.alt"
                       :fetchpriority="sectionIndex === 0 ? 'high' : undefined"
-                      class="sgds:block sgds:h-auto sgds:max-h-[var(--sgds-dimension-512)] sgds:w-full sgds:object-contain"
+                      class="sgds:block sgds:h-auto sgds:w-full sgds:object-contain"
                     />
                   </div>
                   <figcaption
@@ -439,7 +442,7 @@
                         section.visual &&
                         section.visualAfterParagraph === paragraphIndex + 1
                       "
-                      class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:flex-col sgds:gap-text-sm"
+                      class="sgds:mx-0 sgds:my-text-sm sgds:flex sgds:w-full sgds:max-w-container-md sgds:flex-col sgds:gap-text-sm"
                     >
                       <div
                         :class="[
@@ -487,7 +490,7 @@
                             'sgds:block sgds:w-full',
                             section.visual.fullWidth
                               ? 'sgds:h-full sgds:object-contain'
-                              : 'sgds:h-auto sgds:max-h-[var(--sgds-dimension-512)] sgds:object-contain',
+                              : 'sgds:h-auto sgds:object-contain',
                           ]"
                         />
                       </div>
@@ -877,7 +880,7 @@
                         'sgds:block sgds:w-full',
                         section.visual.fullWidth
                           ? 'sgds:h-full sgds:object-contain'
-                          : 'sgds:h-auto sgds:max-h-[var(--sgds-dimension-512)] sgds:object-contain',
+                          : 'sgds:h-auto sgds:object-contain',
                       ]"
                     />
                   </div>
