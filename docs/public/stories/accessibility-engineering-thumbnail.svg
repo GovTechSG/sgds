@@ -1,0 +1,19 @@
+<svg width="424" height="300" viewBox="0 0 424 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg_gradient" x1="0" y1="300" x2="424" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5295E0"/>
+      <stop offset="0.5" stop-color="#BF37AC"/>
+      <stop offset="1" stop-color="#E06B9E"/>
+    </linearGradient>
+  </defs>
+  <rect width="424" height="300" fill="url(#bg_gradient)"/>
+  <rect width="424" height="300" fill="white" fill-opacity="0.8"/>
+  <g transform="translate(212, 150)">
+    <circle cx="0" cy="0" r="80" stroke="#000000" stroke-width="8" fill="none"/>
+    <circle cx="0" cy="-46" r="11" fill="#000000"/>
+    <path d="M0 -23 L0 18" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+    <path d="M-32 -30 L0 -23 L32 -30" stroke="#000000" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <path d="M0 18 L-22 56" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+    <path d="M0 18 L22 56" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>

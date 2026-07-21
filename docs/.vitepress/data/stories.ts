@@ -1169,11 +1169,74 @@ export const storyPosts: StoryPost[] = [
     ctaLabel: "Explore AI guidance",
     ctaHref: "/ai/overview",
   },
+  {
+    key: "accessibility-from-an-engineering-perspective",
+    category: "Accessibility",
+    title: "Accessibility from an engineering perspective",
+    description:
+      "How SGDS builds accessibility into its engineering systems, from automated testing with Oobee to documentation and shared responsibility.",
+    href: "/stories/accessibility-from-an-engineering-perspective",
+    imageSrc: "/stories/accessibility-engineering-thumbnail.svg",
+    imageAlt: "Universal accessibility symbol",
+    published: "July 2026",
+    author: "Singapore Government Design System team",
+    intro: [
+      "SGDS has a strong commitment to accessibility to ensure that all users, regardless of ability and device, have undeterred access to the websites and applications that are built with it.",
+      "In this article, we will cover how SGDS achieves accessibility from an engineering perspective.",
+    ],
+    sections: [
+      {
+        title: "Built into our systems, not an afterthought",
+        paragraphs: [
+          "Accessibility is built into our systems, not an afterthought. We take every possible permutation of usage in a component and run them through Oobee, a software tester that runs accessibility tests, optimised for screen readers.",
+          "Based on the test results of Oobee, we modify and recommend the accessible way of using the components. For example, certain components require the ariaLabel property to be forwarded down to the web component's shadow DOM element in order to pass accessibility testing. Every component we build passes the accessibility testing pipeline before it is published.",
+          "We then ensure our code documentation in Storybook and agent skills are compliant with the best recommendation by default.",
+        ],
+      },
+      {
+        title: "It takes two hands to clap",
+        paragraphs: [
+          "Using SGDS's building blocks does not magically make your entire application accessible. A website is made up of more than just components. For example, the usage of the right semantic HTML for different scenarios is crucial for accessibility but out of the control of the design system.",
+          "It takes the joint responsibility and commitment of the design system and its users to ensure web pages are accessible.",
+        ],
+      },
+      {
+        title: "An open invitation",
+        paragraphs: [
+          "We are fully aware that we may not get it right every time for every user, so we invite everyone to participate in this ongoing effort by submitting accessibility improvements via issues, pull requests, or discussions if you encounter them with SGDS.",
+        ],
+      },
+    ],
+    metrics: [
+      {
+        value: "100%",
+        title: "Components tested",
+        description:
+          "Every component passes through the accessibility testing pipeline before release.",
+      },
+      {
+        value: "Oobee",
+        title: "Automated testing",
+        description:
+          "Screen reader optimised accessibility testing across all usage permutations.",
+      },
+      {
+        value: "Shared",
+        title: "Responsibility",
+        description:
+          "Accessible services require commitment from both the design system and its users.",
+      },
+    ],
+    closing: [],
+    ctaLabel: "Report an accessibility issue",
+    ctaHref: "https://github.com/GovTechSG/sgds-web-component/issues",
+  },
 ];
 
 export const featuredStory = storyPosts[0];
 
 const storyOverviewOrder = [
+  "accessibility-from-an-engineering-perspective",
   "what-sgds-is-often-mistaken-for",
   "the-learning-curve-before-ai",
   "ai-can-scale-delivery-and-inconsistency",
