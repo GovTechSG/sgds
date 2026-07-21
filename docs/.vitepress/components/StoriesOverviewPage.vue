@@ -42,6 +42,7 @@
                 :alt="featuredStory.imageAlt"
                 width="1920"
                 height="1080"
+                fetchpriority="high"
                 class="sgds:absolute sgds:inset-0 sgds:block sgds:h-full sgds:w-full sgds:object-cover"
               />
             </div>
@@ -112,6 +113,7 @@
                     :alt="card.imageAlt"
                     width="1200"
                     height="675"
+                    loading="lazy"
                     class="sgds:h-full sgds:w-full sgds:object-cover sgds:transition-transform sgds:duration-500 sgds:ease-in-out sgds:group-hover:scale-[1.04] sgds:group-focus-visible:scale-[1.04] sgds:motion-reduce:transition-none sgds:motion-reduce:group-hover:scale-100 sgds:motion-reduce:group-focus-visible:scale-100"
                   />
                 </div>

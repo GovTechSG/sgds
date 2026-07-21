@@ -93,10 +93,10 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
   </sgds-mainnav-item>
 
   <!-- Dropdown nav item -->
-  <sgds-mainnav-dropdown>
+  <sgds-mainnav-dropdown ariaLabel="Resources menu">
     <span slot="toggler">Resources</span>
-    <sgds-dropdown-item><a href="/docs">Documentation</a></sgds-dropdown-item>
-    <sgds-dropdown-item><a href="/faq">FAQ</a></sgds-dropdown-item>
+    <sgds-dropdown-item ariaLabel="Documentation"><a href="/docs">Documentation</a></sgds-dropdown-item>
+    <sgds-dropdown-item ariaLabel="FAQ"><a href="/faq">FAQ</a></sgds-dropdown-item>
   </sgds-mainnav-dropdown>
 
   <!-- Right-aligned items (end slot) -->
@@ -126,9 +126,13 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 ### `<sgds-mainnav-dropdown>`
 
-Inherits `<sgds-dropdown>` properties — see **[components-dropdown](dropdown.md)** for full API.
+| Attribute | Type | Default | Purpose |
+|---|---|---|---|
+| `active` | boolean | `false` | Applies active styles on the dropdown button |
+| `disabled` | boolean | `false` | Disables the dropdown toggle |
+| `ariaLabel` | string | — | Accessible label forwarded to the toggle button's `aria-label` attribute. **Required** for accessibility — screen readers cannot read slotted toggler text. |
 
-Key properties: `active`, `menuIsOpen`, `close`, `drop`.
+Also inherits `<sgds-dropdown>` properties — see **[components-dropdown](dropdown.md)** for full API (`menuIsOpen`, `close`, `drop`).
 
 ## Slots
 
@@ -172,3 +176,4 @@ Key properties: `active`, `menuIsOpen`, `close`, `drop`.
 4. `non-collapsible` slot stays visible on all screen sizes — use for icons that should never collapse.
 5. The collapsed menu events fire only on mobile breakpoints when using the hamburger toggle.
 6. Use `<sgds-masthead>` above `<sgds-mainnav>` as required for Singapore Government sites.
+7. **Always set `ariaLabel` on `<sgds-mainnav-dropdown>`** — the slotted toggler text is not accessible to screen readers through the shadow DOM boundary. Use a descriptive label like `"Resources menu"`.

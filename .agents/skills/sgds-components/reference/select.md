@@ -126,6 +126,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `loading` | boolean | `false` | Shows a loading spinner |
 | `hasFeedback` | boolean | `false` | Enables validation feedback UI |
 | `invalidFeedback` | string | — | Error message shown when invalid |
+| `invalid` | boolean | `false` | Marks the component as invalid |
+| `noValidate` | boolean | `false` | Disables native and SGDS validation |
 | `readonly` | boolean | `false` | Makes the select read-only |
 
 ### `<sgds-select-option>`
@@ -142,6 +144,15 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `<sgds-select>` | *(default)* | `<sgds-select-option>` elements |
 | `<sgds-select-option>` | *(default)* | Option label text |
 
+## Methods (`<sgds-select>`)
+
+| Method | Description |
+|---|---|
+| `setInvalid(bool)` | Programmatically sets the invalid state. Pass `true` to mark invalid, `false` to clear. |
+| `reportValidity()` | Checks validity and returns boolean |
+| `checkValidity()` | Checks validity without native error popup |
+| `setValidity(flags?, message?, anchor?)` | Sets the validity state |
+
 ## Events (`<sgds-select>`)
 
 | Event | When |
@@ -150,6 +161,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `sgds-change` | The select value changes |
 | `sgds-focus` | Input receives focus |
 | `sgds-blur` | Input loses focus |
+| `sgds-invalid` | The select's invalid state is set to true |
+| `sgds-valid` | The select's invalid state is set to false |
 
 ---
 
@@ -158,4 +171,5 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 2. Use `sgds-select` event (not `sgds-change`) for detecting user selection; read `element.value` for the selected value.
 3. For multi-selection, use `<sgds-combo-box multiSelect>` — `<sgds-select>` is single-select only.
 4. `hasFeedback` on `<sgds-select>` is a boolean — not the string enum used by `<sgds-input>` and `<sgds-textarea>`. Use `hasFeedback` (presence) alongside `invalidFeedback` for the error message; do not pass `hasFeedback="both"`.
-5. There are no public methods on this component.
+5. For custom validation, add `noValidate` and `hasFeedback` to the element, then call `setInvalid(true/false)` and set `invalidFeedback` inside the `sgds-change` event listener.
+6. `setInvalid(true)` emits `sgds-invalid`; `setInvalid(false)` emits `sgds-valid`.

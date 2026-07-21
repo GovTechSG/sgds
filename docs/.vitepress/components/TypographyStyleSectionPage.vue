@@ -116,9 +116,56 @@ const aliasColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[18rem] sgds:max
               <sgds-table-cell :class="[styleColumnClass, 'ts-preview-cell', section.key === 'display' ? 'ts-preview-cell--display' : '', section.key === 'caption' ? 'ts-preview-cell--caption' : '']">
                 <div class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-2-xs">
                   <div class="sgds:flex sgds:flex-wrap sgds:items-center sgds:gap-2-xs">
-                    <p :class="['ts-token-example', 'ts-' + row.exampleClass]">
-                      {{ row.example }}
-                    </p>
+                    <template v-if="section.key === 'list' && row.exampleClass === 'tokenExampleListLg'">
+                      <div class="ts-list-preview">
+                        <ul class="sgds:text-list-lg sgds:font-regular sgds:leading-md sgds:tracking-normal">
+                          <li class="sgds:text-list-lg sgds:font-regular sgds:leading-md sgds:tracking-normal sgds:my-list-lg">{{ row.example }} level 1</li>
+                          <li class="sgds:text-list-lg sgds:font-regular sgds:leading-md sgds:tracking-normal sgds:my-list-lg">
+                            {{ row.example }} level 1
+                            <ul class="sgds:text-list-lg sgds:font-regular sgds:leading-md sgds:tracking-normal">
+                              <li class="sgds:text-list-lg sgds:font-regular sgds:leading-md sgds:tracking-normal sgds:my-list-lg">Sub of Second</li>
+                              <li class="sgds:text-list-lg sgds:font-regular sgds:leading-md sgds:tracking-normal sgds:mt-list-lg">Another Sub</li>
+                            </ul>
+                          </li>
+                          <li class="sgds:text-list-lg sgds:font-regular sgds:leading-md sgds:tracking-normal sgds:mt-list-lg">{{ row.example }} level 1</li>
+                        </ul>
+                      </div>
+                    </template>
+                    <template v-else-if="section.key === 'list' && row.exampleClass === 'tokenExampleListMd'">
+                      <div class="ts-list-preview">
+                        <ul class="sgds:text-list-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                          <li class="sgds:text-list-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:my-list-md">{{ row.example }} level 1</li>
+                          <li class="sgds:text-list-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:my-list-md">
+                            {{ row.example }} level 1
+                            <ul class="sgds:text-list-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
+                              <li class="sgds:text-list-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:my-list-md">Sub of Second</li>
+                              <li class="sgds:text-list-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:mt-list-md">Another Sub</li>
+                            </ul>
+                          </li>
+                          <li class="sgds:text-list-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:mt-list-md">{{ row.example }} level 1</li>
+                        </ul>
+                      </div>
+                    </template>
+                    <template v-else-if="section.key === 'list' && row.exampleClass === 'tokenExampleListSm'">
+                      <div class="ts-list-preview">
+                        <ul class="sgds:text-list-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                          <li class="sgds:text-list-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:my-list-sm">{{ row.example }} level 1</li>
+                          <li class="sgds:text-list-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:my-list-sm">
+                            {{ row.example }} level 1
+                            <ul class="sgds:text-list-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal">
+                              <li class="sgds:text-list-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:my-list-sm">Sub of Second</li>
+                              <li class="sgds:text-list-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:mt-list-sm">Another Sub</li>
+                            </ul>
+                          </li>
+                          <li class="sgds:text-list-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:mt-list-sm">{{ row.example }} level 1</li>
+                        </ul>
+                      </div>
+                    </template>
+                    <template v-else>
+                      <p :class="['ts-token-example', 'ts-' + row.exampleClass]">
+                        {{ row.example }}
+                      </p>
+                    </template>
                     <sgds-badge v-if="row.note" variant="primary">Default</sgds-badge>
                     <sgds-badge v-if="row.headingLevel" variant="neutral">{{ row.headingLevel }}</sgds-badge>
                   </div>
@@ -501,28 +548,7 @@ const aliasColumnClass = "sgds:box-border sgds:w-max sgds:min-w-[18rem] sgds:max
   line-height: var(--sgds-line-height-3-xs);
 }
 
-.ts-tokenExampleListUnordered,
-.ts-tokenExampleListOrdered,
-.ts-tokenExampleListUnstyled {
-  display: list-item;
-  font-size: var(--sgds-font-size-body-md);
-  font-weight: var(--sgds-font-weight-regular);
-  letter-spacing: var(--sgds-letter-spacing-normal);
-  line-height: var(--sgds-line-height-xs);
-  list-style-position: inside;
-}
-
-.ts-tokenExampleListUnordered {
-  list-style-type: disc;
-  margin-inline-start: var(--sgds-gap-lg);
-}
-
-.ts-tokenExampleListOrdered {
-  list-style-type: decimal;
-  margin-inline-start: var(--sgds-gap-lg);
-}
-
-.ts-tokenExampleListUnstyled {
-  list-style-type: none;
+.ts-list-preview {
+  width: 100%;
 }
 </style>

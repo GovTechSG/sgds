@@ -111,15 +111,16 @@ const showCommunitySection = false;
       </h2>
       <div class="sgds-grid">
         <img
-          src="/landing/placeholder1.png"
+          src="/landing/placeholder1.webp"
           alt="Placeholder 1"
           width="760"
           height="480"
+          fetchpriority="high"
           :class="$style.image"
           class="sgds-col-4 sgds-col-sm-5 sgds-col-lg-7 sgds:rounded-3-xl"
         >
         <img
-          src="/landing/placeholder2.png"
+          src="/landing/placeholder2.webp"
           alt="Placeholder 2"
           width="512"
           height="480"
@@ -127,18 +128,20 @@ const showCommunitySection = false;
           class="sgds-col-4 sgds-col-sm-3 sgds-col-lg-5 sgds:rounded-3-xl"
         >
         <img
-          src="/landing/placeholder3.png"
+          src="/landing/placeholder3.webp"
           alt="Placeholder 3"
           width="312"
           height="480"
+          loading="lazy"
           :class="$style.image"
           class="sgds-col-4 sgds-col-sm-2 sgds-col-lg-3 sgds:rounded-3-xl"
         >
         <img
-          src="/landing/placeholder4.png"
+          src="/landing/placeholder4.webp"
           alt="Placeholder 4"
           width="960"
           height="480"
+          loading="lazy"
           :class="$style.image"
           class="sgds-col-4 sgds-col-sm-6 sgds-col-lg-9 sgds:rounded-3-xl"
         >
@@ -164,10 +167,11 @@ const showCommunitySection = false;
             With a common foundation of colour, typography, and components, our design system helps teams create consistent, accessible, and reliable services across government.
           </p>
           <img
-            src="/landing/placeholder7.png"
+            src="/landing/placeholder7.webp"
             alt="Placeholder 7"
             width="536"
             height="576"
+            loading="lazy"
             :class="$style.image"
             class="sgds:rounded-3-xl"
           />

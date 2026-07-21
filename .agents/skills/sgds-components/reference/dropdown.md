@@ -84,9 +84,9 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
     Options
     <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
   </sgds-button>
-  <sgds-dropdown-item><a href="/profile">Profile</a></sgds-dropdown-item>
-  <sgds-dropdown-item><a href="/settings">Settings</a></sgds-dropdown-item>
-  <sgds-dropdown-item disabled>Archived</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Profile"><a href="/profile">Profile</a></sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Settings"><a href="/settings">Settings</a></sgds-dropdown-item>
+  <sgds-dropdown-item disabled ariaLabel="Archived">Archived</sgds-dropdown-item>
 </sgds-dropdown>
 
 <!-- Action dropdown (no navigation) -->
@@ -94,17 +94,17 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
   <sgds-button slot="toggler" ariaLabel="Actions">
     Actions <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
   </sgds-button>
-  <sgds-dropdown-item>View</sgds-dropdown-item>
-  <sgds-dropdown-item>Edit</sgds-dropdown-item>
-  <sgds-dropdown-item>Delete</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="View">View</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Edit">Edit</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Delete">Delete</sgds-dropdown-item>
 </sgds-dropdown>
 
 <!-- React to selection -->
 <sgds-dropdown id="my-dropdown">
   <sgds-button slot="toggler" ariaLabel="Choose">Choose <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon></sgds-button>
-  <sgds-dropdown-item>Option A</sgds-dropdown-item>
-  <sgds-dropdown-item>Option B</sgds-dropdown-item>
-  <sgds-dropdown-item>Option C</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Option A">Option A</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Option B">Option B</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Option C">Option C</sgds-dropdown-item>
 </sgds-dropdown>
 
 <script>
@@ -116,8 +116,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 <!-- Dropdown opens upward -->
 <sgds-dropdown drop="up">
   <sgds-button slot="toggler" ariaLabel="Menu above">Menu above <sgds-icon name="chevron-up" slot="rightIcon"></sgds-icon></sgds-button>
-  <sgds-dropdown-item>Item 1</sgds-dropdown-item>
-  <sgds-dropdown-item>Item 2</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Item 1">Item 1</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Item 2">Item 2</sgds-dropdown-item>
 </sgds-dropdown>
 ```
 
@@ -140,6 +140,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 |---|---|---|---|
 | `disabled` | boolean | `false` | Prevents the item from being selected |
 | `active` | boolean | `false` | Marks the item as the current active selection |
+| `ariaLabel` | string | `""` | Forwards `aria-label` to the inner clickable element for accessibility |
 | `target` | string | — | `target` attribute forwarded to the slotted anchor |
 
 ## Slots
@@ -172,7 +173,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 **For AI agents**:
 1. Always place the toggler element in the `toggler` slot — it can be any element but `<sgds-button>` is typical.
 2. **Always add `ariaLabel`** to the `<sgds-button>` toggler — this is required for accessibility.
-3. For navigation, slot an `<a>` tag inside `<sgds-dropdown-item>`. For actions (no navigation), slot plain text directly.
-4. `sgds-select` fires on `<sgds-dropdown>` when any item is clicked — `event.detail.item` is the clicked `<sgds-dropdown-item>`.
-5. Disabled items do not fire `sgds-select`.
-6. For a three-dot overflow menu, use `<sgds-overflow-menu>` which is a pre-built convenience wrapper.
+3. **Always add `ariaLabel`** to each `<sgds-dropdown-item>` — this forwards `aria-label` to the inner clickable element for screen readers.
+4. For navigation, slot an `<a>` tag inside `<sgds-dropdown-item>`. For actions (no navigation), slot plain text directly.
+5. `sgds-select` fires on `<sgds-dropdown>` when any item is clicked — `event.detail.item` is the clicked `<sgds-dropdown-item>`.
+6. Disabled items do not fire `sgds-select`.
+7. For a three-dot overflow menu, use `<sgds-overflow-menu>` which is a pre-built convenience wrapper.
