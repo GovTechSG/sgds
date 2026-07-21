@@ -1192,6 +1192,22 @@ export const storyPosts: StoryPost[] = [
           "Based on the test results of Oobee, we modify and recommend the accessible way of using the components. For example, certain components require the ariaLabel property to be forwarded down to the web component's shadow DOM element in order to pass accessibility testing. Every component we build passes the accessibility testing pipeline before it is published.",
           "We then ensure our code documentation in Storybook and agent skills are compliant with the best recommendation by default.",
         ],
+
+        visual: {
+          src: "/stories/ariaLabel-prop-button.png",
+          alt: "SGDS button component with ariaLabel prop declaratively defined, forwarded into the shadow DOM button element",
+          caption: "The ariaLabel prop is declaratively defined on sgds-button and forwarded into its shadow DOM button element.",
+          width: 888,
+          height: 415,
+        },
+        visualAfterParagraph: 2,
+        bodyVisual: {
+          src: "/stories/web-component-oobee-pipeline.png",
+          alt: "Oobee A11y Scan CI pipeline results showing 47 pages scanned, 47 passing, 0 failing, with 634 total checks passed",
+          caption: "Our CI pipeline runs Oobee accessibility scans across all component pages before every release.",
+          width: 1701,
+          height: 1381,
+        },
       },
       {
         title: "It takes two hands to clap",
@@ -1203,7 +1219,7 @@ export const storyPosts: StoryPost[] = [
       {
         title: "An open invitation",
         paragraphs: [
-          "We are fully aware that we may not get it right every time for every user, so we invite everyone to participate in this ongoing effort by submitting accessibility improvements via issues, pull requests, or discussions if you encounter them with SGDS.",
+          "We are aware that we may not get it right every time for every user, so we invite everyone to participate in this ongoing effort by submitting accessibility improvements via issues, pull requests, or discussions if you encounter them with SGDS.",
         ],
       },
     ],
