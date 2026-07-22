@@ -242,17 +242,36 @@ const showCommunitySection = false;
     bottom: 0;
     left: 50%;
     margin-left: -50vw;
-    mask-image: url("/landing/background.svg");
-    mask-position: top center;
-    mask-repeat: repeat-y;
-    mask-size: 100% auto;
+    mask-composite: intersect;
+    mask-image:
+      url("/landing/background.svg"),
+      linear-gradient(
+        to bottom,
+        transparent 0,
+        black var(--sgds-dimension-320),
+        black calc(100% - var(--sgds-dimension-320)),
+        transparent 100%
+      );
+    mask-position: top center, top center;
+    mask-repeat: repeat-y, no-repeat;
+    mask-size: 100% auto, 100% 100%;
+    opacity: 0.5;
     pointer-events: none;
     position: absolute;
     width: 100vw;
-    -webkit-mask-image: url("/landing/background.svg");
-    -webkit-mask-position: top center;
-    -webkit-mask-repeat: repeat-y;
-    -webkit-mask-size: 100% auto;
+    -webkit-mask-composite: source-in;
+    -webkit-mask-image:
+      url("/landing/background.svg"),
+      linear-gradient(
+        to bottom,
+        transparent 0,
+        black var(--sgds-dimension-320),
+        black calc(100% - var(--sgds-dimension-320)),
+        transparent 100%
+      );
+    -webkit-mask-position: top center, top center;
+    -webkit-mask-repeat: repeat-y, no-repeat;
+    -webkit-mask-size: 100% auto, 100% 100%;
     z-index: 0;
   }
 

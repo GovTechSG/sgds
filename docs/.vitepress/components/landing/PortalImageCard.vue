@@ -66,7 +66,7 @@ function handleDisabledClick(e: MouseEvent) {
         >
       </div>
       <div class="sgds:flex sgds:items-center sgds:gap-component-xs sgds:w-full">
-        <h3 class="sgds:text-4 sgds:font-semibold sgds:leading-32 sgds:tracking-tight sgds:flex-1 sgds:mb-0 sgds:text-left">{{ item.title }}</h3>
+        <h4 class="sgds:flex-1 sgds:m-0 sgds:text-left sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default">{{ item.title }}</h4>
         <sgds-icon v-if="item.status === 'stable'" name="arrow-right" size="2-xl" class="sgds:text-default sgds:flex-shrink-0 sgds:ml-auto"></sgds-icon>
         <sgds-icon v-if="item.status === 'draft'" name="lock-fill" size="xl" class="sgds:text-default sgds:flex-shrink-0 sgds:ml-auto"></sgds-icon>
       </div>
