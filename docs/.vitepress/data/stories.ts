@@ -111,6 +111,11 @@ export type StoryPost = {
   posterSrc?: string;
   published: string;
   author: string;
+  authorHref?: string;
+  authorAvatarSrc?: string;
+  authorAvatarAlt?: string;
+  authorInitials?: string;
+  authors?: StoryAuthorFields[];
   intro: string[];
   sections: StorySection[];
   matrix?: StoryMatrix;
@@ -124,6 +129,33 @@ export type StoryPost = {
   relatedArticle?: StoryRelatedArticle;
   relatedArticles?: StoryRelatedArticle[];
 };
+
+export type StoryAuthorFields = Pick<StoryPost, "author"> &
+  Pick<
+    StoryPost,
+    "authorHref" | "authorAvatarSrc" | "authorAvatarAlt" | "authorInitials"
+  >;
+
+const storyAuthors = {
+  petrineTang: {
+    author: "Petrine Tang",
+    authorHref: "https://www.linkedin.com/in/petrine-tang-a17b6593/",
+    authorAvatarSrc: "/stories/petrine-tang-linkedin-avatar.jpg",
+    authorInitials: "PT",
+  },
+  luKheiChong: {
+    author: "Lu Khei Chong",
+    authorHref: "https://www.linkedin.com/in/lu-khei-chong-709544b6/?skipRedirect=true",
+    authorAvatarSrc: "/stories/lu-khei-chong-linkedin-avatar.jpg",
+    authorInitials: "LC",
+  },
+  andyTeng: {
+    author: "Andy Teng",
+    authorHref: "https://www.linkedin.com/in/anzteng/",
+    authorAvatarSrc: "/stories/andy-teng-linkedin-avatar.png",
+    authorInitials: "AT",
+  },
+} satisfies Record<string, StoryAuthorFields>;
 
 export type StoryDisclaimer = {
   title: string;
@@ -148,7 +180,7 @@ export const storyPosts: StoryPost[] = [
     videoSrc: "/stories/sgds-agent-skills-knowledge-flow.mp4",
     posterSrc: "/stories/introducing-sgds-agent-skills-thumbnail.png",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
     intro: [],
     sections: [
       {
@@ -363,7 +395,8 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/sgds-mistaken-for-thumbnail.png",
     imageAlt: "Layered translucent planes representing SGDS foundations",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
+    authors: [storyAuthors.petrineTang, storyAuthors.andyTeng],
     intro: [],
     sections: [
       {
@@ -503,7 +536,7 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/ai-scale-delivery-thumbnail.svg",
     imageAlt: "AI can scale delivery title on a soft gradient background",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
     intro: [],
     sections: [
       {
@@ -634,7 +667,7 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/learning-curve-before-ai-thumbnail.svg",
     imageAlt: "The learning curve before AI title on a soft gradient background",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
     intro: [],
     sections: [
       {
@@ -775,7 +808,7 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/introducing-sgds-agent-skills-thumbnail.svg",
     imageAlt: "AI prompt box connected to SGDS agent skill cards",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
     intro: [],
     sections: [
       {
@@ -923,7 +956,8 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/strengthening-system-thumbnail.svg",
     imageAlt: "Layered SGDS foundations and system priorities",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
+    authors: [storyAuthors.petrineTang, storyAuthors.andyTeng],
     intro: [],
     sections: [
       {
@@ -1089,7 +1123,7 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/design-code-speaking-thumbnail.svg",
     imageAlt: "SGDS mark on a soft gradient background",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
     intro: [],
     sections: [
       {
@@ -1179,7 +1213,7 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/accessibility-engineering-thumbnail.svg",
     imageAlt: "Universal accessibility symbol",
     published: "July 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.luKheiChong,
     intro: [],
     sections: [
       {
