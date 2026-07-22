@@ -59,43 +59,47 @@
             </p>
             <div
               v-if="displayAuthors.length"
-              class="sgds:mt-component-sm sgds:flex sgds:w-fit sgds:flex-wrap sgds:items-center sgds:gap-x-2 sgds:gap-y-1"
+              class="sgds:mt-component-sm sgds:flex sgds:w-fit sgds:flex-col sgds:items-start sgds:gap-y-2 sgds:md:flex-row sgds:md:items-center sgds:md:gap-x-2"
             >
-              <span
-                v-for="author in displayAuthors"
-                :key="author.authorHref ?? author.author"
-                class="sgds:flex sgds:items-center sgds:gap-1"
+              <div
+                class="sgds:flex sgds:flex-col sgds:items-start sgds:gap-y-1 sgds:md:flex-row sgds:md:flex-wrap sgds:md:items-center sgds:md:gap-x-2"
               >
-                <img
-                  v-if="author.authorAvatarSrc"
-                  :src="author.authorAvatarSrc"
-                  :alt="author.authorAvatarAlt ?? ''"
-                  width="32"
-                  height="32"
-                  class="sgds:block sgds:h-8 sgds:w-8 sgds:rounded-full sgds:object-cover sgds:object-top"
-                />
                 <span
-                  v-else
-                  class="sgds:inline-flex sgds:h-8 sgds:w-8 sgds:flex-none sgds:items-center sgds:justify-center sgds:rounded-full sgds:bg-surface-raised sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default"
-                  aria-hidden="true"
+                  v-for="author in displayAuthors"
+                  :key="author.authorHref ?? author.author"
+                  class="sgds:flex sgds:items-center sgds:gap-1"
                 >
-                  {{ author.authorInitials ?? authorInitials(author.author) }}
-                </span>
-                <sgds-link v-if="author.authorHref" size="sm" tone="neutral">
-                  <a :href="author.authorHref">
+                  <img
+                    v-if="author.authorAvatarSrc"
+                    :src="author.authorAvatarSrc"
+                    :alt="author.authorAvatarAlt ?? ''"
+                    width="32"
+                    height="32"
+                    class="sgds:block sgds:h-8 sgds:w-8 sgds:rounded-full sgds:object-cover sgds:object-top"
+                  />
+                  <span
+                    v-else
+                    class="sgds:inline-flex sgds:h-8 sgds:w-8 sgds:flex-none sgds:items-center sgds:justify-center sgds:rounded-full sgds:bg-surface-raised sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default"
+                    aria-hidden="true"
+                  >
+                    {{ author.authorInitials ?? authorInitials(author.author) }}
+                  </span>
+                  <sgds-link v-if="author.authorHref" size="sm" tone="neutral">
+                    <a :href="author.authorHref">
+                      {{ author.author }}
+                    </a>
+                  </sgds-link>
+                  <span
+                    v-else
+                    class="sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default"
+                  >
                     {{ author.author }}
-                  </a>
-                </sgds-link>
-                <span
-                  v-else
-                  class="sgds:text-label-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:text-label-default"
-                >
-                  {{ author.author }}
+                  </span>
                 </span>
-              </span>
+              </div>
               <span
                 aria-hidden="true"
-                class="sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                class="sgds:hidden sgds:text-label-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle sgds:md:inline"
               >
                 |
               </span>
