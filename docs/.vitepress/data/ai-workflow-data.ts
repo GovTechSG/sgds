@@ -111,7 +111,7 @@ export const figmaMakeKitBenefits: string[] = [
 ];
 
 export const figmaMakeKitImage: FigmaMakeKitImage = {
-  src: "/ai/sgds-make-kit-selector.png",
+  src: "/ai/sgds-make-kit-selector.webp",
   alt: "Figma Make Design system kits modal showing SGDS v3 Make Kit with an Add button.",
 };
 
