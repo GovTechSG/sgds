@@ -70,6 +70,16 @@ Use `<p>`.
 | Body Small Semibold | `sgds:text-body-sm sgds:font-semibold sgds:leading-2-xs sgds:tracking-normal sgds:mb-paragraph-lg` |
 | Body Small Regular | `sgds:text-body-sm sgds:leading-2-xs sgds:tracking-normal sgds:mb-paragraph-lg` |
 
+**Styling a list (ordered or unordered)?**
+
+Use `<ul>` or `<ol>`. Apply tokens to both the list element and each `<li>`. Use `sgds:my-list-*` for spacing between items; last item uses `sgds:mt-list-*` only.
+
+| Variant | Classes |
+|---------|---------|
+| List Large Regular | `sgds:text-list-lg sgds:font-regular sgds:leading-md sgds:tracking-normal sgds:my-list-lg` |
+| List Medium Regular *(default)* | `sgds:text-list-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:my-list-md` |
+| List Small Regular | `sgds:text-list-sm sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:my-list-sm` |
+
 **Styling a form label or UI label?**
 
 In form context: prefer the component's built-in `label` attribute. Use `<label>` only if the component has no built-in label support. Outside form context: use `<div>`.
