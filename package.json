@@ -32,7 +32,7 @@
 
 
 
-    "@govtechsg/sgds-web-component": "3.23.0",
+    "@govtechsg/sgds-web-component": "3.25.0",
 
     "gsap": "^3.13.0"
   }
