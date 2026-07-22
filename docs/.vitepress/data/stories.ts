@@ -1169,11 +1169,132 @@ export const storyPosts: StoryPost[] = [
     ctaLabel: "Explore AI guidance",
     ctaHref: "/ai/overview",
   },
+  {
+    key: "accessibility-from-an-engineering-perspective",
+    category: "Accessibility",
+    title: "Accessibility from an engineering perspective",
+    description:
+      "How SGDS builds accessibility into its engineering systems, from automated testing with Oobee to documentation and shared responsibility.",
+    href: "/stories/accessibility-from-an-engineering-perspective",
+    imageSrc: "/stories/accessibility-engineering-thumbnail.svg",
+    imageAlt: "Universal accessibility symbol",
+    published: "July 2026",
+    author: "Singapore Government Design System team",
+    intro: [],
+    sections: [
+      {
+        title: "Accessibility as a national priority",
+        paragraphs: [],
+        paragraphsHtml: [
+          "Improving accessibility for persons with disabilities (PWDs) is a key priority under the <a href=\"https://www.msf.gov.sg/docs/default-source/enabling-masterplan/emp2030-report-(final2).pdf?sfvrsn=8032eb4d_3\" target=\"_blank\" rel=\"noopener\">Enabling Masterplan 2030</a>. One of the goals is to enhance access to information and services for PWDs. As a design infrastructure and the building blocks of web applications, SGDS has a strong commitment to accessibility to ensure that all users, regardless of ability and device, have undeterred access to the websites and applications that are built with it.",
+        ],
+      },
+      {
+        title: "Built into our systems, not an afterthought",
+        paragraphs: [
+          "Accessibility is built into our systems, not an afterthought. Starting from development phase, we take every possible permutation of usage in a component and run them through Oobee, a software tester that runs accessibility tests, optimised for screen readers.",
+        ],
+        visual: {
+          src: "/stories/web-component-oobee-pipeline.webp",
+          alt: "Oobee A11y Scan CI pipeline results showing 47 pages scanned, 47 passing, 0 failing, with 634 total checks passed",
+          caption: "Our CI pipeline runs Oobee accessibility scans across all component pages before every release.",
+          width: 1701,
+          height: 1381,
+        },
+        visualAfterParagraph: 2,
+        subsections: [
+          {
+            paragraphs: [
+              "Based on the test results of Oobee, we modify and recommend the accessible way of using the components. For example, certain components require the ariaLabel property to be forwarded down to the web component's shadow DOM element in order to pass accessibility testing. Every component we build passes the accessibility testing pipeline before it is published.",
+            ],
+            visual: {
+              src: "/stories/ariaLabel-prop-button.webp",
+              alt: "SGDS button component with ariaLabel prop declaratively defined, forwarded into the shadow DOM button element",
+              caption: "The ariaLabel prop is declaratively defined on sgds-button and forwarded into its shadow DOM button element.",
+              width: 888,
+              height: 415,
+            },
+            visualAfterParagraph: 1,
+            postVisual: {
+              src: "/stories/button-shadow-dom-aria-label.webp",
+              alt: "Browser DevTools showing the aria-label attribute on the HTML button element inside the shadow DOM, forwarded from the ariaLabel prop",
+              caption: "The aria-label attribute is forwarded down to the native button element inside the shadow DOM.",
+              width: 1722,
+              height: 462,
+            },
+            postVisualParagraphs: [
+              "We then ensure our code documentation in Storybook and agent skills are compliant with the best recommendation by default.",
+            ],
+          },
+          {
+            paragraphs: [
+              "Our components are rendered on this site, where we also run Oobee accessibility testing to verify that it works for end users.",
+            ],
+            visual: {
+              src: "/stories/oobee-wcag-score.webp",
+              alt: "Oobee accessibility report for designsystem.tech.gov.sg showing a perfect WCAG score of 20 out of 20 based on automated checks",
+              caption: "Oobee accessibility report showing a perfect WCAG score for the SGDS documentation site.",
+              width: 1350,
+              height: 896,
+            },
+            visualAfterParagraph: 1,
+          },
+        ],
+      },
+      {
+        title: "How our architecture enforces it",
+        paragraphs: [],
+        paragraphsHtml: [
+          "The advantage of web components is the strictness of the shadow DOM. While users of other light DOM libraries like ShadCN or Mantine can freely modify a component's HTML semantics and ARIA attributes, the shadow DOM keeps these internals secure. This makes it straightforward for us to control accessibility within the shadow DOM.",
+          "However, we acknowledge that patterns in the light DOM are subjected to user modifications. While we cannot gate how developers use the component externally, we are dedicated to extend the accessibility testing to patterns, templates, and blocks. This includes covering various forms of component usage patterns as part of our roadmap.",
+          "For a deeper look at the engineering trade-offs behind our accessibility decisions, see our <a href=\"https://github.com/GovTechSG/sgds-web-component/blob/master/contributing/architecture-decision-record/declarative-aria-label-over-slot-inference.md\" target=\"_blank\" rel=\"noopener\">architecture decision record on declarative aria labels</a>.",
+        ],
+      },
+      {
+        title: "It takes two hands to clap",
+        paragraphs: [
+          "Using SGDS's building blocks does not magically make your entire application accessible. A website is made up of more than just components. For example, using the correct semantic HTML is crucial for accessibility but outside the control of the design system — such as when a developer places a div inside a list instead of using proper li elements.",
+          "It takes the joint responsibility and commitment of the design system and its users to ensure web pages are accessible.",
+        ],
+      },
+      {
+        title: "An open invitation",
+        paragraphs: [],
+        paragraphsHtml: [
+          "We are aware that we may not get it right every time for every user, so we invite everyone to participate in this ongoing effort by submitting accessibility improvements via <a href=\"https://github.com/GovTechSG/sgds-web-component/issues\" target=\"_blank\" rel=\"noopener\">GitHub issues</a> if you encounter them with SGDS.",
+        ],
+      },
+    ],
+    metrics: [
+      {
+        value: "100%",
+        title: "Components tested",
+        description:
+          "Every component passes through the accessibility testing pipeline before release.",
+      },
+      {
+        value: "Oobee",
+        title: "Automated testing",
+        description:
+          "Screen reader optimised accessibility testing across all usage permutations.",
+      },
+      {
+        value: "Shared",
+        title: "Responsibility",
+        description:
+          "Accessible services require commitment from both the design system and its users.",
+      },
+    ],
+    closing: [],
+    ctaLabel: "Report an accessibility issue",
+    ctaHref: "https://github.com/GovTechSG/sgds-web-component/issues",
+  },
 ];
 
 export const featuredStory = storyPosts[0];
 
 const storyOverviewOrder = [
+  "accessibility-from-an-engineering-perspective",
   "what-sgds-is-often-mistaken-for",
   "the-learning-curve-before-ai",
   "ai-can-scale-delivery-and-inconsistency",

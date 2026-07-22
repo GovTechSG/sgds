@@ -452,20 +452,18 @@ export const designTabs: GetStartedDesignTab[] = [
       sections: [
         {
           title: "Get started with SGDS v3",
-          description: "Agencies and vendors can start their design process using our public UI kits.",
+          description: "For agencies outside of GovTech, and vendors who do not have a GovTech email.",
           orderedItems: [
             {
-              title: "Access the UI kit",
-              description: "Visit the SGDS Figma Community Page.",
-              descriptionHtml:
-                'Visit the <a href="https://www.figma.com/community/search?resource_type=mixed&sort_by=relevancy&query=SGDS" target="_blank" rel="noopener noreferrer">SGDS Figma Community Page</a>.',
+              title: "UI kit",
+              description: "The SGDS v3 Web UI Kit for agencies outside GovTech is still a work in progress.",
             },
             {
-              title: "Duplicate to Drafts",
-              description: "Copy the latest SGDS v3 Web UI Kit to your own workspace.",
-              descriptionHtml: "Copy the latest <strong>SGDS v3 Web UI Kit</strong> to your own workspace.",
+              title: "Telegram",
+              description: "Join our Telegram channel to get updates on UI kit availability, news, and releases, or get help.",
+              descriptionHtml:
+                'Join our <a href="https://t.me/+RIkBEGx5R0VjOTM1" target="_blank" rel="noopener noreferrer">Telegram channel</a> to get updates on UI kit availability, news, and releases, or get help.',
             },
-            { title: "Stay updated", description: "Follow the community page to receive notifications on version updates and bug fixes." },
           ],
         },
         {
