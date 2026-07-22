@@ -1228,6 +1228,9 @@ export const storyPosts: StoryPost[] = [
         paragraphs: [
           "Accessibility is built into our systems, not an afterthought. Starting from development phase, we take every possible permutation of usage in a component and run them through Oobee, a software tester that runs accessibility tests, optimised for screen readers.",
         ],
+        paragraphsHtml: [
+          "Accessibility is built into our systems, not an afterthought. Starting from development phase, we take every possible permutation of usage in a component and run them through <a href=\"https://go.gov.sg/oobee\" target=\"_blank\" rel=\"noopener noreferrer\">Oobee</a>, a software tester that runs accessibility tests, optimised for screen readers.",
+        ],
         visual: {
           src: "/stories/web-component-oobee-pipeline.webp",
           alt: "Oobee A11y Scan CI pipeline results showing 47 pages scanned, 47 passing, 0 failing, with 634 total checks passed",
