@@ -1225,21 +1225,21 @@ export const storyPosts: StoryPost[] = [
       },
       {
         title: "Built into our systems, not an afterthought",
-        paragraphs: [
-          "Accessibility is built into our systems, not an afterthought. Starting from development phase, we take every possible permutation of usage in a component and run them through Oobee, a software tester that runs accessibility tests, optimised for screen readers.",
-        ],
-        paragraphsHtml: [
-          "Accessibility is built into our systems, not an afterthought. Starting from development phase, we take every possible permutation of usage in a component and run them through <a href=\"https://go.gov.sg/oobee\" target=\"_blank\" rel=\"noopener noreferrer\">Oobee</a>, a software tester that runs accessibility tests, optimised for screen readers.",
-        ],
-        visual: {
-          src: "/stories/web-component-oobee-pipeline.webp",
-          alt: "Oobee A11y Scan CI pipeline results showing 47 pages scanned, 47 passing, 0 failing, with 634 total checks passed",
-          caption: "Our CI pipeline runs Oobee accessibility scans across all component pages before every release.",
-          width: 1701,
-          height: 1381,
-        },
-        visualAfterParagraph: 2,
+        paragraphs: [],
         subsections: [
+          {
+            paragraphs: [
+              "Accessibility is built into our systems, not an afterthought. Starting from development phase, we take every possible permutation of usage in a component and run them through <a href=\"https://go.gov.sg/oobee\" target=\"_blank\" rel=\"noopener noreferrer\">Oobee</a>, a software tester that runs accessibility tests, optimised for screen readers.",
+            ],
+            visual: {
+              src: "/stories/web-component-oobee-pipeline.webp",
+              alt: "Oobee A11y Scan CI pipeline results showing 47 pages scanned, 47 passing, 0 failing, with 634 total checks passed",
+              caption: "Our CI pipeline runs Oobee accessibility scans across all component pages before every release.",
+              width: 1701,
+              height: 1381,
+            },
+            visualAfterParagraph: 1,
+          },
           {
             paragraphs: [
               "Based on the test results of Oobee, we modify and recommend the accessible way of using the components. For example, certain components require the ariaLabel property to be forwarded down to the web component's shadow DOM element in order to pass accessibility testing. Every component we build passes the accessibility testing pipeline before it is published.",
