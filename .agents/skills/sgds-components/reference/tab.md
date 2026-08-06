@@ -29,6 +29,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 - `variant` controls visual style: `underlined` (default) or `solid`. Set on `<sgds-tab-group>` — propagates to all child tabs.
 - `orientation` controls layout: `horizontal` (default) or `vertical`. Set on `<sgds-tab-group>`.
 - `density` controls spacing: `default` or `compact`. Set on `<sgds-tab-group>`.
+- `fullWidth` on `<sgds-tab-group>` will stretch tab group to fill the whole width of its container. Only works if `orientation` is set to `horizontal`.
 - Fires `sgds-tab-show` (with `event.detail.name`) when a tab is activated and `sgds-tab-hide` when it is deactivated.
 - No public methods on `<sgds-tab-group>`.
 
@@ -50,7 +51,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 
 - **`panel`/`name` matching**: the link between a tab and its panel is entirely string-based — a typo in either attribute results in a broken tab with no panel displayed. Always verify both values match exactly.
 - **`active` attribute**: sets the initially active tab at render time only; once the tab group is interactive, active state is managed internally and the `active` attribute is not reactively updated.
-- **`variant` and `density` propagation**: these are set on `<sgds-tab-group>` and automatically propagate to all child `<sgds-tab>` elements — do not set them on individual tabs.
+- **`variant`, `orientation`, `density`, and `fullWidth` propagation**: these are set on `<sgds-tab-group>` and automatically propagate to all child `<sgds-tab>` elements — do not set them on individual tabs.
 - **`sgds-tab-show` / `sgds-tab-hide`**: both events fire with `event.detail.name` (the panel name string) — use to lazy-load content, track analytics, or sync URL state with the active tab.
 - **No public methods**: programmatic tab activation is not supported via methods — manage active state by adding/removing the `active` attribute on a `<sgds-tab>` directly if needed.
 
@@ -73,6 +74,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 - Vertical side tabs → `orientation="vertical"`
 
 **Compact spacing?** → `density="compact"` on `<sgds-tab-group>`
+
+**Stretch to fill whole width of container?** → `fullWidth` on `<sgds-tab-group>`
 
 **Set initial active tab?** → Add `active` to the specific `<sgds-tab>`
 
@@ -112,6 +115,14 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
   <sgds-tab-panel name="section2">Section 2 content.</sgds-tab-panel>
 </sgds-tab-group>
 
+<!-- Full width -->
+<sgds-tab-group fullWidth>
+  <sgds-tab slot="nav" panel="tab1" ariaLabel="Section 1">Tab 1</sgds-tab>
+  <sgds-tab slot="nav" panel="tab2" ariaLabel="Section 2">Tab 2</sgds-tab>
+  <sgds-tab-panel name="tab1">Tab 1 content.</sgds-tab-panel>
+  <sgds-tab-panel name="tab2">Tab 2 content.</sgds-tab-panel>
+</sgds-tab-group>
+
 <!-- Listen to tab change -->
 <sgds-tab-group id="my-tabs">
   <sgds-tab slot="nav" panel="a" ariaLabel="Tab A">Tab A</sgds-tab>
@@ -136,6 +147,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `variant` | `underlined \| solid` | `underlined` | Visual style of the tab list |
 | `orientation` | `horizontal \| vertical` | `horizontal` | Layout direction of the tabs |
 | `density` | `default \| compact` | `default` | Spacing of the tab items |
+| `fullWidth` | boolean | `false` | Sets whether tab group stretches to fill the whole width of its container. Only works if when `orientation` is set to `horizontal` |
 
 ### `<sgds-tab>`
 
@@ -173,7 +185,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 **For AI agents**:
 1. `<sgds-tab>` must have `slot="nav"` and its `panel` must exactly match a `<sgds-tab-panel>`'s `name`.
 2. **Always add `ariaLabel`** to every `<sgds-tab>` — this is required for accessibility. The value should describe the tab's purpose (usually matches the visible label text).
-3. `variant`, `orientation`, and `density` are set on `<sgds-tab-group>` — they propagate automatically to all child `<sgds-tab>` elements.
+3. `variant`, `orientation`, `density`, and `fullWidth` are set on `<sgds-tab-group>` — they propagate automatically to all child `<sgds-tab>` elements.
 4. `sgds-tab-show` and `sgds-tab-hide` both carry `event.detail.name` which is the panel name string.
 5. To set the initially active tab, add `active` to one `<sgds-tab>` — if none are active, the first non-disabled tab is selected.
 6. There are no public methods on the tab group.
