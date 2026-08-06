@@ -3,6 +3,12 @@ import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const rootDir = resolve(__dirname, "..");
+
+// Set CRAWLEE_STORAGE_DIR so crawlee resolves storage paths correctly
+process.env.CRAWLEE_STORAGE_DIR = resolve(rootDir, "results");
+
 // Resolve playwright from oobee's nested node_modules
 const require = createRequire(import.meta.url);
 const oobeeDir = resolve(dirname(fileURLToPath(import.meta.url)), "../node_modules/@govtechsg/oobee");
@@ -10,9 +16,6 @@ const playwrightPath = require.resolve("playwright", { paths: [oobeeDir] });
 const pw = await import(playwrightPath);
 const chromium = pw.default?.chromium ?? pw.chromium;
 const oobeeInit = (await import("@govtechsg/oobee")).default;
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const rootDir = resolve(__dirname, "..");
 const PORT = process.env.A11Y_PORT || 4173;
 const ENTRY_URL = `http://localhost:${PORT}`;
 
