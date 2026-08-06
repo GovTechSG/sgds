@@ -111,6 +111,11 @@ export type StoryPost = {
   posterSrc?: string;
   published: string;
   author: string;
+  authorHref?: string;
+  authorAvatarSrc?: string;
+  authorAvatarAlt?: string;
+  authorInitials?: string;
+  authors?: StoryAuthorFields[];
   intro: string[];
   sections: StorySection[];
   matrix?: StoryMatrix;
@@ -124,6 +129,33 @@ export type StoryPost = {
   relatedArticle?: StoryRelatedArticle;
   relatedArticles?: StoryRelatedArticle[];
 };
+
+export type StoryAuthorFields = Pick<StoryPost, "author"> &
+  Pick<
+    StoryPost,
+    "authorHref" | "authorAvatarSrc" | "authorAvatarAlt" | "authorInitials"
+  >;
+
+const storyAuthors = {
+  petrineTang: {
+    author: "Petrine Tang",
+    authorHref: "https://www.linkedin.com/in/petrine-tang-a17b6593/",
+    authorAvatarSrc: "/stories/petrine-tang-linkedin-avatar.jpg",
+    authorInitials: "PT",
+  },
+  luKheiChong: {
+    author: "Lu Khei Chong",
+    authorHref: "https://www.linkedin.com/in/lu-khei-chong-709544b6/?skipRedirect=true",
+    authorAvatarSrc: "/stories/lu-khei-chong-linkedin-avatar.jpg",
+    authorInitials: "LC",
+  },
+  andyTeng: {
+    author: "Andy Teng",
+    authorHref: "https://www.linkedin.com/in/anzteng/",
+    authorAvatarSrc: "/stories/andy-teng-linkedin-avatar.png",
+    authorInitials: "AT",
+  },
+} satisfies Record<string, StoryAuthorFields>;
 
 export type StoryDisclaimer = {
   title: string;
@@ -148,7 +180,7 @@ export const storyPosts: StoryPost[] = [
     videoSrc: "/stories/sgds-agent-skills-knowledge-flow.mp4",
     posterSrc: "/stories/introducing-sgds-agent-skills-thumbnail.png",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
     intro: [],
     sections: [
       {
@@ -363,7 +395,8 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/sgds-mistaken-for-thumbnail.png",
     imageAlt: "Layered translucent planes representing SGDS foundations",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
+    authors: [storyAuthors.petrineTang, storyAuthors.andyTeng],
     intro: [],
     sections: [
       {
@@ -503,7 +536,7 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/ai-scale-delivery-thumbnail.svg",
     imageAlt: "AI can scale delivery title on a soft gradient background",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
     intro: [],
     sections: [
       {
@@ -634,7 +667,7 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/learning-curve-before-ai-thumbnail.svg",
     imageAlt: "The learning curve before AI title on a soft gradient background",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
     intro: [],
     sections: [
       {
@@ -775,7 +808,7 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/introducing-sgds-agent-skills-thumbnail.svg",
     imageAlt: "AI prompt box connected to SGDS agent skill cards",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
     intro: [],
     sections: [
       {
@@ -923,7 +956,8 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/strengthening-system-thumbnail.svg",
     imageAlt: "Layered SGDS foundations and system priorities",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
+    authors: [storyAuthors.petrineTang, storyAuthors.andyTeng],
     intro: [],
     sections: [
       {
@@ -1089,7 +1123,7 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/design-code-speaking-thumbnail.svg",
     imageAlt: "SGDS mark on a soft gradient background",
     published: "May 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.petrineTang,
     intro: [],
     sections: [
       {
@@ -1179,7 +1213,7 @@ export const storyPosts: StoryPost[] = [
     imageSrc: "/stories/accessibility-engineering-thumbnail.svg",
     imageAlt: "Universal accessibility symbol",
     published: "July 2026",
-    author: "Singapore Government Design System team",
+    ...storyAuthors.luKheiChong,
     intro: [],
     sections: [
       {
@@ -1191,18 +1225,21 @@ export const storyPosts: StoryPost[] = [
       },
       {
         title: "Built into our systems, not an afterthought",
-        paragraphs: [
-          "Accessibility is built into our systems, not an afterthought. Starting from development phase, we take every possible permutation of usage in a component and run them through Oobee, a software tester that runs accessibility tests, optimised for screen readers.",
-        ],
-        visual: {
-          src: "/stories/web-component-oobee-pipeline.webp",
-          alt: "Oobee A11y Scan CI pipeline results showing 47 pages scanned, 47 passing, 0 failing, with 634 total checks passed",
-          caption: "Our CI pipeline runs Oobee accessibility scans across all component pages before every release.",
-          width: 1701,
-          height: 1381,
-        },
-        visualAfterParagraph: 2,
+        paragraphs: [],
         subsections: [
+          {
+            paragraphs: [
+              "Accessibility is built into our systems, not an afterthought. Starting from development phase, we take every possible permutation of usage in a component and run them through <a href=\"https://go.gov.sg/oobee\" target=\"_blank\" rel=\"noopener noreferrer\">Oobee</a>, a software tester that runs accessibility tests, optimised for screen readers.",
+            ],
+            visual: {
+              src: "/stories/web-component-oobee-pipeline.webp",
+              alt: "Oobee A11y Scan CI pipeline results showing 47 pages scanned, 47 passing, 0 failing, with 634 total checks passed",
+              caption: "Our CI pipeline runs Oobee accessibility scans across all component pages before every release.",
+              width: 1701,
+              height: 1381,
+            },
+            visualAfterParagraph: 1,
+          },
           {
             paragraphs: [
               "Based on the test results of Oobee, we modify and recommend the accessible way of using the components. For example, certain components require the ariaLabel property to be forwarded down to the web component's shadow DOM element in order to pass accessibility testing. Every component we build passes the accessibility testing pipeline before it is published.",

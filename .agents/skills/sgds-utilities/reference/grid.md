@@ -35,12 +35,13 @@ The grid expands from 4 columns (mobile) → 8 columns (small/medium) → 12 col
 
 | Breakpoint | Min width | Class prefix | Columns | Gutter |
 |------------|-----------|--------------|---------|--------|
-| Extra Small (default) | — | `.sgds-col-*` | 4 | 16px |
-| Small | 512px | `.sgds-col-sm-*` | 8 | 16px |
-| Medium | 768px | `.sgds-col-md-*` | 8 | 24px |
-| Large | 1024px | `.sgds-col-lg-*` | 12 | 24px |
-| Extra Large | 1280px | `.sgds-col-xl-*` | 12 | 32px |
-| Extra Extra Large | 1440px | `.sgds-col-2-xl-*` | 12 | 32px |
+| Extra Small (default) | — | `.sgds-col-*` | 4 | `var(--sgds-layout-gap-md)` |
+| Small | 512px | `.sgds-col-sm-*` | 8 | `var(--sgds-layout-gap-md)` |
+| Medium | 768px | `.sgds-col-md-*` | 8 | `var(--sgds-layout-gap-md)` |
+| Large | 1024px | `.sgds-col-lg-*` | 12 | `var(--sgds-layout-gap-md)` |
+| Extra Large | 1280px | `.sgds-col-xl-*` | 12 | `var(--sgds-layout-gap-md)` |
+| Extra Extra Large | 1440px | `.sgds-col-2-xl-*` | 12 | `var(--sgds-layout-gap-md)` |
+| 3-XL (sidebar only) | 1680px | `.sgds-col-3-xl-*` | 12 | `var(--sgds-layout-gap-md)` |
 
 Classes are mobile-first additive — define the XS span first, then override at larger breakpoints.
 
@@ -89,12 +90,17 @@ Use for every page that does **not** have a persistent sidebar.
 
 Use when content sits alongside a sticky sidebar (i.e. the Sidebar App Layout from the [Application Shell](../../sgds-blocks/reference/application-shell.md)). Narrower max-widths preserve readable line lengths.
 
+The gutter is 16px (`--sgds-gap-md`) at XS/SM and 24px (`--sgds-gap-xl`) from MD onwards.
+
 | Breakpoint | Max width |
 |------------|-----------|
-| MD (768px+) | `calc(100% - 96px)` — 48px margins |
-| LG (1024px+) | 840px |
-| XL (1280px+) | 888px |
-| 2-XL (1440px+) | 1024px |
+| XS (default) | `calc(100% - 40px)` — 20px margins |
+| SM (512px+) | `calc(100% - 48px)` — 24px margins |
+| MD (768px+) | auto — 48px margins |
+| LG (1024px+) | auto — 48px margins |
+| XL (1280px+) | auto — 48px margins |
+| 2-XL (1440px+) | auto — 48px margins |
+| 3-XL (1680px+) | 1296px |
 
 ### Sidebar Behaviour
 
@@ -146,6 +152,12 @@ The sidebar pushes the main content area by offsetting it horizontally. XS and S
 .sgds-col-2-xl-1 through .sgds-col-2-xl-12
 ```
 
+### 3-XL — 12 columns (1680px+, sidebar layouts only)
+
+```
+.sgds-col-3-xl-1 through .sgds-col-3-xl-12
+```
+
 ---
 
 ## Column Combinations (12-column grid)
@@ -175,6 +187,7 @@ Horizontally centres a column within the grid without offset wrappers. Only even
 | `.sgds-col-lg-center-2` through `.sgds-col-lg-center-10` | LG (12-col) | 2, 4, 6, 8, 10 of 12 |
 | `.sgds-col-xl-center-2` through `.sgds-col-xl-center-10` | XL (12-col) | 2, 4, 6, 8, 10 of 12 |
 | `.sgds-col-2-xl-center-2` through `.sgds-col-2-xl-center-10` | 2-XL (12-col) | 2, 4, 6, 8, 10 of 12 |
+| `.sgds-col-3-xl-center-2` through `.sgds-col-3-xl-center-10` | 3-XL (12-col, sidebar only) | 2, 4, 6, 8, 10 of 12 |
 
 ```html
 <!-- Centred 8/12 block on large screens -->
@@ -201,6 +214,7 @@ Hide a column at a specific breakpoint. Classes cascade: hiding at XS is reveale
 | `.sgds-col-lg-none` | LG (1024px+) |
 | `.sgds-col-xl-none` | XL (1280px+) |
 | `.sgds-col-2-xl-none` | 2-XL (1440px+) |
+| `.sgds-col-3-xl-none` | 3-XL (1680px+, sidebar only) |
 
 ```html
 <!-- Show on desktop only -->
