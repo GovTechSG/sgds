@@ -11631,7 +11631,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Invalid",
             value: "invalid",
-            markup: `<sgds-quantity-toggle label="Quantity" value="6" min="0" max="5" hasFeedback invalid invalidFeedback="Enter a quantity between 0 and 5"></sgds-quantity-toggle>`,
+            markup: `<sgds-quantity-toggle label="Quantity" value="6" min="0" max="5" hasFeedback="both" invalid invalidFeedback="Value must be 0 to 5"></sgds-quantity-toggle>`,
             description:
               "Shows the invalid state with the supplied `invalidFeedback` message.",
           },
@@ -11647,7 +11647,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Enabled",
             value: "enabled",
-            markup: `<sgds-quantity-toggle label="Quantity" value="6" min="0" max="5" hasFeedback invalid invalidFeedback="Enter a quantity between 0 and 5"></sgds-quantity-toggle>`,
+            markup: `<sgds-quantity-toggle label="Quantity" value="6" min="0" max="5" hasFeedback="both" invalid invalidFeedback="Value must be 0 to 5"></sgds-quantity-toggle>`,
             description:
               "Built-in validation runs on form submission and emits `sgds-invalid` or `sgds-valid` events. Error feedback appears when the field is invalid.",
           },
@@ -11726,7 +11726,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           title: "Surface invalid feedback inline",
           description: "When the value falls outside the allowed range, set `hasFeedback` and `invalid` with a clear `invalidFeedback`.",
           tone: "do",
-          markup: `<sgds-quantity-toggle label="Tickets" value="6" min="1" max="5" hasFeedback invalid invalidFeedback="Enter a quantity between 1 and 5"></sgds-quantity-toggle>`,
+          markup: `<sgds-quantity-toggle label="Tickets" value="6" min="1" max="5" hasFeedback="both" invalid invalidFeedback="Value must be 1 to 5"></sgds-quantity-toggle>`,
         },
         {
           title: "Do not remove submitted values unintentionally",
