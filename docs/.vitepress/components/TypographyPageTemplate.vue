@@ -113,7 +113,6 @@ const { stackedExamples = false } = defineProps<{
 .typography-page-template__section h4,
 .typography-page-template__section p,
 .typography-page-template__section ol,
-.typography-page-template__section li,
 .typography-page-template__copy-pane h2,
 .typography-page-template__copy-pane h3,
 .typography-page-template__copy-pane h4,
@@ -123,8 +122,7 @@ const { stackedExamples = false } = defineProps<{
 }
 
 .typography-page-template__section p,
-.typography-page-template__section ol,
-.typography-page-template__section li {
+.typography-page-template__section ol {
   color: var(--sgds-body-color-default);
 }
 

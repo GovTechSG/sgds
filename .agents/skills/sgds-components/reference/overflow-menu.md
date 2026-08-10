@@ -53,23 +53,23 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 ```html
 <!-- Basic overflow menu -->
 <sgds-overflow-menu>
-  <sgds-dropdown-item>View</sgds-dropdown-item>
-  <sgds-dropdown-item>Edit</sgds-dropdown-item>
-  <sgds-dropdown-item>Delete</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="View">View</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Edit">Edit</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Delete">Delete</sgds-dropdown-item>
 </sgds-overflow-menu>
 
 <!-- Small size for compact layouts -->
 <sgds-overflow-menu size="sm">
-  <sgds-dropdown-item>View</sgds-dropdown-item>
-  <sgds-dropdown-item>Edit</sgds-dropdown-item>
-  <sgds-dropdown-item disabled>Archive</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="View">View</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Edit">Edit</sgds-dropdown-item>
+  <sgds-dropdown-item disabled ariaLabel="Archive">Archive</sgds-dropdown-item>
 </sgds-overflow-menu>
 
 <!-- React to selection -->
 <sgds-overflow-menu id="row-menu">
-  <sgds-dropdown-item>View details</sgds-dropdown-item>
-  <sgds-dropdown-item>Edit</sgds-dropdown-item>
-  <sgds-dropdown-item>Delete</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="View details">View details</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Edit">Edit</sgds-dropdown-item>
+  <sgds-dropdown-item ariaLabel="Delete">Delete</sgds-dropdown-item>
 </sgds-overflow-menu>
 
 <script>
@@ -85,8 +85,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
   <td>Active</td>
   <td>
     <sgds-overflow-menu size="sm">
-      <sgds-dropdown-item>Edit</sgds-dropdown-item>
-      <sgds-dropdown-item>Delete</sgds-dropdown-item>
+      <sgds-dropdown-item ariaLabel="Edit">Edit</sgds-dropdown-item>
+      <sgds-dropdown-item ariaLabel="Delete">Delete</sgds-dropdown-item>
     </sgds-overflow-menu>
   </td>
 </tr>
@@ -119,6 +119,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 **For AI agents**:
 1. `<sgds-overflow-menu>` is a convenience wrapper — for a custom toggler or labeled button use `<sgds-dropdown>` instead.
 2. List items must be `<sgds-dropdown-item>` elements in the default slot.
-3. `sgds-select` fires when any item is clicked — `event.detail.item` is the clicked `<sgds-dropdown-item>`.
-4. For navigation items, slot `<a>` tags inside `<sgds-dropdown-item>`; for action items, slot plain text directly.
-5. There are no public methods — the menu is toggled entirely via the built-in icon button.
+3. **Always add `ariaLabel`** to each `<sgds-dropdown-item>` — this forwards `aria-label` to the inner clickable element for screen readers.
+4. `sgds-select` fires when any item is clicked — `event.detail.item` is the clicked `<sgds-dropdown-item>`.
+5. For navigation items, slot `<a>` tags inside `<sgds-dropdown-item>`; for action items, slot plain text directly.
+6. There are no public methods — the menu is toggled entirely via the built-in icon button.

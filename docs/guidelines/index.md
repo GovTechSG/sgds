@@ -13,10 +13,11 @@ const currentPhase = 99;
 
 <div :class="$style.container" class="sgds-grid">
   <PortalImageCard
-    v-for="guideline in guidelines"
+    v-for="(guideline, index) in guidelines"
     :key="guideline.id"
     :item="guideline"
     :currentPhase
+    :fetchpriority="index === 0 ? 'high' : undefined"
     class="sgds-col-4"
   />
 </div>

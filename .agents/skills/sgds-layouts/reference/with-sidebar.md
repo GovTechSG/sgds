@@ -6,11 +6,15 @@ With Sidebar layouts are for dashboards, internal tools, admin portals, and tran
 
 | Breakpoint | `.sgds-container-sidebar` max-width |
 |---|---|
-| < 768px | `100%` |
-| >= 768px (md) | `calc(100% - 96px)` |
-| >= 1024px (lg) | `840px` |
-| >= 1280px (xl) | `888px` |
-| >= 1440px (2xl) | `1024px` |
+| < 512px | `calc(100% - 40px)` |
+| >= 512px (sm) | `calc(100% - 48px)` |
+| >= 768px (md) | `auto` (48px margins) |
+| >= 1024px (lg) | `auto` (48px margins) |
+| >= 1280px (xl) | `auto` (48px margins) |
+| >= 1440px (2xl) | `auto` (48px margins) |
+| >= 1680px (3xl) | `1296px` |
+
+**Grid gutter:** `.sgds-grid` inside `.sgds-container-sidebar` uses `var(--sgds-gap-md)` (16px) at XS/SM and `var(--sgds-gap-xl)` (24px) from MD (768px) onwards. No gap utility class is needed.
 
 ## Common Structure
 
@@ -28,7 +32,9 @@ All With Sidebar layouts share this viewport-contained structure:
     <sgds-sidebar>...</sgds-sidebar>
     <div class="sgds:flex sgds:flex-col sgds:flex-1 sgds:overflow-y-auto">
       <div class="sgds-container-sidebar sgds:py-layout-md sgds:flex-1">
-        <!-- Content goes here -->
+        <div class="sgds-grid">
+          <!-- Content goes here using sgds-col-* classes -->
+        </div>
       </div>
       <sgds-footer tone="neutral" layout="sidebar"></sgds-footer>
     </div>
@@ -47,7 +53,7 @@ All With Sidebar layouts share this viewport-contained structure:
 
 ## Default
 
-Basic sidebar layout with a single content area.
+Basic sidebar layout with a single full-width content area. Uses `.sgds-grid` with a 12-column span.
 
 ```
 +----------------------------------------------+
@@ -55,14 +61,16 @@ Basic sidebar layout with a single content area.
 +----------------------------------------------+
 | sgds-mainnav (fluid)                         |
 +----------+-----------------------------------+
-|          |                                   |
-| sgds-    |  .sgds-container-sidebar          |
-| sidebar  |  [  main content area  ]          |
+|          |  .sgds-container-sidebar           |
+| sgds-    |  .sgds-grid                        |
+| sidebar  |  [  main content col-12  ]         |
 |          |                                   |
 |          +-----------------------------------+
 |          | sgds-footer (neutral, sidebar)    |
 +----------+-----------------------------------+
 ```
+
+Grid classes: `sgds-col-4 sgds-col-sm-8 sgds-col-lg-12` (full width at all breakpoints)
 
 ### Raw Content Link
 
@@ -134,7 +142,7 @@ Grid classes: `sgds-col-8 sgds-col-sm-8 sgds-col-lg-8` (main) + `sgds-col-4 sgds
 
 ## Overlay
 
-Collapsible overlay sidebar with a breadcrumb bar and toggle button. The sidebar uses `variant="overlay"` and sits above the content rather than beside it.
+Collapsible overlay sidebar with a breadcrumb bar and toggle button. The sidebar uses `variant="overlay"` and sits above the content rather than beside it. Uses `.sgds-grid` with a 12-column span.
 
 ```
 +----------------------------------------------+
@@ -145,18 +153,21 @@ Collapsible overlay sidebar with a breadcrumb bar and toggle button. The sidebar
 | [toggle] breadcrumb bar (border-b)           |
 +----------------------------------------------+
 |  (overlay)  |                                |
-|  sgds-      |  .sgds-container               |
-|  sidebar    |  [  main content area  ]       |
+|  sgds-      |  .sgds-container-sidebar        |
+|  sidebar    |  .sgds-grid                     |
+|             |  [  main content col-12  ]      |
 |             |                                |
 |             +--------------------------------+
 |             | sgds-footer (neutral)          |
 +-------------+--------------------------------+
 ```
 
+Grid classes: `sgds-col-4 sgds-col-sm-8 sgds-col-lg-12` (full width at all breakpoints)
+
 **Key differences from other sidebar layouts:**
 - Sidebar uses `variant="overlay"` and `scrim` attribute
 - Breadcrumb bar includes an `<sgds-icon-button>` toggler with `data-sidebar-toggler="true"`
-- Content uses `.sgds-container` (not `.sgds-container-sidebar`) since the sidebar overlays
+- Content uses `.sgds-container-sidebar` with `.sgds-grid` for consistent grid gutter
 - Footer uses `tone="neutral"` without `layout="sidebar"`
 - Root wrapper includes `sgds:relative` for overlay positioning
 
@@ -170,7 +181,7 @@ Collapsible overlay sidebar with a breadcrumb bar and toggle button. The sidebar
 
 ## Split
 
-Sidebar layout with two equal content panels side by side.
+Sidebar layout with two equal content panels side by side. Uses `.sgds-grid` with a 6/6 column split.
 
 ```
 +----------------------------------------------+
@@ -179,16 +190,17 @@ Sidebar layout with two equal content panels side by side.
 | sgds-mainnav (fluid)                         |
 +----------+-----------------------------------+
 |          |  .sgds-container-sidebar           |
-| sgds-    |  +-------------+------------+     |
-| sidebar  |  |   panel 1   |  panel 2   |     |
-|          |  |   flex-1    |  flex-1    |     |
+| sgds-    |  .sgds-grid                        |
+| sidebar  |  +-------------+------------+     |
+|          |  |   panel 1   |  panel 2   |     |
+|          |  |   col-6     |  col-6     |     |
 |          |  +-------------+------------+     |
 |          +-----------------------------------+
 |          | sgds-footer (neutral, sidebar)    |
 +----------+-----------------------------------+
 ```
 
-Uses `sgds:flex sgds:gap-layout-md` with two `sgds:flex-1` children inside `.sgds-container-sidebar`.
+Grid classes: `sgds-col-4 sgds-col-sm-8 sgds-col-lg-6` (each panel stacks full-width on XS/SM, splits 6-6 on LG+)
 
 ### Raw Content Link
 

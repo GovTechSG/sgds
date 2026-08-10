@@ -1,32 +1,132 @@
 {
-  "combo-box": [
+  "card": [
     {
-      "Date": "06 Jul 2026",
-      "Version": "v3.23.0",
-      "Description": "Added new scroll-end event when menu reaches the end in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/721\" target=\"_blank\" rel=\"noopener noreferrer\">#721</a>."
+      "Date": "21 Jul 2026",
+      "Version": "v3.25.0",
+      "Description": "Implement no padding prop in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/760\" target=\"_blank\" rel=\"noopener noreferrer\">#760</a>."
     },
     {
       "Date": "06 Jul 2026",
       "Version": "v3.23.0",
-      "Description": "Correct inaccurate info on skills in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/731\" target=\"_blank\" rel=\"noopener noreferrer\">#731</a>."
+      "Description": "Prevent slot and tabindex attributes from being forwarded to shadow anchor in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/725\" target=\"_blank\" rel=\"noopener noreferrer\">#725</a>."
+    },
+    {
+      "Date": "24 Jun 2026",
+      "Version": "v3.22.1",
+      "Description": "Only stretchedLink cards get hover effects in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/718\" target=\"_blank\" rel=\"noopener noreferrer\">#718</a>."
+    },
+    {
+      "Date": "13 May 2026",
+      "Version": "v3.19.0",
+      "Description": "Replace typography css variables and update the gaps in the card in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/641\" target=\"_blank\" rel=\"noopener noreferrer\">#641</a>."
+    },
+    {
+      "Date": "29 Apr 2026",
+      "Version": "v3.18.0",
+      "Description": "Stretched link cards forward anchor tag's attribute in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/628\" target=\"_blank\" rel=\"noopener noreferrer\">#628</a>."
+    }
+  ],
+  "button": [
+    {
+      "Date": "21 Jul 2026",
+      "Version": "v3.25.0",
+      "Description": "Remove mouse focus state in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/767\" target=\"_blank\" rel=\"noopener noreferrer\">#767</a>."
     },
     {
       "Date": "23 Jun 2026",
       "Version": "v3.22.0",
-      "Description": "Added autocomplete prop in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/710\" target=\"_blank\" rel=\"noopener noreferrer\">#710</a>."
+      "Description": "Value and name prop for form use case in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/704\" target=\"_blank\" rel=\"noopener noreferrer\">#704</a>."
     },
     {
-      "Date": "09 Jun 2026",
-      "Version": "v3.21.1",
-      "Description": "Input prematurely expand in height for multiselect in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/695\" target=\"_blank\" rel=\"noopener noreferrer\">#695</a>."
+      "Date": "04 May 2026",
+      "Version": "v3.18.1",
+      "Description": "Replace typography css variables in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/638\" target=\"_blank\" rel=\"noopener noreferrer\">#638</a>."
     },
     {
-      "Date": "02 Jun 2026",
-      "Version": "v3.20.0",
-      "Description": "Support custom validation with noValidate in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/646\" target=\"_blank\" rel=\"noopener noreferrer\">#646</a>."
+      "Date": "18 Dec 2025",
+      "Version": "v3.6.0",
+      "Description": "Add default button color to prevent initial load of wrong color in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/479\" target=\"_blank\" rel=\"noopener noreferrer\">#479</a>."
+    },
+    {
+      "Date": "12 Nov 2025",
+      "Version": "v3.5.6",
+      "Description": "Feat/button spinner icon button in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/461\" target=\"_blank\" rel=\"noopener noreferrer\">#461</a>."
+    }
+  ],
+  "sidebar": [
+    {
+      "Date": "21 Jul 2026",
+      "Version": "v3.25.0",
+      "Description": "Fix/update sidebar in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/774\" target=\"_blank\" rel=\"noopener noreferrer\">#774</a>."
+    },
+    {
+      "Date": "23 Jun 2026",
+      "Version": "v3.22.0",
+      "Description": "Accessibility violations from oobee testing in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/707\" target=\"_blank\" rel=\"noopener noreferrer\">#707</a>."
+    },
+    {
+      "Date": "29 Apr 2026",
+      "Version": "v3.18.0",
+      "Description": "Sidebar and sidenav to be on new z index sticky layer in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/612\" target=\"_blank\" rel=\"noopener noreferrer\">#612</a>."
+    },
+    {
+      "Date": "17 Apr 2026",
+      "Version": "v3.17.0",
+      "Description": "New sidebar component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/570\" target=\"_blank\" rel=\"noopener noreferrer\">#570</a>."
+    }
+  ],
+  "pagination": [
+    {
+      "Date": "21 Jul 2026",
+      "Version": "v3.25.0",
+      "Description": "Remove mouse focus state in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/771\" target=\"_blank\" rel=\"noopener noreferrer\">#771</a>."
+    },
+    {
+      "Date": "08 Jun 2026",
+      "Version": "v3.21.0",
+      "Description": "Passes oobee in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/690\" target=\"_blank\" rel=\"noopener noreferrer\">#690</a>."
+    },
+    {
+      "Date": "12 Mar 2026",
+      "Version": "v3.14.0",
+      "Description": "Active color and button color in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/567\" target=\"_blank\" rel=\"noopener noreferrer\">#567</a>."
+    },
+    {
+      "Date": "04 Sept 2025",
+      "Version": "v3.3.2",
+      "Description": "Next button to disable where pages length is less than 2 in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/370\" target=\"_blank\" rel=\"noopener noreferrer\">#370</a>."
+    }
+  ],
+  "close-button": [
+    {
+      "Date": "21 Jul 2026",
+      "Version": "v3.25.0",
+      "Description": "Remove mouse focus state in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/769\" target=\"_blank\" rel=\"noopener noreferrer\">#769</a>."
+    },
+    {
+      "Date": "13 May 2026",
+      "Version": "v3.19.0",
+      "Description": "Remove unused style and set close icon size to be sm in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/645\" target=\"_blank\" rel=\"noopener noreferrer\">#645</a>."
+    },
+    {
+      "Date": "18 Dec 2025",
+      "Version": "v3.6.0",
+      "Description": "New close button component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/493\" target=\"_blank\" rel=\"noopener noreferrer\">#493</a>."
+    }
+  ],
+  "sidenav": [
+    {
+      "Date": "21 Jul 2026",
+      "Version": "v3.25.0",
+      "Description": "Remove mouse focus state in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/776\" target=\"_blank\" rel=\"noopener noreferrer\">#776</a>."
     }
   ],
   "checkbox": [
+    {
+      "Date": "10 Jul 2026",
+      "Version": "v3.24.0",
+      "Description": "Prevent check input from squshing in space constraints in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/759\" target=\"_blank\" rel=\"noopener noreferrer\">#759</a>."
+    },
     {
       "Date": "06 Jul 2026",
       "Version": "v3.23.0",
@@ -46,11 +146,60 @@
       "Date": "17 Oct 2025",
       "Version": "v3.5.4",
       "Description": "Ensure checkbox box remains square and not compressed by label text in."
+    }
+  ],
+  "combo-box": [
+    {
+      "Date": "10 Jul 2026",
+      "Version": "v3.24.0",
+      "Description": "Programatic value change should not trigger sgds-change in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/741\" target=\"_blank\" rel=\"noopener noreferrer\">#741</a>."
     },
     {
-      "Date": "28 Jul 2025",
-      "Version": "v3.1.0",
-      "Description": "SgdsCheckboxGroup becomes a form component for multi selection checkbox <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/254\" target=\"_blank\" rel=\"noopener noreferrer\">#254</a>."
+      "Date": "06 Jul 2026",
+      "Version": "v3.23.0",
+      "Description": "Added new scroll-end event when menu reaches the end in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/721\" target=\"_blank\" rel=\"noopener noreferrer\">#721</a>."
+    },
+    {
+      "Date": "06 Jul 2026",
+      "Version": "v3.23.0",
+      "Description": "Correct inaccurate info on skills in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/731\" target=\"_blank\" rel=\"noopener noreferrer\">#731</a>."
+    },
+    {
+      "Date": "23 Jun 2026",
+      "Version": "v3.22.0",
+      "Description": "Added autocomplete prop in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/710\" target=\"_blank\" rel=\"noopener noreferrer\">#710</a>."
+    },
+    {
+      "Date": "09 Jun 2026",
+      "Version": "v3.21.1",
+      "Description": "Input prematurely expand in height for multiselect in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/695\" target=\"_blank\" rel=\"noopener noreferrer\">#695</a>."
+    }
+  ],
+  "icon": [
+    {
+      "Date": "10 Jul 2026",
+      "Version": "v3.24.0",
+      "Description": "Lazy-load icons via dynamic import to reduce upfront … in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/749\" target=\"_blank\" rel=\"noopener noreferrer\">#749</a>."
+    },
+    {
+      "Date": "08 Jun 2026",
+      "Version": "v3.21.0",
+      "Description": "Oobee testing support, new ariaLabel for Icon in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/687\" target=\"_blank\" rel=\"noopener noreferrer\">#687</a>."
+    },
+    {
+      "Date": "29 Aug 2025",
+      "Version": "v3.3.0",
+      "Description": "Styling update to align icon and text at top instead of center in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/311\" target=\"_blank\" rel=\"noopener noreferrer\">#311</a>."
+    },
+    {
+      "Date": "29 Aug 2025",
+      "Version": "v3.3.0",
+      "Description": "New trailing icon slot, action slot and unmask password action feature when `type=password` in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/299\" target=\"_blank\" rel=\"noopener noreferrer\">#299</a>."
+    },
+    {
+      "Date": "31 Jul 2025",
+      "Version": "v3.1.1",
+      "Description": "Update icon component for SSR support in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/265\" target=\"_blank\" rel=\"noopener noreferrer\">#265</a>."
     }
   ],
   "select": [
@@ -107,60 +256,6 @@
       "Description": "New size prop and footer slot in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/380\" target=\"_blank\" rel=\"noopener noreferrer\">#380</a>."
     }
   ],
-  "card": [
-    {
-      "Date": "06 Jul 2026",
-      "Version": "v3.23.0",
-      "Description": "Prevent slot and tabindex attributes from being forwarded to shadow anchor in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/725\" target=\"_blank\" rel=\"noopener noreferrer\">#725</a>."
-    },
-    {
-      "Date": "24 Jun 2026",
-      "Version": "v3.22.1",
-      "Description": "Only stretchedLink cards get hover effects in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/718\" target=\"_blank\" rel=\"noopener noreferrer\">#718</a>."
-    },
-    {
-      "Date": "13 May 2026",
-      "Version": "v3.19.0",
-      "Description": "Replace typography css variables and update the gaps in the card in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/641\" target=\"_blank\" rel=\"noopener noreferrer\">#641</a>."
-    },
-    {
-      "Date": "29 Apr 2026",
-      "Version": "v3.18.0",
-      "Description": "Stretched link cards forward anchor tag's attribute in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/628\" target=\"_blank\" rel=\"noopener noreferrer\">#628</a>."
-    },
-    {
-      "Date": "02 Mar 2026",
-      "Version": "v3.12.0",
-      "Description": "Card should have hover effects in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/551\" target=\"_blank\" rel=\"noopener noreferrer\">#551</a>."
-    }
-  ],
-  "button": [
-    {
-      "Date": "23 Jun 2026",
-      "Version": "v3.22.0",
-      "Description": "Value and name prop for form use case in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/704\" target=\"_blank\" rel=\"noopener noreferrer\">#704</a>."
-    },
-    {
-      "Date": "04 May 2026",
-      "Version": "v3.18.1",
-      "Description": "Replace typography css variables in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/638\" target=\"_blank\" rel=\"noopener noreferrer\">#638</a>."
-    },
-    {
-      "Date": "18 Dec 2025",
-      "Version": "v3.6.0",
-      "Description": "Add default button color to prevent initial load of wrong color in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/479\" target=\"_blank\" rel=\"noopener noreferrer\">#479</a>."
-    },
-    {
-      "Date": "12 Nov 2025",
-      "Version": "v3.5.6",
-      "Description": "Feat/button spinner icon button in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/461\" target=\"_blank\" rel=\"noopener noreferrer\">#461</a>."
-    },
-    {
-      "Date": "12 Nov 2025",
-      "Version": "v3.5.6",
-      "Description": "Fix/modal close button misalignment in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/463\" target=\"_blank\" rel=\"noopener noreferrer\">#463</a>."
-    }
-  ],
   "link": [
     {
       "Date": "23 Jun 2026",
@@ -181,28 +276,6 @@
       "Date": "29 Aug 2025",
       "Version": "v3.3.0",
       "Description": "New xs `size` and neutral `variant` for link component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/339\" target=\"_blank\" rel=\"noopener noreferrer\">#339</a>."
-    },
-    {
-      "Date": "02 May 2025",
-      "Version": "v3.0.1",
-      "Description": "Revert link text from primary to blue colour."
-    }
-  ],
-  "sidebar": [
-    {
-      "Date": "23 Jun 2026",
-      "Version": "v3.22.0",
-      "Description": "Accessibility violations from oobee testing in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/707\" target=\"_blank\" rel=\"noopener noreferrer\">#707</a>."
-    },
-    {
-      "Date": "29 Apr 2026",
-      "Version": "v3.18.0",
-      "Description": "Sidebar and sidenav to be on new z index sticky layer in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/612\" target=\"_blank\" rel=\"noopener noreferrer\">#612</a>."
-    },
-    {
-      "Date": "17 Apr 2026",
-      "Version": "v3.17.0",
-      "Description": "New sidebar component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/570\" target=\"_blank\" rel=\"noopener noreferrer\">#570</a>."
     }
   ],
   "datepicker": [
@@ -376,33 +449,6 @@
       "Description": "Oobee test passes in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/686\" target=\"_blank\" rel=\"noopener noreferrer\">#686</a>."
     }
   ],
-  "icon": [
-    {
-      "Date": "08 Jun 2026",
-      "Version": "v3.21.0",
-      "Description": "Oobee testing support, new ariaLabel for Icon in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/687\" target=\"_blank\" rel=\"noopener noreferrer\">#687</a>."
-    },
-    {
-      "Date": "29 Aug 2025",
-      "Version": "v3.3.0",
-      "Description": "Styling update to align icon and text at top instead of center in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/311\" target=\"_blank\" rel=\"noopener noreferrer\">#311</a>."
-    },
-    {
-      "Date": "29 Aug 2025",
-      "Version": "v3.3.0",
-      "Description": "New trailing icon slot, action slot and unmask password action feature when `type=password` in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/299\" target=\"_blank\" rel=\"noopener noreferrer\">#299</a>."
-    },
-    {
-      "Date": "31 Jul 2025",
-      "Version": "v3.1.1",
-      "Description": "Update icon component for SSR support in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/265\" target=\"_blank\" rel=\"noopener noreferrer\">#265</a>."
-    },
-    {
-      "Date": "26 May 2025",
-      "Version": "v3.0.4",
-      "Description": "Update import statement for storybook in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/238\" target=\"_blank\" rel=\"noopener noreferrer\">#238</a>."
-    }
-  ],
   "file-upload": [
     {
       "Date": "08 Jun 2026",
@@ -435,23 +481,6 @@
       "Date": "17 Apr 2026",
       "Version": "v3.17.0",
       "Description": "Close button colour fixed dark in warning filled in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/594\" target=\"_blank\" rel=\"noopener noreferrer\">#594</a>."
-    }
-  ],
-  "pagination": [
-    {
-      "Date": "08 Jun 2026",
-      "Version": "v3.21.0",
-      "Description": "Passes oobee in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/690\" target=\"_blank\" rel=\"noopener noreferrer\">#690</a>."
-    },
-    {
-      "Date": "12 Mar 2026",
-      "Version": "v3.14.0",
-      "Description": "Active color and button color in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/567\" target=\"_blank\" rel=\"noopener noreferrer\">#567</a>."
-    },
-    {
-      "Date": "04 Sept 2025",
-      "Version": "v3.3.2",
-      "Description": "Next button to disable where pages length is less than 2 in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/370\" target=\"_blank\" rel=\"noopener noreferrer\">#370</a>."
     }
   ],
   "icon-button": [
@@ -583,18 +612,6 @@
       "Description": "Dropdown Menu to flow outside of document flow @clukhei in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/348\" target=\"_blank\" rel=\"noopener noreferrer\">#348</a>."
     }
   ],
-  "close-button": [
-    {
-      "Date": "13 May 2026",
-      "Version": "v3.19.0",
-      "Description": "Remove unused style and set close icon size to be sm in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/645\" target=\"_blank\" rel=\"noopener noreferrer\">#645</a>."
-    },
-    {
-      "Date": "18 Dec 2025",
-      "Version": "v3.6.0",
-      "Description": "New close button component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/493\" target=\"_blank\" rel=\"noopener noreferrer\">#493</a>."
-    }
-  ],
   "breadcrumb": [
     {
       "Date": "13 May 2026",
@@ -716,11 +733,6 @@
       "Date": "18 Dec 2025",
       "Version": "v3.6.0",
       "Description": "Allow the non-stacked list to stack in mobile, apply max width for label in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/471\" target=\"_blank\" rel=\"noopener noreferrer\">#471</a>."
-    },
-    {
-      "Date": "04 Apr 2025",
-      "Version": "v3.0.0",
-      "Description": "- **Description List** – Provides a structured way to display term-description pairs."
     }
   ],
   "icon-list": [
@@ -735,25 +747,6 @@
       "Date": "12 Nov 2025",
       "Version": "v3.5.6",
       "Description": "Th/fix skeleton ssr in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/470\" target=\"_blank\" rel=\"noopener noreferrer\">#470</a>."
-    },
-    {
-      "Date": "04 Apr 2025",
-      "Version": "v3.0.0",
-      "Description": "- **Skeleton** – Useful for loading states and improving user experience."
-    }
-  ],
-  "divider": [
-    {
-      "Date": "04 Apr 2025",
-      "Version": "v3.0.0",
-      "Description": "- **Divider** – A simple horizontal or vertical divider to separate sections."
-    }
-  ],
-  "switch": [
-    {
-      "Date": "04 Apr 2025",
-      "Version": "v3.0.0",
-      "Description": "- **Switch** – A toggle switch component for binary states."
     }
   ]
 }

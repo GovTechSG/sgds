@@ -131,6 +131,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `open` | boolean | `false` | Controls whether the drawer is visible |
 | `size` | `sm \| md \| lg` | `sm` | Width/height of the drawer panel |
 | `placement` | `top \| end \| bottom \| start` | `end` | Which screen edge the drawer slides from |
+| `ariaLabel` | string | `"Drawer"` | Accessible name for the dialog panel (forwarded to `aria-label` on the shadow DOM `role="dialog"` element). Override with a descriptive label for the drawer's purpose. |
 | `contained` | boolean | `false` | Scopes the drawer within its positioned parent instead of the viewport |
 
 ## Slots
@@ -163,8 +164,9 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 ---
 
 **For AI agents**:
-1. Use `show()` / `hide()` methods to open/close the drawer programmatically; the `open` attribute reflects the current state.
-2. `sgds-request-close` is cancelable — call `event.preventDefault()` to prevent closing (e.g. to confirm unsaved changes). Check `event.detail.source` to distinguish user actions.
-3. `contained` requires the parent element to have `position: relative` and explicit height for proper scoping.
-4. `sgds-initial-focus` is cancelable — call `event.preventDefault()` to control which element receives focus when the drawer opens.
-5. Footer slot typically holds `<sgds-button>` elements for primary and secondary actions.
+1. Always provide `ariaLabel` with a descriptive name matching the drawer's purpose (e.g. `ariaLabel="Filter Options"`). The default `"Drawer"` satisfies a11y checks but a specific label is preferred.
+2. Use `show()` / `hide()` methods to open/close the drawer programmatically; the `open` attribute reflects the current state.
+3. `sgds-request-close` is cancelable — call `event.preventDefault()` to prevent closing (e.g. to confirm unsaved changes). Check `event.detail.source` to distinguish user actions.
+4. `contained` requires the parent element to have `position: relative` and explicit height for proper scoping.
+5. `sgds-initial-focus` is cancelable — call `event.preventDefault()` to control which element receives focus when the drawer opens.
+6. Footer slot typically holds `<sgds-button>` elements for primary and secondary actions.

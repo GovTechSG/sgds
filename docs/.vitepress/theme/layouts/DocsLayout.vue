@@ -143,6 +143,7 @@ watch(currentPath, () => {
   setTimeout(() => { navigationGuard.value = false }, 300)
 })
 
+
 const slugifyHeading = (text: string) =>
   text
     .toLowerCase()
