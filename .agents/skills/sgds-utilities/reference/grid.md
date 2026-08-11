@@ -35,13 +35,13 @@ The grid expands from 4 columns (mobile) → 8 columns (small/medium) → 12 col
 
 | Breakpoint | Min width | Class prefix | Columns | Gutter |
 |------------|-----------|--------------|---------|--------|
-| Extra Small (default) | — | `.sgds-col-*` | 4 | `var(--sgds-gap-layout-md)` |
-| Small | 512px | `.sgds-col-sm-*` | 8 | `var(--sgds-gap-layout-md)` |
-| Medium | 768px | `.sgds-col-md-*` | 8 | `var(--sgds-gap-layout-md)` |
-| Large | 1024px | `.sgds-col-lg-*` | 12 | `var(--sgds-gap-layout-md)` |
-| Extra Large | 1280px | `.sgds-col-xl-*` | 12 | `var(--sgds-gap-layout-md)` |
-| Extra Extra Large | 1440px | `.sgds-col-2-xl-*` | 12 | `var(--sgds-gap-layout-md)` |
-| 3-XL (sidebar only) | 1680px | `.sgds-col-3-xl-*` | 12 | `var(--sgds-gap-layout-md)` |
+| Extra Small (default) | — | `.sgds-col-*` | 4 | `var(--sgds-layout-gap-md)` |
+| Small | 512px | `.sgds-col-sm-*` | 8 | `var(--sgds-layout-gap-md)` |
+| Medium | 768px | `.sgds-col-md-*` | 8 | `var(--sgds-layout-gap-md)` |
+| Large | 1024px | `.sgds-col-lg-*` | 12 | `var(--sgds-layout-gap-md)` |
+| Extra Large | 1280px | `.sgds-col-xl-*` | 12 | `var(--sgds-layout-gap-md)` |
+| Extra Extra Large | 1440px | `.sgds-col-2-xl-*` | 12 | `var(--sgds-layout-gap-md)` |
+| 3-XL (sidebar only) | 1680px | `.sgds-col-3-xl-*` | 12 | `var(--sgds-layout-gap-md)` |
 
 Classes are mobile-first additive — define the XS span first, then override at larger breakpoints.
 
