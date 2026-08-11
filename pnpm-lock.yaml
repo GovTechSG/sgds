@@ -15,8 +15,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       '@govtechsg/sgds-web-component':
-        specifier: 3.25.0
-        version: 3.25.0(@types/react@19.2.14)
+        specifier: 3.26.1-rc.0
+        version: 3.26.1-rc.0(@types/react@19.2.14)
       gsap:
         specifier: ^3.13.0
         version: 3.14.2
@@ -204,10 +204,6 @@ packages:
     resolution: {integrity: sha512-4GgRzy/+fsBa72/RZVJmGKPmZu9Byn8o4MoLpmNe1m8ZfYnz5emHLQz3U4gLud6Zwl0RZIcgiLD7Uq7ySFuDLA==}
     engines: {node: '>=6.0.0'}
     hasBin: true
-
-  '@babel/runtime-corejs3@7.29.7':
-    resolution: {integrity: sha512-ppj9ouYku+RX0ljtgZd+KMO5mkM2bCqg8H2PYAFWnLsHEIKIdRojqbJ2i3eVHrisuxy7nOFCmngTDdWtUCdXUQ==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/types@7.29.0':
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
@@ -568,8 +564,8 @@ packages:
     resolution: {integrity: sha512-qtX1EGxZVmMqalP+8KZAKDTbyClNPl7ffw727/LWfTQwTb5ITJ2WHvkHvpUuFuashr1KiO6gCqddQB9CYV+0AQ==}
     hasBin: true
 
-  '@govtechsg/sgds-web-component@3.25.0':
-    resolution: {integrity: sha512-iMJPSe7Em2DS9DsLRxd7lLWw8dr+0IgG9ZnEyazD+A5WDvfewJARacEJsnMOZMr3yOn98Am4dg9veBKC5gE5Rw==}
+  '@govtechsg/sgds-web-component@3.26.1-rc.0':
+    resolution: {integrity: sha512-LrkbfALBQhBxw5gjBJOAmQ2iRwxDoXt+RA+Rc/5diEFihhpjocZk/E9JildK4l+pcK2bJgozKhMct9nC73QsRA==}
 
   '@iconify-json/simple-icons@1.2.78':
     resolution: {integrity: sha512-I3lkNp0Qu7q2iZWkdcf/I2hqGhzK6qxdILh9T7XqowQrnpmG/BayDsiCf6PktDoWlW0U971xA5g+panm+NFrfQ==}
@@ -1615,9 +1611,6 @@ packages:
     resolution: {integrity: sha512-nTjqfcBFEipKdXCv4YDQWCfmcLZKm81ldF0pAopTvyrFGVbcR6P/VAAd5G7N+0tTr8QqiU0tFadD6FK4NtJwOA==}
     engines: {node: '>= 0.6'}
 
-  core-js-pure@3.49.0:
-    resolution: {integrity: sha512-XM4RFka59xATyJv/cS3O3Kml72hQXUeGRuuTmMYFxwzc9/7C8OYTaIR/Ji+Yt8DXzsFLNhat15cE/JP15HrCgw==}
-
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
@@ -1672,9 +1665,6 @@ packages:
   data-urls@7.0.0:
     resolution: {integrity: sha512-23XHcCF+coGYevirZceTVD7NdJOqVn+49IHyxgszm+JIiHLoB2TkmPtsYkNWT1pvRSGkc35L6NHs0yHkN2SumA==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
-
-  date-fns@3.6.0:
-    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -2095,10 +2085,6 @@ packages:
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
-
-  imask@7.6.1:
-    resolution: {integrity: sha512-sJlIFM7eathUEMChTh9Mrfw/IgiWgJqBKq2VNbyXvBZ7ev/IlO6/KQTKlV/Fm+viQMLrFLG/zCuudrLIwgK2dg==}
-    engines: {npm: '>=4.0.0'}
 
   immediate@3.0.6:
     resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
@@ -3655,10 +3641,6 @@ snapshots:
     dependencies:
       '@babel/types': 7.29.0
 
-  '@babel/runtime-corejs3@7.29.7':
-    dependencies:
-      core-js-pure: 3.49.0
-
   '@babel/types@7.29.0':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
@@ -4119,13 +4101,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@govtechsg/sgds-web-component@3.25.0(@types/react@19.2.14)':
+  '@govtechsg/sgds-web-component@3.26.1-rc.0(@types/react@19.2.14)':
     dependencies:
       '@floating-ui/dom': 1.8.0
       '@lit/context': 1.1.6
       '@lit/react': 1.0.8(@types/react@19.2.14)
-      date-fns: 3.6.0
-      imask: 7.6.1
       lit: 3.3.3
       tslib: 2.8.1
     transitivePeerDependencies:
@@ -5062,8 +5042,6 @@ snapshots:
 
   content-type@1.0.5: {}
 
-  core-js-pure@3.49.0: {}
-
   core-util-is@1.0.3: {}
 
   crawlee@3.17.0(@types/node@25.9.3)(playwright@1.62.1):
@@ -5134,8 +5112,6 @@ snapshots:
       whatwg-url: 16.0.1
     transitivePeerDependencies:
       - '@noble/hashes'
-
-  date-fns@3.6.0: {}
 
   debug@4.4.3:
     dependencies:
@@ -5633,10 +5609,6 @@ snapshots:
       safer-buffer: 2.1.2
 
   ieee754@1.2.1: {}
-
-  imask@7.6.1:
-    dependencies:
-      '@babel/runtime-corejs3': 7.29.7
 
   immediate@3.0.6: {}
 
