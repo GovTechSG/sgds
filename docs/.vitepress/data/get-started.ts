@@ -451,12 +451,22 @@ export const designTabs: GetStartedDesignTab[] = [
       description: "Explore design guidelines, and access Figma libraries and plugins.",
       sections: [
         {
-          title: "Get started with SGDS v3",
-          description: "For agencies outside of GovTech, and vendors who do not have a GovTech email.",
+          title: "Get started with SGDS v3 UI kit",
+          description: "For agencies outside GovTech and partners who do not have access to GovTech's Figma libraries.",
           orderedItems: [
             {
-              title: "UI kit",
-              description: "The SGDS v3 Web UI Kit for agencies outside GovTech is still a work in progress.",
+              title: "Open Figma Community",
+              description: "Go to the Figma Community.",
+              descriptionHtml:
+                'Go to the <a href="https://www.figma.com/community" target="_blank" rel="noopener noreferrer">Figma Community</a>.',
+            },
+            {
+              title: "Search",
+              description: "Search for SGDS UI Kit.",
+            },
+            {
+              title: "Open",
+              description: "Select the official SGDS UI Kit published by the Singapore Government Design System.",
             },
             {
               title: "Telegram",
