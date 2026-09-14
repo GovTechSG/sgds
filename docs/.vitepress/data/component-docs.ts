@@ -17065,6 +17065,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       ],
     },
   },
+
 };
 
 type GeneratedUsagePattern = {

@@ -1,0 +1,218 @@
+name: Sync Web Component Updates
+
+on:
+  schedule:
+    # Every day at 7:00 PM SGT (11:00 UTC)
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+    inputs:
+      target_version:
+        description: "Specific version to sync (leave empty for latest stable)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout v3 branch
+        uses: actions/checkout@v4
+        with:
+          ref: v3
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Resolve target version
+        id: resolve
+        run: |
+          TARGET="${{ github.event.inputs.target_version }}"
+          if [ -z "$TARGET" ]; then
+            # Get latest stable (non-RC) version from npm
+            TARGET=$(npm view @govtechsg/sgds-web-component versions --json \
+              | node -e "
+                const v = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
+                const stable = v.filter(x => !x.includes('-'));
+                console.log(stable[stable.length - 1]);
+              ")
+          fi
+          CURRENT=$(node -e "
+            const pkg = require('./package.json');
+            console.log(pkg.dependencies['@govtechsg/sgds-web-component']);
+          ")
+          echo "target=$TARGET" >> "$GITHUB_OUTPUT"
+          echo "current=$CURRENT" >> "$GITHUB_OUTPUT"
+          echo "Current: $CURRENT"
+          echo "Target:  $TARGET"
+
+      - name: Check if update needed
+        id: check
+        run: |
+          if [ "${{ steps.resolve.outputs.current }}" = "${{ steps.resolve.outputs.target }}" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Already up to date at ${{ steps.resolve.outputs.current }}"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check for existing PR
+        if: steps.check.outputs.skip != 'true'
+        id: existing
+        run: |
+          BRANCH="auto/sync-wc-${{ steps.resolve.outputs.target }}"
+          EXISTING=$(gh pr list --head "$BRANCH" --state open --json number --jq 'length')
+          if [ "$EXISTING" -gt 0 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "PR already exists for $BRANCH"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run CEM diff
+        if: steps.check.outputs.skip != 'true' && steps.existing.outputs.skip != 'true'
+        run: |
+          node scripts/cem-diff.mjs "${{ steps.resolve.outputs.target }}" \
+            --output /tmp/cem-diff.json
+          cat /tmp/cem-diff.json
+
+      - name: Check for meaningful changes
+        if: steps.check.outputs.skip != 'true' && steps.existing.outputs.skip != 'true'
+        id: meaningful
+        run: |
+          HAS_CHANGES=$(node -e "
+            const d = require('/tmp/cem-diff.json');
+            console.log(d.hasChanges ? 'true' : 'false');
+          ")
+          echo "has_changes=$HAS_CHANGES" >> "$GITHUB_OUTPUT"
+
+      - name: Bump package version
+        if: steps.check.outputs.skip != 'true' && steps.existing.outputs.skip != 'true'
+        run: |
+          pnpm add "@govtechsg/sgds-web-component@${{ steps.resolve.outputs.target }}"
+
+      - name: Generate portal stubs
+        if: steps.check.outputs.skip != 'true' && steps.existing.outputs.skip != 'true' && steps.meaningful.outputs.has_changes == 'true'
+        run: |
+          node scripts/generate-portal-stubs.mjs /tmp/cem-diff.json
+
+      - name: Build PR description
+        if: steps.check.outputs.skip != 'true' && steps.existing.outputs.skip != 'true'
+        id: pr_body
+        run: |
+          node -e "
+          const diff = require('/tmp/cem-diff.json');
+          const lines = [];
+
+          lines.push('## Summary');
+          lines.push('');
+          lines.push('Updates \`@govtechsg/sgds-web-component\` from \`' + diff.oldVersion + '\` to \`' + diff.newVersion + '\`.');
+          lines.push('');
+
+          if (diff.newComponents.length) {
+            lines.push('### New Components');
+            lines.push('');
+            for (const c of diff.newComponents) {
+              lines.push('- **\`' + c.tag + '\`** — ' + (c.description || 'No description').substring(0, 120));
+              lines.push('  - Props: ' + (c.properties.length || 'none'));
+              lines.push('  - Events: ' + (c.events.length || 'none'));
+              lines.push('  - Slots: ' + (c.slots.length || 'none'));
+            }
+            lines.push('');
+          }
+
+          if (diff.changedComponents.length) {
+            lines.push('### Changed Components');
+            lines.push('');
+            for (const c of diff.changedComponents) {
+              const parts = [];
+              if (c.addedProps.length) parts.push('props: ' + c.addedProps.join(', '));
+              if (c.addedEvents.length) parts.push('events: ' + c.addedEvents.join(', '));
+              if (c.addedSlots.length) parts.push('slots: ' + c.addedSlots.join(', '));
+              if (c.addedCssProps.length) parts.push('CSS props: ' + c.addedCssProps.length + ' new');
+              if (c.addedCssParts.length) parts.push('CSS parts: ' + c.addedCssParts.join(', '));
+              lines.push('- **\`' + c.tag + '\`**: ' + parts.join(' | '));
+            }
+            lines.push('');
+          }
+
+          if ((diff.newStories ?? []).length) {
+            lines.push('### New Storybook Stories');
+            lines.push('');
+            for (const s of diff.newStories) {
+              lines.push('- **' + s.kind + '**: \`' + s.key + '\` (\`' + s.id + '\`)');
+            }
+            lines.push('');
+          }
+
+          lines.push('### Manual TODO');
+          lines.push('');
+          if (diff.newComponents.length) {
+            lines.push('For each new component stub:');
+            lines.push('- [ ] Fill in \`purposeCards\` (3 cards)');
+            lines.push('- [ ] Add \`anatomyAsset\` or \`anatomyMarkup\`');
+            lines.push('- [ ] Add \`anatomyParts\` and \`anatomyCallouts\`');
+            lines.push('- [ ] Add \`configurationDemos\`');
+            lines.push('- [ ] Add \`measurementTokens\`');
+            lines.push('- [ ] Add \`usage\` section (guidance, behaviours, best practices)');
+            lines.push('- [ ] Add \`accessibility\` section (keyboard interactions)');
+            lines.push('');
+          }
+          if (diff.changedComponents.length) {
+            lines.push('For changed components:');
+            lines.push('- [ ] Review new props/events/slots and update demos if needed');
+            lines.push('');
+          }
+          if ((diff.newStories ?? []).length) {
+            lines.push('For new stories:');
+            lines.push('- [ ] Verify Storybook embed URLs render correctly');
+            lines.push('- [ ] Add to pattern-docs.ts category groups if applicable');
+            lines.push('');
+          }
+          lines.push('---');
+          lines.push('_Auto-generated by sync-web-component workflow_');
+
+          // Write to file for gh pr create
+          require('fs').writeFileSync('/tmp/pr-body.md', lines.join('\n'));
+          " 2>&1
+
+      - name: Create branch and PR
+        if: steps.check.outputs.skip != 'true' && steps.existing.outputs.skip != 'true'
+        run: |
+          BRANCH="auto/sync-wc-${{ steps.resolve.outputs.target }}"
+          VERSION="${{ steps.resolve.outputs.target }}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "chore: sync web component v${VERSION}
+
+          Auto-generated stub entries and version bump for @govtechsg/sgds-web-component@${VERSION}."
+
+          git push origin "$BRANCH"
+
+          gh pr create \
+            --base v3 \
+            --head "$BRANCH" \
+            --title "chore: sync web component v${VERSION}" \
+            --body-file /tmp/pr-body.md \
+            --label "auto-sync"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
