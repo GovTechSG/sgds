@@ -46,6 +46,7 @@ const displayRows = computed(() =>
           >
             <sgds-table-cell v-for="column in updates.updates.columns" :key="column">
               <span :class="['sgds:inline-block', column === 'Date' ? 'sgds:min-w-[var(--sgds-dimension-80)] sgds:whitespace-nowrap' : '']">
+                <!-- Safe: generate-component-updates.mjs HTML-escapes all text before building <a> tags -->
                 <span v-if="column === 'Description'" class="updates-desc-cell" v-html="row[column]"></span>
                 <template v-else>{{ row[column] }}</template>
               </span>
