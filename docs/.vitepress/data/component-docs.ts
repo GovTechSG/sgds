@@ -17066,6 +17066,99 @@ const componentDocs: Record<string, ComponentDoc> = {
     },
   },
 
+
+  // --- AUTO-GENERATED STUBS BELOW ---
+  "data-table": {
+    key: "data-table",
+    title: "Data table",
+    tag: "sgds-data-table",
+    group: "data display" as ComponentGroup,
+    summary: "Data table component.",
+    purposeCards: [
+      {
+        title: "TODO: Purpose 1",
+        description: "Describe the primary use case for data table.",
+      },
+      {
+        title: "TODO: Purpose 2",
+        description: "Describe a secondary use case for data table.",
+      },
+      {
+        title: "TODO: Purpose 3",
+        description: "Describe a third use case for data table.",
+      },
+    ],
+    anatomyMarkup: `<sgds-data-table></sgds-data-table>`,
+    anatomyParts: [
+      { title: "Container" },
+      // TODO: Add anatomy parts
+    ],
+    demos: [
+      {
+        ...demo(
+          "Default",
+          "Basic data table usage.",
+          `<sgds-data-table></sgds-data-table>`,
+        ),
+      },
+    ],
+    usage: {
+      guidance: [
+        {
+          title: "When to use",
+          tone: "do" as const,
+          items: [
+            "TODO: Add guidance on when to use data table.",
+          ],
+        },
+        {
+          title: "When not to use",
+          tone: "dont" as const,
+          items: [
+            "TODO: Add guidance on when not to use data table.",
+          ],
+        },
+      ],
+      bestPractices: [
+        {
+          title: "TODO: Best practice",
+          description: "Describe a recommended pattern for data table.",
+          tone: "do" as const,
+          markup: `<sgds-data-table></sgds-data-table>`,
+        },
+        {
+          title: "TODO: Anti-pattern",
+          description: "Describe a pattern to avoid with data table.",
+          tone: "dont" as const,
+          markup: `<sgds-data-table></sgds-data-table>`,
+        },
+      ],
+    },
+    accessibility: {
+      sections: [
+        {
+          title: "Built-in accessibility",
+          description: [
+            "TODO: Describe the built-in accessibility features of data table.",
+          ],
+          items: [
+            "TODO: Add accessibility guidance.",
+          ],
+        },
+      ],
+      keyboardInteractions: [
+        {
+          key: "Tab",
+          description: "TODO: Describe Tab behaviour.",
+        },
+        {
+          key: "Enter",
+          description: "TODO: Describe Enter behaviour.",
+        },
+      ],
+    },
+    // updates: omitted — auto-populated from GitHub releases via buildResolvedUpdates()
+  },
 };
 
 type GeneratedUsagePattern = {
