@@ -64,6 +64,7 @@ const specialAliases = {
   "thumbnail-card": ["thumbnail card", "thumbnail-card"],
   toast: ["toast"],
   tooltip: ["tooltip"],
+  "data-table": ["data-table", "data table"],
 };
 
 const scopeToKey = {
@@ -128,6 +129,8 @@ const scopeToKey = {
   thumbnailcard: "thumbnail-card",
   toast: "toast",
   tooltip: "tooltip",
+  "data-table": "data-table",
+  datatable: "data-table",
 };
 
 // --- Helpers ---
