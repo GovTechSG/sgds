@@ -165,7 +165,7 @@ function generateComponentStubs() {
     const title = keyToTitle(key);
     const group = guessGroup(comp.description);
     const summary = comp.description || `${title} component.`;
-    const escapedSummary = summary.replace(/"/g, '\\"').replace(/\n/g, " ");
+    const escapedSummary = summary.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\n/g, " ");
 
     return `  "${key}": {
     key: "${key}",
@@ -357,7 +357,7 @@ function generateComponentPages() {
     const content = applyTemplate(template, {
       KEY: key,
       TITLE: title,
-      DESCRIPTION: description.replace(/\n/g, " "),
+      DESCRIPTION: description.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\n/g, " "),
     });
 
     writeFileSync(mdPath, content, "utf-8");
