@@ -90,7 +90,7 @@ jobs:
         if: steps.check.outputs.skip != 'true'
         id: components
         run: |
-          node -e "
+          node <<'SCRIPT' >> "$GITHUB_OUTPUT"
             const d = require('/tmp/cem-diff.json');
             // Collect all component tags (new + changed)
             const tags = [
@@ -103,11 +103,11 @@ jobs:
             const pascal = kebab.map(k =>
               k.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('')
             );
-            const branchSuffix = kebab.join('-');
-            const scope = pascal.join(',');
+            const branchSuffix = kebab.length ? kebab.join('-') : 'update';
+            const scope = pascal.length ? pascal.join(',') : 'deps';
             console.log('branch_suffix=' + branchSuffix);
             console.log('scope=' + scope);
-          " >> \"\$GITHUB_OUTPUT\"
+          SCRIPT
 
       - name: Check for existing PR or branch
         if: steps.check.outputs.skip != 'true'
