@@ -59,6 +59,7 @@ export const searchIndex: SearchItem[] = [
   // Components — Data display
   { title: "Accordion", category: "Component", url: "/components/accordion", keywords: ["collapse", "expand", "toggle", "panel"] },
   { title: "Card", category: "Component", url: "/components/card", keywords: ["container", "box"] },
+  { title: "Icon", category: "Component", url: "/components/icon", keywords: ["symbol", "visual", "glyph"] },
   { title: "Icon card", category: "Component", url: "/components/icon-card" },
   { title: "Image card", category: "Component", url: "/components/image-card" },
   { title: "Thumbnail card", category: "Component", url: "/components/thumbnail-card" },

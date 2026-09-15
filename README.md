@@ -1,20 +1,44 @@
-# Singapore Government Design System 
+# Singapore Government Design System
 
 The [Singapore Government Design System](https://www.designsystem.tech.gov.sg) was developed to empower teams in creating fast, accessible and mobile-friendly digital services.
 
-This repository contains the styling libraries of SGDS and portal documentation 
+This repository contains the documentation portal for SGDS, built with [VitePress](https://vitepress.dev/).
 
-## Table of Content
+## Getting Started
 
-* [@govtechsg/sgds](/lib/sgds/README.md)
-* [@govtechsg/sgds-x-family](/lib/sgds-x-family/README.md) (WORK-IN-PROGRESS) 
-* [SGDS Portal](/portal/README.md)
+### Prerequisites
+
+- Node.js >= 20
+- pnpm >= 10
+
+### Setup
+
+```bash
+pnpm install
+```
+
+### Development
+
+```bash
+pnpm docs:dev
+```
+
+### Build
+
+```bash
+pnpm docs:build
+```
+
+### Preview
+
+```bash
+pnpm docs:preview
+```
+
+## Related Repositories
+
+- [SGDS Web Component Library](https://github.com/GovTechSG/sgds-web-component)
 
 ## Contribute
 
-To Contribute and  for repository setup, please read [CONTRIBUTING.md](/CONTRIBUTING.md)
-
-## Others
-
-* [SGDS React Component Library](https://github.com/GovTechSG/sgds-govtech-react)
-* [SGDS Web Component Library](https://github.com/GovTechSG/sgds-web-component)
+To contribute, please read [CONTRIBUTING.md](/CONTRIBUTING.md).

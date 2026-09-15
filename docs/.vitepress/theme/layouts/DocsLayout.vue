@@ -384,7 +384,8 @@ watch(
 }
 
 /* Temporary mobile sidenav trigger until SGDS ships an official mobile sidenav pattern */
-.docs-layout-mobile-sidenav-trigger {
+.docs-layout-mobile-sidenav-trigger,
+.docs-layout-mobile-sidenav {
   display: none;
 }
 
@@ -394,6 +395,10 @@ watch(
   }
 
   .docs-layout-mobile-sidenav-trigger {
+    display: block;
+  }
+
+  .docs-layout-mobile-sidenav {
     display: block;
   }
 }
