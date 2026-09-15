@@ -374,9 +374,9 @@ function generateSidebarEntries() {
     const sidebarStart = content.indexOf('sidebar["/components/"]');
     if (sidebarStart === -1) continue;
 
-    // Extract all existing `{ text: "...", link: "..." }` entries and find
-    // the correct alphabetical position to insert the new entry.
-    const entryRegex = /\{ text: "([^"]+)", link: "[^"]+" \},?/g;
+    // Extract only top-level `{ text: "...", link: "..." }` entries (4-space indent)
+    // to avoid inserting inside nested groups like "Card group".
+    const entryRegex = /^    \{ text: "([^"]+)", link: "[^"]+" \},?$/gm;
     let match;
     let insertBeforeIdx = -1;
     const newTitleLower = title.toLowerCase();
