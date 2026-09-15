@@ -69,11 +69,52 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Run CEM diff
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          node scripts/cem-diff.mjs "${{ steps.resolve.outputs.target }}" \
+            --output /tmp/cem-diff.json
+          cat /tmp/cem-diff.json
+
+      - name: Check for meaningful changes
+        if: steps.check.outputs.skip != 'true'
+        id: meaningful
+        run: |
+          HAS_CHANGES=$(node -e "
+            const d = require('/tmp/cem-diff.json');
+            console.log(d.hasChanges ? 'true' : 'false');
+          ")
+          echo "has_changes=$HAS_CHANGES" >> "$GITHUB_OUTPUT"
+
+      - name: Extract component names
+        if: steps.check.outputs.skip != 'true'
+        id: components
+        run: |
+          node -e "
+            const d = require('/tmp/cem-diff.json');
+            // Collect all component tags (new + changed)
+            const tags = [
+              ...d.newComponents.map(c => c.tag),
+              ...d.changedComponents.map(c => c.tag),
+            ];
+            // sgds-data-table → data-table (kebab for branch)
+            const kebab = tags.map(t => t.replace(/^sgds-/, ''));
+            // sgds-data-table → DataTable (PascalCase for commit scope)
+            const pascal = kebab.map(k =>
+              k.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('')
+            );
+            const branchSuffix = kebab.join('-');
+            const scope = pascal.join(',');
+            console.log('branch_suffix=' + branchSuffix);
+            console.log('scope=' + scope);
+          " >> \"\$GITHUB_OUTPUT\"
+
       - name: Check for existing PR or branch
         if: steps.check.outputs.skip != 'true'
         id: existing
         run: |
-          BRANCH="auto/sync-wc-${{ steps.resolve.outputs.target }}"
+          SUFFIX="${{ steps.components.outputs.branch_suffix }}"
+          BRANCH="auto/sync-wc-${{ steps.resolve.outputs.target }}-${SUFFIX}"
           EXISTING=$(gh pr list --head "$BRANCH" --state open --json number --jq 'length')
           if [ "$EXISTING" -gt 0 ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
@@ -86,23 +127,6 @@ jobs:
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run CEM diff
-        if: steps.check.outputs.skip != 'true' && steps.existing.outputs.skip != 'true'
-        run: |
-          node scripts/cem-diff.mjs "${{ steps.resolve.outputs.target }}" \
-            --output /tmp/cem-diff.json
-          cat /tmp/cem-diff.json
-
-      - name: Check for meaningful changes
-        if: steps.check.outputs.skip != 'true' && steps.existing.outputs.skip != 'true'
-        id: meaningful
-        run: |
-          HAS_CHANGES=$(node -e "
-            const d = require('/tmp/cem-diff.json');
-            console.log(d.hasChanges ? 'true' : 'false');
-          ")
-          echo "has_changes=$HAS_CHANGES" >> "$GITHUB_OUTPUT"
 
       - name: Bump package version
         if: steps.check.outputs.skip != 'true' && steps.existing.outputs.skip != 'true'
@@ -197,7 +221,9 @@ jobs:
       - name: Create branch and PR
         if: steps.check.outputs.skip != 'true' && steps.existing.outputs.skip != 'true'
         run: |
-          BRANCH="auto/sync-wc-${{ steps.resolve.outputs.target }}"
+          SUFFIX="${{ steps.components.outputs.branch_suffix }}"
+          SCOPE="${{ steps.components.outputs.scope }}"
+          BRANCH="auto/sync-wc-${{ steps.resolve.outputs.target }}-${SUFFIX}"
           VERSION="${{ steps.resolve.outputs.target }}"
 
           git config user.name "github-actions[bot]"
@@ -205,7 +231,7 @@ jobs:
 
           git checkout -b "$BRANCH"
           git add -A
-          git commit -m "docs: sync web component v${VERSION}
+          git commit -m "docs(${SCOPE}): sync web component v${VERSION}
 
           Auto-generated stub entries and version bump for @govtechsg/sgds-web-component@${VERSION}."
 
@@ -217,7 +243,7 @@ jobs:
           gh pr create \
             --base v3 \
             --head "$BRANCH" \
-            --title "docs: sync web component v${VERSION}" \
+            --title "docs(${SCOPE}): sync web component v${VERSION}" \
             --body-file /tmp/pr-body.md \
             --label "auto-sync"
         env:
