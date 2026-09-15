@@ -4,20 +4,20 @@
  * generate-portal-stubs.mjs
  *
  * Reads a CEM diff JSON (produced by cem-diff.mjs) and generates stub entries
- * in the portal's data files so new components, blocks, and templates are
- * immediately visible — albeit with placeholder content that humans fill in.
+ * in the portal's data files so new components are immediately visible —
+ * albeit with placeholder content that humans fill in.
  *
  * Usage:
- *   node scripts/generate-portal-stubs.mjs <diff.json>
+ *   node scripts/generate-portal-stubs.mjs <diff.json> [--family <parent-key>]
+ *
+ *   --family <key>  Only generate stubs for the family whose parent tag is sgds-<key>.
+ *                   When omitted, generates stubs for all new component families.
  *
  * What it modifies:
  *   - docs/.vitepress/data/component-docs.ts   (new component stubs)
  *   - docs/.vitepress/data/component-aliases.ts (new alias entries)
- *   - docs/.vitepress/data/storybook-ids.ts     (new story mappings)
  *   - docs/.vitepress/config.mts                (sidebar entries)
  *   - docs/components/<key>.md                  (new component pages)
- *   - docs/blocks/preview/<key>.md              (new block previews)
- *   - docs/templates/page-templates/preview/<key>.md (new template previews)
  */
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -32,14 +32,41 @@ const DATA_DIR = join(ROOT, "docs", ".vitepress", "data");
 // CLI
 // ---------------------------------------------------------------------------
 
-const diffPath = process.argv[2];
+const cliArgs = process.argv.slice(2);
+let diffPath = null;
+let familyFilter = null;
+
+for (let i = 0; i < cliArgs.length; i++) {
+  if (cliArgs[i] === "--family" && cliArgs[i + 1]) {
+    familyFilter = cliArgs[++i];
+  } else if (!cliArgs[i].startsWith("-")) {
+    diffPath = cliArgs[i];
+  }
+}
+
 if (!diffPath) {
-  console.error("Usage: node scripts/generate-portal-stubs.mjs <diff.json>");
+  console.error("Usage: node scripts/generate-portal-stubs.mjs <diff.json> [--family <parent-key>]");
   process.exit(1);
 }
 
 const diff = JSON.parse(readFileSync(diffPath, "utf-8"));
 const changes = [];
+
+// ---------------------------------------------------------------------------
+// Resolve the list of new components to process
+// ---------------------------------------------------------------------------
+// cem-diff.mjs now outputs newFamilies: [{ parent: { tag, ..., subComponents } }]
+// Flatten to the same newComponents shape used by stub generators.
+
+function resolveNewComponents() {
+  const allFamilies = diff.newFamilies ?? [];
+  const filtered = familyFilter
+    ? allFamilies.filter((f) => tagToKey(f.parent.tag) === familyFilter)
+    : allFamilies;
+  return filtered.map((f) => f.parent);
+}
+
+const newComponents = resolveNewComponents();
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -92,27 +119,17 @@ function guessGroup(description) {
 // ---------------------------------------------------------------------------
 
 function generateComponentStubs() {
-  if (diff.newComponents.length === 0) return;
+  if (newComponents.length === 0) return;
 
   const filePath = join(DATA_DIR, "component-docs.ts");
   let content = readFileSync(filePath, "utf-8");
-
-  // Find the closing of componentDocs object.
-  // Pattern: the last `tooltip` entry ends, then `};` on its own line before helper functions.
-  // We insert new entries just before the final `};` of componentDocs.
-  //
-  // Strategy: find the marker "// --- AUTO-GENERATED STUBS ---" if it exists,
-  // otherwise find the closing pattern. We look for the `};` that comes after
-  // the last known component entry and before `const buildAccessibility`.
 
   const insertMarker = "// --- AUTO-GENERATED STUBS BELOW ---";
   let insertionPoint;
 
   if (content.includes(insertMarker)) {
-    // Append after the marker
     insertionPoint = content.indexOf(insertMarker) + insertMarker.length;
   } else {
-    // Find the closing `};` of componentDocs by counting braces from its declaration
     const declStart = content.indexOf("const componentDocs: Record<string, ComponentDoc> = {");
     if (declStart === -1) {
       console.error("Warning: Could not find componentDocs declaration in component-docs.ts");
@@ -133,13 +150,11 @@ function generateComponentStubs() {
       console.error("Warning: Could not find componentDocs closing brace");
       return;
     }
-    // Insert before the closing `}` (and the `;` after it)
     insertionPoint = closeIdx;
   }
 
-  const stubs = diff.newComponents.filter((comp) => {
+  const stubs = newComponents.filter((comp) => {
     const key = tagToKey(comp.tag);
-    // Skip if this component key already exists in the file
     if (content.includes(`"${key}": {`)) {
       console.error(`Skipping stub for "${key}" — already exists in component-docs.ts`);
       return false;
@@ -248,14 +263,12 @@ function generateComponentStubs() {
   const stubBlock = `\n  ${insertMarker}\n${stubs.join("\n")}\n`;
 
   if (content.includes(insertMarker)) {
-    // Append stubs after existing marker
     content =
       content.substring(0, insertionPoint) +
       "\n" +
       stubs.join("\n") +
       content.substring(insertionPoint);
   } else {
-    // Insert marker + stubs before the closing `};`
     content =
       content.substring(0, insertionPoint) +
       stubBlock +
@@ -263,7 +276,7 @@ function generateComponentStubs() {
   }
 
   writeFileSync(filePath, content, "utf-8");
-  changes.push(`component-docs.ts: added ${diff.newComponents.length} component stub(s)`);
+  changes.push(`component-docs.ts: added ${newComponents.length} component stub(s)`);
 }
 
 // ---------------------------------------------------------------------------
@@ -271,12 +284,12 @@ function generateComponentStubs() {
 // ---------------------------------------------------------------------------
 
 function generateAliases() {
-  if (diff.newComponents.length === 0) return;
+  if (newComponents.length === 0) return;
 
   const filePath = join(DATA_DIR, "component-aliases.ts");
   let content = readFileSync(filePath, "utf-8");
 
-  for (const comp of diff.newComponents) {
+  for (const comp of newComponents) {
     const parentKey = tagToKey(comp.tag);
     const parentNoHyphen = keyToNoHyphen(parentKey);
     const parentDisplayName = parentKey.replace(/-/g, " ");
@@ -318,7 +331,7 @@ function generateAliases() {
   }
 
   writeFileSync(filePath, content, "utf-8");
-  changes.push(`component-aliases.ts: added aliases for ${diff.newComponents.length} component(s)`);
+  changes.push(`component-aliases.ts: added aliases for ${newComponents.length} component(s)`);
 }
 
 // ---------------------------------------------------------------------------
@@ -326,11 +339,11 @@ function generateAliases() {
 // ---------------------------------------------------------------------------
 
 function generateComponentPages() {
-  if (diff.newComponents.length === 0) return;
+  if (newComponents.length === 0) return;
 
   const template = loadTemplate("component-stub.md.template");
 
-  for (const comp of diff.newComponents) {
+  for (const comp of newComponents) {
     const key = tagToKey(comp.tag);
     const title = keyToTitle(key);
     const description = comp.description || `${title} component.`;
@@ -357,12 +370,12 @@ function generateComponentPages() {
 // ---------------------------------------------------------------------------
 
 function generateSidebarEntries() {
-  if (diff.newComponents.length === 0) return;
+  if (newComponents.length === 0) return;
 
   const filePath = join(ROOT, "docs", ".vitepress", "config.mts");
   let content = readFileSync(filePath, "utf-8");
 
-  for (const comp of diff.newComponents) {
+  for (const comp of newComponents) {
     const key = tagToKey(comp.tag);
     const title = keyToTitle(key);
     const link = `/components/${key}`;
@@ -377,7 +390,6 @@ function generateSidebarEntries() {
     // Find the bounds of the sidebar items array: from `items: [` to its closing `};`
     const itemsStart = content.indexOf("items: [", sidebarStart);
     if (itemsStart === -1) continue;
-    // The items array closes with `  ],` followed by `};` — find `};` after sidebarStart
     const blockEnd = content.indexOf("};", sidebarStart);
     if (blockEnd === -1) continue;
     const sidebarSlice = content.substring(itemsStart, blockEnd);
@@ -402,7 +414,6 @@ function generateSidebarEntries() {
     if (insertBeforeIdx !== -1) {
       content = content.substring(0, insertBeforeIdx) + newEntry + content.substring(insertBeforeIdx);
     } else {
-      // Append before the closing `  ],` of the items array
       const closingPattern = "  ],";
       let closingIdx = content.lastIndexOf(closingPattern, blockEnd);
       if (closingIdx === -1 || closingIdx < sidebarStart) continue;
@@ -411,83 +422,20 @@ function generateSidebarEntries() {
   }
 
   writeFileSync(filePath, content, "utf-8");
-  changes.push(`config.mts: added sidebar entries for ${diff.newComponents.length} component(s)`);
+  changes.push(`config.mts: added sidebar entries for ${newComponents.length} component(s)`);
 }
 
 // ---------------------------------------------------------------------------
-// 5. Storybook story IDs
-// ---------------------------------------------------------------------------
-
-function generateStoryIds() {
-  if ((diff.newStories ?? []).length === 0) return;
-
-  const filePath = join(DATA_DIR, "storybook-ids.ts");
-  let content = readFileSync(filePath, "utf-8");
-
-  // Find the closing `};` of storybookStoryIds
-  const objStart = content.indexOf("storybookStoryIds");
-  const objEnd = content.indexOf("};", objStart);
-
-  const newLines = diff.newStories.map((story) => {
-    return `  "${story.portalKey}": "${story.id}",`;
-  });
-
-  content =
-    content.substring(0, objEnd) +
-    newLines.join("\n") +
-    "\n" +
-    content.substring(objEnd);
-
-  writeFileSync(filePath, content, "utf-8");
-  changes.push(`storybook-ids.ts: added ${diff.newStories.length} story mapping(s)`);
-}
-
-// ---------------------------------------------------------------------------
-// 6. Block/template preview .md files
-// ---------------------------------------------------------------------------
-
-function generatePreviewPages() {
-  if ((diff.newStories ?? []).length === 0) return;
-
-  const blockTemplate = loadTemplate("block-preview.md.template");
-  const templateTemplate = loadTemplate("template-preview.md.template");
-
-  for (const story of diff.newStories) {
-    const title = keyToTitle(story.key);
-    let mdPath;
-    let content;
-
-    if (story.kind === "block") {
-      mdPath = join(ROOT, "docs", "blocks", "preview", `${story.key}.md`);
-      content = applyTemplate(blockTemplate, { KEY: story.key, TITLE: title });
-    } else if (story.kind === "template") {
-      mdPath = join(ROOT, "docs", "templates", "page-templates", "preview", `${story.key}.md`);
-      content = applyTemplate(templateTemplate, { KEY: story.key, TITLE: title });
-    } else {
-      continue;
-    }
-
-    if (existsSync(mdPath)) {
-      console.error(`Skipping ${mdPath} — already exists`);
-      continue;
-    }
-
-    writeFileSync(mdPath, content, "utf-8");
-    changes.push(`${story.kind} preview: ${story.key}.md created`);
-  }
-}
-
-// ---------------------------------------------------------------------------
-// 7. Update aliases in generate-component-updates.mjs
+// 5. Update aliases in generate-component-updates.mjs
 // ---------------------------------------------------------------------------
 
 function generateUpdatesScriptAliases() {
-  if (diff.newComponents.length === 0) return;
+  if (newComponents.length === 0) return;
 
   const filePath = join(ROOT, "scripts", "generate-component-updates.mjs");
   let content = readFileSync(filePath, "utf-8");
 
-  for (const comp of diff.newComponents) {
+  for (const comp of newComponents) {
     const parentKey = tagToKey(comp.tag);
     const parentNoHyphen = keyToNoHyphen(parentKey);
 
@@ -514,7 +462,7 @@ function generateUpdatesScriptAliases() {
   }
 
   writeFileSync(filePath, content, "utf-8");
-  changes.push(`generate-component-updates.mjs: added aliases for ${diff.newComponents.length} component(s)`);
+  changes.push(`generate-component-updates.mjs: added aliases for ${newComponents.length} component(s)`);
 }
 
 // ---------------------------------------------------------------------------
@@ -522,23 +470,22 @@ function generateUpdatesScriptAliases() {
 // ---------------------------------------------------------------------------
 
 function main() {
-  if (!diff.hasChanges) {
-    console.log("No changes to generate stubs for.");
+  if (newComponents.length === 0) {
+    console.log("No new components to generate stubs for.");
     return;
   }
 
   console.log(`Generating stubs for ${diff.newVersion}...`);
-  console.log(`  New components: ${diff.newComponents.length}`);
-  console.log(`  Changed components: ${diff.changedComponents.length}`);
-  console.log(`  New stories: ${(diff.newStories ?? []).length}`);
+  console.log(`  New components: ${newComponents.length}`);
+  if (familyFilter) {
+    console.log(`  Family filter: ${familyFilter}`);
+  }
 
   generateComponentStubs();
   generateAliases();
   generateUpdatesScriptAliases();
   generateComponentPages();
   generateSidebarEntries();
-  generateStoryIds();
-  generatePreviewPages();
 
   console.log("\nChanges made:");
   for (const c of changes) {

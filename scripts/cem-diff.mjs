@@ -7,9 +7,8 @@
  * @govtechsg/sgds-web-component against a target version's CEM.
  *
  * Outputs a JSON diff object describing:
- *   - newComponents:     tags in the new CEM that don't exist in the old CEM
- *   - changedComponents: tags with new members (properties, events, slots, cssParts, cssProperties)
- *   - newStories:        Storybook story IDs present in the deployed index.json but missing from storybook-ids.ts
+ *   - newFamilies:     component families (grouped by CEM module directory) with new tags
+ *   - changedFamilies: component families with changed members (properties, events, slots, etc.)
  *
  * Usage:
  *   node scripts/cem-diff.mjs [targetVersion]
@@ -149,6 +148,36 @@ function groupByFamily(components, cemIndex) {
   return families;
 }
 
+/**
+ * Group changed component entries by CEM module directory.
+ * Returns an array of { parentTag, members } where parentTag is the shortest tag in the group.
+ */
+function groupChangedByFamily(changedComponents, cemIndex) {
+  const dirMap = new Map();
+  for (const comp of changedComponents) {
+    const dir = cemIndex.get(comp.tag)?._moduleDir ?? "";
+    const arr = dirMap.get(dir) ?? [];
+    arr.push(comp);
+    dirMap.set(dir, arr);
+  }
+
+  const families = [];
+  for (const [, members] of dirMap) {
+    // Sort by tag length — shortest is the parent
+    members.sort((a, b) => a.tag.length - b.tag.length);
+    families.push({ parentTag: members[0].tag, members });
+  }
+  return families;
+}
+
+/** Returns true if a CEM member is private, protected, or marked @internal. */
+function isInternal(member) {
+  if (member.privacy === "private" || member.privacy === "protected") return true;
+  const desc = member.description ?? "";
+  if (desc.includes("@internal")) return true;
+  return false;
+}
+
 function extractNames(arr) {
   return (arr ?? []).map((item) => item.name).filter(Boolean);
 }
@@ -159,108 +188,10 @@ function diffArrays(oldArr, newArr) {
 }
 
 // ---------------------------------------------------------------------------
-// Storybook story diff
-// ---------------------------------------------------------------------------
-
-const STORYBOOK_BASE = "https://www.webcomponent.designsystem.tech.gov.sg";
-
-async function fetchStorybookIndex() {
-  try {
-    // Storybook 7+ uses index.json
-    const res = await fetch(`${STORYBOOK_BASE}/index.json`);
-    if (res.ok) return await res.json();
-  } catch {
-    // ignore
-  }
-  try {
-    // Fallback to stories.json
-    const res = await fetch(`${STORYBOOK_BASE}/stories.json`);
-    if (res.ok) return await res.json();
-  } catch {
-    // ignore
-  }
-  return null;
-}
-
-/** Collect all Storybook story IDs already mapped in storybook-ids.ts (the values, not the keys). */
-function getExistingStoryIds() {
-  const storybookIdsPath = join(ROOT, "docs", ".vitepress", "data", "storybook-ids.ts");
-  if (!existsSync(storybookIdsPath)) return new Set();
-
-  const content = readFileSync(storybookIdsPath, "utf-8");
-  const ids = new Set();
-  // Match the values (right-hand side) in `"key": "story-id"` pairs
-  const regex = /:\s*"([^"]+)"/g;
-  let match;
-  while ((match = regex.exec(content)) !== null) {
-    ids.add(match[1]);
-  }
-  return ids;
-}
-
-function classifyStory(storyId, storyTitle) {
-  const id = storyId.toLowerCase();
-  if (id.startsWith("templates-")) return "template";
-  if (id.startsWith("blocks-")) return "block";
-  return null;
-}
-
-function storyIdToKey(storyId, kind) {
-  // e.g., "blocks-cards--cards-3" → "cards"
-  //        "templates-about-us-basic--basic" → "about-us"
-  const prefix = kind === "template" ? "templates-" : "blocks-";
-  let segment = storyId.replace(prefix, "");
-  // Take first segment before "--"
-  segment = segment.split("--")[0];
-  // For blocks, take the category (first hyphen-separated word)
-  // For templates, take everything before the last segment (which is the variant)
-  return segment;
-}
-
-async function diffStories() {
-  const index = await fetchStorybookIndex();
-  if (!index) {
-    console.error("Warning: Could not fetch Storybook index. Skipping story diff.");
-    return [];
-  }
-
-  const existingIds = getExistingStoryIds();
-  const newStories = [];
-
-  const entries = index.entries ?? index.stories ?? {};
-  for (const [storyId, story] of Object.entries(entries)) {
-    const kind = classifyStory(storyId, story.title);
-    if (!kind) continue;
-
-    // Check if this story ID is already mapped as a value in storybook-ids.ts
-    if (existingIds.has(storyId)) continue;
-
-    const key = storyIdToKey(storyId, kind);
-    const portalKey = `${kind}:${key}`;
-
-    newStories.push({
-      id: storyId,
-      title: story.title ?? story.name ?? storyId,
-      kind,
-      portalKey,
-      key,
-    });
-  }
-
-  // Deduplicate by portalKey (keep first occurrence)
-  const seen = new Set();
-  return newStories.filter((s) => {
-    if (seen.has(s.portalKey)) return false;
-    seen.add(s.portalKey);
-    return true;
-  });
-}
-
-// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
-async function main() {
+function main() {
   // Resolve target version
   if (targetVersion === "latest") {
     targetVersion = resolveLatestStableVersion();
@@ -282,9 +213,8 @@ async function main() {
     const emptyDiff = {
       oldVersion,
       newVersion: targetVersion,
-      newComponents: [],
-      changedComponents: [],
-      newStories: [],
+      newFamilies: [],
+      changedFamilies: [],
       hasChanges: false,
     };
     output(emptyDiff);
@@ -308,7 +238,7 @@ async function main() {
   const oldIndex = indexByTag(oldCem);
   const newIndex = indexByTag(newCem);
 
-  // Detect new components, grouped by family
+  // Detect new components
   const rawNewComponents = [];
   for (const [tag, decl] of newIndex) {
     if (!oldIndex.has(tag)) {
@@ -316,7 +246,7 @@ async function main() {
         tag,
         className: decl.name,
         description: decl.description ?? decl.summary ?? "",
-        properties: extractNames(decl.members?.filter((m) => m.kind === "field" && m.privacy !== "private")),
+        properties: extractNames(decl.members?.filter((m) => m.kind === "field" && !isInternal(m))),
         events: extractNames(decl.events),
         slots: extractNames(decl.slots),
         cssProperties: extractNames(decl.cssProperties),
@@ -326,21 +256,19 @@ async function main() {
   }
 
   // Group new components by CEM directory to identify parent/sub-component families
-  const families = groupByFamily(rawNewComponents, newIndex);
-  const newComponents = families.map(({ parent, subComponents }) => ({
-    ...parent,
-    subComponents,
+  const newFamilies = groupByFamily(rawNewComponents, newIndex).map(({ parent, subComponents }) => ({
+    parent: { ...parent, subComponents },
   }));
 
   // Detect changed components
-  const changedComponents = [];
+  const rawChangedComponents = [];
   for (const [tag, newDecl] of newIndex) {
     const oldDecl = oldIndex.get(tag);
     if (!oldDecl) continue; // new component, handled above
 
     const addedProps = diffArrays(
-      extractNames(oldDecl.members?.filter((m) => m.kind === "field")),
-      extractNames(newDecl.members?.filter((m) => m.kind === "field")),
+      extractNames(oldDecl.members?.filter((m) => m.kind === "field" && !isInternal(m))),
+      extractNames(newDecl.members?.filter((m) => m.kind === "field" && !isInternal(m))),
     );
     const addedEvents = diffArrays(extractNames(oldDecl.events), extractNames(newDecl.events));
     const addedSlots = diffArrays(extractNames(oldDecl.slots), extractNames(newDecl.slots));
@@ -354,7 +282,7 @@ async function main() {
       addedCssProps.length ||
       addedCssParts.length
     ) {
-      changedComponents.push({
+      rawChangedComponents.push({
         tag,
         addedProps,
         addedEvents,
@@ -365,16 +293,15 @@ async function main() {
     }
   }
 
-  // Detect new stories
-  const newStories = await diffStories();
+  // Group changed components by CEM directory
+  const changedFamilies = groupChangedByFamily(rawChangedComponents, newIndex);
 
   const diff = {
     oldVersion,
     newVersion: targetVersion,
-    newComponents,
-    changedComponents,
-    newStories,
-    hasChanges: newComponents.length > 0 || changedComponents.length > 0 || newStories.length > 0,
+    newFamilies,
+    changedFamilies,
+    hasChanges: newFamilies.length > 0 || changedFamilies.length > 0,
   };
 
   output(diff);
@@ -390,7 +317,9 @@ function output(diff) {
   }
 }
 
-main().catch((err) => {
+try {
+  main();
+} catch (err) {
   console.error("cem-diff failed:", err.message);
   process.exit(1);
-});
+}
