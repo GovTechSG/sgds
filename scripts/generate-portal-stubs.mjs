@@ -374,23 +374,26 @@ function generateSidebarEntries() {
     const sidebarStart = content.indexOf('sidebar["/components/"]');
     if (sidebarStart === -1) continue;
 
-    // Extract only top-level `{ text: "...", link: "..." }` entries (4-space indent)
-    // to avoid inserting inside nested groups like "Card group".
+    // Find the bounds of the sidebar items array: from `items: [` to its closing `  ],`
+    // We need the closing `];` of the whole assignment block (after `items: [...]`)
+    const itemsStart = content.indexOf("items: [", sidebarStart);
+    if (itemsStart === -1) continue;
+    // The items array closes with `  ],` followed by `};` — find `};` after sidebarStart
+    const blockEnd = content.indexOf("};", sidebarStart);
+    if (blockEnd === -1) continue;
+    const sidebarSlice = content.substring(itemsStart, blockEnd);
+
+    // Match only top-level entries (4-space indent, not 8-space nested items)
     const entryRegex = /^    \{ text: "([^"]+)", link: "[^"]+" \},?$/gm;
     let match;
     let insertBeforeIdx = -1;
     const newTitleLower = title.toLowerCase();
 
-    // Search only within the sidebar section
-    const sidebarEnd = content.indexOf("];", sidebarStart);
-    const sidebarSlice = content.substring(sidebarStart, sidebarEnd);
-
     entryRegex.lastIndex = 0;
     while ((match = entryRegex.exec(sidebarSlice)) !== null) {
       const existingTitle = match[1].toLowerCase();
       if (existingTitle > newTitleLower) {
-        // Insert before this entry
-        insertBeforeIdx = sidebarStart + match.index;
+        insertBeforeIdx = itemsStart + match.index;
         break;
       }
     }
@@ -400,9 +403,11 @@ function generateSidebarEntries() {
     if (insertBeforeIdx !== -1) {
       content = content.substring(0, insertBeforeIdx) + newEntry + content.substring(insertBeforeIdx);
     } else {
-      // Append before closing `],`
-      const closingIdx = content.indexOf("  ],", sidebarStart);
-      if (closingIdx === -1) continue;
+      // Append before the closing `  ],` of the items array
+      // Find the last `  ],` before `};`
+      const closingPattern = "  ],";
+      let closingIdx = content.lastIndexOf(closingPattern, blockEnd);
+      if (closingIdx === -1 || closingIdx < sidebarStart) continue;
       content = content.substring(0, closingIdx) + newEntry + content.substring(closingIdx);
     }
   }
