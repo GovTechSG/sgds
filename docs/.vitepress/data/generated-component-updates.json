@@ -1,16 +1,4 @@
 {
-  "data-table": [
-    {
-      "Date": "14 Sept 2026",
-      "Version": "v3.27.0",
-      "Description": "New component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/732\" target=\"_blank\" rel=\"noopener noreferrer\">#732</a>."
-    },
-    {
-      "Date": "14 Sept 2026",
-      "Version": "v3.27.0",
-      "Description": "Border radius 0 in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/822\" target=\"_blank\" rel=\"noopener noreferrer\">#822</a>."
-    }
-  ],
   "select": [
     {
       "Date": "14 Sept 2026",
@@ -453,7 +441,7 @@
     {
       "Date": "23 Jun 2026",
       "Version": "v3.22.0",
-      "Description": "Resolve aria-required-children violation on role=\"table\" in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/709\" target=\"_blank\" rel=\"noopener noreferrer\">#709</a>."
+      "Description": "Resolve aria-required-children violation on role=&quot;table&quot; in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/709\" target=\"_blank\" rel=\"noopener noreferrer\">#709</a>."
     },
     {
       "Date": "19 May 2026",

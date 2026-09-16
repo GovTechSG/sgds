@@ -145,6 +145,13 @@ const formatDate = (iso) => {
   return `${day} ${month} ${year}`;
 };
 
+const escapeHtml = (str) =>
+  str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
 const sentenceCase = (text) => {
   const cleaned = text
     .replace(/^[*\-]\s+/, "")
@@ -156,7 +163,9 @@ const sentenceCase = (text) => {
 
   if (!cleaned) return "";
 
-  const linked = cleaned
+  const escaped = escapeHtml(cleaned);
+
+  const linked = escaped
     .replace(
       /https:\/\/github\.com\/GovTechSG\/sgds-web-component\/pull\/(\d+)/gi,
       (_, num) => `<a class="updates-source-link" href="${PR_BASE}/${num}" target="_blank" rel="noopener noreferrer">#${num}</a>`,
