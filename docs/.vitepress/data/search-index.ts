@@ -5,7 +5,6 @@ export const categoryColorClass: Record<string, string> = {
   Foundation: "sgds:text-success-default",
   Template: "sgds:text-warning-default",
   "Get started": "sgds:text-primary-default",
-  Guideline: "sgds:text-purple-default",
   AI: "sgds:text-cyan-default",
   Stories: "sgds:text-cyan-default",
 };
@@ -153,11 +152,6 @@ export const searchIndex: SearchItem[] = [
   { title: "Page header", category: "Block", url: "/blocks/preview/header", keywords: ["title", "header", "breadcrumb", "page"] },
   { title: "Stats", category: "Block", url: "/blocks/preview/stats", keywords: ["stats", "metrics", "kpi", "numbers"] },
 
-  // Guidelines
-  { title: "Overview", category: "Guideline", url: "/guidelines/overview" },
-  { title: "Content guidance", category: "Guideline", url: "/guidelines/content-guidance", keywords: ["writing", "copy", "tone"] },
-  { title: "Interaction guidance", category: "Guideline", url: "/guidelines/interaction-guidance", keywords: ["interaction", "ux", "behaviour"] },
-
   // AI
   { title: "Introduction", category: "AI", url: "/ai/introduction", keywords: ["ai", "overview"] },
   { title: "Overview", category: "AI", url: "/ai/overview", keywords: ["ai", "skills", "setup"] },
@@ -182,7 +176,6 @@ const categoryOrder: Record<string, number> = {
   Foundation: 1,
   Template: 2,
   "Get started": 3,
-  Guideline: 4,
   AI: 5,
 };
 
