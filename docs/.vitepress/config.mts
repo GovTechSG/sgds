@@ -260,24 +260,6 @@ export default defineConfig({
       "/blocks/": {
         ...blocksSidebar,
       },
-      "/guidelines/": {
-        base: "/guidelines/",
-        items: [
-          {
-            text: "Guidelines",
-            items: [{ text: "Overview", link: "/guidelines/overview" }],
-          },
-        ],
-      },
-      "/resources/": {
-        base: "/resources/",
-        items: [
-          {
-            text: "Resources",
-            items: [{ text: "Overview", link: "/resources/overview" }],
-          },
-        ],
-      },
       "/ai/": {
         base: "/ai/",
         items: [

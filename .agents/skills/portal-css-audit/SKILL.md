@@ -148,8 +148,6 @@ These files still use `<style module>` (class-based only, no element selector bl
 
 | File | Notes |
 |---|---|
-| `docs/resources/index.md` | `.container` row-gap only |
-| `docs/guidelines/index.md` | `.container` row-gap only |
 | `docs/index.md` | Landing page layout classes |
 
 These are lower priority since they contain no bare element selectors, but should be migrated when the files are next edited.
