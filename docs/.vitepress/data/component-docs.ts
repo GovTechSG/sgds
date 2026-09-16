@@ -17073,32 +17073,653 @@ const componentDocs: Record<string, ComponentDoc> = {
     title: "Data table",
     tag: "sgds-data-table",
     group: "data display" as ComponentGroup,
-    summary: "Data table component.",
+    summary:
+      "A data table is designed for managing and displaying large datasets with interactive features that enhance usability and accessibility. It allows users to analyse, sort, and manipulate data efficiently.",
     purposeCards: [
       {
-        title: "TODO: Purpose 1",
-        description: "Describe the primary use case for data table.",
+        title: "Compare records",
+        description: "Use data tables when each row shares the same set of fields.",
       },
       {
-        title: "TODO: Purpose 2",
-        description: "Describe a secondary use case for data table.",
+        title: "Navigate long datasets",
+        description: "Built-in pagination helps users move through many records.",
       },
       {
-        title: "TODO: Purpose 3",
-        description: "Describe a third use case for data table.",
+        title: "Act on rows",
+        description: "Support sorting, selection, and expandable details where needed.",
       },
     ],
-    anatomyMarkup: `<sgds-data-table></sgds-data-table>`,
+    anatomyMarkup: `<sgds-data-table currentPage="1" dataLength="3" itemsPerPage="5" multiSelect>
+      <sgds-data-table-row>
+        <sgds-data-table-head sorting sortKey="application">Application</sgds-data-table-head>
+        <sgds-data-table-head>Status</sgds-data-table-head>
+        <sgds-data-table-head textAlign="right">Amount</sgds-data-table-head>
+        <sgds-data-table-head>Action</sgds-data-table-head>
+      </sgds-data-table-row>
+      <sgds-data-table-row expand open>
+        <sgds-data-table-cell>GST-2026-001</sgds-data-table-cell>
+        <sgds-data-table-cell><sgds-badge variant="success" outlined>Approved</sgds-badge></sgds-data-table-cell>
+        <sgds-data-table-cell>1,250.00</sgds-data-table-cell>
+        <sgds-data-table-cell><sgds-overflow-menu size="sm"><sgds-dropdown-item ariaLabel="View">View</sgds-dropdown-item><sgds-dropdown-item ariaLabel="Edit">Edit</sgds-dropdown-item></sgds-overflow-menu></sgds-data-table-cell>
+        <div slot="content">Submitted by Operations on 12 Mar 2026.</div>
+      </sgds-data-table-row>
+      <sgds-data-table-row>
+        <sgds-data-table-cell>GST-2026-002</sgds-data-table-cell>
+        <sgds-data-table-cell><sgds-badge variant="warning" outlined>In review</sgds-badge></sgds-data-table-cell>
+        <sgds-data-table-cell>850.00</sgds-data-table-cell>
+        <sgds-data-table-cell><sgds-overflow-menu size="sm"><sgds-dropdown-item ariaLabel="View">View</sgds-dropdown-item><sgds-dropdown-item ariaLabel="Edit">Edit</sgds-dropdown-item></sgds-overflow-menu></sgds-data-table-cell>
+      </sgds-data-table-row>
+      <sgds-data-table-row>
+        <sgds-data-table-cell>GST-2026-003</sgds-data-table-cell>
+        <sgds-data-table-cell><sgds-badge variant="neutral" outlined>Draft</sgds-badge></sgds-data-table-cell>
+        <sgds-data-table-cell>640.00</sgds-data-table-cell>
+        <sgds-data-table-cell><sgds-overflow-menu size="sm"><sgds-dropdown-item ariaLabel="View">View</sgds-dropdown-item><sgds-dropdown-item ariaLabel="Edit">Edit</sgds-dropdown-item></sgds-overflow-menu></sgds-data-table-cell>
+      </sgds-data-table-row>
+    </sgds-data-table>`,
     anatomyParts: [
-      { title: "Container" },
-      // TODO: Add anatomy parts
+      { title: "Header row" },
+      { title: "Data row" },
+      { title: "Expanded panel" },
+      { title: "Footer", note: "(optional)" },
+      { title: "Expand indicator" },
+      { title: "Checkbox" },
+      { title: "Header cell" },
+      { title: "Sorting", note: "(optional)" },
+    ],
+    anatomyCallouts: [
+      {
+        number: 1,
+        direction: "left",
+        targetSelector: "sgds-data-table-row:first-of-type",
+        targetShadowSelector: "tr",
+        targetX: "left",
+        targetY: "center",
+      },
+      {
+        number: 2,
+        direction: "left",
+        targetSelector: "sgds-data-table-row:nth-of-type(2)",
+        targetShadowSelector: "tr.active",
+        targetX: "left",
+        targetY: "center",
+        alignBadgeWithCallout: 1,
+      },
+      {
+        number: 3,
+        direction: "left",
+        targetSelector: "sgds-data-table-row:nth-of-type(2)",
+        targetShadowSelector: ".expandable-row",
+        targetX: "left",
+        targetY: "center",
+        alignBadgeWithCallout: 1,
+      },
+      {
+        number: 4,
+        direction: "left",
+        targetSelector: "sgds-data-table",
+        targetShadowSelector: ".footer",
+        targetX: "left",
+        targetY: "center",
+        alignBadgeWithCallout: 1,
+      },
+      {
+        number: 5,
+        direction: "top",
+        targetSelector: "sgds-data-table-row:nth-of-type(2)",
+        targetShadowSelector: ".expand-cell",
+        targetX: "center",
+        targetY: "top",
+      },
+      {
+        number: 6,
+        direction: "top",
+        targetSelector: "sgds-data-table-row:first-of-type",
+        targetShadowSelector: ".checkbox-cell sgds-checkbox >>> input",
+        targetX: "center",
+        targetY: "top",
+      },
+      {
+        number: 7,
+        direction: "top",
+        targetSelector: "sgds-data-table-row:first-of-type",
+        targetShadowSelector: ".data-table-head",
+        targetX: "center",
+        targetY: "top",
+      },
+      {
+        number: 8,
+        direction: "top",
+        targetSelector: "sgds-data-table-row:first-of-type",
+        targetShadowSelector: ".sort-button",
+        targetX: "center",
+        targetY: "top",
+      },
+    ],
+    configurationDemos: [
+      {
+        title: "Header props",
+        description:
+          "Configure header cells with supported `sgds-data-table-head` props.",
+        controlLabel: "Data table header props",
+        defaultValue: "sorting",
+        options: [
+          {
+            label: "Sorting",
+            value: "sorting",
+            markup: `<sgds-data-table currentPage="1" dataLength="3" itemsPerPage="5">
+              <sgds-data-table-row>
+                <sgds-data-table-head sorting sortKey="id">ID</sgds-data-table-head>
+                <sgds-data-table-head sorting sortKey="name">Name</sgds-data-table-head>
+                <sgds-data-table-head>Role</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Lina</sgds-data-table-cell>
+                <sgds-data-table-cell>Engineer</sgds-data-table-cell>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>2</sgds-data-table-cell>
+                <sgds-data-table-cell>Adam</sgds-data-table-cell>
+                <sgds-data-table-cell>Engineer</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `sorting` and `sortKey` on headers that should sort rows.",
+          },
+          {
+            label: "Default sort",
+            value: "default-sort",
+            markup: `<sgds-data-table currentPage="1" dataLength="3" itemsPerPage="5">
+              <sgds-data-table-row>
+                <sgds-data-table-head sorting sortKey="id" sortDirection="ascending">ID</sgds-data-table-head>
+                <sgds-data-table-head>Name</sgds-data-table-head>
+                <sgds-data-table-head>Role</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Alice</sgds-data-table-cell>
+                <sgds-data-table-cell>Engineer</sgds-data-table-cell>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>2</sgds-data-table-cell>
+                <sgds-data-table-cell>Ben</sgds-data-table-cell>
+                <sgds-data-table-cell>Analyst</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `sortDirection` on a sortable header to show the initial sort state.",
+          },
+          {
+            label: "Right aligned",
+            value: "right-aligned",
+            markup: `<sgds-data-table currentPage="1" dataLength="3" itemsPerPage="5">
+              <sgds-data-table-row>
+                <sgds-data-table-head>ID</sgds-data-table-head>
+                <sgds-data-table-head>Name</sgds-data-table-head>
+                <sgds-data-table-head textAlign="right">Amount</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Amy Tan</sgds-data-table-cell>
+                <sgds-data-table-cell>125.00</sgds-data-table-cell>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>2</sgds-data-table-cell>
+                <sgds-data-table-cell>Ben Ho</sgds-data-table-cell>
+                <sgds-data-table-cell>98.30</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `textAlign=\"right\"` on numeric headers.",
+          },
+          {
+            label: "Width",
+            value: "width",
+            markup: `<sgds-data-table currentPage="1" dataLength="3" itemsPerPage="5" layout="fixed">
+              <sgds-data-table-row>
+                <sgds-data-table-head width="25%">ID</sgds-data-table-head>
+                <sgds-data-table-head width="45%">Name</sgds-data-table-head>
+                <sgds-data-table-head width="30%">Role</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Lina</sgds-data-table-cell>
+                <sgds-data-table-cell>Engineer</sgds-data-table-cell>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>2</sgds-data-table-cell>
+                <sgds-data-table-cell>Adam</sgds-data-table-cell>
+                <sgds-data-table-cell>Engineer</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `width` on header cells when column sizing needs to be controlled.",
+          },
+        ],
+      },
+      {
+        title: "Row expansion",
+        description:
+          "Use supported `sgds-data-table-row` props for expandable row details.",
+        controlLabel: "Data table row expansion props",
+        defaultValue: "expand",
+        options: [
+          {
+            label: "Expand",
+            value: "expand",
+            markup: `<sgds-data-table currentPage="1" dataLength="2" itemsPerPage="5">
+              <sgds-data-table-row>
+                <sgds-data-table-head>First name</sgds-data-table-head>
+                <sgds-data-table-head>Last name</sgds-data-table-head>
+                <sgds-data-table-head>Username</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row expand>
+                <sgds-data-table-cell>John</sgds-data-table-cell>
+                <sgds-data-table-cell>Doe</sgds-data-table-cell>
+                <sgds-data-table-cell>@johndoe</sgds-data-table-cell>
+                <div slot="content">More details about John Doe.</div>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>Jane</sgds-data-table-cell>
+                <sgds-data-table-cell>Doe</sgds-data-table-cell>
+                <sgds-data-table-cell>@janedoe</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `expand` on rows that reveal detail content.",
+          },
+          {
+            label: "Open",
+            value: "open",
+            markup: `<sgds-data-table currentPage="1" dataLength="2" itemsPerPage="5">
+              <sgds-data-table-row>
+                <sgds-data-table-head>First name</sgds-data-table-head>
+                <sgds-data-table-head>Last name</sgds-data-table-head>
+                <sgds-data-table-head>Username</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row expand open>
+                <sgds-data-table-cell>John</sgds-data-table-cell>
+                <sgds-data-table-cell>Doe</sgds-data-table-cell>
+                <sgds-data-table-cell>@johndoe</sgds-data-table-cell>
+                <div slot="content">More details about John Doe.</div>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>Jane</sgds-data-table-cell>
+                <sgds-data-table-cell>Doe</sgds-data-table-cell>
+                <sgds-data-table-cell>@janedoe</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Add `open` when an expandable row should be expanded on load.",
+          },
+          {
+            label: "With selection",
+            value: "expand-multiselect",
+            markup: `<sgds-data-table currentPage="1" dataLength="2" itemsPerPage="5" multiSelect>
+              <sgds-data-table-row>
+                <sgds-data-table-head>First name</sgds-data-table-head>
+                <sgds-data-table-head>Last name</sgds-data-table-head>
+                <sgds-data-table-head>Username</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row expand>
+                <sgds-data-table-cell>John</sgds-data-table-cell>
+                <sgds-data-table-cell>Doe</sgds-data-table-cell>
+                <sgds-data-table-cell>@johndoe</sgds-data-table-cell>
+                <div slot="content">More details about John Doe.</div>
+              </sgds-data-table-row>
+              <sgds-data-table-row expand>
+                <sgds-data-table-cell>Jane</sgds-data-table-cell>
+                <sgds-data-table-cell>Doe</sgds-data-table-cell>
+                <sgds-data-table-cell>@janedoe</sgds-data-table-cell>
+                <div slot="content">More details about Jane Doe.</div>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Use `expand` with table `multiSelect` when rows need details and selection.",
+          },
+        ],
+      },
+      {
+        title: "Row selection",
+        description:
+          "Use `multiSelect` on the table and `checked` on rows for selection states.",
+        controlLabel: "Data table row selection props",
+        defaultValue: "multi-select",
+        options: [
+          {
+            label: "Multi-select",
+            value: "multi-select",
+            markup: `<sgds-data-table currentPage="1" dataLength="3" itemsPerPage="5" multiSelect>
+              <sgds-data-table-row>
+                <sgds-data-table-head>First name</sgds-data-table-head>
+                <sgds-data-table-head>Last name</sgds-data-table-head>
+                <sgds-data-table-head>Username</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>John</sgds-data-table-cell>
+                <sgds-data-table-cell>Doe</sgds-data-table-cell>
+                <sgds-data-table-cell>@johndoe</sgds-data-table-cell>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>Jane</sgds-data-table-cell>
+                <sgds-data-table-cell>Doe</sgds-data-table-cell>
+                <sgds-data-table-cell>@janedoe</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `multiSelect` to render a checkbox column for row selection.",
+          },
+          {
+            label: "Pre-checked",
+            value: "pre-checked",
+            markup: `<sgds-data-table currentPage="1" dataLength="3" itemsPerPage="5" multiSelect>
+              <sgds-data-table-row>
+                <sgds-data-table-head>First name</sgds-data-table-head>
+                <sgds-data-table-head>Last name</sgds-data-table-head>
+                <sgds-data-table-head>Username</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row checked>
+                <sgds-data-table-cell>John</sgds-data-table-cell>
+                <sgds-data-table-cell>Doe</sgds-data-table-cell>
+                <sgds-data-table-cell>@johndoe</sgds-data-table-cell>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>Jane</sgds-data-table-cell>
+                <sgds-data-table-cell>Doe</sgds-data-table-cell>
+                <sgds-data-table-cell>@janedoe</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `checked` on body rows that should be selected on initial render.",
+          },
+        ],
+      },
+      {
+        title: "Pagination",
+        description:
+          "Configure result count, items per page, summary text, and pagination variant.",
+        controlLabel: "Data table pagination props",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Default",
+            value: "default",
+            markup: `<sgds-data-table currentPage="1" dataLength="20" itemsPerPage="10">
+              <sgds-data-table-row>
+                <sgds-data-table-head>ID</sgds-data-table-head>
+                <sgds-data-table-head>Name</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Amy</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Use `currentPage`, `dataLength`, and `itemsPerPage` for default pagination.",
+          },
+          {
+            label: "Custom",
+            value: "custom-summary",
+            markup: `<sgds-data-table currentPage="1" dataLength="20" itemsPerPage="10" paginationSummary="Showing latest applications">
+              <sgds-data-table-row>
+                <sgds-data-table-head>ID</sgds-data-table-head>
+                <sgds-data-table-head>Name</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Amy</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `paginationSummary` to replace the default footer summary text.",
+          },
+          {
+            label: "Number",
+            value: "number",
+            markup: `<sgds-data-table currentPage="1" dataLength="20" itemsPerPage="10" paginationVariant="number">
+              <sgds-data-table-row>
+                <sgds-data-table-head>ID</sgds-data-table-head>
+                <sgds-data-table-head>Name</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Amy</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `paginationVariant=\"number\"` to show numbered pagination controls.",
+          },
+          {
+            label: "Button",
+            value: "button",
+            markup: `<sgds-data-table currentPage="1" dataLength="20" itemsPerPage="10" paginationVariant="button">
+              <sgds-data-table-row>
+                <sgds-data-table-head>ID</sgds-data-table-head>
+                <sgds-data-table-head>Name</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Amy</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `paginationVariant=\"button\"` to use button-style pagination controls.",
+          },
+          {
+            label: "Description",
+            value: "description",
+            markup: `<sgds-data-table currentPage="1" dataLength="20" itemsPerPage="10" paginationVariant="description">
+              <sgds-data-table-row>
+                <sgds-data-table-head>ID</sgds-data-table-head>
+                <sgds-data-table-head>Name</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Amy</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `paginationVariant=\"description\"` to use descriptive pagination controls.",
+          },
+        ],
+      },
+      {
+        title: "Mode and server sort",
+        description:
+          "Choose client or server pagination, and use `serverSort` when an API handles sorting.",
+        controlLabel: "Data table mode and server sort props",
+        defaultValue: "client",
+        options: [
+          {
+            label: "Client",
+            value: "client",
+            markup: `<sgds-data-table currentPage="1" dataLength="4" itemsPerPage="2">
+              <sgds-data-table-row>
+                <sgds-data-table-head sorting sortKey="id">ID</sgds-data-table-head>
+                <sgds-data-table-head>Name</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Amy</sgds-data-table-cell>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>2</sgds-data-table-cell>
+                <sgds-data-table-cell>Ben</sgds-data-table-cell>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>3</sgds-data-table-cell>
+                <sgds-data-table-cell>Cara</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Default. Client mode slices slotted rows and handles local sorting.",
+          },
+          {
+            label: "Server",
+            value: "server",
+            markup: `<sgds-data-table mode="server" currentPage="1" dataLength="50" itemsPerPage="10">
+              <sgds-data-table-row>
+                <sgds-data-table-head>ID</sgds-data-table-head>
+                <sgds-data-table-head>Name</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Amy</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `mode=\"server\"` when the app supplies the current page of rows.",
+          },
+          {
+            label: "Server sort",
+            value: "server-sort",
+            markup: `<sgds-data-table mode="server" serverSort currentPage="1" dataLength="50" itemsPerPage="10">
+              <sgds-data-table-row>
+                <sgds-data-table-head sorting sortKey="id">ID</sgds-data-table-head>
+                <sgds-data-table-head sorting sortKey="name">Name</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Alice</sgds-data-table-cell>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>2</sgds-data-table-cell>
+                <sgds-data-table-cell>Ben</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `serverSort` to emit `sgds-sort` and let the API return sorted rows.",
+          },
+        ],
+      },
+      {
+        title: "Data state",
+        description:
+          "Use the built-in loading and no-data states shown in Storybook.",
+        controlLabel: "Data table data state props",
+        defaultValue: "no-rows",
+        options: [
+          {
+            label: "No rows",
+            value: "no-rows",
+            markup: `<sgds-data-table currentPage="1" dataLength="0" itemsPerPage="5">
+              <sgds-data-table-row>
+                <sgds-data-table-head>First name</sgds-data-table-head>
+                <sgds-data-table-head>Last name</sgds-data-table-head>
+                <sgds-data-table-head>Username</sgds-data-table-head>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "With no body rows, the table shows the default no-data state.",
+          },
+          {
+            label: "Custom",
+            value: "custom-no-data",
+            markup: `<sgds-data-table currentPage="1" dataLength="0" itemsPerPage="5">
+              <sgds-data-table-row>
+                <sgds-data-table-head>First name</sgds-data-table-head>
+                <sgds-data-table-head>Last name</sgds-data-table-head>
+                <sgds-data-table-head>Username</sgds-data-table-head>
+              </sgds-data-table-row>
+              <div slot="no-data">No records found. Try adjusting your search or filters.</div>
+            </sgds-data-table>`,
+            description: "Use the `no-data` slot to replace the default no-data message.",
+          },
+          {
+            label: "Loading",
+            value: "loading",
+            markup: `<sgds-data-table currentPage="1" dataLength="5" itemsPerPage="5" loading>
+              <sgds-data-table-row>
+                <sgds-data-table-head>First name</sgds-data-table-head>
+                <sgds-data-table-head>Last name</sgds-data-table-head>
+                <sgds-data-table-head>Username</sgds-data-table-head>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Set `loading` to show skeleton rows while data is being fetched.",
+          },
+          {
+            label: "Expandable",
+            value: "loading-expandable",
+            markup: `<sgds-data-table currentPage="1" dataLength="5" itemsPerPage="5" loading>
+              <sgds-data-table-row>
+                <sgds-data-table-head>First name</sgds-data-table-head>
+                <sgds-data-table-head>Last name</sgds-data-table-head>
+                <sgds-data-table-head>Username</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row expand>
+                <sgds-data-table-cell>John</sgds-data-table-cell>
+                <sgds-data-table-cell>Doe</sgds-data-table-cell>
+                <sgds-data-table-cell>@johndoe</sgds-data-table-cell>
+                <div slot="content">More details about John Doe.</div>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "When rows have `expand`, the loading skeleton includes an expand control column.",
+          },
+          {
+            label: "Selected",
+            value: "loading-multiselect",
+            markup: `<sgds-data-table currentPage="1" dataLength="5" itemsPerPage="5" loading multiSelect>
+              <sgds-data-table-row>
+                <sgds-data-table-head>First name</sgds-data-table-head>
+                <sgds-data-table-head>Last name</sgds-data-table-head>
+                <sgds-data-table-head>Username</sgds-data-table-head>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "When `multiSelect` is enabled, the loading skeleton includes a checkbox column.",
+          },
+        ],
+      },
+      {
+        title: "Table layout",
+        description:
+          "Choose how the browser sizes columns inside the data table.",
+        controlLabel: "Data table layout props",
+        defaultValue: "auto",
+        options: [
+          {
+            label: "Auto",
+            value: "auto",
+            markup: `<sgds-data-table currentPage="1" dataLength="2" itemsPerPage="5" layout="auto">
+              <sgds-data-table-row>
+                <sgds-data-table-head>ID</sgds-data-table-head>
+                <sgds-data-table-head>Name</sgds-data-table-head>
+                <sgds-data-table-head>Role</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Amy Tan</sgds-data-table-cell>
+                <sgds-data-table-cell>Operations lead</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Default. Use `layout=\"auto\"` to let content influence column sizing.",
+          },
+          {
+            label: "Fixed",
+            value: "fixed",
+            markup: `<sgds-data-table currentPage="1" dataLength="2" itemsPerPage="5" layout="fixed">
+              <sgds-data-table-row>
+                <sgds-data-table-head>ID</sgds-data-table-head>
+                <sgds-data-table-head>Name</sgds-data-table-head>
+                <sgds-data-table-head>Role</sgds-data-table-head>
+              </sgds-data-table-row>
+              <sgds-data-table-row>
+                <sgds-data-table-cell>1</sgds-data-table-cell>
+                <sgds-data-table-cell>Amy Tan</sgds-data-table-cell>
+                <sgds-data-table-cell>Operations lead</sgds-data-table-cell>
+              </sgds-data-table-row>
+            </sgds-data-table>`,
+            description: "Use `layout=\"fixed\"` to distribute columns predictably across the table.",
+          },
+        ],
+      },
     ],
     demos: [
       {
         ...demo(
-          "Default",
-          "Basic data table usage.",
-          `<sgds-data-table></sgds-data-table>`,
+          "Records",
+          "Use data tables to compare repeated records and support row-level actions.",
+          `<sgds-data-table currentPage="1" dataLength="4" itemsPerPage="5">
+            <sgds-data-table-row>
+              <sgds-data-table-head sorting sortKey="application">Application</sgds-data-table-head>
+              <sgds-data-table-head>Status</sgds-data-table-head>
+              <sgds-data-table-head textAlign="right">Amount</sgds-data-table-head>
+              <sgds-data-table-head>Action</sgds-data-table-head>
+            </sgds-data-table-row>
+            <sgds-data-table-row>
+              <sgds-data-table-cell>GST-2026-001</sgds-data-table-cell>
+              <sgds-data-table-cell><sgds-badge variant="success" outlined>Approved</sgds-badge></sgds-data-table-cell>
+              <sgds-data-table-cell>1,250.00</sgds-data-table-cell>
+              <sgds-data-table-cell><sgds-overflow-menu size="sm"><sgds-dropdown-item ariaLabel="View">View</sgds-dropdown-item><sgds-dropdown-item ariaLabel="Edit">Edit</sgds-dropdown-item></sgds-overflow-menu></sgds-data-table-cell>
+            </sgds-data-table-row>
+            <sgds-data-table-row>
+              <sgds-data-table-cell>GST-2026-002</sgds-data-table-cell>
+              <sgds-data-table-cell><sgds-badge variant="warning" outlined>In review</sgds-badge></sgds-data-table-cell>
+              <sgds-data-table-cell>850.00</sgds-data-table-cell>
+              <sgds-data-table-cell><sgds-overflow-menu size="sm"><sgds-dropdown-item ariaLabel="View">View</sgds-dropdown-item><sgds-dropdown-item ariaLabel="Edit">Edit</sgds-dropdown-item></sgds-overflow-menu></sgds-data-table-cell>
+            </sgds-data-table-row>
+          </sgds-data-table>`,
         ),
       },
     ],
@@ -17108,29 +17729,132 @@ const componentDocs: Record<string, ComponentDoc> = {
           title: "When to use",
           tone: "do" as const,
           items: [
-            "TODO: Add guidance on when to use data table.",
+            "Use a data table to display and manage structured datasets, where each row represents a record and each column represents a shared field.",
+            "Use it when users need built-in features to work with the dataset, such as sorting, pagination, row selection or expandable rows.",
+            "Use it when the data changes or is loaded over time and you need to represent states and behaviours such as loading, no data, or server-side sorting and pagination.",
           ],
         },
         {
           title: "When not to use",
           tone: "dont" as const,
           items: [
-            "TODO: Add guidance on when not to use data table.",
+            "Do not use a data table when you only need to present already-prepared information in rows and columns without built-in data management features. Use a [table](/components/table) instead.",
+            "Do not use a data table for information that is better presented as a list, card or description list.",
           ],
         },
       ],
       bestPractices: [
         {
-          title: "TODO: Best practice",
-          description: "Describe a recommended pattern for data table.",
+          title: "Use data tables for interactive datasets",
+          description:
+            "Use a data table when records need built-in behaviours such as sorting, pagination, selection, loading states, or expandable row details.",
           tone: "do" as const,
-          markup: `<sgds-data-table></sgds-data-table>`,
+          markup: `<sgds-data-table currentPage="1" dataLength="2" itemsPerPage="10">
+            <sgds-data-table-row>
+              <sgds-data-table-head sorting sortKey="application">Application ID</sgds-data-table-head>
+              <sgds-data-table-head>Status</sgds-data-table-head>
+              <sgds-data-table-head textAlign="right">Amount</sgds-data-table-head>
+            </sgds-data-table-row>
+            <sgds-data-table-row>
+              <sgds-data-table-cell>APP-0421</sgds-data-table-cell>
+              <sgds-data-table-cell>In review</sgds-data-table-cell>
+              <sgds-data-table-cell>1,250.00</sgds-data-table-cell>
+            </sgds-data-table-row>
+            <sgds-data-table-row>
+              <sgds-data-table-cell>APP-0422</sgds-data-table-cell>
+              <sgds-data-table-cell>Approved</sgds-data-table-cell>
+              <sgds-data-table-cell>850.00</sgds-data-table-cell>
+            </sgds-data-table-row>
+          </sgds-data-table>`,
         },
         {
-          title: "TODO: Anti-pattern",
-          description: "Describe a pattern to avoid with data table.",
+          title: "Do not use data tables for static tables",
+          description:
+            "If the content is already prepared and does not need built-in data management features, use a table instead.",
           tone: "dont" as const,
-          markup: `<sgds-data-table></sgds-data-table>`,
+          markup: `<sgds-data-table currentPage="1" dataLength="2" itemsPerPage="5">
+            <sgds-data-table-row>
+              <sgds-data-table-head>Office</sgds-data-table-head>
+              <sgds-data-table-head>Opening hours</sgds-data-table-head>
+            </sgds-data-table-row>
+            <sgds-data-table-row>
+              <sgds-data-table-cell>Service counter</sgds-data-table-cell>
+              <sgds-data-table-cell>9am to 5pm</sgds-data-table-cell>
+            </sgds-data-table-row>
+            <sgds-data-table-row>
+              <sgds-data-table-cell>Call centre</sgds-data-table-cell>
+              <sgds-data-table-cell>8am to 8pm</sgds-data-table-cell>
+            </sgds-data-table-row>
+          </sgds-data-table>`,
+        },
+        {
+          title: "Use clear headers and stable sort keys",
+          description:
+            "Set `sorting` and `sortKey` only on columns users can compare. This gives client sorting and server sort events a stable field name.",
+          tone: "do" as const,
+          markup: `<sgds-data-table currentPage="1" dataLength="3" itemsPerPage="5">
+            <sgds-data-table-row>
+              <sgds-data-table-head sorting sortKey="caseId">Case ID</sgds-data-table-head>
+              <sgds-data-table-head sorting sortKey="owner">Owner</sgds-data-table-head>
+              <sgds-data-table-head>Status</sgds-data-table-head>
+            </sgds-data-table-row>
+            <sgds-data-table-row>
+              <sgds-data-table-cell>CASE-2041</sgds-data-table-cell>
+              <sgds-data-table-cell>Amy Tan</sgds-data-table-cell>
+              <sgds-data-table-cell>Open</sgds-data-table-cell>
+            </sgds-data-table-row>
+          </sgds-data-table>`,
+        },
+        {
+          title: "Do not make action columns sortable",
+          description:
+            "Keep sorting to data columns. Action and control columns should not emit sort events.",
+          tone: "dont" as const,
+          markup: `<sgds-data-table currentPage="1" dataLength="2" itemsPerPage="5">
+            <sgds-data-table-row>
+              <sgds-data-table-head sorting sortKey="id">ID</sgds-data-table-head>
+              <sgds-data-table-head sorting sortKey="action">Action</sgds-data-table-head>
+            </sgds-data-table-row>
+            <sgds-data-table-row>
+              <sgds-data-table-cell>1</sgds-data-table-cell>
+              <sgds-data-table-cell><sgds-overflow-menu size="sm"><sgds-dropdown-item ariaLabel="View">View</sgds-dropdown-item></sgds-overflow-menu></sgds-data-table-cell>
+            </sgds-data-table-row>
+            <sgds-data-table-row>
+              <sgds-data-table-cell>2</sgds-data-table-cell>
+              <sgds-data-table-cell><sgds-overflow-menu size="sm"><sgds-dropdown-item ariaLabel="View">View</sgds-dropdown-item></sgds-overflow-menu></sgds-data-table-cell>
+            </sgds-data-table-row>
+          </sgds-data-table>`,
+        },
+        {
+          title: "Use loading and no-data states",
+          description:
+            "Set `loading` while rows are being fetched, and use the `no-data` slot when the current query returns no records.",
+          tone: "do" as const,
+          markup: `<sgds-data-table currentPage="1" dataLength="3" itemsPerPage="3" loading>
+            <sgds-data-table-row>
+              <sgds-data-table-head>Application ID</sgds-data-table-head>
+              <sgds-data-table-head>Status</sgds-data-table-head>
+              <sgds-data-table-head>Submitted</sgds-data-table-head>
+            </sgds-data-table-row>
+          </sgds-data-table>`,
+        },
+        {
+          title: "Do not use a data table for one record",
+          description:
+            "For attributes of a single item, a description list shows the label-value relationship more clearly.",
+          tone: "dont" as const,
+          markup: `<sgds-data-table currentPage="1" dataLength="1" itemsPerPage="5">
+            <sgds-data-table-row>
+              <sgds-data-table-head>Name</sgds-data-table-head>
+              <sgds-data-table-head>Agency</sgds-data-table-head>
+              <sgds-data-table-head>Role</sgds-data-table-head>
+            </sgds-data-table-row>
+            <sgds-data-table-row>
+              <sgds-data-table-cell>Lim Wei Ming</sgds-data-table-cell>
+              <sgds-data-table-cell>Ministry of Finance</sgds-data-table-cell>
+              <sgds-data-table-cell>Officer</sgds-data-table-cell>
+            </sgds-data-table-row>
+          </sgds-data-table>`,
         },
       ],
     },
@@ -17139,24 +17863,82 @@ const componentDocs: Record<string, ComponentDoc> = {
         {
           title: "Built-in accessibility",
           description: [
-            "TODO: Describe the built-in accessibility features of data table.",
+            "Data table renders table semantics from composed SGDS row, header, and cell elements.",
           ],
           items: [
-            "TODO: Add accessibility guidance.",
+            "Header cells are rendered with column scope and body cells are rendered as table cells.",
+            "Sortable headers expose `aria-sort` and can be focused when sorting is enabled.",
+            "The no-data state uses a status region so updates can be announced.",
+            "Row selection uses SGDS checkboxes, including the header checkbox for select-all behaviour.",
+            "Expandable rows render a focusable control cell and fire show and hide lifecycle events.",
+          ],
+        },
+        {
+          title: "Labels and content",
+          description: [
+            "Clear column headers and concise row content help users understand the relationship between cells.",
+          ],
+          items: [
+            "Use short, unique column headers that describe the data in that column.",
+            "Set `sortKey` on sortable headers so selected-row and sort events use stable keys.",
+            "Use the `no-data` slot to explain empty results and give users a next step.",
+            "Avoid putting large paragraphs inside table cells. Use expandable row content for supporting details.",
           ],
         },
       ],
       keyboardInteractions: [
         {
           key: "Tab",
-          description: "TODO: Describe Tab behaviour.",
+          description:
+            "Moves focus to sortable headers, row selection checkboxes, expandable row controls, pagination controls, and any row actions added inside cells.",
         },
         {
           key: "Enter",
-          description: "TODO: Describe Enter behaviour.",
+          description:
+            "Sorts focused sortable headers, toggles focused expandable row controls, and activates data table pagination page-number controls.",
+        },
+        {
+          key: "Space",
+          description:
+            "Toggles focused row selection checkboxes and activates native button controls, such as pagination arrows or row action buttons.",
         },
       ],
     },
+    componentTokenGroups: [
+      {
+        title: "sgds / data-table",
+        rows: [
+          { category: "Padding", name: "padding-sm", value: "sgds/padding/sm", usage: "Vertical padding of cells, footer, skeleton rows, and no-data content" },
+          { category: "Padding", name: "padding-md", value: "sgds/padding/md", usage: "Horizontal padding of cells, skeleton rows, and no-data content" },
+          { category: "Padding", name: "padding-lg", value: "sgds/padding/lg", usage: "Horizontal padding of the footer" },
+          { category: "Padding", name: "padding-2-xl", value: "sgds/padding/2-xl", usage: "Padding of expanded row content" },
+          { category: "Padding", name: "padding-4-xl", value: "sgds/padding/4-xl", usage: "Left padding of expanded row content" },
+          { category: "Gap", name: "gap-2-xs", value: "sgds/gap/2-xs", usage: "Spacing between header text and sort control" },
+          { category: "Border", name: "border-width-1", value: "sgds/border-width/1", usage: "Border around the data table and divider between rows" },
+          { category: "Border", name: "border-color-muted", value: "sgds/border-color-muted", usage: "Border colour around the data table, rows, and expanded content" },
+          { category: "Border", name: "border-color-transparent", value: "sgds/border-color-transparent", usage: "Border colour of the sort button" },
+          { category: "Border", name: "border-radius-none", value: "sgds/border-radius/none", usage: "Corner radius of the data table container" },
+          { category: "Border", name: "form-border-radius-sm", value: "sgds/form/border-radius/sm", usage: "Corner radius of the sort button" },
+          { category: "Typography", name: "font-family-brand", value: "sgds/font-family/brand", usage: "Font family of table content" },
+          { category: "Typography", name: "font-size-label-sm", value: "sgds/font-size/label-sm", usage: "Font size of table content" },
+          { category: "Typography", name: "font-weight-semibold", value: "sgds/font-weight/semibold", usage: "Font weight of header cells" },
+          { category: "Typography", name: "font-weight-regular", value: "sgds/font-weight/regular", usage: "Font weight of body cells" },
+          { category: "Typography", name: "line-height-2-xs", value: "sgds/line-height/2-xs", usage: "Line height of table content" },
+          { category: "Typography", name: "letter-spacing-normal", value: "sgds/letter-spacing/normal", usage: "Letter spacing of table content" },
+          { category: "Colour", name: "bg-transparent", value: "sgds/bg-transparent", usage: "Background colour of the sort button" },
+          { category: "Colour", name: "bg-translucent-subtle", value: "sgds/bg-translucent-subtle", usage: "Background colour of hovered rows and sort buttons" },
+          { category: "Colour", name: "surface-raised", value: "sgds/surface-raised", usage: "Background colour of expanded row content" },
+          { category: "Colour", name: "color-default", value: "sgds/color-default", usage: "Text colour of header cells and hovered sort buttons" },
+          { category: "Colour", name: "color-subtle", value: "sgds/color-subtle", usage: "Default colour of the sort icon" },
+          { category: "Colour", name: "color-muted", value: "sgds/color-muted", usage: "Disabled colour of the sort icon" },
+          { category: "Colour", name: "text-color-subtle", value: "sgds/text-color/subtle", usage: "Text colour of no-data content" },
+          { category: "Colour", name: "primary-surface-translucent", value: "sgds/primary/surface-translucent", usage: "Background colour of the active sort button" },
+          { category: "Colour", name: "primary-color-default", value: "sgds/primary/color-default", usage: "Icon colour of the active sort button" },
+          { category: "Outline", name: "outline-focus", value: "sgds/outline-focus", usage: "Focus outline of sortable headers and sort buttons" },
+          { category: "Outline", name: "outline-offset-focus", value: "sgds/outline-offset-focus", usage: "Focus outline offset of sortable headers and sort buttons" },
+        ],
+      },
+    ],
     // updates: omitted — auto-populated from GitHub releases via buildResolvedUpdates()
   },
 };

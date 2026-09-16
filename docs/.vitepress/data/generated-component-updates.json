@@ -1,4 +1,16 @@
 {
+  "data-table": [
+    {
+      "Date": "14 Sept 2026",
+      "Version": "v3.27.0",
+      "Description": "New component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/732\" target=\"_blank\" rel=\"noopener noreferrer\">#732</a>."
+    },
+    {
+      "Date": "14 Sept 2026",
+      "Version": "v3.27.0",
+      "Description": "Border radius 0 in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/822\" target=\"_blank\" rel=\"noopener noreferrer\">#822</a>."
+    }
+  ],
   "select": [
     {
       "Date": "14 Sept 2026",

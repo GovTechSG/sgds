@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Data table
-description: Data table component.
+description: A data table is designed for managing and displaying large datasets with interactive features that enhance usability and accessibility. It allows users to analyse, sort, and manipulate data efficiently.
 storybook: true
 ---
 
