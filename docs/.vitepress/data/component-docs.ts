@@ -17066,6 +17066,99 @@ const componentDocs: Record<string, ComponentDoc> = {
     },
   },
 
+
+  // --- AUTO-GENERATED STUBS BELOW ---
+  "mainnav-profile": {
+    key: "mainnav-profile",
+    title: "Mainnav profile",
+    tag: "sgds-mainnav-profile",
+    group: "data display" as ComponentGroup,
+    summary: "Mainnav profile component.",
+    purposeCards: [
+      {
+        title: "TODO: Purpose 1",
+        description: "Describe the primary use case for mainnav profile.",
+      },
+      {
+        title: "TODO: Purpose 2",
+        description: "Describe a secondary use case for mainnav profile.",
+      },
+      {
+        title: "TODO: Purpose 3",
+        description: "Describe a third use case for mainnav profile.",
+      },
+    ],
+    anatomyMarkup: `<sgds-mainnav-profile></sgds-mainnav-profile>`,
+    anatomyParts: [
+      { title: "Container" },
+      // TODO: Add anatomy parts
+    ],
+    demos: [
+      {
+        ...demo(
+          "Default",
+          "Basic mainnav profile usage.",
+          `<sgds-mainnav-profile></sgds-mainnav-profile>`,
+        ),
+      },
+    ],
+    usage: {
+      guidance: [
+        {
+          title: "When to use",
+          tone: "do" as const,
+          items: [
+            "TODO: Add guidance on when to use mainnav profile.",
+          ],
+        },
+        {
+          title: "When not to use",
+          tone: "dont" as const,
+          items: [
+            "TODO: Add guidance on when not to use mainnav profile.",
+          ],
+        },
+      ],
+      bestPractices: [
+        {
+          title: "TODO: Best practice",
+          description: "Describe a recommended pattern for mainnav profile.",
+          tone: "do" as const,
+          markup: `<sgds-mainnav-profile></sgds-mainnav-profile>`,
+        },
+        {
+          title: "TODO: Anti-pattern",
+          description: "Describe a pattern to avoid with mainnav profile.",
+          tone: "dont" as const,
+          markup: `<sgds-mainnav-profile></sgds-mainnav-profile>`,
+        },
+      ],
+    },
+    accessibility: {
+      sections: [
+        {
+          title: "Built-in accessibility",
+          description: [
+            "TODO: Describe the built-in accessibility features of mainnav profile.",
+          ],
+          items: [
+            "TODO: Add accessibility guidance.",
+          ],
+        },
+      ],
+      keyboardInteractions: [
+        {
+          key: "Tab",
+          description: "TODO: Describe Tab behaviour.",
+        },
+        {
+          key: "Enter",
+          description: "TODO: Describe Enter behaviour.",
+        },
+      ],
+    },
+    // updates: omitted — auto-populated from GitHub releases via buildResolvedUpdates()
+  },
 };
 
 type GeneratedUsagePattern = {
