@@ -17066,6 +17066,99 @@ const componentDocs: Record<string, ComponentDoc> = {
     },
   },
 
+
+  // --- AUTO-GENERATED STUBS BELOW ---
+  "appnav": {
+    key: "appnav",
+    title: "Appnav",
+    tag: "sgds-appnav",
+    group: "data display" as ComponentGroup,
+    summary: "Appnav component.",
+    purposeCards: [
+      {
+        title: "TODO: Purpose 1",
+        description: "Describe the primary use case for appnav.",
+      },
+      {
+        title: "TODO: Purpose 2",
+        description: "Describe a secondary use case for appnav.",
+      },
+      {
+        title: "TODO: Purpose 3",
+        description: "Describe a third use case for appnav.",
+      },
+    ],
+    anatomyMarkup: `<sgds-appnav></sgds-appnav>`,
+    anatomyParts: [
+      { title: "Container" },
+      // TODO: Add anatomy parts
+    ],
+    demos: [
+      {
+        ...demo(
+          "Default",
+          "Basic appnav usage.",
+          `<sgds-appnav></sgds-appnav>`,
+        ),
+      },
+    ],
+    usage: {
+      guidance: [
+        {
+          title: "When to use",
+          tone: "do" as const,
+          items: [
+            "TODO: Add guidance on when to use appnav.",
+          ],
+        },
+        {
+          title: "When not to use",
+          tone: "dont" as const,
+          items: [
+            "TODO: Add guidance on when not to use appnav.",
+          ],
+        },
+      ],
+      bestPractices: [
+        {
+          title: "TODO: Best practice",
+          description: "Describe a recommended pattern for appnav.",
+          tone: "do" as const,
+          markup: `<sgds-appnav></sgds-appnav>`,
+        },
+        {
+          title: "TODO: Anti-pattern",
+          description: "Describe a pattern to avoid with appnav.",
+          tone: "dont" as const,
+          markup: `<sgds-appnav></sgds-appnav>`,
+        },
+      ],
+    },
+    accessibility: {
+      sections: [
+        {
+          title: "Built-in accessibility",
+          description: [
+            "TODO: Describe the built-in accessibility features of appnav.",
+          ],
+          items: [
+            "TODO: Add accessibility guidance.",
+          ],
+        },
+      ],
+      keyboardInteractions: [
+        {
+          key: "Tab",
+          description: "TODO: Describe Tab behaviour.",
+        },
+        {
+          key: "Enter",
+          description: "TODO: Describe Enter behaviour.",
+        },
+      ],
+    },
+    // updates: omitted — auto-populated from GitHub releases via buildResolvedUpdates()
+  },
 };
 
 type GeneratedUsagePattern = {
