@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
@@ -67,8 +67,11 @@ jobs:
       - name: Check for existing PR or branch
         if: steps.check.outputs.has_changes == 'true'
         id: existing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_SUFFIX: ${{ steps.stories.outputs.branch_suffix }}
         run: |
-          SUFFIX="${{ steps.stories.outputs.branch_suffix }}"
+          SUFFIX="$BRANCH_SUFFIX"
           BRANCH="auto/sync-stories-${SUFFIX}"
           EXISTING=$(gh pr list --head "$BRANCH" --state open --json number --jq 'length')
           if [ "$EXISTING" -gt 0 ]; then
@@ -80,8 +83,6 @@ jobs:
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate storybook stubs
         if: steps.check.outputs.has_changes == 'true' && steps.existing.outputs.skip != 'true'
@@ -134,10 +135,14 @@ jobs:
 
       - name: Create branch and PR
         if: steps.check.outputs.has_changes == 'true' && steps.existing.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_SUFFIX: ${{ steps.stories.outputs.branch_suffix }}
+          STORY_TOTAL: ${{ steps.stories.outputs.total }}
         run: |
-          SUFFIX="${{ steps.stories.outputs.branch_suffix }}"
+          SUFFIX="$BRANCH_SUFFIX"
           BRANCH="auto/sync-stories-${SUFFIX}"
-          TOTAL="${{ steps.stories.outputs.total }}"
+          TOTAL="$STORY_TOTAL"
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -159,5 +164,3 @@ jobs:
             --title "docs(stories): sync ${TOTAL} new storybook stories" \
             --body-file /tmp/pr-body.md \
             --label "auto-sync"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

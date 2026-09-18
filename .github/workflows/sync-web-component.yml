@@ -38,7 +38,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
@@ -46,8 +46,15 @@ jobs:
 
       - name: Resolve target version
         id: resolve
+        env:
+          INPUT_VERSION: ${{ github.event.inputs.target_version }}
         run: |
-          TARGET="${{ github.event.inputs.target_version }}"
+          TARGET="$INPUT_VERSION"
+          # Validate: must be empty or strict semver
+          if [ -n "$TARGET" ] && ! echo "$TARGET" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$'; then
+            echo "::error::Invalid target_version format: must be semver (e.g. 3.27.0)"
+            exit 1
+          fi
           if [ -z "$TARGET" ]; then
             # Get latest stable (non-RC) version from npm
             TARGET=$(npm view @govtechsg/sgds-web-component versions --json \
@@ -68,18 +75,23 @@ jobs:
 
       - name: Check if update needed
         id: check
+        env:
+          CURRENT_VERSION: ${{ steps.resolve.outputs.current }}
+          TARGET_VERSION: ${{ steps.resolve.outputs.target }}
         run: |
-          if [ "${{ steps.resolve.outputs.current }}" = "${{ steps.resolve.outputs.target }}" ]; then
+          if [ "$CURRENT_VERSION" = "$TARGET_VERSION" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
-            echo "Already up to date at ${{ steps.resolve.outputs.current }}"
+            echo "Already up to date at $CURRENT_VERSION"
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Run CEM diff
         if: steps.check.outputs.skip != 'true'
+        env:
+          TARGET_VERSION: ${{ steps.resolve.outputs.target }}
         run: |
-          node scripts/cem-diff.mjs "${{ steps.resolve.outputs.target }}" \
+          node scripts/cem-diff.mjs "$TARGET_VERSION" \
             --output /tmp/cem-diff.json
           cat /tmp/cem-diff.json
 
@@ -180,7 +192,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
@@ -188,8 +200,12 @@ jobs:
 
       - name: Check for existing PR or branch
         id: existing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET_VERSION: ${{ needs.diff.outputs.target }}
+          FAMILY_KEY: ${{ matrix.family.key }}
         run: |
-          BRANCH="auto/sync-wc-${{ needs.diff.outputs.target }}-${{ matrix.family.key }}"
+          BRANCH="auto/sync-wc-${TARGET_VERSION}-${FAMILY_KEY}"
           EXISTING=$(gh pr list --head "$BRANCH" --state open --json number --jq 'length')
           if [ "$EXISTING" -gt 0 ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
@@ -200,13 +216,13 @@ jobs:
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump package version
         if: steps.existing.outputs.skip != 'true'
+        env:
+          TARGET_VERSION: ${{ needs.diff.outputs.target }}
         run: |
-          pnpm add "@govtechsg/sgds-web-component@${{ needs.diff.outputs.target }}"
+          pnpm add "@govtechsg/sgds-web-component@${TARGET_VERSION}"
 
       - name: Download CEM diff artifact
         if: steps.existing.outputs.skip != 'true' && matrix.family.type == 'new'
@@ -217,24 +233,28 @@ jobs:
 
       - name: Generate portal stubs
         if: steps.existing.outputs.skip != 'true' && matrix.family.type == 'new'
+        env:
+          FAMILY_KEY: ${{ matrix.family.key }}
         run: |
-          node scripts/generate-portal-stubs.mjs /tmp/cem-diff.json --family "${{ matrix.family.key }}"
+          node scripts/generate-portal-stubs.mjs /tmp/cem-diff.json --family "$FAMILY_KEY"
 
       - name: Build PR description
         if: steps.existing.outputs.skip != 'true'
         id: pr_body
+        env:
+          FAMILY_JSON: ${{ toJson(matrix.family) }}
+          TARGET_VERSION: ${{ needs.diff.outputs.target }}
+          OLD_VERSION: ${{ needs.diff.outputs.current }}
         run: |
-          FAMILY_TYPE="${{ matrix.family.type }}"
-          VERSION="${{ needs.diff.outputs.target }}"
-          OLD_VERSION="${{ needs.diff.outputs.current }}"
-
           node -e "
           const lines = [];
           const family = JSON.parse(process.env.FAMILY_JSON);
+          const VERSION = process.env.TARGET_VERSION;
+          const OLD = process.env.OLD_VERSION;
 
           lines.push('## Summary');
           lines.push('');
-          lines.push('Updates \`@govtechsg/sgds-web-component\` from \`${OLD_VERSION}\` to \`${VERSION}\`.');
+          lines.push('Updates \`@govtechsg/sgds-web-component\` from \`' + OLD + '\` to \`' + VERSION + '\`.');
           lines.push('');
 
           if (family.type === 'new') {
@@ -275,16 +295,19 @@ jobs:
 
           require('fs').writeFileSync('/tmp/pr-body.md', lines.join('\n'));
           " 2>&1
-        env:
-          FAMILY_JSON: ${{ toJson(matrix.family) }}
 
       - name: Create branch and PR
         if: steps.existing.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FAMILY_SCOPE: ${{ matrix.family.scope }}
+          FAMILY_KEY: ${{ matrix.family.key }}
+          FAMILY_TYPE: ${{ matrix.family.type }}
+          TARGET_VERSION: ${{ needs.diff.outputs.target }}
         run: |
-          SCOPE="${{ matrix.family.scope }}"
-          BRANCH="auto/sync-wc-${{ needs.diff.outputs.target }}-${{ matrix.family.key }}"
-          VERSION="${{ needs.diff.outputs.target }}"
-          FAMILY_TYPE="${{ matrix.family.type }}"
+          SCOPE="$FAMILY_SCOPE"
+          BRANCH="auto/sync-wc-${TARGET_VERSION}-${FAMILY_KEY}"
+          VERSION="$TARGET_VERSION"
 
           if [ "$FAMILY_TYPE" = "new" ]; then
             TITLE="docs(${SCOPE}): add new component from web component v${VERSION}"
@@ -312,5 +335,3 @@ jobs:
             --title "$TITLE" \
             --body-file /tmp/pr-body.md \
             --label "auto-sync"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
