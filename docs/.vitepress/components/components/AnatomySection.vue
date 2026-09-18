@@ -70,6 +70,7 @@ const activeAnatomyMarkup = computed(() =>
 );
 
 const isWideAnatomy = computed(() =>
+  activeAnatomyMarkup.value.includes("portal-mainnav-anatomy") ||
   activeAnatomyMarkup.value.includes("portal-footer-anatomy") ||
   activeAnatomyMarkup.value.includes("portal-anatomy-datepicker") ||
   activeAnatomyMarkup.value.includes("portal-anatomy-masthead") ||
@@ -260,6 +261,8 @@ const updateCallouts = async () => {
       if (!target) return null;
 
       const targetRect = target.getBoundingClientRect();
+      // Responsive navigation hides collapsed items; omit their callouts too.
+      if (targetRect.width === 0 || targetRect.height === 0) return null;
       const point = getPointOnRect(targetRect, callout.targetX || "center", callout.targetY || "center");
       const stemLength = parseFloat(styles.getPropertyValue(callout.stemLengthToken || "--sgds-dimension-48")) || 48;
       const localX = point.x - layerRect.left + (callout.targetXOffset || 0);
@@ -453,6 +456,25 @@ const openAnatomyDropdowns = async () => {
   await nextTick();
   const root = anatomyCanvasRef.value;
   if (!root) return;
+
+  // This inert anatomy keeps all navigation parts visible while illustrating
+  // the profile's avatar-only mobile appearance. Match nav-profile's mobile styling.
+  for (const profile of root.querySelectorAll<HTMLElement & { updateComplete?: Promise<unknown> }>(
+    ".portal-mainnav-anatomy sgds-mainnav-profile",
+  )) {
+    await customElements.whenDefined("sgds-mainnav-profile");
+    await profile.updateComplete;
+    injectShadowStyles(profile, "mainnav-anatomy-mobile-profile", `
+      @media (max-width: 1023px) {
+        .profile-text, .nav-link > sgds-icon { display: none !important; }
+        :host([expand=always]) .nav-link {
+          padding: 0;
+          border: none;
+          border-radius: var(--sgds-border-radius-full);
+        }
+      }
+    `);
+  }
 
   // Datepickers — open the calendar and force its dropdown menu to render
   // inline (position: relative, no shadow) so it sits inside the canvas.

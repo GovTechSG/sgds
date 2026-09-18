@@ -72,7 +72,7 @@ const isDropdownStructure = computed(() => props.previewMarkup.includes("<sgds-d
 const isDrawerStructure = computed(() => props.previewMarkup.includes("<sgds-drawer"));
 const isFooterStructure = computed(() => props.previewMarkup.includes("<sgds-footer"));
 const isMainnavStructure = computed(() => props.previewMarkup.includes("<sgds-mainnav"));
-const isMastheadStructure = computed(() => props.previewMarkup.includes("<sgds-masthead"));
+const isMastheadStructure = computed(() => props.previewMarkup.includes("<sgds-masthead") && !props.previewMarkup.includes('data-structure-target="mainnav"'));
 const isModalStructure = computed(() => props.previewMarkup.includes("<sgds-modal"));
 const isModalFullscreenStructure = computed(() => isModalStructure.value && activeVariant.value === "fullscreen");
 const isTooltipStructure = computed(() => props.previewMarkup.includes("<sgds-tooltip"));
@@ -3135,7 +3135,7 @@ const measureHotspots = async () => {
     // single-child non-SGDS wrappers so we use the actual SGDS host as the
     // component. Otherwise the wrapper's only child IS the SGDS host, which
     // makes contentRect === surfaceRect and padding bands collapse to 0.
-    let component = root.firstElementChild as HTMLElement | null;
+    let component = root.querySelector<HTMLElement>("[data-structure-target]") ?? root.firstElementChild as HTMLElement | null;
     while (
       component &&
       !component.tagName.toLowerCase().startsWith("sgds-") &&
