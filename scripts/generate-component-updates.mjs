@@ -10,6 +10,7 @@
 
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 const repoRoot = path.resolve(new URL("..", import.meta.url).pathname);
 const outputPath = path.join(repoRoot, "docs/.vitepress/data/generated-component-updates.json");
@@ -64,6 +65,7 @@ const specialAliases = {
   "thumbnail-card": ["thumbnail card", "thumbnail-card"],
   toast: ["toast"],
   tooltip: ["tooltip"],
+  "appnav": ["appnav", "appnav-profile", "appnav profile"],
 };
 
 const scopeToKey = {
@@ -128,6 +130,10 @@ const scopeToKey = {
   thumbnailcard: "thumbnail-card",
   toast: "toast",
   tooltip: "tooltip",
+  "appnav": "appnav",
+  "appnav-profile": "appnav",
+  appnavprofile: "appnav",
+  "mainnav-profile": "mainnav",
 };
 
 // --- Helpers ---
@@ -227,6 +233,18 @@ const findComponentKey = (line) => {
   return null;
 };
 
+// A release entry can cover more than its conventional-commit scope.
+// Include explicit SGDS tags as well, without matching incidental prose.
+export const findComponentKeys = (line) => {
+  const scope = line.match(/^(?:[*\-]\s+)?\w+\(([^)]+)\):/);
+  const keys = new Set(scope ? getScopedKeys(scope[1]) : [findComponentKey(line)].filter(Boolean));
+  for (const match of line.toLowerCase().matchAll(/\bsgds-([a-z]+(?:-[a-z]+)*)\b/g)) {
+    const key = scopeToKey[match[1]];
+    if (key) keys.add(key);
+  }
+  return [...keys];
+};
+
 // --- Main ---
 
 async function main() {
@@ -263,22 +281,18 @@ async function main() {
     for (const line of release.body.split("\n")) {
       if (isSkippable(line)) continue;
 
-      const key = findComponentKey(line);
-      if (!key) continue;
-
-      const count = counts[key] ?? 0;
-      if (count >= 5) continue;
-
       const description = sentenceCase(line);
       if (!description) continue;
 
-      if (!releaseMap[key]) releaseMap[key] = [];
-      const rows = releaseMap[key];
-
-      if (rows.some((r) => r.Description.toLowerCase() === description.toLowerCase())) continue;
-
-      rows.push({ Date: date, Version: version, Description: description });
-      counts[key] = count + 1;
+      for (const key of findComponentKeys(line)) {
+        const count = counts[key] ?? 0;
+        if (count >= 5) continue;
+        if (!releaseMap[key]) releaseMap[key] = [];
+        const rows = releaseMap[key];
+        if (rows.some((r) => r.Description.toLowerCase() === description.toLowerCase())) continue;
+        rows.push({ Date: date, Version: version, Description: description });
+        counts[key] = count + 1;
+      }
     }
   }
 
@@ -290,4 +304,6 @@ async function main() {
   console.log(`[generate-component-updates] Written ${rowCount} rows across ${componentCount} components → ${outputPath}`);
 }
 
-main();
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  await main();
+}

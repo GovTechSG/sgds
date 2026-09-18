@@ -263,6 +263,8 @@ type UsageContent = {
   content?: UsageContentSection[];
   contentGuidelines?: BestPractice[];
   behaviours?: UsageBehaviour[];
+  /** Opt in to displaying the behaviour examples in the Usage tab. */
+  showBehaviours?: boolean;
   motion?: {
     previewMarkup: string;
     specs: MotionSpec[];
@@ -455,6 +457,80 @@ const demo = (
   description,
   markup,
 });
+
+// Appnav examples follow the v3.28.0 stories and component skill:
+// https://github.com/GovTechSG/sgds-web-component/tree/v3.28.0/stories/component-templates/Appnav
+// https://github.com/GovTechSG/sgds-web-component/blob/v3.28.0/skills/sgds-components/reference/appnav.md
+const appnavMarkup = ({
+  tone = "brand",
+  expand = "lg",
+  profile = "none",
+  actionLabel = "Notifications",
+  previewClass = "sgds:w-full",
+  showMenu = true,
+  iconCount = 2,
+}: {
+  tone?: "brand" | "gradient-1" | "gradient-2" | "gradient-3" | "gradient-4";
+  expand?: "sm" | "md" | "lg" | "xl" | "xxl" | "always" | "never";
+  profile?: "none" | "menu" | "readonly";
+  actionLabel?: string;
+  previewClass?: string;
+  showMenu?: boolean;
+  iconCount?: 0 | 1 | 2;
+} = {}) => `<div class="${previewClass}${profile === "menu" ? (expand === "never" ? " sgds:min-h-[var(--sgds-dimension-512)]" : " sgds:max-lg:min-h-[var(--sgds-dimension-512)]") : ""}">
+  <sgds-appnav tone="${tone}" expand="${expand}" brandHref="#">
+    ${showMenu ? `<sgds-icon-button slot="start" name="menu" variant="ghost" tone="fixed-light" size="sm" ariaLabel="Open side menu"></sgds-icon-button>` : ""}
+    <img slot="brand" src="/logo-white.svg" alt="Singapore Government Design System" width="130" />
+    ${iconCount > 0 ? `<sgds-icon-button name="moon" variant="ghost" tone="fixed-light" size="sm" ariaLabel="Toggle dark mode"></sgds-icon-button>` : ""}
+    ${profile === "none" ? (iconCount > 1 ? `<sgds-icon-button name="bell" variant="ghost" tone="fixed-light" size="sm" ariaLabel="${actionLabel}"></sgds-icon-button>` : "") : `<sgds-appnav-profile slot="profile" label="User name" secondaryText="Agency (admin)" ariaLabel="${profile === "menu" ? "Profile menu" : "Profile information"}">
+      <span slot="avatar" aria-hidden="true" class="sgds:block sgds:h-10 sgds:w-10 sgds:shrink-0 sgds:rounded-full sgds:bg-neutral-surface-muted"></span>
+      ${profile === "menu" ? `<sgds-dropdown-item readonly>
+        <div class="sgds:flex sgds:flex-col sgds:gap-2">
+          <span class="sgds:text-label-xs sgds:text-subtle">Account</span>
+          <span class="sgds:text-label-md sgds:font-semibold">User name</span>
+          <span class="sgds:text-label-sm sgds:text-subtle">user@agency.gov.sg</span>
+        </div>
+      </sgds-dropdown-item>
+      <sgds-divider thickness="thin"></sgds-divider>
+      <sgds-dropdown-item ariaLabel="My profile">My profile</sgds-dropdown-item>
+      <sgds-dropdown-item ariaLabel="Settings">Settings</sgds-dropdown-item>
+      <sgds-dropdown-item ariaLabel="Log out">Log out</sgds-dropdown-item>` : ""}
+    </sgds-appnav-profile>`}
+  </sgds-appnav>
+</div>`;
+
+// Best-practice illustrations use real Appnav controls and labelled page content.
+const appnavPracticeBar = ({ profile = false, secondaryText = "", collapsed = false, openProfile = false, actions = "", profileItems = ["Account details", "Preferences", "Sign out"] } = {}) => `
+  <sgds-appnav tone="brand" expand="${collapsed ? "never" : "always"}" brandHref="/" ${collapsed ? 'data-illustrative-appnav-open' : ''}>
+    <img slot="brand" src="/logo-white.svg" alt="Singapore Government Design System" width="130" />
+    ${profile ? `<sgds-appnav-profile slot="profile" label="Alex Tan" secondaryText="${secondaryText}" ariaLabel="Profile menu" close="inside" ${openProfile ? 'data-illustrative-profile-open' : ''}>
+      <span slot="avatar" class="sgds:block sgds:h-8 sgds:w-8 sgds:rounded-full sgds:bg-neutral-surface-muted"></span>
+      ${openProfile ? profileItems.map((label) => `<sgds-dropdown-item>${label}</sgds-dropdown-item>`).join("") : ''}
+    </sgds-appnav-profile>` : actions || `<sgds-icon-button name="question-circle" variant="ghost" tone="fixed-light" size="sm" ariaLabel="Help"></sgds-icon-button>
+    <sgds-icon-button name="bell" variant="ghost" tone="fixed-light" size="sm" ariaLabel="Notifications"></sgds-icon-button>`}
+  </sgds-appnav>`;
+
+
+
+// Actual token references in components/Appnav/appnav.css, v3.28.0.
+// Appnav reuses mainnav spacing tokens; these are not Appnav-specific overrides.
+const appnavMeasurementTokens: MeasurementTokenRow[] = [
+  { category: "Size", element: "Navigation bar", property: "min-height", designToken: "sgds/mainnav/height", rawValue: "72px (fallback)", usage: "Minimum bar height; the component uses 72px when the token is not defined" },
+  { category: "Size", element: "Brand", property: "height", designToken: "sgds/dimension/40", usage: "Height of the brand link" },
+  { category: "Padding", element: "Navigation bar", property: "padding-inline", designToken: "sgds/mainnav/padding-x", usage: "Horizontal padding at viewport widths of 1024px and above" },
+  { category: "Padding", element: "Navigation bar", property: "mobile-padding-inline", designToken: "sgds/mainnav/mobile-padding-x", usage: "Horizontal padding below 1024px; also used by collapsed action items" },
+  { category: "Padding", element: "Collapsed action item", property: "padding-block", designToken: "sgds/padding/sm", usage: "Vertical padding of each action in the collapsed menu" },
+  { category: "Gap", element: "Expanded navigation bar", property: "gap", designToken: "sgds/gap/xl", usage: "Gap between the expanded bar sections" },
+  { category: "Gap", element: "Actions and start slot", property: "gap", designToken: "sgds/gap/xs", usage: "Gap between actions, start-slot controls and collapsed bar sections" },
+  { category: "Colour", element: "Brand tone", property: "background-color", designToken: "sgds/primary/surface/default", usage: "Background of tone=brand" },
+  ...([1, 2, 3, 4] as const).map((tone) => ({ category: "Colour", element: `Gradient ${tone} tone`, property: `gradient-${tone}`, designToken: `sgds/gradient/${tone}`, usage: `Background of tone=gradient-${tone}` })),
+  { category: "Colour", element: "Brand and start slot", property: "color", designToken: "sgds/color-fixed-light", usage: "Foreground colour on the coloured bar" },
+  { category: "Colour", element: "Collapsed menu", property: "background-color", designToken: "sgds/surface-default", usage: "Background of the expanded mobile menu panel" },
+  { category: "Typography", element: "Action item", property: "font-size", designToken: "sgds/font-size/label-sm", usage: "Text size of collapsed action labels" },
+  { category: "Outline", element: "Brand and action item", property: "outline", designToken: "sgds/outline-focus", usage: "Visible outline for keyboard focus" },
+  { category: "Outline", element: "Brand and action item", property: "outline-offset", designToken: "sgds/outline-offset-focus", usage: "Offset of the keyboard focus outline" },
+  { category: "Layer", element: "Navigation bar and mobile panel", property: "z-index", designToken: "sgds/z-index-floating", usage: "Stacking layer of the bar and collapsed-menu panel" },
+];
 
 const componentDocs: Record<string, ComponentDoc> = {
   accordion: {
@@ -17066,6 +17142,188 @@ const componentDocs: Record<string, ComponentDoc> = {
     },
   },
 
+
+  // --- AUTO-GENERATED STUBS BELOW ---
+  appnav: {
+    key: "appnav",
+    title: "Appnav",
+    tag: "sgds-appnav",
+    group: "navigation",
+    summary: "App navigation is designed for applications such as dashboards, consoles and management systems, where users perform tasks or manage information. It provides branding, common actions and access to the user profile.",
+    purposeCards: [
+      { title: "Support app workflows", description: "Provides consistent navigation for applications where users perform tasks or manage information." },
+      { title: "Access common actions", description: "Keeps common actions, including help and notifications, accessible throughout the application." },
+      { title: "Access user accounts", description: "Provides consistent access to profile information and account actions throughout the application." },
+    ],
+    anatomyMarkup: appnavMarkup({ expand: "always", previewClass: "portal-anatomy-appnav sgds:w-[var(--sgds-dimension-768)]" }),
+    anatomyParts: [
+      { title: "Menu" },
+      { title: "Logo slot" },
+      { title: "Dark mode" },
+      { title: "Icon slot" },
+      { title: "Container" },
+    ],
+    anatomyCallouts: [
+      { number: 1, direction: "top", targetSelector: "sgds-icon-button[slot='start']", targetX: "center", targetY: "top" },
+      { number: 2, direction: "bottom", targetSelector: "[slot='brand']", targetX: "center", targetY: "bottom" },
+      { number: 3, direction: "top", targetSelector: "sgds-icon-button[name='moon']", targetX: "center", targetY: "top" },
+      { number: 4, direction: "bottom", targetSelector: "sgds-icon-button[name='bell']", targetX: "center", targetY: "bottom" },
+      { number: 5, direction: "bottom", targetSelector: "sgds-appnav", targetShadowSelector: "nav", targetX: "center", targetY: "bottom" },
+    ],
+    configurationDemos: [
+      {
+        title: "Tone",
+        description: "Brand is the default tone and uses your application’s primary brand colour. You can also choose from four SGDS gradient backgrounds.",
+        controlLabel: "Appnav tone",
+        defaultValue: "brand",
+        options: (["brand", "gradient-1", "gradient-2", "gradient-3", "gradient-4"] as const).map((tone, index) => ({
+          label: index === 0 ? "Brand" : `Gradient ${index}`,
+          value: tone,
+          markup: appnavMarkup({ tone }),
+          description: index === 0 ? "Solid primary surface colour." : `Uses the SGDS gradient-${index} background token.`,
+        })),
+      },
+      {
+        title: "Menu",
+        description: "Include a menu button when the application has a side menu. Omit it when users do not need a side menu.",
+        controlLabel: "Appnav menu",
+        defaultValue: "with-menu",
+        options: [
+          { label: "With menu", value: "with-menu", markup: appnavMarkup({ expand: "always" }) },
+          { label: "Without menu", value: "without-menu", markup: appnavMarkup({ expand: "always", showMenu: false }) },
+        ],
+      },
+      {
+        title: "Icon slot",
+        description: "Add icon buttons for application actions such as dark mode and notifications. Each icon button needs an accessible label.",
+        controlLabel: "Appnav icon slot",
+        defaultValue: "multiple",
+        options: [
+          { label: "No actions", value: "none", markup: appnavMarkup({ expand: "always", iconCount: 0 }) },
+          { label: "One action", value: "one", markup: appnavMarkup({ expand: "always", iconCount: 1 }) },
+          { label: "Multiple actions", value: "multiple", markup: appnavMarkup({ expand: "always", iconCount: 2 }) },
+        ],
+      },
+      {
+        title: "Profile",
+        description: "Use `sgds-appnav-profile` in the profile slot to show user details and account actions. On desktop, the profile opens a dropdown. On smaller screens, the avatar opens a separate panel that works independently of the three-dots action menu.",
+        controlLabel: "Appnav profile",
+        defaultValue: "none",
+        options: [
+          { label: "No profile", value: "none", markup: appnavMarkup(), description: "Brand and action buttons without a user profile." },
+          { label: "Profile menu", value: "menu", markup: appnavMarkup({ tone: "gradient-3", profile: "menu" }), description: "Select the profile to open its account actions. On smaller screens, select the avatar to open or close the profile panel." },
+          { label: "Read-only profile", value: "readonly", markup: appnavMarkup({ profile: "readonly" }), description: "Without menu items, the profile shows user details with no toggle, caret or keyboard focus. Only the avatar appears on smaller screens." },
+        ],
+      },
+      {
+        title: "Action menu",
+        description: "Below the configured collapse breakpoint, action icon buttons become text items in a three-dots menu. Each item uses the button’s `ariaLabel`. Selecting an item activates its original action and closes the menu.",
+        controlLabel: "Appnav action menu",
+        defaultValue: "expanded",
+        options: [
+          { label: "Expanded", value: "expanded", markup: appnavMarkup({ expand: "always" }), description: "This example uses `expand=always` to keep the icon buttons visible." },
+          { label: "Collapsed", value: "collapsed", markup: appnavMarkup({ expand: "never" }), description: "This example uses `expand=never` so you can open the three-dots menu at any screen width. By default, Appnav collapses below 1024px (`expand=lg`)." },
+        ],
+      },
+    ],
+    measurements: [demo("Appnav structure", "Appnav is fluid and reuses the shared mainnav spacing tokens.", appnavMarkup({ expand: "always" }))],
+    measurementTokens: appnavMeasurementTokens,
+    componentTokenGroups: [{
+      title: "Appnav — tokens used by the component",
+      rows: appnavMeasurementTokens.map((token) => ({
+        category: token.category,
+        name: token.property,
+        value: token.designToken,
+        rawValue: token.rawValue,
+        usage: token.usage,
+      })),
+    }],
+    demos: [demo("Default", "Brand, sidebar toggle and labelled icon-button actions, following the basic Appnav story.", appnavMarkup())],
+    usage: {
+      guidance: [
+        { title: "When to use", tone: "do", items: [
+          "Use the app navigation for operational applications where users perform tasks, manage information or work through ongoing workflows.",
+          "Use it when the application header needs to accommodate controls and utilities, such as icon buttons and a user profile, within a flexible application layout.",
+        ] },
+        { title: "When not to use", tone: "dont", items: [
+          "For public-facing websites with text-based top-level navigation, use [mainnav](/components/mainnav) instead.",
+          "For secondary navigation within a section, use [subnav](/components/subnav) or [sidenav](/components/sidenav) instead.",
+          "For navigation that uses `sgds-mainnav-item` or `sgds-mainnav-dropdown`, use [mainnav](/components/mainnav) instead. These components are not supported inside Appnav.",
+        ] },
+      ],
+      content: [{ title: "Labels and slots", items: [
+        "Give every action icon button a descriptive ariaLabel. Appnav uses this text for the collapsed menu item.",
+        "Place an application logo or name in the brand slot and set brandHref to the application home page.",
+        "Use the start slot for a control such as a sidebar toggle. Connect it to the application sidebar yourself.",
+        "Use the profile label for the user name and secondaryText for supporting details such as agency or role.",
+      ] }],
+      bestPractices: [
+        {
+          title: "Keep actions relevant across the application",
+          description: "Use the app navigation for common actions that users may need from anywhere in the application, such as help or notifications.",
+          tone: "do",
+          markup: `<div class="sgds:w-full"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="96" viewBox="0 0 512 96" class="sgds:block sgds:w-full sgds:h-auto"><foreignObject width="512" height="96"><div xmlns="http://www.w3.org/1999/xhtml">${appnavPracticeBar()}</div></foreignObject></svg></div>`,
+        },
+        {
+          title: "Use clear and familiar icons",
+          description: "Choose icons that users can easily recognise, and provide accessible labels so their purpose remains clear when the navigation collapses on smaller screens.",
+          tone: "do",
+          markup: `<div class="sgds:w-full"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="96" viewBox="0 0 512 96" class="sgds:block sgds:w-full sgds:h-auto"><foreignObject width="512" height="96"><div xmlns="http://www.w3.org/1999/xhtml">${appnavPracticeBar()}</div></foreignObject></svg></div>`,
+        },
+        {
+          title: "Keep profile actions user-related",
+          description: "Use the profile menu for information and actions related to the signed-in user, such as account details, preferences and signing out.",
+          tone: "do",
+          markup: `<div class="sgds:w-full sgds:pt-component-lg"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="320" viewBox="0 0 512 320" class="sgds:block sgds:w-full sgds:h-auto"><foreignObject width="512" height="320"><div xmlns="http://www.w3.org/1999/xhtml">${appnavPracticeBar({ profile: true, openProfile: true })}</div></foreignObject></svg></div>`,
+        },
+        {
+          title: "Don’t include page-specific actions",
+          description: "Keep actions that only apply to a particular page, such as “Create project” or “Save changes”, within the page itself.",
+          tone: "dont",
+          markup: `<div class="sgds:w-full"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="96" viewBox="0 0 512 96" class="sgds:block sgds:w-full sgds:h-auto"><foreignObject width="512" height="96"><div xmlns="http://www.w3.org/1999/xhtml">${appnavPracticeBar({ actions: `<sgds-button variant="outline" tone="fixed-light" size="sm">Create project</sgds-button>` })}</div></foreignObject></svg></div>`,
+        },
+        {
+          title: "Don’t overcrowd the navigation",
+          description: "Avoid adding too many actions or destinations. Keep the app navigation focused on the most important controls users need across the application.",
+          tone: "dont",
+          markup: `<div class="sgds:w-full"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="96" viewBox="0 0 640 96" class="sgds:block sgds:w-full sgds:h-auto"><foreignObject width="640" height="96"><div xmlns="http://www.w3.org/1999/xhtml">${appnavPracticeBar({ actions: [ ["question-circle", "Help"], ["bell", "Notifications"], ["search", "Search"], ["gear", "Settings"], ["plus", "Create project"], ["check", "Save changes"], ["moon", "Dark mode"] ].map(([name, label]) => `<sgds-icon-button name="${name}" variant="ghost" tone="fixed-light" size="sm" ariaLabel="${label}"></sgds-icon-button>`).join("") })}</div></foreignObject></svg></div>`,
+        },
+        {
+          title: "Don’t use the profile menu as general navigation",
+          description: "Avoid placing unrelated application pages or actions in the profile menu. Keep it focused on the user’s identity, account and preferences.",
+          tone: "dont",
+          markup: `<div class="sgds:w-full sgds:pt-component-lg"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="320" viewBox="0 0 512 320" class="sgds:block sgds:w-full sgds:h-auto"><foreignObject width="512" height="320"><div xmlns="http://www.w3.org/1999/xhtml">${appnavPracticeBar({ profile: true, openProfile: true, profileItems: ["Projects", "Reports", "Create project"] })}</div></foreignObject></svg></div>`,
+        }
+      ],
+    },
+    accessibility: {
+      sections: [
+        { title: "Built-in accessibility", items: [
+          "Collapsed actions use the icon buttons’ ariaLabel text as their labels.",
+          "When the collapsed action menu is open, Tab from the three-dots toggle focuses the first action.",
+          "A profile with no menu items is read-only and has no focusable toggle.",
+        ] },
+        { title: "What you need to do", items: [
+          "Set ariaLabel on every icon-only action. Appnav also uses this text for the collapsed action labels.",
+          "Set ariaLabel on the profile toggle, such as Profile menu.",
+          "Give the brand image meaningful alternative text and set brandHref to the application’s home page.",
+          "Use variant=ghost and tone=fixed-light for icon buttons.",
+        ] },
+      ],
+      keyboardInteractions: [
+        { key: "Tab", description: "Moves through visible interactive controls. When the action menu is open, moves from the three-dots toggle to its first action. In the open desktop profile dropdown, cycles forwards through available items, wrapping to the first." },
+        { key: "Shift + Tab", description: "Moves backwards through controls. From the first collapsed action, returns to the three-dots toggle. In the open desktop profile dropdown, cycles backwards through available items, wrapping to the last." },
+        { key: "Enter", description: "Follows the brand link or activates a focused button or menu action. On the mobile profile toggle, opens or closes its panel." },
+        { key: "Space", description: "Activates icon buttons, the desktop or mobile profile toggle, and collapsed action items. Does not activate the brand link or profile menu items." },
+        { key: "↓ Down / ↑ Up", description: "Opens or moves between items in the desktop profile dropdown. The collapsed action menu and mobile profile panel use Tab navigation instead." },
+        { key: "Escape", description: "Closes the desktop profile dropdown and returns focus to its toggle. Appnav v3.28.0 does not implement Escape-to-close for the collapsed action menu or the mobile profile panel." },
+      ],
+      keyboardNotes: [
+        "Use the three-dots toggle to close the action menu, or activate an action. Use the avatar toggle to close the mobile profile panel.",
+      ],
+    },
+    // Updates are populated from GitHub releases by the shared renderer.
+  },
 };
 
 type GeneratedUsagePattern = {
@@ -17861,6 +18119,7 @@ const buildResolvedUsage = (doc: ComponentDoc): UsageContent => {
     content: usage.content?.length ? usage.content : buildUsageContentSections(doc),
     contentGuidelines,
     behaviours: usage.behaviours?.length ? usage.behaviours : buildUsageBehaviours(doc),
+    showBehaviours: usage.showBehaviours,
     motion: usage.motion,
     bestPractices: usage.bestPractices?.length
       ? usage.bestPractices
