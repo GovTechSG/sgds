@@ -109,6 +109,7 @@ export const searchIndex: SearchItem[] = [
   { title: "Dropdown", category: "Component", url: "/components/dropdown", keywords: ["menu", "select", "popover"] },
   { title: "Footer", category: "Component", url: "/components/footer", keywords: ["bottom", "navigation"] },
   { title: "Icon button", category: "Component", url: "/components/icon-button", keywords: ["button", "icon", "action"] },
+  { title: "Appnav", category: "Component", url: "/components/appnav", keywords: ["application", "navbar", "navigation", "header", "profile"] },
   { title: "Mainnav", category: "Component", url: "/components/mainnav", keywords: ["navbar", "navigation", "header"] },
   { title: "Masthead", category: "Component", url: "/components/masthead", keywords: ["header", "top bar"] },
   { title: "Overflow menu", category: "Component", url: "/components/overflow-menu", keywords: ["kebab", "more", "menu", "actions"] },

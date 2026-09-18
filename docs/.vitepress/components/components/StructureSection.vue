@@ -71,6 +71,7 @@ const isDividerStructure = computed(() => props.previewMarkup.includes("<sgds-di
 const isDropdownStructure = computed(() => props.previewMarkup.includes("<sgds-dropdown"));
 const isDrawerStructure = computed(() => props.previewMarkup.includes("<sgds-drawer"));
 const isFooterStructure = computed(() => props.previewMarkup.includes("<sgds-footer"));
+const isAppnavStructure = computed(() => props.previewMarkup.includes("<sgds-appnav"));
 const isMainnavStructure = computed(() => props.previewMarkup.includes("<sgds-mainnav"));
 const isMastheadStructure = computed(() => props.previewMarkup.includes("<sgds-masthead"));
 const isModalStructure = computed(() => props.previewMarkup.includes("<sgds-modal"));
@@ -5323,6 +5324,9 @@ const getCollapsedCategory = (
           ref="previewMarkupRef"
           :class="[
             'structure-preview-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:max-w-full',
+            // Contain Appnav's shadow-DOM stacking layer below inspection overlays.
+            // Reserve space for the height bracket and its full label.
+            isAppnavStructure ? 'sgds:isolate sgds:lg:pr-[var(--sgds-dimension-192)]' : '',
             isFooterStructure ? footerPreviewWidthClass : 'sgds:w-full',
             structureKind === 'alert' ? 'sgds:items-center' : '',
             isDatepickerStructure ? 'sgds:items-start' : '',
