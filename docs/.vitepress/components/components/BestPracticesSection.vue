@@ -277,8 +277,19 @@ onBeforeUnmount(() => {
           >
             <sgds-icon name="check-circle-fill" size="lg"></sgds-icon>
           </span>
-          <div class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full">
-            <div class="best-practice-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" inert v-html="row.do.markup"></div>
+          <div
+            class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full"
+            :class="{ 'sgds:overflow-x-auto': row.do.scrollablePreview }"
+            :tabindex="row.do.scrollablePreview ? 0 : undefined"
+            :role="row.do.scrollablePreview ? 'region' : undefined"
+            :aria-label="row.do.scrollablePreview ? row.do.title + ' example' : undefined"
+          >
+            <div
+              class="best-practice-demo-markup sgds:flex sgds:items-center sgds:w-full"
+              :class="row.do.scrollablePreview ? 'sgds:min-w-max sgds:justify-start' : 'sgds:min-w-0 sgds:justify-center'"
+              inert
+              v-html="row.do.markup"
+            ></div>
           </div>
         </div>
         <div :class="[
@@ -324,8 +335,19 @@ onBeforeUnmount(() => {
           >
             <sgds-icon name="xcircle-fill" size="lg"></sgds-icon>
           </span>
-          <div class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full">
-            <div class="best-practice-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" inert v-html="row.dont.markup"></div>
+          <div
+            class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full"
+            :class="{ 'sgds:overflow-x-auto': row.dont.scrollablePreview }"
+            :tabindex="row.dont.scrollablePreview ? 0 : undefined"
+            :role="row.dont.scrollablePreview ? 'region' : undefined"
+            :aria-label="row.dont.scrollablePreview ? row.dont.title + ' example' : undefined"
+          >
+            <div
+              class="best-practice-demo-markup sgds:flex sgds:items-center sgds:w-full"
+              :class="row.dont.scrollablePreview ? 'sgds:min-w-max sgds:justify-start' : 'sgds:min-w-0 sgds:justify-center'"
+              inert
+              v-html="row.dont.markup"
+            ></div>
           </div>
         </div>
         <div :class="[
