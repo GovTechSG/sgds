@@ -1,0 +1,17 @@
+---
+layout: docs
+title: {{TITLE}}
+description: {{TITLE}} template.
+storybook: true
+headerLinks:
+  - label: Preview
+    path: View full template
+    href: /templates/page-templates/preview/{{KEY}}
+    icon: arrows-fullscreen
+---
+
+<script setup>
+import DesignPageWrapper from "../../.vitepress/components/components/DesignPageWrapper.vue";
+</script>
+
+<DesignPageWrapper doc-type="pattern" doc-key="{{KEY}}" />
