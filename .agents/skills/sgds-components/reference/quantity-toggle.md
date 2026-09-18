@@ -28,12 +28,15 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 - `disabled` disables the entire control — both buttons and the input.
 - `hasFeedback` controls validation UI: `"style"` (border colour only), `"text"` (message only), `"both"` (border + message). Pair with `invalidFeedback`.
 - `invalid` manually sets the invalid state without relying on browser constraint validation.
+- `noValidate` disables SGDS's built-in constraint validation — use with `setInvalid()` for fully custom validation logic.
 - `hintText` and the error message occupy the same space below the toggle — when the field is invalid, `hintText` is replaced by the error message. Once the error is resolved, `hintText` reappears.
 - Fires `sgds-change` after a button click or committed keyboard input, and `sgds-input` on each input event.
+- Fires `sgds-invalid` when `setInvalid(true)` is called, and `sgds-valid` when `setInvalid(false)` is called.
 
 ## Advanced Considerations
 
 - **`step` with `min`/`max`**: if `step` does not evenly divide the range between `min` and `max`, the last increment may overshoot `max` — the component clamps the value at `max`.
+- **Custom validation with `noValidate`**: set `noValidate` on the component (or `novalidate` on the `<form>`), listen to `sgds-change`, and call `setInvalid(true/false)` with a dynamic `invalidFeedback` message. This gives full control over when and why the component is marked invalid.
 - **Manual invalid state**: use `invalid` to programmatically reflect server-side validation errors or cross-field validation results without triggering browser constraint validation.
 - **`size`**: matches the size scale of `<sgds-input>` — use to align the toggle visually with adjacent form fields.
 - **`readonly` vs `disabled`**: `readonly` preserves the value in form submission and keeps the input visible but non-editable; `disabled` excludes the field from form submission entirely.
@@ -107,6 +110,45 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
     console.log("New quantity:", document.getElementById("qty").value);
   });
 </script>
+
+<!-- Custom validation with noValidate -->
+<form id="custom-form">
+  <sgds-quantity-toggle
+    noValidate
+    hasFeedback="both"
+    label="Quantity"
+    hintText="Value must be a multiple of 5"
+    id="custom-qt"
+  ></sgds-quantity-toggle>
+  <sgds-button type="submit">Submit</sgds-button>
+  <sgds-button type="reset" variant="ghost">Reset</sgds-button>
+</form>
+<script>
+  const qt = document.getElementById("custom-qt");
+  const form = document.getElementById("custom-form");
+  qt.addEventListener("sgds-change", e => {
+    if (e.target.value === 0) {
+      e.target.setInvalid(false);
+      return;
+    }
+    if (e.target.value % 5 !== 0) {
+      e.target.setInvalid(true);
+      e.target.invalidFeedback = "Value must be a multiple of 5";
+    } else {
+      e.target.setInvalid(false);
+    }
+  });
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    if (qt.value === 0) {
+      qt.setInvalid(true);
+      qt.invalidFeedback = "Please enter a quantity";
+      return;
+    }
+    if (qt.invalid) return;
+    alert("Submitted: " + qt.value);
+  });
+</script>
 ```
 
 ## API Summary
@@ -126,6 +168,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `disabled` | boolean | `false` | Disables the control |
 | `readonly` | boolean | `false` | Makes the value read-only (hides +/− buttons is false — they are still shown but the input becomes non-editable) |
 | `invalid` | boolean | `false` | Manually sets the invalid state |
+| `noValidate` | boolean | `false` | Disables built-in constraint validation; use `setInvalid()` for custom logic |
 | `hasFeedback` | `style \| text \| both` | — | Controls validation UI feedback |
 | `invalidFeedback` | string | — | Error message when value is invalid |
 
@@ -135,6 +178,16 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 |---|---|
 | `sgds-change` | Value changes after a button click or keyboard input |
 | `sgds-input` | Value changes on each input event |
+| `sgds-invalid` | `setInvalid(true)` is called |
+| `sgds-valid` | `setInvalid(false)` is called |
+
+## Methods
+
+| Method | Description |
+|---|---|
+| `setInvalid(bool)` | Programmatically sets or clears the invalid state; emits `sgds-invalid` or `sgds-valid` |
+| `checkValidity()` | Returns validity without showing feedback |
+| `reportValidity()` | Returns validity and displays feedback |
 
 ---
 
@@ -142,4 +195,5 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 1. Button clicks increment/decrement by `step`; direct input allows custom values.
 2. When `min` is set, the minus (−) button is disabled at the minimum value; similarly for `max` and the plus (+) button.
 3. Read `element.value` (a number) after `sgds-change` to get the current count.
-4. There are no public methods on this component.
+4. For custom validation: set `noValidate`, listen to `sgds-change`, call `setInvalid(true/false)` and set `invalidFeedback` dynamically.
+5. Form reset always clears the invalid state regardless of `noValidate`.

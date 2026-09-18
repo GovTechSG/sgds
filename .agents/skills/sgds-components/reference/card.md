@@ -27,7 +27,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 - `orientation` controls whether the image/icon is stacked above (`vertical`, default) or placed beside (`horizontal`) the content.
 - `stretchedLink` makes the entire card clickable; the link `href` is sourced from the `<a>` inside the `footer` slot.
 - `disabled` applies disabled styling and suppresses interaction.
-- `tinted` applies a tinted background to the card.
+- `tinted` applies a tinted background to the card (suppressed when `noPadding` is active).
+- `noPadding` removes internal padding, makes border transparent, and inherits background from the parent.
 - `hideBorder` removes the card border.
 - `imagePosition` controls whether the image appears `before` (default) or `after` the content in horizontal orientation.
 - `imageAdjustment` controls image sizing: `default`, `padding around`, or `aspect ratio`.
@@ -63,6 +64,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 - **`stretchedLink` and `footer` slot**: the `href` for the stretched link is read from the `<a>` inside the `footer` slot — always include an `<a>` there when using `stretchedLink`.
 - **`image` vs `icon` slots**: these are mutually exclusive in layout — using both may produce unexpected results; choose one per card.
 - **`imageAdjustment` string values**: `"padding around"` and `"aspect ratio"` include spaces — pass the exact string including the space.
+- **`noPadding` and `tinted`**: `noPadding` suppresses the tinted background overlay — if both are set, the tinted effect is not applied.
+- **`noPadding` and `stretchedLink`**: when `noPadding` is active, the hover box-shadow on stretched cards is also suppressed.
 - **`link` slot deprecation**: the `link` slot was deprecated in v3.3.2 — always use the `footer` slot with `<sgds-link>` for card CTAs.
 - **`upper` slot**: overrides the entire image/icon area — use only when full custom control of the upper section is required.
 
@@ -145,6 +148,14 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
   <span slot="title">Tinted Card</span>
   <span slot="description">Card with a tinted background.</span>
 </sgds-card>
+
+<!-- No padding — image bleeds to card edges -->
+<sgds-card noPadding>
+  <img slot="image" alt="Description" src="image.jpg" />
+  <span slot="title">No Padding Card</span>
+  <span slot="description">Card with no internal padding.</span>
+  <sgds-link slot="footer"><a href="#">Read more</a></sgds-link>
+</sgds-card>
 ```
 
 ## API Summary
@@ -155,7 +166,8 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `stretchedLink` | boolean | `false` | Makes entire card a link; href sourced from `footer` slot anchor |
 | `disabled` | boolean | `false` | Applies disabled styling |
 | `hideBorder` | boolean | `false` | Removes the card border |
-| `tinted` | boolean | `false` | Applies a tinted background |
+| `tinted` | boolean | `false` | Applies a tinted background (suppressed when `noPadding` is active) |
+| `noPadding` | boolean | `false` | Removes internal padding; makes border transparent and background inherited |
 | `imagePosition` | `before \| after` | `before` | Image position relative to content |
 | `imageAdjustment` | `default \| padding around \| aspect ratio` | `default` | How the image fills its container |
 

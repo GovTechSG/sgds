@@ -160,7 +160,7 @@ onBeforeUnmount(() => {
         v-for="button in buttons"
         :key="button.label"
         class="sgds:flex sgds:gap-[var(--sgds-gap-md)]"
-      >
+ok      >
         <sgds-button
           :variant="button.variant"
           :tone="button.tone"

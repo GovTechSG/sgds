@@ -1,0 +1,316 @@
+name: Sync Web Component Updates
+
+on:
+  schedule:
+    # Every day at 7:00 PM SGT (11:00 UTC)
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+    inputs:
+      target_version:
+        description: "Specific version to sync (leave empty for latest stable)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  diff:
+    name: Detect component changes
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.check.outputs.skip }}
+      target: ${{ steps.resolve.outputs.target }}
+      current: ${{ steps.resolve.outputs.current }}
+      has_changes: ${{ steps.meaningful.outputs.has_changes }}
+      families_json: ${{ steps.families.outputs.json }}
+    steps:
+      - name: Checkout v3 branch
+        uses: actions/checkout@v4
+        with:
+          ref: v3
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Resolve target version
+        id: resolve
+        run: |
+          TARGET="${{ github.event.inputs.target_version }}"
+          if [ -z "$TARGET" ]; then
+            # Get latest stable (non-RC) version from npm
+            TARGET=$(npm view @govtechsg/sgds-web-component versions --json \
+              | node -e "
+                const v = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
+                const stable = v.filter(x => !x.includes('-'));
+                console.log(stable[stable.length - 1]);
+              ")
+          fi
+          CURRENT=$(node -e "
+            const pkg = require('./package.json');
+            console.log(pkg.dependencies['@govtechsg/sgds-web-component']);
+          ")
+          echo "target=$TARGET" >> "$GITHUB_OUTPUT"
+          echo "current=$CURRENT" >> "$GITHUB_OUTPUT"
+          echo "Current: $CURRENT"
+          echo "Target:  $TARGET"
+
+      - name: Check if update needed
+        id: check
+        run: |
+          if [ "${{ steps.resolve.outputs.current }}" = "${{ steps.resolve.outputs.target }}" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Already up to date at ${{ steps.resolve.outputs.current }}"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run CEM diff
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          node scripts/cem-diff.mjs "${{ steps.resolve.outputs.target }}" \
+            --output /tmp/cem-diff.json
+          cat /tmp/cem-diff.json
+
+      - name: Check for meaningful changes
+        if: steps.check.outputs.skip != 'true'
+        id: meaningful
+        run: |
+          HAS_CHANGES=$(node -e "
+            const d = require('/tmp/cem-diff.json');
+            console.log(d.hasChanges ? 'true' : 'false');
+          ")
+          echo "has_changes=$HAS_CHANGES" >> "$GITHUB_OUTPUT"
+
+      - name: Build families matrix
+        if: steps.check.outputs.skip != 'true'
+        id: families
+        run: |
+          node <<'SCRIPT' >> "$GITHUB_OUTPUT"
+            const d = require('/tmp/cem-diff.json');
+            const families = [];
+
+            // New component families
+            for (const f of d.newFamilies ?? []) {
+              const tag = f.parent.tag;
+              const key = tag.replace(/^sgds-/, '');
+              const kebab = key;
+              const pascal = key.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+              families.push({
+                key: kebab,
+                scope: pascal,
+                type: 'new',
+                parentTag: tag,
+                description: f.parent.description || '',
+                props: f.parent.properties?.length || 0,
+                events: f.parent.events?.length || 0,
+                slots: f.parent.slots?.length || 0,
+                subComponents: f.parent.subComponents || [],
+              });
+            }
+
+            // Changed component families
+            for (const f of d.changedFamilies ?? []) {
+              const tag = f.parentTag;
+              const key = tag.replace(/^sgds-/, '');
+              const kebab = key;
+              const pascal = key.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+              const memberSummary = f.members.map(m => {
+                const parts = [];
+                if (m.addedProps.length) parts.push('props: ' + m.addedProps.join(', '));
+                if (m.addedEvents.length) parts.push('events: ' + m.addedEvents.join(', '));
+                if (m.addedSlots.length) parts.push('slots: ' + m.addedSlots.join(', '));
+                if (m.addedCssProps.length) parts.push('CSS props: ' + m.addedCssProps.length + ' new');
+                if (m.addedCssParts.length) parts.push('CSS parts: ' + m.addedCssParts.join(', '));
+                return { tag: m.tag, changes: parts.join(' | ') };
+              });
+              families.push({
+                key: kebab,
+                scope: pascal,
+                type: 'changed',
+                parentTag: tag,
+                members: memberSummary,
+              });
+            }
+
+            if (families.length === 0) {
+              console.log('json=[]');
+            } else {
+              console.log('json=' + JSON.stringify(families));
+            }
+          SCRIPT
+
+      - name: Upload CEM diff artifact
+        if: steps.check.outputs.skip != 'true' && steps.meaningful.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cem-diff
+          path: /tmp/cem-diff.json
+
+  sync-family:
+    name: "Sync: ${{ matrix.family.key }}"
+    needs: diff
+    if: needs.diff.outputs.skip != 'true' && needs.diff.outputs.has_changes == 'true' && needs.diff.outputs.families_json != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        family: ${{ fromJson(needs.diff.outputs.families_json) }}
+    steps:
+      - name: Checkout v3 branch
+        uses: actions/checkout@v4
+        with:
+          ref: v3
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check for existing PR or branch
+        id: existing
+        run: |
+          BRANCH="auto/sync-wc-${{ needs.diff.outputs.target }}-${{ matrix.family.key }}"
+          EXISTING=$(gh pr list --head "$BRANCH" --state open --json number --jq 'length')
+          if [ "$EXISTING" -gt 0 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "PR already exists for $BRANCH"
+          elif git ls-remote --exit-code origin "refs/heads/$BRANCH" >/dev/null 2>&1; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Remote branch $BRANCH already exists"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Bump package version
+        if: steps.existing.outputs.skip != 'true'
+        run: |
+          pnpm add "@govtechsg/sgds-web-component@${{ needs.diff.outputs.target }}"
+
+      - name: Download CEM diff artifact
+        if: steps.existing.outputs.skip != 'true' && matrix.family.type == 'new'
+        uses: actions/download-artifact@v4
+        with:
+          name: cem-diff
+          path: /tmp
+
+      - name: Generate portal stubs
+        if: steps.existing.outputs.skip != 'true' && matrix.family.type == 'new'
+        run: |
+          node scripts/generate-portal-stubs.mjs /tmp/cem-diff.json --family "${{ matrix.family.key }}"
+
+      - name: Build PR description
+        if: steps.existing.outputs.skip != 'true'
+        id: pr_body
+        run: |
+          FAMILY_TYPE="${{ matrix.family.type }}"
+          VERSION="${{ needs.diff.outputs.target }}"
+          OLD_VERSION="${{ needs.diff.outputs.current }}"
+
+          node -e "
+          const lines = [];
+          const family = JSON.parse(process.env.FAMILY_JSON);
+
+          lines.push('## Summary');
+          lines.push('');
+          lines.push('Updates \`@govtechsg/sgds-web-component\` from \`${OLD_VERSION}\` to \`${VERSION}\`.');
+          lines.push('');
+
+          if (family.type === 'new') {
+            lines.push('### New Component: \`' + family.parentTag + '\`');
+            lines.push('');
+            lines.push('- Description: ' + (family.description || 'No description').substring(0, 200));
+            lines.push('- Props: ' + (family.props || 'none'));
+            lines.push('- Events: ' + (family.events || 'none'));
+            lines.push('- Slots: ' + (family.slots || 'none'));
+            if (family.subComponents && family.subComponents.length) {
+              lines.push('- Sub-components: ' + family.subComponents.join(', '));
+            }
+            lines.push('');
+            lines.push('### Manual TODO');
+            lines.push('');
+            lines.push('- [ ] Fill in \`purposeCards\` (3 cards)');
+            lines.push('- [ ] Add \`anatomyAsset\` or \`anatomyMarkup\`');
+            lines.push('- [ ] Add \`anatomyParts\` and \`anatomyCallouts\`');
+            lines.push('- [ ] Add \`configurationDemos\`');
+            lines.push('- [ ] Add \`measurementTokens\`');
+            lines.push('- [ ] Add \`usage\` section (guidance, behaviours, best practices)');
+            lines.push('- [ ] Add \`accessibility\` section (keyboard interactions)');
+          } else {
+            lines.push('### Changed Component Family: \`' + family.parentTag + '\`');
+            lines.push('');
+            for (const m of family.members ?? []) {
+              lines.push('- **\`' + m.tag + '\`**: ' + m.changes);
+            }
+            lines.push('');
+            lines.push('### Manual TODO');
+            lines.push('');
+            lines.push('- [ ] Review new props/events/slots and update demos if needed');
+          }
+
+          lines.push('');
+          lines.push('---');
+          lines.push('_Auto-generated by sync-web-component workflow_');
+
+          require('fs').writeFileSync('/tmp/pr-body.md', lines.join('\n'));
+          " 2>&1
+        env:
+          FAMILY_JSON: ${{ toJson(matrix.family) }}
+
+      - name: Create branch and PR
+        if: steps.existing.outputs.skip != 'true'
+        run: |
+          SCOPE="${{ matrix.family.scope }}"
+          BRANCH="auto/sync-wc-${{ needs.diff.outputs.target }}-${{ matrix.family.key }}"
+          VERSION="${{ needs.diff.outputs.target }}"
+          FAMILY_TYPE="${{ matrix.family.type }}"
+
+          if [ "$FAMILY_TYPE" = "new" ]; then
+            TITLE="docs(${SCOPE}): add new component from web component v${VERSION}"
+          else
+            TITLE="docs(${SCOPE}): sync changed component from web component v${VERSION}"
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "${TITLE}
+
+          Auto-generated stub entries and version bump for @govtechsg/sgds-web-component@${VERSION}."
+
+          git push --force-with-lease origin "$BRANCH"
+
+          # Create label if it doesn't exist (ignore errors if it already exists)
+          gh label create "auto-sync" --description "Auto-generated sync PRs" --color "0E8A16" 2>/dev/null || true
+
+          gh pr create \
+            --base v3 \
+            --head "$BRANCH" \
+            --title "$TITLE" \
+            --body-file /tmp/pr-body.md \
+            --label "auto-sync"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

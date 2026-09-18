@@ -451,21 +451,29 @@ export const designTabs: GetStartedDesignTab[] = [
       description: "Explore design guidelines, and access Figma libraries and plugins.",
       sections: [
         {
-          title: "Get started with SGDS v3",
-          description: "Agencies and vendors can start their design process using our public UI kits.",
+          title: "Get started with SGDS v3 UI kit",
+          description: "For agencies outside GovTech and partners who do not have access to GovTech's Figma libraries.",
           orderedItems: [
             {
-              title: "Access the UI kit",
-              description: "Visit the SGDS Figma Community Page.",
+              title: "Open Figma Community",
+              description: "Go to the Figma Community.",
               descriptionHtml:
-                'Visit the <a href="https://www.figma.com/community/search?resource_type=mixed&sort_by=relevancy&query=SGDS" target="_blank" rel="noopener noreferrer">SGDS Figma Community Page</a>.',
+                'Go to the <a href="https://www.figma.com/community" target="_blank" rel="noopener noreferrer">Figma Community</a>.',
             },
             {
-              title: "Duplicate to Drafts",
-              description: "Copy the latest SGDS v3 Web UI Kit to your own workspace.",
-              descriptionHtml: "Copy the latest <strong>SGDS v3 Web UI Kit</strong> to your own workspace.",
+              title: "Search",
+              description: "Search for SGDS UI Kit.",
             },
-            { title: "Stay updated", description: "Follow the community page to receive notifications on version updates and bug fixes." },
+            {
+              title: "Open",
+              description: "Select the official SGDS UI Kit published by the Singapore Government Design System.",
+            },
+            {
+              title: "Telegram",
+              description: "Join our Telegram channel to get updates on UI kit availability, news, and releases, or get help.",
+              descriptionHtml:
+                'Join our <a href="https://t.me/+RIkBEGx5R0VjOTM1" target="_blank" rel="noopener noreferrer">Telegram channel</a> to get updates on UI kit availability, news, and releases, or get help.',
+            },
           ],
         },
         {

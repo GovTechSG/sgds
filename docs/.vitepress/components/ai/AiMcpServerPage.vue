@@ -5,7 +5,7 @@ import SectionHeader from "../foundations/SectionHeader.vue";
 import CodeToken from "../ui/CodeToken.vue";
 import CodeBlock from "../ui/CodeBlock.vue";
 
-import { figmaWorkflowCards } from "../../data/ai-workflow-data";
+import { figmaMakeKitBenefits, figmaMakeKitImage, figmaMakeKitSteps, figmaWorkflowCards } from "../../data/ai-workflow-data";
 
 const figmaToCodeSteps = [
   { number: 1, title: "Go to your Figma screen" },
@@ -409,7 +409,7 @@ const openFigmaToCodeTab = (event: Event) => {
 
     <section class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
       <SectionHeader id="figma-make" title="Figma Make" />
-      <div class="sgds:flex sgds:flex-col sgds:gap-layout-xs">
+      <div class="sgds:flex sgds:flex-col sgds:gap-layout-sm">
         <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
           <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What is Figma Make?</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
@@ -419,13 +419,30 @@ const openFigmaToCodeTab = (event: Event) => {
         </div>
 
         <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
-          <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">SGDS Make Kit</h3>
+          <div class="sgds:flex sgds:flex-col sgds:gap-text-xs">
+            <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">How to use the SGDS Make Kit</h3>
+            <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0 sgds:pb-text-sm">
+              Use the kit when you want Figma Make to generate prototypes with SGDS components, styles, tokens, and guidance from the start.
+            </p>
+          </div>
+          <AiInstructionStepper :steps="figmaMakeKitSteps" />
+          <img
+            :src="figmaMakeKitImage.src"
+            :alt="figmaMakeKitImage.alt"
+            width="1414"
+            height="1008"
+            class="sgds:my-layout-xs sgds:block sgds:h-auto sgds:w-full sgds:max-w-[760px] sgds:rounded-md"
+          />
+        </div>
+
+        <div class="sgds:flex sgds:flex-col sgds:gap-text-sm">
+          <h3 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:m-0">What to expect</h3>
           <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-            SGDS intends to build a <a href="https://help.figma.com/hc/en-us/articles/39241689698839-Get-started-with-Make-kits" target="_blank" rel="noreferrer">Make kit</a> for SGDS workflows. A Make kit gives Figma Make design system context, such as npm package references, published Figma library styles and variables, and guidelines for how components, tokens, and patterns should be used.
+            Using the SGDS Make Kit helps Figma Make:
           </p>
-          <p class="sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle sgds:m-0">
-            This work is in progress. You can expect the SGDS Make Kit to help Figma Make start from SGDS components and tokens, follow SGDS usage guidance, and produce prototypes that are easier to review before implementation.
-          </p>
+          <ul class="sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-8 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-subtle">
+            <li v-for="benefit in figmaMakeKitBenefits" :key="benefit" class="sgds:m-0">{{ benefit }}</li>
+          </ul>
         </div>
       </div>
     </section>

@@ -258,16 +258,7 @@ const { stackedExamples = false } = defineProps<{
  * Shared by all utility and token tables. Shows a code token with a copy
  * button. Defined here so every page that uses TypographyPageTemplate
  * inherits it without duplicating the rules. */
-.ts-snippet-row {
-  align-items: flex-start;
-  background: var(--sgds-surface-raised);
-  border: 1px solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-sm);
-  display: flex;
-  gap: var(--sgds-gap-2-xs);
-  justify-content: space-between;
-  padding: 0.375rem var(--sgds-padding-sm);
-}
+
 
 .ts-snippet-code {
   color: var(--sgds-body-color-subtle);
@@ -283,17 +274,4 @@ const { stackedExamples = false } = defineProps<{
   white-space: normal;
 }
 
-.ts-snippet-copy-btn {
-  background: transparent;
-  border: 0;
-  border-radius: var(--sgds-border-radius-sm);
-  cursor: pointer;
-  display: flex;
-  flex-shrink: 0;
-  padding: var(--sgds-spacer-1);
-}
-
-.ts-snippet-copy-btn:hover {
-  background: var(--sgds-bg-translucent-subtle);
-}
 </style>

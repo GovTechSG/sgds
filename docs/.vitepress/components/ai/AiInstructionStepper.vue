@@ -3,6 +3,7 @@ defineProps<{
   steps: Array<{
     number: number;
     title: string;
+    description?: string;
     slotName?: string;
   }>;
 }>();
@@ -27,6 +28,7 @@ defineProps<{
           <h3 class="sgds:text-heading-default sgds:m-0 sgds:pt-1 sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal">
             {{ step.title }}
           </h3>
+          <p v-if="step.description">{{ step.description }}</p>
           <slot :name="step.slotName ?? `step-${step.number}`" />
         </div>
       </div>

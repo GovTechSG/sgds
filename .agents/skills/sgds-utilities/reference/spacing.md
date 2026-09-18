@@ -87,6 +87,18 @@ Use `sgds:w-container` for the standard responsive container width. It maps to `
 </div>
 ```
 
+### List Spacing — vertical spacing between list items
+
+Use for `margin-top` / `margin-bottom` on `<li>` elements. These are **static** (non-responsive).
+
+| Class | Token | Value |
+|-------|-------|-------|
+| `sgds:my-list-sm` | `--sgds-list-spacing-sm` | 8px (0.5rem) |
+| `sgds:my-list-md` | `--sgds-list-spacing-md` | 12px (0.75rem) |
+| `sgds:my-list-lg` | `--sgds-list-spacing-lg` | 16px (1rem) |
+
+Also available as `sgds:mt-list-*` and `sgds:mb-list-*` for one-sided margin. Use `sgds:mt-list-*` on the last `<li>` to avoid extra bottom whitespace.
+
 ---
 
 ## Raw Numeric Utilities (Fallback Only)

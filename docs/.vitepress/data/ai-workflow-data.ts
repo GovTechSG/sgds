@@ -24,6 +24,17 @@ export interface AiWorkflowCard {
   href: string;
 }
 
+export interface FigmaMakeKitStep {
+  number: number;
+  title: string;
+  description: string;
+}
+
+export interface FigmaMakeKitImage {
+  src: string;
+  alt: string;
+}
+
 export const figmaWorkflowCards: AiWorkflowCard[] = [
   {
     icon: "figma-mcp",
@@ -68,6 +79,41 @@ export const setupStepsGtCli: FigmaStep[] = [
   { number: 2, title: "Select the full skill set" },
   { number: 3, title: "Keep the agent skills updated" },
 ];
+
+export const figmaMakeKitSteps: FigmaMakeKitStep[] = [
+  {
+    number: 1,
+    title: "Open Figma Make",
+    description: "Start a new Figma Make session or open an existing Make file.",
+  },
+  {
+    number: 2,
+    title: "Select a Make kit",
+    description: "Click the Select a Make kit icon beside the microphone icon.",
+  },
+  {
+    number: 3,
+    title: "Add the SGDS v3 Make Kit",
+    description: "Choose SGDS v3 Make Kit from the available kits.",
+  },
+  {
+    number: 4,
+    title: "Start prompting",
+    description: "Prompt as usual. The kit gives Figma Make SGDS context while it generates your prototype.",
+  },
+];
+
+export const figmaMakeKitBenefits: string[] = [
+  "Generate interfaces that align more closely with SGDS components, styles, and design guidance.",
+  "Produce outputs that are closer to government UI patterns.",
+  "Reduce manual clean-up after generation.",
+  "Create a stronger starting point for further refinement.",
+];
+
+export const figmaMakeKitImage: FigmaMakeKitImage = {
+  src: "/ai/sgds-make-kit-selector.webp",
+  alt: "Figma Make Design system kits modal showing SGDS v3 Make Kit with an Add button.",
+};
 
 export const newProjectSteps: WorkflowStep[] = [
   {

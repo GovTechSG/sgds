@@ -260,16 +260,7 @@ const getResponsiveTokenValue = (token: string): string => {
 }
 
 /* Snippet row for copy-able token values */
-.ts-snippet-row {
-  align-items: flex-start;
-  background: var(--sgds-surface-raised);
-  border: 1px solid var(--sgds-border-color-muted);
-  border-radius: var(--sgds-border-radius-sm);
-  display: flex;
-  gap: var(--sgds-gap-2-xs);
-  justify-content: space-between;
-  padding: 0.375rem var(--sgds-padding-sm);
-}
+
 
 .ts-snippet-code {
   color: var(--sgds-body-color-subtle);
@@ -285,17 +276,4 @@ const getResponsiveTokenValue = (token: string): string => {
   white-space: normal;
 }
 
-.ts-snippet-copy-btn {
-  background: transparent;
-  border: 0;
-  border-radius: var(--sgds-border-radius-sm);
-  cursor: pointer;
-  display: flex;
-  flex-shrink: 0;
-  padding: var(--sgds-spacer-1);
-}
-
-.ts-snippet-copy-btn:hover {
-  background: var(--sgds-bg-translucent-subtle);
-}
 </style>

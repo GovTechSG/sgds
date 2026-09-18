@@ -24,6 +24,7 @@ sgds:<breakpoint>:<utility>
 | `sgds:lg:` | `--sgds-breakpoint-lg` | 1024px |
 | `sgds:xl:` | `--sgds-breakpoint-xl` | 1280px |
 | `sgds:2-xl:` | `--sgds-breakpoint-2-xl` | 1440px |
+| `sgds:3-xl:` | `--sgds-breakpoint-3-xl` | 1680px (sidebar layouts) |
 
 ## How It Works
 

@@ -1,28 +1,38 @@
-# Expected Behavior
+---
+name: Issue
+about: Report a bug or request a feature for the SGDS documentation portal
+---
 
-Please describe the behavior you are expecting
+## Type
 
-# Current Behavior
+- [ ] Bug report
+- [ ] Feature request
+- [ ] Documentation improvement
 
-What is the current behavior?
+## Description
 
-# Failure Information (for bugs)
+<!-- A clear description of the issue or request -->
 
-Please help provide information about the failure if this is a bug. If it is not a bug, please remove the rest of this template and label it as **enhancement**
+## Steps to Reproduce (bugs only)
 
-## Steps to Reproduce
+1.
+2.
+3.
 
-Please provide detailed steps for reproducing the issue.
+## Expected Behaviour
 
-1. step 1
-2. step 2
-3. and so on...
+<!-- What should happen? -->
 
-## Context
+## Current Behaviour
 
-Please provide any relevant information about your setup. This is important in case the issue is not reproducible except under certain conditions.
+<!-- What happens instead? -->
 
+## Environment (bugs only)
 
-## Failure Logs
+- Browser:
+- OS:
+- Page URL:
 
-Please include any relevant log snippets or files here.
+## Additional Context
+
+<!-- Screenshots, logs, or links that help explain the issue -->
