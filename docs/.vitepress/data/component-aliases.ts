@@ -91,6 +91,8 @@ export const scopeToKey: Record<string, string> = {
   input: "input",
   link: "link",
   mainnav: "mainnav",
+  mainnavitem: "mainnav",
+  mainnavdropdown: "mainnav",
   masthead: "masthead",
   modal: "modal",
   "overflow-menu": "overflow-menu",

@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Mainnav
-description: This component is the primary means that your users will use to navigate through your portal.
+description: Main navigation helps users move between the main sections of a content-focused website, such as an informational or service website. It provides site branding and links to key pages and sections.
 storybook: true
 ---
 

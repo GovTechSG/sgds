@@ -323,6 +323,12 @@ async function main() {
   const pagesFailing = results.filter((r) => r.mustFix > 0).length;
   const pagesPassing = results.filter((r) => !r.error && r.mustFix === 0).length;
 
+  // Include page-level findings and scan errors in the CI result.
+  thresholdsPassed = thresholdsPassed
+    && totalMustFix <= THRESHOLDS.mustFix
+    && (THRESHOLDS.goodToFix === undefined || totalGoodToFix <= THRESHOLDS.goodToFix)
+    && pagesWithErrors === 0;
+
   console.log(`\n${COLORS.bold}─── Summary ───${COLORS.reset}`);
   console.log(`  Pages scanned:    ${results.length}`);
   console.log(`  ${COLORS.green}Pages passing:    ${pagesPassing}${COLORS.reset}`);
