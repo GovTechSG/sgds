@@ -1,4 +1,58 @@
 {
+  "mainnav": [
+    {
+      "Date": "17 Sept 2026",
+      "Version": "v3.28.0",
+      "Description": "New sgds-appnav, sgds-mainnav-profile, sgds-appnav-profile subcomponents, new readonly prop for DropdownItem in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/800\" target=\"_blank\" rel=\"noopener noreferrer\">#800</a>."
+    },
+    {
+      "Date": "29 Apr 2026",
+      "Version": "v3.18.0",
+      "Description": "Alignment in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/617\" target=\"_blank\" rel=\"noopener noreferrer\">#617</a>."
+    },
+    {
+      "Date": "06 Mar 2026",
+      "Version": "v3.13.1",
+      "Description": "Display issue in safari in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/562\" target=\"_blank\" rel=\"noopener noreferrer\">#562</a>."
+    },
+    {
+      "Date": "18 Dec 2025",
+      "Version": "v3.6.0",
+      "Description": "Update correct breakpoints for dropdown menu, mainnav and masthead @th-94 in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/472\" target=\"_blank\" rel=\"noopener noreferrer\">#472</a>."
+    },
+    {
+      "Date": "06 Oct 2025",
+      "Version": "v3.5.0",
+      "Description": "Position and mobile transitions in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/405\" target=\"_blank\" rel=\"noopener noreferrer\">#405</a>."
+    }
+  ],
+  "sidebar": [
+    {
+      "Date": "17 Sept 2026",
+      "Version": "v3.28.0",
+      "Description": "Support collapsed state with no icon slotted into sidebar group or items in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/830\" target=\"_blank\" rel=\"noopener noreferrer\">#830</a>."
+    },
+    {
+      "Date": "05 Aug 2026",
+      "Version": "v3.26.0",
+      "Description": "Keyboard interaction in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/783\" target=\"_blank\" rel=\"noopener noreferrer\">#783</a>."
+    },
+    {
+      "Date": "05 Aug 2026",
+      "Version": "v3.26.0",
+      "Description": "Icon button size in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/780\" target=\"_blank\" rel=\"noopener noreferrer\">#780</a>."
+    },
+    {
+      "Date": "05 Aug 2026",
+      "Version": "v3.26.0",
+      "Description": "Sidebar select event not emitting for react component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/796\" target=\"_blank\" rel=\"noopener noreferrer\">#796</a>."
+    },
+    {
+      "Date": "21 Jul 2026",
+      "Version": "v3.25.0",
+      "Description": "Fix/update sidebar in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/774\" target=\"_blank\" rel=\"noopener noreferrer\">#774</a>."
+    }
+  ],
   "select": [
     {
       "Date": "14 Sept 2026",
@@ -151,33 +205,6 @@
       "Date": "02 Mar 2026",
       "Version": "v3.12.0",
       "Description": "Background color in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/554\" target=\"_blank\" rel=\"noopener noreferrer\">#554</a>."
-    }
-  ],
-  "sidebar": [
-    {
-      "Date": "05 Aug 2026",
-      "Version": "v3.26.0",
-      "Description": "Keyboard interaction in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/783\" target=\"_blank\" rel=\"noopener noreferrer\">#783</a>."
-    },
-    {
-      "Date": "05 Aug 2026",
-      "Version": "v3.26.0",
-      "Description": "Icon button size in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/780\" target=\"_blank\" rel=\"noopener noreferrer\">#780</a>."
-    },
-    {
-      "Date": "05 Aug 2026",
-      "Version": "v3.26.0",
-      "Description": "Sidebar select event not emitting for react component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/796\" target=\"_blank\" rel=\"noopener noreferrer\">#796</a>."
-    },
-    {
-      "Date": "21 Jul 2026",
-      "Version": "v3.25.0",
-      "Description": "Fix/update sidebar in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/774\" target=\"_blank\" rel=\"noopener noreferrer\">#774</a>."
-    },
-    {
-      "Date": "23 Jun 2026",
-      "Version": "v3.22.0",
-      "Description": "Accessibility violations from oobee testing in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/707\" target=\"_blank\" rel=\"noopener noreferrer\">#707</a>."
     }
   ],
   "datepicker": [
@@ -705,33 +732,6 @@
       "Date": "29 Apr 2026",
       "Version": "v3.18.0",
       "Description": "Update heading style in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/619\" target=\"_blank\" rel=\"noopener noreferrer\">#619</a>."
-    }
-  ],
-  "mainnav": [
-    {
-      "Date": "29 Apr 2026",
-      "Version": "v3.18.0",
-      "Description": "Alignment in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/617\" target=\"_blank\" rel=\"noopener noreferrer\">#617</a>."
-    },
-    {
-      "Date": "06 Mar 2026",
-      "Version": "v3.13.1",
-      "Description": "Display issue in safari in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/562\" target=\"_blank\" rel=\"noopener noreferrer\">#562</a>."
-    },
-    {
-      "Date": "18 Dec 2025",
-      "Version": "v3.6.0",
-      "Description": "Update correct breakpoints for dropdown menu, mainnav and masthead @th-94 in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/472\" target=\"_blank\" rel=\"noopener noreferrer\">#472</a>."
-    },
-    {
-      "Date": "06 Oct 2025",
-      "Version": "v3.5.0",
-      "Description": "Position and mobile transitions in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/405\" target=\"_blank\" rel=\"noopener noreferrer\">#405</a>."
-    },
-    {
-      "Date": "22 Sept 2025",
-      "Version": "v3.4.0",
-      "Description": "Close menu on mobile when link is clicked in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/374\" target=\"_blank\" rel=\"noopener noreferrer\">#374</a>."
     }
   ],
   "toast": [
