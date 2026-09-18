@@ -82,6 +82,13 @@ function classifyStory(storyId) {
   return null;
 }
 
+/** Validate that a story ID contains only safe characters (alphanumeric, hyphens, underscores). */
+const SAFE_ID_RE = /^[a-zA-Z0-9_-]+$/;
+
+function isValidStoryId(storyId) {
+  return typeof storyId === "string" && SAFE_ID_RE.test(storyId);
+}
+
 function storyIdToKey(storyId, kind) {
   // e.g., "blocks-cards--cards-3" → "cards"
   //        "templates-about-us-basic--basic" → "about-us"
@@ -104,6 +111,12 @@ async function diffStories() {
 
   const entries = index.entries ?? index.stories ?? {};
   for (const [storyId, story] of Object.entries(entries)) {
+    // Reject story IDs with unsafe characters (path separators, shell metacharacters, quotes)
+    if (!isValidStoryId(storyId)) {
+      console.error(`Warning: Skipping story with unsafe ID: ${storyId.substring(0, 80)}`);
+      continue;
+    }
+
     const kind = classifyStory(storyId);
     if (!kind) continue;
 

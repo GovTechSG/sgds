@@ -37,6 +37,28 @@ const diff = JSON.parse(readFileSync(diffPath, "utf-8"));
 const changes = [];
 
 // ---------------------------------------------------------------------------
+// Validation
+// ---------------------------------------------------------------------------
+
+/** Only allow alphanumeric, hyphens, underscores, and colons in story keys/IDs. */
+const SAFE_KEY_RE = /^[a-zA-Z0-9_:-]+$/;
+
+function assertSafeKey(value, label) {
+  if (!SAFE_KEY_RE.test(value)) {
+    throw new Error(`Unsafe ${label}: "${value.substring(0, 80)}". Only [a-zA-Z0-9_:-] allowed.`);
+  }
+}
+
+/** Assert that a resolved path stays within the expected directory. */
+function assertPathContained(filePath, allowedDir) {
+  const resolved = resolve(filePath);
+  const resolvedDir = resolve(allowedDir);
+  if (!resolved.startsWith(resolvedDir + "/") && resolved !== resolvedDir) {
+    throw new Error(`Path traversal detected: "${filePath}" escapes "${allowedDir}"`);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
@@ -73,7 +95,9 @@ function generateStoryIds() {
   const objEnd = content.indexOf("};", objStart);
 
   const newLines = diff.newStories.map((story) => {
-    return `  "${story.portalKey}": "${story.id}",`;
+    assertSafeKey(story.portalKey, "portalKey");
+    assertSafeKey(story.id, "story id");
+    return `  ${JSON.stringify(story.portalKey)}: ${JSON.stringify(story.id)},`;
   });
 
   content =
@@ -96,16 +120,22 @@ function generatePreviewPages() {
   const blockTemplate = loadTemplate("block-preview.md.template");
   const templateTemplate = loadTemplate("template-preview.md.template");
 
+  const blockPreviewDir = join(ROOT, "docs", "blocks", "preview");
+  const templatePreviewDir = join(ROOT, "docs", "templates", "page-templates", "preview");
+
   for (const story of diff.newStories) {
+    assertSafeKey(story.key, "story key");
     const title = keyToTitle(story.key);
     let mdPath;
     let content;
 
     if (story.kind === "block") {
-      mdPath = join(ROOT, "docs", "blocks", "preview", `${story.key}.md`);
+      mdPath = join(blockPreviewDir, `${story.key}.md`);
+      assertPathContained(mdPath, blockPreviewDir);
       content = applyTemplate(blockTemplate, { KEY: story.key, TITLE: title });
     } else if (story.kind === "template") {
-      mdPath = join(ROOT, "docs", "templates", "page-templates", "preview", `${story.key}.md`);
+      mdPath = join(templatePreviewDir, `${story.key}.md`);
+      assertPathContained(mdPath, templatePreviewDir);
       content = applyTemplate(templateTemplate, { KEY: story.key, TITLE: title });
     } else {
       continue;
