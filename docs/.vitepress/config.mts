@@ -216,6 +216,7 @@ export default defineConfig({
           { text: "Checkbox", link: "/components/checkbox" },
           { text: "Close button", link: "/components/close-button" },
           { text: "Combo box", link: "/components/combo-box" },
+          { text: "Data table", link: "/components/data-table" },
           { text: "Datepicker", link: "/components/datepicker" },
           { text: "Description list", link: "/components/description-list" },
           { text: "Divider", link: "/components/divider" },

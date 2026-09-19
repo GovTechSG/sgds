@@ -381,7 +381,8 @@ onBeforeUnmount(() => {
                     v-for="(part, index) in textParts(card.description)"
                     :key="`${card.title}-${index}`"
                   >
-                    <CodeToken v-if="part.isCode" :label="part.text" />
+                    <a v-if="part.href" :href="part.href" class="sgds:inline sgds:align-baseline sgds:normal-case">{{ part.text }}</a>
+                    <CodeToken v-else-if="part.isCode" :label="part.text" />
                     <template v-else>{{ part.text }}</template>
                   </template>
                 </p>
@@ -443,7 +444,8 @@ onBeforeUnmount(() => {
                       v-for="(part, index) in textParts(item)"
                       :key="`${item}-${index}`"
                     >
-                      <CodeToken v-if="part.isCode" :label="part.text" />
+                      <a v-if="part.href" :href="part.href" class="sgds:inline sgds:align-baseline sgds:normal-case">{{ part.text }}</a>
+                      <CodeToken v-else-if="part.isCode" :label="part.text" />
                       <template v-else>{{ part.text }}</template>
                     </template>
                   </li>
@@ -494,7 +496,8 @@ onBeforeUnmount(() => {
                   v-for="(part, index) in textParts(note)"
                   :key="`${note}-${index}`"
                 >
-                  <CodeToken v-if="part.isCode" :label="part.text" />
+                  <a v-if="part.href" :href="part.href" class="sgds:inline sgds:align-baseline sgds:normal-case">{{ part.text }}</a>
+                  <CodeToken v-else-if="part.isCode" :label="part.text" />
                   <template v-else>{{ part.text }}</template>
                 </template>
               </li>

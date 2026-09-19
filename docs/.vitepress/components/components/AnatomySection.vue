@@ -70,6 +70,7 @@ const activeAnatomyMarkup = computed(() =>
 );
 
 const isWideAnatomy = computed(() =>
+  activeAnatomyMarkup.value.includes("sgds-data-table") ||
   activeAnatomyMarkup.value.includes("portal-footer-anatomy") ||
   activeAnatomyMarkup.value.includes("portal-anatomy-datepicker") ||
   activeAnatomyMarkup.value.includes("portal-anatomy-masthead") ||
