@@ -155,6 +155,11 @@
   ],
   "sidebar": [
     {
+      "Date": "17 Sept 2026",
+      "Version": "v3.28.0",
+      "Description": "Support collapsed state with no icon slotted into sidebar group or items in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/830\" target=\"_blank\" rel=\"noopener noreferrer\">#830</a>."
+    },
+    {
       "Date": "05 Aug 2026",
       "Version": "v3.26.0",
       "Description": "Keyboard interaction in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/783\" target=\"_blank\" rel=\"noopener noreferrer\">#783</a>."
@@ -173,11 +178,6 @@
       "Date": "21 Jul 2026",
       "Version": "v3.25.0",
       "Description": "Fix/update sidebar in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/774\" target=\"_blank\" rel=\"noopener noreferrer\">#774</a>."
-    },
-    {
-      "Date": "23 Jun 2026",
-      "Version": "v3.22.0",
-      "Description": "Accessibility violations from oobee testing in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/707\" target=\"_blank\" rel=\"noopener noreferrer\">#707</a>."
     }
   ],
   "datepicker": [
