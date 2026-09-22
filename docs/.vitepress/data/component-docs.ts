@@ -7929,7 +7929,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         {
           title: "Always provide an accessible label",
           description:
-            "Without visible text, icon buttons need an aria-label so screen reader users know what the action does.",
+            "Without visible text, icon buttons need an `ariaLabel` so screen reader users know what the action does.",
           tone: "do",
           markup: `<sgds-icon-button name="trash" tone="danger" ariaLabel="Delete item"></sgds-icon-button>`,
         },
@@ -12879,7 +12879,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Items, groups, and sections expose active and expanded states through their interactive controls.",
       ],
       authorItems: [
-        "Set aria-label on the sidebar when the page has more than one navigation landmark.",
+        "Set `ariaLabel` on the sidebar when the page has more than one navigation landmark.",
         "Provide a unique name for each item and group so active state can be matched correctly.",
       ],
       focusItems: [
@@ -18636,7 +18636,6 @@ const generatedAccessibilityProfileOverrides: Record<
       "The table wrapper is focusable, including when the legacy responsive property is not set. It does not provide spreadsheet-style cell navigation.",
     ],
     authorItems: [
-      "Give the table a descriptive accessible name, for example with `aria-label` on `sgds-table`.",
       "Use clear headers. For row headers, use the data-generated table with `headerPosition` rather than assuming a slotted header becomes a row header when moved to the left. Slotted `sgds-table-head` elements use the columnheader role.",
       "Keep cell content concise and avoid using tables for page layout.",
       "Give repeated action links or buttons labels that identify the record, such as “View application APP-0421”.",
