@@ -216,6 +216,29 @@ const pinIllustrativeToast = (toast: Element) => {
 
 const showIllustrativeComponents = async () => {
   await nextTick();
+  // v-html can connect a sidebar before its slotted children have upgraded.
+  // Reapply its public active value once the complete example is ready.
+  for (const element of sectionRef.value?.querySelectorAll("sgds-sidebar[active]") ?? []) {
+    await customElements.whenDefined("sgds-sidebar");
+    const sidebar = element as HTMLElement & { active: string; updateComplete: Promise<unknown> };
+    await sidebar.updateComplete;
+    if (sidebar.classList.contains("portal-sidebar-best-practice")) {
+      // Keep this persistent illustration within its card instead of using
+      // the component's mobile viewport-wide positioning.
+      injectShadowStyles(sidebar, "sidebar-best-practice-width", `
+        :host(.portal-sidebar-best-practice) .sidebar { position: relative; width: 100%; }
+      `);
+    }
+    await Promise.all(Array.from(sidebar.querySelectorAll("sgds-sidebar-item, sgds-sidebar-section, sgds-sidebar-group"), async (child) => {
+      await customElements.whenDefined(child.localName);
+      await (child as HTMLElement & { updateComplete: Promise<unknown> }).updateComplete;
+    }));
+    const active = sidebar.getAttribute("active") ?? "";
+    sidebar.active = "";
+    await sidebar.updateComplete;
+    sidebar.active = active;
+    await sidebar.updateComplete;
+  }
   sectionRef.value
     ?.querySelectorAll("sgds-tooltip[open]")
     .forEach((tooltip) => {

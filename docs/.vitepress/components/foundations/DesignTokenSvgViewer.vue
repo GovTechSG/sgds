@@ -142,6 +142,7 @@ const canZoomOut = computed(() => zoomLevel.value > ZOOM_MIN);
     size="fullscreen"
     @sgds-after-hide="closeFullscreen"
   >
+    <span slot="title">{{ title }}</span>
     <div class="dts-fullscreen">
       <div class="dts-zoom-toolbar">
         <sgds-icon-button

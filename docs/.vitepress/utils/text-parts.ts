@@ -26,7 +26,17 @@ const inlineCodePattern = (codeTerms: readonly string[] = []) => {
 export type TextPart = {
   isCode: boolean;
   text: string;
+  href?: string;
 };
+
+// Only site-relative links are accepted in documentation guidance.
+export const guidanceParts = (text: string): TextPart[] =>
+  text.split(/(\[[^\]]+\]\(\/(?!\/)[^\s)]+\))/g).flatMap((part) => {
+    const link = part.match(/^\[([^\]]+)\]\((\/(?!\/)[^\s)]+)\)$/);
+    return link
+      ? [{ isCode: false, text: link[1], href: link[2] }]
+      : textParts(part);
+  });
 
 export const textParts = (text: string, codeTerms: readonly string[] = []): TextPart[] => {
   const codeTermSet = new Set(codeTerms);
