@@ -12,7 +12,7 @@ import UpdatesSection from "./UpdatesSection.vue";
 import { getComponentDoc } from "../../data/component-docs";
 import { accordionV2Data } from "../../data/accordion-v2";
 import CodeToken from "../ui/CodeToken.vue";
-import { textParts } from "../../utils/text-parts";
+import { guidanceParts, textParts } from "../../utils/text-parts";
 import { setupPortalSteppers } from "../../utils/portal-stepper";
 
 const props = defineProps<{
@@ -440,10 +440,11 @@ onBeforeUnmount(() => {
                 <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
                   <li v-for="item in section.items" :key="item" class="sgds:mt-0">
                     <template
-                      v-for="(part, index) in textParts(item)"
+                      v-for="(part, index) in guidanceParts(item)"
                       :key="`${item}-${index}`"
                     >
-                      <CodeToken v-if="part.isCode" :label="part.text" />
+                      <a v-if="part.href" :href="part.href">{{ part.text }}</a>
+                      <CodeToken v-else-if="part.isCode" :label="part.text" />
                       <template v-else>{{ part.text }}</template>
                     </template>
                   </li>
