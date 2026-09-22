@@ -136,6 +136,8 @@ const isWidePreview = computed(() =>
   activeOption.value?.markup.includes("portal-mainnav-width-demo") ||
   activeOption.value?.markup.includes("portal-system-banner-width-demo") ||
   activeOption.value?.markup.includes("portal-demo-sidebar-open") ||
+  activeOption.value?.markup.includes("portal-sidebar-scrim-demo") ||
+  activeOption.value?.markup.includes("portal-sidebar-variant-demo") ||
   activeOption.value?.markup.includes("portal-modal-preview-xl") ||
   activeOption.value?.markup.includes("portal-modal-preview-fullscreen") ||
   false,
@@ -509,6 +511,7 @@ const setupSidebarDemos = async () => {
   const sidebars = Array.from(
     root.querySelectorAll("sgds-sidebar") as NodeListOf<HTMLElement & {
       collapsed?: boolean;
+      toggleCollapsed?: () => void;
       _handleClickOutOfElement?: (e: Event) => void;
       _isNarrowViewport?: boolean;
       _isOverlay?: boolean;
@@ -519,18 +522,55 @@ const setupSidebarDemos = async () => {
     }>,
   );
 
-  for (const el of sidebars) {
+  // Read the selected example, not the live attribute that responsive setup
+  // may have changed before the preview is configured.
+  const authoredSidebars = new DOMParser()
+    .parseFromString(activeMarkup.value, "text/html")
+    .querySelectorAll("sgds-sidebar");
+
+  for (const [index, el] of sidebars.entries()) {
     await el.updateComplete;
+    const variantDemo = el.closest(".portal-sidebar-variant-demo");
+    if (variantDemo) {
+      // Show native layout and the built-in collapsible control. Keep the
+      // overlay preview open when users click outside the example.
+      if (el._handleClickOutOfElement) {
+        document.removeEventListener("click", el._handleClickOutOfElement);
+      }
+      el.collapsed = false;
+      await el.updateComplete;
+      const toggle = variantDemo.querySelector<HTMLElement>("[data-sidebar-preview-toggle]");
+      if (toggle) {
+        toggle.onclick = async () => {
+          el.toggleCollapsed?.();
+          await el.updateComplete;
+          toggle.setAttribute("name", el.collapsed ? "sidebar-expand" : "sidebar-collapse");
+          toggle.setAttribute("ariaLabel", el.collapsed ? "Expand sidebar" : "Collapse sidebar");
+        };
+      }
+      continue;
+    }
+    const scrimDemo = el.closest(".portal-sidebar-scrim-demo");
+    if (scrimDemo) {
+      // Keep this visual comparison open, including when its option tab is clicked.
+      // Retain the component's native overlay and scrim styles.
+      if (el._handleClickOutOfElement) {
+        document.removeEventListener("click", el._handleClickOutOfElement);
+      }
+      el.collapsed = false;
+      await el.updateComplete;
+      continue;
+    }
     const isOpenOverlayDemo = el.classList.contains("portal-demo-sidebar-open");
-    const shouldStayCollapsed = el.hasAttribute("collapsed") || el.collapsed === true;
+    const shouldStayCollapsed = authoredSidebars[index]?.hasAttribute("collapsed") ?? false;
     const hasScrim = el.hasAttribute("scrim");
     const viewportWidth = typeof window === "undefined" ? 1440 : window.innerWidth;
     const isMobileViewport = viewportWidth < 768;
     const variant = el.getAttribute("variant") || "collapsible";
-    const previewCollapsed = isMobileViewport ? false : shouldStayCollapsed;
+    const previewCollapsed = shouldStayCollapsed;
     const previewIsOverlay =
       variant === "overlay" ||
-      (variant === "collapsible" && isMobileViewport);
+      (variant === "collapsible" && isMobileViewport && !shouldStayCollapsed);
     const defaultWidth = isOpenOverlayDemo
       ? `calc(var(--sgds-dimension-288)${hasScrim ? " + var(--sgds-dimension-96)" : ""})`
       : "var(--sgds-dimension-288)";
@@ -571,7 +611,7 @@ const setupSidebarDemos = async () => {
        }
        .sidebar-wrapper {
          height: 100% !important;
-         width: var(--sgds-dimension-288) !important;
+         width: 100% !important;
        }
        .sidebar-nested-overlay {
          height: 100% !important;
@@ -596,14 +636,14 @@ const setupSidebarDemos = async () => {
        .sidebar--overlay.show {
          opacity: 0.32 !important;
        }
+       }
+       /* Keep the explicitly selected icon-only example visible at every viewport. */
        :host([collapsed]) {
          width: var(--sgds-dimension-72) !important;
        }
        :host([collapsed]) .sidebar,
-       :host([collapsed]) .sidebar-main,
-       :host([collapsed]) .sidebar-wrapper {
+       :host([collapsed]) .sidebar-main {
          width: var(--sgds-dimension-72) !important;
-       }
        }
        @media screen and (max-width: 767px) {
        :host {

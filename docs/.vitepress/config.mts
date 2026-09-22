@@ -201,6 +201,7 @@ export default defineConfig({
         items: [
           { text: "Accordion", link: "/components/accordion" },
           { text: "Alert", link: "/components/alert" },
+          { text: "Appnav", link: "/components/appnav" },
           { text: "Badge", link: "/components/badge" },
           { text: "Breadcrumb", link: "/components/breadcrumb" },
           { text: "Button", link: "/components/button" },

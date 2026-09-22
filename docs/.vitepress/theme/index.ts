@@ -53,6 +53,7 @@ export default {
 
           // All remaining components (used in component doc pages)
           import("@govtechsg/sgds-web-component/components/Accordion/index.js");
+          import("@govtechsg/sgds-web-component/components/Appnav/index.js");
           import("@govtechsg/sgds-web-component/components/Alert/index.js");
           import("@govtechsg/sgds-web-component/components/Card/index.js");
           import("@govtechsg/sgds-web-component/components/Checkbox/index.js");
