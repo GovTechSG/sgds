@@ -125,6 +125,7 @@ export type BestPractice = {
   description: string;
   tone: "do" | "dont";
   markup: string;
+  scrollablePreview?: boolean;
 };
 
 export type ComponentProp = {
@@ -7928,7 +7929,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         {
           title: "Always provide an accessible label",
           description:
-            "Without visible text, icon buttons need an aria-label so screen reader users know what the action does.",
+            "Without visible text, icon buttons need an `ariaLabel` so screen reader users know what the action does.",
           tone: "do",
           markup: `<sgds-icon-button name="trash" tone="danger" ariaLabel="Delete item"></sgds-icon-button>`,
         },
@@ -12878,7 +12879,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Items, groups, and sections expose active and expanded states through their interactive controls.",
       ],
       authorItems: [
-        "Set aria-label on the sidebar when the page has more than one navigation landmark.",
+        "Set `ariaLabel` on the sidebar when the page has more than one navigation landmark.",
         "Provide a unique name for each item and group so active state can be matched correctly.",
       ],
       focusItems: [
@@ -15356,7 +15357,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Support row actions",
-        description: "Tables can include selection, sorting, filtering, and actions where needed.",
+        description: "Include links or controls, with behaviour handled by your application.",
       },
     ],
     anatomyMarkup: `<sgds-table tableBorder headerBackground><sgds-table-row><sgds-table-head>Service</sgds-table-head><sgds-table-head>Owner</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Citizen portal</sgds-table-cell><sgds-table-cell>GovTech</sgds-table-cell><sgds-table-cell>Live</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Booking system</sgds-table-cell><sgds-table-cell>NLB</sgds-table-cell><sgds-table-cell>Beta</sgds-table-cell></sgds-table-row></sgds-table>`,
@@ -15382,37 +15383,37 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Header position",
         description:
-          "Use `headerPosition` to put headers across the top, down the side, or both.",
+          "Use `headerPosition` with `rowHeader`, `columnHeader` and `tableData` to generate headers across the top, down the side, or both. When using slotted rows, arrange the headers manually.",
         controlLabel: "Table header position options",
         defaultValue: "horizontal",
         options: [
           {
             label: "Horizontal",
             value: "horizontal",
-            markup: `<sgds-table><sgds-table-row><sgds-table-head>Service</sgds-table-head><sgds-table-head>Owner</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Citizen portal</sgds-table-cell><sgds-table-cell>GovTech</sgds-table-cell><sgds-table-cell>Live</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Booking system</sgds-table-cell><sgds-table-cell>NLB</sgds-table-cell><sgds-table-cell>Beta</sgds-table-cell></sgds-table-row></sgds-table>`,
+            markup: `<sgds-table headerPosition="horizontal" aria-label="Service comparison" rowHeader='["Service", "Owner", "Status"]' columnHeader='["Service 1", "Service 2"]' tableData='[["Citizen portal", "GovTech", "Live"], ["Booking system", "NLB", "Beta"]]'></sgds-table>`,
             description:
               "Headers across the top. Most common arrangement for tabular data.",
           },
           {
             label: "Vertical",
             value: "vertical",
-            markup: `<sgds-table><sgds-table-row><sgds-table-head>Service</sgds-table-head><sgds-table-cell>Citizen portal</sgds-table-cell><sgds-table-cell>Booking system</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-head>Owner</sgds-table-head><sgds-table-cell>GovTech</sgds-table-cell><sgds-table-cell>NLB</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-head>Status</sgds-table-head><sgds-table-cell>Live</sgds-table-cell><sgds-table-cell>Beta</sgds-table-cell></sgds-table-row></sgds-table>`,
+            markup: `<sgds-table headerPosition="vertical" aria-label="Service comparison" rowHeader='["Service", "Owner", "Status"]' columnHeader='["Service", "Owner", "Status"]' tableData='[["Citizen portal", "GovTech", "Live"], ["Booking system", "NLB", "Beta"]]'></sgds-table>`,
             description:
               "Headers down the left side. Helpful when comparing a few items across many attributes.",
           },
           {
             label: "Both",
             value: "both",
-            markup: `<sgds-table><sgds-table-row><sgds-table-head></sgds-table-head><sgds-table-head>Service</sgds-table-head><sgds-table-head>Owner</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-head>Row 1</sgds-table-head><sgds-table-cell>Citizen portal</sgds-table-cell><sgds-table-cell>GovTech</sgds-table-cell><sgds-table-cell>Live</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-head>Row 2</sgds-table-head><sgds-table-cell>Booking system</sgds-table-cell><sgds-table-cell>NLB</sgds-table-cell><sgds-table-cell>Beta</sgds-table-cell></sgds-table-row></sgds-table>`,
+            markup: `<sgds-table headerPosition="both" aria-label="Service comparison" rowHeader='["Service", "Owner", "Status"]' columnHeader='["Service 1", "Service 2"]' tableData='[["Citizen portal", "GovTech", "Live"], ["Booking system", "NLB", "Beta"]]'></sgds-table>`,
             description:
-              "Headers along both axes. Use for cross-tabulated data such as metrics by period.",
+              "Headers identify both columns and rows. Use meaningful row labels for the records being compared.",
           },
         ],
       },
       {
         title: "Header background",
         description:
-          "Use `header-background` to apply a tinted fill to the header cells for stronger visual separation from the body.",
+          "Use `headerBackground` to apply a tinted fill to the header cells for stronger visual separation from the body.",
         controlLabel: "Table header background options",
         defaultValue: "no-background",
         options: [
@@ -15433,48 +15434,41 @@ const componentDocs: Record<string, ComponentDoc> = {
         ],
       },
       {
-        title: "Cell borders",
+        title: "Table border",
         description:
-          "Use `table-border` to draw borders around every cell for tables with dense numeric data.",
-        controlLabel: "Table cell borders options",
+          "Use `tableBorder` to add an outer border to a table with slotted rows. Horizontal row dividers remain visible with or without this option.",
+        controlLabel: "Table border options",
         defaultValue: "no-borders",
         options: [
           {
-            label: "No cell borders",
+            label: "No outer border",
             value: "no-borders",
             markup: `<sgds-table><sgds-table-row><sgds-table-head>Region</sgds-table-head><sgds-table-head>Population</sgds-table-head><sgds-table-head>Area</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Central</sgds-table-cell><sgds-table-cell>950,000</sgds-table-cell><sgds-table-cell>132.7</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>East</sgds-table-cell><sgds-table-cell>720,000</sgds-table-cell><sgds-table-cell>93.1</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
-              "Default borderless cells keep the table light and uncluttered.",
+              "Horizontal dividers separate rows without an outer border.",
           },
           {
-            label: "Cell borders",
+            label: "Table border",
             value: "table-border",
             markup: `<sgds-table tableBorder><sgds-table-row><sgds-table-head>Region</sgds-table-head><sgds-table-head>Population</sgds-table-head><sgds-table-head>Area</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Central</sgds-table-cell><sgds-table-cell>950,000</sgds-table-cell><sgds-table-cell>132.7</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>East</sgds-table-cell><sgds-table-cell>720,000</sgds-table-cell><sgds-table-cell>93.1</sgds-table-cell></sgds-table-row></sgds-table>`,
             description:
-              "Borders around every cell aid scanning for tables packed with values.",
+              "An outer border defines the table boundary; horizontal dividers separate rows.",
           },
         ],
       },
-  {
-        title: "Responsive",
+      {
+        title: "Horizontal scrolling",
         description:
-          "Responsive tables can change layout at smaller breakpoints.",
-        controlLabel: "Table responsive options",
-        defaultValue: "responsive",
+          "Keep wide tables in a labelled, keyboard-focusable container that scrolls horizontally. Rows and columns keep their structure. The legacy `responsive` property is deprecated.",
+        controlLabel: "Table overflow options",
+        defaultValue: "scroll",
         options: [
           {
-            label: "Responsive",
-            value: "responsive",
-            markup: `<sgds-table responsive><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Owner</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell>Team A</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Beta</sgds-table-cell><sgds-table-cell>Pending</sgds-table-cell><sgds-table-cell>Team B</sgds-table-cell></sgds-table-row></sgds-table>`,
+            label: "Scrollable table",
+            value: "scroll",
+            markup: `<div role="region" aria-label="Scrollable service status table" tabindex="0" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)] sgds:overflow-x-auto"><sgds-table class="sgds:min-w-[var(--sgds-dimension-640)]" aria-label="Service status"><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Owner</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell>Team A</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Beta</sgds-table-cell><sgds-table-cell>Pending</sgds-table-cell><sgds-table-cell>Team B</sgds-table-cell></sgds-table-row></sgds-table></div>`,
             description:
-              "Use responsive tables when the table must remain readable on smaller screens.",
-          },
-          {
-            label: "Static",
-            value: "static",
-            markup: `<sgds-table><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Owner</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell>Team A</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Beta</sgds-table-cell><sgds-table-cell>Pending</sgds-table-cell><sgds-table-cell>Team B</sgds-table-cell></sgds-table-row></sgds-table>`,
-            description:
-              "Use static layout only when the table fits comfortably in its container.",
+              "Focus the container and use the Left and Right arrow keys to scroll when the table is wider than the available space.",
           },
         ],
       },
@@ -15512,34 +15506,53 @@ const componentDocs: Record<string, ComponentDoc> = {
     usage: {
       bestPractices: [
         {
-          title: "Use a table when users need to compare records",
+          title: "Keep related values in consistent columns",
           description:
-            "Tables are for repeating data with shared attributes. Applications, transactions, devices.",
+            "Put the same type of information in each column so users can compare records.",
           tone: "do",
           markup: `<sgds-table headerBackground><sgds-table-row><sgds-table-head>Application ID</sgds-table-head><sgds-table-head>Submitted</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>APP-0421</sgds-table-cell><sgds-table-cell>12 Mar 2026</sgds-table-cell><sgds-table-cell>In review</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>APP-0422</sgds-table-cell><sgds-table-cell>13 Mar 2026</sgds-table-cell><sgds-table-cell>Approved</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>APP-0423</sgds-table-cell><sgds-table-cell>14 Mar 2026</sgds-table-cell><sgds-table-cell>Rejected</sgds-table-cell></sgds-table-row></sgds-table>`,
         },
         {
-          title: "Do not use a table for a single record",
+          title: "Do not force item details into a table",
           description:
-            "For attributes of a single item, a description list shows the label–value relationship more clearly.",
+            "Consider a description list when presenting one item’s details, such as its name, email, and role.",
           tone: "dont",
-          markup: `<sgds-table><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Email</sgds-table-head><sgds-table-head>Role</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Lim Wei Ming</sgds-table-cell><sgds-table-cell>wei.ming@example.gov.sg</sgds-table-cell><sgds-table-cell>Officer</sgds-table-cell></sgds-table-row></sgds-table>`,
+          markup: `<sgds-table aria-label="Officer details"><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Email</sgds-table-head><sgds-table-head>Role</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Lim Wei Ming</sgds-table-cell><sgds-table-cell>wei.ming@example.gov.sg</sgds-table-cell><sgds-table-cell>Officer</sgds-table-cell></sgds-table-row></sgds-table>`,
         },
         {
-          title: "Use clear, consistent column headers",
+          title: "Use descriptive column headers",
           description:
-            "Keep headers short and consistent, 'Submitted' for a date, 'Status' for a state, so users know each column.",
+            "Choose headers that explain the values below them, such as “Service”, “Owner”, and “Status”.",
           tone: "do",
           markup: `<sgds-table headerBackground><sgds-table-row><sgds-table-head>Service</sgds-table-head><sgds-table-head>Owner</sgds-table-head><sgds-table-head>Status</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Citizen portal</sgds-table-cell><sgds-table-cell>GovTech</sgds-table-cell><sgds-table-cell>Live</sgds-table-cell></sgds-table-row><sgds-table-row><sgds-table-cell>Booking system</sgds-table-cell><sgds-table-cell>NLB</sgds-table-cell><sgds-table-cell>Beta</sgds-table-cell></sgds-table-row></sgds-table>`,
         },
         {
-          title: "Do not pack actions into too many columns",
+          title: "Do not crowd rows with actions",
+          scrollablePreview: true,
           description:
-            "If every row needs three or more controls, move secondary actions into an overflow menu.",
+            "Keep primary actions visible. Group secondary actions in an overflow menu when space is limited.",
           tone: "dont",
-          markup: `<sgds-table><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Edit</sgds-table-head><sgds-table-head>Delete</sgds-table-head><sgds-table-head>Share</sgds-table-head><sgds-table-head>Archive</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell>Edit</sgds-table-cell><sgds-table-cell>Delete</sgds-table-cell><sgds-table-cell>Share</sgds-table-cell><sgds-table-cell>Archive</sgds-table-cell></sgds-table-row></sgds-table>`,
+          markup: `<sgds-table><sgds-table-row><sgds-table-head>Name</sgds-table-head><sgds-table-head>Status</sgds-table-head><sgds-table-head>Edit</sgds-table-head><sgds-table-head>Delete</sgds-table-head><sgds-table-head>Share</sgds-table-head><sgds-table-head>Archive</sgds-table-head></sgds-table-row><sgds-table-row><sgds-table-cell>Alpha</sgds-table-cell><sgds-table-cell>Active</sgds-table-cell><sgds-table-cell><sgds-button size="sm" variant="outline" aria-label="Edit Alpha">Edit</sgds-button></sgds-table-cell><sgds-table-cell><sgds-button size="sm" variant="outline" aria-label="Delete Alpha">Delete</sgds-button></sgds-table-cell><sgds-table-cell><sgds-button size="sm" variant="outline" aria-label="Share Alpha">Share</sgds-button></sgds-table-cell><sgds-table-cell><sgds-button size="sm" variant="outline" aria-label="Archive Alpha">Archive</sgds-button></sgds-table-cell></sgds-table-row></sgds-table>`,
         },
       ],
+    },
+    updates: {
+      updates: { title: "Updates", columns: ["Date", "Version", "Description"], rows: [] },
+      roadmap: {
+        title: "Roadmap",
+        columns: ["Planned item", "Status", "Target"],
+        rows: [{ "Planned item": "No confirmed roadmap items are documented for Table.", Status: "—", Target: "—" }],
+      },
+      feedback: {
+        title: "Feedback", heading: "Have suggestions or feedback?",
+        prefix: "Share them with us on ", linkLabel: "Slack → #ask-sgds-v3",
+        href: "https://govtech.slack.com/archives/C07VD8Z5QKS",
+      },
+      bugReports: {
+        title: "Bug reports", heading: "Found a bug or issue?",
+        prefix: "Report it on GitHub ", linkLabel: "Issues → sgds-web-component",
+        href: "https://github.com/GovTechSG/sgds-web-component/issues/new/choose",
+      },
     },
     componentTokenGroups: [
       {
@@ -15548,12 +15561,12 @@ const componentDocs: Record<string, ComponentDoc> = {
           { category: "Padding", name: "padding-x", value: "sgds/padding/md", mapKey: "padding-x", usage: "Space between the left and right edges of the component and its content" },
           { category: "Padding", name: "padding-y", value: "sgds/padding/sm", mapKey: "padding-y", usage: "Space between the top and bottom edges of the component and its content" },
           { category: "Border", name: "border-color-emphasis", value: "sgds/border-color-emphasis", usage: "Top border of the table" },
-          { category: "Border", name: "border-color-muted", value: "sgds/border-color-muted", usage: "Bottom border of items inside the component; bottom border of the th" },
-          { category: "Border", name: "border-width-0", value: "sgds/border-width/0", mapKey: "border-width", usage: "Border of the tr" },
-          { category: "Border", name: "border-width-1", value: "sgds/border-width/1", mapKey: "border-width", usage: "Bottom border of items inside the component; bottom border of the th" },
-          { category: "Typography", name: "font-weight-semibold", value: "sgds/font-weight/semibold", usage: "Font weight of the table head; font weight of the th" },
+          { category: "Border", name: "border-color-muted", value: "sgds/border-color-muted", usage: "Horizontal dividers below header and data cells" },
+          { category: "Border", name: "border-width-0", value: "sgds/border-width/0", mapKey: "border-width", usage: "Row border reset" },
+          { category: "Border", name: "border-width-1", value: "sgds/border-width/1", mapKey: "border-width", usage: "Horizontal dividers below header and data cells" },
+          { category: "Typography", name: "font-weight-semibold", value: "sgds/font-weight/semibold", usage: "Header text weight" },
           { category: "Size", name: "dimension-56", value: "sgds/dimension/56", usage: "Minimum height of the table cell; minimum height of the table head" },
-          { category: "Colour", name: "surface-raised", value: "sgds/surface-raised", usage: "Background colour of items inside the component; background colour of the th" },
+          { category: "Colour", name: "surface-raised", value: "sgds/surface-raised", usage: "Header fill when headerBackground is enabled" },
         ],
       },
     ],
@@ -17500,12 +17513,13 @@ const generatedUsagePatternOverrides: Partial<
   },
   table: {
     use: [
-      "Use table when users need to compare values across rows and columns.",
-      "Use it for structured data where alignment helps users spot patterns or differences quickly.",
+      "Use a table to present static or already-prepared information in rows and columns, so users can easily scan and compare values.",
+      "Use it when you only need to display tabular information. A table does not manage behaviours such as sorting, pagination, row selection, loading states or expandable rows.",
+      "You can still use a table if you need custom interactions, but these behaviours need to be handled separately by your application.",
     ],
     avoid: [
-      "Do not use table for short content that reads better as a list or card.",
-      "Do not crowd the table with columns that users do not need for the decision at hand.",
+      "Do not use a table when users need built-in features to navigate or manage a dataset, such as sorting, pagination, row selection or expandable rows. Use a [data table](/components/data-table) instead.",
+      "Do not use a table for information that is better presented as a list, card or description list.",
     ],
     doTitle: "Keep the table comparable",
     doDescription:
@@ -18618,18 +18632,24 @@ const generatedAccessibilityProfileOverrides: Record<
   },
   table: {
     builtInItems: [
-      "Tables render table, row, header, and cell components for structured data.",
-      "Responsive tables can receive focus so users can scroll the table area.",
+      "The component provides table, row, header and cell semantics for structured data.",
+      "The table wrapper is focusable, including when the legacy responsive property is not set. It does not provide spreadsheet-style cell navigation.",
     ],
     authorItems: [
-      "Use clear column and row headers.",
-      "Keep cell content concise and avoid using tables for layout.",
+      "Use clear headers. For row headers, use the data-generated table with `headerPosition` rather than assuming a slotted header becomes a row header when moved to the left. Slotted `sgds-table-head` elements use the columnheader role.",
+      "Keep cell content concise and avoid using tables for page layout.",
+      "Give repeated action links or buttons labels that identify the record, such as “View application APP-0421”.",
     ],
     focusItems: [
-      "Interactive elements inside cells should follow the table reading order.",
-      "Do not remove table headers when switching to responsive layouts.",
+      "Keep interactive elements in the same order as the table content. Ordinary data cells do not need to be in the Tab sequence.",
+      "Preserve headers when adapting tables to smaller screens. Give any horizontal scroll region an accessible name, keyboard focus and a visible focus indicator.",
     ],
-    keyboardInteractions: focusRows("responsive table or cell control"),
+    keyboardInteractions: [
+      { key: "Tab", description: "Moves focus through the table wrapper, any focusable scroll region and links or controls in reading order. It does not visit every data cell." },
+      { key: "Shift + Tab", description: "Moves focus to the previous focusable element." },
+      { key: "Left / Right arrow", description: "Scrolls a focused horizontal scroll region when its content overflows. This is browser scrolling, not cell navigation." },
+      { key: "Enter / Space", description: "Activates focused controls according to their native behaviour: Enter for links; Enter or Space for buttons." },
+    ],
   },
   "table-of-contents": {
     builtInItems: [
