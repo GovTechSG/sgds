@@ -192,6 +192,27 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
         </p>
       </div>
 
+      <div
+        v-if="section.embed"
+        class="sgds:box-content sgds:w-full sgds:max-h-[80svh] sgds:mt-text-xs"
+      >
+        <div class="sgds:w-4/5 sgds:overflow-hidden">
+          <div class="sgds:relative sgds:-ml-[4%] sgds:w-[108%] sgds:aspect-[1.82]">
+            <iframe
+              :src="section.embed.src"
+              loading="lazy"
+              :title="section.embed.title"
+              allow="clipboard-write"
+              frameborder="0"
+              webkitallowfullscreen="true"
+              mozallowfullscreen="true"
+              allowfullscreen
+              class="sgds:absolute sgds:inset-0 sgds:h-full sgds:w-full"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
       <ol v-if="section.orderedItems?.length" class="sgds:m-0 sgds:flex sgds:flex-col sgds:gap-text-xs sgds:pl-layout-xs">
         <li v-for="(item, index) in section.orderedItems" :key="item.title">
           <p class="sgds:m-0 sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle">
