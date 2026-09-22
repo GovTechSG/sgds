@@ -458,6 +458,52 @@ const demo = (
   markup,
 });
 
+const sidebarDemoNavigation = `<sgds-sidebar-section title="Workspace" name="workspace">
+  <sgds-sidebar-item title="Dashboard" name="dashboard">
+    <sgds-icon name="house" slot="icon" size="md"></sgds-icon>
+  </sgds-sidebar-item>
+  <sgds-sidebar-item title="Applications" name="applications">
+    <sgds-icon name="file-earmark-text" slot="icon" size="md"></sgds-icon>
+  </sgds-sidebar-item>
+  <sgds-sidebar-item title="Reports" name="reports">
+    <sgds-icon name="file-text" slot="icon" size="md"></sgds-icon>
+  </sgds-sidebar-item>
+</sgds-sidebar-section>`;
+
+// SGDS Typography / Content / H4 pattern, shared by sidebar previews.
+const sidebarApplicationContent = (description: string) => `<div class="sgds:flex sgds:flex-col sgds:items-start sgds:text-left sgds:max-w-[var(--sgds-text-max-width)]">
+  <h4 class="sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight sgds:text-heading-default sgds:mt-0 sgds:mb-md">Application content</h4>
+  <p class="sgds:text-body-md sgds:leading-xs sgds:tracking-normal sgds:text-body-subtle sgds:m-0">${description}</p>
+</div>`;
+
+const sidebarVariantMarkup = (variant: "collapsible" | "persistent" | "overlay") => `<div class="portal-sidebar-variant-demo sgds:w-full sgds:flex sgds:flex-col sgds:bg-surface-default">
+  ${variant === "overlay" ? '<div class="sgds:flex sgds:items-center sgds:pl-2-xs sgds:pr-sm sgds:py-2-xs sgds:border-b sgds:border-muted"><sgds-icon-button data-sidebar-preview-toggle name="sidebar-collapse" ariaLabel="Collapse sidebar" size="sm" variant="ghost" tone="neutral"></sgds-icon-button></div>' : ""}
+  <div class="sgds:relative sgds:isolate sgds:flex sgds:h-[var(--sgds-dimension-360)] sgds:w-full sgds:overflow-hidden sgds:bg-surface-default">
+    <sgds-sidebar variant="${variant}" ${variant === "overlay" ? "scrim" : ""} active="applications" ariaLabel="Application navigation" class="sgds:shrink-0 sgds:h-full ${variant === "overlay" ? "sgds:absolute sgds:inset-y-0 sgds:left-0" : ""}">
+      <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
+      ${sidebarDemoNavigation}
+      <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
+    </sgds-sidebar>
+    <div class="sgds:flex-1 sgds:min-w-0 sgds:px-lg sgds:py-layout-md">
+      ${sidebarApplicationContent("Your application content appears here.")}
+    </div>
+  </div>
+</div>`;
+
+// Matches Storybook's overlay sidebar composition; only scrim varies.
+const sidebarScrimMarkup = (scrim: boolean) => `<div class="portal-sidebar-scrim-demo sgds:w-full sgds:flex sgds:flex-col sgds:gap-sm">
+  <div class="sgds:relative sgds:isolate sgds:h-[var(--sgds-dimension-360)] sgds:w-full sgds:overflow-hidden sgds:bg-surface-default">
+    <div class="sgds:px-lg sgds:py-layout-md sgds:md:pl-[var(--sgds-dimension-320)]">
+      ${sidebarApplicationContent("The sidebar opens over this content.")}
+    </div>
+    <sgds-sidebar variant="overlay" active="applications" ariaLabel="Application navigation" class="sgds:absolute sgds:inset-y-0 sgds:left-0 sgds:h-full" ${scrim ? "scrim" : ""}>
+      <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
+      ${sidebarDemoNavigation}
+      <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
+    </sgds-sidebar>
+  </div>
+</div>`;
+
 // Appnav examples follow the v3.28.0 stories and component skill:
 // https://github.com/GovTechSG/sgds-web-component/tree/v3.28.0/stories/component-templates/Appnav
 // https://github.com/GovTechSG/sgds-web-component/blob/v3.28.0/skills/sgds-components/reference/appnav.md
