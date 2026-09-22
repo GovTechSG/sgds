@@ -79,6 +79,7 @@ export const storybookStoryIds: Record<string, string> = {
   "block:stats-5-statistics": "blocks-stats--stats-5",
   "block:stats-right-6-column": "blocks-stats--stats-right-6",
   "block:stats-right-8-columns": "blocks-stats--stats-right-8",
+  "template:application-shell-operational": "templates-application-shell-operational--operational-app-shell",
 };
 
 /**
