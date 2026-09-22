@@ -830,7 +830,8 @@ const staticSizeAnnotations = computed(() => {
         : Number.POSITIVE_INFINITY;
       const leftHasBracketSpace = leftSpace >= HEIGHT_BRACKET_WIDTH + DIMENSION_ANNOTATION_GUTTER;
       const rightHasBracketSpace = rightSpace >= HEIGHT_BRACKET_WIDTH + DIMENSION_ANNOTATION_GUTTER;
-      const forceLeftSide = isMastheadStructure.value && key === "dimension-20";
+      const isSidebarItemIcon = isSidebarStructure.value && key === "icon-size-md";
+      const forceLeftSide = (isMastheadStructure.value && key === "dimension-20") || isSidebarItemIcon;
       const forceRightSide = isStepperStructure.value && key === "dimension-32";
       const prefersLeft =
         !forceRightSide &&
@@ -841,7 +842,7 @@ const staticSizeAnnotations = computed(() => {
           rightOverflow
         );
       const placeOnLeft =
-        leftHasBracketSpace &&
+        (leftHasBracketSpace || isSidebarItemIcon) &&
         (forceLeftSide || prefersLeft || (!rightHasBracketSpace && leftSpace > rightSpace));
       // Stroke-thickness annotations render as a label badge anchored to the
       // strip's vertical centre rather than a tall bracket — the strip is too
@@ -921,7 +922,8 @@ const staticSizeAnnotations = computed(() => {
       const isModalPanelDimensionWidth =
         isModalStructure.value && (key === "dimension" || key.startsWith("dimension-"));
       const forceAbove = isMastheadStructure.value && key === "dimension-20";
-      const forceBelow = isModalFullscreenStructure.value && isModalPanelDimensionWidth;
+      const forceBelow = (isModalFullscreenStructure.value && isModalPanelDimensionWidth) ||
+        (isSidebarStructure.value && key === "icon-size-md");
       const placeAbove =
         !forceBelow &&
         !isFooterContentMaxWidth &&
@@ -1924,6 +1926,8 @@ const scrollToTableRow = async (key: string) => {
 };
 
 const getRelatedRowKeys = (key: string) => {
+  // Item corners and scrollbar corners belong to different sidebar elements.
+  if (isSidebarStructure.value && key.includes("border-radius")) return [key];
   // Generic padding pairing: hovering padding-x or padding-y always pops
   // both rows together (when both exist), across every component, so the
   // user sees what the structural padding is in both axes at once. Same for
@@ -2642,6 +2646,7 @@ const detectGapBandsForToken = (
   containers: HTMLElement[],
   gapPx: number,
   shell: HTMLElement,
+  scale = 1,
 ): PaddingBand[] => {
   const bands: PaddingBand[] = [];
   const targetRounded = Math.round(gapPx);
@@ -2677,7 +2682,7 @@ const detectGapBandsForToken = (
         // gap region is shaded. When the visual void is smaller than the
         // token (rare; usually means flex-shrink ate the gap) fall back to
         // the visual width so the band stays visible.
-        const width = Math.min(targetRounded, visualGap);
+        const width = Math.min(targetRounded * scale, visualGap);
         bands.push({
           left: aBounds.right - shellBounds.left,
           top: aBounds.top - shellBounds.top,
@@ -2695,7 +2700,7 @@ const detectGapBandsForToken = (
         const bBounds = sorted[i + 1].getBoundingClientRect();
         const visualGap = Math.max(0, bBounds.top - aBounds.bottom);
         if (visualGap <= 0) continue;
-        const height = Math.min(targetRounded, visualGap);
+        const height = Math.min(targetRounded * scale, visualGap);
         bands.push({
           left: aBounds.left - shellBounds.left,
           top: aBounds.bottom - shellBounds.top,
@@ -2780,6 +2785,7 @@ const detectPaddingBandsForToken = (
   paddingPx: number,
   shell: HTMLElement,
   axis: PaddingAxis,
+  scale = 1,
 ): PaddingBand[] => {
   const bands: PaddingBand[] = [];
   const target = Math.round(paddingPx);
@@ -2801,30 +2807,30 @@ const detectPaddingBandsForToken = (
         left: rect.left - shellBounds.left,
         top: rect.top - shellBounds.top,
         width: rect.width,
-        height: padTop,
+        height: padTop * scale,
       });
     }
     if (considerBottom && padBottom === target && padBottom > 0) {
       bands.push({
         left: rect.left - shellBounds.left,
-        top: rect.bottom - padBottom - shellBounds.top,
+        top: rect.bottom - padBottom * scale - shellBounds.top,
         width: rect.width,
-        height: padBottom,
+        height: padBottom * scale,
       });
     }
     if (considerLeft && padLeft === target && padLeft > 0) {
       bands.push({
         left: rect.left - shellBounds.left,
         top: rect.top - shellBounds.top,
-        width: padLeft,
+        width: padLeft * scale,
         height: rect.height,
       });
     }
     if (considerRight && padRight === target && padRight > 0) {
       bands.push({
-        left: rect.right - padRight - shellBounds.left,
+        left: rect.right - padRight * scale - shellBounds.left,
         top: rect.top - shellBounds.top,
-        width: padRight,
+        width: padRight * scale,
         height: rect.height,
       });
     }
@@ -2917,6 +2923,97 @@ const autoDetectGenericPaddingBands = (
   }
 };
 
+// Sidebar token targets follow sidebar.css, sidebar-item.css and sidebar-section.css.
+// Equal pixel values do not imply equal tokens (in particular, author slot content
+// and nested icon buttons must not participate in sidebar padding inspection).
+const measureSidebarTokens = (component: HTMLElement, shell: HTMLElement, rects: Record<string, HotspotRect | null>) => {
+  const scale = component.getBoundingClientRect().width / component.offsetWidth || 1;
+  Object.keys(rects).forEach(key => rects[key] = null);
+  extraPaddingBandsByKey.value = {};
+  genericGapBandsByKey.value = {};
+  customBorderBandsByKey.value = {};
+  const elements = enumerateAllElements(component).filter(el =>
+    el.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true }) &&
+    el.getBoundingClientRect().width > 0 && el.getBoundingClientRect().height > 0,
+  );
+  const select = (selector: string) => elements.filter(el => el.matches(selector));
+  const target = (key: string, selector: string) => {
+    const el = select(selector)[0];
+    if (key in rects && el) rects[key] = getRelativeRect(el, shell);
+  };
+  const padding = (key: string, selector: string, axis: PaddingAxis) => {
+    if (!(key in rects)) return;
+    const px = parseLengthToPx(genericTokenMap.value.get(key)?.rawValue);
+    if (!px) return;
+    const bands = detectPaddingBandsForToken(select(selector), px, shell, axis, scale);
+    extraPaddingBandsByKey.value[key] = bands;
+    rects[key] = getUnionBandRect(bands);
+  };
+  padding("container-padding", ".sidebar-main", "y");
+  padding("item-padding", ".sidebar-top, .sidebar-item, .sidebar-section-label, .sidebar-section-content, .sidebar-nested-overlay", "all");
+  padding("padding-md", ".sidebar-nested-overlay", "y");
+  padding("padding-sm", ".sidebar-section-label", "x");
+  padding("padding-2-xs", ".sidebar-item-label-wrapper", "x");
+  padding("padding-3-xs", ".sidebar-item-label-wrapper", "y");
+  const gapTargets: Record<string, string> = {
+    "content-gap": ".sidebar-top, .sidebar-content",
+    "item-gap": ".sidebar-item-label-wrapper, .sidebar-item-label-wrapper > div",
+    "gap-2-xs": ".sidebar-section-label, .sidebar-item-indicator",
+  };
+  for (const [key, selector] of Object.entries(gapTargets)) {
+    if (!(key in rects)) continue;
+    const px = parseLengthToPx(genericTokenMap.value.get(key)?.rawValue);
+    const bands = px ? detectGapBandsForToken(select(selector), px, shell, scale) : [];
+    genericGapBandsByKey.value[key] = bands;
+    rects[key] = getUnionBandRect(bands);
+  }
+  target("width", ".sidebar-main");
+  target("surface", ".sidebar-main");
+  target("raised-surface", ".sidebar-nested-overlay.show");
+  target("active-background", ".sidebar-item.active");
+  target("section-label-color", ".sidebar-section-label");
+  target("font-size-label-sm", ".sidebar-item-label");
+  target("font-size-label-xs", ".sidebar-section-label");
+  target("line-height-2-xs", ".sidebar-item-label");
+  const activeGroup = select("sgds-sidebar-group").find(el =>
+    el.shadowRoot?.querySelector(".sidebar-item.active"),
+  );
+  const activeItem = activeGroup?.shadowRoot?.querySelector<HTMLElement>(".sidebar-item.active");
+  const activeIcon = activeGroup?.querySelector<HTMLElement>(':scope > sgds-icon[slot="icon"][size="md"]');
+  if (activeItem) rects["item-border-radius"] = getRelativeRect(activeItem, shell);
+  if (activeIcon) rects["icon-size-md"] = getRelativeRect(activeIcon, shell);
+  target("icon-size-sm", 'sgds-icon[size="sm"]');
+  // The current preview is expanded. Collapsed widths, scrollbars, focus rings,
+  // motion and the two-line max-height fallback have no visible region here.
+  const borders = select(".sidebar-main, .sidebar-nested-overlay.show").flatMap(el => {
+    const width = parseCssLength(getComputedStyle(el).borderRightWidth) * scale;
+    if (!width) return [];
+    const r = getRelativeRect(el, shell);
+    return [{ left: r.left + r.width - width, top: r.top, width, height: r.height }];
+  });
+  for (const key of ["border-width-1", "border-color"]) {
+    if (!(key in rects)) continue;
+    customBorderBandsByKey.value[key] = borders;
+    rects[key] = getUnionBandRect(borders);
+  }
+  const marginTargets = [
+    ["margin-lg", ".sidebar-content, [slot='lower']", "top"],
+    ["margin-md", ".sidebar-section-separator", "bottom"],
+    ["margin-2-xl", ".sidebar-item-label.offset", "left"],
+  ] as const;
+  for (const [key, selector, side] of marginTargets) {
+    const el = select(selector)[0];
+    if (!(key in rects) || !el) continue;
+    const cs = getComputedStyle(el);
+    const size = parseCssLength(side === "top" ? cs.marginTop : side === "bottom" ? cs.marginBottom : cs.marginLeft) * scale;
+    if (size <= 0) continue;
+    const r = getRelativeRect(el, shell);
+    rects[key] = side === "left"
+      ? { left: r.left - size, top: r.top, width: size, height: r.height }
+      : { left: r.left, top: side === "top" ? r.top - size : r.top + r.height, width: r.width, height: size };
+  }
+};
+
 const setupStructureSidebars = async () => {
   await nextTick();
   const root = previewMarkupRef.value;
@@ -2940,11 +3037,21 @@ const setupStructureSidebars = async () => {
     await customElements.whenDefined("sgds-sidebar-group");
     await customElements.whenDefined("sgds-sidebar-item");
     await sidebar.updateComplete;
-    const isMobileViewport = typeof window !== "undefined" && window.innerWidth < 768;
+    const shellWidth = previewShellRef.value?.clientWidth ?? 0;
+    // Reserve space for the left icon guide; use the available canvas, not the viewport.
+    const gutter = parseCssLength(getComputedStyle(root).paddingLeft);
+    const panelWidth = parseLengthToPx(getComputedStyle(sidebar).getPropertyValue("--sgds-dimension-288")) ?? 288;
+    const showNested = shellWidth >= panelWidth * 2 + gutter;
+    const designWidth = panelWidth * (showNested ? 2 : 1);
+    const frame = root.firstElementChild as HTMLElement;
+    // Runtime dimensions keep the complete sidebar visible without changing its token sizes.
+    frame.style.width = `${designWidth}px`;
+    frame.style.zoom = String(Math.min(1, Math.max(0, shellWidth - gutter) / designWidth));
 
     injectShadowStyles(
       sidebar,
       "sidebar-structure-inspect-layers",
+      // Measure the static preview at its final position, not mid drawer transition.
       `:host {
          display: block !important;
          inline-size: var(--sgds-dimension-288) !important;
@@ -2965,6 +3072,7 @@ const setupStructureSidebars = async () => {
        .sidebar-nested-overlay,
        .sidebar--overlay {
          opacity: 1 !important;
+         transition: none !important;
          transform: none !important;
          translate: none !important;
          visibility: visible !important;
@@ -2976,17 +3084,11 @@ const setupStructureSidebars = async () => {
          width: var(--sgds-dimension-288) !important;
        }
        .sidebar-wrapper {
-         width: var(--sgds-dimension-288) !important;
-       }
-       @media screen and (max-width: 767px) {
-       .sidebar {
-         overflow: hidden !important;
-         width: min(100%, var(--sgds-dimension-288)) !important;
+         width: 100% !important;
        }
        .sidebar-nested-overlay,
        .sidebar--overlay {
-         display: none !important;
-       }
+         ${showNested ? "" : "display: none !important;"}
        }`,
     );
     if (typeof sidebar._handleClickOutOfElement === "function") {
@@ -3000,7 +3102,7 @@ const setupStructureSidebars = async () => {
     sidebar._showDrawer = false;
     sidebar.requestUpdate?.();
     await sidebar.updateComplete;
-    if (isMobileViewport) continue;
+    if (!showNested) continue;
 
     const activeGroup =
       (sidebar.querySelector("sgds-sidebar-group[active]") as HTMLElement | null) ??
@@ -4652,6 +4754,12 @@ const measureHotspots = async () => {
       }
     }
 
+    if (component.tagName === "SGDS-SIDEBAR") {
+      measureSidebarTokens(component, shell, nextRects);
+      hotspotRects.value = nextRects;
+      return;
+    }
+
     // Auto-detect gap bands for any gap-* token row that wasn't already
     // populated above. Walks the component's flex/grid descendants (incl.
     // shadow DOM) and matches each container's computed gap to the gap
@@ -5328,6 +5436,7 @@ const getCollapsedCategory = (
             // Reserve space for the height bracket and its full label.
             isAppnavStructure ? 'sgds:isolate sgds:lg:pr-[var(--sgds-dimension-192)]' : '',
             isFooterStructure ? footerPreviewWidthClass : 'sgds:w-full',
+            isSidebarStructure ? 'sgds:pl-[var(--sgds-dimension-64)]' : '',
             structureKind === 'alert' ? 'sgds:items-center' : '',
             isDatepickerStructure ? 'sgds:items-start' : '',
             isDrawerStructure ? 'sgds:min-h-[var(--sgds-dimension-360)]' : '',
@@ -5654,6 +5763,8 @@ const getCollapsedCategory = (
               top: `${band.top}px`,
               width: `${band.width}px`,
               height: `${band.height}px`,
+              minWidth: isSidebarStructure ? `${band.width}px` : undefined,
+              minHeight: isSidebarStructure ? `${band.height}px` : undefined,
             }"
             @mouseenter="hoverKey = key"
             @mouseleave="clearPreviewHover"

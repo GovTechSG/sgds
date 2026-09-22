@@ -898,7 +898,7 @@ const openAnatomyDropdowns = async () => {
        }
        .sidebar-wrapper {
          height: 100% !important;
-         width: var(--portal-sidebar-anatomy-main-width) !important;
+         width: 100% !important;
        }
        .sidebar-nested-overlay {
          height: 100% !important;
@@ -911,6 +911,7 @@ const openAnatomyDropdowns = async () => {
        }
        .sidebar--overlay {
          background-color: var(--sgds-bg-overlay) !important;
+         display: block !important;
          height: 100% !important;
          inset: 0 auto auto 0 !important;
          opacity: 0.32 !important;
@@ -947,10 +948,16 @@ const openAnatomyDropdowns = async () => {
       _sidebarCollapsed?: boolean;
       _showDrawer?: boolean;
       _handleClickOutOfElement?: (e: Event) => void;
+      _boundHandleResize?: () => void;
       requestUpdate?: () => void;
       updateComplete?: Promise<unknown>;
     };
     const sidebarPrivate = el as unknown as SidebarPrivate;
+    // The anatomy scales as one diagram. Native responsive collapse would
+    // hide its upper slot and move targets independently of the callouts.
+    if (sidebarPrivate._boundHandleResize) {
+      window.removeEventListener("resize", sidebarPrivate._boundHandleResize);
+    }
     if (typeof sidebarPrivate._handleClickOutOfElement === "function") {
       document.removeEventListener("click", sidebarPrivate._handleClickOutOfElement);
       sidebarPrivate._handleClickOutOfElement = () => {};

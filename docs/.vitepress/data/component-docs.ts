@@ -12496,26 +12496,26 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "Use the collapsed state when dense pages need more horizontal room.",
       },
     ],
-    anatomyMarkup: `<sgds-sidebar active="selected-label" variant="collapsible" scrim aria-label="Example sidebar navigation" class="portal-anatomy-sidebar sgds:h-[640px]">
-      <div slot="upper" class="portal-slot-example portal-sidebar-upper-slot"><span>Slot content</span></div>
+    anatomyMarkup: `<sgds-sidebar active="selected-label" variant="collapsible" scrim ariaLabel="Example sidebar navigation" class="portal-anatomy-sidebar sgds:h-[var(--sgds-dimension-400)]">
+      <div slot="upper" class="portal-slot-example portal-sidebar-upper-slot sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
       <sgds-sidebar-section title="Main" name="main">
         <sgds-sidebar-group title="Label" name="selected-label">
-          <sgds-icon name="placeholder" slot="icon"></sgds-icon>
+          <sgds-icon name="placeholder" slot="icon" size="md"></sgds-icon>
           <sgds-sidebar-item title="Label" name="nested-label-1">
-            <sgds-icon name="placeholder" slot="icon"></sgds-icon>
+            <sgds-icon name="placeholder" slot="icon" size="md"></sgds-icon>
           </sgds-sidebar-item>
           <sgds-sidebar-item title="Label" name="nested-label-2">
-            <sgds-icon name="placeholder" slot="icon"></sgds-icon>
+            <sgds-icon name="placeholder" slot="icon" size="md"></sgds-icon>
           </sgds-sidebar-item>
         </sgds-sidebar-group>
         <sgds-sidebar-item title="Label" name="label-2">
-          <sgds-icon name="placeholder" slot="icon"></sgds-icon>
+          <sgds-icon name="placeholder" slot="icon" size="md"></sgds-icon>
         </sgds-sidebar-item>
         <sgds-sidebar-item title="Label" name="label-3">
-          <sgds-icon name="placeholder" slot="icon"></sgds-icon>
+          <sgds-icon name="placeholder" slot="icon" size="md"></sgds-icon>
         </sgds-sidebar-item>
       </sgds-sidebar-section>
-      <div slot="lower" class="portal-slot-example portal-sidebar-lower-slot"><span>Slot content</span></div>
+      <div slot="lower" class="portal-slot-example portal-sidebar-lower-slot sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
     </sgds-sidebar>`,
     anatomyParts: [
       { title: "Level 1 sidebar" },
@@ -12539,35 +12539,39 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Basic sidebar",
         description: "Use sidebar items for a flat application navigation.",
-        markup: `<sgds-sidebar active="dashboard" aria-label="Dashboard navigation" class="sgds:h-[360px]">
+        markup: `<sgds-sidebar active="dashboard" ariaLabel="Dashboard navigation" class="sgds:h-[360px]">
+          <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
           <sgds-sidebar-item title="Dashboard" name="dashboard">
-            <sgds-icon name="grid" slot="icon"></sgds-icon>
+            <sgds-icon name="grid-alt" slot="icon" size="md"></sgds-icon>
           </sgds-sidebar-item>
           <sgds-sidebar-item title="Cases" name="cases">
-            <sgds-icon name="folder" slot="icon"></sgds-icon>
+            <sgds-icon name="folder" slot="icon" size="md"></sgds-icon>
           </sgds-sidebar-item>
           <sgds-sidebar-item title="Settings" name="settings">
-            <sgds-icon name="gear" slot="icon"></sgds-icon>
+            <sgds-icon name="gear" slot="icon" size="md"></sgds-icon>
           </sgds-sidebar-item>
+          <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
         </sgds-sidebar>`,
       },
       {
         title: "Sidebar with sections",
         description: "Use sections to group related destinations under a clear heading.",
-        markup: `<sgds-sidebar active="team" aria-label="Admin navigation" class="sgds:h-[420px]">
+        markup: `<sgds-sidebar active="team" ariaLabel="Admin navigation" class="sgds:h-[420px]">
+          <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
           <sgds-sidebar-section title="Workspace" name="workspace">
             <sgds-sidebar-item title="Overview" name="overview">
-              <sgds-icon name="house" slot="icon"></sgds-icon>
+              <sgds-icon name="house" slot="icon" size="md"></sgds-icon>
             </sgds-sidebar-item>
             <sgds-sidebar-item title="Team" name="team">
-              <sgds-icon name="users" slot="icon"></sgds-icon>
+              <sgds-icon name="users" slot="icon" size="md"></sgds-icon>
             </sgds-sidebar-item>
           </sgds-sidebar-section>
           <sgds-sidebar-section title="Administration" name="administration" collapsible>
             <sgds-sidebar-item title="Billing" name="billing">
-              <sgds-icon name="credit-card" slot="icon"></sgds-icon>
+              <sgds-icon name="file-earmark-text" slot="icon" size="md"></sgds-icon>
             </sgds-sidebar-item>
           </sgds-sidebar-section>
+          <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
         </sgds-sidebar>`,
       },
     ],
@@ -12582,145 +12586,80 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Collapsible",
             value: "collapsible",
-            markup: `<sgds-sidebar active="overview" variant="collapsible" aria-label="Collapsible sidebar" class="sgds:h-[360px]">
-              <sgds-sidebar-item title="Overview" name="overview">
-                <sgds-icon name="house" slot="icon"></sgds-icon>
-              </sgds-sidebar-item>
-              <sgds-sidebar-item title="Reports" name="reports">
-                <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
-              </sgds-sidebar-item>
-            </sgds-sidebar>`,
+            markup: sidebarVariantMarkup("collapsible"),
             description:
               "Use when users can expand or collapse the sidebar while staying in the same workspace.",
           },
           {
             label: "Persistent",
             value: "persistent",
-            markup: `<sgds-sidebar active="overview" variant="persistent" aria-label="Persistent sidebar" class="sgds:h-[360px]">
-              <sgds-sidebar-item title="Overview" name="overview">
-                <sgds-icon name="house" slot="icon"></sgds-icon>
-              </sgds-sidebar-item>
-              <sgds-sidebar-item title="Reports" name="reports">
-                <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
-              </sgds-sidebar-item>
-            </sgds-sidebar>`,
+            markup: sidebarVariantMarkup("persistent"),
             description:
-              "Use when the layout always reserves space for navigation.",
+              "The sidebar stays visible and reserves space beside the application content. It cannot be collapsed.",
           },
           {
-            label: "Collapsed",
-            value: "collapsed",
-            markup: `<sgds-sidebar active="overview" collapsed aria-label="Collapsed sidebar" class="sgds:h-[360px]">
-              <sgds-sidebar-item title="Overview" name="overview">
-                <sgds-icon name="house" slot="icon"></sgds-icon>
-              </sgds-sidebar-item>
-              <sgds-sidebar-item title="Reports" name="reports">
-                <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
-              </sgds-sidebar-item>
-            </sgds-sidebar>`,
+            label: "Overlay",
+            value: "overlay",
+            markup: sidebarVariantMarkup("overlay"),
             description:
-              "Use icon-only mode when users need more room for the main workspace.",
+              "The sidebar covers application content without moving it.",
           },
         ],
       },
   {
         title: "Collapsed",
         description:
-          "Sidebar can collapse to a narrower state when space is limited.",
+          "Compare expanded and icon-only states. Below 768px, collapsible sidebars use overlay mode, where collapsing hides the panel instead of showing a rail.",
         controlLabel: "Sidebar collapsed options",
         defaultValue: "expanded",
         options: [
           {
             label: "Expanded",
             value: "expanded",
-            markup: `<sgds-sidebar active="applications" aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
-              <div slot="upper" class="sgds:px-md sgds:py-sm sgds:font-semibold">Service portal</div>
-              <sgds-sidebar-section title="Workspace" name="workspace">
-                <sgds-sidebar-item title="Dashboard" name="dashboard">
-                  <sgds-icon name="house" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Applications" name="applications">
-                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Reports" name="reports">
-                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-              </sgds-sidebar-section>
-              <sgds-sidebar-section title="Admin" name="admin">
-                <sgds-sidebar-item title="Settings" name="settings">
-                  <sgds-icon name="gear" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-              </sgds-sidebar-section>
+            markup: `<sgds-sidebar active="applications" ariaLabel="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
+              <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
+              ${sidebarDemoNavigation}
+              <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
             </sgds-sidebar>`,
             description: "Use expanded sidebars when labels should stay visible.",
           },
           {
             label: "Collapsed",
             value: "collapsed",
-            markup: `<sgds-sidebar active="applications" aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]" collapsed>
-              <div slot="upper" class="sgds:px-md sgds:py-sm sgds:font-semibold">Service portal</div>
-              <sgds-sidebar-section title="Workspace" name="workspace">
-                <sgds-sidebar-item title="Dashboard" name="dashboard">
-                  <sgds-icon name="house" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Applications" name="applications">
-                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Reports" name="reports">
-                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-              </sgds-sidebar-section>
-              <sgds-sidebar-section title="Admin" name="admin">
-                <sgds-sidebar-item title="Settings" name="settings">
-                  <sgds-icon name="gear" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-              </sgds-sidebar-section>
+            markup: `<sgds-sidebar active="applications" ariaLabel="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]" collapsed>
+              <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
+              ${sidebarDemoNavigation}
+              <div slot="lower" class="portal-slot-example sgds:justify-center! sgds:px-xs! sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span class="sgds:text-center!">Lower slot</span></div>
             </sgds-sidebar>`,
             description:
-              "Use collapsed when preserving horizontal workspace is more important.",
+              "Use the collapsed rail for compact navigation outside overlay mode. This preview keeps the rail visible at all screen sizes.",
           },
         ],
       },
       {
         title: "Active item",
         description:
-          "Use active sidebar items to show the current page or section.",
+          "Set the sidebar active value to an item’s name to highlight the current page or section.",
         controlLabel: "Sidebar active item options",
         defaultValue: "active",
         options: [
           {
             label: "Active",
             value: "active",
-            markup: `<sgds-sidebar active="applications" aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
-              <sgds-sidebar-section title="Workspace" name="workspace">
-                <sgds-sidebar-item title="Dashboard" name="dashboard">
-                  <sgds-icon name="house" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Applications" name="applications">
-                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Reports" name="reports">
-                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-              </sgds-sidebar-section>
+            markup: `<sgds-sidebar active="applications" ariaLabel="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
+              <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
+              ${sidebarDemoNavigation}
+              <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
             </sgds-sidebar>`,
             description: "Use active to orient users in the current navigation.",
           },
           {
             label: "Default",
             value: "default",
-            markup: `<sgds-sidebar aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
-              <sgds-sidebar-section title="Workspace" name="workspace">
-                <sgds-sidebar-item title="Dashboard" name="dashboard">
-                  <sgds-icon name="house" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Applications" name="applications">
-                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Reports" name="reports">
-                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-              </sgds-sidebar-section>
+            markup: `<sgds-sidebar ariaLabel="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
+              <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
+              ${sidebarDemoNavigation}
+              <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
             </sgds-sidebar>`,
             description: "Use default items for inactive destinations.",
           },
@@ -12728,55 +12667,21 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Scrim",
-        description:
-          "Scrim adds an overlay treatment for temporary sidebar states on smaller screens.",
+        description: "Scrim dims the content behind an open overlay sidebar or drawer. Below 512px, the component hides the scrim and uses a full-width sidebar.",
         controlLabel: "Sidebar scrim options",
-        defaultValue: "without-scrim",
+        defaultValue: "scrim",
         options: [
-          {
-            label: "No scrim",
-            value: "without-scrim",
-            markup: `<sgds-sidebar active="applications" variant="persistent" aria-label="Persistent application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
-              <sgds-sidebar-section title="Workspace" name="workspace">
-                <sgds-sidebar-item title="Dashboard" name="dashboard">
-                  <sgds-icon name="house" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Applications" name="applications">
-                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Reports" name="reports">
-                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-              </sgds-sidebar-section>
-            </sgds-sidebar>`,
-            description: "Use no scrim for persistent sidebars.",
-          },
           {
             label: "Scrim",
             value: "scrim",
-            markup: `<div class="sgds:relative sgds:h-[var(--sgds-dimension-360)] sgds:w-full sgds:overflow-hidden sgds:rounded-md sgds:border sgds:border-muted sgds:bg-bg-alternate">
-              <sgds-sidebar active="applications" variant="overlay" aria-label="Overlay application navigation" class="portal-demo-sidebar-open sgds:absolute sgds:left-0 sgds:top-0 sgds:z-[1] sgds:h-full" scrim>
-                <sgds-sidebar-section title="Workspace" name="workspace">
-                  <sgds-sidebar-item title="Dashboard" name="dashboard">
-                    <sgds-icon name="house" slot="icon"></sgds-icon>
-                  </sgds-sidebar-item>
-                  <sgds-sidebar-group title="Applications" name="applications">
-                    <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
-                    <sgds-sidebar-item title="New applications" name="new-applications">
-                      <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
-                    </sgds-sidebar-item>
-                    <sgds-sidebar-item title="Submitted" name="submitted">
-                      <sgds-icon name="folder" slot="icon"></sgds-icon>
-                    </sgds-sidebar-item>
-                  </sgds-sidebar-group>
-                  <sgds-sidebar-item title="Reports" name="reports">
-                    <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
-                  </sgds-sidebar-item>
-                </sgds-sidebar-section>
-              </sgds-sidebar>
-            </div>`,
-            description:
-              "Use scrim when the sidebar behaves as a temporary overlay.",
+            markup: sidebarScrimMarkup(true),
+            description: "The scrim dims the content behind the open sidebar. It is hidden below 512px.",
+          },
+          {
+            label: "No scrim",
+            value: "without-scrim",
+            markup: sidebarScrimMarkup(false),
+            description: "The overlay sidebar opens without dimming the content behind it.",
           },
         ],
       },
@@ -12790,39 +12695,19 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "With slots",
             value: "with-slots",
-            markup: `<sgds-sidebar active="applications" aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
-              <div slot="upper" class="sgds:p-md sgds:font-semibold">Portal</div>
-              <sgds-sidebar-section title="Workspace" name="workspace">
-                <sgds-sidebar-item title="Dashboard" name="dashboard">
-                  <sgds-icon name="house" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Applications" name="applications">
-                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Reports" name="reports">
-                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-              </sgds-sidebar-section>
-              <div slot="lower" class="sgds:p-md"><sgds-button size="sm" fullWidth ariaLabel="Help">Help</sgds-button></div>
+            markup: `<sgds-sidebar active="applications" ariaLabel="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
+              <div slot="upper" class="sgds:flex sgds:items-center sgds:text-default"><img src="/sidebar-sgds-logo.svg" alt="Singapore Government Design System" width="126" height="38" /></div>
+              ${sidebarDemoNavigation}
+              <sgds-button slot="lower" variant="ghost" tone="neutral" size="sm" href="/get-started/" ariaLabel="Help and support"><sgds-icon slot="leftIcon" name="question-circle" size="md"></sgds-icon>Help and support</sgds-button>
             </sgds-sidebar>`,
             description:
-              "Use slots for persistent header or footer content connected to the sidebar.",
+              "Use the upper slot for branding and the lower slot for supporting actions, such as help and support.",
           },
           {
             label: "Navigation only",
             value: "navigation-only",
-            markup: `<sgds-sidebar active="applications" aria-label="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
-              <sgds-sidebar-section title="Workspace" name="workspace">
-                <sgds-sidebar-item title="Dashboard" name="dashboard">
-                  <sgds-icon name="house" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Applications" name="applications">
-                  <sgds-icon name="file-earmark-text" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-                <sgds-sidebar-item title="Reports" name="reports">
-                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
-                </sgds-sidebar-item>
-              </sgds-sidebar-section>
+            markup: `<sgds-sidebar active="applications" ariaLabel="Application navigation" class="sgds:w-full sgds:max-w-[var(--sgds-dimension-320)] sgds:h-[var(--sgds-dimension-360)]">
+              ${sidebarDemoNavigation}
             </sgds-sidebar>`,
             description: "Use navigation only when no supporting content is needed.",
           },
@@ -12833,22 +12718,24 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Structure",
         description: "Sidebar width defaults to 288px and collapses to 72px. Navigation content uses compact padding and gaps so dense application menus stay scannable.",
-        markup: `<div class="sgds:flex sgds:justify-start sgds:w-[calc(var(--sgds-dimension-288)*2)] sgds:max-w-full">
-          <sgds-sidebar active="applications" variant="collapsible" scrim aria-label="Structure example sidebar" class="sgds:h-[420px]">
+        markup: `<div class="sgds:flex sgds:justify-start sgds:shrink-0 sgds:w-[calc(var(--sgds-dimension-288)*2)]">
+          <sgds-sidebar active="applications" variant="collapsible" scrim ariaLabel="Structure example sidebar" class="sgds:h-[420px]">
+            <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
             <sgds-sidebar-section title="Main" name="main" separator>
               <sgds-sidebar-item title="Overview" name="overview">
-                <sgds-icon name="house" slot="icon"></sgds-icon>
+                <sgds-icon name="house" slot="icon" size="md"></sgds-icon>
               </sgds-sidebar-item>
               <sgds-sidebar-group title="Records" name="records">
-                <sgds-icon name="folder" slot="icon"></sgds-icon>
+                <sgds-icon name="folder" slot="icon" size="md"></sgds-icon>
                 <sgds-sidebar-item title="Applications" name="applications">
-                  <sgds-icon name="file-text" slot="icon"></sgds-icon>
+                  <sgds-icon name="file-text" slot="icon" size="md"></sgds-icon>
                 </sgds-sidebar-item>
                 <sgds-sidebar-item title="Reports" name="reports">
-                  <sgds-icon name="bar-chart" slot="icon"></sgds-icon>
+                  <sgds-icon name="file-text" slot="icon" size="md"></sgds-icon>
                 </sgds-sidebar-item>
               </sgds-sidebar-group>
             </sgds-sidebar-section>
+            <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
           </sgds-sidebar>
         </div>`,
       },
@@ -12857,143 +12744,204 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "sgds/sidebar",
         rows: [
-          { name: "width", value: "sgds/dimension/288", rawValue: "288px", mapKey: "width", category: "Size", usage: "Width or height of an element inside" },
-          { name: "collapsed-width", value: "sgds/dimension/72", rawValue: "72px", mapKey: "collapsed-width", category: "Size", usage: "Width or height of an element inside" },
-          { name: "surface", value: "sgds/surface-default", rawValue: "#FFFFFF", mapKey: "surface", category: "Colour", usage: "Background colour of the component" },
-          { name: "raised-surface", value: "sgds/surface-raised", rawValue: "#FFFFFF", mapKey: "raised-surface", category: "Colour", usage: "Background colour of the component" },
-          { name: "border-color", value: "sgds/border-color-muted", rawValue: "#DFDFDF", mapKey: "border-color", category: "Colour", usage: "Text colour of the component" },
-          { name: "active-background", value: "sgds/bg-translucent-subtle", rawValue: "5% black overlay", mapKey: "active-background", category: "Colour", usage: "Colour used somewhere in the component" },
-          { name: "label-color", value: "sgds/label-color-default", rawValue: "#242424", mapKey: "label-color", category: "Colour", usage: "Text colour of the component" },
-          { name: "section-label-color", value: "sgds/label-color-subtle", rawValue: "#686868", mapKey: "section-label-color", category: "Colour", usage: "Text colour of the component" },
-          { name: "container-padding", value: "sgds/padding/lg", rawValue: "20px", mapKey: "container-padding", category: "Padding", usage: "Value used by the component" },
-          { name: "item-padding", value: "sgds/padding/xs", rawValue: "8px", mapKey: "item-padding", category: "Padding", usage: "Value used by the component" },
-          { name: "content-gap", value: "sgds/gap/md", rawValue: "16px", mapKey: "content-gap", category: "Gap", usage: "Value used by the component" },
-          { name: "item-gap", value: "sgds/gap/xs", rawValue: "8px", mapKey: "item-gap", category: "Gap", usage: "Value used by the component" },
-          { name: "item-border-radius", value: "sgds/border-radius/md", rawValue: "8px", mapKey: "item-border-radius", category: "Border", usage: "Corner radius of bordered elements" },
-          { name: "active-indicator-width", value: "sgds/dimension/2", rawValue: "2px", mapKey: "active-indicator-width", category: "Border", usage: "Border style of the component" },
-          { name: "border-radius-xs", value: "sgds/border-radius/xs", category: "Border", usage: "Corner radius of the active indicator" },
+          { name: "width", value: "sgds/dimension/288", rawValue: "288px", mapKey: "width", category: "Size", usage: "Width of the expanded sidebar at desktop sizes" },
+          { name: "collapsed-width", value: "sgds/dimension/72", rawValue: "72px", mapKey: "collapsed-width", category: "Size", usage: "Width of the collapsed icon-only rail" },
+          { name: "surface", value: "sgds/surface-default", rawValue: "#FFFFFF", mapKey: "surface", category: "Colour", usage: "Background of the main sidebar" },
+          { name: "raised-surface", value: "sgds/surface-raised", rawValue: "#F7F7F7", mapKey: "raised-surface", category: "Colour", usage: "Background of the nested sidebar panel" },
+          { name: "border-color", value: "sgds/border-color-muted", rawValue: "#DFDFDF", mapKey: "border-color", category: "Colour", usage: "Right border of the sidebar and nested panel" },
+          { name: "active-background", value: "sgds/bg-translucent-subtle", rawValue: "5% black overlay", mapKey: "active-background", category: "Colour", usage: "Background of hovered, focused and active navigation items" },
+          { name: "label-color", value: "sgds/label-color-default", rawValue: "#2A2A2A", mapKey: "label-color", category: "Colour", usage: "Colour of interactive section labels" },
+          { name: "section-label-color", value: "sgds/label-color-subtle", rawValue: "#525252", mapKey: "section-label-color", category: "Colour", usage: "Default colour of section labels" },
+          { name: "container-padding", value: "sgds/padding/lg", rawValue: "20px", mapKey: "container-padding", category: "Padding", usage: "Top and bottom padding of the main sidebar" },
+          { name: "item-padding", value: "sgds/padding/xs", rawValue: "8px", mapKey: "item-padding", category: "Padding", usage: "Padding around navigation items, section content and the sidebar header" },
+          { name: "content-gap", value: "sgds/gap/md", rawValue: "16px", mapKey: "content-gap", category: "Gap", usage: "Gap between navigation sections and between header elements" },
+          { name: "item-gap", value: "sgds/gap/xs", rawValue: "8px", mapKey: "item-gap", category: "Gap", usage: "Gap between item icons, labels and indicators" },
+          { name: "item-border-radius", value: "sgds/border-radius/md", rawValue: "8px", mapKey: "item-border-radius", category: "Border", usage: "Corner radius of navigation items and section labels" },
+          { name: "scrollbar-width", value: "sgds/dimension/2", rawValue: "2px", mapKey: "scrollbar-width", category: "Border", usage: "Width of the sidebar scrollbar" },
+          { name: "border-radius-xs", value: "sgds/border-radius/xs", category: "Border", usage: "Corner radius of the sidebar scrollbar thumb" },
           { name: "border-width-1", value: "sgds/border-width/1", category: "Border", usage: "Border of the sidebar container and nested overlay" },
           { name: "dimension-0", value: "sgds/dimension/0", category: "Size", usage: "Collapsed inset and reset size values used inside the component" },
-          { name: "dimension-256", value: "sgds/dimension/256", category: "Size", usage: "Width of the nested sidebar overlay" },
-          { name: "font-size-0", value: "sgds/font-size/0", category: "Typography", usage: "Font-size reset used while the sidebar is collapsed" },
-          { name: "font-size-1", value: "sgds/font-size/1", category: "Typography", usage: "Font-size reset used for collapsed labels" },
-          { name: "gap-2-xs", value: "sgds/gap/2-xs", category: "Gap", usage: "Compact gap between sidebar icon and text content" },
+          { name: "dimension-256", value: "sgds/dimension/256", category: "Size", usage: "Width of the sidebar and nested panel from 512px to 767px" },
+          { name: "gap-2-xs", value: "sgds/gap/2-xs", category: "Gap", usage: "Gap between section label elements and item indicators" },
           { name: "icon-size-sm", value: "sgds/icon-size/sm", category: "Size", usage: "Size of the sidebar expand and collapse icons" },
-          { name: "line-height-20", value: "sgds/line-height/20", category: "Typography", usage: "Line height of sidebar item labels" },
-          { name: "margin-2-xl", value: "sgds/margin/2-xl", category: "Margin", usage: "Offset used by nested sidebar content" },
-          { name: "margin-md", value: "sgds/margin/md", category: "Margin", usage: "Offset used by sidebar section and item content" },
-          { name: "motion-duration-slow", value: "sgds/motion-duration/slow", category: "Motion", usage: "Duration of sidebar collapse and overlay transitions" },
-          { name: "padding-md", value: "sgds/padding/md", category: "Padding", usage: "Padding inside nested sidebar overlay" },
-          { name: "padding-sm", value: "sgds/padding/sm", category: "Padding", usage: "Padding inside sidebar item content and controls" },
+          { name: "line-height-20", value: "sgds/line-height/20", category: "Typography", usage: "Fallback line height used to limit item labels to two lines" },
+          { name: "margin-2-xl", value: "sgds/margin/2-xl", category: "Margin", usage: "Left offset of nested item labels" },
+          { name: "margin-md", value: "sgds/margin/md", category: "Margin", usage: "Bottom margin of section separators" },
+          { name: "motion-duration-slow", value: "sgds/motion-duration/slow", category: "Motion", usage: "Duration of section expand and collapse transitions" },
+          { name: "padding-md", value: "sgds/padding/md", category: "Padding", usage: "Top and bottom padding of the nested sidebar panel" },
+          { name: "padding-sm", value: "sgds/padding/sm", category: "Padding", usage: "Horizontal padding of section labels" },
           { name: "outline-focus", value: "sgds/outline-focus", category: "Outline", usage: "Focus outline of sidebar controls" },
           { name: "outline-offset-focus", value: "sgds/outline-offset-focus", category: "Outline", usage: "Focus outline offset of sidebar controls" },
           { name: "z-index", value: "sgds/z-index-sticky", rawValue: "200", mapKey: "z-index", category: "Layer", usage: "Stacking order over other elements on the page" },
-          { name: "motion-duration", value: "sgds/motion-duration/standard", rawValue: "200ms", mapKey: "motion-duration", category: "Motion", usage: "Value used by the component" },
-          { name: "motion-easing", value: "sgds/motion-easing/standard", rawValue: "cubic-bezier(0.42, 0, 0.58, 1)", mapKey: "motion-easing", category: "Motion", usage: "Value used by the component" },
+          { name: "motion-duration", value: "sgds/motion-duration/standard", rawValue: "300ms", mapKey: "motion-duration", category: "Motion", usage: "Duration of sidebar width, overlay and submenu transitions" },
+          { name: "motion-easing", value: "sgds/motion-easing/standard", rawValue: "cubic-bezier(0.25, 0, 0.25, 1)", mapKey: "motion-easing", category: "Motion", usage: "Easing of sidebar, overlay, section and submenu transitions" },
+          { name: "dimension-40", value: "sgds/dimension/40", rawValue: "40px", category: "Size", usage: "Width of collapsed navigation items" },
+          { name: "icon-size-md", value: "sgds/icon-size/md", rawValue: "20px", category: "Size", usage: "Size of the navigation icons supplied in these demos" },
+          { name: "font-size-label-sm", value: "sgds/font-size/label-sm", rawValue: "14px", category: "Typography", usage: "Font size of navigation item labels" },
+          { name: "font-size-label-xs", value: "sgds/font-size/label-xs", rawValue: "12px", category: "Typography", usage: "Font size of section labels" },
+          { name: "line-height-2-xs", value: "sgds/line-height/2-xs", rawValue: "20px", category: "Typography", usage: "Line height of item and section labels" },
+          { name: "padding-2-xs", value: "sgds/padding/2-xs", rawValue: "4px", category: "Padding", usage: "Horizontal padding inside item label wrappers" },
+          { name: "padding-3-xs", value: "sgds/padding/3-xs", rawValue: "2px", category: "Padding", usage: "Vertical padding inside item label wrappers" },
+          { name: "margin-lg", value: "sgds/margin/lg", rawValue: "20px", category: "Margin", usage: "Space above the navigation content and lower slot" },
         ],
       },
     ],
     usage: {
       guidance: [
         {
-          title: "Use for application navigation",
+          title: "When to use",
           tone: "do",
           items: [
-            "Use sidebar for dashboards, admin tools, and internal products where users switch between major areas often.",
-            "Pair sidebar with application layouts that reserve a left navigation rail.",
+            "Use sidebar for applications such as dashboards and admin tools, where users regularly move between product areas.",
+            "Use it when navigation needs sections, nested groups or an icon-only collapsed state.",
           ],
         },
         {
-          title: "Keep active state accurate",
-          tone: "do",
-          items: [
-            "Set active on the sidebar to match the current item name.",
-            "Give every item and group a unique name so active tracking works reliably.",
-          ],
-        },
-        {
-          title: "Do not use for simple site navigation",
+          title: "When not to use",
           tone: "dont",
           items: [
-            "Use mainnav or subnav for public-facing pages with shallow navigation.",
-            "Use table of contents for navigation within a single page.",
+            "For top-level navigation on content-focused websites, use [Mainnav](/components/mainnav) instead.",
+            "For links to related pages within a website section, use [Sidenav](/components/sidenav) instead.",
+            "For navigation between sections on the same page, use [Table of contents](/components/table-of-contents) instead.",
           ],
         },
       ],
+      // Guidance adapted from USWDS side-navigation usability guidance and
+      // checked against SGDS Sidebar sections, Storybook and writing skills.
+      // https://designsystem.digital.gov/components/side-navigation/#usability-guidance
+      // https://webcomponent.designsystem.tech.gov.sg/?path=/docs/components-sidebar--docs
       bestPractices: [
         {
           title: "Group related destinations",
-          description: "Use sections and groups to make complex application navigation easier to scan.",
+          description: "Use clear section headings to separate areas such as everyday work and administration.",
           tone: "do",
-          markup: `<sgds-sidebar active="cases" aria-label="Grouped navigation" class="sgds:h-[360px]">
+          markup: `<sgds-sidebar variant="persistent" active="cases" ariaLabel="Related destinations grouped" class="portal-sidebar-best-practice sgds:block sgds:w-[var(--sgds-dimension-288)] sgds:max-w-full sgds:h-[var(--sgds-dimension-480)]">
+            <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
             <sgds-sidebar-section title="Workspace" name="workspace">
               <sgds-sidebar-item title="Cases" name="cases">
-                <sgds-icon name="folder" slot="icon"></sgds-icon>
+                <sgds-icon name="folder" slot="icon" size="md"></sgds-icon>
               </sgds-sidebar-item>
               <sgds-sidebar-item title="Tasks" name="tasks">
-                <sgds-icon name="check2-square" slot="icon"></sgds-icon>
+                <sgds-icon name="check-circle" slot="icon" size="md"></sgds-icon>
               </sgds-sidebar-item>
             </sgds-sidebar-section>
+            <sgds-sidebar-section title="Administration" name="administration">
+              <sgds-sidebar-item title="Users" name="users">
+                <sgds-icon name="users" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+              <sgds-sidebar-item title="Settings" name="settings">
+                <sgds-icon name="gear" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+            </sgds-sidebar-section>
+            <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
           </sgds-sidebar>`,
         },
         {
-          title: "Do not omit item names",
-          description: "Sidebar uses name values to resolve active state. Missing or duplicated names make current-page highlights unreliable.",
+          title: "Do not mix unrelated destinations",
+          description: "Place destinations under headings that match their purpose, so users know where to find them.",
           tone: "dont",
-          markup: `<sgds-sidebar active="cases" aria-label="Navigation with missing names" class="sgds:h-[240px]">
-            <sgds-sidebar-item title="Cases">
-              <sgds-icon name="folder" slot="icon"></sgds-icon>
-            </sgds-sidebar-item>
+          markup: `<sgds-sidebar variant="persistent" active="cases" ariaLabel="Unrelated destinations mixed" class="portal-sidebar-best-practice sgds:block sgds:w-[var(--sgds-dimension-288)] sgds:max-w-full sgds:h-[var(--sgds-dimension-480)]">
+            <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
+            <sgds-sidebar-section title="Workspace" name="workspace">
+              <sgds-sidebar-item title="Cases" name="cases">
+                <sgds-icon name="folder" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+              <sgds-sidebar-item title="Users" name="users">
+                <sgds-icon name="users" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+            </sgds-sidebar-section>
+            <sgds-sidebar-section title="Administration" name="administration">
+              <sgds-sidebar-item title="Tasks" name="tasks">
+                <sgds-icon name="check-circle" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+              <sgds-sidebar-item title="Settings" name="settings">
+                <sgds-icon name="gear" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+            </sgds-sidebar-section>
+            <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
+          </sgds-sidebar>`,
+        },
+        {
+          title: "Use short, descriptive labels",
+          description: "Use familiar words that name the destination, so users can quickly scan their options.",
+          tone: "do",
+          markup: `<sgds-sidebar variant="persistent" active="cases" ariaLabel="Short descriptive navigation labels" class="portal-sidebar-best-practice sgds:block sgds:w-[var(--sgds-dimension-288)] sgds:max-w-full sgds:h-[var(--sgds-dimension-480)]">
+            <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
+            <sgds-sidebar-section title="Workspace" name="workspace">
+              <sgds-sidebar-item title="Cases" name="cases">
+                <sgds-icon name="folder" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+              <sgds-sidebar-item title="Tasks" name="tasks">
+                <sgds-icon name="check-circle" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+              <sgds-sidebar-item title="Reports" name="reports">
+                <sgds-icon name="file-text" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+            </sgds-sidebar-section>
+            <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
+          </sgds-sidebar>`,
+        },
+        {
+          title: "Avoid wordy labels",
+          description: "Leave out filler and repeated phrases. Long labels make destinations harder to scan and may be truncated.",
+          tone: "dont",
+          markup: `<sgds-sidebar variant="persistent" active="cases" ariaLabel="Wordy navigation labels" class="portal-sidebar-best-practice sgds:block sgds:w-[var(--sgds-dimension-288)] sgds:max-w-full sgds:h-[var(--sgds-dimension-480)]">
+            <div slot="upper" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Upper slot</span></div>
+            <sgds-sidebar-section title="Workspace" name="workspace">
+              <sgds-sidebar-item title="View and manage all of your case-related information" name="cases">
+                <sgds-icon name="folder" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+              <sgds-sidebar-item title="View and manage the tasks that have been assigned to you" name="tasks">
+                <sgds-icon name="check-circle" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+              <sgds-sidebar-item title="Access the reporting and information analysis area" name="reports">
+                <sgds-icon name="file-text" slot="icon" size="md"></sgds-icon>
+              </sgds-sidebar-item>
+            </sgds-sidebar-section>
+            <div slot="lower" class="portal-slot-example sgds:text-label-sm sgds:h-[var(--sgds-dimension-40)]"><span>Lower slot</span></div>
           </sgds-sidebar>`,
         },
       ],
     },
     accessibility: {
-      builtInItems: [
-        "Sidebar renders a navigation landmark with an accessible label.",
-        "Items, groups, and sections expose active and expanded states through their interactive controls.",
-      ],
-      authorItems: [
-        "Set aria-label on the sidebar when the page has more than one navigation landmark.",
-        "Provide a unique name for each item and group so active state can be matched correctly.",
-      ],
-      focusItems: [
-        "Users should be able to move through sidebar controls in a logical order.",
-        "Do not place focusable controls inside collapsed sections unless users can expand them.",
+      sections: [
+        {
+          title: "Built-in accessibility",
+          items: [
+            "Sidebar renders a navigation landmark, labelled Sidebar navigation by default.",
+            "Items and groups use button semantics, with accessible names from their `title` or `name`.",
+            "Nested submenus and section headers expose their expanded state. Top-level groups do not announce drawer state correctly.",
+            "The built-in collapse toggle is labelled Expand sidebar or Collapse sidebar.",
+          ],
+        },
+        {
+          title: "Labels and content",
+          items: [
+            "Use `ariaLabel` to distinguish the sidebar from other navigation regions.",
+            "Give items a clear `title` and unique `name`. Keep the `active` value aligned with the current page; the component does not set `aria-current` or `aria-selected` on item controls.",
+            "Use meaningful icons for top-level items in the collapsed rail, and retain their titles as accessible names.",
+            "Provide accessible names for custom slot controls and external toggles.",
+          ],
+        },
+        {
+          title: "Focus and interaction",
+          items: [
+            "Keep custom slot controls and external toggles keyboard accessible.",
+            "Collapsible section headers enter the tab order when the sidebar is expanded.",
+            "Check focus when closing drawers, sections or overlay sidebars. Closed content can remain in the tab order, and there is no modal focus trap.",
+          ],
+        },
       ],
       keyboardInteractions: [
-        {
-          key: "Tab",
-          description: "Moves focus to the next sidebar item or control.",
-        },
-        {
-          key: "Shift + Tab",
-          description: "Moves focus to the previous sidebar item or control.",
-        },
-        {
-          key: "Enter",
-          description: "Activates the focused sidebar item or opens an expandable group.",
-        },
-        {
-          key: "Space",
-          description: "Activates the focused sidebar item or opens an expandable group.",
-        },
-        {
-          key: "↓ Down",
-          description: "Moves focus to the next sidebar item, or to the first child item when an expanded group is focused.",
-        },
-        {
-          key: "↑ Up",
-          description: "Moves focus to the previous sidebar item, or to the last child of the previous group.",
-        },
-        {
-          key: "→ Right",
-          description: "Opens the focused expandable group, or moves focus into its first child when already open.",
-        },
-        {
-          key: "← Left",
-          description: "Closes the focused expandable group, or returns focus to the parent group from a nested item.",
-        },
+        { key: "Tab", description: "Moves focus to the next available control." },
+        { key: "Shift + Tab", description: "Moves focus to the previous available control." },
+        { key: "Enter / Space", description: "Activates an item, toggles a group or toggles a collapsible section." },
+        { key: "→ Right", description: "On a top-level group, opens its drawer. If its drawer is already open, moves focus to the first drawer item." },
+        { key: "← Left", description: "On the active top-level group, closes its open drawer. From a drawer item, returns focus to that top-level group." },
+      ],
+      keyboardNotes: [
+        "Up Arrow, Down Arrow, Home, End and Escape have no Sidebar-specific handlers.",
+        "Right Arrow does not expand nested submenus. Use Enter or Space.",
       ],
     },
     props: [
@@ -13022,26 +12970,56 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "Shows an overlay behind the sidebar drawer when the drawer or overlay variant is open.",
       },
       {
-        name: "aria-label",
+        name: "ariaLabel",
         type: "string",
         defaultValue: '"Sidebar navigation"',
         description: "Accessible label for the sidebar navigation landmark.",
       },
     ],
-    releaseRows: [
-      {
-        Date: "29 Apr 2026",
-        Version: "v3.18.0",
-        Description:
-          'Sidebar and sidenav now use the new sticky z-index layer (<a class="updates-source-link" href="https://github.com/GovTechSG/sgds-web-component/pull/612" target="_blank" rel="noopener noreferrer">#612</a>).',
+    updates: {
+      updates: { title: "Updates", columns: ["Date", "Version", "Description"], rows: [
+        {
+                "Date": "17 Sept 2026",
+                "Version": "v3.28.0",
+                "Description": "Support collapsed state with no icon slotted into sidebar group or items in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/830\" target=\"_blank\" rel=\"noopener noreferrer\">#830</a>."
+        },
+        {
+                "Date": "05 Aug 2026",
+                "Version": "v3.26.0",
+                "Description": "Keyboard interaction in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/783\" target=\"_blank\" rel=\"noopener noreferrer\">#783</a>."
+        },
+        {
+                "Date": "05 Aug 2026",
+                "Version": "v3.26.0",
+                "Description": "Icon button size in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/780\" target=\"_blank\" rel=\"noopener noreferrer\">#780</a>."
+        },
+        {
+                "Date": "05 Aug 2026",
+                "Version": "v3.26.0",
+                "Description": "Sidebar select event not emitting for react component in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/796\" target=\"_blank\" rel=\"noopener noreferrer\">#796</a>."
+        },
+        {
+                "Date": "21 Jul 2026",
+                "Version": "v3.25.0",
+                "Description": "Fix/update sidebar in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/774\" target=\"_blank\" rel=\"noopener noreferrer\">#774</a>."
+        }
+] },
+      roadmap: {
+        title: "Roadmap",
+        columns: ["Planned item", "Status", "Target"],
+        rows: [{ "Planned item": "No confirmed roadmap items documented", Status: "—", Target: "—" }],
       },
-      {
-        Date: "17 Apr 2026",
-        Version: "v3.17.0",
-        Description:
-          'New sidebar component added (<a class="updates-source-link" href="https://github.com/GovTechSG/sgds-web-component/pull/570" target="_blank" rel="noopener noreferrer">#570</a>).',
+      feedback: {
+        title: "Feedback", heading: "Have suggestions or feedback?",
+        prefix: "Share them with us on ", linkLabel: "Slack → #ask-sgds-v3",
+        href: "https://govtech.slack.com/archives/C07VD8Z5QKS",
       },
-    ],
+      bugReports: {
+        title: "Bug reports", heading: "Found a bug or issue?",
+        prefix: "Report it on ", linkLabel: "GitHub Issues",
+        href: "https://github.com/GovTechSG/sgds-web-component/issues",
+      },
+    },
   },
   sidenav: {
     key: "sidenav",
