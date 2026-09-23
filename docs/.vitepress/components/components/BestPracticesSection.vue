@@ -214,31 +214,45 @@ const pinIllustrativeToast = (toast: Element) => {
   });
 };
 
+const pinnedAppnavs = new WeakSet<Element>();
+
+const openIllustrativeAppnavs = async () => {
+  const navs = sectionRef.value?.querySelectorAll<HTMLElement & { updateComplete: Promise<unknown>; show(): Promise<void> }>("sgds-appnav[data-illustrative-appnav-open], sgds-appnav:has([data-illustrative-profile-open])") ?? [];
+  if (!navs.length) return;
+  await customElements.whenDefined("sgds-appnav");
+  for (const nav of navs) {
+    await nav.updateComplete;
+    if (nav.hasAttribute("data-illustrative-appnav-open")) {
+      if (!pinnedAppnavs.has(nav)) {
+        pinnedAppnavs.add(nav);
+        nav.addEventListener("sgds-after-hide", () => {
+          window.setTimeout(() => { if (nav.isConnected) void nav.show(); }, 0);
+        });
+      }
+      // The inert illustration must not size its menu against its off-screen
+      // document position; only the actual action rows should determine height.
+      injectShadowStyles(nav, "appnav-illustrative-menu", ".navbar-body .navbar-nav { height: auto; max-height: none !important; }");
+      await nav.show();
+    }
+    const profile = nav.querySelector<HTMLElement & { updateComplete: Promise<unknown> }>("[data-illustrative-profile-open]");
+    if (!profile) continue;
+    await customElements.whenDefined("sgds-appnav-profile");
+    await profile.updateComplete;
+    const dropdown = profile.shadowRoot?.querySelector<HTMLElement & { showMenu(): Promise<void>; noFlip: boolean; menuAlignRight: boolean }>("sgds-dropdown");
+    if (dropdown) {
+      dropdown.noFlip = true;
+      dropdown.menuAlignRight = true;
+      // Illustrations may be scaled inside an SVG viewport. Anchor their
+      // menus locally instead of using document-coordinate floating placement.
+      injectShadowStyles(dropdown, "appnav-illustrative-profile-menu", ".dropdown { position: relative; } .dropdown-menu { position: absolute !important; inset: 100% 0 auto auto !important; transform: none !important; }");
+      await dropdown.showMenu();
+    }
+  }
+};
+
 const showIllustrativeComponents = async () => {
   await nextTick();
-  // v-html can connect a sidebar before its slotted children have upgraded.
-  // Reapply its public active value once the complete example is ready.
-  for (const element of sectionRef.value?.querySelectorAll("sgds-sidebar[active]") ?? []) {
-    await customElements.whenDefined("sgds-sidebar");
-    const sidebar = element as HTMLElement & { active: string; updateComplete: Promise<unknown> };
-    await sidebar.updateComplete;
-    if (sidebar.classList.contains("portal-sidebar-best-practice")) {
-      // Keep this persistent illustration within its card instead of using
-      // the component's mobile viewport-wide positioning.
-      injectShadowStyles(sidebar, "sidebar-best-practice-width", `
-        :host(.portal-sidebar-best-practice) .sidebar { position: relative; width: 100%; }
-      `);
-    }
-    await Promise.all(Array.from(sidebar.querySelectorAll("sgds-sidebar-item, sgds-sidebar-section, sgds-sidebar-group"), async (child) => {
-      await customElements.whenDefined(child.localName);
-      await (child as HTMLElement & { updateComplete: Promise<unknown> }).updateComplete;
-    }));
-    const active = sidebar.getAttribute("active") ?? "";
-    sidebar.active = "";
-    await sidebar.updateComplete;
-    sidebar.active = active;
-    await sidebar.updateComplete;
-  }
+  void openIllustrativeAppnavs();
   sectionRef.value
     ?.querySelectorAll("sgds-tooltip[open]")
     .forEach((tooltip) => {

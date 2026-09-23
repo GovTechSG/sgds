@@ -29,10 +29,10 @@ export type TextPart = {
   href?: string;
 };
 
-// Only site-relative links are accepted in documentation guidance.
-export const guidanceParts = (text: string): TextPart[] =>
-  text.split(/(\[[^\]]+\]\(\/(?!\/)[^\s)]+\))/g).flatMap((part) => {
-    const link = part.match(/^\[([^\]]+)\]\((\/(?!\/)[^\s)]+)\)$/);
+/** Parse internal documentation links while retaining the existing inline code formatting. */
+export const linkedTextParts = (text: string): TextPart[] =>
+  text.split(/(\[[^\]]+\]\(\/[^\s)]+\))/g).filter(Boolean).flatMap((part) => {
+    const link = part.match(/^\[([^\]]+)\]\((\/[^\s)]+)\)$/);
     return link
       ? [{ isCode: false, text: link[1], href: link[2] }]
       : textParts(part);
