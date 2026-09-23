@@ -444,7 +444,7 @@ onBeforeUnmount(() => {
                       v-for="(part, index) in linkedTextParts(item)"
                       :key="`${item}-${index}`"
                     >
-                      <a v-if="part.href" :href="withBase(part.href)" class="sgds:text-link-default sgds:underline">{{ part.text }}</a>
+                      <a v-if="part.href" :href="part.href">{{ part.text }}</a>
                       <CodeToken v-else-if="part.isCode" :label="part.text" />
                       <template v-else>{{ part.text }}</template>
                     </template>

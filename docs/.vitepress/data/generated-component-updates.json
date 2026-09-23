@@ -756,6 +756,33 @@
       "Description": "Update heading style in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/619\" target=\"_blank\" rel=\"noopener noreferrer\">#619</a>."
     }
   ],
+  "mainnav": [
+    {
+      "Date": "17 Sept 2026",
+      "Version": "v3.28.0",
+      "Description": "New sgds-appnav, sgds-mainnav-profile, sgds-appnav-profile subcomponents, new readonly prop for DropdownItem in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/800\" target=\"_blank\" rel=\"noopener noreferrer\">#800</a>."
+    },
+    {
+      "Date": "06 Jul 2026",
+      "Version": "v3.23.0",
+      "Description": "AriaLabel prop for accessibility in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/723\" target=\"_blank\" rel=\"noopener noreferrer\">#723</a>."
+    },
+    {
+      "Date": "06 Jul 2026",
+      "Version": "v3.23.0",
+      "Description": "Prevent reboot.css anchor styles from overriding slotted link colours in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/744\" target=\"_blank\" rel=\"noopener noreferrer\">#744</a>."
+    },
+    {
+      "Date": "29 Apr 2026",
+      "Version": "v3.18.0",
+      "Description": "Alignment in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/617\" target=\"_blank\" rel=\"noopener noreferrer\">#617</a>."
+    },
+    {
+      "Date": "06 Mar 2026",
+      "Version": "v3.13.1",
+      "Description": "Display issue in safari in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/562\" target=\"_blank\" rel=\"noopener noreferrer\">#562</a>."
+    }
+  ],
   "toast": [
     {
       "Date": "17 Apr 2026",

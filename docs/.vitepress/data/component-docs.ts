@@ -578,6 +578,37 @@ const appnavMeasurementTokens: MeasurementTokenRow[] = [
   { category: "Layer", element: "Navigation bar and mobile panel", property: "z-index", designToken: "sgds/z-index-floating", usage: "Stacking layer of the bar and collapsed-menu panel" },
 ];
 
+// Uses the shared configuration design with Storybook's profile slot content.
+const mainnavProfileMarkup = (readOnly: boolean, showProfile = true) => `<div class="portal-demo-nav">
+  <sgds-masthead fluid></sgds-masthead>
+  <sgds-mainnav brandHref="/">
+    <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+    <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+    <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+    ${showProfile ? `<sgds-mainnav-profile slot="profile" label="User Name" secondaryText="Agency (admin)" ariaLabel="${readOnly ? "Profile info" : "Profile menu"}" ${readOnly ? "" : 'close="outside"'}>
+      <span slot="avatar" class="sgds:h-10 sgds:w-10 sgds:shrink-0 sgds:overflow-hidden sgds:rounded-full">
+        <span class="sgds:h-full sgds:w-full sgds:block sgds:bg-neutral-surface-muted sgds:rounded-full"></span>
+      </span>
+      ${readOnly ? "" : `<sgds-dropdown-item readonly>
+        <div class="sgds:flex sgds:flex-col sgds:gap-4">
+          <span class="sgds:text-label-xs sgds:leading-3-xs sgds:tracking-normal sgds:text-subtle">Account</span>
+          <div class="sgds:flex sgds:items-center sgds:gap-3 sgds:py-1">
+            <span class="sgds:h-12 sgds:w-12 sgds:shrink-0 sgds:rounded-full sgds:bg-neutral-surface-muted"></span>
+            <div class="sgds:flex sgds:flex-col sgds:justify-center">
+              <span class="sgds:text-label-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-default">User Name</span>
+              <span class="sgds:text-label-sm sgds:leading-2-xs sgds:tracking-normal sgds:text-subtle">user@agency.gov.sg</span>
+            </div>
+          </div>
+        </div>
+      </sgds-dropdown-item>
+      <sgds-divider thickness="thin"></sgds-divider>
+      <sgds-dropdown-item ariaLabel="My profile"><span class="sgds:block sgds:w-62 sgds:text-label-sm sgds:leading-2-xs sgds:tracking-normal">My profile</span></sgds-dropdown-item>
+      <sgds-dropdown-item ariaLabel="Settings"><span class="sgds:block sgds:w-62 sgds:text-label-sm sgds:leading-2-xs sgds:tracking-normal">Settings</span></sgds-dropdown-item>
+      <sgds-dropdown-item ariaLabel="Log out"><span class="sgds:block sgds:w-62 sgds:text-label-sm sgds:leading-2-xs sgds:tracking-normal sgds:text-danger-default">Log out</span></sgds-dropdown-item>`}
+    </sgds-mainnav-profile>` : ""}
+  </sgds-mainnav>
+</div>`;
+
 const componentDocs: Record<string, ComponentDoc> = {
   accordion: {
     key: "accordion",
@@ -9953,77 +9984,92 @@ const componentDocs: Record<string, ComponentDoc> = {
     tag: "sgds-mainnav",
     group: "navigation",
     summary:
-      "This component is the primary means that your users will use to navigate through your portal. It includes horizontal navigation and branding to identify your site.",
+      "Main navigation helps users move between the main sections of a content-focused website, such as an informational or service website. It provides site branding and links to key pages and sections.",
     purposeCards: [
       {
-        title: "Show main sections",
-        description: "Mainnav gives users access to the top-level areas of a service.",
+        title: "Guide website navigation",
+        description: "Provides access to the website’s main sections so users can find and move between content and services.",
       },
       {
-        title: "Anchor the service brand",
-        description: "Use the brand slot so users know which service they are using.",
+        title: "Establish site identity",
+        description: "Provides a consistent place for the website’s name or branding, helping users recognise the site or service.",
       },
       {
-        title: "Work across screen sizes",
-        description: "The navigation adapts from desktop layouts to smaller screens.",
+        title: "Show users where they are",
+        description: "Highlights the current section so users understand their location and can navigate to other sections.",
       },
     ],
-    anatomyMarkup: `<sgds-mainnav fluid expand="always" brandHref="/" class="portal-mainnav-anatomy sgds:w-[var(--sgds-dimension-688)]">
-      <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-      <sgds-mainnav-item active><a href="#">Services</a></sgds-mainnav-item>
+    anatomyMarkup: `<div class="sgds:w-[var(--sgds-dimension-1024)]">
+      <sgds-masthead fluid class="portal-mainnav-masthead"></sgds-masthead>
+      <sgds-mainnav fluid expand="always" brandHref="/" class="portal-mainnav-anatomy">
+      <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+      <sgds-mainnav-item active><a href="#"><span class="portal-mainnav-menu-label">Services</span></a></sgds-mainnav-item>
       <sgds-mainnav-item><a href="#">Resources</a></sgds-mainnav-item>
-      <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
-      <sgds-button slot="end" ariaLabel="Log in">Log in</sgds-button>
-    </sgds-mainnav>`,
+      <sgds-button slot="end" size="sm" ariaLabel="Log in">Log in</sgds-button>
+      <sgds-icon-button slot="non-collapsible" name="moon" variant="ghost" size="sm" ariaLabel="Toggle dark mode"></sgds-icon-button>
+      <sgds-mainnav-profile slot="profile" label="User Name" secondaryText="Agency (admin)" ariaLabel="Profile menu" close="outside">
+        <span slot="avatar" class="sgds:h-10 sgds:w-10 sgds:block sgds:rounded-full sgds:bg-neutral-surface-muted"></span>
+        <sgds-dropdown-item ariaLabel="My profile">My profile</sgds-dropdown-item>
+        <sgds-dropdown-item ariaLabel="Log out">Log out</sgds-dropdown-item>
+      </sgds-mainnav-profile>
+    </sgds-mainnav></div>`,
     anatomyParts: [
-      { title: "Slot content" },
+      { title: "Masthead" },
+      { title: "Logo (brand slot)" },
       { title: "Nav menus" },
       { title: "Container" },
-      { title: "Primary action" },
+      { title: "End slot (optional)" },
+      { title: "Non-collapsible slot (optional)" },
+      { title: "Profile slot (optional)" },
     ],
     anatomyCallouts: [
-      { number: 1, direction: "top", targetSelector: ".portal-mainnav-brand-slot", targetX: "center", targetY: "top" },
-      { number: 2, direction: "bottom", targetSelector: "sgds-mainnav-item[active]", targetX: "center", targetY: "bottom" },
-      { number: 3, direction: "bottom", targetSelector: ".portal-mainnav-anatomy", targetX: "center", targetY: "bottom" },
-      { number: 4, direction: "top", targetSelector: "sgds-button[slot='end']", targetX: "center", targetY: "top" },
+      { number: 1, direction: "top", targetSelector: ".portal-mainnav-masthead", targetX: "center", targetY: "top" },
+      { number: 2, direction: "bottom", targetSelector: ".portal-mainnav-brand-slot", targetX: "center", targetY: "bottom" },
+      { number: 3, direction: "bottom", targetSelector: ".portal-mainnav-menu-label", targetX: "center", targetY: "bottom" },
+      { number: 4, direction: "bottom", targetSelector: ".portal-mainnav-anatomy", targetX: "center", targetY: "bottom" },
+      { number: 5, direction: "top", targetSelector: "sgds-button[slot='end']", targetX: "center", targetY: "top" },
+      { number: 6, direction: "bottom", targetSelector: "sgds-icon-button[slot='non-collapsible']", targetX: "center", targetY: "bottom" },
+      { number: 7, direction: "top", targetSelector: "sgds-mainnav-profile[slot='profile']", targetX: "center", targetY: "top" },
     ],
     configurationDemos: [
       {
         title: "Container width",
         description:
-          "Toggle the fluid prop to remove the max-width constraint and stretch the navbar across the viewport.",
+          "Use the fluid prop to remove the content max-width constraint and fill the available width of the parent container.",
         controlLabel: "Mainnav container width options",
-        defaultValue: "constrained",
+        defaultValue: "fluid",
         options: [
-          {
-            label: "Constrained width",
-            value: "constrained",
-            markup: `<div class="portal-demo-nav portal-mainnav-width-demo sgds:w-full">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-            <sgds-mainnav-item active>Home</sgds-mainnav-item>
-            <sgds-mainnav-item>About</sgds-mainnav-item>
-            <sgds-mainnav-item>Services</sgds-mainnav-item>
-            <sgds-mainnav-item>Contact</sgds-mainnav-item>
-          </sgds-mainnav>
-        </div>`,
-            description:
-              "Default behaviour. Content is bounded by the standard SGDS container max-width.",
-          },
           {
             label: "Full-bleed (fluid)",
             value: "fluid",
             markup: `<div class="portal-demo-nav portal-mainnav-width-demo sgds:w-full">
+          <sgds-masthead fluid></sgds-masthead>
           <sgds-mainnav brandHref="/" fluid>
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-            <sgds-mainnav-item active>Home</sgds-mainnav-item>
-            <sgds-mainnav-item>About</sgds-mainnav-item>
-            <sgds-mainnav-item>Services</sgds-mainnav-item>
-            <sgds-mainnav-item>Contact</sgds-mainnav-item>
+            <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+            <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">Services</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
           </sgds-mainnav>
         </div>`,
             description:
-              "Stretches the navbar to the full viewport width. Use for app shells and dashboards.",
+              "Removes the content max-width constraint so content fills the available width of the parent container.",
+          },
+          {
+            label: "Constrained width",
+            value: "constrained",
+            markup: `<div class="portal-demo-nav portal-mainnav-width-demo sgds:w-full">
+          <sgds-masthead></sgds-masthead>
+          <sgds-mainnav brandHref="/">
+            <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+            <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">Services</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
+          </sgds-mainnav>
+        </div>`,
+            description:
+              "Content has a default maximum width of 1440px. This preview uses a 480px limit to demonstrate the difference.",
           },
         ],
       },
@@ -10032,17 +10078,18 @@ const componentDocs: Record<string, ComponentDoc> = {
         description:
           "Mark the current page with `active` and use `disabled` to indicate items that are unavailable.",
         controlLabel: "Mainnav item states options",
-        defaultValue: "with-active",
+        defaultValue: "default-items",
         options: [
           {
             label: "Default items",
             value: "default-items",
             markup: `<div class="portal-demo-nav">
+          <sgds-masthead fluid></sgds-masthead>
           <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-            <sgds-mainnav-item>Home</sgds-mainnav-item>
-            <sgds-mainnav-item>About</sgds-mainnav-item>
-            <sgds-mainnav-item>Contact</sgds-mainnav-item>
+            <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+            <sgds-mainnav-item><a href="#">Home</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
           </sgds-mainnav>
         </div>`,
             description:
@@ -10052,11 +10099,12 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With active item",
             value: "with-active",
             markup: `<div class="portal-demo-nav">
+          <sgds-masthead fluid></sgds-masthead>
           <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-            <sgds-mainnav-item active>Home</sgds-mainnav-item>
-            <sgds-mainnav-item>About</sgds-mainnav-item>
-            <sgds-mainnav-item>Contact</sgds-mainnav-item>
+            <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+            <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
           </sgds-mainnav>
         </div>`,
             description:
@@ -10066,11 +10114,12 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With disabled item",
             value: "with-disabled",
             markup: `<div class="portal-demo-nav">
+          <sgds-masthead fluid></sgds-masthead>
           <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-            <sgds-mainnav-item active>Home</sgds-mainnav-item>
-            <sgds-mainnav-item>About</sgds-mainnav-item>
-            <sgds-mainnav-item disabled>Coming soon</sgds-mainnav-item>
+            <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+            <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+            <sgds-mainnav-item disabled><a href="#">Coming soon</a></sgds-mainnav-item>
           </sgds-mainnav>
         </div>`,
             description:
@@ -10083,75 +10132,79 @@ const componentDocs: Record<string, ComponentDoc> = {
         description:
           "Use sgds-mainnav-dropdown to group related destinations under a single navigation item.",
         controlLabel: "Mainnav dropdown options",
-        defaultValue: "without-dropdown",
+        defaultValue: "with-dropdown",
         options: [
-          {
-            label: "Without dropdown",
-            value: "without-dropdown",
-            markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-            <sgds-mainnav-item active>Home</sgds-mainnav-item>
-            <sgds-mainnav-item>About</sgds-mainnav-item>
-            <sgds-mainnav-item>Contact</sgds-mainnav-item>
-          </sgds-mainnav>
-        </div>`,
-            description:
-              "Flat list of items, best when there are five or fewer destinations.",
-          },
           {
             label: "With dropdown",
             value: "with-dropdown",
             markup: `<div class="portal-demo-nav">
+          <sgds-masthead fluid></sgds-masthead>
           <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-            <sgds-mainnav-item active>Home</sgds-mainnav-item>
+            <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+            <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
             <sgds-mainnav-dropdown ariaLabel="Services">
               <span slot="toggler">Services</span>
-              <sgds-dropdown-item arialabel="Apply">Apply</sgds-dropdown-item>
-              <sgds-dropdown-item arialabel="Renew">Renew</sgds-dropdown-item>
-              <sgds-dropdown-item arialabel="Track status">Track status</sgds-dropdown-item>
+              <sgds-dropdown-item ariaLabel="Apply"><a href="#">Apply</a></sgds-dropdown-item>
+              <sgds-dropdown-item ariaLabel="Renew"><a href="#">Renew</a></sgds-dropdown-item>
+              <sgds-dropdown-item ariaLabel="Track status"><a href="#">Track status</a></sgds-dropdown-item>
             </sgds-mainnav-dropdown>
-            <sgds-mainnav-item>Contact</sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
           </sgds-mainnav>
         </div>`,
             description:
               "Group related sub-pages under one parent item to keep the navbar compact.",
+          },
+          {
+            label: "Without dropdown",
+            value: "without-dropdown",
+            markup: `<div class="portal-demo-nav">
+          <sgds-masthead fluid></sgds-masthead>
+          <sgds-mainnav brandHref="/">
+            <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+            <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
+          </sgds-mainnav>
+        </div>`,
+            description:
+              "Display navigation links directly without grouping them in a dropdown.",
           },
         ],
       },
       {
         title: "End slot content",
         description:
-          "Use the end slot to anchor sign-in buttons or other actions to the right end of the navbar.",
+          "Use the end slot to anchor sign-in buttons or other actions to the right end of the navbar. These actions move into the collapsed navigation menu on smaller screens.",
         controlLabel: "Mainnav end slot options",
-        defaultValue: "without-end",
+        defaultValue: "with-end-action",
         options: [
+          {
+            label: "With end slot",
+            value: "with-end-action",
+            markup: `<div class="portal-demo-nav">
+          <sgds-masthead fluid></sgds-masthead>
+          <sgds-mainnav brandHref="/">
+            <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+            <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+            <sgds-button slot="end" size="sm" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
+          </sgds-mainnav>
+        </div>`,
+            description:
+              "Place a secondary action, such as Sign in, at the end of the navigation.",
+          },
           {
             label: "Without end slot",
             value: "without-end",
             markup: `<div class="portal-demo-nav">
+          <sgds-masthead fluid></sgds-masthead>
           <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-            <sgds-mainnav-item active>Home</sgds-mainnav-item>
-            <sgds-mainnav-item>About</sgds-mainnav-item>
+            <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+            <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
           </sgds-mainnav>
         </div>`,
             description: "Use when the navbar carries only navigation links.",
-          },
-          {
-            label: "With sign-in action",
-            value: "with-end-action",
-            markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-            <sgds-mainnav-item active>Home</sgds-mainnav-item>
-            <sgds-mainnav-item>About</sgds-mainnav-item>
-            <sgds-button slot="end" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
-          </sgds-mainnav>
-        </div>`,
-            description:
-              "Anchor a primary call-to-action like Sign in or Get started to the right.",
           },
         ],
       },
@@ -10163,11 +10216,12 @@ const componentDocs: Record<string, ComponentDoc> = {
         defaultValue: "with-action",
         options: [
           {
-            label: "With action",
+            label: "With non-collapsible slot",
             value: "with-action",
             markup: `<div class="portal-demo-nav">
+          <sgds-masthead fluid></sgds-masthead>
           <sgds-mainnav brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+              <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
               <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
@@ -10178,11 +10232,12 @@ const componentDocs: Record<string, ComponentDoc> = {
               "Use for actions that must stay visible across responsive states.",
           },
           {
-            label: "No action",
+            label: "Without non-collapsible slot",
             value: "no-action",
             markup: `<div class="portal-demo-nav">
+          <sgds-masthead fluid></sgds-masthead>
           <sgds-mainnav brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+              <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
               <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
@@ -10193,21 +10248,48 @@ const componentDocs: Record<string, ComponentDoc> = {
           },
         ],
       },
+      {
+        title: "Profile",
+        description: "Place sgds-mainnav-profile in the profile slot to show the user’s avatar, name and secondary information. Add dropdown items for account actions, or leave them out for a read-only profile.",
+        controlLabel: "Mainnav profile",
+        defaultValue: "menu",
+        options: [
+          {
+            label: "With profile slot",
+            value: "menu",
+            markup: mainnavProfileMarkup(false),
+            description: "Select the profile to view Account, My profile, Settings and Log out. On smaller screens, only the avatar is shown; selecting it opens a profile panel.",
+          },
+          {
+            label: "With read-only profile",
+            value: "readonly",
+            markup: mainnavProfileMarkup(true),
+            description: "Show profile details without menu items, a dropdown, a caret or a keyboard focus stop. On smaller screens, only the avatar is shown.",
+          },
+          {
+            label: "Without profile slot",
+            value: "without-profile",
+            markup: mainnavProfileMarkup(false, false),
+            description: "Omit the profile slot when no user profile is needed in the navigation.",
+          },
+        ],
+      },
     ],
     measurements: [
       demo(
         "Structure",
-        "Mainnav structure preview with illustrative slot content.",
+        "Mainnav structure preview with a Log in button in the end slot.",
         `<div class="portal-demo-nav">
-          <sgds-mainnav fluid expand="always" brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-masthead fluid></sgds-masthead>
+          <sgds-mainnav data-structure-target="mainnav" fluid brandHref="/">
+            <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
             <sgds-mainnav-item><a href="#">Overview</a></sgds-mainnav-item>
             <sgds-mainnav-dropdown active ariaLabel="Services">
               <span slot="toggler">Services</span>
               <sgds-dropdown-item arialabel="Apply"><a href="#">Apply</a></sgds-dropdown-item>
             </sgds-mainnav-dropdown>
             <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
-            <div slot="end" class="portal-slot-example"><span>Slot content</span></div>
+            <sgds-button slot="end" size="sm" ariaLabel="Log in">Log in</sgds-button>
           </sgds-mainnav>
         </div>`,
       ),
@@ -10217,15 +10299,16 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Default",
         "Use mainnav for top-level wayfinding across a service or portal.",
         `<div class="portal-demo-nav">
-          <sgds-mainnav fluid>
+          <sgds-masthead fluid></sgds-masthead>
+          <sgds-mainnav fluid brandHref="/">
             <img
               slot="brand"
               alt="SGDS"
-              src="/logo.svg"
-              style="height: var(--sgds-dimension-32); width: auto;"
+              src="/logo.png"
+              width="130"
             />
-            <sgds-mainnav-item href="#">Overview</sgds-mainnav-item>
-            <sgds-mainnav-item href="#" active>Services</sgds-mainnav-item>
+            <sgds-mainnav-item><a href="#">Overview</a></sgds-mainnav-item>
+            <sgds-mainnav-item active><a href="#">Services</a></sgds-mainnav-item>
             <sgds-mainnav-dropdown slot="end" ariaLabel="Account">
               <span slot="toggler">Account</span>
               <sgds-dropdown-item arialabel="Profile"><a href="#">Profile</a></sgds-dropdown-item>
@@ -10243,62 +10326,66 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Reserve mainnav for primary sections every user needs. Keep secondary or task-specific links elsewhere.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
+            <sgds-masthead fluid></sgds-masthead>
             <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-              <sgds-mainnav-item active>Home</sgds-mainnav-item>
-              <sgds-mainnav-item>Services</sgds-mainnav-item>
-              <sgds-mainnav-item>About</sgds-mainnav-item>
-              <sgds-mainnav-item>Contact</sgds-mainnav-item>
+              <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+              <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">Services</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
             </sgds-mainnav>
           </div>`,
         },
         {
           title: "Do not overload the mainnav with every link",
           description:
-            "Long mainnavs are hard to scan. With more than five items, consolidate or move some into a dropdown or subnav.",
+            "Keep top-level navigation concise. Group related destinations in dropdowns and use [subnav](/components/subnav) for secondary navigation.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
+            <sgds-masthead fluid></sgds-masthead>
             <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-              <sgds-mainnav-item>Home</sgds-mainnav-item>
-              <sgds-mainnav-item>Apply</sgds-mainnav-item>
-              <sgds-mainnav-item>Renew</sgds-mainnav-item>
-              <sgds-mainnav-item>Track</sgds-mainnav-item>
-              <sgds-mainnav-item>News</sgds-mainnav-item>
-              <sgds-mainnav-item>Resources</sgds-mainnav-item>
-              <sgds-mainnav-item>Help</sgds-mainnav-item>
-              <sgds-mainnav-item>Contact</sgds-mainnav-item>
-              <sgds-mainnav-item>About</sgds-mainnav-item>
+              <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+              <sgds-mainnav-item><a href="#">Home</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">Apply</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">Renew</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">Track</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">News</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">Resources</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">Help</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
             </sgds-mainnav>
           </div>`,
         },
         {
-          title: "Reserve the end slot for account and sign-in actions",
+          title: "Use the end slot for secondary actions",
           description:
-            "Anchor user-account actions like sign in to the end slot so users find them in a consistent place.",
+            "Place secondary actions, such as sign in or a language toggle, in the end slot.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
+            <sgds-masthead fluid></sgds-masthead>
             <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-              <sgds-mainnav-item active>Home</sgds-mainnav-item>
-              <sgds-mainnav-item>About</sgds-mainnav-item>
-              <sgds-button slot="end" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
+              <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+              <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
+              <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
+              <sgds-button slot="end" size="sm" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
             </sgds-mainnav>
           </div>`,
         },
         {
-          title: "Do not use the end slot for unrelated marketing content",
+          title: "Avoid overcrowding the navigation",
           description:
-            "The end slot draws strong attention. Reserve it for one global action, not promotional links or badges.",
+            "Keep the header focused on primary navigation and secondary actions. Avoid competing content that adds clutter.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
+            <sgds-masthead fluid></sgds-masthead>
             <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
-              <sgds-mainnav-item active>Home</sgds-mainnav-item>
+              <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
+              <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
               <div slot="end">
                 <sgds-badge>New</sgds-badge>
-                <sgds-button variant="primary" ariaLabel="Get started">Get started</sgds-button>
-                <sgds-button variant="outline" ariaLabel="Sign in">Sign in</sgds-button>
+                <sgds-button size="sm" variant="primary" ariaLabel="Get started">Get started</sgds-button>
+                <sgds-button size="sm" variant="outline" ariaLabel="Sign in">Sign in</sgds-button>
               </div>
             </sgds-mainnav>
           </div>`,
@@ -10311,24 +10398,23 @@ const componentDocs: Record<string, ComponentDoc> = {
         rows: [
           { category: "Padding", name: "padding-x", value: "sgds/mainnav/padding-x", mapKey: "padding-x", usage: "Space between the left and right edges of the component and its content" },
           { category: "Padding", name: "mobile-padding-x", value: "sgds/mainnav/mobile-padding-x", usage: "Mobile horizontal padding of the mainnav container" },
-          { category: "Padding", name: "padding-y", value: "sgds/padding/md", mapKey: "padding-y", usage: "Space between the top and bottom edges of the component and its content" },
+          { category: "Padding", name: "padding-y", value: "sgds/padding/md", mapKey: "padding-y", usage: "Vertical padding of the collapsed navigation panel" },
           { category: "Padding", name: "padding-sm", value: "sgds/padding/sm", usage: "Padding of the nav link; padding of the link" },
           { category: "Gap", name: "gap-xl", value: "sgds/gap/xl", usage: "Spacing between items of the navbar" },
           { category: "Gap", name: "gap-xs", value: "sgds/gap/xs", usage: "Spacing between items of the nav link; spacing between items of the link" },
-          { category: "Border", name: "border-color-translucent", value: "sgds/border-color-translucent", mapKey: "navbar-body-border-color", usage: "Colour of the bottom border stroke of the mainnav component" },
-          { category: "Border", name: "border-width-1", value: "sgds/border-width/1", mapKey: "navbar-body-border-width", usage: "Thickness of the bottom border stroke of the mainnav component" },
-          { category: "Border", name: "border-width-4", value: "sgds/border-width/4", mapKey: "nav-link-border-width", usage: "Thickness of the active nav link purple stroke" },
-          { category: "Border", name: "primary-border-color-default", value: "sgds/primary/border-color/default", mapKey: "nav-link-border-color", usage: "Colour of the active nav link purple stroke" },
-          { category: "Size", name: "spacer-4", value: "sgds/spacer/4", usage: "Spacing between items inside the component" },
-          { category: "Size", name: "icon-size-sm", value: "sgds/icon-size/sm", usage: "Size of the mainnav disclosure icon" },
+          { category: "Border", name: "border-color-translucent", value: "sgds/border-color-translucent", mapKey: "navbar-body-border-color", usage: "Colour of the top border on the collapsed navigation panel" },
+          { category: "Border", name: "border-width-1", value: "sgds/border-width/1", mapKey: "navbar-body-border-width", usage: "Thickness of the top border on the collapsed navigation panel" },
+          { category: "Border", name: "border-width-4", value: "sgds/border-width/4", mapKey: "nav-link-border-width", usage: "Thickness of the active navigation indicator" },
+          { category: "Border", name: "primary-border-color-default", value: "sgds/primary/border-color/default", mapKey: "nav-link-border-color", usage: "Colour of the active navigation indicator" },
+          { category: "Size", name: "spacer-4", value: "sgds/spacer/4", usage: "Spacing between items in the non-collapsible slot" },
           { category: "Size", name: "mainnav-max-width", value: "sgds/mainnav/max-width", usage: "Maximum width of the mainnav container" },
-          { category: "Colour", name: "bg-translucent-subtle", value: "sgds/bg-translucent-subtle", usage: "Background colour of the content when active" },
+          { category: "Colour", name: "bg-translucent-subtle", value: "sgds/bg-translucent-subtle", usage: "Background of an active navigation item in the collapsed menu" },
           { category: "Colour", name: "color-default", value: "sgds/color-default", usage: "Text colour of the link; text colour of the content" },
           { category: "Colour", name: "primary-color-default", value: "sgds/primary/color/default", usage: "Text colour of the nav link when active; text colour of the nav link on hover" },
           { category: "Colour", name: "surface-default", value: "sgds/surface-default", usage: "Background colour of the dropdown items; background colour of the nav" },
           { category: "Outline", name: "outline-focus", value: "sgds/outline-focus", usage: "Focus outline of the nav link when keyboard-focused; focus outline of the link when keyboard-focused" },
           { category: "Outline", name: "outline-offset-focus", value: "sgds/outline-offset-focus", usage: "Focus-outline offset of the nav link when keyboard-focused; focus-outline offset of the link when keyboard-focused" },
-          { category: "Opacity", name: "opacity-50", value: "sgds/opacity/50", usage: "Transparency of the nav link when disabled; transparency of the content when disabled" },
+          { category: "Opacity", name: "opacity-40", value: "sgds/opacity/40", usage: "Opacity of disabled navigation items and dropdown triggers" },
           { category: "Layer", name: "z-index-floating", value: "sgds/z-index-floating", usage: "Stacking layer of the nav; stacking layer of the navbar body" },
         ],
       },
@@ -10398,7 +10484,7 @@ const componentDocs: Record<string, ComponentDoc> = {
               <div class="portal-masthead-width-demo__viewport">
                 <sgds-masthead></sgds-masthead>
                 <sgds-mainnav brandHref="/">
-                  <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot portal-masthead-mainnav-brand-slot"><span>Slot content</span></div>
+                  <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark portal-masthead-mainnav-brand-slot"><span>Logo</span></div>
                   <sgds-mainnav-item active>Home</sgds-mainnav-item>
                 </sgds-mainnav>
               </div>
@@ -10443,7 +10529,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "dont",
           markup: `<div class="portal-demo-nav">
             <sgds-mainnav brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+              <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
             </sgds-mainnav>
           </div>`,
@@ -10456,7 +10542,7 @@ const componentDocs: Record<string, ComponentDoc> = {
           markup: `<div class="portal-demo-nav">
             <sgds-masthead fluid></sgds-masthead>
             <sgds-mainnav fluid brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+              <div slot="brand" class="portal-mainnav-brand-slot sgds:flex sgds:items-center sgds:justify-center sgds:box-border sgds:shrink-0 sgds:w-[130px] sgds:h-[var(--sgds-dimension-40)] sgds:bg-accent-muted sgds:border sgds:border-dashed sgds:border-accent-default sgds:text-accent-fixed-dark"><span>Logo</span></div>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
             </sgds-mainnav>
           </div>`,
@@ -17478,6 +17564,21 @@ const defaultGeneratedUsagePatterns: Record<
 const generatedUsagePatternOverrides: Partial<
   Record<string, GeneratedUsagePattern>
 > = {
+  mainnav: {
+    use: [
+      "Use main navigation for content-focused websites, such as informational or service websites, where users need to move between key sections or pages.",
+      "Use it when the website has multiple top-level sections that users need to access regularly.",
+    ],
+    avoid: [
+      "For applications centred on tasks and workflows, such as dashboards and management systems, use [Appnav](/components/appnav) instead.",
+      "For navigation within a section of a website, use [Subnav](/components/subnav) or [Sidenav](/components/sidenav) instead.",
+      "For navigation between sections on the same page, use [Table of contents](/components/table-of-contents) instead.",
+    ],
+    doTitle: "Keep top-level destinations clear",
+    doDescription: "Use clear labels for the main sections of the website.",
+    dontTitle: "Avoid overcrowding the navigation",
+    dontDescription: "Group related destinations instead of listing every page.",
+  },
   accordion: {
     use: [
       "Use accordion to group related information that users may read selectively.",
@@ -18592,18 +18693,26 @@ const generatedAccessibilityProfileOverrides: Record<
   },
   mainnav: {
     builtInItems: [
-      "Main navigation renders a navigation landmark and a responsive menu toggle.",
-      "The mobile toggle exposes expanded state and the controlled menu.",
+      "Mainnav renders a native nav element. Its mobile toggle is labelled Toggle navigation and exposes aria-expanded and aria-controls.",
+      "An active navigation item adds aria-current to its slotted link. A disabled item removes its link from the tab order.",
+      "A profile with menu items renders a toggle button. Without menu items, the profile is read-only and is not a keyboard focus stop.",
     ],
     authorItems: [
-      "Use clear labels for top-level navigation items.",
-      "Keep primary navigation stable across pages.",
+      "Place an anchor with an href inside each sgds-mainnav-item.",
+      "Provide a logo image with alternative text in the brand slot and set brandHref to the home page.",
+      "Set ariaLabel on navigation dropdowns, profile toggles and icon-only actions.",
     ],
     focusItems: [
-      "Users should be able to reach the brand link, navigation items, and mobile toggle in order.",
-      "Do not add hidden navigation items that remain focusable.",
+      "Navigation links and buttons follow the page’s tab order. Read-only profiles and disabled navigation links are skipped.",
+      "Desktop dropdowns and mobile navigation submenus have different keyboard behaviour.",
     ],
-    keyboardInteractions: actionRows("navigation toggle or item"),
+    keyboardInteractions: [
+      { key: "Tab / Shift + Tab", description: "Moves focus forwards or backwards. In an open desktop dropdown, cycles through menu items; in a mobile navigation submenu, cycles between its back control and items." },
+      { key: "Enter", description: "Activates a focused link or button." },
+      { key: "Space", description: "Activates a focused button, including the navigation and profile toggles. It does not activate a normal navigation link." },
+      { key: "↓ Down / ↑ Up", description: "Opens a desktop dropdown and moves between its enabled items. This does not apply to the mobile profile panel." },
+      { key: "Esc", description: "Closes an open desktop dropdown. The mobile profile panel does not implement Escape handling." },
+    ],
   },
   masthead: {
     builtInItems: [
@@ -19359,19 +19468,25 @@ const accessibilityDemoMarkupOverrides: Record<
   },
   mainnav: {
     builtIn: `<div class="portal-demo-nav">
-      <sgds-mainnav>
+      <sgds-masthead fluid></sgds-masthead>
+      <sgds-mainnav brandHref="/">
+        <img slot="brand" src="/logo.png" width="130" alt="Singapore Government Design System" />
         <sgds-mainnav-item><a href="#">Services</a></sgds-mainnav-item>
         <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
       </sgds-mainnav>
     </div>`,
     author: `<div class="portal-demo-nav">
-      <sgds-mainnav>
+      <sgds-masthead fluid></sgds-masthead>
+      <sgds-mainnav brandHref="/">
+        <img slot="brand" src="/logo.png" width="130" alt="Singapore Government Design System" />
         <sgds-mainnav-item><a href="#">Benefits</a></sgds-mainnav-item>
         <sgds-mainnav-item><a href="#">Applications</a></sgds-mainnav-item>
       </sgds-mainnav>
     </div>`,
     focus: `<div class="portal-demo-nav">
-      <sgds-mainnav>
+      <sgds-masthead fluid></sgds-masthead>
+      <sgds-mainnav brandHref="/">
+        <img slot="brand" src="/logo.png" width="130" alt="Singapore Government Design System" />
         <sgds-mainnav-item><a href="#">Home</a></sgds-mainnav-item>
         <sgds-mainnav-item><a href="#">Services</a></sgds-mainnav-item>
       </sgds-mainnav>

@@ -2,7 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, onUpdated, ref } from "vue";
 import type { BestPractice } from "../../data/component-docs";
 import CodeToken from "../ui/CodeToken.vue";
-import { textParts } from "../../utils/text-parts";
+import { linkedTextParts } from "../../utils/text-parts";
 import { setupPortalSteppers } from "../../utils/portal-stepper";
 
 const props = defineProps<{
@@ -137,7 +137,7 @@ const fitIllustrativeMainnavs = async () => {
     wrapper.style.setProperty("--portal-mainnav-width", "var(--sgds-dimension-768)");
     await mainnav.updateComplete;
 
-    const availableWidth = wrapper.getBoundingClientRect().width;
+    const availableWidth = wrapper.parentElement?.getBoundingClientRect().width ?? 0;
     if (availableWidth <= 0) continue;
 
     const measuredRects = [
@@ -152,7 +152,7 @@ const fitIllustrativeMainnavs = async () => {
     const naturalWidth = Math.max(availableWidth, maxRight - minLeft);
     const naturalHeight = Math.max(80, maxBottom - minTop);
     const scale = naturalWidth > availableWidth
-      ? Math.max(0.24, availableWidth / naturalWidth)
+      ? availableWidth / naturalWidth
       : 1;
 
     wrapper.style.setProperty("--portal-mainnav-width", `${naturalWidth}px`);
@@ -338,10 +338,11 @@ onBeforeUnmount(() => {
             >{{ row.do.title }}</component>
             <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               <template
-                v-for="(part, index) in textParts(row.do.description)"
+                v-for="(part, index) in linkedTextParts(row.do.description)"
                 :key="`${part.text}-${index}`"
               >
-                <CodeToken v-if="part.isCode" :label="part.text" />
+                <a v-if="part.href" :href="part.href">{{ part.text }}</a>
+                <CodeToken v-else-if="part.isCode" :label="part.text" />
                 <template v-else>{{ part.text }}</template>
               </template>
             </p>
@@ -385,10 +386,11 @@ onBeforeUnmount(() => {
             >{{ row.dont.title }}</component>
             <p class="sgds:text-subtle sgds:m-0 sgds:whitespace-pre-line sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
               <template
-                v-for="(part, index) in textParts(row.dont.description)"
+                v-for="(part, index) in linkedTextParts(row.dont.description)"
                 :key="`${part.text}-${index}`"
               >
-                <CodeToken v-if="part.isCode" :label="part.text" />
+                <a v-if="part.href" :href="part.href">{{ part.text }}</a>
+                <CodeToken v-else-if="part.isCode" :label="part.text" />
                 <template v-else>{{ part.text }}</template>
               </template>
             </p>
@@ -481,18 +483,19 @@ onBeforeUnmount(() => {
   width: 100%;
 }
 
-.best-practice-demo-markup sgds-mainnav {
-  display: block;
-  flex: 0 0 var(--portal-mainnav-width, var(--sgds-dimension-768));
+.best-practice-demo-markup .portal-demo-nav:has(> sgds-mainnav) {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  max-width: none;
+  width: var(--portal-mainnav-width, var(--sgds-dimension-768));
   transform: scale(var(--portal-mainnav-scale, 1));
   transform-origin: center center;
-  width: var(--portal-mainnav-width, var(--sgds-dimension-768));
 }
 
-.best-practice-demo-markup .portal-demo-nav:has(> sgds-mainnav) {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  min-height: calc(var(--portal-mainnav-height, 80px) * var(--portal-mainnav-scale, 1));
+.best-practice-demo-markup .portal-demo-nav > sgds-mainnav,
+.best-practice-demo-markup .portal-demo-nav:has(> sgds-mainnav) > sgds-masthead {
+  display: block;
+  width: 100%;
 }
 </style>

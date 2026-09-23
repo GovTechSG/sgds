@@ -54,3 +54,17 @@ export const textParts = (text: string, codeTerms: readonly string[] = []): Text
       };
     });
 };
+
+/** Documentation links, with existing inline-code formatting preserved. */
+export const linkedTextParts = (text: string): (TextPart & { href?: string })[] => {
+  const parts: (TextPart & { href?: string })[] = [];
+  const links = /\[([^\]]+)\]\((\/[\w/-]+(?:#[\w-]+)?|https:\/\/[^\s)]+)\)/g;
+  let offset = 0;
+  for (const match of text.matchAll(links)) {
+    parts.push(...textParts(text.slice(offset, match.index)));
+    parts.push({ text: match[1], href: match[2], isCode: false });
+    offset = match.index! + match[0].length;
+  }
+  parts.push(...textParts(text.slice(offset)));
+  return parts;
+};

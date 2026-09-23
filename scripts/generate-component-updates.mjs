@@ -66,6 +66,7 @@ const specialAliases = {
   toast: ["toast"],
   tooltip: ["tooltip"],
   "appnav": ["appnav", "appnav-profile", "appnav profile"],
+  "mainnav-profile": ["mainnav-profile", "mainnav profile"],
 };
 
 const scopeToKey = {
@@ -101,6 +102,8 @@ const scopeToKey = {
   input: "input",
   link: "link",
   mainnav: "mainnav",
+  mainnavitem: "mainnav",
+  mainnavdropdown: "mainnav",
   masthead: "masthead",
   modal: "modal",
   "overflow-menu": "overflow-menu",

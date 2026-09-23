@@ -52,6 +52,7 @@ export const specialAliases: Record<string, string[]> = {
   toast: ["toast"],
   tooltip: ["tooltip"],
   "appnav": ["appnav", "appnav-profile", "appnav profile"],
+  "mainnav-profile": ["mainnav-profile", "mainnav profile"],
 };
 
 /**
@@ -91,6 +92,8 @@ export const scopeToKey: Record<string, string> = {
   input: "input",
   link: "link",
   mainnav: "mainnav",
+  mainnavitem: "mainnav",
+  mainnavdropdown: "mainnav",
   masthead: "masthead",
   modal: "modal",
   "overflow-menu": "overflow-menu",
@@ -123,4 +126,6 @@ export const scopeToKey: Record<string, string> = {
   "appnav": "appnav",
   "appnav-profile": "appnav",
   appnavprofile: "appnav",
+  "mainnav-profile": "mainnav-profile",
+  mainnavprofile: "mainnav-profile",
 };

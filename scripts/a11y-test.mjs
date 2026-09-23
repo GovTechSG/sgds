@@ -323,8 +323,7 @@ async function main() {
   const pagesFailing = results.filter((r) => r.mustFix > 0).length;
   const pagesPassing = results.filter((r) => !r.error && r.mustFix === 0).length;
 
-  // The report aggregator can pass even when a page scan reports violations.
-  // Gate on the actual scan results too, including pages that failed to scan.
+  // Include page-level findings and scan errors in the CI result.
   thresholdsPassed = thresholdsPassed
     && totalMustFix <= THRESHOLDS.mustFix
     && (THRESHOLDS.goodToFix === undefined || totalGoodToFix <= THRESHOLDS.goodToFix)
