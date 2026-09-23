@@ -29,15 +29,6 @@ export type TextPart = {
   href?: string;
 };
 
-/** Parse internal documentation links while retaining the existing inline code formatting. */
-export const linkedTextParts = (text: string): TextPart[] =>
-  text.split(/(\[[^\]]+\]\(\/[^\s)]+\))/g).filter(Boolean).flatMap((part) => {
-    const link = part.match(/^\[([^\]]+)\]\((\/[^\s)]+)\)$/);
-    return link
-      ? [{ isCode: false, text: link[1], href: link[2] }]
-      : textParts(part);
-  });
-
 export const textParts = (text: string, codeTerms: readonly string[] = []): TextPart[] => {
   const codeTermSet = new Set(codeTerms);
 
