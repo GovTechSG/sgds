@@ -104,6 +104,7 @@ watch(() => props.options, () => {
   <div
     ref="tablistRef"
     class="segmented-control sgds:bg-default sgds:border sgds:border-muted sgds:rounded-md"
+    :class="{ 'segmented-control--compact': options.length >= 5 }"
     role="tablist"
     :aria-label="ariaLabel"
   >
@@ -220,6 +221,12 @@ watch(() => props.options, () => {
   white-space: nowrap;
   z-index: 1;
   gap: var(--sgds-gap-text-xs);
+}
+
+.segmented-control--compact .segment {
+  min-width: var(--sgds-dimension-64);
+  padding-left: var(--sgds-padding-sm);
+  padding-right: var(--sgds-padding-sm);
 }
 
 .segment-icon {
