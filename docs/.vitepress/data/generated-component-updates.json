@@ -75,6 +75,18 @@
       "Date": "17 Sept 2026",
       "Version": "v3.28.0",
       "Description": "New sgds-appnav, sgds-mainnav-profile, sgds-appnav-profile subcomponents, new readonly prop for DropdownItem in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/800\" target=\"_blank\" rel=\"noopener noreferrer\">#800</a>."
+    }
+  ],
+  "mainnav": [
+    {
+      "Date": "24 Sept 2026",
+      "Version": "v3.29.0",
+      "Description": "Sanitise forwarded href in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/834\" target=\"_blank\" rel=\"noopener noreferrer\">#834</a>."
+    },
+    {
+      "Date": "17 Sept 2026",
+      "Version": "v3.28.0",
+      "Description": "New sgds-appnav, sgds-mainnav-profile, sgds-appnav-profile subcomponents, new readonly prop for DropdownItem in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/800\" target=\"_blank\" rel=\"noopener noreferrer\">#800</a>."
     },
     {
       "Date": "06 Jul 2026",
@@ -90,6 +102,28 @@
       "Date": "29 Apr 2026",
       "Version": "v3.18.0",
       "Description": "Alignment in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/617\" target=\"_blank\" rel=\"noopener noreferrer\">#617</a>."
+    }
+  ],
+  "footer": [
+    {
+      "Date": "24 Sept 2026",
+      "Version": "v3.29.0",
+      "Description": "Sanitise forwarded href in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/834\" target=\"_blank\" rel=\"noopener noreferrer\">#834</a>."
+    },
+    {
+      "Date": "14 Sept 2026",
+      "Version": "v3.27.0",
+      "Description": "Term of use copyright in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/825\" target=\"_blank\" rel=\"noopener noreferrer\">#825</a>."
+    },
+    {
+      "Date": "13 May 2026",
+      "Version": "v3.19.0",
+      "Description": "Neutral tone and layout prop in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/657\" target=\"_blank\" rel=\"noopener noreferrer\">#657</a>."
+    },
+    {
+      "Date": "12 Mar 2026",
+      "Version": "v3.14.0",
+      "Description": "Update the alignment of the header components in <a class=\"updates-source-link\" href=\"https://github.com/GovTechSG/sgds-web-component/pull/566\" target=\"_blank\" rel=\"noopener noreferrer\">#566</a>."
     }
   ],
   "footer": [

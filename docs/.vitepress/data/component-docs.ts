@@ -17267,7 +17267,7 @@ const componentDocs: Record<string, ComponentDoc> = {
     ],
     anatomyMarkup: appnavMarkup({ expand: "always", previewClass: "portal-anatomy-appnav sgds:w-[var(--sgds-dimension-768)]" }),
     anatomyParts: [
-      { title: "Menu" },
+      { title: "Start slot (default menu)" },
       { title: "Logo slot" },
       { title: "Dark mode" },
       { title: "Icon slot" },
@@ -17295,7 +17295,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       },
       {
         title: "Menu",
-        description: "Include a menu button when the application has a side menu. Omit it when users do not need a side menu.",
+        description: "Include a menu button when the application has a side menu via the `start` slot. Omit it when users do not need a side menu.",
         controlLabel: "Appnav menu",
         defaultValue: "with-menu",
         options: [
