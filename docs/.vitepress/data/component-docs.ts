@@ -17320,6 +17320,32 @@ const componentDocs: Record<string, ComponentDoc> = {
         }
       ]
     },
+    accessibility: {
+      sections: [
+        { title: "Built-in accessibility", items: [
+          "Collapsed actions use the icon buttons' ariaLabel text as their labels.",
+          "When the collapsed action menu is open, Tab from the three-dots toggle focuses the first action.",
+          "A profile with no menu items is read-only and has no focusable toggle.",
+        ] },
+        { title: "What you need to do", items: [
+          "Set ariaLabel on every icon-only action. Appnav also uses this text for the collapsed action labels.",
+          "Set ariaLabel on the profile toggle, such as Profile menu.",
+          "Give the brand image meaningful alternative text and set brandHref to the application's home page.",
+          "Use variant=ghost and tone=fixed-light for icon buttons.",
+        ] },
+      ],
+      keyboardInteractions: [
+        { key: "Tab", description: "Moves through visible interactive controls. When the action menu is open, moves from the three-dots toggle to its first action. In the open desktop profile dropdown, cycles forwards through available items, wrapping to the first." },
+        { key: "Shift + Tab", description: "Moves backwards through controls. From the first collapsed action, returns to the three-dots toggle. In the open desktop profile dropdown, cycles backwards through available items, wrapping to the last." },
+        { key: "Enter", description: "Follows the brand link or activates a focused button or menu action. On the mobile profile toggle, opens or closes its panel." },
+        { key: "Space", description: "Activates icon buttons, the desktop or mobile profile toggle, and collapsed action items. Does not activate the brand link or profile menu items." },
+        { key: "↓ Down / ↑ Up", description: "Opens or moves between items in the desktop profile dropdown. The collapsed action menu and mobile profile panel use Tab navigation instead." },
+        { key: "Escape", description: "Closes the desktop profile dropdown and returns focus to its toggle. Appnav v3.28.0 does not implement Escape-to-close for the collapsed action menu or the mobile profile panel." },
+      ],
+      keyboardNotes: [
+        "Use the three-dots toggle to close the action menu, or activate an action. Use the avatar toggle to close the mobile profile panel.",
+      ],
+    },
   },
   "data-table": {
     key: "data-table",
@@ -18113,41 +18139,6 @@ const componentDocs: Record<string, ComponentDoc> = {
     },
     accessibility: {
       sections: [
-        { title: "Built-in accessibility", items: [
-          "Collapsed actions use the icon buttons’ ariaLabel text as their labels.",
-          "When the collapsed action menu is open, Tab from the three-dots toggle focuses the first action.",
-          "A profile with no menu items is read-only and has no focusable toggle.",
-        ] },
-        { title: "What you need to do", items: [
-          "Set ariaLabel on every icon-only action. Appnav also uses this text for the collapsed action labels.",
-          "Set ariaLabel on the profile toggle, such as Profile menu.",
-          "Give the brand image meaningful alternative text and set brandHref to the application’s home page.",
-          "Use variant=ghost and tone=fixed-light for icon buttons.",
-        ] },
-      ],
-      keyboardInteractions: [
-        { key: "Tab", description: "Moves through visible interactive controls. When the action menu is open, moves from the three-dots toggle to its first action. In the open desktop profile dropdown, cycles forwards through available items, wrapping to the first." },
-        { key: "Shift + Tab", description: "Moves backwards through controls. From the first collapsed action, returns to the three-dots toggle. In the open desktop profile dropdown, cycles backwards through available items, wrapping to the last." },
-        { key: "Enter", description: "Follows the brand link or activates a focused button or menu action. On the mobile profile toggle, opens or closes its panel." },
-        { key: "Space", description: "Activates icon buttons, the desktop or mobile profile toggle, and collapsed action items. Does not activate the brand link or profile menu items." },
-        { key: "↓ Down / ↑ Up", description: "Opens or moves between items in the desktop profile dropdown. The collapsed action menu and mobile profile panel use Tab navigation instead." },
-        { key: "Escape", description: "Closes the desktop profile dropdown and returns focus to its toggle. Appnav v3.28.0 does not implement Escape-to-close for the collapsed action menu or the mobile profile panel." },
-      ],
-      keyboardNotes: [
-        "Use the three-dots toggle to close the action menu, or activate an action. Use the avatar toggle to close the mobile profile panel.",
-      ],
-    },
-    // Updates are populated from GitHub releases by the shared renderer.
-  },
-  "data-table": {
-    key: "data-table",
-    title: "Data Table",
-    tag: "sgds-data-table",
-    group: "data-display",
-    summary: "",
-    demos: [],
-    accessibility: {
-      sections: [
         {
           title: "Built-in accessibility",
           description: [
@@ -18227,7 +18218,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         ],
       },
     ],
-    // updates: omitted — auto-populated from GitHub releases via buildResolvedUpdates()
+    // Updates are populated from GitHub releases by the shared renderer.
   },
 };
 
