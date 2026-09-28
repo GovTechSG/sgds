@@ -66,6 +66,7 @@ const specialAliases = {
   toast: ["toast"],
   tooltip: ["tooltip"],
   "appnav": ["appnav", "appnav-profile", "appnav profile"],
+  "data-table": ["data-table", "data table"],
 };
 
 const scopeToKey = {
@@ -134,6 +135,8 @@ const scopeToKey = {
   "appnav-profile": "appnav",
   appnavprofile: "appnav",
   "mainnav-profile": "mainnav",
+  "data-table": "data-table",
+  datatable: "data-table",
 };
 
 // --- Helpers ---
