@@ -71,6 +71,7 @@ const activeAnatomyMarkup = computed(() =>
 
 const isWideAnatomy = computed(() =>
   activeAnatomyMarkup.value.includes("portal-mainnav-anatomy") ||
+  activeAnatomyMarkup.value.includes("portal-anatomy-data-table") ||
   activeAnatomyMarkup.value.includes("portal-footer-anatomy") ||
   activeAnatomyMarkup.value.includes("portal-anatomy-datepicker") ||
   activeAnatomyMarkup.value.includes("portal-anatomy-masthead") ||
