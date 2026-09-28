@@ -1,12 +1,9 @@
 import { mkdir } from "node:fs/promises";
-import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
+import { chromium } from "playwright";
+import sharp from "sharp";
 
-const require = createRequire(import.meta.url);
-const { chromium } = require("/Users/petrine/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright");
-const sharp = require("/Users/petrine/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp");
-
-const chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const chromePath = process.env.CHROME_PATH || undefined;
 const outputDir = new URL("../docs/public/templates/thumbnails/", import.meta.url);
 const outputDirPath = fileURLToPath(outputDir);
 const baseUrl = process.env.THUMBNAIL_BASE_URL ?? "http://127.0.0.1:5173";
@@ -75,6 +72,7 @@ const pageTemplateKeys = [
   "application-management",
   "form-page",
   "multi-step-form",
+  "application-shell-operational",
 ];
 
 const multiStepFormThumbnailMarkup = `<!doctype html>
@@ -1298,6 +1296,11 @@ const blogThumbnailMarkup = `<!doctype html>
   </body>
 </html>`;
 
+const storybookBase = "https://www.webcomponent.designsystem.tech.gov.sg";
+const storybookStoryIds = {
+  "application-shell-operational": "templates-application-shell-operational--operational-app-shell",
+};
+
 const thumbWidth = 600;
 const thumbHeight = 400;
 const thumbnailInsetX = 72;
@@ -1448,6 +1451,7 @@ const getDarkCustomThumbnailStyles = (canvasBackground) => `
     html.sgds-night-theme .office-image {
       filter: brightness(0.72) contrast(1.08);
     }
+
   </style>
 `;
 
@@ -1566,7 +1570,7 @@ if (needsPlaceholderFixture) {
 
 const browser = await chromium.launch({
   headless: true,
-  executablePath: chromePath,
+  ...(chromePath ? { executablePath: chromePath } : {}),
 });
 
 try {
@@ -1589,6 +1593,9 @@ try {
         : `${baseUrl}/templates/page-templates/preview/raw/${key}`,
       selector: key === "form-page" ? ".block-raw-single > :first-child, .block-raw-single" : "#app",
       crop: key === "form-page" ? { left: 200, top: 0, width: 1040, height: 680 } : undefined,
+      storybookUrl: storybookStoryIds[key]
+        ? `${storybookBase}/iframe.html?id=${storybookStoryIds[key]}&viewMode=story`
+        : undefined,
       customHtml: key === "multi-step-form"
         ? multiStepFormThumbnailMarkup
         : key === "application-management"
@@ -1615,8 +1622,8 @@ try {
                 : key === "blog"
                   ? ".blog-thumbnail"
           : undefined,
-      preserveCanvas: key === "multi-step-form" || key === "catalogue" || key === "about-us" || key === "landing" || key === "blog",
-      preserveImages: key === "about-us",
+      preserveCanvas: key === "multi-step-form" || key === "catalogue" || key === "about-us" || key === "landing" || key === "blog" || !!storybookStoryIds[key],
+      preserveImages: key === "about-us" || !!storybookStoryIds[key],
     })),
   ].filter((target) => !requestedKeys.size || requestedKeys.has(target.key));
   const themesToGenerate = thumbnailThemes.filter(
@@ -1626,7 +1633,49 @@ try {
   for (const theme of themesToGenerate) {
     for (const target of thumbnailTargets) {
       const { key, url, selector } = target;
-      if (target.customHtml) {
+      if (target.storybookUrl) {
+        // Set viewport to match thumbnail inner frame aspect ratio so the
+        // full-page screenshot fits without cropping or letterboxing.
+        const { innerWidth, innerHeight } = getInnerFrame();
+        const scale = 3;
+        await page.setViewportSize({
+          width: innerWidth * scale,
+          height: innerHeight * scale,
+        });
+        await page.goto(target.storybookUrl, { waitUntil: "networkidle" });
+        // Wait for web components to fully render inside Storybook
+        await page.waitForTimeout(5000);
+        // Remove Storybook's default padding/margin and force content to fill viewport
+        await page.evaluate(() => {
+          const reset = "margin:0!important;padding:0!important;width:100vw!important;overflow:hidden!important;";
+          document.documentElement.style.cssText = reset;
+          document.body.style.cssText = reset;
+          const root = document.getElementById("storybook-root");
+          if (root) {
+            root.style.cssText = "margin:0!important;padding:0!important;width:100%!important;";
+            const child = root.firstElementChild;
+            if (child) child.style.cssText = "margin:0!important;padding:0!important;width:100%!important;";
+          }
+        });
+        // Wait for all images (including inside shadow DOM) to load
+        await page.evaluate(async () => {
+          const allImages = [
+            ...document.querySelectorAll("img"),
+            ...Array.from(document.querySelectorAll("*"))
+              .filter((el) => el.shadowRoot)
+              .flatMap((el) => [...el.shadowRoot.querySelectorAll("img")]),
+          ];
+          await Promise.all(
+            allImages.map((img) => {
+              if (img.complete && img.naturalWidth > 0) return undefined;
+              return new Promise((resolve) => {
+                img.addEventListener("load", resolve, { once: true });
+                img.addEventListener("error", resolve, { once: true });
+              });
+            }),
+          );
+        });
+      } else if (target.customHtml) {
         await page.setContent(
           prepareCustomHtml(target.customHtml, theme, key).replace("CENTERED_PLACEHOLDER_IMAGE", theme.placeholderImage),
           { waitUntil: "domcontentloaded" },
@@ -1705,8 +1754,22 @@ try {
         `,
       });
 
-      const captureTarget = page.locator(target.customSelector ?? selector).first();
-      const capturedScreenshot = await captureTarget.screenshot({ type: "png" });
+      let capturedScreenshot;
+      if (target.storybookUrl) {
+        // Take a full-page screenshot then crop to the thumbnail aspect ratio
+        // from the top so content fills edge-to-edge without whitespace.
+        // Take a full-page screenshot, then resize to exactly fill the inner
+        // frame dimensions. This avoids any aspect-ratio mismatch that causes
+        // whitespace bars when using contain.
+        const { innerWidth, innerHeight } = getInnerFrame();
+        capturedScreenshot = await page.screenshot({ type: "png", fullPage: true });
+        capturedScreenshot = await sharp(capturedScreenshot)
+          .resize(innerWidth, innerHeight, { fit: "cover", position: "top" })
+          .png()
+          .toBuffer();
+      } else {
+        capturedScreenshot = await page.locator(target.customSelector ?? selector).first().screenshot({ type: "png" });
+      }
       const screenshot = target.crop
         ? await sharp(capturedScreenshot).extract(target.crop).png().toBuffer()
         : capturedScreenshot;
@@ -1752,10 +1815,15 @@ try {
         .composite([
           { input: innerImage, left: insetX, top: insetY },
         ])
-        .png()
-        .toFile(`${outputDirPath}${key}${theme.suffix}.png`);
+        .webp({ quality: 85 })
+        .toFile(`${outputDirPath}${key}${theme.suffix}.webp`);
 
-      console.log(`Generated ${key}${theme.suffix}.png`);
+      console.log(`Generated ${key}${theme.suffix}.webp`);
+
+      // Restore default viewport after Storybook screenshots
+      if (target.storybookUrl) {
+        await page.setViewportSize(captureViewport);
+      }
     }
   }
 } finally {
