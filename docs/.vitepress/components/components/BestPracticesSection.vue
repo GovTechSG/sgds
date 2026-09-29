@@ -214,8 +214,45 @@ const pinIllustrativeToast = (toast: Element) => {
   });
 };
 
+const pinnedAppnavs = new WeakSet<Element>();
+
+const openIllustrativeAppnavs = async () => {
+  const navs = sectionRef.value?.querySelectorAll<HTMLElement & { updateComplete: Promise<unknown>; show(): Promise<void> }>("sgds-appnav[data-illustrative-appnav-open], sgds-appnav:has([data-illustrative-profile-open])") ?? [];
+  if (!navs.length) return;
+  await customElements.whenDefined("sgds-appnav");
+  for (const nav of navs) {
+    await nav.updateComplete;
+    if (nav.hasAttribute("data-illustrative-appnav-open")) {
+      if (!pinnedAppnavs.has(nav)) {
+        pinnedAppnavs.add(nav);
+        nav.addEventListener("sgds-after-hide", () => {
+          window.setTimeout(() => { if (nav.isConnected) void nav.show(); }, 0);
+        });
+      }
+      // The inert illustration must not size its menu against its off-screen
+      // document position; only the actual action rows should determine height.
+      injectShadowStyles(nav, "appnav-illustrative-menu", ".navbar-body .navbar-nav { height: auto; max-height: none !important; }");
+      await nav.show();
+    }
+    const profile = nav.querySelector<HTMLElement & { updateComplete: Promise<unknown> }>("[data-illustrative-profile-open]");
+    if (!profile) continue;
+    await customElements.whenDefined("sgds-appnav-profile");
+    await profile.updateComplete;
+    const dropdown = profile.shadowRoot?.querySelector<HTMLElement & { showMenu(): Promise<void>; noFlip: boolean; menuAlignRight: boolean }>("sgds-dropdown");
+    if (dropdown) {
+      dropdown.noFlip = true;
+      dropdown.menuAlignRight = true;
+      // Illustrations may be scaled inside an SVG viewport. Anchor their
+      // menus locally instead of using document-coordinate floating placement.
+      injectShadowStyles(dropdown, "appnav-illustrative-profile-menu", ".dropdown { position: relative; } .dropdown-menu { position: absolute !important; inset: 100% 0 auto auto !important; transform: none !important; }");
+      await dropdown.showMenu();
+    }
+  }
+};
+
 const showIllustrativeComponents = async () => {
   await nextTick();
+  void openIllustrativeAppnavs();
   sectionRef.value
     ?.querySelectorAll("sgds-tooltip[open]")
     .forEach((tooltip) => {
@@ -277,8 +314,19 @@ onBeforeUnmount(() => {
           >
             <sgds-icon name="check-circle-fill" size="lg"></sgds-icon>
           </span>
-          <div class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full">
-            <div class="best-practice-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" inert v-html="row.do.markup"></div>
+          <div
+            class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full"
+            :class="{ 'sgds:overflow-x-auto': row.do.scrollablePreview }"
+            :tabindex="row.do.scrollablePreview ? 0 : undefined"
+            :role="row.do.scrollablePreview ? 'region' : undefined"
+            :aria-label="row.do.scrollablePreview ? row.do.title + ' example' : undefined"
+          >
+            <div
+              class="best-practice-demo-markup sgds:flex sgds:items-center sgds:w-full"
+              :class="row.do.scrollablePreview ? 'sgds:min-w-max sgds:justify-start' : 'sgds:min-w-0 sgds:justify-center'"
+              inert
+              v-html="row.do.markup"
+            ></div>
           </div>
         </div>
         <div :class="[
@@ -324,8 +372,19 @@ onBeforeUnmount(() => {
           >
             <sgds-icon name="xcircle-fill" size="lg"></sgds-icon>
           </span>
-          <div class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full">
-            <div class="best-practice-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full" inert v-html="row.dont.markup"></div>
+          <div
+            class="sgds:bg-transparent sgds:mx-auto sgds:max-w-[var(--sgds-dimension-512)] sgds:w-full"
+            :class="{ 'sgds:overflow-x-auto': row.dont.scrollablePreview }"
+            :tabindex="row.dont.scrollablePreview ? 0 : undefined"
+            :role="row.dont.scrollablePreview ? 'region' : undefined"
+            :aria-label="row.dont.scrollablePreview ? row.dont.title + ' example' : undefined"
+          >
+            <div
+              class="best-practice-demo-markup sgds:flex sgds:items-center sgds:w-full"
+              :class="row.dont.scrollablePreview ? 'sgds:min-w-max sgds:justify-start' : 'sgds:min-w-0 sgds:justify-center'"
+              inert
+              v-html="row.dont.markup"
+            ></div>
           </div>
         </div>
         <div :class="[

@@ -1,1572 +1,143 @@
 import { mkdir } from "node:fs/promises";
-import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
+import { chromium } from "playwright";
+import sharp from "sharp";
 
-const require = createRequire(import.meta.url);
-const { chromium } = require("/Users/petrine/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright");
-const sharp = require("/Users/petrine/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp");
+// ---------------------------------------------------------------------------
+// Configuration
+// ---------------------------------------------------------------------------
 
-const chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const chromePath = process.env.CHROME_PATH || undefined;
 const outputDir = new URL("../docs/public/templates/thumbnails/", import.meta.url);
 const outputDirPath = fileURLToPath(outputDir);
-const baseUrl = process.env.THUMBNAIL_BASE_URL ?? "http://127.0.0.1:5173";
-const placeholderImage = "https://webcomponent.designsystem.tech.gov.sg/placeholder-sgds.png";
-const placeholderBackground = "#f8f8f8";
-
-const blockThumbnailKeys = [
-  "cards-3-per-column",
-  "cards-4-per-column",
-  "cta-contained-primary-center",
-  "cta-contained-primary",
-  "cta-contained-raised-center",
-  "cta-contained-raised",
-  "cta-full-bleed-alternate-center",
-  "cta-full-bleed-alternate",
-  "cta-full-bleed-primary-center",
-  "cta-full-bleed-primary",
-  "feature-image-left-4-8",
-  "feature-image-right-4-8",
-  "feature-component-left-6-6",
-  "feature-component-right-6-6",
-  "feature-image-left-6-6",
-  "feature-image-right-6-6",
-  "feature-image-left-8-4",
-  "feature-image-right-8-4",
-  "feature-cards-below",
-  "feature-no-image-center",
-  "feature-no-image-left",
-  "filter-checkboxes",
-  "form-all-types",
-  "form-basic-center",
-  "form-basic-left",
-  "form-basic-right",
-  "form-fields-checkbox",
-  "form-fields-dates-quantities",
-  "form-fields-file-upload",
-  "form-fields-radio",
-  "form-fields-selects",
-  "form-fields-textarea",
-  "form-multi-step",
-  "form-full-width-only",
-  "form-paired-only",
-  "form-sections-single",
-  "form-sections-three",
-  "form-sections-two",
-  "header-page-header-with-breadcrumb",
-  "header-page-header",
-  "hero-background-image-light",
-  "hero-background-image",
-  "hero-center",
-  "hero-fullbleed",
-  "hero-image",
-  "hero-basic",
-  "stats-3-statistics",
-  "stats-4-statistics",
-  "stats-5-statistics",
-  "stats-right-6-column",
-  "stats-right-8-columns",
-];
-
-const pageTemplateKeys = [
-  "landing",
-  "about-us",
-  "blog",
-  "catalogue",
-  "application-management",
-  "form-page",
-  "multi-step-form",
-];
-
-const multiStepFormThumbnailMarkup = `<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        background: #fff;
-        color: #2f2f2f;
-        font-family: Inter, Arial, sans-serif;
-      }
-
-      .multi-step-thumbnail {
-        width: 1008px;
-        min-height: 608px;
-        padding: 32px 264px 0;
-        background: #fff;
-      }
-
-      .overline {
-        margin: 0 0 8px;
-        color: #3d3d3d;
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 1.4px;
-        line-height: 1;
-        text-transform: uppercase;
-      }
-
-      h1 {
-        margin: 0 0 16px;
-        color: #2f2f2f;
-        font-size: 28px;
-        font-weight: 700;
-        line-height: 1.15;
-      }
-
-      .intro {
-        margin: 0;
-        color: #555;
-        font-size: 15px;
-        line-height: 1.45;
-      }
-
-      .stepper {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        position: relative;
-        margin: 76px 0 34px;
-      }
-
-      .stepper::before {
-        position: absolute;
-        top: 11px;
-        right: 50px;
-        left: 50px;
-        height: 1px;
-        background: #e5e5e5;
-        content: "";
-      }
-
-      .step {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 9px;
-        color: #4a4a4a;
-        font-size: 12px;
-        line-height: 1;
-      }
-
-      .dot {
-        display: grid;
-        place-items: center;
-        width: 22px;
-        height: 22px;
-        border-radius: 999px;
-        background: #e3e3e3;
-        color: #555;
-        font-size: 11px;
-        font-weight: 700;
-      }
-
-      .step:first-child .dot {
-        background: #6b4df5;
-        color: #fff;
-      }
-
-      h2 {
-        margin: 0 0 14px;
-        color: #2f2f2f;
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 1.2;
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px 20px;
-      }
-
-      .field {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .full {
-        grid-column: 1 / -1;
-      }
-
-      label {
-        color: #333;
-        font-size: 12px;
-        line-height: 1;
-      }
-
-      input {
-        width: 100%;
-        height: 32px;
-        border: 1px solid #9f9f9f;
-        border-radius: 4px;
-        padding: 0 10px;
-        color: #4a4a4a;
-        font-size: 12px;
-        font-family: inherit;
-      }
-
-      .hint {
-        color: #666;
-        font-size: 10px;
-        line-height: 1;
-      }
-
-      .section-heading {
-        margin-top: 22px;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="multi-step-thumbnail">
-      <p class="overline">Event registration</p>
-      <h1>Register for STACK 2025</h1>
-      <p class="intro">Secure your spot at Singapore's premier government technology conference.</p>
-
-      <div class="stepper" aria-hidden="true">
-        <div class="step"><span class="dot">1</span><span>Personal Details</span></div>
-        <div class="step"><span class="dot">2</span><span>Preferences</span></div>
-        <div class="step"><span class="dot">3</span><span>Review</span></div>
-        <div class="step"><span class="dot">4</span><span>Confirm</span></div>
-      </div>
-
-      <h2>Personal Information</h2>
-      <div class="grid">
-        <div class="field">
-          <label>First name</label>
-          <input value="Wei Ming" />
-          <span class="hint">As per NRIC or passport</span>
-        </div>
-        <div class="field">
-          <label>Last name</label>
-          <input value="Tan" />
-        </div>
-        <div class="field full">
-          <label>Work email</label>
-          <input value="weiming.tan@tech.gov.sg" />
-          <span class="hint">Use your government email address</span>
-        </div>
-        <div class="field full">
-          <label>Mobile number (Optional)</label>
-          <input value="+65 9123 4567" />
-        </div>
-      </div>
-
-      <h2 class="section-heading">Work Information</h2>
-      <div class="field">
-        <label>Organisation</label>
-        <input />
-      </div>
-    </main>
-  </body>
-</html>`;
-
-const applicationManagementThumbnailMarkup = `<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        background: #fff;
-        color: #2f2f2f;
-        font-family: Inter, Arial, sans-serif;
-      }
-
-      .application-thumbnail {
-        width: 1008px;
-        min-height: 608px;
-        padding: 18px 66px 0;
-        background: #fff;
-      }
-
-      .breadcrumb {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        margin-bottom: 18px;
-        color: #333;
-        font-size: 12px;
-      }
-
-      .breadcrumb a {
-        color: #006fe6;
-        text-decoration: none;
-      }
-
-      .header {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 24px;
-        margin-bottom: 18px;
-      }
-
-      .title-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 14px;
-      }
-
-      .icon-box {
-        display: grid;
-        place-items: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 4px;
-        background: #edf6ff;
-        color: #222;
-        font-size: 18px;
-        line-height: 1;
-      }
-
-      h1 {
-        margin: 0;
-        color: #2f2f2f;
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 1.2;
-      }
-
-      .description {
-        margin: 0;
-        color: #444;
-        font-size: 12px;
-        line-height: 1.5;
-      }
-
-      .create {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        height: 32px;
-        border: 0;
-        border-radius: 5px;
-        padding: 0 18px;
-        background: #6b4df5;
-        color: #fff;
-        font-family: inherit;
-        font-size: 12px;
-      }
-
-      .content {
-        display: grid;
-        grid-template-columns: 168px 1fr;
-        gap: 24px;
-      }
-
-      .filter-head {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 20px;
-      }
-
-      h2 {
-        margin: 0;
-        color: #2f2f2f;
-        font-size: 16px;
-        font-weight: 700;
-      }
-
-      .clear {
-        color: #006fe6;
-        font-size: 12px;
-      }
-
-      .filter-group {
-        margin-bottom: 26px;
-      }
-
-      .filter-title {
-        margin: 0 0 14px;
-        color: #333;
-        font-size: 12px;
-        font-weight: 700;
-      }
-
-      .check {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 10px;
-        color: #333;
-        font-size: 12px;
-      }
-
-      .box {
-        width: 16px;
-        height: 16px;
-        border: 1px solid #a8a8a8;
-        border-radius: 5px;
-      }
-
-      .panel {
-        border: 1px solid #d9d9d9;
-        border-radius: 8px;
-        padding: 16px 16px 0;
-      }
-
-      .panel-title {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 14px;
-      }
-
-      .panel-icon {
-        width: 40px;
-        height: 40px;
-      }
-
-      h3 {
-        margin: 0;
-        font-size: 16px;
-        font-weight: 700;
-      }
-
-      .search-row {
-        display: grid;
-        grid-template-columns: 1fr 76px;
-        gap: 14px;
-        margin-bottom: 14px;
-      }
-
-      .search {
-        height: 32px;
-        border: 1px solid #a7a7a7;
-        border-radius: 5px;
-        padding: 0 12px;
-        color: #777;
-        font-family: inherit;
-        font-size: 12px;
-      }
-
-      .filter-button {
-        height: 32px;
-        border: 1px solid #4c4c4c;
-        border-radius: 5px;
-        background: #fff;
-        font-family: inherit;
-        font-size: 12px;
-      }
-
-      .result-count {
-        margin: 0 0 18px;
-        font-size: 12px;
-        font-weight: 700;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 12px;
-      }
-
-      th {
-        padding: 10px 12px;
-        border-bottom: 1px solid #d9d9d9;
-        color: #2f2f2f;
-        font-weight: 700;
-        text-align: left;
-      }
-
-      td {
-        padding: 12px;
-        border-bottom: 1px solid #e5e5e5;
-        color: #333;
-        vertical-align: top;
-      }
-
-      td:first-child {
-        color: #006fe6;
-      }
-
-      .badge {
-        display: inline-block;
-        border-radius: 4px;
-        padding: 3px 8px;
-        color: #fff;
-        font-size: 9px;
-        font-weight: 700;
-      }
-
-      .active {
-        background: #168040;
-      }
-
-      .pending {
-        background: #f6d447;
-        color: #2f2f2f;
-      }
-
-      .rejected {
-        background: #d62929;
-      }
-
-      .suspended {
-        background: #5a5a5a;
-      }
-
-      .view {
-        color: #6b4df5;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="application-thumbnail">
-      <div class="breadcrumb"><a href="#">Home</a><span>›</span><span>Applications</span></div>
-
-      <div class="header">
-        <div>
-          <div class="title-row">
-            <div class="icon-box">▦</div>
-            <h1>Applications</h1>
-          </div>
-          <p class="description">Browse and manage all registered applications in your organisation.</p>
-        </div>
-        <button class="create">＋ Create application</button>
-      </div>
-
-      <div class="content">
-        <aside>
-          <div class="filter-head"><h2>Filter by</h2><span class="clear">Clear all</span></div>
-          <div class="filter-group">
-            <p class="filter-title">Status</p>
-            <div class="check"><span class="box"></span>Active (8)</div>
-            <div class="check"><span class="box"></span>Pending (3)</div>
-            <div class="check"><span class="box"></span>Rejected (2)</div>
-            <div class="check"><span class="box"></span>Suspended (1)</div>
-          </div>
-          <div class="filter-group">
-            <p class="filter-title">Environment</p>
-            <div class="check"><span class="box"></span>Production (6)</div>
-            <div class="check"><span class="box"></span>Staging (5)</div>
-            <div class="check"><span class="box"></span>Development (3)</div>
-          </div>
-          <div class="filter-group">
-            <p class="filter-title">API type</p>
-            <div class="check"><span class="box"></span>REST (10)</div>
-            <div class="check"><span class="box"></span>GraphQL (2)</div>
-            <div class="check"><span class="box"></span>SOAP (2)</div>
-          </div>
-        </aside>
-
-        <section class="panel">
-          <div class="panel-title">
-            <div class="icon-box panel-icon">▦</div>
-            <h3>All applications</h3>
-          </div>
-          <div class="search-row">
-            <div class="search">Search applications</div>
-            <button class="filter-button">☷ Filter</button>
-          </div>
-          <p class="result-count">Showing 6/14 result(s)</p>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Application name</th>
-                <th>Organisation</th>
-                <th>Environment</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>APEX Gateway v2.1.0</td><td>[GVT] APEX</td><td>Production</td><td><span class="badge active">Active</span></td><td class="view">View</td></tr>
-              <tr><td>MyInfo Bridge v1.4.0</td><td>[GVT] NDI</td><td>Staging</td><td><span class="badge pending">Pending</span></td><td class="view">View</td></tr>
-              <tr><td>FormSG Webhook v3.0.0</td><td>[GVT] OGP</td><td>Production</td><td><span class="badge active">Active</span></td><td class="view">View</td></tr>
-              <tr><td>SingPass Auth v1.2.0</td><td>[GVT] GDS</td><td>Production</td><td><span class="badge rejected">Rejected</span></td><td class="view">View</td></tr>
-              <tr><td>Data.gov Sync v2.0.0</td><td>[GVT] SNDGO</td><td>Development</td><td><span class="badge suspended">Suspended</span></td><td class="view">View</td></tr>
-              <tr><td>CorpPass Verify v1.0.0</td><td>[GVT] ACRA</td><td>Staging</td><td><span class="badge active">Active</span></td><td class="view">View</td></tr>
-            </tbody>
-          </table>
-        </section>
-      </div>
-    </main>
-  </body>
-</html>`;
-
-const catalogueThumbnailMarkup = `<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        background: #fff;
-        color: #2f2f2f;
-        font-family: Inter, Arial, sans-serif;
-      }
-
-      .catalogue-thumbnail {
-        width: 1008px;
-        min-height: 608px;
-        padding: 40px 66px 0;
-        background: #fff;
-      }
-
-      .overline {
-        margin: 0 0 10px;
-        color: #2f2f2f;
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 1.4px;
-        line-height: 1;
-        text-transform: uppercase;
-      }
-
-      h1 {
-        margin: 0 0 16px;
-        color: #2f2f2f;
-        font-size: 28px;
-        font-weight: 700;
-        line-height: 1.15;
-      }
-
-      .intro {
-        margin: 0 0 4px;
-        color: #555;
-        font-size: 14px;
-        line-height: 1.45;
-      }
-
-      label {
-        display: block;
-        color: #333;
-        font-size: 12px;
-        line-height: 1;
-      }
-
-      .search {
-        width: 426px;
-        height: 33px;
-        margin-top: 8px;
-        border: 1px solid #a7a7a7;
-        border-radius: 5px;
-        padding: 0 12px;
-        color: #777;
-        font-size: 12px;
-      }
-
-      .content {
-        display: grid;
-        grid-template-columns: 170px 1fr;
-        gap: 54px;
-        margin-top: 72px;
-      }
-
-      .filter-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 20px;
-      }
-
-      h2 {
-        margin: 0;
-        font-size: 16px;
-        font-weight: 700;
-      }
-
-      .clear {
-        color: #006fe6;
-        font-size: 12px;
-      }
-
-      .filter-group {
-        margin-bottom: 26px;
-      }
-
-      .filter-title {
-        margin: 0 0 14px;
-        color: #333;
-        font-size: 12px;
-        font-weight: 700;
-      }
-
-      .check {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 10px;
-        color: #333;
-        font-size: 12px;
-      }
-
-      .box {
-        display: grid;
-        place-items: center;
-        width: 16px;
-        height: 16px;
-        border: 1px solid #a8a8a8;
-        border-radius: 5px;
-        color: #fff;
-        font-size: 11px;
-      }
-
-      .checked {
-        border-color: #6b4df5;
-        background: #6b4df5;
-      }
-
-      .results-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 16px;
-      }
-
-      .result-count {
-        margin: 0;
-        font-size: 16px;
-        font-weight: 700;
-      }
-
-      .sort {
-        width: 152px;
-        height: 33px;
-        border: 1px solid #a7a7a7;
-        border-radius: 5px;
-        padding: 0 10px;
-        color: #777;
-        font-size: 12px;
-        line-height: 33px;
-      }
-
-      .cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-      }
-
-      .card {
-        min-height: 172px;
-        border: 1px solid #d9d9d9;
-        border-radius: 6px;
-        padding: 16px;
-        background: #fff;
-      }
-
-      .badge {
-        display: inline-block;
-        margin-bottom: 18px;
-        border: 1px solid #ded8ff;
-        border-radius: 4px;
-        padding: 3px 8px;
-        background: #f4f1ff;
-        color: #6b4df5;
-        font-size: 9px;
-        line-height: 1;
-      }
-
-      h3 {
-        margin: 0 0 18px;
-        color: #1f1f1f;
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 1.25;
-      }
-
-      .card p {
-        margin: 0;
-        color: #555;
-        font-size: 12px;
-        line-height: 1.45;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="catalogue-thumbnail">
-      <p class="overline">Programmes</p>
-      <h1>Browse Programmes</h1>
-      <p class="intro">Explore available government programmes and services.</p>
-      <label>Search</label>
-      <div class="search">Search by name or keyword...</div>
-
-      <div class="content">
-        <aside>
-          <div class="filter-head">
-            <h2>Filters</h2>
-            <span class="clear">Clear all</span>
-          </div>
-          <div class="filter-group">
-            <p class="filter-title">Programme type</p>
-            <div class="check"><span class="box"></span>Opening Address (1)</div>
-            <div class="check"><span class="box"></span>Keynote (4)</div>
-            <div class="check"><span class="box"></span>Panel Discussion (6)</div>
-            <div class="check"><span class="box"></span>Presentation (12)</div>
-          </div>
-          <div class="filter-group">
-            <p class="filter-title">Sessions</p>
-            <div class="check"><span class="box checked">✓</span>Morning (12)</div>
-            <div class="check"><span class="box"></span>Afternoon (16)</div>
-          </div>
-          <div class="filter-group">
-            <p class="filter-title">Track</p>
-            <div class="check"><span class="box checked">✓</span>AI x Cybersecurity (4)</div>
-            <div class="check"><span class="box"></span>Resilient and Secure Cloud</div>
-          </div>
-        </aside>
-
-        <section>
-          <div class="results-head">
-            <p class="result-count">Showing 12 results</p>
-            <div class="sort">Sort by ˅</div>
-          </div>
-          <div class="cards">
-            <article class="card">
-              <span class="badge">Keynote</span>
-              <h3>Digital Infrastructure for the Next Decade</h3>
-              <p>An overview of Singapore's plans for resilient and future-ready digital infrastructure.</p>
-            </article>
-            <article class="card">
-              <span class="badge">Panel Discussion</span>
-              <h3>AI Governance in the Public Sector</h3>
-              <p>Panellists explore responsible AI adoption frameworks and inter-agency collaboration.</p>
-            </article>
-            <article class="card">
-              <span class="badge">Presentation</span>
-              <h3>Zero-Trust Architecture for...</h3>
-              <p>A deep dive into implementing zero-trust principles across legacy and modern systems.</p>
-            </article>
-            <article class="card">
-              <span class="badge">Keynote</span>
-              <h3>Securing the Cloud: Lessons from the Field</h3>
-            </article>
-            <article class="card">
-              <span class="badge">Presentation</span>
-              <h3>Incident Response Playbooks for CISOs</h3>
-            </article>
-            <article class="card">
-              <span class="badge">Panel Discussion</span>
-              <h3>Workforce Upskilling for Cyber Resilience</h3>
-            </article>
-          </div>
-        </section>
-      </div>
-    </main>
-  </body>
-</html>`;
-
-const aboutUsThumbnailMarkup = `<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        background: #fff;
-        color: #2f2f2f;
-        font-family: Inter, Arial, sans-serif;
-      }
-
-      .about-thumbnail {
-        width: 1008px;
-        min-height: 608px;
-        padding: 44px 66px 46px;
-        background: #fff;
-      }
-
-      .intro {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 66px;
-        margin-bottom: 58px;
-      }
-
-      h1 {
-        margin: 0;
-        color: #1f1f1f;
-        font-size: 31px;
-        font-weight: 700;
-        line-height: 1.2;
-      }
-
-      .lede {
-        margin: 0;
-        color: #4f4f4f;
-        font-size: 15px;
-        line-height: 1.55;
-      }
-
-      .media-grid {
-        display: grid;
-        grid-template-columns: 2fr 0.96fr;
-        gap: 22px;
-      }
-
-      .hero-image {
-        width: 100%;
-        height: 392px;
-        border-radius: 6px;
-        object-fit: cover;
-        object-position: center;
-        display: block;
-      }
-
-      .side {
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        gap: 22px;
-      }
-
-      .card {
-        min-height: 184px;
-        border: 1px solid #dedede;
-        border-radius: 6px;
-        padding: 16px;
-        background: #fff;
-      }
-
-      .thumb {
-        display: grid;
-        place-items: center;
-        width: 86px;
-        height: 42px;
-        margin-bottom: 28px;
-        border-radius: 8px;
-        background: #f4f4f4;
-        color: #555;
-        font-size: 12px;
-      }
-
-      .card p {
-        margin: 0 0 16px;
-        color: #555;
-        font-size: 12px;
-        line-height: 1.45;
-      }
-
-      .link {
-        color: #006fe6;
-        font-size: 12px;
-      }
-
-      .office-image {
-        width: 100%;
-        height: 184px;
-        border-radius: 6px;
-        object-fit: cover;
-        object-position: center;
-        display: block;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="about-thumbnail">
-      <section class="intro">
-        <h1>Building digital services that matter for Singapore</h1>
-        <p class="lede">
-          We are a team of designers, engineers, and product thinkers committed to delivering citizen-centric digital
-          experiences across government.
-        </p>
-      </section>
-
-      <section class="media-grid">
-        <img
-          class="hero-image"
-          src="https://images.unsplash.com/photo-1565350897149-38dfafa81d83?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0"
-          alt=""
-        />
-        <div class="side">
-          <article class="card">
-            <div class="thumb">Thumbnail</div>
-            <p>
-              Trusted by agencies across the whole-of-government ecosystem to deliver accessible, compliant, and
-              consistent digital interfaces.
-            </p>
-            <span class="link">Learn more →</span>
-          </article>
-          <img
-            class="office-image"
-            src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0"
-            alt=""
-          />
-        </div>
-      </section>
-    </main>
-  </body>
-</html>`;
-
-const landingThumbnailMarkup = `<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        background: #fff;
-        color: #2f2f2f;
-        font-family: Inter, Arial, sans-serif;
-      }
-
-      .landing-thumbnail {
-        width: 1008px;
-        min-height: 608px;
-        padding: 28px 66px 0;
-        background: #fff;
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 64px;
-        align-items: center;
-        min-height: 412px;
-      }
-
-      .overline {
-        margin: 0 0 12px;
-        color: #2f2f2f;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 1.3px;
-        line-height: 1;
-        text-transform: uppercase;
-      }
-
-      h1 {
-        margin: 0 0 18px;
-        color: #1f1f1f;
-        font-size: 40px;
-        font-weight: 700;
-        line-height: 1.08;
-      }
-
-      .intro {
-        max-width: 416px;
-        margin: 0 0 28px;
-        color: #555;
-        font-size: 16px;
-        line-height: 1.35;
-      }
-
-      .actions {
-        display: flex;
-        gap: 20px;
-      }
-
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 88px;
-        height: 32px;
-        border: 1px solid #6b4df5;
-        border-radius: 5px;
-        padding: 0 18px;
-        color: #6b4df5;
-        font-size: 12px;
-      }
-
-      .button.primary {
-        background: #6b4df5;
-        color: #fff;
-      }
-
-      .visual {
-        display: grid;
-        place-items: center;
-        width: 412px;
-        height: 412px;
-        border-radius: 10px;
-        background: #f8f8f8;
-        justify-self: end;
-      }
-
-      .visual img {
-        width: 240px;
-        height: 240px;
-        object-fit: contain;
-      }
-
-      .next-section {
-        margin-top: 56px;
-      }
-
-      .next-section h2 {
-        margin: 0 0 10px;
-        color: #1f1f1f;
-        font-size: 31px;
-        font-weight: 700;
-        line-height: 1.2;
-      }
-
-      .next-section p {
-        margin: 0;
-        color: #555;
-        font-size: 14px;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="landing-thumbnail">
-      <section class="hero">
-        <div>
-          <p class="overline">Singapore Government Digital Services</p>
-          <h1>One Platform.<br />Simpler Living.</h1>
-          <p class="intro">Access government services anytime, anywhere. Built for residents, designed for ease.</p>
-          <div class="actions">
-            <span class="button primary">Get Started</span>
-            <span class="button">Learn More</span>
-          </div>
-        </div>
-        <div class="visual">
-          <img src="CENTERED_PLACEHOLDER_IMAGE" alt="" />
-        </div>
-      </section>
-
-      <section class="next-section">
-        <p class="overline">Life Moments</p>
-        <h2>Built for Every Stage of Life</h2>
-        <p>Services grouped around your life moments - not government structures.</p>
-      </section>
-    </main>
-  </body>
-</html>`;
-
-const blogThumbnailMarkup = `<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        background: #fff;
-        color: #2f2f2f;
-        font-family: Inter, Arial, sans-serif;
-      }
-
-      .blog-thumbnail {
-        width: 1008px;
-        min-height: 608px;
-        background: #fff;
-      }
-
-      .hero {
-        height: 238px;
-        padding: 32px 66px 0;
-        background: #f7f7f7;
-      }
-
-      .breadcrumb {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        margin-bottom: 23px;
-        color: #1f1f1f;
-        font-size: 12px;
-        line-height: 1;
-      }
-
-      .breadcrumb .home {
-        color: #0d6efd;
-      }
-
-      .breadcrumb .story {
-        color: #0d6efd;
-      }
-
-      .breadcrumb .separator {
-        color: #777;
-      }
-
-      .overline {
-        margin: 0 0 10px;
-        color: #2f2f2f;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 1.2px;
-        line-height: 1;
-        text-transform: uppercase;
-      }
-
-      h1 {
-        max-width: 760px;
-        margin: 0 0 14px;
-        color: #2a2a2a;
-        font-size: 27px;
-        font-weight: 700;
-        line-height: 1.18;
-      }
-
-      .dek {
-        max-width: 640px;
-        margin: 0;
-        color: #555;
-        font-size: 15px;
-        line-height: 1.55;
-      }
-
-      .body {
-        padding: 32px 66px 0;
-      }
-
-      .copy {
-        max-width: 640px;
-        margin: 0 0 19px;
-        color: #555;
-        font-size: 12px;
-        line-height: 1.38;
-      }
-
-      .section {
-        margin-top: 65px;
-        max-width: 720px;
-      }
-
-      .section h2 {
-        margin: 0 0 8px;
-        color: #2a2a2a;
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 1.2;
-      }
-
-      .section p,
-      .section ol {
-        margin: 0;
-        color: #555;
-        font-size: 12px;
-        line-height: 1.32;
-      }
-
-      .section ol {
-        padding-left: 14px;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="blog-thumbnail">
-      <section class="hero">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          <span class="home">Home</span>
-          <span class="separator">›</span>
-          <span class="story">Stories</span>
-          <span class="separator">›</span>
-          <span>LifeSG Parenting Journey</span>
-        </nav>
-        <p class="overline">Success Story</p>
-        <h1>How LifeSG Helped 180,000 New Parents<br />Navigate Government Services</h1>
-        <p class="dek">A look at how the Parenting Journey feature reduced time-to-access for critical family services by 60% in its first year.</p>
-      </section>
-
-      <section class="body">
-        <p class="copy">When a child is born in Singapore, parents suddenly find themselves navigating a maze of government agencies - the Immigration and Checkpoints Authority for the birth certificate, HDB for housing grants, Baby Bonus from MSF, and CPF contributions. Each carries its own eligibility rules, deadlines, and application portals.</p>
-        <p class="copy">The LifeSG Parenting Journey was built to change this. By aggregating services across agencies into a single, guided flow, it removed the burden of discovery from parents during one of the most demanding periods of their lives.</p>
-
-        <div class="section">
-          <h2>The Challenge</h2>
-          <p>User research conducted in 2022 revealed three persistent pain points that parents faced when trying to access post-birth government services.</p>
-          <ol>
-            <li><strong>Fragmented entry points.</strong> Parents had to know which agency offered each benefit before they could begin.</li>
-            <li><strong>Repeated data entry.</strong> The same personal and household details were required across six separate agency forms.</li>
-            <li><strong>No status visibility.</strong> Once applications were submitted, parents had no unified view of their status across agencies.</li>
-          </ol>
-        </div>
-      </section>
-    </main>
-  </body>
-</html>`;
+const storybookBase = "https://www.webcomponent.designsystem.tech.gov.sg";
 
 const thumbWidth = 600;
 const thumbHeight = 400;
 const thumbnailInsetX = 72;
 const thumbnailInsetY = 48;
-const captureViewport = { width: 1440, height: 900 };
-const raisedDarkCanvasBackground = "#2a2a2a";
+const innerWidth = thumbWidth - thumbnailInsetX * 2;   // 456
+const innerHeight = thumbHeight - thumbnailInsetY * 2;  // 304
+
+// High-res capture viewport — same aspect ratio as the inner frame so
+// cover/contain produce identical results (no cropping, no letterboxing).
+const captureScale = 3;
+const captureViewport = {
+  width: innerWidth * captureScale,   // 1368
+  height: innerHeight * captureScale, // 912
+};
+
+// ---------------------------------------------------------------------------
+// Storybook story ID map (mirrors docs/.vitepress/data/storybook-ids.ts)
+// ---------------------------------------------------------------------------
+
+const storybookStoryIds = {
+  // Page templates
+  "about-us": "templates-about-us-basic--basic",
+  "application-management": "templates-application-management-application-list--application-list",
+  "application-shell-operational": "templates-application-shell-operational--operational-app-shell",
+  "blog": "templates-blog-success-story--success-story",
+  "catalogue": "templates-catalogue-search-filter--search-and-filter",
+  "form-page": "templates-form-basic--basic",
+  "landing": "templates-landing-basic--basic",
+  "multi-step-form": "templates-form-multi-step-form--multi-step-form",
+  "report-issue": "templates-form-report-issue--report-issue",
+  // Blocks
+  "cards-3-per-column": "blocks-cards--cards-3",
+  "cards-4-per-column": "blocks-cards--cards-4",
+  "cta-contained-primary-center": "blocks-call-to-action-contained-primary-center--default",
+  "cta-contained-primary": "blocks-call-to-action-contained-primary--default",
+  "cta-contained-raised-center": "blocks-call-to-action-contained-raised-center--default",
+  "cta-contained-raised": "blocks-call-to-action-contained-raised--default",
+  "cta-full-bleed-alternate-center": "blocks-call-to-action-full-bleed-alternate-center--default",
+  "cta-full-bleed-alternate": "blocks-call-to-action-full-bleed-alternate--default",
+  "cta-full-bleed-primary-center": "blocks-call-to-action-full-bleed-primary-center--default",
+  "cta-full-bleed-primary": "blocks-call-to-action-full-bleed-primary--default",
+  "feature-image-left-4-8": "blocks-feature--feature-image-left-48",
+  "feature-image-right-4-8": "blocks-feature--feature-image-right-48",
+  "feature-component-left-6-6": "blocks-feature--feature-component-left-66",
+  "feature-component-right-6-6": "blocks-feature--feature-component-right-66",
+  "feature-image-left-6-6": "blocks-feature--feature-image-left-66",
+  "feature-image-right-6-6": "blocks-feature--feature-image-right-66",
+  "feature-image-left-8-4": "blocks-feature--feature-image-left-84",
+  "feature-image-right-8-4": "blocks-feature--feature-image-right-84",
+  "feature-cards-below": "blocks-feature--feature-cards-below",
+  "feature-no-image-center": "blocks-feature--feature-no-image-center",
+  "feature-no-image-left": "blocks-feature--feature-no-image-left",
+  "filter-checkboxes": "blocks-filter--filter-checkboxes",
+  "form-all-types": "blocks-form--all-types",
+  "form-basic-center": "blocks-form--basic-center",
+  "form-basic-left": "blocks-form--basic-left",
+  "form-basic-right": "blocks-form--basic-right",
+  "form-fields-checkbox": "blocks-form--form-fields-checkbox",
+  "form-fields-dates-quantities": "blocks-form--form-fields-dates-quantities",
+  "form-fields-file-upload": "blocks-form--form-fields-file-upload",
+  "form-fields-radio": "blocks-form--form-fields-radio",
+  "form-fields-selects": "blocks-form--form-fields-selects",
+  "form-fields-textarea": "blocks-form--form-fields-textarea",
+  "form-multi-step": "blocks-form--form-multistep-stepper",
+  "form-full-width-only": "blocks-form--fullwidth-only",
+  "form-paired-only": "blocks-form--paired-only",
+  "form-sections-single": "blocks-form--sections-single",
+  "form-sections-three": "blocks-form--sections-three",
+  "form-sections-two": "blocks-form--sections-two",
+  "header-page-header-with-breadcrumb": "blocks-header--page-header-breadcrumb",
+  "header-page-header": "blocks-header--page-header",
+  "hero-background-image-light": "blocks-hero--hero-bg-image-light",
+  "hero-background-image": "blocks-hero--hero-bg-image",
+  "hero-center": "blocks-hero--hero-center",
+  "hero-fullbleed": "blocks-hero--hero-fullbleed",
+  "hero-image": "blocks-hero--hero-image",
+  "hero-basic": "blocks-hero--hero",
+  "stats-3-statistics": "blocks-stats--stats-3",
+  "stats-4-statistics": "blocks-stats--stats-4",
+  "stats-5-statistics": "blocks-stats--stats-5",
+  "stats-right-6-column": "blocks-stats--stats-right-6",
+  "stats-right-8-columns": "blocks-stats--stats-right-8",
+};
+
+// ---------------------------------------------------------------------------
+// Env-based filtering
+// ---------------------------------------------------------------------------
+
 const requestedKeys = new Set(
-  (process.env.THUMBNAIL_KEYS ?? "")
-    .split(",")
-    .map((key) => key.trim())
-    .filter(Boolean),
+  (process.env.THUMBNAIL_KEYS ?? "").split(",").map((k) => k.trim()).filter(Boolean),
 );
 const requestedThemes = new Set(
-  (process.env.THUMBNAIL_THEMES ?? "")
-    .split(",")
-    .map((theme) => theme.trim())
-    .filter(Boolean),
+  (process.env.THUMBNAIL_THEMES ?? "").split(",").map((t) => t.trim()).filter(Boolean),
 );
-const placeholderFixtureKeys = new Set([...blockThumbnailKeys, "landing"]);
-const needsPlaceholderFixture =
-  !requestedKeys.size || Array.from(requestedKeys).some((key) => placeholderFixtureKeys.has(key));
-// Default thumbnail generation captures both light and dark mode assets.
-// THUMBNAIL_THEMES is only for intentionally scoped maintenance runs.
-const thumbnailThemes = [
-  {
-    name: "day",
-    suffix: "",
-    isDark: false,
-    canvasBackground: "#fff",
-  },
-  {
-    name: "night",
-    suffix: "-dark",
-    isDark: true,
-    canvasBackground: "#0e0e0e",
-  },
+
+const themes = [
+  { name: "day", suffix: "", colorMode: "" },
+  { name: "night", suffix: "-dark", colorMode: "&globals=colorMode:night" },
 ];
 
-const raisedDarkCanvasKeys = new Set([
-  "cta-contained-primary-center",
-  "cta-contained-primary",
-  "cta-contained-raised-center",
-  "cta-contained-raised",
-  "filter-checkboxes",
-  "multi-step-form",
-]);
-const usesRaisedDarkCanvas = (key) => key.startsWith("form") || raisedDarkCanvasKeys.has(key);
+const thumbnailKeys = Object.keys(storybookStoryIds)
+  .filter((key) => !requestedKeys.size || requestedKeys.has(key));
+const themesToGenerate = themes.filter(
+  (t) => !requestedThemes.size || requestedThemes.has(t.name) || requestedThemes.has(t.suffix.replace("-", "")),
+);
 
-const getCanvasBackground = (key, theme) =>
-  theme.isDark && usesRaisedDarkCanvas(key) ? raisedDarkCanvasBackground : theme.canvasBackground;
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
 
-const getDarkCustomThumbnailStyles = (canvasBackground) => `
-  <style>
-    html.sgds-night-theme,
-    html.sgds-night-theme body {
-      background: ${canvasBackground} !important;
-      color: #f3f3f3 !important;
-    }
+const roundedRect = (w, h, r, fill) => Buffer.from(
+  `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg"><rect width="${w}" height="${h}" rx="${r}" fill="${fill}"/></svg>`,
+);
 
-    html.sgds-night-theme main,
-    html.sgds-night-theme .multi-step-thumbnail,
-    html.sgds-night-theme .application-thumbnail,
-    html.sgds-night-theme .catalogue-thumbnail,
-    html.sgds-night-theme .about-thumbnail,
-    html.sgds-night-theme .landing-thumbnail,
-    html.sgds-night-theme .blog-thumbnail,
-    html.sgds-night-theme .hero,
-    html.sgds-night-theme .body {
-      background: ${canvasBackground} !important;
-      color: #f3f3f3 !important;
-    }
+const buildStorybookUrl = (storyId, colorMode) =>
+  `${storybookBase}/iframe.html?id=${storyId}&viewMode=story${colorMode}`;
 
-    html.sgds-night-theme h1,
-    html.sgds-night-theme h2,
-    html.sgds-night-theme h3,
-    html.sgds-night-theme label,
-    html.sgds-night-theme th,
-    html.sgds-night-theme td,
-    html.sgds-night-theme .overline,
-    html.sgds-night-theme .filter-title,
-    html.sgds-night-theme .check,
-    html.sgds-night-theme .result-count,
-    html.sgds-night-theme .title-row,
-    html.sgds-night-theme .breadcrumb {
-      color: #f3f3f3 !important;
-    }
-
-    html.sgds-night-theme p,
-    html.sgds-night-theme ol,
-    html.sgds-night-theme .intro,
-    html.sgds-night-theme .description,
-    html.sgds-night-theme .hint,
-    html.sgds-night-theme .lede,
-    html.sgds-night-theme .dek,
-    html.sgds-night-theme .copy,
-    html.sgds-night-theme .card p {
-      color: #c6c6c6 !important;
-    }
-
-    html.sgds-night-theme input,
-    html.sgds-night-theme .search,
-    html.sgds-night-theme .sort,
-    html.sgds-night-theme .filter-button,
-    html.sgds-night-theme .panel,
-    html.sgds-night-theme .card,
-    html.sgds-night-theme .field,
-    html.sgds-night-theme .section,
-    html.sgds-night-theme .thumb,
-    html.sgds-night-theme .visual {
-      border-color: #525252 !important;
-      background: #1a1a1a !important;
-      color: #f3f3f3 !important;
-    }
-
-    html.sgds-night-theme .stepper::before,
-    html.sgds-night-theme th,
-    html.sgds-night-theme td {
-      border-color: #525252 !important;
-    }
-
-    html.sgds-night-theme .dot,
-    html.sgds-night-theme .box,
-    html.sgds-night-theme .icon-box {
-      border-color: #6b6b6b !important;
-      background: #2a2a2a !important;
-      color: #f3f3f3 !important;
-    }
-
-    html.sgds-night-theme .checked,
-    html.sgds-night-theme .step:first-child .dot {
-      border-color: #8d76f7 !important;
-      background: #6b4df5 !important;
-      color: #fff !important;
-    }
-
-    html.sgds-night-theme .clear,
-    html.sgds-night-theme .view,
-    html.sgds-night-theme .breadcrumb a,
-    html.sgds-night-theme .link {
-      color: #60aaf4 !important;
-    }
-
-    html.sgds-night-theme .pending {
-      color: #1a1a1a !important;
-    }
-
-    html.sgds-night-theme .hero-image,
-    html.sgds-night-theme .office-image {
-      filter: brightness(0.72) contrast(1.08);
-    }
-  </style>
-`;
-
-const prepareCustomHtml = (html, theme, key) => {
-  if (!theme.isDark) return html;
-
-  const canvasBackground = getCanvasBackground(key, theme);
-  return html
-    .replace("<html>", '<html class="sgds-night-theme">')
-    .replace("</head>", `${getDarkCustomThumbnailStyles(canvasBackground)}</head>`);
-};
-
-const roundedRect = (width, height, radius, fill) => Buffer.from(`
-  <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
-    <rect width="${width}" height="${height}" rx="${radius}" fill="${fill}"/>
-  </svg>
-`);
-
-const toHexColor = (r, g, b) =>
-  `#${[r, g, b].map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
-
-const getSampledBackgroundColor = async (image, fallback) => {
-  const { data, info } = await sharp(image)
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-  const counts = new Map();
-  const sampleStep = 8;
-  const edgeDepth = Math.max(1, Math.round(Math.min(info.width, info.height) * 0.04));
-  const addSample = (x, y) => {
-    const index = (y * info.width + x) * info.channels;
-    if (data[index + 3] < 128) return;
-    const color = toHexColor(data[index], data[index + 1], data[index + 2]);
-    counts.set(color, (counts.get(color) ?? 0) + 1);
-  };
-
-  for (let y = 0; y < info.height; y += sampleStep) {
-    for (let x = 0; x < info.width; x += sampleStep) {
-      if (x >= edgeDepth && x < info.width - edgeDepth && y >= edgeDepth && y < info.height - edgeDepth) continue;
-      addSample(x, y);
-    }
-  }
-
-  return [...counts.entries()].sort((current, next) => next[1] - current[1])[0]?.[0] ?? fallback;
-};
-
-const getInnerFrame = () => {
-  return {
-    insetX: thumbnailInsetX,
-    insetY: thumbnailInsetY,
-    innerWidth: thumbWidth - thumbnailInsetX * 2,
-    innerHeight: thumbHeight - thumbnailInsetY * 2,
-  };
-};
-
-const createCenteredPlaceholderDataUrl = async (theme) => {
-  const response = await fetch(placeholderImage);
-  if (!response.ok) {
-    throw new Error(`Unable to fetch placeholder image: ${response.status} ${response.statusText}`);
-  }
-
-  const source = Buffer.from(await response.arrayBuffer());
-  const logo = await sharp(source)
-    .trim({
-      background: placeholderBackground,
-      threshold: 10,
-    })
-    .resize(320, 320, {
-      fit: "inside",
-      withoutEnlargement: true,
-    })
-    .png()
-    .toBuffer();
-
-  const logoMetadata = await sharp(logo).metadata();
-  const width = logoMetadata.width ?? 0;
-  const height = logoMetadata.height ?? 0;
-  const canvasWidth = 1200;
-  const canvasHeight = 800;
-
-  let centeredPlaceholder = await sharp({
-    create: {
-      width: canvasWidth,
-      height: canvasHeight,
-      channels: 4,
-      background: placeholderBackground,
-    },
-  })
-    .composite([
-      {
-        input: logo,
-        left: Math.round((canvasWidth - width) / 2),
-        top: Math.round((canvasHeight - height) / 2),
-      },
-    ])
-    .png()
-    .toBuffer();
-
-  if (theme.isDark) {
-    centeredPlaceholder = await sharp(centeredPlaceholder)
-      .negate({ alpha: false })
-      .linear(1, 7)
-      .png()
-      .toBuffer();
-  }
-
-  return `data:image/png;base64,${centeredPlaceholder.toString("base64")}`;
-};
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
 
 await mkdir(outputDir, { recursive: true });
-if (needsPlaceholderFixture) {
-  for (const theme of thumbnailThemes) {
-    theme.placeholderImage = await createCenteredPlaceholderDataUrl(theme);
-  }
-}
 
 const browser = await chromium.launch({
   headless: true,
-  executablePath: chromePath,
+  ...(chromePath ? { executablePath: chromePath } : {}),
 });
 
 try {
@@ -1575,172 +146,109 @@ try {
     deviceScaleFactor: 1,
   });
 
-  const thumbnailTargets = [
-    ...blockThumbnailKeys.map((key) => ({
-      key,
-      url: `${baseUrl}/blocks/preview/raw/${key}`,
-      selector: ".block-raw-single > :first-child, .block-raw-single",
-      isBlock: true,
-    })),
-    ...pageTemplateKeys.map((key) => ({
-      key,
-      url: key === "form-page"
-        ? `${baseUrl}/blocks/preview/raw/form-all-types`
-        : `${baseUrl}/templates/page-templates/preview/raw/${key}`,
-      selector: key === "form-page" ? ".block-raw-single > :first-child, .block-raw-single" : "#app",
-      crop: key === "form-page" ? { left: 200, top: 0, width: 1040, height: 680 } : undefined,
-      customHtml: key === "multi-step-form"
-        ? multiStepFormThumbnailMarkup
-        : key === "application-management"
-          ? applicationManagementThumbnailMarkup
-          : key === "catalogue"
-            ? catalogueThumbnailMarkup
-            : key === "about-us"
-              ? aboutUsThumbnailMarkup
-              : key === "landing"
-                ? landingThumbnailMarkup
-                : key === "blog"
-                  ? blogThumbnailMarkup
-          : undefined,
-      customSelector: key === "multi-step-form"
-        ? ".multi-step-thumbnail"
-        : key === "application-management"
-          ? ".application-thumbnail"
-          : key === "catalogue"
-            ? ".catalogue-thumbnail"
-            : key === "about-us"
-              ? ".about-thumbnail"
-              : key === "landing"
-                ? ".landing-thumbnail"
-                : key === "blog"
-                  ? ".blog-thumbnail"
-          : undefined,
-      preserveCanvas: key === "multi-step-form" || key === "catalogue" || key === "about-us" || key === "landing" || key === "blog",
-      preserveImages: key === "about-us",
-    })),
-  ].filter((target) => !requestedKeys.size || requestedKeys.has(target.key));
-  const themesToGenerate = thumbnailThemes.filter(
-    (theme) => !requestedThemes.size || requestedThemes.has(theme.name) || requestedThemes.has(theme.suffix.replace("-", "")),
-  );
+  const innerMask = roundedRect(innerWidth, innerHeight, 14, "#fff");
 
   for (const theme of themesToGenerate) {
-    for (const target of thumbnailTargets) {
-      const { key, url, selector } = target;
-      if (target.customHtml) {
-        await page.setContent(
-          prepareCustomHtml(target.customHtml, theme, key).replace("CENTERED_PLACEHOLDER_IMAGE", theme.placeholderImage),
-          { waitUntil: "domcontentloaded" },
-        );
-      } else {
-        await page.goto(url, { waitUntil: "networkidle" });
-        await page.evaluate((isDark) => {
-          window.localStorage.setItem("sgds-docs-theme", isDark ? "dark" : "light");
-          document.documentElement.classList.toggle("sgds-night-theme", isDark);
-        }, theme.isDark);
-      }
+    for (const key of thumbnailKeys) {
+      const storyId = storybookStoryIds[key];
+      const url = buildStorybookUrl(storyId, theme.colorMode);
+
+      // Navigate and wait for content
+      await page.goto(url, { waitUntil: "networkidle", timeout: 60000 });
+      await page.waitForTimeout(5000);
+
+      // Remove Storybook padding/margin and min-height so content shrinks
+      // to its natural height instead of filling the viewport.
+      await page.evaluate(() => {
+        const reset = "margin:0!important;padding:0!important;width:100%!important;overflow:hidden!important;min-height:0!important;";
+        document.documentElement.style.cssText = reset;
+        document.body.style.cssText = reset;
+        // Storybook's .sb-main-centered wrapper uses min-height:100vh
+        const sbMain = document.querySelector(".sb-show-main");
+        if (sbMain) sbMain.style.cssText = "min-height:0!important;display:block!important;padding:0!important;";
+        const root = document.getElementById("storybook-root");
+        if (root) {
+          root.style.cssText = "margin:0!important;padding:0!important;width:100%!important;";
+          const child = root.firstElementChild;
+          if (child) child.style.cssText += "margin:0!important;";
+        }
+        // Remove min-height:100vh from all descendants so blocks render
+        // at their natural content height for the thumbnail.
+        document.querySelectorAll("*").forEach((el) => {
+          const style = getComputedStyle(el);
+          if (style.minHeight === `${window.innerHeight}px` || style.minHeight === "100vh") {
+            el.style.minHeight = "0px";
+          }
+        });
+      });
+
+      // Wait for fonts and web components
       await page.evaluate(async () => {
         await document.fonts?.ready;
-        if (customElements.get("sgds-button")) {
-          await customElements.whenDefined("sgds-button");
-        }
-        await new Promise((resolve) => window.requestAnimationFrame(() => resolve(undefined)));
+        await new Promise((r) => requestAnimationFrame(() => r()));
       });
 
-      if (!target.preserveImages) {
-        await page.evaluate(async (imageSrc) => {
-          document.querySelectorAll("img").forEach((image) => {
-            image.src = imageSrc;
-            image.style.objectFit = "cover";
-            image.style.objectPosition = "center";
-          });
-
-          document.querySelectorAll("[style]").forEach((element) => {
-            const style = element.getAttribute("style") ?? "";
-            if (style.includes("placeholder") || style.includes("url(")) {
-              element.style.backgroundImage = `url("${imageSrc}")`;
-              element.style.backgroundSize = "cover";
-              element.style.backgroundPosition = "center";
-            }
-          });
-
-          await Promise.all(
-            Array.from(document.images).map((image) => {
-              if (image.complete && image.naturalWidth > 0) return undefined;
-              return new Promise((resolve) => {
-                image.addEventListener("load", resolve, { once: true });
-                image.addEventListener("error", resolve, { once: true });
-              });
-            }),
-          );
-        }, theme.placeholderImage);
-      } else {
-        await page.evaluate(async () => {
-          await Promise.all(
-            Array.from(document.images).map((image) => {
-              if (image.complete && image.naturalWidth > 0) return undefined;
-              return new Promise((resolve) => {
-                image.addEventListener("load", resolve, { once: true });
-                image.addEventListener("error", resolve, { once: true });
-              });
-            }),
-          );
-        });
-      }
-
-      const captureBackground = getCanvasBackground(key, theme);
-      await page.addStyleTag({
-        content: `
-          html, body {
-            background: ${captureBackground} !important;
-            margin: 0 !important;
-          }
-
-          ${theme.isDark && usesRaisedDarkCanvas(key) ? `
-          .block-raw-single,
-          .block-raw-single > :first-child,
-          .sgds\\:bg-default {
-            background: ${captureBackground} !important;
-          }
-          ` : ""}
-        `,
+      // Wait for all images (including shadow DOM)
+      await page.evaluate(async () => {
+        const allImages = [
+          ...document.querySelectorAll("img"),
+          ...Array.from(document.querySelectorAll("*"))
+            .filter((el) => el.shadowRoot)
+            .flatMap((el) => [...el.shadowRoot.querySelectorAll("img")]),
+        ];
+        await Promise.all(
+          allImages.map((img) => {
+            if (img.complete && img.naturalWidth > 0) return;
+            return new Promise((r) => {
+              img.addEventListener("load", r, { once: true });
+              img.addEventListener("error", r, { once: true });
+            });
+          }),
+        );
       });
 
-      const captureTarget = page.locator(target.customSelector ?? selector).first();
-      const capturedScreenshot = await captureTarget.screenshot({ type: "png" });
-      const screenshot = target.crop
-        ? await sharp(capturedScreenshot).extract(target.crop).png().toBuffer()
-        : capturedScreenshot;
-      const fillBackground = await getSampledBackgroundColor(screenshot, captureBackground);
+      // Measure the actual content height and shrink the viewport to fit
+      // tightly around the content. This removes empty space from stories
+      // that use min-height:100vh and makes the content fill the thumbnail.
+      const contentHeight = await page.evaluate(() => {
+        const el = document.querySelector("#storybook-root > *:first-child")
+          ?? document.querySelector("#storybook-root");
+        return el ? el.scrollHeight : document.documentElement.scrollHeight;
+      });
+      const vpWidth = captureViewport.width;
+      await page.setViewportSize({ width: vpWidth, height: contentHeight || captureViewport.height });
+      await page.waitForTimeout(500);
 
-      const normalizedContent = target.preserveCanvas
-        ? screenshot
-          : await sharp(screenshot)
-          .trim({
-            background: fillBackground,
-            threshold: 2,
-          })
-          .extend({
-            top: 40,
-            right: 40,
-            bottom: 40,
-            left: 40,
-            background: fillBackground,
-          })
-          .png()
-          .toBuffer();
+      const raw = await page.screenshot({ type: "png", fullPage: false });
 
-      const { insetX, insetY, innerWidth, innerHeight } = getInnerFrame();
-      const innerMask = roundedRect(innerWidth, innerHeight, 14, "#fff");
+      const rawMeta = await sharp(raw).metadata();
+      const contentRatio = rawMeta.width / rawMeta.height;
+      const frameRatio = innerWidth / innerHeight;
 
-      const innerImage = await sharp(normalizedContent)
-        .resize(innerWidth, innerHeight, {
-          fit: "contain",
-          background: fillBackground,
-        })
+      // If content is taller than the frame, use cover + top to keep the
+      // header visible. Otherwise use contain + centre.
+      const isTall = contentRatio <= frameRatio;
+      const fit = isTall ? "cover" : "contain";
+      const position = isTall ? "top" : "centre";
+
+      // Sample edge colour for the contain background
+      const { data } = await sharp(raw).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+      const topLeftIdx = 0;
+      const bgR = data[topLeftIdx], bgG = data[topLeftIdx + 1], bgB = data[topLeftIdx + 2];
+      const fillBg = { r: bgR, g: bgG, b: bgB, alpha: 255 };
+
+      const cropped = await sharp(raw)
+        .resize(innerWidth, innerHeight, { fit, position, background: fillBg })
+        .png()
+        .toBuffer();
+
+      // Apply rounded corner mask
+      const innerImage = await sharp(cropped)
         .composite([{ input: innerMask, blend: "dest-in" }])
         .png()
         .toBuffer();
 
+      // Place inside the 600x400 canvas
       await sharp({
         create: {
           width: thumbWidth,
@@ -1749,13 +257,11 @@ try {
           background: { r: 0, g: 0, b: 0, alpha: 0 },
         },
       })
-        .composite([
-          { input: innerImage, left: insetX, top: insetY },
-        ])
-        .png()
-        .toFile(`${outputDirPath}${key}${theme.suffix}.png`);
+        .composite([{ input: innerImage, left: thumbnailInsetX, top: thumbnailInsetY }])
+        .webp({ quality: 85 })
+        .toFile(`${outputDirPath}${key}${theme.suffix}.webp`);
 
-      console.log(`Generated ${key}${theme.suffix}.png`);
+      console.log(`Generated ${key}${theme.suffix}.webp`);
     }
   }
 } finally {

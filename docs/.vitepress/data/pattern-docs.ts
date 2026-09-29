@@ -144,6 +144,7 @@ export const pageTemplateRecommendedOrder: string[] = [
   "blog",
   "catalogue",
   "application-management",
+  "application-shell-operational",
   "form-page",
   "multi-step-form",
 ];
@@ -736,6 +737,26 @@ const patternDocs: Record<string, PatternDoc> = {
       {
         title: "Application list",
         description: "Sidebar filters, search bar, results count, and a paginated table of records.",
+      },
+    ],
+  },
+  "application-shell-operational": {
+    title: "Application shell (operational)",
+    group: "page templates",
+    categoryLabel: "Browse and manage",
+    whenToUse: [
+      "For operational dashboards where staff monitor, triage, and act on live items",
+      "When the layout needs a persistent sidebar, header navigation, and a main content area",
+      "For internal tools with a shell that stays constant while the content area changes",
+    ],
+    whenNotToUse: [
+      "For public-facing pages — use the landing or about-us template instead",
+      "For simple form submissions — use the form page template instead",
+    ],
+    demos: [
+      {
+        title: "Operational app shell",
+        description: "Persistent sidebar navigation, top header bar, and a main content region for operational workflows.",
       },
     ],
   },

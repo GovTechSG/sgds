@@ -45,8 +45,8 @@ export const storybookStoryIds: Record<string, string> = {
   "block:feature-cards-below": "blocks-feature--feature-cards-below",
   "block:feature-no-image-center": "blocks-feature--feature-no-image-center",
   "block:feature-no-image-left": "blocks-feature--feature-no-image-left",
-  "block:filter": "blocks-filter-checkboxes--filter-checkboxes",
-  "block:filter-checkboxes": "blocks-filter-checkboxes--filter-checkboxes",
+  "block:filter": "blocks-filter--filter-checkboxes",
+  "block:filter-checkboxes": "blocks-filter--filter-checkboxes",
   "block:form-all-types": "blocks-form--all-types",
   "block:form-basic-center": "blocks-form--basic-center",
   "block:form-basic-left": "blocks-form--basic-left",
@@ -79,6 +79,7 @@ export const storybookStoryIds: Record<string, string> = {
   "block:stats-5-statistics": "blocks-stats--stats-5",
   "block:stats-right-6-column": "blocks-stats--stats-right-6",
   "block:stats-right-8-columns": "blocks-stats--stats-right-8",
+  "template:application-shell-operational": "templates-application-shell-operational--operational-app-shell",
 };
 
 /**
