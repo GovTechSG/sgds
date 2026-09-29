@@ -38,6 +38,11 @@ export type GetStartedCodeBlock = {
   filename?: string;
 };
 
+export type GetStartedEmbed = {
+  src: string;
+  title: string;
+};
+
 export type GetStartedDemoExample = {
   title: string;
   description: string;
@@ -74,6 +79,7 @@ export type GetStartedSection = {
   codeTabs?: GetStartedCodeTab[];
   codeTabsShowLineNumbers?: boolean;
   codeBlock?: GetStartedCodeBlock;
+  embed?: GetStartedEmbed;
 };
 
 export type GetStartedTableRow = {
@@ -427,6 +433,10 @@ export const designTabs: GetStartedDesignTab[] = [
             { title: "Search", description: "Search for SGDS v3." },
             { title: "Add", description: "Add the libraries required for your project." },
           ],
+          embed: {
+            src: "https://app.supademo.com/embed/cmu420aqd02sbyp0kjznbxk5k?embed_v=2&utm_source=embed",
+            title: "Set up your Figma workspace",
+          },
         },
         {
           title: "Need an account?",
@@ -475,6 +485,10 @@ export const designTabs: GetStartedDesignTab[] = [
                 'Join our <a href="https://t.me/+RIkBEGx5R0VjOTM1" target="_blank" rel="noopener noreferrer">Telegram channel</a> to get updates on UI kit availability, news, and releases, or get help.',
             },
           ],
+          embed: {
+            src: "https://app.supademo.com/embed/cmu43txlq0006wi0j1z7wlswp?embed_v=2&utm_source=embed",
+            title: "Get started with SGDS v3 UI kit",
+          },
         },
         {
           title: "Compliance requirement",
