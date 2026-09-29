@@ -6,8 +6,11 @@
  * Detected as code:
  *   - Backtick-wrapped fragments: `hasFeedback`
  *   - HTML/component attribute fragments: prop="value", prop='value', prop=value
+ * Detected as links:
+ *   - Markdown links: [label](/path)
  */
 const propAttributePattern = /^[a-zA-Z][\w-]*=(?:"[^"]+"|'[^']+'|[A-Za-z0-9_-]+)$/;
+const markdownLinkPattern = /^\[([^\]]+)\]\(([^)]+)\)$/;
 
 const escapeRegExp = (value: string) =>
   value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -18,7 +21,7 @@ const inlineCodePattern = (codeTerms: readonly string[] = []) => {
     : "";
 
   return new RegExp(
-    `(\`[^\`]+\`|\\b[a-zA-Z][\\w-]*=(?:"[^"]+"|'[^']+'|[A-Za-z0-9_-]+)${termPattern})`,
+    `(\\[[^\\]]+\\]\\([^)]+\\)|\`[^\`]+\`|\\b[a-zA-Z][\\w-]*=(?:"[^"]+"|'[^']+'|[A-Za-z0-9_-]+)${termPattern})`,
     "g",
   );
 };
@@ -26,6 +29,7 @@ const inlineCodePattern = (codeTerms: readonly string[] = []) => {
 export type TextPart = {
   isCode: boolean;
   text: string;
+  href?: string;
 };
 
 export const textParts = (text: string, codeTerms: readonly string[] = []): TextPart[] => {
@@ -35,6 +39,15 @@ export const textParts = (text: string, codeTerms: readonly string[] = []): Text
     .split(inlineCodePattern(codeTerms))
     .filter(Boolean)
     .map((part) => {
+      const markdownLinkMatch = part.match(markdownLinkPattern);
+      if (markdownLinkMatch) {
+        return {
+          isCode: false,
+          text: markdownLinkMatch[1],
+          href: markdownLinkMatch[2],
+        };
+      }
+
       const isBacktickCode = part.startsWith("`") && part.endsWith("`");
       const isPropCode = propAttributePattern.test(part);
       const isCodeTerm = codeTermSet.has(part);

@@ -232,7 +232,7 @@ try {
       const position = isTall ? "top" : "centre";
 
       // Sample edge colour for the contain background
-      const { data, info } = await sharp(raw).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+      const { data } = await sharp(raw).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
       const topLeftIdx = 0;
       const bgR = data[topLeftIdx], bgG = data[topLeftIdx + 1], bgB = data[topLeftIdx + 2];
       const fillBg = { r: bgR, g: bgG, b: bgB, alpha: 255 };

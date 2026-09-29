@@ -17,9 +17,9 @@
  *   Writes diff JSON to stdout. Use --output <path> to write to a file instead.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { execSync } from "node:child_process";
+import { execSync, execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -44,6 +44,14 @@ for (let i = 0; i < args.length; i++) {
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
+
+const SEMVER_RE = /^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$/;
+
+function assertValidVersion(version) {
+  if (version !== "latest" && !SEMVER_RE.test(version)) {
+    throw new Error(`Invalid version format: "${version}". Expected semver (e.g. 3.27.0)`);
+  }
+}
 
 function getStableVersions() {
   const json = execSync("npm view @govtechsg/sgds-web-component versions --json", {
@@ -77,14 +85,17 @@ function resolvePreviousStableVersion(targetVersion) {
 }
 
 function downloadCem(version, destDir) {
+  assertValidVersion(version);
   mkdirSync(destDir, { recursive: true });
-  execSync(
-    `npm pack @govtechsg/sgds-web-component@${version} --pack-destination "${destDir}"`,
-    { encoding: "utf-8", stdio: "pipe" },
-  );
+  execFileSync("npm", ["pack", `@govtechsg/sgds-web-component@${version}`, "--pack-destination", destDir], {
+    encoding: "utf-8",
+    stdio: "pipe",
+  });
   // Find the tarball
-  const tgz = execSync(`ls "${destDir}"/*.tgz`, { encoding: "utf-8" }).trim();
-  execSync(`tar xzf "${tgz}" -C "${destDir}"`, { stdio: "pipe" });
+  const tgzFiles = readdirSync(destDir).filter((f) => f.endsWith(".tgz"));
+  if (tgzFiles.length === 0) throw new Error(`No .tgz found in ${destDir}`);
+  const tgz = join(destDir, tgzFiles[0]);
+  execFileSync("tar", ["xzf", tgz, "-C", destDir], { stdio: "pipe" });
   const cemPath = join(destDir, "package", "custom-elements.json");
   if (!existsSync(cemPath)) {
     throw new Error(`CEM not found in package at ${cemPath}`);
@@ -192,7 +203,8 @@ function diffArrays(oldArr, newArr) {
 // ---------------------------------------------------------------------------
 
 function main() {
-  // Resolve target version
+  // Validate and resolve target version
+  assertValidVersion(targetVersion);
   if (targetVersion === "latest") {
     targetVersion = resolveLatestStableVersion();
     console.error(`Resolved latest stable version: ${targetVersion}`);
