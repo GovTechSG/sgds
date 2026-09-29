@@ -138,7 +138,7 @@ const canZoomOut = computed(() => zoomLevel.value > ZOOM_MIN);
   </figure>
 
   <sgds-modal
-    :open="fullscreenOpen"
+    :open.prop="fullscreenOpen"
     size="fullscreen"
     @sgds-after-hide="closeFullscreen"
   >
