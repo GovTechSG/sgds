@@ -166,7 +166,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           // inside Storybook stories. These resolve against localhost:5173/ when
           // the iframe is loaded via /__storybook, so we intercept known patterns
           // and forward them to the Storybook CDN.
-          const storybookAssetPatterns = /^\/(placeholder-sgds\.png|sb-common-assets\/|sb-addons\/|sb-manager\/|assets\/)/;
+          const storybookAssetPatterns = /^\/(placeholder-sgds\.png|logo-white\.svg|sb-common-assets\/|sb-addons\/|sb-manager\/|assets\/)/;
           server.middlewares.use(async (req, res, next) => {
             if (!req.url || !storybookAssetPatterns.test(req.url)) return next();
             const target = `https://www.webcomponent.designsystem.tech.gov.sg${req.url}`;
@@ -201,6 +201,7 @@ export default defineConfig({
         items: [
           { text: "Accordion", link: "/components/accordion" },
           { text: "Alert", link: "/components/alert" },
+          { text: "Appnav", link: "/components/appnav" },
           { text: "Badge", link: "/components/badge" },
           { text: "Breadcrumb", link: "/components/breadcrumb" },
           { text: "Button", link: "/components/button" },

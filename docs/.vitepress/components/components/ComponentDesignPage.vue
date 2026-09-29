@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { withBase } from "vitepress";
 import Section from "../foundations/Section.vue";
 import AnatomySection from "./AnatomySection.vue";
 import BehaviourSection from "./BehaviourSection.vue";
@@ -12,7 +13,7 @@ import UpdatesSection from "./UpdatesSection.vue";
 import { getComponentDoc } from "../../data/component-docs";
 import { accordionV2Data } from "../../data/accordion-v2";
 import CodeToken from "../ui/CodeToken.vue";
-import { textParts } from "../../utils/text-parts";
+import { linkedTextParts, textParts } from "../../utils/text-parts";
 import { setupPortalSteppers } from "../../utils/portal-stepper";
 
 const props = defineProps<{
@@ -443,10 +444,10 @@ onBeforeUnmount(() => {
                 <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)] sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   <li v-for="item in section.items" :key="item" class="sgds:mt-0">
                     <template
-                      v-for="(part, index) in textParts(item)"
+                      v-for="(part, index) in linkedTextParts(item)"
                       :key="`${item}-${index}`"
                     >
-                      <a v-if="part.href" :href="part.href" class="sgds:inline sgds:align-baseline sgds:normal-case">{{ part.text }}</a>
+                      <a v-if="part.href" :href="withBase(part.href)" class="sgds:text-link-default sgds:underline">{{ part.text }}</a>
                       <CodeToken v-else-if="part.isCode" :label="part.text" />
                       <template v-else>{{ part.text }}</template>
                     </template>
@@ -454,6 +455,10 @@ onBeforeUnmount(() => {
                 </ul>
               </article>
             </div>
+          </Section>
+
+          <Section v-if="doc.usage.showBehaviours && doc.usage.behaviours?.length" title="Behaviours">
+            <BehaviourSection :items="doc.usage.behaviours" />
           </Section>
 
           <Section v-if="mergedBestPractices.length" title="Best practices" gap="sgds:gap-[var(--sgds-gap-xl)]">
