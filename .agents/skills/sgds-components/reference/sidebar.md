@@ -33,8 +33,7 @@
 - `collapsed` on `<sgds-sidebar>` switches to icon-only mode — all labels are hidden, only `icon` slot icons are shown.
 - `<sgds-sidebar-group>` at level 0 (direct child of sidebar or section) opens a **drawer overlay** when clicked; at levels 1+ it toggles an **inline submenu**.
 - `<sgds-sidebar-section>` provides visual grouping with an optional header; add `collapsible` to let users toggle its visibility.
-- `icon` is **required** on every `<sgds-sidebar-item>` and `<sgds-sidebar-group>` at levels 1 and 2 — omitting it breaks icon-only collapse mode. Always use `size="md"` on `<sgds-icon>` in sidebar slots (e.g. `<sgds-icon name="house" slot="icon" size="md">`).
-- **Fallback icon**: if you are unsure whether an icon name exists, use `name="placeholder"` — this always renders a valid icon and prevents broken icon slots.
+- `icon` is **recommended** on every `<sgds-sidebar-item>` and `<sgds-sidebar-group>` at levels 1 and 2 for the best collapsed-mode experience. Always use `size="md"` on `<sgds-icon>` in sidebar slots (e.g. `<sgds-icon name="house" slot="icon" size="md">`). If the `icon` slot is omitted, the item/group is **automatically hidden** when the sidebar is collapsed — no empty button space is rendered.
 - `sgds-select` fires with `{ activeItem: string }` (the `name` of the selected item) whenever an item or group is activated.
 - Navigation via anchor: place an `<a href="...">` as a direct child of `<sgds-sidebar-item>` — on activation the sidebar automatically clicks it.
 
@@ -48,8 +47,7 @@
 ## Edge Cases
 
 - **Missing `name` on items**: `active` tracking will not work — always provide a unique `name` on every item and group.
-- **Missing `icon` at levels 1–2**: breaks icon-only collapse mode — always supply an `icon` slot with `size="md"` at these levels even if visually redundant.
-- **Unknown icon name**: if an icon name cannot be verified, use `name="placeholder"` as a safe fallback — do not omit the `icon` slot or leave the name empty.
+- **Missing `icon` at levels 1–2**: the item/group is automatically hidden when the sidebar is collapsed. This is intentional — if you want the item visible in icon-only mode, supply an `icon` slot with `size="md"`.
 - **Nesting beyond level 3**: not officially supported — limit to 3 levels to avoid rendering issues.
 - **`sgds-sidebar-section` `collapsed` without `collapsible`**: the section renders collapsed but has no user control to expand — only use `collapsed` together with `collapsible`.
 - **`activeItem` name collision**: if two items share the same `name`, the sidebar highlights both — ensure all `name` values are unique across the entire sidebar tree.
@@ -183,15 +181,17 @@
 
 | Attribute | Type     | Default | Purpose                                          |
 | --------- | -------- | ------- | ------------------------------------------------ |
-| `name`    | `string` | `""`    | Unique identifier used for active state matching |
-| `title`   | `string` | `""`    | Display label shown in the sidebar               |
+| `name`       | `string`  | `""`    | Unique identifier used for active state matching |
+| `title`      | `string`  | `""`    | Display label shown in the sidebar               |
+| `hasIconSlot`| `boolean` | `false` | SSR indicator for icon slot presence. Auto-detected at runtime |
 
 ### `<sgds-sidebar-group>`
 
-| Attribute | Type     | Default | Purpose                                          |
-| --------- | -------- | ------- | ------------------------------------------------ |
-| `name`    | `string` | `""`    | Unique identifier used for active state matching |
-| `title`   | `string` | `""`    | Display label shown as the group header          |
+| Attribute    | Type      | Default | Purpose                                          |
+| ------------ | --------- | ------- | ------------------------------------------------ |
+| `name`       | `string`  | `""`    | Unique identifier used for active state matching |
+| `title`      | `string`  | `""`    | Display label shown as the group header          |
+| `hasIconSlot`| `boolean` | `false` | SSR indicator for icon slot presence. Auto-detected at runtime |
 
 | Property (read-only) | Type      | Purpose                                                                                                                                        |
 | -------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -214,14 +214,14 @@
 | `sgds-sidebar` | *(default)* | — | `sgds-sidebar-item`, `sgds-sidebar-group`, `sgds-sidebar-section` — top-level items outside sections are valid |
 | `sgds-sidebar` | `upper` | — | Brand or logo content rendered in the sidebar header — accepts any HTML (`<div>`, `<img>`, custom element). Shown above the navigation items. |
 | `sgds-sidebar` | `lower` | — | Footer area at the bottom of the sidebar, pinned below the main navigation. Typically used for secondary actions such as Settings, user account, logout, or a user avatar. **Always prefer `sgds-sidebar-*` sub-components** — wrap them in `sgds-sidebar-section` to keep padding consistent with the rest of the sidebar. If passing custom HTML (e.g. an avatar component) instead, match the padding manually using `sgds:px-component-xs` (`--sgds-component-padding-xs`) on the x-axis and `sgds:py-2` on the y-axis. |
-| `sgds-sidebar-item` | `icon` | **Required at levels 1 & 2** | Icon before the label (use `<sgds-icon name="..." slot="icon" size="md">`) |
+| `sgds-sidebar-item` | `icon` | Recommended at levels 1 & 2 | Icon before the label (use `<sgds-icon name="..." slot="icon" size="md">`). If omitted, the item is hidden when the sidebar is collapsed |
 | `sgds-sidebar-item` | `indicator` | — | Notification count or status indicator after the label. Use `<sgds-badge outlined="" variant="white">` or a custom element ≤ 24×24 px |
-| `sgds-sidebar-group` | `icon` | **Required at levels 1 & 2** | Icon before the group label (use `<sgds-icon name="..." slot="icon" size="md">`) |
+| `sgds-sidebar-group` | `icon` | Recommended at levels 1 & 2 | Icon before the group label (use `<sgds-icon name="..." slot="icon" size="md">`). If omitted, the group is hidden when the sidebar is collapsed |
 | `sgds-sidebar-group` | `indicator` | — | Notification count or status indicator after the group label. A chevron is always auto-appended after this. Use `<sgds-badge outlined="" variant="white">` or a custom element ≤ 24×24 px |
 | `sgds-sidebar-group` | *(default)* | — | Nested `sgds-sidebar-item` or `sgds-sidebar-group` children |
 | `sgds-sidebar-section` | *(default)* | — | `sgds-sidebar-item` and `sgds-sidebar-group` elements |
 
-> **`icon` is compulsory on every `sgds-sidebar-item` and `sgds-sidebar-group` at level 1 (direct children of `sgds-sidebar` or `sgds-sidebar-section`) and level 2 (children of a root group). This applies regardless of whether the component is `sgds-sidebar-group` or `sgds-sidebar-item`. Omitting it at these levels breaks the icon-only collapse mode and the sidebar's visual consistency.**
+> **`icon` is recommended on every `sgds-sidebar-item` and `sgds-sidebar-group` at level 1 and level 2. If omitted, the item/group is automatically hidden when the sidebar is collapsed — no empty button space is rendered.**
 
 ## Events
 
@@ -549,4 +549,4 @@ Non-visible items (inside collapsed groups or collapsed sections) are removed fr
 
 ---
 
-**For AI agents**: Use `name` on every `sgds-sidebar-item` and `sgds-sidebar-group` — without it, `active` tracking will not work. `sgds-sidebar-section` accepts `name` for identification but its `name` does NOT participate in `active` tracking — only items and groups do. Top-level `sgds-sidebar-item` elements placed directly inside `sgds-sidebar` (outside any section) are valid. The `upper`, `lower`, and `indicator` slots accept any HTML — not just `sgds-icon`. Use `upper` for headers (brand names, logos), `lower` for footers (user menus, copyright info), and `indicator` for badges and indicators. At level 0, `sgds-sidebar-group` opens a drawer overlay (items slide in from the side); at level 1+, it toggles an inline submenu. Use `collapsible` (boolean attribute) on `sgds-sidebar-section` to let users collapse the section. **`icon` is compulsory on every `sgds-sidebar-item` and `sgds-sidebar-group` at level 1 and level 2 — this rule applies to both component types equally. Never omit it at these levels, even for groups that only serve as structural containers.** **Icon fallback rule**: when you are not certain that a specific `sgds-icon` name exists, always use `name="placeholder"` — never guess an icon name or omit the slot. Only use a named icon if you have seen it confirmed in existing playground or Storybook examples.
+**For AI agents**: Use `name` on every `sgds-sidebar-item` and `sgds-sidebar-group` — without it, `active` tracking will not work. `sgds-sidebar-section` accepts `name` for identification but its `name` does NOT participate in `active` tracking — only items and groups do. Top-level `sgds-sidebar-item` elements placed directly inside `sgds-sidebar` (outside any section) are valid. The `upper`, `lower`, and `indicator` slots accept any HTML — not just `sgds-icon`. Use `upper` for headers (brand names, logos), `lower` for footers (user menus, copyright info), and `indicator` for badges and indicators. At level 0, `sgds-sidebar-group` opens a drawer overlay (items slide in from the side); at level 1+, it toggles an inline submenu. Use `collapsible` (boolean attribute) on `sgds-sidebar-section` to let users collapse the section. **`icon` is recommended on every `sgds-sidebar-item` and `sgds-sidebar-group` at level 1 and level 2. If omitted, the item/group is automatically hidden when the sidebar is collapsed — no empty space is rendered.**

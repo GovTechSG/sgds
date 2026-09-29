@@ -88,6 +88,9 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
   Subscribe to newsletter
 </sgds-checkbox>
 
+<!-- Label-free checkbox with ariaLabel (e.g. inside a data table) -->
+<sgds-checkbox .ariaLabel=${"Select row"}></sgds-checkbox>
+
 <!-- Listen to group change -->
 <sgds-checkbox-group id="my-group" label="Options">
   <sgds-checkbox value="a">Option A</sgds-checkbox>
@@ -128,6 +131,7 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 | `noValidate` | boolean | `false` | Disables native and SGDS validation (standalone) |
 | `hasFeedback` | `style \| text \| both` | — | Validation feedback display (standalone) |
 | `invalidFeedback` | string | `""` | Error message (standalone) |
+| `ariaLabel` | string | `""` | Accessible label forwarded to the internal input's `aria-label`. Use only when no default slot (visible label) is provided. |
 
 ## Slots
 
@@ -169,3 +173,4 @@ No CSS styling modifications — custom properties and CSS parts are not exposed
 6. `hasFeedback` type differs: `<sgds-checkbox-group hasFeedback>` takes a boolean; `<sgds-checkbox hasFeedback="both">` takes a string enum (`style | text | both`). Never add `hasFeedback="both"` to a group.
 7. For custom validation, add `noValidate` and `hasFeedback` to the component, then call `setInvalid(true/false)` and set `invalidFeedback` inside the `sgds-change` event listener.
 8. `setInvalid(true)` emits `sgds-invalid`; `setInvalid(false)` emits `sgds-valid`.
+9. `ariaLabel` is a **property-only** API (no HTML attribute on the host). Set it via `.ariaLabel` property binding (e.g. `.ariaLabel=${"Select row"}`). Use it only when no default slot content (visible label) is provided — it forwards to the internal `<input>`'s `aria-label` attribute. Do NOT slot visually-hidden spans into the checkbox as label alternatives — this triggers the internal label rendering and causes layout issues.
