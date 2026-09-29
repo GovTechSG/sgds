@@ -197,14 +197,11 @@ const hasThumbnail = (key: string) =>
   !placeholderThumbnailKeys.has(key) &&
   (!isBlockOverview.value || blockThumbnailKeys.has(key) || key.startsWith("form-"));
 
-const thumbnailVersion = "20260928-app-shell";
-
-const webpThumbnailKeys = new Set(["application-shell-operational"]);
+const thumbnailVersion = "20260928-webp";
 
 const getThumbnailSrc = (key: string) => {
   const themeSuffix = isDarkTheme.value ? "-dark" : "";
-  const ext = webpThumbnailKeys.has(key) ? "webp" : "png";
-  return `${withBase(`/templates/thumbnails/${key}${themeSuffix}.${ext}`)}?v=${thumbnailVersion}`;
+  return `${withBase(`/templates/thumbnails/${key}${themeSuffix}.webp`)}?v=${thumbnailVersion}`;
 };
 </script>
 
