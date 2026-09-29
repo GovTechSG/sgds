@@ -81,6 +81,7 @@ export default {
           import("@govtechsg/sgds-web-component/components/SystemBanner/index.js");
           import("@govtechsg/sgds-web-component/components/Tab/index.js");
           import("@govtechsg/sgds-web-component/components/Table/index.js");
+          import("@govtechsg/sgds-web-component/components/DataTable/index.js");
           import("@govtechsg/sgds-web-component/components/TableOfContents/index.js");
           import("@govtechsg/sgds-web-component/components/Textarea/index.js");
           import("@govtechsg/sgds-web-component/components/ThumbnailCard/index.js");

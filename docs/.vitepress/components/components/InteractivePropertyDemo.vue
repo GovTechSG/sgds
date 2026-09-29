@@ -131,6 +131,7 @@ const configurationCodeTerms = computed(() => {
 });
 
 const isWidePreview = computed(() =>
+  activeOption.value?.markup.includes("sgds-data-table") ||
   activeOption.value?.markup.includes("sgds-footer") ||
   activeOption.value?.markup.includes("portal-masthead-width-demo") ||
   activeOption.value?.markup.includes("portal-mainnav-width-demo") ||
@@ -139,6 +140,10 @@ const isWidePreview = computed(() =>
   activeOption.value?.markup.includes("portal-modal-preview-xl") ||
   activeOption.value?.markup.includes("portal-modal-preview-fullscreen") ||
   false,
+);
+
+const isDataTablePreview = computed(() =>
+  activeOption.value?.markup.includes("sgds-data-table") ?? false,
 );
 
 const isFullscreenModalPreview = computed(() =>
@@ -898,7 +903,8 @@ watch([activeValue, responsiveRenderKey], () => {
                 >
                   <div
                     :key="`${activeOption.value}-${responsiveRenderKey}`"
-                    class="behaviour-demo-markup sgds:flex sgds:items-center sgds:justify-center sgds:min-w-0 sgds:w-full"
+                    class="behaviour-demo-markup sgds:min-w-0 sgds:w-full"
+                    :class="isDataTablePreview ? 'sgds:block' : 'sgds:flex sgds:items-center sgds:justify-center'"
                     v-html="renderMarkup(activeMarkup)"
                   ></div>
                 </div>

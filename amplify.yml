@@ -3,6 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
+        - nvm install 24
+        - nvm use 24
         - corepack enable
         - corepack prepare pnpm@10.33.0 --activate
         - pnpm install --frozen-lockfile

@@ -11,7 +11,9 @@
  *
  * What it modifies:
  *   - docs/.vitepress/data/storybook-ids.ts            (new story mappings)
+ *   - docs/.vitepress/data/pattern-docs.ts            (new PatternDoc entries for templates)
  *   - docs/blocks/preview/<key>.md                     (new block previews)
+ *   - docs/templates/page-templates/<key>.md           (new template main pages)
  *   - docs/templates/page-templates/preview/<key>.md   (new template previews)
  */
 
@@ -35,6 +37,28 @@ if (!diffPath) {
 
 const diff = JSON.parse(readFileSync(diffPath, "utf-8"));
 const changes = [];
+
+// ---------------------------------------------------------------------------
+// Validation
+// ---------------------------------------------------------------------------
+
+/** Only allow alphanumeric, hyphens, underscores, and colons in story keys/IDs. */
+const SAFE_KEY_RE = /^[a-zA-Z0-9_:-]+$/;
+
+function assertSafeKey(value, label) {
+  if (!SAFE_KEY_RE.test(value)) {
+    throw new Error(`Unsafe ${label}: "${value.substring(0, 80)}". Only [a-zA-Z0-9_:-] allowed.`);
+  }
+}
+
+/** Assert that a resolved path stays within the expected directory. */
+function assertPathContained(filePath, allowedDir) {
+  const resolved = resolve(filePath);
+  const resolvedDir = resolve(allowedDir);
+  if (!resolved.startsWith(resolvedDir + "/") && resolved !== resolvedDir) {
+    throw new Error(`Path traversal detected: "${filePath}" escapes "${allowedDir}"`);
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -73,7 +97,9 @@ function generateStoryIds() {
   const objEnd = content.indexOf("};", objStart);
 
   const newLines = diff.newStories.map((story) => {
-    return `  "${story.portalKey}": "${story.id}",`;
+    assertSafeKey(story.portalKey, "portalKey");
+    assertSafeKey(story.id, "story id");
+    return `  ${JSON.stringify(story.portalKey)}: ${JSON.stringify(story.id)},`;
   });
 
   content =
@@ -96,16 +122,22 @@ function generatePreviewPages() {
   const blockTemplate = loadTemplate("block-preview.md.template");
   const templateTemplate = loadTemplate("template-preview.md.template");
 
+  const blockPreviewDir = join(ROOT, "docs", "blocks", "preview");
+  const templatePreviewDir = join(ROOT, "docs", "templates", "page-templates", "preview");
+
   for (const story of diff.newStories) {
+    assertSafeKey(story.key, "story key");
     const title = keyToTitle(story.key);
     let mdPath;
     let content;
 
     if (story.kind === "block") {
-      mdPath = join(ROOT, "docs", "blocks", "preview", `${story.key}.md`);
+      mdPath = join(blockPreviewDir, `${story.key}.md`);
+      assertPathContained(mdPath, blockPreviewDir);
       content = applyTemplate(blockTemplate, { KEY: story.key, TITLE: title });
     } else if (story.kind === "template") {
-      mdPath = join(ROOT, "docs", "templates", "page-templates", "preview", `${story.key}.md`);
+      mdPath = join(templatePreviewDir, `${story.key}.md`);
+      assertPathContained(mdPath, templatePreviewDir);
       content = applyTemplate(templateTemplate, { KEY: story.key, TITLE: title });
     } else {
       continue;
@@ -119,6 +151,108 @@ function generatePreviewPages() {
     writeFileSync(mdPath, content, "utf-8");
     changes.push(`${story.kind} preview: ${story.key}.md created`);
   }
+}
+
+// ---------------------------------------------------------------------------
+// 3. Template main pages (.md)
+// ---------------------------------------------------------------------------
+
+function generateTemplatePages() {
+  const templates = (diff.newStories ?? []).filter((s) => s.kind === "template");
+  if (templates.length === 0) return;
+
+  const pageTemplate = loadTemplate("template-page.md.template");
+
+  for (const story of templates) {
+    const title = keyToTitle(story.key);
+    const mdPath = join(ROOT, "docs", "templates", "page-templates", `${story.key}.md`);
+
+    if (existsSync(mdPath)) {
+      console.error(`Skipping main page ${mdPath} — already exists`);
+      continue;
+    }
+
+    const content = applyTemplate(pageTemplate, { KEY: story.key, TITLE: title });
+    writeFileSync(mdPath, content, "utf-8");
+    changes.push(`template page: ${story.key}.md created`);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 4. Pattern-docs entries + recommended order
+// ---------------------------------------------------------------------------
+
+function generatePatternDocsEntries() {
+  const templates = (diff.newStories ?? []).filter((s) => s.kind === "template");
+  if (templates.length === 0) return;
+
+  const filePath = join(DATA_DIR, "pattern-docs.ts");
+  let content = readFileSync(filePath, "utf-8");
+
+  for (const story of templates) {
+    // Skip if an entry for this key already exists
+    if (content.includes(`"${story.key}":`)) {
+      console.error(`Skipping pattern-docs entry for "${story.key}" — already exists`);
+      continue;
+    }
+
+    const title = keyToTitle(story.key);
+
+    // Insert before the closing of patternDocs object.
+    // Find the last `};` that closes the patternDocs record by locating
+    // the pageTemplateCategoryOrder which comes right after it.
+    const marker = "export const pageTemplateCategoryOrder";
+    const markerIndex = content.indexOf(marker);
+    if (markerIndex === -1) {
+      console.error("Could not find pageTemplateCategoryOrder marker in pattern-docs.ts");
+      continue;
+    }
+
+    // Walk backward to find the `};` that closes patternDocs
+    const closingIndex = content.lastIndexOf("};", markerIndex);
+    if (closingIndex === -1) {
+      console.error("Could not find patternDocs closing brace in pattern-docs.ts");
+      continue;
+    }
+
+    const entry = `  "${story.key}": {
+    title: "${title}",
+    group: "page templates",
+    whenToUse: [
+      "${title} template — update this description after reviewing the Storybook preview.",
+    ],
+    demos: [
+      {
+        title: "Default",
+        description: "${title} template preview.",
+      },
+    ],
+  },\n`;
+
+    content = content.substring(0, closingIndex) + entry + content.substring(closingIndex);
+    changes.push(`pattern-docs.ts: added "${story.key}" entry`);
+  }
+
+  // Add new template keys to pageTemplateRecommendedOrder
+  const orderMarker = "export const pageTemplateRecommendedOrder: string[] = [";
+  const orderStart = content.indexOf(orderMarker);
+  if (orderStart !== -1) {
+    const orderEnd = content.indexOf("];", orderStart);
+    const orderBlock = content.substring(orderStart, orderEnd);
+
+    for (const story of templates) {
+      if (orderBlock.includes(`"${story.key}"`)) continue;
+
+      // Insert before the closing `]`
+      content =
+        content.substring(0, orderEnd) +
+        `  "${story.key}",\n` +
+        content.substring(orderEnd);
+      changes.push(`pattern-docs.ts: added "${story.key}" to pageTemplateRecommendedOrder`);
+    }
+  }
+
+  writeFileSync(filePath, content, "utf-8");
 }
 
 // ---------------------------------------------------------------------------
@@ -136,6 +270,8 @@ function main() {
 
   generateStoryIds();
   generatePreviewPages();
+  generateTemplatePages();
+  generatePatternDocsEntries();
 
   console.log("\nChanges made:");
   for (const c of changes) {

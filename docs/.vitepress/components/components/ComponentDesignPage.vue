@@ -432,13 +432,15 @@ onBeforeUnmount(() => {
                 :key="section.title"
                 class="sgds:flex sgds:flex-col sgds:gap-text-xs"
               >
-                <div class="sgds:flex sgds:items-center sgds:gap-[var(--sgds-gap-2-xs)]">
+                <div class="sgds:flex sgds:items-start sgds:gap-[var(--sgds-gap-2-xs)]">
                   <span :class="['sgds:self-start sgds:inline-flex sgds:items-center sgds:justify-center sgds:flex-none sgds:h-8 sgds:w-8', section.tone === 'do' ? 'sgds:text-success-default' : 'sgds:text-danger-default']">
                     <sgds-icon :name="section.tone === 'do' ? 'check-circle-fill' : 'xcircle-fill'" size="lg"></sgds-icon>
                   </span>
-                  <h3 class="sgds:m-0">{{ section.title }}</h3>
+                  <h3 class="sgds:text-heading-default sgds:m-0 sgds:text-heading-sm sgds:font-semibold sgds:leading-sm sgds:tracking-tight">
+                    {{ section.title }}
+                  </h3>
                 </div>
-                <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)]">
+                <ul class="sgds:text-subtle sgds:flex sgds:flex-col sgds:gap-text-xs sgds:m-0 sgds:pl-[var(--sgds-padding-lg)] sgds:text-body-md sgds:font-regular sgds:leading-xs sgds:tracking-normal">
                   <li v-for="item in section.items" :key="item" class="sgds:mt-0">
                     <template
                       v-for="(part, index) in textParts(item)"
