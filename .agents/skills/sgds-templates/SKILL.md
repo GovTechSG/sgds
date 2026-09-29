@@ -32,6 +32,7 @@ For container width and max-width utilities used in these templates, see **[sgds
 
 | What you're building | Template to use |
 |---|---|
+| Operational app shell (appnav + overlay sidebar) | [Operational](reference/operational.md) |
 | Admin dashboard with filters & data table | [Application Management](reference/application-management.md) |
 | Public catalogue with search & filtering | [Catalogue / Search & Filter](reference/catalogue.md) |
 | Internal tool, admin portal, analytics dashboard | [Dashboard](reference/dashboard.md) |
@@ -42,6 +43,9 @@ For container width and max-width utilities used in these templates, see **[sgds
 | Blog post, news article, or case study | [Blog / Content Page](reference/blog.md) |
 
 ---
+
+## → Read [reference/operational.md](reference/operational.md)
+Operational app shell with `<sgds-appnav>` + overlay sidebar. Use for internal tools, admin portals, and operational dashboards that don't need `<sgds-masthead>`.
 
 ## → Read [reference/application-management.md](reference/application-management.md)
 Sidebar filters + search + data table + pagination. Use for admin dashboards, application registries, management portals.
@@ -77,6 +81,7 @@ All page templates have working implementations in the `stories/templates/` dire
 
 | Template | Story Folder | Story File | Raw URL |
 |---|---|---|---|
+| Operational | ApplicationShell | operational.stories.js | https://raw.githubusercontent.com/GovTechSG/sgds-web-component/master/stories/templates/ApplicationShell/operational.stories.js |
 | Application Management | ApplicationManagement | applications-list.stories.js | https://raw.githubusercontent.com/GovTechSG/sgds-web-component/master/stories/templates/ApplicationManagement/applications-list.stories.js |
 | Catalogue / Search & Filter | Catalogue | search-filter.stories.js | https://raw.githubusercontent.com/GovTechSG/sgds-web-component/master/stories/templates/Catalogue/search-filter.stories.js |
 | Dashboard | ApplicationManagement | applications-list.stories.js | https://raw.githubusercontent.com/GovTechSG/sgds-web-component/master/stories/templates/ApplicationManagement/applications-list.stories.js |

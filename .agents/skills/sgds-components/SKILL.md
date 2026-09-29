@@ -1,6 +1,6 @@
 ---
 name: "sgds-components"
-description: "Complete reference for all SGDS web components including installation and framework integration. Use when users ask about any <sgds-*> component — accordion, alert, badge, breadcrumb, button, card, checkbox, close-button, combo-box, datepicker, description-list, divider, drawer, dropdown, file-upload, footer, icon, icon-button, icon-card, icon-list, image-card, input, link, mainnav, masthead, modal, overflow-menu, pagination, progress-bar, quantity-toggle, radio, select, sidebar, sidenav, skeleton, spinner, stepper, subnav, switch, system-banner, tab, table, table-of-contents, textarea, thumbnail-card, toast, or tooltip. Also covers React 19+, React ≤18, Vue, Angular, and Next.js integration."
+description: "Complete reference for all SGDS web components including installation and framework integration. Use when users ask about any <sgds-*> component — accordion, alert, badge, breadcrumb, button, card, checkbox, close-button, combo-box, data-table, datepicker, description-list, divider, drawer, dropdown, file-upload, footer, icon, icon-button, icon-card, icon-list, image-card, input, link, mainnav, masthead, modal, overflow-menu, pagination, progress-bar, quantity-toggle, radio, select, sidebar, sidenav, skeleton, spinner, stepper, subnav, switch, system-banner, tab, table, table-of-contents, textarea, thumbnail-card, toast, or tooltip. Also covers React 19+, React ≤18, Vue, Angular, and Next.js integration."
 metadata:
   author: singapore-design-system
   version: "0.0.0"
@@ -210,6 +210,7 @@ When a user reports unexpected component behaviour (wrong event, property not re
 | **Content** | Image Card | [→ reference/image-card.md](reference/image-card.md) |
 | **Content** | Thumbnail Card | [→ reference/thumbnail-card.md](reference/thumbnail-card.md) |
 | **Content** | Description List | [→ reference/description-list.md](reference/description-list.md) |
+| **Content** | Data Table | [→ reference/data-table.md](reference/data-table.md) |
 | **Content** | Icon | [→ reference/icon.md](reference/icon.md) |
 | **Content** | Icon List | [→ reference/icon-list.md](reference/icon-list.md) |
 | **Content** | Table | [→ reference/table.md](reference/table.md) |
