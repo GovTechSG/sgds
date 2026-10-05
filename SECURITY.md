@@ -19,7 +19,7 @@ Report suspected vulnerabilities to GovTech [Vulnerability Disclosure Programme]
 
 ## Supported versions
 
-Note that only the latest release is supported, however our releases are backward compatible by SemVer versioning standards.
+Note that only the latest release is supported.
 
 ## Coordinated disclosure
 
