@@ -15511,28 +15511,81 @@ const componentDocs: Record<string, ComponentDoc> = {
       {
         title: "Header position",
         description:
-          "Use `headerPosition` with `rowHeader`, `columnHeader` and `tableData` to generate headers across the top, down the side, or both. When using slotted rows, arrange the headers manually.",
+          "Headers can run across the top, down the left side, or both. Use `sgds-table-head` in place of `sgds-table-cell` wherever a header is needed.",
         controlLabel: "Table header position options",
         defaultValue: "horizontal",
         options: [
           {
             label: "Horizontal",
             value: "horizontal",
-            markup: `<sgds-table headerPosition="horizontal" aria-label="Service comparison" rowHeader='["Service", "Owner", "Status"]' columnHeader='["Service 1", "Service 2"]' tableData='[["Citizen portal", "GovTech", "Live"], ["Booking system", "NLB", "Beta"]]'></sgds-table>`,
+            markup: `<sgds-table aria-label="Service comparison">
+              <sgds-table-row>
+                <sgds-table-head>Service</sgds-table-head>
+                <sgds-table-head>Owner</sgds-table-head>
+                <sgds-table-head>Status</sgds-table-head>
+              </sgds-table-row>
+              <sgds-table-row>
+                <sgds-table-cell>Citizen portal</sgds-table-cell>
+                <sgds-table-cell>GovTech</sgds-table-cell>
+                <sgds-table-cell>Live</sgds-table-cell>
+              </sgds-table-row>
+              <sgds-table-row>
+                <sgds-table-cell>Booking system</sgds-table-cell>
+                <sgds-table-cell>NLB</sgds-table-cell>
+                <sgds-table-cell>Beta</sgds-table-cell>
+              </sgds-table-row>
+            </sgds-table>`,
             description:
               "Headers across the top. Most common arrangement for tabular data.",
           },
           {
             label: "Vertical",
             value: "vertical",
-            markup: `<sgds-table headerPosition="vertical" aria-label="Service comparison" rowHeader='["Service", "Owner", "Status"]' columnHeader='["Service", "Owner", "Status"]' tableData='[["Citizen portal", "GovTech", "Live"], ["Booking system", "NLB", "Beta"]]'></sgds-table>`,
+            markup: `<sgds-table aria-label="Service comparison">
+              <sgds-table-row>
+                <sgds-table-head>Service</sgds-table-head>
+                <sgds-table-cell>Citizen portal</sgds-table-cell>
+                <sgds-table-cell>Booking system</sgds-table-cell>
+              </sgds-table-row>
+              <sgds-table-row>
+                <sgds-table-head>Owner</sgds-table-head>
+                <sgds-table-cell>GovTech</sgds-table-cell>
+                <sgds-table-cell>NLB</sgds-table-cell>
+              </sgds-table-row>
+              <sgds-table-row>
+                <sgds-table-head>Status</sgds-table-head>
+                <sgds-table-cell>Live</sgds-table-cell>
+                <sgds-table-cell>Beta</sgds-table-cell>
+              </sgds-table-row>
+            </sgds-table>`,
             description:
               "Headers down the left side. Helpful when comparing a few items across many attributes.",
           },
           {
             label: "Both",
             value: "both",
-            markup: `<sgds-table headerPosition="both" aria-label="Service comparison" rowHeader='["Service", "Owner", "Status"]' columnHeader='["Service 1", "Service 2"]' tableData='[["Citizen portal", "GovTech", "Live"], ["Booking system", "NLB", "Beta"]]'></sgds-table>`,
+            markup: `<sgds-table aria-label="Service comparison">
+              <sgds-table-row>
+                <sgds-table-head></sgds-table-head>
+                <sgds-table-head>Service 1</sgds-table-head>
+                <sgds-table-head>Service 2</sgds-table-head>
+              </sgds-table-row>
+              <sgds-table-row>
+                <sgds-table-head>Service</sgds-table-head>
+                <sgds-table-cell>Citizen portal</sgds-table-cell>
+                <sgds-table-cell>Booking system</sgds-table-cell>
+              </sgds-table-row>
+              <sgds-table-row>
+                <sgds-table-head>Owner</sgds-table-head>
+                <sgds-table-cell>GovTech</sgds-table-cell>
+                <sgds-table-cell>NLB</sgds-table-cell>
+              </sgds-table-row>
+              <sgds-table-row>
+                <sgds-table-head>Status</sgds-table-head>
+                <sgds-table-cell>Live</sgds-table-cell>
+                <sgds-table-cell>Beta</sgds-table-cell>
+              </sgds-table-row>
+            </sgds-table>`,
             description:
               "Headers identify both columns and rows. Use meaningful row labels for the records being compared.",
           },
