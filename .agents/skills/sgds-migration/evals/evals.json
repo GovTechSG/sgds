@@ -1,0 +1,26 @@
+{
+  "skill_name": "sgds-test-migration",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "simple-button-component-migration",
+      "prompt": "I have a React Button component that I need to migrate to SGDS. Here's my existing test file:\n\n```tsx\nimport { render, screen } from '@testing-library/react';\nimport userEvent from '@testing-library/user-event';\nimport { Button } from './Button';\n\ndescribe('Button', () => {\n  test('renders button with text', () => {\n    render(<Button>Click me</Button>);\n    expect(screen.getByRole('button')).toHaveTextContent('Click me');\n  });\n\n  test('calls onClick when clicked', async () => {\n    const onClick = jest.fn();\n    render(<Button onClick={onClick}>Click</Button>);\n    await userEvent.click(screen.getByRole('button'));\n    expect(onClick).toHaveBeenCalled();\n  });\n\n  test('disables button when disabled prop is true', () => {\n    render(<Button disabled>Disabled</Button>);\n    expect(screen.getByRole('button')).toBeDisabled();\n  });\n});\n```\n\nMigrate these tests to vitest-browser format and show me how the Button component source code would look using sgds-button.",
+      "expected_output": "Migrated test file using vitest-browser-react with vitest syntax, plus updated Button component source showing sgds-button usage with proper attribute mapping",
+      "files": []
+    },
+    {
+      "id": 2,
+      "eval_name": "form-with-multiple-components",
+      "prompt": "I have a React form component with Input, Checkbox, and Button. Here's the test:\n\n```tsx\nimport { render, screen, waitFor } from '@testing-library/react';\nimport userEvent from '@testing-library/user-event';\nimport { LoginForm } from './LoginForm';\n\ndescribe('LoginForm', () => {\n  test('renders form with email input and submit button', () => {\n    render(<LoginForm onSubmit={() => {}} />);\n    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();\n    expect(screen.getByRole('button', { name: /submit/i })).toBeInTheDocument();\n  });\n\n  test('fills email input and submits form', async () => {\n    const onSubmit = jest.fn();\n    render(<LoginForm onSubmit={onSubmit} />);\n    const emailInput = screen.getByLabelText(/email/i);\n    await userEvent.type(emailInput, 'test@example.com');\n    await userEvent.click(screen.getByRole('button'));\n    await waitFor(() => {\n      expect(onSubmit).toHaveBeenCalledWith({ email: 'test@example.com' });\n    });\n  });\n\n  test('shows error message when email is invalid', async () => {\n    render(<LoginForm onSubmit={() => {}} />);\n    const emailInput = screen.getByLabelText(/email/i);\n    await userEvent.type(emailInput, 'invalid-email');\n    await userEvent.click(screen.getByRole('button'));\n    expect(screen.getByText(/invalid email/i)).toBeInTheDocument();\n  });\n});\n```\n\nCreate a complete migration plan showing: (1) which components need to change, (2) migrated test file for vitest-browser, (3) updated LoginForm component source using SGDS components.",
+      "expected_output": "Component migration plan, updated test file with vitest-browser syntax, and updated LoginForm component using sgds-input, sgds-button, and proper form structure",
+      "files": []
+    },
+    {
+      "id": 3,
+      "eval_name": "shadow-dom-interactions",
+      "prompt": "I have a SearchBox component that needs to interact with elements inside shadow DOM. Current RTL test:\n\n```tsx\nimport { render, screen } from '@testing-library/react';\nimport userEvent from '@testing-library/user-event';\nimport { SearchBox } from './SearchBox';\n\ndescribe('SearchBox', () => {\n  test('updates search results when user types', async () => {\n    render(<SearchBox onSearch={() => {}} />);\n    const input = screen.getByRole('textbox');\n    await userEvent.type(input, 'react');\n    await userEvent.click(screen.getByRole('button'));\n    expect(screen.getByText(/searching/i)).toBeInTheDocument();\n  });\n});\n```\n\nThe component uses sgds-input (with shadow DOM) and sgds-button. How do I migrate this test to vitest-browser format to properly handle shadow DOM interactions?",
+      "expected_output": "Migrated test using vitest-browser locators to pierce shadow DOM, demonstrating proper querying patterns for sgds-input and sgds-button interactions",
+      "files": []
+    }
+  ]
+}
