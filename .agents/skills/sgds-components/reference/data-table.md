@@ -107,15 +107,6 @@ It supports client-side pagination, server-driven pagination, sorting headers, r
 | `sgds-hide` | Expandable row starts closing | — |
 | `sgds-after-hide` | Expandable row finishes closing | — |
 
-## Checkbox Accessibility (multiSelect)
-
-When `multiSelect` is enabled, the data-table internally renders `<sgds-checkbox>` elements without visible labels. The component sets `ariaLabel` automatically:
-
-- **Header checkbox**: `ariaLabel="Select all rows"`
-- **Row checkboxes**: `ariaLabel="Select row"`
-
-No additional accessibility configuration is needed — the data-table handles this internally via `.ariaLabel` property binding on each checkbox.
-
 ## Sorting Behavior Notes
 
 - In client mode, sorting affects only currently visible rows.
