@@ -19295,6 +19295,7 @@ const generatedAccessibilityProfileOverrides: Record<
     authorItems: [
       "Write labels that describe the choice clearly.",
       "Use checkbox groups when users may select more than one option.",
+      "For standalone checkboxes without a visible label (e.g. row selection in a data table), set the `ariaLabel` property to provide an accessible name"
     ],
     focusItems: [
       "Users should be able to move through each checkbox and its feedback text in order.",
