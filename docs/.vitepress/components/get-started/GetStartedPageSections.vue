@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import type {
   GetStartedDemoExample,
   GetStartedLink,
@@ -10,10 +11,19 @@ import BestPracticesSection from "../components/BestPracticesSection.vue";
 import SectionHeader from "../foundations/SectionHeader.vue";
 import CodeToken from "../ui/CodeToken.vue";
 import { textParts } from "../../utils/text-parts";
+import { useTabHashSync } from "../../composables/useTabHashSync";
 
 const props = defineProps<{
   page: GetStartedPageData;
 }>();
+
+const tabPanels = computed(() =>
+  props.page.sections.flatMap((s) => s.codeTabs?.map((t) => t.label) ?? []),
+);
+
+const { tabGroupRef, handleTabClick } = useTabHashSync(tabPanels, {
+  slug: (label) => label.toLowerCase().replace(/[^a-z0-9]+/g, ""),
+});
 
 const visibleLinks = (section: GetStartedSection) => section.links ?? [];
 
@@ -121,7 +131,7 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
       </div>
 
       <div v-if="section.codeTabs?.length">
-        <sgds-tab-group variant="underlined">
+        <sgds-tab-group ref="tabGroupRef" variant="underlined">
           <sgds-tab
             v-for="(tab, i) in section.codeTabs"
             :key="tab.label"
@@ -129,6 +139,7 @@ const bestPracticesForExamples = (examples: GetStartedDemoExample[] = []): BestP
             :panel="tab.label"
             :active="i === 0 || null"
             :ariaLabel.prop="tab.label"
+            @click="handleTabClick(tab.label)"
           >
             {{ tab.label }}
           </sgds-tab>

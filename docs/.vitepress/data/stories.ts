@@ -1478,7 +1478,7 @@ export const storyPosts: StoryPost[] = [
         title: "What developers need to do",
         paragraphs: [],
         paragraphsHtml: [
-          "SSR is opt-in and your existing setup continues to work as before. For the full step-by-step setup guide, see the <a href=\"/get-started/develop#import-the-component-library\" target=\"_blank\" rel=\"noopener\">Next.js tab on the Getting Started page</a>.",
+          "SSR is opt-in and your existing setup continues to work as before. For the full step-by-step setup guide, see the <a href=\"/get-started/develop#nextjs\" target=\"_blank\" rel=\"noopener\">Next.js tab on the Getting Started page</a>.",
         ],
       },
     ],
@@ -1507,7 +1507,7 @@ export const storyPosts: StoryPost[] = [
       "The result is CLS 0, CSP compliance, and a developer experience that requires no build configuration beyond a single config wrapper. Our end-to-end tests for DSD and SSR-first composition are automated in CI pipelines, ensuring this remains a reliably supported feature for Next.js users.",
     ],
     ctaLabel: "Get started with Next.js SSR",
-    ctaHref: "/get-started/develop",
+    ctaHref: "/get-started/develop#nextjs",
   },
 ];
 
