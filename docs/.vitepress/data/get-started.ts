@@ -323,9 +323,22 @@ export const developPage: GetStartedPageData = {
           label: "Next.js",
           stepGroups: [
             {
-              title: "Setup",
+              title: "Enable SSR",
               steps: [
-                { description: "Import the React-wrapped SGDS components in your client components. The React wrappers resolve hydration timing issues that cause event listeners to fail on initial page load.", code: `'use client';\nimport { SgdsInput, SgdsButton } from "@govtechsg/sgds-web-component/react";\n\nexport default function MyForm() {\n  return (\n    <>\n      <SgdsInput label="Name" onSgdsChange={(e) => console.log(e)} />\n      <SgdsButton variant="primary" onSgdsBlur={(e) => console.log(e)}>Submit</SgdsButton>\n    </>\n  );\n}`, lang: "tsx", filename: "src/app/my-form.tsx" },
+                { description: "Install the required peer dependencies for server-side rendering with Declarative Shadow DOM (DSD).", code: `npm install @lit-labs/ssr @lit-labs/ssr-react`, lang: "bash", filename: "Terminal" },
+                { description: "Wrap your Next.js config with `withSgdsNextSSR()` to enable SSR. Components render their full shadow DOM on the server — no FOUC, no layout shift. Works with both webpack and Turbopack.", code: `import { withSgdsNextSSR } from "@govtechsg/sgds-web-component/react/ssr";\n\n/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  reactStrictMode: true,\n  turbopack: {},\n};\n\nexport default withSgdsNextSSR(nextConfig);`, lang: "ts", filename: "next.config.mjs" },
+              ],
+            },
+            {
+              title: "Use React wrapper components",
+              steps: [
+                { description: "Import the React-wrapped SGDS components in your client components. The wrappers resolve hydration timing issues and provide camelCase event naming.", code: `'use client';\nimport { SgdsInput, SgdsButton } from "@govtechsg/sgds-web-component/react";\n\nexport default function MyForm() {\n  return (\n    <>\n      <SgdsInput label="Name" onSgdsChange={(e) => console.log(e)} />\n      <SgdsButton variant="primary" onSgdsBlur={(e) => console.log(e)}>Submit</SgdsButton>\n    </>\n  );\n}`, lang: "tsx", filename: "src/app/my-form.tsx" },
+              ],
+            },
+            {
+              title: "CSP nonce support (optional)",
+              steps: [
+                { description: "If your app has a strict Content-Security-Policy with `style-src 'nonce-...'`, call `setCSPNonce()` in the root layout to stamp the nonce onto DSD `<style>` tags.", code: `// app/layout.tsx (server component)\nimport { setCSPNonce } from "@govtechsg/sgds-web-component/react/ssr";\nimport { headers } from "next/headers";\n\nexport default async function RootLayout({ children }: { children: React.ReactNode }) {\n  const nonce = (await headers()).get("x-nonce") ?? undefined;\n  if (nonce) setCSPNonce(nonce);\n  return <html lang="en"><body>{children}</body></html>;\n}`, lang: "tsx", filename: "app/layout.tsx" },
               ],
             },
             {
