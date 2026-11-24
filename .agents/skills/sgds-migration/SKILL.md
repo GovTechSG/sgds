@@ -1,6 +1,6 @@
 ---
 name: "sgds-migration"
-description: "Complete workflow for migrating an existing frontend application to SGDS web components. Use this skill when a user wants to migrate from another UI library (MUI, Chakra UI, shadcn/ui, Ant Design, Vuetify, Angular Material, Bootstrap, etc.) to SGDS, or asks how to start using SGDS in an existing project. Covers four phases: (1) scan the current frontend tech stack, (2) install and configure SGDS with font, foundation CSS, and utilities, (3) migrate tests (Path A: Vitest + Playwright, or Path B: patch existing Jest/RTL), (4) replace old styling systems with SGDS v3 utilities, plus a post-migration verification checklist. React fully supported."
+description: "Use when users want to migrate from another UI library (MUI, Chakra UI, shadcn/ui, Ant Design, Vuetify, Angular Material, Bootstrap, etc.) to SGDS, or ask how to start using SGDS in an existing project. Complete workflow covering four phases: (1) scan the current frontend tech stack, (2) install and configure SGDS with font, foundation CSS, and utilities, (3) migrate tests (Path A: Vitest + Playwright, or Path B: patch existing Jest/RTL), (4) replace old styling systems with SGDS v3 utilities, plus a post-migration verification checklist. React fully supported."
 metadata:
   author: singapore-design-system
   version: "0.0.0"
@@ -173,12 +173,11 @@ Common mistakes to avoid:
 
 ### React: Always Use PascalCase React Wrappers
 
-In React applications, **always import and use the PascalCase React wrappers** from `@govtechsg/sgds-web-component/react/*`. Do NOT mix lowercase web component tags (`<sgds-modal>`) with React wrapper components (`<SgdsButton>`).
+In React applications, **always import and use the PascalCase React wrappers** from `@govtechsg/sgds-web-component/react`. Do NOT mix lowercase web component tags (`<sgds-modal>`) with React wrapper components (`<SgdsButton>`).
 
 ```tsx
 // ✅ Correct — consistent PascalCase React wrappers
-import SgdsModal from "@govtechsg/sgds-web-component/react/modal";
-import SgdsButton from "@govtechsg/sgds-web-component/react/button";
+import { SgdsModal, SgdsButton } from "@govtechsg/sgds-web-component/react";
 
 <SgdsModal open={open} onSgdsClose={() => setOpen(false)}>
   <SgdsButton variant="primary">Submit</SgdsButton>
@@ -196,16 +195,16 @@ Based on the source library detected in Phase 1, load the appropriate mapping fi
 
 | Source Library | Mapping Reference |
 |---|---|
-| `@govtechsg/sgds-react` (v2) | `reference/from-sgds-react.md` |
-| `@mui/material` / `@material-ui/*` | `reference/from-mui.md` |
-| `@chakra-ui/react` | `reference/from-chakra.md` |
-| `@radix-ui/*` / shadcn `components/ui/*` | `reference/from-shadcn.md` |
+| `@govtechsg/sgds-react` (v2) | `references/from-sgds-react.md` |
+| `@mui/material` / `@material-ui/*` | `references/from-mui.md` |
+| `@chakra-ui/react` | `references/from-chakra.md` |
+| `@radix-ui/*` / shadcn `components/ui/*` | `references/from-shadcn.md` |
 
 Each mapping file provides: component table, props mapping, before/after code examples, and removed concepts.
 
 **Always also load**:
-- `reference/events.md` — Universal SGDS event mapping (onSgdsChange, onSgdsInput, etc.) and value access patterns per component
-- `reference/css-utilities-migration.md` — CSS migration tables (Bootstrap/Tailwind/MUI sx/Chakra → `sgds:` utilities) used in Phase 4
+- `references/events.md` — Universal SGDS event mapping (onSgdsChange, onSgdsInput, etc.) and value access patterns per component
+- `references/css-utilities-migration.md` — CSS migration tables (Bootstrap/Tailwind/MUI sx/Chakra → `sgds:` utilities) used in Phase 4
 
 ### Form Pattern Rules
 
@@ -232,7 +231,7 @@ SGDS web components use Shadow DOM. Choose one of two paths based on your situat
 
 Best for: new projects, greenfield test suites, or teams ready to upgrade test infra.
 
-**Read**: `reference/react-test-migration.md` for the complete React migration workflow including Vitest setup, testing patterns, and examples.
+**Read**: `references/react-test-migration.md` for the complete React migration workflow including Vitest setup, testing patterns, and examples.
 
 **Why**: Runs tests in real Chromium — full Shadow DOM support, real browser behavior, Playwright locator API pierces shadow boundaries automatically.
 
@@ -240,7 +239,7 @@ Best for: new projects, greenfield test suites, or teams ready to upgrade test i
 
 Best for: large existing Jest/RTL test suites where migrating test infrastructure is too costly.
 
-**Read**: `reference/jest-rtl-patching.md` for the complete patching guide.
+**Read**: `references/jest-rtl-patching.md` for the complete patching guide.
 
 **What it does**: Adds polyfills and patches to make JSDOM tolerate SGDS web components (ElementInternals, HTMLSlotElement, animations, Shadow DOM mock, querySelector fix for `sgds:` classes, snapshot stabilization).
 
@@ -289,7 +288,7 @@ Best for: large existing Jest/RTL test suites where migrating test infrastructur
 
 **How to Migrate**:
 
-**Read**: `reference/css-utilities-migration.md` for quick lookup tables mapping old CSS patterns (Bootstrap, Tailwind, MUI sx, Chakra style props) to `sgds:` equivalents.
+**Read**: `references/css-utilities-migration.md` for quick lookup tables mapping old CSS patterns (Bootstrap, Tailwind, MUI sx, Chakra style props) to `sgds:` equivalents.
 
 **Read**: `../sgds-utilities/SKILL.md` for the complete reference on all SGDS utility classes, CSS tokens, and styling.
 
@@ -349,16 +348,16 @@ Phase 2: Set Up SGDS
 
 Phase 3: Migrate Tests & Components
   ↓
-  Path A: Vitest + Playwright (reference/react-test-migration.md)
-  Path B: Patch Jest/RTL (reference/jest-rtl-patching.md)
-  Use: reference/events.md for event patterns
+  Path A: Vitest + Playwright (references/react-test-migration.md)
+  Path B: Patch Jest/RTL (references/jest-rtl-patching.md)
+  Use: references/events.md for event patterns
   Use PascalCase React wrappers consistently
   Use SGDS components (not raw HTML) where available
   Output: Tests passing, components using SGDS web components
 
 Phase 4: Migrate Foundation & Styling CSS
   ↓
-  Use: reference/css-utilities-migration.md for lookup tables
+  Use: references/css-utilities-migration.md for lookup tables
   Use: ../sgds-utilities/SKILL.md for complete reference
   Use: ../sgds-forms/SKILL.md for form layout patterns
   Output: All styling uses SGDS v3 utilities (Tailwind + sgds: prefix)
@@ -384,7 +383,7 @@ However, **if you have no tests**, you can still proceed: set up the test enviro
 **Yes.** Migrate one component (test + source) at a time. Old components can coexist with new SGDS components in your application during the transition.
 
 ### "What if my test runner doesn't support real browsers?"
-**Two options**: (1) Upgrade to Vitest + Playwright for full Shadow DOM support (Path A), or (2) patch your existing Jest/RTL environment with polyfills to make SGDS components work in JSDOM (Path B — see `reference/jest-rtl-patching.md`). Path B trades shadow DOM testing depth for lower migration effort.
+**Two options**: (1) Upgrade to Vitest + Playwright for full Shadow DOM support (Path A), or (2) patch your existing Jest/RTL environment with polyfills to make SGDS components work in JSDOM (Path B — see `references/jest-rtl-patching.md`). Path B trades shadow DOM testing depth for lower migration effort.
 
 ### "How long does this take?"
 Depends on:
@@ -422,11 +421,11 @@ When using this skill:
    - `../sgds-getting-started/SKILL.md` for setup (Phase 2)
    - `../sgds-components/SKILL.md` for component-specific APIs
    - `../sgds-forms/SKILL.md` for form layout patterns (action buttons right-aligned)
-   - `reference/react-test-migration.md` for React test migration (Phase 3, Path A)
-   - `reference/jest-rtl-patching.md` for Jest/RTL patching (Phase 3, Path B)
-   - `reference/from-mui.md`, `reference/from-chakra.md`, `reference/from-shadcn.md`, `reference/from-sgds-react.md` for library-specific mappings
-   - `reference/events.md` for event handling patterns
-   - `reference/css-utilities-migration.md` for CSS migration lookup tables (Phase 4)
+   - `references/react-test-migration.md` for React test migration (Phase 3, Path A)
+   - `references/jest-rtl-patching.md` for Jest/RTL patching (Phase 3, Path B)
+   - `references/from-mui.md`, `references/from-chakra.md`, `references/from-shadcn.md`, `references/from-sgds-react.md` for library-specific mappings
+   - `references/events.md` for event handling patterns
+   - `references/css-utilities-migration.md` for CSS migration lookup tables (Phase 4)
    - `../sgds-utilities/SKILL.md` for complete CSS utilities and styling (Phase 4)
 3. **Don't duplicate**: Do not rewrite getting-started, components, or utilities instructions here. Link to them instead.
 4. **Be honest about scope**: Clearly state which frameworks are supported (React: yes, others: use Vitest + Playwright foundation) and set expectations.

@@ -1,7 +1,6 @@
 ---
 name: sgds-patterns
-description: |
-  Complete catalog of reusable typography and text patterns for SGDS applications. Use this skill whenever the user needs to style text, create typography hierarchies, format headings, style lists, or needs consistent text layouts. Also use when the user mentions headings, page titles, body text, lists, paragraphs, display text, content headers, or any typography styling — even if they just say "make a nice heading" or "style my text". Current patterns include headings (H1-H6), display typography (large prominent text), content headers, lists (ordered and unordered), and paragraphs. Each pattern links directly to the raw HTML template for implementation.
+description: "Use when users need to style text, create typography hierarchies, format headings, style lists, or need consistent text layouts. Complete catalog of reusable typography and text patterns for SGDS applications. Also trigger on headings, page titles, body text, lists, paragraphs, display text, content headers, or any typography styling. Current patterns include headings (H1-H6), display typography, content headers, lists (ordered and unordered), and paragraphs. Each pattern links directly to the raw HTML template for implementation."
 compatibility: Requires sgds-utilities and sgds-components skills for prerequisite setup
 ---
 

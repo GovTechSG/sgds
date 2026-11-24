@@ -1,6 +1,6 @@
 ---
 name: "sgds-forms"
-description: "Use this skill when users ask about form validation in SGDS, hasFeedback prop, constraint validation, custom validation, noValidate, setInvalid, form submission, or reading FormData from SGDS form components."
+description: "Use when users ask about form validation in SGDS, hasFeedback prop, constraint validation, custom validation, noValidate, setInvalid, form submission, or reading FormData from SGDS form components."
 metadata:
   author: singapore-design-system
   version: "0.0.0"
@@ -53,14 +53,23 @@ On most form components (`<sgds-input>`, `<sgds-textarea>`, `<sgds-select>`, `<s
 
 ## Activating Feedback Display
 
-Constraint validation runs regardless of `hasFeedback`, but the **visible error message only renders when `hasFeedback` is present**. The `hasFeedback` prop accepts:
+Constraint validation runs regardless of `hasFeedback`, but the **visible error message only renders when `hasFeedback` is present**.
 
-| Value                   | Behaviour                                              |
-| ----------------------- | ------------------------------------------------------ |
-| `hasFeedback` (boolean) | Shows the native HTML validation message as error text |
-| `hasFeedback="text"`    | Same as boolean — shows text feedback only             |
-| `hasFeedback="style"`   | Shows invalid border/colour styling only, no text      |
-| `hasFeedback="both"`    | Shows both invalid styling and text feedback           |
+**Important:** The `hasFeedback` prop type differs by component:
+
+**String union (`"style" | "text" | "both"`)** — `<sgds-input>`, `<sgds-checkbox>` (standalone), `<sgds-quantity-toggle>`:
+
+| Value                | Behaviour                                         |
+| -------------------- | ------------------------------------------------- |
+| `hasFeedback="text"` | Shows text feedback only                          |
+| `hasFeedback="style"`| Shows invalid border/colour styling only, no text |
+| `hasFeedback="both"` | Shows both invalid styling and text feedback      |
+
+**Boolean** — `<sgds-textarea>`, `<sgds-select>`, `<sgds-combo-box>`, `<sgds-datepicker>`, `<sgds-radio-group>`, `<sgds-checkbox-group>`, `<sgds-file-upload>`:
+
+| Value        | Behaviour                                              |
+| ------------ | ------------------------------------------------------ |
+| `hasFeedback`| Shows the native HTML validation message as error text |
 
 You can also override the displayed message with `invalidFeedback`:
 
@@ -189,7 +198,7 @@ Adding `novalidate` to the `<form>` element disables constraint validation and S
 <form id="custom-form" novalidate class="d-flex-column">
   <sgds-input id="keys-input" name="keys" label="Keys" hasFeedback="both"></sgds-input>
 
-  <sgds-textarea id="bio-textarea" name="bio" label="Bio" hasFeedback></sgds-textarea>
+  <sgds-textarea id="bio-textarea" name="bio" label="Bio" hasFeedback="true"></sgds-textarea>
 </form>
 
 <script>
@@ -241,7 +250,7 @@ Pair `setInvalid(true)` with setting the `invalidFeedback` property on the eleme
 
 1. Always place SGDS form components inside a `<form>` element with `name` attributes for them to participate in form submission and `FormData`.
 2. `hasFeedback` must be present on a form component for the error message to visually appear — constraint validation alone does not show UI feedback.
-3. To show both the invalid border style and the error message text, use `hasFeedback="both"`. A plain boolean `hasFeedback` shows the message text only.
+3. `hasFeedback` type varies by component: `<sgds-input>`, `<sgds-checkbox>` (standalone), and `<sgds-quantity-toggle>` accept `"style" | "text" | "both"`. All other form components accept a boolean. Do not pass `hasFeedback="both"` to components that only accept boolean.
 4. Use `invalidFeedback` to override the browser's native constraint validation message with a custom string.
 5. Constraint validation and form submission blocking are built-in — do not add extra submit event listeners to replicate this behaviour.
 6. Use `new FormData(event.target)` in the submit handler to read values. For file uploads, read `selectedFiles` directly from the `<sgds-file-upload>` element.
