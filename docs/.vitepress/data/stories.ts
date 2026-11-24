@@ -1333,11 +1333,11 @@ export const storyPosts: StoryPost[] = [
   {
     key: "how-sgds-achieved-zero-layout-shift-with-ssr",
     category: "Engineering",
-    title: "How SGDS achieved zero layout shift for Next.js",
+    title: "CLS 0: bringing Declarative Shadow DOM to Next.js",
     description:
       "Web components and SSR have historically been incompatible. Here is how we eliminated Cumulative Layout Shift entirely for Next.js users through Declarative Shadow DOM and SSR-first component principles.",
     href: "/stories/how-sgds-achieved-zero-layout-shift-with-ssr",
-    imageSrc: "/stories/accessibility-engineering-thumbnail.svg",
+    imageSrc: "/stories/zero-layout-shift-nextjs-thumbnail.svg",
     imageAlt: "Diagram showing server-rendered web components with Declarative Shadow DOM",
     published: "November 2026",
     ...storyAuthors.luKheiChong,
