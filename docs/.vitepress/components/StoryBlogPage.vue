@@ -838,6 +838,35 @@
                   </p>
                 </div>
                 <div
+                  v-if="section.comparisonVisuals"
+                  class="sgds:flex sgds:w-full sgds:max-w-container-lg sgds:flex-col sgds:gap-layout-xs md:sgds:flex-row"
+                >
+                  <figure
+                    v-for="side in [
+                      section.comparisonVisuals.before,
+                      section.comparisonVisuals.after,
+                    ]"
+                    :key="side.label"
+                    class="sgds:mx-0 sgds:flex sgds:flex-1 sgds:flex-col sgds:gap-text-sm"
+                  >
+                    <p
+                      class="sgds:text-subtitle-md sgds:font-semibold sgds:leading-xs sgds:tracking-normal sgds:text-heading-default"
+                    >
+                      {{ side.label }}
+                    </p>
+                    <div
+                      class="sgds:flex sgds:items-center sgds:justify-center sgds:overflow-hidden sgds:rounded-md sgds:border sgds:border-muted sgds:bg-alternate"
+                    >
+                      <StoryVisualMedia :visual="side" />
+                    </div>
+                    <figcaption
+                      class="sgds:w-full sgds:text-center sgds:text-caption-md sgds:font-regular sgds:leading-2-xs sgds:tracking-normal sgds:text-body-subtle"
+                    >
+                      {{ side.caption }}
+                    </figcaption>
+                  </figure>
+                </div>
+                <div
                   v-if="section.diagram === 'figmaMcpFlow'"
                   class="sgds:w-full sgds:max-w-container-md sgds:bg-transparent sgds:py-component-xs"
                 >
