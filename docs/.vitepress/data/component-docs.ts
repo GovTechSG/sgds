@@ -525,9 +525,9 @@ const appnavMarkup = ({
   showMenu?: boolean;
   iconCount?: 0 | 1 | 2;
 } = {}) => `<div class="${previewClass}${profile === "menu" ? (expand === "never" ? " sgds:min-h-[var(--sgds-dimension-512)]" : " sgds:max-lg:min-h-[var(--sgds-dimension-512)]") : ""}">
-  <sgds-appnav tone="${tone}" expand="${expand}" brandHref="#">
+  <sgds-appnav tone="${tone}" expand="${expand}">
     ${showMenu ? `<sgds-icon-button slot="start" name="menu" variant="ghost" tone="fixed-light" size="sm" ariaLabel="Open side menu"></sgds-icon-button>` : ""}
-    <img slot="brand" src="/logo-white.svg" alt="Singapore Government Design System" width="130" />
+    <a slot="brand" href="#" aria-label="Home"><img src="/logo-white.svg" alt="Singapore Government Design System" width="130" /></a>
     ${iconCount > 0 ? `<sgds-icon-button name="moon" variant="ghost" tone="fixed-light" size="sm" ariaLabel="Toggle dark mode"></sgds-icon-button>` : ""}
     ${profile === "none" ? (iconCount > 1 ? `<sgds-icon-button name="bell" variant="ghost" tone="fixed-light" size="sm" ariaLabel="${actionLabel}"></sgds-icon-button>` : "") : `<sgds-appnav-profile slot="profile" label="User name" secondaryText="Agency (admin)" ariaLabel="${profile === "menu" ? "Profile menu" : "Profile information"}">
       <span slot="avatar" aria-hidden="true" class="sgds:block sgds:h-10 sgds:w-10 sgds:shrink-0 sgds:rounded-full sgds:bg-neutral-surface-muted"></span>
@@ -548,8 +548,8 @@ const appnavMarkup = ({
 
 // Best-practice illustrations use real Appnav controls and labelled page content.
 const appnavPracticeBar = ({ profile = false, secondaryText = "", collapsed = false, openProfile = false, actions = "", profileItems = ["Account details", "Preferences", "Sign out"] } = {}) => `
-  <sgds-appnav tone="brand" expand="${collapsed ? "never" : "always"}" brandHref="/" ${collapsed ? 'data-illustrative-appnav-open' : ''}>
-    <img slot="brand" src="/logo-white.svg" alt="Singapore Government Design System" width="130" />
+  <sgds-appnav tone="brand" expand="${collapsed ? "never" : "always"}" ${collapsed ? 'data-illustrative-appnav-open' : ''}>
+    <a slot="brand" href="/" aria-label="Home"><img src="/logo-white.svg" alt="Singapore Government Design System" width="130" /></a>
     ${profile ? `<sgds-appnav-profile slot="profile" label="Alex Tan" secondaryText="${secondaryText}" ariaLabel="Profile menu" close="inside" ${openProfile ? 'data-illustrative-profile-open' : ''}>
       <span slot="avatar" class="sgds:block sgds:h-8 sgds:w-8 sgds:rounded-full sgds:bg-neutral-surface-muted"></span>
       ${openProfile ? profileItems.map((label) => `<sgds-dropdown-item>${label}</sgds-dropdown-item>`).join("") : ''}
@@ -9969,8 +9969,8 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "The navigation adapts from desktop layouts to smaller screens.",
       },
     ],
-    anatomyMarkup: `<sgds-mainnav fluid expand="always" brandHref="/" class="portal-mainnav-anatomy sgds:w-[var(--sgds-dimension-688)]">
-      <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+    anatomyMarkup: `<sgds-mainnav fluid expand="always" class="portal-mainnav-anatomy sgds:w-[var(--sgds-dimension-688)]">
+      <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
       <sgds-mainnav-item active><a href="#">Services</a></sgds-mainnav-item>
       <sgds-mainnav-item><a href="#">Resources</a></sgds-mainnav-item>
       <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
@@ -10000,8 +10000,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Constrained width",
             value: "constrained",
             markup: `<div class="portal-demo-nav portal-mainnav-width-demo sgds:w-full">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Services</sgds-mainnav-item>
@@ -10015,8 +10015,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Full-bleed (fluid)",
             value: "fluid",
             markup: `<div class="portal-demo-nav portal-mainnav-width-demo sgds:w-full">
-          <sgds-mainnav brandHref="/" fluid>
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav fluid>
+            <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Services</sgds-mainnav-item>
@@ -10039,8 +10039,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default items",
             value: "default-items",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Contact</sgds-mainnav-item>
@@ -10053,8 +10053,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With active item",
             value: "with-active",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Contact</sgds-mainnav-item>
@@ -10067,8 +10067,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With disabled item",
             value: "with-disabled",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item disabled>Coming soon</sgds-mainnav-item>
@@ -10090,8 +10090,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Without dropdown",
             value: "without-dropdown",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Contact</sgds-mainnav-item>
@@ -10104,8 +10104,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With dropdown",
             value: "with-dropdown",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-dropdown ariaLabel="Services">
               <span slot="toggler">Services</span>
@@ -10132,8 +10132,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Without end slot",
             value: "without-end",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
           </sgds-mainnav>
@@ -10144,8 +10144,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With sign-in action",
             value: "with-end-action",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-button slot="end" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
@@ -10167,8 +10167,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With action",
             value: "with-action",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+              <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
@@ -10182,8 +10182,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No action",
             value: "no-action",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+              <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
@@ -10200,8 +10200,8 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Structure",
         "Mainnav structure preview with illustrative slot content.",
         `<div class="portal-demo-nav">
-          <sgds-mainnav fluid expand="always" brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav fluid expand="always">
+            <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item><a href="#">Overview</a></sgds-mainnav-item>
             <sgds-mainnav-dropdown active ariaLabel="Services">
               <span slot="toggler">Services</span>
@@ -10244,8 +10244,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Reserve mainnav for primary sections every user needs. Keep secondary or task-specific links elsewhere.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav expand="always">
+              <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <sgds-mainnav-item>Services</sgds-mainnav-item>
               <sgds-mainnav-item>About</sgds-mainnav-item>
@@ -10259,8 +10259,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Long mainnavs are hard to scan. With more than five items, consolidate or move some into a dropdown or subnav.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav expand="always">
+              <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item>Home</sgds-mainnav-item>
               <sgds-mainnav-item>Apply</sgds-mainnav-item>
               <sgds-mainnav-item>Renew</sgds-mainnav-item>
@@ -10279,8 +10279,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Anchor user-account actions like sign in to the end slot so users find them in a consistent place.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav expand="always">
+              <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <sgds-mainnav-item>About</sgds-mainnav-item>
               <sgds-button slot="end" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
@@ -10293,8 +10293,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "The end slot draws strong attention. Reserve it for one global action, not promotional links or badges.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav expand="always">
+              <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <div slot="end">
                 <sgds-badge>New</sgds-badge>
@@ -10398,8 +10398,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-masthead-width-demo">
               <div class="portal-masthead-width-demo__viewport">
                 <sgds-masthead></sgds-masthead>
-                <sgds-mainnav brandHref="/">
-                  <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot portal-masthead-mainnav-brand-slot"><span>Slot content</span></div>
+                <sgds-mainnav>
+                  <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot portal-masthead-mainnav-brand-slot"><span>Slot content</span></a>
                   <sgds-mainnav-item active>Home</sgds-mainnav-item>
                 </sgds-mainnav>
               </div>
@@ -10443,8 +10443,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Skipping the banner, even on internal flows or success screens, undermines the trust signal users rely on.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav>
+              <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
             </sgds-mainnav>
           </div>`,
@@ -10456,8 +10456,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "do",
           markup: `<div class="portal-demo-nav">
             <sgds-masthead fluid></sgds-masthead>
-            <sgds-mainnav fluid brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav fluid>
+              <a slot="brand" href="/" aria-label="Home" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
             </sgds-mainnav>
           </div>`,
@@ -17371,7 +17371,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       ],
       content: [{ title: "Labels and slots", items: [
         "Give every action icon button a descriptive ariaLabel. Appnav uses this text for the collapsed menu item.",
-        "Place an application logo or name in the brand slot and set brandHref to the application home page.",
+        "Place an application logo or name in the brand slot. Wrap it in an anchor tag with href pointing to the application home page.",
         "Use the start slot for a control such as a sidebar toggle. Connect it to the application sidebar yourself.",
         "Use the profile label for the user name and secondaryText for supporting details such as agency or role.",
       ] }],
@@ -17424,7 +17424,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         { title: "What you need to do", items: [
           "Set ariaLabel on every icon-only action. Appnav also uses this text for the collapsed action labels.",
           "Set ariaLabel on the profile toggle, such as Profile menu.",
-          "Give the brand image meaningful alternative text and set brandHref to the application's home page.",
+          "Give the brand image meaningful alternative text and wrap it in an anchor tag linking to the application's home page.",
           "Use variant=ghost and tone=fixed-light for icon buttons.",
         ] },
       ],
