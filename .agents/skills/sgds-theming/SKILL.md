@@ -1,6 +1,6 @@
 ---
 name: "sgds-theming"
-description: "Customising the visual theme of an SGDS application — product brand colours, day/night mode, and font. Use when users ask about changing the primary colour, theming their app, enabling dark mode, night mode, overriding CSS tokens, or customising the font. Apply this skill whenever theming, branding, or CSS token overrides are mentioned."
+description: "Use when users ask about changing the primary colour, theming their app, enabling dark mode, night mode, overriding CSS tokens, customising the font, compact/spacious density, or border radius. Customising the visual theme of an SGDS application — product brand colours, day/night mode, font, border radius, and spacing density."
 metadata:
   author: singapore-design-system
   version: "0.0.0"
@@ -10,7 +10,7 @@ metadata:
 
 # SGDS Theming Skill
 
-How to customise the product theme — brand colours, day/night mode, and font — using SGDS CSS token overrides.
+How to customise the product theme — brand colours, day/night mode, font, border radius, and spacing density — using SGDS CSS token overrides.
 
 ---
 
@@ -22,12 +22,15 @@ Import `themes/day.css` before your custom CSS. See **[sgds-getting-started](../
 
 ## Quick Decision Guide
 
-| What you want to change | Token / mechanism |
-|-------------------------|-------------------|
-| Product brand colour (custom) | Override `--sgds-product-primary-{100–900}` |
-| Product brand colour (GovTech) | Import one `themes/gt/<colour>.css` + map to `--sgds-product-primary-*` |
-| Enable dark/night mode | Import `themes/night.css` + add `.sgds-night-theme` to `<html>` |
-| Font typeface | Override `--sgds-font-family-brand` |
+| What you want to change | Token / mechanism | Reference |
+|-------------------------|-------------------|-----------|
+| Product brand colour (custom) | Override `--sgds-product-primary-{100–900}` | [brand-colour.md](references/brand-colour.md) |
+| Product brand colour (GovTech) | Import one `themes/gt/<colour>.css` + map to `--sgds-product-primary-*` | [brand-colour.md](references/brand-colour.md) |
+| Enable dark/night mode | Import `themes/night.css` + add `.sgds-night-theme` to `<html>` | See below |
+| Font typeface (all roles) | Override `--sgds-font-family-brand` | [typography.md](references/typography.md) |
+| Font typeface (per role) | Override individual `--sgds-font-family-{display,heading,subtitle,body,label,code}` | [typography.md](references/typography.md) |
+| Border radius | Override semantic `--sgds-{purpose}-border-radius` tokens | [border-radius.md](references/border-radius.md) |
+| Spacing density (compact/spacious) | Import `themes/density/compact.css` or `spacious.css` | [density.md](references/density.md) |
 
 ---
 
@@ -182,6 +185,18 @@ You are responsible for loading the font assets — either via a `<link>` tag or
 
 ---
 
+## Changing the Border Radius
+
+See **[border-radius.md](references/border-radius.md)** for the full reference — semantic token table, override examples, and available primitive values.
+
+---
+
+## Changing the Spacing Density
+
+See **[density.md](references/density.md)** for the full reference — density modes, token tables, affected components, and import order.
+
+---
+
 ## For AI Agents
 
 1. Always tell users to import their custom CSS **after** `themes/day.css` — otherwise the override will be overwritten.
@@ -191,5 +206,7 @@ You are responsible for loading the font assets — either via a `<link>` tag or
 5. Day mode is always active by default; there is no `sgds-day-theme` class to add.
 6. When overriding `--sgds-font-family-brand`, remind the user to also load the font file themselves.
 7. Custom overrides apply to both day and night mode simultaneously because they target `:root`, which both theme selectors inherit from.
-8. GovTech products must use a colour from `themes/gt/` — not custom hex values. If a user is building a GovTech product and asks about brand colours, guide them to pick one GT colour and apply the `--gt-color-*` → `--sgds-product-primary-*` mapping pattern. Never let them import more than one GT colour file.
-9. The GT colour file must be imported **after** `themes/day.css` and **before** the custom mapping CSS so that `--gt-color-*` variables are defined in time.
+8. For brand colour theming, read [brand-colour.md](references/brand-colour.md).
+9. For typography/font theming, read [typography.md](references/typography.md).
+10. For border radius theming, read [border-radius.md](references/border-radius.md). Override **semantic** tokens (`--sgds-{purpose}-border-radius`), referencing primitive values via `var(--sgds-border-radius-{size})`.
+11. For density theming, read [density.md](references/density.md). Import **one** density file (`compact.css` or `spacious.css`) after the colour theme. Density affects padding and gap only — not font sizes, colours, or border radii.

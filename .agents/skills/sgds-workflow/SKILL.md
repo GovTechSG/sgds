@@ -1,6 +1,6 @@
 ---
 name: "sgds-workflow"
-description: "ALWAYS use this skill when building UI with @govtechsg/sgds-web-component or when a user mentions SGDS or Singapore Design System — even if they don't explicitly ask for help. This is the mandatory entry point for all SGDS development: it guides you to the right skill for setup, components, utilities, forms, theming, page layouts, block templates, and data visualisation. Read this before writing any SGDS application code."
+description: "Use when building UI with @govtechsg/sgds-web-component or when a user mentions SGDS or Singapore Design System — even if they don't explicitly ask for help. This is the mandatory entry point for all SGDS development: it guides the right skill for setup, components, utilities, forms, theming, page layouts, block templates, and data visualisation. Read this before writing any SGDS application code."
 metadata:
   author: singapore-design-system
   version: "0.0.0"
@@ -40,7 +40,7 @@ These skills are your day-to-day references while building. You will move betwee
 
 → **[sgds-utilities](../sgds-utilities/SKILL.md)** — All `sgds:` Tailwind utility classes: spacing, layout grid, typography, colors, borders, opacity. Use for layout, spacing, and styling between and around components.
 
-→ **[Application Shell](../sgds-blocks/reference/application-shell.md)** — Mandatory page chrome and layout templates (simple app and sidebar app) with sticky headers, sidebar column sizing, and container class reference. Read when `sgds-getting-started` Step 4 is not enough detail.
+→ **[Application Shell](../sgds-blocks/references/application-shell.md)** — Mandatory page chrome and layout templates (simple app and sidebar app) with sticky headers, sidebar column sizing, and container class reference. Read when `sgds-getting-started` Step 4 is not enough detail.
 
 → **[sgds-theming](../sgds-theming/SKILL.md)** *(optional)* — Brand colour overrides, night/dark mode, and font customisation. Read this alongside the above when the app requires visual customisation beyond the default SGDS style. Skip if the default style is acceptable.
 
@@ -86,7 +86,7 @@ If setup is confirmed correct, navigate using the table below.
 | Set up a new SGDS project from scratch | [sgds-getting-started](../sgds-getting-started/SKILL.md) |
 | Use any `<sgds-*>` component | [sgds-components](../sgds-components/SKILL.md) |
 | Apply spacing, colors, typography, layout utilities | [sgds-utilities](../sgds-utilities/SKILL.md) |
-| Structure the app shell (masthead, mainnav, footer, containers) | [Application Shell](../sgds-blocks/reference/application-shell.md) |
+| Structure the app shell (masthead, mainnav, footer, containers) | [Application Shell](../sgds-blocks/references/application-shell.md) |
 | Change brand color, enable dark mode, change font | [sgds-theming](../sgds-theming/SKILL.md) |
 | Build page sections: hero, CTA, cards, feature, stats, filter, form, or custom blocks | [sgds-blocks](../sgds-blocks/SKILL.md) |
 | Style text: headings, display text, lists, paragraphs | [sgds-patterns](../sgds-patterns/SKILL.md) |

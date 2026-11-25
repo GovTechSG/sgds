@@ -1,6 +1,6 @@
 ---
 name: "sgds-layouts"
-description: "Complete catalog of page layout patterns for SGDS applications. Use this skill whenever a user asks about page layouts, content arrangement, aside panels, split views, sidebar layouts, breadcrumb layouts, or viewport-height layouts — even if they just say 'how should I lay out my page' or 'I need a two-column layout'. Covers Full Width layouts (public-facing pages with sgds-container) and With Sidebar layouts (dashboards/internal tools with sgds-container-sidebar). Trigger on: layout, aside, split view, sidebar layout, two-column, three-column, content arrangement, page structure with aside."
+description: "Use when users ask about page layouts, content arrangement, aside panels, split views, sidebar layouts, breadcrumb layouts, or viewport-height layouts — even if they just say 'how should I lay out my page' or 'I need a two-column layout'. Complete catalog of page layout patterns for SGDS applications. Covers Full Width layouts (public-facing pages with sgds-container) and With Sidebar layouts (dashboards/internal tools with sgds-container-sidebar)."
 metadata:
   author: singapore-design-system
   version: "0.0.0"
@@ -44,17 +44,17 @@ See **[sgds-getting-started](../sgds-getting-started/SKILL.md)** and **[sgds-com
 
 | What you're building | Layout category | Layout to use |
 |---|---|---|
-| Simple public-facing page, single content area | Full Width | [Default](reference/full-width.md#default) |
-| Page with a left sidebar/aside panel (4/8 split) | Full Width | [Aside Left](reference/full-width.md#aside-left) |
-| Page with a right sidebar/aside panel (8/4 split) | Full Width | [Aside Right](reference/full-width.md#aside-right) |
-| Page with both left and right aside panels (3/6/3) | Full Width | [Aside Both](reference/full-width.md#aside-both) |
-| Two equal content panels side by side | Full Width | [Split](reference/full-width.md#split) |
-| Page with breadcrumb navigation bar | Full Width | [Breadcrumb](reference/full-width.md#breadcrumb) |
-| Dashboard/internal tool, single content area | With Sidebar | [Default](reference/with-sidebar.md#default) |
-| Dashboard with left aside panel | With Sidebar | [Aside Left](reference/with-sidebar.md#aside-left) |
-| Dashboard with right aside panel | With Sidebar | [Aside Right](reference/with-sidebar.md#aside-right) |
-| Collapsible overlay sidebar with breadcrumb | With Sidebar | [Overlay](reference/with-sidebar.md#overlay) |
-| Dashboard with two equal content panels | With Sidebar | [Split](reference/with-sidebar.md#split) |
+| Simple public-facing page, single content area | Full Width | [Default](references/full-width.md#default) |
+| Page with a left sidebar/aside panel (4/8 split) | Full Width | [Aside Left](references/full-width.md#aside-left) |
+| Page with a right sidebar/aside panel (8/4 split) | Full Width | [Aside Right](references/full-width.md#aside-right) |
+| Page with both left and right aside panels (3/6/3) | Full Width | [Aside Both](references/full-width.md#aside-both) |
+| Two equal content panels side by side | Full Width | [Split](references/full-width.md#split) |
+| Page with breadcrumb navigation bar | Full Width | [Breadcrumb](references/full-width.md#breadcrumb) |
+| Dashboard/internal tool, single content area | With Sidebar | [Default](references/with-sidebar.md#default) |
+| Dashboard with left aside panel | With Sidebar | [Aside Left](references/with-sidebar.md#aside-left) |
+| Dashboard with right aside panel | With Sidebar | [Aside Right](references/with-sidebar.md#aside-right) |
+| Collapsible overlay sidebar with breadcrumb | With Sidebar | [Overlay](references/with-sidebar.md#overlay) |
+| Dashboard with two equal content panels | With Sidebar | [Split](references/with-sidebar.md#split) |
 
 ---
 
@@ -70,7 +70,7 @@ For general-purpose applications, public-facing digital services, and pages with
 - Content flows with the document (no viewport containment)
 - Grid-based aside panels use `.sgds-grid` with `sgds-col-*` classes
 
-**→ Read [reference/full-width.md](reference/full-width.md)** for all 6 Full Width layout variants.
+**→ Read [references/full-width.md](references/full-width.md)** for all 6 Full Width layout variants.
 
 ---
 
@@ -86,7 +86,7 @@ For internal tools, dashboards, admin portals, and transactional apps that need 
 - Viewport-height containment: `sgds:h-screen sgds:flex sgds:flex-col sgds:overflow-hidden`
 - Main content area scrolls independently: `sgds:overflow-y-auto`
 
-**→ Read [reference/with-sidebar.md](reference/with-sidebar.md)** for all 5 With Sidebar layout variants.
+**→ Read [references/with-sidebar.md](references/with-sidebar.md)** for all 5 With Sidebar layout variants.
 
 ---
 

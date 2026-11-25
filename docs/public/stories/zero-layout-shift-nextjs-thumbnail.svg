@@ -1,0 +1,22 @@
+<svg width="1272" height="900" viewBox="0 0 1272 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="900" x2="1272" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D6E4F7"/>
+      <stop offset="0.4" stop-color="#F0EAF7"/>
+      <stop offset="0.7" stop-color="#F5E0EE"/>
+      <stop offset="1" stop-color="#E8D0F0"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5295E0"/>
+      <stop offset="1" stop-color="#BF37AC"/>
+    </linearGradient>
+  </defs>
+  <rect width="1272" height="900" fill="url(#bg)"/>
+  <rect width="1272" height="900" fill="white" fill-opacity="0.4"/>
+  <g transform="translate(100, 250)">
+    <text y="0" font-family="Inter, system-ui, sans-serif" font-size="80" font-weight="300" fill="url(#accent)" letter-spacing="-1">CLS 0:</text>
+    <text y="110" font-family="Inter, system-ui, sans-serif" font-size="80" font-weight="300" fill="#1a1a2e" letter-spacing="-1">bringing Declarative</text>
+    <text y="220" font-family="Inter, system-ui, sans-serif" font-size="80" font-weight="300" fill="url(#accent)" letter-spacing="-1">Shadow DOM</text>
+    <text y="330" font-family="Inter, system-ui, sans-serif" font-size="80" font-weight="300" fill="#1a1a2e" letter-spacing="-1">to Next.js</text>
+  </g>
+</svg>

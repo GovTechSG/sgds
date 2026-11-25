@@ -260,7 +260,7 @@ const getThumbnailSrc = (key: string) => {
                   Filters
                 </sgds-button>
                 <sgds-dropdown class="sgds:min-w-0 sgds:flex-1">
-                  <sgds-button slot="toggler" tone="neutral" variant="outline" :ariaLabel.prop="'Sort by'">
+                  <sgds-button slot="toggler" tone="neutral" variant="outline" :ariaLabel.prop="`Sort by: ${selectedSortLabel}`">
                     {{ selectedSortLabel }}
                     <sgds-icon slot="rightIcon" name="chevron-down"></sgds-icon>
                   </sgds-button>
@@ -313,7 +313,7 @@ const getThumbnailSrc = (key: string) => {
                 Showing {{ filteredTemplateItems.length }} result<span v-if="filteredTemplateItems.length !== 1">s</span>
               </h2>
               <sgds-dropdown v-if="!isSmallScreen" class="sgds:min-w-[var(--sgds-dimension-200)]">
-                <sgds-button slot="toggler" tone="neutral" variant="outline" :ariaLabel.prop="'Sort by'">
+                <sgds-button slot="toggler" tone="neutral" variant="outline" :ariaLabel.prop="`Sort by: ${selectedSortLabel}`">
                   {{ selectedSortLabel }}
                   <sgds-icon slot="rightIcon" name="chevron-down"></sgds-icon>
                 </sgds-button>

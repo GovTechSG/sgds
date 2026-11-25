@@ -12,6 +12,10 @@ export type StorySection = {
   postVisualList?: string[];
   subsections?: StorySubsection[];
   comparisonTable?: StoryComparisonTable;
+  comparisonVisuals?: {
+    before: StoryVisual & { label: string };
+    after: StoryVisual & { label: string };
+  };
   boxedContent?: StoryBoxedContent;
   diagram?: "figmaMcpFlow";
   titleVisual?: StoryVisual;
@@ -1326,11 +1330,191 @@ export const storyPosts: StoryPost[] = [
     ctaLabel: "Report an accessibility issue",
     ctaHref: "https://github.com/GovTechSG/sgds-web-component/issues",
   },
+  {
+    key: "how-sgds-achieved-zero-layout-shift-with-ssr",
+    category: "Engineering",
+    title: "CLS 0: bringing Declarative Shadow DOM to Next.js",
+    description:
+      "Web components and SSR have historically been incompatible. Here is how we eliminated Cumulative Layout Shift entirely for Next.js users through Declarative Shadow DOM and SSR-first component principles.",
+    href: "/stories/how-sgds-achieved-zero-layout-shift-with-ssr",
+    imageSrc: "/stories/zero-layout-shift-nextjs-thumbnail.svg",
+    imageAlt: "Diagram showing server-rendered web components with Declarative Shadow DOM",
+    published: "November 2026",
+    ...storyAuthors.luKheiChong,
+    intro: [
+      "Web components use Shadow DOM to encapsulate their styles and markup. Traditionally, Shadow DOM is created entirely in JavaScript on the client side. In a client-side rendered (CSR) app, this is not an issue — the browser loads JavaScript, creates the Shadow DOM, and renders the component in one pass. But in a server-side rendered (SSR) framework like Next.js, the server generates HTML and sends it to the browser before JavaScript loads. Web components arrive as empty custom element shells with no content inside. When JavaScript finally loads and upgrades these elements, they suddenly grow from near-zero height to their actual size.",
+      "This produced a Cumulative Layout Shift (CLS) score of approximately 0.23 — well above Google's recommended threshold of 0.1. Users would see the page visibly jump and reflow as components popped in.",
+      "We set out to eliminate this entirely.",
+    ],
+    sections: [
+      {
+        title: "The problem: web components and server-side rendering",
+        paragraphs: [],
+        paragraphsHtml: [
+          "Shadow DOM is the core technology behind web components. It provides style and markup encapsulation, ensuring that a component's internal styles do not leak out and external styles do not leak in. But Shadow DOM has always been a client-side JavaScript construct. It is created by calling <code>element.attachShadow()</code> in the browser.",
+          "In a traditional client-side rendered (CSR) React app, this works fine. The browser loads, JavaScript runs, and components render. But in a server-side rendered (SSR) framework like Next.js, the server generates HTML and sends it to the browser before JavaScript loads. Web components arrive as empty shells with no shadow DOM, no styles, and no content.",
+          "When JavaScript finally loads and upgrades these elements, the components snap from zero height to their full size. This creates visible layout shift that degrades user experience and Core Web Vitals scores.",
+        ],
+        comparisonTable: {
+          columns: ["Rendering mode", "CLS score", "User experience"],
+          rows: [
+            ["No SSR (before our changes)", "~0.23", "Visible page jump as components upgrade"],
+            ["Full SSR with DSD (our solution)", "0", "Components arrive fully rendered"],
+          ],
+          tableBorder: true,
+          headerBackground: true,
+        },
+      },
+      {
+        title: "The solution: Declarative Shadow DOM",
+        paragraphs: [],
+        paragraphsHtml: [
+          "<a href=\"https://web.dev/articles/declarative-shadow-dom\" target=\"_blank\" rel=\"noopener\">Declarative Shadow DOM</a> (DSD) is a browser feature that allows Shadow DOM content to be included directly in the server-rendered HTML, inside a special <code>&lt;template&gt;</code> tag with the <code>shadowrootmode</code> attribute set to <code>open</code>. The browser processes this immediately during HTML parsing, with no JavaScript needed. Components arrive fully formed from the server with their styles and structure already in place.",
+          "With DSD, the server renders the complete shadow DOM tree including component styles as inline <code>&lt;style&gt;</code> tags inside the template. The browser adopts this shadow DOM during HTML parsing and Lit hydrates it on the client without re-rendering. The result is zero layout shift and zero flash of unstyled content.",
+        ],
+        comparisonVisuals: {
+          before: {
+            label: "Without DSD (client-side only)",
+            src: "/stories/shadow-dom-without-dsd.webp",
+            alt: "Browser DevTools showing a client-side rendered shadow root with adopted stylesheets and component markup created by JavaScript after the page loads",
+            caption: "Shadow root created by JavaScript on the client. Styles via adopted stylesheets.",
+            width: 1078,
+            height: 572,
+          },
+          after: {
+            label: "With DSD (server-rendered)",
+            src: "/stories/shadow-dom-with-dsd.webp",
+            alt: "Browser DevTools showing a Declarative Shadow DOM with inline styles, lit-part markers, and fully rendered accordion component markup inside the shadow root",
+            caption: "Shadow root arrives fully rendered from the server with inline styles and hydration markers.",
+            width: 1070,
+            height: 594,
+          },
+        },
+        subsections: [
+          {
+            title: "The result: CLS 0",
+            paragraphs: [],
+            visual: {
+              src: "/stories/nextjs-cls-zero-evidence.webp",
+              alt: "SGDS E2E Next.js app showing an accordion component with Chrome DevTools Web Vitals panel reporting CLS 0.00, LCP 0.18s, and INP 8ms",
+              caption: "Chrome Web Vitals in our E2E Next.js app confirming CLS 0.00 with SGDS web components rendered via Declarative Shadow DOM.",
+              width: 2000,
+              height: 1027,
+            },
+            visualAfterParagraph: 0,
+          },
+        ],
+      },
+      {
+        title: "Making components SSR-first",
+        paragraphs: [
+          "Getting Declarative Shadow DOM working was only part of the story. We had to rethink how our components render to ensure the server and client produce identical HTML. Any mismatch between server-rendered DSD and the client's first render causes Lit's hydration to fail, resulting in broken UI or duplicated content.",
+          "We established four development principles that now govern all SGDS component development.",
+        ],
+        subsections: [
+          {
+            title: "1. Single-template rendering",
+            paragraphs: [
+              "We refactored these components to render a single unified template. CSS media queries handle all visual differences between mobile and desktop. JavaScript breakpoint detection is used only for behavioral differences like click handler dispatching and Floating UI setup, never for template selection.",
+            ],
+            paragraphsHtml: [
+              "Components like <code>sgds-mainnav</code> previously used JavaScript to detect screen size and switch between completely different mobile and desktop templates. Since the <code>window</code> object does not exist on the server, this broke SSR. Guarding with <code>typeof window</code> checks avoided the crash but produced the wrong DSD. The server would render desktop HTML, while a mobile device expected mobile HTML, and Lit's hydration could not reconcile the structural mismatch.",
+            ],
+          },
+          {
+            title: "2. CSS-first visibility",
+            paragraphs: [
+              "Instead of conditionally rendering elements with JavaScript, components now always render their full DOM and use CSS classes to show or hide elements. This ensures the server and client HTML always match structurally. For example, both mobile and desktop icons are rendered in the template but CSS shows only the appropriate one based on the viewport.",
+            ],
+          },
+          {
+            title: "3. Deferred slot detection",
+            paragraphs: [],
+            paragraphsHtml: [
+              "Slot-based layout decisions, such as checking whether a component has a title slot or a description slot, previously relied on the <code>HasSlotController</code> which uses browser APIs. During SSR, these APIs are unavailable, causing rendering inconsistencies.",
+              "We introduced dedicated SSR indicator properties like <code>hasTitleSlot</code> and <code>hasDescriptionSlot</code> that can be set from the server. The <code>HasSlotController</code> checks are deferred until after the component has hydrated on the client. This ensures SSR markup generation is deterministic while maintaining full reactivity after hydration.",
+            ],
+          },
+          {
+            title: "4. Client API guards",
+            paragraphs: [],
+            paragraphsHtml: [
+              "Lit has a well-defined <a href=\"https://lit.dev/docs/ssr/authoring/#lifecycle\" target=\"_blank\" rel=\"noopener\">rendering lifecycle for SSR</a>. Only <code>render()</code> and certain reactive lifecycle methods execute on the server — browser APIs like <code>window</code>, <code>document</code>, and DOM measurement methods do not exist in that context. We consciously restrict all browser-specific logic to the appropriate client-only lifecycle hooks such as <code>connectedCallback()</code>, <code>firstUpdated()</code>, and event handlers, ensuring components render cleanly on the server without crashes or hydration mismatches.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "How SSR works under the hood",
+        paragraphs: [],
+        paragraphsHtml: [
+          "Developers wrap their <code>next.config.mjs</code> with <code>withSgdsNextSSR()</code>. Under the hood, this aliases the standard react component imports to SSR-aware versions that are monkey-patched to render Declarative Shadow DOM on the server. On the server, React's <code>jsx()</code> and <code>createElement()</code> functions are patched so that every SGDS component outputs its full shadow DOM as inline HTML. In the browser, hydration support kicks in so the browser adopts the server-rendered shadow DOM without re-rendering.",
+          "This works with both webpack and Turbopack. The alternative plugin, <code>@lit-labs/nextjs</code>, required a webpack-only plugin that did not work with Turbopack at all.",
+        ],
+      },
+      {
+        title: "CSP nonce support",
+        paragraphs: [],
+        paragraphsHtml: [
+          "If your Next.js app enforces a strict Content Security Policy with a <code>style-src</code> nonce directive, you will need one additional step. Without it, the browser blocks the inline <code>&lt;style&gt;</code> tags inside Declarative Shadow DOM because they lack the required nonce. Components render their HTML structure but have no styles.",
+          "This happens because SSR embeds component CSS directly inside each shadow root as inline <code>&lt;style&gt;</code> tags. A strict CSP that only allows <code>style-src 'self' 'nonce-...'</code> will block any inline style without a matching nonce.",
+          "To fix this, import <code>setCSPNonce</code> from <code>@govtechsg/sgds-web-component/react/ssr</code> and call it in your root layout server component. This stamps the nonce onto every inline <code>&lt;style&gt;</code> tag during server rendering.",
+        ],
+        subsections: [
+          {
+            paragraphs: [],
+            visual: {
+              src: "/stories/dsd-nonce-shadow-dom.webp",
+              alt: "Browser DevTools showing a Declarative Shadow DOM with a nonce attribute on the inline style tag inside the shadow root of an sgds-accordion-item component",
+              caption: "The nonce is stamped onto every inline style tag inside each component's Declarative Shadow DOM during server rendering.",
+              width: 1178,
+              height: 448,
+            },
+            visualAfterParagraph: 0,
+          },
+        ],
+      },
+      {
+        title: "What developers need to do",
+        paragraphs: [],
+        paragraphsHtml: [
+          "SSR is opt-in and your existing setup continues to work as before. For the full step-by-step setup guide, see the <a href=\"/get-started/develop#nextjs\" target=\"_blank\" rel=\"noopener\">Next.js tab on the Getting Started page</a>.",
+        ],
+      },
+    ],
+    metrics: [
+      {
+        value: "0",
+        title: "CLS score",
+        description:
+          "Down from 0.23. Complete elimination of Cumulative Layout Shift for server-rendered pages.",
+      },
+      {
+        value: "0",
+        title: "Config changes",
+        description:
+          "SSR works automatically when using the React wrappers with withSgdsNextSSR(). No manual build configuration needed.",
+      },
+      {
+        value: "1 line",
+        title: "CSP nonce setup",
+        description:
+          "One setCSPNonce() call in your root layout is all it takes for strict Content Security Policy compliance.",
+      },
+    ],
+    closing: [
+      "Server-side rendering for web components required rethinking component architecture from the ground up. Every component had to produce identical HTML on the server and client. Every browser API had to be guarded. Every responsive layout had to work through CSS alone.",
+      "The result is CLS 0, CSP compliance, and a developer experience that requires no build configuration beyond a single config wrapper. Our end-to-end tests for DSD and SSR-first composition are automated in CI pipelines, ensuring this remains a reliably supported feature for Next.js users.",
+    ],
+    ctaLabel: "Get started with Next.js SSR",
+    ctaHref: "/get-started/develop#nextjs",
+  },
 ];
 
 export const featuredStory = storyPosts[0];
 
 const storyOverviewOrder = [
+  "how-sgds-achieved-zero-layout-shift-with-ssr",
   "accessibility-from-an-engineering-perspective",
   "what-sgds-is-often-mistaken-for",
   "the-learning-curve-before-ai",

@@ -1,6 +1,6 @@
 ---
 name: "sgds-getting-started"
-description: "Starting point for any new application built with the SGDS web component library. Apply this skill first whenever a user is bootstrapping a new SGDS project, setting up a new app, or asking where to begin with SGDS. Covers font setup, foundation CSS, utilities, components, and app layout in the correct order."
+description: "Use when users are bootstrapping a new SGDS project, setting up a new app, or asking where to begin with SGDS. Starting point for any new application built with the SGDS web component library. Covers font setup, foundation CSS, utilities, components, framework integration (React, Next.js, Vue, Angular), and app layout in the correct order."
 metadata:
   author: singapore-design-system
   version: "0.0.0"
@@ -68,7 +68,15 @@ import "@govtechsg/sgds-web-component";
 
 This registers all `<sgds-*>` custom elements globally.
 
-> For React, Vue, Angular, and Next.js-specific integration details, see **[sgds-components](../sgds-components/SKILL.md)**.
+### Framework-specific integration
+
+| Framework | Reference |
+|-----------|-----------|
+| React 19+ / React 18 | [→ references/react.md](references/react.md) |
+| Next.js (SSR) | [→ references/nextjs.md](references/nextjs.md) |
+| Vue | [→ references/vue.md](references/vue.md) |
+| Nuxt (SSR) | [→ references/nuxt.md](references/nuxt.md) |
+| Angular | [→ references/angular.md](references/angular.md) |
 
 ---
 
@@ -120,7 +128,7 @@ Every SGDS application should be structured using one of the two recommended lay
 </div>
 ```
 
-> For full layout details and responsive container breakpoints, see **[Application Shell](../sgds-blocks/reference/application-shell.md)**.
+> For full layout details and responsive container breakpoints, see **[Application Shell](../sgds-blocks/references/application-shell.md)**.
 
 ---
 

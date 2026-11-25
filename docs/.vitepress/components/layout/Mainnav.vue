@@ -15,12 +15,13 @@ const searchOpen = ref(false);
 <template>
   <div class="sgds:flex sgds:flex-col mainnav-container">
     <sgds-masthead></sgds-masthead>
-    <sgds-mainnav expand="lg" brandHref="/">
-      <span
-        slot="brand"
-        class="sgds:block sgds:text-default mainnav-brand-logo"
-        v-html="logoSvg"
-      ></span>
+    <sgds-mainnav expand="lg">
+      <a slot="brand" href="/" aria-label="SGDS home">
+        <span
+          class="sgds:block sgds:text-default mainnav-brand-logo"
+          v-html="logoSvg"
+        ></span>
+      </a>
 
       <sgds-mainnav-item
         v-for="navItem in mainNavItems"
