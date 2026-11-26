@@ -53,7 +53,7 @@ const colourCardClass = (colour: GovtechColourCard) => [
 
       <sgds-tab-group ref="tabGroupRef">
         <sgds-tab slot="nav" panel="govtech" :ariaLabel.prop="'GovTech colour'">GovTech colour</sgds-tab>
-        <sgds-tab slot="nav" panel="custom" :ariaLabel.prop="'Custom colour (BETA)'">
+        <sgds-tab slot="nav" panel="custom" :ariaLabel.prop="'Custom colour BETA'">
           Custom colour
           <sgds-badge variant="accent" outlined size="sm">BETA</sgds-badge>
         </sgds-tab>
