@@ -1,6 +1,6 @@
 ---
 name: "sgds-templates"
-description: "Complete ready-to-use page templates built with SGDS components and utilities. Use this skill whenever a user asks to build a page, dashboard, login page, form page, settings page, list page, or any full-page UI — even if they don't say 'template'. Apply when starting a new app, building internal tools, dashboards, admin portals, authentication flows, or data table views."
+description: "Use when users ask to build a page, dashboard, login page, form page, settings page, list page, or any full-page UI — even if they don't say 'template'. Complete ready-to-use page templates built with SGDS components and utilities. Apply when starting a new app, building internal tools, dashboards, admin portals, authentication flows, or data table views."
 metadata:
   author: singapore-design-system
   version: "0.0.0"
@@ -14,7 +14,7 @@ Ready-to-use full-page templates using SGDS components and utilities — adapted
 
 ## Prerequisites
 
-> **Every page must include the Application Shell.** Read **[sgds-blocks → reference/application-shell.md](../sgds-blocks/reference/application-shell.md)** before generating any page. The shell provides mandatory `<sgds-masthead>`, `<sgds-mainnav>`, and `<sgds-footer>` on every page, plus container class selection (`.sgds-container` vs `.sgds-container-sidebar`) and sticky-header conventions. Never generate a page template without all three shell components.
+> **Every page must include the Application Shell.** Read **[sgds-blocks → references/application-shell.md](../sgds-blocks/references/application-shell.md)** before generating any page. The shell provides mandatory `<sgds-masthead>`, `<sgds-mainnav>`, and `<sgds-footer>` on every page, plus container class selection (`.sgds-container` vs `.sgds-container-sidebar`) and sticky-header conventions. Never generate a page template without all three shell components.
 
 ```javascript
 import "@govtechsg/sgds-web-component/themes/day.css";
@@ -24,7 +24,7 @@ import "@govtechsg/sgds-web-component/css/utility.css";
 
 See **[sgds-getting-started](../sgds-getting-started/SKILL.md)** and **[sgds-components](../sgds-components/SKILL.md)** for full installation.
 
-For container width and max-width utilities used in these templates, see **[sgds-utilities](../sgds-utilities/reference/dimension.md)**.
+For container width and max-width utilities used in these templates, see **[sgds-utilities](../sgds-utilities/references/dimension.md)**.
 
 ---
 
@@ -32,45 +32,45 @@ For container width and max-width utilities used in these templates, see **[sgds
 
 | What you're building | Template to use |
 |---|---|
-| Operational app shell (appnav + overlay sidebar) | [Operational](reference/operational.md) |
-| Admin dashboard with filters & data table | [Application Management](reference/application-management.md) |
-| Public catalogue with search & filtering | [Catalogue / Search & Filter](reference/catalogue.md) |
-| Internal tool, admin portal, analytics dashboard | [Dashboard](reference/dashboard.md) |
-| Login / sign-in page | [Login](reference/login.md) |
-| Multi-field settings or data-entry form | [Form Page](reference/form.md) |
-| Company/agency profile, team intro, achievements | [About Us](reference/about-us.md) |
-| Product or service landing page | [Landing Page](reference/landing.md) |
-| Blog post, news article, or case study | [Blog / Content Page](reference/blog.md) |
+| Operational app shell (appnav + overlay sidebar) | [Operational](references/operational.md) |
+| Admin dashboard with filters & data table | [Application Management](references/application-management.md) |
+| Public catalogue with search & filtering | [Catalogue / Search & Filter](references/catalogue.md) |
+| Internal tool, admin portal, analytics dashboard | [Dashboard](references/dashboard.md) |
+| Login / sign-in page | [Login](references/login.md) |
+| Multi-field settings or data-entry form | [Form Page](references/form.md) |
+| Company/agency profile, team intro, achievements | [About Us](references/about-us.md) |
+| Product or service landing page | [Landing Page](references/landing.md) |
+| Blog post, news article, or case study | [Blog / Content Page](references/blog.md) |
 
 ---
 
-## → Read [reference/operational.md](reference/operational.md)
+## → Read [references/operational.md](references/operational.md)
 Operational app shell with `<sgds-appnav>` + overlay sidebar. Use for internal tools, admin portals, and operational dashboards that don't need `<sgds-masthead>`.
 
-## → Read [reference/application-management.md](reference/application-management.md)
+## → Read [references/application-management.md](references/application-management.md)
 Sidebar filters + search + data table + pagination. Use for admin dashboards, application registries, management portals.
 
-## → Read [reference/catalogue.md](reference/catalogue.md)
+## → Read [references/catalogue.md](references/catalogue.md)
 Search + sidebar multi-group filters + sort dropdown + results grid + empty state. Use for product catalogues, event listings, content browsing.
 
-## → Read [reference/dashboard.md](reference/dashboard.md)
+## → Read [references/dashboard.md](references/dashboard.md)
 Sidebar navigation + stat cards row + data table. Use for dashboards, admin portals, internal tools with metrics.
 
-> **Note**: The dashboard template uses `sgds-sidebar` (RC component). Load the CDN script before other SGDS imports — see **[sgds-components sidebar reference](../sgds-components/reference/sidebar.md)** for the CDN tag and framework setup.
+> **Note**: The dashboard template uses `sgds-sidebar` (RC component). Load the CDN script before other SGDS imports — see **[sgds-components sidebar reference](../sgds-components/references/sidebar.md)** for the CDN tag and framework setup.
 
-## → Read [reference/login.md](reference/login.md)
+## → Read [references/login.md](references/login.md)
 Centered card with email/password form. Use for authentication, sign-in, sign-up pages.
 
-## → Read [reference/form.md](reference/form.md)
+## → Read [references/form.md](references/form.md)
 Two-column settings layout with labelled form sections. Use for settings pages, profile pages, multi-section data entry.
 
-## → Read [reference/about-us.md](reference/about-us.md)
+## → Read [references/about-us.md](references/about-us.md)
 Two-column headline + image grid + logo strip + achievements stats panel. Use for agency profiles, product about pages, team introductions.
 
-## → Read [reference/landing.md](reference/landing.md)
+## → Read [references/landing.md](references/landing.md)
 Hero section + feature cards + CTA sections. Use for product launches, service introductions, campaign pages.
 
-## → Read [reference/blog.md](reference/blog.md)
+## → Read [references/blog.md](references/blog.md)
 Featured image + article header + body content + author card. Use for blog posts, news articles, case studies, testimonials.
 
 ---
@@ -93,7 +93,7 @@ All page templates have working implementations in the `stories/templates/` dire
 | Landing Page | Landing | basic.stories.js | https://raw.githubusercontent.com/GovTechSG/sgds-web-component/master/stories/templates/Landing/basic.stories.js |
 | Login | Form | basic.stories.js | https://raw.githubusercontent.com/GovTechSG/sgds-web-component/master/stories/templates/Form/basic.stories.js |
 
-Each reference page (e.g., [reference/dashboard.md](reference/dashboard.md)) includes the relevant raw content links for that specific template.
+Each reference page (e.g., [references/dashboard.md](references/dashboard.md)) includes the relevant raw content links for that specific template.
 
 ---
 
@@ -196,7 +196,7 @@ const Template = () => html`
 `;
 ```
 
-**Extract** → remove `html\`` and backtick → clean up `<style>` → result is the HTML in [reference/about-us.md](reference/about-us.md).
+**Extract** → remove `html\`` and backtick → clean up `<style>` → result is the HTML in [references/about-us.md](references/about-us.md).
 
 ---
 

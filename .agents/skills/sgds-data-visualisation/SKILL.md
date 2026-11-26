@@ -1,6 +1,6 @@
 ---
 name: "sgds-data-visualisation"
-description: "Use this skill when users ask about data visualisation, charts, graphs, or dashboards in an SGDS application. Covers ECharts setup and applying the SGDS colour palette to charts."
+description: "Use when users ask about data visualisation, charts, graphs, or dashboards in an SGDS application. Covers ECharts setup and applying the SGDS colour palette to charts."
 metadata:
   author: singapore-design-system
   version: "0.0.0"

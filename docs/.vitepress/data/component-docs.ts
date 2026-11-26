@@ -525,9 +525,9 @@ const appnavMarkup = ({
   showMenu?: boolean;
   iconCount?: 0 | 1 | 2;
 } = {}) => `<div class="${previewClass}${profile === "menu" ? (expand === "never" ? " sgds:min-h-[var(--sgds-dimension-512)]" : " sgds:max-lg:min-h-[var(--sgds-dimension-512)]") : ""}">
-  <sgds-appnav tone="${tone}" expand="${expand}" brandHref="#">
+  <sgds-appnav tone="${tone}" expand="${expand}">
     ${showMenu ? `<sgds-icon-button slot="start" name="menu" variant="ghost" tone="fixed-light" size="sm" ariaLabel="Open side menu"></sgds-icon-button>` : ""}
-    <img slot="brand" src="/logo-white.svg" alt="Singapore Government Design System" width="130" />
+    <a slot="brand" href="#"><img src="/logo-white.svg" alt="Singapore Government Design System" width="130" /></a>
     ${iconCount > 0 ? `<sgds-icon-button name="moon" variant="ghost" tone="fixed-light" size="sm" ariaLabel="Toggle dark mode"></sgds-icon-button>` : ""}
     ${profile === "none" ? (iconCount > 1 ? `<sgds-icon-button name="bell" variant="ghost" tone="fixed-light" size="sm" ariaLabel="${actionLabel}"></sgds-icon-button>` : "") : `<sgds-appnav-profile slot="profile" label="User name" secondaryText="Agency (admin)" ariaLabel="${profile === "menu" ? "Profile menu" : "Profile information"}">
       <span slot="avatar" aria-hidden="true" class="sgds:block sgds:h-10 sgds:w-10 sgds:shrink-0 sgds:rounded-full sgds:bg-neutral-surface-muted"></span>
@@ -548,8 +548,8 @@ const appnavMarkup = ({
 
 // Best-practice illustrations use real Appnav controls and labelled page content.
 const appnavPracticeBar = ({ profile = false, secondaryText = "", collapsed = false, openProfile = false, actions = "", profileItems = ["Account details", "Preferences", "Sign out"] } = {}) => `
-  <sgds-appnav tone="brand" expand="${collapsed ? "never" : "always"}" brandHref="/" ${collapsed ? 'data-illustrative-appnav-open' : ''}>
-    <img slot="brand" src="/logo-white.svg" alt="Singapore Government Design System" width="130" />
+  <sgds-appnav tone="brand" expand="${collapsed ? "never" : "always"}" ${collapsed ? 'data-illustrative-appnav-open' : ''}>
+    <a slot="brand" href="/"><img src="/logo-white.svg" alt="Singapore Government Design System" width="130" /></a>
     ${profile ? `<sgds-appnav-profile slot="profile" label="Alex Tan" secondaryText="${secondaryText}" ariaLabel="Profile menu" close="inside" ${openProfile ? 'data-illustrative-profile-open' : ''}>
       <span slot="avatar" class="sgds:block sgds:h-8 sgds:w-8 sgds:rounded-full sgds:bg-neutral-surface-muted"></span>
       ${openProfile ? profileItems.map((label) => `<sgds-dropdown-item>${label}</sgds-dropdown-item>`).join("") : ''}
@@ -1193,7 +1193,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With slots",
             value: "with-slots",
             markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]">
-              <sgds-accordion-item open ariaLabel="Application status">
+              <sgds-accordion-item open ariaLabel="Application status Ready">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
                 <span slot="header">Application status</span>
                 <sgds-badge slot="badge" variant="success">Ready</sgds-badge>
@@ -6862,7 +6862,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "Use accepted types, size guidance, and feedback to reduce upload errors.",
       },
     ],
-    anatomyMarkup: `<sgds-file-upload class="portal-anatomy-file-upload" label="Label" hintText="Hint text">Choose file</sgds-file-upload>`,
+    anatomyMarkup: `<sgds-file-upload class="portal-anatomy-file-upload" label="Label" hintText="Hint text" ariaLabel="Choose file">Choose file</sgds-file-upload>`,
     anatomyParts: [
       { title: "Label (optional)" },
       { title: "Action (button)" },
@@ -6907,14 +6907,14 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Default",
             value: "default",
-            markup: `<sgds-file-upload class="portal-demo-file-upload-default" label="Upload documents" hintText="PDF, JPG, or PNG. Max 5 MB per file.">Choose file</sgds-file-upload>`,
+            markup: `<sgds-file-upload class="portal-demo-file-upload-default" label="Upload documents" hintText="PDF, JPG, or PNG. Max 5 MB per file." ariaLabel="Choose file">Choose file</sgds-file-upload>`,
             description:
               "Use the default variant for compact forms or single file inputs.",
           },
           {
             label: "Drag and drop",
             value: "drag-and-drop",
-            markup: `<sgds-file-upload class="portal-demo-file-upload-drag" label="Upload documents" hintText="PDF, JPG, or PNG. Max 5 MB per file." variant="drag-and-drop" multiple>Choose files</sgds-file-upload>`,
+            markup: `<sgds-file-upload class="portal-demo-file-upload-drag" label="Upload documents" hintText="PDF, JPG, or PNG. Max 5 MB per file." variant="drag-and-drop" multiple ariaLabel="Choose files">Choose files</sgds-file-upload>`,
             description:
               "Use drag-and-drop when uploading files is a prominent part of the task.",
           },
@@ -6929,14 +6929,14 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Single file",
             value: "single",
-            markup: `<sgds-file-upload>Upload file</sgds-file-upload>`,
+            markup: `<sgds-file-upload ariaLabel="Upload file">Upload file</sgds-file-upload>`,
             description:
               "Only one file can be selected; reselecting replaces the previous one.",
           },
           {
             label: "Multiple files",
             value: "multiple",
-            markup: `<sgds-file-upload multiple>Upload files</sgds-file-upload>`,
+            markup: `<sgds-file-upload multiple ariaLabel="Upload files">Upload files</sgds-file-upload>`,
             description:
               "Users can select several files in one go and they are listed below the button.",
           },
@@ -6952,19 +6952,19 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Any file",
             value: "any",
-            markup: `<sgds-file-upload>Upload file</sgds-file-upload>`,
+            markup: `<sgds-file-upload ariaLabel="Upload file">Upload file</sgds-file-upload>`,
             description: "No restriction on file type.",
           },
           {
             label: "Images only",
             value: "images",
-            markup: `<sgds-file-upload accept="image/*">Upload image</sgds-file-upload>`,
+            markup: `<sgds-file-upload accept="image/*" ariaLabel="Upload image">Upload image</sgds-file-upload>`,
             description: "File picker filters to image formats only.",
           },
           {
             label: "PDF only",
             value: "pdf",
-            markup: `<sgds-file-upload accept="application/pdf">Upload PDF</sgds-file-upload>`,
+            markup: `<sgds-file-upload accept="application/pdf" ariaLabel="Upload PDF">Upload PDF</sgds-file-upload>`,
             description: "File picker filters to PDF documents.",
           },
         ],
@@ -6979,13 +6979,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Not disabled",
             value: "not-disabled",
-            markup: `<sgds-file-upload>Upload file</sgds-file-upload>`,
+            markup: `<sgds-file-upload ariaLabel="Upload file">Upload file</sgds-file-upload>`,
             description: "Default interactive state.",
           },
           {
             label: "Disabled",
             value: "disabled",
-            markup: `<sgds-file-upload disabled>Upload file</sgds-file-upload>`,
+            markup: `<sgds-file-upload disabled ariaLabel="Upload file">Upload file</sgds-file-upload>`,
             description:
               "Button appears muted and the file picker cannot be opened.",
           },
@@ -7001,13 +7001,13 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Default",
             value: "default",
-            markup: `<sgds-file-upload>Upload file</sgds-file-upload>`,
+            markup: `<sgds-file-upload ariaLabel="Upload file">Upload file</sgds-file-upload>`,
             description: "No feedback shown.",
           },
           {
             label: "Invalid",
             value: "invalid",
-            markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Attach at least one file">Upload file</sgds-file-upload>`,
+            markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Attach at least one file" ariaLabel="Upload file">Upload file</sgds-file-upload>`,
             description:
               "Upload control shows error styling and feedback message when no file is attached.",
           },
@@ -7023,14 +7023,14 @@ const componentDocs: Record<string, ComponentDoc> = {
           {
             label: "Enabled",
             value: "enabled",
-            markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Attach at least one file">Upload file</sgds-file-upload>`,
+            markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Attach at least one file" ariaLabel="Upload file">Upload file</sgds-file-upload>`,
             description:
               "Built-in validation runs on form submission and emits `sgds-invalid` or `sgds-valid` events. Error feedback appears when the field is invalid.",
           },
           {
             label: "Disabled",
             value: "disabled",
-            markup: `<sgds-file-upload required noValidate>Upload file</sgds-file-upload>`,
+            markup: `<sgds-file-upload required noValidate ariaLabel="Upload file">Upload file</sgds-file-upload>`,
             description:
               "Use `noValidate` when handling validation externally. No constraint checks or validation events fire.",
           },
@@ -7041,14 +7041,14 @@ const componentDocs: Record<string, ComponentDoc> = {
       demo(
         "Default",
         "Use file upload when users need to submit supporting documents or media.",
-        `<sgds-file-upload accept=".pdf,.doc,.docx">Upload document</sgds-file-upload>`,
+        `<sgds-file-upload accept=".pdf,.doc,.docx" ariaLabel="Upload document">Upload document</sgds-file-upload>`,
       ),
     ],
     measurements: [
       {
         title: "File upload structure",
         description: "File upload structure shows the upload control and the spacing, padding, and border tokens used by the component.",
-        markup: `<sgds-file-upload class="portal-structure-file-upload" label="Supporting documents" hintText="PDF, JPG, or PNG. Max 5 MB per file.">Upload file</sgds-file-upload>`,
+        markup: `<sgds-file-upload class="portal-structure-file-upload" label="Supporting documents" hintText="PDF, JPG, or PNG. Max 5 MB per file." ariaLabel="Upload file">Upload file</sgds-file-upload>`,
       },
     ],
     usage: {
@@ -7059,7 +7059,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Tell users which file types and sizes are accepted before they pick a file to reduce failed uploads.",
           tone: "do",
           markup: `<div class="portal-demo-stack">
-            <sgds-file-upload accept=".pdf,.jpg,.png">Upload document</sgds-file-upload>
+            <sgds-file-upload accept=".pdf,.jpg,.png" ariaLabel="Upload document">Upload document</sgds-file-upload>
             <span>Accepted formats: PDF, JPG, PNG. Maximum 5 MB per file.</span>
           </div>`,
         },
@@ -7067,33 +7067,33 @@ const componentDocs: Record<string, ComponentDoc> = {
           title: "Restrict file types in the picker",
           description: "Set the `accept` attribute to filter the system file picker so users do not have to scan files manually.",
           tone: "do",
-          markup: `<sgds-file-upload accept="application/pdf">Upload PDF</sgds-file-upload>`,
+          markup: `<sgds-file-upload accept="application/pdf" ariaLabel="Upload PDF">Upload PDF</sgds-file-upload>`,
         },
         {
           title: "Do not leave the upload action ambiguous",
           description:
             "Use a clear verb-led label inside the slot, for example Upload report, rather than generic File or Browse.",
           tone: "dont",
-          markup: `<sgds-file-upload>File</sgds-file-upload>`,
+          markup: `<sgds-file-upload ariaLabel="File">File</sgds-file-upload>`,
         },
         {
           title: "Allow several files only when users genuinely need it",
           description: "Add the `multiple` attribute when the task expects several files in one go, such as photo evidence.",
           tone: "do",
-          markup: `<sgds-file-upload accept="image/*" multiple>Upload supporting photos</sgds-file-upload>`,
+          markup: `<sgds-file-upload accept="image/*" multiple ariaLabel="Upload supporting photos">Upload supporting photos</sgds-file-upload>`,
         },
         {
           title: "Show validation feedback when an upload is required",
           description: "Pair `required` with `hasFeedback` and `invalidFeedback` so the empty state can be flagged inline.",
           tone: "do",
-          markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Attach at least one file">Upload document</sgds-file-upload>`,
+          markup: `<sgds-file-upload required hasFeedback invalid invalidFeedback="Attach at least one file" ariaLabel="Upload document">Upload document</sgds-file-upload>`,
         },
         {
           title: "Do not use file upload for very small text inputs",
           description:
             "For a short value such as a reference number, use a text input. Uploading a file adds friction.",
           tone: "dont",
-          markup: `<sgds-file-upload>Upload your reference number</sgds-file-upload>`,
+          markup: `<sgds-file-upload ariaLabel="Upload your reference number">Upload your reference number</sgds-file-upload>`,
         },
       ],
     },
@@ -9969,8 +9969,8 @@ const componentDocs: Record<string, ComponentDoc> = {
         description: "The navigation adapts from desktop layouts to smaller screens.",
       },
     ],
-    anatomyMarkup: `<sgds-mainnav fluid expand="always" brandHref="/" class="portal-mainnav-anatomy sgds:w-[var(--sgds-dimension-688)]">
-      <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+    anatomyMarkup: `<sgds-mainnav fluid expand="always" class="portal-mainnav-anatomy sgds:w-[var(--sgds-dimension-688)]">
+      <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
       <sgds-mainnav-item active><a href="#">Services</a></sgds-mainnav-item>
       <sgds-mainnav-item><a href="#">Resources</a></sgds-mainnav-item>
       <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
@@ -10000,8 +10000,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Constrained width",
             value: "constrained",
             markup: `<div class="portal-demo-nav portal-mainnav-width-demo sgds:w-full">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Services</sgds-mainnav-item>
@@ -10015,8 +10015,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Full-bleed (fluid)",
             value: "fluid",
             markup: `<div class="portal-demo-nav portal-mainnav-width-demo sgds:w-full">
-          <sgds-mainnav brandHref="/" fluid>
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav fluid>
+            <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Services</sgds-mainnav-item>
@@ -10039,8 +10039,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Default items",
             value: "default-items",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Contact</sgds-mainnav-item>
@@ -10053,8 +10053,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With active item",
             value: "with-active",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Contact</sgds-mainnav-item>
@@ -10067,8 +10067,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With disabled item",
             value: "with-disabled",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item disabled>Coming soon</sgds-mainnav-item>
@@ -10090,8 +10090,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Without dropdown",
             value: "without-dropdown",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-mainnav-item>Contact</sgds-mainnav-item>
@@ -10104,8 +10104,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With dropdown",
             value: "with-dropdown",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-dropdown ariaLabel="Services">
               <span slot="toggler">Services</span>
@@ -10132,8 +10132,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Without end slot",
             value: "without-end",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
           </sgds-mainnav>
@@ -10144,8 +10144,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With sign-in action",
             value: "with-end-action",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+            <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item active>Home</sgds-mainnav-item>
             <sgds-mainnav-item>About</sgds-mainnav-item>
             <sgds-button slot="end" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
@@ -10167,8 +10167,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With action",
             value: "with-action",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+              <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
@@ -10182,8 +10182,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "No action",
             value: "no-action",
             markup: `<div class="portal-demo-nav">
-          <sgds-mainnav brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav>
+              <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active><a href="#">Home</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">About</a></sgds-mainnav-item>
               <sgds-mainnav-item><a href="#">Contact</a></sgds-mainnav-item>
@@ -10200,8 +10200,8 @@ const componentDocs: Record<string, ComponentDoc> = {
         "Structure",
         "Mainnav structure preview with illustrative slot content.",
         `<div class="portal-demo-nav">
-          <sgds-mainnav fluid expand="always" brandHref="/">
-            <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+          <sgds-mainnav fluid expand="always">
+            <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
             <sgds-mainnav-item><a href="#">Overview</a></sgds-mainnav-item>
             <sgds-mainnav-dropdown active ariaLabel="Services">
               <span slot="toggler">Services</span>
@@ -10244,8 +10244,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Reserve mainnav for primary sections every user needs. Keep secondary or task-specific links elsewhere.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav expand="always">
+              <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <sgds-mainnav-item>Services</sgds-mainnav-item>
               <sgds-mainnav-item>About</sgds-mainnav-item>
@@ -10259,8 +10259,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Long mainnavs are hard to scan. With more than five items, consolidate or move some into a dropdown or subnav.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav expand="always">
+              <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item>Home</sgds-mainnav-item>
               <sgds-mainnav-item>Apply</sgds-mainnav-item>
               <sgds-mainnav-item>Renew</sgds-mainnav-item>
@@ -10279,8 +10279,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Anchor user-account actions like sign in to the end slot so users find them in a consistent place.",
           tone: "do",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav expand="always">
+              <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <sgds-mainnav-item>About</sgds-mainnav-item>
               <sgds-button slot="end" variant="primary" ariaLabel="Sign in">Sign in</sgds-button>
@@ -10293,8 +10293,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "The end slot draws strong attention. Reserve it for one global action, not promotional links or badges.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/" expand="always">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav expand="always">
+              <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
               <div slot="end">
                 <sgds-badge>New</sgds-badge>
@@ -10398,8 +10398,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             markup: `<div class="portal-masthead-width-demo">
               <div class="portal-masthead-width-demo__viewport">
                 <sgds-masthead></sgds-masthead>
-                <sgds-mainnav brandHref="/">
-                  <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot portal-masthead-mainnav-brand-slot"><span>Slot content</span></div>
+                <sgds-mainnav>
+                  <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot portal-masthead-mainnav-brand-slot"><span>Slot content</span></a>
                   <sgds-mainnav-item active>Home</sgds-mainnav-item>
                 </sgds-mainnav>
               </div>
@@ -10443,8 +10443,8 @@ const componentDocs: Record<string, ComponentDoc> = {
             "Skipping the banner, even on internal flows or success screens, undermines the trust signal users rely on.",
           tone: "dont",
           markup: `<div class="portal-demo-nav">
-            <sgds-mainnav brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav>
+              <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
             </sgds-mainnav>
           </div>`,
@@ -10456,8 +10456,8 @@ const componentDocs: Record<string, ComponentDoc> = {
           tone: "do",
           markup: `<div class="portal-demo-nav">
             <sgds-masthead fluid></sgds-masthead>
-            <sgds-mainnav fluid brandHref="/">
-              <div slot="brand" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></div>
+            <sgds-mainnav fluid>
+              <a slot="brand" href="/" class="portal-slot-example portal-mainnav-brand-slot"><span>Slot content</span></a>
               <sgds-mainnav-item active>Home</sgds-mainnav-item>
             </sgds-mainnav>
           </div>`,
@@ -17371,7 +17371,7 @@ const componentDocs: Record<string, ComponentDoc> = {
       ],
       content: [{ title: "Labels and slots", items: [
         "Give every action icon button a descriptive ariaLabel. Appnav uses this text for the collapsed menu item.",
-        "Place an application logo or name in the brand slot and set brandHref to the application home page.",
+        "Place an application logo or name in the brand slot. Wrap it in an anchor tag with href pointing to the application home page.",
         "Use the start slot for a control such as a sidebar toggle. Connect it to the application sidebar yourself.",
         "Use the profile label for the user name and secondaryText for supporting details such as agency or role.",
       ] }],
@@ -17424,7 +17424,7 @@ const componentDocs: Record<string, ComponentDoc> = {
         { title: "What you need to do", items: [
           "Set ariaLabel on every icon-only action. Appnav also uses this text for the collapsed action labels.",
           "Set ariaLabel on the profile toggle, such as Profile menu.",
-          "Give the brand image meaningful alternative text and set brandHref to the application's home page.",
+          "Give the brand image meaningful alternative text and wrap it in an anchor tag linking to the application's home page.",
           "Use variant=ghost and tone=fixed-light for icon buttons.",
         ] },
       ],
@@ -20227,12 +20227,12 @@ const accessibilityDemoMarkupOverrides: Record<
     </sgds-dropdown>`,
   },
   "file-upload": {
-    builtIn: `<sgds-file-upload accept=".pdf,.doc,.docx">Upload document</sgds-file-upload>`,
+    builtIn: `<sgds-file-upload accept=".pdf,.doc,.docx" ariaLabel="Upload document">Upload document</sgds-file-upload>`,
     author: `<div class="portal-demo-stack-sm">
       <p class="sgds:m-0">Upload a PDF, DOC, or DOCX file. Maximum size: 5 MB.</p>
-      <sgds-file-upload accept=".pdf,.doc,.docx">Upload supporting document</sgds-file-upload>
+      <sgds-file-upload accept=".pdf,.doc,.docx" ariaLabel="Upload supporting document">Upload supporting document</sgds-file-upload>
     </div>`,
-    focus: `<sgds-file-upload accept=".pdf">Upload PDF</sgds-file-upload>`,
+    focus: `<sgds-file-upload accept=".pdf" ariaLabel="Upload PDF">Upload PDF</sgds-file-upload>`,
   },
   footer: {
     builtIn: `<sgds-footer>

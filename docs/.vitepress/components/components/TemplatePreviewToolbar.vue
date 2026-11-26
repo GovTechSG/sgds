@@ -149,7 +149,7 @@ onBeforeUnmount(() => {
           tone="fixed-light"
           size="sm"
           class="template-preview-template-button"
-          :ariaLabel.prop="'Select template'"
+          :ariaLabel.prop="`Select template: ${selectedTitle}`"
         >
           <span class="template-preview-toolbar-label">{{ selectedTitle }}</span>
           <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>
@@ -178,7 +178,7 @@ onBeforeUnmount(() => {
           tone="fixed-light"
           size="sm"
           class="template-preview-template-button"
-          :ariaLabel.prop="'Select block'"
+          :ariaLabel.prop="`Select block: ${selectedTitle}`"
         >
           <span class="template-preview-toolbar-label">{{ selectedTitle }}</span>
           <sgds-icon name="chevron-down" slot="rightIcon"></sgds-icon>

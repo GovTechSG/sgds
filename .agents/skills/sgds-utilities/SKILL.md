@@ -1,6 +1,6 @@
 ---
 name: "sgds-utilities"
-description: "Complete reference for all SGDS utility classes with the sgds: prefix. Use when users ask about setup, background-color, text-color, border-color, border-width, border-radius, typography, spacing, grid, dimension, opacity, color-semantics, or any sgds: Tailwind utility class. Also covers Tailwind v4 imports, theme switching, and framework integration for utilities."
+description: "Use when users ask about SGDS utility classes with the sgds: prefix — setup, background-color, text-color, border-color, border-width, border-radius, typography, spacing, grid, dimension, opacity, color-semantics, or any sgds: Tailwind utility class. Complete reference also covering Tailwind v4 imports, theme switching, and framework integration for utilities."
 metadata:
   author: singapore-design-system
   version: "0.0.0"
@@ -146,36 +146,36 @@ Not listed? See the full list at https://tailwindcss.com/docs/installation/frame
 
 | Category       | Utility                                                                          | Theme files required | Reference                                                          |
 | -------------- | -------------------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------ |
-| **Layout**     | Grid system (`.sgds-container`, `.sgds-grid`, `.sgds-col-*`)                     | No                   | [→ reference/grid.md](reference/grid.md)                           |
-| **Layout**     | Container dimensions (`sgds:w-container`, `sgds:max-w-container-*`)              | No                   | [→ reference/dimension.md](reference/dimension.md)                 |
-| **Spacing**    | Margin, padding, gap (`sgds:p-*`, `sgds:m-*`, `sgds:gap-*`, semantic tokens)     | No                   | [→ reference/spacing.md](reference/spacing.md)                     |
-| **Color**      | Color token suffix semantics (default, emphasis, muted, fixed, etc.)             | —                    | [→ reference/color-semantics.md](reference/color-semantics.md)     |
-| **Color**      | Background colors (`sgds:bg-*`)                                                  | Yes                  | [→ reference/background-color.md](reference/background-color.md)   |
-| **Color**      | Text colors (`sgds:text-*`)                                                      | Yes                  | [→ reference/text-color.md](reference/text-color.md)               |
-| **Color**      | Border colors (`sgds:border-*` color)                                            | Yes                  | [→ reference/border-color.md](reference/border-color.md)           |
-| **Border**     | Border width and sides (`sgds:border`, `sgds:border-2`, `sgds:border-l-4`, etc.) | No                   | [→ reference/border-width.md](reference/border-width.md)           |
-| **Border**     | Border radius (`sgds:rounded-*`, `sgds:rounded-form-*`)                          | No                   | [→ reference/border-radius.md](reference/border-radius.md)         |
-| **Typography** | Font size, weight, line height, letter spacing, font family                      | No                   | [→ reference/typography.md](reference/typography.md)               |
-| **Visual**     | Opacity (`sgds:opacity-*`)                                                       | No                   | [→ reference/opacity.md](reference/opacity.md)                     |
-| **Visual**     | Elevation / box shadows (`sgds:shadow-*`, `sgds:shadow-edge-*`)                  | No                   | [→ reference/elevation.md](reference/elevation.md)                 |
-| **Responsive** | Breakpoint prefixes (`sgds:xs:`, `sgds:sm:`, `sgds:md:`, `sgds:lg:`, `sgds:xl:`, `sgds:2-xl:`) | No                   | [→ reference/breakpoint.md](reference/breakpoint.md)               |
-| **Patterns**   | Cross-category component patterns (card, alert, form, modal)                     | —                    | [→ reference/overview-patterns.md](reference/overview-patterns.md) |
+| **Layout**     | Grid system (`.sgds-container`, `.sgds-grid`, `.sgds-col-*`)                     | No                   | [→ references/grid.md](references/grid.md)                           |
+| **Layout**     | Container dimensions (`sgds:w-container`, `sgds:max-w-container-*`)              | No                   | [→ references/dimension.md](references/dimension.md)                 |
+| **Spacing**    | Margin, padding, gap (`sgds:p-*`, `sgds:m-*`, `sgds:gap-*`, semantic tokens)     | No                   | [→ references/spacing.md](references/spacing.md)                     |
+| **Color**      | Color token suffix semantics (default, emphasis, muted, fixed, etc.)             | —                    | [→ references/color-semantics.md](references/color-semantics.md)     |
+| **Color**      | Background colors (`sgds:bg-*`)                                                  | Yes                  | [→ references/background-color.md](references/background-color.md)   |
+| **Color**      | Text colors (`sgds:text-*`)                                                      | Yes                  | [→ references/text-color.md](references/text-color.md)               |
+| **Color**      | Border colors (`sgds:border-*` color)                                            | Yes                  | [→ references/border-color.md](references/border-color.md)           |
+| **Border**     | Border width and sides (`sgds:border`, `sgds:border-2`, `sgds:border-l-4`, etc.) | No                   | [→ references/border-width.md](references/border-width.md)           |
+| **Border**     | Border radius (`sgds:rounded-*`, `sgds:rounded-form-*`)                          | No                   | [→ references/border-radius.md](references/border-radius.md)         |
+| **Typography** | Font size, weight, line height, letter spacing, font family                      | No                   | [→ references/typography.md](references/typography.md)               |
+| **Visual**     | Opacity (`sgds:opacity-*`)                                                       | No                   | [→ references/opacity.md](references/opacity.md)                     |
+| **Visual**     | Elevation / box shadows (`sgds:shadow-*`, `sgds:shadow-edge-*`)                  | No                   | [→ references/elevation.md](references/elevation.md)                 |
+| **Responsive** | Breakpoint prefixes (`sgds:xs:`, `sgds:sm:`, `sgds:md:`, `sgds:lg:`, `sgds:xl:`, `sgds:2-xl:`) | No                   | [→ references/breakpoint.md](references/breakpoint.md)               |
+| **Patterns**   | Cross-category component patterns (card, alert, form, modal)                     | —                    | [→ references/overview-patterns.md](references/overview-patterns.md) |
 
 ---
 
 ## Quick Reference by Use Case
 
-**Page layout, columns, responsive grid** → [reference/grid.md](reference/grid.md)
-**Container width, max-width** → [reference/dimension.md](reference/dimension.md)
-**Spacing between sections, components, text** → [reference/spacing.md](reference/spacing.md)
-**Color token suffixes (default, emphasis, muted, etc.)** → [reference/color-semantics.md](reference/color-semantics.md)
-**Card backgrounds, surface colors** → [reference/background-color.md](reference/background-color.md)
-**Text content colors** → [reference/text-color.md](reference/text-color.md)
-**Borders and rounded corners** → [reference/border-color.md](reference/border-color.md), [reference/border-width.md](reference/border-width.md), [reference/border-radius.md](reference/border-radius.md)
-**Headings, body text, font sizes** → [reference/typography.md](reference/typography.md)
-**Transparent overlays, disabled states** → [reference/opacity.md](reference/opacity.md)
-**Card shadows, modal depth, sticky header/footer edges** → [reference/elevation.md](reference/elevation.md)
-**Responsive breakpoints, show/hide at viewport sizes** → [reference/breakpoint.md](reference/breakpoint.md)
+**Page layout, columns, responsive grid** → [references/grid.md](references/grid.md)
+**Container width, max-width** → [references/dimension.md](references/dimension.md)
+**Spacing between sections, components, text** → [references/spacing.md](references/spacing.md)
+**Color token suffixes (default, emphasis, muted, etc.)** → [references/color-semantics.md](references/color-semantics.md)
+**Card backgrounds, surface colors** → [references/background-color.md](references/background-color.md)
+**Text content colors** → [references/text-color.md](references/text-color.md)
+**Borders and rounded corners** → [references/border-color.md](references/border-color.md), [references/border-width.md](references/border-width.md), [references/border-radius.md](references/border-radius.md)
+**Headings, body text, font sizes** → [references/typography.md](references/typography.md)
+**Transparent overlays, disabled states** → [references/opacity.md](references/opacity.md)
+**Card shadows, modal depth, sticky header/footer edges** → [references/elevation.md](references/elevation.md)
+**Responsive breakpoints, show/hide at viewport sizes** → [references/breakpoint.md](references/breakpoint.md)
 
 ---
 
@@ -184,9 +184,9 @@ Not listed? See the full list at https://tailwindcss.com/docs/installation/frame
 1. Always verify users have completed setup (utility CSS import) before suggesting utility classes.
 2. Theme files (`day.css`, `night.css`) are only needed for color utilities (background, text, border colors) — not for spacing, typography, border radius, or opacity.
 3. When users ask about a specific utility category, read the corresponding reference file before generating output.
-4. The grid system (`.sgds-container`, `.sgds-grid`, `.sgds-col-*`) is always preferred over generic Tailwind `sgds:grid-cols-*` — see `reference/grid.md`.
+4. The grid system (`.sgds-container`, `.sgds-grid`, `.sgds-col-*`) is always preferred over generic Tailwind `sgds:grid-cols-*` — see `references/grid.md`.
 5. Prefer semantic spacing utilities (`sgds:gap-layout-*`, `sgds:p-component-*`) over raw numeric utilities (`sgds:p-4`, `sgds:gap-6`) — they are responsive and encode design intent.
 6. Prefer semantic font-size utilities (`sgds:text-display-*`, `sgds:text-heading-*`, `sgds:text-body-*`) over raw scale utilities — they are responsive.
-7. Color suffix modifiers (`default`, `emphasis`, `muted`, `surface`, `fixed-light`, `fixed-dark`, `inverse`) are shared across all color utilities — see `reference/color-semantics.md`.
+7. Color suffix modifiers (`default`, `emphasis`, `muted`, `surface`, `fixed-light`, `fixed-dark`, `inverse`) are shared across all color utilities — see `references/color-semantics.md`.
 8. **Never use inline `style` attributes.** If a layout or visual property is needed, find the equivalent `sgds:` utility class. If no utility class exists for the exact value, prefer the closest semantic utility. Only resort to a CSS custom property override as a last option, and never via a `style` attribute.
-9. **Never use raw `sgds:max-w-*` utilities for container sizing.** Raw classes like `sgds:max-w-2xl`, `sgds:max-w-lg`, `sgds:max-w-sm` map to small Tailwind numeric values and are not part of the SGDS design system. Use `sgds:max-w-container-*` (md/lg/xl/2-xl/3-xl) for inner containers, or `sgds:w-container` for the top-level page wrapper. See `reference/dimension.md`.
+9. **Never use raw `sgds:max-w-*` utilities for container sizing.** Raw classes like `sgds:max-w-2xl`, `sgds:max-w-lg`, `sgds:max-w-sm` map to small Tailwind numeric values and are not part of the SGDS design system. Use `sgds:max-w-container-*` (md/lg/xl/2-xl/3-xl) for inner containers, or `sgds:w-container` for the top-level page wrapper. See `references/dimension.md`.

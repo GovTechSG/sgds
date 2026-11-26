@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { withBase } from "vitepress";
 import Section from "../foundations/Section.vue";
 import AnatomySection from "./AnatomySection.vue";
@@ -15,6 +15,7 @@ import { accordionV2Data } from "../../data/accordion-v2";
 import CodeToken from "../ui/CodeToken.vue";
 import { linkedTextParts, textParts } from "../../utils/text-parts";
 import { setupPortalSteppers } from "../../utils/portal-stepper";
+import { useTabHashSync } from "../../composables/useTabHashSync";
 
 const props = defineProps<{
   componentKey: string;
@@ -321,40 +322,18 @@ const initSteppers = async () => {
 };
 
 // Tab hash sync — universal 4-tab layout (design / usage / accessibility / updates).
-// The Code tab is intentionally hidden on every component page to mirror the
-// accordion v1 pattern; code snippets live in the Storybook/repo reference
-// instead.
 const TAB_PANELS = ["design", "usage", "accessibility", "updates"];
-const visibleTabPanels = computed(() => TAB_PANELS);
-const tabGroupRef = ref<Element | null>(null);
 
-const handleTabClick = (panel: string) => {
-  history.replaceState(null, "", `${window.location.pathname}#${panel}`);
-};
-
-const activateTabFromHash = async () => {
-  await nextTick();
-  const hash = window.location.hash.slice(1).toLowerCase();
-  if (!visibleTabPanels.value.includes(hash) || hash === "design") return;
-
-  // Wait for the Lit element to be defined and finish its first update cycle
-  await customElements.whenDefined("sgds-tab-group");
-  const tabGroup = (tabGroupRef.value ?? document.querySelector("sgds-tab-group")) as any;
-  await tabGroup?.updateComplete;
-  tabGroup?.show?.(hash);
-};
+const { tabGroupRef, handleTabClick, activateTabFromHash } = useTabHashSync(TAB_PANELS, {
+  defaultPanel: "design",
+});
 
 onMounted(() => {
   void initSteppers();
-  void activateTabFromHash();
-  window.addEventListener("hashchange", activateTabFromHash);
 });
 watch(() => props.componentKey, () => {
   void initSteppers();
   void activateTabFromHash();
-});
-onBeforeUnmount(() => {
-  window.removeEventListener("hashchange", activateTabFromHash);
 });
 </script>
 

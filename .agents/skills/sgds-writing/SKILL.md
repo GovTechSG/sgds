@@ -1,6 +1,6 @@
 ---
 name: "sgds-writing"
-description: "Writing style guide for the Singapore Government Design System (SGDS). Use when writing or reviewing UI copy, documentation, labels, error messages, tooltips, or any content that accompanies SGDS components. Covers tone, grammar, spelling, casing, punctuation, and plain language principles."
+description: "Use when writing or reviewing UI copy, documentation, labels, error messages, tooltips, or any content that accompanies SGDS components. Writing style guide for the Singapore Government Design System (SGDS). Covers tone, grammar, spelling, casing, punctuation, and plain language principles."
 metadata:
   author: singapore-design-system
   version: "0.0.0"
@@ -52,7 +52,7 @@ Use **UK English** spelling throughout.
 
 > **Spell-check setting**: set your editor and CI spell checker to `en-GB`. In VS Code, set `"editor.language": "en-GB"` or use the [Spell Right](https://marketplace.visualstudio.com/items?itemName=ban.spellright) extension with `"spellright.language": ["en-GB"]`.
 
-See [→ reference/spelling.md](reference/spelling.md) for a full word list.
+See [→ references/spelling.md](references/spelling.md) for a full word list.
 
 ---
 
@@ -276,7 +276,7 @@ Do not use "must" for administrative steps — it implies a legal consequence th
 
 | Topic | File |
 |---|---|
-| UK vs US spelling word list | [→ reference/spelling.md](reference/spelling.md) |
-| Grammar rules quick reference | [→ reference/grammar.md](reference/grammar.md) |
-| Punctuation quick reference | [→ reference/punctuation.md](reference/punctuation.md) |
-| Word choice and plain language | [→ reference/word-choice.md](reference/word-choice.md) |
+| UK vs US spelling word list | [→ references/spelling.md](references/spelling.md) |
+| Grammar rules quick reference | [→ references/grammar.md](references/grammar.md) |
+| Punctuation quick reference | [→ references/punctuation.md](references/punctuation.md) |
+| Word choice and plain language | [→ references/word-choice.md](references/word-choice.md) |

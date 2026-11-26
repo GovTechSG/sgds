@@ -121,6 +121,7 @@ watch(() => props.options, () => {
       :class="{ 'segment-active': opt.value === modelValue }"
       :data-segment-value="opt.value"
       role="tab"
+      :aria-label="opt.label"
       :aria-selected="opt.value === modelValue ? 'true' : 'false'"
       @click="onSegmentClick(opt.value)"
     >
