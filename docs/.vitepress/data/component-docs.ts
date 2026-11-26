@@ -1193,7 +1193,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "With slots",
             value: "with-slots",
             markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]">
-              <sgds-accordion-item open>
+              <sgds-accordion-item open ariaLabel="Application status Ready">
                 <sgds-icon slot="icon" name="info-circle-fill"></sgds-icon>
                 <span slot="header">Application status</span>
                 <sgds-badge slot="badge" variant="success">Ready</sgds-badge>
@@ -1207,7 +1207,7 @@ const componentDocs: Record<string, ComponentDoc> = {
             label: "Text only",
             value: "text-only",
             markup: `<sgds-accordion class="sgds:w-full sgds:max-w-[var(--sgds-dimension-480)]">
-              <sgds-accordion-item open>
+              <sgds-accordion-item open ariaLabel="Application status">
                 <span slot="header">Application status</span>
                 <div slot="content">Keep the item simple when text is enough.</div>
               </sgds-accordion-item>
